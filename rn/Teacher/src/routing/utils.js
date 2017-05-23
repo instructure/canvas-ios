@@ -21,8 +21,12 @@ function processConfig (config: Object, id: string, configureCallback: (event: s
     if (key === 'children') return
     if (typeof config[key] === 'function') {
       const id = config['actionID'] || config['testID']
-      if (!id) return
-      obj[key] = configureCallback(id, config[key])
+      if (id) {
+        obj[key] = configureCallback(id, config[key])
+      } else {
+        console.warn('Configuring callback with potentially non unique event id')
+        obj[key] = configureCallback(key, config[key])
+      }
     } else if (isColorKey(key)) {
       obj[key] = processColor(config[key])
     } else if ((typeof config[key] !== 'string') && isImageKey(key)) {

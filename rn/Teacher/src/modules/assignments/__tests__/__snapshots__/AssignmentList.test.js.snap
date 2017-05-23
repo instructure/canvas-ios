@@ -347,16 +347,21 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "paddingBottom": 8,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 8,
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -690,6 +695,66 @@ exports[`applyFilter will apply a new filter 1`] = `
           "name": "Learn React Native",
           "position": 1,
         },
+        Object {
+          "assignments": Array [
+            Object {
+              "assignment_group_id": 1376,
+              "automatic_peer_reviews": false,
+              "created_at": "2017-03-17T19:15:25Z",
+              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              "due_at": "2017-06-01T05:59:00Z",
+              "grading_type": "points",
+              "html_url": "http://hostname.tld/whatever",
+              "id": 2,
+              "lock_at": "2017-06-01T05:59:59Z",
+              "name": "learn to write code",
+              "needs_grading_count": 0,
+              "overrides": Array [],
+              "peer_reviews": false,
+              "points_possible": 20,
+              "position": 1,
+              "submission_types": Array [
+                "online_text_entry",
+                "online_url",
+                "media_recording",
+                "online_upload",
+              ],
+              "unlock_at": "2017-03-17T06:00:00Z",
+              "updated_at": "2017-03-17T19:15:25Z",
+            },
+          ],
+          "data": Array [
+            Object {
+              "assignment_group_id": 1376,
+              "automatic_peer_reviews": false,
+              "created_at": "2017-03-17T19:15:25Z",
+              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              "due_at": "2017-06-01T05:59:00Z",
+              "grading_type": "points",
+              "html_url": "http://hostname.tld/whatever",
+              "id": 2,
+              "lock_at": "2017-06-01T05:59:59Z",
+              "name": "learn to write code",
+              "needs_grading_count": 0,
+              "overrides": Array [],
+              "peer_reviews": false,
+              "points_possible": 20,
+              "position": 1,
+              "submission_types": Array [
+                "online_text_entry",
+                "online_url",
+                "media_recording",
+                "online_upload",
+              ],
+              "unlock_at": "2017-03-17T06:00:00Z",
+              "updated_at": "2017-03-17T19:15:25Z",
+            },
+          ],
+          "id": 2,
+          "key": 2,
+          "name": "Learn React Native",
+          "position": 1,
+        },
       ]
     }
     disableVirtualization={false}
@@ -781,11 +846,72 @@ exports[`applyFilter will apply a new filter 1`] = `
           "name": "Learn React Native",
           "position": 1,
         },
+        Object {
+          "assignments": Array [
+            Object {
+              "assignment_group_id": 1376,
+              "automatic_peer_reviews": false,
+              "created_at": "2017-03-17T19:15:25Z",
+              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              "due_at": "2017-06-01T05:59:00Z",
+              "grading_type": "points",
+              "html_url": "http://hostname.tld/whatever",
+              "id": 2,
+              "lock_at": "2017-06-01T05:59:59Z",
+              "name": "learn to write code",
+              "needs_grading_count": 0,
+              "overrides": Array [],
+              "peer_reviews": false,
+              "points_possible": 20,
+              "position": 1,
+              "submission_types": Array [
+                "online_text_entry",
+                "online_url",
+                "media_recording",
+                "online_upload",
+              ],
+              "unlock_at": "2017-03-17T06:00:00Z",
+              "updated_at": "2017-03-17T19:15:25Z",
+            },
+          ],
+          "data": Array [
+            Object {
+              "assignment_group_id": 1376,
+              "automatic_peer_reviews": false,
+              "created_at": "2017-03-17T19:15:25Z",
+              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              "due_at": "2017-06-01T05:59:00Z",
+              "grading_type": "points",
+              "html_url": "http://hostname.tld/whatever",
+              "id": 2,
+              "lock_at": "2017-06-01T05:59:59Z",
+              "name": "learn to write code",
+              "needs_grading_count": 0,
+              "overrides": Array [],
+              "peer_reviews": false,
+              "points_possible": 20,
+              "position": 1,
+              "submission_types": Array [
+                "online_text_entry",
+                "online_url",
+                "media_recording",
+                "online_upload",
+              ],
+              "unlock_at": "2017-03-17T06:00:00Z",
+              "updated_at": "2017-03-17T19:15:25Z",
+            },
+          ],
+          "id": 2,
+          "key": 2,
+          "name": "Learn React Native",
+          "position": 1,
+        },
       ]
     }
     stickyHeaderIndices={
       Array [
         0,
+        2,
       ]
     }
     stickySectionHeadersEnabled={true}
@@ -877,16 +1003,286 @@ exports[`applyFilter will apply a new filter 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "paddingBottom": 8,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 8,
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
+                      }
                     }
+                  >
+                    <View
+                      accessibilityLabel="Not Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": "#fff",
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#8B969E",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      learn to write code
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#8B969E",
+                            "fontSize": 14,
+                            "marginTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                      Due May 31, 2017 at 10:59 PM
+                    </Text>
+                    <View />
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View />
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Learn React Native
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -10,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="assignment-2"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -1359,16 +1755,21 @@ exports[`filter button only shows when there are grading periods 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "paddingBottom": 8,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 8,
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -1889,16 +2290,21 @@ exports[`renders correctly 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "paddingBottom": 8,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 8,
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -2419,16 +2825,21 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "flexDirection": "row",
-                      "paddingBottom": 8,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                      "paddingTop": 8,
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
                   }
                 >
                   <View
@@ -2597,13 +3008,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           </View>
         </View>
       </View>
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
     </View>
   </RCTScrollView>
 </View>

@@ -59,3 +59,12 @@ test('renders correctly with open due dates', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+test('renders correctly with selected props', () => {
+  let assignment = template.assignment({ due_at: null })
+  assignment.needs_grading_count = 0
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment} tintColor='#fff' underlayColor='#eee' selectedColor='#f00'/>
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})

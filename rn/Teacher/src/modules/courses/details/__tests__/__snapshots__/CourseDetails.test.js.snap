@@ -88,109 +88,6 @@ exports[`refresh function second test 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 44,
-            "justifyContent": "space-between",
-            "left": 0,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "position": "absolute",
-            "right": 0,
-            "top": 20,
-          }
-        }
-      >
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-back-btn"
-        >
-          <View
-            accessibilityLabel="Back"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingRight": 31,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={undefined}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-            ]
-          }
-        >
-          rn 101
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-edit-course-btn"
-        >
-          <View
-            accessibilityLabel="Settings"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingLeft": 20,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "resizeMode": "contain",
-                  "tintColor": "white",
-                }
-              }
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
             "flex": 1,
             "justifyContent": "center",
             "marginTop": 44,
@@ -355,109 +252,6 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 44,
-            "justifyContent": "space-between",
-            "left": 0,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "position": "absolute",
-            "right": 0,
-            "top": 20,
-          }
-        }
-      >
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-back-btn"
-        >
-          <View
-            accessibilityLabel="Back"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingRight": 31,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={undefined}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-            ]
-          }
-        >
-          rn 101
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-edit-course-btn"
-        >
-          <View
-            accessibilityLabel="Settings"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingLeft": 20,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "resizeMode": "contain",
-                  "tintColor": "white",
-                }
-              }
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
             "flex": 1,
             "justifyContent": "center",
             "marginTop": 44,
@@ -554,16 +348,21 @@ exports[`renders correctly 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <Image
@@ -739,109 +538,6 @@ exports[`renders correctly without tabs 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 44,
-            "justifyContent": "space-between",
-            "left": 0,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "position": "absolute",
-            "right": 0,
-            "top": 20,
-          }
-        }
-      >
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-back-btn"
-        >
-          <View
-            accessibilityLabel="Back"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingRight": 31,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={undefined}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-            ]
-          }
-        >
-          rn 101
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-edit-course-btn"
-        >
-          <View
-            accessibilityLabel="Settings"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingLeft": 20,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "resizeMode": "contain",
-                  "tintColor": "white",
-                }
-              }
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
             "flex": 1,
             "justifyContent": "center",
             "marginTop": 44,
@@ -981,109 +677,6 @@ exports[`renders with empty image url 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 44,
-            "justifyContent": "space-between",
-            "left": 0,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "position": "absolute",
-            "right": 0,
-            "top": 20,
-          }
-        }
-      >
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-back-btn"
-        >
-          <View
-            accessibilityLabel="Back"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingRight": 31,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={undefined}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-            ]
-          }
-        >
-          rn 101
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-edit-course-btn"
-        >
-          <View
-            accessibilityLabel="Settings"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingLeft": 20,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "resizeMode": "contain",
-                  "tintColor": "white",
-                }
-              }
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
             "flex": 1,
             "justifyContent": "center",
             "marginTop": 44,
@@ -1180,16 +773,21 @@ exports[`renders with empty image url 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <Image
@@ -1365,109 +963,6 @@ exports[`renders with image url 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 44,
-            "justifyContent": "space-between",
-            "left": 0,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "position": "absolute",
-            "right": 0,
-            "top": 20,
-          }
-        }
-      >
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-back-btn"
-        >
-          <View
-            accessibilityLabel="Back"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingRight": 31,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={undefined}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-            ]
-          }
-        >
-          rn 101
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-edit-course-btn"
-        >
-          <View
-            accessibilityLabel="Settings"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingLeft": 20,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "resizeMode": "contain",
-                  "tintColor": "white",
-                }
-              }
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
             "flex": 1,
             "justifyContent": "center",
             "marginTop": 44,
@@ -1564,16 +1059,21 @@ exports[`renders with image url 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <Image
@@ -1735,109 +1235,6 @@ exports[`renders without image url 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 44,
-            "justifyContent": "space-between",
-            "left": 0,
-            "paddingLeft": 10,
-            "paddingRight": 10,
-            "position": "absolute",
-            "right": 0,
-            "top": 20,
-          }
-        }
-      >
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-back-btn"
-        >
-          <View
-            accessibilityLabel="Back"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingRight": 31,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={undefined}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 18,
-                "fontWeight": "bold",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-            ]
-          }
-        >
-          rn 101
-        </Text>
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={0.2}
-          onLongPress={undefined}
-          onPress={[Function]}
-          onPressIn={undefined}
-          onPressOut={undefined}
-          style={undefined}
-          testID="course-details.navigation-edit-course-btn"
-        >
-          <View
-            accessibilityLabel="Settings"
-            accessibilityTraits="button"
-            accessible={true}
-            style={
-              Object {
-                "paddingLeft": 20,
-              }
-            }
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "resizeMode": "contain",
-                  "tintColor": "white",
-                }
-              }
-            />
-          </View>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
             "flex": 1,
             "justifyContent": "center",
             "marginTop": 44,
@@ -1934,16 +1331,21 @@ exports[`renders without image url 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <Image

@@ -20,6 +20,7 @@ import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
 // such as, when demoing
 console.disableYellowBox = true
+const Helm = NativeModules.Helm
 
 registerScreens(store)
 
@@ -56,4 +57,6 @@ emitter.addListener('Login', async (info: {
     setSession(info)
     hydrateStoreFromPersistedState(store)
   }
+
+  Helm.initNativeViewHierarchy()
 })

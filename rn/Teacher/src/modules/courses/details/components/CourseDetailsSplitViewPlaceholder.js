@@ -18,11 +18,13 @@ export default class CourseDetailsSplitViewPlaceholder extends Component {
 
     return (
       <Screen
-      navBarColor={courseColor} >
-      <View style={style.container}>
-        <Image source={Images.course.placeholder} style={style.icon} />
-        <Text style={style.courseName}>{course.name}</Text>
-      </View>
+        navBarColor={courseColor}
+        navBarStyle='dark'
+      >
+        <View style={style.container}>
+          <Image source={Images.course.placeholder} style={style.icon} />
+          <Text style={style.courseName}>{course.name}</Text>
+        </View>
       </Screen>
     )
   }

@@ -11,24 +11,27 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native'
-import Button from 'react-native-button'
 
 import Images from '../../../images'
 import CourseDetailsActions from '../tabs/actions'
 import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
 import mapStateToProps, { type CourseDetailsProps } from './map-state-to-props'
-import NavigationBackButton from '../../../common/components/NavigationBackButton'
 import refresh from '../../../utils/refresh'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import { Text } from '../../../common/text'
 import Screen from '../../../routing/Screen'
-import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
+import i18n from 'format-message'
 
 export class CourseDetails extends Component<any, CourseDetailsProps, any> {
-
+  props: CourseDetailsProps
   placeholderDidShow: boolean = false
+
+  constructor (props: CourseDetailsProps) {
+    super(props)
+    this.state = { compactMode: true }
+  }
 
   componentDidMount () {
     this.showPlaceholder()
@@ -39,7 +42,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   }
 
   back = () => {
-    this.props.navigator.pop()
+    this.props.navigator.dismiss()
   }
 
   editCourse = () => {
@@ -49,9 +52,20 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   showPlaceholder () {
     let navigator: Navigator = this.props.navigator
     navigator.traitCollection((traits) => {
-      if (traits.horizontal !== 'compact' && !this.placeholderDidShow && this.props.course) {
+      if (traits.window.horizontal !== 'compact' && !this.placeholderDidShow && this.props.course) {
         this.placeholderDidShow = true
         this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
+        this.setState({ compactMode: false })
+      }
+    })
+  }
+
+  onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => {
+      this.setState({ compactMode: traits.window.horizontal === 'compact' })
+      if (!this.placeholderDidShow && !this.state.compactMode) {
+        this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
+        this.placeholderDidShow = true
       }
     })
   }
@@ -74,6 +88,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                 style={styles.container}
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}>
+
+                {this.state.compactMode &&
                 <View style={styles.header}>
                   <View style={styles.headerImageContainer}>
                     {Boolean(course.image_download_url) &&
@@ -81,33 +97,59 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                     }
                     <View style={[styles.headerImageOverlay, { backgroundColor: courseColor, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
                   </View>
-                  <View style={styles.navigationBar}>
-                    <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
-                    <Text style={styles.navigationTitle}>{course.course_code}</Text>
-                    <Button style={[styles.settingsButton]} onPress={this.editCourse} testID='course-details.navigation-edit-course-btn'>
-                      <View style={{ paddingLeft: 20 }} accessible={true} accessibilityLabel={i18n('Settings')} accessibilityTraits={'button'}>
-                        <Image source={Images.course.settings} style={styles.navButtonImage} />
-                      </View>
-                    </Button>
-                  </View>
 
                   <View style={styles.headerBottomContainer} >
                     <Text style={styles.headerTitle}>{course.name}</Text>
                     <Text style={styles.headerSubtitle}>Spring 2017</Text>
                   </View>
                 </View>
+                }
+
                 <View style={styles.tabContainer}>
                   {tabs}
                 </View>
               </RefreshableScrollView>)
     }
 
+    let screenProps = {}
+    if (this.state.compactMode) {
+      screenProps['navBarTransparent'] = true
+      screenProps['automaticallyAdjustsScrollViewInsets'] = false
+      screenProps['drawUnderNavBar'] = true
+    } else {
+      screenProps['automaticallyAdjustsScrollViewInsets'] = true
+      screenProps['navBarTransparent'] = false
+    }
+
+    var courseCode = ''
+    if (course && course.course_code) {
+      courseCode = course.course_code
+    }
     return (
       <Screen
+        title={courseCode || ''}
         statusBarStyle='light'
-        navBarHidden={true}
-        navBarColor={courseColor}>
-      { view }
+        navBarColor={courseColor}
+        navBarStyle='dark'
+        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
+        {...screenProps}
+        // TODO: do a real back button
+        leftBarButtons={[
+          {
+            title: i18n('Back'),
+            testID: 'course-details.navigation-back-btn',
+            action: this.props.navigator.dismiss.bind(this),
+          },
+        ]}
+        rightBarButtons={[
+          {
+            image: Images.course.settings,
+            testID: 'course-details.navigation-edit-course-btn',
+            action: this.editCourse.bind(this),
+          },
+        ]}
+      >
+        { view }
       </Screen>
     )
   }
@@ -163,24 +205,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 44,
-  },
-  navigationBar: {
-    position: 'absolute',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 10,
-    paddingRight: 10,
-    height: 44,
-    top: 20,
-    left: 0,
-    right: 0,
-  },
-  navigationTitle: {
-    color: 'white',
-    backgroundColor: 'transparent',
-    fontWeight: 'bold',
-    fontSize: 18,
   },
   settingsButton: {
     width: 24,

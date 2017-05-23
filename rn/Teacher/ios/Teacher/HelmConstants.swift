@@ -1,5 +1,5 @@
 //
-//  RNNConstants.swift
+//  HelmConstants.swift
 //  Teacher
 //
 //  Created by Garrett Richards on 4/27/17.
@@ -16,6 +16,7 @@ struct PropKeys {
     static let statusBarHidden = "statusBarStyle"
     static let statusBarUpdateAnimation = "statusBarUpdateAnimation"
     static let automaticallyAdjustsScrollViewInsets = "automaticallyAdjustsScrollViewInsets"
+    static let supportedOrientations = "supportedOrientations"
     
     // Nav bar stuff
     static let navBarStyle = "navBarStyle"
@@ -24,6 +25,8 @@ struct PropKeys {
     static let navBarHidden = "navBarHidden"
     static let navBarTranslucent = "navBarTranslucent"
     static let navBarImage = "navBarImage"
+    static let hideNavBarShadowImage = "hideNavBarShadowImage"
+    static let navBarTransparent = "navBarTransparent"
     static let drawUnderNavBar = "drawUnderNavBar"
     static let drawUnderTabBar = "drawUnderTabBar"
     static let leftBarButtons = "leftBarButtons"

@@ -23,6 +23,8 @@ import AssignmentListSectionView from './components/AssignmentListSection'
 import { LinkButton } from '../../common/buttons'
 import { Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
+import colors from '../../common/colors'
+import { type TraitCollection } from '../../routing/Navigator'
 
 type State = {
   currentFilter: {
@@ -30,6 +32,7 @@ type State = {
     title: string,
   },
   filterApplied: boolean,
+  selectedAssignmentID: string,
 }
 
 const DEFAULT_FILTER = {
@@ -41,6 +44,9 @@ const DEFAULT_FILTER = {
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
   state: State
+  displayMode: string
+  data: any = []
+  didSelectFirstItem = false
 
   constructor (props: AssignmentListProps) {
     super(props)
@@ -48,6 +54,24 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.state = {
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
+      selectedAssignmentID: '0',
+    }
+  }
+
+  onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
+  }
+
+  traitCollectionDidChange (traits: TraitCollection) {
+    this.displayMode = traits.window.horizontal
+    this.selectFirstListItem()
+  }
+
+  selectFirstListItem () {
+    if (!this.didSelectFirstItem && this.displayMode === 'regular' && this.data.length > 0 && this.data[0].assignments.length > 0) {
+      let assignment = this.data[0].assignments.sort((a, b) => a.position - b.position)[0]
+      this.selectedAssignment(assignment)
+      this.didSelectFirstItem = true
     }
   }
 
@@ -80,7 +104,13 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   renderRow = ({ item, index }: { item: Assignment, index: number }) => {
-    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} />
+    let rowProps:{[key: string]: any} = {}
+    if (this.displayMode === 'regular') {
+      let color = item.id === this.state.selectedAssignmentID ? colors.cellUnderlay : 'white'
+      rowProps['selectedColor'] = color
+      rowProps['underlayColor'] = 'white'
+    }
+    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} {...rowProps} />
   }
 
   renderSectionHeader = ({ section }: any) => {
@@ -88,6 +118,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   selectedAssignment = (assignment: Assignment) => {
+    this.setState({ selectedAssignmentID: assignment.id })
     this.props.navigator.show(assignment.html_url)
   }
 
@@ -137,12 +168,17 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   render (): React.Element<View> {
+    if (this.data.length === 0) {
+      this.data = this.prepareListData()
+      this.selectFirstListItem()
+    }
     return (
       <Screen
         title={i18n({
           default: 'Assignments',
           description: 'Title of the assignments screen for a course',
         })}
+        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}
         navBarStyle='dark'
         navBarColor={this.props.courseColor}
@@ -160,7 +196,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
           </View>
           <SectionList
             testID='assignment-list.list'
-            sections={this.prepareListData()}
+            sections={this.data}
             renderItem={this.renderRow}
             renderSectionHeader={this.renderSectionHeader}
             refreshing={Boolean(this.props.pending)}

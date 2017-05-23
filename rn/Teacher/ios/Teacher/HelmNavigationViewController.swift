@@ -1,5 +1,5 @@
 //
-//  RNNNavigationViewController.swift
+//  HelmNavigationController.swift
 //  Teacher
 //
 //  Created by Garrett Richards on 4/27/17.
@@ -26,13 +26,8 @@ class HelmNavigationController: UINavigationController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if let _ = viewControllers.last as? EmptyViewController {
-            setViewControllers([viewController], animated: false)
-        }
-        else {
-            super.pushViewController(viewController, animated: animated)
-        }
+    override var prefersStatusBarHidden: Bool {
+        return topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
     }
 }
 

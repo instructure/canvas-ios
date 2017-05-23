@@ -1,5 +1,5 @@
 //
-//  BrandingModel.swift
+//  Brand.swift
 //  Teacher
 //
 //  Created by Garrett Richards on 5/8/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BrandingModel {
+struct Brand {
     var navBgColor = UIColor.red
     var navButtonColor = UIColor.red
     var primaryButtonColor = UIColor.red

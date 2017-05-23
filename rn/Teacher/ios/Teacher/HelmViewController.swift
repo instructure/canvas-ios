@@ -47,6 +47,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     var screenConfigRendered: Bool = false {
         didSet {
             if screenConfigRendered {
+                screenDidRender()
                 onReadyToPresent()
                 onReadyToPresent = { }
             }
@@ -91,8 +92,13 @@ final class HelmViewController: UIViewController, HelmScreen {
         self.view = RCTRootView(bridge: Helm.shared.bridge, moduleName: moduleName, initialProperties: props)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // Do stuff that you'd usually do in viewDidLoad here, rather than there.
+    // This is due to the way the Screen component works and it's flow with
+    // setting the screenConfig and doing a prerender
+    private func screenDidRender() {
+        if let title = screenConfig[PropKeys.title] as? String, let subtitle = screenConfig[PropKeys.subtitle] as? String {
+            self.navigationItem.titleView = titleView(with: title, and: subtitle, given: screenConfig)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,6 +137,15 @@ final class HelmViewController: UIViewController, HelmScreen {
         return statusBarStyle
     }
     
+    
+    // MARK: - Orientation
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        // TODO: Finish me, check screen config
+        return super.supportedInterfaceOrientations
+    }
+    
+    
     // MARK: - Styles
     
     open func handleStyles() {
@@ -138,11 +153,8 @@ final class HelmViewController: UIViewController, HelmScreen {
             self.title = title
         }
         
-        if let title = screenConfig[PropKeys.title] as? String, let subtitle = screenConfig[PropKeys.subtitle] as? String {
-            self.navigationItem.titleView = titleView(with: title, and: subtitle, given: screenConfig)
-        }
-        
         // Nav bar props
+        
         let drawUnderNavBar = screenConfig[PropKeys.drawUnderNavBar] as? Bool ?? false
         if (drawUnderNavBar) {
             edgesForExtendedLayout.insert(.top)
@@ -161,12 +173,28 @@ final class HelmViewController: UIViewController, HelmScreen {
             automaticallyAdjustsScrollViewInsets = autoAdjustInsets
         }
         
+        if screenConfig[PropKeys.navBarTransparent] as? Bool ?? false {
+            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.isTranslucent = true
+            edgesForExtendedLayout.insert(.top)
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        else {
+            navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+            navigationController?.navigationBar.isTranslucent = screenConfig[PropKeys.navBarTranslucent] as? Bool ?? false
+        }
+        
         if let navBarStyle = screenConfig[PropKeys.navBarStyle] as? String {
             switch navBarStyle {
             case "dark": navigationController?.navigationBar.barStyle = .black
             case "light": navigationController?.navigationBar.barStyle = .default
             default: navigationController?.navigationBar.barStyle = .default
             }
+        }
+        
+        if screenConfig[PropKeys.hideNavBarShadowImage] as? Bool ?? false {
+            navigationController?.navigationBar.shadowImage = UIImage()
         }
        
         let navBarHidden = screenConfig[PropKeys.navBarHidden] as? Bool ?? false
@@ -194,8 +222,6 @@ final class HelmViewController: UIViewController, HelmScreen {
             }
         }
         
-        navigationController?.navigationBar.isTranslucent = screenConfig[PropKeys.navBarTranslucent] as? Bool ?? false
-
         if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
             var titleView: UIView? = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath)
             titleView?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
@@ -208,9 +234,9 @@ final class HelmViewController: UIViewController, HelmScreen {
             navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: titleColor]
         }
         
-        func barButtonItems(forKey key: String) -> [UIBarButtonItem] {
+        func barButtonItems(fromConfig config: [[String: Any]]) -> [UIBarButtonItem] {
             var items: [UIBarButtonItem] = []
-            for buttonConfig in (screenConfig[key] as? [[String: Any]] ?? []) {
+            for buttonConfig in config {
                 let styleConfig = buttonConfig["style"] as? String
                 let style: UIBarButtonItemStyle = styleConfig == "done" ? .done : .plain
                 
@@ -241,8 +267,13 @@ final class HelmViewController: UIViewController, HelmScreen {
             return items
         }
         
-        navigationItem.leftBarButtonItems = barButtonItems(forKey: PropKeys.leftBarButtons)
-        navigationItem.rightBarButtonItems = barButtonItems(forKey: PropKeys.rightBarButtons)
+        if let leftBarButtons = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]] {
+            navigationItem.leftBarButtonItems = barButtonItems(fromConfig: leftBarButtons)
+        }
+        
+        if let rightBarButtons = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]] {
+            navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
+        }
         
         // Status bar props
         if let statusBarStyle = screenConfig[PropKeys.statusBarStyle] as? String {
@@ -336,7 +367,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     
     func barButtonTapped(_ barButton: UIBarButtonItem) {
         if let action: NSString = barButton.getAssociatedObject(&Associated.barButtonAction) {
-            Helm.shared.bridge?.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
+            Helm.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
         }
     }
     
@@ -361,6 +392,13 @@ final class HelmViewController: UIViewController, HelmScreen {
         default: break
         }
         return titleView
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let onTraitCollectionChange = screenConfig["onTraitCollectionChange"] as? NSString {
+            Helm.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [onTraitCollectionChange])
+        }
     }
 }
 

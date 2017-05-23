@@ -1,14 +1,22 @@
 // @flow
 
-import PropRegistry from '../PropRegistry.js'
+import PropRegistry from '../PropRegistry'
 
-test('prop registry', () => {
-  PropRegistry.save('12345', { key: 'value' })
-  expect(PropRegistry.load('12345')).toMatchObject({ key: 'value' })
-})
+describe('PropRegistry', () => {
+  beforeEach(() => {
+    PropRegistry.registry = { }
+  })
 
-test('prop registry with broken stuff', () => {
-  PropRegistry.save()
-  expect(PropRegistry.load()).toMatchObject({})
-  expect(PropRegistry.load('999999')).toMatchObject({})
+  test('saves props', () => {
+    const props = { foo: 'bar' }
+    PropRegistry.save('fizzbuzz', props)
+
+    const savedProps = PropRegistry.load('fizzbuzz')
+    expect(savedProps.foo).toEqual('bar')
+  })
+
+  test('returns empty object if bad instance id', () => {
+    const savedProps = PropRegistry.load('fizzbuzz')
+    expect(savedProps).toEqual({})
+  })
 })

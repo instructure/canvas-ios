@@ -99,16 +99,15 @@ test('go back to course list', () => {
   const props = {
     ...defaultProps,
     navigator: template.navigator({
-      pop: jest.fn(),
+      dismiss: jest.fn(),
     }),
   }
   let tree = renderer.create(
     <CourseDetails {...props} />
-  ).toJSON()
+  )
 
-  const allButton = explore(tree).selectByID('course-details.navigation-back-btn') || {}
-  allButton.props.onPress()
-  expect(props.navigator.pop).toHaveBeenCalled()
+  tree.getInstance().back()
+  expect(props.navigator.dismiss).toHaveBeenCalled()
 })
 
 test('select tab', () => {
@@ -144,11 +143,9 @@ test('edit course', () => {
   }
   let tree = renderer.create(
     <CourseDetails {...props} />
-  ).toJSON()
+  )
 
-  let editButton: any = explore(tree).selectByID('course-details.navigation-edit-course-btn')
-  editButton.props.onPress()
-
+  tree.getInstance().editCourse()
   expect(props.navigator.show).toHaveBeenCalledWith(
     '/courses/1/settings',
     { modal: true, modalPresentationStyle: 'formsheet' }
@@ -185,7 +182,12 @@ it('renders with empty image url', () => {
 it('show placeholder', () => {
   const trait = jest.fn((callback) => {
     callback({
-      horizontal: 'normal',
+      screen: {
+        horizontal: 'regular',
+      },
+      window: {
+        horizontal: 'regular',
+      },
     })
   })
   const show = jest.fn()

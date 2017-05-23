@@ -17,6 +17,7 @@ RCT_EXTERN_METHOD(popFrom:(NSString *)sourceModule)
 RCT_EXTERN_METHOD(present:(NSString *)module withProps:(NSDictionary *)props options:(NSDictionary *)options)
 RCT_EXTERN_METHOD(dismiss:(NSDictionary *)options)
 RCT_EXTERN_METHOD(dismissAllModals:(NSDictionary *)options)
-RCT_EXTERN_METHOD(traitCollection:(RCTResponseSenderBlock *)callback)
+RCT_EXTERN_METHOD(traitCollection:(NSString *)screenInstanceID moduleName:(NSString*)moduleName callback:(RCTResponseSenderBlock *)callback)
+RCT_EXTERN_METHOD(initNativeViewHierarchy)
 
 @end

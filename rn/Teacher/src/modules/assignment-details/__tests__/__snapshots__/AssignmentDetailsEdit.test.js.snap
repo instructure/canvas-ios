@@ -532,16 +532,21 @@ exports[`error occurs when done pressed 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
@@ -657,16 +662,21 @@ exports[`error occurs when done pressed 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
@@ -1372,16 +1382,21 @@ exports[`modal saving is shown on assignment update 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
@@ -1497,16 +1512,21 @@ exports[`modal saving is shown on assignment update 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
@@ -2212,16 +2232,21 @@ exports[`renders 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View
@@ -2337,16 +2362,21 @@ exports[`renders 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 8,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
           }
         >
           <View

@@ -5,6 +5,7 @@ import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
 
 jest
+  .mock('WebView', () => 'WebView')
   .mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
   .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
   .mock('../GradeTab')

@@ -71,8 +71,13 @@ export default class Row extends Component<any, RowProps, any> {
       accessibilityLabel: this.props.accessibilityLabel,
     }
 
-    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID}>
-              <View style={style.container}>
+    let underlayColorProps = {}
+    if (this.props.underlayColor) {
+      underlayColorProps.underlayColor = this.props.underlayColor
+    }
+
+    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayColorProps} >
+              <View style={[style.container, { backgroundColor: this.props.selectedColor || 'white' }]}>
                 { this.props.renderImage && this.props.renderImage() }
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
                 <View style={style.titlesContainer}>

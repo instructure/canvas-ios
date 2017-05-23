@@ -46,7 +46,7 @@ export class FavoritedCourseList extends Component {
   }
 
   selectCourse = (course: Course) => {
-    this.props.navigator.show(`/courses/${course.id}`)
+    this.props.navigator.show(`/courses/${course.id}`, { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' })
   }
 
   goToAllCourses = () => {

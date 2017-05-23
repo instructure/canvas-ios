@@ -52,14 +52,9 @@ extension AppDelegate: RCTBridgeDelegate {
 
 extension AppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
-        var branding: BrandingModel?
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            branding = BrandingModel(webPayload: brandingInfo)
+            Helm.branding = Brand(webPayload: brandingInfo)
         }
-        
-        let tabs = RootTabBarController(branding: branding)
-        Helm.shared.rootViewController = tabs
-        self.window?.rootViewController = tabs
     }
     
     func didLogout(_ controller: UIViewController) {

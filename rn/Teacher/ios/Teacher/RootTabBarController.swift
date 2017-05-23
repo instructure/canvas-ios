@@ -10,9 +10,9 @@ import UIKit
 
 class RootTabBarController: UITabBarController {
     
-    let branding: BrandingModel?
+    let branding: Brand?
     
-    init(branding: BrandingModel?) {
+    init(branding: Brand?) {
         self.branding = branding
         super.init(nibName: nil, bundle: nil)
         
@@ -43,18 +43,6 @@ class RootTabBarController: UITabBarController {
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
         enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
         return HelmNavigationController(rootViewController: enrollmentsVC)
-        
-//        let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
-//        let split = HelmSplitViewController()
-//        split.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
-//        
-//        let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
-//        emptyNav.navigationBar.barTintColor = self.branding?.navBgColor
-//        emptyNav.navigationBar.tintColor = self.branding?.navButtonColor
-//        
-//        split.viewControllers = [HelmNavigationController(rootViewController: enrollmentsVC), emptyNav]
-//        split.preferredDisplayMode = .allVisible
-//        return split
     }
     
     func inboxTab() -> UIViewController {

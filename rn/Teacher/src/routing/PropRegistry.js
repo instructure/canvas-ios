@@ -11,7 +11,7 @@ class PropRegistry {
     this.registry[screenInstanceID] = passProps
   }
 
-  load (screenInstanceID: string = '') {
+  load (screenInstanceID: string = ''): Object {
     return this.registry[screenInstanceID] || {}
   }
 }

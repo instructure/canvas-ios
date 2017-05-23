@@ -39,7 +39,7 @@
 		31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5B9B254626D699014C44 /* DataMap.swift */; };
 		3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
 		3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
-		3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */; };
+		3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
 		3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5812EA1EC4F18500173C37 /* HelmTests.swift */; };
 		3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
 		3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
@@ -47,11 +47,10 @@
 		3B5812EF1EC4F33900173C37 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
 		3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
 		3B5812F11EC4F34200173C37 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
-		3B5812F21EC4F34700173C37 /* UISplitViewControllerHelmExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */; };
+		3B5812F21EC4F34700173C37 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
 		3B5813101EC4F55900173C37 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */; };
-		3B748B5D1ECA538E008D6A57 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5C1ECA538E008D6A57 /* UIColorExtensions.swift */; };
-		3B748B5F1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5E1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift */; };
+		3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */; };
 		3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */; };
 		3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */; };
 		3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
@@ -63,18 +62,12 @@
 		3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */; };
 		3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
 		3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
-		3B8B24531EB2AC3100B61EF8 /* courses@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244B1EB2AC3100B61EF8 /* courses@2x.png */; };
-		3B8B24541EB2AC3100B61EF8 /* courses@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244C1EB2AC3100B61EF8 /* courses@3x.png */; };
-		3B8B24551EB2AC3100B61EF8 /* inbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244D1EB2AC3100B61EF8 /* inbox@2x.png */; };
-		3B8B24561EB2AC3100B61EF8 /* inbox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244E1EB2AC3100B61EF8 /* inbox@3x.png */; };
-		3B8B24571EB2AC3100B61EF8 /* link-solid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B244F1EB2AC3100B61EF8 /* link-solid@2x.png */; };
-		3B8B24581EB2AC3100B61EF8 /* link-solid@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B24501EB2AC3100B61EF8 /* link-solid@3x.png */; };
-		3B8B24591EB2AC3100B61EF8 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B24511EB2AC3100B61EF8 /* profile@2x.png */; };
-		3B8B245A1EB2AC3100B61EF8 /* profile@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8B24521EB2AC3100B61EF8 /* profile@3x.png */; };
 		3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */; };
 		3B9D72859115B817CD00CD83 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECA86954393EA402EE37DE /* Data.swift */; };
+		3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
+		3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
 		3BEF7C101E7C96940092C864 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEF7BF51E7C96860092C864 /* libART.a */; };
-		3BF71FC91EC117BE00234D25 /* BrandingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* BrandingModel.swift */; };
+		3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* Brand.swift */; };
 		3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; };
 		3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
@@ -111,6 +104,7 @@
 		61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerTests.swift */; };
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
+		61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */; };
 		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
@@ -459,14 +453,13 @@
 		3A14A839A5EB460283B1F75B /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		3B2C7FBF1EB7DBF000A99D44 /* Helm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helm.m; path = Teacher/Helm.m; sourceTree = "<group>"; };
 		3B2C7FC01EB7DBF000A99D44 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helm.swift; path = Teacher/Helm.swift; sourceTree = "<group>"; };
-		3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISplitViewControllerHelmExtensions.swift; path = Teacher/UISplitViewControllerHelmExtensions.swift; sourceTree = "<group>"; };
+		3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISplitViewControllerExtensions.swift; path = Teacher/UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5812C51EC4F15900173C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B5812EA1EC4F18500173C37 /* HelmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
 		3B5813121EC4F64400173C37 /* bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
 		3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIUserInterfaceSizeClassExtensions.swift; path = Teacher/UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
-		3B748B5C1ECA538E008D6A57 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtensions.swift; path = Teacher/UIColorExtensions.swift; sourceTree = "<group>"; };
-		3B748B5E1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnrollmentSplitViewController.swift; path = Teacher/EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
+		3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Teacher/UIColor+Hex.swift"; sourceTree = "<group>"; };
 		3B748B611ECA53E9008D6A57 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerHandleViewManager.h; path = Teacher/DrawerHandleViewManager.h; sourceTree = "<group>"; };
 		3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerHandleViewManager.m; path = Teacher/DrawerHandleViewManager.m; sourceTree = "<group>"; };
 		3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+PureEvil.swift"; path = "Teacher/NSObject+PureEvil.swift"; sourceTree = "<group>"; };
@@ -477,18 +470,11 @@
 		3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmConstants.swift; path = Teacher/HelmConstants.swift; sourceTree = "<group>"; };
 		3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmNavigationViewController.swift; path = Teacher/HelmNavigationViewController.swift; sourceTree = "<group>"; };
 		3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmViewController.swift; path = Teacher/HelmViewController.swift; sourceTree = "<group>"; };
-		3B8B244B1EB2AC3100B61EF8 /* courses@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "courses@2x.png"; path = "../src/images/tabbar/courses@2x.png"; sourceTree = "<group>"; };
-		3B8B244C1EB2AC3100B61EF8 /* courses@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "courses@3x.png"; path = "../src/images/tabbar/courses@3x.png"; sourceTree = "<group>"; };
-		3B8B244D1EB2AC3100B61EF8 /* inbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "inbox@2x.png"; path = "../src/images/tabbar/inbox@2x.png"; sourceTree = "<group>"; };
-		3B8B244E1EB2AC3100B61EF8 /* inbox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "inbox@3x.png"; path = "../src/images/tabbar/inbox@3x.png"; sourceTree = "<group>"; };
-		3B8B244F1EB2AC3100B61EF8 /* link-solid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-solid@2x.png"; path = "../src/images/tabbar/link-solid@2x.png"; sourceTree = "<group>"; };
-		3B8B24501EB2AC3100B61EF8 /* link-solid@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "link-solid@3x.png"; path = "../src/images/tabbar/link-solid@3x.png"; sourceTree = "<group>"; };
-		3B8B24511EB2AC3100B61EF8 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile@2x.png"; path = "../src/images/tabbar/profile@2x.png"; sourceTree = "<group>"; };
-		3B8B24521EB2AC3100B61EF8 /* profile@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile@3x.png"; path = "../src/images/tabbar/profile@3x.png"; sourceTree = "<group>"; };
-		3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
+		3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../RootTabBarController.swift; sourceTree = "<group>"; };
+		3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITraitEnvironmentExtensions.swift; path = Teacher/UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
 		3BDF53A71EC507C100956C1B /* libSDWebImage iOS static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSDWebImage iOS static.a"; path = "../../../Carthage/Checkouts/SDWebImage/build/Debug-iphoneos/libSDWebImage iOS static.a"; sourceTree = "<group>"; };
 		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
-		3BF71FC81EC117BE00234D25 /* BrandingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrandingModel.swift; sourceTree = "<group>"; };
+		3BF71FC81EC117BE00234D25 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		3BF720DF1EC266EB00234D25 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BF720FF1EC4054100234D25 /* PocketSVG.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PocketSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
@@ -519,6 +505,7 @@
 		61B536EC1E7860CE000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EarlGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B536ED1E7860CE000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushAnimatedTransitioning.swift; path = Teacher/PushAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bridging-header.h"; path = "Teacher/bridging-header.h"; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
@@ -695,16 +682,11 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
-				3B748B601ECA53D4008D6A57 /* react native modules */,
-				3BF71FC71EC117A500234D25 /* models */,
-				3B8083331EB8F91F009380F8 /* extensions */,
-				3B8B245E1EB2AC8E00B61EF8 /* views */,
-				3B8B245B1EB2AC7100B61EF8 /* viewcontrollers */,
-				3B8B24491EB2AC0F00B61EF8 /* images */,
-				3B8B24241EB2ABF900B61EF8 /* Helm */,
 				61BD856A1EB290C0005A09A5 /* Login */,
-				9F25FA521ECA4EC900275E30 /* NativeAccessibility.h */,
-				9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */,
+				3BF71FC71EC117A500234D25 /* Branding */,
+				3B748B601ECA53D4008D6A57 /* React Native Modules */,
+				3B8B24241EB2ABF900B61EF8 /* Helm */,
+				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -712,7 +694,6 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				61BD85FA1EB29270005A09A5 /* bridging-header.h */,
-				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 			);
 			name = Teacher;
 			sourceTree = "<group>";
@@ -780,14 +761,15 @@
 			name = data;
 			sourceTree = "<group>";
 		};
-		3B3946B81EBA6DD2002F7B9C /* extensions */ = {
+		3B3946B81EBA6DD2002F7B9C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */,
 				3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */,
-				3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift */,
+				3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */,
+				3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */,
 			);
-			name = extensions;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		3B5812C21EC4F15900173C37 /* TeacherUnitTests */ = {
@@ -800,76 +782,32 @@
 			path = TeacherUnitTests;
 			sourceTree = "<group>";
 		};
-		3B748B601ECA53D4008D6A57 /* react native modules */ = {
+		3B748B601ECA53D4008D6A57 /* React Native Modules */ = {
 			isa = PBXGroup;
 			children = (
 				B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */,
 				B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */,
 				3B748B611ECA53E9008D6A57 /* DrawerHandleViewManager.h */,
 				3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */,
+				9F25FA521ECA4EC900275E30 /* NativeAccessibility.h */,
+				9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */,
 			);
-			name = "react native modules";
-			sourceTree = "<group>";
-		};
-		3B8083331EB8F91F009380F8 /* extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3B748B5C1ECA538E008D6A57 /* UIColorExtensions.swift */,
-			);
-			name = extensions;
+			name = "React Native Modules";
 			sourceTree = "<group>";
 		};
 		3B8B24241EB2ABF900B61EF8 /* Helm */ = {
 			isa = PBXGroup;
 			children = (
-				3B3946B81EBA6DD2002F7B9C /* extensions */,
-				3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */,
-				3B2C7FBF1EB7DBF000A99D44 /* Helm.m */,
 				3B2C7FC01EB7DBF000A99D44 /* Helm.swift */,
+				3B2C7FBF1EB7DBF000A99D44 /* Helm.m */,
 				3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */,
-				3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */,
 				3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */,
+				3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */,
+				3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */,
+				3B3946B81EBA6DD2002F7B9C /* Extensions */,
+				61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */,
 			);
 			name = Helm;
-			sourceTree = "<group>";
-		};
-		3B8B24491EB2AC0F00B61EF8 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				3B8B244A1EB2AC1300B61EF8 /* tabbar */,
-			);
-			name = images;
-			sourceTree = "<group>";
-		};
-		3B8B244A1EB2AC1300B61EF8 /* tabbar */ = {
-			isa = PBXGroup;
-			children = (
-				3B8B244B1EB2AC3100B61EF8 /* courses@2x.png */,
-				3B8B244C1EB2AC3100B61EF8 /* courses@3x.png */,
-				3B8B244D1EB2AC3100B61EF8 /* inbox@2x.png */,
-				3B8B244E1EB2AC3100B61EF8 /* inbox@3x.png */,
-				3B8B244F1EB2AC3100B61EF8 /* link-solid@2x.png */,
-				3B8B24501EB2AC3100B61EF8 /* link-solid@3x.png */,
-				3B8B24511EB2AC3100B61EF8 /* profile@2x.png */,
-				3B8B24521EB2AC3100B61EF8 /* profile@3x.png */,
-			);
-			name = tabbar;
-			sourceTree = "<group>";
-		};
-		3B8B245B1EB2AC7100B61EF8 /* viewcontrollers */ = {
-			isa = PBXGroup;
-			children = (
-				3B748B5E1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift */,
-				3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */,
-			);
-			name = viewcontrollers;
-			sourceTree = "<group>";
-		};
-		3B8B245E1EB2AC8E00B61EF8 /* views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = views;
 			sourceTree = "<group>";
 		};
 		3BEF7BF11E7C96860092C864 /* Products */ = {
@@ -880,12 +818,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3BF71FC71EC117A500234D25 /* models */ = {
+		3BF71FC71EC117A500234D25 /* Branding */ = {
 			isa = PBXGroup;
 			children = (
-				3BF71FC81EC117BE00234D25 /* BrandingModel.swift */,
+				3BF71FC81EC117BE00234D25 /* Brand.swift */,
+				3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */,
 			);
-			name = models;
+			name = Branding;
 			sourceTree = "<group>";
 		};
 		4924260C1EAEB37C0046ED43 /* Products */ = {
@@ -975,6 +914,7 @@
 		61BD856A1EB290C0005A09A5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */,
 				6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */,
 				6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */,
 				6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */,
@@ -1029,8 +969,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
+				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TeacherTests */,
 				61B536591E7749F5000FEABB /* TeacherUITests */,
@@ -1517,18 +1457,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B8B24551EB2AC3100B61EF8 /* inbox@2x.png in Resources */,
-				3B8B24581EB2AC3100B61EF8 /* link-solid@3x.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				3B8B24561EB2AC3100B61EF8 /* inbox@3x.png in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				3B8B24591EB2AC3100B61EF8 /* profile@2x.png in Resources */,
-				3B8B24541EB2AC3100B61EF8 /* courses@3x.png in Resources */,
-				3B8B24571EB2AC3100B61EF8 /* link-solid@2x.png in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
-				3B8B245A1EB2AC3100B61EF8 /* profile@3x.png in Resources */,
 				9F59C09C1E980384003BF661 /* main.jsbundle in Resources */,
-				3B8B24531EB2AC3100B61EF8 /* courses@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1573,19 +1505,19 @@
 				3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */,
 				3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */,
 				6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */,
-				3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerHelmExtensions.swift in Sources */,
+				3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */,
 				6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */,
 				3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */,
-				3B748B5D1ECA538E008D6A57 /* UIColorExtensions.swift in Sources */,
+				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
 				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
-				3BF71FC91EC117BE00234D25 /* BrandingModel.swift in Sources */,
-				4943ECC81E5CF16A001DC5B5 /* NativeLoginManager.m in Sources */,
+				61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */,
 				9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */,
+				3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */,
 				B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */,
 				3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */,
+				3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
 				3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */,
-				3B748B5F1ECA53B9008D6A57 /* EnrollmentSplitViewController.swift in Sources */,
 				3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
@@ -1598,10 +1530,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B5812F21EC4F34700173C37 /* UISplitViewControllerHelmExtensions.swift in Sources */,
+				3B5812F21EC4F34700173C37 /* UISplitViewControllerExtensions.swift in Sources */,
 				3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */,
 				3B5812EE1EC4F33700173C37 /* HelmConstants.swift in Sources */,
 				3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */,
+				3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
 				3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */,
 				3B5812EF1EC4F33900173C37 /* HelmNavigationViewController.swift in Sources */,
 				3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */,

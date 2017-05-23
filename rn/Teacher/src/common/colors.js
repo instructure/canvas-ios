@@ -17,7 +17,7 @@ const colors: { [name: string]: string } = {
   primaryButtonText: '#fff',
   secondaryButton: '#73818C',
   checkmarkGreen: '#00AC18',
-  cellUnderlayColor: '#eee',
+  cellUnderlay: '#eee',
   seperatorColor: '#C7CDD1',
 //  branding properties
   navBarColor: '#374A59',

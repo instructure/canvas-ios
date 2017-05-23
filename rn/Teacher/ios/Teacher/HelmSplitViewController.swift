@@ -8,6 +8,17 @@
 
 import UIKit
 
+class HelmSplitViewControllerWrapper: UIViewController {
+    
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return childViewControllers.first
+    }
+    
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return childViewControllers.first
+    }
+}
+
 class HelmSplitViewController: UISplitViewController {
     public var shouldCollapseDetail: Bool = true
 
@@ -27,6 +38,10 @@ class HelmSplitViewController: UISplitViewController {
         } else {
             return viewControllers.first!.preferredStatusBarStyle
         }
+    }
+    
+    override open var prefersStatusBarHidden: Bool {
+        return viewControllers.first?.prefersStatusBarHidden ?? false
     }
 }
 

@@ -46,7 +46,7 @@ describe('Navigator', () => {
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/courses/:courseID',
       { courseID: '1', screenInstanceID: expect.any(String) },
-      { embedInNavigationController: true, modal: true }
+      { canBecomeMaster: true, embedInNavigationController: true, modal: true }
     )
   })
 

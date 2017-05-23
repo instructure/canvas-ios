@@ -185,3 +185,32 @@ test('selecting clear filter will remove any applied filters', () => {
 
   expect(tree.toJSON()).toMatchSnapshot()
 })
+
+test('selects first item on regular horizontal trait collection', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.getInstance()
+  instance.didSelectFirstItem = false
+  instance.displayMode = 'regular'
+  let assignment = instance.data[0].assignments[0]
+  instance.selectedAssignment = jest.fn()
+  instance.selectFirstListItem()
+
+  expect(instance.selectedAssignment).toHaveBeenCalledWith(assignment)
+  expect(instance.didSelectFirstItem).toBe(true)
+})
+
+test('trait collection did change', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.getInstance()
+  let traits = { 'window': { 'horizontal': 'regular' } }
+  instance.selectFirstListItem = jest.fn()
+  instance.traitCollectionDidChange(traits)
+
+  expect(instance.selectFirstListItem).toHaveBeenCalled()
+})

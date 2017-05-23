@@ -18,11 +18,14 @@ typealias HelmPreActionHandler = (HelmViewController) -> Void
 @objc(Helm)
 open class Helm: NSObject {
     static let shared = Helm()
-
+    static var branding: Brand?
     open var bridge: RCTBridge!
     open var rootViewController: UIViewController?
     private var viewControllers = NSMapTable<NSString, HelmViewController>(keyOptions: .strongMemory, valueOptions: .weakMemory)
     private(set) var defaultScreenConfiguration: [ModuleName: [String: Any]] = [:]
+    fileprivate(set) var masterModules = Set<ModuleName>()
+    
+    fileprivate var pushTransitioningDelegate = PushTransitioningDelegate()
 
     //  MARK: - Init
 
@@ -43,7 +46,6 @@ open class Helm: NSObject {
             if let navigationController = splitViewController.detailNavigationController  {
                 nav = navigationController
                 nav?.popToRootViewController(animated: false)
-                splitViewController.primeEmptyDetailNavigationController()
             }
 
             if let navigationController = splitViewController.masterNavigationController {
@@ -71,137 +73,204 @@ open class Helm: NSObject {
     }
     
     open func setScreenConfig(_ config: [String: Any], forScreenWithID screenInstanceID: String, hasRendered: Bool) {
-        DispatchQueue.main.async {
-            if let vc = Helm.shared.viewControllers.object(forKey: screenInstanceID as NSString) {
-                vc.screenConfig = config
-                vc.screenConfigRendered = hasRendered
-                
-                // Only handle the styles if the view is visible, so it doesn't happen a bunch of times
-                if (vc.isVisible) {
-                    vc.handleStyles()
-                }
+        if let vc = Helm.shared.viewControllers.object(forKey: screenInstanceID as NSString) {
+            vc.screenConfig = config
+            vc.screenConfigRendered = hasRendered
+            
+            // Only handle the styles if the view is visible, so it doesn't happen a bunch of times
+            if (vc.isVisible) {
+                vc.handleStyles()
             }
         }
     }
     
     open func setDefaultScreenConfig(_ config: [String: Any], forModule module: ModuleName) {
-        DispatchQueue.main.async {
-            Helm.shared.defaultScreenConfiguration[module] = config
-        }
+        Helm.shared.defaultScreenConfiguration[module] = config
     }
 
     //  MARK: - Navigation
-    open func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any]) {
-        pushFrom(sourceModule, destinationModule: destinationModule, withProps: props, options: options, handler: nil)
-    }
     
-    func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any], handler: HelmPreActionHandler?) {
-        DispatchQueue.main.async {
-            guard let topViewController = type(of: self).shared.topMostViewController() else { return }
+    public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any]) {
+        guard let topViewController = type(of: self).shared.topMostViewController() else { return }
 
-            let viewController = HelmViewController(moduleName: destinationModule, props: props)
-            viewController.edgesForExtendedLayout = [.left, .right]
+        let viewController = HelmViewController(moduleName: destinationModule, props: props)
+        viewController.edgesForExtendedLayout = [.left, .right]
+        
+        func push(helmViewController: HelmViewController, onto nav: UINavigationController) {
+            helmViewController.loadViewIfNeeded()
+            helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
+                nav?.pushViewController(helmViewController, animated: options["animated"] as? Bool ?? true)
+            }
+        }
+        
+        func replace(helmViewController: HelmViewController, in nav: UINavigationController) {
+            helmViewController.loadViewIfNeeded()
+            helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
+                nav?.setViewControllers([helmViewController], animated: false)
+            }
+        }
 
-            var nav: UINavigationController? = nil
-            if let splitViewController = topViewController as? UISplitViewController {
-                nav = self.navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: props, options: options)
-            } else if let navigationController = topViewController.navigationController {
-                nav = navigationController
-            } else {
-                assertionFailure("\(#function) invalid controller: \(topViewController)")
-                return
+        if let splitViewController = topViewController as? UISplitViewController {
+            let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
+            if canBecomeMaster {
+                Helm.shared.masterModules.insert(destinationModule)
             }
             
-            viewController.loadViewIfNeeded()
-            viewController.onReadyToPresent = { [weak nav, viewController] in
-                nav?.pushViewController(viewController, animated: options["animated"] as? Bool ?? true)
+            let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
+            let resetDetailNavStackIfClickedFromMaster = splitViewController.masterTopViewController == sourceViewController
+            
+            if let nav = self.navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: props, options: options) {
+                if (resetDetailNavStackIfClickedFromMaster && !canBecomeMaster && splitViewController.viewControllers.count > 1) {
+                    viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
+                    viewController.navigationItem.leftItemsSupplementBackButton = true
+                    replace(helmViewController: viewController, in: nav)
+                } else {
+                    push(helmViewController: viewController, onto: nav)
+                }
             }
-            handler?(viewController)
+        } else if let navigationController = topViewController.navigationController {
+            push(helmViewController: viewController, onto: navigationController)
+        } else {
+            assertionFailure("\(#function) invalid controller: \(topViewController)")
+            return
         }
     }
 
     open func popFrom(_ sourceModule: ModuleName) {
-        DispatchQueue.main.async {
-            guard let topViewController = type(of: self).shared.topMostViewController() else { return }
-            
-            var nav: UINavigationController? = nil
-            if let splitViewController = topViewController as? UISplitViewController {
-                let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
-                if sourceViewController == splitViewController.detailTopViewController {
-                    nav = splitViewController.detailNavigationController
-                }
-                else if sourceViewController == splitViewController.masterTopViewController {
-                    nav = splitViewController.masterNavigationController
-                }
-            } else if let navigationController = topViewController.navigationController {
-                nav = navigationController
-            } else {
-                assertionFailure("\(#function) invalid controller: \(topViewController)")
-                return
+        guard let topViewController = type(of: self).shared.topMostViewController() else { return }
+        
+        var nav: UINavigationController? = nil
+        if let splitViewController = topViewController as? UISplitViewController {
+            let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
+            if sourceViewController == splitViewController.detailTopViewController {
+                nav = splitViewController.detailNavigationController
             }
-            nav?.popViewController(animated: true)
+            else if sourceViewController == splitViewController.masterTopViewController {
+                nav = splitViewController.masterNavigationController
+            }
+        } else if let navigationController = topViewController.navigationController {
+            nav = navigationController
+        } else {
+            assertionFailure("\(#function) invalid controller: \(topViewController)")
+            return
         }
-    }
-
-    public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any]) {
-        present(module, withProps: props, options: options, handler: nil)
+        nav?.popViewController(animated: true)
     }
     
-    func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any], handler: HelmPreActionHandler?) {
-        DispatchQueue.main.async {
-            guard let current = type(of: self).shared.topMostViewController() else {
-                return
+    public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any]) {
+        guard let current = type(of: self).shared.topMostViewController() else {
+            return
+        }
+        
+        func configureModalProps(for viewController: UIViewController) {
+            if let modalPresentationStyle = options["modalPresentationStyle"] as? String {
+                switch modalPresentationStyle {
+                case "fullscreen": viewController.modalPresentationStyle = .fullScreen
+                case "formsheet": viewController.modalPresentationStyle = .formSheet
+                case "currentContext": viewController.modalPresentationStyle = .currentContext
+                default: viewController.modalPresentationStyle = .fullScreen
+                }
             }
+            
+            if let modalTransitionStyle = options["modalTransitionStyle"] as? String {
+                switch modalTransitionStyle {
+                case "flip": viewController.modalTransitionStyle = .flipHorizontal
+                case "fade": viewController.modalTransitionStyle = .crossDissolve
+                case "curl": viewController.modalTransitionStyle = .partialCurl
+                case "push":
+                    viewController.transitioningDelegate = Helm.shared.pushTransitioningDelegate
+                default: viewController.modalTransitionStyle = .coverVertical
+                }
+            }
+        }
+        
+        var toPresent: UIViewController
+        var helmVC: HelmViewController
+        if let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue, canBecomeMaster {
+            let split = HelmSplitViewController()
+            let master = HelmViewController(moduleName: module, props: props)
+            helmVC = master
+            
+            // TODO: making some possibly incorredct assumptions here that every time we want both master and detail in a nav controller. Works now, but may need to change
+            let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
+
+            split.preferredDisplayMode = .allVisible
+            split.viewControllers = [HelmNavigationController(rootViewController: master), emptyNav]
+            
+            if (options["modalPresentationStyle"] as? String) == "currentContext" {
+                let wrapper = HelmSplitViewControllerWrapper()
+                wrapper.addChildViewController(split)
+                wrapper.view.addSubview(split.view)
+                split.didMove(toParentViewController: wrapper)
+                configureModalProps(for: wrapper)
+                toPresent = wrapper
+                wrapper.modalPresentationCapturesStatusBarAppearance = true
+            } else {
+                configureModalProps(for: split)
+                toPresent = split
+            }
+        } else {
             let vc = HelmViewController(moduleName: module, props: props)
-            var toPresent: UIViewController = vc
+            toPresent = vc
+            helmVC = vc
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
                 toPresent = UINavigationController(rootViewController: vc)
             }
+            
+            configureModalProps(for: toPresent)
+        }
 
-            if let modalPresentationStyle = options["modalPresentationStyle"] as? String {
-                switch modalPresentationStyle {
-                    case "fullscreen": toPresent.modalPresentationStyle = .fullScreen
-                    case "formsheet": toPresent.modalPresentationStyle = .formSheet
-                    default: toPresent.modalPresentationStyle = .fullScreen
-                }
-            }
-
-            vc.loadViewIfNeeded()
-            vc.onReadyToPresent = { [weak current, toPresent] in
-                current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: nil)
-            }
-            handler?(vc)
+        helmVC.loadViewIfNeeded()
+        helmVC.onReadyToPresent = { [weak current, toPresent] in
+            current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: nil)
         }
     }
 
     open func dismiss(_ options: [String: Any]) {
-        DispatchQueue.main.async {
-            // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-            guard let vc = type(of: self).shared.topMostViewController() else { return }
-            let animated = options["animated"] as? Bool ?? true
-            vc.dismiss(animated: animated, completion: nil)
-        }
+        // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
+        guard let vc = type(of: self).shared.topMostViewController() else { return }
+        let animated = options["animated"] as? Bool ?? true
+        vc.dismiss(animated: animated, completion: nil)
     }
     
     open func dismissAllModals(_ options: [String: Any]) {
-        DispatchQueue.main.async {
-            // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-            guard let vc = type(of: self).shared.topMostViewController() else { return }
-            let animated = options["animated"] as? Bool ?? true
-            vc.dismiss(animated: animated, completion: {
-                self.dismiss(options)
-            })
-        }
+        // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
+        guard let vc = type(of: self).shared.topMostViewController() else { return }
+        let animated = options["animated"] as? Bool ?? true
+        vc.dismiss(animated: animated, completion: {
+            self.dismiss(options)
+        })
     }
-    func traitCollection(_ callback: @escaping RCTResponseSenderBlock) {
-        DispatchQueue.main.async {
-            let horizontalSizeClass = type(of: self).shared.topMostViewController()?.traitCollection.horizontalSizeClass ?? .unspecified
-            let verticalSizeClass  = type(of: self).shared.topMostViewController()?.traitCollection.verticalSizeClass ?? .unspecified
-            let horizontalKey = "horizontal"
-            let verticalKey = "vertical"
-            let sizeClasses = [horizontalKey: horizontalSizeClass.description, verticalKey: verticalSizeClass.description]
-            callback([sizeClasses])
+    
+    func traitCollection(_ screenInstanceID: String, moduleName: String, callback: @escaping RCTResponseSenderBlock) {
+        var top = type(of: self).shared.topMostViewController()
+        //  FIXME: - fix sourceController method, something named more appropriate
+        if let svc = top as? HelmSplitViewController, let sourceController = svc.sourceController(moduleName: moduleName) {
+            top = sourceController
         }
+        
+        let screenSizeClassInfo = top?.sizeClassInfoForJavascriptConsumption()
+        let windowSizeClassInfo = UIApplication.shared.keyWindow?.sizeClassInfoForJavascriptConsumption()
+        
+        var result: [String: [String: String]] = [:]
+        if let screenSizeClassInfo = screenSizeClassInfo {
+            result["screen"] = screenSizeClassInfo
+        }
+        if let windowSizeClassInfo = windowSizeClassInfo {
+            result["window"] = windowSizeClassInfo
+        }
+        
+        callback([result])
+    }
+    
+    func methodQueue() -> DispatchQueue {
+        return .main
+    }
+    
+    open func initNativeViewHierarchy() {
+        let tabs = RootTabBarController(branding: Helm.branding)
+        Helm.shared.rootViewController = tabs
+        UIApplication.shared.keyWindow?.rootViewController = tabs
     }
 }
 
@@ -211,21 +280,17 @@ extension Helm {
         if let detailViewController = splitViewController?.detailTopViewController, detailViewController.moduleName == sourceModule {
             return splitViewController?.detailNavigationController
         } else {
-            let sourceViewController = splitViewController?.sourceController(moduleName: sourceModule)
-            var canBecomeMaster = false
-            let resetDetailNavStackIfClickedFromMaster = splitViewController?.masterTopViewController == sourceViewController
-            if let canBecomeMasterNumberValue = options["canBecomeMaster"] as? NSNumber {
-                canBecomeMaster = canBecomeMasterNumberValue.boolValue
-            }
+            let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
 
             if canBecomeMaster || (splitViewController?.traitCollection.horizontalSizeClass ?? .compact) == .compact {
                 return splitViewController?.masterNavigationController
-            } else {
-                if (splitViewController?.detailNavigationController == nil || resetDetailNavStackIfClickedFromMaster) {
-                    splitViewController?.primeEmptyDetailNavigationController()
-                }
-                return splitViewController?.detailNavigationController
             }
+            
+            if (splitViewController?.detailNavigationController == nil) {
+                splitViewController?.primeEmptyDetailNavigationController()
+            }
+            
+            return splitViewController?.detailNavigationController
         }
     }
 }
@@ -252,6 +317,8 @@ extension UIViewController {
             return tabBarSelected.topMostViewController()
         } else if let navVisible = (self as? UINavigationController)?.visibleViewController {
             return navVisible.topMostViewController()
+        } else if let wrapper = (self as? HelmSplitViewControllerWrapper) {
+            return wrapper.childViewControllers.last?.topMostViewController()
         } else {
             return self
         }

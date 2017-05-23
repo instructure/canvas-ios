@@ -144,7 +144,7 @@ test('dismisses modal on cancel', () => {
   })
   component.update(<AssignmentDetailsEdit {...doneButtonPressedProps} updateAssignment={updateAssignment}/>)
   component.getInstance().actionCancelPressed()
-  expect(doneButtonPressedProps.navigator.dismissAllModals).toHaveBeenCalled()
+  expect(doneButtonPressedProps.navigator.dismiss).toHaveBeenCalled()
 })
 
 test('"displays grade as" can be selected using picker', () => {
