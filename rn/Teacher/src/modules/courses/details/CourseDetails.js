@@ -43,9 +43,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   }
 
   editCourse = () => {
-    if (this.props.course) {
-      this.props.navigator.show(`/courses/${this.props.course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
-    }
+    this.props.navigator.show(`/courses/${this.props.course.id}/settings`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   showPlaceholder () {
@@ -62,51 +60,54 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     const course = this.props.course
     const courseColor = this.props.color
 
-    if (!course) {
-      return <ActivityIndicator />
-    }
-
     const tabs = this.props.tabs.map((tab) => {
       return <CourseDetailsTab key={tab.id} tab={tab} courseColor={courseColor} onPress={this.selectTab} />
     })
+
+    let view
+    if (!course) {
+      view = <View>
+               <ActivityIndicator />
+             </View>
+    } else {
+      view = (<RefreshableScrollView
+                style={styles.container}
+                refreshing={this.props.refreshing}
+                onRefresh={this.props.refresh}>
+                <View style={styles.header}>
+                  <View style={styles.headerImageContainer}>
+                    {Boolean(course.image_download_url) &&
+                        <Image source={{ uri: course.image_download_url }} style={styles.headerImage} />
+                    }
+                    <View style={[styles.headerImageOverlay, { backgroundColor: courseColor, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
+                  </View>
+                  <View style={styles.navigationBar}>
+                    <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
+                    <Text style={styles.navigationTitle}>{course.course_code}</Text>
+                    <Button style={[styles.settingsButton]} onPress={this.editCourse} testID='course-details.navigation-edit-course-btn'>
+                      <View style={{ paddingLeft: 20 }} accessible={true} accessibilityLabel={i18n('Settings')} accessibilityTraits={'button'}>
+                        <Image source={Images.course.settings} style={styles.navButtonImage} />
+                      </View>
+                    </Button>
+                  </View>
+
+                  <View style={styles.headerBottomContainer} >
+                    <Text style={styles.headerTitle}>{course.name}</Text>
+                    <Text style={styles.headerSubtitle}>Spring 2017</Text>
+                  </View>
+                </View>
+                <View style={styles.tabContainer}>
+                  {tabs}
+                </View>
+              </RefreshableScrollView>)
+    }
 
     return (
       <Screen
         statusBarStyle='light'
         navBarHidden={true}
-        navBarColor={courseColor}
-        >
-        <RefreshableScrollView
-        style={styles.container}
-        refreshing={this.props.refreshing}
-        onRefresh={this.props.refresh}
-      >
-        <View style={styles.header}>
-          <View style={styles.headerImageContainer}>
-            {Boolean(course.image_download_url) &&
-                <Image source={{ uri: course.image_download_url }} style={styles.headerImage} />
-            }
-            <View style={[styles.headerImageOverlay, { backgroundColor: courseColor, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
-          </View>
-          <View style={styles.navigationBar}>
-            <NavigationBackButton onPress={this.back} testID='course-details.navigation-back-btn' />
-            <Text style={styles.navigationTitle}>{course.course_code}</Text>
-            <Button style={[styles.settingsButton]} onPress={this.editCourse} testID='course-details.navigation-edit-course-btn'>
-              <View style={{ paddingLeft: 20 }} accessible={true} accessibilityLabel={i18n('Settings')} accessibilityTraits={'button'}>
-                <Image source={Images.course.settings} style={styles.navButtonImage} />
-              </View>
-            </Button>
-          </View>
-
-          <View style={styles.headerBottomContainer} >
-            <Text style={styles.headerTitle}>{course.name}</Text>
-            <Text style={styles.headerSubtitle}>Spring 2017</Text>
-          </View>
-        </View>
-        <View style={styles.tabContainer}>
-          {tabs}
-        </View>
-      </RefreshableScrollView>
+        navBarColor={courseColor}>
+      { view }
       </Screen>
     )
   }
@@ -192,6 +193,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 })
 
 const tabListShape = PropTypes.shape({
@@ -207,7 +213,7 @@ CourseDetails.propTypes = {
   tabs: PropTypes.arrayOf(tabListShape).isRequired,
 }
 
-let Refreshed = refresh(
+export let Refreshed: any = refresh(
   props => {
     props.refreshCourses()
     props.refreshTabs(props.courseID)

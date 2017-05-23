@@ -1,5 +1,5 @@
 /* @flow */
-import 'react-native'
+import { NativeModules } from 'react-native'
 import React from 'react'
 import Profile from '../Profile.js'
 import explore from '../../../../test/helpers/explore'
@@ -22,5 +22,14 @@ describe('Profile Tests', () => {
 
     const view = explore(tree).selectByID('module.profile') || {}
     expect(view.props.accessible).toBeTruthy()
+  })
+
+  it('logout called', () => {
+    const instance = renderer.create(
+      <Profile />
+    ).getInstance()
+
+    instance.logout()
+    expect(NativeModules.NativeLogin.logout).toHaveBeenCalled()
   })
 })

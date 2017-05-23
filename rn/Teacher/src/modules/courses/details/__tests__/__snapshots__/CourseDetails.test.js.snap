@@ -1,12 +1,281 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`refresh function first test 1`] = `
+<View>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</View>
+`;
+
+exports[`refresh function second test 1`] = `
+<RCTScrollView
+  onRefresh={[Function]}
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[Function]}
+      refreshing={false}
+    />
+  }
+  refreshing={false}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": 235,
+          "justifyContent": "center",
+          "padding": 10,
+          "paddingTop": 20,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 235,
+              "position": "absolute",
+              "width": 400,
+            }
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "opacity": 0.75,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {
+                "backgroundColor": undefined,
+                "opacity": 0.8,
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "height": 44,
+            "justifyContent": "space-between",
+            "left": 0,
+            "paddingLeft": 10,
+            "paddingRight": 10,
+            "position": "absolute",
+            "right": 0,
+            "top": 20,
+          }
+        }
+      >
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-back-btn"
+        >
+          <View
+            accessibilityLabel="Back"
+            accessibilityTraits="button"
+            accessible={true}
+            style={
+              Object {
+                "paddingRight": 31,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={undefined}
+            />
+          </View>
+        </TouchableOpacity>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 18,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+            ]
+          }
+        >
+          rn 101
+        </Text>
+        <TouchableOpacity
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={0.2}
+          onLongPress={undefined}
+          onPress={[Function]}
+          onPressIn={undefined}
+          onPressOut={undefined}
+          style={undefined}
+          testID="course-details.navigation-edit-course-btn"
+        >
+          <View
+            accessibilityLabel="Settings"
+            accessibilityTraits="button"
+            accessible={true}
+            style={
+              Object {
+                "paddingLeft": 20,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "resizeMode": "contain",
+                  "tintColor": "white",
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+            "marginTop": 44,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "marginBottom": 2,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Learn React Native
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "transparent",
+                "color": "white",
+                "fontWeight": "600",
+                "opacity": 0.9,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Spring 2017
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "justifyContent": "flex-start",
+        }
+      }
+    />
+  </View>
+</RCTScrollView>
+`;
+
 exports[`render without course 1`] = `
-<ActivityIndicator
-  animating={true}
-  color="#999999"
-  hidesWhenStopped={true}
-  size="small"
-/>
+<View>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</View>
 `;
 
 exports[`renders correctly 1`] = `

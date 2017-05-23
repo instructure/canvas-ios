@@ -30,33 +30,37 @@ import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/compon
 import { Store } from 'redux'
 import { registerScreen } from './'
 
+export function wrap (name: any): Function {
+  return () => name
+}
+
 export function registerScreens (store: Store): void {
-  registerScreen('/', () => FavoritedCourseList, store)
-  registerScreen('/courses', () => AllCourseList, store, { canBecomeMaster: true })
-  registerScreen('/course_favorites', () => EditFavorites, store)
-  registerScreen('/courses/:courseID', () => CourseDetails, store, { canBecomeMaster: true })
-  registerScreen('/courses/:courseID/settings', () => CourseSettings, store)
-  registerScreen('/courses/:courseID/user_preferences', () => UserCoursePreferences, store)
-  registerScreen('/courses/:courseID/assignments', () => AssignmentList, store, { canBecomeMaster: true })
-  registerScreen('/courses/:courseID/assignments/:assignmentID', () => AssignmentDetails, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/edit', () => AssignmentDetailsEdit, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', () => AssignmentDueDates, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', () => SubmissionList, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', () => SpeedGrader, store)
-  registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', () => RubricDescription, store)
-  registerScreen('/courses/:courseID/quizzes', () => QuizzesList, store, { canBecomeMaster: true })
-  registerScreen('/courses/:courseID/quizzes/:quizID', () => QuizDetails, store)
-  registerScreen('/courses/:courseID/quizzes/:quizID/preview', () => QuizPreview, store)
-  registerScreen('/courses/:courseID/quizzes/:quizID/edit', () => QuizEdit, store)
-  registerScreen('/courses/:courseID/quizzes/:quizID/submissions', () => QuizSubmissions, store)
-  registerScreen('/conversations', () => Inbox, store)
-  registerScreen('/profile', () => Profile, store)
-  registerScreen('/beta-feedback', () => BetaFeedback, store)
-  registerScreen('/staging', () => Staging)
-  registerScreen('/rich-text-editor', () => RichTextEditor)
-  registerScreen('/courses/:courseID/placeholder', () => CourseDetailsSplitViewPlaceholder, store)
+  registerScreen('/', wrap(FavoritedCourseList), store)
+  registerScreen('/courses', wrap(AllCourseList), store, { canBecomeMaster: true })
+  registerScreen('/course_favorites', wrap(EditFavorites), store)
+  registerScreen('/courses/:courseID', wrap(CourseDetails), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/settings', wrap(CourseSettings), store)
+  registerScreen('/courses/:courseID/user_preferences', wrap(UserCoursePreferences), store)
+  registerScreen('/courses/:courseID/assignments', wrap(AssignmentList), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/assignments/:assignmentID', wrap(AssignmentDetails), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/edit', wrap(AssignmentDetailsEdit), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', wrap(AssignmentDueDates), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', wrap(SubmissionList), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(SpeedGrader), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', wrap(RubricDescription), store)
+  registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/quizzes/:quizID', wrap(QuizDetails), store)
+  registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
+  registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
+  registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store)
+  registerScreen('/conversations', wrap(Inbox), store)
+  registerScreen('/profile', wrap(Profile), store)
+  registerScreen('/beta-feedback', wrap(BetaFeedback), store)
+  registerScreen('/staging', wrap(Staging))
+  registerScreen('/rich-text-editor', wrap(RichTextEditor))
+  registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
 
   // This will never actually be routed to, but this makes it really easy to debug
-  registerScreen('/courses/:courseID/assignee-picker', () => AssigneePicker, store)
-  registerScreen('/courses/:courseID/assignee-search', () => AssigneeSearch, store)
+  registerScreen('/courses/:courseID/assignee-picker', wrap(AssigneePicker), store)
+  registerScreen('/courses/:courseID/assignee-search', wrap(AssigneeSearch), store)
 }

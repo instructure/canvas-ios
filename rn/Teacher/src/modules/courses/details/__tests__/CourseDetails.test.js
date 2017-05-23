@@ -2,8 +2,9 @@
 
 import 'react-native'
 import React from 'react'
-import { CourseDetails } from '../CourseDetails.js'
+import { CourseDetails, Refreshed } from '../CourseDetails.js'
 import explore from '../../../../../test/helpers/explore'
+import setProps from '../../../../../test/helpers/setProps'
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/course'),
@@ -35,6 +36,47 @@ test('renders correctly', () => {
     <CourseDetails {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('refresh function first test', () => {
+  const refreshCourses = jest.fn()
+  const refreshTabs = jest.fn()
+  let refreshProps = {
+    navigator: template.navigator(),
+    courseID: course.id,
+    tabs: [],
+    refreshCourses,
+    refreshTabs,
+  }
+
+  let refreshed = renderer.create(
+    <Refreshed {...refreshProps} />
+  )
+  expect(refreshed.toJSON()).toMatchSnapshot()
+  expect(refreshCourses).toHaveBeenCalled()
+  expect(refreshTabs).toHaveBeenCalledWith(course.id)
+})
+
+test('refresh function second test', () => {
+  const refreshCourses = jest.fn()
+  const refreshTabs = jest.fn()
+  let refreshProps = {
+    navigator: template.navigator(),
+    courseID: course.id,
+    course,
+    tabs: [],
+    refreshCourses,
+    refreshTabs,
+  }
+
+  let refreshed = renderer.create(
+    <Refreshed {...refreshProps} />
+  )
+  expect(refreshed.toJSON()).toMatchSnapshot()
+  refreshed.getInstance().refresh()
+  setProps(refreshed, refreshProps)
+  expect(refreshCourses).toHaveBeenCalled()
+  expect(refreshTabs).toHaveBeenCalledWith(course.id)
 })
 
 test('renders correctly without tabs', () => {
@@ -138,4 +180,32 @@ it('renders with empty image url', () => {
       <CourseDetails {...defaultProps} course={course} />
     ).toJSON()
   ).toMatchSnapshot()
+})
+
+it('show placeholder', () => {
+  const trait = jest.fn((callback) => {
+    callback({
+      horizontal: 'normal',
+    })
+  })
+  const show = jest.fn()
+  const navigator = template.navigator({
+    traitCollection: trait,
+    show,
+  })
+  const props = {
+    ...defaultProps,
+    navigator,
+  }
+  let instance = renderer.create(
+    <CourseDetails {...props} />
+  ).getInstance()
+
+  instance.showPlaceholder()
+  expect(instance.placeholderDidShow).toEqual(true)
+  expect(show).toHaveBeenLastCalledWith(
+    '/courses/1/placeholder',
+    {},
+    { course }
+  )
 })

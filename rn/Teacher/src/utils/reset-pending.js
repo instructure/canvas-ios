@@ -1,15 +1,15 @@
 // @flow
 
-export default function resetPending (obj: Object): Object {
-  if (!obj) return obj
+export default function resetPending (obj: ?Object): Object {
+  const object = obj || { pending: 0 }
 
-  let newObj = Object.keys(obj).reduce((current, key) => {
-    if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
-      current[key] = resetPending(obj[key])
+  let newObj = Object.keys(object).reduce((current, key) => {
+    if (typeof object[key] === 'object' && !Array.isArray(object[key])) {
+      current[key] = resetPending(object[key])
     } else if (key === 'pending') {
       current.pending = 0
     } else {
-      current[key] = obj[key]
+      current[key] = object[key]
     }
     return current
   }, {})

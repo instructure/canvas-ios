@@ -3,9 +3,9 @@
 import React, { Component } from 'react'
 import hoistStatics from 'hoist-non-react-statics'
 
-type RefreshFunction = (*) => *
-type ShouldRefresh = (*) => boolean
-type IsFetchingData = (*) => boolean
+export type RefreshFunction = (*) => *
+export type ShouldRefresh = (*) => boolean
+export type IsFetchingData = (*) => boolean
 
 export default function refresh (
     refreshFunction: RefreshFunction,
@@ -15,6 +15,11 @@ export default function refresh (
   return function (TheirComponent) {
     class Refreshed extends Component {
       state: RefreshState
+
+      refreshFunction = refreshFunction
+      shouldRefresh = shouldRefresh
+      isFetchingData = isFetchingData
+
       constructor (props) {
         super(props)
         this.state = { refreshing: false }

@@ -5,6 +5,10 @@ NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),
 }
 
+NativeModules.NativeLogin = {
+  logout: jest.fn(),
+}
+
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),
 }))

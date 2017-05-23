@@ -30,7 +30,7 @@ export function registerScreen (path: string, componentGenerator: () => any, sto
   routes.set(route, options)
 }
 
-function wrapScreenWithContext (moduleName: string, generator: () => any) {
+export function wrapScreenWithContext (moduleName: string, generator: () => any): any {
   const generatorWrapper = () => {
     class WrappedScreen extends React.Component {
       getChildContext () {
@@ -60,7 +60,7 @@ function wrapScreenWithContext (moduleName: string, generator: () => any) {
   return generatorWrapper
 }
 
-function wrapComponentInReduxProvider (screenID: string, generator: () => any, store: Store) {
+export function wrapComponentInReduxProvider (screenID: string, generator: () => any, store: Store): any {
   const generatorWrapper = () => {
     const InternalComponent = generator()
     return class extends React.Component<any, any, any> {

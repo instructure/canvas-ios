@@ -1,7 +1,7 @@
 /* @flow */
 
 import 'react-native'
-import { formattedDate } from '../dateUtils'
+import { formattedDate, extractDateFromString } from '../dateUtils'
 import timezoneMock from 'timezone-mock'
 
 let utcDateString = '2017-06-01T05:59:00Z'
@@ -48,3 +48,13 @@ test('handles bad format string', () => {
   expect(result).toBe(expected)
 })
 
+test('handles default moment format', () => {
+  let result = formattedDate(utcDateString)
+  expect(result).toBe('May 31, 2017 10:59 PM')
+})
+
+test('handles bad data in extractDateFromString', () => {
+  timezoneMock.unregister()
+  expect(extractDateFromString(null)).toBe(null)
+  expect(extractDateFromString('garbage')).toBe(null)
+})

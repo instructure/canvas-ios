@@ -8,7 +8,7 @@ import setProps from '../../../test/helpers/setProps'
 
 describe('refresh', () => {
   it('renders the refreshed component', () => {
-    let Refreshed = refresh(() => {}, () => true, () => false, () => false)(Text)
+    let Refreshed = refresh(() => {}, () => true, () => false)(Text)
     let tree = renderer.create(
       <Refreshed testID='test'>This is text</Refreshed>
     ).toJSON()
@@ -73,6 +73,13 @@ describe('refresh', () => {
     tree = component.toJSON()
     expect(tree).toMatchSnapshot()
 
+    setProps(component, { pending: 0 })
+    tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+
+    component.getInstance().setState({
+      refreshing: false,
+    })
     setProps(component, { pending: 0 })
     tree = component.toJSON()
     expect(tree).toMatchSnapshot()

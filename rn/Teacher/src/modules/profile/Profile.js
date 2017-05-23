@@ -14,8 +14,7 @@ import { getSession } from '../../api/session'
 export default class Profile extends Component {
 
   logout = () => {
-    const nativeLogin = NativeModules.NativeLogin
-    nativeLogin.logout()
+    NativeModules.NativeLogin.logout()
   }
 
   render (): React.Element {
