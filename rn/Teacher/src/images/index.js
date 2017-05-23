@@ -70,6 +70,8 @@ const images = {
   published: require('./Published.png'),
   unpublished: require('./Unpublished.png'),
   upArrow: require('./mini-arrow-up.png'),
+  document: require('./Document.png'),
+  attachment: require('./attachment.png'),
 }
 
 export default (images: Images)

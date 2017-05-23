@@ -11,6 +11,7 @@ const templates = {
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../../api/canvas-api/__templates__/session'),
+  ...require('../../../../api/canvas-api/__templates__/attachment'),
 }
 
 const comments = [
@@ -52,7 +53,7 @@ const comments = [
     date: new Date('2017-03-17T19:40:25Z'),
     avatarURL: 'http://fillmurray.com/220/400',
     from: 'them',
-    contents: { type: 'submission' },
+    contents: { type: 'submission', items: [] },
   },
 ]
 
@@ -79,23 +80,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
   })
 })
 
-test('mapStateToProps returns no comments for no submissionID', () => {
-  const props = {
-    courseID: '123',
-    assignmentID: '245',
-    userID: '55',
-    submissionID: undefined,
-    drawerState: new DrawerState(),
-  }
-
-  let state = templates.appState()
-
-  expect(mapStateToProps(state, props)).toEqual({
-    commentRows: [],
-  })
-})
-
-test('mapStateToProps returns comments rows', () => {
+test('mapStateToProps returns comment and submission rows', () => {
   const teacherComment = templates.submissionComment({})
   const student = templates.submissionCommentAuthor({
     id: '6682',
@@ -109,10 +94,36 @@ test('mapStateToProps returns comments rows', () => {
     comment: 'a comment from harry',
   })
 
-  const submission = {
-    ...templates.submissionHistory(),
-    submission_comments: [teacherComment, studentComment],
-  }
+  const text = templates.submission({
+    attempt: 4,
+    submitted_at: '2017-03-17T19:13:25Z',
+  })
+
+  const url = templates.submission({
+    attempt: 3,
+    submission_type: 'online_url',
+    submitted_at: '2017-03-17T19:12:25Z',
+    url: 'https://google.com/homeworks',
+  })
+
+  const files = templates.submission({
+    attempt: 2,
+    submission_type: 'online_upload',
+    submitted_at: '2017-03-17T19:11:25Z',
+    attachments: [templates.attachment()],
+  })
+
+  const media = templates.submission({
+    attempt: 1,
+    submission_type: 'media_recording',
+    submitted_at: '2017-03-17T19:10:25Z',
+    attachments: [templates.attachment()],
+  })
+
+  const submission = templates.submissionHistory(
+    [ text, url, files, media ],
+    [ teacherComment, studentComment ],
+  )
 
   const appState = templates.appState()
   appState.entities.submissions = {
@@ -148,6 +159,76 @@ test('mapStateToProps returns comments rows', () => {
         avatarURL: 'http://fillmurray.com/499/355',
         from: 'me',
         contents: { type: 'text', message: teacherComment.comment },
+      },
+      {
+        avatarURL: 'http://www.fillmurray.com/100/100',
+        contents: {
+          items: [{
+            contentID: 'text',
+            icon: 1,
+            subtitle: 'This is my submission!',
+            title: 'Text Submission',
+          }],
+          type: 'submission',
+        },
+        date: new Date('2017-03-17T19:13:25.000Z'),
+        from: 'them',
+        key: 'submission-4',
+        name: 'Donald Trump',
+      },
+      {
+        avatarURL: 'http://www.fillmurray.com/100/100',
+        contents: {
+          items: [
+            {
+              contentID: 'url',
+              icon: 1,
+              subtitle: 'https://google.com/homeworks',
+              title: 'URL Submission',
+            },
+          ],
+          type: 'submission',
+        },
+        date: new Date('2017-03-17T19:12:25.000Z'),
+        from: 'them',
+        key: 'submission-3',
+        name: 'Donald Trump',
+      },
+      {
+        avatarURL: 'http://www.fillmurray.com/100/100',
+        contents: {
+          items: [
+            {
+              contentID: 'attachment-111',
+              icon: 1,
+              subtitle: '476.77 KB',
+              title: 'Book Report',
+            },
+          ],
+          type: 'submission',
+        },
+        date: new Date('2017-03-17T19:11:25.000Z'),
+        from: 'them',
+        key: 'submission-2',
+        name: 'Donald Trump',
+      },
+      {
+        avatarURL: 'http://www.fillmurray.com/100/100',
+        contents: {
+          items: [
+            {
+              contentID: 'attachment-111',
+              icon: 1,
+              subtitle: '476.77 KB',
+              title: 'Book Report',
+            },
+          ],
+          type: 'submission',
+        },
+        date: new Date('2017-03-17T19:10:25.000Z'),
+        from: 'them',
+        key: 'submission-1',
+        name: 'Donald Trump',
       },
     ],
   })

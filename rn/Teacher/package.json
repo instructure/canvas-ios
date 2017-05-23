@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
     "hoist-non-react-statics": "^1.2.0",
@@ -34,6 +35,7 @@
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",
     "route-parser": "^0.0.5",
+    "striptags": "^3.0.1",
     "url-parse": "^1.1.8",
     "uuid": "3.0.1"
   },

@@ -12,6 +12,7 @@ import {
   Paragraph,
 } from '../../../common/text'
 import ChatBubble from './ChatBubble'
+import SubmittedContent, { type SubmittedContentDataProps } from './SubmittedContent'
 
 export default class CommentRow extends Component<any, CommentRowProps, any> {
   renderHeader = () => {
@@ -55,6 +56,8 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
     switch (contents.type) {
       case 'text':
         return <ChatBubble from={from} message={contents.message} />
+      case 'submission':
+        return contents.items.map(content => <SubmittedContent {...content} />)
       default:
         return undefined // TODO: other message content types
     }
@@ -113,5 +116,6 @@ export type CommentRowProps = {
   date: Date,
   avatarURL: string,
   from: 'me' | 'them',
-  contents: SubmissionCommentParams,
+  contents: { type: 'text', message: string }
+          | { type: 'submission', items: Array<SubmittedContentDataProps> },
 }

@@ -11,6 +11,21 @@ import CommentRow, { type CommentRowProps } from './CommentRow'
 import CommentInput from './CommentInput'
 import DrawerState from '../utils/drawer-state'
 import SubmissionCommentActions, { type CommentActions } from './actions'
+import { type SubmittedContentDataProps } from './SubmittedContent'
+import Images from '../../../images'
+import i18n from 'format-message'
+import filesize from 'filesize'
+import striptags from 'striptags'
+
+const textSubmission = i18n({
+  default: 'Text Submission',
+  description: 'Text submitted for an assignment',
+})
+
+const urlSubmission = i18n({
+  default: 'URL Submission',
+  description: 'URL submitted for an assignment',
+})
 
 export class CommentsTab extends Component<any, Props, any> {
   makeAComment = (comment: SubmissionCommentParams) => {
@@ -62,11 +77,7 @@ type RoutingProps = {
 
 type Props = CommentRows & RoutingProps & CommentActions
 
-function extractComments (submission: ?SubmissionComments): Array<CommentRowProps> {
-  if (!(submission && submission.submission_comments)) {
-    return []
-  }
-
+function extractComments (submission: SubmissionComments): Array<CommentRowProps> {
   const session = getSession()
   const myUserID = session ? session.user.id : '😲'
 
@@ -82,13 +93,64 @@ function extractComments (submission: ?SubmissionComments): Array<CommentRowProp
     }))
 }
 
-function extractSubmissionHistory (submission: ?SubmissionHistory): Array<CommentRowProps> {
+function contentForAttempt (attempt: Submission): Array<SubmittedContentDataProps> {
+  switch (attempt.submission_type) {
+    case 'online_text_entry':
+      return [{
+        contentID: 'text',
+        icon: Images.document,
+        title: textSubmission,
+        subtitle: striptags(attempt.body || ''),
+      }]
+    case 'online_url':
+      return [{
+        contentID: 'url',
+        icon: Images.document,
+        title: urlSubmission,
+        subtitle: attempt.url || '',
+      }]
+    case 'online_upload':
+    case 'media_recording':
+      const attachments = attempt.attachments || []
+      return attachments.map(attachment => ({
+        contentID: `attachment-${attachment.id}`,
+        icon: Images.document,
+        title: attachment.display_name,
+        subtitle: filesize(attachment.size),
+      }))
+  }
   return []
+}
+
+function rowForSubmission (user: User, attempt: Submission): CommentRowProps {
+  const attemptNumber = attempt.attempt || 0
+  const submittedAt = attempt.submitted_at || ''
+
+  const items = contentForAttempt(attempt)
+  return {
+    key: `submission-${attemptNumber}`,
+    name: user.name,
+    avatarURL: user.avatar_url,
+    from: 'them',
+    date: new Date(submittedAt),
+    contents: {
+      type: 'submission',
+      items: items,
+    },
+  }
+}
+
+function extractAttempts (submission: SubmissionWithHistory): Array<CommentRowProps> {
+  return submission.submission_history
+    .map(attempt => rowForSubmission(submission.user, attempt))
 }
 
 function extractPendingComments (assignments: ?AssignmentContentState, userID): Array<CommentRowProps> {
   const session = getSession()
-  if (!assignments || !session) { return [] }
+  if (!assignments || !session) {
+    return []
+  }
+
   const pendingForStudent: Array<PendingCommentState> = assignments.pendingComments[userID] || []
 
   return pendingForStudent.map(pending => ({
@@ -111,13 +173,13 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
   const assignments = entities.assignments[assignmentID]
 
-  const comments = extractComments(submission)
   const pendingComments = extractPendingComments(assignments, userID)
-  const history = extractSubmissionHistory(submission)
+  const comments = submission ? extractComments(submission) : []
+  const attempts = submission ? extractAttempts(submission) : []
 
   const commentRows = [
     ...comments,
-    ...history,
+    ...attempts,
     ...pendingComments,
   ].sort((c1, c2) => c2.date.getTime() - c1.date.getTime())
 

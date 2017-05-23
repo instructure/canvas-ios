@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`my chat bubbles render correctly 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+  style={
+    Object {
+      "borderColor": "#C7CDD1",
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "marginVertical": 8,
+      "maxWidth": 304,
+      "overflow": "hidden",
+      "paddingHorizontal": 8,
+      "paddingVertical": 6,
+    }
+  }
+  testID="submitted-content.item-1"
+>
+  <Image
+    source={1}
+    style={
+      Object {
+        "tintColor": "#374A59",
+      }
+    }
+    testID="submitted-content.icon-1"
+  />
+  <View
+    style={
+      Object {
+        "marginHorizontal": 6,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 16,
+          },
+          undefined,
+        ]
+      }
+      testID="submitted-content.title-1"
+    >
+      foo
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      numberOfLines={1}
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#7F91A7",
+            "fontSize": 14,
+          },
+          undefined,
+        ]
+      }
+      testID="submitted-content.subtitle-1"
+    >
+      bar
+    </Text>
+  </View>
+</TouchableOpacity>
+`;

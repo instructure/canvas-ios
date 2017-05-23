@@ -12,6 +12,10 @@ export const submission: Template<Submission> = template({
   excused: false,
   late: false,
   workflow_state: 'submitted',
+  attachments: [],
+  submission_type: 'online_text_entry',
+  body: 'This is my submission!',
+  attempt: 1,
 })
 
 export function submissionHistory (submissionOverrides: Array<Object> = [submission()], commentOverrides: Array<Object> = []): SubmissionWithHistory {

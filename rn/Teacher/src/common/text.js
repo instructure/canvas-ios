@@ -28,6 +28,14 @@ export function Heading2 ({ style, ...props }: Object): ReactNative.Text {
   return <ReactNative.Text style={[styles.font, styles.h2, style]} {...props} />
 }
 
+export function Title ({ style, ...props }: Object): ReactNative.Text {
+  return <ReactNative.Text style={[styles.font, styles.title, style]} { ...props } />
+}
+
+export function SubTitle ({ style, ...props }: Object): ReactNative.Text {
+  return <ReactNative.Text style={[styles.font, styles.subtitle, style]} { ...props } />
+}
+
 export function Paragraph ({ style, ...props }: Object): ReactNative.Text {
   return <ReactNative.Text style={[styles.font, styles.p, style]} {...props} />
 }
@@ -105,6 +113,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.darkText,
     fontFamily: BOLD_FONT,
+  },
+  title: {
+    fontSize: 16,
+    fontFamily: SEMI_BOLD_FONT,
+    color: colors.darkText,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: colors.lightText,
   },
   p: {
     fontSize: 16,

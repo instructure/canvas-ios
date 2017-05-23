@@ -1,5 +1,20 @@
 // @flow
 
+export type File = {
+  id: string,
+  display_name: string,
+  url: string,
+  size: number,
+  thumbnail_url: number,
+  mime_class: string,
+}
+
+export type SubmissionType
+  = 'online_text_entry'
+  | 'online_url'
+  | 'online_upload'
+  | 'media_recording'
+
 export type Submission = {
   id: string,
   user: User,
@@ -13,9 +28,12 @@ export type Submission = {
     | 'pending_review',
   excused: boolean,
   late: boolean,
-  submission_type: ?string,
+  submission_type: ?SubmissionType,
   body: ?string,
   preview_url: string,
+  attempt: ?number,
+  attachments?: Array<Attachment>,
+  url?: string,
 }
 
 export type SubmissionHistory = {
@@ -26,10 +44,15 @@ export type SubmissionComments = {
   submission_comments: SubmissionComment[],
 }
 
+export type SubmissionUser = {
+  user: User,
+}
+
 export type SubmissionWithHistory
   = Submission
   & SubmissionHistory
   & SubmissionComments
+  & SubmissionUser
 
 export type SubmissionCommentAuthor = {
   id: string,

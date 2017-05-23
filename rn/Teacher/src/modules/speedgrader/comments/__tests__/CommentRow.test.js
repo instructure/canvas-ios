@@ -59,7 +59,7 @@ test('their media comments render correctly', () => {
 test('their submissions render correctly', () => {
   const comment = {
     ...testComment,
-    contents: { type: 'submission' },
+    contents: { type: 'submission', items: [] },
   }
   let tree = renderer.create(
     <CommentRow {...comment} />

@@ -10,6 +10,7 @@ export function getSubmissions (courseID: string, assignmentID: string): Promise
       'submission_comments',
       'rubric_assessment',
       'total_scores',
+      'user',
     ] },
   })
 
