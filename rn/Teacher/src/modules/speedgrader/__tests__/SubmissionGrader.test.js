@@ -13,6 +13,10 @@ jest
   .mock('../components/FilesTab')
   .mock('../comments/CommentsTab')
 
+let template = {
+  ...require('../../../api/canvas-api/__templates__/submissions'),
+}
+
 let defaultProps = {
   submissionID: '1',
   submissionProps: {},
@@ -29,6 +33,32 @@ describe('SubmissionGrader', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('can render the handle content', () => {
+    let tree = renderer.create(
+      <SubmissionGrader {...defaultProps} />
+    )
+    let handleTree = renderer.create(
+      tree.getInstance().renderHandleContent()
+    ).toJSON()
+    expect(handleTree).toMatchSnapshot()
+  })
+
+  it('returns a label with the correct number of files', () => {
+    let props = {
+      selectedIndex: 0,
+      submissionProps: {
+        submission: template.submissionHistory([{
+          attachments: [{}],
+        }]),
+      },
+    }
+    let tree = renderer.create(
+      <SubmissionGrader {...props} />
+    )
+    let label = tree.getInstance().filesTabLabel()
+    expect(label).toContain('1')
   })
 
   it('switches between different tabs', () => {

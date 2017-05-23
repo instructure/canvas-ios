@@ -15,6 +15,7 @@ import { LinkButton } from '../../common/buttons'
 import SpeedGraderActions from './actions'
 import GradePicker from './components/GradePicker'
 import CommentInput from './comments/CommentInput'
+import DrawerState from './utils/drawer-state'
 
 export class GradeTab extends Component {
   props: GradeTabProps
@@ -27,6 +28,12 @@ export class GradeTab extends Component {
       ratings: props.rubricAssessment || {},
       hasChanges: false,
       criterionCommentInput: null,
+    }
+  }
+
+  componentWillReceiveProps (nextProps: GradeTabProps) {
+    if (this.props.rubricGradePending && !nextProps.rubricGradePending) {
+      this.setState({ criterionCommentInput: null })
     }
   }
 
@@ -54,9 +61,22 @@ export class GradeTab extends Component {
       .reduce((sum, key) => sum + (this.state.ratings[key].points || 0), 0)
   }
 
-  saveRubricAssessment = () => {
+  saveRubricAssessment = (newRating: { [string]: RubricAssessment }) => {
+    this.props.gradeSubmissionWithRubric(
+      this.props.courseID,
+      this.props.assignmentID,
+      this.props.userID,
+      this.props.submissionID,
+      {
+        ...this.props.rubricAssessment,
+        ...newRating,
+      }
+    )
+  }
+
+  saveRubricPoints = () => {
     this.setState({ hasChanges: false })
-    this.props.gradeSubmissionWithRubric(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, this.state.ratings)
+    this.saveRubricAssessment(this.state.ratings)
   }
 
   openCommentKeyboard = (criterionID: string) => {
@@ -66,16 +86,37 @@ export class GradeTab extends Component {
   submitRubricComment = ({ message }: { message: string }) => {
     if (!this.state.criterionCommentInput) return
     let id = this.state.criterionCommentInput
+    let currentAssessment = this.props.rubricAssessment || {}
+    let newRating = {
+      [id]: {
+        ...currentAssessment[id],
+        comments: message,
+      },
+    }
     this.setState({
-      criterionCommentInput: null,
       ratings: {
         ...this.state.ratings,
-        [id]: {
-          ...this.state.ratings[id],
-          comments: message,
-        },
+        ...newRating,
       },
-    }, () => this.saveRubricAssessment())
+    })
+    this.saveRubricAssessment(newRating)
+  }
+
+  deleteComment = (criterionID: string) => {
+    let currentAssessment = this.props.rubricAssessment || {}
+    let newRating = {
+      [criterionID]: {
+        ...currentAssessment[criterionID],
+        comments: '',
+      },
+    }
+    this.setState({
+      ratings: {
+        ...this.props.rubricAssessment,
+        ...newRating,
+      },
+    })
+    this.saveRubricAssessment(newRating)
   }
 
   renderHeader = () => {
@@ -100,7 +141,7 @@ export class GradeTab extends Component {
               <ActivityIndicator />
             }
             {this.state.hasChanges &&
-              <LinkButton testID='rubric-details.save' style={styles.saveStyles} onPress={this.saveRubricAssessment}>
+              <LinkButton testID='rubric-details.save' style={styles.saveStyles} onPress={this.saveRubricPoints}>
                 {i18n('Save')}
               </LinkButton>
             }
@@ -119,6 +160,22 @@ export class GradeTab extends Component {
         changeRating={this.updateScore}
         grade={this.state.ratings[item.id]}
         openCommentKeyboard={this.openCommentKeyboard}
+        deleteComment={this.deleteComment}
+      />
+    )
+  }
+
+  renderCommentInput = () => {
+    if (!this.state.criterionCommentInput) return null
+
+    let rating = this.state.ratings[this.state.criterionCommentInput] || {}
+    return (
+      <CommentInput
+        initialValue={rating.comments}
+        makeComment={this.submitRubricComment}
+        allowMediaComments={false}
+        autoCorrect={false}
+        drawerState={this.props.drawerState}
       />
     )
   }
@@ -133,9 +190,7 @@ export class GradeTab extends Component {
           renderItem={this.renderRubricItem}
           initialNumToRender={2}
         />
-        { this.state.criterionCommentInput &&
-          <CommentInput makeComment={this.submitRubricComment} allowMediaComments={false} />
-        }
+        {this.renderCommentInput()}
       </View>
     )
   }
@@ -187,6 +242,7 @@ type RubricOwnProps = {
   submissionID: string,
   userID: string,
   navigator: Navigator,
+  drawerState: DrawerState,
 }
 
 type RubricDataProps = {

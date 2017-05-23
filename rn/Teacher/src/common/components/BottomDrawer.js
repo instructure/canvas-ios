@@ -68,6 +68,11 @@ export default class BottomDrawer extends Component<any, Props, State> {
     this._deltaY = props.drawerState.deltaY
   }
 
+  shouldComponentUpdate (nextProps: Props, nextState: State) {
+    if (nextProps.containerHeight === 0) return false
+    return true
+  }
+
   componentWillReceiveProps (nextProps: Props) {
     if (nextProps.containerHeight !== this.props.containerHeight || nextProps.containerWidth !== this.props.containerWidth) {
       this.setState({ height: nextProps.containerHeight, width: nextProps.containerWidth }, () => {
@@ -108,7 +113,6 @@ export default class BottomDrawer extends Component<any, Props, State> {
   getSnapPoints = () => {
     // for testing...
     const minHeight = Math.max(this.state.height, 140)
-
     const closed = 0
     const open = minHeight * 0.5 - HANDLE_PADDING_BOTTOM
     const fullscreen = minHeight - HANDLE_HEIGHT - DRAWER_MIN_TOP_PADDING
@@ -141,7 +145,6 @@ export default class BottomDrawer extends Component<any, Props, State> {
           initialPosition={this.getSnapPoints()[this.props.drawerState.currentSnap]}
           animatedValueY={this._deltaY}
           style={styles.handle}
-          onLayout={this.onLayout}
         >
         </Interactable.View>
         <Animated.View

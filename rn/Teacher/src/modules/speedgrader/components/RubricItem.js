@@ -7,6 +7,7 @@ import {
   StyleSheet,
   AlertIOS,
   NativeModules,
+  ActionSheetIOS,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
@@ -15,6 +16,9 @@ import Images from '../../../images'
 import ChatBubble from '../comments/ChatBubble'
 
 const { NativeAccessibility } = NativeModules
+
+const CANCEL = 2
+const DELETE = 1
 
 export default class RubricItem extends Component {
   props: RubricItemProps
@@ -26,7 +30,7 @@ export default class RubricItem extends Component {
     let grade = this.props.grade && this.props.grade.points
 
     this.state = {
-      selectedOption: String(grade),
+      selectedOption: grade,
     }
   }
 
@@ -34,9 +38,9 @@ export default class RubricItem extends Component {
     this.props.showDescription(this.props.rubricItem.id)
   }
 
-  changeSelected = (value: string) => {
+  changeSelected = (value: number) => {
     this.setState({ selectedOption: value })
-    this.props.changeRating(this.props.rubricItem.id, +value)
+    this.props.changeRating(this.props.rubricItem.id, value)
   }
 
   isCustomGrade = () => this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
@@ -58,17 +62,31 @@ export default class RubricItem extends Component {
           }
 
           NativeAccessibility.focusElement(`rubric-item.customize-grade-${this.props.rubricItem.id}`)
-          this.changeSelected(value)
+          this.changeSelected(numValue)
         },
       }],
       'plain-text',
-      this.isCustomGrade() ? this.state.selectedOption : '',
+      this.isCustomGrade() ? String(this.state.selectedOption) : '',
       'number-pad'
     )
   }
 
   openKeyboard = () => {
     this.props.openCommentKeyboard(this.props.rubricItem.id)
+  }
+
+  openActionSheet = () => {
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: [i18n('Edit'), i18n('Delete'), i18n('Cancel')],
+      cancelButtonIndex: CANCEL,
+      destructiveButtonIndex: DELETE,
+      title: i18n('Edit Comment'),
+    }, (button) => {
+      if (button === CANCEL) return
+      if (button === DELETE) return this.props.deleteComment(this.props.rubricItem.id)
+
+      this.props.openCommentKeyboard(this.props.rubricItem.id)
+    })
   }
 
   render () {
@@ -95,7 +113,7 @@ export default class RubricItem extends Component {
             key='add'
             style={styles.circle}
             on={isCustomGrade}
-            value={isCustomGrade ? this.state.selectedOption : ''}
+            value={isCustomGrade ? String(this.state.selectedOption) : ''}
             onPress={this.promptCustom}
             accessibilityLabel={i18n('Customize Grade')}
             testID={`rubric-item.customize-grade-${rubricItem.id}`}
@@ -125,7 +143,8 @@ export default class RubricItem extends Component {
             <ChatBubble from='them' message={this.props.grade.comments} />
             <LinkButton
               style={styles.editButton}
-              testID='rubric-item.comment-edit'
+              testID={`rubric-item.edit-comment-${rubricItem.id}`}
+              onPress={this.openActionSheet}
             >
               {i18n('Edit')}
             </LinkButton>
@@ -183,8 +202,9 @@ type RubricItemProps = {
   showDescription: (string) => void,
   changeRating: (string, number) => void,
   openCommentKeyboard: (string) => void,
+  deleteComment: (string) => void,
 }
 
 type RubricItemState = {
-  selectedOption: ?string,
+  selectedOption: ?number,
 }

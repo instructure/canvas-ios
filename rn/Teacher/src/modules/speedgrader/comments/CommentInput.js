@@ -18,6 +18,7 @@ type CommentInputProps = {
   makeComment(comment: SubmissionCommentParams): void,
   drawerState: DrawerState,
   allowMediaComments: boolean,
+  initialValue: ?string,
 }
 
 type State = {
@@ -30,7 +31,7 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
 
   constructor (props: CommentInputProps) {
     super(props)
-    this.state = { textComment: '' }
+    this.state = { textComment: props.initialValue || '' }
   }
 
   addMedia = () => {
@@ -38,16 +39,17 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
   }
 
   makeComment = () => {
-    if (!this.state.textComment || this.state.textComment.length === 0) {
+    let text = this.state.textComment
+    if (!text || text.length === 0) {
       return
     }
+    this.setState({ textComment: '' })
+    this._textInput.blur()
 
     this.props.makeComment({
       type: 'text',
-      message: this.state.textComment,
+      message: text,
     })
-    this.setState({ textComment: '' })
-    this._textInput.blur()
   }
 
   keyboardChanged = (visible: boolean) => {

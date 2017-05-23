@@ -69,6 +69,15 @@ exports[`Rubric has the correct score 1`] = `
           <GradePicker
             assignmentID="1"
             courseID="1"
+            drawerState={
+              DrawerState {
+                "currentSnap": 0,
+                "deltaY": 0,
+                "didSnapTo": [Function],
+                "drawers": Array [],
+                "snapTo": [Function],
+              }
+            }
             gradeSubmissionWithRubric={[Function]}
             navigator={
               Object {
@@ -412,7 +421,7 @@ exports[`Rubric has the correct score 1`] = `
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
-              on={true}
+              on={false}
               onPress={[Function]}
               style={
                 Object {
@@ -421,7 +430,7 @@ exports[`Rubric has the correct score 1`] = `
                 }
               }
               testID="rubric-item.customize-grade-2"
-              value="undefined"
+              value=""
             >
               <View
                 style={
@@ -441,36 +450,12 @@ exports[`Rubric has the correct score 1`] = `
                       "marginBottom": 8,
                       "marginRight": 8,
                     },
-                    Object {
-                      "backgroundColor": "#374A59",
-                    },
                   ]
                 }
               >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "white",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  undefined
-                </Text>
+                <Image
+                  source={1}
+                />
               </View>
             </Button>
           </View>
@@ -658,6 +643,15 @@ exports[`Rubric renders a rubric 1`] = `
           <GradePicker
             assignmentID="1"
             courseID="1"
+            drawerState={
+              DrawerState {
+                "currentSnap": 0,
+                "deltaY": 0,
+                "didSnapTo": [Function],
+                "drawers": Array [],
+                "snapTo": [Function],
+              }
+            }
             gradeSubmissionWithRubric={[Function]}
             navigator={
               Object {
@@ -1001,7 +995,7 @@ exports[`Rubric renders a rubric 1`] = `
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
-              on={true}
+              on={false}
               onPress={[Function]}
               style={
                 Object {
@@ -1010,7 +1004,7 @@ exports[`Rubric renders a rubric 1`] = `
                 }
               }
               testID="rubric-item.customize-grade-2"
-              value="undefined"
+              value=""
             >
               <View
                 style={
@@ -1030,36 +1024,12 @@ exports[`Rubric renders a rubric 1`] = `
                       "marginBottom": 8,
                       "marginRight": 8,
                     },
-                    Object {
-                      "backgroundColor": "#374A59",
-                    },
                   ]
                 }
               >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "white",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  undefined
-                </Text>
+                <Image
+                  source={1}
+                />
               </View>
             </Button>
           </View>
@@ -1247,6 +1217,15 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           <GradePicker
             assignmentID="1"
             courseID="1"
+            drawerState={
+              DrawerState {
+                "currentSnap": 0,
+                "deltaY": 0,
+                "didSnapTo": [Function],
+                "drawers": Array [],
+                "snapTo": [Function],
+              }
+            }
             gradeSubmissionWithRubric={[Function]}
             navigator={
               Object {
@@ -1590,7 +1569,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
-              on={true}
+              on={false}
               onPress={[Function]}
               style={
                 Object {
@@ -1599,7 +1578,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 }
               }
               testID="rubric-item.customize-grade-2"
-              value="undefined"
+              value=""
             >
               <View
                 style={
@@ -1619,36 +1598,12 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       "marginBottom": 8,
                       "marginRight": 8,
                     },
-                    Object {
-                      "backgroundColor": "#374A59",
-                    },
                   ]
                 }
               >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "white",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  undefined
-                </Text>
+                <Image
+                  source={1}
+                />
               </View>
             </Button>
           </View>
@@ -1909,6 +1864,15 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
           <GradePicker
             assignmentID="1"
             courseID="1"
+            drawerState={
+              DrawerState {
+                "currentSnap": 0,
+                "deltaY": 0,
+                "didSnapTo": [Function],
+                "drawers": Array [],
+                "snapTo": [Function],
+              }
+            }
             gradeSubmissionWithRubric={[Function]}
             navigator={
               Object {
@@ -2014,6 +1978,15 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           <GradePicker
             assignmentID="1"
             courseID="1"
+            drawerState={
+              DrawerState {
+                "currentSnap": 0,
+                "deltaY": 0,
+                "didSnapTo": [Function],
+                "drawers": Array [],
+                "snapTo": [Function],
+              }
+            }
             gradeSubmissionWithRubric={[Function]}
             navigator={
               Object {
@@ -2363,7 +2336,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
-              on={true}
+              on={false}
               onPress={[Function]}
               style={
                 Object {
@@ -2372,7 +2345,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 }
               }
               testID="rubric-item.customize-grade-2"
-              value="undefined"
+              value=""
             >
               <View
                 style={
@@ -2392,36 +2365,12 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       "marginBottom": 8,
                       "marginRight": 8,
                     },
-                    Object {
-                      "backgroundColor": "#374A59",
-                    },
                   ]
                 }
               >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "white",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  undefined
-                </Text>
+                <Image
+                  source={1}
+                />
               </View>
             </Button>
           </View>
@@ -2609,6 +2558,15 @@ exports[`Rubric shows the save button when there is a change in the rubric score
           <GradePicker
             assignmentID="1"
             courseID="1"
+            drawerState={
+              DrawerState {
+                "currentSnap": 0,
+                "deltaY": 0,
+                "didSnapTo": [Function],
+                "drawers": Array [],
+                "snapTo": [Function],
+              }
+            }
             gradeSubmissionWithRubric={[Function]}
             navigator={
               Object {

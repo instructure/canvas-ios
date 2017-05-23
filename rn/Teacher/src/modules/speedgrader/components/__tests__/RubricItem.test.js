@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { AlertIOS, NativeModules } from 'react-native'
+import { AlertIOS, NativeModules, ActionSheetIOS } from 'react-native'
 import RubricItem from '../RubricItem'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
@@ -9,6 +9,9 @@ import explore from '../../../../../test/helpers/explore'
 jest.mock('react-native-button', () => 'Button')
 jest.mock('AlertIOS', () => ({
   prompt: jest.fn(),
+}))
+jest.mock('ActionSheetIOS', () => ({
+  showActionSheetWithOptions: jest.fn(),
 }))
 
 const templates = {
@@ -21,6 +24,7 @@ let defaultProps = {
   showDescription: jest.fn(),
   changeRating: jest.fn(),
   openCommentKeyboard: jest.fn(),
+  deleteComment: jest.fn(),
 }
 
 describe('RubricItem', () => {
@@ -162,5 +166,73 @@ describe('RubricItem', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('Will open an action sheet when a rubric comment is pressed', () => {
+    let props = {
+      ...defaultProps,
+      grade: { comments: 'A comment' },
+    }
+
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
+    button.props.onPress()
+
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+  })
+
+  it('will do nothing when cancel is pressed in the edit action sheet', () => {
+    let props = {
+      ...defaultProps,
+      grade: { comments: 'A comment' },
+    }
+
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
+    button.props.onPress()
+
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
+    expect(defaultProps.deleteComment).not.toHaveBeenCalled()
+    expect(defaultProps.openCommentKeyboard).not.toHaveBeenCalled()
+  })
+
+  it('will call deleteComment when the delete option is pressed in the edit action sheet', () => {
+    let props = {
+      ...defaultProps,
+      grade: { comments: 'A comment' },
+    }
+
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
+    button.props.onPress()
+
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](1)
+    expect(defaultProps.deleteComment).toHaveBeenCalledWith(defaultProps.rubricItem.id)
+  })
+
+  it('will call openCommentKeyboard when the edit option is pressed in the edit action sheet', () => {
+    let props = {
+      ...defaultProps,
+      grade: { comments: 'A comment' },
+    }
+
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
+    button.props.onPress()
+
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](0)
+    expect(defaultProps.openCommentKeyboard).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })
 })

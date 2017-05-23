@@ -5,6 +5,7 @@ import { GradeTab, mapStateToProps } from '../GradeTab'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import { registerScreens } from '../../../routing/register-screens'
+import DrawerState from '../utils/drawer-state'
 
 registerScreens({})
 jest.mock('../components/GradePicker')
@@ -22,6 +23,7 @@ let ownProps = {
   submissionID: '1',
   userID: '1',
   navigator: templates.navigator(),
+  drawerState: new DrawerState(),
 }
 
 let defaultProps = {
@@ -138,7 +140,7 @@ describe('Rubric', () => {
     expect(defaultProps.gradeSubmissionWithRubric).not.toHaveBeenCalled()
   })
 
-  it('adds the comment to state when submitRubricComment is called', () => {
+  it('adds the comment to state when submitRubricComment is called and calls gradeSubmissionWithRubric', () => {
     let tree = renderer.create(
       <GradeTab {...defaultProps} />
     )
@@ -146,6 +148,43 @@ describe('Rubric', () => {
     tree.getInstance().openCommentKeyboard('1')
     tree.getInstance().submitRubricComment({ message: 'A Message' })
     expect(tree.getInstance().state.ratings['1'].comments).toEqual('A Message')
+    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalledWith(
+      '1', '1', '1', '1', { '1': { points: 10, comments: 'A Message' } }
+    )
+  })
+
+  it('removes the comment from state and calls gradeSubmissionWithRubric when delete comment is called', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+
+    tree.getInstance().setState({ ratings: { '1': { points: 10, comments: 'a' } } })
+    tree.getInstance().deleteComment('1')
+
+    expect(tree.getInstance().state.ratings['1'].comments).toEqual('')
+    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalledWith(
+      '1', '1', '1', '1', { '1': { points: 10, comments: '' } }
+    )
+  })
+
+  it('doesnt submit changed points when adding a comment', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+
+    tree.getInstance().setState({
+      criterionCommentInput: '1',
+      hasChanges: true,
+      ratings: {
+        '1': {
+          points: 5,
+        },
+      },
+    })
+    tree.getInstance().submitRubricComment({ message: 'A message' })
+    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalledWith(
+      '1', '1', '1', '1', { '1': { points: 10, comments: 'A message' } }
+    )
   })
 })
 

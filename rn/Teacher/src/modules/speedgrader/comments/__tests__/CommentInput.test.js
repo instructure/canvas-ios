@@ -49,3 +49,11 @@ test('makeComment sends the comment', () => {
   expect(makeComment).toHaveBeenCalledWith({ type: 'text', message: 'Hello!' })
   expect(blur).toHaveBeenCalled()
 })
+
+test('Allows for an initialValue', () => {
+  let tree = renderer.create(
+    <CommentInput initialValue='Comment' />
+  )
+
+  expect(tree.getInstance().state.textComment).toEqual('Comment')
+})

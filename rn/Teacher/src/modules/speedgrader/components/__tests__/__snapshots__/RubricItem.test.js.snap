@@ -600,7 +600,7 @@ exports[`RubricItem renders 1`] = `
     </Button>
     <Button
       accessibilityLabel="Customize Grade"
-      on={true}
+      on={false}
       onPress={[Function]}
       style={
         Object {
@@ -609,7 +609,7 @@ exports[`RubricItem renders 1`] = `
         }
       }
       testID="rubric-item.customize-grade-2"
-      value="undefined"
+      value=""
     >
       <View
         style={
@@ -629,36 +629,12 @@ exports[`RubricItem renders 1`] = `
               "marginBottom": 8,
               "marginRight": 8,
             },
-            Object {
-              "backgroundColor": "#374A59",
-            },
           ]
         }
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "white",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          undefined
-        </Text>
+        <Image
+          source={1}
+        />
       </View>
     </Button>
   </View>
@@ -819,7 +795,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
     }
   >
     <Button
-      on={false}
+      on={true}
       onPress={[Function]}
       style={
         Object {
@@ -848,6 +824,9 @@ exports[`RubricItem renders an already selected grade 1`] = `
               "marginBottom": 8,
               "marginRight": 8,
             },
+            Object {
+              "backgroundColor": "#374A59",
+            },
           ]
         }
       >
@@ -867,7 +846,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
                 "fontSize": 20,
               },
               Object {
-                "color": "black",
+                "color": "white",
                 "fontWeight": "500",
               },
             ]
@@ -997,7 +976,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
     </Button>
     <Button
       accessibilityLabel="Customize Grade"
-      on={true}
+      on={false}
       onPress={[Function]}
       style={
         Object {
@@ -1006,7 +985,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
         }
       }
       testID="rubric-item.customize-grade-2"
-      value="10"
+      value=""
     >
       <View
         style={
@@ -1026,36 +1005,12 @@ exports[`RubricItem renders an already selected grade 1`] = `
               "marginBottom": 8,
               "marginRight": 8,
             },
-            Object {
-              "backgroundColor": "#374A59",
-            },
           ]
         }
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "white",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          10
-        </Text>
+        <Image
+          source={1}
+        />
       </View>
     </Button>
   </View>
@@ -1791,7 +1746,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
     </Button>
     <Button
       accessibilityLabel="Customize Grade"
-      on={true}
+      on={false}
       onPress={[Function]}
       style={
         Object {
@@ -1800,7 +1755,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       }
       testID="rubric-item.customize-grade-2"
-      value="undefined"
+      value=""
     >
       <View
         style={
@@ -1820,36 +1775,12 @@ exports[`RubricItem will not show the add comment button and will show the comme
               "marginBottom": 8,
               "marginRight": 8,
             },
-            Object {
-              "backgroundColor": "#374A59",
-            },
           ]
         }
       >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "white",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          undefined
-        </Text>
+        <Image
+          source={1}
+        />
       </View>
     </Button>
   </View>
@@ -1988,6 +1919,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       </Text>
     </View>
     <Button
+      onPress={[Function]}
       style={
         Object {
           "color": "#73818C",
@@ -1995,7 +1927,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
           "fontWeight": "600",
         }
       }
-      testID="rubric-item.comment-edit"
+      testID="rubric-item.edit-comment-2"
     >
       <Text
         accessible={true}
