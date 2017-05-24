@@ -9,8 +9,3 @@ test('reset pending', () => {
   object = resetPending(object)
   expect(object.pending).toEqual(0)
 })
-
-test('reset pending with blank object', () => {
-  const object = resetPending(null)
-  expect(object.pending).toEqual(0)
-})
