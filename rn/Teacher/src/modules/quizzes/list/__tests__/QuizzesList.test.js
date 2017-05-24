@@ -66,6 +66,39 @@ describe('QuizzesList', () => {
   function render (props: Props): any {
     return renderer.create(<QuizzesList {...props} />)
   }
+
+  it('selects first item on regular horizontal trait collection', () => {
+    props.quizzes = [
+      template.quiz({ id: '1', title: 'First', due_at: '2118-03-28T15:07:56.312Z' }),
+      template.quiz({ id: '2', title: 'Second', due_at: '2117-03-28T15:07:56.312Z' }),
+    ]
+    let tree = renderer.create(
+      <QuizzesList {...props} />
+    )
+
+    let instance = tree.getInstance()
+    instance.didSelectFirstItem = false
+    instance.isCompactScreenDisplayMode = false
+    let quiz = instance.data[0].data[0]
+    instance._selectedQuiz = jest.fn()
+    instance.selectFirstListItemIfNecessary()
+
+    expect(instance._selectedQuiz).toHaveBeenCalledWith(quiz)
+    expect(instance.didSelectFirstItem).toBe(true)
+  })
+
+  it('detects trait collection change', () => {
+    let tree = renderer.create(
+      <QuizzesList {...props} />
+    )
+
+    let instance = tree.getInstance()
+    let traits = { 'window': { 'horizontal': 'regular' } }
+    instance.selectFirstListItemIfNecessary = jest.fn()
+    instance.traitCollectionDidChange(traits)
+
+    expect(instance.selectFirstListItemIfNecessary).toHaveBeenCalled()
+  })
 })
 
 describe('map state to prop', () => {

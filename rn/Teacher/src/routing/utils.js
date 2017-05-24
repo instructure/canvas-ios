@@ -4,6 +4,7 @@ import {
   processColor,
   Image,
 } from 'react-native'
+import { type TraitCollection } from './Navigator'
 
 function isColorKey (key: string): boolean {
   const COLOR_REGEX = /color$/i
@@ -42,6 +43,14 @@ function processConfig (config: Object, id: string, configureCallback: (event: s
   return obj
 }
 
+function isCompactScreenDisplayMode (traits: TraitCollection): boolean {
+  try {
+    return traits.window.horizontal === 'compact'
+  } catch (e) {}
+  return true   //  default to true
+}
+
 module.exports = {
   processConfig,
+  isCompactScreenDisplayMode,
 }

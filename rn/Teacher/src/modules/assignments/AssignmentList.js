@@ -25,6 +25,7 @@ import { Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
 import colors from '../../common/colors'
 import { type TraitCollection } from '../../routing/Navigator'
+import { isCompactScreenDisplayMode } from '../../routing/utils'
 
 type State = {
   currentFilter: {
@@ -44,7 +45,7 @@ const DEFAULT_FILTER = {
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
   state: State
-  displayMode: string
+  isCompactScreenDisplayMode: boolean
   data: any = []
   didSelectFirstItem = false
 
@@ -63,16 +64,23 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   traitCollectionDidChange (traits: TraitCollection) {
-    this.displayMode = traits.window.horizontal
-    this.selectFirstListItem()
+    this.isCompactScreenDisplayMode = isCompactScreenDisplayMode(traits)
+    this.selectFirstListItemIfNecessary()
   }
 
-  selectFirstListItem () {
-    if (!this.didSelectFirstItem && this.displayMode === 'regular' && this.data.length > 0 && this.data[0].assignments.length > 0) {
-      let assignment = this.data[0].assignments.sort((a, b) => a.position - b.position)[0]
+  selectFirstListItemIfNecessary () {
+    let assignment = null
+    if (!this.didSelectFirstItem && !this.isCompactScreenDisplayMode && (assignment = this.firstAssignmentInList())) {
       this.selectedAssignment(assignment)
       this.didSelectFirstItem = true
     }
+  }
+
+  firstAssignmentInList (): ?Assignment {
+    if (this.data.length > 0 && this.data[0].assignments.length > 0) {
+      return this.data[0].assignments.sort((a, b) => a.position - b.position)[0]
+    }
+    return null
   }
 
   prepareListData () {
@@ -170,7 +178,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   render (): React.Element<View> {
     if (this.data.length === 0) {
       this.data = this.prepareListData()
-      this.selectFirstListItem()
+      this.selectFirstListItemIfNecessary()
     }
     return (
       <Screen

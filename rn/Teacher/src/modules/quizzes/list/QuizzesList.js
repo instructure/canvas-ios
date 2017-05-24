@@ -17,6 +17,8 @@ import refresh from '../../../utils/refresh'
 import QuizRow from './QuizRow'
 import { SectionHeader } from '../../../common/text'
 import Screen from '../../../routing/Screen'
+import { type TraitCollection } from '../../../routing/Navigator'
+import { isCompactScreenDisplayMode } from '../../../routing/utils'
 
 type OwnProps = {
   courseID: string,
@@ -39,6 +41,34 @@ const HEADERS = {
 }
 
 export class QuizzesList extends Component<any, Props, any> {
+  isCompactScreenDisplayMode: boolean
+  didSelectFirstItem = false
+  data: any = []
+
+  onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
+  }
+
+  traitCollectionDidChange (traits: TraitCollection) {
+    this.isCompactScreenDisplayMode = isCompactScreenDisplayMode(traits)
+    this.selectFirstListItemIfNecessary()
+  }
+
+  selectFirstListItemIfNecessary () {
+    let firstQuiz = this._firstQuizInList()
+    if (!this.didSelectFirstItem && !this.isCompactScreenDisplayMode && firstQuiz) {
+      this._selectedQuiz(firstQuiz)
+      this.didSelectFirstItem = true
+    }
+  }
+
+  _firstQuizInList (): ?Quiz {
+    if (this.data.length > 0 && this.data[0].data.length > 0) {
+      let quiz = this.data[0].data[0]
+      return quiz
+    }
+    return null
+  }
 
   renderRow = ({ item, index }: { item: Quiz, index: number }) => {
     return (
@@ -93,6 +123,10 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   render (): React.Element<View> {
+    if (this.data.length === 0) {
+      this.data = this._getData()
+      this.selectFirstListItemIfNecessary()
+    }
     return (
       <Screen
         navBarColor={this.props.courseColor}
@@ -102,10 +136,11 @@ export class QuizzesList extends Component<any, Props, any> {
           default: 'Quizzes',
           description: 'Title of the quizzes screen for a course',
         })}
+        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}>
         <View style={styles.container}>
           <SectionList
-            sections={this._getData()}
+            sections={this.data}
             renderSectionHeader={this.renderSectionHeader}
             renderItem={this.renderRow}
             refreshing={Boolean(this.props.pending)}

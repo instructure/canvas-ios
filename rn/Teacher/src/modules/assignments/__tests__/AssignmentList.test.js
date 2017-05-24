@@ -28,21 +28,22 @@ let group = template.assignmentGroup()
 let gradingPeriod = template.gradingPeriod({ assignmentRefs: [] })
 let course = template.course()
 
-let defaultProps = {
-  course,
-  courseID: course.id,
-  assignmentGroups: [group],
-  navigator: template.navigator(),
-  gradingPeriods: [gradingPeriod],
-  refreshAssignmentList: jest.fn(),
-  refresh: jest.fn(),
-  refreshing: false,
-  courseColor: '#fff',
-}
+let defaultProps = {}
 
 beforeEach(() => {
   timezoneMock.register('US/Pacific')
   jest.resetAllMocks()
+  defaultProps = {
+    course,
+    courseID: course.id,
+    assignmentGroups: [group],
+    navigator: template.navigator(),
+    gradingPeriods: [gradingPeriod],
+    refreshAssignmentList: jest.fn(),
+    refresh: jest.fn(),
+    refreshing: false,
+    courseColor: '#fff',
+  }
 })
 
 afterEach(() => {
@@ -196,10 +197,26 @@ test('selects first item on regular horizontal trait collection', () => {
   instance.displayMode = 'regular'
   let assignment = instance.data[0].assignments[0]
   instance.selectedAssignment = jest.fn()
-  instance.selectFirstListItem()
+  instance.selectFirstListItemIfNecessary()
 
   expect(instance.selectedAssignment).toHaveBeenCalledWith(assignment)
   expect(instance.didSelectFirstItem).toBe(true)
+})
+
+test('does not select first item on empty data', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.getInstance()
+  instance.didSelectFirstItem = false
+  instance.displayMode = 'regular'
+  instance.data = [{ assignments: [] }]
+  instance.selectedAssignment = jest.fn()
+  instance.selectFirstListItemIfNecessary()
+
+  expect(instance.selectedAssignment).toHaveBeenCalledTimes(0)
+  expect(instance.didSelectFirstItem).toBe(false)
 })
 
 test('trait collection did change', () => {
@@ -209,8 +226,8 @@ test('trait collection did change', () => {
 
   let instance = tree.getInstance()
   let traits = { 'window': { 'horizontal': 'regular' } }
-  instance.selectFirstListItem = jest.fn()
+  instance.selectFirstListItemIfNecessary = jest.fn()
   instance.traitCollectionDidChange(traits)
 
-  expect(instance.selectFirstListItem).toHaveBeenCalled()
+  expect(instance.selectFirstListItemIfNecessary).toHaveBeenCalled()
 })
