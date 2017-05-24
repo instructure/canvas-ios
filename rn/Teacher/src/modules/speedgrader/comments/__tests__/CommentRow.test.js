@@ -12,6 +12,7 @@ const testComment: CommentRowProps = {
   avatarURL: 'http://fillmurray.com/200/300',
   from: 'them',
   contents: { type: 'text', message: 'I just need more time!?' },
+  pending: 0,
 }
 
 test('Their message rows render correctly', () => {

@@ -118,4 +118,5 @@ export type CommentRowProps = {
   from: 'me' | 'them',
   contents: { type: 'text', message: string }
           | { type: 'submission', items: Array<SubmittedContentDataProps> },
+  pending: number,
 }

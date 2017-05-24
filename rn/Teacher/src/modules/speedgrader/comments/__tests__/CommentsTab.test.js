@@ -59,7 +59,7 @@ const comments = [
 
 test('comments render properly', () => {
   const tree = renderer.create(
-    <CommentsTab commentRows={comments} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()}/>
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
@@ -151,6 +151,7 @@ test('mapStateToProps returns comment and submission rows', () => {
         avatarURL: 'http://fillmurray.com/499/355',
         from: 'them',
         contents: { type: 'text', message: studentComment.comment },
+        pending: 0,
       },
       {
         key: 'comment-' + teacherComment.id,
@@ -159,6 +160,7 @@ test('mapStateToProps returns comment and submission rows', () => {
         avatarURL: 'http://fillmurray.com/499/355',
         from: 'me',
         contents: { type: 'text', message: teacherComment.comment },
+        pending: 0,
       },
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
@@ -175,6 +177,7 @@ test('mapStateToProps returns comment and submission rows', () => {
         from: 'them',
         key: 'submission-4',
         name: 'Donald Trump',
+        pending: 0,
       },
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
@@ -193,6 +196,7 @@ test('mapStateToProps returns comment and submission rows', () => {
         from: 'them',
         key: 'submission-3',
         name: 'Donald Trump',
+        pending: 0,
       },
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
@@ -211,6 +215,7 @@ test('mapStateToProps returns comment and submission rows', () => {
         from: 'them',
         key: 'submission-2',
         name: 'Donald Trump',
+        pending: 0,
       },
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
@@ -229,6 +234,7 @@ test('mapStateToProps returns comment and submission rows', () => {
         from: 'them',
         key: 'submission-1',
         name: 'Donald Trump',
+        pending: 0,
       },
     ],
   })

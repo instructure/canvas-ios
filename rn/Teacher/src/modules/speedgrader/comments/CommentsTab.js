@@ -12,6 +12,7 @@ import CommentInput from './CommentInput'
 import DrawerState from '../utils/drawer-state'
 import SubmissionCommentActions, { type CommentActions } from './actions'
 import { type SubmittedContentDataProps } from './SubmittedContent'
+import CommentStatus from './CommentStatus'
 import Images from '../../../images'
 import i18n from 'format-message'
 import filesize from 'filesize'
@@ -28,12 +29,19 @@ const urlSubmission = i18n({
 })
 
 export class CommentsTab extends Component<any, Props, any> {
+  constructor (props: Props) {
+    super(props)
+
+    this.state = { shouldShowStatus: this.props.commentRows.some(c => c.pending) }
+  }
+
   makeAComment = (comment: SubmissionCommentParams) => {
     const {
       courseID,
       assignmentID,
       userID,
     } = this.props
+    this.setState({ shouldShowStatus: true })
     this.props.makeAComment(
       courseID,
       assignmentID,
@@ -49,8 +57,13 @@ export class CommentsTab extends Component<any, Props, any> {
       style={{ transform: [{ rotate: '180deg' }] }}
     />
 
+  statusComplete = () => {
+    this.setState({ shouldShowStatus: false })
+  }
+
   render (): any {
     const rows = this.props.commentRows || []
+    let hasPending = this.props.commentRows.some(c => c.pending)
     return (
       <View style={{ flex: 1 }}>
         <FlatList
@@ -59,6 +72,14 @@ export class CommentsTab extends Component<any, Props, any> {
           data={rows}
           renderItem={this.renderComment}
         />
+        { this.state.shouldShowStatus &&
+          <CommentStatus
+            isDone={!hasPending}
+            animationComplete={this.statusComplete}
+            drawerState={this.props.drawerState}
+            userID={this.props.userID}
+          />
+        }
         <CommentInput makeComment={this.makeAComment} drawerState={this.props.drawerState} />
       </View>
     )
@@ -90,6 +111,7 @@ function extractComments (submission: SubmissionComments): Array<CommentRowProps
       avatarURL: comment.author.avatar_image_url,
       from: comment.author.id === myUserID ? 'me' : 'them',
       contents: { type: 'text', message: comment.comment },
+      pending: 0,
     }))
 }
 
@@ -137,6 +159,7 @@ function rowForSubmission (user: User, attempt: Submission): CommentRowProps {
       type: 'submission',
       items: items,
     },
+    pending: 0,
   }
 }
 
@@ -152,7 +175,6 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
   }
 
   const pendingForStudent: Array<PendingCommentState> = assignments.pendingComments[userID] || []
-
   return pendingForStudent.map(pending => ({
     date: new Date(pending.timestamp),
     key: pending.localID,
@@ -160,6 +182,7 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     name: session.user.name,
     avatarURL: session.user.avatar_url,
     contents: pending.comment,
+    pending: pending.pending,
   }))
 }
 

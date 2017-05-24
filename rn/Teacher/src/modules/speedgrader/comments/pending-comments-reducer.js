@@ -56,7 +56,7 @@ const pendingComments: Reducer<PendingCommentsState, any> = handleActions({
         [userID]: comments.map(
           comment => comment.localID !== localID
             ? comment
-            : { ...comment, error, pending: comment.pending - 1 }
+            : { ...comment, error, pending: 0 }
         ),
       }
     },

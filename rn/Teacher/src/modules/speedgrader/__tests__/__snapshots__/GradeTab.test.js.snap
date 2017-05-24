@@ -71,11 +71,14 @@ exports[`Rubric has the correct score 1`] = `
             courseID="1"
             drawerState={
               DrawerState {
+                "commentProgress": Object {},
                 "currentSnap": 0,
                 "deltaY": 0,
                 "didSnapTo": [Function],
                 "drawers": Array [],
+                "registerCommentProgress": [Function],
                 "snapTo": [Function],
+                "unregisterCommentProgress": [Function],
               }
             }
             gradeSubmissionWithRubric={[Function]}
@@ -645,11 +648,14 @@ exports[`Rubric renders a rubric 1`] = `
             courseID="1"
             drawerState={
               DrawerState {
+                "commentProgress": Object {},
                 "currentSnap": 0,
                 "deltaY": 0,
                 "didSnapTo": [Function],
                 "drawers": Array [],
+                "registerCommentProgress": [Function],
                 "snapTo": [Function],
+                "unregisterCommentProgress": [Function],
               }
             }
             gradeSubmissionWithRubric={[Function]}
@@ -1219,11 +1225,14 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             courseID="1"
             drawerState={
               DrawerState {
+                "commentProgress": Object {},
                 "currentSnap": 0,
                 "deltaY": 0,
                 "didSnapTo": [Function],
                 "drawers": Array [],
+                "registerCommentProgress": [Function],
                 "snapTo": [Function],
+                "unregisterCommentProgress": [Function],
               }
             }
             gradeSubmissionWithRubric={[Function]}
@@ -1866,11 +1875,14 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
             courseID="1"
             drawerState={
               DrawerState {
+                "commentProgress": Object {},
                 "currentSnap": 0,
                 "deltaY": 0,
                 "didSnapTo": [Function],
                 "drawers": Array [],
+                "registerCommentProgress": [Function],
                 "snapTo": [Function],
+                "unregisterCommentProgress": [Function],
               }
             }
             gradeSubmissionWithRubric={[Function]}
@@ -1980,11 +1992,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             courseID="1"
             drawerState={
               DrawerState {
+                "commentProgress": Object {},
                 "currentSnap": 0,
                 "deltaY": 0,
                 "didSnapTo": [Function],
                 "drawers": Array [],
+                "registerCommentProgress": [Function],
                 "snapTo": [Function],
+                "unregisterCommentProgress": [Function],
               }
             }
             gradeSubmissionWithRubric={[Function]}
@@ -2560,11 +2575,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
             courseID="1"
             drawerState={
               DrawerState {
+                "commentProgress": Object {},
                 "currentSnap": 0,
                 "deltaY": 0,
                 "didSnapTo": [Function],
                 "drawers": Array [],
+                "registerCommentProgress": [Function],
                 "snapTo": [Function],
+                "unregisterCommentProgress": [Function],
               }
             }
             gradeSubmissionWithRubric={[Function]}

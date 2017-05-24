@@ -7,11 +7,13 @@ export default class DrawerState {
   currentSnap: Snap
   deltaY: Animated.Value
   drawers: Array<BottomDrawer>
+  commentProgress: { [string]: Animated.Value }
 
   constructor () {
     this.currentSnap = 0
     this.deltaY = new Animated.Value(0)
     this.drawers = []
+    this.commentProgress = {}
   }
 
   registerDrawer (drawer: BottomDrawer) {
@@ -35,5 +37,13 @@ export default class DrawerState {
         this.deltaY.setValue(0)
       }
     }
+  }
+
+  registerCommentProgress = (userID: string, value: Animated.Value) => {
+    this.commentProgress[userID] = value
+  }
+
+  unregisterCommentProgress = (userID: string) => {
+    delete this.commentProgress[userID]
   }
 }

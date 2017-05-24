@@ -35,5 +35,15 @@ describe('DrawerState', () => {
     drawer.componentWillUnmount()
     expect(state.drawers.length).toEqual(0)
   })
+
+  it('registers comment progress', () => {
+    state.registerCommentProgress('1', 1234)
+    expect(state.commentProgress['1']).toEqual(1234)
+  })
+
+  it('unregisters comment progress', () => {
+    state.unregisterCommentProgress('1')
+    expect(state.commentProgress['1']).toBeUndefined()
+  })
 })
 
