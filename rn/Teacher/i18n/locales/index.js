@@ -1,7 +1,25 @@
 /* @flow */
 
-import en from './en.json'
-
 export default ({
-  en,
-}: { en: { [string]: { message: string, description?: string } } })
+  ar: require('./ar.json'),
+  da: require('./da.json'),
+  de: require('./de.json'),
+  'en-AU': require('./en-AU.json'),
+  'en-GB': require('./en-GB.json'),
+  en: require('./en.json'),
+  es: require('./es.json'),
+  'fr-CA': require('./fr-CA.json'),
+  fr: require('./fr.json'),
+  ht: require('./ht.json'),
+  ja: require('./ja.json'),
+  mi: require('./mi.json'),
+  nb: require('./nb.json'),
+  nl: require('./nl.json'),
+  pl: require('./pl.json'),
+  'pt-BR': require('./pt-BR.json'),
+  pt: require('./pt.json'),
+  ru: require('./ru.json'),
+  sv: require('./sv.json'),
+  'zh-HK': require('./zh-HK.json'),
+  zh: require('./zh.json'),
+}: { [string]: { [string]: { message: string, description?: string } } })

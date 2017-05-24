@@ -1,0 +1,294 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Adicione alguns dos seus cursos para tornar este lugar a sua casa.",
+    "description": "Texto do corpo quando você não tem quaisquer cursos na página de lista de cursos."
+  },
+  "add_courses_fd45abf": {
+    "message": "Adicionar Cursos",
+    "description": "Texto de botão para tomar ação e adicionar um curso."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Todos os cursos",
+    "description": "O título da tela mostrando todos os cursos de um professor"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Todos os Períodos de Classificação",
+    "description": "O cabeçalho da lista de tarefas"
+  },
+  "assignment_details_bc488179": {
+    "message": "Detalhes da tarefa",
+    "description": "Título da tela Detalhes da tarefa"
+  },
+  "assignments_1e02582c": {
+    "message": "Tarefas",
+    "description": "Título da tela de tarefas para um curso"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Disponibilidade: Fechado"
+  },
+  "availability_e415e857": {
+    "message": "Disponibilidade:"
+  },
+  "available_from_f84e4611": {
+    "message": "Disponível a partir de"
+  },
+  "available_from_f9e093c8": {
+    "message": "Disponível de:"
+  },
+  "available_to_434cb9f5": {
+    "message": "Disponível para:"
+  },
+  "available_to_b7350e02": {
+    "message": "Disponível para"
+  },
+  "back_courses": {
+    "message": "Cursos",
+    "description": "O título do botão voltar para ir a partir de todos os cursos para apenas cursos favoritos"
+  },
+  "cancel_caeb1e68": {
+    "message": "Cancelar"
+  },
+  "choose_color_11148181": {
+    "message": "Escolher { color }",
+    "description": "Rótulo de acessibilidade para selecionar uma cor"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Limpar Filtro"
+  },
+  "closed_983a96fe": {
+    "message": "Fechado"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Encerrado • { dateString } às { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Cor",
+    "description": "Rótulo do título para o seletor de cores do curso"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Não foi possível obter lista de tarefas"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } sem nota"
+  },
+  "courses_43204aae": {
+    "message": "Cursos",
+    "description": "O cabeçalho para a lista de cursos favoritos"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Personalizar curso",
+    "description": "O título da tela de preferências de cursos do usuário"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } às { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "tópico de discussão",
+    "description": "tipo de envio da tarefa"
+  },
+  "done_54e3d4b6": {
+    "message": "Feito",
+    "description": "Botão Voltar para voltar para uma tela"
+  },
+  "done_beta_feedback": {
+    "message": "Feito",
+    "description": "Botão para descartar formulário de feedback."
+  },
+  "done_edit_assignment": {
+    "message": "Feito",
+    "description": "Botão para fechar modal"
+  },
+  "due_5d7267be": {
+    "message": "Devido:"
+  },
+  "due_a73610f6": {
+    "message": "Vencimento",
+    "description": "O título da seção de Detalhes da tarefa para quando a tarefa está vencida"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Prazo { dateString } até { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Editar Detalhes da Tarefa",
+    "description": "Título da tela EDITAR dos Detalhes da tarefa"
+  },
+  "edit_c5fbea07": {
+    "message": "Editar",
+    "description": "Exibido no topo do app para permitir que o usuário edite"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Editar Cursos",
+    "description": "O título da tela habilitando professores a marcar/desmarcar seus cursos como favoritos"
+  },
+  "everyone_854554dd": {
+    "message": "Todo mundo"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "ferramenta externa",
+    "description": "tipo de envio da tarefa"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrar por:",
+    "description": "Indica ao usuário que ele pode filtrar por opções"
+  },
+  "filter_e3398407": {
+    "message": "Filtrar"
+  },
+  "for_974cbb84": {
+    "message": "Para"
+  },
+  "for_e3490d05": {
+    "message": "Para:"
+  },
+  "graded_25cd3fcd": {
+    "message": "Avaliado",
+    "description": "Gráfico de envios de Detalhes da Tarefa ‘avaliado’"
+  },
+  "inbox_bb245a60": {
+    "message": "Inbox",
+    "description": "Rótulo indicando que o usuário está na guia de caixa de entrada"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instruções",
+    "description": "O título da seção de Detalhes da tarefa para instruções da tarefa"
+  },
+  "late_2be42b88": {
+    "message": "Atrasado",
+    "description": "Tarefa entregue em atraso"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Deixar feedback",
+    "description": "Exibido no topo do app para permitir que o usuário deixe feedback"
+  },
+  "logout_a9312e35": {
+    "message": "Logout"
+  },
+  "media_recording_7df9606f": {
+    "message": "gravação de mídia",
+    "description": "tipo de envio da tarefa"
+  },
+  "missing_1a256b3b": {
+    "message": "Faltando",
+    "description": "A tarefa não foi entregue"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Múltiplas Datas de Entrega",
+    "description": "Informações de detalhes de tarefas sobre datas de vencimento, quando há mais de uma data de vencimento para mostrar"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Apelido",
+    "description": "Texto descrevendo um apelido dado a um curso"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Sem data limite"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Nenhum envio ainda",
+    "description": "Nenhum envio do aluno para a tarefa especificada"
+  },
+  "none_9b6c9bec": {
+    "message": "nenhum",
+    "description": "tipo de envio da tarefa"
+  },
+  "not_published_73f7079": {
+    "message": "Não publicado"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Não Enviado",
+    "description": "Gráfico de envios de Detalhes da Tarefa ‘avaliado’"
+  },
+  "on_paper_7e67f764": {
+    "message": "em papel",
+    "description": "tipo de envio da tarefa"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "questionário on-line",
+    "description": "tipo de envio da tarefa"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "entrada de texto on-line",
+    "description": "tipo de envio da tarefa"
+  },
+  "online_upload_ed44db51": {
+    "message": "carregamento on-line",
+    "description": "tipo de envio da tarefa"
+  },
+  "online_url_ee794b28": {
+    "message": "url on-line",
+    "description": "tipo de envio da tarefa"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Abrir preferências de cursos do usuário",
+    "description": "Rótulo de acessibilidade no botão de ícone para abrir preferências de cursos do usuário"
+  },
+  "profile_6bd2baed": {
+    "message": "Perfil",
+    "description": "Rótulo indicando que o usuário está na guia do perfil"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Pontos dos Detalhes da Tarefa para determinada tarefa"
+  },
+  "published_4bb5209e": {
+    "message": "Publicado",
+    "description": "Texto publicado"
+  },
+  "saving_2521e616": {
+    "message": "Salvando",
+    "description": "Texto quando uma solicitação para atualizar uma tarefa é feita e o usuário está aguardando"
+  },
+  "see_all_ffa422ef": {
+    "message": "Ver Todos",
+    "description": "Botão para transição da lista de cursos favoritos para a lista de todos os cursos"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Defina isso para a cor padrão do curso. Isso não anulará um ajuste de cor pessoal.",
+    "description": "Descrição do seletor de cores exibido ao usuário"
+  },
+  "submission_types_af57bf0": {
+    "message": "Tipos de envio",
+    "description": "Título da seção de detalhes da tarefa para tipos de envio (isto é, on-line, texto, carregamento, etc.)"
+  },
+  "submissions_11e96106": {
+    "message": "Envios",
+    "description": "O título da seção de Detalhes da tarefa para informações sobre envios"
+  },
+  "submitted_318fad53": {
+    "message": "Enviado",
+    "description": "A tarefa foi entregue"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Houve um erro ao carregar a lista de documentos"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Houve um erro inesperado. Feche este alerta e tente novamente.",
+    "description": "Uma mensagem de erro genérica"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Esta é a caixa de entrada"
+  },
+  "title_ee03d132": {
+    "message": "Título",
+    "description": "Cabeçalho do título de edição de Detalhes da Tarefa"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Erro inesperado",
+    "description": "O título genérico da mensagem de erro genérica"
+  },
+  "ungraded_147a0dce": {
+    "message": "sem nota",
+    "description": "Rótulo para envio de tarefa não avaliada"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Sem nota",
+    "description": "Gráfico de envios de Detalhes da Tarefa ‘avaliado’"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Não publicado",
+    "description": "Texto não publicado"
+  },
+  "welcome_73d18b4d": {
+    "message": "Bem-vindo(a)",
+    "description": "Texto do cabeçalho de boas-vindas quando usuário ainda não possui cursos."
+  }
+}

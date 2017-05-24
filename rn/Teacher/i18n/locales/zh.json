@@ -1,0 +1,299 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "添加您的一些收藏课程，使其成为您的首页。",
+    "description": "课程列表页上没有任何课程时的主体文本。"
+  },
+  "add_courses_fd45abf": {
+    "message": "添加课程",
+    "description": "用于执行操作和添加课程的按钮文本。"
+  },
+  "all_courses_a7dbb853": {
+    "message": "所有课程",
+    "description": "显示教师全部课程的屏幕名称"
+  },
+  "all_grading_periods_77974940": {
+    "message": "所有评分周期",
+    "description": "作业列表上的标头"
+  },
+  "assignment_details_bc488179": {
+    "message": "作业详情",
+    "description": "作业详情屏幕名称"
+  },
+  "assignments_1e02582c": {
+    "message": "作业",
+    "description": "课程作业屏幕名称"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "可用性：已关闭"
+  },
+  "availability_e415e857": {
+    "message": "可用性：",
+    "description": "作业截止日期 \"结束日期:\" 字段"
+  },
+  "available_from_f84e4611": {
+    "message": "开始时间"
+  },
+  "available_from_f9e093c8": {
+    "message": "开始日期：",
+    "description": "作业截止日期 \"开始日期：\" 字段"
+  },
+  "available_to_434cb9f5": {
+    "message": "结束日期：",
+    "description": "作业截止日期 \"结束日期:\" 字段"
+  },
+  "available_to_b7350e02": {
+    "message": "结束日期"
+  },
+  "back_courses": {
+    "message": "课程",
+    "description": "从所有课程切换至仅收藏课程的后退按钮名称"
+  },
+  "cancel_caeb1e68": {
+    "message": "取消"
+  },
+  "choose_color_11148181": {
+    "message": "选择{ color }",
+    "description": "用于选择颜色的辅助功能标签"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "清除筛选条件"
+  },
+  "closed_983a96fe": {
+    "message": "已关闭",
+    "description": "作业截止日期 \"结束日期:\" 字段"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "已关闭 • { dateString }{ timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "颜色",
+    "description": "课程颜色选择器名称标签"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "无法获取作业列表"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } 未评分"
+  },
+  "courses_43204aae": {
+    "message": "课程",
+    "description": "收藏课程列表标头"
+  },
+  "customize_course_eefa9c21": {
+    "message": "自定义课程",
+    "description": "用户课程首选项屏幕名称"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } 时间{ timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "讨论话题",
+    "description": "作业提交项类型"
+  },
+  "done_54e3d4b6": {
+    "message": "完成",
+    "description": "用于屏幕后退的后退按钮"
+  },
+  "done_beta_feedback": {
+    "message": "完成",
+    "description": "用于取消反馈表单的按钮。"
+  },
+  "done_edit_assignment": {
+    "message": "完成",
+    "description": "用于关闭模式的按钮"
+  },
+  "due_5d7267be": {
+    "message": "截止："
+  },
+  "due_a73610f6": {
+    "message": "截止",
+    "description": "作业详情部分作业到期时的名称"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "截止 { dateString }{ timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "编辑作业详情",
+    "description": "作业详情编辑屏幕名称"
+  },
+  "edit_c5fbea07": {
+    "message": "编辑",
+    "description": "在应用程序顶部显示以允许用户进行编辑"
+  },
+  "edit_courses_1f63340f": {
+    "message": "编辑课程",
+    "description": "允许教师收藏和取消收藏课程的屏幕名称"
+  },
+  "everyone_854554dd": {
+    "message": "所有人"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "外部工具",
+    "description": "作业提交项类型"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "筛选条件：",
+    "description": "向用户指示他们可以按照一些选项进行筛选"
+  },
+  "filter_e3398407": {
+    "message": "筛选条件"
+  },
+  "for_974cbb84": {
+    "message": "用于"
+  },
+  "for_e3490d05": {
+    "message": "用于：",
+    "description": "作业截止日期 \"用于:\" 字段"
+  },
+  "graded_25cd3fcd": {
+    "message": "已评分",
+    "description": "作业详情提交项图表`已评分`"
+  },
+  "inbox_bb245a60": {
+    "message": "收件箱",
+    "description": "指示用户在收件箱标签页上的标签"
+  },
+  "instructions_2f88ee72": {
+    "message": "说明",
+    "description": "作业详情部分作业说明名称"
+  },
+  "late_2be42b88": {
+    "message": "迟到、迟交",
+    "description": "晚交作业"
+  },
+  "leave_feedback_df88476c": {
+    "message": "留下反馈信息",
+    "description": "在应用程序顶部显示以允许用户撰写反馈"
+  },
+  "logout_a9312e35": {
+    "message": "退出"
+  },
+  "media_recording_7df9606f": {
+    "message": "媒体录制",
+    "description": "作业提交项类型"
+  },
+  "missing_1a256b3b": {
+    "message": "丢失",
+    "description": "未上交作业"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "多个截止日期",
+    "description": "作业详情显示多个截止日期时，有关截止日期的信息"
+  },
+  "nickname_1e6da3ad": {
+    "message": "昵称",
+    "description": "描述为课程指定的昵称的文本"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "没有截止日期"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "暂无提交项",
+    "description": "学生未对给定作业进行提交"
+  },
+  "none_9b6c9bec": {
+    "message": "无",
+    "description": "作业提交项类型"
+  },
+  "not_published_73f7079": {
+    "message": "未发布"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "未提交",
+    "description": "作业详情提交项图表“已评分”"
+  },
+  "on_paper_7e67f764": {
+    "message": "书面",
+    "description": "作业提交项类型"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "在线测验",
+    "description": "作业提交项类型"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "在线文本输入",
+    "description": "作业提交项类型"
+  },
+  "online_upload_ed44db51": {
+    "message": "在线上传",
+    "description": "作业提交项类型"
+  },
+  "online_url_ee794b28": {
+    "message": "在线 URL",
+    "description": "作业提交项类型"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "打开用户课程首选项",
+    "description": "用于打开课程用户首选项的图标按钮上的辅助功能标签"
+  },
+  "profile_6bd2baed": {
+    "message": "档案",
+    "description": "指示用户在个人资料标签页上的标签"
+  },
+  "pts_699bd9aa": {
+    "message": "得分",
+    "description": "作业详情给定作业得分"
+  },
+  "published_4bb5209e": {
+    "message": "已发布",
+    "description": "已发布文本"
+  },
+  "saving_2521e616": {
+    "message": "保存",
+    "description": "已请求更新作业且用户正在等待时的文本"
+  },
+  "see_all_ffa422ef": {
+    "message": "查看全部",
+    "description": "用于从收藏课程列表切换到所有课程列表的按钮"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "为课程的默认颜色设置它。这不会覆盖个人颜色设置。",
+    "description": "向用户显示的颜色选择器描述"
+  },
+  "submission_types_af57bf0": {
+    "message": "提交项类型",
+    "description": "作业详情部分提交项类型（指在线、文本、上传等）名称"
+  },
+  "submissions_11e96106": {
+    "message": "提交项",
+    "description": "作业详情部分提交项信息名称"
+  },
+  "submitted_318fad53": {
+    "message": "提交",
+    "description": "已上交作业"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "上传注册学员列表时出现错误"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "出现意外错误。请关闭此警告，然后重试。",
+    "description": "一般错误消息"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "这是收件箱"
+  },
+  "title_ee03d132": {
+    "message": "标题",
+    "description": "作业详情编辑名称标头"
+  },
+  "unexpected_error_93991f40": {
+    "message": "意外错误",
+    "description": "一般错误消息的一般名称"
+  },
+  "ungraded_147a0dce": {
+    "message": "未评分",
+    "description": "未评分作业提交项标签"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "未评分",
+    "description": "作业详情提交项图表`已评分`"
+  },
+  "unpublished_8b6107d6": {
+    "message": "未发布",
+    "description": "未发布文本"
+  },
+  "welcome_73d18b4d": {
+    "message": "欢迎！",
+    "description": "用户没有课程时的欢迎标头文本"
+  }
+}

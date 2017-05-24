@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Tāpiri torutoru ō akoranga tino makau ki te hanga ko tēnei wāhi tou kainga",
+    "description": "Kuputuhi tinana i te wā e kore koe e whai i tētahi akoranga i te rārangi akoranga whārangi."
+  },
+  "add_courses_fd45abf": {
+    "message": "Tāpiri ngā akoranga",
+    "description": "Kuputuhi pātene ki te tango mahi, me te tāpiri i te akoranga."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Ngā akorangai katoa",
+    "description": "Ko te taitara o te mata e whakaatu ana katoa i ngā akoranga o te kaiako"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Takiwā Māka Katoa",
+    "description": "Ko te pane i runga i te rārangi taumahi"
+  },
+  "assignment_details_bc488179": {
+    "message": "Taipitopito Taumahi",
+    "description": "Taitara o te Taumahi taipitopito mata"
+  },
+  "assignments_1e02582c": {
+    "message": "Taumahi",
+    "description": "Taitara o te ngā taumahi mata mo te akoranga"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Wateatanga: katia"
+  },
+  "availability_e415e857": {
+    "message": "Wāteatanga",
+    "description": "Taumahi rā e tika ana \"wātea ki: \" whīra"
+  },
+  "available_from_f84e4611": {
+    "message": "wātea i"
+  },
+  "available_from_f9e093c8": {
+    "message": "E wātea mai ana:",
+    "description": "Taumahi rā e tika ana \"wātea ki: \" whīra"
+  },
+  "available_to_434cb9f5": {
+    "message": "E watea ana ki:",
+    "description": "Taumahi rā e tika ana \"wātea ki: \" whīra"
+  },
+  "available_to_b7350e02": {
+    "message": "wātea ki"
+  },
+  "back_courses": {
+    "message": "Kōhi",
+    "description": "Ko te taitara pātene whakahoki tēnei ki te haere mai ī ngā akoranga katoa ki ngā akoranga tino makau."
+  },
+  "cancel_caeb1e68": {
+    "message": "Whakakore"
+  },
+  "choose_color_11148181": {
+    "message": "Kōwhiri { color }",
+    "description": "Te tapanga āheitanga ki te tīpako i te tae"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Tātari mārama"
+  },
+  "closed_983a96fe": {
+    "message": "katia",
+    "description": "Taumahi rā e tika ana \"wātea ki: \" whīra"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Katia • { dateString } ī { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Tae",
+    "description": "Tapanga taitara mo te kaikōwhiri tae akoranga"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Kaore i taea te tiki rārangi mo ngā taumahi."
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } Kaore i makahia"
+  },
+  "courses_43204aae": {
+    "message": "Kōhi",
+    "description": "Ko te pane mo te rārangi akoranga tino makau"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Whakarite akoranga",
+    "description": "Ko te taitara o te kaiwhakamahi akoranga manakohanga mata."
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } ī { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "kaupapa kōrero",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "done_54e3d4b6": {
+    "message": "Mahia",
+    "description": "Pātene o muri ki te whakahoki ki te mata"
+  },
+  "done_beta_feedback": {
+    "message": "Mahia",
+    "description": "Pātene ki te pana puka urupare."
+  },
+  "done_edit_assignment": {
+    "message": "Mahia",
+    "description": "Pātene ki te kati puoro"
+  },
+  "due_5d7267be": {
+    "message": "Nā:",
+    "description": "Taumahi rā e tika ana \"e tika ana: \" whīra Koinei te āhua i te mutunga: \"E tika ana: March 13, 2019\""
+  },
+  "due_a73610f6": {
+    "message": "e tika ana",
+    "description": "Taumahi taitara Taipitopito Wāhanga mo te wā e tika ana te taumahi"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Nā { dateString }ī { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Whakatika nga taumahi taipitopito",
+    "description": "Taitara o te Taumahi taipitopito WHAKATIKA mata"
+  },
+  "edit_c5fbea07": {
+    "message": "Whakatika",
+    "description": "Whakaaturia i te tihi o te taupānga ki te whakaae i te kaiwhakamahi ki te whakatika"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Whakatika i ngā akoranga",
+    "description": "Ko te taitara o te mata e taea ai e ngā kaiako ki nga tino makau me ngā kore tino makau ō rātou akoranga"
+  },
+  "everyone_854554dd": {
+    "message": " Ngā tāngata katoa"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "taputapu waho",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Tātari ī",
+    "description": "Tohu ki te kaiwhakamahi ka taea e rātou te tātari i ngā kōwhiringa torutoru."
+  },
+  "filter_e3398407": {
+    "message": "Tātari"
+  },
+  "for_974cbb84": {
+    "message": "mō"
+  },
+  "for_e3490d05": {
+    "message": "Mō:",
+    "description": "Taumahi rā e tika ana \"mō \" whīra"
+  },
+  "graded_25cd3fcd": {
+    "message": "mākahia",
+    "description": "Taumahi Taipitopito ngā tāpaetanga kauwhata kua `mākahia`"
+  },
+  "inbox_bb245a60": {
+    "message": "Pouakauru",
+    "description": "Tapanga tohu kei runga te kaiwhakamahi i te ripa pae"
+  },
+  "instructions_2f88ee72": {
+    "message": "Ngā Tohutohu",
+    "description": "Taumahi taitara Taipitopito Wāhanga mō ngā tohutohu taumahi"
+  },
+  "late_2be42b88": {
+    "message": "Te mutunga",
+    "description": "I tae tureiti mai te taumahi"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Waiho urupare",
+    "description": "Whakāturia i te tihi o te taupānga ki a tukua te kaiwhakamahi ki te waiho urupare."
+  },
+  "logout_a9312e35": {
+    "message": "Takiuru Out"
+  },
+  "media_recording_7df9606f": {
+    "message": "Tuhi pāpāho",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "missing_1a256b3b": {
+    "message": "Ngaro",
+    "description": "Kaore ano i whakurutia te taumahi"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Rā Nā Maha",
+    "description": "Ngā taumahi taipitopito mōhiohio e pā ana ki ngā rā e tika ana, i te wā he nui ake i te kotahi rā e tika ana ki te whakaatu"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Ingoakārangaranga",
+    "description": "Kuputuhi whakāhua i te ingoa karangaranga i homai ki te akoranga"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Kāore he rā e tika ana"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Kaore anō he tāpaetanga",
+    "description": "Kāore he tāpaetanga mai i te ākonga mō te taumahi i hōmaitia"
+  },
+  "none_9b6c9bec": {
+    "message": "kore",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "not_published_73f7079": {
+    "message": "Kāore i whakaputaina"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "E Kore E Tukua",
+    "description": "Taumahi Taipitopito ngā tāpaetanga kauwhata kua `mākahia’"
+  },
+  "on_paper_7e67f764": {
+    "message": "i runga i te pepa",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "Pātaitai ipurangi",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "Kuputuhi whakauru i runga i te ipurangi",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "online_upload_ed44db51": {
+    "message": "Ipurangi tukuake",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "online_url_ee794b28": {
+    "message": "Ipurangi url",
+    "description": "Momo tāpaetanga taumahi"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Huaki kaiwhakamahi akoranga manakohanga",
+    "description": "Tapanga  i Āheitanga i runga i te pātene icon ki te whakatuwhera i ngā akoranga me ngā manakohanga o e kaiwhakamahi "
+  },
+  "profile_6bd2baed": {
+    "message": "Kōtaha",
+    "description": "He tapanga e tohu ana te kaiwhakamahi kei runga i te ripa kōtaha"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Ngā Taumahi Taipitopito kaute  mō ngā taumahi i homaitia"
+  },
+  "published_4bb5209e": {
+    "message": "I whakaputaina",
+    "description": "Kuputuhi whakaputaina"
+  },
+  "saving_2521e616": {
+    "message": "E tiaki ana",
+    "description": "Tuku kuputuhi i te wā e puta ai he tono whakahou i te taumahi ā kei te tatari te kaiwhakamahi"
+  },
+  "see_all_ffa422ef": {
+    "message": "Titiro ki te katoa",
+    "description": "Pātene ki te whakawhiti mai i ngā rārangi akoranga tino makau ki ngā rārangi akoranga katoa"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Whakatau tēnei mo te tae taunoa o te akoranga. Kaore tēnei e takahi i te tautuhinga tae whaiaro",
+    "description": "Whakāhuatanga o te kaikōwhiri tae whakāturia ki te kaiwhakamahi"
+  },
+  "submission_types_af57bf0": {
+    "message": "Nga momo tāpaetanga",
+    "description": "Taumahi taitara Taipitopito Wāhanga mō ngā momo o te tāpaetanga, (i.e. ipurangi, kuputuhi, tukunga ake, he aha noa)"
+  },
+  "submissions_11e96106": {
+    "message": "Nga tāpaetanga",
+    "description": "Taumahi taitara Taipitopito Wāhanga mō te kōrero mō ngā tāpaetanga"
+  },
+  "submitted_318fad53": {
+    "message": "Tukuna",
+    "description": "Kua tahuri te taumahi ki roto"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "H ehap i te wā e uta ana i te rārangi o ngā whakaurunga"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "He hapa ohorere i puta Tēnā katia tēnei matāra, me te tarai anō.",
+    "description": "He karere hapa whānui"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Koinei te pouakaroto"
+  },
+  "title_ee03d132": {
+    "message": "taitara",
+    "description": "Taumahi taipitopito taitara whakatika pane"
+  },
+  "unexpected_error_93991f40": {
+    "message": "He hapa ohorere",
+    "description": "Ko te taitara kano o te karere hapa kano"
+  },
+  "ungraded_147a0dce": {
+    "message": "Kāore i makahia",
+    "description": "Tapanga mō te tukunga taumahi kaore i mākahia"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Tē Mākahia",
+    "description": "Taumahi Taipitopito ngā tāpaetanga kauwhata kua `mākahia’"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Kāore anō kia whakarewahia",
+    "description": "Kuputuhi kaore i whakaputaina"
+  },
+  "welcome_73d18b4d": {
+    "message": "Nau Mai!",
+    "description": "Kuputuhi pane Nau mai i te wā kaore he akoranga mo te kaiwhakamahi anō."
+  }
+}

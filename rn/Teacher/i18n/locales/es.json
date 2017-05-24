@@ -1,0 +1,297 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Agregar algunos de los cursos favoritos para sentirse como en casa.",
+    "description": "Texto principal cuando no hay cursos en la página de la lista de cursos."
+  },
+  "add_courses_fd45abf": {
+    "message": "Agregar cursos",
+    "description": "Texto del botón para agregar un curso."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Todos los cursos",
+    "description": "Título de la pantalla que muestra todos los cursos de un profesor"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Todos los periodos de calificación",
+    "description": "Encabezado de la lista de asignaciones"
+  },
+  "assignment_details_bc488179": {
+    "message": "Detalles de la tarea",
+    "description": "Título de la pantalla de detalles de asignaciones"
+  },
+  "assignments_1e02582c": {
+    "message": "Tareas",
+    "description": "Título de la pantalla de asignaciones para un curso"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Disponibilidad: Cerrado"
+  },
+  "availability_e415e857": {
+    "message": "Disponibilidad:",
+    "description": "Campo \"Disponible para:\" de fecha límite de asignaciones"
+  },
+  "available_from_f84e4611": {
+    "message": "Disponible desde"
+  },
+  "available_from_f9e093c8": {
+    "message": "Disponible desde:",
+    "description": "Campo \"Disponible desde:\" de fecha límite de asignaciones"
+  },
+  "available_to_434cb9f5": {
+    "message": "Disponible para:",
+    "description": "Campo \"Disponible para:\" de fecha límite de asignaciones"
+  },
+  "available_to_b7350e02": {
+    "message": "Disponible para"
+  },
+  "back_courses": {
+    "message": "Cursos",
+    "description": "Título del botón Atrás para ir de todos los cursos a los cursos favoritos"
+  },
+  "cancel_caeb1e68": {
+    "message": "Cancelar"
+  },
+  "choose_color_11148181": {
+    "message": "Escoger { color }",
+    "description": "Etiqueta de accesibilidad para seleccionar un color"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Borrar filtro"
+  },
+  "closed_983a96fe": {
+    "message": "Cerrado",
+    "description": "Campo \"Disponible para:\" de fecha límite de asignaciones"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Cerrado • { dateString } a { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Color",
+    "description": "Etiqueta de título para el selector de color del curso"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "No se puede obtener la lista de asignaciones"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } no calificado"
+  },
+  "courses_43204aae": {
+    "message": "Cursos",
+    "description": "Encabezado para la lista de cursos favoritos"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Personalizar curso",
+    "description": "Título de la pantalla de preferencias de cursos del usuario"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } en { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "tema de discusión",
+    "description": "tipo de envío de asignación"
+  },
+  "done_54e3d4b6": {
+    "message": "Hecho",
+    "description": "Botón Atrás para ir a la pantalla anterior"
+  },
+  "done_beta_feedback": {
+    "message": "Hecho",
+    "description": "Botón para descargar formulario de comentarios."
+  },
+  "done_edit_assignment": {
+    "message": "Hecho",
+    "description": "Botón para cerrar diálogo modal"
+  },
+  "due_5d7267be": {
+    "message": "Fecha de entrega:",
+    "description": "Campo \"Fecha límite:\" de asignaciones Es similar a esto al terminar: \"Fecha límite: 13 de marzo de 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Fecha límite",
+    "description": "Título de la sección de detalles de asignaciones para la fecha límite de la asignación"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Fecha límite { dateString } a { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Editar Detalles de asignaciones",
+    "description": "Título de la pantalla EDITAR detalles de asignaciones"
+  },
+  "edit_c5fbea07": {
+    "message": "Editar",
+    "description": "Mostrado en la parte superior de la aplicación para permitir al usuario editar"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Editar cursos",
+    "description": "Título de la pantalla que permite a los profesores agregar o quitar de favoritos sus cursos"
+  },
+  "everyone_854554dd": {
+    "message": "Todos"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "herramienta externa",
+    "description": "tipo de envío de asignación"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrar por:",
+    "description": "Indica al usuario que puede filtrar según algunas opciones"
+  },
+  "filter_e3398407": {
+    "message": "Filtro"
+  },
+  "for_974cbb84": {
+    "message": "Para"
+  },
+  "for_e3490d05": {
+    "message": "Para:",
+    "description": "Campo \"Para:\" de fecha límite de asignaciones"
+  },
+  "graded_25cd3fcd": {
+    "message": "Calificado"
+  },
+  "inbox_bb245a60": {
+    "message": "Bandeja de entrada",
+    "description": "Etiqueta que indica que el usuario se encuentra en la pestaña de la bandeja de entrada"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instrucciones",
+    "description": "Título de la sección de detalles de asignaciones para las instrucciones de asignación"
+  },
+  "late_2be42b88": {
+    "message": "Atrasado",
+    "description": "La asignación se entregó tarde"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Dejar comentarios",
+    "description": "Mostrado en la parte superior de la aplicación para permitir al usuario dejar comentarios"
+  },
+  "logout_a9312e35": {
+    "message": "Cerrar sesión"
+  },
+  "media_recording_7df9606f": {
+    "message": "grabación multimedia",
+    "description": "tipo de envío de asignación"
+  },
+  "missing_1a256b3b": {
+    "message": "Falta",
+    "description": "La asignación no se entregó"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Múltiples fechas límites de entrega",
+    "description": "Información detallada de las fechas límite de asignaciones, si hay más de una fecha límite para mostrar"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Apodo",
+    "description": "Texto que describe un apodo otorgado a un curso"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Sin fecha límite de entrega"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Sin envíos aún",
+    "description": "No hay envíos del estudiante para la asignación especificada"
+  },
+  "none_9b6c9bec": {
+    "message": "ninguno",
+    "description": "tipo de envío de asignación"
+  },
+  "not_published_73f7079": {
+    "message": "No publicado"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "No enviado"
+  },
+  "on_paper_7e67f764": {
+    "message": "en papel",
+    "description": "tipo de envío de asignación"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "Cuestionario en línea",
+    "description": "tipo de envío de asignación"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "entrada de texto en línea",
+    "description": "tipo de envío de asignación"
+  },
+  "online_upload_ed44db51": {
+    "message": "carga en línea",
+    "description": "tipo de envío de asignación"
+  },
+  "online_url_ee794b28": {
+    "message": "url en línea",
+    "description": "tipo de envío de asignación"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Abrir preferencias del curso del usuario",
+    "description": "Etiqueta de accesibilidad en el botón del icono para abrir las preferencias del usuario del curso"
+  },
+  "profile_6bd2baed": {
+    "message": "Perfil",
+    "description": "Etiqueta que indica que el usuario se encuentra en la pestaña de perfil"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Puntos de Detalles de asignación para una asignación específica"
+  },
+  "published_4bb5209e": {
+    "message": "Publicado",
+    "description": "Texto publicado"
+  },
+  "saving_2521e616": {
+    "message": "Guardando",
+    "description": "Texto cuando se realiza una solicitud para actualizar una asignación y el usuario está esperando"
+  },
+  "see_all_ffa422ef": {
+    "message": "Ver todos",
+    "description": "Botón para ir de la lista de cursos favoritos a la lista de todos los cursos"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Configurar como color predeterminado del curso. No reemplazará la configuración de color personal.",
+    "description": "Descripción de selector de color mostrado al usuario"
+  },
+  "submission_types_af57bf0": {
+    "message": "Tipos de envío",
+    "description": "Título Sección de detalles de asignación para los tipos de envío (por ejemplo, en línea, texto, carga, etc.)"
+  },
+  "submissions_11e96106": {
+    "message": "Envíos",
+    "description": "Título de la sección de detalles de asignaciones para información de asignaciones"
+  },
+  "submitted_318fad53": {
+    "message": "Enviado",
+    "description": "La asignación se entregó"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Se produjo un error al cargar la lista de inscritos"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Se produjo un error inesperado. Cerrar esta advertencia y volver a intentarlo.",
+    "description": "Mensaje de error genérico"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Esta es la bandeja de entrada"
+  },
+  "title_ee03d132": {
+    "message": "Título",
+    "description": "Encabezado de edición de detalles de asignaciones"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Error inesperado",
+    "description": "Título genérico del mensaje de error genérico"
+  },
+  "ungraded_147a0dce": {
+    "message": "no calificado",
+    "description": "Etiqueta para envío de asignación no calificada"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Sin calificación"
+  },
+  "unpublished_8b6107d6": {
+    "message": "No publicado",
+    "description": "Texto no publicado"
+  },
+  "welcome_73d18b4d": {
+    "message": "¡Bienvenido!",
+    "description": "Encabezado de bienvenida cuando el usuario aún no tienen cursos."
+  }
+}

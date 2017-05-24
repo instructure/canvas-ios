@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Voeg enkele van je favoriete cursussen toe om hiervan je startpagina te maken.",
+    "description": "Tekst van hoofdgedeelte wanneer de pagina met de cursuslijst geen cursussen bevat."
+  },
+  "add_courses_fd45abf": {
+    "message": "Cursussen toevoegen",
+    "description": "Knoptekst om actie te ondernemen en een cursus toe te voegen."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Alle cursussen",
+    "description": "De titel van het scherm met alle cursussen van een cursusleider"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Alle beoordelingsperioden",
+    "description": "De kop van de opdrachtenlijst"
+  },
+  "assignment_details_bc488179": {
+    "message": "Opdrachtdetails",
+    "description": "Titel van het scherm voor opdrachtdetails"
+  },
+  "assignments_1e02582c": {
+    "message": "Opdrachten",
+    "description": "Titel van het opdrachtenscherm voor een cursus"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Beschikbaarheid: Gesloten"
+  },
+  "availability_e415e857": {
+    "message": "Beschikbaarheid:",
+    "description": "Inleverdatum van opdracht\"Beschikbaar voor:\"-veld"
+  },
+  "available_from_f84e4611": {
+    "message": "Beschikbaar vanaf"
+  },
+  "available_from_f9e093c8": {
+    "message": "Beschikbaar vanaf:",
+    "description": "Inleverdatum van opdracht\"Beschikbaar vanaf:\"-veld"
+  },
+  "available_to_434cb9f5": {
+    "message": "Beschikbaar voor:",
+    "description": "Inleverdatum van opdracht\"Beschikbaar tot:\" veld"
+  },
+  "available_to_b7350e02": {
+    "message": "Beschikbaar voor"
+  },
+  "back_courses": {
+    "message": "Cursussen",
+    "description": "Titel van de knop Vorige om van alle cursussen terug te keren naar alleen favoriete cursussen"
+  },
+  "cancel_caeb1e68": {
+    "message": "Annuleren"
+  },
+  "choose_color_11148181": {
+    "message": "Kiezen { color }",
+    "description": "Toegankelijkheidslabel om een kleur te selecteren"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Filter wissen"
+  },
+  "closed_983a96fe": {
+    "message": "Gesloten",
+    "description": "Inleverdatum van opdracht\"Beschikbaar tot:\"-veld"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Gesloten • { dateString } om { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Kleur",
+    "description": "Titel van de kleurkiezer voor cursussen"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Kan lijst met opdrachten niet ophalen"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } onbeoordeeld"
+  },
+  "courses_43204aae": {
+    "message": "Cursussen",
+    "description": "De kop voor de lijst met favoriete cursussen"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Cursus aanpassen",
+    "description": "De titel van het scherm met gebruikersvoorkeuren voor cursussen"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } om { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "discussieonderwerp",
+    "description": "Type opdrachtinlevering"
+  },
+  "done_54e3d4b6": {
+    "message": "Klaar",
+    "description": "Knop Vorige om een scherm terug te gaan"
+  },
+  "done_beta_feedback": {
+    "message": "Klaar",
+    "description": "Knop om feedbackformulier te sluiten."
+  },
+  "done_edit_assignment": {
+    "message": "Klaar",
+    "description": "Knop om modaal te sluiten"
+  },
+  "due_5d7267be": {
+    "message": "Inleverdatum:",
+    "description": "Inleverdatum van opdracht\"Inleverdatum:\"-veld Ziet er na voltooiing ongeveer als volgt uit: \"Inleverdatum: 13 maart 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Inleverdatum",
+    "description": "Titel van sectie Opdrachtdetails over wanneer een opdracht moet worden ingeleverd"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "In te leveren op { dateString } om { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Opdrachtdetails bewerken",
+    "description": "Titel van het bewerkingsscherm voor opdrachtdetails"
+  },
+  "edit_c5fbea07": {
+    "message": "Bewerken",
+    "description": "Wordt bovenaan de app weergegeven zodat de gebruiker bewerkingen kan uitvoeren"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Cursussen bewerken",
+    "description": "De titel van het scherm waar cursusleiders cursussen in hun lijst met favorieten kunnen plaatsen en daar weer uit kunnen halen"
+  },
+  "everyone_854554dd": {
+    "message": "Iedereen"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "externe tool",
+    "description": "type opdrachtinlevering"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filteren op:",
+    "description": "Geeft aan dat de gebruiker kan filteren met behulp van enkele opties"
+  },
+  "filter_e3398407": {
+    "message": "Filter"
+  },
+  "for_974cbb84": {
+    "message": "Voor"
+  },
+  "for_e3490d05": {
+    "message": "Voor:",
+    "description": "Inleverdatum van opdracht\"Voor:\"-veld"
+  },
+  "graded_25cd3fcd": {
+    "message": "Beoordeeld",
+    "description": "Grafiek met details voor ingeleverde opdrachten 'beoordeeld’"
+  },
+  "inbox_bb245a60": {
+    "message": "Postbus",
+    "description": "Label dat aangeeft dat de gebruiker zich op het tabblad Inbox bevindt"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instructies",
+    "description": "Titel van sectie Opdrachtdetails voor opdrachtinstructies"
+  },
+  "late_2be42b88": {
+    "message": "Laat",
+    "description": "Opdracht is te laat ingeleverd"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Feedback doorgeven",
+    "description": "Wordt bovenaan de app weergegeven zodat de gebruiker feedback kan geven"
+  },
+  "logout_a9312e35": {
+    "message": "Afmelden"
+  },
+  "media_recording_7df9606f": {
+    "message": "mediaopname",
+    "description": "Type opdrachtinlevering"
+  },
+  "missing_1a256b3b": {
+    "message": "Ontbrekend",
+    "description": "De opdracht is niet ingeleverd"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Verschillende inleverdatums",
+    "description": "Informatie voor opdrachtdetails over inleverdatums, wanneer er meer dan één inleverdatum is"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Bijnaam",
+    "description": "Tekst voor de bijnaam die aan een cursus is gegeven"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Geen inleverdatum"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Nog geen inlevering",
+    "description": "Geen inlevering van de cursist voor de gegeven opdracht"
+  },
+  "none_9b6c9bec": {
+    "message": "geen",
+    "description": "type opdrachtinlevering"
+  },
+  "not_published_73f7079": {
+    "message": "Niet gepubliceerd"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Niet ingediend",
+    "description": "Grafiek met details voor ingeleverde opdrachten 'beoordeeld’"
+  },
+  "on_paper_7e67f764": {
+    "message": "op papier",
+    "description": "Type opdrachtinlevering"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "online toets",
+    "description": "type opdrachtinlevering"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "online tekstinvoer",
+    "description": "Type opdrachtinlevering"
+  },
+  "online_upload_ed44db51": {
+    "message": "online upload",
+    "description": "Type opdrachtinlevering"
+  },
+  "online_url_ee794b28": {
+    "message": "online url",
+    "description": "type opdrachtinlevering"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Gebruikersvoorkeuren voor cursussen openen",
+    "description": "Toegankelijkheidslabel op pictorgramknop voor het openen van gebruikersvoorkeuren voor cursussen"
+  },
+  "profile_6bd2baed": {
+    "message": "Profiel",
+    "description": "Label dat aangeeft dat de gebruiker zich op het tabblad Profiel bevindt"
+  },
+  "pts_699bd9aa": {
+    "message": "punten",
+    "description": "Opdrachtdetails-punten voor gegeven opdracht"
+  },
+  "published_4bb5209e": {
+    "message": "Gepubliceerd",
+    "description": "Gepubliceerde tekst"
+  },
+  "saving_2521e616": {
+    "message": "Opslaan",
+    "description": "Tekst wanneer er een verzoek tot bijwerken van een opdracht is ingediend en de gebruiker wacht op een reactie"
+  },
+  "see_all_ffa422ef": {
+    "message": "Alles weergeven",
+    "description": "Knop om over te schakelen van lijst met favoriete cursussen naar lijst met alle cursussen"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Stel dit in als standaardkleur van de cursus. Hiermee worden geen persoonlijke kleurinstellingen overschreven.",
+    "description": "Beschrijving van de kleurkiezer die de gebruiker te zien krijgt"
+  },
+  "submission_types_af57bf0": {
+    "message": "Inleveringstypen",
+    "description": "Titel van sectie Opdrachtdetails voor inleveringstypen (bijvoorbeeld online, tekst, upload, enzovoort)"
+  },
+  "submissions_11e96106": {
+    "message": "Inleveringen",
+    "description": "Titel van sectie Opdrachtdetails voor informatie over inleveringen"
+  },
+  "submitted_318fad53": {
+    "message": "Ingediend",
+    "description": "De opdracht is ingeleverd"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Er is een probleem opgetreden bij het laden van de lijst met inschrijvingen."
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Er is een onverwachte fout opgetreden. Sluit deze waarschuwing en probeer het opnieuw.",
+    "description": "Een algemeen foutbericht"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Dit is de inbox"
+  },
+  "title_ee03d132": {
+    "message": "Titel",
+    "description": "Titel voor het bewerken van opdrachtdetails"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Onverwachte fout",
+    "description": "De algemene titel van het algemene foutbericht"
+  },
+  "ungraded_147a0dce": {
+    "message": "onbeoordeeld",
+    "description": "Label voor het inleveren van onbeoordeelde opdrachten"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Niet beoordeeld",
+    "description": "Grafiek met details voor ingeleverde opdrachten 'beoordeeld’"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Niet-gepubliceerd",
+    "description": "Niet-gepubliceerde tekst"
+  },
+  "welcome_73d18b4d": {
+    "message": "Welkom!",
+    "description": "Koptekst met welkom wanneer de gebruiker nog geen cursussen heeft."
+  }
+}

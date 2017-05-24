@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Ajouter certains de vos cours favoris afin de faire de ce lieu votre port d’attache.",
+    "description": "Le corps du texte lorsque vous n'avez pas de cours sur la page de liste des cours."
+  },
+  "add_courses_fd45abf": {
+    "message": "Ajouter des cours",
+    "description": "Texte du bouton de prise d’action et d’ajout de cours."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Tous les cours",
+    "description": "Le titre de l'écran montrant l'ensemble des cours de l'enseignant"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Toutes les périodes de notation",
+    "description": "L'entête sur la liste de tâches"
+  },
+  "assignment_details_bc488179": {
+    "message": "Détails de la tâche",
+    "description": "Titre de l'écran des détails de la tâche"
+  },
+  "assignments_1e02582c": {
+    "message": "Tâches",
+    "description": "Titre de l'écran des tâches pour un cours"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Disponibilité : Fermé"
+  },
+  "availability_e415e857": {
+    "message": "Disponibilité :",
+    "description": "Champ de la date d’échéance de la tâche \"Disponible à :\""
+  },
+  "available_from_f84e4611": {
+    "message": "Disponible depuis"
+  },
+  "available_from_f9e093c8": {
+    "message": "Disponible sur :",
+    "description": "Champ de la date d’échéance de la tâche \"Disponible depuis :\""
+  },
+  "available_to_434cb9f5": {
+    "message": "Disponible à :",
+    "description": "Champ de la date d’échéance de la tâche \"Disponible à :\""
+  },
+  "available_to_b7350e02": {
+    "message": "Disponible pour"
+  },
+  "back_courses": {
+    "message": "Cours",
+    "description": "Le titre du bouton précédent pour se diriger depuis tous les cours vers les cours favoris uniquement"
+  },
+  "cancel_caeb1e68": {
+    "message": "Annuler"
+  },
+  "choose_color_11148181": {
+    "message": "Choisir { color }",
+    "description": "Étiquette d'accessibilité afin de sélectionner une couleur"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Effacer le filtre"
+  },
+  "closed_983a96fe": {
+    "message": "Fermé",
+    "description": "Champ de la date d’échéance de la tâche \"Disponible à :\""
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Fermé • { dateString } à { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Couleur",
+    "description": "Étiquette de titre pour le sélecteur de couleur pour le cours"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Impossible d'obtenir la liste des tâches"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } non classifié"
+  },
+  "courses_43204aae": {
+    "message": "Cours",
+    "description": "L'entête de la liste des cours favoris"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Personnaliser le cours",
+    "description": "Le titre de l'écran des préférences de cours de l'utilisateur"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } à { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "sujet de discussion",
+    "description": "Type de soumission de la tâche"
+  },
+  "done_54e3d4b6": {
+    "message": "Terminé",
+    "description": "Bouton Retour pour revenir à l'écran précédent"
+  },
+  "done_beta_feedback": {
+    "message": "Terminé",
+    "description": "Bouton pour annuler le formulaire de commentaires."
+  },
+  "done_edit_assignment": {
+    "message": "Terminé",
+    "description": "Bouton pour fermer le modal"
+  },
+  "due_5d7267be": {
+    "message": "Dû :",
+    "description": "Champ de la date d’échéance de la tâche \"Dû :\" Ressemble à quelque chose comme cela lorsque vous avez terminé : \"Dû : 13 mars 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Dû",
+    "description": "Titre de section des détails de la tâche lorsque la tâche est due"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Dû { dateString } à { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Modifier les détails de la tâche",
+    "description": "Titre de l'écran de MODIFICATION des détails de la tâche"
+  },
+  "edit_c5fbea07": {
+    "message": "Modifier",
+    "description": "Indiqué en haut de l'application pour permettre à l'utilisateur d’effectuer des modifications"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Modifier les cours",
+    "description": "Le titre de l'écran permettant aux enseignants de mettre/enlever leurs cours dans les favoris"
+  },
+  "everyone_854554dd": {
+    "message": "Tous"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "outil externe",
+    "description": "Type de soumission de la tâche"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrer par :",
+    "description": "Indique à l'utilisateur qu'il peut filtrer avec quelques options"
+  },
+  "filter_e3398407": {
+    "message": "Filtrer"
+  },
+  "for_974cbb84": {
+    "message": "Pour"
+  },
+  "for_e3490d05": {
+    "message": "Pour :",
+    "description": "Champ de la date d’échéance de la tâche \"Pour :\""
+  },
+  "graded_25cd3fcd": {
+    "message": "Noté",
+    "description": "Graphique des soumissions des détails de tâches `évalué`"
+  },
+  "inbox_bb245a60": {
+    "message": "Boîte de réception",
+    "description": "Étiquette indiquant que l'utilisateur est sur l'onglet Boîte de réception"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instructions",
+    "description": "Titre de section des détails de la tâche pour les instructions sur la tâche"
+  },
+  "late_2be42b88": {
+    "message": "En retard",
+    "description": "La tâche a été soumise en retard"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Laissez une rétroaction",
+    "description": "Indiqué en haut de l'application pour permettre à l'utilisateur de laisser des commentaires"
+  },
+  "logout_a9312e35": {
+    "message": "Fermeture de session"
+  },
+  "media_recording_7df9606f": {
+    "message": "enregistrement du support média",
+    "description": "Type de soumission de la tâche"
+  },
+  "missing_1a256b3b": {
+    "message": "Manquant",
+    "description": "La tâche n’a pas été soumise"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Échéances multiples",
+    "description": "Information des détails de la tâche sur les dates d'échéance, lorsqu'il y a plus d'une date d'échéance à afficher"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Pseudonyme :",
+    "description": "Texte décrivant un surnom donné à un cours"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Pas d'échéance"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Pas encore de soumission",
+    "description": "Aucune soumission de l'étudiant pour la tâche donnée"
+  },
+  "none_9b6c9bec": {
+    "message": "aucun",
+    "description": "Type de soumission de la tâche"
+  },
+  "not_published_73f7079": {
+    "message": "Non publiés"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Non soumis",
+    "description": "Graphique des soumissions des détails de tâches `évalué`"
+  },
+  "on_paper_7e67f764": {
+    "message": "sur papier",
+    "description": "Type de soumission de la tâche"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "questionnaire en ligne",
+    "description": "Type de soumission de la tâche"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "entrée de texte en ligne",
+    "description": "Type de soumission de la tâche"
+  },
+  "online_upload_ed44db51": {
+    "message": "téléversement en ligne",
+    "description": "Type de soumission de la tâche"
+  },
+  "online_url_ee794b28": {
+    "message": "url en ligne",
+    "description": "Type de soumission de la tâche"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Ouvrir les préférences de cours de l'utilisateur",
+    "description": "Étiquette d'accessibilité sur le bouton de l'icône permettant d’ouvrir les préférences de cours de l’utilisateur"
+  },
+  "profile_6bd2baed": {
+    "message": "Profil",
+    "description": "Étiquette indiquant que l'utilisateur est sur l'onglet Profil"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Points des détails de la tâche pour la tâche donnée"
+  },
+  "published_4bb5209e": {
+    "message": "Date de publication",
+    "description": "Texte publié"
+  },
+  "saving_2521e616": {
+    "message": "Sauvegarde",
+    "description": "Texte lorsqu’une demande de mise à jour d'une tâche est effectuée et que l'utilisateur est en attente"
+  },
+  "see_all_ffa422ef": {
+    "message": "Afficher tout",
+    "description": "Bouton pour la transition de la liste des cours favoris pour toutes les listes de cours"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Définir ce paramètre pour la couleur par défaut du cours. Cela ne surclasse pas un paramètre de couleur personnelle.",
+    "description": "Description du sélecteur de couleur affiché à l'utilisateur"
+  },
+  "submission_types_af57bf0": {
+    "message": "Types de soumission",
+    "description": "Titre de section des détails de la tâche pour les types de soumission (c'est-à-dire en ligne, texte, téléversement, etc.)"
+  },
+  "submissions_11e96106": {
+    "message": "Soumissions",
+    "description": "Titre de section des détails de la tâche pour les informations sur les soumissions"
+  },
+  "submitted_318fad53": {
+    "message": "Soumis",
+    "description": "La tâche a été soumise"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Une erreur est survenue lors du chargement de la liste des inscriptions"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Erreur inattendue. Veuillez fermer cette alerte et essayer de nouveau.",
+    "description": "Message d'erreur générique"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Ceci est la boîte de réception"
+  },
+  "title_ee03d132": {
+    "message": "Titre",
+    "description": "Entête de titre de modification des détails de la tâche"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Erreur inattendue",
+    "description": "Le titre générique du message d'erreur générique"
+  },
+  "ungraded_147a0dce": {
+    "message": "non classifié",
+    "description": "Étiquette pour la soumission de tâche non classifiée"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Non noté",
+    "description": "Graphique des soumissions des détails de tâches `évalué`"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Non publié",
+    "description": "Texte non publié"
+  },
+  "welcome_73d18b4d": {
+    "message": "Bienvenue!",
+    "description": "Texte d'entête de bienvenue lorsque l'utilisateur n'a pas encore de cours."
+  }
+}

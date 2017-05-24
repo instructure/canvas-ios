@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Tilføj nogle af dine foretrukne fag for at gøre siden mere personlig.",
+    "description": "Brødtekst, når du ikke har nogen fag på siden med liste over fag."
+  },
+  "add_courses_fd45abf": {
+    "message": "Tilføj fag",
+    "description": "Knap-tekst for at handle og tilføje et fag."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Alle fag",
+    "description": "Titlen på den skærm, der viser alle en lærers fag"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Alle bedømmelsesperioder",
+    "description": "Overskriften på opgavelisten"
+  },
+  "assignment_details_bc488179": {
+    "message": "Opgaveoplysninger",
+    "description": "Titel på skærmen for opgavedetaljer"
+  },
+  "assignments_1e02582c": {
+    "message": "Opgaver",
+    "description": "Titel på opgaveskærmen for et fag"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Tilgængelighed: Lukket"
+  },
+  "availability_e415e857": {
+    "message": "Tilgængelighed:",
+    "description": "Opgave afleveringsdato, feltet \"Tilgængelig for:\""
+  },
+  "available_from_f84e4611": {
+    "message": "Tilgængelig fra"
+  },
+  "available_from_f9e093c8": {
+    "message": "Tilgængelig fra:",
+    "description": "Opgave afleveringsdato, feltet \"Tilgængelig fra:\""
+  },
+  "available_to_434cb9f5": {
+    "message": "Tilgængelig for:",
+    "description": "Opgave afleveringsdato, feltet \"Tilgængelig for:\""
+  },
+  "available_to_b7350e02": {
+    "message": "Tilgængelig indtil"
+  },
+  "back_courses": {
+    "message": "Kurser",
+    "description": "Tilbageknappens titel for at gå fra alle fag til bare de foretrukne fag"
+  },
+  "cancel_caeb1e68": {
+    "message": "Annuller"
+  },
+  "choose_color_11148181": {
+    "message": "Vælg { color }",
+    "description": "Tilgængelighedsmærke for at vælge en farve"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Nulstil filter"
+  },
+  "closed_983a96fe": {
+    "message": "Lukket",
+    "description": "Opgave afleveringsdato, feltet \"Tilgængelig for:\""
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Lukket • { dateString } kl. { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Farve",
+    "description": "Titelmærke for fagets farvevælger"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Kunne ikke få en liste over opgaver"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } ikke bedømt"
+  },
+  "courses_43204aae": {
+    "message": "Kurser",
+    "description": "Overskriften for listen over favoritfag"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Tilpas fag",
+    "description": "Titlen på skærmen med brugerens fagpræferencer"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } ved { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "diskussions emne",
+    "description": "opgave afleveringstype"
+  },
+  "done_54e3d4b6": {
+    "message": "Udført",
+    "description": "Tilbage-knappen for at gå til forrige skærm"
+  },
+  "done_beta_feedback": {
+    "message": "Udført",
+    "description": "Knap til at afvise feedback-formular."
+  },
+  "done_edit_assignment": {
+    "message": "Udført",
+    "description": "Knap til at lukke modal"
+  },
+  "due_5d7267be": {
+    "message": "Forfald:",
+    "description": "Opgave afleveringsdato, feltet \"Forfalder:\" Ligner noget i denne her retning, når færdig: \"Forfalder: D. 13. marts, 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Forfalder",
+    "description": "Opgavedetaljesektion, titel for hvornår opgaven skal afleveres"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Forfalder d. { dateString } kl. { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Rediger opgavedetaljer",
+    "description": "Titel på skærmen for REDIGERING af opgavedetaljer"
+  },
+  "edit_c5fbea07": {
+    "message": "Rediger",
+    "description": "Vist øverst i appen for at gøre det muligt for brugeren at redigere"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Rediger fag",
+    "description": "Titlen på skærmen gør det muligt for lærere at tilføje og fjerne favoritter for deres fag"
+  },
+  "everyone_854554dd": {
+    "message": "Alle"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "eksternt værktøj",
+    "description": "opgave afleveringstype"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrer efter:",
+    "description": "Angiver for brugeren, at de kan filtrere efter forskellige muligheder"
+  },
+  "filter_e3398407": {
+    "message": "Filter"
+  },
+  "for_974cbb84": {
+    "message": "Til"
+  },
+  "for_e3490d05": {
+    "message": "Til:",
+    "description": "Opgave afleveringsdato, feltet \"For:\""
+  },
+  "graded_25cd3fcd": {
+    "message": "Bedømt",
+    "description": "Opgavedetaljer afleveringsgraf `givet karakter`"
+  },
+  "inbox_bb245a60": {
+    "message": "Indboks",
+    "description": "Mærke, der indikerer, at brugeren er på indbakke-fanen"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instruktioner",
+    "description": "Opgavedetaljesektion, titel for opgaveinstruktioner"
+  },
+  "late_2be42b88": {
+    "message": "Sen",
+    "description": "Opgaven blev afleveret for sent"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Giv feedback",
+    "description": "Vist øverst i appen for at gøre det muligt for brugeren at give feedback"
+  },
+  "logout_a9312e35": {
+    "message": "Logud"
+  },
+  "media_recording_7df9606f": {
+    "message": "medieoptagelse",
+    "description": "opgave afleveringstype"
+  },
+  "missing_1a256b3b": {
+    "message": "Manglende",
+    "description": "Opgaven er ikke blevet afleveret"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Flere forfaldsdatoer",
+    "description": "Information om opgavedetaljer mht. afleveringsdatoer, når der er mere end en afleveringsdato at vise"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Alias",
+    "description": "Tekst, der beskriver et fags kaldenavn"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Ingen forfaldsdato"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Ingen aflevering endnu",
+    "description": "Ingen aflevering fra den studerende for den givne opgave"
+  },
+  "none_9b6c9bec": {
+    "message": "ingen",
+    "description": "opgave afleveringstype"
+  },
+  "not_published_73f7079": {
+    "message": "Ikke offentliggjort"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Ikke indsendt",
+    "description": "Opgavedetaljer afleveringsgraf `givet karakter`"
+  },
+  "on_paper_7e67f764": {
+    "message": "på papir",
+    "description": "opgave afleveringstype"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "online quiz",
+    "description": "opgave afleveringstype"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "online tekstindtastning",
+    "description": "opgave afleveringstype"
+  },
+  "online_upload_ed44db51": {
+    "message": "online upload",
+    "description": "opgave afleveringstype"
+  },
+  "online_url_ee794b28": {
+    "message": "online url",
+    "description": "opgave afleveringstype"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Åbn brugerens præferencer for fag",
+    "description": "Tilgængelighedsmærkat på ikonknappen til at åbne fagets brugerindstillinger"
+  },
+  "profile_6bd2baed": {
+    "message": "Profil",
+    "description": "Mærke, der indikerer, at brugeren er i profilfanen"
+  },
+  "pts_699bd9aa": {
+    "message": "point",
+    "description": "Opgavedetaljer, point for given opgave"
+  },
+  "published_4bb5209e": {
+    "message": "Offentliggjort",
+    "description": "Offentliggjort tekst"
+  },
+  "saving_2521e616": {
+    "message": "Gemmer",
+    "description": "Tekst, når der gives en anmodning om at opdatere en opgave, og brugeren venter"
+  },
+  "see_all_ffa422ef": {
+    "message": "Se alle",
+    "description": "Knap til at skifte fra liste over foretrukne fag til liste over alle fag"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Indstil denne til fagets standardfarve. Dette tilsidesætter ikke en personlig farveindstilling.",
+    "description": "Beskrivelse af farvevælgeren vist til brugeren"
+  },
+  "submission_types_af57bf0": {
+    "message": "Afleveringstyper",
+    "description": "Titel på opgavedetaljesektion for indsendelsestyper, (dvs. online, tekst, upload, osv.)"
+  },
+  "submissions_11e96106": {
+    "message": "Afleveringer",
+    "description": "Opgavedetaljesektion, titel for indsendelser af opgaver"
+  },
+  "submitted_318fad53": {
+    "message": "Indsendt",
+    "description": "Opgaven er blevet afleveret"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Der opstod en fejl under indlæsning af listen over tilmeldinger."
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Der opstod en uventet fejl. Luk denne bemærkning og prøv igen.",
+    "description": "Generel fejlmeddelelse"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Dette er indbakken"
+  },
+  "title_ee03d132": {
+    "message": "Titel",
+    "description": "Opgavedetaljer rediger titeloverskrift"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Uforventet fejl",
+    "description": "Den generiske betegnelse for den generiske fejlmeddelelse"
+  },
+  "ungraded_147a0dce": {
+    "message": "ikke bedømt",
+    "description": "Mærkat for opgaveafleveringer uden karakter"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "ikke bedømt",
+    "description": "Opgavedetaljer afleveringsgraf `givet karakter`"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Ikke offentliggjort",
+    "description": "Ikke-offentliggjort tekst"
+  },
+  "welcome_73d18b4d": {
+    "message": "Velkommen!",
+    "description": "Velkommen-headerteksten når bruger har ikke han nogen fag endnu."
+  }
+}

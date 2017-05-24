@@ -1,0 +1,297 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Fügen Sie einige Ihrer Lieblingskurse hinzu, um diesen Ort zu Ihrem Zuhause machen",
+    "description": "Text, wenn keine Kurse auf Kurslistenseite vorhanden sind."
+  },
+  "add_courses_fd45abf": {
+    "message": "Kurse hinzufügen",
+    "description": "Button-Text zum Hinzufügen eines Kurses"
+  },
+  "all_courses_a7dbb853": {
+    "message": "Alle Kurse",
+    "description": "Der Titel des Fensters, das alle Kurse eines Lehrers anzeigt"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Alle Benotungsperioden",
+    "description": "Die Kopfzeile der Aufgabenliste"
+  },
+  "assignment_details_bc488179": {
+    "message": "Aufgabendetails",
+    "description": "Titel für Fenster der Aufgabendetails"
+  },
+  "assignments_1e02582c": {
+    "message": "Aufgaben",
+    "description": "Titel der Aufgabenanzeige für einen Kurs"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Verfügbarkeit: Geschlossen"
+  },
+  "availability_e415e857": {
+    "message": "Verfügbarkeit:",
+    "description": "Fälligkeitsdatum der Aufgabe \"Verfügbar bis:\" Feld"
+  },
+  "available_from_f84e4611": {
+    "message": "Verfügbar ab"
+  },
+  "available_from_f9e093c8": {
+    "message": "Verfügbar ab:",
+    "description": "Fälligkeitsdatum der Aufgabe \"Verfügbar ab:\" Feld"
+  },
+  "available_to_434cb9f5": {
+    "message": "Verfügbar für:",
+    "description": "Fälligkeitsdatum der Aufgabe \"Verfügbar bis:\" Feld"
+  },
+  "available_to_b7350e02": {
+    "message": "Verfügbar für"
+  },
+  "back_courses": {
+    "message": "Kurse",
+    "description": "Der Titel des Zurück-Buttons, um von allen Kursen zu Favoriten-Kursen zu gehen"
+  },
+  "cancel_caeb1e68": {
+    "message": "Abbrechen"
+  },
+  "choose_color_11148181": {
+    "message": "Auswählen { color }",
+    "description": "Barrierefreiheits-Label zur Auswahl einer Farbe"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Filter löschen"
+  },
+  "closed_983a96fe": {
+    "message": "Geschlossen",
+    "description": "Fälligkeitsdatum der Aufgabe \"Verfügbar bis:\" Feld"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Geschlossen • { dateString } am { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Farbe",
+    "description": "Titelbezeichnung für den Kurs-Farbwähler"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Liste der Aufgaben konnte nicht abgerufen werden"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } Nicht bewertet"
+  },
+  "courses_43204aae": {
+    "message": "Kurse",
+    "description": "Die Kopfzeile für die Favoriten-Kursliste"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Kurs anpassen",
+    "description": "Titel des Fensters für Kurseinstellungen des Nutzers"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } um { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "Diskussionsthema",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "done_54e3d4b6": {
+    "message": "Fertig"
+  },
+  "done_beta_feedback": {
+    "message": "Fertig",
+    "description": "Button zum Schließen des Feedback-Formulars"
+  },
+  "done_edit_assignment": {
+    "message": "Fertig",
+    "description": "Button zum Schließen des Moduls"
+  },
+  "due_5d7267be": {
+    "message": "Fällig:",
+    "description": "Fälligkeitsdatum der Aufgabe \"Fällig:\" Feld Sieht nach Beendigung etwa so aus: \"Fällig: 13. März 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Fällig",
+    "description": "Titel für Aufgabenfälligkeit des Bereichs für Aufgabendetails"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Fällig { dateString } bei { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Aufgabendetails bearbeiten",
+    "description": "Titel für Bearbeitungsfenster für Aufgabendetails"
+  },
+  "edit_c5fbea07": {
+    "message": "Bearbeiten",
+    "description": "Oben in der App angezeigt, so dass der Nutzer bearbeiten kann"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Kurse bearbeiten",
+    "description": "Der Titel des Bildschirms, auf dem Lehrer ihre Favoriten-Kurse verwalten können"
+  },
+  "everyone_854554dd": {
+    "message": "Jeder"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "Externes Tool",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtern nach:",
+    "description": "Zeigt dem Benutzer, dass Optionen für Filter vorhanden sind"
+  },
+  "filter_e3398407": {
+    "message": "Filter"
+  },
+  "for_974cbb84": {
+    "message": "Für"
+  },
+  "for_e3490d05": {
+    "message": "Für:",
+    "description": "Fälligkeitsdatum der Aufgabe \"Für:\" Feld"
+  },
+  "graded_25cd3fcd": {
+    "message": "Benotet",
+    "description": "Graph für Einsendung der Aufgabendetails 'bewertet'"
+  },
+  "inbox_bb245a60": {
+    "message": "Inbox"
+  },
+  "instructions_2f88ee72": {
+    "message": "Anweisungen",
+    "description": "Titel für Aufgabenanweisungen des Bereichs für Aufgabendetails"
+  },
+  "late_2be42b88": {
+    "message": "Zu spät",
+    "description": "Aufgabe wurde zu spät eingereicht"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Feedback geben",
+    "description": "Oben in der App angezeigt, so dass der Nutzer ein Feedback abgeben kann"
+  },
+  "logout_a9312e35": {
+    "message": "Abmeldung"
+  },
+  "media_recording_7df9606f": {
+    "message": "Medienaufzeichnung",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "missing_1a256b3b": {
+    "message": "Fehlend",
+    "description": "Die Aufgabe wurde nicht eingereicht"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Mehrere Abgabetermine",
+    "description": "Aufgaben-Detailinformationen zu Fälligkeitsdaten, wenn mehr als als Fälligkeitsdatum anzuzeigen ist"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Spitzname",
+    "description": "Text zur Beschreibung eines Spitznamen für einen Kurs"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Kein Abgabedatum"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Noch keine Einsendung",
+    "description": "Keine Einsendungen des Schülers für die gegebene Aufgabe"
+  },
+  "none_9b6c9bec": {
+    "message": "keine",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "not_published_73f7079": {
+    "message": "Nicht veröffentlicht"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Nicht eingereicht",
+    "description": "Graph für Einsendung der Aufgabendetails 'bewertet'"
+  },
+  "on_paper_7e67f764": {
+    "message": "Als Papierdokument",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "Online-Quiz",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "Online-Texteingabe",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "online_upload_ed44db51": {
+    "message": "Online-Upload",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "online_url_ee794b28": {
+    "message": "Online-URL",
+    "description": "Einsendungstyp für Aufgabe"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Kurs-Benutzereinstellungen öffnen",
+    "description": "Barrierefreiheits-Label auf Icon-Button zum Öffnen der Kurs-Nutzereinstellungen"
+  },
+  "profile_6bd2baed": {
+    "message": "Profil"
+  },
+  "pts_699bd9aa": {
+    "message": "Pkte.",
+    "description": "Punkte der Aufgabendetails für gegebene Aufgabe"
+  },
+  "published_4bb5209e": {
+    "message": "Veröffentlicht",
+    "description": "Veröffentlichter Text"
+  },
+  "saving_2521e616": {
+    "message": "Wird gespeichert",
+    "description": "Text, wenn eine Anfrage zur Aktualisierung einer Aufgabe gestellt wurde und der Nutzer wartet"
+  },
+  "see_all_ffa422ef": {
+    "message": "Alle ansehen",
+    "description": "Button für Übergang von Liste der Favoriten-Kurse zu Liste aller Kurse"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Setzen Sie dies als die Standardfarbe des Kurses. Dies wird keine persönliche Farbeinstellung überschreiben.",
+    "description": "Dem Benutzer angezeigte Beschreibung des Farbwählers"
+  },
+  "submission_types_af57bf0": {
+    "message": "Einsendungsarten",
+    "description": "Titel für Einsendungstyen des Abschnitts für Aufgabendetails (d. h. Online, Text, Upload usw.)"
+  },
+  "submissions_11e96106": {
+    "message": "Einsendungen",
+    "description": "Titel für Einsendungsinformationen des Bereichs für Aufgabendetails"
+  },
+  "submitted_318fad53": {
+    "message": "Eingereicht",
+    "description": "Die Aufgabe wurde eingereicht"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Beim Laden der Einschreibeliste ist ein Fehler aufgetreten."
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Es gab einen unerwarteten Fehler. Bitte schließen Sie dieses Fenster und versuchen Sie es erneut.",
+    "description": "Generische Fehlermeldung"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Dies ist der Posteingang"
+  },
+  "title_ee03d132": {
+    "message": "Titel",
+    "description": "Kopfzeile für Bearbeitung der Aufgabendetails"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Unerwarteter Fehler",
+    "description": "Der generische Titel für die generische Fehlermeldung"
+  },
+  "ungraded_147a0dce": {
+    "message": "Nicht bewertet",
+    "description": "Label für nicht bewertete Aufgabeneinsendung"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Unbenotet",
+    "description": "Graph für Einsendung der Aufgabendetails 'bewertet'"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Unveröffentlicht",
+    "description": "Nicht veröffentlichter Text"
+  },
+  "welcome_73d18b4d": {
+    "message": "Willkommen!",
+    "description": "Willkommenstext, wenn Nutzer noch keine Kurse hat."
+  }
+}

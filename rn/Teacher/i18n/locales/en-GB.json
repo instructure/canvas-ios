@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Add a few of your favourite courses to make this place your home.",
+    "description": "Body text when you do not have any courses on course list page."
+  },
+  "add_courses_fd45abf": {
+    "message": "Add courses",
+    "description": "Button text to take action and add a course."
+  },
+  "all_courses_a7dbb853": {
+    "message": "All courses",
+    "description": "The title of the screen showing all of a teacher's courses"
+  },
+  "all_grading_periods_77974940": {
+    "message": "All marking periods",
+    "description": "The header on the assignment list"
+  },
+  "assignment_details_bc488179": {
+    "message": "Assignment details",
+    "description": "Title of assignment details screen"
+  },
+  "assignments_1e02582c": {
+    "message": "Assignments",
+    "description": "Title of the assignments screen for a course"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Availability: Closed"
+  },
+  "availability_e415e857": {
+    "message": "Availability:",
+    "description": "Assignment due date \"Available to:\" field"
+  },
+  "available_from_f84e4611": {
+    "message": "Available from"
+  },
+  "available_from_f9e093c8": {
+    "message": "Available from:",
+    "description": "Assignment due date \"Available from:\" field"
+  },
+  "available_to_434cb9f5": {
+    "message": "Available to:",
+    "description": "Assignment due date \"Available to:\" field"
+  },
+  "available_to_b7350e02": {
+    "message": "Available to"
+  },
+  "back_courses": {
+    "message": "Courses",
+    "description": "The back-button title to go from all courses to just favourited courses"
+  },
+  "cancel_caeb1e68": {
+    "message": "Cancel"
+  },
+  "choose_color_11148181": {
+    "message": "Choose { color }",
+    "description": "Accessibility label to select a colour"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Clear filter"
+  },
+  "closed_983a96fe": {
+    "message": "Closed",
+    "description": "Assignment due date \"Available to:\" field"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Closed • { dateString } at { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Colour",
+    "description": "Title label for the course colour picker"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Could not get list of assignments"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } ungraded"
+  },
+  "courses_43204aae": {
+    "message": "Courses",
+    "description": "The header for the favourited courses list"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Customise course",
+    "description": "The title of the user course preferences screen"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } at { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "Discussion topic",
+    "description": "assignment submission type"
+  },
+  "done_54e3d4b6": {
+    "message": "Done",
+    "description": "Back button to move back a screen"
+  },
+  "done_beta_feedback": {
+    "message": "Done",
+    "description": "Button to dismiss feedback form."
+  },
+  "done_edit_assignment": {
+    "message": "Done",
+    "description": "Button to close modal"
+  },
+  "due_5d7267be": {
+    "message": "Due:",
+    "description": "Assignment due date \"Due:\" field. Looks something like this when finished: \"Due: March 13, 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Due",
+    "description": "Assignment details section title for when assignment is due"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Due { dateString } at { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Edit assignment details",
+    "description": "Title of assignment details EDIT screen"
+  },
+  "edit_c5fbea07": {
+    "message": "Edit",
+    "description": "Shown at the top of the app to allow the user to edit"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Edit courses",
+    "description": "The title of the screen enabling teachers to favourite and unfavourite their courses"
+  },
+  "everyone_854554dd": {
+    "message": "Everyone"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "External tool",
+    "description": "assignment submission type"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filter by:",
+    "description": "Indicates to the user that they can filter by a few options"
+  },
+  "filter_e3398407": {
+    "message": "Filter"
+  },
+  "for_974cbb84": {
+    "message": "For"
+  },
+  "for_e3490d05": {
+    "message": "For:",
+    "description": "Assignment due date \"For:\" field"
+  },
+  "graded_25cd3fcd": {
+    "message": "Graded",
+    "description": "Assignment details submissions graph `graded`"
+  },
+  "inbox_bb245a60": {
+    "message": "Inbox",
+    "description": "Label indicating the user is on the inbox tab"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instructions",
+    "description": "Assignment details section title for assignment instructions"
+  },
+  "late_2be42b88": {
+    "message": "Late",
+    "description": "Assignment was turned in late"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Leave feedback",
+    "description": "Shown at the top of the app to allow the user to leave feedback"
+  },
+  "logout_a9312e35": {
+    "message": "Logout"
+  },
+  "media_recording_7df9606f": {
+    "message": "media recording",
+    "description": "assignment submission type"
+  },
+  "missing_1a256b3b": {
+    "message": "Missing",
+    "description": "The assignment has not been turned in"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Multiple due dates",
+    "description": "Assignment details information about due dates, when there is more than one due date to display"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Nickname",
+    "description": "Text describing a nickname given to a course"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "No due date"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "No submission yet",
+    "description": "No submission from the student for the given assignment"
+  },
+  "none_9b6c9bec": {
+    "message": "none",
+    "description": "assignment submission type"
+  },
+  "not_published_73f7079": {
+    "message": "Not published"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Not submitted",
+    "description": "Assignment details submissions graph `graded`"
+  },
+  "on_paper_7e67f764": {
+    "message": "on paper",
+    "description": "assignment submission type"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "online quiz",
+    "description": "assignment submission type"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "online text entry",
+    "description": "assignment submission type"
+  },
+  "online_upload_ed44db51": {
+    "message": "online upload",
+    "description": "assignment submission type"
+  },
+  "online_url_ee794b28": {
+    "message": "online URL",
+    "description": "assignment submission type"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Open user course preferences",
+    "description": "Accessibility label on icon button to open course user preferences"
+  },
+  "profile_6bd2baed": {
+    "message": "Profile",
+    "description": "Label indicating the user is on the profile tab"
+  },
+  "pts_699bd9aa": {
+    "message": "Pts",
+    "description": "Assignment details points for given assignment"
+  },
+  "published_4bb5209e": {
+    "message": "Published",
+    "description": "Published text"
+  },
+  "saving_2521e616": {
+    "message": "Saving",
+    "description": "Text when a request to update an assignment is made and user is waiting"
+  },
+  "see_all_ffa422ef": {
+    "message": "See all",
+    "description": "Button to transition from favourited courses list to all courses list"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Set this for the default colour of the course. This won’t override a personal colour setting.",
+    "description": "Description of colour picker shown to the user"
+  },
+  "submission_types_af57bf0": {
+    "message": "Submission types",
+    "description": "Assignment details section title for types of submission, (i.e. online, text, upload, etc)"
+  },
+  "submissions_11e96106": {
+    "message": "Submissions",
+    "description": "Assignment details section title for information on submissions"
+  },
+  "submitted_318fad53": {
+    "message": "Submitted",
+    "description": "The assignment has been turned in"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "There was an error loading the list of enrolments"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "There was an unexpected error. Please close this alert and try again.",
+    "description": "A generic error message"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "This is the inbox"
+  },
+  "title_ee03d132": {
+    "message": "Title",
+    "description": "Assignment details edit title header"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Unexpected error",
+    "description": "The generic title of the generic error message"
+  },
+  "ungraded_147a0dce": {
+    "message": "ungraded",
+    "description": "Label for ungraded assignment submission"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Ungraded",
+    "description": "Assignment details submissions graph `graded`"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Unpublished",
+    "description": "Unpublished text"
+  },
+  "welcome_73d18b4d": {
+    "message": "Welcome!",
+    "description": "Welcome header text when user has no courses yet."
+  }
+}

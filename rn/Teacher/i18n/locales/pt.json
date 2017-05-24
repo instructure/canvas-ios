@@ -1,0 +1,299 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Adicione algumas de suas disciplinas favoritas para fazer deste lugar sua casa.",
+    "description": "Texto do corpo quando você não tem nenhuma disciplina na página da lista de disciplinas."
+  },
+  "add_courses_fd45abf": {
+    "message": "Adicionar disciplinas",
+    "description": "Botão de texto para agir e adicionar uma disciplina."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Todas as disciplinas",
+    "description": "O título do ecrã a mostrar todas as disciplinas de um professor"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Todos os Períodos de Classificação",
+    "description": "O cabeçalho na lista de atribuição"
+  },
+  "assignment_details_bc488179": {
+    "message": "Detalhes da tarefa",
+    "description": "Título do ecrã Detalhes da atribuição"
+  },
+  "assignments_1e02582c": {
+    "message": "Tarefas",
+    "description": "Título do ecrã de atribuições de uma disciplina"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Disponibilidade: Fechado"
+  },
+  "availability_e415e857": {
+    "message": "Disponibilidade:",
+    "description": "Campo Data de vencimento da atribuição \"Disponível para:\""
+  },
+  "available_from_f84e4611": {
+    "message": "Disponível de"
+  },
+  "available_from_f9e093c8": {
+    "message": "Disponível a partir de:",
+    "description": "Campo Data de vencimento da atribuição \"Disponível em:\""
+  },
+  "available_to_434cb9f5": {
+    "message": "Disponível para:",
+    "description": "Campo Data de vencimento da atribuição \"Disponível para:\""
+  },
+  "available_to_b7350e02": {
+    "message": "Disponível para"
+  },
+  "back_courses": {
+    "message": "Disciplinas",
+    "description": "O título do botão Voltar para ir de todas as disciplinas para apenas para as disciplinas favoritas"
+  },
+  "cancel_caeb1e68": {
+    "message": "Cancelar"
+  },
+  "choose_color_11148181": {
+    "message": "Escolher { color }",
+    "description": "Etiqueta de acessibilidade para selecionar uma cor"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Filtro limpo"
+  },
+  "closed_983a96fe": {
+    "message": "Fechado",
+    "description": "Campo Data de vencimento da atribuição \"Disponível para:\""
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Fechado • { dateString } em { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Cor",
+    "description": "Etiqueta de título para o selecionador de cores da disciplina"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Não foi possível obter a lista de atribuições"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } não classificado"
+  },
+  "courses_43204aae": {
+    "message": "Disciplinas",
+    "description": "O cabeçalho da lista de disciplinas favoritas"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Personalizar disciplina",
+    "description": "O título do ecrã de preferências da disciplina do utilizador"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } em { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "tópico de discussão",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "done_54e3d4b6": {
+    "message": "Feito",
+    "description": "Botão Voltar para mover para trás um ecrã"
+  },
+  "done_beta_feedback": {
+    "message": "Feito",
+    "description": "Botão para ignorar o formulário de feedback."
+  },
+  "done_edit_assignment": {
+    "message": "Feito",
+    "description": "Botão para fechar modal"
+  },
+  "due_5d7267be": {
+    "message": "Data final:"
+  },
+  "due_a73610f6": {
+    "message": "Vencimento",
+    "description": "Título da seção Detalhes da atribuição para quando a atribuição está vencida"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Vencimento { dateString } em { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Editar Detalhes da Atribuição",
+    "description": "Título do ecrã EDITAR detalhes da atribuição"
+  },
+  "edit_c5fbea07": {
+    "message": "Editar",
+    "description": "Exibido na parte superior da aplicação para permitir que o utilizador edite"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Editar disciplinas",
+    "description": "O título do ecrã permite aos professores preferir e desfavorecer suas disciplinas"
+  },
+  "everyone_854554dd": {
+    "message": "Todos"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "ferramenta externa",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrar por:",
+    "description": "Indica ao utilizador que eles podem filtrar por algumas opções"
+  },
+  "filter_e3398407": {
+    "message": "Filtro"
+  },
+  "for_974cbb84": {
+    "message": "Para"
+  },
+  "for_e3490d05": {
+    "message": "Para:",
+    "description": "Campo Data de vencimento da atribuição \"Para:\""
+  },
+  "graded_25cd3fcd": {
+    "message": "Classificado",
+    "description": "Gráfico de submissões de Detalhes da Atribuição `classificado`"
+  },
+  "inbox_bb245a60": {
+    "message": "Caixa de Entrada",
+    "description": "Etiqueta a indicar que o utilizador está no separador Caixa de entrada"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instruções",
+    "description": "Título da seção Detalhes da atribuição para instruções de atribuição"
+  },
+  "late_2be42b88": {
+    "message": "Atrasado",
+    "description": "A atribuição foi ativada"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Deixar Feedback",
+    "description": "Exibido na parte superior da aplicação para permitir que o utilizador deixe feedback"
+  },
+  "logout_a9312e35": {
+    "message": "Saída"
+  },
+  "media_recording_7df9606f": {
+    "message": "gravação de multimédia",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "missing_1a256b3b": {
+    "message": "Em falta",
+    "description": "A atribuição não foi ativada"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Várias Datas Finais",
+    "description": "Informações de Detalhes da atribuição sobre datas de vencimento, quando há mais de uma data de vencimento para exibir"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Nome de registo",
+    "description": "Texto que descreve uma alcunha dada a uma disciplina"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Sem data final"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Nenhuma submissão ainda",
+    "description": "Nenhuma submissão do aluno para a atribuição dada"
+  },
+  "none_9b6c9bec": {
+    "message": "nenhum",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "not_published_73f7079": {
+    "message": "Não publicado"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Não Entregue",
+    "description": "Gráfico de submissões de Detalhes da Atribuição `classificado`"
+  },
+  "on_paper_7e67f764": {
+    "message": "no papel",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "teste on-line",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "Entrada de texto on-line",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "online_upload_ed44db51": {
+    "message": "Carregamento on-line",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "online_url_ee794b28": {
+    "message": "URL on-line",
+    "description": "Tipo de submissão de atribuição"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Abrir preferências de disciplina do utilizador",
+    "description": "Etiqueta de acessibilidade no botão do ícone para abrir as preferências do utilizador da disciplina"
+  },
+  "profile_6bd2baed": {
+    "message": "Perfil",
+    "description": "Etiqueta a indicar que o utilizador está no separador Perfil"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Pontos de Detalhes da atribuição para atribuição dada"
+  },
+  "published_4bb5209e": {
+    "message": "Publicado",
+    "description": "Texto publicado"
+  },
+  "saving_2521e616": {
+    "message": "A guardar",
+    "description": "Texto quando uma solicitação para atualizar uma atribuição é feita e o utilizador está a aguardar"
+  },
+  "see_all_ffa422ef": {
+    "message": "Ver tudo",
+    "description": "Botão para a transição da lista de disciplinas favoritas para todas as disciplinas"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Defina isso para a cor padrão da disciplina. Isso não substituirá uma configuração de cor pessoal.",
+    "description": "Descrição do seletor de cores mostrado ao utilizador"
+  },
+  "submission_types_af57bf0": {
+    "message": "Tipos de submissão",
+    "description": "Título da Seção Detalhes da Atribuição para os tipos de apresentação, (por exemplo, on-line, texto, carregamento, etc.)"
+  },
+  "submissions_11e96106": {
+    "message": "Submissões",
+    "description": "Título da seção Detalhes da atribuição para informação sobre submissões"
+  },
+  "submitted_318fad53": {
+    "message": "Entregue",
+    "description": "A atribuição foi ativada"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Ocorreu um erro ao carregar a lista de inscrições"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Ocorreu um erro inesperado. Feche este alerta e tente novamente.",
+    "description": "Uma mensagem de erro genérica"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Esta é a caixa de entrada"
+  },
+  "title_ee03d132": {
+    "message": "Título",
+    "description": "Detalhes da atribuição editar cabeçalho do título"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Erro inesperado",
+    "description": "O título genérico da mensagem de erro genérica"
+  },
+  "ungraded_147a0dce": {
+    "message": "não classificado",
+    "description": "Etiqueta para submissão de atribuição não-classificada"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Não classificado",
+    "description": "Gráfico de submissões de Detalhes da Atribuição `classificado`"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Não publicado",
+    "description": "Texto não publicado"
+  },
+  "welcome_73d18b4d": {
+    "message": "Bem-vindo!",
+    "description": "Texto de cabeçalho de boas-vindas quando o utilizador ainda não tem disciplinas."
+  }
+}

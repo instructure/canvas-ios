@@ -1,0 +1,297 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "إضافة بعض مساقاتك المفضلة ليصبح هذا المكان صفحتك الرئيسية.",
+    "description": "النص الأساسي عندما لا يوجد لديك أي مساقات على صفحة قائمة المساقات."
+  },
+  "add_courses_fd45abf": {
+    "message": "إضافة مساقات",
+    "description": "نص الزر لاتخاذ إجراء وإضافة مساق."
+  },
+  "all_courses_a7dbb853": {
+    "message": "جميع المساقات",
+    "description": "عنوان الشاشة يُظهر كافة مساقات المعلم"
+  },
+  "all_grading_periods_77974940": {
+    "message": "جميع فترات تقييم الدرجات",
+    "description": "الرأس على قائمة المهام"
+  },
+  "assignment_details_bc488179": {
+    "message": "تفاصيل المهمة",
+    "description": "عنوان شاشة تفاصيل المهام"
+  },
+  "assignments_1e02582c": {
+    "message": "المهام",
+    "description": "عنوان شاشة المهام لمساق"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "الإتاحة: مغلق"
+  },
+  "availability_e415e857": {
+    "message": "الإتاحة:",
+    "description": "حقل تاريخ استحقاق المهمة \"متوفر حتى:\""
+  },
+  "available_from_f84e4611": {
+    "message": "متوفر بدءًا من"
+  },
+  "available_from_f9e093c8": {
+    "message": "متوفر بدءًا من:",
+    "description": "حقل تاريخ استحقاق المهمة \"متوفر بدءًا من:\""
+  },
+  "available_to_434cb9f5": {
+    "message": "متاح لـ :",
+    "description": "حقل تاريخ استحقاق المهمة \"متوفر حتى:\""
+  },
+  "available_to_b7350e02": {
+    "message": "متاح لـ"
+  },
+  "back_courses": {
+    "message": "المساقات",
+    "description": "عنوان زر الرجوع للانتقال من جميع المساقات إلى المساقات التي تم إضافتها للمفضلة للتو."
+  },
+  "cancel_caeb1e68": {
+    "message": "إلغاء"
+  },
+  "choose_color_11148181": {
+    "message": "اختيار { color }",
+    "description": "تسمية إمكانية الوصول لتحديد لون"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "مسح عامل التصفية"
+  },
+  "closed_983a96fe": {
+    "message": "مغلق",
+    "description": "حقل تاريخ استحقاق المهمة \"متوفر حتى:\""
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "مغلق • { dateString } في { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "اللون",
+    "description": "تسمية العنوان لمنتقي لون المساق"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "تعذر الحصول على قائمة المهام"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } لم يتم منح الدرجة"
+  },
+  "courses_43204aae": {
+    "message": "المساقات",
+    "description": "الرأس لقائمة المساقات المفضلة"
+  },
+  "customize_course_eefa9c21": {
+    "message": "تخصيص مساق",
+    "description": "عنوان شاشة تفضيلات مساق المستخدم"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } في { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "موضوع المناقشة",
+    "description": "نوع إرسال المهمة"
+  },
+  "done_54e3d4b6": {
+    "message": "تم",
+    "description": "زر الرجوع لإعادة شاشة إلى الخلف"
+  },
+  "done_beta_feedback": {
+    "message": "تم",
+    "description": "زر لتجاهل نموذج الملاحظات."
+  },
+  "done_edit_assignment": {
+    "message": "تم",
+    "description": "زر لإغلاق الحوار المشروط"
+  },
+  "due_5d7267be": {
+    "message": "موعد الاستحقاق:",
+    "description": "حقل تاريخ استحقاق المهمة \"الاستحقاق:\" تبدو هكذا عند الانتهاء: \"الاستحقاق: 13 مارس 2019\""
+  },
+  "due_a73610f6": {
+    "message": "الاستحقاق",
+    "description": "عنوان قسم تفاصيل المهام لتاريخ استحقاق المهمة"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "تاريخ الاستحقاق { dateString } في  { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "تحرير تفاصيل المهمة",
+    "description": "عنوان شاشة تحرير تفاصيل المهام"
+  },
+  "edit_c5fbea07": {
+    "message": "تحرير",
+    "description": "يظهر في أعلى التطبيق لتمكين المستخدم من التحرير"
+  },
+  "edit_courses_1f63340f": {
+    "message": "تحرير مساقات",
+    "description": "عنوان الشاشة التي تمكّن المعلمين من إضافة مساقاتهم المفضلة وإزالة المساقات من المفضلة."
+  },
+  "everyone_854554dd": {
+    "message": "الجميع"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "أداة خارجية",
+    "description": "نوع إرسال المهمة"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "التصفية حسب:",
+    "description": "يشير إلى المستخدم الذي يمكنه التصفية بواسطة بعض الخيارات"
+  },
+  "filter_e3398407": {
+    "message": "عامل تصفية"
+  },
+  "for_974cbb84": {
+    "message": "بالنسبة لـ"
+  },
+  "for_e3490d05": {
+    "message": "لـ:",
+    "description": "حقل تاريخ استحقاق المهمة \"لـ:\""
+  },
+  "graded_25cd3fcd": {
+    "message": "تم منح الدرجات"
+  },
+  "inbox_bb245a60": {
+    "message": "صندوق الوارد",
+    "description": "التسمية التي تشير إلى أن المستخدم على علامة تبويب البريد الوارد"
+  },
+  "instructions_2f88ee72": {
+    "message": "إرشادات",
+    "description": "عنوان قسم تفاصيل المهام لإرشادات المهام"
+  },
+  "late_2be42b88": {
+    "message": "متأخر",
+    "description": "تم تسليم المهمة في وقت متأخر"
+  },
+  "leave_feedback_df88476c": {
+    "message": "اترك ملاحظات",
+    "description": "يظهر في أعلى التطبيق لتمكين المستخدم من ترك ملاحظات"
+  },
+  "logout_a9312e35": {
+    "message": "تسجيل الخروج"
+  },
+  "media_recording_7df9606f": {
+    "message": "تسجيل الوسائط",
+    "description": "نوع إرسال المهمة"
+  },
+  "missing_1a256b3b": {
+    "message": "غير منجزة",
+    "description": "لم يتم تسليم المهمة"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "مواعيد استحقاق متعددة",
+    "description": "معلومات تفاصيل المهام حول تواريخ الاستحقاق، عند وجود أكثر من تاريخ استحقاق مقرر عرضه"
+  },
+  "nickname_1e6da3ad": {
+    "message": "اللقب",
+    "description": "النص الذي يصف اللقب الممنوح لمساق"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "لا يوجد موعد استحقاق"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "لا توجد إرسالات بعد",
+    "description": "لا يوجد إرسال من الطالب للمهمة المحددة"
+  },
+  "none_9b6c9bec": {
+    "message": "بلا",
+    "description": "نوع إرسال المهمة"
+  },
+  "not_published_73f7079": {
+    "message": "غير منشور"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "لم يتم إرسالها"
+  },
+  "on_paper_7e67f764": {
+    "message": "على الورق",
+    "description": "نوع إرسال المهمة"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "اختبار موجز عبر الإنترنت",
+    "description": "نوع إرسال المهمة"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "إدخال نصي عبر الإنترنت",
+    "description": "نوع إرسال المهمة"
+  },
+  "online_upload_ed44db51": {
+    "message": "تحميل عبر الإنترنت",
+    "description": "نوع إرسال المهمة"
+  },
+  "online_url_ee794b28": {
+    "message": "عنوان URL عبر الإنترنت",
+    "description": "نوع إرسال المهمة"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "فتح تفضيلات مساقات المستخدم",
+    "description": "تسمية إمكانية الوصول على زر الأيقونة لفتح تفضيلات مستخدم المساق"
+  },
+  "profile_6bd2baed": {
+    "message": "ملف التعريف",
+    "description": "التسمية التي تشير إلى أن المستخدم على علامة تبويب ملف التعريف"
+  },
+  "pts_699bd9aa": {
+    "message": "نقاط",
+    "description": "نقاط تفاصيل المهام لمهمة محددة"
+  },
+  "published_4bb5209e": {
+    "message": "منشور",
+    "description": "النص المنشور"
+  },
+  "saving_2521e616": {
+    "message": "جارٍ الحفظ",
+    "description": "النص عند إنشاء طلب تحديث مهمة وانتظار المستخدم"
+  },
+  "see_all_ffa422ef": {
+    "message": "عرض الكل",
+    "description": "زر للانتقال من قائمة المساقات المفضلة إلى قائمة جميع المساقات"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "تعيين هذا للون الافتراضي للمساق. لن يؤدي هذا إلى تجاوز إعداد اللون الشخصي.",
+    "description": "وصف منتقي اللون الظاهر للمستخدم"
+  },
+  "submission_types_af57bf0": {
+    "message": "أنواع الإرسال",
+    "description": "عنوان قسم تفاصيل المهام لأنواع الإرسال، (أي، عبر الإنترنت، نص، تحميل، غير ذلك)"
+  },
+  "submissions_11e96106": {
+    "message": "الإرسالات",
+    "description": "عنوان قسم تفاصيل المهام للمعلومات حول الإرسالات"
+  },
+  "submitted_318fad53": {
+    "message": "تم الإرسال",
+    "description": "تم تسليم المهمة"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "حدث خطأ أثناء تحميل قائمة التسجيلات"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "حدث خطأ غير متوقع. الرجاء إغلاق هذا التنبيه والمحاولة مجددًا.",
+    "description": "رسالة خطأ عام"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "هذا هو البريد الوارد"
+  },
+  "title_ee03d132": {
+    "message": "العنوان",
+    "description": "تفاصيل المهام تحرير رأس العنوان"
+  },
+  "unexpected_error_93991f40": {
+    "message": "خطأ غير متوقع",
+    "description": "عنوان عام لرسالة خطأ عام"
+  },
+  "ungraded_147a0dce": {
+    "message": "لم يتم منح الدرجة",
+    "description": "التسمية لإرسال مهمة غير ممنوحة الدرجة"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "دون تقييم"
+  },
+  "unpublished_8b6107d6": {
+    "message": "غير منشور",
+    "description": "النص غير المنشور"
+  },
+  "welcome_73d18b4d": {
+    "message": "مرحبًا!",
+    "description": "نص رأس الترحيب عندما لا يكون لدى المستخدم أي مساقات بعد."
+  }
+}

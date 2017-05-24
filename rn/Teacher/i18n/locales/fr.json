@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Ajouter quelques-uns de vos cours préférés pour personnaliser cet endroit à votre goût",
+    "description": "Texte du corps lorsque vous n’avez aucun cours sur la page de liste des cours."
+  },
+  "add_courses_fd45abf": {
+    "message": "Ajouter cours",
+    "description": "Texte du bouton permettant d’agir et d’ajouter un cours"
+  },
+  "all_courses_a7dbb853": {
+    "message": "Tous les cours",
+    "description": "Titre de l’écran présentant tous les cours d’un enseignant donné"
+  },
+  "all_grading_periods_77974940": {
+    "message": "Toutes les périodes de notation",
+    "description": "L’en-tête de la liste des devoirs"
+  },
+  "assignment_details_bc488179": {
+    "message": "Informations sur le devoir",
+    "description": "Titre de l’écran des informations sur le devoir"
+  },
+  "assignments_1e02582c": {
+    "message": "Travaux assignés",
+    "description": "Titre de l’écran des devoirs pour un cours"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Disponibilité : Fermé"
+  },
+  "availability_e415e857": {
+    "message": "Disponibilité :",
+    "description": "Champ date limite de rendu du devoir « À disposition de : »"
+  },
+  "available_from_f84e4611": {
+    "message": "Disponible(s) depuis"
+  },
+  "available_from_f9e093c8": {
+    "message": "Disponible depuis :",
+    "description": "Champ de date limite de rendu du devoir « À disposition de : »"
+  },
+  "available_to_434cb9f5": {
+    "message": "À disposition de :",
+    "description": "Champ de date limite de rendu du devoir « À disposition de : »"
+  },
+  "available_to_b7350e02": {
+    "message": "Disponible pour"
+  },
+  "back_courses": {
+    "message": "Cours",
+    "description": "Le titre du bouton retour pour passer de tous les cours aux seuls cours favoris"
+  },
+  "cancel_caeb1e68": {
+    "message": "Annuler"
+  },
+  "choose_color_11148181": {
+    "message": "Choisir { color }",
+    "description": "Étiquette d’accessibilité pour sélectionner une couleur"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Effacer le filtre"
+  },
+  "closed_983a96fe": {
+    "message": "Fermé",
+    "description": "Champ de date limite de rendu du devoir « À disposition de : »"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Fermé le • { dateString } à { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Couleur",
+    "description": "Étiquette titre pour le sélecteur de couleurs des cours"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Impossible d’obtenir la liste des devoirs"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } non noté"
+  },
+  "courses_43204aae": {
+    "message": "Cours",
+    "description": "L’en-tête pour la liste des cours mis en favoris"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Personnaliser cours",
+    "description": "Le titre de l’écran de préférences du cours de l’utilisateur"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } à { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "sujet de discussion",
+    "description": "type de soumission de devoir"
+  },
+  "done_54e3d4b6": {
+    "message": "Terminé",
+    "description": "Bouton retour, pour revenir à l’écran précédent"
+  },
+  "done_beta_feedback": {
+    "message": "Terminé",
+    "description": "Bouton pour ignorer le formulaire de remarques"
+  },
+  "done_edit_assignment": {
+    "message": "Terminé",
+    "description": "Bouton permettant de fermer la fenêtre modale"
+  },
+  "due_5d7267be": {
+    "message": "Dû : ",
+    "description": "Champ de date limite de rendu du devoir « Pour : » Ressemblera à quelque chose comme ça une fois terminé : « À rendre le : mercredi 13 mars 2019"
+  },
+  "due_a73610f6": {
+    "message": "Dû",
+    "description": "Titre de la section des informations sur le devoir pour la date limite où le devoir doit être rendu."
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "À rendre le { dateString } à { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Modifier les Informations sur le devoir",
+    "description": "Titre de l’écran d’édition des informations sur le devoir"
+  },
+  "edit_c5fbea07": {
+    "message": "Modifier",
+    "description": "Affiché en haut de l’appli pour permettre à l’utilisateur de modifier"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Modifier cours",
+    "description": "Titre de l’écran permettant aux enseignants de placer ou retirer leurs cours des favoris"
+  },
+  "everyone_854554dd": {
+    "message": "Tout le monde"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "outil externe",
+    "description": "type de soumission de devoir"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtrer par :",
+    "description": "Indique à l’utilisateur qu’il peut utiliser un certain nombre de filtres"
+  },
+  "filter_e3398407": {
+    "message": "Filtrer"
+  },
+  "for_974cbb84": {
+    "message": "Pour"
+  },
+  "for_e3490d05": {
+    "message": "Pour :",
+    "description": "Champ de date limite de rendu du devoir « Pour : »"
+  },
+  "graded_25cd3fcd": {
+    "message": "Noté",
+    "description": "Graphique des soumissions d’informations sur le devoir « notées »"
+  },
+  "inbox_bb245a60": {
+    "message": "Boîte de réception",
+    "description": "Étiquette indiquant que l’utilisateur est sur l’onglet Boîte de réception"
+  },
+  "instructions_2f88ee72": {
+    "message": "Instructions",
+    "description": "Titre de la section des informations sur le devoir pour les instructions du devoir"
+  },
+  "late_2be42b88": {
+    "message": "En retard",
+    "description": "Le devoir a été rendu en retard"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Laisser un avis",
+    "description": "Affiché en haut de l’appli pour permettre à l’utilisateur de réagir"
+  },
+  "logout_a9312e35": {
+    "message": "Déconnexion"
+  },
+  "media_recording_7df9606f": {
+    "message": "Enregistrement de média",
+    "description": "type de soumission de devoir"
+  },
+  "missing_1a256b3b": {
+    "message": "Manquant",
+    "description": "Le devoir n’a pas été rendu"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Échéances multiples",
+    "description": "Informations sur les détails du devoir concernant les dates limites, lorsqu’il y a plus d’une date limite à afficher."
+  },
+  "nickname_1e6da3ad": {
+    "message": "Pseudonyme :",
+    "description": "Texte décrivant un surnom donné à un cours"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "Pas d'échéance"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Aucune soumission pour le moment",
+    "description": "Aucune soumission par l’élève pour le devoir donné"
+  },
+  "none_9b6c9bec": {
+    "message": "aucun",
+    "description": "type de soumission de devoir"
+  },
+  "not_published_73f7079": {
+    "message": "Non publié(e)"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Non soumis",
+    "description": "Graphique des soumissions d’informations sur le devoir « notées »"
+  },
+  "on_paper_7e67f764": {
+    "message": "sur papier",
+    "description": "type de soumission de devoir"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "Quiz en ligne",
+    "description": "type de soumission de devoir"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "entrée texte en ligne",
+    "description": "type de soumission de devoir"
+  },
+  "online_upload_ed44db51": {
+    "message": "envoi en ligne",
+    "description": "type de soumission de devoir"
+  },
+  "online_url_ee794b28": {
+    "message": "url en ligne",
+    "description": "type de soumission de devoir"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Ouvrir les préférences de cours de l’utilisateur",
+    "description": "Étiquette d’accessibilité sur l’icône cliquable permettant d’ouvrir les préférences de l’utilisateur pour les cours"
+  },
+  "profile_6bd2baed": {
+    "message": "Profil",
+    "description": "Étiquette indiquant que l’utilisateur est sur l’onglet de profil"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Points d’informations sur le devoir pour un devoir donné"
+  },
+  "published_4bb5209e": {
+    "message": "Publié(e)",
+    "description": "Texte publié"
+  },
+  "saving_2521e616": {
+    "message": "Sauvegarde",
+    "description": "Texte pour le cas où une demande de mise à jour d’un devoir est effectuée et où l’utilisateur est en attente"
+  },
+  "see_all_ffa422ef": {
+    "message": "Tout voir",
+    "description": "Bouton pour passer de la liste des cours favoris à la liste de tous les cours"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Paramétrez ceci comme couleur par défaut du cours. Cela n’écrasera pas vos paramètres personnels de couleurs.",
+    "description": "Description du sélecteur de couleurs présenté à l’utilisateur"
+  },
+  "submission_types_af57bf0": {
+    "message": "Types de soumission",
+    "description": "Titre de la section détails des devoirs pour les types de soumission (c.-à-d. en ligne, texte, envoi, etc.)"
+  },
+  "submissions_11e96106": {
+    "message": "Soumissions",
+    "description": "Titre de la section des informations sur le devoir pour les infos sur les soumissions"
+  },
+  "submitted_318fad53": {
+    "message": "Soumis",
+    "description": "Le devoir a été rendu"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Une erreur est survenue pendant le chargement de la liste des participants"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Une erreur inattendue est survenue. Veuillez fermer cette alerte et réessayer.",
+    "description": "Un message d’erreur générique"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Voici la boîte de réception"
+  },
+  "title_ee03d132": {
+    "message": "Titre",
+    "description": "En-tête de titre pour l’édition des informations sur le devoir"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Erreur inattendue",
+    "description": "Le titre générique du message d’erreur générique"
+  },
+  "ungraded_147a0dce": {
+    "message": "non noté",
+    "description": "Étiquette pour les soumissions de devoirs non notés"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "Non noté",
+    "description": "Graphique des soumissions d’informations sur le devoir « notées »"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Non publié",
+    "description": "Texte non publié"
+  },
+  "welcome_73d18b4d": {
+    "message": "Bienvenue !",
+    "description": "Texte d’en-tête d’accueil lorsque l’utilisateur n’a pas encore de cours"
+  }
+}

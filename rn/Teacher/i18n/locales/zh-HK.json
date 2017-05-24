@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "添加一些自己喜愛的課程以使此處有如家的感覺。",
+    "description": "當您在課程清單頁沒有任何課程時出現的正文文字。"
+  },
+  "add_courses_fd45abf": {
+    "message": "添加課程",
+    "description": "執行動作和添加課程的按鈕文字。"
+  },
+  "all_courses_a7dbb853": {
+    "message": "所有課程",
+    "description": "顯示所有教師的課程的屏幕標題"
+  },
+  "all_grading_periods_77974940": {
+    "message": "所有評分期限",
+    "description": "作業清單上的表頭"
+  },
+  "assignment_details_bc488179": {
+    "message": "作業詳情",
+    "description": "作業詳情屏幕的標題"
+  },
+  "assignments_1e02582c": {
+    "message": "任務",
+    "description": "課程的作業屏幕標題"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "可用性：已關閉"
+  },
+  "availability_e415e857": {
+    "message": "可用性：",
+    "description": "作業截止日期 \"可用結束日期：\" 欄"
+  },
+  "available_from_f84e4611": {
+    "message": "可用起始日期"
+  },
+  "available_from_f9e093c8": {
+    "message": "可用起始日期：",
+    "description": "作業截止日期 \"可用起始日期：\" 欄"
+  },
+  "available_to_434cb9f5": {
+    "message": "可用結束日期：",
+    "description": "作業截止日期 \"可用結束日期：\" 欄"
+  },
+  "available_to_b7350e02": {
+    "message": "可用於"
+  },
+  "back_courses": {
+    "message": "課程",
+    "description": "從所有課程到只顯示最愛課程的返回按鈕標題"
+  },
+  "cancel_caeb1e68": {
+    "message": "取消"
+  },
+  "choose_color_11148181": {
+    "message": "選擇{ color }",
+    "description": "用於選擇顏色的可訪問性標籤"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "清除篩選器"
+  },
+  "closed_983a96fe": {
+    "message": "已關閉",
+    "description": "作業截止日期 \"可用結束日期：\" 欄"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "已在 • { dateString } 關閉{ timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "顏色",
+    "description": "課程顏色選擇器的標題標籤"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "無法獲得作業清單"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } 未評分"
+  },
+  "courses_43204aae": {
+    "message": "課程",
+    "description": "最愛的課程清單的表頭"
+  },
+  "customize_course_eefa9c21": {
+    "message": "定制課程",
+    "description": "使用者課程偏好屏幕的標題"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } 於{ timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "討論主題",
+    "description": "作業提交件類型"
+  },
+  "done_54e3d4b6": {
+    "message": "完成",
+    "description": "返回到屏幕的返回按鈕"
+  },
+  "done_beta_feedback": {
+    "message": "完成",
+    "description": "解除回饋表單的按鈕。"
+  },
+  "done_edit_assignment": {
+    "message": "完成",
+    "description": "關閉模態的按鈕"
+  },
+  "due_5d7267be": {
+    "message": "到期日：",
+    "description": "作業截止日期 \"截止日期：\" 欄當完成時會看似這樣：\" 截止日期：March 13, 2019\""
+  },
+  "due_a73610f6": {
+    "message": "截止日期",
+    "description": "作業截止日期的作業詳情部分標題"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "截止於 { dateString }{ timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "編輯作業詳情",
+    "description": "作業詳情 EDIT 屏幕的標題"
+  },
+  "edit_c5fbea07": {
+    "message": "編輯",
+    "description": "在應用程式頂部顯示以便允許使用者編輯"
+  },
+  "edit_courses_1f63340f": {
+    "message": "編輯課程",
+    "description": "啟用教師收藏和取消收藏課程的屏幕標題"
+  },
+  "everyone_854554dd": {
+    "message": "所有人"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "外部工具",
+    "description": "作業提交件類型"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "篩選條件為：",
+    "description": "標示使用者可以不同的選項進行篩選"
+  },
+  "filter_e3398407": {
+    "message": "篩選器"
+  },
+  "for_974cbb84": {
+    "message": "對於"
+  },
+  "for_e3490d05": {
+    "message": "對於：",
+    "description": "作業截止日期 \"對於：\" 欄"
+  },
+  "graded_25cd3fcd": {
+    "message": "已評分",
+    "description": "作業詳情的提交件圖表「已評分」"
+  },
+  "inbox_bb245a60": {
+    "message": "收件夾",
+    "description": "用作標示使用者在收件匣選項卡上的標籤"
+  },
+  "instructions_2f88ee72": {
+    "message": "說明",
+    "description": "作業指引的作業詳情部分標題"
+  },
+  "late_2be42b88": {
+    "message": "遲交",
+    "description": "延遲提交作業"
+  },
+  "leave_feedback_df88476c": {
+    "message": "發表回饋",
+    "description": "在應用程式頂部顯示以便允許使用者發表回饋"
+  },
+  "logout_a9312e35": {
+    "message": "登出"
+  },
+  "media_recording_7df9606f": {
+    "message": "媒體記錄",
+    "description": "作業提交件類型"
+  },
+  "missing_1a256b3b": {
+    "message": "缺少",
+    "description": "尚未提交作業"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "多個到期日",
+    "description": "當要顯示多個截止日期時，關於截止日期的作業詳情資訊"
+  },
+  "nickname_1e6da3ad": {
+    "message": "暱稱",
+    "description": "描述給定的課程暱稱的文字"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "無到期日期"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "尚無提交件",
+    "description": "沒有收到學生的給定作業"
+  },
+  "none_9b6c9bec": {
+    "message": "無",
+    "description": "作業提交件類型"
+  },
+  "not_published_73f7079": {
+    "message": "未發佈"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "未提交",
+    "description": "作業詳情的提交件圖表「已評分」"
+  },
+  "on_paper_7e67f764": {
+    "message": "在紙上",
+    "description": "作業提交件類型"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "線上測驗",
+    "description": "作業提交件類型"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "線上文字輸入",
+    "description": "作業提交件類型"
+  },
+  "online_upload_ed44db51": {
+    "message": "線上上傳",
+    "description": "作業提交件類型"
+  },
+  "online_url_ee794b28": {
+    "message": "線上 URL",
+    "description": "作業提交件類型"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "開啟使用者課程偏好",
+    "description": "使用圖標按鈕上的可訪問性標籤以開啟課程使用者偏好"
+  },
+  "profile_6bd2baed": {
+    "message": "個人檔案",
+    "description": "用作標示使用者在個人檔案選項卡上的標籤"
+  },
+  "pts_699bd9aa": {
+    "message": "分數",
+    "description": "給定作業的作業詳情分數"
+  },
+  "published_4bb5209e": {
+    "message": "已發佈",
+    "description": "已發佈的文字"
+  },
+  "saving_2521e616": {
+    "message": "正在保存",
+    "description": "當使用者正在等待執行更新作業的請求時出現的文字"
+  },
+  "see_all_ffa422ef": {
+    "message": "檢視所有",
+    "description": "從最愛的課程清單轉換到所有課程清單的按扭"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "將此設定為課程的預設顏色。這不會覆蓋個人顏色設定。",
+    "description": "顯示給使用者的顏色選擇器的說明"
+  },
+  "submission_types_af57bf0": {
+    "message": "提交件類型",
+    "description": "提交件類型的作業詳情部分標題，（即線上、文字、上傳等）"
+  },
+  "submissions_11e96106": {
+    "message": "提交件",
+    "description": "提交件資訊的作業詳情部分標題"
+  },
+  "submitted_318fad53": {
+    "message": "已提交",
+    "description": "已提交作業"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "載入註冊清單時出現錯誤"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "發生意外錯誤。請關閉此提示然後再試一次。",
+    "description": "一般錯誤訊息"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "此為收件匣"
+  },
+  "title_ee03d132": {
+    "message": "標題",
+    "description": "作業詳情編輯標題表頭"
+  },
+  "unexpected_error_93991f40": {
+    "message": "意外錯誤",
+    "description": "一般錯誤訊息的通用標題"
+  },
+  "ungraded_147a0dce": {
+    "message": "未評分",
+    "description": "未評分的作業提交件的標籤"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "未評分",
+    "description": "作業詳情的提交件圖表「已評分」"
+  },
+  "unpublished_8b6107d6": {
+    "message": "已取消發佈",
+    "description": "未發佈的文字"
+  },
+  "welcome_73d18b4d": {
+    "message": "歡迎！",
+    "description": "當使用者沒有任何課程時出現的歡迎標題文字。"
+  }
+}

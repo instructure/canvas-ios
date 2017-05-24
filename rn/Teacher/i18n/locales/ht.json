@@ -1,0 +1,300 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "Ajoute kèk nan kou favori ou yo pou w ka fè plas sa a akèy ou.",
+    "description": "Tèks kò lè w pa gen okenn kou nan paj lis kou a."
+  },
+  "add_courses_fd45abf": {
+    "message": "Ajoute Kou",
+    "description": "Bouton tèks pou aji epi ajoute yon kou."
+  },
+  "all_courses_a7dbb853": {
+    "message": "Tout Kou",
+    "description": "Tit ekran ki montre tout kou yon pwofesè."
+  },
+  "all_grading_periods_77974940": {
+    "message": "Tout Peryòd Klasman",
+    "description": "Antèt lis sesyon"
+  },
+  "assignment_details_bc488179": {
+    "message": "Detay Sesyon",
+    "description": "Ekran tit detay seksyon"
+  },
+  "assignments_1e02582c": {
+    "message": "Sesyon",
+    "description": "Ekran tit sesyon  yon kou"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "Disponibilite: Fèmen"
+  },
+  "availability_e415e857": {
+    "message": "Disponibilite:",
+    "description": "Espas delè sesyon \"Disponib pou:\""
+  },
+  "available_from_f84e4611": {
+    "message": "Disponib depi"
+  },
+  "available_from_f9e093c8": {
+    "message": "Disponib depi:",
+    "description": "Espas delè sesyon \"Disponib depi:\""
+  },
+  "available_to_434cb9f5": {
+    "message": "Disponib pou:",
+    "description": "Espas delè sesyon \"Disponib pou:\""
+  },
+  "available_to_b7350e02": {
+    "message": "Disponib pou"
+  },
+  "back_courses": {
+    "message": "Kou",
+    "description": "Tit bouton retou a pou soti nan tout kou yo ale nan kou favori yo"
+  },
+  "cancel_caeb1e68": {
+    "message": "Anile"
+  },
+  "choose_color_11148181": {
+    "message": "Chwazi { color }",
+    "description": "Etikèt aksesibilité pou ka seleksyone yon koulè"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "Efase Filtè"
+  },
+  "closed_983a96fe": {
+    "message": "Fèmen",
+    "description": "Espas delè sesyon \"Disponib pou:\""
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "Fèmen • { dateString } a { timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "Koulè",
+    "description": "Etikèt tit pou seleksyonè koulè kou"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "Paka jwenn lis sesyon yo"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count } pa klase"
+  },
+  "courses_43204aae": {
+    "message": "Kou",
+    "description": "Antèt lis kou favori yo"
+  },
+  "customize_course_eefa9c21": {
+    "message": "Pèsonalize Kou",
+    "description": "Tit ekran preferans kou itilizizatè a"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString } nan { timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "sijè diskisyon",
+    "description": "tip soumisyon sesyon"
+  },
+  "done_54e3d4b6": {
+    "message": "Fini",
+    "description": "Bouton retounen pou retounen nan yon ekran"
+  },
+  "done_beta_feedback": {
+    "message": "Fini",
+    "description": "Bouton pou rejte fòmilè."
+  },
+  "done_edit_assignment": {
+    "message": "Fini",
+    "description": "Bouton pou fèmen modal"
+  },
+  "due_5d7267be": {
+    "message": "Delè:",
+    "description": "Espas delè sesyon \"Delè:\" On dirè yon bagay konsa lè li fini: \"Delè: 13 Mas 2019\""
+  },
+  "due_a73610f6": {
+    "message": "Delè",
+    "description": "Tit Detay Seksyon Sesyon pou lè sesyon an bout"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "Delè { dateString } a { timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "Modifye Detay Sesyon",
+    "description": "Ekran MODIFIKASYON Tit Detay Sesyon"
+  },
+  "edit_c5fbea07": {
+    "message": "Modifye",
+    "description": "Afiche anwo aplikasyon an pou ka otorize itilizatè modifye"
+  },
+  "edit_courses_1f63340f": {
+    "message": "Modifye Kou",
+    "description": "Tit ekran ki pèmèt pwofesè yo favorize kou yo ou non."
+  },
+  "everyone_854554dd": {
+    "message": "Tout Moun"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "zouti ekstèn",
+    "description": "tip soumisyon sesyon"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "Filtre pa:",
+    "description": "Endike itilizatè yo ke yo ka filtre pa kèk opsyon"
+  },
+  "filter_e3398407": {
+    "message": "Filtè"
+  },
+  "for_974cbb84": {
+    "message": "Pou"
+  },
+  "for_e3490d05": {
+    "message": "Pou:",
+    "description": "Delè sesyon \"Pou:\" field"
+  },
+  "graded_25cd3fcd": {
+    "message": "Klase",
+    "description": "Grafik soumisyon Detay sesyon `klase` yo"
+  },
+  "inbox_bb245a60": {
+    "message": "Bwat Resepsyon",
+    "description": "Etikèt ki montre itilizatè a nan onglè bwat resepsyon an"
+  },
+  "instructions_2f88ee72": {
+    "message": "Enstriksyon",
+    "description": "Tit Detay Seksyon Sesyon pou enstriksyon sesyon"
+  },
+  "late_2be42b88": {
+    "message": "Ta",
+    "description": "Sesyon an te aktive ta"
+  },
+  "leave_feedback_df88476c": {
+    "message": "Kite yon Kòmantè",
+    "description": "Afiche anwo aplikasyon an pou ka otorize itilizatè a kite kòmantè"
+  },
+  "logout_a9312e35": {
+    "message": "Dekoneksyon"
+  },
+  "media_recording_7df9606f": {
+    "message": "anrejistreman medya",
+    "description": "tip soumisyon sesyon"
+  },
+  "missing_1a256b3b": {
+    "message": "Manke",
+    "description": "Sesyon an pa t aktive"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "Plizyè Delè",
+    "description": "Enfòmasyon detaye sou delè yon seyon, lè gen plis pase yon delè pou afiche"
+  },
+  "nickname_1e6da3ad": {
+    "message": "Ti Non Jwèt",
+    "description": "Tèks ki dekri sinon yo bay yon kou"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "San del"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "Poko gen soumisyon",
+    "description": "Okenn soumisyon pou elèv la pou sesyon an"
+  },
+  "none_9b6c9bec": {
+    "message": "okenn",
+    "description": "tip soumisyon sesyon"
+  },
+  "not_published_73f7079": {
+    "message": "Pa Pibliye"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "Pa Soumèt",
+    "description": "Grafik soumisyon Detay sesyon `klase` yo"
+  },
+  "on_paper_7e67f764": {
+    "message": "sou papye",
+    "description": "tip soumisyon sesyon"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "quiz an liy",
+    "description": "tip soumisyon sesyon"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "sezi Tèks an liy",
+    "description": "tip soumisyon sesyon"
+  },
+  "online_upload_ed44db51": {
+    "message": "transfè an liy",
+    "description": "tip soumisyon sesyon"
+  },
+  "online_url_ee794b28": {
+    "message": "url an liy",
+    "description": "tip soumisyon sesyon"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "Ouvri preferans kou itilizatè a",
+    "description": "Etikèt aksesibilite sou bouton ikòn nan pou ouvri preferans itilizatè kou a"
+  },
+  "profile_6bd2baed": {
+    "message": "Pwofil",
+    "description": "Etikèt ki montre itilizatè a nan onglè pwofil la"
+  },
+  "pts_699bd9aa": {
+    "message": "pts",
+    "description": "Pwen Detay Sesyon pou yon sesyon"
+  },
+  "published_4bb5209e": {
+    "message": "Pibliye",
+    "description": "Tèks pibliye"
+  },
+  "saving_2521e616": {
+    "message": "Anrejistreman",
+    "description": "Lè yo fè yon demann mizajou yon sesyon e itilizatè a ap tann"
+  },
+  "see_all_ffa422ef": {
+    "message": "Gade Tout",
+    "description": "Bouton pou pase de lis kou favori yo a lis tout kou yo"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "Konfigire sa a kòm koulè pa defo kou a. Sa pa p ranplase paramèt kolè pèsonèl yo.",
+    "description": "Deskripyon koulè yo montre itilizatè a"
+  },
+  "submission_types_af57bf0": {
+    "message": "Tip Soumisyon",
+    "description": "Tit Seksyon Detay Sesyon pou tip soumisyon, (sa vle di tèks an liy, transfè elatriye)"
+  },
+  "submissions_11e96106": {
+    "message": "Soumisyon",
+    "description": "Tit Detay Seksyon Sesyon pou enfo sou soumisyon yo"
+  },
+  "submitted_318fad53": {
+    "message": "Soumèt",
+    "description": "Sesyon an aktive"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "Te gen yon erè nan chajman lis enskripsyon an"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "Te gen yon erè sanzatann. Fèmen avètisman sa a epi re eseye.",
+    "description": "Yon mesaj erè jenerik"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "Sa se bwat resepsyon an"
+  },
+  "title_ee03d132": {
+    "message": "Tit",
+    "description": "Sesyon detaye modifye antèt tit"
+  },
+  "unexpected_error_93991f40": {
+    "message": "Erè Sanzatann",
+    "description": "Tit jenerik mesaj erè jenerik"
+  },
+  "ungraded_147a0dce": {
+    "message": "pa klase",
+    "description": "Etikèt pou soumisyon sesyon ki pa klase"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "San klasifye",
+    "description": "Grafik soumisyon Detay sesyon `klase` yo"
+  },
+  "unpublished_8b6107d6": {
+    "message": "Pa Pibliye",
+    "description": "Tèks non pibliye"
+  },
+  "welcome_73d18b4d": {
+    "message": "Bienveni!",
+    "description": "Tèks antèt byenveni lè yon itilizatè poko gen kou."
+  }
+}

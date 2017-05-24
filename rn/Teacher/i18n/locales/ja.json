@@ -1,0 +1,294 @@
+{
+  "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
+    "message": "お気に入りのコースをいくつか追加して、この場所をあなたのホームにしてください。",
+    "description": "コースリストページにあなたのコースがないときの本文テキスト。"
+  },
+  "add_courses_fd45abf": {
+    "message": "コースを追加する",
+    "description": "アクションを実行し、コースを追加するためのボタンテキスト。"
+  },
+  "all_courses_a7dbb853": {
+    "message": "すべてのコース",
+    "description": "講師のコースすべてを表示する画面のタイトル"
+  },
+  "all_grading_periods_77974940": {
+    "message": "すべての採点期間",
+    "description": "課題リストのヘッダー"
+  },
+  "assignment_details_bc488179": {
+    "message": "課題の詳細",
+    "description": "課題の詳細タイトル画面"
+  },
+  "assignments_1e02582c": {
+    "message": "課題",
+    "description": "コースの課題画面のタイトル"
+  },
+  "availability_closed_429d1ba5": {
+    "message": "利用可能性：終了済み"
+  },
+  "availability_e415e857": {
+    "message": "利用可能性："
+  },
+  "available_from_f84e4611": {
+    "message": "次から使用可能"
+  },
+  "available_from_f9e093c8": {
+    "message": "利用可能となる日："
+  },
+  "available_to_434cb9f5": {
+    "message": "利用できる人："
+  },
+  "available_to_b7350e02": {
+    "message": "使用可能"
+  },
+  "back_courses": {
+    "message": "コース",
+    "description": "すべてのコースからお気に入りのコースに戻るための[戻る]ボタンのタイトル"
+  },
+  "cancel_caeb1e68": {
+    "message": "キャンセル"
+  },
+  "choose_color_11148181": {
+    "message": "選択{ color }",
+    "description": "アクセシビリティラベルを使用して色を選択する"
+  },
+  "clear_filter_5b3a182d": {
+    "message": "フィルターをクリア"
+  },
+  "closed_983a96fe": {
+    "message": "終了済み"
+  },
+  "closed_datestring_at_timestring_fab7aa9d": {
+    "message": "• { dateString }日に終了{ timeString }"
+  },
+  "color_a363e1b0": {
+    "message": "カラー",
+    "description": "コースカラーピッカーのタイトルラベル"
+  },
+  "could_not_get_list_of_assignments_76aa2c7e": {
+    "message": "課題リストを取得できませんでした"
+  },
+  "count_ungraded_bc673f29": {
+    "message": "{ count }未採点"
+  },
+  "courses_43204aae": {
+    "message": "コース",
+    "description": "お気に入りのコースリストのヘッダー"
+  },
+  "customize_course_eefa9c21": {
+    "message": "コースをカスタマイズ",
+    "description": "ユーザーコースの設定画面のタイトル"
+  },
+  "datestring_at_timestring_183180ce": {
+    "message": "{ dateString }おいて{ timeString }"
+  },
+  "discussion_topic_a7bf935": {
+    "message": "ディスカッション トピック",
+    "description": "課題提出タイプ"
+  },
+  "done_54e3d4b6": {
+    "message": "完了",
+    "description": "画面を戻すための[戻る]ボタン"
+  },
+  "done_beta_feedback": {
+    "message": "完了",
+    "description": "フィードバックフォームを閉じるボタン。"
+  },
+  "done_edit_assignment": {
+    "message": "完了",
+    "description": "モーダルを閉じるボタン"
+  },
+  "due_5d7267be": {
+    "message": "期限："
+  },
+  "due_a73610f6": {
+    "message": "期限",
+    "description": "課題期限がきたときの課題の詳細のセクションタイトル"
+  },
+  "due_datestring_at_timestring_9fac66bd": {
+    "message": "{ dateString }期限{ timeString }"
+  },
+  "edit_assignment_details_a7c96fea": {
+    "message": "課題の詳細を編集する",
+    "description": "課題の詳細タイトル[編集]画面"
+  },
+  "edit_c5fbea07": {
+    "message": "編集する",
+    "description": "ユーザーが編集できるよう、アプリの上部に表示されます"
+  },
+  "edit_courses_1f63340f": {
+    "message": "コースを編集する",
+    "description": "講師が自分のコースをお気に入りにしたり取り消したりすることを可能にする画面のタイトル"
+  },
+  "everyone_854554dd": {
+    "message": "全員"
+  },
+  "external_tool_d6eaa5c1": {
+    "message": "外部ツール",
+    "description": "課題提出タイプ"
+  },
+  "filter_by_ffcbd05b": {
+    "message": "フィルター要素：",
+    "description": "いくつかのオプションでフィルタリングできることをユーザーに示します。"
+  },
+  "filter_e3398407": {
+    "message": "フィルター"
+  },
+  "for_974cbb84": {
+    "message": "対象"
+  },
+  "for_e3490d05": {
+    "message": "対象："
+  },
+  "graded_25cd3fcd": {
+    "message": "採点済み",
+    "description": "課題の詳細提出グラフが「採点済み」"
+  },
+  "inbox_bb245a60": {
+    "message": "インボックス",
+    "description": "ユーザーが受信トレイタブにあることを示すラベル"
+  },
+  "instructions_2f88ee72": {
+    "message": "指示",
+    "description": "課題の指示用課題の詳細のセクションタイトル"
+  },
+  "late_2be42b88": {
+    "message": "遅滞",
+    "description": "課題は遅れて提出されました"
+  },
+  "leave_feedback_df88476c": {
+    "message": "フィードバックを残す",
+    "description": "ユーザーがフィードバックを残すことができるよう、アプリの上部に表示されます"
+  },
+  "logout_a9312e35": {
+    "message": "ログアウト"
+  },
+  "media_recording_7df9606f": {
+    "message": "メディアレコーディング",
+    "description": "課題提出タイプ"
+  },
+  "missing_1a256b3b": {
+    "message": "紛失",
+    "description": "課題が提出されていません"
+  },
+  "multiple_due_dates_283dd861": {
+    "message": "複数の期限日",
+    "description": "表示する予定日が複数ある場合の、期限に関する課題の詳細情報。"
+  },
+  "nickname_1e6da3ad": {
+    "message": "ニックネーム",
+    "description": "コースに与えられたニックネームを説明するテキスト"
+  },
+  "no_due_date_1d63d13b": {
+    "message": "期限日なし"
+  },
+  "no_submission_yet_709d689d": {
+    "message": "提出はまだありません",
+    "description": "指定された課題の受講者からの提出はありません"
+  },
+  "none_9b6c9bec": {
+    "message": "なし",
+    "description": "課題提出タイプ"
+  },
+  "not_published_73f7079": {
+    "message": "未公開"
+  },
+  "not_submitted_7d05fdb4": {
+    "message": "未提出",
+    "description": "課題の詳細提出グラフが「採点済み」"
+  },
+  "on_paper_7e67f764": {
+    "message": "筆記",
+    "description": "課題提出タイプ"
+  },
+  "online_quiz_7d450a0c": {
+    "message": "オンラインクイズ",
+    "description": "課題提出タイプ"
+  },
+  "online_text_entry_a1e78de0": {
+    "message": "オンラインテキスト入力",
+    "description": "課題提出タイプ"
+  },
+  "online_upload_ed44db51": {
+    "message": "オンラインアップロード",
+    "description": "課題提出タイプ"
+  },
+  "online_url_ee794b28": {
+    "message": "オンラインURL",
+    "description": "課題提出タイプ"
+  },
+  "open_user_course_preferences_32dd14a7": {
+    "message": "オープンユーザーコースの設定",
+    "description": "アイコンボタンのアクセシビリティラベルを使用して、コースのユーザー設定を開く"
+  },
+  "profile_6bd2baed": {
+    "message": "プロファイル",
+    "description": "ユーザーがプロフィールタブにあることを示すラベル"
+  },
+  "pts_699bd9aa": {
+    "message": "ポイント",
+    "description": "指定された課題の課題詳細ポイント"
+  },
+  "published_4bb5209e": {
+    "message": "公開済み",
+    "description": "公開されたテキスト"
+  },
+  "saving_2521e616": {
+    "message": "保存",
+    "description": "課題を更新する要求が行われ、ユーザーが待機中のテキスト"
+  },
+  "see_all_ffa422ef": {
+    "message": "すべてを見る",
+    "description": "お気に入りのコースリストからすべてのコースリストに移行するボタン"
+  },
+  "set_this_for_the_default_color_of_the_course_this__d86d133": {
+    "message": "これをコースのデフォルトのカラーに設定します。これは、個人的なカラーの設定に上書きしません。",
+    "description": "ユーザに表示されるカラーピッカーの説明"
+  },
+  "submission_types_af57bf0": {
+    "message": "提出タイプ",
+    "description": "課題の詳細セクション、提出タイプのタイトル（オンライン、テキスト、アップロードなど）"
+  },
+  "submissions_11e96106": {
+    "message": "提出物",
+    "description": "提出用課題の詳細のセクションタイトル"
+  },
+  "submitted_318fad53": {
+    "message": "提出済み",
+    "description": "課題が提出されています"
+  },
+  "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
+    "message": "登録リストの読み込み中にエラーが発生しました。"
+  },
+  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
+    "message": "予期しないエラーがありました。このアラートを閉じて再試行しください。",
+    "description": "一般的なエラーメッセージ"
+  },
+  "this_is_the_inbox_b957d042": {
+    "message": "これは受信トレイです"
+  },
+  "title_ee03d132": {
+    "message": "タイトル",
+    "description": "課題の詳細編集タイトルヘッダー"
+  },
+  "unexpected_error_93991f40": {
+    "message": "予期しないエラー",
+    "description": "一般的なエラーメッセージの一般的なタイトル"
+  },
+  "ungraded_147a0dce": {
+    "message": "未採点",
+    "description": "採点されていない課題提出用ラベル"
+  },
+  "ungraded_ed0c6f98": {
+    "message": "未採点",
+    "description": "課題の詳細提出グラフが「採点済み」"
+  },
+  "unpublished_8b6107d6": {
+    "message": "未公開",
+    "description": "非公開のテキスト"
+  },
+  "welcome_73d18b4d": {
+    "message": "どういたしまして！",
+    "description": "ユーザーにまだコースがない場合、「ようこそ」の歓迎ヘッダーテキスト。"
+  }
+}
