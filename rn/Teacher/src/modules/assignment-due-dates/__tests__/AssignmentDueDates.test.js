@@ -89,6 +89,6 @@ test('calls navigator.show when the edit button is pressed', () => {
 
   expect(navigator.show).toHaveBeenCalledWith(
     `/courses/1/assignments/${assignment.id}/edit`,
-    { modal: true }
+    { modal: true, modalPresentationStyle: 'formsheet' }
   )
 })

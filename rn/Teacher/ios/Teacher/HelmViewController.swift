@@ -96,7 +96,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     // This is due to the way the Screen component works and it's flow with
     // setting the screenConfig and doing a prerender
     private func screenDidRender() {
-        if let title = screenConfig[PropKeys.title] as? String, let subtitle = screenConfig[PropKeys.subtitle] as? String {
+        if let title = screenConfig[PropKeys.title] as? String, let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
             self.navigationItem.titleView = titleView(with: title, and: subtitle, given: screenConfig)
         }
     }

@@ -106,7 +106,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   renderRow = ({ item, index }: { item: Assignment, index: number }) => {
     let rowProps:{[key: string]: any} = {}
     if (this.displayMode === 'regular') {
-      let color = item.id === this.state.selectedAssignmentID ? colors.cellUnderlay : 'white'
+      let color = item.id === this.state.selectedAssignmentID ? colors.grey1 : 'white'
       rowProps['selectedColor'] = color
       rowProps['underlayColor'] = 'white'
     }

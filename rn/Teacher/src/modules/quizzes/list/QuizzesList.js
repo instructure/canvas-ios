@@ -96,11 +96,13 @@ export class QuizzesList extends Component<any, Props, any> {
     return (
       <Screen
         navBarColor={this.props.courseColor}
+        navBarStyle='dark'
         drawUnderNavBar={true}
         title={i18n({
           default: 'Quizzes',
           description: 'Title of the quizzes screen for a course',
-        })}>
+        })}
+        subtitle={this.props.courseName}>
         <View style={styles.container}>
           <SectionList
             sections={this._getData()}
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
 export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps): State {
   let quizzes = []
   let courseColor = null
+  let courseName = null
   if (entities &&
     entities.courses &&
     entities.courses[courseID] &&
@@ -136,11 +139,13 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
     quizzes = refs
       .map(ref => entities.quizzes[ref].data)
     courseColor = course.color
+    courseName = course.course.name
   }
 
   return {
     quizzes,
     courseColor,
+    courseName,
   }
 }
 

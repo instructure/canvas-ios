@@ -80,6 +80,9 @@ describe('map state to prop', () => {
         courses: {
           '1': {
             color: '#fff',
+            course: {
+              name: 'Foo',
+            },
             quizzes: {
               pending: 0,
               error: null,
