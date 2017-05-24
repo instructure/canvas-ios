@@ -23,11 +23,14 @@ jest
     alert: jest.fn(),
   }))
   .mock('../../../../routing')
+  .mock('WebView', () => 'WebView')
+  .mock('../../../assignment-details/components/AssignmentDatesEditor', () => 'AssignmentDatesEditor')
   .mock('../../../../routing/Screen')
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/quiz'),
   ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../api/canvas-api/__templates__/error'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
 }
@@ -45,6 +48,9 @@ describe('QuizEdit', () => {
       courseID: '1',
       updateQuiz: jest.fn(),
       error: null,
+      updateAssignment: jest.fn(),
+      refreshAssignment: jest.fn(),
+      assignment: null,
     }
   })
 
@@ -205,6 +211,43 @@ describe('QuizEdit', () => {
     expect(props.updateQuiz).toHaveBeenCalledWith(props.quiz, props.courseID, props.quiz)
   })
 
+  it('should validate the assignment dates on done', () => {
+    const validate = jest.fn()
+    const createNodeMock = ({ type }) => {
+      if (type === 'AssignmentDatesEditor') {
+        return {
+          validate,
+          updateAssignment: jest.fn(),
+        }
+      }
+    }
+    // $FlowFixMe
+    props.assignment = template.assignment()
+    const tree = render(props, { createNodeMock }).toJSON()
+    const doneButton: any = explore(tree).selectRightBarButton('quizzes.edit.doneButton')
+    doneButton.action()
+    expect(validate).toHaveBeenCalled()
+  })
+
+  it('updates assignment on done', () => {
+    const originalAssignment = template.assignment({ name: 'Original Assignment' })
+    const updatedAssignment = { ...originalAssignment, name: 'Updated assignment' }
+    const createNodeMock = ({ type }) => {
+      if (type === 'AssignmentDatesEditor') {
+        return {
+          validate: jest.fn(),
+          updateAssignment: (assignment) => updatedAssignment,
+        }
+      }
+    }
+    // $FlowFixMe
+    props.assignment = originalAssignment
+    const tree = render(props, { createNodeMock }).toJSON()
+    const doneButton: any = explore(tree).selectRightBarButton('quizzes.edit.doneButton')
+    doneButton.action()
+    expect(props.updateAssignment).toHaveBeenCalledWith(props.courseID, updatedAssignment, originalAssignment)
+  })
+
   it('shows modal while saving', () => {
     const component = render(props)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
@@ -242,8 +285,9 @@ describe('QuizEdit', () => {
     jest.useFakeTimers()
     Alert.alert = jest.fn()
     const component = render(props)
+    const error = { response: template.error('this is an error') }
     // $FlowFixMe
-    component.update(<QuizEdit {...props} error='this is an error' />)
+    component.update(<QuizEdit {...props} error={error} />)
     jest.runAllTimers()
     expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, 'this is an error')
   })
@@ -313,13 +357,40 @@ describe('QuizEdit', () => {
     expect(component.toJSON()).toMatchSnapshot()
   })
 
+  it('should refresh the assignment on unmount if assignment given', () => {
+    props.refreshAssignment = jest.fn()
+
+    // without assignment
+    props.assignment = null
+    let component = render(props)
+    component.getInstance().componentWillUnmount()
+    expect(props.refreshAssignment).not.toHaveBeenCalled()
+
+    // given assignment
+    // $FlowFixMe
+    props.assignment = template.assignment()
+    component = render(props)
+    component.getInstance().componentWillUnmount()
+    expect(props.refreshAssignment).toHaveBeenCalled()
+  })
+
   function testRender (props: any) {
     expect(render(props)).toMatchSnapshot()
   }
 
-  function render (props: any): any {
+  function render (props: any, options?: any): any {
+    const opts = options || {
+      createNodeMock: ({ type }) => {
+        if (type === 'AssignmentDatesEditor') {
+          return {
+            validate: jest.fn(),
+            updateAssignment: jest.fn(a => a),
+          }
+        }
+      },
+    }
     return renderer.create(
-      <QuizEdit {...props} />
+      <QuizEdit {...props} />, opts
     )
   }
 })
@@ -367,6 +438,98 @@ describe('map state to props', () => {
       },
       pending: 1,
       error: 'this is an error',
+      assignment: null,
+    })
+  })
+
+  it('should map assignment_id to assignment prop', () => {
+    const quiz = template.quiz({ id: '1', assignment_id: '2' })
+    const assignment = template.assignment({ id: '2' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        assignments: {
+          '2': {
+            data: assignment,
+            pending: 0,
+            submissions: { refs: [], pending: 0 },
+            pendingComments: {},
+          },
+        },
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 1,
+            error: 'this is an error',
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' })
+    ).toMatchObject({
+      assignment,
+    })
+  })
+
+  it('should map assignment pending to prop', () => {
+    const quiz = template.quiz({ id: '1', assignment_id: '2' })
+    const assignment = template.assignment({ id: '2' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        assignments: {
+          '2': {
+            data: assignment,
+            pending: 1,
+            submissions: { refs: [], pending: 0 },
+            pendingComments: {},
+          },
+        },
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 0,
+            error: null,
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' })
+    ).toMatchObject({
+      pending: 1,
+    })
+  })
+
+  it('should map assignment error to top prop', () => {
+    const quiz = template.quiz({ id: '1', assignment_id: '2' })
+    const assignment = template.assignment({ id: '2' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        assignments: {
+          '2': {
+            data: assignment,
+            pending: 0,
+            error: 'Request failed',
+            submissions: { refs: [], pending: 0 },
+            pendingComments: {},
+          },
+        },
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 0,
+            error: null,
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' })
+    ).toMatchObject({
+      error: 'Request failed',
     })
   })
 })

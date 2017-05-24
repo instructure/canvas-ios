@@ -78,7 +78,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
               description: 'Shown at the top of the app to allow the user to edit',
             }),
             testID: 'assignment-deets.edit-btn',
-            action: this.editAssignment.bind(this),
+            action: this.editAssignment,
           },
         ]}
       >
@@ -127,12 +127,15 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
     this.viewSubmissions(type)
   }
 
-  editAssignment () {
+  editAssignment = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   viewDueDateDetails = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`)
+    const route = `/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`
+    this.props.navigator.show(route, { modal: false }, {
+      onEditPressed: this.editAssignment,
+    })
   }
 
   viewAllSubmissions = () => {

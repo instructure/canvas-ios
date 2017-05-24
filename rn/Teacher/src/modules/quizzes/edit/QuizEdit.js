@@ -26,10 +26,20 @@ import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import formatter, { SCORING_POLICIES, QUIZ_TYPES } from '../formatter'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
-import Actions from './actions'
-import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import { default as QuizEditActions } from './actions'
+import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
 import Navigator from '../../../routing/Navigator'
 import Screen from '../../../routing/Screen'
+import AssignmentActions from '../../assignments/actions'
+import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
+
+const { updateAssignment, refreshAssignment } = AssignmentActions
+
+const Actions = {
+  ...QuizEditActions,
+  updateAssignment,
+  refreshAssignment,
+}
 
 type OwnProps = {
   quizID: string,
@@ -39,6 +49,7 @@ type OwnProps = {
 type State = {
   quiz: Quiz,
   assignmentGroups: { [string]: AssignmentGroup },
+  assignment: ?Assignment,
 }
 
 type Props = State & OwnProps & Actions & AsyncState & {
@@ -53,6 +64,8 @@ function booleanTransformer<T> (truthy: T, falsey: T): (b: boolean) => T {
 const PickerItem = PickerIOS.Item
 
 export class QuizEdit extends Component<any, Props, any> {
+  datesEditor: AssignmentDatesEditor
+  scrollView: KeyboardAwareScrollView
 
   constructor (props: Props) {
     super(props)
@@ -61,11 +74,18 @@ export class QuizEdit extends Component<any, Props, any> {
       pending: false,
       quiz: props.quiz,
       pickers: {},
+      assignment: props.assignment,
     }
   }
 
-  componentWillReceiveProps ({ quiz, pending, error }: Props) {
+  componentWillReceiveProps ({ quiz, pending, error, assignment }: Props) {
     const isPending = pending > 0
+
+    if (error) {
+      this.setState({ pending: false })
+      this._handleError(parseErrorMessage(error.response))
+      return
+    }
 
     if (this.state.pending && !isPending) {
       this.setState({ pending: false })
@@ -79,11 +99,16 @@ export class QuizEdit extends Component<any, Props, any> {
         ...quiz,
         ...this.state.quiz,
       },
+      assignment: assignment && {
+        ...assignment,
+        ...this.state.assignment,
+      },
     })
+  }
 
-    if (error) {
-      this._handleError(error)
-      return
+  componentWillUnmount () {
+    if (this.state.assignment) {
+      this.props.refreshAssignment(this.props.courseID, this.state.assignment.id)
     }
   }
 
@@ -125,6 +150,7 @@ export class QuizEdit extends Component<any, Props, any> {
           <KeyboardAwareScrollView
             style={style.container}
             keyboardShouldPersistTaps='handled'
+            ref={scrollView => { this.scrollView = scrollView }}
           >
             <Heading1 style={style.heading}>{i18n('Title')}</Heading1>
             <RowWithTextInput
@@ -388,7 +414,13 @@ export class QuizEdit extends Component<any, Props, any> {
                 placeholder={i18n('Enter code')}
               />
             }
-            <Heading1 style={style.heading} accessible={false}> </Heading1>
+            <AssignmentDatesEditor
+              assignment={this.state.assignment || { ...quiz, all_dates: quiz.all_dates.filter(d => d.base) }}
+              ref={c => { this.datesEditor = c }}
+              navigator={this.props.navigator}
+              canEditAssignees={Boolean(this.state.assignment)}
+              canAddDueDates={Boolean(this.state.assignment)}
+            />
           </KeyboardAwareScrollView>
         </View>
       </Screen>
@@ -472,7 +504,21 @@ export class QuizEdit extends Component<any, Props, any> {
 
   _donePressed = () => {
     this.setState({ pending: true })
-    this.props.updateQuiz(this.state.quiz, this.props.courseID, this.props.quiz)
+
+    // Update assignment overrides
+    if (this.state.quiz.quiz_type === 'assignment' && this.state.assignment) {
+      const invalidDatesPosition = this.datesEditor.validate()
+      if (invalidDatesPosition) {
+        this.setState({ pending: false })
+        this.scrollView.scrollToPosition(invalidDatesPosition.x, invalidDatesPosition.y, true)
+        return
+      }
+      const updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
+      this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignment)
+    }
+
+    const updatedQuiz = this.datesEditor.updateAssignment({ ...this.state.quiz })
+    this.props.updateQuiz(updatedQuiz, this.props.courseID, this.props.quiz)
   }
 
   _cancelPressed = () => {
@@ -538,18 +584,37 @@ const style = StyleSheet.create({
 export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: OwnProps): State {
   const entity = entities.quizzes[quizID]
   const quiz = entity.data
-  const { error, pending } = entity
-  const assignmentGroupRefs = entities.courses[courseID].assignmentGroups.refs
-  const assignmentGroups = assignmentGroupRefs.reduce((incoming, ref) => ({
-    ...incoming,
-    [ref]: entities.assignmentGroups[ref].group,
-  }), {})
+  let { error, pending } = entity
+
+  let assignmentGroups = {}
+  if (entities.courses &&
+    entities.courses[courseID] &&
+    entities.courses[courseID].assignmentGroups &&
+    entities.courses[courseID].assignmentGroups.refs) {
+    const assignmentGroupRefs = entities.courses[courseID].assignmentGroups.refs
+    assignmentGroups = assignmentGroupRefs.reduce((incoming, ref) => ({
+      ...incoming,
+      [ref]: entities.assignmentGroups[ref].group,
+    }), {})
+  }
+
+  let assignment = null
+  if (quiz.assignment_id &&
+    entities.assignments &&
+    entities.assignments[quiz.assignment_id] &&
+    entities.assignments[quiz.assignment_id].data) {
+    const assignmentEntity = entities.assignments[quiz.assignment_id]
+    assignment = entities.assignments[quiz.assignment_id].data
+    pending = pending + assignmentEntity.pending
+    error = error || assignmentEntity.error
+  }
 
   return {
     quiz,
     assignmentGroups,
     pending,
     error,
+    assignment,
   }
 }
 

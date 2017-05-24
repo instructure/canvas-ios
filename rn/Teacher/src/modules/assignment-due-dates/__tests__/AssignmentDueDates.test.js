@@ -4,8 +4,11 @@ import 'react-native'
 import React from 'react'
 import { AssignmentDueDates } from '../AssignmentDueDates'
 import renderer from 'react-test-renderer'
+import explore from '../../../../test/helpers/explore'
 
-jest.mock('../../../routing')
+jest
+  .mock('../../../routing')
+  .mock('../../../routing/Screen')
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -17,6 +20,7 @@ test('renders', () => {
   const props = {
     assignment: template.assignment(),
     navigator: template.navigator(),
+    onEditPressed: jest.fn(),
   }
 
   let tree = renderer.create(
@@ -67,6 +71,7 @@ test('renders with overrides and specific student ids and sections', () => {
       [user.id]: user,
     },
     navigator: template.navigator(),
+    onEditPressed: jest.fn(),
   }
 
   let tree = renderer.create(
@@ -76,19 +81,13 @@ test('renders with overrides and specific student ids and sections', () => {
   expect(refreshUsers).toBeCalled()
 })
 
-test('calls navigator.show when the edit button is pressed', () => {
-  let navigator = template.navigator({
-    show: jest.fn(),
-  })
+test('calls onEditPressed when the edit button is pressed', () => {
+  const onEditPressed = jest.fn()
   const assignment = template.assignment()
   let tree = renderer.create(
-    <AssignmentDueDates navigator={navigator} assignmentID={assignment.id} courseID='1' assignment={assignment} />
-  )
-
-  tree.getInstance().editAssignment()
-
-  expect(navigator.show).toHaveBeenCalledWith(
-    `/courses/1/assignments/${assignment.id}/edit`,
-    { modal: true, modalPresentationStyle: 'formsheet' }
-  )
+    <AssignmentDueDates onEditPressed={onEditPressed} assignmentID={assignment.id} courseID='1' assignment={assignment} />
+  ).toJSON()
+  const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
+  editButton.action()
+  expect(onEditPressed).toHaveBeenCalled()
 })

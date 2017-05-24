@@ -12,7 +12,7 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('WebView', () => 'WebView')
-  .mock('../../submissions/components/QuizSubmissionBreakdownGraphSection.js')
+  .mock('../../submissions/components/QuizSubmissionBreakdownGraphSection', () => 'QuizSubmissionBreakdownGraphSection')
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
 
@@ -34,10 +34,18 @@ describe('QuizDetails', () => {
       quizID: '1',
       courseID: '1',
       assignmentGroup: null,
+      assignment: null,
     }
   })
 
   it('renders', () => {
+    testRender(props)
+  })
+
+  it('renders published state', () => {
+    props.quiz.published = false
+    testRender(props)
+    props.quiz.published = true
     testRender(props)
   })
 
@@ -184,6 +192,59 @@ describe('QuizDetails', () => {
   it('renders without a description', () => {
     props.quiz.description = ''
     testRender(props)
+  })
+
+  it('renders assignment due dates', () => {
+    // $FlowFixMe
+    props.assignment = template.assignment()
+    testRender(props)
+  })
+
+  it('pushes due dates screen', () => {
+    props.courseID = '1'
+    // $FlowFixMe
+    props.assignment = template.assignment({ id: '1' })
+    props.navigator.show = jest.fn()
+    const tree = render(props).toJSON()
+    const dueDates: any = explore(tree).selectByID('quizzes.details.viewDueDatesButton')
+    dueDates.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/1/due_dates', { modal: false }, {
+      onEditPressed: expect.any(Function),
+    })
+  })
+
+  it('handles submission press', () => {
+    props.navigator.show = jest.fn()
+    props.courseID = '1'
+    props.quizID = '1'
+    const tree = render(props).toJSON()
+    const submissions: any = explore(tree).query(({ type }) => type === 'QuizSubmissionBreakdownGraphSection')[0]
+    submissions.props.onPress('graded')
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/1/submissions', { modal: false }, {
+      filterType: 'graded',
+    })
+    submissions.props.onPress(null)
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/1/submissions')
+  })
+
+  it('navigates to all submissions', () => {
+    props.navigator.show = jest.fn()
+    props.courseID = '1'
+    props.quizID = '1'
+    const tree = render(props).toJSON()
+    const row: any = explore(tree).selectByID('quizzes.details.viewAllSubmissionsRow')
+    row.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/1/submissions')
+  })
+
+  it('navigates to quiz preview', () => {
+    props.courseID = '1'
+    props.quizID = '1'
+    props.navigator.show = jest.fn()
+    const tree = render(props).toJSON()
+    const btn: any = explore(tree).selectByID('quizzes.details.previewQuiz.btn')
+    btn.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/1/preview', { modal: true })
   })
 
   function testRender (props: any) {

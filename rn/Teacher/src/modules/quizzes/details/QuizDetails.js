@@ -11,6 +11,7 @@ import i18n from 'format-message'
 
 import Actions from './actions'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
+import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import WebContainer from '../../../common/components/WebContainer'
@@ -19,6 +20,7 @@ import {
   Text,
 } from '../../../common/text'
 import colors from '../../../common/colors'
+import Images from '../../../images'
 import refresh from '../../../utils/refresh'
 import formatter from '../formatter'
 import Screen from '../../../routing/Screen'
@@ -81,8 +83,19 @@ export class QuizDetails extends Component<any, Props, any> {
               { Boolean(quiz.points_possible) &&
                 <Text style={style.points}>{`${quiz.points_possible} ${i18n('pts')}`}</Text>
               }
-              <PublishedIcon published={true} />
+              <PublishedIcon published={quiz.published} />
           </View>
+          </AssignmentSection>
+
+          <AssignmentSection
+            title={i18n('Due')}
+            accessibilityLabel={i18n('Due Dates, Double tap for details.')}
+            image={Images.assignments.calendar}
+            showDisclosureIndicator={Boolean(this.props.assignment)}
+            onPress={this.props.assignment && this._viewDueDates}
+            testID='quizzes.details.viewDueDatesButton'
+          >
+            <AssignmentDates assignment={this.props.assignment || quiz} />
           </AssignmentSection>
 
           <AssignmentSection title={i18n('Description')}>
@@ -97,6 +110,7 @@ export class QuizDetails extends Component<any, Props, any> {
           <AssignmentSection
             title={i18n('Submissions')}
             onPress={this.viewAllSubmissions}
+            testID='quizzes.details.viewAllSubmissionsRow'
             showDisclosureIndicator>
             <QuizSubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} quizID={this.props.quizID} />
           </AssignmentSection>
@@ -108,6 +122,7 @@ export class QuizDetails extends Component<any, Props, any> {
             accessible={true}
             accessibilityLabel={i18n('Preview Quiz')}
             accessibilityTraits='button'
+            testID='quizzes.details.previewQuiz.btn'
           >
             <View style={style.previewQuizButton}>
               <Text style={style.previewQuizButtonTitle}>{i18n('Preview Quiz')}</Text>
@@ -176,6 +191,13 @@ export class QuizDetails extends Component<any, Props, any> {
 
   _editQuiz = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quiz.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  _viewDueDates = () => {
+    if (this.props.assignment) {
+      const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
+      this.props.navigator.show(route, { modal: false }, { onEditPressed: this._editQuiz })
+    }
   }
 }
 

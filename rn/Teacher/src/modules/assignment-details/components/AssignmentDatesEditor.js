@@ -32,6 +32,8 @@ type Props = {
   assignment: Assignment,
   scrollTo: Function,
   navigator: Navigator,
+  canEditAssignees?: boolean,
+  canAddDates?: boolean,
 }
 
 // Which date is currently being modified, or none at all
@@ -466,16 +468,20 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     let removeButton = this.renderRemoveButton(date)
     let detailTextStyle = date.title ? styles.detailText : styles.detailTextMissing
 
+    const canEditAssignees = this.props.canEditAssignees || this.props.canEditAssignees == null
+
     return (<View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
               <EditSectionHeader title={title} style={styles.headerText}>
                 {removeButton}
               </EditSectionHeader>
-              <TouchableHighlight style={styles.row} onPress={() => this.selectAssignees(date)}>
+              <TouchableHighlight style={styles.row} onPress={canEditAssignees && (() => this.selectAssignees(date))}>
                 <View style={styles.rowContainer}>
                   <Text style={assigneeStyle}>{i18n('Assignees')}</Text>
                   <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
                     <Text style={detailTextStyle}>{date.title || i18n('None')}</Text>
-                    <DisclosureIndicator />
+                    { this.props.canEditAssignees &&
+                      <DisclosureIndicator />
+                    }
                   </View>
                 </View>
               </TouchableHighlight>
@@ -500,11 +506,16 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   render (): React.Element<View> {
     const rows = this.state.dates.map(this.renderDate)
     const button = this.renderButton()
+    const showButton = this.props.canAddDueDates || this.props.canAddDueDates == null
     return (<View style={styles.container}>
               {rows}
               <View style={styles.space} />
-              {button}
-              <View style={styles.space} />
+              { showButton &&
+                <View>
+                  {button}
+                  <View style={styles.space} />
+                </View>
+              }
             </View>)
   }
 }

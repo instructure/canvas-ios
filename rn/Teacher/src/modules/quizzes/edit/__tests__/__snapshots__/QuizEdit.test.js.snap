@@ -2226,32 +2226,46 @@ exports[`QuizEdit changes assignment group 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": "2",
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "graded_survey",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -4490,32 +4504,46 @@ exports[`QuizEdit changes quiz type 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "graded_survey",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -7024,32 +7052,46 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -9558,32 +9600,46 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -11800,32 +11856,46 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -14042,32 +14112,46 @@ exports[`QuizEdit renders 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -16294,32 +16378,46 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -18536,32 +18634,46 @@ exports[`QuizEdit shows modal while saving 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -20800,32 +20912,46 @@ exports[`QuizEdit shows quiz time picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -23162,32 +23288,46 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": true,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": true,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -25524,32 +25664,46 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": true,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -27886,32 +28040,46 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": true,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -30128,32 +30296,46 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -32493,32 +32675,46 @@ exports[`QuizEdit toggles "access code" 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": "",
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -34735,32 +34931,46 @@ exports[`QuizEdit toggles "access code" 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -37308,32 +37518,46 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": "1970-01-01T00:00:00.000Z",
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -39876,32 +40100,46 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": "1970-01-01T00:00:00.000Z",
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -42118,32 +42356,46 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -44480,32 +44732,46 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": true,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -46722,32 +46988,46 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": "until_after_last_attempt",
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -48964,32 +49244,46 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -51537,32 +51831,46 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": "1970-01-01T00:00:00.000Z",
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -54105,32 +54413,46 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": "1970-01-01T00:00:00.000Z",
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -56347,32 +56669,46 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -58589,32 +58925,46 @@ exports[`QuizEdit toggles publish 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -60831,32 +61181,46 @@ exports[`QuizEdit toggles publish 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": false,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -63073,32 +63437,46 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": true,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -65315,32 +65693,46 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -67680,32 +68072,46 @@ exports[`QuizEdit toggles time limit 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -69922,32 +70328,46 @@ exports[`QuizEdit toggles time limit 2`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": false,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -72495,32 +72915,46 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": "1970-01-01T00:00:01.000Z",
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": null,
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -75068,32 +75502,46 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
             </View>
           </View>
         </TouchableHighlight>
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "#2D3B45",
-                "marginBottom": 8,
-                "marginLeft": 16,
-                "marginTop": 16,
-              },
-            ]
+        <AssignmentDatesEditor
+          assignment={
+            Object {
+              "access_code": null,
+              "all_dates": Array [],
+              "allowed_attempts": -1,
+              "assignment_group_id": null,
+              "cant_go_back": false,
+              "description": "This is quiz 1",
+              "due_at": "2013-01-23T23:59:00-07:00",
+              "hide_correct_answers_at": null,
+              "hide_results": null,
+              "html_url": "http://mobiledev.instructure.com/courses/1/quizzes",
+              "id": "1",
+              "lock_at": null,
+              "one_question_at_a_time": false,
+              "points_possible": 20,
+              "published": true,
+              "question_count": 12,
+              "quiz_type": "assignment",
+              "scoring_policy": "keep_latest",
+              "show_correct_answers": true,
+              "show_correct_answers_at": "1970-01-01T00:00:01.000Z",
+              "show_correct_answers_last_attempt": false,
+              "shuffle_answers": false,
+              "time_limit": null,
+              "title": "Quiz 1",
+            }
           }
-        >
-           
-        </Text>
+          canAddDueDates={false}
+          canEditAssignees={false}
+          navigator={
+            Object {
+              "dismiss": [Function],
+              "dismissAllModals": [Function],
+              "show": [Function],
+              "traitCollection": [Function],
+            }
+          }
+        />
       </View>
     </RCTScrollView>
   </View>

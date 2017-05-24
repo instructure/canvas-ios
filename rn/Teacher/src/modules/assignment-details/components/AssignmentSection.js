@@ -25,7 +25,7 @@ export default class AssignmentSection extends Component {
     }
 
     return (
-      <TouchableHighlight onPress={this.props.onPress}>
+      <TouchableHighlight onPress={this.props.onPress} testID={this.props.testID}>
         <View style={[assignmentSectionStyles.container, this.props.style]}>
           <View style={dividerStyle}></View>
           <View style={assignmentSectionStyles.innerContainer}>

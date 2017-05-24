@@ -219,25 +219,6 @@ exports[`render correctly 1`] = `
           >
             Everyone
           </Text>
-          <View
-            style={
-              Object {
-                "alignSelf": "center",
-                "backgroundColor": "transparent",
-                "borderColor": "#c7c7cc",
-                "borderRightWidth": 2,
-                "borderTopWidth": 2,
-                "height": 10,
-                "marginLeft": 7,
-                "transform": Array [
-                  Object {
-                    "rotate": "45deg",
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
         </View>
       </View>
     </View>
@@ -646,97 +627,99 @@ exports[`render correctly 1`] = `
       }
     }
   />
-  <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
-    accessible={true}
-    hasTVPreferredFocus={undefined}
-    hitSlop={undefined}
-    isTVSelectable={true}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-        },
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "borderTopColor": "#C7CDD1",
-          "borderTopWidth": 0.5,
-          "height": 54,
-        },
-      ]
-    }
-    testID={undefined}
-    tvParallaxProperties={undefined}
-  >
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 54,
+          },
+        ]
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "marginRight": 8,
+              "tintColor": "#368BD8",
+              "width": 18,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Add Due Date
+        </Text>
+      </View>
+    </View>
     <View
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "white",
-          "flex": 1,
-          "flexDirection": "row",
-          "paddingLeft": 16,
-          "paddingRight": 16,
+          "backgroundColor": "#F5F5F5",
+          "height": 24,
         }
       }
-    >
-      <Image
-        source={1}
-        style={
-          Object {
-            "height": 18,
-            "marginRight": 8,
-            "tintColor": "#368BD8",
-            "width": 18,
-          }
-        }
-      />
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#008EE2",
-              "fontSize": 16,
-              "fontWeight": "600",
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        Add Due Date
-      </Text>
-    </View>
+    />
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#F5F5F5",
-        "height": 24,
-      }
-    }
-  />
 </View>
 `;
 
@@ -961,25 +944,6 @@ exports[`render correctly with overide 1`] = `
           >
             None
           </Text>
-          <View
-            style={
-              Object {
-                "alignSelf": "center",
-                "backgroundColor": "transparent",
-                "borderColor": "#c7c7cc",
-                "borderRightWidth": 2,
-                "borderTopWidth": 2,
-                "height": 10,
-                "marginLeft": 7,
-                "transform": Array [
-                  Object {
-                    "rotate": "45deg",
-                  },
-                ],
-                "width": 10,
-              }
-            }
-          />
         </View>
       </View>
     </View>
@@ -1388,96 +1352,98 @@ exports[`render correctly with overide 1`] = `
       }
     }
   />
-  <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
-    accessible={true}
-    hasTVPreferredFocus={undefined}
-    hitSlop={undefined}
-    isTVSelectable={true}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      Array [
-        Object {
-          "backgroundColor": "transparent",
-        },
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "borderTopColor": "#C7CDD1",
-          "borderTopWidth": 0.5,
-          "height": 54,
-        },
-      ]
-    }
-    testID={undefined}
-    tvParallaxProperties={undefined}
-  >
+  <View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hasTVPreferredFocus={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "height": 54,
+          },
+        ]
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flex": 1,
+            "flexDirection": "row",
+            "paddingLeft": 16,
+            "paddingRight": 16,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "marginRight": 8,
+              "tintColor": "#368BD8",
+              "width": 18,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#008EE2",
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Add Due Date
+        </Text>
+      </View>
+    </View>
     <View
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "white",
-          "flex": 1,
-          "flexDirection": "row",
-          "paddingLeft": 16,
-          "paddingRight": 16,
+          "backgroundColor": "#F5F5F5",
+          "height": 24,
         }
       }
-    >
-      <Image
-        source={1}
-        style={
-          Object {
-            "height": 18,
-            "marginRight": 8,
-            "tintColor": "#368BD8",
-            "width": 18,
-          }
-        }
-      />
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#008EE2",
-              "fontSize": 16,
-              "fontWeight": "600",
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        Add Due Date
-      </Text>
-    </View>
+    />
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#F5F5F5",
-        "height": 24,
-      }
-    }
-  />
 </View>
 `;

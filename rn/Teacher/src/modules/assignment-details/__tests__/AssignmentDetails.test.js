@@ -77,14 +77,16 @@ test('calls navigator.show when the edit button is pressed', () => {
 
 test('routes to the right place when due dates details is requested', () => {
   let navigator = template.navigator({
-    push: jest.fn(),
+    show: jest.fn(),
   })
   let details = renderer.create(
     <AssignmentDetails {...defaultProps} navigator={navigator} />
   ).getInstance()
   details.viewDueDateDetails()
   expect(navigator.show).toHaveBeenCalledWith(
-    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/due_dates`
+    `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/due_dates`,
+    { modal: false },
+    { onEditPressed: expect.any(Function) }
   )
 })
 

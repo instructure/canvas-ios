@@ -66,25 +66,24 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
     },
   }),
   [updateAssignment.toString()]: handleAsync({
-    pending: (state, { updatedAssignment, originalAssignment }) => {
-      let id = updatedAssignment.id
-      let entity = { ...state[id], error: null }
-      entity.data = updatedAssignment
-      entity.pending = (entity.pending || 0) + 1
-      return {
-        ...state,
-        ...{ [id]: entity },
-      }
-    },
-    resolved: (state, { updatedAssignment, originalAssignment }) => {
-      let id = updatedAssignment.id
-      let entity = { ...state[id], error: null }
-      entity.pending--
-      return {
-        ...state,
-        ...{ [id]: entity },
-      }
-    },
+    pending: (state, { updatedAssignment, originalAssignment }) => ({
+      ...state,
+      [updatedAssignment.id]: {
+        error: null,
+        pending: (state[updatedAssignment.id] && state[updatedAssignment.id].pending || 0) + 1,
+        data: {
+          ...updatedAssignment,
+        },
+      },
+    }),
+    resolved: (state, { result, updatedAssignment, originalAssignment }) => ({
+      ...state,
+      [updatedAssignment.id]: {
+        error: null,
+        pending: state[updatedAssignment.id] && state[updatedAssignment.id].pending ? Math.max(0, state[updatedAssignment.id].pending - 1) : 0,
+        data: updatedAssignment,
+      },
+    }),
     rejected: (state, { updatedAssignment, originalAssignment, error }) => {
       let id = originalAssignment.id
       let entity = { ...state[id] }

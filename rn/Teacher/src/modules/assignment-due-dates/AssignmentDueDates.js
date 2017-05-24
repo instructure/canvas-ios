@@ -30,7 +30,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
   }
 
   editAssignment = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.onEditPressed()
   }
 
   renderRow (date: AssignmentDate, dates: AssignmentDates): React.Element<View> {

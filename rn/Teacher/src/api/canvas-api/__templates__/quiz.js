@@ -26,4 +26,5 @@ export const quiz: Template<Quiz> = template({
   cant_go_back: false,
   access_code: null,
   assignment_group_id: null,
+  all_dates: [],
 })

@@ -26,6 +26,7 @@ export type Quiz = {
   cant_go_back: boolean,
   access_code: ?string,
   assignment_group_id: ?string,
+  all_dates?: AssignmentDate[],
 }
 
 export type QuizSubmission = {
