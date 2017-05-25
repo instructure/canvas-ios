@@ -24,8 +24,7 @@ describe('QuizRow', () => {
       onPress: jest.fn(),
       index: 0,
       tintColor: '#fff',
-      selectedColor: '#f00',
-      underlayColor: '#222',
+      selected: false,
     }
   })
 
@@ -43,8 +42,8 @@ describe('QuizRow', () => {
     testRender(props)
   })
 
-  it('renders with no underlayColor', () => {
-    props.underlayColor = ''
+  it('renders selected', () => {
+    props.selected = true
     testRender(props)
   })
 

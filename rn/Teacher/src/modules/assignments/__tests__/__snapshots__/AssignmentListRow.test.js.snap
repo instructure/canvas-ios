@@ -1031,7 +1031,7 @@ exports[`renders correctly with selected props 1`] = `
               "paddingTop": 8,
             },
             Object {
-              "backgroundColor": "#f00",
+              "backgroundColor": "white",
             },
           ]
         }

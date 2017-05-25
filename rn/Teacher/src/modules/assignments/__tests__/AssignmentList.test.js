@@ -40,9 +40,11 @@ beforeEach(() => {
     navigator: template.navigator(),
     gradingPeriods: [gradingPeriod],
     refreshAssignmentList: jest.fn(),
+    updateCourseDetailsSelectedTabSelectedRow: jest.fn(),
     refresh: jest.fn(),
     refreshing: false,
     courseColor: '#fff',
+    selectedRowID: template.assignment().id,
   }
 })
 
@@ -219,41 +221,26 @@ test('does not select first item on empty data', () => {
   expect(instance.didSelectFirstItem).toBe(false)
 })
 
-test('trait collection did change', () => {
+test('onTraitCollectionChange calls trait collection properties', () => {
+  defaultProps.navigator.traitCollection = jest.fn()
   let tree = renderer.create(
     <AssignmentList {...defaultProps} />
   )
 
   let instance = tree.getInstance()
-  let traits = { 'window': { 'horizontal': 'regular' } }
-  instance.selectFirstListItemIfNecessary = jest.fn()
+  instance.onTraitCollectionChange()
+
+  expect(defaultProps.navigator.traitCollection).toHaveBeenCalled()
+})
+
+test('traitCollectionDidChange sets display mode to regular', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.getInstance()
+  let traits = { window: { horizontal: 'regular' } }
   instance.traitCollectionDidChange(traits)
 
-  expect(instance.selectFirstListItemIfNecessary).toHaveBeenCalled()
-})
-
-test('test row color in regular device orientation', () => {
-  let tree = renderer.create(
-    <AssignmentList {...defaultProps} />
-  )
-
-  let instance = tree.getInstance()
-  let assignment = instance.data[0].assignments[0]
-  instance.state.selectedRowID = assignment.id
-  instance.isRegularScreenDisplayMode = true
-  let rowColorProps = instance.rowColorProps(assignment)
-  let expected = { 'selectedColor': '#f5f5f5', 'underlayColor': 'white' }
-  expect(rowColorProps).toEqual(expected)
-})
-
-test('test row color in compact device orientation', () => {
-  let tree = renderer.create(
-    <AssignmentList {...defaultProps} />
-  )
-
-  let instance = tree.getInstance()
-  let assignment = instance.data[0].assignments[0]
-  instance.isRegularScreenDisplayMode = false
-  let rowColorProps = instance.rowColorProps(assignment)
-  expect(rowColorProps).toEqual({})
+  expect(instance.isRegularScreenDisplayMode).toBe(true)
 })

@@ -3,6 +3,7 @@
 import { AssignmentListActions } from '../actions'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../test/helpers/async'
+import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../../courses/actions'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
@@ -88,6 +89,19 @@ test('cancel update assignment action', () => {
     type: 'assignment.cancel-update',
     payload: {
       originalAssignment: assignment,
+    },
+  })
+})
+
+test('should update selected assignment row', async() => {
+  const rowID = '1'
+  const actions = AssignmentListActions()
+  const result = actions.updateCourseDetailsSelectedTabSelectedRow(rowID)
+
+  expect(result).toMatchObject({
+    type: UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION,
+    payload: {
+      rowID: rowID,
     },
   })
 })

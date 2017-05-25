@@ -16,7 +16,6 @@ import Actions from './actions'
 import refresh from '../../../utils/refresh'
 import QuizRow from './QuizRow'
 import { SectionHeader } from '../../../common/text'
-import colors from '../../../common/colors'
 import Screen from '../../../routing/Screen'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
@@ -46,16 +45,6 @@ export class QuizzesList extends Component<any, Props, any> {
   didSelectFirstItem = false
   data: any = []
 
-  constructor (props: Props) {
-    super(props)
-
-    this.state = {
-      quizzes: [],
-      courseColor: '',
-      selectedRowID: '0',
-    }
-  }
-
   onTraitCollectionChange () {
     this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
   }
@@ -81,26 +70,15 @@ export class QuizzesList extends Component<any, Props, any> {
     return null
   }
 
-  rowColorProps = (item: Quiz) => {
-    let rowProps: { [key: string]: any } = {}
-    let nonSelectedColor = 'white'
-    if (this.isRegularScreenDisplayMode) {
-      let selectedColor = item.id === this.state.selectedRowID ? colors.grey1 : nonSelectedColor
-      rowProps['selectedColor'] = selectedColor
-      rowProps['underlayColor'] = nonSelectedColor
-    }
-    return rowProps
-  }
-
   renderRow = ({ item, index }: { item: Quiz, index: number }) => {
-    let rowProps = this.rowColorProps(item)
+    let selected = this.isRegularScreenDisplayMode && this.props.selectedRowID === item.id
     return (
       <QuizRow
         quiz={item}
         index={index}
         tintColor={this.props.courseColor}
         onPress={this._selectedQuiz}
-        {...rowProps}
+        selected={selected}
       />
     )
   }
@@ -110,7 +88,7 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   _selectedQuiz = (quiz: Quiz) => {
-    this.setState({ selectedRowID: quiz.id })
+    this.props.updateCourseDetailsSelectedTabSelectedRow(quiz.id)
     this.props.navigator.show(quiz.html_url)
   }
 
@@ -189,6 +167,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   let quizzes = []
   let courseColor = null
   let courseName = null
+  let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
+
   if (entities &&
     entities.courses &&
     entities.courses[courseID] &&
@@ -206,6 +186,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
     quizzes,
     courseColor,
     courseName,
+    selectedRowID,
   }
 }
 

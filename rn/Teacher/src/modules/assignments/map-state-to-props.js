@@ -10,6 +10,7 @@ export type AssignmentListDataProps = {
   +courseName: string,
   +assignmentGroups: AssignmentGroup[],
   +gradingPeriods: Array<GradingPeriod & { assignmentRefs: [string] }>,
+  +selectedRowID: string,
 }
 
 export type AssignmentListActionProps = {
@@ -17,6 +18,7 @@ export type AssignmentListActionProps = {
   +refreshAssignment: () => Promise<Assignment>,
   +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
   +cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
+  +updateCourseDetailsSelectedTabSelectedRow: (rowID: string) => void,
 }
 
 export type AssignmentListProps = AssignmentListDataProps
@@ -37,6 +39,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
       gradingPeriods: [],
       courseColor: '',
       courseName: '',
+      selectedRowID: '',
     }
   }
 
@@ -61,6 +64,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
     }))
     .sort((gp1, gp2) => localeSort(gp1.title, gp2.title))
 
+  let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
+
   return {
     pending,
     error,
@@ -68,5 +73,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
     gradingPeriods,
     courseColor,
     courseName,
+    selectedRowID,
   }
 }

@@ -75,6 +75,10 @@ export type QuizSubmissionState = AsyncState & {
   data: QuizSubmission,
 }
 
+export type CourseDetailsTabSelectedRowState = {
+  rowID: ?string
+}
+
 export type CoursesState = { [string]: CourseState & CourseContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroupState & AssignmentGroupContentState }
 export type AssignmentsState = { [string]: AssignmentDetailState & AssignmentContentState }
@@ -96,6 +100,7 @@ export type Entities = {
   submissions: SubmissionsState,
   quizzes: QuizzesState,
   quizSubmissions: QuizSubmissionsState,
+  courseDetailsTabSelectedRow: CourseDetailsTabSelectedRowState,
 }
 
 export type FavoriteCoursesState = AsyncState

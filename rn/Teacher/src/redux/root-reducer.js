@@ -1,7 +1,7 @@
 // @flow
 
 import { combineReducers, Reducer, Action } from 'redux'
-import { courses } from '../modules/courses/courses-reducer'
+import { courses, courseDetailsTabSelectedRow } from '../modules/courses/courses-reducer'
 import { favoriteCourses } from '../modules/courses/favorites/favorite-courses-reducer'
 import { gradingPeriods } from '../modules/assignments/grading-periods-reducer'
 import { assignments } from '../modules/assignments/assignment-entities-reducer'
@@ -28,6 +28,7 @@ const entities = combineReducers({
   submissions: composeReducers(submissions, quizAssignmentSubmissions),
   quizzes,
   quizSubmissions,
+  courseDetailsTabSelectedRow,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

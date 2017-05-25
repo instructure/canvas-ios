@@ -30,6 +30,7 @@ export type RowProps = {
   accessibilityLabel: ?string,
   accessibilityTraits: ?string | ?string[],
   titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
+  selected: boolean,
 }
 
 export default class Row extends Component<any, RowProps, any> {
@@ -71,13 +72,15 @@ export default class Row extends Component<any, RowProps, any> {
       accessibilityLabel: this.props.accessibilityLabel,
     }
 
-    let underlayColorProps = {}
-    if (this.props.underlayColor) {
-      underlayColorProps.underlayColor = this.props.underlayColor
+    let underlayProps = {}
+    let backgroundColor = 'white'
+    if (this.props.selected) {
+      underlayProps.underlayColor = color.grey1
+      backgroundColor = color.grey1
     }
 
-    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayColorProps} >
-              <View style={[style.container, { backgroundColor: this.props.selectedColor || 'white' }]}>
+    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps} >
+              <View style={[style.container, { backgroundColor }]}>
                 { this.props.renderImage && this.props.renderImage() }
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
                 <View style={style.titlesContainer}>

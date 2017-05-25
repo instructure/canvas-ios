@@ -19,6 +19,7 @@ const emptyAppState: AppState = {
     submissions: {},
     quizzes: {},
     quizSubmissions: {},
+    courseDetailsTabSelectedRow: { rowID: '' },
   },
 }
 

@@ -42,6 +42,7 @@ test('map state to props should work', async () => {
           assignmentRefs: [],
         },
       },
+      courseDetailsTabSelectedRow: { rowID: '' },
     },
     favoriteCourses: [],
   })
@@ -59,12 +60,14 @@ test('map state to props should work', async () => {
     refreshAssignment: jest.fn(),
     refresh: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
+    updateCourseDetailsSelectedTabSelectedRow: jest.fn(),
     refreshing: false,
     pending: 0,
     navigator: template.navigator(),
     gradingPeriods: [],
     courseColor: 'greenish',
     courseName: 'blah blah',
+    selectedRowID: '0',
   }
 
   const result = mapStateToProps(state, props)

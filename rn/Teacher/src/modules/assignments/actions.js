@@ -3,6 +3,7 @@
 import { createAction } from 'redux-actions'
 import canvas from './../../api/canvas-api'
 import type { AssignmentListActionProps } from './map-state-to-props'
+import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../courses/actions'
 
 export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps = (api) => ({
   refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string) => {
@@ -31,6 +32,9 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
   }),
   cancelAssignmentUpdate: createAction('assignment.cancel-update', (originalAssignment) => {
     return { originalAssignment }
+  }),
+  updateCourseDetailsSelectedTabSelectedRow: createAction(UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION, (rowID: string) => {
+    return { rowID }
   }),
 })
 

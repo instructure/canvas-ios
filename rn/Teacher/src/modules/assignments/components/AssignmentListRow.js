@@ -20,8 +20,7 @@ type Props = {
   assignment: Assignment,
   tintColor: string,
   onPress: (Assignment) => void,
-  selectedColor: string,
-  underlayColor: string,
+  selected: boolean,
 }
 
 export default class AssignmentListRow extends Component<any, Props, any> {
@@ -56,7 +55,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
   }
 
   render (): Element<View> {
-    const { selectedColor, assignment, underlayColor } = this.props
+    const { assignment, selected } = this.props
     return (
       <View>
         <View style={styles.row}>
@@ -69,8 +68,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
             disclosureIndicator={true}
             testID={`assignment-${assignment.id}`}
             onPress={this.onPress}
-            selectedColor={selectedColor}
-            underlayColor={underlayColor}
+            selected={selected}
             height='auto'
           >
             {this.ungradedBubble(assignment)}

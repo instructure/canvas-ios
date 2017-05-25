@@ -26,6 +26,7 @@ describe('QuizzesList', () => {
       quizzes: [],
       navigator: template.navigator(),
       courseColor: null,
+      updateCourseDetailsSelectedTabSelectedRow: jest.fn(),
     }
   })
 
@@ -98,32 +99,6 @@ describe('QuizzesList', () => {
     instance.traitCollectionDidChange(traits)
 
     expect(instance.selectFirstListItemIfNecessary).toHaveBeenCalled()
-  })
-
-  it('row color in regular device orientation', () => {
-    let tree = renderer.create(
-      <QuizzesList {...props} />
-    )
-
-    let instance = tree.getInstance()
-    let quiz = template.quiz()
-    instance.state.selectedRowID = quiz.id
-    instance.isRegularScreenDisplayMode = true
-    let rowColorProps = instance.rowColorProps(quiz)
-    let expected = { 'selectedColor': '#f5f5f5', 'underlayColor': 'white' }
-    expect(rowColorProps).toEqual(expected)
-  })
-
-  it('row color in compact device orientation', () => {
-    let tree = renderer.create(
-      <QuizzesList {...props} />
-    )
-
-    let instance = tree.getInstance()
-    let quiz = template.quiz()
-    instance.isRegularScreenDisplayMode = false
-    let rowColorProps = instance.rowColorProps(quiz)
-    expect(rowColorProps).toEqual({})
   })
 })
 

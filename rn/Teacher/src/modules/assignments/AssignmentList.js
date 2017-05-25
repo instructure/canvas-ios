@@ -23,7 +23,6 @@ import AssignmentListSectionView from './components/AssignmentListSection'
 import { LinkButton } from '../../common/buttons'
 import { Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
-import colors from '../../common/colors'
 import { type TraitCollection } from '../../routing/Navigator'
 import { isRegularDisplayMode } from '../../routing/utils'
 
@@ -33,7 +32,6 @@ type State = {
     title: string,
   },
   filterApplied: boolean,
-  selectedRowID: string,
 }
 
 const DEFAULT_FILTER = {
@@ -55,7 +53,6 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.state = {
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
-      selectedRowID: '0',
     }
   }
 
@@ -111,20 +108,9 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     return data[`${sectionID}:${rowID}`]
   }
 
-  rowColorProps = (item: Assignment) => {
-    let rowProps:{[key: string]: any} = {}
-    let nonSelectedColor = 'white'
-    if (this.isRegularScreenDisplayMode) {
-      let selectedColor = item.id === this.state.selectedRowID ? colors.grey1 : nonSelectedColor
-      rowProps['selectedColor'] = selectedColor
-      rowProps['underlayColor'] = nonSelectedColor
-    }
-    return rowProps
-  }
-
   renderRow = ({ item, index }: { item: Assignment, index: number }) => {
-    let rowColorProps = this.rowColorProps(item)
-    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} {...rowColorProps} />
+    let selected = this.isRegularScreenDisplayMode && this.props.selectedRowID === item.id
+    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} selected={selected } />
   }
 
   renderSectionHeader = ({ section }: any) => {
@@ -132,7 +118,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   selectedAssignment = (assignment: Assignment) => {
-    this.setState({ selectedRowID: assignment.id })
+    this.props.updateCourseDetailsSelectedTabSelectedRow(assignment.id)
     this.props.navigator.show(assignment.html_url)
   }
 

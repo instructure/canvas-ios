@@ -19,14 +19,12 @@ export type Props = {
   onPress: (quiz: Quiz) => void,
   index: number,
   tintColor: ?string,
-  selectedColor: string,
-  underlayColor: string,
+  selected: boolean,
 }
 
 export default class QuizRow extends Component<any, Props, any> {
   render () {
-    const { quiz, selectedColor, underlayColor } = this.props
-
+    const { quiz, selected } = this.props
     return (
       <View>
         <View style={{ marginLeft: -12 }}>
@@ -39,8 +37,7 @@ export default class QuizRow extends Component<any, Props, any> {
             testID={`quiz-row-${this.props.index}`}
             onPress={this._onPress}
             height='auto'
-            underlayColor={underlayColor}
-            selectedColor={selectedColor}
+            selected={selected}
           >
             <DotSeparated style={style.subtitle} separated={this._dueDate(quiz)} />
             <View style={style.details}>

@@ -2,7 +2,7 @@
 
 import { Reducer, Action, combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
-import CourseListActions from './actions'
+import CourseListActions, { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from './actions'
 import CourseSettingsActions from './settings/actions'
 import handleAsync from '../../utils/handleAsync'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
@@ -144,4 +144,15 @@ export function courses (state: CoursesState = defaultState, action: Action): Co
     }
   }
   return coursesData(newState, action)
+}
+
+export function courseDetailsTabSelectedRow (state: CourseDetailsTabSelectedRowState = { rowID: '' }, action: Action): CourseDetailsTabSelectedRowState {
+  if (action.type === UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION) {
+    const rowID = action.payload.rowID
+    return {
+      ...state,
+      ...{ rowID },
+    }
+  }
+  return state
 }
