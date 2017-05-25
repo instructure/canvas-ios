@@ -9,7 +9,8 @@ type ShowOptions = {
   embedInNavigationController: boolean,
 }
 
-export type TraitCollection = { [scope: string]: { [key: string]: string} }
+export type TraitCollectionType = 'compact' | 'regular' | 'unspecified'
+export type TraitCollection = { [scope: string]: { [key: string]: TraitCollectionType} }
 
 export default class Navigator {
   moduleName = ''

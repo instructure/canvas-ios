@@ -57,21 +57,21 @@ describe('routing util tests', () => {
     expect(result).toMatchObject(expected)
   })
 
-  test('isCompactScreenDisplayMode with empty traits', () => {
+  test('isRegularDisplayMode with empty traits', () => {
     let traits = {}
-    const result = utils.isCompactScreenDisplayMode(traits)
-    expect(result).toBe(true)
-  })
-
-  test('isCompactScreenDisplayMode with regular traits', () => {
-    let traits = { 'window': { 'horizontal': 'regular' } }
-    const result = utils.isCompactScreenDisplayMode(traits)
+    const result = utils.isRegularDisplayMode(traits)
     expect(result).toBe(false)
   })
 
-  test('isCompactScreenDisplayMode with compact traits', () => {
-    let traits = { 'window': { 'horizontal': 'compact' } }
-    const result = utils.isCompactScreenDisplayMode(traits)
+  test('isRegularDisplayMode with regular traits', () => {
+    let traits = { 'window': { 'horizontal': 'regular' } }
+    const result = utils.isRegularDisplayMode(traits)
     expect(result).toBe(true)
+  })
+
+  test('isRegularDisplayMode with compact traits', () => {
+    let traits = { 'window': { 'horizontal': 'compact' } }
+    const result = utils.isRegularDisplayMode(traits)
+    expect(result).toBe(false)
   })
 })

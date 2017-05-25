@@ -78,7 +78,7 @@ describe('QuizzesList', () => {
 
     let instance = tree.getInstance()
     instance.didSelectFirstItem = false
-    instance.isCompactScreenDisplayMode = false
+    instance.isRegularScreenDisplayMode = true
     let quiz = instance.data[0].data[0]
     instance._selectedQuiz = jest.fn()
     instance.selectFirstListItemIfNecessary()
@@ -98,6 +98,32 @@ describe('QuizzesList', () => {
     instance.traitCollectionDidChange(traits)
 
     expect(instance.selectFirstListItemIfNecessary).toHaveBeenCalled()
+  })
+
+  it('row color in regular device orientation', () => {
+    let tree = renderer.create(
+      <QuizzesList {...props} />
+    )
+
+    let instance = tree.getInstance()
+    let quiz = template.quiz()
+    instance.state.selectedRowID = quiz.id
+    instance.isRegularScreenDisplayMode = true
+    let rowColorProps = instance.rowColorProps(quiz)
+    let expected = { 'selectedColor': '#f5f5f5', 'underlayColor': 'white' }
+    expect(rowColorProps).toEqual(expected)
+  })
+
+  it('row color in compact device orientation', () => {
+    let tree = renderer.create(
+      <QuizzesList {...props} />
+    )
+
+    let instance = tree.getInstance()
+    let quiz = template.quiz()
+    instance.isRegularScreenDisplayMode = false
+    let rowColorProps = instance.rowColorProps(quiz)
+    expect(rowColorProps).toEqual({})
   })
 })
 

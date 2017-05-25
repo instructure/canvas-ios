@@ -16,9 +16,10 @@ import Actions from './actions'
 import refresh from '../../../utils/refresh'
 import QuizRow from './QuizRow'
 import { SectionHeader } from '../../../common/text'
+import colors from '../../../common/colors'
 import Screen from '../../../routing/Screen'
 import { type TraitCollection } from '../../../routing/Navigator'
-import { isCompactScreenDisplayMode } from '../../../routing/utils'
+import { isRegularDisplayMode } from '../../../routing/utils'
 
 type OwnProps = {
   courseID: string,
@@ -41,22 +42,32 @@ const HEADERS = {
 }
 
 export class QuizzesList extends Component<any, Props, any> {
-  isCompactScreenDisplayMode: boolean
+  isRegularScreenDisplayMode: boolean
   didSelectFirstItem = false
   data: any = []
+
+  constructor (props: Props) {
+    super(props)
+
+    this.state = {
+      quizzes: [],
+      courseColor: '',
+      selectedRowID: '0',
+    }
+  }
 
   onTraitCollectionChange () {
     this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
   }
 
   traitCollectionDidChange (traits: TraitCollection) {
-    this.isCompactScreenDisplayMode = isCompactScreenDisplayMode(traits)
+    this.isRegularScreenDisplayMode = isRegularDisplayMode(traits)
     this.selectFirstListItemIfNecessary()
   }
 
   selectFirstListItemIfNecessary () {
     let firstQuiz = this._firstQuizInList()
-    if (!this.didSelectFirstItem && !this.isCompactScreenDisplayMode && firstQuiz) {
+    if (!this.didSelectFirstItem && this.isRegularScreenDisplayMode && firstQuiz) {
       this._selectedQuiz(firstQuiz)
       this.didSelectFirstItem = true
     }
@@ -70,13 +81,26 @@ export class QuizzesList extends Component<any, Props, any> {
     return null
   }
 
+  rowColorProps = (item: Quiz) => {
+    let rowProps: { [key: string]: any } = {}
+    let nonSelectedColor = 'white'
+    if (this.isRegularScreenDisplayMode) {
+      let selectedColor = item.id === this.state.selectedRowID ? colors.grey1 : nonSelectedColor
+      rowProps['selectedColor'] = selectedColor
+      rowProps['underlayColor'] = nonSelectedColor
+    }
+    return rowProps
+  }
+
   renderRow = ({ item, index }: { item: Quiz, index: number }) => {
+    let rowProps = this.rowColorProps(item)
     return (
       <QuizRow
         quiz={item}
         index={index}
         tintColor={this.props.courseColor}
         onPress={this._selectedQuiz}
+        {...rowProps}
       />
     )
   }
@@ -86,6 +110,7 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   _selectedQuiz = (quiz: Quiz) => {
+    this.setState({ selectedRowID: quiz.id })
     this.props.navigator.show(quiz.html_url)
   }
 

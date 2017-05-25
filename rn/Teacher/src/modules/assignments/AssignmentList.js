@@ -25,7 +25,7 @@ import { Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
 import colors from '../../common/colors'
 import { type TraitCollection } from '../../routing/Navigator'
-import { isCompactScreenDisplayMode } from '../../routing/utils'
+import { isRegularDisplayMode } from '../../routing/utils'
 
 type State = {
   currentFilter: {
@@ -33,7 +33,7 @@ type State = {
     title: string,
   },
   filterApplied: boolean,
-  selectedAssignmentID: string,
+  selectedRowID: string,
 }
 
 const DEFAULT_FILTER = {
@@ -45,7 +45,7 @@ const DEFAULT_FILTER = {
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
   state: State
-  isCompactScreenDisplayMode: boolean
+  isRegularScreenDisplayMode: boolean
   data: any = []
   didSelectFirstItem = false
 
@@ -55,7 +55,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.state = {
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
-      selectedAssignmentID: '0',
+      selectedRowID: '0',
     }
   }
 
@@ -64,13 +64,13 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   traitCollectionDidChange (traits: TraitCollection) {
-    this.isCompactScreenDisplayMode = isCompactScreenDisplayMode(traits)
+    this.isRegularScreenDisplayMode = isRegularDisplayMode(traits)
     this.selectFirstListItemIfNecessary()
   }
 
   selectFirstListItemIfNecessary () {
     let assignment = null
-    if (!this.didSelectFirstItem && !this.isCompactScreenDisplayMode && (assignment = this.firstAssignmentInList())) {
+    if (!this.didSelectFirstItem && this.isRegularScreenDisplayMode && (assignment = this.firstAssignmentInList())) {
       this.selectedAssignment(assignment)
       this.didSelectFirstItem = true
     }
@@ -111,14 +111,20 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     return data[`${sectionID}:${rowID}`]
   }
 
-  renderRow = ({ item, index }: { item: Assignment, index: number }) => {
+  rowColorProps = (item: Assignment) => {
     let rowProps:{[key: string]: any} = {}
-    if (this.displayMode === 'regular') {
-      let color = item.id === this.state.selectedAssignmentID ? colors.grey1 : 'white'
-      rowProps['selectedColor'] = color
-      rowProps['underlayColor'] = 'white'
+    let nonSelectedColor = 'white'
+    if (this.isRegularScreenDisplayMode) {
+      let selectedColor = item.id === this.state.selectedRowID ? colors.grey1 : nonSelectedColor
+      rowProps['selectedColor'] = selectedColor
+      rowProps['underlayColor'] = nonSelectedColor
     }
-    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} {...rowProps} />
+    return rowProps
+  }
+
+  renderRow = ({ item, index }: { item: Assignment, index: number }) => {
+    let rowColorProps = this.rowColorProps(item)
+    return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} {...rowColorProps} />
   }
 
   renderSectionHeader = ({ section }: any) => {
@@ -126,7 +132,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   selectedAssignment = (assignment: Assignment) => {
-    this.setState({ selectedAssignmentID: assignment.id })
+    this.setState({ selectedRowID: assignment.id })
     this.props.navigator.show(assignment.html_url)
   }
 

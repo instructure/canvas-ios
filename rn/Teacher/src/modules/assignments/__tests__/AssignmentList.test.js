@@ -194,7 +194,7 @@ test('selects first item on regular horizontal trait collection', () => {
 
   let instance = tree.getInstance()
   instance.didSelectFirstItem = false
-  instance.displayMode = 'regular'
+  instance.isRegularScreenDisplayMode = true
   let assignment = instance.data[0].assignments[0]
   instance.selectedAssignment = jest.fn()
   instance.selectFirstListItemIfNecessary()
@@ -210,7 +210,7 @@ test('does not select first item on empty data', () => {
 
   let instance = tree.getInstance()
   instance.didSelectFirstItem = false
-  instance.displayMode = 'regular'
+  instance.isRegularScreenDisplayMode = true
   instance.data = [{ assignments: [] }]
   instance.selectedAssignment = jest.fn()
   instance.selectFirstListItemIfNecessary()
@@ -230,4 +230,30 @@ test('trait collection did change', () => {
   instance.traitCollectionDidChange(traits)
 
   expect(instance.selectFirstListItemIfNecessary).toHaveBeenCalled()
+})
+
+test('test row color in regular device orientation', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.getInstance()
+  let assignment = instance.data[0].assignments[0]
+  instance.state.selectedRowID = assignment.id
+  instance.isRegularScreenDisplayMode = true
+  let rowColorProps = instance.rowColorProps(assignment)
+  let expected = { 'selectedColor': '#f5f5f5', 'underlayColor': 'white' }
+  expect(rowColorProps).toEqual(expected)
+})
+
+test('test row color in compact device orientation', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} />
+  )
+
+  let instance = tree.getInstance()
+  let assignment = instance.data[0].assignments[0]
+  instance.isRegularScreenDisplayMode = false
+  let rowColorProps = instance.rowColorProps(assignment)
+  expect(rowColorProps).toEqual({})
 })

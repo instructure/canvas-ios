@@ -57,10 +57,6 @@ export default class AssignmentListRow extends Component<any, Props, any> {
 
   render (): Element<View> {
     const { selectedColor, assignment, underlayColor } = this.props
-    let additionalProps = {}
-    if (underlayColor) {
-      additionalProps.underlayColor = underlayColor
-    }
     return (
       <View>
         <View style={styles.row}>
@@ -74,7 +70,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
             testID={`assignment-${assignment.id}`}
             onPress={this.onPress}
             selectedColor={selectedColor}
-            {...additionalProps}
+            underlayColor={underlayColor}
             height='auto'
           >
             {this.ungradedBubble(assignment)}

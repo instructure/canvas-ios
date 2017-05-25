@@ -42,15 +42,20 @@ function processConfig (config: Object, id: string, configureCallback: (event: s
   })
   return obj
 }
-
-function isCompactScreenDisplayMode (traits: TraitCollection): boolean {
+/*
+*   Display Modes: < compact | regular | unspecified >
+*   regular = ipad in landscape orientation
+*   compact = most other device orientation sizes , iphone, iphone+ in portrait
+*   unspecified = view has not registered traits yet
+*/
+function isRegularDisplayMode (traits: TraitCollection): boolean {
   try {
-    return traits.window.horizontal === 'compact'
+    return traits.window.horizontal === 'regular'
   } catch (e) {}
-  return true   //  default to true
+  return false   //  default to false
 }
 
 module.exports = {
   processConfig,
-  isCompactScreenDisplayMode,
+  isRegularDisplayMode,
 }
