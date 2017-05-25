@@ -80,7 +80,7 @@ describe('AllCourseList', () => {
 
     const courseCard = explore(tree).selectByID(course.course_code) || {}
     courseCard.props.onPress()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1')
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1', { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' })
   })
 
   it('open course user prefs', () => {
