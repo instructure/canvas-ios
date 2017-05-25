@@ -181,7 +181,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   ]
                 }
               >
-                This student does not have a submission for this assignment.
+                This assignment does not allow submissions.
               </Text>
             </View>
           </View>

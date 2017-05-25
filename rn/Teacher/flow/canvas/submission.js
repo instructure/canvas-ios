@@ -14,6 +14,12 @@ export type SubmissionType
   | 'online_url'
   | 'online_upload'
   | 'media_recording'
+  | 'on_paper'
+  | 'none'
+  | 'external_tool'
+  | 'discussion_topic'
+  | 'online_quiz'
+  | 'file_upload'
 
 export type Submission = {
   id: string,

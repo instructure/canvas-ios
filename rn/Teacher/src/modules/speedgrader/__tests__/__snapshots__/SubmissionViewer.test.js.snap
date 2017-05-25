@@ -10,18 +10,91 @@ exports[`SubmissionViewer renders a discussion_topic submission 1`] = `
     }
   }
 >
-  <Webview
-    source={
-      Object {
-        "uri": "https://google.com",
-      }
-    }
+  <View
     style={
       Object {
-        "flex": 1,
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
       }
     }
-  />
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This student does not have a submission for this assignment.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SubmissionViewer renders a file (stub) 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This student does not have a submission for this assignment.
+    </Text>
+  </View>
 </View>
 `;
 
@@ -35,18 +108,42 @@ exports[`SubmissionViewer renders an online_quiz submission 1`] = `
     }
   }
 >
-  <Webview
-    source={
-      Object {
-        "uri": "https://google.com",
-      }
-    }
+  <View
     style={
       Object {
-        "flex": 1,
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
       }
     }
-  />
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This student does not have a submission for this assignment.
+    </Text>
+  </View>
 </View>
 `;
 
@@ -60,105 +157,189 @@ exports[`SubmissionViewer renders an online_text_entry submission 1`] = `
     }
   }
 >
-  <Webview
-    injectedJavaScript="
-    var height = document.getElementById('whizzy_content').clientHeight;
-    postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-  "
-    onMessage={[Function]}
-    source={
+  <View
+    style={
       Object {
-        "html": "
-      <html>
-          <head>
-              <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                  initial-scale = 1.0, user-scalable = no\\" />
-              <style>
-                  body {
-                      font: -apple-system-body;
-                      margin: 0;
-                      padding: 0;
-                      color: {{font-color}};
-                      background-color: {{background-color}};
-                  }
-                  img {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  video {
-                      width: auto;
-                      height: auto;
-                      max-width: 100%;
-                  }
-                  #whizzy_content {
-                      padding: {{padding}};
-                      margin: 0;
-                  }
-              </style>
-          </head>
-      <body>
-          <div id='whizzy_content'>
-          <p>Form Voltron</p>
-          </div>
-      </body>
-      
-      <script type=\\"text/javascript\\">
-          function onLoadAllImages(callback) {
-              var images = document.getElementsByTagName('img');
-      
-              for (var i = 0; i < images.length; i++) {
-                  if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                      images[i].parentNode.removeChild(images[i]);
-                  }
-              }
-      
-              images = document.getElementsByTagName('img');
-      
-              var loadedImageCount = 0;
-      
-              if (images.length > 0) {
-                  for(var i = 0; i < images.length; i++) {
-                      images[i].onload=checkIfImagesLoaded;
-                      images[i].onerror=checkIfImagesLoaded;
-                  }
-              }
-              else {
-                  callback();
-              }
-      
-              function checkIfImagesLoaded() {
-                  loadedImageCount++;
-                  if(loadedImageCount == images.length) {
-                      callback();
-                  }
-              }
-          }
-      
-          onLoadAllImages(function () {
-              // Inform the DiscussionEntryCell that all the images are loaded
-              var iframe = document.createElement(\\"iframe\\");
-              iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-              document.documentElement.appendChild(iframe);
-              iframe.parentNode.removeChild(iframe);
-              iframe = null;
-          });
-      </script>
-      </html>
-      ",
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
       }
     }
-    style={
-      Array [
-        Object {
-          "flex": 1,
-        },
-        Object {
-          "height": 0,
-        },
-      ]
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This student does not have a submission for this assignment.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SubmissionViewer renders external tool submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
     }
-  />
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This assignment links to an external tool for submissions.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SubmissionViewer renders external tool submission with a submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This assignment links to an external tool for submissions.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SubmissionViewer renders grade-only submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This student does not have a submission for this assignment.
+    </Text>
+  </View>
 </View>
 `;
 
@@ -206,6 +387,104 @@ exports[`SubmissionViewer renders no submission 1`] = `
       }
     >
       This student does not have a submission for this assignment.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SubmissionViewer renders on-paper submission 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This assignment only allows on-paper submissions.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SubmissionViewer renders submission type of none 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingLeft": 16,
+      "paddingRight": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 0,
+        "height": "84%",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+            "textAlign": "center",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      This assignment does not allow submissions.
     </Text>
   </View>
 </View>

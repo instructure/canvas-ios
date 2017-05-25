@@ -70,6 +70,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         submissionProps={item.submission}
         selectedIndex={selectedIndex}
         selectedAttachmentIndex={selectedAttachmentIndex}
+        assignmentSubmissionTypes={this.props.assignmentSubmissionTypes}
       />
     </View>
   }
@@ -133,6 +134,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
   return {
     ...props,
     submissionEntities: state.entities.submissions,
+    assignmentSubmissionTypes: state.entities.assignments[ownProps.assignmentID].data.submission_types,
   }
 }
 
@@ -175,6 +177,7 @@ type SpeedGraderActionProps = {
 }
 type SpeedGraderDataProps = {
   submissionEntities: Object,
+  assignmentSubmissionTypes: Array<SubmissionType>,
 } & AsyncSubmissionsDataProps
 
 type SpeedGraderProps

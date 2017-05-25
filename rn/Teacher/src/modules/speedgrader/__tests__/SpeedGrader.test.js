@@ -37,6 +37,7 @@ let defaultProps = {
   submissions: [],
   submissionEntities: {},
   resetDrawer: jest.fn(),
+  assignmentSubmissionTypes: ['none'],
 }
 
 describe('SpeedGrader', () => {
@@ -85,6 +86,7 @@ describe('refresh functions', () => {
     refreshEnrollments: jest.fn(),
     refreshAssignment: jest.fn(),
     resetDrawer: jest.fn(),
+    assignmentSubmissionTypes: ['none'],
     submissions: [],
     submissionEntities: {},
     refresh: jest.fn(),

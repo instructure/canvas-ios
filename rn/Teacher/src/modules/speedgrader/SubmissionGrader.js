@@ -33,6 +33,7 @@ type SubmissionGraderProps = {
   selectedIndex: ?number,
   selectedAttachmentIndex: ?number,
   drawerState: DrawerState,
+  assignmentSubmissionTypes: Array<SubmissionType>,
 }
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
@@ -81,9 +82,11 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       default: 'Files',
       description: 'The title of the button to switch to the files submitted for a submission',
     })
-    if (!submission || !submission.attachments) return defaultLabel
-    let numberOfFiles = submission.attachments.length
-    if (selectedIndex != null) {
+    if (!submission) return defaultLabel
+    if (selectedIndex == null) {
+      if (!submission.attachments) return defaultLabel
+      var numberOfFiles = submission.attachments.length
+    } else {
       if (!submission.submission_history[selectedIndex].attachments) return defaultLabel
       numberOfFiles = submission.submission_history[selectedIndex].attachments.length
     }

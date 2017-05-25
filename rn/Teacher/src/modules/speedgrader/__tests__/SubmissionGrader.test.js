@@ -3,10 +3,10 @@
 import React from 'react'
 import SubmissionGrader from '../SubmissionGrader'
 import renderer from 'react-test-renderer'
+import DrawerState from '../utils/drawer-state'
 
 jest
   .mock('WebView', () => 'WebView')
-  .mock('../../../common/components/BottomDrawer', () => 'BottomDrawer')
   .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
   .mock('../GradeTab')
   .mock('../components/GradePicker')
@@ -21,6 +21,7 @@ let template = {
 let defaultProps = {
   submissionID: '1',
   submissionProps: {},
+  drawerState: new DrawerState(),
 }
 
 describe('SubmissionGrader', () => {
@@ -31,7 +32,19 @@ describe('SubmissionGrader', () => {
   it('renders', () => {
     let tree = renderer.create(
       <SubmissionGrader {...defaultProps} />
-    ).toJSON()
+    )
+
+    let instance = tree.getInstance()
+    let event = {
+      nativeEvent: {
+        layout: {
+          height: 100,
+          width: 100,
+        },
+      },
+    }
+    instance.onLayout(event)
+    tree = tree.toJSON()
 
     expect(tree).toMatchSnapshot()
   })
@@ -54,6 +67,7 @@ describe('SubmissionGrader', () => {
           attachments: [{}],
         }]),
       },
+      drawerState: new DrawerState(),
     }
     let tree = renderer.create(
       <SubmissionGrader {...props} />
@@ -83,5 +97,106 @@ describe('SubmissionGrader', () => {
     event.nativeEvent.selectedSegmentIndex = 2
     instance.changeTab(event)
     expect(instance.state.selectedTabIndex).toEqual(2)
+  })
+
+  it('shows number of files on files tab', () => {
+    let props = {
+      ...defaultProps,
+      selectedIndex: null,
+      submissionProps: {
+        submission: {
+          attachments: [
+            { fake: 'file' },
+            { fake: 'file' },
+            { fake: 'file' },
+          ],
+        },
+      },
+    }
+
+    let tree = renderer.create(
+      <SubmissionGrader {...props} />
+    )
+
+    let instance = tree.getInstance()
+    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    tree = tree.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('shows no files on files tab', () => {
+    let props = {
+      ...defaultProps,
+      selectedIndex: null,
+      submissionProps: {
+        submission: {
+          fake: 'sub',
+        },
+      },
+    }
+
+    let tree = renderer.create(
+      <SubmissionGrader {...props} />
+    )
+
+    let instance = tree.getInstance()
+    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    tree = tree.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('shows number of files on files tab from submission_history', () => {
+    let props = {
+      ...defaultProps,
+      selectedIndex: 1,
+      submissionProps: {
+        submission: {
+          submission_history: [
+            { fake: 'sub' },
+            {
+              attachments: [
+                { fake: 'file' },
+                { fake: 'file' },
+                { fake: 'file' },
+              ],
+            },
+          ],
+        },
+      },
+    }
+
+    let tree = renderer.create(
+      <SubmissionGrader {...props} />
+    )
+
+    let instance = tree.getInstance()
+    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    tree = tree.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('shows no files on files tab from submission_history', () => {
+    let props = {
+      ...defaultProps,
+      selectedIndex: 0,
+      submissionProps: {
+        submission: {
+          submission_history: [
+            {
+              fake: 'sub',
+            },
+          ],
+        },
+      },
+    }
+
+    let tree = renderer.create(
+      <SubmissionGrader {...props} />
+    )
+
+    let instance = tree.getInstance()
+    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    tree = tree.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
