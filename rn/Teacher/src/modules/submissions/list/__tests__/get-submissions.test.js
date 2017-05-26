@@ -37,6 +37,12 @@ export const submissionProps: Array<SubmissionDataProps> = [
     grade: 'A-',
     userID: '4',
   }),
+  t.submissionProps({
+    name: 'S6',
+    status: 'none',
+    grade: 'B+',
+    userID: '6',
+  }),
 ]
 
 test('submissions', () => {
@@ -48,6 +54,7 @@ test('submissions', () => {
     '4': t.enrollment({ id: '4', user_id: '4', user: t.user({ id: '4', name: 'S4', sortable_name: 'S4' }) }),
     // user in two sections or as a TA & Student
     '5': t.enrollment({ id: '5', user_id: '4', user: t.user({ id: '4', name: 'S4', sortable_name: 'S4' }) }),
+    '6': t.enrollment({ id: '6', user_id: '6', user: t.user({ id: '6', name: 'S6', sortable_name: 'S6' }) }),
   }
 
   const submissions: SubmissionsState = {
@@ -59,6 +66,7 @@ test('submissions', () => {
         grade: undefined,
         submitted_at: undefined,
         workflow_state: 'unsubmitted',
+        attempt: null,
         excused: true,
         late: true,
       }]),
@@ -75,6 +83,7 @@ test('submissions', () => {
         grade: undefined,
         submitted_at: '2017-04-05T15:12:45Z',
         workflow_state: 'submitted',
+        attempt: 1,
         excused: false,
         late: true,
       }]),
@@ -91,6 +100,24 @@ test('submissions', () => {
         grade: 'A-',
         submitted_at: '2017-04-05T15:12:45Z',
         workflow_state: 'submitted',
+        attempt: 1,
+        excused: false,
+        late: false,
+      }]),
+      pending: 0,
+      error: null,
+      selectedIndex: null,
+      selectedAttachmentIndex: null,
+      rubricGradePending: false,
+    },
+    '50': {
+      submission: t.submissionHistory([{
+        id: '50',
+        user_id: '6',
+        grade: 'B+',
+        submitted_at: null,
+        workflow_state: 'graded',
+        attempt: null,
         excused: false,
         late: false,
       }]),
@@ -103,14 +130,14 @@ test('submissions', () => {
   }
 
   const enrRefs = { pending: 0,
-    refs: ['0', '1', '2', '3', '4'],
+    refs: ['0', '1', '2', '3', '4', '6'],
   }
 
   const courses = {
     '100': { enrollments: enrRefs },
   }
 
-  const subRefs = { pending: 0, refs: ['20', '30', '40'] }
+  const subRefs = { pending: 0, refs: ['20', '30', '40', '50'] }
   const assignments = {
     '1000': { submissions: subRefs },
   }

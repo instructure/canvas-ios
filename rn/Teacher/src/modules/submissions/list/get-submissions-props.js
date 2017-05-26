@@ -25,7 +25,7 @@ function getSubmissionsByUserID (assignmentContent?: AssignmentContentState, sub
 }
 
 export function statusProp (submission: ?Submission, dueDate: ?string): SubmissionStatusProp {
-  if (!submission || submission.workflow_state === 'unsubmitted') {
+  if (!submission || submission.workflow_state === 'unsubmitted' || !submission.attempt) {
     if (dueDate && (new Date(dueDate) < new Date())) {
       return 'missing'
     } else {
