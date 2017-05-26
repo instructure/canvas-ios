@@ -31,6 +31,7 @@
 #import "CBILog.h"
 @import CanvasKeymaster;
 @import PageKit;
+@import Secrets;
 
 @interface AssignmentDetailsViewController () <UIWebViewDelegate>
 @end
@@ -135,6 +136,10 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    if ([Secrets openExternalResourceIfNecessaryWithAURL:request.URL]) {
+        return NO;
+    }
+    
     if (navigationType == UIWebViewNavigationTypeOther
         || navigationType == UIWebViewNavigationTypeFormSubmitted
         || navigationType == UIWebViewNavigationTypeFormResubmitted) {

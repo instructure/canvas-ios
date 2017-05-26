@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C23AE901ED5EAC9006F0AEF /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */; };
+		2C23AE911ED5EAC9006F0AEF /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C23AE921ED5F5E3006F0AEF /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */; };
 		490D34B01DEF41AC009A280D /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */; };
 		49998E751E1D7A4800C98AC2 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */; };
 		49998E761E1D7A4800C98AC2 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -139,6 +142,7 @@
 				AC9DD5351CE4E888007A474A /* PageKit.framework in Embed Frameworks */,
 				49998E941E1D7A7D00C98AC2 /* SoIconic.framework in Embed Frameworks */,
 				49998E841E1D7A4800C98AC2 /* TooLegit.framework in Embed Frameworks */,
+				2C23AE911ED5EAC9006F0AEF /* Secrets.framework in Embed Frameworks */,
 				49998E991E1D7AC500C98AC2 /* WhizzyWig.framework in Embed Frameworks */,
 				49998E961E1D7A7D00C98AC2 /* CWNotification.framework in Embed Frameworks */,
 				49998E861E1D7A4800C98AC2 /* Marshal.framework in Embed Frameworks */,
@@ -159,6 +163,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998E8B1E1D7A5B00C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998E8C1E1D7A6700C98AC2 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -391,6 +396,7 @@
 				49998E931E1D7A7D00C98AC2 /* SoIconic.framework in Frameworks */,
 				49998E981E1D7AC500C98AC2 /* WhizzyWig.framework in Frameworks */,
 				49998E8F1E1D7A7C00C98AC2 /* Kingfisher.framework in Frameworks */,
+				2C23AE901ED5EAC9006F0AEF /* Secrets.framework in Frameworks */,
 				49998E771E1D7A4800C98AC2 /* DoNotShipThis.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +411,7 @@
 				AC9DD5501CE4EE74007A474A /* Result.framework in Frameworks */,
 				AC9DD5511CE4EE74007A474A /* SoPretty.framework in Frameworks */,
 				AC9DD5521CE4EE74007A474A /* TooLegit.framework in Frameworks */,
+				2C23AE921ED5F5E3006F0AEF /* Secrets.framework in Frameworks */,
 				AC9DD54A1CE4EE0E007A474A /* Marshal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,6 +551,7 @@
 		AC9DD5421CE4EC00007A474A /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */,
 				49998E9A1E1D7AFD00C98AC2 /* MediaKit.framework */,
 				49998E971E1D7ABF00C98AC2 /* WhizzyWig.framework */,
 				49998E8E1E1D7A7600C98AC2 /* Kingfisher.framework */,
