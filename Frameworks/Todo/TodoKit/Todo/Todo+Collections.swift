@@ -40,7 +40,7 @@ extension Todo {
         let context = try session.todosManagedObjectContext()
         let sync = Todo.syncSignalProducer(inContext: context, fetchRemote: remote)
         let key = cacheKey(context)
-        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key, ttl: 1.minutes)
     }
 
     public typealias TableViewController = FetchedTableViewController<Todo>
