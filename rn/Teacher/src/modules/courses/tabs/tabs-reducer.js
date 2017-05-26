@@ -18,6 +18,9 @@ export const tabs: Reducer<TabsState, any> = handleActions({
       if (global.V04) {
         availableCourseTabs.push('quizzes')
       }
+      if (global.V05) {
+        availableCourseTabs.push('discussions')
+      }
       const orderedTabs = result.data
         .filter((tab) => availableCourseTabs.includes(tab.id))
         .sort((t1, t2) => (t1.position - t2.position))

@@ -20,6 +20,7 @@ export type CourseContentState = {
   assignmentGroups: AsyncRefs,
   enrollments: AsyncRefs,
   quizzes: AsyncRefs,
+  discussions: AsyncRefs,
 }
 
 export type GradingPeriodsState = {
@@ -75,6 +76,10 @@ export type QuizSubmissionState = AsyncState & {
   data: QuizSubmission,
 }
 
+export type DiscussionState = AsyncState & {
+  data: Discussion,
+}
+
 export type CourseDetailsTabSelectedRowState = {
   rowID: ?string
 }
@@ -88,6 +93,7 @@ export type UserProfileState = { [string]: User }
 export type SubmissionsState = { [string]: SubmissionState }
 export type QuizzesState = { [string]: QuizState }
 export type QuizSubmissionsState = { [string]: QuizSubmissionState }
+export type DiscussionsState = { [string]: DiscussionState }
 
 export type Entities = {
   courses: CoursesState,
@@ -100,6 +106,7 @@ export type Entities = {
   submissions: SubmissionsState,
   quizzes: QuizzesState,
   quizSubmissions: QuizSubmissionsState,
+  discussions: DiscussionsState,
   courseDetailsTabSelectedRow: CourseDetailsTabSelectedRowState,
 }
 

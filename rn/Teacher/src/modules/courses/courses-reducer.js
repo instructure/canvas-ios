@@ -12,6 +12,7 @@ import { tabs } from './tabs/tabs-reducer'
 import { assignmentGroups } from '../assignments/assignment-group-refs-reducer'
 import { enrollments } from '../enrollments/enrollments-refs-reducer'
 import { refs as quizzes } from '../quizzes/reducer'
+import { refs as discussions } from '../discussions/reducer'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
@@ -29,6 +30,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   error,
   enrollments,
   quizzes,
+  discussions,
 })
 
 const { refreshCourses, updateCourseColor } = CourseListActions
@@ -41,6 +43,7 @@ const emptyCourseState: CourseContentState = {
   assignmentGroups: { pending: 0, refs: [] },
   enrollments: { pending: 0, refs: [] },
   quizzes: { pending: 0, refs: [] },
+  discussions: { pending: 0, refs: [] },
 }
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {

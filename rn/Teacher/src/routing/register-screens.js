@@ -26,6 +26,7 @@ import RichTextEditor from '../common/components/rich-text-editor/RichTextEditor
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
+import DiscussionsList from '../modules/discussions/list/DiscussionsList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -53,6 +54,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/quizzes/:quizID/preview', wrap(QuizPreview), store)
   registerScreen('/courses/:courseID/quizzes/:quizID/edit', wrap(QuizEdit), store)
   registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store)
+  registerScreen('/courses/:courseID/discussion_topics', wrap(DiscussionsList), store, { canBecomeMaster: true })
   registerScreen('/conversations', wrap(Inbox), store)
   registerScreen('/profile', wrap(Profile), store)
   registerScreen('/beta-feedback', wrap(BetaFeedback), store)

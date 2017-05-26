@@ -7,6 +7,7 @@ import * as submissionsApi from './submissions'
 import * as assignmentsApi from './assignments'
 import * as quizzesApi from './quizzes'
 import * as assignmentGroupsApi from './assignmentGroups'
+import * as discussionsApi from './discussions'
 
 type CombinedApi = $Supertype<typeof coursesApi
   & typeof usersApi
@@ -14,7 +15,8 @@ type CombinedApi = $Supertype<typeof coursesApi
   & typeof submissionsApi
   & typeof assignmentsApi
   & typeof assignmentGroupsApi
-  & typeof quizzesApi>
+  & typeof quizzesApi
+  & typeof discussionsApi>
 
 export default ({
   ...coursesApi,
@@ -24,4 +26,5 @@ export default ({
   ...assignmentsApi,
   ...quizzesApi,
   ...assignmentGroupsApi,
+  ...discussionsApi,
 }: CombinedApi)

@@ -16,6 +16,7 @@ import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
 import { quizzes } from '../modules/quizzes/reducer'
 import { quizSubmissions, quizAssignmentSubmissions } from '../modules/quizzes/submissions/reducer'
+import { discussions } from '../modules/discussions/reducer'
 
 const entities = combineReducers({
   courses,
@@ -28,6 +29,7 @@ const entities = combineReducers({
   submissions: composeReducers(submissions, quizAssignmentSubmissions),
   quizzes,
   quizSubmissions,
+  discussions,
   courseDetailsTabSelectedRow,
 })
 
