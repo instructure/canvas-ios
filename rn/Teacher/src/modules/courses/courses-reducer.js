@@ -74,6 +74,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           color,
           oldColor: state[courseID].color,
           pending: state[courseID].pending + 1,
+          error: null,
         },
       }
     },
@@ -84,6 +85,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
       return {
         ...state,
         [courseID]: courseState,
+        error: null,
       }
     },
     rejected: (state, { courseID, error }) => {
@@ -105,6 +107,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           ...state[course.id],
           course,
           pending: state[course.id].pending + 1,
+          error: null,
         },
       }
     },

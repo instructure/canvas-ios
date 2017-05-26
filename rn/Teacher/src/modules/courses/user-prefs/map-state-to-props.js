@@ -4,6 +4,7 @@ export type StateProps = {
   course: Course,
   color: string,
   pending: number,
+  error: ?string,
 }
 
 export default function stateToProps (state: AppState, ownProps: {courseID: string}): StateProps {
@@ -11,6 +12,7 @@ export default function stateToProps (state: AppState, ownProps: {courseID: stri
   return {
     course: course.course,
     color: course.color,
-    pending: state.favoriteCourses.pending,
+    pending: state.favoriteCourses.pending + course.pending,
+    error: course.error,
   }
 }
