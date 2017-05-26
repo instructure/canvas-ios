@@ -148,7 +148,7 @@ exports[`refresh function second test 1`] = `
             ]
           }
         >
-          Spring 2017
+          Default Term
         </Text>
       </View>
     </View>
@@ -312,7 +312,7 @@ exports[`renders correctly 1`] = `
             ]
           }
         >
-          Spring 2017
+          Default Term
         </Text>
       </View>
     </View>
@@ -598,7 +598,7 @@ exports[`renders correctly without tabs 1`] = `
             ]
           }
         >
-          Spring 2017
+          Default Term
         </Text>
       </View>
     </View>
@@ -737,7 +737,7 @@ exports[`renders with empty image url 1`] = `
             ]
           }
         >
-          Spring 2017
+          Default Term
         </Text>
       </View>
     </View>
@@ -1023,7 +1023,7 @@ exports[`renders with image url 1`] = `
             ]
           }
         >
-          Spring 2017
+          Default Term
         </Text>
       </View>
     </View>
@@ -1295,7 +1295,7 @@ exports[`renders without image url 1`] = `
             ]
           }
         >
-          Spring 2017
+          Default Term
         </Text>
       </View>
     </View>

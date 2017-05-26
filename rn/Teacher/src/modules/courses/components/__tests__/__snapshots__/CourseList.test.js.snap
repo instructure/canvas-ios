@@ -35,6 +35,9 @@ exports[`render courses 1`] = `
           "is_favorite": true,
           "name": "Learn React Native",
           "short_name": "rn",
+          "term": Object {
+            "name": "Default Term",
+          },
         },
       ]
     }
@@ -316,6 +319,9 @@ exports[`render courses pending 1`] = `
           "is_favorite": true,
           "name": "Learn React Native",
           "short_name": "rn",
+          "term": Object {
+            "name": "Default Term",
+          },
         },
       ]
     }
@@ -597,6 +603,9 @@ exports[`render narrow width 1`] = `
           "is_favorite": true,
           "name": "Learn React Native",
           "short_name": "rn",
+          "term": Object {
+            "name": "Default Term",
+          },
         },
       ]
     }
@@ -878,6 +887,9 @@ exports[`render wide width 1`] = `
           "is_favorite": true,
           "name": "Learn React Native",
           "short_name": "rn",
+          "term": Object {
+            "name": "Default Term",
+          },
         },
       ]
     }

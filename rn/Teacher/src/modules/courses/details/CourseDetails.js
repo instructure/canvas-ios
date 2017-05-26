@@ -100,7 +100,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
 
                   <View style={styles.headerBottomContainer} >
                     <Text style={styles.headerTitle}>{course.name}</Text>
-                    <Text style={styles.headerSubtitle}>Spring 2017</Text>
+                    <Text style={styles.headerSubtitle}>{course.term.name}</Text>
                   </View>
                 </View>
                 }
