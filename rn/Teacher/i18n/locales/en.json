@@ -3,8 +3,7 @@
     "message": "Access Code"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "Add a few of your favorite courses to make this place your home.",
-    "description": "Body text when you do not have any courses on course list page."
+    "message": "Add a few of your favorite courses to make this place your home."
   },
   "add_assignee_24ee0b71": {
     "message": "Add Assignee"
@@ -13,15 +12,13 @@
     "message": "Add Comment"
   },
   "add_courses_fd45abf": {
-    "message": "Add Courses",
-    "description": "Button text to take action and add a course."
+    "message": "Add Courses"
   },
   "add_due_date_65b08f6c": {
     "message": "Add Due Date"
   },
   "add_media_cfa37b54": {
-    "message": "Add Media",
-    "description": "Attach media to a message"
+    "message": "Add Media"
   },
   "after_date_e5d9b0e1": {
     "message": "After { date }"
@@ -30,16 +27,13 @@
     "message": "After Last Attempt"
   },
   "all_courses_a7dbb853": {
-    "message": "All Courses",
-    "description": "The title of the screen showing all of a teacher's courses"
+    "message": "All Courses"
   },
   "all_grading_periods_77974940": {
-    "message": "All Grading Periods",
-    "description": "The header on the assignment list"
+    "message": "All Grading Periods"
   },
   "all_submissions_3eedfb97": {
-    "message": "All submissions",
-    "description": "Title for a button to show all submissions"
+    "message": "All submissions"
   },
   "all_submissions_b8717440": {
     "message": "All Submissions"
@@ -57,61 +51,52 @@
     "message": "Are you sure?"
   },
   "assign_to_95404a83": {
-    "message": "Assign To",
-    "description": "Assignment details due dates header"
+    "message": "Assign To"
   },
   "assignees_314d5e55": {
     "message": "Assignees"
   },
   "assignment_details_bc488179": {
-    "message": "Assignment Details",
-    "description": "Title of Assignment details screen"
+    "message": "Assignment Details"
   },
   "assignment_group_1a781505": {
     "message": "Assignment Group"
   },
   "assignments_1e02582c": {
-    "message": "Assignments",
-    "description": "Title of the assignments screen for a course"
+    "message": "Assignments"
   },
   "assignments_list_fe3e54be": {
-    "message": "Assignments List",
-    "description": "Name of course default view being the assignments list when navigating into a course"
+    "message": "Assignments List"
   },
   "availability_closed_429d1ba5": {
     "message": "Availability: Closed"
   },
   "availability_e415e857": {
-    "message": "Availability:",
-    "description": "Assignment due date \"Available to:\" field"
+    "message": "Availability:"
   },
   "available_from_587ce92f": {
     "message": "Available From"
   },
   "available_from_date_bb9d5115": {
-    "message": "Available from: { date }",
-    "description": "Accessibility label for when there is no available from date set"
+    "message": "Available from: { date }"
   },
   "available_from_f84e4611": {
     "message": "Available from"
   },
   "available_from_f9e093c8": {
-    "message": "Available from:",
-    "description": "Assignment due date \"Available from:\" field"
+    "message": "Available from:"
   },
   "available_to_22b12aa0": {
     "message": "Available To"
   },
   "available_to_434cb9f5": {
-    "message": "Available to:",
-    "description": "Assignment due date \"Available to:\" field"
+    "message": "Available to:"
   },
   "available_to_b7350e02": {
     "message": "Available to"
   },
   "available_to_date_d74ed927": {
-    "message": "Available to: { date }",
-    "description": "Accessibility label for when there is no available to date set"
+    "message": "Available to: { date }"
   },
   "average_49c63f9b": {
     "message": "Average"
@@ -123,8 +108,7 @@
     "message": "Cancel"
   },
   "choose_color_11148181": {
-    "message": "Choose { color }",
-    "description": "Accessibility label to select a color"
+    "message": "Choose { color }"
   },
   "clear_filter_5b3a182d": {
     "message": "Clear filter"
@@ -136,27 +120,22 @@
     "message": "Clear Filter Submissions"
   },
   "closed_983a96fe": {
-    "message": "Closed",
-    "description": "Assignment due date \"Available to:\" field"
+    "message": "Closed"
   },
   "color_a363e1b0": {
-    "message": "Color",
-    "description": "Title label for the course color picker"
+    "message": "Color"
   },
   "comment_7ef1428e": {
-    "message": "Comment",
-    "description": "Placeholder text for comment input field"
+    "message": "Comment"
   },
   "comments_e07bcbe3": {
-    "message": "Comments",
-    "description": "The title of the button to switch to comments on a submission"
+    "message": "Comments"
   },
   "complete_fd828dea": {
     "message": "Complete"
   },
   "complete_incomplete_15b3a89c": {
-    "message": "Complete/Incomplete",
-    "description": "display grade as Complete/Incomplete"
+    "message": "Complete/Incomplete"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Could not get list of assignments"
@@ -177,24 +156,19 @@
     "message": "{ count } ungraded"
   },
   "course_activity_stream_40091c17": {
-    "message": "Course Activity Stream",
-    "description": "Name of course default view being the activity stream when navigating into a course"
+    "message": "Course Activity Stream"
   },
   "course_modules_795cb95e": {
-    "message": "Course Modules",
-    "description": "Name of course default view being the course modules when navigating into a course"
+    "message": "Course Modules"
   },
   "course_settings_f6d0bbf8": {
-    "message": "Course Settings",
-    "description": "Screen title for the course settings screen"
+    "message": "Course Settings"
   },
   "courses_43204aae": {
-    "message": "Courses",
-    "description": "The header for the favorited courses list"
+    "message": "Courses"
   },
   "customize_course_eefa9c21": {
-    "message": "Customize Course",
-    "description": "The title of the user course preferences screen"
+    "message": "Customize Course"
   },
   "customize_grade_c9d046d": {
     "message": "Customize Grade"
@@ -202,60 +176,47 @@
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } at { timeString }"
   },
+  "delete_a6efa79d": {
+    "message": "Delete"
+  },
   "description_436c48d7": {
-    "message": "Description",
-    "description": "Assignment Details Section title for assignment Description"
+    "message": "Description"
   },
   "details_98a31b68": {
-    "message": "Details",
-    "description": "Assignment details edit details header"
+    "message": "Details"
   },
   "discussion_topic_a7bf935": {
-    "message": "discussion topic",
-    "description": "assignment submission type"
+    "message": "discussion topic"
   },
   "display_grade_as_7b5376a6": {
-    "message": "Display Grade As",
-    "description": "Assignment details display grade as"
+    "message": "Display Grade As"
   },
   "done_54e3d4b6": {
-    "message": "Done",
-    "description": "Back button to move back a screen"
-  },
-  "done_beta_feedback": {
-    "message": "Done",
-    "description": "Button to dismiss feedback form."
-  },
-  "done_edit_assignment": {
-    "message": "Done",
-    "description": "Button to close modal"
+    "message": "Done"
   },
   "due_5d7267be": {
-    "message": "Due:",
-    "description": "Assignment due date \"Due:\" field. Looks something like this when finished: \"Due: March 13, 2019\""
+    "message": "Due:"
   },
   "due_a73610f6": {
-    "message": "Due",
-    "description": "Assignment Details Section title for when assignment is due"
+    "message": "Due"
   },
   "due_date_822625d8": {
     "message": "Due Date"
   },
   "due_dates_double_tap_for_details_36c5a7a4": {
-    "message": "Due Dates, Double tap for details.",
-    "description": "Accessibility label for due dates in assignment details"
+    "message": "Due Dates, Double tap for details."
   },
   "edit_assignment_details_a7c96fea": {
-    "message": "Edit Assignment Details",
-    "description": "Title of Assignment details EDIT screen"
+    "message": "Edit Assignment Details"
   },
   "edit_c5fbea07": {
-    "message": "Edit",
-    "description": "Shown at the top of the app to allow the user to edit"
+    "message": "Edit"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "Edit Comment"
   },
   "edit_courses_1f63340f": {
-    "message": "Edit Courses",
-    "description": "The title of the screen enabling teachers to favorite and unfavorite their courses"
+    "message": "Edit Courses"
   },
   "edit_description_1206e0a8": {
     "message": "Edit Description"
@@ -276,23 +237,19 @@
     "message": "Excuse Student"
   },
   "excused_cf8792eb": {
-    "message": "Excused",
-    "description": "This assignment is excused and does not affect the student's grade"
+    "message": "Excused"
   },
   "external_tool_d6eaa5c1": {
-    "message": "external tool",
-    "description": "assignment submission type"
+    "message": "external tool"
   },
   "files_c300e900": {
-    "message": "Files",
-    "description": "The title of the button to switch to the files submitted for a submission"
+    "message": "Files"
   },
   "files_numberoffiles_66240ab2": {
     "message": "Files ({ numberOfFiles })"
   },
   "filter_by_ffcbd05b": {
-    "message": "Filter by:",
-    "description": "Indicates to the user that they can filter by a few options"
+    "message": "Filter by:"
   },
   "filter_e3398407": {
     "message": "Filter"
@@ -304,22 +261,19 @@
     "message": "For"
   },
   "for_e3490d05": {
-    "message": "For:",
-    "description": "Assignment due date \"For:\" field"
+    "message": "For:"
   },
   "full_screen_712e95f1": {
     "message": "Full screen"
   },
   "gpa_scale_a6d1cdea": {
-    "message": "GPA Scale",
-    "description": "display grade as GPA scale"
+    "message": "GPA Scale"
   },
   "grade_9c6f076d": {
     "message": "Grade"
   },
   "graded_25cd3fcd": {
-    "message": "Graded",
-    "description": "Assignment Details submissions graph `graded`"
+    "message": "Graded"
   },
   "graded_quiz_7fabdf1f": {
     "message": "Graded Quiz"
@@ -328,19 +282,16 @@
     "message": "Graded Survey"
   },
   "grades_a61eba0a": {
-    "message": "Grades",
-    "description": "The title of the button to switch to grading a submission"
+    "message": "Grades"
   },
   "half_screen_9cdd83ad": {
     "message": "Half screen"
   },
   "haven_t_been_graded_1fbfda56": {
-    "message": "Haven''t been graded",
-    "description": "Title for a button to filter submissions by not graded"
+    "message": "Haven''t been graded"
   },
   "haven_t_submitted_yet_3a127a27": {
-    "message": "Haven''t submitted yet",
-    "description": "Title for a button to filter submissions by not submitted"
+    "message": "Haven''t submitted yet"
   },
   "hide_correct_answers_at_b1a59408": {
     "message": "Hide Correct Answers At"
@@ -352,15 +303,13 @@
     "message": "Incomplete"
   },
   "late_2be42b88": {
-    "message": "Late",
-    "description": "Assignment was turned in late"
+    "message": "Late"
   },
   "latest_f604a75": {
     "message": "Latest"
   },
   "leave_feedback_df88476c": {
-    "message": "Leave Feedback",
-    "description": "Shown at the top of the app to allow the user to leave feedback"
+    "message": "Leave Feedback"
   },
   "length_in_minutes_eca69868": {
     "message": "Length in minutes"
@@ -372,8 +321,7 @@
     "message": "Let Students See Their Quiz Responses"
   },
   "letter_grade_29ff1938": {
-    "message": "Letter Grade",
-    "description": "display grade as letter grade"
+    "message": "Letter Grade"
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lock Questions After Answering"
@@ -382,43 +330,34 @@
     "message": "Logout"
   },
   "media_recording_7df9606f": {
-    "message": "media recording",
-    "description": "assignment submission type"
+    "message": "media recording"
   },
   "minutes_4aee5a41": {
     "message": "Minutes"
   },
   "missing_1a256b3b": {
-    "message": "Missing",
-    "description": "The assignment has not been turned in"
+    "message": "Missing"
   },
   "multiple_due_dates_283dd861": {
-    "message": "Multiple Due Dates",
-    "description": "Assignment details information about due dates, when there are more than one due date to display"
+    "message": "Multiple Due Dates"
   },
   "name_1aed4a1b": {
-    "message": "Name",
-    "description": "Label for prompt to select course name"
+    "message": "Name"
   },
   "nickname_1e6da3ad": {
-    "message": "Nickname",
-    "description": "Text describing a nick name given to a course"
+    "message": "Nickname"
   },
   "no_available_from_date_set_6f659d06": {
-    "message": "No available from date set.",
-    "description": "Accessibility label for when there is no available from date set"
+    "message": "No available from date set."
   },
   "no_available_from_date_set_db356ac3": {
-    "message": "No available from date set",
-    "description": "Accessibility label for when there is no available from date set"
+    "message": "No available from date set"
   },
   "no_available_to_date_set_c799d15": {
-    "message": "No available to date set",
-    "description": "Accessibility label for when there is no available to date set"
+    "message": "No available to date set"
   },
   "no_available_to_date_set_d896475": {
-    "message": "No available to date set.",
-    "description": "Accessibility label for when there is no available to date set"
+    "message": "No available to date set."
   },
   "no_description_44c9c3f2": {
     "message": "No description"
@@ -427,8 +366,7 @@
     "message": "No due date"
   },
   "no_due_date_set_bb3a2bf7": {
-    "message": "No due date set.",
-    "description": "Accessibility label for when no due date is set for an assignment"
+    "message": "No due date set."
   },
   "no_e16d9132": {
     "message": "No"
@@ -437,8 +375,7 @@
     "message": "No internet connection"
   },
   "no_submission_b44e1990": {
-    "message": "No submission",
-    "description": "No submission from the student for the given assignment"
+    "message": "No submission"
   },
   "no_time_limit_2147d9bf": {
     "message": "No Time Limit"
@@ -447,19 +384,16 @@
     "message": "None"
   },
   "none_9b6c9bec": {
-    "message": "none",
-    "description": "assignment submission type"
+    "message": "none"
   },
   "not_graded_e027c866": {
-    "message": "Not Graded",
-    "description": "display grade as not graded"
+    "message": "Not Graded"
   },
   "not_published_73f7079": {
     "message": "Not Published"
   },
   "not_submitted_7d05fdb4": {
-    "message": "Not Submitted",
-    "description": "Assignment Details submissions graph `graded`"
+    "message": "Not Submitted"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
@@ -474,56 +408,46 @@
     "message": "On"
   },
   "on_paper_7e67f764": {
-    "message": "on paper",
-    "description": "assignment submission type"
+    "message": "on paper"
   },
   "one_question_at_a_time_3161ceeb": {
     "message": "One Question at a Time"
   },
   "online_quiz_7d450a0c": {
-    "message": "online quiz",
-    "description": "assignment submission type"
+    "message": "online quiz"
   },
   "online_text_entry_a1e78de0": {
-    "message": "online text entry",
-    "description": "assignment submission type"
+    "message": "online text entry"
   },
   "online_upload_ed44db51": {
-    "message": "online upload",
-    "description": "assignment submission type"
+    "message": "online upload"
   },
   "online_url_ee794b28": {
-    "message": "online url",
-    "description": "assignment submission type"
+    "message": "online url"
   },
   "only_once_after_each_attempt_cc842738": {
     "message": "Only Once After Each Attempt"
   },
   "open_coursename_user_preferences_430b877e": {
-    "message": "Open { courseName } user preferences",
-    "description": "Accessibility label on icon button to open course user preferences"
+    "message": "Open { courseName } user preferences"
   },
   "open_drawer_f3c8b11": {
     "message": "Open Drawer"
   },
   "out_of_count_fc1cd44d": {
-    "message": "Out of { count }",
-    "description": "Subtitle for a submission to filter by points"
+    "message": "Out of { count }"
   },
   "pages_front_page_9ce5188": {
-    "message": "Pages Front Page",
-    "description": "Name of course default view being the font page when navigating into a course"
+    "message": "Pages Front Page"
   },
   "percentage_34ab7c2c": {
-    "message": "Percentage",
-    "description": "display grade as percentage"
+    "message": "Percentage"
   },
   "please_enter_a_number_49c4975d": {
     "message": "Please enter a number"
   },
   "points_bb475533": {
-    "message": "Points",
-    "description": "display grade as points"
+    "message": "Points"
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
@@ -535,16 +459,13 @@
     "message": "Preview Quiz"
   },
   "pts_699bd9aa": {
-    "message": "pts",
-    "description": "Assignment Details points for given assignment"
+    "message": "pts"
   },
   "publish_5211dca3": {
-    "message": "Publish",
-    "description": "Assignment details publish toggle"
+    "message": "Publish"
   },
   "published_4bb5209e": {
-    "message": "Published",
-    "description": "Published text"
+    "message": "Published"
   },
   "quiz_details_6c4473d3": {
     "message": "Quiz Details"
@@ -559,8 +480,7 @@
     "message": "Quiz Type"
   },
   "quizzes_7e598f57": {
-    "message": "Quizzes",
-    "description": "Title of the quizzes screen for a course"
+    "message": "Quizzes"
   },
   "remove_date_edf2f565": {
     "message": "Remove date"
@@ -581,38 +501,28 @@
     "message": "Save"
   },
   "saving_2521e616": {
-    "message": "Saving",
-    "description": "Text when a request to update an assignment is made and user is waiting"
+    "message": "Saving"
   },
   "score_to_keep_48ace09b": {
     "message": "Score to Keep"
   },
   "scored_less_than_93cde0d2": {
-    "message": "Scored less than…",
-    "description": "Title for a button to filter submissions by less than a value"
+    "message": "Scored less than…"
   },
   "scored_more_than_2185a818": {
-    "message": "Scored more than…",
-    "description": "Title for a button to filter submissions by more than a value"
+    "message": "Scored more than…"
   },
   "see_all_ffa422ef": {
-    "message": "See All",
-    "description": "Button to transition from favorited courses list to all courses list"
+    "message": "See All"
   },
   "send_e3bd0ed0": {
-    "message": "Send",
-    "description": "Send a message"
+    "message": "Send"
   },
   "set_home_to_82ab5119": {
-    "message": "Set ''Home'' to...",
-    "description": "Label for prompt to select the course landing page"
+    "message": "Set ''Home'' to..."
   },
   "set_this_for_the_default_color_of_the_course_this__d86d133": {
-    "message": "Set this for the default color of the course. This won’t override a personal color setting.",
-    "description": "Description of color picker shown to the user"
-  },
-  "settings_5aa0fd0c": {
-    "message": "Settings"
+    "message": "Set this for the default color of the course. This won’t override a personal color setting."
   },
   "show_correct_answers_a4b957e4": {
     "message": "Show Correct Answers"
@@ -630,27 +540,25 @@
     "message": "Shuffle Answers"
   },
   "submission_types_af57bf0": {
-    "message": "Submission Types",
-    "description": "Assignment Details Section title for types of submission, (i.e. online, text, upload, etc)"
+    "message": "Submission Types"
   },
   "submissions_11e96106": {
-    "message": "Submissions",
-    "description": "Assignment Details Section title for info on submissions"
+    "message": "Submissions"
   },
   "submitted_318fad53": {
-    "message": "Submitted",
-    "description": "The assignment has been turned in"
+    "message": "Submitted"
   },
   "submitted_late_3741af29": {
-    "message": "Submitted late",
-    "description": "Title for a button to filter submissions by submitted late"
+    "message": "Submitted late"
   },
   "survey_31a240e6": {
     "message": "Survey"
   },
   "syllabus_f191f65b": {
-    "message": "Syllabus",
-    "description": "Name of course default view being the syllabus when navigating into a course"
+    "message": "Syllabus"
+  },
+  "text_submission_935eeb5": {
+    "message": "Text Submission"
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"
@@ -665,11 +573,19 @@
     "message": "There was a problem loading the quizzes."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
-    "message": "There was an unexpected error. Please try again.",
-    "description": "A generic error message"
+    "message": "There was an unexpected error. Please try again."
   },
   "this_action_requires_an_internet_connection_81f6688a": {
     "message": "This action requires an internet connection."
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "This assignment does not allow submissions."
+  },
+  "this_assignment_links_to_an_external_tool_for_subm_3ac1ae26": {
+    "message": "This assignment links to an external tool for submissions."
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "This assignment only allows on-paper submissions."
   },
   "this_is_the_inbox_b957d042": {
     "message": "This is the inbox"
@@ -681,20 +597,16 @@
     "message": "Time Limit"
   },
   "title_ee03d132": {
-    "message": "Title",
-    "description": "Assignment details edit title header"
+    "message": "Title"
   },
   "unexpected_error_93991f40": {
-    "message": "Unexpected Error",
-    "description": "The generic title of the generic error message"
+    "message": "Unexpected Error"
   },
   "ungraded_147a0dce": {
-    "message": "ungraded",
-    "description": "Label for ungraded assignment submission"
+    "message": "ungraded"
   },
   "ungraded_ed0c6f98": {
-    "message": "Ungraded",
-    "description": "Assignment Details submissions graph `graded`"
+    "message": "Ungraded"
   },
   "ungraded_survey_ad7de790": {
     "message": "Ungraded Survey"
@@ -703,11 +615,13 @@
     "message": "Unlimited"
   },
   "unpublished_8b6107d6": {
-    "message": "Unpublished",
-    "description": "Unpublished text"
+    "message": "Unpublished"
   },
   "until_date_f3b9f367": {
     "message": "Until { date }"
+  },
+  "url_submission_f76327e3": {
+    "message": "URL Submission"
   },
   "view_long_description_bafad8a4": {
     "message": "View long description"
@@ -716,8 +630,7 @@
     "message": "View Responses"
   },
   "welcome_73d18b4d": {
-    "message": "Welcome!",
-    "description": "Welcome header text when user has no courses yet."
+    "message": "Welcome!"
   },
   "yes_dde87d5": {
     "message": "Yes"

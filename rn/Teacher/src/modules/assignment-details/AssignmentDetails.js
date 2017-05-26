@@ -31,30 +31,15 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   render (): React.Element<View> {
     const assignment = this.props.assignmentDetails
 
-    let assignmentPoints = i18n({
-      default: 'pts',
-      description: 'Assignment Details points for given assignment',
-    })
+    let assignmentPoints = i18n('pts')
 
-    let sectionTitleDue = i18n({
-      default: 'Due',
-      description: 'Assignment Details Section title for when assignment is due',
-    })
+    let sectionTitleDue = i18n('Due')
 
-    let sectionTitleSubmissionTypes = i18n({
-      default: 'Submission Types',
-      description: 'Assignment Details Section title for types of submission, (i.e. online, text, upload, etc)',
-    })
+    let sectionTitleSubmissionTypes = i18n('Submission Types')
 
-    let sectionTitleSubmissions = i18n({
-      default: 'Submissions',
-      description: 'Assignment Details Section title for info on submissions',
-    })
+    let sectionTitleSubmissions = i18n('Submissions')
 
-    let sectionTitleDescription = i18n({
-      default: 'Description',
-      description: 'Assignment Details Section title for assignment Description',
-    })
+    let sectionTitleDescription = i18n('Description')
 
     let descriptionElement = <View />
     if (assignment.description) {
@@ -67,16 +52,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       <Screen
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        title={i18n({
-          default: 'Assignment Details',
-          description: 'Title of Assignment details screen',
-        })}
+        title={i18n('Assignment Details')}
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Edit',
-              description: 'Shown at the top of the app to allow the user to edit',
-            }),
+            title: i18n('Edit'),
             testID: 'assignment-deets.edit-btn',
             action: this.editAssignment,
           },
@@ -96,7 +75,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
           <AssignmentSection
             title={sectionTitleDue}
-            accessibilityLabel={i18n({ default: 'Due Dates, Double tap for details.', description: 'Accessibility label for due dates in assignment details' })}
+            accessibilityLabel={i18n('Due Dates, Double tap for details.')}
             image={Images.assignments.calendar}
             showDisclosureIndicator={true}
             onPress={this.viewDueDateDetails} >

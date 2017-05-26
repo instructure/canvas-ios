@@ -21,15 +21,9 @@ export default class PublishedIcon extends React.Component {
       customStyle = { width: iconSize, height: iconSize }
     }
 
-    let unpublishedText = i18n({
-      default: 'Unpublished',
-      description: 'Unpublished text',
-    })
+    let unpublishedText = i18n('Unpublished')
 
-    let publishedText = i18n({
-      default: 'Published',
-      description: 'Published text',
-    })
+    let publishedText = i18n('Published')
 
     return (
       <View style={[ style, internalStyle.container ]}>

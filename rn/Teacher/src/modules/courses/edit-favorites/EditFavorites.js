@@ -73,16 +73,10 @@ export class FavoritesList extends Component {
         navBarStyle='light'
         navBarTitleColor={colors.darkText}
         navBarButtonColor={colors.link}
-        title={i18n({
-          default: 'Edit Courses',
-          description: 'The title of the screen enabling teachers to favorite and unfavorite their courses',
-        })}
+        title={i18n('Edit Courses')}
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Done',
-              description: 'Back button to move back a screen',
-            }),
+            title: i18n('Done'),
             style: 'done',
             testID: 'done_button',
             action: this.dismiss,

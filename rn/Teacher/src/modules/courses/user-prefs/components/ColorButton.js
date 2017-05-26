@@ -26,10 +26,7 @@ export default class ColorButton extends Component {
     return (
       <TouchableHighlight
         style={styles.button}
-        accessibilityLabel={i18n({
-          default: 'Choose {color}',
-          description: 'Accessibility label to select a color',
-        }, { color: this.props.color })}
+        accessibilityLabel={i18n('Choose {color}', { color: this.props.color })}
         onPress={this.onPress}
         underlayColor='#fff'
         testID={`colorButton.${this.props.color}`}

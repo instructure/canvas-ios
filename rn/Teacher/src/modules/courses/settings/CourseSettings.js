@@ -38,26 +38,11 @@ type Props = {
 }
 
 const DISPLAY_NAMES = new Map([
-  ['feed', i18n({
-    default: 'Course Activity Stream',
-    description: 'Name of course default view being the activity stream when navigating into a course',
-  })],
-  ['wiki', i18n({
-    default: 'Pages Front Page',
-    description: 'Name of course default view being the font page when navigating into a course',
-  })],
-  ['modules', i18n({
-    default: 'Course Modules',
-    description: 'Name of course default view being the course modules when navigating into a course',
-  })],
-  ['assignments', i18n({
-    default: 'Assignments List',
-    description: 'Name of course default view being the assignments list when navigating into a course',
-  })],
-  ['syllabus', i18n({
-    default: 'Syllabus',
-    description: 'Name of course default view being the syllabus when navigating into a course',
-  })],
+  ['feed', i18n('Course Activity Stream')],
+  ['wiki', i18n('Pages Front Page')],
+  ['modules', i18n('Course Modules')],
+  ['assignments', i18n('Assignments List')],
+  ['syllabus', i18n('Syllabus')],
 ])
 
 export class CourseSettings extends Component<any, Props, any> {
@@ -107,10 +92,7 @@ export class CourseSettings extends Component<any, Props, any> {
   render (): React.Element<*> {
     return (
       <Screen
-        title={i18n({
-          default: 'Course Settings',
-          description: 'Screen title for the course settings screen',
-        })}
+        title={i18n('Course Settings')}
         drawUnderNavBar={true}
         navBarTranslucent={true}
         navBarStyle='light'
@@ -143,10 +125,7 @@ export class CourseSettings extends Component<any, Props, any> {
             <View style={styles.row}>
               <View style={styles.rowContent}>
                 <Text style={styles.primaryText}>
-                  {i18n({
-                    default: 'Name',
-                    description: 'Label for prompt to select course name',
-                  })}
+                  {i18n('Name')}
                 </Text>
                 <TextInput
                   value={this.state.name}
@@ -165,10 +144,7 @@ export class CourseSettings extends Component<any, Props, any> {
               <View style={styles.row}>
                   <View style={styles.rowContent}>
                     <Text style={styles.primaryText}>
-                      {i18n({
-                        default: `Set 'Home' to...`,
-                        description: 'Label for prompt to select the course landing page',
-                      })}
+                      {i18n(`Set 'Home' to...`)}
                     </Text>
                     <Text
                       style={styles.actionableText}

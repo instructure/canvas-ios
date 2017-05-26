@@ -39,11 +39,7 @@ export default class BetaFeedback extends Component<any, Props, any> {
         navBarButtonColor={colors.link}
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Done',
-              description: 'Button to dismiss feedback form.',
-              id: 'done_beta_feedback',
-            }),
+            title: i18n('Done'),
             style: 'done',
             testID: 'beta-feedback.dismiss-btn',
             action: this.dismiss,

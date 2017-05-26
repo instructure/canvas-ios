@@ -67,20 +67,11 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
   }
 
   render () {
-    const placeholder = i18n({
-      default: 'Comment',
-      description: 'Placeholder text for comment input field',
-    })
+    const placeholder = i18n('Comment')
 
-    const addMedia = i18n({
-      default: 'Add Media',
-      description: 'Attach media to a message',
-    })
+    const addMedia = i18n('Add Media')
 
-    const send = i18n({
-      default: 'Send',
-      description: 'Send a message',
-    })
+    const send = i18n('Send')
 
     const disableSend = !this.state.textComment || this.state.textComment.length === 0
 

@@ -39,21 +39,13 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
     ActionSheetIOS.showActionSheetWithOptions({
       options,
       cancelButtonIndex: options.length - 1,
-      title: i18n({
-        default: 'Filter by:',
-        description: 'Indicates to the user that they can filter by a few options',
-      }),
+      title: i18n('Filter by:'),
     }, this.updateFilter)
   }
 
   updateFilter = (index: number) => {
     const prompt = (title: string, callback: Function) => {
-      let message = i18n({
-        default: 'Out of {count}',
-        description: 'Subtitle for a submission to filter by points',
-      }, {
-        count: this.props.pointsPossible || 0,
-      })
+      let message = i18n('Out of {count}', { count: this.props.pointsPossible || 0 })
       AlertIOS.prompt(
         title,
         message,
@@ -136,38 +128,38 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
     return [
       {
         type: 'all',
-        title: i18n({ default: 'All submissions', description: 'Title for a button to show all submissions' }),
+        title: i18n('All submissions'),
       },
       {
         type: 'late',
-        title: i18n({ default: 'Submitted late', description: 'Title for a button to filter submissions by submitted late' }),
+        title: i18n('Submitted late'),
         filterFunc: (submissions: any) => submissions.filter((s) => s.status === 'late'),
       },
       {
         type: 'notsubmitted',
-        title: i18n({ default: "Haven't submitted yet", description: 'Title for a button to filter submissions by not submitted' }),
+        title: i18n("Haven't submitted yet"),
         filterFunc: (submissions: any) => submissions.filter((s) => s.grade === 'not_submitted'),
       },
       {
         type: 'notgraded',
-        title: i18n({ default: "Haven't been graded", description: 'Title for a button to filter submissions by not graded' }),
+        title: i18n("Haven't been graded"),
         filterFunc: (submissions: any) => submissions.filter((s) => s.grade === 'ungraded'),
       },
       {
         type: 'graded',
-        title: i18n({ default: 'Graded', description: 'Title for a button to filter submissions by graded' }),
+        title: i18n('Graded'),
         filterFunc: (submissions: any) => submissions.filter((s) => s.score !== null && s.score !== undefined),
       },
       {
         type: 'lessthan',
-        title: i18n({ default: 'Scored less than…', description: 'Title for a button to filter submissions by less than a value' }),
+        title: i18n('Scored less than…'),
         filterFunc: (submissions: any, metadata: any) => submissions.filter((s) => {
           return (s.score !== null && s.score !== undefined) && (s.score < Number(metadata))
         }),
       },
       {
         type: 'morethan',
-        title: i18n({ default: 'Scored more than…', description: 'Title for a button to filter submissions by more than a value' }),
+        title: i18n('Scored more than…'),
         filterFunc: (submissions: any, metadata: any) => submissions.filter((s) => {
           return (s.score !== null && s.score !== undefined) && (s.score > Number(metadata))
         }),

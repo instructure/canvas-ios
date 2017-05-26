@@ -35,20 +35,11 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
   }
 
   render (): ReactElement<*> {
-    let gradedLabel = i18n({
-      default: 'Graded',
-      description: 'Assignment Details submissions graph `graded`',
-    })
+    let gradedLabel = i18n('Graded')
 
-    let ungradedLabel = i18n({
-      default: 'Ungraded',
-      description: 'Assignment Details submissions graph `graded`',
-    })
+    let ungradedLabel = i18n('Ungraded')
 
-    let notSubmittedLabel = i18n({
-      default: 'Not Submitted',
-      description: 'Assignment Details submissions graph `graded`',
-    })
+    let notSubmittedLabel = i18n('Not Submitted')
 
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
 

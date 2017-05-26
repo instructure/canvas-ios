@@ -35,10 +35,7 @@ type State = {
 }
 
 const DEFAULT_FILTER = {
-  title: i18n({
-    default: 'All Grading Periods',
-    description: 'The header on the assignment list',
-  }),
+  title: i18n('All Grading Periods'),
 }
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
@@ -134,10 +131,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     ActionSheetIOS.showActionSheetWithOptions({
       options: buttons,
       cancelButtonIndex: buttons.length - 1,
-      title: i18n({
-        default: 'Filter by:',
-        description: 'Indicates to the user that they can filter by a few options',
-      }),
+      title: i18n('Filter by:'),
     }, this.updateFilter)
   }
 
@@ -174,10 +168,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     }
     return (
       <Screen
-        title={i18n({
-          default: 'Assignments',
-          description: 'Title of the assignments screen for a course',
-        })}
+        title={i18n('Assignments')}
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         subtitle={this.props.courseName}
         navBarStyle='dark'

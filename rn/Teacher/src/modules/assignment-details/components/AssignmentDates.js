@@ -31,10 +31,7 @@ type Props = {
 export default class DueDates extends Component<any, Props, any> {
 
   renderMultipleDueDates (): React.Element<View> {
-    const title = i18n({
-      default: 'Multiple Due Dates',
-      description: 'Assignment details information about due dates, when there are more than one due date to display',
-    })
+    const title = i18n('Multiple Due Dates')
 
     return <View style={styles.container}>
              <Text>{title}</Text>
@@ -43,15 +40,9 @@ export default class DueDates extends Component<any, Props, any> {
 
   renderAvailability (dates: AssignmentDates): React.Element<View> {
     if (dates.availabilityClosed()) {
-      const availabilityClosedTitle = i18n({
-        default: 'Availability:',
-        description: 'Assignment due date "Available to:" field',
-      })
+      const availabilityClosedTitle = i18n('Availability:')
 
-      const availabilityClosedInfo = i18n({
-        default: 'Closed',
-        description: 'Assignment due date "Available to:" field',
-      })
+      const availabilityClosedInfo = i18n('Closed')
 
       return <View>
                <Text style={styles.textContainer}>
@@ -61,15 +52,9 @@ export default class DueDates extends Component<any, Props, any> {
              </View>
     }
 
-    const availableFromTitle = i18n({
-      default: 'Available from:',
-      description: 'Assignment due date "Available from:" field',
-    })
+    const availableFromTitle = i18n('Available from:')
 
-    const availableToTitle = i18n({
-      default: 'Available to:',
-      description: 'Assignment due date "Available to:" field',
-    })
+    const availableToTitle = i18n('Available to:')
 
     const availableFrom = dates.bestAvailableFrom()
     const availableTo = dates.bestAvailableTo()
@@ -80,17 +65,11 @@ export default class DueDates extends Component<any, Props, any> {
     let availableToAccessibilityLabel
 
     if (!availableFrom) {
-      availableFromAccessibilityLabel = i18n({
-        default: 'No available from date set.',
-        description: 'Accessibility label for when there is no available from date set',
-      })
+      availableFromAccessibilityLabel = i18n('No available from date set.')
     }
 
     if (!availableTo) {
-      availableToAccessibilityLabel = i18n({
-        default: 'No available to date set.',
-        description: 'Accessibility label for when there is no available to date set',
-      })
+      availableToAccessibilityLabel = i18n('No available to date set.')
     }
 
     return (<View>
@@ -110,25 +89,16 @@ export default class DueDates extends Component<any, Props, any> {
   }
 
   renderSingleDueDate (dates: AssignmentDates): ReactElement<View> {
-    const dueTitle = i18n({
-      default: 'Due:',
-      description: 'Assignment due date "Due:" field. Looks something like this when finished: "Due: March 13, 2019"',
-    })
+    const dueTitle = i18n('Due:')
 
-    const forTitle = i18n({
-      default: 'For:',
-      description: 'Assignment due date "For:" field',
-    })
+    const forTitle = i18n('For:')
 
     const dueAtValue = dates.bestDueAt() ? formattedDueDate(dates.bestDueAt()) : '--'
     const availability = this.renderAvailability(dates)
     let dueAtAccessibilityLabel
 
     if (!dates.bestDueAt()) {
-      dueAtAccessibilityLabel = i18n({
-        default: 'No due date set.',
-        description: 'Accessibility label for when no due date is set for an assignment',
-      })
+      dueAtAccessibilityLabel = i18n('No due date set.')
     }
 
     return (<View style={styles.container}>

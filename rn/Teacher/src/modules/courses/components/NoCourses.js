@@ -19,20 +19,11 @@ export class NoCourses extends Component {
   props: Props
 
   render (): React.Element<View> {
-    let welcome = i18n({
-      default: 'Welcome!',
-      description: 'Welcome header text when user has no courses yet.',
-    })
+    let welcome = i18n('Welcome!')
 
-    let bodyText = i18n({
-      default: 'Add a few of your favorite courses to make this place your home.',
-      description: 'Body text when you do not have any courses on course list page.',
-    })
+    let bodyText = i18n('Add a few of your favorite courses to make this place your home.')
 
-    let buttonText = i18n({
-      default: 'Add Courses',
-      description: 'Button text to take action and add a course.',
-    })
+    let buttonText = i18n('Add Courses')
 
     return (
       <View style={style.container}>

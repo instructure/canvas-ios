@@ -55,31 +55,15 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     let availableToAccessibiltyLabel
 
     if (date.unlock_at) {
-      availableFromAccessibilityLabel = i18n({
-        default: 'Available from: {date}',
-        description: 'Accessibility label for when there is no available from date set',
-      }, {
-        date: availableFrom,
-      })
+      availableFromAccessibilityLabel = i18n('Available from: {date}', { date: availableFrom })
     } else {
-      availableFromAccessibilityLabel = i18n({
-        default: 'No available from date set',
-        description: 'Accessibility label for when there is no available from date set',
-      })
+      availableFromAccessibilityLabel = i18n('No available from date set')
     }
 
     if (date.lock_at) {
-      availableToAccessibiltyLabel = i18n({
-        default: 'Available to: {date}',
-        description: 'Accessibility label for when there is no available to date set',
-      }, {
-        date: availableTo,
-      })
+      availableToAccessibiltyLabel = i18n('Available to: {date}', { date: availableTo })
     } else {
-      availableToAccessibiltyLabel = i18n({
-        default: 'No available to date set',
-        description: 'Accessibility label for when there is no available to date set',
-      })
+      availableToAccessibiltyLabel = i18n('No available to date set')
     }
 
     return (<View style={styles.row} key={date.id || 'base'} >
@@ -114,10 +98,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
         navBarStyle='dark'
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Edit',
-              description: 'Shown at the top of the app to allow the user to edit',
-            }),
+            title: i18n('Edit'),
             testID: 'assignment-due-dates.edit-btn',
             action: this.editAssignment,
           },

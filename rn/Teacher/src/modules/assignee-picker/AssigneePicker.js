@@ -99,11 +99,7 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
         title={i18n('Assignees')}
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Done',
-              description: 'Button to close modal',
-              id: 'done_edit_assignment',
-            }),
+            title: i18n('Done'),
             style: 'done',
             testID: 'assignee-picker.dismiss-btn',
             action: this.done,

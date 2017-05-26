@@ -32,30 +32,12 @@ import ReactNative, {
 var PickerItemIOS = PickerIOS.Item
 
 const GRADE_DISPLAY_OPTIONS = new Map([
-  ['percent', i18n({
-    default: 'Percentage',
-    description: 'display grade as percentage',
-  })],
-  ['pass_fail', i18n({
-    default: 'Complete/Incomplete',
-    description: 'display grade as Complete/Incomplete',
-  })],
-  ['points', i18n({
-    default: 'Points',
-    description: 'display grade as points',
-  })],
-  ['letter_grade', i18n({
-    default: 'Letter Grade',
-    description: 'display grade as letter grade',
-  })],
-  ['gpa_scale', i18n({
-    default: 'GPA Scale',
-    description: 'display grade as GPA scale',
-  })],
-  ['not_graded', i18n({
-    default: 'Not Graded',
-    description: 'display grade as not graded',
-  })],
+  ['percent', i18n('Percentage')],
+  ['pass_fail', i18n('Complete/Incomplete')],
+  ['points', i18n('Points')],
+  ['letter_grade', i18n('Letter Grade')],
+  ['gpa_scale', i18n('GPA Scale')],
+  ['not_graded', i18n('Not Graded')],
 ])
 
 export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
@@ -117,45 +99,26 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   render (): React.Element<View> {
-    let sectionTitle = i18n({
-      default: 'Title',
-      description: 'Assignment details edit title header',
-    })
-    let sectionDescription = i18n({
-      default: 'Description',
-      description: 'Assignment details edit description header',
-    })
-    let sectionDetails = i18n({
-      default: 'Details',
-      description: 'Assignment details edit details header',
-    })
+    let sectionTitle = i18n('Title')
+    let sectionDescription = i18n('Description')
+    let sectionDetails = i18n('Details')
 
-    let savingText = i18n({
-      default: 'Saving',
-      description: 'Text when a request to update an assignment is made and user is waiting',
-    })
+    let savingText = i18n('Saving')
 
-    let titlePlaceHolder = i18n({ default: 'Title', description: 'Assignment details title placeholder' })
-    let pointsPlaceHolder = i18n({ default: 'Points', description: 'Assignment details points placeholder' })
-    let displayGradeAs = i18n({ default: 'Display Grade As', description: 'Assignment details display grade as' })
-    let publish = i18n({ default: 'Publish', description: 'Assignment details publish toggle' })
+    let titlePlaceHolder = i18n('Title')
+    let pointsPlaceHolder = i18n('Points')
+    let displayGradeAs = i18n('Display Grade As')
+    let publish = i18n('Publish')
 
     return (
       <Screen
-        title={i18n({
-          default: 'Edit Assignment Details',
-          description: 'Title of Assignment details EDIT screen',
-        })}
+        title={i18n('Edit Assignment Details')}
         navBarStyle='light'
         navBarTitleColor={color.darkText}
         navBarButtonColor={color.link}
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Done',
-              description: 'Button to close modal',
-              id: 'done_edit_assignment',
-            }),
+            title: i18n('Done'),
             style: 'done',
             testID: 'edit-assignment.dismiss-btn',
             action: this.actionDonePressed.bind(this),

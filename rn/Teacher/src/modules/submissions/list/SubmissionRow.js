@@ -61,19 +61,13 @@ const Grade = ({ grade }: {grade: ?GradeProp}): * => {
   }
 
   if (grade === 'ungraded') {
-    const ungraded = i18n({
-      default: 'ungraded',
-      description: 'Label for ungraded assignment submission',
-    })
+    const ungraded = i18n('ungraded')
     return <Token style={{ alignSelf: 'center' }} color={ colors.primaryButton }>{ ungraded }</Token>
   }
 
   let gradeText = grade
   if (grade === 'excused') {
-    gradeText = i18n({
-      default: 'Excused',
-      description: `This assignment is excused and does not affect the student's grade`,
-    })
+    gradeText = i18n('Excused')
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>

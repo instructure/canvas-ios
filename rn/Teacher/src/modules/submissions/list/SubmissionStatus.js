@@ -17,32 +17,20 @@ export default class SubmissionStatus extends Component<any, SubmissionStatusPro
 
   render (): React.Element<*> {
     let color: string = '#8B969E' // none
-    let title: string = i18n({
-      default: 'No submission',
-      description: 'No submission from the student for the given assignment',
-    })
+    let title: string = i18n('No submission')
 
     switch (this.props.status) {
       case 'late':
         color = '#FC5E13'
-        title = i18n({
-          default: 'Late',
-          description: 'Assignment was turned in late',
-        })
+        title = i18n('Late')
         break
       case 'missing':
         color = '#EE0612'
-        title = i18n({
-          default: 'Missing',
-          description: 'The assignment has not been turned in',
-        })
+        title = i18n('Missing')
         break
       case 'submitted':
         color = '#07AF1F'
-        title = i18n({
-          default: 'Submitted',
-          description: 'The assignment has been turned in',
-        })
+        title = i18n('Submitted')
         break
     }
 

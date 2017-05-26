@@ -39,10 +39,7 @@ export class AllCourseList extends Component {
         navBarTranslucent={true}
         navBarColor={branding.navBarColor}
         navBarStyle='dark'
-        title={i18n({
-          default: 'All Courses',
-          description: `The title of the screen showing all of a teacher's courses`,
-        })}>
+        title={i18n('All Courses')}>
         <CourseList
           {...this.props}
           selectCourse={this.selectCourse}

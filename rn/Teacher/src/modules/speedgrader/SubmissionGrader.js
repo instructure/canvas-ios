@@ -78,10 +78,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   filesTabLabel () {
     const submission = this.props.submissionProps.submission
     const selectedIndex = this.props.selectedIndex
-    let defaultLabel = i18n({
-      default: 'Files',
-      description: 'The title of the button to switch to the files submitted for a submission',
-    })
+    let defaultLabel = i18n('Files')
     if (!submission) return defaultLabel
     if (selectedIndex == null) {
       if (!submission.attachments) return defaultLabel
@@ -99,14 +96,8 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
         <SegmentedControlIOS
           testID='speedgrader.segment-control'
           values={[
-            i18n({
-              default: 'Grades',
-              description: 'The title of the button to switch to grading a submission',
-            }),
-            i18n({
-              default: 'Comments',
-              description: 'The title of the button to switch to comments on a submission',
-            }),
+            i18n('Grades'),
+            i18n('Comments'),
             this.filesTabLabel(),
           ]}
           selectedIndex={this.state.selectedTabIndex}

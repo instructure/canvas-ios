@@ -92,10 +92,7 @@ export default class CourseCard extends Component {
                 onPress={this.onCoursePreferencesPressed}
                 accessibilityTraits='button'
                 accessible={true}
-                accessibilityLabel={i18n({
-                  default: 'Open {courseName} user preferences',
-                  description: 'Accessibility label on icon button to open course user preferences',
-                }, { courseName: course.name })}
+                accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
                 underlayColor='#ffffff00'
                 testID={`courseCard.kabob_${course.id}`}
               >

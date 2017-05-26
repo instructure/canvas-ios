@@ -63,17 +63,11 @@ export class FavoritedCourseList extends Component {
         <View style={styles.headerTextWrapper}>
           <Image source={Images.starFilled} />
           <Heading1 style={styles.headerText}>
-            {i18n({
-              default: 'Courses',
-              description: 'The header for the favorited courses list',
-            })}
+            {i18n('Courses')}
           </Heading1>
         </View>
         <LinkButton style={styles.seeAll} onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
-            {i18n({
-              default: 'See All',
-              description: 'Button to transition from favorited courses list to all courses list',
-            })}
+            {i18n('See All')}
         </LinkButton>
       </View>
     )
@@ -96,20 +90,14 @@ export class FavoritedCourseList extends Component {
         navBarStyle='dark'
         rightBarButtons={[
           {
-            title: i18n({
-              default: 'Edit',
-              description: 'Shown at the top of the app to allow the user to edit their course list',
-            }),
+            title: i18n('Edit'),
             testID: 'fav-courses.edit-btn',
             action: this.showFavoritesList,
           },
         ]}
         leftBarButtons={[
           {
-            accessibilityLabel: i18n({
-              default: 'Leave Feedback',
-              description: 'Shown at the top of the app to allow the user to leave feedback',
-            }),
+            accessibilityLabel: i18n('Leave Feedback'),
             testID: 'fav-courses.feedback-btn',
             image: Images.feedback,
             action: this.presentBetaFeedback,

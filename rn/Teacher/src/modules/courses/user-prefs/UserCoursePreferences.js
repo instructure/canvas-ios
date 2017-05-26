@@ -87,10 +87,7 @@ export class UserCoursePreferences extends Component {
   render (): React.Element<*> {
     return (
       <Screen
-        title={i18n({
-          default: 'Customize Course',
-          description: 'The title of the user course preferences screen',
-        })}
+        title={i18n('Customize Course')}
         subtitle={this.state.name}
         drawUnderNavBar={true}
         navBarStyle='light'
@@ -129,10 +126,7 @@ export class UserCoursePreferences extends Component {
             <View style={styles.bottom}>
               <View style={styles.nicknameWrapper}>
                 <Text style={styles.nicknameLabel}>
-                  {i18n({
-                    default: 'Nickname',
-                    description: 'Text describing a nick name given to a course',
-                  })}
+                  {i18n('Nickname')}
                 </Text>
                 <TextInput
                   value={this.state.name}
@@ -144,16 +138,10 @@ export class UserCoursePreferences extends Component {
               <View style={styles.separator} />
               <View>
                 <Text style={styles.colorLabel}>
-                  {i18n({
-                    default: 'Color',
-                    description: 'Title label for the course color picker',
-                  })}
+                  {i18n('Color')}
                 </Text>
                 <Text style={styles.colorDescription}>
-                  {i18n({
-                    default: 'Set this for the default color of the course. This won’t override a personal color setting.',
-                    description: 'Description of color picker shown to the user',
-                  })}
+                  {i18n('Set this for the default color of the course. This won’t override a personal color setting.')}
                 </Text>
                 <ScrollView contentContainerStyle={styles.colorButtonsWrapper} horizontal showsHorizontalScrollIndicator={false}>
                   {PICKER_COLORS.map(color => (

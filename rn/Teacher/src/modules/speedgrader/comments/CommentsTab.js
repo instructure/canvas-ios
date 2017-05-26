@@ -18,15 +18,9 @@ import i18n from 'format-message'
 import filesize from 'filesize'
 import striptags from 'striptags'
 
-const textSubmission = i18n({
-  default: 'Text Submission',
-  description: 'Text submitted for an assignment',
-})
+const textSubmission = i18n('Text Submission')
 
-const urlSubmission = i18n({
-  default: 'URL Submission',
-  description: 'URL submitted for an assignment',
-})
+const urlSubmission = i18n('URL Submission')
 
 export class CommentsTab extends Component<any, Props, any> {
   constructor (props: Props) {

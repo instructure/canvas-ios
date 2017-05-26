@@ -460,10 +460,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   renderDate = (date: StagedAssignmentDate): React.Element<View> => {
     let assigneeStyle = date.valid ? styles.titleText : styles.invalidTitleText
 
-    let title = i18n({
-      default: 'Assign To',
-      description: 'Assignment details due dates header',
-    })
+    let title = i18n('Assign To')
 
     let removeButton = this.renderRemoveButton(date)
     let detailTextStyle = date.title ? styles.detailText : styles.detailTextMissing
