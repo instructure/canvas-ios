@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start --config=rn-cli.config.js",
     "test": "jest",
-    "lint": "eslint *.js __tests__/*.js src test",
+    "lint": "eslint *.js __tests__/*.js src test flow",
     "lint:fix": "eslint --fix *.js __tests__/*.js src test",
     "lint:watch": "esw -w",
     "flow": "flow check --show-all-errors | flow-result-checker",

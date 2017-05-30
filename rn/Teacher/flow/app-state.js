@@ -81,7 +81,7 @@ export type DiscussionState = AsyncState & {
 }
 
 export type CourseDetailsTabSelectedRowState = {
-  rowID: ?string
+  rowID: ?string,
 }
 
 export type CoursesState = { [string]: CourseState & CourseContentState }
