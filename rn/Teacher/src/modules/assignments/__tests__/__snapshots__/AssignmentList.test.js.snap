@@ -343,7 +343,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                     },
                   ]
                 }
-                testID="assignment-123456789"
+                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
@@ -370,6 +370,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
                     <View
                       accessibilityLabel="Not Published"
@@ -999,7 +1000,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                     },
                   ]
                 }
-                testID="assignment-1"
+                testID="assignment-list-row-1.assignments-cell"
               >
                 <View
                   style={
@@ -1026,6 +1027,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
                   >
                     <View
                       accessibilityLabel="Not Published"
@@ -1264,7 +1266,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                     },
                   ]
                 }
-                testID="assignment-2"
+                testID="assignment-list-row-2.assignments-cell"
               >
                 <View
                   style={
@@ -1291,6 +1293,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-2.icon-img"
                   >
                     <View
                       accessibilityLabel="Not Published"
@@ -1751,7 +1754,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                     },
                   ]
                 }
-                testID="assignment-123456789"
+                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
@@ -1778,6 +1781,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
                     <View
                       accessibilityLabel="Not Published"
@@ -2286,7 +2290,7 @@ exports[`renders correctly 1`] = `
                     },
                   ]
                 }
-                testID="assignment-123456789"
+                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
@@ -2313,6 +2317,7 @@ exports[`renders correctly 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
                     <View
                       accessibilityLabel="Not Published"
@@ -2821,7 +2826,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                     },
                   ]
                 }
-                testID="assignment-123456789"
+                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
@@ -2848,6 +2853,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         "alignSelf": "flex-start",
                       }
                     }
+                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
                     <View
                       accessibilityLabel="Not Published"

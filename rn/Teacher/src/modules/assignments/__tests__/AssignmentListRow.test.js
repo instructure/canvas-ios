@@ -68,3 +68,43 @@ test('renders correctly with selected props', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+test('renders correctly published icon', () => {
+  let assignment = template.assignment({ published: true })
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment}/>
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders correctly not published icon', () => {
+  let assignment = template.assignment({ published: false })
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment}/>
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders correctly assignment icon', () => {
+  let assignment = template.assignment({ submission_types: ['on_paper'] })
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment}/>
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders correctly quiz icon', () => {
+  let assignment = template.assignment({ submission_types: ['online_quiz'] })
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment}/>
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders correctly discussion icon', () => {
+  let assignment = template.assignment({ submission_types: ['discussion_topic'] })
+  let tree = renderer.create(
+    <AssignmentListRow assignment={assignment}/>
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})

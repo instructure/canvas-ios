@@ -66,7 +66,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
             subtitle={this.dueDate(assignment)}
             border='bottom'
             disclosureIndicator={true}
-            testID={`assignment-${assignment.id}`}
+            testID={`assignment-list-row-${assignment.id}.assignments-cell`}
             onPress={this.onPress}
             selected={selected}
             height='auto'
@@ -80,9 +80,20 @@ export default class AssignmentListRow extends Component<any, Props, any> {
   }
 
   _renderIcon = () => {
+    const assignment = this.props.assignment
+    let image = Images.course.assignments
+    let testIDSuffix = `-icon-${assignment.published ? 'published' : 'not-published'}-${assignment.id}.icon-img`
+    let testID = `assignment-list-row-assignment${testIDSuffix}`
+    if (assignment.submission_types.includes('online_quiz')) {
+      image = Images.course.quizzes
+      testID = `assignment-list-row-quiz${testIDSuffix}`
+    } else if (assignment.submission_types.includes('discussion_topic')) {
+      image = Images.course.discussions
+      testID = `assignment-list-row-discussion${testIDSuffix}`
+    }
     return (
-      <View style={styles.icon}>
-        <Icon published={this.props.assignment.published} tintColor={this.props.tintColor} style={styles.icon} image={Images.course.assignments} />
+      <View style={styles.icon} testID={testID}>
+        <Icon published={assignment.published} tintColor={this.props.tintColor} style={styles.icon} image={image} />
       </View>
     )
   }

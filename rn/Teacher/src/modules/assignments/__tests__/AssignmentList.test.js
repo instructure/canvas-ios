@@ -70,7 +70,7 @@ test('selected assignment', () => {
   const tree = renderer.create(
     <AssignmentList {...defaultProps} navigator={navigator} />
   )
-  const row: any = explore(tree.toJSON()).selectByID(`assignment-${assignment.id}`)
+  const row: any = explore(tree.toJSON()).selectByID(`assignment-list-row-${assignment.id}.assignments-cell`)
   row.props.onPress()
   expect(navigator.show).toHaveBeenCalled()
 })
