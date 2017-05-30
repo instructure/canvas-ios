@@ -59,12 +59,13 @@ export class Header extends Component {
   }
 
   hasSubmission () {
-    return this.props.submissionProps.status !== 'none' && !!this.props.submissionProps.submission
+    let stati = ['none', 'missing']
+    return !stati.includes(this.props.submissionProps.status) && !!this.props.submissionProps.submission
   }
 
   renderSubmissionHistory () {
     const submission = this.props.submissionProps.submission
-    if (!submission && !this.hasSubmission()) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
+    if (!this.hasSubmission()) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
 
     if (submission && submission.submission_history &&
       submission.submission_history.length > 1) {

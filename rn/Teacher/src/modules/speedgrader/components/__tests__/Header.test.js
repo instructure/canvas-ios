@@ -1,5 +1,6 @@
 // @flow
 
+import _ from 'lodash'
 import React from 'react'
 import { Header, mapStateToProps } from '../Header'
 import renderer from 'react-test-renderer'
@@ -82,6 +83,29 @@ describe('SpeedGraderHeader', () => {
   it('renders with a submission', () => {
     let tree = renderer.create(
       <Header {...subProps} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders with a grade-only submission', () => {
+    let props = _.cloneDeep(subProps)
+    props.submissionProps.status = 'none'
+
+    let tree = renderer.create(
+      <Header {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders with an over-due grade-only submission', () => {
+    let props = _.cloneDeep(subProps)
+    props.submissionProps.status = 'missing'
+    props.submissionProps.submission = null
+
+    let tree = renderer.create(
+      <Header {...props} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
