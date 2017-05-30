@@ -443,7 +443,7 @@ describe('map state to props', () => {
   })
 
   it('should map assignment_id to assignment prop', () => {
-    const quiz = template.quiz({ id: '1', assignment_id: '2' })
+    const quiz = template.quiz({ id: '1', assignment_id: '2', quiz_type: 'assignment' })
     const assignment = template.assignment({ id: '2' })
     const state: AppState = template.appState({
       entities: {
@@ -469,6 +469,36 @@ describe('map state to props', () => {
       mapStateToProps(state, { courseID: '1', quizID: '1' })
     ).toMatchObject({
       assignment,
+    })
+  })
+
+  it('should not map assignment_id to assignment prop if quiz is not an assignment', () => {
+    const quiz = template.quiz({ id: '1', assignment_id: '2', quiz_type: 'practice_quiz' })
+    const assignment = template.assignment({ id: '2' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        assignments: {
+          '2': {
+            data: assignment,
+            pending: 0,
+            submissions: { refs: [], pending: 0 },
+            pendingComments: {},
+          },
+        },
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 1,
+            error: null,
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' })
+    ).toMatchObject({
+      assignment: null,
     })
   })
 

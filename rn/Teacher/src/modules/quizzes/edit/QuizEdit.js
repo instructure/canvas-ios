@@ -107,7 +107,7 @@ export class QuizEdit extends Component<any, Props, any> {
   }
 
   componentWillUnmount () {
-    if (this.state.assignment) {
+    if (this.state.quiz.quiz_type === 'assignment' && this.state.assignment) {
       this.props.refreshAssignment(this.props.courseID, this.state.assignment.id)
     }
   }
@@ -599,7 +599,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
   }
 
   let assignment = null
-  if (quiz.assignment_id &&
+  if (quiz.quiz_type === 'assignment' &&
+    quiz.assignment_id &&
     entities.assignments &&
     entities.assignments[quiz.assignment_id] &&
     entities.assignments[quiz.assignment_id].data) {
