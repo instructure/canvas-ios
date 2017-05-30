@@ -24,6 +24,7 @@ test('refresh assignments', async () => {
     [assignment.id.toString()]: {
       data: assignment,
       submissions: { refs: [], pending: 0 },
+      gradeableStudents: { refs: [], pending: 0 },
       pendingComments: {},
     },
   }])
@@ -95,6 +96,7 @@ test('reduces assignment content', () => {
         pending: -1,
         refs: ['3'],
       },
+      gradeableStudents: { pending: 0, refs: [] },
       pending: 0,
       error: null,
       pendingComments: {},
@@ -133,6 +135,7 @@ test('refreshQuiz', () => {
       data: assignment,
       pending: 0,
       submissions: { refs: [], pending: 0 },
+      gradeableStudents: { refs: [], pending: 0 },
       pendingComments: {},
     },
   }

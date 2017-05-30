@@ -103,7 +103,11 @@ export class QuizDetails extends Component<any, Props, any> {
             onPress={this.viewAllSubmissions}
             testID='quizzes.details.viewAllSubmissionsRow'
             showDisclosureIndicator>
-            <QuizSubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} quizID={this.props.quizID} />
+            <QuizSubmissionBreakdownGraphSection
+              onPress={this.onSubmissionDialPress}
+              courseID={this.props.courseID}
+              quizID={this.props.quizID}
+              assignmentID={quiz.assignment_id} />
           </AssignmentSection>
 
           { Boolean(quiz.description) &&

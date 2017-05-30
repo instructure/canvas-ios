@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     marginRight: global.style.defaultPadding,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'white',
   },
   altImageText: {
     fontWeight: '600',

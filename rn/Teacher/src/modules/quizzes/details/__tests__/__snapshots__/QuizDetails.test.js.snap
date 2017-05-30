@@ -678,6 +678,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -2132,6 +2133,7 @@ exports[`QuizDetails displays access code 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -3586,6 +3588,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -4924,6 +4927,7 @@ exports[`QuizDetails renders 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -6320,6 +6324,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -7774,6 +7779,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -9170,6 +9176,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -10566,6 +10573,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -11962,6 +11970,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -13358,6 +13367,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -14754,6 +14764,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -16092,6 +16103,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -17488,6 +17500,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -18916,6 +18929,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -20312,6 +20326,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -21766,6 +21781,7 @@ exports[`QuizDetails renders published state 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -23162,6 +23178,7 @@ exports[`QuizDetails renders published state 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -24558,6 +24575,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -25954,6 +25972,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -27350,6 +27369,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -28746,6 +28766,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -30142,6 +30163,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -31538,6 +31560,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -32934,6 +32957,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -34330,6 +34354,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -35726,6 +35751,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -37122,6 +37148,7 @@ exports[`QuizDetails renders time limit 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -38518,6 +38545,7 @@ exports[`QuizDetails renders time limit 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -39914,6 +39942,7 @@ exports[`QuizDetails renders view responses 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -41310,6 +41339,7 @@ exports[`QuizDetails renders view responses 2`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -42648,6 +42678,7 @@ exports[`QuizDetails renders view responses 3`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"
@@ -43986,6 +44017,7 @@ exports[`QuizDetails renders without a description 1`] = `
                 </Text>
               </View>
               <QuizSubmissionBreakdownGraphSection
+                assignmentID={undefined}
                 courseID="1"
                 onPress={[Function]}
                 quizID="1"

@@ -119,6 +119,30 @@ describe('exhaust', () => {
     })
   })
 
+  it('should exhaust pagination with passed in keys', async () => {
+    const page3 = apiResponse({ key: [3] })
+    const page2 = apiResponse({ key: [2] }, { next: page3 })
+    const page1 = apiResponse({ key: [1] }, { next: page2 })
+
+    const result = await exhaust(page1(), ['key'])
+    expect(result).toEqual({
+      data: { key: [1, 2, 3] },
+      next: null,
+    })
+  })
+
+  it('should exhaust pagination with passed in keys but a response could be missing things', async () => {
+    const page3 = apiResponse({ key: [3] })
+    const page2 = apiResponse({ key: [2] }, { next: page3 })
+    const page1 = apiResponse({ garbage: [4] }, { next: page2 })
+
+    const result = await exhaust(page1(), ['key'])
+    expect(result).toEqual({
+      data: { key: [2, 3] },
+      next: null,
+    })
+  })
+
   it('should propagate errors', async () => {
     const page2 = apiError()
     const page1 = apiResponse([1], { next: page2 })

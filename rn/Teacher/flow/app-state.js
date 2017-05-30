@@ -52,6 +52,7 @@ export type PendingCommentsState = {
 
 export type AssignmentContentState = {
   submissions: AsyncRefs,
+  gradeableStudents: AsyncRefs,
   pendingComments: PendingCommentsState,
 }
 

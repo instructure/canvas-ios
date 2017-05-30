@@ -5,6 +5,7 @@ import { handleActions } from 'redux-actions'
 import Actions from './actions'
 import handleAsync from '../../utils/handleAsync'
 import { submissions } from '../submissions/list/submission-refs-reducer'
+import { gradeableStudentsRefs as gradeableStudents } from './assignment-gradeable-students-reducer'
 import flatMap from 'lodash/flatMap'
 import fromPairs from 'lodash/fromPairs'
 import cloneDeep from 'lodash/cloneDeep'
@@ -13,7 +14,10 @@ import { default as QuizDetailsActions } from '../quizzes/details/actions'
 
 export let defaultState: AssignmentGroupsState = {}
 
-const { refreshAssignmentList, updateAssignment, refreshAssignment, cancelAssignmentUpdate } = Actions
+const { refreshAssignmentList,
+        updateAssignment,
+        refreshAssignment,
+        cancelAssignmentUpdate } = Actions
 const { refreshQuiz } = QuizDetailsActions
 
 const assignment = assignment => assignment || {}
@@ -23,6 +27,7 @@ const error = error => error || null
 const assignmentContent = combineReducers({
   data: assignment,
   submissions,
+  gradeableStudents,
   pending,
   error,
   pendingComments,
@@ -30,6 +35,7 @@ const assignmentContent = combineReducers({
 
 const defaultAssignmentContents: AssignmentContentState = {
   submissions: { refs: [], pending: 0 },
+  gradeableStudents: { refs: [], pending: 0 },
   pendingComments: {},
 }
 

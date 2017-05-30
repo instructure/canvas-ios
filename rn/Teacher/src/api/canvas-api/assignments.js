@@ -2,6 +2,7 @@
 
 import httpClient from './httpClient'
 import { cloneDeep } from 'lodash'
+import { paginate, exhaust } from '../utils/pagination'
 
 export function getAssignment (courseID: string, assignmentID: string): Promise<ApiResponse<Assignment>> {
   const url = `courses/${courseID}/assignments/${assignmentID}`
@@ -27,4 +28,16 @@ export function updateAssignment (courseID: string, assignment: Assignment): Pro
   return httpClient().put(url, {
     assignment: updatedAssignment,
   })
+}
+
+export function getAssignmentGradeableStudents (courseID: string, assignmentID: string): Promise<ApiResponse<UserDisplay>> {
+  const url = `courses/${courseID}/assignments/${assignmentID}/gradeable_students`
+
+  let options = {
+    params: {
+      per_page: 99,
+    },
+  }
+  const students = paginate(url, options)
+  return exhaust(students)
 }

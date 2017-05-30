@@ -33,6 +33,13 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
   cancelAssignmentUpdate: createAction('assignment.cancel-update', (originalAssignment) => {
     return { originalAssignment }
   }),
+  refreshGradeableStudents: createAction('assignment.gradeable-students', (courseID: string, assignmentID: string) => {
+    return {
+      promise: api.getAssignmentGradeableStudents(courseID, assignmentID),
+      courseID,
+      assignmentID,
+    }
+  }),
   updateCourseDetailsSelectedTabSelectedRow: createAction(UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION, (rowID: string) => {
     return { rowID }
   }),

@@ -211,6 +211,7 @@ exports[`render correctly without image url 1`] = `
           Array [
             Object {
               "alignItems": "center",
+              "backgroundColor": "white",
               "borderColor": "#C7CDD1",
               "borderWidth": 0.5,
               "justifyContent": "center",

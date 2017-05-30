@@ -12,3 +12,10 @@ export type User = {
   +bio?: string,
   +avatar_url: string,
 }
+
+export type UserDisplay = {
+  id: string,
+  display_name: string,
+  avatar_url: string,
+  html_url: string,
+}

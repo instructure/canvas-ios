@@ -20,11 +20,12 @@ jest
 
 let templates = { ...courseTemplates, ...navigatorTemplates }
 
-let defaultProps = {
+let defaultProps: any = {
   navigator: templates.navigator(),
   course: templates.course(),
   color: '#333',
   updateCourseColor: jest.fn(),
+  refreshCourses: jest.fn(),
   updateCourse: jest.fn(() => { console.log('default') }),
   refresh: jest.fn(),
   refreshing: false,
@@ -57,6 +58,17 @@ describe('UserCoursePreferences', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders the refreshed component', () => {
+    let component = renderer.create(
+      <Refreshed {...defaultProps} course={null} pending={1} />
+    )
+
+    expect(component.toJSON()).toMatchSnapshot()
+    component.getInstance().refresh()
+    setProps(component, defaultProps)
+    expect(defaultProps.refreshCourses).toHaveBeenCalled()
   })
 
   it('calls dismiss when done is pressed', () => {

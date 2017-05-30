@@ -3866,6 +3866,51 @@ exports[`UserCoursePreferences renders 1`] = `
 </Screen>
 `;
 
+exports[`UserCoursePreferences renders the refreshed component 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarSubtitleColor="#333"
+  navBarTitleColor="#2D3B45"
+  navBarTranslucent={true}
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "done_button",
+        "title": "Done",
+      },
+    ]
+  }
+  subtitle=""
+  title="Customize Course"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+  </View>
+</Screen>
+`;
+
 exports[`UserCoursePreferences renders without a course image url 1`] = `
 <Screen
   drawUnderNavBar={true}

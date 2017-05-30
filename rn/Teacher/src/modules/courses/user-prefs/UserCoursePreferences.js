@@ -20,6 +20,7 @@ import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 
@@ -47,7 +48,7 @@ export class UserCoursePreferences extends Component {
     super(props)
 
     this.state = {
-      name: this.props.course.name,
+      name: this.props.course ? this.props.course.name : '',
       pending: false,
     }
   }
@@ -69,6 +70,12 @@ export class UserCoursePreferences extends Component {
       this.setState({ pending: false })
       this.props.navigator.dismissAllModals()
     }
+
+    if (props.course) {
+      this.setState({
+        name: props.course.name,
+      })
+    }
   }
 
   updateColor = (color: string): void => {
@@ -84,25 +91,12 @@ export class UserCoursePreferences extends Component {
     }
   }
 
-  render (): React.Element<*> {
-    return (
-      <Screen
-        title={i18n('Customize Course')}
-        subtitle={this.state.name}
-        drawUnderNavBar={true}
-        navBarStyle='light'
-        navBarButtonColor={colors.link}
-        navBarTranslucent={true}
-        navBarTitleColor={colors.darkText}
-        navBarSubtitleColor={this.props.color}
-        rightBarButtons={[{
-          title: i18n('Done'),
-          style: 'done',
-          testID: 'done_button',
-          action: this.dismiss,
-        }]}
-      >
-        <View style={{ flex: 1 }}>
+  _renderComponent (): React.Element<any> {
+    if (this.props.pending) {
+      return (<ActivityIndicatorView />)
+    }
+
+    return (<View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
           <RefreshableScrollView
             style={{ flex: 1 }}
@@ -157,7 +151,28 @@ export class UserCoursePreferences extends Component {
               <View style={styles.separator} />
             </View>
           </RefreshableScrollView>
-        </View>
+        </View>)
+  }
+
+  render (): React.Element<*> {
+    return (
+      <Screen
+        title={i18n('Customize Course')}
+        subtitle={this.state.name}
+        drawUnderNavBar={true}
+        navBarStyle='light'
+        navBarButtonColor={colors.link}
+        navBarTranslucent={true}
+        navBarTitleColor={colors.darkText}
+        navBarSubtitleColor={this.props.color}
+        rightBarButtons={[{
+          title: i18n('Done'),
+          style: 'done',
+          testID: 'done_button',
+          action: this.dismiss,
+        }]}
+      >
+      { this._renderComponent() }
       </Screen>
     )
   }

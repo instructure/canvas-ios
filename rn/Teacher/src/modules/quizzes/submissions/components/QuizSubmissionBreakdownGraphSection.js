@@ -7,6 +7,7 @@ import SubmissionGraph from '../../../submissions/SubmissionGraph'
 import { connect } from 'react-redux'
 import QuizSubmissionActions from '../actions'
 import EnrollmentActions from '../../../enrollments/actions'
+import AssignmentActions from '../../../assignments/actions'
 import {
   View,
   StyleSheet,
@@ -19,24 +20,33 @@ import i18n from 'format-message'
 export type QuizSubmissionBreakdownGraphSectionProps = {
   courseID: string,
   quizID: string,
+  assignmentID?: ?string,
   style: any,
   onPress: (string) => void,
   refreshQuizSubmissions: Function,
   refreshEnrollments: Function,
-  enrollmentCount: number,
+  refreshGradeableStudents: Function,
+  refreshAssignment: Function,
+  submissionTotalCount: number,
   quizSubmissions: QuizSubmissionState[],
 }
 
 export type QuizSubmissionBreakdownGraphSectionInitProps = {
   courseID: string,
   quizID: string,
+  assignmentID?: ?string,
 }
 
 export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubmissionBreakdownGraphSectionProps, any> {
 
   componentDidMount () {
     this.props.refreshQuizSubmissions(this.props.courseID, this.props.quizID)
-    this.props.refreshEnrollments(this.props.courseID)
+    if (this.props.assignmentID) {
+      this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
+      this.props.refreshGradeableStudents(this.props.courseID, this.props.assignmentID)
+    } else {
+      this.props.refreshEnrollments(this.props.courseID)
+    }
   }
 
   componentWillUpdate () {
@@ -62,7 +72,7 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
 
-    let total = this.props.enrollmentCount
+    let total = this.props.submissionTotalCount
     let graded = this.props.quizSubmissions.filter((s) => { return s.data.workflow_state === 'complete' }).length
     let ungraded = this.props.quizSubmissions.filter((s) => { return s.data.workflow_state === 'pending_review' }).length
     let notSubmitted = total - (graded + ungraded)
@@ -132,24 +142,35 @@ export function mapStateToProps (state: AppState, ownProps: QuizSubmissionBreakd
     pending = quiz.quizSubmissions.pending
   }
 
-  let enrollmentCount = 0
-  const course = state.entities.courses[ownProps.courseID]
-  if (course) {
-    enrollmentCount = course.enrollments.refs.map((r) => {
-      return state.entities.enrollments[r]
-    })
-    .filter((r) => r)
-    .filter((r) => r.type === 'StudentEnrollment')
-    .length
-    pending = pending || course.enrollments.pending
+  let submissionTotalCount = 0
+
+  if (ownProps.assignmentID) {
+    const assignment = state.entities.assignments[ownProps.assignmentID]
+    if (assignment && assignment.gradeableStudents) {
+      submissionTotalCount = assignment.gradeableStudents.refs.length
+      pending = pending || assignment.pending || assignment.gradeableStudents.pending
+    } else {
+      pending = true
+    }
+  } else {
+    const course = state.entities.courses[ownProps.courseID]
+    if (course) {
+      submissionTotalCount = course.enrollments.refs.map((r) => {
+        return state.entities.enrollments[r]
+      })
+      .filter((r) => r)
+      .filter((r) => r.type === 'StudentEnrollment')
+      .length
+      pending = pending || course.enrollments.pending
+    }
   }
 
   return {
     quizSubmissions,
-    enrollmentCount,
+    submissionTotalCount,
     pending,
   }
 }
 
-const Connected = connect(mapStateToProps, { ...QuizSubmissionActions, ...EnrollmentActions })(QuizSubmissionBreakdownGraphSection)
+const Connected = connect(mapStateToProps, { ...QuizSubmissionActions, ...EnrollmentActions, ...AssignmentActions })(QuizSubmissionBreakdownGraphSection)
 export default (Connected: any)

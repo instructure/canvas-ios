@@ -27,14 +27,30 @@ export function paginate<T> (url: string, config: AxiosRequestConfig = {}): Prom
   })
 }
 
-export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>): Promise<ApiResponse<[T]>> {
-  let result = []
+// If keys are supplied, the result is implied to be a object instead of an array
+// The keys are then used to extract and append the data from the result
+export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>, keys?: string[] = []): Promise<ApiResponse<[T]>> {
+  let result
+  if (keys.length) {
+    result = {}
+  } else {
+    result = []
+  }
+
   let next = () => initial
 
   while (next) {
     const response = await next()
     if (response.data) {
-      result = [...result, ...response.data]
+      if (keys.length) {
+        keys.forEach((key) => {
+          const newData = response.data[key] || []
+          const oldData = result[key] || []
+          result[key] = [...oldData, ...newData]
+        })
+      } else {
+        result = [...result, ...response.data]
+      }
     }
     next = response.next
   }

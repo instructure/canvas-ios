@@ -2,13 +2,14 @@
  * @flow
  */
 
-import 'react-native'
+import { LayoutAnimation } from 'react-native'
 import React from 'react'
 import { QuizSubmissionBreakdownGraphSection, mapStateToProps } from '../QuizSubmissionBreakdownGraphSection'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../../test/helpers/explore'
 const template = {
   ...require('../../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../../../api/canvas-api/__templates__/course'),
   ...require('../../../../../api/canvas-api/__templates__/quizSubmission'),
   ...require('../../../../../api/canvas-api/__templates__/users'),
@@ -26,7 +27,7 @@ jest.mock('LayoutAnimation', () => ({
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
 let course: any = template.course()
-let assignment: any = template.quiz()
+let quiz: any = template.quiz()
 
 let defaultProps = {}
 
@@ -34,13 +35,17 @@ beforeEach(() => {
   let a = template.quizSubmission({ id: 1, kept_score: 5 })
   let b = template.quizSubmission({ id: 2, workflow_state: 'untaken' })
   let c = template.quizSubmission({ id: 3, workflow_state: 'pending_review' })
+  let quizSubmissions = [{ data: a }, { data: b }, { data: c }]
 
   defaultProps = {
     courseID: course.id,
-    quizID: assignment.assignmentID,
-    refreshQuizSubmissions: (courseID: string, assignmentID: string) => {},
-    refreshEnrollments: (courseID: string) => {},
-    quizSubmissions: [{ data: a }, { data: b }, { data: c }],
+    quizID: quiz.id,
+    refreshQuizSubmissions: jest.fn(),
+    refreshEnrollments: jest.fn(),
+    refreshAssignment: jest.fn(),
+    refreshGradeableStudents: jest.fn(),
+    quizSubmissions,
+    submissionTotalCount: quizSubmissions.length,
     pending: 0,
     refresh: jest.fn(),
     refreshing: false,
@@ -50,6 +55,17 @@ beforeEach(() => {
 
 test('render', () => {
   let tree = renderer.create(
+    <QuizSubmissionBreakdownGraphSection {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('render with an assignment id', () => {
+  const assignment = template.assignment()
+  // Why doesn't this work
+  // $FlowFixMe
+  defaultProps.assignmentID = assignment.id
+  const tree = renderer.create(
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
@@ -106,6 +122,20 @@ test('onPress is called not_submitted dial', () => {
   testDialOnPress('quiz-submission_dial_2', 'notsubmitted')
 })
 
+test('misc functions', () => {
+  defaultProps.onPress = null
+  let instance = renderer.create(
+    <QuizSubmissionBreakdownGraphSection {...defaultProps} />
+  ).getInstance()
+
+  // Make sure this doesn't explode when there isn't an onPress handler
+  instance.onPress(null)
+
+  // Make sure animation is called
+  instance.componentWillUpdate()
+  expect(LayoutAnimation.easeInEaseOut).toHaveBeenCalled()
+})
+
 function testDialOnPress (expectedID: string, expectedValueParameter: string) {
   let component = renderer.create(
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
@@ -156,7 +186,64 @@ test('mapStateToProps', () => {
 
   const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
   expect(result).toMatchObject({
-    enrollmentCount: 1,
+    submissionTotalCount: 1,
+    quizSubmissions: [
+      {
+        data: qs1,
+      },
+    ],
+  })
+})
+
+test('mapStateToProps with an assignment id', () => {
+  const course = template.course()
+  const quiz = template.quiz()
+  const assignment = template.assignment()
+
+  const u1 = template.user({
+    id: '1',
+  })
+  const e1 = template.enrollment({
+    id: '1',
+    user_id: u1.id,
+    user: u1,
+  })
+  const qs1 = template.quizSubmission({
+    id: '1',
+    quiz_id: quiz.id,
+    user_id: e1.user.id,
+    workflow_state: 'pending_review',
+  })
+
+  const appState = template.appState({
+    entities: {
+      courses: {
+        [course.id]: { enrollments: { refs: [e1.id] } },
+      },
+      assignments: {
+        [assignment.id]: {
+          assignment,
+          gradeableStudents: { refs: ['1'], pending: 0 },
+        },
+      },
+      enrollments: {
+        [e1.id]: e1,
+      },
+      quizzes: {
+        [quiz.id]: {
+          data: quiz,
+          quizSubmissions: { refs: [qs1.id] },
+        },
+      },
+      quizSubmissions: {
+        [qs1.id]: { data: qs1 },
+      },
+    },
+  })
+
+  const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id, assignmentID: assignment.id })
+  expect(result).toMatchObject({
+    submissionTotalCount: 1,
     quizSubmissions: [
       {
         data: qs1,
@@ -168,10 +255,17 @@ test('mapStateToProps', () => {
 test('mapStateToProps with no data should not explode', () => {
   const course = template.course()
   const quiz = template.quiz()
+  const assignment = template.assignment()
   const appState = template.appState()
-  const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
+  let result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id, assignmentID: assignment.id })
   expect(result).toMatchObject({
-    enrollmentCount: 0,
+    submissionTotalCount: 0,
+    quizSubmissions: [],
+  })
+
+  result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
+  expect(result).toMatchObject({
+    submissionTotalCount: 0,
     quizSubmissions: [],
   })
 })

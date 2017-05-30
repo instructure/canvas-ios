@@ -3,13 +3,9 @@
 import React from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 
-type Props = {
-  height: number,
-}
-
-export default class DisclosureIndicator extends React.Component<any, Props, any> {
+export default class ActivityIndicatorView extends React.Component<any, any, any> {
   render (): React.Element<View> {
-    return <View style={{ height: this.props.height }}>
+    return <View style={styles.container}>
               <ActivityIndicator style={styles.indicator} />
            </View>
   }

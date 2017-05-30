@@ -10,3 +10,9 @@ export const user: Template<User> = template({
   bio: 'my bio is yuuuuuuuge',
   avatar_url: 'http://www.fillmurray.com/100/100',
 })
+
+export const userDisplay: Template<UserDisplay> = template({
+  id: 1,
+  short_name: 'The Donald',
+  avatar_url: 'http://www.fillmurray.com/100/100',
+})

@@ -24,9 +24,11 @@ export function getQuizSubmissions (courseID: string, quizID: string): Promise<A
   let options = {
     params: {
       include: 'submission',
+      per_page: 99,
     },
   }
-  return httpClient().get(url, options)
+  const submissions = paginate(url, options)
+  return exhaust(submissions, ['quiz_submissions', 'submissions'])
 }
 
 export function updateQuiz (quiz: Quiz, courseID: string): Promise<ApiResponse<Quiz>> {

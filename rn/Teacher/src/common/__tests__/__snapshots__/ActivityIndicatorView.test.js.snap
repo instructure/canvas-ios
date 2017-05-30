@@ -4,7 +4,9 @@ exports[`renders activity indicator view correctly 1`] = `
 <View
   style={
     Object {
-      "height": undefined,
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
     }
   }
 >
