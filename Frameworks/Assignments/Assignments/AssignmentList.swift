@@ -44,7 +44,7 @@ struct AssignmentViewModel: TableViewCellViewModel {
     }
 }
 
-class AssignmentList: Assignment.TableViewController {
+class AssignmentList: FetchedTableViewController<Assignment> {
     
     let session: Session
     let courseID: String

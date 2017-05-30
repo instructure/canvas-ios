@@ -53,7 +53,7 @@ extension EventDetailsViewModel {
     }
 }
 
-class CalendarEventDetailsViewController: CalendarEvent.DetailViewController {
+class CalendarEventDetailsViewController: CalendarEventDetailViewController {
     var disposable: Disposable?
     let studentID: String
 

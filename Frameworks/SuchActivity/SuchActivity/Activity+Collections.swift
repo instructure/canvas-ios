@@ -60,6 +60,4 @@ extension Activity {
         let key = cacheKey(moc, [context.canvasContextID])
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-    
-    public typealias TableViewController = FetchedTableViewController<Activity>
 }

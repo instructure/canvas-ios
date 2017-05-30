@@ -44,7 +44,7 @@ struct GradeCellViewModel: TableViewCellViewModel {
     }
 }
 
-class GradesList: Assignment.TableViewController {
+class GradesList: FetchedTableViewController<Assignment> {
     let session: Session
 
     init(session: Session, courseID: String) throws {

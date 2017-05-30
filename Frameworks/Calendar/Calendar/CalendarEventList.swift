@@ -52,7 +52,7 @@ struct CalendarEventViewModel: TableViewCellViewModel {
 
 
 
-class CalendarEventList: CalendarEvent.TableViewController {
+class CalendarEventList: FetchedTableViewController<CalendarEvent> {
 
     let session: Session
 

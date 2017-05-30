@@ -86,7 +86,7 @@ func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewMode
     return vm
 }
 
-class ToDoListViewController: Todo.TableViewController {
+class ToDoListViewController: FetchedTableViewController<Todo> {
 
     let session: Session
     let route: (UIViewController, URL)->()

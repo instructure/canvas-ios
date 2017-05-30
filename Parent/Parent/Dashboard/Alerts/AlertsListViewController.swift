@@ -25,7 +25,7 @@ import SoLazy
 import ReactiveSwift
 import Armchair
 
-class AlertsListViewController: Alert.TableViewController {
+class AlertsListViewController: FetchedTableViewController<Alert> {
     let session: Session
     let observeeID: String
 

@@ -124,6 +124,4 @@ extension Assignment {
             session.refreshScope.invalidateCache(collectionCacheKey(context, courseID: courseID, gradingPeriodID: gradingPeriodID), refresh: false)
         }
     }
-
-    public typealias TableViewController = FetchedTableViewController<Assignment>
 }

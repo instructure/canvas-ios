@@ -45,6 +45,4 @@ extension UserEnrollment {
                 .map { $0.title }
         }
     }
-    
-    public typealias TableViewController = FetchedTableViewController<UserEnrollment>
 }

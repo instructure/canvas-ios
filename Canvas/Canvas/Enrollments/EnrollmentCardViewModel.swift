@@ -27,7 +27,7 @@ private let CourseNibAndReuseID = "CourseCardCell"
 private let GroupNibAndReuseID = "GroupCardCell"
 
 
-class EnrollmentCardViewModel: Enrollment.ViewModel, CollectionViewCellViewModel {
+class EnrollmentCardViewModel: EnrollmentViewModel, CollectionViewCellViewModel {
     
     var showingGrades = MutableProperty(false)
     var shortcutTabs = MutableProperty<[Tab]>([])

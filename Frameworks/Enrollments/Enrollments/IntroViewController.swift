@@ -25,7 +25,7 @@ import SoPersistent
 import ReactiveSwift
 import SoLazy
 
-class EnrollmentCollectionViewModel: Enrollment.ViewModel, CollectionViewCellViewModel {
+class EnrollmentCollectionViewModel: EnrollmentViewModel, CollectionViewCellViewModel {
     
     var customize: ()->()
     
@@ -67,7 +67,7 @@ class EnrollmentCollectionViewModel: Enrollment.ViewModel, CollectionViewCellVie
     }
 }
 
-class CoursesCollectionViewController: Course.CollectionViewController {
+class CoursesCollectionViewController: FetchedCollectionViewController<Course> {
     let session: Session
     
     init(session: Session) throws {
@@ -110,7 +110,7 @@ class CoursesCollectionViewController: Course.CollectionViewController {
 }
 
 
-class GroupsCollectionViewController: Group.CollectionViewController {
+class GroupsCollectionViewController: FetchedCollectionViewController<Group> {
     let session: Session
     
     init(session: Session) throws {

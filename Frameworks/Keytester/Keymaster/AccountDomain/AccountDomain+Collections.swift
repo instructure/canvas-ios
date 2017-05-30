@@ -48,6 +48,4 @@ extension AccountDomain {
         let sync = AccountDomain.syncSignalProducer(inContext: context, fetchRemote: remote)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: RefreshScope.global, cacheKey: cacheKey(context))
     }
-
-    public typealias TableViewController = FetchedTableViewController<AccountDomain>
 }

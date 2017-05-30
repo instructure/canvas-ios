@@ -196,7 +196,7 @@
 		490639AB1E20071A001106D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		490639AE1E20071A001106D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		490639B01E20071A001106D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		490639B51E200E0C001106D7 /* AllBagelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllBagelsViewController.swift; sourceTree = "<group>"; };
+		490639B51E200E0C001106D7 /* AllBagelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AllBagelsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		490639B61E200E0C001106D7 /* Bagel+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bagel+Collections.swift"; sourceTree = "<group>"; };
 		490639B71E200E0C001106D7 /* Bagel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bagel.swift; sourceTree = "<group>"; };
 		490639B81E200E0C001106D7 /* BagelCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BagelCardCell.xib; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		492A58A81E1F0F8600031EEF /* SuchActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SuchActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492A58A91E1F0F8600031EEF /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492EEAFB1DE377D100E5700D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		496268F21DAC3E0A00B45487 /* FetchedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedTableViewController.swift; sourceTree = "<group>"; };
+		496268F21DAC3E0A00B45487 /* FetchedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchedTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		496268F41DAC3F8E00B45487 /* FetchedCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedCollectionViewController.swift; sourceTree = "<group>"; };
 		4982300F1C6AB11800D2318A /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49893A081C8E280F00A8CFBA /* FetchedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FetchedCollection.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -544,7 +544,6 @@
 			children = (
 				B16B5E4C1E255C7000DED47B /* InfoPlist.strings */,
 				B16B5E471E255C6E00DED47B /* Localizable.strings */,
-				B11273BA1C92258400452060 /* Simple Class */,
 				B14E118C1C64142600007938 /* Dependencies */,
 				B11273BA1C92258400452060 /* Simple Class */,
 				B1451F5A1C8F6B0B00E78FCE /* Model */,
@@ -1081,6 +1080,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		490639AD1E20071A001106D7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				490639AE1E20071A001106D7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		B16B5E421E255C6C00DED47B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1157,14 +1164,6 @@
 				B16B5E821E255F4200DED47B /* sv */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		490639AD1E20071A001106D7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				490639AE1E20071A001106D7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		B526E3461D8CAA32008DA358 /* Localizable.strings */ = {

@@ -47,7 +47,7 @@ func courseCardViewModel(_ enrollment: Enrollment, session: Session, viewControl
     return vm
 }
 
-open class CoursesCollectionViewController: Course.CollectionViewController, UICollectionViewDelegateFlowLayout {
+open class CoursesCollectionViewController: FetchedCollectionViewController<Course>, UICollectionViewDelegateFlowLayout {
     
     open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

@@ -42,7 +42,7 @@ class RubricCriterionRatingCell: UITableViewCell {
 
 // Mark: View Controller
 
-class RubricViewController: Rubric.DetailViewController {
+class RubricViewController: RubricDetailViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

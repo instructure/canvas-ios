@@ -99,7 +99,7 @@ func ==(lhs: CalendarEventDetailViewModel, rhs: CalendarEventDetailViewModel) ->
 
 import ReactiveSwift
 
-class CalendarEventDeets: CalendarEvent.DetailViewController {
+class CalendarEventDeets: CalendarEventDetailViewController {
     var disposable: Disposable?
 
     init(session: Session, calendarEventID: String) throws {

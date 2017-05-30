@@ -56,6 +56,4 @@ extension Student {
         let key = self.cacheKey(context)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<Student>
 }

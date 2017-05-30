@@ -39,6 +39,4 @@ extension Group {
             context.fetchedResults(favorites, sortDescriptors: ["name".ascending, "id".ascending])
         )
     }
-    
-    public typealias CollectionViewController = FetchedCollectionViewController<Group>
 }

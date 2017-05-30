@@ -58,6 +58,4 @@ extension Tab {
         let key = collectionCacheKey(context: context, contextID: contextID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<Tab>
 }

@@ -85,6 +85,4 @@ extension DiscussionEntry {
         
         return try FetchedCollection(frc: context.fetchedResults(pred, sortDescriptors: descriptors))
     }
-    
-    public typealias TableViewController = FetchedTableViewController<DiscussionEntry>
 }

@@ -249,7 +249,7 @@
 		494E4B471C503C1200E20CA7 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49893A1B1C8E54AF00A8CFBA /* AssignmentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentList.swift; sourceTree = "<group>"; };
 		49893A1D1C8E5BB400A8CFBA /* Assignment+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Collections.swift"; sourceTree = "<group>"; };
-		49893A1F1C8E5C4E00A8CFBA /* Assignment+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assignment+Details.swift"; sourceTree = "<group>"; };
+		49893A1F1C8E5C4E00A8CFBA /* Assignment+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Assignment+Details.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49893A211C8E5C6F00A8CFBA /* Assignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		49893A241C8E5C9D00A8CFBA /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Submission.swift; path = Model/Submission.swift; sourceTree = "<group>"; };
 		49893A251C8E5C9D00A8CFBA /* SubmissionEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionEvent.swift; sourceTree = "<group>"; };
@@ -387,7 +387,7 @@
 		B195909D1C9B307300574968 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		B19590A01C9B307300574968 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B19590A21C9B307300574968 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B1A2B50F1CC7E5EC00FBD8CB /* GradesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradesList.swift; sourceTree = "<group>"; };
+		B1A2B50F1CC7E5EC00FBD8CB /* GradesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GradesList.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B1BF2CEB1CA440A300196663 /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BF2CED1CA4412D00196663 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1CAE8301E35F6C30061D411 /* NewSubmissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSubmissionViewModel.swift; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 		B5996FB11CF796F2003C101C /* Submission+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Network.swift"; sourceTree = "<group>"; };
 		B5996FB31CF7A9FC003C101C /* SubmissionAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionAPI.swift; sourceTree = "<group>"; };
 		B5996FB71CF7C2C8003C101C /* Submission+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Details.swift"; sourceTree = "<group>"; };
-		B5996FB91CFE1B2D003C101C /* Rubric+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rubric+Details.swift"; sourceTree = "<group>"; };
+		B5996FB91CFE1B2D003C101C /* Rubric+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Rubric+Details.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B5BFC5431D8CBA5C0046D71D /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = AssignmentKit/da.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B5BFC5441D8CBA5C0046D71D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = AssignmentKit/de.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		B5BFC5451D8CBA5C0046D71D /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "AssignmentKit/en-AU.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };

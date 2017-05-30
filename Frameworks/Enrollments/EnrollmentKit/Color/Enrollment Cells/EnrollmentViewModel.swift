@@ -21,11 +21,9 @@ import ReactiveSwift
 import TooLegit
 
 
-extension Enrollment {
-    open class ViewModel {
-        open let enrollment: MutableProperty<Enrollment?>
-        public init(enrollment: Enrollment?) {
-            self.enrollment = MutableProperty(enrollment)
-        }
+open class EnrollmentViewModel {
+    open let enrollment: MutableProperty<Enrollment?>
+    public init(enrollment: Enrollment?) {
+        self.enrollment = MutableProperty(enrollment)
     }
 }

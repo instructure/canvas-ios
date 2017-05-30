@@ -47,7 +47,7 @@ struct LocalNotificationConstants {
     static let LocalNotificationNumberMinutesInDay : Int =  LocalNotificationNumberMinutesInHour * 24
 }
 
-class AssignmentDetailViewController: Assignment.DetailViewController {
+class AssignmentDetailViewController: AssignmentKit.AssignmentDetailViewController {
     var disposable: Disposable?
     var uploadDisposable = CompositeDisposable()
     lazy var submissionBarButtonItem: UIBarButtonItem = {

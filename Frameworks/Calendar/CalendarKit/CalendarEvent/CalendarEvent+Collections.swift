@@ -51,8 +51,6 @@ extension CalendarEvent {
         let key = cacheKey(context, [startDate.yyyyMMdd, endDate.yyyyMMdd] + contextCodes.sorted())
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<CalendarEvent>
 }
 
 

@@ -53,6 +53,4 @@ extension Module {
         let key = collectionCacheKey(context: context, courseID: courseID)
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<Module>
 }

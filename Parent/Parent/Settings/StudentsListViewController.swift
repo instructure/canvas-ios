@@ -24,7 +24,7 @@ import TooLegit
 
 typealias StudentsListSelectStudentAction = (_ session: Session, _ student: Student)->Void
 
-class StudentsListViewController: Student.TableViewController {
+class StudentsListViewController: FetchedTableViewController<Student> {
 
     fileprivate let session: Session
 

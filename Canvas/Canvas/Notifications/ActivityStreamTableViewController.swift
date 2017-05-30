@@ -70,7 +70,7 @@ private func colorfulActivity(session: Session) -> ((Activity) -> ColorfulViewMo
     }
 }
 
-class ActivityStreamTableViewController: Activity.TableViewController {
+class ActivityStreamTableViewController: FetchedTableViewController<Activity> {
     let route: (UIViewController, URL)->()
 
     init(session: Session, context: ContextID = .currentUser, route: @escaping (UIViewController, URL)->()) throws {

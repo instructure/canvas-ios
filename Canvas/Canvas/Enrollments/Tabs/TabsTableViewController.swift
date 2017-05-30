@@ -49,7 +49,7 @@ extension ColorfulViewModel {
     }
 }
 
-class TabsTableViewController: Tab.TableViewController {
+class TabsTableViewController: FetchedTableViewController<Tab> {
     
     let route: (UIViewController, URL)->()
     let session: Session

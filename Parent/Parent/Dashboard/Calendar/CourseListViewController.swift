@@ -24,7 +24,7 @@ import Airwolf
 
 typealias CourseListSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void
 
-class CourseListViewController: Course.TableViewController {
+class CourseListViewController: FetchedTableViewController<Course> {
 
     fileprivate let session: Session
     fileprivate let observeeID: String

@@ -44,6 +44,4 @@ extension User {
         let key = cacheKey(try session.observeesManagedObjectContext())
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<User>
 }

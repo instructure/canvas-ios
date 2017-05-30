@@ -69,8 +69,4 @@ extension Course {
         
         return SignalProducerRefresher(refreshSignalProducer: sync.concat(colors), scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<Course>
-
-    public typealias CollectionViewController = FetchedCollectionViewController<Course>
 }

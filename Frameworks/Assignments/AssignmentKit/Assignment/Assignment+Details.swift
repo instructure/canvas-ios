@@ -66,15 +66,15 @@ extension Assignment {
         let collection = FetchedDetailsCollection<Assignment, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
+}
+
+open class AssignmentDetailViewController: SoPersistent.TableViewController {
+    fileprivate (set) open var observer: ManagedObjectObserver<Assignment>!
     
-    open class DetailViewController: SoPersistent.TableViewController {
-        fileprivate (set) open var observer: ManagedObjectObserver<Assignment>!
-        
-        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<Assignment>, refresher: Refresher? = nil, detailsFactory: @escaping (Assignment)->[DVM]) where DVM: Equatable {
-            self.observer = observer
-            let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: details)
-        }
+    open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<Assignment>, refresher: Refresher? = nil, detailsFactory: @escaping (Assignment)->[DVM]) where DVM: Equatable {
+        self.observer = observer
+        let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
+        self.refresher = refresher
+        dataSource = CollectionTableViewDataSource(collection: details)
     }
 }

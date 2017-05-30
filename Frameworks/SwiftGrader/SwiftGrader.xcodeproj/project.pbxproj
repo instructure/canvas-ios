@@ -179,7 +179,7 @@
 		498377EC1DAE863C00D49090 /* SwiftGrader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftGrader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		498377ED1DAE863C00D49090 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		498377EE1DAE863C00D49090 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		498378271DAEA78100D49090 /* AssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsTableViewController.swift; sourceTree = "<group>"; };
+		498378271DAEA78100D49090 /* AssignmentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AssignmentsTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		498378291DAEAB9B00D49090 /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4983782C1DAEB0BD00D49090 /* GradingNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradingNavigationViewController.swift; sourceTree = "<group>"; };
 		4983785D1DAEC41900D49090 /* GradingNavigation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GradingNavigation.storyboard; sourceTree = "<group>"; };

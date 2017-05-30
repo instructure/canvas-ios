@@ -49,7 +49,7 @@ struct FileUploadTableViewCellViewModel: TableViewCellViewModel {
     }
 }
 
-open class FileUploadsViewController: FileUpload.TableViewController, UIDocumentMenuDelegate, UIDocumentPickerDelegate, DocumentMenuController, FileUploadTableViewCellDelegate {
+open class FileUploadsViewController: FetchedTableViewController<FileUpload>, UIDocumentMenuDelegate, UIDocumentPickerDelegate, DocumentMenuController, FileUploadTableViewCellDelegate {
     fileprivate let viewModel: FileUploadsViewModelType = FileUploadsViewModel()
     public let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
     public weak var delegate: FileUploadsViewControllerDelegate?

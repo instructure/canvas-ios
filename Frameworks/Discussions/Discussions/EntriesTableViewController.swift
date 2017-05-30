@@ -21,8 +21,9 @@ import SoPersistent
 import TooLegit
 import ReactiveSwift
 import EnrollmentKit
+import SoPersistent
 
-class EntriesTableViewController: DiscussionEntry.TableViewController {
+class EntriesTableViewController: FetchedTableViewController<DiscussionEntry> {
     
     let session: Session
     

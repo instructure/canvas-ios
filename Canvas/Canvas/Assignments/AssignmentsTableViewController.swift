@@ -68,7 +68,7 @@ extension Assignment {
     }
 }
 
-class AssignmentsTableViewController: Assignment.TableViewController, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+class AssignmentsTableViewController: FetchedTableViewController<Assignment>, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
     let session: Session
     let courseID: String
     let route: (UIViewController, URL)->()

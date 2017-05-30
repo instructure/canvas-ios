@@ -56,15 +56,15 @@ extension Rubric {
         let collection = FetchedDetailsCollection<Rubric, DVM>(observer: obs, detailsFactory: detailsFactory)
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
+}
 
-    open class DetailViewController: SoPersistent.TableViewController {
-        fileprivate (set) open var observer: ManagedObjectObserver<Rubric>!
-        
-        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<Rubric>, refresher: Refresher? = nil, detailsFactory: @escaping (Rubric)->[DVM]) where DVM: Equatable {
-            self.observer = observer
-            let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: details)
-        }
+open class RubricDetailViewController: SoPersistent.TableViewController {
+    fileprivate (set) open var observer: ManagedObjectObserver<Rubric>!
+    
+    open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<Rubric>, refresher: Refresher? = nil, detailsFactory: @escaping (Rubric)->[DVM]) where DVM: Equatable {
+        self.observer = observer
+        let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
+        self.refresher = refresher
+        dataSource = CollectionTableViewDataSource(collection: details)
     }
 }

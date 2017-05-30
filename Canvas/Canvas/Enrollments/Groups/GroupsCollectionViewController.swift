@@ -22,7 +22,7 @@ import SoPersistent
 import TooLegit
 import SoLazy
 
-class GroupsCollectionViewController: Group.CollectionViewController, UICollectionViewDelegateFlowLayout {
+class GroupsCollectionViewController: FetchedCollectionViewController<Group>, UICollectionViewDelegateFlowLayout {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent

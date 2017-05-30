@@ -44,7 +44,7 @@ extension ColorfulViewModel {
     }
 }
 
-class TabsTableViewController: Tab.TableViewController {
+class TabsTableViewController: FetchedTableViewController<Tab> {
     
     init(session: Session, contextID: ContextID) throws {
         super.init()

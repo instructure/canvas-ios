@@ -87,7 +87,7 @@ class TabCollectionsTests: UnitTestCase {
 
 class TabTableViewControllerTests: UnitTestCase {
     let session = Session.art
-    let tvc = Tab.TableViewController()
+    let tvc = FetchedTableViewController<Tab>()
     let viewModelFactory = ViewModelFactory<Tab>.new { _ in UITableViewCell() }
     
     func testTableViewController_prepare_setsCollection() {

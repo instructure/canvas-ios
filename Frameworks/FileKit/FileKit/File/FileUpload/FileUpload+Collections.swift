@@ -82,8 +82,3 @@ extension FileUpload {
         )
     }
 }
-
-
-extension FileUpload {
-    public typealias TableViewController = FetchedTableViewController<FileUpload>
-}

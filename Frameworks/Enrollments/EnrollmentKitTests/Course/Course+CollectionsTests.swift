@@ -148,7 +148,7 @@ class CourseCollectionsTests: UnitTestCase {
 
 class CourseTableViewControllerTests: UnitTestCase {
     let session = Session.nas
-    let tvc = Course.TableViewController()
+    let tvc = FetchedTableViewController<Course>()
     let viewModelFactory = ViewModelFactory<Course>.new { _ in UITableViewCell() }
 
     func testTableViewController_prepare_setsCollection() {

@@ -46,7 +46,7 @@ extension EventDetailsViewModel {
     }
 }
 
-class AssignmentDetailsViewController: Assignment.DetailViewController {
+class AssignmentDetailsViewController: AssignmentKit.AssignmentDetailViewController {
     var disposable: Disposable?
     let courseID: String
     let assignmentID: String

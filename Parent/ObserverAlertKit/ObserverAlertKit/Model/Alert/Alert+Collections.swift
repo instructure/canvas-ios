@@ -56,6 +56,4 @@ extension Alert {
         let key = self.cacheKey(context, [session.user.id, observeeID])
         return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
-
-    public typealias TableViewController = FetchedTableViewController<Alert>
 }

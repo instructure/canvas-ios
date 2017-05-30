@@ -48,14 +48,15 @@ extension CalendarEvent {
         return CollectionTableViewDataSource(collection: collection, viewModelFactory: { $0 })
     }
 
-    open class DetailViewController: SoPersistent.TableViewController {
-        fileprivate (set) open var observer: ManagedObjectObserver<CalendarEvent>!
+}
 
-        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<CalendarEvent>, refresher: Refresher? = nil, detailsFactory: @escaping (CalendarEvent)->[DVM]) where DVM: Equatable {
-            self.observer = observer
-            let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
-            self.refresher = refresher
-            dataSource = CollectionTableViewDataSource(collection: details)
-        }
+open class CalendarEventDetailViewController: SoPersistent.TableViewController {
+    fileprivate (set) open var observer: ManagedObjectObserver<CalendarEvent>!
+    
+    open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<CalendarEvent>, refresher: Refresher? = nil, detailsFactory: @escaping (CalendarEvent)->[DVM]) where DVM: Equatable {
+        self.observer = observer
+        let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
+        self.refresher = refresher
+        dataSource = CollectionTableViewDataSource(collection: details)
     }
 }
