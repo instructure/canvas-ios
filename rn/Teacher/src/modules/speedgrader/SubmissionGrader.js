@@ -24,6 +24,7 @@ type State = {
 }
 
 type SubmissionGraderProps = {
+  isCurrentStudent: boolean,
   closeModal: Function,
   courseID: string,
   assignmnetID: string,
@@ -108,10 +109,11 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   }
 
   render () {
+    const { width, height } = this.state
     return (
       <View onLayout={this.onLayout} style={styles.speedGrader}>
         <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} />
-        <SubmissionViewer {...this.props} />
+        <SubmissionViewer {...this.props} size={{ width, height }} />
         <BottomDrawer
           drawerState={this.props.drawerState}
           containerWidth={this.state.width}

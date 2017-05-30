@@ -84,7 +84,7 @@ export class Header extends Component {
         >
           <View style={styles.submissionHistoryContainer}>
             <Text style={[styles.submissionDate, this.state.showingPicker && styles.selecting]}>
-              {formattedDueDate(new Date(selected.submitted_at))}
+              {formattedDueDate(new Date(selected.submitted_at || ''))}
             </Text>
             <Image source={Images.pickerArrow} style={[{ alignSelf: 'center' }, this.state.showingPicker && styles.arrowSelecting]} />
           </View>
@@ -99,7 +99,7 @@ export class Header extends Component {
             <PickerItemIOS
               key={sub.id}
               value={idx}
-              label={formattedDueDate(new Date(sub.submitted_at))}
+              label={formattedDueDate(new Date(sub.submitted_at || ''))}
             />
           ))}
         </PickerIOS>
@@ -108,7 +108,7 @@ export class Header extends Component {
       if (!submission) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
       return <View style={styles.submissionHistoryContainer}>
         <Text style={styles.submissionDate}>
-          {formattedDueDate(new Date(submission.submitted_at))}
+          {formattedDueDate(new Date(submission.submitted_at || ''))}
         </Text>
       </View>
     }

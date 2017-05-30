@@ -13,18 +13,32 @@ import type {
   SubmissionDataProps,
 } from '../submissions/list/submission-prop-types'
 import WebContainer from '../../common/components/WebContainer'
+import Video from '../../common/components/Video'
 
 type SubmissionViewerProps = {
+  isCurrentStudent: boolean,
   submissionProps: SubmissionDataProps,
   selectedIndex: ?number,
   selectedAttachmentIndex: ?number,
   assignmentSubmissionTypes: Array<SubmissionType>,
+  size: { width: number, height: number },
 }
 
 export default class SubmissionViewer extends Component {
   props: SubmissionViewerProps
+  videoPlayer: ?Video
 
-  currentSubmission (): null | SubmissionWithHistory {
+  componentWillReceiveProps (newProps: SubmissionViewerProps) {
+    if (this.videoPlayer && !newProps.isCurrentStudent) {
+      this.videoPlayer.pause()
+    }
+  }
+
+  captureVideoPlayer = (video: Video) => {
+    this.videoPlayer = video
+  }
+
+  currentSubmission (): ?Submission {
     let submission = this.props.submissionProps.submission
     const selectedIndex = this.props.selectedIndex
     if (!submission) return null
@@ -54,12 +68,12 @@ export default class SubmissionViewer extends Component {
     </View>
   }
 
-  renderFile (submission: SubmissionWithHistory): React.Element<*> {
+  renderFile (submission: Submission): React.Element<*> {
     // TODO: display files
     return <View style={styles.container}><Text>File</Text></View>
   }
 
-  renderSubmission (submission: SubmissionWithHistory): React.Element<*> {
+  renderSubmission (submission: Submission): React.Element<*> {
     let body = <View></View>
     if (submission.submission_type) {
       switch (submission.submission_type) {
@@ -69,6 +83,19 @@ export default class SubmissionViewer extends Component {
         case 'online_quiz':
         case 'discussion_topic':
           body = <WebView style={styles.webContainer} source={{ uri: submission.preview_url }} />
+          break
+        case 'media_recording':
+          const width = this.props.size.width - global.style.defaultPadding * 2.0
+          const height = Math.ceil(width * 9.0 / 16.0)
+          const url = submission.media_comment
+            ? submission.media_comment.url
+            : ''
+          body = <Video
+            testID='submission-viewer.video'
+            ref={this.captureVideoPlayer}
+            style={{ height }}
+            source={{ uri: url }}
+          />
           break
         default:
           let text = this.unviewableSubmissionText(submission.submission_type)
@@ -106,7 +133,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   centeredText: {
-    height: '84%',
+    height: '40%',
     flex: 0,
     justifyContent: 'center',
     alignItems: 'center',

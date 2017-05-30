@@ -90,6 +90,8 @@
 		4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; };
 		4943ECC41E5CEFBD001DC5B5 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C81ED4E9390054D333 /* VideoContainerManager.m */; };
+		4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C91ED4E9390054D333 /* VideoContainerView.swift */; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -489,6 +491,8 @@
 		4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
+		4994B2C81ED4E9390054D333 /* VideoContainerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
+		4994B2C91ED4E9390054D333 /* VideoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
@@ -682,6 +686,7 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				4994B2A91ED4E9230054D333 /* Video */,
 				61BD856A1EB290C0005A09A5 /* Login */,
 				3BF71FC71EC117A500234D25 /* Branding */,
 				3B748B601ECA53D4008D6A57 /* React Native Modules */,
@@ -857,6 +862,15 @@
 				4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		4994B2A91ED4E9230054D333 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				4994B2C81ED4E9390054D333 /* VideoContainerManager.m */,
+				4994B2C91ED4E9390054D333 /* VideoContainerView.swift */,
+			);
+			path = Video;
 			sourceTree = "<group>";
 		};
 		5B12C57B23D2BAFEC5FBB533 /* EditCoursesPageTest */ = {
@@ -1506,6 +1520,7 @@
 				3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */,
 				6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */,
 				3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */,
+				4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */,
 				6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */,
 				3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */,
 				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
@@ -1519,6 +1534,7 @@
 				3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
 				3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */,
 				3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */,
+				4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
 				3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */,

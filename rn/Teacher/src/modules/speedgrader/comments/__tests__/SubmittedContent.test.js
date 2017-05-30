@@ -34,8 +34,6 @@ test('tapping calls onPress', () => {
     />
   ).toJSON()
   const touchable = explore(tree).selectByID('submitted-content.item-1')
-  console.log('tree', tree)
-  console.log('touchable', touchable)
   touchable && touchable.props && touchable.props.onPress()
   expect(onPress).toHaveBeenCalled()
 })

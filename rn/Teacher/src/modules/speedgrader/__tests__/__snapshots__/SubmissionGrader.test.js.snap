@@ -54,7 +54,7 @@ exports[`SubmissionGrader renders 1`] = `
         Object {
           "alignItems": "center",
           "flex": 0,
-          "height": "84%",
+          "height": "40%",
           "justifyContent": "center",
         }
       }
@@ -309,7 +309,7 @@ exports[`SubmissionGrader renders 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -725,7 +725,7 @@ exports[`SubmissionGrader renders 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -1395,7 +1395,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
         Object {
           "alignItems": "center",
           "flex": 0,
-          "height": "84%",
+          "height": "40%",
           "justifyContent": "center",
         }
       }
@@ -1650,7 +1650,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -2066,7 +2066,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -2737,7 +2737,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -3153,7 +3153,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -3824,7 +3824,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -4240,7 +4240,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -4944,7 +4944,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -5410,7 +5410,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -6162,7 +6162,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -6598,7 +6598,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -7307,7 +7307,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
         Object {
           "alignItems": "center",
           "flex": 0,
-          "height": "84%",
+          "height": "40%",
           "justifyContent": "center",
         }
       }
@@ -7562,7 +7562,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -7978,7 +7978,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -8649,7 +8649,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -9065,7 +9065,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -9736,7 +9736,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -10152,7 +10152,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -10856,7 +10856,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -11322,7 +11322,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -12074,7 +12074,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -12510,7 +12510,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -13256,7 +13256,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -13743,7 +13743,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -14531,7 +14531,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -14979,7 +14979,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -15714,7 +15714,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
         Object {
           "alignItems": "center",
           "flex": 0,
-          "height": "84%",
+          "height": "40%",
           "justifyContent": "center",
         }
       }
@@ -15969,7 +15969,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -16385,7 +16385,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -17056,7 +17056,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -17472,7 +17472,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -18143,7 +18143,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -18559,7 +18559,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -19263,7 +19263,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -19729,7 +19729,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -20501,7 +20501,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
         Object {
           "alignItems": "center",
           "flex": 0,
-          "height": "84%",
+          "height": "40%",
           "justifyContent": "center",
         }
       }
@@ -20756,7 +20756,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -21172,7 +21172,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -21843,7 +21843,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -22259,7 +22259,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -22930,7 +22930,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -23346,7 +23346,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -24050,7 +24050,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -24516,7 +24516,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -25268,7 +25268,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -25704,7 +25704,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }
@@ -26450,7 +26450,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                   Object {
                                                             "alignItems": "center",
                                                             "flex": 0,
-                                                            "height": "84%",
+                                                            "height": "40%",
                                                             "justifyContent": "center",
                                                           }
                                         }
@@ -26937,7 +26937,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                                           Object {
                                                                       "alignItems": "center",
                                                                       "flex": 0,
-                                                                      "height": "84%",
+                                                                      "height": "40%",
                                                                       "justifyContent": "center",
                                                                     }
                                               }

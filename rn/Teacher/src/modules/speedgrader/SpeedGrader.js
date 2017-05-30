@@ -25,6 +25,7 @@ import DrawerState from './utils/drawer-state'
 
 type State = {
   size: { width: number, height: number },
+  currentStudentID: string,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
@@ -39,7 +40,10 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     super(props)
 
     const { height, width } = Dimensions.get('window')
-    this.state = { size: { width, height } }
+    this.state = {
+      size: { width, height },
+      currentStudentID: props.userID,
+    }
   }
 
   componentWillUnmount () {
@@ -48,7 +52,10 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   onLayout = (event: any) => {
     const { width, height } = event.nativeEvent.layout
-    this.setState({ size: { width, height } })
+    if (width !== this.state.width && height !== this.state.height) {
+      this.setState({ size: { width, height } })
+      // TODO: scroll to current student
+    }
   }
 
   dismiss = () => {
@@ -56,11 +63,18 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   }
 
   renderItem = ({ item }: { item: SubmissionItem }) => {
-    const submissionEntity = this.props.submissionEntities[item.submission.submissionID]
-    const selectedIndex = submissionEntity != null ? submissionEntity.selectedIndex : null
-    const selectedAttachmentIndex = submissionEntity != null ? submissionEntity.selectedAttachmentIndex : null
+    const submissionEntity = item.submission.submissionID != null
+      ? this.props.submissionEntities[item.submission.submissionID]
+      : null
+    const selectedIndex = submissionEntity != null
+      ? submissionEntity.selectedIndex
+      : null
+    const selectedAttachmentIndex = submissionEntity != null
+      ? submissionEntity.selectedAttachmentIndex
+      : null
     return <View style={[styles.page, this.state.size]}>
       <SubmissionGrader
+        isCurrentStudent={this.state.currentStudentID === item.submission.userID}
         drawerState={SpeedGrader.drawerState}
         courseID={this.props.courseID}
         assignmentID={this.props.assignmentID}
@@ -75,6 +89,16 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     </View>
   }
 
+  scrollEnded = (event: Object) => {
+    const index = event.nativeEvent.contentOffset.x / this.state.size.width
+    if (index >= 0 && index < this.props.submissions.length) {
+      const currentStudentID = this.props.submissions[index].userID
+      if (currentStudentID !== this.state.currentStudentID) {
+        this.setState({ currentStudentID })
+      }
+    }
+  }
+
   renderBody = () => {
     if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
@@ -82,7 +106,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     const items: Array<SubmissionItem> = this.props.submissions
       .map(submission => ({ key: submission.userID, submission }))
-    const studentIndex = Math.max(0, this.props.submissions.findIndex(sub => sub.userID === this.props.userID))
+    const studentIndex = Math.max(0, this.props.submissions.findIndex(sub => sub.userID === this.state.currentStudentID))
     const x = this.state.size.width * studentIndex
 
     return (
@@ -96,6 +120,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         contentOffset={{ x, y: 0 }}
+        onMomentumScrollEnd={this.scrollEnded}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
       />
     )
@@ -176,7 +201,7 @@ type SpeedGraderActionProps = {
   refreshAssignment: Function,
 }
 type SpeedGraderDataProps = {
-  submissionEntities: Object,
+  submissionEntities: SubmissionsState,
   assignmentSubmissionTypes: Array<SubmissionType>,
 } & AsyncSubmissionsDataProps
 

@@ -40,6 +40,7 @@ export type Submission = {
   attempt: ?number,
   attachments?: Array<Attachment>,
   url?: string,
+  media_comment?: MediaComment,
 }
 
 export type SubmissionHistory = {
@@ -74,7 +75,7 @@ export type SubmissionComment = {
   author: SubmissionCommentAuthor,
   comment: string,
   created_at: string,
-  media_comment: ?any, // TODO media comments
+  media_comment: ?MediaComment,
 }
 
 export type SubmissionCommentParams

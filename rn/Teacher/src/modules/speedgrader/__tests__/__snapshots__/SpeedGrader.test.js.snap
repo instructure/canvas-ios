@@ -22,6 +22,7 @@ exports[`SpeedGrader renders 1`] = `
   onEndReached={[Function]}
   onEndReachedThreshold={2}
   onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
   onViewableItemsChanged={undefined}
@@ -80,6 +81,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
   onEndReached={[Function]}
   onEndReachedThreshold={2}
   onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
   onViewableItemsChanged={undefined}
@@ -153,7 +155,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 Object {
                   "alignItems": "center",
                   "flex": 0,
-                  "height": "84%",
+                  "height": "40%",
                   "justifyContent": "center",
                 }
               }
@@ -233,6 +235,7 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
   onEndReached={[Function]}
   onEndReachedThreshold={2}
   onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
   onViewableItemsChanged={undefined}
