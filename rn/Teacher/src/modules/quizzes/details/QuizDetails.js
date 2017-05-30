@@ -98,15 +98,6 @@ export class QuizDetails extends Component<any, Props, any> {
             <AssignmentDates assignment={this.props.assignment || quiz} />
           </AssignmentSection>
 
-          <AssignmentSection title={i18n('Description')}>
-            { Boolean(quiz.description) &&
-                <WebContainer style={{ flex: 1 }} html={quiz.description} />
-            }
-            { !quiz.description &&
-              <Text>{i18n('No description')}</Text>
-            }
-          </AssignmentSection>
-
           <AssignmentSection
             title={i18n('Submissions')}
             onPress={this.viewAllSubmissions}
@@ -114,6 +105,13 @@ export class QuizDetails extends Component<any, Props, any> {
             showDisclosureIndicator>
             <QuizSubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} quizID={this.props.quizID} />
           </AssignmentSection>
+
+          { Boolean(quiz.description) &&
+            <View style={style.section}>
+              <Text style={style.header}>{i18n('Description')}</Text>
+              <WebContainer style={{ flex: 1 }} html={quiz.description}/>
+            </View>
+          }
 
           {this._renderDetails()}
           <TouchableHighlight
@@ -247,6 +245,22 @@ const style = StyleSheet.create({
     paddingBottom: global.style.defaultPadding,
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
+  },
+  header: {
+    color: colors.grey4,
+    fontWeight: '500',
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  section: {
+    flex: 1,
+    paddingTop: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding,
+    paddingLeft: global.style.defaultPadding,
+    backgroundColor: 'white',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.grey2,
   },
 })
 

@@ -39,15 +39,6 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
     let sectionTitleSubmissions = i18n('Submissions')
 
-    let sectionTitleDescription = i18n('Description')
-
-    let descriptionElement = <View />
-    if (assignment.description) {
-      descriptionElement = (<AssignmentSection title={sectionTitleDescription} >
-                              <WebContainer style={{ flex: 1 }} html={assignment.description}/>
-                            </AssignmentSection>)
-    }
-
     return (
       <Screen
         navBarColor={this.props.courseColor}
@@ -95,7 +86,12 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             </AssignmentSection>
           }
 
-          {descriptionElement}
+          { Boolean(assignment.description) &&
+            <View style={style.section}>
+              <Text style={style.header}>{i18n('Description')}</Text>
+              <WebContainer style={{ flex: 1 }} html={assignment.description}/>
+            </View>
+          }
 
         </RefreshableScrollView>
       </Screen>
@@ -165,6 +161,22 @@ const style = StyleSheet.create({
   points: {
     fontWeight: '500',
     color: colors.grey4,
+  },
+  header: {
+    color: colors.grey4,
+    fontWeight: '500',
+    fontSize: 16,
+    marginBottom: 4,
+  },
+  section: {
+    flex: 1,
+    paddingTop: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding,
+    paddingLeft: global.style.defaultPadding,
+    backgroundColor: 'white',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.grey2,
   },
 })
 
