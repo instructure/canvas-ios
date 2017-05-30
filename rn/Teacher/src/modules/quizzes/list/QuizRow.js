@@ -71,12 +71,14 @@ export default class QuizRow extends Component<any, Props, any> {
 
   _details = () => {
     const quiz = this.props.quiz
-    const pointsPossible = Boolean(quiz.points_possible) && i18n(`{
+    const pointsPossible = Boolean(quiz.points_possible) && i18n({
+      default: `{
         count, plural,
         one {# pt}
         other {# pts}
       }`,
-      { count: quiz.points_possible })
+      message: 'Number of points possible',
+    }, { count: quiz.points_possible })
     const questionCount = i18n(`{
       count, plural,
       one {# Question}

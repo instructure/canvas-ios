@@ -122,6 +122,9 @@
   "closed_983a96fe": {
     "message": "Closed"
   },
+  "closed_for_comments_e395b42f": {
+    "message": "Closed for Comments"
+  },
   "color_a363e1b0": {
     "message": "Color"
   },
@@ -187,6 +190,9 @@
   },
   "discussion_topic_a7bf935": {
     "message": "discussion topic"
+  },
+  "discussions_a5f96392": {
+    "message": "Discussions"
   },
   "display_grade_as_7b5376a6": {
     "message": "Display Grade As"
@@ -440,6 +446,9 @@
   "percentage_34ab7c2c": {
     "message": "Percentage"
   },
+  "pinned_discussions_a55c0cea": {
+    "message": "Pinned Discussions"
+  },
   "please_enter_a_number_49c4975d": {
     "message": "Please enter a number"
   },
@@ -559,6 +568,9 @@
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"
+  },
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "There was a problem loading discussions."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "There was a problem loading the assignment submissions."
