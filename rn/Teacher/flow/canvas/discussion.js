@@ -25,4 +25,6 @@ export type Discussion = {
   permissions: DiscussionPermissions[],
   message: string,
   assignment: ?Assignment,
+  discussion_subentry_count: number,
+  last_reply_at: string,
 }

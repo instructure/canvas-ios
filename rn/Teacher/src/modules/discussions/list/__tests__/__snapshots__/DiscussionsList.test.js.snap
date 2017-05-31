@@ -85,8 +85,10 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "updated_at": "2017-03-17T19:15:25Z",
               },
               "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "2",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -101,7 +103,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "discussion 2",
+              "title": "discussion 1",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
@@ -133,8 +135,10 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "updated_at": "2017-03-17T19:15:25Z",
               },
               "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "1",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -149,7 +153,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "discussion 1",
+              "title": "discussion 2",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
@@ -211,8 +215,10 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "updated_at": "2017-03-17T19:15:25Z",
               },
               "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "2",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -227,7 +233,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "discussion 2",
+              "title": "discussion 1",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
@@ -259,8 +265,10 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "updated_at": "2017-03-17T19:15:25Z",
               },
               "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "1",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -275,7 +283,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "discussion 1",
+              "title": "discussion 2",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
@@ -385,297 +393,10 @@ exports[`DiscussionsList renders discussions 1`] = `
                         "backgroundColor": "white",
                         "flex": 1,
                         "flexDirection": "row",
-                        "paddingBottom": 8,
+                        "paddingBottom": 12.8,
                         "paddingLeft": 16,
                         "paddingRight": 16,
-                        "paddingTop": 8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Object {
-                        "alignSelf": "flex-start",
-                      }
-                    }
-                  >
-                    <View
-                      accessibilityLabel="Published"
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
-                        }
-                      }
-                    >
-                      <Image
-                        source={1}
-                        style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": null,
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
-                          Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#00AC18",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      discussion 2
-                    </Text>
-                    <View
-                      style={
-                        Object {
-                          "flexDirection": "row",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Due May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        Due May 31, 2017 at 11:59 PM
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flexDirection": "row",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "flexDirection": "row",
-                          }
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          ellipsizeMode="tail"
-                          separated={
-                            Array [
-                              "20 pts",
-                            ]
-                          }
-                          separator="  •  "
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
-                              undefined,
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                            ]
-                          }
-                        >
-                          20 pts
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
-                          }
-                        }
-                      />
-                    </View>
-                  </View>
-                </View>
-              </TouchableHighlight>
-            </View>
-            <View
-              style={
-                Object {
-                  "backgroundColor": "#00AC18",
-                  "bottom": 4,
-                  "left": 0,
-                  "position": "absolute",
-                  "top": 4,
-                  "width": 3,
-                }
-              }
-            />
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-      >
-        <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -12,
-                }
-              }
-            >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
-                style={
-                  Array [
-                    Object {
-                      "height": undefined,
-                    },
-                    undefined,
-                    Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
-                    },
-                  ]
-                }
-                testID="discussion-row-1"
-              >
-                <View
-                  style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 8,
+                        "paddingTop": 12.8,
                       },
                       Object {
                         "backgroundColor": "white",
@@ -820,6 +541,40 @@ exports[`DiscussionsList renders discussions 1`] = `
                       style={
                         Object {
                           "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
                         }
                       }
                     >
@@ -836,7 +591,8 @@ exports[`DiscussionsList renders discussions 1`] = `
                           ellipsizeMode="tail"
                           separated={
                             Array [
-                              "20 pts",
+                              "2 Replies",
+                              "1 Unread",
                             ]
                           }
                           separator="  •  "
@@ -849,14 +605,77 @@ exports[`DiscussionsList renders discussions 1`] = `
                                 "color": "#2D3B45",
                                 "fontSize": 16,
                               },
-                              undefined,
+                              Object {
+                                "fontSize": 14,
+                              },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
                               },
                             ]
                           }
                         >
-                          20 pts
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
                         </Text>
                       </View>
                     </View>
@@ -914,6 +733,417 @@ exports[`DiscussionsList renders discussions 1`] = `
                 }
               }
             />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="discussion-row-1"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 12.8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12.8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      discussion 2
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        Due May 31, 2017 at 11:59 PM
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
           </View>
         </View>
       </View>
@@ -922,7 +1152,7 @@ exports[`DiscussionsList renders discussions 1`] = `
 </View>
 `;
 
-exports[`DiscussionsList renders in correct order 1`] = `
+exports[`DiscussionsList renders discussions with no assignments 1`] = `
 <View
   style={
     Object {
@@ -937,35 +1167,12 @@ exports[`DiscussionsList renders in correct order 1`] = `
         Object {
           "data": Array [
             Object {
-              "assignment": Object {
-                "assignment_group_id": 1376,
-                "automatic_peer_reviews": false,
-                "created_at": "2017-03-17T19:15:25Z",
-                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
-                "grading_type": "points",
-                "html_url": "http://hostname.tld/whatever",
-                "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
-                "name": "learn to write code",
-                "needs_grading_count": 0,
-                "overrides": Array [],
-                "peer_reviews": false,
-                "points_possible": 20,
-                "position": 1,
-                "submission_types": Array [
-                  "online_text_entry",
-                  "online_url",
-                  "media_recording",
-                  "online_upload",
-                ],
-                "unlock_at": "2017-03-17T06:00:00Z",
-                "updated_at": "2017-03-17T19:15:25Z",
-              },
+              "assignment": null,
               "assignment_id": 123456789,
-              "due_at": "2117-03-28T15:07:56.312Z",
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "2",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -980,41 +1187,18 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "Second",
+              "title": "discussion 1",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
             },
             Object {
-              "assignment": Object {
-                "assignment_group_id": 1376,
-                "automatic_peer_reviews": false,
-                "created_at": "2017-03-17T19:15:25Z",
-                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
-                "grading_type": "points",
-                "html_url": "http://hostname.tld/whatever",
-                "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
-                "name": "learn to write code",
-                "needs_grading_count": 0,
-                "overrides": Array [],
-                "peer_reviews": false,
-                "points_possible": 20,
-                "position": 1,
-                "submission_types": Array [
-                  "online_text_entry",
-                  "online_url",
-                  "media_recording",
-                  "online_upload",
-                ],
-                "unlock_at": "2017-03-17T06:00:00Z",
-                "updated_at": "2017-03-17T19:15:25Z",
-              },
+              "assignment": null,
               "assignment_id": 123456789,
-              "due_at": "2118-03-28T15:07:56.312Z",
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "1",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -1029,7 +1213,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "First",
+              "title": "discussion 2",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
@@ -1065,35 +1249,12 @@ exports[`DiscussionsList renders in correct order 1`] = `
         Object {
           "data": Array [
             Object {
-              "assignment": Object {
-                "assignment_group_id": 1376,
-                "automatic_peer_reviews": false,
-                "created_at": "2017-03-17T19:15:25Z",
-                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
-                "grading_type": "points",
-                "html_url": "http://hostname.tld/whatever",
-                "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
-                "name": "learn to write code",
-                "needs_grading_count": 0,
-                "overrides": Array [],
-                "peer_reviews": false,
-                "points_possible": 20,
-                "position": 1,
-                "submission_types": Array [
-                  "online_text_entry",
-                  "online_url",
-                  "media_recording",
-                  "online_upload",
-                ],
-                "unlock_at": "2017-03-17T06:00:00Z",
-                "updated_at": "2017-03-17T19:15:25Z",
-              },
+              "assignment": null,
               "assignment_id": 123456789,
-              "due_at": "2117-03-28T15:07:56.312Z",
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "2",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -1108,41 +1269,18 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "Second",
+              "title": "discussion 1",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
             },
             Object {
-              "assignment": Object {
-                "assignment_group_id": 1376,
-                "automatic_peer_reviews": false,
-                "created_at": "2017-03-17T19:15:25Z",
-                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
-                "grading_type": "points",
-                "html_url": "http://hostname.tld/whatever",
-                "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
-                "name": "learn to write code",
-                "needs_grading_count": 0,
-                "overrides": Array [],
-                "peer_reviews": false,
-                "points_possible": 20,
-                "position": 1,
-                "submission_types": Array [
-                  "online_text_entry",
-                  "online_url",
-                  "media_recording",
-                  "online_upload",
-                ],
-                "unlock_at": "2017-03-17T06:00:00Z",
-                "updated_at": "2017-03-17T19:15:25Z",
-              },
+              "assignment": null,
               "assignment_id": 123456789,
-              "due_at": "2118-03-28T15:07:56.312Z",
+              "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
-              "id": "1",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
               "permissions": Object {
                 "attach": true,
@@ -1157,7 +1295,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "read_state": "read",
               "sort_by_rating": false,
               "subscribed": true,
-              "title": "First",
+              "title": "discussion 2",
               "unread_count": 1,
               "user_can_see_posts": true,
               "user_name": "Ivy Iversen",
@@ -1267,10 +1405,10 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         "backgroundColor": "white",
                         "flex": 1,
                         "flexDirection": "row",
-                        "paddingBottom": 8,
+                        "paddingBottom": 12.8,
                         "paddingLeft": 16,
                         "paddingRight": 16,
-                        "paddingTop": 8,
+                        "paddingTop": 12.8,
                       },
                       Object {
                         "backgroundColor": "white",
@@ -1369,7 +1507,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         ]
                       }
                     >
-                      Second
+                      discussion 1
                     </Text>
                     <View
                       style={
@@ -1384,7 +1522,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Last post Dec 10, 2016 at 9:03 PM",
                           ]
                         }
                         separator="  •  "
@@ -1408,13 +1546,14 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Last post Dec 10, 2016 at 9:03 PM
                       </Text>
                     </View>
                     <View
                       style={
                         Object {
                           "flexDirection": "row",
+                          "paddingTop": 2,
                         }
                       }
                     >
@@ -1431,7 +1570,8 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ellipsizeMode="tail"
                           separated={
                             Array [
-                              "20 pts",
+                              "2 Replies",
+                              "1 Unread",
                             ]
                           }
                           separator="  •  "
@@ -1444,14 +1584,77 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                 "color": "#2D3B45",
                                 "fontSize": 16,
                               },
-                              undefined,
+                              Object {
+                                "fontSize": 14,
+                              },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
                               },
                             ]
                           }
                         >
-                          20 pts
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
                         </Text>
                       </View>
                     </View>
@@ -1509,6 +1712,19 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 }
               }
             />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
           </View>
         </View>
       </View>
@@ -1554,10 +1770,691 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         "backgroundColor": "white",
                         "flex": 1,
                         "flexDirection": "row",
-                        "paddingBottom": 8,
+                        "paddingBottom": 12.8,
                         "paddingLeft": 16,
                         "paddingRight": 16,
-                        "paddingTop": 8,
+                        "paddingTop": 12.8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      discussion 2
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Last post Dec 10, 2016 at 9:03 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        Last post Dec 10, 2016 at 9:03 PM
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`DiscussionsList renders in correct order 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "due_at": "2118-03-28T15:07:56.312Z",
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": false,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "First",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "due_at": "2117-03-28T15:07:56.312Z",
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": false,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "Second",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+          ],
+          "key": "B_discussion",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onRefresh={undefined}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshing={false}
+    removeClippedSubviews={true}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "due_at": "2118-03-28T15:07:56.312Z",
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": false,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "First",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "due_at": "2117-03-28T15:07:56.312Z",
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": false,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "Second",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+          ],
+          "key": "B_discussion",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        0,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
+    testID="discussion-list.list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Discussions
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="discussion-row-0"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 12.8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12.8,
                       },
                       Object {
                         "backgroundColor": "white",
@@ -1702,6 +2599,40 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       style={
                         Object {
                           "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
                         }
                       }
                     >
@@ -1718,7 +2649,8 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ellipsizeMode="tail"
                           separated={
                             Array [
-                              "20 pts",
+                              "2 Replies",
+                              "1 Unread",
                             ]
                           }
                           separator="  •  "
@@ -1731,14 +2663,77 @@ exports[`DiscussionsList renders in correct order 1`] = `
                                 "color": "#2D3B45",
                                 "fontSize": 16,
                               },
-                              undefined,
+                              Object {
+                                "fontSize": 14,
+                              },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
                               },
                             ]
                           }
                         >
-                          20 pts
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
                         </Text>
                       </View>
                     </View>
@@ -1793,6 +2788,1585 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   "position": "absolute",
                   "top": 4,
                   "width": 3,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="discussion-row-1"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 12.8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12.8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Second
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        Due May 31, 2017 at 11:59 PM
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`DiscussionsList renders pinned discussions 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    ItemSeparatorComponent={undefined}
+    data={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": true,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "discussion 1",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+          ],
+          "key": "C_pinned",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "locked": true,
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": false,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "discussion 2",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+          ],
+          "key": "A_locked",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onRefresh={undefined}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshing={false}
+    removeClippedSubviews={true}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
+    scrollEventThrottle={50}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "1",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": true,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "discussion 1",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+          ],
+          "key": "C_pinned",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2017-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": 123456789,
+                "lock_at": "2017-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "assignment_id": 123456789,
+              "discussion_subentry_count": 2,
+              "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+              "id": "2",
+              "last_reply_at": "2016-12-11T04:03:17Z",
+              "locked": true,
+              "message": "<p>And why?</p>",
+              "permissions": Object {
+                "attach": true,
+                "delete": true,
+                "reply": true,
+                "update": true,
+              },
+              "pinned": false,
+              "position": 1,
+              "posted_at": "2016-11-11T04:03:17Z",
+              "published": true,
+              "read_state": "read",
+              "sort_by_rating": false,
+              "subscribed": true,
+              "title": "discussion 2",
+              "unread_count": 1,
+              "user_can_see_posts": true,
+              "user_name": "Ivy Iversen",
+            },
+          ],
+          "key": "A_locked",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        0,
+        2,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
+    testID="discussion-list.list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Pinned Discussions
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="discussion-row-0"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 12.8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12.8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      discussion 1
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        Due May 31, 2017 at 11:59 PM
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Closed for Comments
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View>
+          <View>
+            <View
+              style={
+                Object {
+                  "marginLeft": -12,
+                }
+              }
+            >
+              <TouchableHighlight
+                accessibilityLabel={undefined}
+                accessibilityTraits={
+                  Array [
+                    "button",
+                  ]
+                }
+                onPress={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": undefined,
+                    },
+                    undefined,
+                    Object {
+                      "borderBottomColor": "#C7CDD1",
+                      "borderBottomWidth": 0.5,
+                    },
+                  ]
+                }
+                testID="discussion-row-0"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "paddingBottom": 12.8,
+                        "paddingLeft": 16,
+                        "paddingRight": 16,
+                        "paddingTop": 12.8,
+                      },
+                      Object {
+                        "backgroundColor": "white",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "flex-start",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel="Published"
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 0,
+                          "height": 32,
+                          "width": 46,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Array [
+                            Object {
+                              "position": "absolute",
+                            },
+                            Object {
+                              "tintColor": null,
+                            },
+                          ]
+                        }
+                      />
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "borderRadius": 8,
+                            "height": 16,
+                            "justifyContent": "center",
+                            "left": 20,
+                            "position": "absolute",
+                            "top": 10,
+                            "width": 16,
+                          }
+                        }
+                      >
+                        <Image
+                          source={1}
+                          style={
+                            Object {
+                              "height": 12,
+                              "tintColor": "#00AC18",
+                              "width": 12,
+                            }
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      discussion 2
+                    </Text>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Due May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        Due May 31, 2017 at 11:59 PM
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontSize": 14,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        20 pts
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                          "paddingTop": 2,
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "flexDirection": "row",
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          2 Replies
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "alignSelf": "center",
+                                  "fontSize": 10,
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                            •  
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          ellipsizeMode="tail"
+                          separated={
+                            Array [
+                              "2 Replies",
+                              "1 Unread",
+                            ]
+                          }
+                          separator="  •  "
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          1 Unread
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "flex": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "flexDirection": "row",
+                          "justifyContent": "flex-end",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignSelf": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#c7c7cc",
+                            "borderRightWidth": 2,
+                            "borderTopWidth": 2,
+                            "height": 10,
+                            "marginLeft": 7,
+                            "transform": Array [
+                              Object {
+                                "rotate": "45deg",
+                              },
+                            ],
+                            "width": 10,
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#00AC18",
+                  "bottom": 4,
+                  "left": 0,
+                  "position": "absolute",
+                  "top": 4,
+                  "width": 3,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#008EE4",
+                  "borderRadius": 2.5,
+                  "height": 5,
+                  "left": 8,
+                  "position": "absolute",
+                  "top": 6,
+                  "width": 5,
                 }
               }
             />

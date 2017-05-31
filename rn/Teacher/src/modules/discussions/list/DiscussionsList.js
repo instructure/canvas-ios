@@ -70,7 +70,7 @@ export class DiscussionsList extends Component<any, Props, any> {
     let sortedSectionData = Object.keys(sections).map((key) => {
       return {
         key,
-        data: this._sortSectionByKey(sections[key], key),
+        data: this._sortSection(sections[key]),
       }
     }).sort((a, b) => {
       return a.key < b.key ? 1 : -1
@@ -79,25 +79,22 @@ export class DiscussionsList extends Component<any, Props, any> {
     return sortedSectionData
   }
 
-  _sortSectionByKey (section: Discussion[], key: string): Array<Discussion> {
-    const sortBy = key === 'A_locked' ? 'lock_at' : 'due_at'
+  _sortSection (section: Discussion[]): Array<Discussion> {
+    const sortBy = 'last_reply_at'
     return section.sort((a, b) => {
       const tieBreaker = a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1
-      let aAssignment = a.assignment || {}
-      let bAssignment = b.assignment || {}
 
-      if (!aAssignment[sortBy] && !bAssignment[sortBy]) {
+      if (!a[sortBy] && !b[sortBy]) {
         return tieBreaker
       }
-      if (!aAssignment[sortBy]) {
-        return 1
-      }
-      if (!bAssignment[sortBy]) {
+      if (!a[sortBy]) {
         return -1
       }
+      if (!b[sortBy]) {
+        return 1
+      }
 
-      const x = new Date(aAssignment[sortBy]) < new Date(bAssignment[sortBy]) ? -1 : 1
-      return x === 0 ? tieBreaker : x
+      return new Date(a[sortBy]) < new Date(b[sortBy]) ? 1 : -1
     })
   }
 

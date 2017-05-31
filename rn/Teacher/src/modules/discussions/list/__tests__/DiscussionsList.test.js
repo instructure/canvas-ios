@@ -40,6 +40,20 @@ describe('DiscussionsList', () => {
     testRender(props)
   })
 
+  it('renders discussions with no assignments', () => {
+    const one = template.discussion({ id: '1', title: 'discussion 1', assignment: null })
+    const two = template.discussion({ id: '2', title: 'discussion 2', assignment: null })
+    props.discussions = [one, two]
+    testRender(props)
+  })
+
+  it('renders pinned discussions', () => {
+    const one = template.discussion({ id: '1', title: 'discussion 1', pinned: true })
+    const two = template.discussion({ id: '2', title: 'discussion 2', locked: true })
+    props.discussions = [one, two]
+    testRender(props)
+  })
+
   it('navigates to discussion', () => {
     const discussion = template.discussion({ id: '1' })
     props.discussions = [discussion]

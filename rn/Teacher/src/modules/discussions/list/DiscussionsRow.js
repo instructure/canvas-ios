@@ -9,10 +9,10 @@ import i18n from 'format-message'
 
 import Row from '../../../common/components/rows/Row'
 import PublishedIcon from '../../../common/components/PublishedIcon'
-import { formattedDueDateWithStatus } from '../../../common/formatters'
+import { formattedDueDateWithStatus, formattedDueDate } from '../../../common/formatters'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import Images from '../../../images/'
-import { DotSeparated } from '../../../common/text'
+import { DotSeparated, Text } from '../../../common/text'
 
 export type Props = {
   discussion: Discussion,
@@ -24,6 +24,9 @@ export type Props = {
 export default class DiscussionsRow extends Component<any, Props, any> {
   render () {
     const discussion = this.props.discussion
+    const points = this._points(discussion)
+    const discussionDetails = this._discussionDetails(discussion)
+    const unreadDot = this._renderUnreadDot(discussion)
     return (
       <View>
         <View style={{ marginLeft: -12 }}>
@@ -38,12 +41,22 @@ export default class DiscussionsRow extends Component<any, Props, any> {
             height='auto'
           >
             <DotSeparated style={style.subtitle} separated={this._dueDate(discussion)} />
-            <View style={style.details}>
-              {this._details()}
-            </View>
+
+            {points &&
+              <View style={style.details}>
+                <Text style={style.points}>{points}</Text>
+              </View>
+            }
+
+            {discussionDetails &&
+              <View style={style.details}>
+                {discussionDetails}
+              </View>
+            }
           </Row>
         </View>
         {discussion.published ? <View style={style.publishedIndicatorLine} /> : <View />}
+        { unreadDot }
       </View>
     )
   }
@@ -54,21 +67,50 @@ export default class DiscussionsRow extends Component<any, Props, any> {
 
   _dueDate = (discussion: Discussion) => {
     const { due_at, lock_at } = (discussion.assignment || {})
+    const { last_reply_at } = discussion
     const dueAt = extractDateFromString(due_at)
     const lockAt = extractDateFromString(lock_at)
+    const lastReply = extractDateFromString(last_reply_at)
+    if (!dueAt && lastReply) {
+      let lastReplyDateStr = formattedDueDate(lastReply)
+      let lastPostAt = i18n('Last post {lastReplyDateStr}', { lastReplyDateStr })
+      return [lastPostAt]
+    }
     return formattedDueDateWithStatus(dueAt, lockAt)
+  }
+
+  _renderUnreadDot = (discussion: Discussion) => {
+    if (discussion.unread_count > 0) {
+      return (<View style={style.unreadDot}/>)
+    } else {
+      return (<View />)
+    }
   }
 
   _renderIcon = () => {
     return (
       <View style={style.icon}>
-        <PublishedIcon published={this.props.discussion.published} tintColor={this.props.tintColor} image={Images.course.quizzes} />
+        <PublishedIcon published={this.props.discussion.published} tintColor={this.props.tintColor} image={ this.props.discussion.assignment ? Images.course.assignments : Images.course.discussions} />
       </View>
     )
   }
 
-  _details = () => {
-    const discussion = this.props.discussion
+  _discussionDetails (discussion: Discussion) {
+    const replies = i18n({
+      default: `{
+        count, plural,
+        zero {# Replies}
+        one {# Reply}
+        other {# Replies}
+      }`,
+      message: 'Number of replies',
+    }, { count: discussion.discussion_subentry_count })
+    const unread = `${discussion.unread_count} ${i18n('Unread')}`
+
+    return <DotSeparated style={style.discussionDetails} separated={[replies, unread].filter(v => v)}/>
+  }
+
+  _points = (discussion: Discussion) => {
     if (discussion.assignment) {
       const pointsPossible = Boolean(discussion.assignment.points_possible) && i18n({
         default: `{
@@ -78,11 +120,12 @@ export default class DiscussionsRow extends Component<any, Props, any> {
       }`,
         message: 'Number of points possible',
       }, { count: discussion.assignment.points_possible })
-      return <DotSeparated separated={[pointsPossible].filter(v => v)} />
+      return pointsPossible
     }
   }
 }
 
+const unreadDotSize = 5
 const style = StyleSheet.create({
   publishedIndicatorLine: {
     backgroundColor: '#00AC18',
@@ -94,6 +137,7 @@ const style = StyleSheet.create({
   },
   details: {
     flexDirection: 'row',
+    paddingTop: 2,
   },
   icon: {
     alignSelf: 'flex-start',
@@ -102,5 +146,20 @@ const style = StyleSheet.create({
     color: '#8B969E',
     fontSize: 14,
     marginTop: 2,
+  },
+  points: {
+    fontSize: 14,
+  },
+  discussionDetails: {
+    fontSize: 14,
+  },
+  unreadDot: {
+    width: unreadDotSize,
+    height: unreadDotSize,
+    borderRadius: unreadDotSize / 2,
+    backgroundColor: '#008EE4',
+    position: 'absolute',
+    top: 6,
+    left: 8,
   },
 })

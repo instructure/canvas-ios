@@ -18,6 +18,7 @@ export const discussion: Template<Discussion> = template({
   user_can_see_posts: true,
   user_name: 'Ivy Iversen',
   unread_count: 1,
+  discussion_subentry_count: 2,
   permissions: {
     'attach': true,
     'delete': true,
@@ -26,4 +27,5 @@ export const discussion: Template<Discussion> = template({
   },
   message: '<p>And why?</p>',
   assignment: assignment(),
+  last_reply_at: '2016-12-11T04:03:17Z',
 })

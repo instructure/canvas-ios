@@ -39,10 +39,10 @@ exports[`DiscussionsRow renders 1`] = `
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 8,
+              "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 8,
+              "paddingTop": 12.8,
             },
             Object {
               "backgroundColor": "white",
@@ -187,6 +187,40 @@ exports[`DiscussionsRow renders 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              20 pts
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
               }
             }
           >
@@ -203,7 +237,8 @@ exports[`DiscussionsRow renders 1`] = `
                 ellipsizeMode="tail"
                 separated={
                   Array [
-                    "20 pts",
+                    "2 Replies",
+                    "1 Unread",
                   ]
                 }
                 separator="  •  "
@@ -216,14 +251,77 @@ exports[`DiscussionsRow renders 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    undefined,
+                    Object {
+                      "fontSize": 14,
+                    },
                     Object {
                       "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
               >
-                20 pts
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                1 Unread
               </Text>
             </View>
           </View>
@@ -278,6 +376,19 @@ exports[`DiscussionsRow renders 1`] = `
         "position": "absolute",
         "top": 4,
         "width": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#008EE4",
+        "borderRadius": 2.5,
+        "height": 5,
+        "left": 8,
+        "position": "absolute",
+        "top": 6,
+        "width": 5,
       }
     }
   />
@@ -323,10 +434,10 @@ exports[`DiscussionsRow renders published 1`] = `
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 8,
+              "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 8,
+              "paddingTop": 12.8,
             },
             Object {
               "backgroundColor": "white",
@@ -471,6 +582,40 @@ exports[`DiscussionsRow renders published 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              20 pts
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
               }
             }
           >
@@ -487,7 +632,8 @@ exports[`DiscussionsRow renders published 1`] = `
                 ellipsizeMode="tail"
                 separated={
                   Array [
-                    "20 pts",
+                    "2 Replies",
+                    "1 Unread",
                   ]
                 }
                 separator="  •  "
@@ -500,14 +646,77 @@ exports[`DiscussionsRow renders published 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    undefined,
+                    Object {
+                      "fontSize": 14,
+                    },
                     Object {
                       "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
               >
-                20 pts
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                1 Unread
               </Text>
             </View>
           </View>
@@ -565,6 +774,19 @@ exports[`DiscussionsRow renders published 1`] = `
       }
     }
   />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#008EE4",
+        "borderRadius": 2.5,
+        "height": 5,
+        "left": 8,
+        "position": "absolute",
+        "top": 6,
+        "width": 5,
+      }
+    }
+  />
 </View>
 `;
 
@@ -607,10 +829,10 @@ exports[`DiscussionsRow renders unpublished 1`] = `
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 8,
+              "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 8,
+              "paddingTop": 12.8,
             },
             Object {
               "backgroundColor": "white",
@@ -755,6 +977,40 @@ exports[`DiscussionsRow renders unpublished 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              20 pts
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
               }
             }
           >
@@ -771,7 +1027,8 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                 ellipsizeMode="tail"
                 separated={
                   Array [
-                    "20 pts",
+                    "2 Replies",
+                    "1 Unread",
                   ]
                 }
                 separator="  •  "
@@ -784,14 +1041,77 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    undefined,
+                    Object {
+                      "fontSize": 14,
+                    },
                     Object {
                       "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
               >
-                20 pts
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                1 Unread
               </Text>
             </View>
           </View>
@@ -838,10 +1158,23 @@ exports[`DiscussionsRow renders unpublished 1`] = `
     </TouchableHighlight>
   </View>
   <View />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#008EE4",
+        "borderRadius": 2.5,
+        "height": 5,
+        "left": 8,
+        "position": "absolute",
+        "top": 6,
+        "width": 5,
+      }
+    }
+  />
 </View>
 `;
 
-exports[`DiscussionsRow renders with points possible 1`] = `
+exports[`DiscussionsRow renders with no assignment 1`] = `
 <View>
   <View
     style={
@@ -880,10 +1213,10 @@ exports[`DiscussionsRow renders with points possible 1`] = `
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 8,
+              "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 8,
+              "paddingTop": 12.8,
             },
             Object {
               "backgroundColor": "white",
@@ -997,7 +1330,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
               ellipsizeMode="tail"
               separated={
                 Array [
-                  "Due May 31, 2017 at 11:59 PM",
+                  "Last post Dec 10, 2016 at 9:03 PM",
                 ]
               }
               separator="  •  "
@@ -1021,13 +1354,14 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                 ]
               }
             >
-              Due May 31, 2017 at 11:59 PM
+              Last post Dec 10, 2016 at 9:03 PM
             </Text>
           </View>
           <View
             style={
               Object {
                 "flexDirection": "row",
+                "paddingTop": 2,
               }
             }
           >
@@ -1044,7 +1378,8 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                 ellipsizeMode="tail"
                 separated={
                   Array [
-                    "12 pts",
+                    "2 Replies",
+                    "1 Unread",
                   ]
                 }
                 separator="  •  "
@@ -1057,14 +1392,77 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    undefined,
+                    Object {
+                      "fontSize": 14,
+                    },
                     Object {
                       "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
               >
-                12 pts
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                1 Unread
               </Text>
             </View>
           </View>
@@ -1122,10 +1520,23 @@ exports[`DiscussionsRow renders with points possible 1`] = `
       }
     }
   />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#008EE4",
+        "borderRadius": 2.5,
+        "height": 5,
+        "left": 8,
+        "position": "absolute",
+        "top": 6,
+        "width": 5,
+      }
+    }
+  />
 </View>
 `;
 
-exports[`DiscussionsRow renders without points possible 1`] = `
+exports[`DiscussionsRow renders with no unread count 1`] = `
 <View>
   <View
     style={
@@ -1164,10 +1575,10 @@ exports[`DiscussionsRow renders without points possible 1`] = `
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 8,
+              "paddingBottom": 12.8,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 8,
+              "paddingTop": 12.8,
             },
             Object {
               "backgroundColor": "white",
@@ -1312,6 +1723,40 @@ exports[`DiscussionsRow renders without points possible 1`] = `
             style={
               Object {
                 "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              12 pts
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
               }
             }
           >
@@ -1326,7 +1771,12 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                 accessible={true}
                 allowFontScaling={true}
                 ellipsizeMode="tail"
-                separated={Array []}
+                separated={
+                  Array [
+                    "2 Replies",
+                    "0 Unread",
+                  ]
+                }
                 separator="  •  "
                 style={
                   Array [
@@ -1337,13 +1787,78 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    undefined,
+                    Object {
+                      "fontSize": 14,
+                    },
                     Object {
                       "fontFamily": ".SFUIDisplay",
                     },
                   ]
                 }
-              />
+              >
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "0 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                0 Unread
+              </Text>
             </View>
           </View>
         </View>
@@ -1397,6 +1912,764 @@ exports[`DiscussionsRow renders without points possible 1`] = `
         "position": "absolute",
         "top": 4,
         "width": 3,
+      }
+    }
+  />
+  <View />
+</View>
+`;
+
+exports[`DiscussionsRow renders with points possible 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "marginLeft": -12,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "height": undefined,
+          },
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
+        ]
+      }
+      testID="discussion-row-0"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 12.8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12.8,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "height": 32,
+                "width": 46,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "position": "absolute",
+                  },
+                  Object {
+                    "tintColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "left": 20,
+                  "position": "absolute",
+                  "top": 10,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Dear Ivy Iversen, your last name cannot start with your first name
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              separated={
+                Array [
+                  "Due May 31, 2017 at 11:59 PM",
+                ]
+              }
+              separator="  •  "
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              Due May 31, 2017 at 11:59 PM
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              12 pts
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                1 Unread
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#008EE4",
+        "borderRadius": 2.5,
+        "height": 5,
+        "left": 8,
+        "position": "absolute",
+        "top": 6,
+        "width": 5,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`DiscussionsRow renders without points possible 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "marginLeft": -12,
+      }
+    }
+  >
+    <TouchableHighlight
+      accessibilityLabel={undefined}
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "height": undefined,
+          },
+          undefined,
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+          },
+        ]
+      }
+      testID="discussion-row-0"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "row",
+              "paddingBottom": 12.8,
+              "paddingLeft": 16,
+              "paddingRight": 16,
+              "paddingTop": 12.8,
+            },
+            Object {
+              "backgroundColor": "white",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignSelf": "flex-start",
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Published"
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 0,
+                "height": 32,
+                "width": 46,
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Array [
+                  Object {
+                    "position": "absolute",
+                  },
+                  Object {
+                    "tintColor": "#fff",
+                  },
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderRadius": 8,
+                  "height": 16,
+                  "justifyContent": "center",
+                  "left": 20,
+                  "position": "absolute",
+                  "top": 10,
+                  "width": 16,
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "tintColor": "#00AC18",
+                    "width": 12,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Dear Ivy Iversen, your last name cannot start with your first name
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              separated={
+                Array [
+                  "Due May 31, 2017 at 11:59 PM",
+                ]
+              }
+              separator="  •  "
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                    "marginTop": 2,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              Due May 31, 2017 at 11:59 PM
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "paddingTop": 2,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                2 Replies
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "alignSelf": "center",
+                        "fontSize": 10,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                  •  
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                ellipsizeMode="tail"
+                separated={
+                  Array [
+                    "2 Replies",
+                    "1 Unread",
+                  ]
+                }
+                separator="  •  "
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                1 Unread
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+                "justifyContent": "flex-end",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#c7c7cc",
+                  "borderRightWidth": 2,
+                  "borderTopWidth": 2,
+                  "height": 10,
+                  "marginLeft": 7,
+                  "transform": Array [
+                    Object {
+                      "rotate": "45deg",
+                    },
+                  ],
+                  "width": 10,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </TouchableHighlight>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#00AC18",
+        "bottom": 4,
+        "left": 0,
+        "position": "absolute",
+        "top": 4,
+        "width": 3,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#008EE4",
+        "borderRadius": 2.5,
+        "height": 5,
+        "left": 8,
+        "position": "absolute",
+        "top": 6,
+        "width": 5,
       }
     }
   />

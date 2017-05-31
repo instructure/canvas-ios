@@ -41,10 +41,10 @@ exports[`Render row with detail label 1`] = `
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
-          "paddingBottom": 8,
+          "paddingBottom": 12.8,
           "paddingLeft": 16,
           "paddingRight": 16,
-          "paddingTop": 8,
+          "paddingTop": 12.8,
         },
         Object {
           "backgroundColor": "white",

@@ -59,6 +59,16 @@ describe('DiscussionsRow', () => {
     testRender(props)
   })
 
+  it('renders with no unread count', () => {
+    props.discussion.unread_count = 0
+    testRender(props)
+  })
+
+  it('renders with no assignment', () => {
+    props.discussion.assignment = null
+    testRender(props)
+  })
+
   function testRender (props: Props) {
     expect(render(props).toJSON()).toMatchSnapshot()
   }
