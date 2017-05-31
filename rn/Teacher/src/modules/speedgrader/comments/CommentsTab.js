@@ -7,7 +7,7 @@ import {
   FlatList,
 } from 'react-native'
 import { getSession } from '../../../api/session'
-import CommentRow, { type CommentRowProps } from './CommentRow'
+import CommentRow, { type CommentRowProps, type CommentContent } from './CommentRow'
 import CommentInput from './CommentInput'
 import DrawerState from '../utils/drawer-state'
 import SubmissionCommentActions, { type CommentActions } from './actions'
@@ -40,7 +40,15 @@ export class CommentsTab extends Component<any, Props, any> {
       courseID,
       assignmentID,
       userID,
-      comment
+      comment,
+    )
+  }
+
+  deletePendingComment = (localID: string) => {
+    this.props.deletePendingComment(
+      this.props.assignmentID,
+      this.props.userID,
+      localID
     )
   }
 
@@ -49,6 +57,9 @@ export class CommentsTab extends Component<any, Props, any> {
       {...item}
       testID={'submission-comment-' + item.key}
       style={{ transform: [{ rotate: '180deg' }] }}
+      retryPendingComment={this.makeAComment}
+      deletePendingComment={this.deletePendingComment}
+      localID={item.key}
     />
 
   statusComplete = () => {
@@ -74,13 +85,13 @@ export class CommentsTab extends Component<any, Props, any> {
             userID={this.props.userID}
           />
         }
-        <CommentInput makeComment={this.makeAComment} drawerState={this.props.drawerState} />
+        <CommentInput makeComment={this.makeAComment} drawerState={this.props.drawerState} disabled={hasPending} />
       </View>
     )
   }
 }
 
-type CommentRows = { commentRows: Array<CommentRowProps> }
+type CommentRows = { commentRows: Array<CommentRowData> }
 
 type RoutingProps = {
   courseID: string,
@@ -92,7 +103,19 @@ type RoutingProps = {
 
 type Props = CommentRows & RoutingProps & CommentActions
 
-function extractComments (submission: SubmissionComments): Array<CommentRowProps> {
+type CommentRowData = {
+  error?: string,
+  style?: Object,
+  key: string,
+  name: string,
+  date: Date,
+  avatarURL: string,
+  from: 'me' | 'them',
+  contents: CommentContent,
+  pending: number,
+}
+
+function extractComments (submission: SubmissionComments): Array<CommentRowData> {
   const session = getSession()
   const myUserID = session ? session.user.id : '😲'
 
@@ -138,7 +161,7 @@ function contentForAttempt (attempt: Submission): Array<SubmittedContentDataProp
   return []
 }
 
-function rowForSubmission (user: User, attempt: Submission): CommentRowProps {
+function rowForSubmission (user: User, attempt: Submission): CommentRowData {
   const attemptNumber = attempt.attempt || 0
   const submittedAt = attempt.submitted_at || ''
 
@@ -157,12 +180,12 @@ function rowForSubmission (user: User, attempt: Submission): CommentRowProps {
   }
 }
 
-function extractAttempts (submission: SubmissionWithHistory): Array<CommentRowProps> {
+function extractAttempts (submission: SubmissionWithHistory): Array<CommentRowData> {
   return submission.submission_history
     .map(attempt => rowForSubmission(submission.user, attempt))
 }
 
-function extractPendingComments (assignments: ?AssignmentContentState, userID): Array<CommentRowProps> {
+function extractPendingComments (assignments: ?AssignmentContentState, userID): Array<CommentRowData> {
   const session = getSession()
   if (!assignments || !session) {
     return []
@@ -177,6 +200,7 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     avatarURL: session.user.avatar_url,
     contents: pending.comment,
     pending: pending.pending,
+    error: pending.error || undefined, // this fixes flow even though error could already be undefined...
   }))
 }
 

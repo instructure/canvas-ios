@@ -57,11 +57,9 @@ const styles = StyleSheet.create({
   },
   myMessageContainer: {
     maxWidth: 300,
-    alignSelf: 'flex-end',
   },
   theirMessageContainer: {
     maxWidth: 300,
-    alignSelf: 'flex-start',
   },
   message: {
     paddingHorizontal: 12,

@@ -1855,7 +1855,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
     <View
       style={
         Object {
-          "alignSelf": "flex-start",
           "maxWidth": 300,
         }
       }

@@ -1,14 +1,15 @@
 // @flow
-
+import { NativeModules } from 'react-native'
 import pendingComments from '../pending-comments-reducer'
 import PendingActions from '../actions'
 import SubmissionActions from '../../../submissions/list/actions'
 
+const { PushNotifications } = NativeModules
 const t = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
 }
 
-const { makeAComment } = PendingActions
+const { makeAComment, deletePendingComment } = PendingActions
 const { refreshSubmissions } = SubmissionActions
 
 const pending: PendingCommentState = {
@@ -34,6 +35,8 @@ const failed: PendingCommentState = {
   comment: { type: 'text', message: 'Hello!' },
   error: '😭',
 }
+
+beforeEach(() => jest.resetAllMocks())
 
 test('reduces pending comments', () => {
   const action = {
@@ -92,6 +95,22 @@ test('passes on error on failure', () => {
   )
 })
 
+test('schedules a push notification when a comment fails to send', () => {
+  const action = {
+    type: makeAComment.toString(),
+    error: true,
+    payload: {
+      localID: pending.localID,
+      userID: '55',
+      error: new Error(failed.error),
+    },
+  }
+
+  pendingComments({ '55': [pending] }, action)
+
+  expect(PushNotifications.scheduleLocalNotification).toHaveBeenCalled()
+})
+
 test('removes completed comments on refreshSubmissions', () => {
   const action = {
     type: refreshSubmissions.toString(),
@@ -103,5 +122,22 @@ test('removes completed comments on refreshSubmissions', () => {
     action
   )).toEqual(
     { '33': [], '44': [pending] },
+  )
+})
+
+test('deletePendingComments removes the pending comment', () => {
+  const action = {
+    type: deletePendingComment.toString(),
+    payload: {
+      userID: '1',
+      localID: pending.localID,
+    },
+  }
+
+  expect(pendingComments(
+    { '1': [pending] },
+    action
+  )).toEqual(
+    { '1': [] }
   )
 })

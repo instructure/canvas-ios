@@ -17,6 +17,8 @@ import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 
+const PushNotifications = NativeModules.PushNotifications
+
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
 // such as, when demoing
 console.disableYellowBox = true
@@ -54,6 +56,7 @@ emitter.addListener('Login', async (info: {
   if (!info.authToken) {
     store.dispatch(logout)
   } else {
+    PushNotifications.requestPermissions()
     setSession(info)
     hydrateStoreFromPersistedState(store)
   }

@@ -9,6 +9,11 @@ NativeModules.NativeLogin = {
   logout: jest.fn(),
 }
 
+NativeModules.PushNotifications = {
+  requestPermissions: jest.fn(),
+  scheduleLocalNotification: jest.fn(),
+}
+
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),
 }))

@@ -10,6 +10,10 @@ export type CommentActions = {
     assignmentID: string,
     userID: string,
     comment: SubmissionCommentParams) => void,
+  deletePendingComment: (
+    userID: string,
+    localID: string
+  ) => void,
 }
 
 export const SubmissionCommentActions = (api: typeof canvas): CommentActions => ({
@@ -22,6 +26,11 @@ export const SubmissionCommentActions = (api: typeof canvas): CommentActions => 
     promise: api.commentOnSubmission(
       courseID, assignmentID, userID, comment
     ),
+    handlesError: true,
+  })),
+
+  deletePendingComment: createAction('submission.comments.delete-pending', (assignmentID: string, userID: string, localID: string) => ({
+    assignmentID, userID, localID,
   })),
 })
 

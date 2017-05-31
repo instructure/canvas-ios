@@ -13,6 +13,9 @@ const testComment: CommentRowProps = {
   from: 'them',
   contents: { type: 'text', message: 'I just need more time!?' },
   pending: 0,
+  localID: '1',
+  deletePendingComment: jest.fn(),
+  retryPendingComment: jest.fn(),
 }
 
 test('Their message rows render correctly', () => {

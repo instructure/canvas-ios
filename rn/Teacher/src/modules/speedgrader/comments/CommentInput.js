@@ -19,6 +19,7 @@ type CommentInputProps = {
   drawerState: DrawerState,
   allowMediaComments: boolean,
   initialValue: ?string,
+  disabled: boolean,
 }
 
 type State = {
@@ -73,7 +74,7 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
 
     const send = i18n('Send')
 
-    const disableSend = !this.state.textComment || this.state.textComment.length === 0
+    const disableSend = !this.state.textComment || this.state.textComment.length === 0 || this.props.disabled
 
     return (
       <View>
@@ -126,6 +127,7 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
 
 CommentInput.defaultProps = {
   allowMediaComments: true,
+  disabled: false,
 }
 
 const styles = StyleSheet.create({

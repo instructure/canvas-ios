@@ -57,3 +57,11 @@ test('Allows for an initialValue', () => {
 
   expect(tree.getInstance().state.textComment).toEqual('Comment')
 })
+
+test('disables the send button with a prop', () => {
+  let tree = renderer.create(
+    <CommentInput disabled={true} />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})

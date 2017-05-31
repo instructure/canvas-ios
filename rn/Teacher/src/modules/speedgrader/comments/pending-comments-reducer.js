@@ -2,12 +2,15 @@
 
 import { Reducer } from 'redux'
 import Actions from './actions'
+import { NativeModules } from 'react-native'
 import { handleActions } from 'redux-actions'
+import i18n from 'format-message'
 import handleAsync from '../../../utils/handleAsync'
 import SubmissionActions from '../../submissions/list/actions'
 import { parseErrorMessage } from '../../../redux/middleware/error-handler'
 
-const { makeAComment } = Actions
+const { PushNotifications } = NativeModules
+const { makeAComment, deletePendingComment } = Actions
 const { refreshSubmissions } = SubmissionActions
 
 const pendingComments: Reducer<PendingCommentsState, any> = handleActions({
@@ -51,6 +54,12 @@ const pendingComments: Reducer<PendingCommentsState, any> = handleActions({
     rejected: (state, { userID, localID, error }) => {
       error = parseErrorMessage(error)
       const comments = state[userID] || []
+      PushNotifications.scheduleLocalNotification({
+        title: i18n('Comment Failed'),
+        body: i18n('Your submission comment failed to send.'),
+        identifier: localID,
+        fireDate: 1, // seconds
+      })
       return {
         ...state,
         [userID]: comments.map(
@@ -61,6 +70,12 @@ const pendingComments: Reducer<PendingCommentsState, any> = handleActions({
       }
     },
   }),
+  [deletePendingComment.toString()]: (state, { payload }) => {
+    return {
+      ...state,
+      [payload.userID]: state[payload.userID].filter(comment => comment.localID !== payload.localID),
+    }
+  },
 }, {})
 
 export default pendingComments

@@ -54,6 +54,7 @@ const images = {
     video: require('./speedgrader/icon_video_clip.png'),
     page: require('./speedgrader/page.png'),
     pdf: require('./speedgrader/pdf-icon.png'),
+    warning: require('./Warning.png'),
   },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),

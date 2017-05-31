@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
+  Image,
+  ActionSheetIOS,
 } from 'react-native'
 import Avatar from '../../../common/components/Avatar'
 import { formattedDueDate } from '../../../common/formatters'
@@ -13,8 +15,26 @@ import {
 } from '../../../common/text'
 import ChatBubble from './ChatBubble'
 import SubmittedContent, { type SubmittedContentDataProps } from './SubmittedContent'
+import Images from '../../../images'
+import Button from 'react-native-button'
+import i18n from 'format-message'
 
 export default class CommentRow extends Component<any, CommentRowProps, any> {
+  showFailedOptions = () => {
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: [i18n('Retry'), i18n('Delete'), i18n('Cancel')],
+      cancelButtonIndex: 2,
+      destructiveButtonIndex: 1,
+      title: i18n('Failed comment options'),
+    }, (index) => {
+      if (index === 2) return
+      if (index === 0) {
+        this.props.retryPendingComment(this.props.contents)
+      }
+      this.props.deletePendingComment(this.props.localID)
+    })
+  }
+
   renderHeader = () => {
     let usOrThem = styles.theirHeader
     let textAlignment = styles.theirText
@@ -63,11 +83,31 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
     }
   }
 
+  renderRetry = () => {
+    if (this.props.from !== 'me') return
+
+    if (this.props.error) {
+      return (
+        <Button onPress={this.showFailedOptions}>
+          <Image
+            accessibilityLabel={i18n('Failed comment options')}
+            source={Images.speedGrader.warning}
+          />
+        </Button>
+      )
+    }
+
+    return <View />
+  }
+
   render () {
     return (
       <View style={[styles.row, this.props.style]}>
         {this.renderHeader()}
-        {this.renderContents()}
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          {this.renderRetry()}
+          {this.renderContents()}
+        </View>
       </View>
     )
   }
@@ -108,6 +148,9 @@ const styles = StyleSheet.create({
   },
 })
 
+export type CommentContent = { type: 'text', message: string }
+  | { type: 'submission', items: Array<SubmittedContentDataProps> }
+
 export type CommentRowProps = {
   error?: string,
   style?: Object,
@@ -116,7 +159,9 @@ export type CommentRowProps = {
   date: Date,
   avatarURL: string,
   from: 'me' | 'them',
-  contents: { type: 'text', message: string }
-          | { type: 'submission', items: Array<SubmittedContentDataProps> },
+  contents: CommentContent,
   pending: number,
+  localID: string,
+  deletePendingComment: (string) => void,
+  retryPendingComment: (CommentContent) => void,
 }

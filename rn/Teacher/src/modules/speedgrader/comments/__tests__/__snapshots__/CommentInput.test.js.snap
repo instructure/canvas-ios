@@ -231,3 +231,132 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
   />
 </View>
 `;
+
+exports[`disables the send button with a prop 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "backgroundColor": "#F5F5F5",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "overflow": "hidden",
+        "paddingHorizontal": 16,
+        "paddingVertical": 8,
+      }
+    }
+  >
+    <Button
+      accessibilityLabel="Add Media"
+      accessibilityTraits={
+        Array [
+          "button",
+        ]
+      }
+      accessible={true}
+      containerStyle={
+        Object {
+          "alignSelf": "center",
+        }
+      }
+      onPress={[Function]}
+      testID="comment-input.add-media"
+    >
+      <Image
+        resizeMode="center"
+        source={1}
+        style={
+          Object {
+            "tintColor": "#73818C",
+          }
+        }
+      />
+    </Button>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "backgroundColor": "white",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 20,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginLeft": 4,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <TextInput
+        autoFocus={true}
+        maxHeight={76}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Comment"
+        placeholderTextColor="#7F91A7"
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 16,
+            "lineHeight": 19,
+            "marginBottom": 6,
+            "marginLeft": 10,
+            "marginRight": 24,
+            "marginTop": 2,
+          }
+        }
+        testID="comment-input.comment"
+        value=""
+      />
+      <Button
+        accessibilityLabel="Send"
+        containerStyle={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#374A59",
+            "borderRadius": 12,
+            "flex": 0,
+            "height": 24,
+            "justifyContent": "center",
+            "marginRight": 4,
+            "marginTop": 4,
+            "width": 24,
+          }
+        }
+        disabled={true}
+        onPress={[Function]}
+        testID="comment-input.send"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "marginBottom": 1,
+              "tintColor": "white",
+            }
+          }
+        />
+      </Button>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+        },
+        Object {
+          "height": 0,
+        },
+        undefined,
+      ]
+    }
+  />
+</View>
+`;

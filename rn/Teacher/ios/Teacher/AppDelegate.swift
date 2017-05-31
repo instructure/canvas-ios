@@ -9,9 +9,11 @@
 import UIKit
 import CanvasKeymaster
 import ReactiveSwift
+import UserNotifications
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     
@@ -20,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         prepareReactNative()
         createMainWindow()
         initiateLoginProcess()
+        setupForPushNotifications()
         return true
     }
     
@@ -38,6 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CanvasKeymaster.the().delegate = LoginConfiguration.shared
         
         NativeLoginManager.shared().delegate = self
+    }
+    
+    func setupForPushNotifications() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert,.sound])
     }
 }
 
