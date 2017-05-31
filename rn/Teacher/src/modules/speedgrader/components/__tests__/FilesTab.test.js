@@ -10,6 +10,7 @@ jest
 
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../api/canvas-api/__templates__/attachment'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 
@@ -17,6 +18,7 @@ let subWithAttachment = templates.submissionHistory([{
   id: '1',
   grade: null,
   submitted_at: '2017-04-26T17:46:00Z',
+  submission_type: 'online_upload',
   attachments: [
     {
       id: '1234',
@@ -31,6 +33,7 @@ let subWithManyAttachments = templates.submissionHistory([{
   id: '1',
   grade: null,
   submitted_at: '2017-04-26T17:46:00Z',
+  submission_type: 'online_upload',
   attachments: [
     {
       id: '1234',
@@ -109,6 +112,15 @@ let withZeroIndex = {
   selectedAttachmentIndex: 0,
 }
 
+let withURLSubmission = {
+  ...defaultProps,
+  submissionProps: {
+    ...defaultSubmissionProps,
+    attachments: [templates.attachment()],
+    submission_type: 'online_url',
+  },
+}
+
 describe('SpeedGraderFilesTab', () => {
   it('renders without a submission', () => {
     let props = {
@@ -154,6 +166,14 @@ describe('SpeedGraderFilesTab', () => {
     const thirdRow = explore(tree).selectByID('speedgrader.files.row2') || {}
     thirdRow.props.onPress()
     expect(withIndex.selectFile).toHaveBeenCalled()
+  })
+
+  it('ignores attachments for URL Submissions', () => {
+    let tree = renderer.create(
+      <FilesTab {...withURLSubmission} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 })
 

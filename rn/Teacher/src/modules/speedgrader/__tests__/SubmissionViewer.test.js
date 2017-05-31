@@ -226,7 +226,7 @@ describe('SubmissionViewer', () => {
     let props = {
       selectedIndex: null,
       selectedAttachmentIndex: 0,
-      assignmentSubmissionTypes: ['file_upload'],
+      assignmentSubmissionTypes: ['online_upload'],
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },

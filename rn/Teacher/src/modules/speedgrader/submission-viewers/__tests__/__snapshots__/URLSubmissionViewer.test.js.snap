@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`url submission renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    testID="url-submission-viewer.explanation"
+  >
+    This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.
+  </Text>
+  <Button
+    onPress={[Function]}
+    style={
+      Object {
+        "alignSelf": "center",
+        "fontSize": 18,
+        "paddingVertical": 12,
+      }
+    }
+    testID="url-submission-viewer.url"
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Array [
+            Object {
+              "color": "#374A59",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-bold",
+            },
+            Object {
+              "color": "#374A59",
+            },
+            Object {
+              "alignSelf": "center",
+              "fontSize": 18,
+              "paddingVertical": 12,
+            },
+          ],
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      https://my-blog-about-rockets.com/2017/6/1/rockets-are-splosive
+    </Text>
+  </Button>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#7F91A7",
+          "fontSize": 16,
+          "lineHeight": 23,
+        },
+        Object {
+          "alignSelf": "center",
+        },
+      ]
+    }
+  >
+    Preview Unavailable
+  </Text>
+</View>
+`;

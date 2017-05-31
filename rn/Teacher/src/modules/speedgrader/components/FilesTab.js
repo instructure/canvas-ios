@@ -20,7 +20,7 @@ export class FilesTab extends Component {
   listOfFiles () {
     const submission = this.props.submissionProps.submission
     const selectedIndex = this.props.selectedIndex
-    if (!submission || !submission.attachments) return []
+    if (!submission || !submission.attachments || submission.submission_type !== 'online_upload') return []
     let files = submission.attachments
     if (selectedIndex != null) {
       if (!submission.submission_history[selectedIndex].attachments) return []

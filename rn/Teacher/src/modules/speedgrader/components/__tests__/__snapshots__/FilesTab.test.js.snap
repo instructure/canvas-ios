@@ -1,5 +1,156 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
+<RCTScrollView>
+  <View>
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "display_name": "cool file.doc",
+            "id": "1234",
+            "mime_class": "doc",
+            "thumbnail_url": null,
+          },
+        ]
+      }
+      disableVirtualization={false}
+      extraData={
+        Object {
+          "selected": null,
+        }
+      }
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReached={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      removeClippedSubviews={true}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="speedgrader.files.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+        >
+          <View>
+            <TouchableHighlight
+              accessibilityTraits="selected"
+              accessible={true}
+              onPress={[Function]}
+              testID="speedgrader.files.row0"
+              underlayColor="#eee"
+            >
+              <View
+                style={
+                  Object {
+                    "borderBottomColor": "lightgrey",
+                    "borderBottomWidth": 0.5,
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "paddingHorizontal": 16,
+                    "paddingVertical": 16,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginRight": 16,
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "resizeMode": "contain",
+                        "tintColor": "#00BCD5",
+                        "width": 24,
+                      }
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignSelf": "flex-end",
+                      "flex": -1,
+                      "flexGrow": 1,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "500",
+                          "overflow": "hidden",
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-medium",
+                        },
+                      ]
+                    }
+                  >
+                    cool file.doc
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignSelf": "center",
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 10,
+                        "resizeMode": "contain",
+                        "tintColor": "#008EE2",
+                        "width": 13,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RCTScrollView>
+`;
+
 exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
 <RCTScrollView>
   <View>

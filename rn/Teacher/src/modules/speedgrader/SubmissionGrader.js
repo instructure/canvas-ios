@@ -80,7 +80,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     const submission = this.props.submissionProps.submission
     const selectedIndex = this.props.selectedIndex
     let defaultLabel = i18n('Files')
-    if (!submission) return defaultLabel
+    if (!submission || submission.submission_type !== 'online_upload') return defaultLabel
     if (selectedIndex == null) {
       if (!submission.attachments) return defaultLabel
       var numberOfFiles = submission.attachments.length

@@ -65,6 +65,7 @@ describe('SubmissionGrader', () => {
       submissionProps: {
         submission: template.submissionHistory([{
           attachments: [{}],
+          submission_type: 'online_upload',
         }]),
       },
       drawerState: new DrawerState(),
@@ -110,6 +111,7 @@ describe('SubmissionGrader', () => {
             { fake: 'file' },
             { fake: 'file' },
           ],
+          submission_type: 'online_upload',
         },
       },
     }
@@ -161,6 +163,7 @@ describe('SubmissionGrader', () => {
               ],
             },
           ],
+          submission_type: 'online_upload',
         },
       },
     }

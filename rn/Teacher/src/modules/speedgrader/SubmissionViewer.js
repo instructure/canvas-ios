@@ -14,6 +14,7 @@ import type {
 } from '../submissions/list/submission-prop-types'
 import WebContainer from '../../common/components/WebContainer'
 import Video from '../../common/components/Video'
+import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 
 type SubmissionViewerProps = {
   isCurrentStudent: boolean,
@@ -77,6 +78,9 @@ export default class SubmissionViewer extends Component {
     let body = <View></View>
     if (submission.submission_type) {
       switch (submission.submission_type) {
+        case 'online_url':
+          body = <URLSubmissionViewer submission={submission} />
+          break
         case 'online_text_entry':
           body = <WebContainer style={styles.webContainer} html={submission.body} />
           break
@@ -108,7 +112,7 @@ export default class SubmissionViewer extends Component {
   render (): React.Element<*> {
     const submission = this.currentSubmission()
     if (submission && submission.attempt) {
-      if (this.props.selectedAttachmentIndex != null && submission.attachments) {
+      if (this.props.selectedAttachmentIndex != null && submission.attachments && submission.submission_type === 'online_upload') {
         return this.renderFile(submission)
       } else {
         return this.renderSubmission(submission)

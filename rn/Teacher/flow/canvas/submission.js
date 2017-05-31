@@ -19,7 +19,6 @@ export type SubmissionType
   | 'external_tool'
   | 'discussion_topic'
   | 'online_quiz'
-  | 'file_upload'
 
 export type Submission = {
   id: string,
