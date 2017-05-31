@@ -84,6 +84,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                <ActivityIndicator />
              </View>
     } else {
+      const name = course.name || ''
+      const termName = (course.term || {}).name || ''
       view = (<RefreshableScrollView
                 style={styles.container}
                 refreshing={this.props.refreshing}
@@ -99,8 +101,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                   </View>
 
                   <View style={styles.headerBottomContainer} >
-                    <Text style={styles.headerTitle}>{course.name}</Text>
-                    <Text style={styles.headerSubtitle}>{course.term.name}</Text>
+                    <Text style={styles.headerTitle}>{name}</Text>
+                    <Text style={styles.headerSubtitle}>{termName}</Text>
                   </View>
                 </View>
                 }
