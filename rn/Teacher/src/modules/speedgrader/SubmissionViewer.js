@@ -1,6 +1,5 @@
 // @flow
 
-import _ from 'lodash'
 import React, { Component } from 'react'
 import {
   View,
@@ -23,6 +22,7 @@ type SubmissionViewerProps = {
   selectedAttachmentIndex: ?number,
   assignmentSubmissionTypes: Array<SubmissionType>,
   size: { width: number, height: number },
+  isModeratedGrading: boolean,
 }
 
 export default class SubmissionViewer extends Component {
@@ -48,7 +48,7 @@ export default class SubmissionViewer extends Component {
 
   unviewableSubmissionText (types: SubmissionType | Array<SubmissionType>): any {
     let type = types
-    if (_.isArray(types)) {
+    if (Array.isArray(types)) {
       type = types[0]
     }
 
@@ -110,6 +110,14 @@ export default class SubmissionViewer extends Component {
   }
 
   render (): React.Element<*> {
+    if (this.props.isModeratedGrading) {
+      return (
+        <View style={styles.container}>
+          {this.renderCenteredText(i18n('Moderated grading is not currently supported in mobile SpeedGrader.'))}
+        </View>
+      )
+    }
+
     const submission = this.currentSubmission()
     if (submission && submission.attempt) {
       if (this.props.selectedAttachmentIndex != null && submission.attachments && submission.submission_type === 'online_upload') {
@@ -117,13 +125,13 @@ export default class SubmissionViewer extends Component {
       } else {
         return this.renderSubmission(submission)
       }
-    } else {
-      let text = this.unviewableSubmissionText(this.props.assignmentSubmissionTypes)
-      text = text || i18n('This student does not have a submission for this assignment.')
-      return <View style={styles.container}>
-        {this.renderCenteredText(text)}
-      </View>
     }
+
+    let text = this.unviewableSubmissionText(this.props.assignmentSubmissionTypes)
+    text = text || i18n('This student does not have a submission for this assignment.')
+    return <View style={styles.container}>
+      {this.renderCenteredText(text)}
+    </View>
   }
 }
 

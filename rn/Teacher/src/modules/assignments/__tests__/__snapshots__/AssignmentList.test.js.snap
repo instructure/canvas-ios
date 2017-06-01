@@ -482,7 +482,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         ]
                       }
                     >
-                      Due May 31, 2017 at 10:59 PM
+                      Availability: Closed
                     </Text>
                     <View />
                   </View>
@@ -1139,7 +1139,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         ]
                       }
                     >
-                      Due May 31, 2017 at 10:59 PM
+                      Availability: Closed
                     </Text>
                     <View />
                   </View>
@@ -1405,7 +1405,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         ]
                       }
                     >
-                      Due May 31, 2017 at 10:59 PM
+                      Availability: Closed
                     </Text>
                     <View />
                   </View>
@@ -1893,7 +1893,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         ]
                       }
                     >
-                      Due May 31, 2017 at 10:59 PM
+                      Availability: Closed
                     </Text>
                     <View />
                   </View>
@@ -2429,7 +2429,7 @@ exports[`renders correctly 1`] = `
                         ]
                       }
                     >
-                      Due May 31, 2017 at 10:59 PM
+                      Availability: Closed
                     </Text>
                     <View />
                   </View>
@@ -2965,7 +2965,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         ]
                       }
                     >
-                      Due May 31, 2017 at 10:59 PM
+                      Availability: Closed
                     </Text>
                     <View />
                   </View>

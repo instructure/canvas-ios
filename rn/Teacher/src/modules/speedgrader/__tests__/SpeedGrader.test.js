@@ -110,6 +110,7 @@ describe('refresh functions', () => {
     refreshing: false,
     pending: false,
     navigator: templates.navigator(),
+    isModeratedGrading: false,
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)

@@ -43,6 +43,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -67,6 +68,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -91,6 +93,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -107,6 +110,7 @@ describe('SubmissionViewer', () => {
       submissionProps: defaultSub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -132,6 +136,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -148,6 +153,7 @@ describe('SubmissionViewer', () => {
       submissionProps: defaultSub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -164,6 +170,7 @@ describe('SubmissionViewer', () => {
       submissionProps: defaultSub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -187,6 +194,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -203,6 +211,7 @@ describe('SubmissionViewer', () => {
       submissionProps: defaultSub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -230,6 +239,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let tree = renderer.create(
@@ -254,6 +264,7 @@ describe('SubmissionViewer', () => {
       submissionProps: sub,
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
+      isModeratedGrading: false,
     }
 
     let component = renderer.create(
@@ -268,5 +279,29 @@ describe('SubmissionViewer', () => {
     instance.videoPlayer = { pause }
     setProps(component, { ...props, isCurrentStudent: false })
     expect(pause).toHaveBeenCalled()
+  })
+
+  it('renders a moderated graded assignment submission', () => {
+    let sub = {
+      ...defaultSub,
+      submission: templates.submissionHistory([{
+        submission_type: 'online_text_entry',
+      }]),
+    }
+
+    let props = {
+      ...defaultSelections,
+      assignmentSubmissionTypes: ['online_text_entry'],
+      submissionProps: sub,
+      isCurrentStudent: true,
+      size: { width: 375, height: 667 },
+      isModeratedGrading: true,
+    }
+
+    let tree = renderer.create(
+      <SubmissionViewer {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 })

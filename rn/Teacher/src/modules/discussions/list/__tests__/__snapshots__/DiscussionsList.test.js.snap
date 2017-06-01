@@ -510,7 +510,8 @@ exports[`DiscussionsList renders discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -534,7 +535,72 @@ exports[`DiscussionsList renders discussions 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Closed
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 14,
+                                "marginTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "fontSize": 10,
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                          •  
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        May 31, 2017 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -908,7 +974,8 @@ exports[`DiscussionsList renders discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -932,7 +999,72 @@ exports[`DiscussionsList renders discussions 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Closed
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 14,
+                                "marginTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "fontSize": 10,
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                          •  
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        May 31, 2017 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -2568,7 +2700,8 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -2592,7 +2725,72 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Closed
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 14,
+                                "marginTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "fontSize": 10,
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                          •  
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        May 31, 2017 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -2966,7 +3164,8 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -2990,7 +3189,72 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Closed
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 14,
+                                "marginTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "fontSize": 10,
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                          •  
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        May 31, 2017 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -3689,7 +3953,8 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -3713,7 +3978,72 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Closed
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 14,
+                                "marginTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "fontSize": 10,
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                          •  
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        May 31, 2017 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -4134,7 +4464,8 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Due May 31, 2017 at 11:59 PM",
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -4158,7 +4489,72 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           ]
                         }
                       >
-                        Due May 31, 2017 at 11:59 PM
+                        Closed
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Array [
+                              Object {
+                                "color": "#8B969E",
+                                "fontSize": 14,
+                                "marginTop": 2,
+                              },
+                              Object {
+                                "alignSelf": "center",
+                                "fontSize": 10,
+                              },
+                            ],
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                          •  
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        separated={
+                          Array [
+                            "Closed",
+                            "May 31, 2017 at 11:59 PM",
+                          ]
+                        }
+                        separator="  •  "
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 14,
+                              "marginTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        May 31, 2017 at 11:59 PM
                       </Text>
                     </View>
                     <View

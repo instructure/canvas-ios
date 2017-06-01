@@ -35,6 +35,7 @@ type SubmissionGraderProps = {
   selectedAttachmentIndex: ?number,
   drawerState: DrawerState,
   assignmentSubmissionTypes: Array<SubmissionType>,
+  isModeratedGrading: boolean,
 }
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
