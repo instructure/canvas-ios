@@ -60,7 +60,12 @@ export class SubmissionList extends Component<any, Props, any> {
 
   navigateToSubmission = (userID: string) => {
     if (!global.V03) { return } // such features
-    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`, { modal: true })
+    const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
+    this.props.navigator.show(
+      path,
+      { modal: true },
+      { selectedFilter: this.selectedFilter }
+    )
   }
 
   renderRow = ({ item }: { item: SubmissionProps }) => {

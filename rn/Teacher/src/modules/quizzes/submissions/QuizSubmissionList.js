@@ -52,7 +52,13 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
   navigateToSubmission = (userID: string) => {
     const { quiz, courseID } = this.props
     if (!quiz.data.assignment_id) return
-    this.props.navigator.show(`/courses/${courseID}/assignments/${quiz.data.assignment_id}/submissions/${userID}`, { modal: true })
+    const path = `/courses/${courseID}/assignments/${quiz.data.assignment_id}/submissions/${userID}`
+
+    this.props.navigator.show(
+      path,
+      { modal: true },
+      { selectedFilter: this.selectedFilter }
+    )
   }
 
   componentWillMount = () => {

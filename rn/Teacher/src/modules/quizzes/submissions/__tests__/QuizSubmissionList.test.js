@@ -98,7 +98,8 @@ describe('QuizSubmissionList', () => {
     instance.navigateToSubmission('1')
     expect(navigator.show).toHaveBeenCalledWith(
       '/courses/12/assignments/1/submissions/1',
-      { modal: true }
+      { modal: true },
+      { selectedFilter: undefined }
     )
   })
 

@@ -22,6 +22,7 @@ import type {
 import Screen from '../../routing/Screen'
 import Navigator from '../../routing/Navigator'
 import DrawerState from './utils/drawer-state'
+import { type SelectedSubmissionFilter } from '../submissions/SubmissionsHeader'
 
 type State = {
   size: { width: number, height: number },
@@ -155,7 +156,19 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: RoutingProps): SpeedGraderDataProps {
-  const props = getSubmissionsProps(state.entities, ownProps.courseID, ownProps.assignmentID)
+  const unfilteredProps = getSubmissionsProps(state.entities, ownProps.courseID, ownProps.assignmentID)
+
+  const { selectedFilter } = ownProps
+
+  const submissions = selectedFilter && selectedFilter.filter.filterFunc
+    ? selectedFilter.filter.filterFunc(unfilteredProps.submissions, selectedFilter.metadata)
+    : unfilteredProps.submissions
+
+  const props = {
+    ...unfilteredProps,
+    submissions,
+  }
+
   return {
     ...props,
     submissionEntities: state.entities.submissions,
@@ -194,6 +207,7 @@ type RoutingProps = {
   courseID: string,
   assignmentID: string,
   userID: string,
+  selectedFilter?: SelectedSubmissionFilter,
 }
 type SpeedGraderActionProps = {
   refreshSubmissions: Function,

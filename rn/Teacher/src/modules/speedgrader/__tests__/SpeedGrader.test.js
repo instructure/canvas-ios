@@ -3,6 +3,7 @@
 import React from 'react'
 import {
   SpeedGrader,
+  mapStateToProps,
   refreshSpeedGrader,
   shouldRefresh,
   isRefreshing,
@@ -16,10 +17,26 @@ jest.mock('../../../common/components/BottomDrawer')
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
   ...require('../../submissions/list/__templates__/submission-props'),
 }
+
+jest.mock('../../submissions/list/get-submissions-props', () => ({
+  getSubmissionsProps: () => {
+    const templates = {
+      ...require('../../submissions/list/__templates__/submission-props'),
+    }
+    return {
+      pending: false,
+      submissions: [
+        templates.submissionProps({ status: 'missing' }),
+        templates.submissionProps(),
+      ],
+    }
+  },
+}))
 
 let ownProps = {
   assignmentID: '1',
@@ -114,5 +131,38 @@ describe('refresh functions', () => {
     const submissions = [templates.submissionProps()]
     const shouldNot = shouldRefresh({ ...props, submissions })
     expect(shouldNot).toBeFalsy()
+  })
+})
+
+test('mapStateToProps filters', () => {
+  const assignment = templates.assignment()
+  const appState = templates.appState({
+    entities: {
+      submissions: {},
+      assignments: {
+        [assignment.id]: {
+          data: assignment,
+        },
+      },
+    },
+  })
+  expect(mapStateToProps(appState, {
+    assignmentID: assignment.id,
+    courseID: '2',
+    userID: '3',
+    selectedFilter: {
+      filter: {
+        type: 'notsubmitted',
+        title: 'Who Cares?',
+        filterFunc: subs => subs.filter(sub => sub.status === 'missing'),
+      },
+    },
+  })).toEqual({
+    pending: false,
+    submissions: [
+      templates.submissionProps({ status: 'missing' }),
+    ],
+    submissionEntities: {},
+    assignmentSubmissionTypes: assignment.submission_types,
   })
 })
