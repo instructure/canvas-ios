@@ -40,7 +40,7 @@ exports[`SubmissionViewer renders a file (stub) 1`] = `
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
@@ -301,7 +301,7 @@ exports[`SubmissionViewer renders external tool submission 1`] = `
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
@@ -350,7 +350,7 @@ exports[`SubmissionViewer renders external tool submission with a submission 1`]
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
@@ -399,7 +399,7 @@ exports[`SubmissionViewer renders grade-only submission 1`] = `
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
@@ -448,7 +448,7 @@ exports[`SubmissionViewer renders no submission 1`] = `
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
@@ -497,7 +497,7 @@ exports[`SubmissionViewer renders on-paper submission 1`] = `
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
@@ -546,7 +546,7 @@ exports[`SubmissionViewer renders submission type of none 1`] = `
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }

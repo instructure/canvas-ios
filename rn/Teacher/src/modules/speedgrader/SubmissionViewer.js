@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   centeredText: {
-    height: '40%',
+    height: 200,
     flex: 0,
     justifyContent: 'center',
     alignItems: 'center',

@@ -38,8 +38,8 @@ describe('SubmissionGrader', () => {
     let event = {
       nativeEvent: {
         layout: {
-          height: 100,
-          width: 100,
+          height: 200,
+          width: 200,
         },
       },
     }
@@ -121,7 +121,7 @@ describe('SubmissionGrader', () => {
     )
 
     let instance = tree.getInstance()
-    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    instance.setState({ height: 200, width: 200, selectedTabIndex: 2 })
     tree = tree.toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -142,7 +142,7 @@ describe('SubmissionGrader', () => {
     )
 
     let instance = tree.getInstance()
-    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    instance.setState({ height: 200, width: 200, selectedTabIndex: 2 })
     tree = tree.toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -173,7 +173,7 @@ describe('SubmissionGrader', () => {
     )
 
     let instance = tree.getInstance()
-    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    instance.setState({ height: 200, width: 200, selectedTabIndex: 2 })
     tree = tree.toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -198,7 +198,7 @@ describe('SubmissionGrader', () => {
     )
 
     let instance = tree.getInstance()
-    instance.setState({ height: 100, width: 100, selectedTabIndex: 2 })
+    instance.setState({ height: 200, width: 200, selectedTabIndex: 2 })
     tree = tree.toJSON()
     expect(tree).toMatchSnapshot()
   })
