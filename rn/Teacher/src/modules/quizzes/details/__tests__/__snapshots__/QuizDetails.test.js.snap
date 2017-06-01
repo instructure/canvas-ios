@@ -18586,7 +18586,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         ]
                       }
                     >
-                       May 31, 2017 at 11:59 PM
+                       May 31, 2037 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -18660,27 +18660,9 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                   </Text>
                 </Text>
                 <View>
-                  <Text
+                  <View
+                    accessibilityLabel={undefined}
                     accessible={true}
-                    allowFontScaling={true}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                        Object {
-                          "color": "#2D3B45",
-                          "fontSize": 16,
-                        },
-                        Object {
-                          "paddingTop": 2,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay",
-                        },
-                      ]
-                    }
                   >
                     <Text
                       accessible={true}
@@ -18696,16 +18678,66 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "fontWeight": "600",
+                            "paddingTop": 2,
                           },
                           Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontFamily": ".SFUIDisplay",
                           },
                         ]
                       }
                     >
-                      Availability:
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-semibold",
+                            },
+                          ]
+                        }
+                      >
+                        Available from:
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {},
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                         Mar 17, 2017 at 12:00 AM
+                      </Text>
                     </Text>
+                  </View>
+                  <View
+                    accessibilityLabel={undefined}
+                    accessible={true}
+                  >
                     <Text
                       accessible={true}
                       allowFontScaling={true}
@@ -18719,16 +18751,63 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          Object {},
+                          Object {
+                            "paddingTop": 2,
+                          },
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
                         ]
                       }
                     >
-                       Closed
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-semibold",
+                            },
+                          ]
+                        }
+                      >
+                        Available to:
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {},
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                         May 31, 2037 at 11:59 PM
+                      </Text>
                     </Text>
-                  </Text>
+                  </View>
                 </View>
               </View>
             </View>

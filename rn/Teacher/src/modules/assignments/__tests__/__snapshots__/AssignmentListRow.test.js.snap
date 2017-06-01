@@ -185,7 +185,7 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            Availability: Closed
+            No due date
           </Text>
           <View />
         </View>
@@ -419,7 +419,7 @@ exports[`renders correctly assignment icon 1`] = `
               ]
             }
           >
-            Availability: Closed
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -653,7 +653,7 @@ exports[`renders correctly discussion icon 1`] = `
               ]
             }
           >
-            Availability: Closed
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -887,7 +887,7 @@ exports[`renders correctly not published icon 1`] = `
               ]
             }
           >
-            Availability: Closed
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -1121,7 +1121,7 @@ exports[`renders correctly published icon 1`] = `
               ]
             }
           >
-            Availability: Closed
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -1366,7 +1366,7 @@ exports[`renders correctly quiz icon 1`] = `
               ]
             }
           >
-            Availability: Closed
+            Due May 31, 2037 at 11:59 PM
           </Text>
           <View />
         </View>
@@ -1834,7 +1834,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
               ]
             }
           >
-            Availability: Closed
+            No due date
           </Text>
           <Text
             accessible={true}
@@ -2339,7 +2339,7 @@ exports[`renders correctly with selected props 1`] = `
               ]
             }
           >
-            Availability: Closed
+            No due date
           </Text>
           <View />
         </View>

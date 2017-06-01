@@ -318,7 +318,7 @@ exports[`render correctly 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -582,7 +582,7 @@ exports[`render correctly 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -1043,7 +1043,7 @@ exports[`render correctly with overide 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -1307,7 +1307,7 @@ exports[`render correctly with overide 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"

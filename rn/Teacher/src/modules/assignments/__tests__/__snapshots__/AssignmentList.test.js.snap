@@ -107,11 +107,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -134,11 +134,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -198,11 +198,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -225,11 +225,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -482,7 +482,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         ]
                       }
                     >
-                      Availability: Closed
+                      Due May 31, 2037 at 10:59 PM
                     </Text>
                     <View />
                   </View>
@@ -643,11 +643,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 1,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -670,11 +670,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 1,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -703,11 +703,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 2,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -730,11 +730,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 2,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -794,11 +794,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 1,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -821,11 +821,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 1,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -854,11 +854,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 2,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -881,11 +881,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 2,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -1139,7 +1139,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         ]
                       }
                     >
-                      Availability: Closed
+                      Due May 31, 2037 at 10:59 PM
                     </Text>
                     <View />
                   </View>
@@ -1405,7 +1405,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         ]
                       }
                     >
-                      Availability: Closed
+                      Due May 31, 2037 at 10:59 PM
                     </Text>
                     <View />
                   </View>
@@ -1518,11 +1518,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -1545,11 +1545,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -1609,11 +1609,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -1636,11 +1636,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -1893,7 +1893,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         ]
                       }
                     >
-                      Availability: Closed
+                      Due May 31, 2037 at 10:59 PM
                     </Text>
                     <View />
                   </View>
@@ -2054,11 +2054,11 @@ exports[`renders correctly 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2081,11 +2081,11 @@ exports[`renders correctly 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2145,11 +2145,11 @@ exports[`renders correctly 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2172,11 +2172,11 @@ exports[`renders correctly 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2429,7 +2429,7 @@ exports[`renders correctly 1`] = `
                         ]
                       }
                     >
-                      Availability: Closed
+                      Due May 31, 2037 at 10:59 PM
                     </Text>
                     <View />
                   </View>
@@ -2590,11 +2590,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2617,11 +2617,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2681,11 +2681,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2708,11 +2708,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               "automatic_peer_reviews": false,
               "created_at": "2017-03-17T19:15:25Z",
               "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-              "due_at": "2017-06-01T05:59:00Z",
+              "due_at": "2037-06-01T05:59:00Z",
               "grading_type": "points",
               "html_url": "http://hostname.tld/whatever",
               "id": 123456789,
-              "lock_at": "2017-06-01T05:59:59Z",
+              "lock_at": "2037-06-01T05:59:59Z",
               "name": "learn to write code",
               "needs_grading_count": 0,
               "overrides": Array [],
@@ -2965,7 +2965,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         ]
                       }
                     >
-                      Availability: Closed
+                      Due May 31, 2037 at 10:59 PM
                     </Text>
                     <View />
                   </View>

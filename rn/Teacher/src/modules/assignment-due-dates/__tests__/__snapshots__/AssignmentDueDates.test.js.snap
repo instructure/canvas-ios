@@ -78,7 +78,7 @@ exports[`renders with overrides 1`] = `
             ]
           }
         >
-          Closed  •  May 31, 2017 at 11:59 PM
+          Due May 31, 2037 at 11:59 PM
         </Text>
         <View
           accessible={true}
@@ -206,7 +206,7 @@ exports[`renders with overrides 1`] = `
           }
         />
         <View
-          accessibilityLabel="Available to: May 31, 2017 at 11:59 PM"
+          accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
           accessible={true}
         >
           <Text
@@ -257,7 +257,7 @@ exports[`renders with overrides 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
         </View>
         <View
@@ -324,7 +324,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             ]
           }
         >
-          Closed  •  May 31, 2017 at 11:59 PM
+          Due May 31, 2037 at 11:59 PM
         </Text>
         <View
           accessible={true}
@@ -452,7 +452,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         />
         <View
-          accessibilityLabel="Available to: May 31, 2017 at 11:59 PM"
+          accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
           accessible={true}
         >
           <Text
@@ -503,7 +503,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
         </View>
         <View
@@ -541,7 +541,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             ]
           }
         >
-          Closed  •  May 31, 2017 at 11:59 PM
+          Due May 31, 2037 at 11:59 PM
         </Text>
         <View
           accessible={true}
@@ -669,7 +669,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         />
         <View
-          accessibilityLabel="Available to: May 31, 2017 at 11:59 PM"
+          accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
           accessible={true}
         >
           <Text
@@ -720,7 +720,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
         </View>
         <View
@@ -758,7 +758,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             ]
           }
         >
-          Closed  •  May 31, 2017 at 11:59 PM
+          Due May 31, 2037 at 11:59 PM
         </Text>
         <View
           accessible={true}
@@ -886,7 +886,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
           }
         />
         <View
-          accessibilityLabel="Available to: May 31, 2017 at 11:59 PM"
+          accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
           accessible={true}
         >
           <Text
@@ -937,7 +937,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
         </View>
         <View

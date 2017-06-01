@@ -64,11 +64,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -114,11 +114,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -194,11 +194,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -244,11 +244,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -510,8 +510,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
+                            "Due May 31, 2037 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -535,72 +534,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                           ]
                         }
                       >
-                        Closed
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 14,
-                                "marginTop": 2,
-                              },
-                              Object {
-                                "alignSelf": "center",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        May 31, 2017 at 11:59 PM
+                        Due May 31, 2037 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -974,8 +908,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
+                            "Due May 31, 2037 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -999,72 +932,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                           ]
                         }
                       >
-                        Closed
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 14,
-                                "marginTop": 2,
-                              },
-                              Object {
-                                "alignSelf": "center",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        May 31, 2017 at 11:59 PM
+                        Due May 31, 2037 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -2250,11 +2118,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -2301,11 +2169,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -2382,11 +2250,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -2433,11 +2301,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -2700,8 +2568,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
+                            "Due May 31, 2037 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -2725,72 +2592,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ]
                         }
                       >
-                        Closed
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 14,
-                                "marginTop": 2,
-                              },
-                              Object {
-                                "alignSelf": "center",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        May 31, 2017 at 11:59 PM
+                        Due May 31, 2037 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -3164,8 +2966,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
+                            "Due May 31, 2037 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -3189,72 +2990,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           ]
                         }
                       >
-                        Closed
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 14,
-                                "marginTop": 2,
-                              },
-                              Object {
-                                "alignSelf": "center",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        May 31, 2017 at 11:59 PM
+                        Due May 31, 2037 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -3494,11 +3230,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -3549,11 +3285,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -3630,11 +3366,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -3685,11 +3421,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "automatic_peer_reviews": false,
                 "created_at": "2017-03-17T19:15:25Z",
                 "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
-                "due_at": "2017-06-01T05:59:00Z",
+                "due_at": "2037-06-01T05:59:00Z",
                 "grading_type": "points",
                 "html_url": "http://hostname.tld/whatever",
                 "id": 123456789,
-                "lock_at": "2017-06-01T05:59:59Z",
+                "lock_at": "2037-06-01T05:59:59Z",
                 "name": "learn to write code",
                 "needs_grading_count": 0,
                 "overrides": Array [],
@@ -3953,8 +3689,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
+                            "Due May 31, 2037 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -3978,72 +3713,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           ]
                         }
                       >
-                        Closed
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 14,
-                                "marginTop": 2,
-                              },
-                              Object {
-                                "alignSelf": "center",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        May 31, 2017 at 11:59 PM
+                        Due May 31, 2037 at 11:59 PM
                       </Text>
                     </View>
                     <View
@@ -4464,8 +4134,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                         ellipsizeMode="tail"
                         separated={
                           Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
+                            "Due May 31, 2037 at 11:59 PM",
                           ]
                         }
                         separator="  •  "
@@ -4489,72 +4158,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           ]
                         }
                       >
-                        Closed
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 14,
-                                "marginTop": 2,
-                              },
-                              Object {
-                                "alignSelf": "center",
-                                "fontSize": 10,
-                              },
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                          •  
-                      </Text>
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        ellipsizeMode="tail"
-                        separated={
-                          Array [
-                            "Closed",
-                            "May 31, 2017 at 11:59 PM",
-                          ]
-                        }
-                        separator="  •  "
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 14,
-                              "marginTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                          ]
-                        }
-                      >
-                        May 31, 2017 at 11:59 PM
+                        Due May 31, 2037 at 11:59 PM
                       </Text>
                     </View>
                     <View

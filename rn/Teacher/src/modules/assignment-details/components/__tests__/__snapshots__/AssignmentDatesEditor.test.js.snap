@@ -318,7 +318,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -582,7 +582,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -929,7 +929,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -1193,7 +1193,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -1540,7 +1540,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -1804,7 +1804,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -2200,7 +2200,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -2464,7 +2464,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -2860,7 +2860,7 @@ exports[`snapshots! render with single due date 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
@@ -3124,7 +3124,7 @@ exports[`snapshots! render with single due date 1`] = `
               ]
             }
           >
-            May 31, 2017 at 11:59 PM
+            May 31, 2037 at 11:59 PM
           </Text>
           <View
             accessibilityComponentType="button"
