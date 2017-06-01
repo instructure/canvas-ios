@@ -13,7 +13,7 @@ struct PropKeys {
     static let title = "title"
     static let subtitle = "subtitle"
     static let statusBarStyle = "statusBarStyle"
-    static let statusBarHidden = "statusBarStyle"
+    static let statusBarHidden = "statusBarHidden"
     static let statusBarUpdateAnimation = "statusBarUpdateAnimation"
     static let automaticallyAdjustsScrollViewInsets = "automaticallyAdjustsScrollViewInsets"
     static let supportedOrientations = "supportedOrientations"

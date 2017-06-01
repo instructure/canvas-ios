@@ -112,13 +112,14 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
 
   render () {
     const { width, height } = this.state
+    const maxHeight = Math.max(200, height)
     return (
       <Animated.View
         onLayout={this.onLayout}
         style={[styles.speedGrader, {
           paddingBottom: this.props.drawerState.deltaY.interpolate({
-            inputRange: [0, height * 0.5 - 52],
-            outputRange: [52, height * 0.5],
+            inputRange: [0, maxHeight * 0.5 - 52],
+            outputRange: [52, maxHeight * 0.5],
           }),
         }]}
       >

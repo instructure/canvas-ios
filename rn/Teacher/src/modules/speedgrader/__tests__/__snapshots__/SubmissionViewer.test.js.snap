@@ -115,7 +115,7 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
       Object {
         "alignItems": "center",
         "flex": 0,
-        "height": "40%",
+        "height": 200,
         "justifyContent": "center",
       }
     }
