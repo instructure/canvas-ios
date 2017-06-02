@@ -766,6 +766,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -2221,6 +2222,7 @@ exports[`QuizDetails displays access code 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -3676,6 +3678,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -5015,6 +5018,7 @@ exports[`QuizDetails renders 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -6412,6 +6416,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -7867,6 +7872,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -9264,6 +9270,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -10661,6 +10668,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -12058,6 +12066,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -13455,6 +13464,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -14852,6 +14862,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -16191,6 +16202,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -17588,6 +17600,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -19017,6 +19030,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -20414,6 +20428,7 @@ exports[`QuizDetails renders assignment group 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -21869,6 +21884,7 @@ exports[`QuizDetails renders published state 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -23266,6 +23282,7 @@ exports[`QuizDetails renders published state 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -24663,6 +24680,7 @@ exports[`QuizDetails renders quiz type 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -26060,6 +26078,7 @@ exports[`QuizDetails renders quiz type 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -27457,6 +27476,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -28854,6 +28874,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -30251,6 +30272,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -31648,6 +31670,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -33045,6 +33068,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -34442,6 +34466,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -35839,6 +35864,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -37236,6 +37262,7 @@ exports[`QuizDetails renders time limit 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -38633,6 +38660,7 @@ exports[`QuizDetails renders time limit 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -40030,6 +40058,7 @@ exports[`QuizDetails renders view responses 1`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -41427,6 +41456,7 @@ exports[`QuizDetails renders view responses 2`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "
@@ -42766,6 +42796,7 @@ exports[`QuizDetails renders view responses 3`] = `
           postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
         "
           onMessage={[Function]}
+          scrollEnabled={true}
           source={
             Object {
               "html": "

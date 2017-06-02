@@ -92,6 +92,7 @@ const POST_HEIGHT_MESSAGE = `
 type Props = {
   html: string,
   style?: any,
+  scrollEnabled: boolean,
 }
 export default class WebContainer extends Component<any, Props, any> {
   constructor (props: Props) {
@@ -102,7 +103,9 @@ export default class WebContainer extends Component<any, Props, any> {
   }
 
   render (): ReactElement<*> {
-    let { html, style } = this.props
+    let { html, style, scrollEnabled } = this.props
+    scrollEnabled = scrollEnabled === undefined ? true : scrollEnabled
+
     const _html = TEMPLATE.replace('{{content}}', html)
     return (
       <WebView
@@ -110,6 +113,7 @@ export default class WebContainer extends Component<any, Props, any> {
         source={{ html: _html }}
         injectedJavaScript={POST_HEIGHT_MESSAGE}
         onMessage={this._onMessage}
+        scrollEnabled={scrollEnabled}
       />
     )
   }

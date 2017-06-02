@@ -5,9 +5,11 @@ import { asyncRefsReducer } from '../../redux/async-refs-reducer'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 import { default as ListActions } from './list/actions'
+import { default as DetailsActions } from './details/actions'
 import i18n from 'format-message'
 
 const { refreshDiscussions } = ListActions
+const { refreshDiscussionEntries } = DetailsActions
 
 export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshDiscussions.toString(),
@@ -28,6 +30,24 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           },
         }), {})
       return { ...state, ...incoming }
+    },
+  }),
+  [refreshDiscussionEntries.toString()]: handleAsync({
+    resolved: (state, { result, courseID, discussionID }) => {
+      let entity = { ...state[discussionID] } || {}
+      entity.data = entity.data || {}
+      if (entity.data) {
+        let participantsAsMap = result.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
+        entity.data = { ...entity.data, replies: result.data.view, participants: participantsAsMap }
+      }
+      return {
+        ...state,
+        [discussionID]: {
+          ...entity,
+          pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
+          error: null,
+        },
+      }
     },
   }),
 }, {})

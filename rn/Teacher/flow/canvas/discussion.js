@@ -1,10 +1,29 @@
-/* @flow */
+// @flow
 
 export type DiscussionPermissions = {
   attach: boolean,
   delete: boolean,
   reply: boolean,
   update: boolean,
+}
+
+export type DiscussionView = {
+  unread_entries: string[],
+  participants: UserDisplay[],
+  view: DiscussionReply[],
+  new_entries: string[],
+}
+
+export type DiscussionReply = {
+  created_at: string,
+  id: string,
+  message: string,
+  parent_id: ?string,
+  rating_count: ?number,
+  rating_sum: ?number,
+  replies: DiscussionReply[],
+  updated_at: string,
+  user_id: string,
 }
 
 export type Discussion = {
@@ -27,4 +46,7 @@ export type Discussion = {
   assignment: ?Assignment,
   discussion_subentry_count: number,
   last_reply_at: string,
+  replies: ?DiscussionReply[],
+  participants: ?{ [key: string]: UserDisplay },
+  author: UserDisplay,
 }

@@ -1061,6 +1061,7 @@ exports[`renders 1`] = `
         postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
       "
         onMessage={[Function]}
+        scrollEnabled={true}
         source={
           Object {
             "html": "
@@ -2220,6 +2221,7 @@ exports[`renders loading 1`] = `
         postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
       "
         onMessage={[Function]}
+        scrollEnabled={true}
         source={
           Object {
             "html": "

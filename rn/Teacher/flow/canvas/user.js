@@ -16,6 +16,8 @@ export type User = {
 export type UserDisplay = {
   id: string,
   display_name: string,
+  short_name: string,
   avatar_url: string,
+  avatar_image_url: string,
   html_url: string,
 }

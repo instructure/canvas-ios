@@ -27,7 +27,7 @@ exports[`RubricDescription renders 1`] = `
     onMessage={[Function]}
     onShouldStartLoadWithRequest={undefined}
     scalesPageToFit={undefined}
-    scrollEnabled={undefined}
+    scrollEnabled={true}
     source={
       Object {
         "html": "

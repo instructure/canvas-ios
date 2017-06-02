@@ -1,5 +1,4 @@
 /**
-* Launching pad for navigation for a single course
 * @flow
 */
 
