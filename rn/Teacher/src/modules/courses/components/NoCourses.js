@@ -27,10 +27,10 @@ export class NoCourses extends Component {
 
     return (
       <View style={style.container}>
-        <Heading1 style={style.header}>{welcome}</Heading1>
+        <Heading1 style={style.header} testID='mt-fav-courses.welcome-lbl'>{welcome}</Heading1>
         <Paragraph
-          style={style.paragraph}>{bodyText}</Paragraph>
-        <Button accessibilityLabel={buttonText} testID='noCourse.addCourses' onPress={this.props.onAddCoursePressed}>
+          style={style.paragraph} testID='mt-fav-courses.descr-lbl'>{bodyText}</Paragraph>
+        <Button accessibilityLabel={buttonText} testID='mt-fav-courses.add-courses-btn' onPress={this.props.onAddCoursePressed}>
           {buttonText}
         </Button>
       </View>

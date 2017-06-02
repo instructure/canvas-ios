@@ -17,11 +17,15 @@
 
 /* This is an auto-generated file. */
 
-struct SubmissionComment {
+struct DiscussionEntry {
     let id: Int
-    let authorId: Int
-    let authorName: String
-    let comment: String
+    let parentId: Int
     let createdAt: String
-    let attachments: [Attachment]
+    let updatedAt: String
+    let message: String
+    let userId: Int
+    let userName: String
+    let userDisplayName: String
+    let readState: String
+    let forcedReadState: Bool
 }

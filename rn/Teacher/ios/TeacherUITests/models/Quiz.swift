@@ -30,7 +30,7 @@ struct Quiz {
     let lockAt: String
     let oneQuestionAtATime: Bool
     let oneTimeResults: Bool
-    let pointsPossible: Int
+    let pointsPossible: Double
     let published: Bool
     let questionCount: Int
     let questionTypes: [String]
@@ -44,4 +44,6 @@ struct Quiz {
     let title: String
     let unlockAt: String
     let unpublishable: Bool
+    let questions: [QuizQuestion]
+    let assignmentOverrides: [AssignmentOverride]
 }

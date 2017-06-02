@@ -19,8 +19,11 @@ import EarlGrey
 import SoGrey
 
 extension XCTestCase {
-  var domainPickerPage: DomainPickerPage { return DomainPickerPage.sharedInstance }
-  var canvasLoginPage: CanvasLoginPage { return CanvasLoginPage.sharedInstance }
-  var coursesListPage: CoursesListPage { return CoursesListPage.sharedInstance }
-  var editCoursesListPage: EditCoursesListPage { return EditCoursesListPage.sharedInstance }
+    var allCoursesListPage: AllCoursesListPage { return AllCoursesListPage.sharedInstance }
+    var domainPickerPage: DomainPickerPage { return DomainPickerPage.sharedInstance }
+    var canvasLoginPage: CanvasLoginPage { return CanvasLoginPage.sharedInstance }
+    var coursesListPage: CoursesListPage { return CoursesListPage.sharedInstance }
+    var editCoursesListPage: EditCoursesListPage { return EditCoursesListPage.sharedInstance }
+    var courseBrowserPage: CourseBrowserPage { return CourseBrowserPage.sharedInstance }
+    var courseSettingsPage: CourseSettingsPage { return CourseSettingsPage.sharedInstance }
 }

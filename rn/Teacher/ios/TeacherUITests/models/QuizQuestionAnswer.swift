@@ -17,11 +17,10 @@
 
 /* This is an auto-generated file. */
 
-struct SubmissionComment {
+struct QuizQuestionAnswer {
     let id: Int
-    let authorId: Int
-    let authorName: String
-    let comment: String
-    let createdAt: String
-    let attachments: [Attachment]
+    let text: String
+    let comments: String
+    let weight: Int
+    let blankId: String
 }

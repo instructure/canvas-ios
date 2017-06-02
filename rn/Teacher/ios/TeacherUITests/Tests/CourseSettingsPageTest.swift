@@ -14,21 +14,13 @@
 // limitations under the License.
 //
 
-class CourseListPageTest: TeacherTest {
-    
-    func testCourseListEmptyPage_displaysEmptyState() {
-        logIn(self)
-        coursesListPage.assertEmptyStatePageObjects()
-    }
-    
-    func testCourseListPage_displaysPageObjects() {
-        logIn(self)
-        coursesListPage.assertHasFavoritesStatePageObjects()
-    }
+class CourseSettingsPageTest: TeacherTest {
 
-    func testCourseListPage_displaysList() {
+    func testSettingsPage_displaysPageObjects() {
         logIn(self)
         let course = Data.getNextCourse(self)
-        coursesListPage.assertCourseExists(course)
-  }
+        coursesListPage.openCourseDetailsPage(course)
+        courseBrowserPage.openCourseSettingsPage()
+        courseSettingsPage.assertPageObjects()
+    }
 }

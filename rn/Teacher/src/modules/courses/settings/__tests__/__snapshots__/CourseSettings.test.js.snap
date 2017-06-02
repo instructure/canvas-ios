@@ -234,6 +234,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -259,7 +260,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -274,7 +275,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -320,6 +321,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -348,7 +350,7 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -615,6 +617,7 @@ exports[`CourseSettings renders 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -640,7 +643,7 @@ exports[`CourseSettings renders 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -655,7 +658,7 @@ exports[`CourseSettings renders 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -701,6 +704,7 @@ exports[`CourseSettings renders 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -729,7 +733,7 @@ exports[`CourseSettings renders 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -996,6 +1000,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -1021,7 +1026,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -1036,7 +1041,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -1082,6 +1087,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -1110,7 +1116,7 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -1361,6 +1367,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -1386,7 +1393,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -1401,7 +1408,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -1447,6 +1454,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -1475,7 +1483,7 @@ exports[`CourseSettings renders with empty image url 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -1742,6 +1750,7 @@ exports[`CourseSettings renders with image url 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -1767,7 +1776,7 @@ exports[`CourseSettings renders with image url 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -1782,7 +1791,7 @@ exports[`CourseSettings renders with image url 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -1828,6 +1837,7 @@ exports[`CourseSettings renders with image url 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -1856,7 +1866,7 @@ exports[`CourseSettings renders with image url 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -2107,6 +2117,7 @@ exports[`CourseSettings renders without image url 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -2132,7 +2143,7 @@ exports[`CourseSettings renders without image url 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -2147,7 +2158,7 @@ exports[`CourseSettings renders without image url 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -2193,6 +2204,7 @@ exports[`CourseSettings renders without image url 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -2221,7 +2233,7 @@ exports[`CourseSettings renders without image url 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -2488,6 +2500,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                 },
               ]
             }
+            testID="course-settings.name-lbl"
           >
             Name
           </Text>
@@ -2513,7 +2526,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                 },
               ]
             }
-            testID="nameInput"
+            testID="course-settings.name-input-textbox"
             value="Learn React Native"
           />
         </View>
@@ -2528,7 +2541,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
       />
       <TouchableHighlight
         onPress={[Function]}
-        testID="courses.settings.toggle-home-picker"
+        testID="course-settings.toggle-home-picker"
         underlayColor="#eee"
       >
         <View
@@ -2574,6 +2587,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                   },
                 ]
               }
+              testID="course-settings.set-home-lbl"
             >
               Set 'Home' to...
             </Text>
@@ -2602,7 +2616,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                   },
                 ]
               }
-              testID="homePageLabel"
+              testID="course-settings.home-page-lbl"
             >
               Pages Front Page
             </Text>
@@ -2625,7 +2639,7 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
             "flex": 1,
           }
         }
-        testID="homePicker"
+        testID="course-settings.home-picker"
       >
         <Item
           label="Course Activity Stream"

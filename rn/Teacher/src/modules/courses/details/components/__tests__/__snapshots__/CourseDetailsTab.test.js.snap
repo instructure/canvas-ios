@@ -37,7 +37,7 @@ exports[`default icon 1`] = `
       ],
     ]
   }
-  testID="courses-details.tab-touchable-row-test default icon"
+  testID="courses-details.test default icon-cell"
   tvParallaxProperties={undefined}
 >
   <View
@@ -173,7 +173,7 @@ exports[`renders correctly 1`] = `
       ],
     ]
   }
-  testID="courses-details.tab-touchable-row-assignments"
+  testID="courses-details.assignments-cell"
   tvParallaxProperties={undefined}
 >
   <View

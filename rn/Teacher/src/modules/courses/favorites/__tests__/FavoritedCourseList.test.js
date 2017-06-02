@@ -124,7 +124,7 @@ test('go to all courses', () => {
     <FavoritedCourseList {...props} />
   ).toJSON()
 
-  const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
+  const allButton = explore(tree).selectByID('fav-courses.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })
@@ -140,7 +140,7 @@ test('calls navigator.push when a course is selected', () => {
     <FavoritedCourseList {...props} />
   ).toJSON()
 
-  const allButton = explore(tree).selectByID('course-list.see-all-btn') || {}
+  const allButton = explore(tree).selectByID('fav-courses.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })

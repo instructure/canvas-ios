@@ -17,6 +17,7 @@
 import Foundation
 import XCTest
 import CanvasKeymaster
+import EarlGrey
 
 @testable import Teacher // for NativeLoginManager
 
@@ -78,7 +79,10 @@ class TeacherTest: XCTestCase {
     super.setUp()
     CanvasKeymaster.the().resetKeymasterForTesting()
     NativeLoginManager.shared().injectLoginInformation(nil)
-    domainPickerPage.assertPageObjects()
+    GREYTestHelper.enableFastAnimation()
+    
+    //NOTE: add this back in when MLB - 7796 is fixed
+    //domainPickerPage.assertPageObjects()
   }
 
   // logIn(self)
@@ -89,6 +93,7 @@ class TeacherTest: XCTestCase {
     let loginInfo = TeacherTestUtils.getUserLoginInfo(teacher)
     NativeLoginManager.shared().injectLoginInformation(loginInfo)
     coursesListPage.assertPageObjects()
+    
     return teacher
   }
 

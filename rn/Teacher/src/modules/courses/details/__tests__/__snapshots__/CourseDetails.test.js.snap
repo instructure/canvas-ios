@@ -120,6 +120,7 @@ exports[`refresh function second test 1`] = `
               },
             ]
           }
+          testID="course-details.title-lbl"
         >
           Learn React Native
         </Text>
@@ -147,6 +148,7 @@ exports[`refresh function second test 1`] = `
               },
             ]
           }
+          testID="course-details.subtitle-lbl"
         >
           Default Term
         </Text>
@@ -284,6 +286,7 @@ exports[`renders correctly 1`] = `
               },
             ]
           }
+          testID="course-details.title-lbl"
         >
           Learn React Native
         </Text>
@@ -311,6 +314,7 @@ exports[`renders correctly 1`] = `
               },
             ]
           }
+          testID="course-details.subtitle-lbl"
         >
           Default Term
         </Text>
@@ -344,7 +348,7 @@ exports[`renders correctly 1`] = `
             },
           ]
         }
-        testID="courses-details.tab-touchable-row-assignments"
+        testID="courses-details.assignments-cell"
       >
         <View
           style={
@@ -570,6 +574,7 @@ exports[`renders correctly without tabs 1`] = `
               },
             ]
           }
+          testID="course-details.title-lbl"
         >
           Learn React Native
         </Text>
@@ -597,6 +602,7 @@ exports[`renders correctly without tabs 1`] = `
               },
             ]
           }
+          testID="course-details.subtitle-lbl"
         >
           Default Term
         </Text>
@@ -709,6 +715,7 @@ exports[`renders with empty image url 1`] = `
               },
             ]
           }
+          testID="course-details.title-lbl"
         >
           Learn React Native
         </Text>
@@ -736,6 +743,7 @@ exports[`renders with empty image url 1`] = `
               },
             ]
           }
+          testID="course-details.subtitle-lbl"
         >
           Default Term
         </Text>
@@ -769,7 +777,7 @@ exports[`renders with empty image url 1`] = `
             },
           ]
         }
-        testID="courses-details.tab-touchable-row-assignments"
+        testID="courses-details.assignments-cell"
       >
         <View
           style={
@@ -995,6 +1003,7 @@ exports[`renders with image url 1`] = `
               },
             ]
           }
+          testID="course-details.title-lbl"
         >
           Learn React Native
         </Text>
@@ -1022,6 +1031,7 @@ exports[`renders with image url 1`] = `
               },
             ]
           }
+          testID="course-details.subtitle-lbl"
         >
           Default Term
         </Text>
@@ -1055,7 +1065,7 @@ exports[`renders with image url 1`] = `
             },
           ]
         }
-        testID="courses-details.tab-touchable-row-assignments"
+        testID="courses-details.assignments-cell"
       >
         <View
           style={
@@ -1267,6 +1277,7 @@ exports[`renders without image url 1`] = `
               },
             ]
           }
+          testID="course-details.title-lbl"
         >
           Learn React Native
         </Text>
@@ -1294,6 +1305,7 @@ exports[`renders without image url 1`] = `
               },
             ]
           }
+          testID="course-details.subtitle-lbl"
         >
           Default Term
         </Text>
@@ -1327,7 +1339,7 @@ exports[`renders without image url 1`] = `
             },
           ]
         }
-        testID="courses-details.tab-touchable-row-assignments"
+        testID="courses-details.assignments-cell"
       >
         <View
           style={

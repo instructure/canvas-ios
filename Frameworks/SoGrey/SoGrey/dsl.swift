@@ -21,8 +21,8 @@ import EarlGrey
 
 // MARK: Element timeout and poll
 
-public let elementTimeout:TimeInterval = 300.0 // seconds
-public let elementPoll:TimeInterval = 2.0 // seconds
+public let elementTimeout:TimeInterval = 30.0 // seconds
+public let elementPoll:TimeInterval = 1.0 // seconds
 
 // MARK: Element selectors
 
@@ -90,6 +90,19 @@ extension GREYInteraction {
     }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
 
     if (!success) { self.perform(grey_tap()) }
+  }
+
+  public func tapUntilHidden(file:StaticString = #file, line:UInt = #line) {
+    grey_fromFile(file, line)
+    self.assertExists(file: file, line: line)
+
+    let success = GREYCondition(name: "Waiting for element to activate", block: { _ in
+      var ignoredError: NSError?
+      self.perform(grey_tap(), error: &ignoredError)
+      return !self.exists()
+    }).wait(withTimeout: elementTimeout, pollInterval: elementPoll)
+
+    if !success { self.assert(with: grey_nil()) }
   }
 
   public func assertExists(file:StaticString = #file, line:UInt = #line) {

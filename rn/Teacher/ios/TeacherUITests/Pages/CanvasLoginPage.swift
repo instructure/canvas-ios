@@ -19,38 +19,38 @@ import EarlGrey
 
 class CanvasLoginPage {
 
-  // MARK: Singleton
+    // MARK: Singleton
 
-  static let sharedInstance = CanvasLoginPage()
-  private init() {}
+    static let sharedInstance = CanvasLoginPage()
+    private init() {}
 
-  // MARK: Page Elements
+    // MARK: Page Elements
 
-  private let logInButton = e.selectBy(   label: "Log In")
-  private let authorizeButton = e.selectBy(   label: "Authorize")
+    private let logInButton = e.selectBy(label: "Log In")
+    private let authorizeButton = e.selectBy(label: "Authorize")
 
-  private let EMAIL_FIELD_CSS = "input[name=\"pseudonym_session[unique_id]\"]";
-  private let PASSWORD_FIELD_CSS = "input[name=\"pseudonym_session[password]\"]";
-  private let LOGIN_BUTTON_CSS = "button[type=\"submit\"]";
-  private let FORGOT_PASSWORD_BUTTON_CSS = "a[class=\"forgot-password flip-to-back\"]";
-  private let AUTHORIZE_BUTTON_CSS = "button[type=\"submit\"]";
+    private let EMAIL_FIELD_CSS = "input[name=\"pseudonym_session[unique_id]\"]";
+    private let PASSWORD_FIELD_CSS = "input[name=\"pseudonym_session[password]\"]";
+    private let LOGIN_BUTTON_CSS = "button[type=\"submit\"]";
+    private let FORGOT_PASSWORD_BUTTON_CSS = "a[class=\"forgot-password flip-to-back\"]";
+    private let AUTHORIZE_BUTTON_CSS = "button[type=\"submit\"]";
 
-  // MARK: - UI Actions
+    // MARK: - UI Actions
 
-  func logIn(teacher: CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_fromFile(file, line)
+    func logIn(teacher: CanvasUser, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
 
-    logInButton.assertExists() // wait for webview to load
+        logInButton.assertExists() // wait for webview to load
 
-    if let emailElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: EMAIL_FIELD_CSS) {
-      DriverAtoms.webKeys(element: emailElement, value: teacher.loginId)
+        if let emailElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: EMAIL_FIELD_CSS) {
+            DriverAtoms.webKeys(element: emailElement, value: teacher.loginId)
+        }
+
+        if let passwordElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: PASSWORD_FIELD_CSS) {
+            DriverAtoms.webKeys(element: passwordElement, value: teacher.password)
+        }
+
+        logInButton.tap()
+        authorizeButton.tap()
     }
-
-    if let passwordElement = DriverAtoms.findElement(locator: Locator.CSS_SELECTOR, value: PASSWORD_FIELD_CSS) {
-      DriverAtoms.webKeys(element: passwordElement, value: teacher.password)
-    }
-
-    logInButton.tap()
-    authorizeButton.tap()
-  }
 }

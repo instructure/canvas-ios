@@ -134,6 +134,7 @@ exports[`render 1`] = `
           >
             <Image
               source={1}
+              testID="fav-courses.header-star-img"
             />
             <Text
               accessibilityTraits="header"
@@ -155,6 +156,7 @@ exports[`render 1`] = `
                   },
                 ]
               }
+              testID="fav-courses.header-courses-lbl"
             >
               Courses
             </Text>
@@ -168,7 +170,7 @@ exports[`render 1`] = `
             onPressIn={undefined}
             onPressOut={undefined}
             style={undefined}
-            testID="course-list.see-all-btn"
+            testID="fav-courses.see-all-btn"
           >
             <Text
               accessible={true}
@@ -769,6 +771,7 @@ exports[`render without courses 1`] = `
         undefined,
       ]
     }
+    testID="mt-fav-courses.welcome-lbl"
   >
     Welcome!
   </Text>
@@ -792,6 +795,7 @@ exports[`render without courses 1`] = `
         },
       ]
     }
+    testID="mt-fav-courses.descr-lbl"
   >
     Add a few of your favorite courses to make this place your home.
   </Text>
@@ -817,7 +821,7 @@ exports[`render without courses 1`] = `
         undefined,
       ]
     }
-    testID="noCourse.addCourses"
+    testID="mt-fav-courses.add-courses-btn"
   >
     <Text
       accessible={true}

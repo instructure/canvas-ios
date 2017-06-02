@@ -39,7 +39,7 @@ test('calls props.onPress with the course id and the toggled favorite value', ()
     <CourseFavorite {...defaultProps} onPress={onPress} />
   ).toJSON()
 
-  let buttonTestID = 'course_favorite_active_' + defaultProps.course.id
+  let buttonTestID = 'edit-fav-courses.' + defaultProps.course.id + '-favorited'
   let button: any = explore(tree).selectByID(buttonTestID)
   button.props.onPress()
 

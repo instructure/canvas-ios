@@ -35,6 +35,6 @@ export default class CourseDetails extends Component<any, Props, any> {
                 disclosureIndicator={true}
                 height={44}
                 border={'bottom'}
-                testID={`courses-details.tab-touchable-row-${tab.id}`} />)
+                testID={`courses-details.${tab.id}-cell`} />)
   }
 }

@@ -46,7 +46,6 @@ const DISPLAY_NAMES = new Map([
 ])
 
 export class CourseSettings extends Component<any, Props, any> {
-
   constructor (props: Props) {
     super(props)
 
@@ -124,14 +123,14 @@ export class CourseSettings extends Component<any, Props, any> {
             </View>
             <View style={styles.row}>
               <View style={styles.rowContent}>
-                <Text style={styles.primaryText}>
+                <Text style={styles.primaryText} testID='course-settings.name-lbl'>
                   {i18n('Name')}
                 </Text>
                 <TextInput
                   value={this.state.name}
                   style={styles.actionableText}
                   onChangeText={(text) => this.setState({ name: text })}
-                  testID='nameInput'
+                  testID='course-settings.name-input-textbox'
                 />
               </View>
             </View>
@@ -139,16 +138,16 @@ export class CourseSettings extends Component<any, Props, any> {
             <TouchableHighlight
               underlayColor="#eee"
               onPress={this._togglePicker}
-              testID='courses.settings.toggle-home-picker'
+              testID='course-settings.toggle-home-picker'
             >
               <View style={styles.row}>
                   <View style={styles.rowContent}>
-                    <Text style={styles.primaryText}>
+                    <Text style={styles.primaryText} testID='course-settings.set-home-lbl'>
                       {i18n(`Set 'Home' to...`)}
                     </Text>
                     <Text
                       style={styles.actionableText}
-                      testID='homePageLabel'>
+                      testID='course-settings.home-page-lbl'>
                       { DISPLAY_NAMES.get(this.state.home) }
                     </Text>
                   </View>
@@ -160,7 +159,7 @@ export class CourseSettings extends Component<any, Props, any> {
                 style={styles.picker}
                 selectedValue={this.state.home}
                 onValueChange={(home) => this.setState({ home: home })}
-                testID='homePicker'>
+                testID='course-settings.home-picker'>
                 {Array.from(DISPLAY_NAMES.keys()).map((key) => (
                   <PickerItemIOS
                     key={key}

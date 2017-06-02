@@ -101,8 +101,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                   </View>
 
                   <View style={styles.headerBottomContainer} >
-                    <Text style={styles.headerTitle}>{name}</Text>
-                    <Text style={styles.headerSubtitle}>{termName}</Text>
+                    <Text style={styles.headerTitle} testID='course-details.title-lbl'>{name}</Text>
+                    <Text style={styles.headerSubtitle} testID='course-details.subtitle-lbl'>{termName}</Text>
                   </View>
                 </View>
                 }

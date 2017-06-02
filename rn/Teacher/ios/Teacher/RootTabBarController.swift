@@ -41,25 +41,30 @@ class RootTabBarController: UITabBarController {
     
     func coursesTab() -> UIViewController {
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
+        enrollmentsVC.view.accessibilityIdentifier = "fav-courses.view"
         enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
+        enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         return HelmNavigationController(rootViewController: enrollmentsVC)
     }
     
     func inboxTab() -> UIViewController {
         let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
         inboxVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
+        inboxVC.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
         return HelmNavigationController(rootViewController: inboxVC)
     }
     
     func profileTab() -> UIViewController {
         let profileVC = HelmViewController(moduleName: "/profile", props: [:])
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: UIImage(named: "profile"), selectedImage: nil)
+        profileVC.tabBarItem.accessibilityIdentifier = "tab-bar.profile-btn"
         return HelmNavigationController(rootViewController: profileVC)
     }
     
     func stagingTab() -> UIViewController {
         let stagingVC = HelmViewController(moduleName: "/staging", props: [:])
         stagingVC.tabBarItem = UITabBarItem(title: "Staging", image: UIImage(named: "link-solid"), selectedImage: nil)
+        stagingVC.tabBarItem.accessibilityIdentifier = "tab-bar.staging-btn"
         return HelmNavigationController(rootViewController: stagingVC)
     }
 }

@@ -61,12 +61,12 @@ export class FavoritedCourseList extends Component {
     return (
       <View style={styles.header}>
         <View style={styles.headerTextWrapper}>
-          <Image source={Images.starFilled} />
-          <Heading1 style={styles.headerText}>
+          <Image source={Images.starFilled} testID = 'fav-courses.header-star-img'/>
+          <Heading1 style={styles.headerText} testID = 'fav-courses.header-courses-lbl'>
             {i18n('Courses')}
           </Heading1>
         </View>
-        <LinkButton style={styles.seeAll} onPress={this.goToAllCourses} testID='course-list.see-all-btn'>
+        <LinkButton style={styles.seeAll} onPress={this.goToAllCourses} testID='fav-courses.see-all-btn'>
             {i18n('See All')}
         </LinkButton>
       </View>

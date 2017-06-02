@@ -17,11 +17,18 @@
 
 /* This is an auto-generated file. */
 
-struct SubmissionComment {
+struct Conversation {
     let id: Int
-    let authorId: Int
-    let authorName: String
-    let comment: String
-    let createdAt: String
-    let attachments: [Attachment]
+    let subject: String
+    let workflowState: String
+    let lastMessage: String
+    let lastMessageAt: String
+    let lastAuthoredMessage: String
+    let lastAuthoredMessageAt: String
+    let messageCount: Int
+    let isPrivate: Bool
+    let starred: Bool
+    let messages: [ConversationMessage]
+    let participatingUserIds: [Int]
+    let contextCode: String
 }

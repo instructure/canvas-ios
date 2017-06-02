@@ -33,7 +33,7 @@ let defaultProps = {
 }
 
 function toggleHomePicker (component: *) {
-  const homeRow: any = explore(component.toJSON()).selectByID('courses.settings.toggle-home-picker')
+  const homeRow: any = explore(component.toJSON()).selectByID('course-settings.toggle-home-picker')
   homeRow.props.onPress()
 }
 
@@ -118,9 +118,9 @@ describe('CourseSettings', () => {
     )
     toggleHomePicker(component)
     let tree = component.toJSON()
-    let nameField = explore(tree).selectByID('nameInput') || {}
+    let nameField = explore(tree).selectByID('course-settings.name-input-textbox') || {}
     nameField.props.onChangeText('React Native FTW')
-    let homePicker = explore(tree).selectByID('homePicker') || {}
+    let homePicker = explore(tree).selectByID('course-settings.home-picker') || {}
     homePicker.props.onValueChange('syllabus')
 
     component.getInstance().done()
@@ -194,7 +194,7 @@ describe('CourseSettings', () => {
       <CourseSettings {...props } />
     ).toJSON()
 
-    let label = explore(tree).selectByID('homePageLabel') || {}
+    let label = explore(tree).selectByID('course-settings.home-page-lbl') || {}
     expect(label.children[0]).toEqual('Pages Front Page')
 
     props.course.default_view = 'feed'
@@ -202,7 +202,7 @@ describe('CourseSettings', () => {
       <CourseSettings {...props } />
     ).toJSON()
 
-    label = explore(tree).selectByID('homePageLabel') || {}
+    label = explore(tree).selectByID('course-settings.home-page-lbl') || {}
     expect(label.children[0]).toEqual('Course Activity Stream')
   })
 

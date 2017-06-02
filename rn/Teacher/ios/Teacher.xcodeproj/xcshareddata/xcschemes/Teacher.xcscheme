@@ -48,6 +48,20 @@
                ReferencedContainer = "container:Teacher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3B5812C01EC4F15900173C37"
+               BuildableName = "TeacherUnitTests.xctest"
+               BlueprintName = "TeacherUnitTests"
+               ReferencedContainer = "container:Teacher.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -57,16 +71,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B5812C01EC4F15900173C37"
-               BuildableName = "TeacherUnitTests.xctest"
-               BlueprintName = "TeacherUnitTests"
-               ReferencedContainer = "container:Teacher.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference

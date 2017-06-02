@@ -128,7 +128,7 @@ test('select tab', () => {
     <CourseDetails {...props} />
   ).toJSON()
 
-  const tabRow: any = explore(tree).selectByID('courses-details.tab-touchable-row-assignments')
+  const tabRow: any = explore(tree).selectByID('courses-details.assignments-cell')
   tabRow.props.onPress()
 
   expect(props.navigator.show).toHaveBeenCalledWith('/courses/12/assignments')

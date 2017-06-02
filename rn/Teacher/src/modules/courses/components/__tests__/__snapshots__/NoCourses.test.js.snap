@@ -30,6 +30,7 @@ exports[`renders NoCourses correctly 1`] = `
         undefined,
       ]
     }
+    testID="mt-fav-courses.welcome-lbl"
   >
     Welcome!
   </Text>
@@ -53,6 +54,7 @@ exports[`renders NoCourses correctly 1`] = `
         },
       ]
     }
+    testID="mt-fav-courses.descr-lbl"
   >
     Add a few of your favorite courses to make this place your home.
   </Text>
@@ -78,7 +80,7 @@ exports[`renders NoCourses correctly 1`] = `
         undefined,
       ]
     }
-    testID="noCourse.addCourses"
+    testID="mt-fav-courses.add-courses-btn"
   >
     <Text
       accessible={true}

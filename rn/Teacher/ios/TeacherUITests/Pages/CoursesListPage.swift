@@ -19,52 +19,97 @@ import EarlGrey
 
 class CoursesListPage {
 
-  // MARK: Singleton
+    // MARK: Singleton
 
-  static let sharedInstance = CoursesListPage()
-  private init() {}
+    static let sharedInstance = CoursesListPage()
+    private init() {}
 
-  // MARK: Elements
+    // MARK: Elements
+    
+    private let feedbackButton = e.selectBy(id: "fav-courses.feedback-btn")
+    private let editButton = e.selectBy(id: "fav-courses.edit-btn")
+    private let headerStarImage = e.selectBy(id: "fav-courses.header-star-img")
+    private let headerCoursesLabel = e.selectBy(id: "fav-courses.header-courses-lbl")
+    private let seeAllCoursesButton = e.selectBy(id: "fav-courses.see-all-btn")
+    private let emptyStateWelcomeLabel = e.selectBy(id: "mt-fav-courses.welcome-lbl")
+    private let emptyStateDescriptionLabel = e.selectBy(id: "mt-fav-courses.descr-lbl")
+    private let emptyStateAddCourseButton = e.selectBy(id: "mt-fav-courses.add-courses-btn")
+    private let favoriteCoursesView = e.selectBy(id: "fav-courses.view")
+    private let coursesTabButton = e.selectBy(id: "tab-bar.courses-btn")
+    private let inboxTabButton = e.selectBy(id: "tab-bar.inbox-btn")
+    private let profileTabButton = e.selectBy(id: "tab-bar.profile-btn")
+    private let stagingTabButton = e.selectBy(id: "tab-bar.staging-btn")
 
-  private let coursesNavBar = e.selectBy(id: "Courses") // 'Coureses' text in the top nav bar.
-  private let seeAllCoursesButton = e.selectBy(id: "course-list.see-all-btn")
-  private let coursesEditButton = e.selectBy(id: "e2e_rules")
+    // MARK: - Helpers
 
-  // MARK: - Helpers
+    private func courseId(_ course: Course) -> String {
+        return "courseCard.kabob_\(course.id)"
+    }
 
-  private func courseId(_ course: Course) -> String {
-    return "courseCard.kabob_\(course.id)"
-  }
+    private func courseCard(_ course: Course) -> GREYElementInteraction {
+        return e.selectBy(id: course.courseCode)
+    }
 
-  // MARK: - Assertions
+    // MARK: - Assertions
+    
+    func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        favoriteCoursesView.assertExists()
+        coursesTabButton.assertExists()
+        inboxTabButton.assertExists()
+        profileTabButton.assertExists()
+        stagingTabButton.assertExists()
+    }
+    
+    func assertEmptyStatePageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        emptyStateWelcomeLabel.assertExists()
+        emptyStateDescriptionLabel.assertExists()
+        emptyStateAddCourseButton.assertExists()
+    }
+    
+    func assertHasFavoritesStatePageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        feedbackButton.assertExists()
+        editButton.assertExists()
+        headerStarImage.assertExists()
+        headerCoursesLabel.assertExists()
+        seeAllCoursesButton.assertExists()
+    }
 
-  func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_fromFile(file, line)
+    func assertCourseExists(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        e.selectBy(id: courseId(course)).assertExists()
+    }
+    
+    func assertCourseDoesNotExist(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        e.selectBy(id: courseId(course)).assertHidden()
+    }
 
-    e.selectBy(id: courseId(course)).assertExists()
-  }
+    func assertCourseHidden(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        e.selectBy(id: courseId(course)).assertHidden()
+    }
 
-  func assertCourseHidden(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
-    grey_fromFile(file, line)
+    // MARK: - UI Actions
+    
+    func openCourseFavoritesEditPage(_ emptyState: Bool, file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        if emptyState {
+            emptyStateAddCourseButton.tap()
+        } else {
+            editButton.tapUntilHidden()
+        }
+    }
+    
+    func openAllCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        seeAllCoursesButton.tap()
+    }
 
-    e.selectBy(id: courseId(course)).assertHidden()
-  }
-
-  func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
-    coursesNavBar.assertExists()
-  }
-
-  // MARK: - UI Actions
-
-  func openAllCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_fromFile(file, line)
-
-    seeAllCoursesButton.tap()
-  }
-
-  func openEditFavorites(_ file: StaticString = #file, _ line: UInt = #line) {
-    grey_fromFile(file, line)
-
-    coursesEditButton.tap()
-  }
+    func openCourseDetailsPage(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        courseCard(course).tap()
+    }
 }
