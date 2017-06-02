@@ -59,7 +59,7 @@ describe('error-handler-middleware', () => {
       error: true,
       payload: {
         error: {
-          message: 'Offline Error',
+          message: 'Network Error',
           response: {
             data: {
               errors: [{

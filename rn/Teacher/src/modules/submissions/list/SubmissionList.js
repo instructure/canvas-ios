@@ -5,6 +5,8 @@ import {
   View,
   FlatList,
   StyleSheet,
+  NetInfo,
+  AlertIOS,
 } from 'react-native'
 import { connect } from 'react-redux'
 import type {
@@ -24,8 +26,15 @@ import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../SubmissionsHeader'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
+type State = {
+  submissions: Array<SubmissionDataProps>,
+  isConnected: boolean,
+}
 
-export class SubmissionList extends Component<any, Props, any> {
+export class SubmissionList extends Component {
+  props: Props
+  state: State
+
   filterOptions: SubmissionFilterOption[]
   selectedFilter: ?SelectedSubmissionFilter
 
@@ -34,6 +43,7 @@ export class SubmissionList extends Component<any, Props, any> {
 
     this.state = {
       submissions: props.submissions || [],
+      isConnected: true,
     }
 
     this.filterOptions = SubmissionsHeader.defaultFilterOptions()
@@ -48,10 +58,20 @@ export class SubmissionList extends Component<any, Props, any> {
       }
       this.updateSubmissions(this.props.submissions)
     }
+    NetInfo.isConnected.fetch().then(this.setConnection)
+    NetInfo.isConnected.addEventListener('change', this.setConnection)
+  }
+
+  componentWillUnmount = () => {
+    NetInfo.isConnected.removeEventListener('change', this.setConnection)
   }
 
   componentWillReceiveProps = (newProps: Props) => {
     this.updateSubmissions(newProps.submissions)
+  }
+
+  setConnection = (isConnected: boolean) => {
+    this.setState({ isConnected })
   }
 
   keyExtractor = (item: SubmissionProps) => {
@@ -59,7 +79,12 @@ export class SubmissionList extends Component<any, Props, any> {
   }
 
   navigateToSubmission = (userID: string) => {
-    if (!global.V03) { return } // such features
+    if (!global.V04) { return } // such features
+    console.log(this.state.isConnected)
+    if (!this.state.isConnected) {
+      return AlertIOS.alert(i18n('No internet connection'), i18n('This action requires an internet connection.'))
+    }
+
     const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
     this.props.navigator.show(
       path,

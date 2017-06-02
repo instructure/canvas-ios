@@ -16,6 +16,10 @@ NativeModules.PushNotifications = {
 
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),
+  isConnected: {
+    addEventListener: jest.fn(),
+    fetch: () => Promise.resolve(true),
+  },
 }))
 
 // Fixes network calls in tests env.

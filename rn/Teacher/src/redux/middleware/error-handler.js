@@ -11,12 +11,11 @@ const errorHandlerMiddleware: MiddlewareAPI = () => {
   return next => action => {
     if (action.error) {
       if (action.payload.handlesError) return next(action)
-
       // should only continue if:
       // 1. error is not an api response error
       // 2. error is an api response error and the status code is 500 or above and the user is online
       let error = action.payload.error
-      let isOfflineError = error.message === 'Offline Error'
+      let isOfflineError = error.message === 'Network Error'
       if (error.response != null) {
         error = error.response
       }

@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import { AlertIOS } from 'react-native'
 import {
   SubmissionList,
   refreshSubmissionList,
@@ -16,7 +17,11 @@ const template = {
   ...require('../__templates__/submission-props'),
 }
 
-jest.mock('../../../../routing')
+jest
+  .mock('../../../../routing')
+  .mock('AlertIOS', () => ({
+    alert: jest.fn(),
+  }))
 
 const props = {
   submissions: submissionProps,
@@ -40,7 +45,7 @@ test('SubmissionList loaded', () => {
 
 test('SubmissionList loaded with nothing and it should not explode, and then props should be set and it should be great', () => {
   const tree = renderer.create(
-    <SubmissionList navigator={template.navigator()} />
+    <SubmissionList {...props} navigator={template.navigator()} />
   )
   expect(tree).toBeDefined()
   setProps(tree, props)
@@ -179,6 +184,21 @@ test('should navigate to a submission', () => {
     { modal: true },
     { selectedFilter: undefined }
   )
+})
+
+test('should prevent going to speed grader when offline', () => {
+  let submission = props.submissions[0]
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+  let tree = renderer.create(
+    <SubmissionList {...props} navigator={navigator} />
+  )
+  tree.getInstance().setState({ isConnected: false })
+  tree.getInstance().navigateToSubmission(submission.userID)
+
+  expect(AlertIOS.alert).toHaveBeenCalled()
+  expect(navigator.show).not.toHaveBeenCalled()
 })
 
 test('refreshSubmissionList', () => {
