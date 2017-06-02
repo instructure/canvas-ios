@@ -20,7 +20,6 @@ import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
-import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 
@@ -92,10 +91,6 @@ export class UserCoursePreferences extends Component {
   }
 
   _renderComponent (): React.Element<any> {
-    if (this.props.pending) {
-      return (<ActivityIndicatorView />)
-    }
-
     return (<View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
           <RefreshableScrollView

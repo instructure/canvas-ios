@@ -62,7 +62,7 @@ describe('UserCoursePreferences', () => {
 
   it('renders the refreshed component', () => {
     let component = renderer.create(
-      <Refreshed {...defaultProps} course={null} pending={1} />
+      <Refreshed {...defaultProps} pending={1} />
     )
 
     expect(component.toJSON()).toMatchSnapshot()

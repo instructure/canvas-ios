@@ -85,10 +85,10 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
       let courseState = { ...state[courseID] }
       delete courseState.oldColor
       courseState.pending--
+      courseState.error = null
       return {
         ...state,
         [courseID]: courseState,
-        error: null,
       }
     },
     rejected: (state, { courseID, error }) => {
