@@ -235,7 +235,7 @@ describe('QuizEdit', () => {
     const createNodeMock = ({ type }) => {
       if (type === 'AssignmentDatesEditor') {
         return {
-          validate: jest.fn(),
+          validate: jest.fn().mockReturnValue(true),
           updateAssignment: (assignment) => updatedAssignment,
         }
       }

@@ -7,6 +7,10 @@ import React from 'react'
 import AssignmentDatesEditor from '../components/AssignmentDatesEditor.js'
 import renderer from 'react-test-renderer'
 
+jest.mock('LayoutAnimation', () => ({
+  easeInEaseOut: jest.fn(),
+}))
+
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
 }
@@ -57,7 +61,22 @@ test('validation should work correctly', () => {
     <AssignmentDatesEditor assignment={assignment} />
   ).getInstance()
   component.addAdditionalDueDate()
-  expect(component.validate()).toMatchObject({ x: 0, y: 0 })
+  expect(component.validate()).toBeTruthy
+})
+
+test('validation should be false when due date is after lock date', () => {
+  let assignment = template.assignment({
+    all_dates: [{
+      due_at: '2017-06-01T05:59:59Z',
+      lock_at: '2017-06-01T05:59:00Z',
+    }],
+  })
+
+  let component = renderer.create(
+    <AssignmentDatesEditor assignment={assignment} />
+  ).getInstance()
+  component.addAdditionalDueDate()
+  expect(component.validate()).toBeFalsy
 })
 
 test('validate correctly with overides', () => {
@@ -76,5 +95,5 @@ test('validate correctly with overides', () => {
   let component = renderer.create(
     <AssignmentDatesEditor assignment={assignment} />
   ).getInstance()
-  expect(component.validate()).toBeFalsy()
+  expect(component.validate()).toBeTruthy()
 })

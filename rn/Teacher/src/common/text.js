@@ -49,6 +49,14 @@ export function ModalActivityIndicatorAlertText ({ style, ...props }: Object): R
   return <ReactNative.Text style={[styles.font, styles.modalActivityIndicatorAlertText, style]} {...props} />
 }
 
+export function UnmetRequirementBannerText ({ style, ...props }: Object): ReactNative.Text {
+  return <ReactNative.Text style={[styles.font, styles.unmetRequirementBannerText, style]} {...props} />
+}
+
+export function UnmetRequirementSubscriptText ({ style, ...props }: Object): ReactNative.Text {
+  return <ReactNative.Text style={[styles.font, styles.unmetRequirementSubscriptText, style]} {...props} />
+}
+
 export function SectionHeader ({ style, ...props }: Object): ReactNative.Element<View> {
   return (
     <View style={styles.sectionHeader} key={props.key}>
@@ -139,6 +147,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     fontFamily: SEMI_BOLD_FONT,
+  },
+  unmetRequirementBannerText: {
+    fontSize: 12,
+    color: '#fff',
+    fontFamily: MEDIUM_FONT,
+  },
+  unmetRequirementSubscriptText: {
+    fontSize: 14,
+    color: '#EE0612',
+    fontFamily: REGULAR_FONT,
   },
   sectionHeader: {
     flex: 1,

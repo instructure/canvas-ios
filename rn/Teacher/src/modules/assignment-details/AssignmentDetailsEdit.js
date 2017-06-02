@@ -11,6 +11,8 @@ import EditSectionHeader from './components/EditSectionHeader'
 import AssignmentDatesEditor from './components/AssignmentDatesEditor'
 import { TextInput, Text } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
+import UnmetRequirementBanner from '../../common/components/UnmetRequirementBanner'
+import RequiredFieldSubscript from './components/RequiredFieldSubscript'
 import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import color from './../../common/colors'
@@ -54,6 +56,11 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       showPicker: false,
       pickerSelectedValue: 'initial value set in constructor',
       currentAssignmentKey: null,
+      validation: {
+        isValid: true,
+        title: true,
+        points: true,
+      },
     }
   }
 
@@ -61,12 +68,13 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
   }
 
-  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, focus: boolean = false): React.Element<*> {
+  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, focus: boolean = false, keyboardType: string = 'default'): React.Element<*> {
     return (
       <TextInput style={styleParam}
                  value={ this.defaultValueForInput(fieldName) }
                  placeholder={ placeholder }
                  returnKeyType={'done'}
+                 keyboardType={keyboardType}
                  blurOnSubmit={true}
                  onChangeText={ value => this.updateFromInput(fieldName, value) }
                  onFocus={(event) => this._scrollToInput(ReactNative.findNodeHandle(event.target))}
@@ -105,6 +113,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
     let savingText = i18n('Saving')
 
+    let requiredText = i18n('Invalid field')
+    let requiredTitleText = i18n('A title is required')
+    let requiredPointsText = i18n('The value of possible points must be zero or greater')
+
     let titlePlaceHolder = i18n('Title')
     let pointsPlaceHolder = i18n('Points')
     let displayGradeAs = i18n('Display Grade As')
@@ -134,6 +146,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
+          <UnmetRequirementBanner text={requiredText} visible={!this.state.validation.isValid}/>
           <KeyboardAwareScrollView
             style={style.container}
             ref='scrollView'
@@ -145,6 +158,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             <View style={[style.row, style.topRow, style.bottomRow]}>
               { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title) }
             </View>
+            <RequiredFieldSubscript title={requiredTitleText} visible={!this.state.validation.title} />
 
             {/* Description */}
             <EditSectionHeader title={sectionDescription} style={[style.sectionHeader, { marginTop: 0 }]}/>
@@ -167,7 +181,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
               <View accessible={true} accessibilityLabel={pointsPlaceHolder} style={{ flex: 0, height: 50, justifyContent: 'center' }}>
                 <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{pointsPlaceHolder}</Text>
               </View>
-              { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points) }
+              { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points, false, 'numeric') }
             </View>
 
             {/* Display Grade As */}
@@ -185,6 +199,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
               value={this.defaultValueForBooleanInput('published')}
               identifier='published'
               onValueChange={this._updateToggleValue} />
+            <RequiredFieldSubscript title={requiredPointsText} visible={!this.state.validation.points} />
 
             {/* Due Dates */}
             <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
@@ -240,10 +255,48 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     return assignment[key]
   }
 
+  validateChanges () {
+    const assignment = this.state.assignment
+
+    var validator = {
+      isValid: true,
+      title: true,
+      points: true,
+    }
+
+    if (!assignment.name || assignment.name.replace(/\s/g, '') === '') {
+      validator = {
+        ...validator,
+        title: false,
+        isValid: false,
+      }
+    }
+
+    const pointsPossible = Number(assignment.points_possible)
+    if (isNaN(pointsPossible) || pointsPossible < 0) {
+      validator = {
+        ...validator,
+        points: false,
+        isValid: false,
+      }
+    }
+
+    const datesAreValid = this.datesEditor.validate()
+    if (!datesAreValid) {
+      validator = {
+        ...validator,
+        isValid: false,
+      }
+    }
+
+    return validator
+  }
+
   actionDonePressed () {
-    const invalidDatesPosition = this.datesEditor.validate()
-    if (invalidDatesPosition) {
-      this.refs.scrollView.scrollToPosition(invalidDatesPosition.x, invalidDatesPosition.y, true)
+    const validator = this.validateChanges()
+
+    if (!validator.isValid) {
+      this.setState({ validation: validator })
       return
     }
 
@@ -251,6 +304,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.setState({
       pending: true,
       assignment: updatedAssignment,
+      validation: validator,
     })
 
     this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignmentDetails)

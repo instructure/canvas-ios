@@ -27,6 +27,8 @@ import Button from 'react-native-button'
 import Images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Navigator from '../../../routing/Navigator'
+import RequiredFieldSubscript from './RequiredFieldSubscript'
+import { extractDateFromString } from '../../../utils/dateUtils'
 
 type Props = {
   assignment: Assignment,
@@ -54,7 +56,8 @@ export type StagedAssignmentDate = {
   student_ids?: ?string[],
   course_section_id?: ?string,
   group_id?: ?string,
-  valid: boolean,
+  validAssignees: boolean,
+  validDates: boolean,
   modifyType?: ModifyDateType,
 }
 
@@ -81,7 +84,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         due_at: date.due_at,
         unlock_at: date.unlock_at,
         lock_at: date.lock_at,
-        valid: true,
+        validAssignees: true,
+        validDates: true,
       }
       const dateID = date.id
       // If the date has an ID, there is a override associated with it
@@ -104,17 +108,42 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     this.layouts = {}
   }
 
-  // If invalid, returns the position of the first element that isn't valid, in order to scroll to it
-  validate = (): ?Object => {
-    let invalidDateId: ?string = null
+  checkDates (date: StagedAssignmentDate) {
+    let dueDate = extractDateFromString(date.due_at)
+    let lockDate = extractDateFromString(date.lock_at)
+    let unlockDate = extractDateFromString(date.unlock_at)
+    if (!dueDate) {
+      return true
+    }
+    let insideLock = lockDate ? dueDate <= lockDate : true
+    let insideUnlock = unlockDate ? dueDate >= unlockDate : true
+    return insideLock && insideUnlock
+  }
+
+  validate () {
+    var allDatesAreValid = true
     const dates = this.state.dates.map((date) => {
-      if (date.base) { return date }
-      if (((date.student_ids && date.student_ids.length === 0) || !date.student_ids) &&
+      let thisDateIsValid = this.checkDates(date)
+
+      if (date.base) {
+        if (allDatesAreValid && !thisDateIsValid) {
+          allDatesAreValid = false
+        }
+        return date
+      } else if (((date.student_ids && date.student_ids.length === 0) || !date.student_ids) &&
           !date.course_section_id &&
           !date.group_id) {
         const newDate = cloneDeep(date)
-        newDate.valid = false
-        invalidDateId = date.id
+        newDate.validAssignees = false
+        if (!thisDateIsValid) {
+          newDate.validDates = false
+        }
+        allDatesAreValid = false
+        return newDate
+      } else if (!thisDateIsValid) {
+        const newDate = cloneDeep(date)
+        newDate.validDates = false
+        allDatesAreValid = false
         return newDate
       } else {
         return date
@@ -125,15 +154,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       dates,
     })
 
-    if (invalidDateId) {
-      const layout = this.layouts[invalidDateId] || {}
-      return {
-        x: layout.x || 0,
-        y: layout.y || 0,
-      }
-    }
-
-    return null
+    return allDatesAreValid
   }
 
   // Once editing is complete, send the staged assignment in here for updates
@@ -147,7 +168,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       id: uuid(),
       isNew: true,
       base: false,
-      valid: true,
+      validAssignees: true,
+      validDates: true,
     })
     this.setState({
       dates,
@@ -244,7 +266,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         id: uuid(),
         base: date.base,
         isNew: true,
-        valid: true,
+        validAssignees: true,
+        validDates: true,
         due_at: date.due_at,
         unlock_at: date.unlock_at,
         lock_at: date.lock_at,
@@ -258,7 +281,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     // If all assignees have been removed, it's basically completely new date again
     if (assignees.length === 0) {
       const newDate = createNewDate({
-        valid: false,
+        validAssignees: false,
         base: false,
         id: uuid(),
       })
@@ -346,7 +369,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         d.modifyType = 'none'
       }
 
-      return d
+      return this.validateDateChange(d)
     })
 
     LayoutAnimation.easeInEaseOut()
@@ -361,7 +384,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         d[type] = null
       }
 
-      return d
+      return this.validateDateChange(d)
     })
 
     this.setState({
@@ -374,13 +397,19 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       if (date.id === d.id && type !== 'none') {
         d[type] = newDate.toISOString()
       }
-
-      return d
+      return this.validateDateChange(d)
     })
 
     this.setState({
       dates,
     })
+  }
+
+  validateDateChange (date: StagedAssignmentDate) {
+    let datesAreValid = this.checkDates(date)
+    const newDate = cloneDeep(date)
+    newDate.validDates = datesAreValid
+    return newDate
   }
 
   removeDate = (date: StagedAssignmentDate) => {
@@ -458,36 +487,40 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   }
 
   renderDate = (date: StagedAssignmentDate): React.Element<View> => {
-    let assigneeStyle = date.valid ? styles.titleText : styles.invalidTitleText
-
     let title = i18n('Assign To')
+    let requiredAssigneesText = i18n('Assignees required')
+    let requiredDueDateText = i18n("'Due Date' must be between 'Available From' and 'Available To' dates")
 
     let removeButton = this.renderRemoveButton(date)
     let detailTextStyle = date.title ? styles.detailText : styles.detailTextMissing
 
     const canEditAssignees = this.props.canEditAssignees || this.props.canEditAssignees == null
 
-    return (<View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
-              <EditSectionHeader title={title} style={styles.headerText}>
-                {removeButton}
-              </EditSectionHeader>
-              <TouchableHighlight style={styles.row} onPress={canEditAssignees && (() => this.selectAssignees(date))}>
-                <View style={styles.rowContainer}>
-                  <Text style={assigneeStyle}>{i18n('Assignees')}</Text>
-                  <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-                    <Text style={detailTextStyle}>{date.title || i18n('None')}</Text>
-                    { this.props.canEditAssignees &&
-                      <DisclosureIndicator />
-                    }
+    return (<View>
+              <View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
+                <EditSectionHeader title={title} style={styles.headerText}>
+                  {removeButton}
+                </EditSectionHeader>
+                <TouchableHighlight style={styles.row} onPress={canEditAssignees && (() => this.selectAssignees(date))}>
+                  <View style={styles.rowContainer}>
+                    <Text style={styles.titleText}>{i18n('Assignees')}</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+                      <Text style={detailTextStyle}>{date.title || i18n('None')}</Text>
+                      { this.props.canEditAssignees &&
+                        <DisclosureIndicator />
+                      }
+                    </View>
                   </View>
-                </View>
-              </TouchableHighlight>
-              { this.renderDateType(date, 'due_at') }
-              { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
-              { this.renderDateType(date, 'unlock_at') }
-              { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
-              { this.renderDateType(date, 'lock_at') }
-              { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
+                </TouchableHighlight>
+                { this.renderDateType(date, 'due_at') }
+                { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
+                { this.renderDateType(date, 'unlock_at') }
+                { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
+                { this.renderDateType(date, 'lock_at') }
+                { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
+              </View>
+              <RequiredFieldSubscript title={requiredAssigneesText} visible={!date.validAssignees} />
+              <RequiredFieldSubscript title={requiredDueDateText} visible={!date.validDates} />
             </View>)
   }
 
@@ -549,10 +582,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontWeight: '600',
-  },
-  invalidTitleText: {
-    color: 'red',
-    fontWeight: '500',
   },
   detailText: {
   },

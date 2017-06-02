@@ -507,10 +507,9 @@ export class QuizEdit extends Component<any, Props, any> {
 
     // Update assignment overrides
     if (this.state.quiz.quiz_type === 'assignment' && this.state.assignment) {
-      const invalidDatesPosition = this.datesEditor.validate()
-      if (invalidDatesPosition) {
+      const isValid = this.datesEditor.validate()
+      if (!isValid) {
         this.setState({ pending: false })
-        this.scrollView.scrollToPosition(invalidDatesPosition.x, invalidDatesPosition.y, true)
         return
       }
       const updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })

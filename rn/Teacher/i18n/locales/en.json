@@ -209,6 +209,9 @@
   "due_date_822625d8": {
     "message": "Due Date"
   },
+  "due_date_must_be_between_available_from_and_availa_3a312b9d": {
+    "message": "''Due Date'' must be between ''Available From'' and ''Available To'' dates"
+  },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Due Dates, Double tap for details."
   },

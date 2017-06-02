@@ -32,12 +32,25 @@ jest
   }))
   .mock('WebView', () => 'WebView')
   .mock('Button', () => 'Button')
+  .mock('../../../routing/Screen')
+  .mock('../../assignment-details/components/AssignmentDatesEditor', () => 'AssignmentDatesEditor')
 
 let course: Course
 let assignment: Assignment
 
 let defaultProps = {}
 let doneButtonPressedProps = {}
+
+const options = {
+  createNodeMock: ({ type }) => {
+    if (type === 'AssignmentDatesEditor') {
+      return {
+        validate: jest.fn().mockReturnValue(true),
+        updateAssignment: jest.fn(a => a),
+      }
+    }
+  },
+}
 
 beforeEach(() => {
   jest.clearAllMocks()
@@ -78,7 +91,7 @@ test('calls updateAssignment when the done button is pressed', () => {
   })
 
   let tree = renderer.create(
-    <AssignmentDetailsEdit {...defaultProps} navigator={navigator} />
+    <AssignmentDetailsEdit {...defaultProps} navigator={navigator} />, options
   )
 
   tree.getInstance().actionDonePressed()
@@ -87,7 +100,7 @@ test('calls updateAssignment when the done button is pressed', () => {
 
 test('dismisses modal on done after assignment updates', () => {
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
   let updateAssignment = jest.fn(() => {
     setProps(component, { pending: false })
@@ -101,7 +114,7 @@ test('dismisses modal on done after assignment updates', () => {
 
 test('modal saving is shown on assignment update', () => {
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
 
   let updateAssignment = jest.fn(() => {
@@ -119,7 +132,7 @@ test('error occurs when done pressed', () => {
   jest.useFakeTimers()
 
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
 
   let updateAssignment = jest.fn(() => {
@@ -137,7 +150,7 @@ test('error occurs when done pressed', () => {
 
 test('dismisses modal on cancel', () => {
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
   let updateAssignment = jest.fn(() => {
     setProps(component, { pending: false })
@@ -150,7 +163,7 @@ test('dismisses modal on cancel', () => {
 test('"displays grade as" can be selected using picker', () => {
   let selectedValue = 'not_graded'
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
 
   let row: any = explore(component.toJSON()).selectByID('assignment-details.toggle-display-grade-as-picker')
@@ -181,6 +194,37 @@ test('edit description', () => {
   })
 })
 
+test('saving invalid name displays banner', () => {
+  defaultProps.assignmentDetails.name = ''
+  const component = renderer.create(
+    <AssignmentDetailsEdit {...defaultProps} />, options
+  )
+  const doneBtn: any = explore(component.toJSON()).selectRightBarButton('edit-assignment.dismiss-btn')
+  doneBtn.action()
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
+test('saving invalid points possible displays banner', () => {
+  // $FlowFixMe
+  defaultProps.assignmentDetails.points_possible = 'D'
+  const component = renderer.create(
+    <AssignmentDetailsEdit {...defaultProps} />, options
+  )
+  const doneBtn: any = explore(component.toJSON()).selectRightBarButton('edit-assignment.dismiss-btn')
+  doneBtn.action()
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
+test('saving negative points possible displays banner', () => {
+  defaultProps.assignmentDetails.points_possible = -1
+  const component = renderer.create(
+    <AssignmentDetailsEdit {...defaultProps} />, options
+  )
+  const doneBtn: any = explore(component.toJSON()).selectRightBarButton('edit-assignment.dismiss-btn')
+  doneBtn.action()
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
 test('change title', () => {
   testInputField('titleInput', 'hello world title', 'name')
 })
@@ -195,7 +239,7 @@ test('change published', () => {
 
 function testInputField (ref: string, input: any, assignmentField: string) {
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
 
   let tree = component.toJSON()
@@ -211,7 +255,7 @@ function testInputField (ref: string, input: any, assignmentField: string) {
 
 function testSwitchToggled (ref: string, input: any, assignmentField: string) {
   let component = renderer.create(
-    <AssignmentDetailsEdit {...doneButtonPressedProps} />
+    <AssignmentDetailsEdit {...doneButtonPressedProps} />, options
   )
 
   let tree = component.toJSON()
