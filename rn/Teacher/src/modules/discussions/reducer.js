@@ -6,10 +6,12 @@ import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 import { default as ListActions } from './list/actions'
 import { default as DetailsActions } from './details/actions'
+import { default as AnnouncementListActions } from '../announcements/list/actions'
 import i18n from 'format-message'
 
 const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries } = DetailsActions
+const { refreshAnnouncements } = AnnouncementListActions
 
 export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshDiscussions.toString(),
@@ -17,21 +19,24 @@ export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   ({ result }) => result.data.map(discussion => discussion.id)
 )
 
+const handleAsyncDiscussions = handleAsync({
+  resolved: (state, { result }) => {
+    const incoming = result.data
+      .reduce((incoming, discussion) => ({
+        ...incoming,
+        [discussion.id]: {
+          data: discussion,
+          pending: 0,
+          error: null,
+        },
+      }), {})
+    return { ...state, ...incoming }
+  },
+})
+
 export const discussionData: Reducer<DiscussionState, any> = handleActions({
-  [refreshDiscussions.toString()]: handleAsync({
-    resolved: (state, { result }) => {
-      const incoming = result.data
-        .reduce((incoming, discussion) => ({
-          ...incoming,
-          [discussion.id]: {
-            data: discussion,
-            pending: 0,
-            error: null,
-          },
-        }), {})
-      return { ...state, ...incoming }
-    },
-  }),
+  [refreshDiscussions.toString()]: handleAsyncDiscussions,
+  [refreshAnnouncements.toString()]: handleAsyncDiscussions,
   [refreshDiscussionEntries.toString()]: handleAsync({
     resolved: (state, { result, courseID, discussionID }) => {
       let entity = { ...state[discussionID] } || {}

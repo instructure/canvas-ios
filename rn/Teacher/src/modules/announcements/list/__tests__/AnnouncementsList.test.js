@@ -1,0 +1,97 @@
+/* @flow */
+
+import React from 'react'
+import 'react-native'
+import renderer from 'react-test-renderer'
+
+import { AnnouncementsList, type Props, mapStateToProps } from '../AnnouncementsList'
+
+const template = {
+  ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../__templates__/helm'),
+  ...require('../../../../redux/__templates__/app-state'),
+}
+
+jest
+  .mock('Button', () => 'Button')
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('../../../../routing/Screen')
+
+describe('AnnouncementsList', () => {
+  let props: Props
+  beforeEach(() => {
+    props = {
+      courseID: '1',
+      refreshing: false,
+      refresh: jest.fn(),
+      pending: 0,
+      error: null,
+      navigator: template.navigator(),
+      announcements: [
+        template.discussion({
+          id: '1',
+          title: 'Untitled',
+          posted_at: '2013-11-14T16:55:00-07:00',
+        }),
+        template.discussion({
+          id: '2',
+          title: 'Getting Started in Biology 101',
+          posted_at: '2013-10-28T14:16:00-07:00',
+        }),
+      ],
+    }
+  })
+
+  it('renders', () => {
+    testRender(props)
+  })
+
+  function testRender (props: any) {
+    expect(render(props)).toMatchSnapshot()
+  }
+
+  function render (props: any) {
+    return renderer.create(<AnnouncementsList {...props} />)
+  }
+})
+
+describe('mapStateToProps', () => {
+  it('maps course announcement refs to props', () => {
+    const one = template.discussion({ id: '1' })
+    const two = template.discussion({ id: '2' })
+    const three = template.discussion({ id: '3' })
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            announcements: {
+              pending: 1,
+              error: null,
+              refs: ['1', '3'],
+            },
+          },
+        },
+        discussions: {
+          '1': {
+            data: one,
+          },
+          '2': {
+            data: two,
+          },
+          '3': {
+            data: three,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1' })
+    ).toEqual({
+      announcements: [one, three],
+      pending: 1,
+      error: null,
+    })
+  })
+})

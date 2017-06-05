@@ -3,11 +3,16 @@
 import httpClient from './httpClient'
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getDiscussions (courseID: string): Promise<ApiResponse<Discussion[]>> {
+type GetDiscussionsParameters = {
+  only_announcents?: boolean,
+}
+
+export function getDiscussions (courseID: string, parameters: GetDiscussionsParameters = {}): Promise<ApiResponse<Discussion[]>> {
   const url = `courses/${courseID}/discussion_topics`
   const options = {
     params: {
       per_page: 99,
+      ...parameters,
     },
   }
   let discussions = paginate(url, options)

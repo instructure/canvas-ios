@@ -20,6 +20,7 @@ const emptyAppState: AppState = {
     quizzes: {},
     quizSubmissions: {},
     discussions: {},
+    announcements: {},
     courseDetailsTabSelectedRow: { rowID: '' },
   },
 }

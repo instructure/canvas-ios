@@ -21,6 +21,7 @@ export type CourseContentState = {
   enrollments: AsyncRefs,
   quizzes: AsyncRefs,
   discussions: AsyncRefs,
+  announcements: AsyncRefs,
 }
 
 export type GradingPeriodsState = {

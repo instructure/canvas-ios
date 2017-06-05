@@ -20,6 +20,7 @@ export const tabs: Reducer<TabsState, any> = handleActions({
       }
       if (global.V05) {
         availableCourseTabs.push('discussions')
+        availableCourseTabs.push('announcements')
       }
       const orderedTabs = result.data
         .filter((tab) => availableCourseTabs.includes(tab.id))

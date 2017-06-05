@@ -3,8 +3,11 @@
 import { refs, discussions } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailActions } from '../details/actions'
+import { default as AnnouncementListActions } from '../../announcements/list/actions'
+
 const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries } = DetailActions
+const { refreshAnnouncements } = AnnouncementListActions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
@@ -117,6 +120,31 @@ describe('discussionData', () => {
           error: null,
         },
 
+      })
+    })
+  })
+  describe('refreshAnnouncements', () => {
+    it('handles resolved', () => {
+      const one = template.discussion({ id: '1' })
+      const two = template.discussion({ id: '2' })
+      const resolved = {
+        type: refreshAnnouncements.toString(),
+        payload: { result: { data: [one, two] } },
+      }
+
+      expect(
+        discussions({}, resolved)
+      ).toEqual({
+        '1': {
+          data: one,
+          pending: 0,
+          error: null,
+        },
+        '2': {
+          data: two,
+          pending: 0,
+          error: null,
+        },
       })
     })
   })

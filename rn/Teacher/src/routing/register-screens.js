@@ -27,6 +27,7 @@ import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import DiscussionsList from '../modules/discussions/list/DiscussionsList'
+import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import DiscussionDetails from '../modules/discussions/details/DiscussionDetails'
 
 import { Store } from 'redux'
@@ -63,6 +64,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/staging', wrap(Staging))
   registerScreen('/rich-text-editor', wrap(RichTextEditor))
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
+  registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store)
 
   // This will never actually be routed to, but this makes it really easy to debug
   registerScreen('/courses/:courseID/assignee-picker', wrap(AssigneePicker), store)

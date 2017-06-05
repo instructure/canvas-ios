@@ -1,0 +1,453 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AnnouncementsList renders 1`] = `
+<Screen
+  title="Announcements"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "assignment": Object {
+              "assignment_group_id": 1376,
+              "automatic_peer_reviews": false,
+              "created_at": "2017-03-17T19:15:25Z",
+              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              "due_at": "2037-06-01T05:59:00Z",
+              "grading_type": "points",
+              "html_url": "http://hostname.tld/whatever",
+              "id": 123456789,
+              "lock_at": "2037-06-01T05:59:59Z",
+              "name": "learn to write code",
+              "needs_grading_count": 0,
+              "overrides": Array [],
+              "peer_reviews": false,
+              "points_possible": 20,
+              "position": 1,
+              "submission_types": Array [
+                "online_text_entry",
+                "online_url",
+                "media_recording",
+                "online_upload",
+              ],
+              "unlock_at": "2017-03-17T06:00:00Z",
+              "updated_at": "2017-03-17T19:15:25Z",
+            },
+            "assignment_id": 123456789,
+            "author": Object {
+              "avatar_url": "http://www.fillmurray.com/100/100",
+              "display_name": "The Donald",
+              "id": 1,
+              "short_name": "The Donald",
+            },
+            "discussion_subentry_count": 2,
+            "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+            "id": "1",
+            "last_reply_at": "2016-12-11T04:03:17Z",
+            "message": "<p>And why?</p>",
+            "permissions": Object {
+              "attach": true,
+              "delete": true,
+              "reply": true,
+              "update": true,
+            },
+            "pinned": false,
+            "position": 1,
+            "posted_at": "2013-11-14T16:55:00-07:00",
+            "published": true,
+            "read_state": "read",
+            "sort_by_rating": false,
+            "subscribed": true,
+            "title": "Untitled",
+            "unread_count": 1,
+            "user_can_see_posts": true,
+            "user_name": "Ivy Iversen",
+          },
+          Object {
+            "assignment": Object {
+              "assignment_group_id": 1376,
+              "automatic_peer_reviews": false,
+              "created_at": "2017-03-17T19:15:25Z",
+              "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+              "due_at": "2037-06-01T05:59:00Z",
+              "grading_type": "points",
+              "html_url": "http://hostname.tld/whatever",
+              "id": 123456789,
+              "lock_at": "2037-06-01T05:59:59Z",
+              "name": "learn to write code",
+              "needs_grading_count": 0,
+              "overrides": Array [],
+              "peer_reviews": false,
+              "points_possible": 20,
+              "position": 1,
+              "submission_types": Array [
+                "online_text_entry",
+                "online_url",
+                "media_recording",
+                "online_upload",
+              ],
+              "unlock_at": "2017-03-17T06:00:00Z",
+              "updated_at": "2017-03-17T19:15:25Z",
+            },
+            "assignment_id": 123456789,
+            "author": Object {
+              "avatar_url": "http://www.fillmurray.com/100/100",
+              "display_name": "The Donald",
+              "id": 1,
+              "short_name": "The Donald",
+            },
+            "discussion_subentry_count": 2,
+            "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
+            "id": "2",
+            "last_reply_at": "2016-12-11T04:03:17Z",
+            "message": "<p>And why?</p>",
+            "permissions": Object {
+              "attach": true,
+              "delete": true,
+              "reply": true,
+              "update": true,
+            },
+            "pinned": false,
+            "position": 1,
+            "posted_at": "2013-10-28T14:16:00-07:00",
+            "published": true,
+            "read_state": "read",
+            "sort_by_rating": false,
+            "subscribed": true,
+            "title": "Getting Started in Biology 101",
+            "unread_count": 1,
+            "user_can_see_posts": true,
+            "user_name": "Ivy Iversen",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReached={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onRefresh={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          refreshing={false}
+        />
+      }
+      refreshing={false}
+      removeClippedSubviews={true}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      testID="announcements.list.list"
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          onLayout={[Function]}
+        >
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={Array []}
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": undefined,
+                },
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 12.8,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12.8,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Untitled
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontSize": 14,
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Nov 14 at 4:55 PM
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+        <View
+          onLayout={[Function]}
+        >
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={Array []}
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": undefined,
+                },
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID={undefined}
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 12.8,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12.8,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Getting Started in Biology 101
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontSize": 14,
+                        "marginTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Oct 28 at 3:16 PM
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</Screen>
+`;
