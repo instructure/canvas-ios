@@ -20,11 +20,11 @@ export function asyncRefsReducer (
       pending: (state) => ({ ...state, pending: state.pending + 1 }),
       resolved: (state, result) => {
         const refs: Array<string> = updatedRefs(result) || state.refs
-        const pending = state.pending - 1
+        const pending = Math.max(state.pending - 1, 0)
         return { pending, refs }
       },
       rejected: (state, { error }) => {
-        const pending = state.pending - 1
+        const pending = Math.max(state.pending - 1, 0)
         let message = errorMessage
         let reason = parseErrorMessage(error)
         if (reason) {

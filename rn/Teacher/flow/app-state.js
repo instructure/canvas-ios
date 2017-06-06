@@ -115,6 +115,18 @@ export type Entities = {
 export type FavoriteCoursesState = AsyncState
   & { courseRefs: EntityRefs }
 
+export type InboxScope = 'all' | 'unread' | 'starred' | 'sent' | 'archived'
+
+export type InboxState = {
+  conversations: { string: Conversation },
+  selectedScope: InboxScope,
+  all: AsyncRefs,
+  unread: AsyncRefs,
+  starred: AsyncRefs,
+  sent: AsyncRefs,
+  archived: AsyncRefs,
+}
+
 export type AppState = {
   favoriteCourses: FavoriteCoursesState,
   entities: Entities,

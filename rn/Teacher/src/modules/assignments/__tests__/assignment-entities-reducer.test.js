@@ -93,7 +93,7 @@ test('reduces assignment content', () => {
     [assignment.id]: {
       data: assignment,
       submissions: {
-        pending: -1,
+        pending: 0,
         refs: ['3'],
       },
       gradeableStudents: { pending: 0, refs: [] },

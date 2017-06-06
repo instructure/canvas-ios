@@ -17,6 +17,7 @@ import { submissions } from '../modules/submissions/list/submission-entities-red
 import { quizzes } from '../modules/quizzes/reducer'
 import { quizSubmissions, quizAssignmentSubmissions } from '../modules/quizzes/submissions/reducer'
 import { discussions } from '../modules/discussions/reducer'
+import inbox from '../modules/inbox/reducer'
 
 const entities = combineReducers({
   courses,
@@ -35,6 +36,7 @@ const entities = combineReducers({
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   favoriteCourses,
+  inbox,
   entities,
 })
 
