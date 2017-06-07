@@ -23,6 +23,9 @@ import Screen from '../../routing/Screen'
 import Navigator from '../../routing/Navigator'
 import DrawerState from './utils/drawer-state'
 import { type SelectedSubmissionFilter } from '../submissions/SubmissionsHeader'
+import Tutorial from './components/Tutorial'
+import i18n from 'format-message'
+import Images from '../../images'
 
 type State = {
   size: { width: number, height: number },
@@ -53,7 +56,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   onLayout = (event: any) => {
     const { width, height } = event.nativeEvent.layout
-    if (width !== this.state.width && height !== this.state.height) {
+    if (height !== 0 && width !== this.state.width && height !== this.state.height) {
       this.setState({ size: { width, height } })
       // TODO: scroll to current student
     }
@@ -129,12 +132,31 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   }
 
   render (): React.Element<*> {
+    let tutorials = [{
+      id: 'swipe-tutorial',
+      text: i18n('Swipe left or right to view other student submissions'),
+      image: Images.speedGrader.swipe,
+    }]
+
+    if (this.props.hasRubric) {
+      tutorials.push({
+        id: 'long-press',
+        text: i18n('Tap and hold a rubric number to see its description'),
+        image: Images.speedGrader.longPress,
+      })
+    }
+
     return (
       <Screen
         navBarHidden={true}
         statusBarHidden={true}
       >
-        { this.renderBody() }
+        <View>
+          { this.renderBody() }
+          <Tutorial
+            tutorials={tutorials}
+          />
+        </View>
       </Screen>
     )
   }
@@ -174,7 +196,9 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
     ...props,
     submissionEntities: state.entities.submissions,
     assignmentSubmissionTypes: state.entities.assignments[ownProps.assignmentID].data.submission_types,
-    isModeratedGrading: state.entities.assignments[ownProps.assignmentID].data.moderated_grading,
+    isModeratedGrading: !!state.entities.assignments[ownProps.assignmentID].data.moderated_grading,
+    hasRubric: !!state.entities.assignments[ownProps.assignmentID].data.rubric,
+    hasAssignment: !!state.entities.assignments[ownProps.assignmentID].data.id,
   }
 }
 
@@ -185,7 +209,7 @@ export function refreshSpeedGrader (props: SpeedGraderProps): void {
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
-  return !props.submissions || props.submissions.length === 0
+  return !props.hasAssignment || !props.submissions || props.submissions.length === 0
 }
 
 export function isRefreshing (props: SpeedGraderProps): boolean {
@@ -220,6 +244,8 @@ type SpeedGraderDataProps = {
   submissionEntities: SubmissionsState,
   assignmentSubmissionTypes: Array<SubmissionType>,
   isModeratedGrading: boolean,
+  hasRubric: boolean,
+  hasAssignment: boolean,
 } & AsyncSubmissionsDataProps
 
 type SpeedGraderProps

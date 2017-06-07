@@ -111,6 +111,8 @@ describe('refresh functions', () => {
     pending: false,
     navigator: templates.navigator(),
     isModeratedGrading: false,
+    hasAssignment: true,
+    hasRubric: false,
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)
@@ -165,5 +167,8 @@ test('mapStateToProps filters', () => {
     ],
     submissionEntities: {},
     assignmentSubmissionTypes: assignment.submission_types,
+    hasRubric: false,
+    hasAssignment: true,
+    isModeratedGrading: false,
   })
 })

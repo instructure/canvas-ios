@@ -55,6 +55,8 @@ const images = {
     page: require('./speedgrader/page.png'),
     pdf: require('./speedgrader/pdf-icon.png'),
     warning: require('./Warning.png'),
+    longPress: require('./speedgrader/Longpress.png'),
+    swipe: require('./speedgrader/Swipe.png'),
   },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),

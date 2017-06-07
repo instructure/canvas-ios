@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tutorial will render the tutorial after data from async storage has been retrieved 1`] = `
+<Animated.View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.5)",
+        "bottom": 0,
+        "display": "flex",
+        "justifyContent": "center",
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
+      Object {
+        "opacity": mockConstructor {},
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderRadius": 8,
+        "marginHorizontal": 40,
+        "padding": 16,
+        "shadowColor": "black",
+        "shadowOffset": Object {
+          "height": 10,
+          "width": 0,
+        },
+        "shadowOpacity": 0.5,
+        "shadowRadius": 10,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "fontSize": 18,
+            "fontWeight": "600",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-semibold",
+          },
+        ]
+      }
+    >
+      Some text
+    </Text>
+    <Image
+      source={1}
+      style={
+        Object {
+          "marginVertical": 24,
+        }
+      }
+    />
+    <Button
+      onPress={[Function]}
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "600",
+        }
+      }
+      testID="tutorial.button-1"
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#374A59",
+              },
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        OK
+      </Text>
+    </Button>
+  </View>
+</Animated.View>
+`;
