@@ -90,6 +90,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         selectedAttachmentIndex={selectedAttachmentIndex}
         assignmentSubmissionTypes={this.props.assignmentSubmissionTypes}
         isModeratedGrading={this.props.isModeratedGrading}
+        navigator={this.props.navigator}
       />
     </View>
   }
