@@ -24,7 +24,7 @@ export default class InboxFilterHeader extends Component<any, InboxFilterHeaderP
     super(props)
     const filters = [{ name: i18n('All'), scope: 'all' },
                      { name: i18n('Unread'), scope: 'unread' },
-                     { name: i18n('Favorites'), scope: 'starred' },
+                     { name: i18n('Starred'), scope: 'starred' },
                      { name: i18n('Sent'), scope: 'sent' },
                      { name: i18n('Archived'), scope: 'archived' }]
 
@@ -39,11 +39,17 @@ export default class InboxFilterHeader extends Component<any, InboxFilterHeaderP
 
   _renderButton = (item: any) => {
     const selected = this.props.selected === item.scope
-    const textStyle = selected ? styles.selectedButtonText : styles.buttonText
-    return (<TouchableOpacity testID={`inbox.filter-btn-${item.scope}`} style={styles.button} key={item.scope} onPress={() => this._onPress(item.scope)}>
-              <Text style={textStyle}>{item.name}</Text>
-              { selected && <View style={styles.selectedLine} /> }
-            </TouchableOpacity>)
+    const textStyle = [selected ? styles.selectedButtonText : styles.buttonText, { color: branding.primaryBrandColor }]
+    return (
+      <TouchableOpacity testID={`inbox.filter-btn-${item.scope}`} style={styles.button} key={item.scope} onPress={() => this._onPress(item.scope)}>
+        <Text style={textStyle}>{item.name}</Text>
+        { selected &&
+          <View
+            style={[styles.selectedLine, { backgroundColor: branding.primaryBrandColor }]}
+          />
+        }
+      </TouchableOpacity>
+    )
   }
 
   render () {
@@ -81,10 +87,8 @@ const styles = StyleSheet.create({
   selectedButtonText: {
     fontSize: 14,
     fontWeight: '600',
-    color: branding.primaryBrandColor,
   },
   selectedLine: {
-    backgroundColor: branding.primaryBrandColor,
     position: 'absolute',
     height: 3,
     bottom: 0,

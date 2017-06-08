@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     padding: global.style.defaultPadding,
     backgroundColor: 'white',
   },
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   subject: {
-    color: '#8B969E',
+    color: '#2D3B45',
     fontSize: 14,
   },
   message: {

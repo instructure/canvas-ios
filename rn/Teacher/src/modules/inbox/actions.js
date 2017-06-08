@@ -3,27 +3,28 @@
 import { createAction } from 'redux-actions'
 import canvas from '../../api/canvas-api'
 
-export function createInboxAction (api: any, scope: InboxScope): any {
+export function createInboxAction (api: any, scope: InboxScope, next?: Function): any {
   return {
-    promise: api.getConversations(scope),
+    promise: next ? next() : api.getConversations(scope),
+    usedNext: !!next,
   }
 }
 
 export let InboxActions: (typeof canvas) => any = (api) => ({
-  refreshInboxAll: createAction('inbox.refresh-all', () => {
-    return createInboxAction(api, 'all')
+  refreshInboxAll: createAction('inbox.refresh-all', (useNext?: Function) => {
+    return createInboxAction(api, 'all', useNext)
   }),
-  refreshInboxUnread: createAction('inbox.refresh-unread', () => {
-    return createInboxAction(api, 'unread')
+  refreshInboxUnread: createAction('inbox.refresh-unread', (useNext?: Function) => {
+    return createInboxAction(api, 'unread', useNext)
   }),
-  refreshInboxStarred: createAction('inbox.refresh-starred', () => {
-    return createInboxAction(api, 'starred')
+  refreshInboxStarred: createAction('inbox.refresh-starred', (useNext?: Function) => {
+    return createInboxAction(api, 'starred', useNext)
   }),
-  refreshInboxSent: createAction('inbox.refresh-sent', () => {
-    return createInboxAction(api, 'sent')
+  refreshInboxSent: createAction('inbox.refresh-sent', (useNext?: Function) => {
+    return createInboxAction(api, 'sent', useNext)
   }),
-  refreshInboxArchived: createAction('inbox.refresh-archived', () => {
-    return createInboxAction(api, 'archived')
+  refreshInboxArchived: createAction('inbox.refresh-archived', (useNext?: Function) => {
+    return createInboxAction(api, 'archived', useNext)
   }),
   updateInboxSelectedScope: createAction('inbox.update-scope', (selectedScope: InboxScope) => {
     return selectedScope

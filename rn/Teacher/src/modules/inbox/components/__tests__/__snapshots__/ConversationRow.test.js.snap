@@ -9,7 +9,7 @@ exports[`renders correctly 1`] = `
     style={
       Array [
         Object {
-          "alignItems": "center",
+          "alignItems": "flex-start",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -111,7 +111,7 @@ exports[`renders correctly 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#8B969E",
+              "color": "#2D3B45",
               "fontSize": 14,
             },
             Object {
@@ -162,7 +162,7 @@ exports[`renders correctly with different data 1`] = `
     style={
       Array [
         Object {
-          "alignItems": "center",
+          "alignItems": "flex-start",
           "backgroundColor": "white",
           "flex": 1,
           "flexDirection": "row",
@@ -281,7 +281,7 @@ exports[`renders correctly with different data 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#8B969E",
+              "color": "#2D3B45",
               "fontSize": 14,
             },
             Object {

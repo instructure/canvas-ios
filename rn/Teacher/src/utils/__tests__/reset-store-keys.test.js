@@ -1,11 +1,11 @@
 // @flow
 
-import resetPending from '../reset-pending'
+import resetStoreKeys from '../reset-store-keys'
 
 test('reset pending', () => {
   let object = {
     pending: 67,
   }
-  object = resetPending(object)
+  object = resetStoreKeys(object)
   expect(object.pending).toEqual(0)
 })

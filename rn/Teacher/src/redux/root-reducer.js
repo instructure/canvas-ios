@@ -11,7 +11,7 @@ import { sections } from '../modules/assignee-picker/reducer'
 import { enrollments, enrollmentUsers } from '../modules/enrollments/enrollment-entities-reducer'
 import logout from './logout-action'
 import { HYDRATE_ACTION } from './hydrate-action'
-import resetPending from '../utils/reset-pending'
+import resetStoreKeys from '../utils/reset-store-keys'
 import composeReducers from './compose-reducers'
 import { submissions } from '../modules/submissions/list/submission-entities-reducer'
 import { quizzes } from '../modules/quizzes/reducer'
@@ -50,7 +50,7 @@ export default function rootReducer (state: ?AppState, action: Action): AppState
       let today = new Date()
       let expires = new Date(action.payload.expires)
       if (action.payload && today < expires) {
-        state = resetPending(action.payload.state)
+        state = resetStoreKeys(action.payload.state)
       }
     }
   }

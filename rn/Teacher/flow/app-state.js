@@ -3,6 +3,7 @@
 export type AsyncState = {
   pending: number,
   error?: ?string,
+  next?: Function,
 }
 
 export type EntityRefs = Array<string>

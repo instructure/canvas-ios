@@ -45,11 +45,15 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#374A59",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -60,14 +64,18 @@ exports[`renders correctly 1`] = `
         </Text>
         <View
           style={
-            Object {
-              "backgroundColor": "#374A59",
-              "bottom": 0,
-              "height": 3,
-              "left": 8,
-              "position": "absolute",
-              "right": 8,
-            }
+            Array [
+              Object {
+                "bottom": 0,
+                "height": 3,
+                "left": 8,
+                "position": "absolute",
+                "right": 8,
+              },
+              Object {
+                "backgroundColor": "#374A59",
+              },
+            ]
           }
         />
       </TouchableOpacity>
@@ -96,11 +104,16 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#8B969E",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -135,18 +148,23 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#8B969E",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
             ]
           }
         >
-          Favorites
+          Starred
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -174,11 +192,16 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#8B969E",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -213,11 +236,16 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#8B969E",
-                "fontSize": 14,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },

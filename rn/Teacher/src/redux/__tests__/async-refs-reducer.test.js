@@ -31,6 +31,51 @@ describe('refs reducer', () => {
     })
   })
 
+  it('captures next if it exists', () => {
+    const next = () => {}
+    const action = {
+      type: 'foobar.baz',
+      payload: {
+        things: [
+          { id: '1' },
+          { id: '2' },
+        ],
+        result: {
+          next,
+        },
+      },
+    }
+
+    expect(refs(pendingState, action).next).toEqual(next)
+  })
+
+  it('appends to refs rather than replace when usedNext is in the payload', () => {
+    let action = {
+      type: 'foobar.baz',
+      payload: {
+        things: [
+          { id: '1' },
+          { id: '2' },
+        ],
+      },
+    }
+    let state = refs(pendingState, action)
+
+    action = {
+      type: 'foobar.baz',
+      payload: {
+        things: [
+          { id: '3' },
+          { id: '4' },
+        ],
+        usedNext: true,
+      },
+    }
+    expect(refs(state, action).refs).toEqual([
+      '1', '2', '3', '4',
+    ])
+  })
+
   it('captures error', () => {
     const action = {
       type: 'foobar.baz',

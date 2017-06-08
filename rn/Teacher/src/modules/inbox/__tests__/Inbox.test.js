@@ -26,6 +26,35 @@ it('renders correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
+it('doesnt call refresh function if there is no next function', () => {
+  let props = {
+    conversations: [template.conversation()],
+    refreshInboxAll: jest.fn(),
+    scope: 'all',
+  }
+  let instance = renderer.create(
+    <Inbox {...props} />
+  ).getInstance()
+
+  expect(instance.getNextPage()).toBeFalsy()
+  expect(props.refreshInboxAll).not.toHaveBeenCalled
+})
+
+it('calls the refresh function with next if next is present', () => {
+  let props = {
+    conversations: [template.conversation()],
+    refreshInboxAll: jest.fn(),
+    scope: 'all',
+    next: jest.fn(),
+  }
+  let instance = renderer.create(
+    <Inbox {...props} />
+  ).getInstance()
+
+  instance.getNextPage()
+  expect(props.refreshInboxAll).toHaveBeenCalledWith(props.next)
+})
+
 it('mapStateToProps', () => {
   const c1 = template.conversation({
     id: '1',

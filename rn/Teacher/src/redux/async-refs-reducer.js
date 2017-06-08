@@ -19,9 +19,19 @@ export function asyncRefsReducer (
     [actionName]: handleAsync({
       pending: (state) => ({ ...state, pending: state.pending + 1 }),
       resolved: (state, result) => {
-        const refs: Array<string> = updatedRefs(result) || state.refs
+        let refs: Array<string> = updatedRefs(result) || state.refs
         const pending = Math.max(state.pending - 1, 0)
-        return { pending, refs }
+
+        let next
+        if (result.result) {
+          next = result.result.next
+        }
+
+        if (result.usedNext) {
+          refs = [...new Set([...state.refs, ...refs])]
+        }
+
+        return { pending, refs, next }
       },
       rejected: (state, { error }) => {
         const pending = Math.max(state.pending - 1, 0)
