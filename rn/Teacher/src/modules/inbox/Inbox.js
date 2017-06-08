@@ -3,6 +3,7 @@ import {
   View,
   FlatList,
   StyleSheet,
+  Text,
 } from 'react-native'
 import { connect } from 'react-redux'
 import refresh from '../../utils/refresh'
@@ -40,6 +41,13 @@ export class Inbox extends Component {
   }
 
   _renderComponent = (): React.Element<View> => {
+    if (!global.V05) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 18, color: 'gray' }}>{i18n('Coming Soon...')}</Text>
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <FilterHeader selected={this.props.scope} onFilterChange={this._onChangeFilter} />
