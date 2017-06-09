@@ -6,6 +6,7 @@ import RubricItem from '../RubricItem'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 
+jest.mock('../../../../common/components/CircleToggle', () => 'CircleToggle')
 jest.mock('react-native-button', () => 'Button')
 jest.mock('AlertIOS', () => ({
   prompt: jest.fn(),
@@ -94,7 +95,7 @@ describe('RubricItem', () => {
     ).toJSON()
 
     let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
-    button.props.onPress()
+    button.props.onPress(0)
 
     expect(defaultProps.changeRating).toHaveBeenCalledWith('2', 0)
   })
@@ -234,5 +235,20 @@ describe('RubricItem', () => {
 
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](0)
     expect(defaultProps.openCommentKeyboard).toHaveBeenCalledWith(defaultProps.rubricItem.id)
+  })
+
+  it('calls show tooltip with the rating description', () => {
+    const showToolTip = jest.fn()
+    let tree = renderer.create(
+      <RubricItem {...defaultProps} showToolTip={showToolTip} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
+    button.props.onLongPress(0, { x: 8, y: 9, width: 10, height: 44 })
+
+    expect(showToolTip).toHaveBeenCalledWith(
+      { x: 13, y: 9 },
+      defaultProps.rubricItem.ratings[0].description
+    )
   })
 })

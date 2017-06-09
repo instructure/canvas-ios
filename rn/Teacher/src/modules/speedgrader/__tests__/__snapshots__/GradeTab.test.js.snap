@@ -20,17 +20,17 @@ exports[`Rubric has the correct score 1`] = `
           "points": 10,
           "ratings": Array [
             Object {
-              "description": "Lame",
+              "description": "No Credit",
               "id": "1",
               "points": 0,
             },
             Object {
-              "description": "Lame",
+              "description": "Partial Credit",
               "id": "2",
               "points": 5,
             },
             Object {
-              "description": "Lame",
+              "description": "Full Credit",
               "id": "3",
               "points": 10,
             },
@@ -108,17 +108,17 @@ exports[`Rubric has the correct score 1`] = `
                   "points": 10,
                   "ratings": Array [
                     Object {
-                      "description": "Lame",
+                      "description": "No Credit",
                       "id": "1",
                       "points": 0,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Partial Credit",
                       "id": "2",
                       "points": 5,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Full Credit",
                       "id": "3",
                       "points": 10,
                     },
@@ -204,7 +204,6 @@ exports[`Rubric has the correct score 1`] = `
         <View
           style={
             Object {
-              "overflow": "hidden",
               "paddingBottom": 8,
               "paddingHorizontal": 16,
               "paddingTop": 16,
@@ -246,7 +245,15 @@ exports[`Rubric has the correct score 1`] = `
             }
           >
             <Button
+              accessibilityLabel="10 — Full Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -305,7 +312,15 @@ exports[`Rubric has the correct score 1`] = `
               </View>
             </Button>
             <Button
+              accessibilityLabel="5 — Partial Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -364,7 +379,15 @@ exports[`Rubric has the correct score 1`] = `
               </View>
             </Button>
             <Button
+              accessibilityLabel="0 — No Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -424,7 +447,14 @@ exports[`Rubric has the correct score 1`] = `
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -470,14 +500,14 @@ exports[`Rubric has the correct score 1`] = `
             }
           >
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.add-comment-2"
             >
               <Text
@@ -520,14 +550,14 @@ exports[`Rubric has the correct score 1`] = `
               </Text>
             </Button>
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.description"
             >
               <Text
@@ -597,17 +627,17 @@ exports[`Rubric renders a rubric 1`] = `
           "points": 10,
           "ratings": Array [
             Object {
-              "description": "Lame",
+              "description": "No Credit",
               "id": "1",
               "points": 0,
             },
             Object {
-              "description": "Lame",
+              "description": "Partial Credit",
               "id": "2",
               "points": 5,
             },
             Object {
-              "description": "Lame",
+              "description": "Full Credit",
               "id": "3",
               "points": 10,
             },
@@ -685,17 +715,17 @@ exports[`Rubric renders a rubric 1`] = `
                   "points": 10,
                   "ratings": Array [
                     Object {
-                      "description": "Lame",
+                      "description": "No Credit",
                       "id": "1",
                       "points": 0,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Partial Credit",
                       "id": "2",
                       "points": 5,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Full Credit",
                       "id": "3",
                       "points": 10,
                     },
@@ -781,7 +811,6 @@ exports[`Rubric renders a rubric 1`] = `
         <View
           style={
             Object {
-              "overflow": "hidden",
               "paddingBottom": 8,
               "paddingHorizontal": 16,
               "paddingTop": 16,
@@ -823,7 +852,15 @@ exports[`Rubric renders a rubric 1`] = `
             }
           >
             <Button
+              accessibilityLabel="10 — Full Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -882,7 +919,15 @@ exports[`Rubric renders a rubric 1`] = `
               </View>
             </Button>
             <Button
+              accessibilityLabel="5 — Partial Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -941,7 +986,15 @@ exports[`Rubric renders a rubric 1`] = `
               </View>
             </Button>
             <Button
+              accessibilityLabel="0 — No Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -1001,7 +1054,14 @@ exports[`Rubric renders a rubric 1`] = `
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -1047,14 +1107,14 @@ exports[`Rubric renders a rubric 1`] = `
             }
           >
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.add-comment-2"
             >
               <Text
@@ -1097,14 +1157,14 @@ exports[`Rubric renders a rubric 1`] = `
               </Text>
             </Button>
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.description"
             >
               <Text
@@ -1174,17 +1234,17 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           "points": 10,
           "ratings": Array [
             Object {
-              "description": "Lame",
+              "description": "No Credit",
               "id": "1",
               "points": 0,
             },
             Object {
-              "description": "Lame",
+              "description": "Partial Credit",
               "id": "2",
               "points": 5,
             },
             Object {
-              "description": "Lame",
+              "description": "Full Credit",
               "id": "3",
               "points": 10,
             },
@@ -1262,17 +1322,17 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   "points": 10,
                   "ratings": Array [
                     Object {
-                      "description": "Lame",
+                      "description": "No Credit",
                       "id": "1",
                       "points": 0,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Partial Credit",
                       "id": "2",
                       "points": 5,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Full Credit",
                       "id": "3",
                       "points": 10,
                     },
@@ -1358,7 +1418,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
         <View
           style={
             Object {
-              "overflow": "hidden",
               "paddingBottom": 8,
               "paddingHorizontal": 16,
               "paddingTop": 16,
@@ -1400,7 +1459,15 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             }
           >
             <Button
+              accessibilityLabel="10 — Full Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -1459,7 +1526,15 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               </View>
             </Button>
             <Button
+              accessibilityLabel="5 — Partial Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -1518,7 +1593,15 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               </View>
             </Button>
             <Button
+              accessibilityLabel="0 — No Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -1578,7 +1661,14 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -1624,14 +1714,14 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             }
           >
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.add-comment-2"
             >
               <Text
@@ -1674,14 +1764,14 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               </Text>
             </Button>
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.description"
             >
               <Text
@@ -1782,8 +1872,10 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           value=""
         />
         <Button
-          accessibilityLabel="Send"
-          containerStyle={
+          accessibilityComponentType="button"
+          accessibilityTraits="button"
+          activeOpacity={1}
+          style={
             Object {
               "alignItems": "center",
               "backgroundColor": "#374A59",
@@ -1796,8 +1888,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               "width": 24,
             }
           }
-          disabled={true}
-          onPress={[Function]}
           testID="comment-input.send"
         >
           <Image
@@ -1941,17 +2031,17 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           "points": 10,
           "ratings": Array [
             Object {
-              "description": "Lame",
+              "description": "No Credit",
               "id": "1",
               "points": 0,
             },
             Object {
-              "description": "Lame",
+              "description": "Partial Credit",
               "id": "2",
               "points": 5,
             },
             Object {
-              "description": "Lame",
+              "description": "Full Credit",
               "id": "3",
               "points": 10,
             },
@@ -2029,17 +2119,17 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   "points": 10,
                   "ratings": Array [
                     Object {
-                      "description": "Lame",
+                      "description": "No Credit",
                       "id": "1",
                       "points": 0,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Partial Credit",
                       "id": "2",
                       "points": 5,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Full Credit",
                       "id": "3",
                       "points": 10,
                     },
@@ -2131,7 +2221,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
         <View
           style={
             Object {
-              "overflow": "hidden",
               "paddingBottom": 8,
               "paddingHorizontal": 16,
               "paddingTop": 16,
@@ -2173,7 +2262,15 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             }
           >
             <Button
+              accessibilityLabel="10 — Full Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -2232,7 +2329,15 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               </View>
             </Button>
             <Button
+              accessibilityLabel="5 — Partial Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -2291,7 +2396,15 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               </View>
             </Button>
             <Button
+              accessibilityLabel="0 — No Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -2351,7 +2464,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -2397,14 +2517,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             }
           >
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.add-comment-2"
             >
               <Text
@@ -2447,14 +2567,14 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               </Text>
             </Button>
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.description"
             >
               <Text
@@ -2524,17 +2644,17 @@ exports[`Rubric shows the save button when there is a change in the rubric score
           "points": 10,
           "ratings": Array [
             Object {
-              "description": "Lame",
+              "description": "No Credit",
               "id": "1",
               "points": 0,
             },
             Object {
-              "description": "Lame",
+              "description": "Partial Credit",
               "id": "2",
               "points": 5,
             },
             Object {
-              "description": "Lame",
+              "description": "Full Credit",
               "id": "3",
               "points": 10,
             },
@@ -2612,17 +2732,17 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   "points": 10,
                   "ratings": Array [
                     Object {
-                      "description": "Lame",
+                      "description": "No Credit",
                       "id": "1",
                       "points": 0,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Partial Credit",
                       "id": "2",
                       "points": 5,
                     },
                     Object {
-                      "description": "Lame",
+                      "description": "Full Credit",
                       "id": "3",
                       "points": 10,
                     },
@@ -2700,13 +2820,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               </Text>
             </View>
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-details.save"
             >
               <Text
@@ -2756,7 +2877,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
         <View
           style={
             Object {
-              "overflow": "hidden",
               "paddingBottom": 8,
               "paddingHorizontal": 16,
               "paddingTop": 16,
@@ -2798,7 +2918,15 @@ exports[`Rubric shows the save button when there is a change in the rubric score
             }
           >
             <Button
+              accessibilityLabel="10 — Full Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -2857,7 +2985,15 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               </View>
             </Button>
             <Button
+              accessibilityLabel="5 — Partial Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -2916,7 +3052,15 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               </View>
             </Button>
             <Button
+              accessibilityLabel="0 — No Credit"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={true}
+              onLongPress={[Function]}
               onPress={[Function]}
               style={
                 Object {
@@ -2979,7 +3123,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
             </Button>
             <Button
               accessibilityLabel="Customize Grade"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
               on={false}
+              onLongPress={undefined}
               onPress={[Function]}
               style={
                 Object {
@@ -3025,14 +3176,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
             }
           >
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.add-comment-2"
             >
               <Text
@@ -3075,14 +3226,14 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               </Text>
             </Button>
             <Button
+              accessibilityComponentType="button"
+              accessibilityTraits="button"
+              activeOpacity={0.2}
+              onLongPress={undefined}
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                  "paddingRight": 16,
-                }
-              }
+              onPressIn={undefined}
+              onPressOut={undefined}
+              style={undefined}
               testID="rubric-item.description"
             >
               <Text

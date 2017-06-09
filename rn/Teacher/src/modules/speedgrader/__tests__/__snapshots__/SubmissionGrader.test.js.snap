@@ -275,11 +275,12 @@ exports[`SubmissionGrader renders 1`] = `
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={[Function]}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 7,
+                  "_debugID": 8,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -511,6 +512,7 @@ exports[`SubmissionGrader renders 1`] = `
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={[Function]}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -519,8 +521,8 @@ exports[`SubmissionGrader renders 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 10,
+                  "_mountIndex": 3,
+                  "_mountOrder": 11,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -691,12 +693,13 @@ exports[`SubmissionGrader renders 1`] = `
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 16,
+                    "_debugID": 17,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -928,6 +931,7 @@ exports[`SubmissionGrader renders 1`] = `
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={[Function]}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -1086,6 +1090,7 @@ exports[`SubmissionGrader renders 1`] = `
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -1125,7 +1130,7 @@ exports[`SubmissionGrader renders 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 11,
+                    "_mountOrder": 12,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -1299,6 +1304,7 @@ exports[`SubmissionGrader renders 1`] = `
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -1325,6 +1331,7 @@ exports[`SubmissionGrader renders 1`] = `
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={[Function]}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -1356,6 +1363,7 @@ exports[`SubmissionGrader renders 1`] = `
             "unregisterCommentProgress": [Function],
           }
         }
+        showToolTip={[Function]}
         submissionID="1"
         submissionProps={Object {}}
       />
@@ -1619,11 +1627,12 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={[Function]}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 7,
+                  "_debugID": 8,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -1855,6 +1864,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={[Function]}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -1863,8 +1873,8 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 10,
+                  "_mountIndex": 3,
+                  "_mountOrder": 11,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -2035,12 +2045,13 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 16,
+                    "_debugID": 17,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -2272,6 +2283,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={[Function]}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -2430,6 +2442,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -2469,7 +2482,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 11,
+                    "_mountOrder": 12,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -2643,6 +2656,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -2669,6 +2683,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={[Function]}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -2708,11 +2723,12 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={undefined}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 45,
+                  "_debugID": 47,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -2944,6 +2960,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={undefined}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -2952,8 +2969,8 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 32,
+                  "_mountIndex": 3,
+                  "_mountOrder": 34,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -3124,12 +3141,13 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 54,
+                    "_debugID": 56,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -3361,6 +3379,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={undefined}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -3519,6 +3538,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -3558,7 +3578,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 33,
+                    "_mountOrder": 35,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -3732,6 +3752,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -3758,6 +3779,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={undefined}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -3801,7 +3823,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 123,
+                  "_debugID": 127,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -4041,8 +4063,8 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 78,
+                  "_mountIndex": 3,
+                  "_mountOrder": 82,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -4218,7 +4240,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 132,
+                    "_debugID": 136,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -4647,7 +4669,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 79,
+                    "_mountOrder": 83,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -4908,7 +4930,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 163,
+                  "_debugID": 168,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -5183,8 +5205,8 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 101,
+                  "_mountIndex": 3,
+                  "_mountOrder": 106,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -5378,7 +5400,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 172,
+                    "_debugID": 177,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -5860,7 +5882,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 102,
+                    "_mountOrder": 107,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -6146,7 +6168,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 202,
+                  "_debugID": 208,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -6399,8 +6421,8 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 123,
+                  "_mountIndex": 3,
+                  "_mountOrder": 129,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -6583,7 +6605,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 211,
+                    "_debugID": 217,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -7032,7 +7054,7 @@ exports[`SubmissionGrader shows no files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 124,
+                    "_mountOrder": 130,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -7551,11 +7573,12 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={[Function]}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 7,
+                  "_debugID": 8,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -7787,6 +7810,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={[Function]}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -7795,8 +7819,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 10,
+                  "_mountIndex": 3,
+                  "_mountOrder": 11,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -7967,12 +7991,13 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 16,
+                    "_debugID": 17,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -8204,6 +8229,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={[Function]}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -8362,6 +8388,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -8401,7 +8428,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 11,
+                    "_mountOrder": 12,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -8575,6 +8602,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -8601,6 +8629,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={[Function]}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -8640,11 +8669,12 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={undefined}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 45,
+                  "_debugID": 47,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -8876,6 +8906,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={undefined}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -8884,8 +8915,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 32,
+                  "_mountIndex": 3,
+                  "_mountOrder": 34,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -9056,12 +9087,13 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 54,
+                    "_debugID": 56,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -9293,6 +9325,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={undefined}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -9451,6 +9484,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -9490,7 +9524,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 33,
+                    "_mountOrder": 35,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -9664,6 +9698,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -9690,6 +9725,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={undefined}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -9733,7 +9769,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 123,
+                  "_debugID": 127,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -9973,8 +10009,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 78,
+                  "_mountIndex": 3,
+                  "_mountOrder": 82,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -10150,7 +10186,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 132,
+                    "_debugID": 136,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -10579,7 +10615,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 79,
+                    "_mountOrder": 83,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -10840,7 +10876,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 163,
+                  "_debugID": 168,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -11115,8 +11151,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 101,
+                  "_mountIndex": 3,
+                  "_mountOrder": 106,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -11310,7 +11346,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 172,
+                    "_debugID": 177,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -11792,7 +11828,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 102,
+                    "_mountOrder": 107,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -12078,7 +12114,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 202,
+                  "_debugID": 208,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -12331,8 +12367,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 123,
+                  "_mountIndex": 3,
+                  "_mountOrder": 129,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -12515,7 +12551,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 211,
+                    "_debugID": 217,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -12964,7 +13000,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 124,
+                    "_mountOrder": 130,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -13246,7 +13282,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 241,
+                  "_debugID": 248,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -13535,8 +13571,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 145,
+                  "_mountIndex": 3,
+                  "_mountOrder": 152,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -13737,7 +13773,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 250,
+                    "_debugID": 257,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -14240,7 +14276,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 146,
+                    "_mountOrder": 153,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -14544,7 +14580,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 280,
+                  "_debugID": 288,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -14805,8 +14841,8 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 167,
+                  "_mountIndex": 3,
+                  "_mountOrder": 175,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -14993,7 +15029,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 289,
+                    "_debugID": 297,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -15454,7 +15490,7 @@ exports[`SubmissionGrader shows no files on files tab from submission_history 1`
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 168,
+                    "_mountOrder": 176,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -15992,11 +16028,12 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={[Function]}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 7,
+                  "_debugID": 8,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -16228,6 +16265,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={[Function]}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -16236,8 +16274,8 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 10,
+                  "_mountIndex": 3,
+                  "_mountOrder": 11,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -16408,12 +16446,13 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 16,
+                    "_debugID": 17,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -16645,6 +16684,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={[Function]}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -16803,6 +16843,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -16842,7 +16883,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 11,
+                    "_mountOrder": 12,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -17016,6 +17057,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -17042,6 +17084,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={[Function]}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -17081,11 +17124,12 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={undefined}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 45,
+                  "_debugID": 47,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -17317,6 +17361,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={undefined}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -17325,8 +17370,8 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 32,
+                  "_mountIndex": 3,
+                  "_mountOrder": 34,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -17497,12 +17542,13 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 54,
+                    "_debugID": 56,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -17734,6 +17780,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={undefined}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -17892,6 +17939,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -17931,7 +17979,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 33,
+                    "_mountOrder": 35,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -18105,6 +18153,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -18131,6 +18180,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={undefined}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -18174,7 +18224,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 123,
+                  "_debugID": 127,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -18414,8 +18464,8 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 78,
+                  "_mountIndex": 3,
+                  "_mountOrder": 82,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -18591,7 +18641,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 132,
+                    "_debugID": 136,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -19020,7 +19070,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 79,
+                    "_mountOrder": 83,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -19281,7 +19331,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 163,
+                  "_debugID": 168,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -19556,8 +19606,8 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 101,
+                  "_mountIndex": 3,
+                  "_mountOrder": 106,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -19751,7 +19801,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 172,
+                    "_debugID": 177,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -20233,7 +20283,7 @@ exports[`SubmissionGrader shows number of files on files tab 1`] = `
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 102,
+                    "_mountOrder": 107,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -20799,11 +20849,12 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={[Function]}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 7,
+                  "_debugID": 8,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -21035,6 +21086,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={[Function]}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -21043,8 +21095,8 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 10,
+                  "_mountIndex": 3,
+                  "_mountOrder": 11,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -21215,12 +21267,13 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 16,
+                    "_debugID": 17,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -21452,6 +21505,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={[Function]}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -21610,6 +21664,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -21649,7 +21704,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 11,
+                    "_mountOrder": 12,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -21823,6 +21878,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={[Function]}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -21849,6 +21905,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={[Function]}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -21888,11 +21945,12 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           >
                     <GradeTab
                               drawerState={[Circular]}
+                              showToolTip={undefined}
                               submissionID="1"
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 45,
+                  "_debugID": 47,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -22124,6 +22182,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                         </DrawerHandleView>
                                         <GradeTab
                                                   drawerState={[Circular]}
+                                                  showToolTip={undefined}
                                                   submissionID="1"
                                                   submissionProps={Object {}}
                                         />
@@ -22132,8 +22191,8 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 32,
+                  "_mountIndex": 3,
+                  "_mountOrder": 34,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -22304,12 +22363,13 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   </Unknown>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 54,
+                    "_debugID": 56,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -22541,6 +22601,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                               </DrawerHandleView>
                                               <GradeTab
                                                           drawerState={[Circular]}
+                                                          showToolTip={undefined}
                                                           submissionID="1"
                                                           submissionProps={Object {}}
                                               />
@@ -22699,6 +22760,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                             </Unknown>
                             <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                             />
@@ -22738,7 +22800,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 33,
+                    "_mountOrder": 35,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -22912,6 +22974,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   </DrawerHandleView>
                                   <GradeTab
                                               drawerState={[Circular]}
+                                              showToolTip={undefined}
                                               submissionID="1"
                                               submissionProps={Object {}}
                                   />
@@ -22938,6 +23001,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                 "props": Object {
                   "children": <GradeTab
                     drawerState={[Circular]}
+                    showToolTip={undefined}
                     submissionID="1"
                     submissionProps={Object {}}
           />,
@@ -22981,7 +23045,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                               submissionProps={Object {}}
                     />
           </BottomDrawer>,
-                  "_debugID": 123,
+                  "_debugID": 127,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -23221,8 +23285,8 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 78,
+                  "_mountIndex": 3,
+                  "_mountOrder": 82,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -23398,7 +23462,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 132,
+                    "_debugID": 136,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -23827,7 +23891,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 79,
+                    "_mountOrder": 83,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -24088,7 +24152,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 163,
+                  "_debugID": 168,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -24363,8 +24427,8 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 101,
+                  "_mountIndex": 3,
+                  "_mountOrder": 106,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -24558,7 +24622,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 172,
+                    "_debugID": 177,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -25040,7 +25104,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 102,
+                    "_mountOrder": 107,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -25326,7 +25390,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 202,
+                  "_debugID": 208,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -25579,8 +25643,8 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 123,
+                  "_mountIndex": 3,
+                  "_mountOrder": 129,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -25763,7 +25827,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 211,
+                    "_debugID": 217,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -26212,7 +26276,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 124,
+                    "_mountOrder": 130,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,
@@ -26494,7 +26558,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                               }
                     />
           </BottomDrawer>,
-                  "_debugID": 241,
+                  "_debugID": 248,
                   "_hostContainerInfo": Object {
                     "createNodeMock": [Function],
                   },
@@ -26783,8 +26847,8 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
           </View>,
                   "_instance": [Circular],
                   "_mountImage": null,
-                  "_mountIndex": 2,
-                  "_mountOrder": 145,
+                  "_mountIndex": 3,
+                  "_mountOrder": 152,
                   "_pendingCallbacks": null,
                   "_pendingElement": null,
                   "_pendingForceUpdate": false,
@@ -26985,7 +27049,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                                   />
                       </AnimatedComponent>
           </View>,
-                    "_debugID": 250,
+                    "_debugID": 257,
                     "_hostContainerInfo": Object {
                       "createNodeMock": [Function],
                     },
@@ -27488,7 +27552,7 @@ exports[`SubmissionGrader shows number of files on files tab from submission_his
                     },
                     "_mountImage": null,
                     "_mountIndex": 0,
-                    "_mountOrder": 146,
+                    "_mountOrder": 153,
                     "_pendingCallbacks": null,
                     "_pendingElement": null,
                     "_pendingForceUpdate": false,

@@ -4,7 +4,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
 <View
   style={
     Object {
-      "overflow": "hidden",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -45,8 +44,10 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       }
     }
   >
-    <Button
+    <CircleToggle
+      accessibilityLabel="10 — Full Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -57,55 +58,12 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       testID="rubric-item.points-3"
       value={10}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          10
-        </Text>
-      </View>
-    </Button>
-    <Button
-      on={true}
+      10
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="5 — Partial Credit"
+      on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -116,58 +74,12 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       testID="rubric-item.points-2"
       value={5}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "white",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          5
-        </Text>
-      </View>
-    </Button>
-    <Button
+      5
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="0 — No Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -178,54 +90,9 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       testID="rubric-item.points-1"
       value={0}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          0
-        </Text>
-      </View>
-    </Button>
-    <Button
+      0
+    </CircleToggle>
+    <CircleToggle
       accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
@@ -238,32 +105,10 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       testID="rubric-item.customize-grade-2"
       value=""
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Image
-          source={1}
-        />
-      </View>
-    </Button>
+      <Image
+        source={1}
+      />
+    </CircleToggle>
   </View>
   <View
     style={
@@ -380,7 +225,6 @@ exports[`RubricItem renders 1`] = `
 <View
   style={
     Object {
-      "overflow": "hidden",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -421,8 +265,10 @@ exports[`RubricItem renders 1`] = `
       }
     }
   >
-    <Button
+    <CircleToggle
+      accessibilityLabel="10 — Full Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -433,55 +279,12 @@ exports[`RubricItem renders 1`] = `
       testID="rubric-item.points-3"
       value={10}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          10
-        </Text>
-      </View>
-    </Button>
-    <Button
+      10
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="5 — Partial Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -492,55 +295,12 @@ exports[`RubricItem renders 1`] = `
       testID="rubric-item.points-2"
       value={5}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          5
-        </Text>
-      </View>
-    </Button>
-    <Button
+      5
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="0 — No Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -551,54 +311,9 @@ exports[`RubricItem renders 1`] = `
       testID="rubric-item.points-1"
       value={0}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          0
-        </Text>
-      </View>
-    </Button>
-    <Button
+      0
+    </CircleToggle>
+    <CircleToggle
       accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
@@ -611,32 +326,10 @@ exports[`RubricItem renders 1`] = `
       testID="rubric-item.customize-grade-2"
       value=""
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Image
-          source={1}
-        />
-      </View>
-    </Button>
+      <Image
+        source={1}
+      />
+    </CircleToggle>
   </View>
   <View
     style={
@@ -753,7 +446,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
 <View
   style={
     Object {
-      "overflow": "hidden",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -794,8 +486,10 @@ exports[`RubricItem renders an already selected grade 1`] = `
       }
     }
   >
-    <Button
+    <CircleToggle
+      accessibilityLabel="10 — Full Credit"
       on={true}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -806,58 +500,12 @@ exports[`RubricItem renders an already selected grade 1`] = `
       testID="rubric-item.points-3"
       value={10}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "white",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          10
-        </Text>
-      </View>
-    </Button>
-    <Button
+      10
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="5 — Partial Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -868,55 +516,12 @@ exports[`RubricItem renders an already selected grade 1`] = `
       testID="rubric-item.points-2"
       value={5}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          5
-        </Text>
-      </View>
-    </Button>
-    <Button
+      5
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="0 — No Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -927,54 +532,9 @@ exports[`RubricItem renders an already selected grade 1`] = `
       testID="rubric-item.points-1"
       value={0}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          0
-        </Text>
-      </View>
-    </Button>
-    <Button
+      0
+    </CircleToggle>
+    <CircleToggle
       accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
@@ -987,32 +547,10 @@ exports[`RubricItem renders an already selected grade 1`] = `
       testID="rubric-item.customize-grade-2"
       value=""
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Image
-          source={1}
-        />
-      </View>
-    </Button>
+      <Image
+        source={1}
+      />
+    </CircleToggle>
   </View>
   <View
     style={
@@ -1129,7 +667,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
 <View
   style={
     Object {
-      "overflow": "hidden",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -1170,8 +707,10 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       }
     }
   >
-    <Button
+    <CircleToggle
+      accessibilityLabel="10 — Full Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -1182,55 +721,12 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       testID="rubric-item.points-3"
       value={10}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          10
-        </Text>
-      </View>
-    </Button>
-    <Button
+      10
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="5 — Partial Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -1241,55 +737,12 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       testID="rubric-item.points-2"
       value={5}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          5
-        </Text>
-      </View>
-    </Button>
-    <Button
+      5
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="0 — No Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -1300,54 +753,9 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       testID="rubric-item.points-1"
       value={0}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          0
-        </Text>
-      </View>
-    </Button>
-    <Button
+      0
+    </CircleToggle>
+    <CircleToggle
       accessibilityLabel="Customize Grade"
       on={true}
       onPress={[Function]}
@@ -1360,56 +768,8 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       testID="rubric-item.customize-grade-2"
       value="12"
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-            Object {
-              "backgroundColor": "#374A59",
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "white",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          12
-        </Text>
-      </View>
-    </Button>
+      12
+    </CircleToggle>
   </View>
   <View
     style={
@@ -1526,7 +886,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
 <View
   style={
     Object {
-      "overflow": "hidden",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -1567,8 +926,10 @@ exports[`RubricItem will not show the add comment button and will show the comme
       }
     }
   >
-    <Button
+    <CircleToggle
+      accessibilityLabel="10 — Full Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -1579,55 +940,12 @@ exports[`RubricItem will not show the add comment button and will show the comme
       testID="rubric-item.points-3"
       value={10}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          10
-        </Text>
-      </View>
-    </Button>
-    <Button
+      10
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="5 — Partial Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -1638,55 +956,12 @@ exports[`RubricItem will not show the add comment button and will show the comme
       testID="rubric-item.points-2"
       value={5}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          5
-        </Text>
-      </View>
-    </Button>
-    <Button
+      5
+    </CircleToggle>
+    <CircleToggle
+      accessibilityLabel="0 — No Credit"
       on={false}
+      onLongPress={[Function]}
       onPress={[Function]}
       style={
         Object {
@@ -1697,54 +972,9 @@ exports[`RubricItem will not show the add comment button and will show the comme
       testID="rubric-item.points-1"
       value={0}
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={false}
-          allowFontScaling={true}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              Object {
-                "color": "black",
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          0
-        </Text>
-      </View>
-    </Button>
-    <Button
+      0
+    </CircleToggle>
+    <CircleToggle
       accessibilityLabel="Customize Grade"
       on={false}
       onPress={[Function]}
@@ -1757,32 +987,10 @@ exports[`RubricItem will not show the add comment button and will show the comme
       testID="rubric-item.customize-grade-2"
       value=""
     >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "borderColor": "#C7CDD1",
-              "borderRadius": 24,
-              "borderWidth": 0.5,
-              "flex": 1,
-              "height": 48,
-              "justifyContent": "center",
-              "minWidth": 48,
-              "paddingHorizontal": 8,
-            },
-            Object {
-              "marginBottom": 8,
-              "marginRight": 8,
-            },
-          ]
-        }
-      >
-        <Image
-          source={1}
-        />
-      </View>
-    </Button>
+      <Image
+        source={1}
+      />
+    </CircleToggle>
   </View>
   <View
     style={

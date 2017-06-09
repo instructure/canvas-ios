@@ -11,7 +11,8 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
-import { CircleToggle, LinkButton } from '../../../common/buttons'
+import { LinkButton } from '../../../common/buttons'
+import CircleToggle from '../../../common/components/CircleToggle'
 import Images from '../../../images'
 import ChatBubble from '../comments/ChatBubble'
 
@@ -89,6 +90,14 @@ export default class RubricItem extends Component {
     })
   }
 
+  showToolTip = (value: ?number, { x, y, width }: { x: number, y: number, width: number }) => {
+    const rubricItem = this.props.rubricItem
+    const rating = rubricItem.ratings.find(rating => rating.points === value)
+    if (rating && this.props.showToolTip) {
+      this.props.showToolTip({ x: x + width / 2, y }, rating.description)
+    }
+  }
+
   render () {
     let { rubricItem } = this.props
     let isCustomGrade = this.isCustomGrade()
@@ -104,6 +113,8 @@ export default class RubricItem extends Component {
               on={this.state.selectedOption === rating.points}
               value={rating.points}
               onPress={this.changeSelected}
+              onLongPress={this.showToolTip}
+              accessibilityLabel={`${rating.points} — ${rating.description}`}
               testID={`rubric-item.points-${rating.id}`}
             >
               {rating.points}
@@ -160,7 +171,6 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingBottom: 8,
     paddingHorizontal: 16,
-    overflow: 'hidden',
   },
   description: {
     fontWeight: '600',
@@ -203,6 +213,7 @@ type RubricItemProps = {
   changeRating: (string, number) => void,
   openCommentKeyboard: (string) => void,
   deleteComment: (string) => void,
+  showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
 }
 
 type RubricItemState = {

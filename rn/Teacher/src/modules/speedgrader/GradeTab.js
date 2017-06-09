@@ -161,6 +161,7 @@ export class GradeTab extends Component {
         grade={this.state.ratings[item.id]}
         openCommentKeyboard={this.openCommentKeyboard}
         deleteComment={this.deleteComment}
+        showToolTip={this.props.showToolTip}
       />
     )
   }
@@ -243,6 +244,7 @@ type RubricOwnProps = {
   userID: string,
   navigator: Navigator,
   drawerState: DrawerState,
+  showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
 }
 
 type RubricDataProps = {

@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders circle toggle correctly 1`] = `
+<Button
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  accessible={true}
+  on={false}
+  onLongPress={undefined}
+  onPress={[Function]}
+  testID="circle-button"
+  value="1"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 24,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 48,
+          "justifyContent": "center",
+          "minWidth": 48,
+          "paddingHorizontal": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={false}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "black",
+            "fontWeight": "500",
+          },
+        ]
+      }
+    >
+      4
+    </Text>
+  </View>
+</Button>
+`;
+
+exports[`renders circle toggle when on correctly 1`] = `
+<Button
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  accessible={true}
+  on={true}
+  onLongPress={undefined}
+  onPress={[Function]}
+  testID="circle-button"
+  value="1"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 24,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 48,
+          "justifyContent": "center",
+          "minWidth": 48,
+          "paddingHorizontal": 8,
+        },
+        undefined,
+        Object {
+          "backgroundColor": "#374A59",
+        },
+      ]
+    }
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={false}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          Object {
+            "color": "white",
+            "fontWeight": "500",
+          },
+        ]
+      }
+    >
+      4
+    </Text>
+  </View>
+</Button>
+`;
+
+exports[`renders circle toggle with an image 1`] = `
+<Button
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  accessible={true}
+  on={false}
+  onLongPress={undefined}
+  onPress={[Function]}
+  testID="circle-button"
+  value="1"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderColor": "#C7CDD1",
+          "borderRadius": 24,
+          "borderWidth": 0.5,
+          "flex": 1,
+          "height": 48,
+          "justifyContent": "center",
+          "minWidth": 48,
+          "paddingHorizontal": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Image
+      source={1}
+    />
+  </View>
+</Button>
+`;

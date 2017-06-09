@@ -15,6 +15,7 @@ import FilesTab from './components/FilesTab'
 import CommentsTab from './comments/CommentsTab'
 import DrawerState from './utils/drawer-state'
 import SubmissionViewer from './SubmissionViewer'
+import ToolTip from '../../common/components/ToolTip'
 
 let { width, height } = Dimensions.get('window')
 
@@ -43,6 +44,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   state: State
   props: SubmissionGraderProps
   drawer: BottomDrawer
+  toolTip: ?ToolTip
 
   constructor (props: SubmissionGraderProps) {
     super(props)
@@ -52,6 +54,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       height: height,
       selectedTabIndex: 0,
     }
+  }
+
+  captureToolTip = (toolTip: ToolTip) => {
+    this.toolTip = toolTip
   }
 
   changeTab = (e: any) => {
@@ -70,7 +76,8 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   renderTab (tab: ?number): ?React.Element<*> {
     switch (tab) {
       case 0:
-        return <GradeTab {...this.props} />
+        const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined
+        return <GradeTab {...this.props} showToolTip={showToolTip} />
       case 1:
         return <CommentsTab {...this.props} />
       case 2:
@@ -123,6 +130,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           }),
         }]}
       >
+        <ToolTip ref={this.captureToolTip} />
         <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} />
         <SubmissionViewer {...this.props} size={{ width, height }} />
         <BottomDrawer

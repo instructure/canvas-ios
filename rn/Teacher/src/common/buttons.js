@@ -2,15 +2,13 @@
  * @flow
  */
 
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import ReactNative, {
   StyleSheet,
-  View,
 } from 'react-native'
 import BaseButton from 'react-native-button'
 import colors from './colors'
-import branding from './branding'
-import { Text, Heading1, BOLD_FONT } from './text'
+import { Text, BOLD_FONT } from './text'
 
 export function Button ({ style, containerStyle, ...props }: Object): ReactNative.TouchableHighlight {
   let brandingContainerStyles = {
@@ -29,45 +27,6 @@ export class LinkButton extends Component {
     }
     return (
       <BaseButton {...this.props}><Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>{this.props.children}</Text></BaseButton>
-    )
-  }
-}
-
-export class CircleToggle extends PureComponent {
-  props: {
-    on: boolean,
-    children?: any,
-    style?: any,
-    value: any,
-    onPress: Function,
-  }
-
-  onPress = () => {
-    this.props.onPress(this.props.value)
-  }
-
-  render () {
-    let viewStyle = [circleButtonStyles.container, this.props.style]
-    let textStyle = {
-      fontWeight: '500',
-      color: 'black',
-    }
-    if (this.props.on) {
-      viewStyle.push({
-        backgroundColor: branding.primaryBrandColor,
-      })
-      textStyle.color = 'white'
-    }
-
-    return (
-      <BaseButton {...this.props} onPress={this.onPress}>
-        <View style={viewStyle}>
-          {typeof this.props.children === 'object'
-            ? this.props.children
-            : <Heading1 style={textStyle} accessible={false}>{this.props.children}</Heading1>
-          }
-        </View>
-      </BaseButton>
     )
   }
 }
@@ -91,19 +50,5 @@ const linkButtonStyles = StyleSheet.create({
   textColor: {
     fontSize: 14,
     color: colors.primaryButtonColor,
-  },
-})
-
-const circleButtonStyles = StyleSheet.create({
-  container: {
-    borderColor: '#C7CDD1',
-    borderWidth: StyleSheet.hairlineWidth,
-    minWidth: 48,
-    height: 48,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 24,
-    flex: 1,
-    paddingHorizontal: 8,
   },
 })
