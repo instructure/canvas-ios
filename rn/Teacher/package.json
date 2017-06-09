@@ -25,6 +25,7 @@
     "react-native-blur": "^3.0.0-alpha",
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.1",
+    "react-native-fs": "^2.3.2",
     "react-native-image-picker": "^0.26.3",
     "react-native-interactable": "https://github.com/derrh/react-native-interactable.git",
     "react-native-keyboard-aware-scroll-view": "^0.2.8",

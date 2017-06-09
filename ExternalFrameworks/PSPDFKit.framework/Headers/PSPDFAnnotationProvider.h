@@ -2,7 +2,7 @@
 //  PSPDFAnnotationProvider.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -26,23 +26,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// (If you're doing parsing, block and then in the queue re-check so you're not parsing multiple times for the same page)
 ///
 /// @note You should always use `PSPDFContainerAnnotationProvider` as the base class for your custom annotation provider.
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationProvider <NSObject>
-
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationProvider<NSObject>
 
 /// Return any annotations that should be displayed on that page.
 ///
 /// @note This method needs to be accessible FROM ANY THREAD.
 /// You can block here and do your processing but try to cache the result, this method is called often. (e.g. on every zoom change/rerendering)
 /// You're only getting the zero-based page index here. If needed, add a reference to `PSPDFDocumentProvider` during init or query the change notifier delegate.
-- (nullable NSArray<__kindof PSPDFAnnotation *> *)annotationsForPage:(NSUInteger)page;
+- (nullable NSArray<__kindof PSPDFAnnotation *> *)annotationsForPageAtIndex:(NSUInteger)pageIndex;
 
 @optional
 
-/// Return YES if `annotationsForPage:` is done preparing the cache, else NO.
-/// PSPDFKit will preload/access `annotationsForPage:` in a background thread and then re-access it on the main thread.
+/// Return YES if `annotationsForPageAtIndex:` is done preparing the cache, else NO.
+/// PSPDFKit will preload/access `annotationsForPageAtIndex:` in a background thread and then re-access it on the main thread.
 /// Defaults to YES if not implemented.
-/// @warning You NEED to return YES on this after `annotationsForPage:` has been accessed.
-- (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)page;
+/// @warning You NEED to return YES on this after `annotationsForPageAtIndex:` has been accessed.
+- (BOOL)hasLoadedAnnotationsForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Any annotation that returns YES on `isOverlay` needs a view class to be displayed.
 /// Will be called on all `annotationProviders` until someone doesn't return nil.
@@ -71,7 +70,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationProvider <NSObject>
 @property (nonatomic, readonly) BOOL shouldSaveAnnotations;
 
 /// Return all "dirty" = unsaved annotations.
-@property (nonatomic, readonly, nullable) NSDictionary<NSNumber *,NSArray<__kindof PSPDFAnnotation *> *> *dirtyAnnotations;
+@property (nonatomic, readonly, nullable) NSDictionary<NSNumber *, NSArray<__kindof PSPDFAnnotation *> *> *dirtyAnnotations;
 
 /// Callback if an annotation has been changed by PSPDFKit.
 /// This method will be called on ALL annotations, not just the ones that you provided.
@@ -84,7 +83,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationProvider <NSObject>
 
 /// To be notified on any changes PSPDFKit does on your annotations, implement this notifier.
 /// It will be set as soon as your class is added to the `annotationManager`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationProviderChangeNotifier <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationProviderChangeNotifier<NSObject>
 
 /// Call this from your code as soon as annotations change.
 /// This method can be called from any thread. (try to avoid the main thread)

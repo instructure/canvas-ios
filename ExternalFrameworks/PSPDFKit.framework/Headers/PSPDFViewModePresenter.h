@@ -2,7 +2,7 @@
 //  PSPDFViewModePresenter.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,11 +16,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFViewModePresenter <NSObject>
+/// Protocol for presenting a collection view with customization options.
+PSPDF_AVAILABLE_DECL @protocol PSPDFViewModePresenter<NSObject>
 
-/// Convenience initializer.
-/// @param layout The layout to use when loading the collection view.
-/// @note If `nil`, a controller specific default layout is selected.
+/**
+ Convenience initializer.
+ @param layout The layout to use when loading the collection view.
+ @note If `nil`, a controller specific default layout is selected.
+ */
 - (instancetype)initWithCollectionViewLayout:(nullable UICollectionViewLayout *)layout;
 
 /// Convenience initializer. Initializes the controller with the default layout and stores the document.
@@ -31,22 +34,26 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFViewModePresenter <NSObject>
 /// Current edited document.
 @property (nonatomic, nullable) PSPDFDocument *document;
 
-/// Used access the configuration, class overrides, etc.
+/// Used to access the configuration, class overrides, etc.
 @property (nonatomic, weak) id<PSPDFPresentationContext> presentationContext;
 
 /// @name Cells
 
-/// Class used for thumbnails.
-/// @warning Will be ignored if the layout is not a flow layout or a subclass thereof.
+/**
+ Class used for thumbnails.
+ @warning Will be ignored if the layout is not a flow layout or a subclass thereof.
+ */
 @property (nonatomic) Class cellClass;
 
 /// @name Layout
 
-/// A Boolean value specifying whether the thumbnails should be displayed in consistently spaced columns, or with consistent areas.
-/// For documents where all pages are the same size, this setting has no effect.
-/// If `YES`, thumbnails are laid out in columns. Landscape pages will be smaller than portrait pages. This tends to look better.
-/// If `NO`, all thumbnails have approximatly the same area.
-/// Defaults to `YES`.
+/**
+ A Boolean value specifying whether the thumbnails should be displayed in consistently spaced columns, or with consistent areas.
+ For documents where all pages are the same size, this setting has no effect.
+ If `YES`, thumbnails are laid out in columns. Landscape pages will be smaller than portrait pages. This tends to look better.
+ If `NO`, all thumbnails have approximatly the same area.
+ Defaults to `YES`.
+ */
 @property (nonatomic) BOOL fixedItemSizeEnabled;
 
 /// Adjusts the contentInset and scrollIndicatorInsets of the collectionView based on a bar that overlaps it by the specified height.

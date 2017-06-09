@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "Nästa";
 "Previous" = "Föregående";
 "Error" = "Fel";
+"More options" = "Fler alternativ";
+"Close All Tabs" = "Stäng alla flikar";
+"Close All Other Tabs" = "Stäng alla andra filkar"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Innehåll"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "Söker";
 "Done" = "Klar";
 "Indexing Documents" = "Indexerar dokument";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Dokumentet saknar innehåll";
+"Document" = "Dokument";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Sök anteckningar";
 
 // inline browser
 "Open in Safari" = "Öppna i Safari";
 "Open in Chrome" = "Öppna i Chrome";
 "Your %@ is not configured to send emails." = "Din %@ har inte ställts in för att skicka e-brev.";
-"The link is requesting to open %@Would you like to continue?" = "Länken vill öppna %@Fortsätt?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Länken vill öppna %1$@. %2$@Vill du fortsätta?"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "ett externt program"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "E-post"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "Text har kopierats till urklipp.";
-"Save To Camera Roll" = "Spara till kamerarullen";
+"Save to Photo Library" = "Spara till bildbibliotek";
 "Failed to extract image." = "Kunde inte extrahera bild.";
 "Type value or pick from list" = "Skriv värde eller välj från lista";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "Regnbåge";
 "Monochrome" = "Svartvitt";
 "Vintage" = "Gammaldags";
+"Modern" = "Modern";
 "Color" = "Färg";
 "Border" = "Kant";
 "Fill Color" = "Fyllningsfärg";
-"Line End Fill Color" = "Fyllningsfärg linjeslut";
+"Start and End Color" = "Start- och slutfärg";
 "Opacity" = "Opacitet";
-"%@ %%" = "%@ %%";
 "Thickness" = "Tjocklek";
 "%@ pt" = "%@ pt";
 "Yellow" = "Gult";
@@ -152,6 +157,7 @@
 "Highlight" = "Markera";
 "Underline" = "Understruken";
 "Squiggle" = "Våglinje";
+"Squiggly" = "Vågig";
 "StrikeOut" = "Överstruken";
 "Rectangle" = "Rektangel";
 "Ellipse" = "Ellips";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Ta bort signatur";
 "My Signature" = "Min signatur";
 "No Signatures" = "Inga signaturer"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Kundsignatur";
+"One Time Signature" = "Engångssignatur";
 "Please sign here" = "Signera här";
 "Note" = "Anteckning";
 "Text" = "Meddelande";
@@ -209,7 +215,8 @@
 "Ungroup" = "Dela upp";
 "Merge" = "Slå samman"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Exempel";
-"Annotation Summary for %@:\n" = "Sammanfattning av anteckningar i %@:\n";
+"Annotation Summary for %@:" = "Sammanfattning av anteckningar i %@:";
+"Show Text" = "Visa text";
 // title
 "Author Name" = "Författarnamn";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "Dra och ändra storlek"; // used as hint that inspector is resizable
 "Convert to" = "Konvertera till"; // used as label on action that changes free text intent type
 "Color Presets" = "Förval för färger";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Pratbubbla"; // freetext annotation with an arrow
 "Generic" = "Enkel"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "Breda punkter";
 "Narrow Dashes" = "Smala streck";
 "Wide Dashes" = "Breda streck";
+"Cloudy" = "Molnigt"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Godkänt";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Parkopplar";
 // text on a label; app and stylus are connected
-"Connected" = "Ansluten";
+"%@ Connected" = "%@ ansluten";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Nedkopplad";
+"%@ Disconnected" = "%@ frånkopplad";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Inställningar";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Anteckningarna infogas i PDF:en och kan bara läsas.";
 "Annotation Summary" = "Sammanfattning av anteckningar";
 "Embed Annotations into the PDF and also list them in the email." = "Bädda in anteckningarna i PDF:en och ta även med dem i e-brevet.";
+"Annotations will be listed in a text file." = "Anteckningar kommer att listas i en textfil.";
 "Files" = "Filer";
 "Send as single files" = "Skicka som enstaka filer";
 "Merge files" = "Slå samman filer";
 "Original File" = "Originalfil";
 "Range" = "Uppsättning";
 "Annotated Pages" = "Sidor med anteckningar";
+"Message could not be sent." = "Kunde inte skicka meddelande.";
+"Export" = "Exportera";
+"This action can't be performed." = "Åtgärden kan inte utföras.";
 
 // sound annotations
 "Speak" = "Tala"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Valfält";
 "Signature Field" = "Signaturfält";
 "Clear Field" = "Rensa fält"; // same as delete
-"Type value or pick from list" = "Skriv värde eller välj från lista";
 "Default Values" = "Förvalda värden";
 "Custom Value" = "Anpassat värde";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Ogiltigt värde: måste vara mindre än eller lika med %s.";
 "Invalid value: must be a number." = "Ogiltigt värde: måste vara ett tal.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Ogiltigt värde: måste vara ett datum.";
 
 // General validation
@@ -512,7 +524,7 @@
 "Loading..." = "Läser in...";
 "Locked" = "Låst";
 "The file you are trying to access is either not a PDF file or might be corrupted." = "Den önskade filen är antingen skadad eller inte en PDF-fil.";
-"A password is required to access this document." = "Ett lösenord krävs för tillgång till dokumentet.";
+"A password is required to access this document." = "Ett lösenord krävs för åtkomst till dokumentet.";
 "The security scheme of this document is currently not supported." = "Dokumentets säkerhetsschema stöds för närvarande inte.";
 "An unknown error has occured while trying to open this file." = "Ett okänt fel inträffade när filen skulle öppnas.";
 
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Rotera sidor";
 "Page Size" = "Pappersstorlek";
 "Background Color" = "Bakgrundsfärg";
+"Paper" = "Papper";
 "Pattern" = "Formulärelement";
 "Use Document Size" = "Använd dokumentets storlek";
 "Orientation" = "Riktning";
 "Portrait" = "Stående";
 "Landscape" = "Liggande";
-"Name" = "Namn";
 "Document Name" = "Dokumentnamn";
 "Documents" = "Dokument"; // Name of directory
-"Use Document Directory" = "Använd dokumentkatalogen";
-"Directory" = "Katalog";
+"Use Document Folder" = "Använd dokumentets mapp";
+"Folder" = "Mapp";
 "Replace File?" = "Ersätt fil?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Det finns redan en fil med namnet  \"%@\" på destinationen. Ska filen ersättas?";
 "Replace" = "Ersätt";
@@ -543,6 +555,15 @@
 "Save As…" = "Spara som…";
 "Discard Changes" = "Kasta ändringar";
 "Empty" = "Ogiltigt";
+"Use Image Size" = "Använd bildens storlek";
+"Page Background" = "Sidbakgrund";
+"Insert image annotation" = "Infoga bildanteckning";
+"Import page background" = "Importera sidbakgrund";
+"Quality" = "Kvalitet";
+"Low" = "Låg";
+"Medium" = "Centrerad";
+"High" = "Hög";
+"Best" = "Bäst";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Ett tomt dokument kan inte sparas.";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Text-till-taltjänsten är inte tillgänglig. Kontrollera att internetanslutningen är aktiv eller att Googles text-till-talmotor är installerad och påslagen på din enhet.";
+
+// Settings
+"Page Transition" = "Sidövergång";
+"Single" = "Enkel";
+"Continuous" = "Kontinuerlig";
+"Curl" = "Bläddra";
+"Scroll" = "Bläddra";
+"Horizontal" = "Vågrätt";
+"Vertical" = "Lodrätt";
+"Page Mode" = "Sidläge";
+"Automatic" = "Automatisk";
+"Double" = "Dubbel";
+"Appearance" = "Utseende";
+"Scrubber Bar" = "Bläddringslist";
+"Jump" = "Hoppa"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Ej tillgänglig"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Appen har inte åtkomst till dina bilder.";
+"This app does not have access to your camera." = "Appen har inte åtkomst till kameran.";
+"You can enable access in Privacy Settings." = "Aktivera åtkomst i integritetsinställningarna.";

@@ -2,7 +2,7 @@
 //  PSPDFGalleryView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,7 +15,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFGalleryContentView;
-@protocol PSPDFGalleryViewDataSource, PSPDFGalleryViewDelegate;
+@protocol PSPDFGalleryViewDataSource;
+@protocol PSPDFGalleryViewDelegate;
 
 /// A gallery view works a lot like a `UITableView`. It has content views, which need to be provided by
 /// a data source and can be reused. It is built on top of a `UIScrollView`.
@@ -62,7 +63,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryView : UIScrollView
 
 @end
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryViewDataSource <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryViewDataSource<NSObject>
 
 /// The number if items in a gallery.
 - (NSUInteger)numberOfItemsInGalleryView:(PSPDFGalleryView *)galleryView;
@@ -72,7 +73,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryViewDataSource <NSObject>
 
 @end
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryViewDelegate <UIScrollViewDelegate>
+PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryViewDelegate<UIScrollViewDelegate>
 
 @optional
 

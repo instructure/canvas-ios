@@ -83,7 +83,7 @@
     <key>All (%tu Page(s))</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
-        <string>All (%#@pages@)</string>
+        <string>Sve (%#@pages@)</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>
@@ -92,6 +92,46 @@
             <string>tu</string>
             <key>one</key>
             <string>%tu stranica</string>
+            <key>two</key>
+            <string>%tu stranice</string>
+            <key>other</key>
+            <string>%tu stranica</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Nema rezultata</string>
+            <key>one</key>
+            <string>%tu rezultat</string>
+            <key>two</key>
+            <string>%tu rezultata</string>
+            <key>other</key>
+            <string>%tu rezultata</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Pretražujem %#@pages@</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu stranicu</string>
+            <key>two</key>
+            <string>%tu stranice</string>
             <key>other</key>
             <string>%tu stranica</string>
         </dict>

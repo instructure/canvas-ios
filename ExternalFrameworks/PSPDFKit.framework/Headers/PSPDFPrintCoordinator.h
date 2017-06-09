@@ -2,7 +2,7 @@
 //  PSPDFPrintCoordinator.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,21 +11,30 @@
 //
 
 #import "PSPDFDocumentSharingCoordinator.h"
+#import "PSPDFPrintConfiguration.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Coordinates the `PSPDFDocumentSharingViewController` and `UIPrintInteractionController`.
-PSPDF_CLASS_AVAILABLE @interface PSPDFPrintCoordinator : PSPDFDocumentSharingCoordinator
+PSPDF_CLASS_AVAILABLE @interface PSPDFPrintCoordinator : PSPDFDocumentSharingCoordinator<UIPrintInteractionControllerDelegate, UIPrinterPickerControllerDelegate>
+
+/**
+ Common settings that define how printing should be handled
+ @see PSPDFConfiguration (where this is set)
+ */
+@property (nonatomic) PSPDFPrintConfiguration *printConfiguration;
 
 @end
 
 @interface PSPDFPrintCoordinator (SubclassingHooks)
 
-/// Subclass to allow setting a default printer or changing the printer job name.
-/// (see `printerID`, https://stackoverflow.com/questions/12898476/airprint-set-default-printer-in-uiprintinteractioncontroller)
-@property (nonatomic, readonly, copy) UIPrintInfo *printInfo;
+/**
+ Subclass to allow setting default printer info or changing the printer job name.
+ (see `printerID`, https://stackoverflow.com/questions/12898476/airprint-set-default-printer-in-uiprintinteractioncontroller)
+ */
+@property (nonatomic, readonly) UIPrintInfo *printInfo;
 
-//// The print interaction controller, while visible.
+/// The print interaction controller, while visible.
 @property (nonatomic, weak, readonly) UIPrintInteractionController *printInteractionController;
 
 @end

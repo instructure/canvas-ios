@@ -2,7 +2,7 @@
 //  PSPDFSearchHighlightView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFSearchResult;
 
 /// Highlight view used to show where the search keyword is within the document.
-PSPDF_CLASS_AVAILABLE @interface PSPDFSearchHighlightView : UIView <PSPDFAnnotationViewProtocol>
+PSPDF_CLASS_AVAILABLE @interface PSPDFSearchHighlightView : UIView<PSPDFAnnotationViewProtocol>
 
 /// Animates the view with a short "pop" size animation.
 - (void)popupAnimation;

@@ -2,7 +2,7 @@
 //  PSPDFUndoProtocol.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Implement on model objects that should allow undo/redo.
-PSPDF_AVAILABLE_DECL @protocol PSPDFUndoProtocol <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFUndoProtocol<NSObject>
 
 @required
 

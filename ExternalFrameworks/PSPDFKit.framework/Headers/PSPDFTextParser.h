@@ -2,7 +2,7 @@
 //  PSPDFTextParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -42,7 +42,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Page relative to the `documentProvider`.
-@property (nonatomic, readonly) NSUInteger page;
+@property (nonatomic, readonly) NSUInteger pageIndex;
 
 /// Uses glyphs to return the corresponding page text, including newlines and spaces.
 - (NSString *)textWithGlyphs:(NSArray<PSPDFGlyph *> *)glyphs;

@@ -2,7 +2,7 @@
 //  PSPDFThumbnailBar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
 #import "PSPDFCache.h"
+#import "PSPDFEnvironment.h"
 #import "PSPDFPresentationContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,26 +19,26 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFThumbnailBar;
 
 /// Delegate for thumbnail actions.
-PSPDF_AVAILABLE_DECL @protocol PSPDFThumbnailBarDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFThumbnailBarDelegate<NSObject>
 
 @optional
 
 /// A thumbnail has been selected.
-- (void)thumbnailBar:(PSPDFThumbnailBar *)thumbnailBar didSelectPage:(NSUInteger)page;
+- (void)thumbnailBar:(PSPDFThumbnailBar *)thumbnailBar didSelectPageAtIndex:(NSUInteger)pageIndex;
 
 @end
 
 /// Bottom bar that shows a scrollable list of thumbnails.
-PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailBar : UICollectionView <UICollectionViewDataSource, UICollectionViewDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailBar : UICollectionView<UICollectionViewDataSource, UICollectionViewDelegate>
 
 /// Delegate for the thumbnail controller.
 @property (nonatomic, weak) id<PSPDFThumbnailBarDelegate> thumbnailBarDelegate;
 
 /// The data source.
-@property (nonatomic, weak) id <PSPDFPresentationContext> thumbnailBarDataSource;
+@property (nonatomic, weak) id<PSPDFPresentationContext> thumbnailBarDataSource;
 
 /// Scrolls to specified page in the grid and centers the selected page.
-- (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
+- (void)scrollToPageAtIndex:(NSUInteger)pageIndex animated:(BOOL)animated;
 
 /// Stops an ongoing scroll animation.
 - (void)stopScrolling;

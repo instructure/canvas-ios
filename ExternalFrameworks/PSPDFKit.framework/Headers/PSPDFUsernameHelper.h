@@ -2,7 +2,7 @@
 //  PSPDFUsernameHelper.h
 //  PSPDFKit
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,27 +10,24 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-#import "PSPDFMacros.h"
+#import "PSPDFEnvironment.h"
 
 @class PSPDFViewController;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Required to pick up the previous first responder.
-PSPDF_EXTERN NSString *const PSPDFUsernameHelperWillDismissAlertNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFUsernameHelperWillDismissAlertNotification;
 
 /// A helper that can be used to present a dialog, allowing the user to specify the annotation author name.
 PSPDF_CLASS_AVAILABLE @interface PSPDFUsernameHelper : NSObject
 
+/// Access or set the default username.
+/// The default will be inferred based on the device name and some internal logic.
+@property (nonatomic, class, null_resettable) NSString *defaultAnnotationUsername;
+
 /// Checks for `PSPDFDocumentDefaultAnnotationUsernameKey`.
-+ (BOOL)isDefaultAnnotationUserNameSet;
-
-/// Returns the default annotation username from `NSUserDefaults` or returns a guessed username.
-+ (NSString *)defaultAnnotationUsername;
-
-/// Updates the default annotation username. Sets `PSPDFDocumentDefaultAnnotationUsernameKey` in `NSUserDefaults`.
-+ (void)setDefaultAnnotationUsername:(nullable NSString *)name;
+@property (nonatomic, class, readonly) BOOL isDefaultAnnotationUserNameSet;
 
 /// Asks for the default new annotation username, if enabled in the controller configuration if not already set.
 /// The completion block gets always called, unless the dialog is shown and called.

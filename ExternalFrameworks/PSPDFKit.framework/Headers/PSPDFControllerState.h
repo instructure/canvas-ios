@@ -2,7 +2,7 @@
 //  PSPDFControllerState.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,6 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Defines the state of controller, depending on the document.
 typedef NS_ENUM(NSUInteger, PSPDFControllerState) {
     /// No data is set or no data could be loaded.
     PSPDFControllerStateEmpty,
@@ -33,16 +34,19 @@ typedef NS_ENUM(NSUInteger, PSPDFControllerState) {
     PSPDFControllerStateLocked,
 } PSPDF_ENUM_AVAILABLE;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFControllerStateHandling <NSObject>
+/// Handles state changes for a given document.
+PSPDF_AVAILABLE_DECL @protocol PSPDFControllerStateHandling<NSObject>
 
 /// The document that this controller state is about.
 @property (nonatomic, nullable) PSPDFDocument *document;
 
-/// Updates the controller state to the passed in one.
-///
-/// @param state    The state to update to.
-/// @param error    If the state is `PSPDFControllerStateError`, this contains the underlying error.
-/// @param animated If `YES` the controller state change should be animated in the UI.
+/**
+ Updates the controller state to the passed in one.
+ 
+ @param state    The state to update to.
+ @param error    If the state is `PSPDFControllerStateError`, this contains the underlying error.
+ @param animated If `YES` the controller state change should be animated in the UI.
+ */
 - (void)setControllerState:(PSPDFControllerState)state error:(nullable NSError *)error animated:(BOOL)animated;
 
 @end

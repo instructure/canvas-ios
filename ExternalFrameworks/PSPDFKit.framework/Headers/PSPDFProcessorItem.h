@@ -2,7 +2,7 @@
 //  PSPDFProcessorItem.h
 //  PSPDFModel
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,11 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFEnvironment.h"
 
 #import "PSPDFEnvironment.h"
-#import "PSPDFRectAlignment.h"
 #import "PSPDFProcessorItemBuilder.h"
+#import "PSPDFRectAlignment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,6 +39,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, readonly, nullable) NSURL *itemURL;
 
 /// The `image` or `itemURL` can be positioned, scaled and rotated with `itemRect`
+/// Defaults to the identity matrix.
 /// @note: If you specify a `itemAlignment`, only scale and rotation will be effective.
 @property (nonatomic, readonly) CGAffineTransform transform;
 

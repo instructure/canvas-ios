@@ -2,7 +2,7 @@
 //  PSPDFThumbnailGridViewCell.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,15 +11,16 @@
 //
 
 #import "PSPDFEnvironment.h"
-#import "PSPDFCache.h"
-#import "PSPDFRoundedLabel.h"
 #import "PSPDFPageCell.h"
+#import "PSPDFRoundedLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PSPDFDocument;
+
 /// The thumbnail cell classed used for the thumbnail grid and thumbnail scroll bar.
 /// @note To modify the selection/highlight state, customize `selectedBackgroundView`.
-PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailGridViewCell : PSPDFPageCell <PSPDFCacheDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailGridViewCell : PSPDFPageCell
 
 /// Referenced document.
 @property (nonatomic, nullable) PSPDFDocument *document;
@@ -28,7 +29,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailGridViewCell : PSPDFPageCell <PSP
 @property (nonatomic, nullable) UIColor *bookmarkImageColor UI_APPEARANCE_SELECTOR;
 
 @end
-
 
 @interface PSPDFThumbnailGridViewCell (SubclassingHooks)
 
@@ -44,4 +44,3 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailGridViewCell : PSPDFPageCell <PSP
 @end
 
 NS_ASSUME_NONNULL_END
-

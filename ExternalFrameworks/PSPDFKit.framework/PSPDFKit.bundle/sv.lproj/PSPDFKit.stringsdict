@@ -75,7 +75,41 @@
     <key>All (%tu Page(s))</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
-        <string>All (%#@pages@)</string>
+        <string>Alla (%#@pages@)</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu sida</string>
+            <key>other</key>
+            <string>%tu sidor</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Inga resultat</string>
+            <key>one</key>
+            <string>%tu resultat</string>
+            <key>other</key>
+            <string>%tu resultat</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Söker i %#@pages@</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>

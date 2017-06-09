@@ -2,7 +2,7 @@
 //  PSPDFCollectionReusableFilterView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,18 +10,18 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h" 
+#import "PSPDFEnvironment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, PSPDFCollectionReusableFilterViewStyle) {
     /// Standard view.
     PSPDFCollectionReusableFilterViewStyleNone,
-     /// Use a blur effect that composes well with light colors, like plain UIKit bars.
+    /// Use a blur effect that composes well with light colors, like plain UIKit bars.
     PSPDFCollectionReusableFilterViewStyleLightBlur,
-     /// Use a blur effect that is suitable for composes well with dark colors, like in the demo app.
+    /// Use a blur effect that is suitable for composes well with dark colors, like in the demo app.
     PSPDFCollectionReusableFilterViewStyleDarkBlur,
-     /// Use a blur effect that’s tinted even lighter than the lightBlur style.
+    /// Use a blur effect that’s tinted even lighter than the lightBlur style.
     PSPDFCollectionReusableFilterViewStyleExtraLightBlur,
 } PSPDF_ENUM_AVAILABLE;
 

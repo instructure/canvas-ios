@@ -75,7 +75,41 @@
     <key>All (%tu Page(s))</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
-        <string>All (%#@pages@)</string>
+        <string>Tutte (%#@pages@)</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu pagina</string>
+            <key>other</key>
+            <string>%tu pagine</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Nessun risultato</string>
+            <key>one</key>
+            <string>%tu risultato</string>
+            <key>other</key>
+            <string>%tu risultati</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Cerco %#@pages@</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>

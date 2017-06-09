@@ -2,7 +2,7 @@
 //  PSPDFLinkAnnotationView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,10 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 #import "PSPDFAnnotationViewProtocol.h"
+#import "PSPDFEnvironment.h"
 #import "PSPDFLinkAnnotationBaseView.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,11 +27,8 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFLinkAnnotationView : PSPDFLinkAnnotationBa
 /// Roundness of the border. Defaults to 4.
 @property (nonatomic) CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
 
-/// Stroke width. Defaults to 1.
+/// Stroke width. Defaults to 0.
 @property (nonatomic) CGFloat strokeWidth UI_APPEARANCE_SELECTOR;
-
-/// Increases touch target by overspan pixel. Defaults to 15/15. Overspan is not visible.
-@property (nonatomic) CGSize overspan UI_APPEARANCE_SELECTOR;
 
 @end
 

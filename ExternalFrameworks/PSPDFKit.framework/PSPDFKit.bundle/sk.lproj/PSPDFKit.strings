@@ -1,0 +1,617 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Zavrieť";
+"Cancel" = "Zrušiť";
+"OK" = "OK";
+"Open" = "Otvoriť";
+"Untitled" = "Bez názvu";
+"File Not Found" = "Súbor nebol nájdený";
+"File couldn't be opened." = "Nebolo možné otvoriť súbor."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "PDF bez mena";
+"Page %tu" = "Strana %tu";
+"Page %@" = "Strana %@";
+"Next" = "Ďalší";
+"Previous" = "Predchádzajúci";
+"Error" = "Chyba";
+"More options" = "Ďaľšie možnosti";
+"Close All Tabs" = "Zavrieť všetky karty";
+"Close All Other Tabs" = "Zavrieť všetky ostatné karty"; // Alert controller action text for closing all tabs but the selected one
+
+// toolbar
+"Outline" = "Obsah"; // Table of contents
+"No Outline" = "Žiadny obsah";
+"Search Outline" = "Hladať v obsahu";
+"Search" = "Hladať";
+"Email" = "E-mail";
+"Send via Email" = "Poslať emailom";
+"Send" = "Odposlať";
+"Open In" = "Otvoriť v";
+"Commit" = "Vykonať";
+"Sending to %@" = "Odposielam %@"; // Open document with an application
+"Pages" = "Strany";
+"Print with annotations" = "Tlačiť s anotáciami";
+"Print without annotations" = "Tlačiť bez anotácií";
+"No Applications found" = "Nie sú nainštalované žiadne aplikácie pre otvorenie PDF súborov.";
+"Print" = "Tlačiť";
+"Annotation" = "Anotácia";
+"Annotations" = "Anotácie";
+"No Annotations" = "Žiadne anotácie";
+"Bookmarks" = "Záložky";
+"No Bookmarks" = "Žiadne záložky";
+"Add Bookmark" = "Pridať záložku";
+"Remove Bookmark" = "Odstrániť záložku";
+"Brightness" = "Jas";
+"Share" = "Zdielať";
+"Preparing" = "Prebieha príprava";
+"Loading" = "Načítavam";
+"Expand" = "Rozbaliť";
+"Collapse" = "Zbaliť";
+// SMS / iMessage sharing button
+"Message" = "Správa";
+"Thumbnails" = "Ikony";
+"Drag Toolbar" = "Premiestniť panel nástrojov";
+
+// thumbnails
+"Bookmarked" = "Záložka pridaná";
+"Annotated" = "Anotácia pridaná";
+"All" = "Všetko";
+
+// password
+"Password" = "Heslo"; // text on a label
+"Unlock" = "Odomknúť";
+"Please enter the password." = "Vložte heslo.";
+"This document cannot be unlocked. %@ is unsupported." = "Dokument nemohol byť odomknutý. %@ nie je podporovaná.";
+
+// page
+"%tu of %tu" = "%tu z %tu";
+"%tu-%tu of %tu" = "%tu-%tu z %tu";
+"%@ (%tu of %tu)" = "%@ (%tu z %tu)";
+"%@, Page %tu" = "%@, Strana %tu";
+"Leave %@?" = "Opustiť %@?";
+
+// search
+"Search Document" = "Hľadať v dokumente"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "Hľadám na strane %tu of %tu";
+"Search Completed" = "Hľadanie bolo dokončené";
+"Search Cancelled" = "Hľadanie bolo zrušené";
+"%tu left" = "%tu zostáva"; // Indexing Documents... 5 left
+"Searching" = "Prebieha hľadanie";
+"Done" = "Hotovo";
+"Indexing Documents" = "Indexujem dokumenty";
+"Document" = "Dokument";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Hľadať Anotácie";
+
+// inline browser
+"Open in Safari" = "Otvoriť v Safari";
+"Open in Chrome" = "Otvoriť v Chrome";
+"Your %@ is not configured to send emails." = "Váš %@ nie je nakonfigurovaný pre posielanie emailov.";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Odkaz vyžaduje otvorenie %1$@. %2$@ Chcete pokračovať?";
+"an external application" = "externej aplikácie"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "E‑mail"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "Žiadna aplikácia pre otvorenie %@ nebola nájdená.";
+
+// text selection
+"Text copied to clipboard." = "Text bol skopírovaný do schránky.";
+"Save to Photo Library" = "Uložiť do Knižnice fotografií";
+"Failed to extract image." = "Nepodarilo sa extrahovať obrázok.";
+"Type value or pick from list" = "Zadajte hodnotu alebo vyberte zo zoznamu";
+
+// annotations
+"Add %@" = "Pridať %@";
+"Remove %@" = "Odstrániť %@";
+"Remove" = "Odstrániť";
+"Delete" = "Zmazať"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "Upraviť";
+"Undo" = "Späť";
+"Nothing to undo" = "Nič k navráteniu";
+"Redo" = "Opakovať";
+"Nothing to redo" = "Nič k opakovaniu";
+"Type" = "Typ"; // kind of Annotation can be selected
+"Size" = "Veľkosť";
+"Font" = "Písmo";
+"Fonts" = "Písma";
+"All Fonts" = "Všetky písma";
+"Downloadable Fonts" = "Písma k stiahnutiu";
+"Search Fonts" = "Hladať písma";
+"Choose Color" = "Zvoľte farbu";
+"Choose Fill Color" = "Zvoľte farbu výplne";
+"Rainbow" = "Dúha";
+"Monochrome" = "Monochróm";
+"Vintage" = "Vintage";
+"Modern" = "Moderný";
+"Color" = "Farba";
+"Border" = "Ohraničenie";
+"Fill Color" = "Farba výplne";
+"Start and End Color" = "Farba začiatku a konca čiary";
+"Opacity" = "Nepriehľadnosť";
+"Thickness" = "Hrúbka";
+"%@ pt" = "%@ pt";
+"Yellow" = "Žltá";
+"Green" = "Zelená";
+"Red" = "Červená";
+"Blue" = "Modrá";
+"Pink" = "Ružová";
+"Black" = "Čierna";
+"Orange" = "Oranžová";
+"Purple" = "Fialová";
+"Cyan" = "Azúrová";
+"Gray" = "Šedá";
+"White" = "Biela";
+"Define" = "Definovať";
+"Wikipedia" = "Wikipédia";
+"Highlight" = "Zvýraznenie";
+"Underline" = "Podtrhnutie";
+"Squiggle" = "Klikyhák";
+"Squiggly" = "Zkrútený";
+"StrikeOut" = "Preškrtnúť";
+"Rectangle" = "Obdĺžnik";
+"Ellipse" = "Elipsa";
+"Line" = "Čiara"; // something that can be drawn
+"Lines" = "Čiary"; // "5 Lines" were drawn
+"Polyline" = "Lomená čiara";
+"Polygon" = "Mnohouholník";
+"Signature" = "Podpis";
+"Signatures" = "Podpisy";
+"Signed" = "Podpísané";
+"Sign" = "Podpísať";
+"Sign using %@" = "Podpísať s %@"; // e.g. Adobe.PPKLite
+"Methods" = "Metódy"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Zvoľte identitu"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "Razítko";
+"Stamps" = "Razítka";
+"Custom" = "Vlastné"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "Vytvoriť razítko";
+"Preview" = "Ukážka";
+"Stamp Text" = "Text razítka";
+"Add Signature" = "Pridať podpis";
+"Remove Signature" = "Odstrániť podpis";
+"My Signature" = "Môj podpis";
+"No Signatures" = "Žiadne podpisy"; // text on label - is shown when there is no signature to display
+"One Time Signature" = "Podpis zákazníka";
+"Please sign here" = "Podpíšte tu";
+"Note" = "Poznámka";
+"Text" = "Správa";
+"Delete Note" = "Zmazať poznámku";
+"Remove Note" = "Odstrániť poznámku";
+"%@ could not be found." = "%@ nebolo nájdené.";
+"Photo Library" = "Knižnica fotografií";
+"Camera" = "Fotoaparát";
+"Image" = "Obrázok";
+"Low Quality" = "Nízka kvalita";
+"Medium Quality" = "Stredná kvalita";
+"High Quality" = "Vysoká kvalita";
+"Clear All" = "Zmazať všetko";
+"Clear" = "Zmazať";
+"Style" = "Štýl";
+"Link" = "Odkaz";
+"Ink" = "Atrament";
+"FreeText" = "Správa";
+"Screen" = "Šablóna";
+"RichMedia" = "Multimédiá";
+"Left" = "Vľavo";
+"Center" = "Uprostred";
+"Right" = "Vpravo";
+"Alignment" = "Zarovnanie";
+"Preview File" = "Ukázať súbor";
+"Copy" = "Kopírovať";
+"Paste" = "Vložiť";
+"Inspector" = "Inšpektor";
+"Group" = "Skupina";
+"Ungroup" = "Rozdeliť skupinu";
+"Merge" = "Zlúčiť"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "Ukážka";
+"Annotation Summary for %@:" = "Prehľad anotácií pre %@:";
+"Show Text" = "Ukázať text";
+// title
+"Author Name" = "Meno autora";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "Zadajte meno autora, ktoré chcete použiť pre novo pridané anotácie.";
+// text field placeholder
+"Name" = "Názov";
+// meaning: close
+"Dismiss" = "Zavrieť";
+"Fit to Text" = "Prispôsobiť textu";
+"Draw" = "Nakresliť";
+"Sound" = "Zvuk";
+"Eraser" = "Guma";
+"Toggle Eraser" = "Zavrieť gumu"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "Nástroj pre výber";
+"Saved Annotations" = "Uložené anotácie";
+"Add" = "Pridať"; // to add - infinitive
+"Date" = "Dátum";
+"Time" = "Čas";
+"No Pages" = "Žiadne strany";
+"Drag to resize" = "Ťahajte pre zmenu veľkosti"; // used as hint that inspector is resizable
+"Convert to" = "Konvertovať do"; // used as label on action that changes free text intent type
+"Color Presets" = "Farebné predvoľby";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
+
+"Callout" = "Popisok"; // freetext annotation with an arrow
+"Generic" = "Všeobecné"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "Štýl čiary";
+"Solid" = "Pevný";
+"Narrow Dots" = "Úzke bodky";
+"Wide Dots" = "Široké bodky";
+"Narrow Dashes" = "Úzke pomlčky";
+"Wide Dashes" = "Široké pomlčky";
+"Cloudy" = "Obláčik"; // Accessibility label for an annotation border/line style looking like a cloud.
+
+// Stamps
+"Approved" = "Schválené";
+"Not Approved" = "Neschválené";
+"Draft" = "Koncept";
+"Final" = "Konečný";
+"Completed" = "Dokončené";
+"Confidential" = "Tajné";
+"For Public Release" = "Pre verejné vydanie";
+"Not For Public Release" = "Nie pre verejné vydanie";
+"For Comment" = "Pre komentáre";
+"Void" = "Neplatný";
+"Preliminary Results" = "Predbežné výsledky";
+"Information only" = "Iba pre informácie";
+"Accepted" = "Prijaté";
+"Rejected" = "Odmietnuté";
+"Initial Here" = "Iniciály tu";
+"Sign Here" = "Podpíšte tu";
+"Witness" = "Svedok";
+"Revised" = "Revidované";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "Stylus";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "Vypnuté";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "Skenovanie";
+// text on a label; app connects to a stylus
+"Pairing" = "Párovanie";
+// text on a label; app and stylus are connected
+"%@ Connected" = "%@ Pripojené";
+// text on a label; app and stylus are not connected
+"%@ Disconnected" = "%@ Odpojené";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "Nastavenia";
+
+
+// PDF annotation name overrides
+"Square" = "Obdĺžnik";
+"Circle" = "Elipsa";
+"PolyLine" = "Lomená čiara";
+
+// named actions
+"NextPage" = "Dalšia strana";
+"PrevPage" = "Predchádzajúca strana";
+"FirstPage" = "Prvá stana";
+"LastPage" = "Posledná strana";
+"GoBack" = "Späť";
+"GoForward" = "Ísť dopredu";
+"GoToPage" = "Ísť na stranu";
+"Find" = "Hladať";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zvätšiť";
+"ZoomOut" = "Zmenšiť";
+"Execute JavaScript" = "Spustiť JavaScript";
+"Rich Media Action" = "Multimediálna akcia";
+"Rendition Action" = "Ztvárnenie";
+"Hide Action" = "Schovať akciu";
+"Submit Form" = "Odoslať";
+"Reset" = "Obnoviť";
+
+// line annotations
+"Start" = "Začiatok";
+"End" = "Koniec";
+"Line.None" = "Žiadny";
+"Line.ClosedArrow" = "Zatvorená šípka";
+"Line.OpenArrow" = "Otvorená šípka";
+"Line.Square" = "Štvorec";
+"Line.Circle" = "Kruh";
+"Line.Diamond" = "Kosoštvorec";
+"Line.ROpenArrow" = "Obrátená otvorená šípka";
+"Line.RClosedArrow" = "Obrátená zatvorená šípka";
+"Line.Slash" = "Lomka";
+"Line.Butt" = "Zakončenie";
+"Line Start" = "Začiatok čiary";
+"Line End" = "Koniec čiary";
+"Arrow" = "Šípka"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "Vytvoriť odkaz";
+"Add Link" = "Pridať odkaz";
+"Edit Link" = "Upraviť odkaz";
+"Move Link" = "Posunúť odkaz";
+"Remove Link" = "Odstrániť odkaz";
+"Open Link" = "Otvoriť odkaz";
+"Go to Page %tu" = "Ísť na stranu %tu";
+"Go to Page" = "Ísť na stranu"; // title of a Popup
+"Go" = "Ísť"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "Uložiť";
+"Link Destination" = "Cieľ odkazu";
+"Enter page index or a http:// address to link to an URL." = "Zadajte index strany alebo http:// adresu ako odkaz na URL.";
+"Page %@ Not Found" = "Strana %@ nebola nájdená";
+
+// voiceover accessibility
+"Page" = "Strana";
+"Grid" = "Mriežka"; // grid with thumbnails
+"Translucent" = "Priesvitný";
+"left" = "doľava";
+"center" = "uprostred";
+"right" = "doprava";
+"decrease" = "znížiť";
+"increase" = "zvýšiť";
+"All Open Documents" = "Všetky otvorené dokumenty";
+"Add Documents" = "Pridať dokumenty"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "Strany %tu-%tu"; // Range of pages
+"Current Page" = "Aktuálna strana";
+"Current Page (%tu)" = "Aktuálna strana (%tu)";
+"Ignore Annotations" = "Ignorovať anotácie";
+"The PDF will not contain any annotations." = "PDF nebude obsahovať žiadne anotácie.";
+"Embed Annotations" = "Vložiť anotácie";
+"Annotations will remain editable and are embedded into the PDF." = "Anotácie zostanú editovateľné a budú vložené do PDF.";
+"Flatten Annotations" = "Vyhladiť anotácie";
+"Annotations are drawn into the PDF and are readonly." = "Anotácie budú vykreslené v PDF a nebudú editovateľné.";
+"Annotation Summary" = "Prehľad anotácií";
+"Embed Annotations into the PDF and also list them in the email." = "Vložiť anotácie do PDF a uviesť ich zoznam v e-maile.";
+"Annotations will be listed in a text file." = "Anotácie budú uložené v textovom súbore.";
+"Files" = "Súbory";
+"Send as single files" = "Poslať ako jednotlivé súbory";
+"Merge files" = "Zlúčiť súbory";
+"Original File" = "Originálny súbor";
+"Range" = "Rozsah";
+"Annotated Pages" = "Komentované strany";
+"Message could not be sent." = "Nepodarilo sa odposlať správu.";
+"Export" = "Exportovať";
+"This action can't be performed." = "Táto akcia nemôže byť vykonaná.";
+
+// sound annotations
+"Speak" = "Čítať"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "Prehrať";
+"Pause" = "Pozastaviť";
+"Resume" = "Ďalej";
+"Stop" = "Zastaviť";
+"Play/Stop" = "Spustiť/Zastaviť";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "Záznam";
+"Pause Recording" = "Pozastaviť nahrávanie";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "Nahrávka pozastavená";
+"Continue Recording" = "Pokračovať v nahrávaní";
+"Finish Recording" = "Dokončiť nahrávku";
+"Audio Problem" = "Problém so zvukom";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "Nepodarilo se zahájiť prehrávanie.";
+"Could not resume playback." = "Nepodarilo se obnoviť prehrávanie.";
+"Microphone permission not granted." = "Povolenie k použitiu mikrofónu nebolo udelené.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Nie je možné nahrávať zvuk. Prosím prideľte aplikácii povolenie pre prístup k mikrofónu.";
+"There was a problem trying to record audio." = "Nastal problém pri nahrávaní zvuku.";
+"Already Recording" = "Už nahrávam";
+"You are already recording on page %@." = "Už nahrávate na strane %@.";
+
+// Forms
+"Form Element" = "Prvok formulára";
+"Text Field" = "Textové pole";
+"Button" = "Tlačítko";
+"Choice Field" = "Pole pre výber";
+"Signature Field" = "Pole pre podpis";
+"Clear Field" = "Zmazať pole"; // same as delete
+"Default Values" = "Predvolené hodnoty";
+"Custom Value" = "Vlastná hodnota";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "Neplatná hodnota: musí byť väčšie alebo rovné ako %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "Neplatná hodnota: musí byť väčšie alebo rovné ako %s a menšie alebo rovné ako %s.";
+"Invalid value: must be less than or equal to %s." = "Neplatná hodnota: musí byť menšie alebo rovné ako %s.";
+"Invalid value: must be a number." = "Neplatná hodnota: musí byť číslo.";
+
+// Validation of dates
+"Invalid value: must be a date." = "Neplatná hodnota: musí byť dátum.";
+
+// General validation
+"Invalid value." = "Neplatná hodnota.";
+
+// Gallery
+"Connection Error" = "Chyba pripojenia";
+"Unsupported Content" = "Nepodporovaný obsah";
+"The specified content cannot be displayed." = "Vybraný obsah nemôže byť zobrazený.";
+"Something went wrong" = "Niečo se pokazilo";
+"This item is currently unavailable." = "Táto položka nie je dostupná.";
+"The information for this gallery could not be loaded." = "Informácie o tejto galérii neboli načítané.";
+"Content Error" = "Chyba obsahu";
+"This content is unsupported." = "Tento obsah nie je podporovaný.";
+
+// Signatures
+"Digital Signature" = "Digitálny podpis";
+"Signature is valid." = "Podpis je platný.";
+"Signature is valid, but there are some warnings." = "Podpis je platný, ale vyskytujú sa upozornenia.";
+"It was signed by %@ on %@ at %@." = "Podpísané od %@ v %@ v %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "Podpísané v %@ v %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Údajne podpísané od %@ v %@ v %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "Údajne podpísané v %@ v %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Revízia nebola upravená od podpísania, v dokumente sa však vyskytujú zmeny od posledného podpísania."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Podpis je neplatný a obsah tohto dokumentu nebol upravený od posledného podpísania.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Neplatný podpis — od podpísania obsahu v tomto dokumente bol obsah zmenený alebo inak poznamenaný.";
+"Unsigned Signature Field" = "Nepodpísané pole podpisu";
+"Do you really want to remove the signature from the document?" = "Naozaj chcete odstrániť podpis z dokumentu?";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Nepodarilo sa prečítať dáta z certifikátu ako PKCS#7 certifikát. Dáta v správnom formáte môžu byť vyexportované z Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Nepodarilo se dešifrovať podpis v certifikáte.";
+"The public key in the certificate could not be read." = "Nepodarilo sa prečítať verejný klúč v certifikáte.";
+"The signature of the certificate is not valid." = "Podpis certifikátu nie je platný.";
+"Signature is not valid." = "Podpis je neplatný.";
+"There is a format error in the notBefore field of the certificate." = "Vyskytuje se chyba formátu v poli notBefore v certifikáte."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "Vyskytuje se chyba formátu v poli notAfter v certifikáte."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Žiadne podpisy nemohli byť potvrdené, pretože reťaz certifikátu obsahuje iba jeden certifikát, ktorý nie je sám podpísaný a jeho vydavateľ nie je dôveryhodný.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Certifikát certifikačnej autority je neplatný, pretože nie je certifikačnou autoritou alebo jeho rozšírenia nie sú v súlade so zamýšľaným účelom."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "Parameter basicConstraints pathlength bol prekročený."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Koreňová certifikačná autorita nie je označená ako dôveryhodná pre daný účel."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "Koreňová certifikačná autorita je označená pre zamietnutie zadaného účelu."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Certifikát vydavateľa bol zamietnutý, pretože subject name sa nezhodovalo s menom vydavateľa súčasného certifikátu."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Certifikát vydavateľa bol zamietnutý, pretože subject key identifier bol prítomný a nezhodoval sa s authority key identifier súčasného certifikátu."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Certifikát vydavateľa bol zamietnutý, pretože meno jeho vydavateľa a sériové číslo bolo prítomné a nezhodovalo sa s authority key identifier súčasného certifikátu."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "Certifikát bol zrušený jeho vydavateľom.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Certifikát je samopodpísaný a rovnaký certifikát nebol nájdený v zozname dôveryhodných certifikátov.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Samopodpísaný certifikát existuje v reťazi certifikátu. Reťaz certifikátu mohla byť vytvorená pomocou nedôveryhodných certifikátov, ale koreňová certifikačná autorita nebola nájdená lokálne."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Nepodarilo sa nájsť certifikát pre jednu z certifikačných autorít (CA) v podpisovej hierarchii a lokálna aplikácia nedôveruje tejto CA."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Certifikát vydavateľa lokálneho certifikátu nebol nájdený. Toto normálne znamená, že zoznam dôveryhodných certifikátov nie je úplný.";
+"The certificate that was provided cannot be used for its intended purpose." = "Certifikát, který bol poskytnutý, nemôže byť použitý pre zadaný účel.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "KeyUsage rozšírenie certifikátu vydavateľa nepovoluje podpisovanie certifikátov.";
+"The certificate has expired." = "Certifikát vypršal.";
+"The certificate is not valid until a date in the future." = "Certifikát nie je platný do dátumu v budúcnosti.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "Nepodarilo sa prečítať X509 certifikát";
+// X509 should not be translated
+"No X509 certificate found" = "Žiadny X509 certifikát nebol nájdený";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "Nepodarilo sa prečítať PKCS12 súbor. Súbor ma nesprávne formátovanie alebo je poškodený.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "Nepodarilo sa odomknúť PKCS12 dáta. Zadali ste správne heslo?";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "Nepodarilo sa otvoriť súbor pre overenie podpisu";
+"Could not get signer info" = "Nepodarilo sa zistiť informácie o podpisujúcom sa";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "OpenSSL nemohol vytvoriť PKCS7 objekt";
+"OpenSSL could not add signature to PKCS7 object" = "OpenSSL nemohol pridať podpis do PKCS7 objektu";
+"OpenSSL could not init PKCS7 object" = "OpenSSL nemohol pripraviť PKCS7 objekt";
+"OpenSSL could generate PKCS7 signature" = "OpenSSL vygeneroval PKCS7 podpis";
+"OpenSSL could not sign hash" = "OpenSSL nemohol podpísať hash";
+"Could not write PKCS7 signature" = "Nepodarilo sa zapísať PKCS7 podpis";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "Otvoriť v";
+"PSPDFPolicyEventPrint" = "Tlač";
+"PSPDFPolicyEventEmail" = "E‑mail";
+"PSPDFPolicyEventMessage" = "Správa";
+"PSPDFPolicyEventQuickLook" = "Rychly náhľad"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "Nahrávanie zvuku";
+"PSPDFPolicyEventCamera" = "Fotoaparát";
+"PSPDFPolicyEventPasteboard" = "Schránka"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Odposlať formulár";
+"PSPDFPolicyEventNetwork" = "Sieť";
+
+// Night Mode
+"Default" = "Predvolný"; // Default view (night mode not enabled)
+"Sepia" = "Sépia"; // Document uses sepia colors
+"Night" = "Noc"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "Žiadny dokument nebol nastavený";
+"Unable to display document" = "Nepodarilo sa zobraziť dokument";
+"Loading..." = "Načítavam...";
+"Locked" = "Uzamknuté";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "Súbor, ku ktorému sa pokúšate získať prístup, buď nie je PDF súbor alebo môže byť poškodený.";
+"A password is required to access this document." = "Pre otvorenie tohto dokumentu je požadované heslo.";
+"The security scheme of this document is currently not supported." = "Schéma zabezpečenia tohto dokumentu nie je podporovaná.";
+"An unknown error has occured while trying to open this file." = "Nastala neznáma chyba pri otváraní tohto súboru.";
+
+// Document Editor
+"Document Editor" = "Editor dokumentov";
+"Add Page" = "Pridať stranu";
+"Delete Pages" = "Zmazať strany";
+"Duplicate Pages" = "Duplikovať strany";
+"Move Pages" = "Presunúť strany";
+"Rotate Pages" = "Otočiť strany";
+"Page Size" = "Veľkosť strany";
+"Background Color" = "Farba pozadia";
+"Paper" = "Papier";
+"Pattern" = "Vzor";
+"Use Document Size" = "Použiť veľkosť dokumentu";
+"Orientation" = "Orientácia";
+"Portrait" = "Na výšku";
+"Landscape" = "Na šírku";
+"Document Name" = "Názov dokumentu";
+"Documents" = "Dokumenty"; // Name of directory
+"Use Document Folder" = "Použiť adresár dokumentu";
+"Folder" = "Adresár";
+"Replace File?" = "Nahradiť súbor?";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Súbor s názvom \"%@\" už existuje. Chcete ho nahradiť?";
+"Replace" = "Nahradiť";
+"Saving…" = "Ukladám...";
+"Saved" = "Uložené";
+"Save As…" = "Uložiť ako...";
+"Discard Changes" = "Zrušiť zmeny";
+"Empty" = "Prázdny";
+"Use Image Size" = "Použiť veľkosť obrázku";
+"Page Background" = "Pozadie stránky";
+"Insert image annotation" = "Vložiť obrázkovú anotáciu";
+"Import page background" = "Importovať pozadie stránky";
+"Quality" = "Kvalita";
+"Low" = "Nízka";
+"Medium" = "Stredná";
+"High" = "Vysoká";
+"Best" = "Najlepšia";
+
+// Document Editor Errors
+"A blank document can not be saved." = "Prázdny dokument nemôže byť uložený.";
+"The document could not be saved." = "Dokument nebol uložený.";
+"This document does not support editing." = "Tento dokument nepodporuje úpravy.";
+
+// Page Patterns
+"None" = "Žiadny";
+"Dot5mm" = "Bodky 5mm";
+"Grid5mm" = "Mriežka 5mm";
+"Lines5mm" = "Riadky 5mm";
+"Lines7mm" = "Riadky 7mm";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US dopis";
+"US Legal" = "US právny";
+
+// Page Export
+"Export Pages" = "Exportovať strany";
+"Export…" = "Export...";
+"Exporting…" = "Exportujem...";
+"Exported" = "Exportované";
+"%@ - Exported" = "%@ - Exportované"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kópia"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Zvolený dokument je práve otvorený. Prosím zvoľte iný názov súboru.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Služba text-to-speech je nedostupná. Uistite sa, že máte aktívne pripojenie k internetu alebo nainštalovaný Google text-to-speech, který je povolený v tomto zariadení.";
+
+// Settings
+"Page Transition" = "Prechod strán";
+"Single" = "Jedna strana";
+"Continuous" = "Súvisle";
+"Curl" = "Obracať strany";
+"Scroll" = "Skrolovať";
+"Horizontal" = "Horizontálny";
+"Vertical" = "Vertikálny";
+"Page Mode" = "Režim stánok";
+"Automatic" = "Automatický";
+"Double" = "Dve strany";
+"Appearance" = "Vzhľad";
+"Scrubber Bar" = "Navigačná lišta";
+"Jump" = "Preskočiť"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Nie je dostupné"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Táto aplikácia nemá prístup k vašim fotografiám.";
+"This app does not have access to your camera." = "Táto aplikácia nemá prístup k vášmu fotoaparátu.";
+"You can enable access in Privacy Settings." = "Môžete povoliť prístup v nastaveniach ochrany osobných údajov.";

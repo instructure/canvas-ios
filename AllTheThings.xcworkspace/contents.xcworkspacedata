@@ -190,6 +190,9 @@
          location = "group:SoAnnotated/SoAnnotated.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:SoAnnotated-PreSubmission/SoAnnotated-PreSubmission.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:SoAutomated/SoAutomated.xcodeproj">
       </FileRef>
       <FileRef

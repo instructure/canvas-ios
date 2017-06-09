@@ -2,7 +2,7 @@
 //  PSPDFAnnotationViewProtocol.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,7 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Conforming to this protocol indicates instances can present an annotation and react events such as page show/hide (to pause video, for example)
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationViewProtocol <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationViewProtocol<NSObject>
 
 @optional
 

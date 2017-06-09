@@ -2,7 +2,7 @@
 //  PSPDFResetFormAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,7 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_OPTIONS(NSUInteger, PSPDFResetFormActionFlag) {
-    PSPDFResetFormActionFlagIncludeExclude = 1 << (1-1)
+    PSPDFResetFormActionFlagIncludeExclude = 1 << (1 - 1),
 } PSPDF_ENUM_AVAILABLE;
 
 /// Reset Form Action.

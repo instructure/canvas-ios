@@ -2,7 +2,7 @@
 //  PSPDFContainerViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFContainerViewController;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFContainerViewControllerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFContainerViewControllerDelegate<NSObject>
 
 @optional
 
@@ -27,7 +27,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFContainerViewControllerDelegate <NSObject>
 @end
 
 /// Can embed other view controllers and transition between them.
-PSPDF_CLASS_AVAILABLE @interface PSPDFContainerViewController : PSPDFBaseViewController <PSPDFStyleable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFContainerViewController : PSPDFBaseViewController<PSPDFStyleable>
 
 /// Convenience initializer.
 - (instancetype)initWithControllers:(nullable NSArray<__kindof UIViewController *> *)controllers titles:(nullable NSArray<NSString *> *)titles;
@@ -59,6 +59,11 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFContainerViewController : PSPDFBaseViewCon
 
 /// Set to YES if you want to animate controller changes. Defaults to NO.
 @property (nonatomic) BOOL shouldAnimateChanges;
+
+/// Visible view controller title will be stored in NSUserDefaults under this key.
+/// Container controller will automaticaly restore the last visible controller when presented.
+/// Make sure this is set before view loads.
+@property (nonatomic) NSString *lastVisibleViewControllerTitleKey;
 
 @end
 

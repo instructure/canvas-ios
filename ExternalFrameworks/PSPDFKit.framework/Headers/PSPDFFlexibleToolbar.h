@@ -2,7 +2,7 @@
 //  PSPDFFlexibleToolbar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,18 +16,18 @@
 @class PSPDFFlexibleToolbarDragView, PSPDFFlexibleToolbar, PSPDFToolbarCollapsedButton, PSPDFMenuItem;
 
 typedef NS_OPTIONS(NSUInteger, PSPDFFlexibleToolbarPosition) {
-    PSPDFFlexibleToolbarPositionNone      = 0,
-    PSPDFFlexibleToolbarPositionInTopBar  = 1 << 0,
-    PSPDFFlexibleToolbarPositionLeft      = 1 << 1,
-    PSPDFFlexibleToolbarPositionRight     = 1 << 2,
+    PSPDFFlexibleToolbarPositionNone = 0,
+    PSPDFFlexibleToolbarPositionInTopBar = 1 << 0,
+    PSPDFFlexibleToolbarPositionLeft = 1 << 1,
+    PSPDFFlexibleToolbarPositionRight = 1 << 2,
     PSPDFFlexibleToolbarPositionsVertical = PSPDFFlexibleToolbarPositionLeft | PSPDFFlexibleToolbarPositionRight,
-    PSPDFFlexibleToolbarPositionsAll      = PSPDFFlexibleToolbarPositionInTopBar | PSPDFFlexibleToolbarPositionsVertical
+    PSPDFFlexibleToolbarPositionsAll = PSPDFFlexibleToolbarPositionInTopBar | PSPDFFlexibleToolbarPositionsVertical,
 } PSPDF_ENUM_AVAILABLE;
 
 typedef NS_ENUM(NSInteger, PSPDFToolbarGroupButtonIndicatorPosition) {
     PSPDFToolbarGroupButtonIndicatorPositionNone = 0,
     PSPDFToolbarGroupButtonIndicatorPositionBottomLeft,
-    PSPDFToolbarGroupButtonIndicatorPositionBottomRight
+    PSPDFToolbarGroupButtonIndicatorPositionBottomRight,
 } PSPDF_ENUM_AVAILABLE;
 
 PSPDF_EXPORT const CGFloat PSPDFFlexibleToolbarHeight;
@@ -41,7 +41,7 @@ PSPDF_EXPORT const CGFloat PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 
 NS_ASSUME_NONNULL_BEGIN
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFFlexibleToolbarDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFFlexibleToolbarDelegate<NSObject>
 
 @optional
 
@@ -86,7 +86,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFFlexibleToolbar : PSPDFToolbar
 
 /// Enables or disables toolbar dragging (hides the `dragView` when disabled).
 /// Defaults to YES.
-@property (nonatomic, getter = isDragEnabled) BOOL dragEnabled;
+@property (nonatomic, getter=isDragEnabled) BOOL dragEnabled;
 
 /// The currently selected button. The selected button is indicated by a selection bezel behind the button.
 /// The selected button's tint color gets automatically adjusted to `selectedTintColor` as well.

@@ -2,7 +2,7 @@
 //  PSPDFErrorHandler.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,7 +12,7 @@
 
 #import "PSPDFEnvironment.h"
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFErrorHandler <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFErrorHandler<NSObject>
 
 /// All parameters are optional, however you should call it with at least error or title.
 /// @note The implementing view controller can decide how to best present this.

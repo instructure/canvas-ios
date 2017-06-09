@@ -14,6 +14,7 @@ import type {
 import WebContainer from '../../common/components/WebContainer'
 import Video from '../../common/components/Video'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
+import CanvadocViewer from './components/CanvadocViewer'
 
 type SubmissionViewerProps = {
   isCurrentStudent: boolean,
@@ -69,9 +70,12 @@ export default class SubmissionViewer extends Component {
     </View>
   }
 
-  renderFile (submission: Submission): React.Element<*> {
-    // TODO: display files
-    return <View style={styles.container}><Text>File</Text></View>
+  renderFile (submission: Submission): ?React.Element<*> {
+    if (submission.attachments) {
+      return <CanvadocViewer config={{ previewPath: submission.attachments[0].preview_url }} style={styles.container} />
+    }
+
+    return null
   }
 
   renderSubmission (submission: Submission): React.Element<*> {
@@ -121,7 +125,7 @@ export default class SubmissionViewer extends Component {
     const submission = this.currentSubmission()
     if (submission && submission.attempt) {
       if (this.props.selectedAttachmentIndex != null && submission.attachments && submission.submission_type === 'online_upload') {
-        return this.renderFile(submission)
+        return this.renderFile(submission) || <View />
       } else {
         return this.renderSubmission(submission)
       }

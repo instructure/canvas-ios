@@ -2,7 +2,7 @@
 //  PSPDFGalleryVideoItem.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,17 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
-#import <AVFoundation/AVFoundation.h>
 #import "PSPDFGalleryItem.h"
+#import <AVFoundation/AVFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemQuality) {
     PSPDFGalleryVideoItemQualityUnknown,
     PSPDFGalleryVideoItemQuality240p,
-	PSPDFGalleryVideoItemQuality360p,
-	PSPDFGalleryVideoItemQuality720p,
-	PSPDFGalleryVideoItemQuality1080p
+    PSPDFGalleryVideoItemQuality360p,
+    PSPDFGalleryVideoItemQuality720p,
+    PSPDFGalleryVideoItemQuality1080p,
 } PSPDF_ENUM_AVAILABLE;
 
 typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemCoverMode) {
@@ -38,10 +38,10 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemCoverMode) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Converts an `NSString` into `PSPDFGalleryVideoItemQuality`.
-PSPDF_EXPORT PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSString * _Nonnull string);
+PSPDF_EXPORT PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSString *string);
 
 /// Converts an `NSString` into `PSPDFGalleryVideoItemCoverMode`.
-PSPDF_EXPORT PSPDFGalleryVideoItemCoverMode PSPDFGalleryVideoItemCoverModeFromString(NSString * _Nonnull string);
+PSPDF_EXPORT PSPDFGalleryVideoItemCoverMode PSPDFGalleryVideoItemCoverModeFromString(NSString *string);
 
 /// A video item in a gallery. This class uses the class cluster design pattern.
 PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryVideoItem : PSPDFGalleryItem

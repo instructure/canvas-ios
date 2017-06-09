@@ -2,7 +2,7 @@
 //  PSPDFSignatureViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,17 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFStyleable.h"
 #import "PSPDFBaseViewController.h"
 #import "PSPDFDrawView.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFStyleable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFDrawView, PSPDFSignatureViewController, PSPDFColorButton;
 
 /// Delegate to be notified on signature actions.
-PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureViewControllerDelegate <PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureViewControllerDelegate<PSPDFOverridable>
 
 @optional
 
@@ -33,7 +33,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureViewControllerDelegate <PSPDFOverri
 @end
 
 /// Allows adding signatures or drawings as ink annotations.
-PSPDF_CLASS_AVAILABLE @interface PSPDFSignatureViewController : PSPDFBaseViewController <PSPDFStyleable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFSignatureViewController : PSPDFBaseViewController<PSPDFStyleable>
 
 /// Lines (arrays of boxed `PSPDFPoint`s) of the `drawView`.
 /// @note Lines are in view coordinate space. To save them into PDF, first convert them to PDF coordinates
@@ -76,4 +76,3 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFSignatureViewController : PSPDFBaseViewCon
 @end
 
 NS_ASSUME_NONNULL_END
-

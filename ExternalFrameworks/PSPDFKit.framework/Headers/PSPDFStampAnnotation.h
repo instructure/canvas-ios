@@ -2,7 +2,7 @@
 //  PSPDFStampAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,8 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// PDF Stamp annotation.
 PSPDF_CLASS_AVAILABLE @interface PSPDFStampAnnotation : PSPDFAnnotation
 
-/// Returns predefined colors for special subjects, like red for "void" or green for "completed".
-+ (UIColor *)stampColorForSubject:(NSString *)subject;
+/**
+ Returns predefined colors for special subjects, like red for "void" or green for "completed".
+ Returns a default color if the subject is nil/empty.
+ */
++ (UIColor *)stampColorForSubject:(nullable NSString *)subject;
 
 /// Init with a default subject and uses a matching color.
 - (instancetype)initWithSubject:(nullable NSString *)subject;

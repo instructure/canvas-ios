@@ -2,7 +2,7 @@
 //  PSPDFBlurView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,7 +19,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFBlurView : UIView
 
 /// Controls if blurring is enabled. Defaults to `NO`.
 /// @warning You cannot set the `backgroundColor` property if `blurEnabled` is set to `YES`!
-@property (nonatomic, getter = isBlurEnabled) BOOL blurEnabled;
+@property (nonatomic, getter=isBlurEnabled) BOOL blurEnabled;
 
 /// Everything from the `renderView` up the view hierarchy to this view is used to render the
 /// background. Defaults to the view's `superview`.

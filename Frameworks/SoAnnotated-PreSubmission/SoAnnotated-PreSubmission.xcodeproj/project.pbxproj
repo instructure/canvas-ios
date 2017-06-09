@@ -1,0 +1,395 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6199FD131EE377C700240D4E /* SoAnnotated-PreSubmission.h in Headers */ = {isa = PBXBuildFile; fileRef = 6199FD111EE377C700240D4E /* SoAnnotated-PreSubmission.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6199FD231EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD1F1EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift */; };
+		6199FD241EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6199FD201EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard */; };
+		6199FD251EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD211EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift */; };
+		6199FD261EE3792400240D4E /* SubmitAssignmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD221EE3792400240D4E /* SubmitAssignmentActivity.swift */; };
+		6199FD291EE3795600240D4E /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD281EE3795600240D4E /* PSPDFKit.framework */; };
+		6199FD2B1EE3799200240D4E /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2A1EE3799200240D4E /* AssignmentKit.framework */; };
+		6199FD381EE37A1800240D4E /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2C1EE37A1800240D4E /* CWNotification.framework */; };
+		6199FD391EE37A1800240D4E /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2D1EE37A1800240D4E /* Kingfisher.framework */; };
+		6199FD3A1EE37A1800240D4E /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2E1EE37A1800240D4E /* Marshal.framework */; };
+		6199FD3B1EE37A1800240D4E /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2F1EE37A1800240D4E /* ReactiveCocoa.framework */; };
+		6199FD3C1EE37A1800240D4E /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD301EE37A1800240D4E /* ReactiveSwift.framework */; };
+		6199FD3D1EE37A1800240D4E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD311EE37A1800240D4E /* Result.framework */; };
+		6199FD3E1EE37A1800240D4E /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD321EE37A1800240D4E /* SoIconic.framework */; };
+		6199FD3F1EE37A1800240D4E /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD331EE37A1800240D4E /* SoLazy.framework */; };
+		6199FD401EE37A1800240D4E /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD341EE37A1800240D4E /* SoPretty.framework */; };
+		6199FD411EE37A1800240D4E /* SoProgressive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD351EE37A1800240D4E /* SoProgressive.framework */; };
+		6199FD421EE37A1800240D4E /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD361EE37A1800240D4E /* TooLegit.framework */; };
+		6199FD431EE37A1800240D4E /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD371EE37A1800240D4E /* WhizzyWig.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6199FD0E1EE377C700240D4E /* SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAnnotated_PreSubmission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6199FD111EE377C700240D4E /* SoAnnotated-PreSubmission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoAnnotated-PreSubmission.h"; sourceTree = "<group>"; };
+		6199FD121EE377C700240D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6199FD1F1EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreSubmissionPDFDocumentPresenter.swift; sourceTree = "<group>"; };
+		6199FD201EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubmitAnnotatedAssignmentViewController.storyboard; sourceTree = "<group>"; };
+		6199FD211EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAnnotatedAssignmentViewController.swift; sourceTree = "<group>"; };
+		6199FD221EE3792400240D4E /* SubmitAssignmentActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentActivity.swift; sourceTree = "<group>"; };
+		6199FD281EE3795600240D4E /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
+		6199FD2A1EE3799200240D4E /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssignmentKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/AssignmentKit.framework"; sourceTree = "<group>"; };
+		6199FD2C1EE37A1800240D4E /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CWNotification.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/CWNotification.framework"; sourceTree = "<group>"; };
+		6199FD2D1EE37A1800240D4E /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/Kingfisher.framework"; sourceTree = "<group>"; };
+		6199FD2E1EE37A1800240D4E /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Marshal.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/Marshal.framework"; sourceTree = "<group>"; };
+		6199FD2F1EE37A1800240D4E /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/ReactiveCocoa.framework"; sourceTree = "<group>"; };
+		6199FD301EE37A1800240D4E /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/ReactiveSwift.framework"; sourceTree = "<group>"; };
+		6199FD311EE37A1800240D4E /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/Result.framework"; sourceTree = "<group>"; };
+		6199FD321EE37A1800240D4E /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoIconic.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/SoIconic.framework"; sourceTree = "<group>"; };
+		6199FD331EE37A1800240D4E /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoLazy.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/SoLazy.framework"; sourceTree = "<group>"; };
+		6199FD341EE37A1800240D4E /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoPretty.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/SoPretty.framework"; sourceTree = "<group>"; };
+		6199FD351EE37A1800240D4E /* SoProgressive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoProgressive.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/SoProgressive.framework"; sourceTree = "<group>"; };
+		6199FD361EE37A1800240D4E /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TooLegit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/TooLegit.framework"; sourceTree = "<group>"; };
+		6199FD371EE37A1800240D4E /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WhizzyWig.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/WhizzyWig.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6199FD0A1EE377C700240D4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6199FD381EE37A1800240D4E /* CWNotification.framework in Frameworks */,
+				6199FD401EE37A1800240D4E /* SoPretty.framework in Frameworks */,
+				6199FD3C1EE37A1800240D4E /* ReactiveSwift.framework in Frameworks */,
+				6199FD3F1EE37A1800240D4E /* SoLazy.framework in Frameworks */,
+				6199FD3B1EE37A1800240D4E /* ReactiveCocoa.framework in Frameworks */,
+				6199FD3D1EE37A1800240D4E /* Result.framework in Frameworks */,
+				6199FD411EE37A1800240D4E /* SoProgressive.framework in Frameworks */,
+				6199FD2B1EE3799200240D4E /* AssignmentKit.framework in Frameworks */,
+				6199FD421EE37A1800240D4E /* TooLegit.framework in Frameworks */,
+				6199FD431EE37A1800240D4E /* WhizzyWig.framework in Frameworks */,
+				6199FD391EE37A1800240D4E /* Kingfisher.framework in Frameworks */,
+				6199FD3E1EE37A1800240D4E /* SoIconic.framework in Frameworks */,
+				6199FD3A1EE37A1800240D4E /* Marshal.framework in Frameworks */,
+				6199FD291EE3795600240D4E /* PSPDFKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6199FD041EE377C700240D4E = {
+			isa = PBXGroup;
+			children = (
+				6199FD271EE3793900240D4E /* Dependencies */,
+				6199FD101EE377C700240D4E /* SoAnnotated-PreSubmission */,
+				6199FD0F1EE377C700240D4E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6199FD0F1EE377C700240D4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6199FD0E1EE377C700240D4E /* SoAnnotated_PreSubmission.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6199FD101EE377C700240D4E /* SoAnnotated-PreSubmission */ = {
+			isa = PBXGroup;
+			children = (
+				6199FD1F1EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift */,
+				6199FD201EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard */,
+				6199FD211EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift */,
+				6199FD221EE3792400240D4E /* SubmitAssignmentActivity.swift */,
+				6199FD111EE377C700240D4E /* SoAnnotated-PreSubmission.h */,
+				6199FD121EE377C700240D4E /* Info.plist */,
+			);
+			path = "SoAnnotated-PreSubmission";
+			sourceTree = "<group>";
+		};
+		6199FD271EE3793900240D4E /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				6199FD2C1EE37A1800240D4E /* CWNotification.framework */,
+				6199FD2D1EE37A1800240D4E /* Kingfisher.framework */,
+				6199FD2E1EE37A1800240D4E /* Marshal.framework */,
+				6199FD2F1EE37A1800240D4E /* ReactiveCocoa.framework */,
+				6199FD301EE37A1800240D4E /* ReactiveSwift.framework */,
+				6199FD311EE37A1800240D4E /* Result.framework */,
+				6199FD321EE37A1800240D4E /* SoIconic.framework */,
+				6199FD331EE37A1800240D4E /* SoLazy.framework */,
+				6199FD341EE37A1800240D4E /* SoPretty.framework */,
+				6199FD351EE37A1800240D4E /* SoProgressive.framework */,
+				6199FD361EE37A1800240D4E /* TooLegit.framework */,
+				6199FD371EE37A1800240D4E /* WhizzyWig.framework */,
+				6199FD2A1EE3799200240D4E /* AssignmentKit.framework */,
+				6199FD281EE3795600240D4E /* PSPDFKit.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6199FD0B1EE377C700240D4E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6199FD131EE377C700240D4E /* SoAnnotated-PreSubmission.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6199FD0D1EE377C700240D4E /* SoAnnotated_PreSubmission */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6199FD161EE377C700240D4E /* Build configuration list for PBXNativeTarget "SoAnnotated_PreSubmission" */;
+			buildPhases = (
+				6199FD091EE377C700240D4E /* Sources */,
+				6199FD0A1EE377C700240D4E /* Frameworks */,
+				6199FD0B1EE377C700240D4E /* Headers */,
+				6199FD0C1EE377C700240D4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SoAnnotated_PreSubmission;
+			productName = "SoAnnotated-PreSubmission";
+			productReference = 6199FD0E1EE377C700240D4E /* SoAnnotated_PreSubmission.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6199FD051EE377C700240D4E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Instructure;
+				TargetAttributes = {
+					6199FD0D1EE377C700240D4E = {
+						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 6199FD081EE377C700240D4E /* Build configuration list for PBXProject "SoAnnotated-PreSubmission" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6199FD041EE377C700240D4E;
+			productRefGroup = 6199FD0F1EE377C700240D4E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6199FD0D1EE377C700240D4E /* SoAnnotated_PreSubmission */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6199FD0C1EE377C700240D4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6199FD241EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6199FD091EE377C700240D4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6199FD251EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift in Sources */,
+				6199FD261EE3792400240D4E /* SubmitAssignmentActivity.swift in Sources */,
+				6199FD231EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6199FD141EE377C700240D4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6199FD151EE377C700240D4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6199FD171EE377C700240D4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../ExternalFrameworks";
+				INFOPLIST_FILE = "SoAnnotated-PreSubmission/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.SoAnnotated-PreSubmission";
+				PRODUCT_NAME = SoAnnotated_PreSubmission;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		6199FD181EE377C700240D4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../ExternalFrameworks";
+				INFOPLIST_FILE = "SoAnnotated-PreSubmission/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.SoAnnotated-PreSubmission";
+				PRODUCT_NAME = SoAnnotated_PreSubmission;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6199FD081EE377C700240D4E /* Build configuration list for PBXProject "SoAnnotated-PreSubmission" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6199FD141EE377C700240D4E /* Debug */,
+				6199FD151EE377C700240D4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6199FD161EE377C700240D4E /* Build configuration list for PBXNativeTarget "SoAnnotated_PreSubmission" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6199FD171EE377C700240D4E /* Debug */,
+				6199FD181EE377C700240D4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6199FD051EE377C700240D4E /* Project object */;
+}

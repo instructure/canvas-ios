@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Canvadoc viewer renders 1`] = `
+<CanvadocView
+  config={
+    Object {
+      "previewPath": "/",
+    }
+  }
+  style={undefined}
+/>
+`;

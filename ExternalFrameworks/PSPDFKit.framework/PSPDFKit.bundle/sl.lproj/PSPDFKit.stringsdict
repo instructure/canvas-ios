@@ -13,13 +13,13 @@
             <key>NSStringFormatValueTypeKey</key>
             <string>tu</string>
             <key>zero</key>
-            <string>Ni zadetkov</string>
+            <string>Ni najdenih zadetkov</string>
             <key>one</key>
-            <string>%tu zadetek</string>
+            <string>%tu najden zadetek</string>
             <key>two</key>
-            <string>%tu zadetka</string>
+            <string>%tu najdena zadetka</string>
             <key>other</key>
-            <string>%tu zadetkov</string>
+            <string>%tu najdenih zadetkov</string>
         </dict>
     </dict>
     <key>%tu document(s) indexed.</key>
@@ -83,7 +83,7 @@
     <key>All (%tu Page(s))</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
-        <string>All (%#@pages@)</string>
+        <string>Vse (%#@pages@)</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>
@@ -92,8 +92,48 @@
             <string>tu</string>
             <key>one</key>
             <string>%tu stran</string>
+            <key>two</key>
+            <string>%tu strani</string>
             <key>other</key>
             <string>%tu strani</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Ni zadetkov</string>
+            <key>one</key>
+            <string>%tu zadetek</string>
+            <key>two</key>
+            <string>%tu zadetka</string>
+            <key>other</key>
+            <string>%tu zadetkov</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Iskanje po %#@pages@</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu strani</string>
+            <key>two</key>
+            <string>%tu straneh</string>
+            <key>other</key>
+            <string>%tu straneh</string>
         </dict>
     </dict>
 </dict>

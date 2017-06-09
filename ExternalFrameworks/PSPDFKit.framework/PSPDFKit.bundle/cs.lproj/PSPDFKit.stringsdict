@@ -16,6 +16,8 @@
             <string>Žádné shody nebyly nalezeny</string>
             <key>one</key>
             <string>%tu shoda nalezena</string>
+            <key>few</key>
+            <string>%tu shody nalezeny</string>
             <key>other</key>
             <string>%tu shod nalezeno</string>
         </dict>
@@ -34,6 +36,8 @@
             <string>Žádné dokumenty nebyly indexovány</string>
             <key>one</key>
             <string>%tu dokument byl indexován</string>
+            <key>few</key>
+            <string>%tu dokumenty byli indexovány</string>
             <key>other</key>
             <string>%tu dokumentů bylo indexováno</string>
         </dict>
@@ -52,6 +56,8 @@
             <string>Žádné anotace</string>
             <key>one</key>
             <string>%tu anotace</string>
+            <key>few</key>
+            <string>%tu anotace</string>
             <key>other</key>
             <string>%tu anotace</string>
         </dict>
@@ -68,6 +74,8 @@
             <string>tu</string>
             <key>one</key>
             <string>%tu bod</string>
+            <key>few</key>
+            <string>%tu body</string>
             <key>other</key>
             <string>%tu bodů</string>
         </dict>
@@ -84,8 +92,48 @@
             <string>tu</string>
             <key>one</key>
             <string>%tu strana</string>
+            <key>few</key>
+            <string>%tu strany</string>
             <key>other</key>
             <string>%tu stran</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Žádné výsledky</string>
+            <key>one</key>
+            <string>%tu výsledek</string>
+            <key>few</key>
+            <string>%tu výsledky</string>
+            <key>other</key>
+            <string>%tu výsledků</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Hledám na %#@pages@</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu strane</string>
+            <key>few</key>
+            <string>%tu stranách</string>
+            <key>other</key>
+            <string>%tu stranách</string>
         </dict>
     </dict>
 </dict>

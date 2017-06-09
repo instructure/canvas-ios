@@ -2,7 +2,7 @@
 //  PSPDFApplicationJSExport.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,15 +11,20 @@
 //
 
 #import "PSPDFEnvironment.h"
+
+// clang-format off
+#if __has_include(<JavaScriptCore/JavaScriptCore.h>)
 #import <JavaScriptCore/JavaScriptCore.h>
+#endif
+// clang-format on
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class PSPDFFormElement;
+@class PSPDFFormField, PSPDFFormElement, PSPDFJavaScriptFormField;
 
 /// `JSExport` is an empty protocol, we extend it and add methods we and exposed in Javascript for the application object
 /// (Usually, this will be the `PSPDFViewController`)
-PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport <JSExport, NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport<JSExport, NSObject>
 
 /// There are three cases for methods we wish to export to JavaScript.
 ///
@@ -44,7 +49,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport <JSExport, NSObject>
 /// In this case, we simply add the method both to the protocol and the category and finally implement the method.
 
 @property (nonatomic) NSUInteger pageNum;
-- (nullable PSPDFFormElement *)getField:(NSString *)name;
+- (nullable PSPDFJavaScriptFormField *)getField:(NSString *)name;
 - (void)print:(id)params;
 
 /// Saves the current PDF document and mails it as an attachment to all recipients, with or without user interaction.
@@ -60,7 +65,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport <JSExport, NSObject>
  cBcc (optional) The semicolon-delimited list of BCC recipients for the message.
  cSubject (optional) The subject of the message. The length limit is 64 KB.
  cMsg (optional) The content of the message. The length limit is 64 KB
- 
+
  Open the compose message window.
  this.mailDoc(true);
  Send email with the attached PDF file to apstory@example.com and dpsmith@example.com.
@@ -73,7 +78,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport <JSExport, NSObject>
  cSubject: "The Latest News",
  cMsg: "A.P., attached is my latest news story in PDF."
  });
- 
+
  Can also be in this format:
  this.mailDoc(true, "info@domain.com", "", "", "Message Subject Description");
  */
@@ -81,15 +86,11 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport <JSExport, NSObject>
 
 - (void)resetForm:(NSArray<NSString *> *)names;
 - (void)alert:(id)params;
-- (NSUInteger)viewerVersion;
+@property (nonatomic, readonly) NSUInteger viewerVersion;
 
-JSExportAs(buttonImportIcon,
-           - (NSInteger)buttonImportIcon:(nullable NSString *)cPath page:(NSNumber *)nPage sourceForm:(PSPDFFormElement *)formElement
-           );
+JSExportAs(buttonImportIcon, -(NSInteger)buttonImportIcon : (nullable NSString *)cPath page : (NSNumber *)nPage sourceForm : (PSPDFFormElement *)formElement);
 
-JSExportAs(launchURL,
-           - (void)launchURL:(NSString *)cURL newFrame:(nullable NSNumber *)bNewFrame
-           );
+JSExportAs(launchURL, -(void)launchURL : (NSString *)cURL newFrame : (nullable NSNumber *)bNewFrame);
 
 @end
 

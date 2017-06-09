@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "Næste";
 "Previous" = "Forrige";
 "Error" = "Fejl";
+"More options" = "Flere valgmuligheder";
+"Close All Tabs" = "Luk alle faner";
+"Close All Other Tabs" = "Luk alle andre faner"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Kontur"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "Søger";
 "Done" = "Færdig";
 "Indexing Documents" = "Indekserer dokumenter";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Dokumentet har intet indhold";
+"Document" = "Dokument";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Søg i kommentarer";
 
 // inline browser
 "Open in Safari" = "Åbn i Safari";
 "Open in Chrome" = "Åbn i Chrome";
 "Your %@ is not configured to send emails." = "Din %@ er ikke konfigureret til at sende e-mails.";
-"The link is requesting to open %@Would you like to continue?" = "Henvisningen ønsker at åbne %@ Vil du fortsætte?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Dette link beder om at åbne %1$@. %2$@Vil du fortsætte?"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "et eksternt program"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "E-mail"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "Tekst kopieret til Udklipsholder.";
-"Save To Camera Roll" = "Arkiver i Kamerarulle";
+"Save to Photo Library" = "Arkiver i fotobibliotek";
 "Failed to extract image." = "Kunne ikke udtrække billede.";
 "Type value or pick from list" = "Skriv værdi eller vælg fra listen";
 
@@ -128,14 +133,14 @@
 "Rainbow" = "Regnbue";
 "Monochrome" = "Sort/hvid";
 "Vintage" = "Gammeldags";
+"Modern" = "Moderne";
 "Color" = "Farve";
 "Border" = "Ramme";
 "Fill Color" = "Fyldfarve";
-"Line End Fill Color" = "Linjeslutfarve";
+"Start and End Color" = "Start- og slut-farve";
 "Opacity" = "Transparens";
-"%@ %%" = "%@ %%";
 "Thickness" = "Tykkelse";
-"%@ pt" = "%@ point";
+"%@ pt" = "%@ pt";
 "Yellow" = "Gul";
 "Green" = "Grøn";
 "Red" = "Rød";
@@ -152,6 +157,7 @@
 "Highlight" = "Fremhæv";
 "Underline" = "Understreget";
 "Squiggle" = "Bølgelinje";
+"Squiggly" = "Bølge";
 "StrikeOut" = "Gennemstreget";
 "Rectangle" = "Rektangel";
 "Ellipse" = "Ellipse";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Fjern signatur";
 "My Signature" = "Min signatur";
 "No Signatures" = "Ingen signaturer"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Kundesignatur";
+"One Time Signature" = "Engangs-signatur";
 "Please sign here" = "Underskriv her";
 "Note" = "Bemærk";
 "Text" = "Tekst";
@@ -209,7 +215,8 @@
 "Ungroup" = "Ophæv gruppe";
 "Merge" = "Kombiner"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Eksempel";
-"Annotation Summary for %@:\n" = "Kommentarresumé af %@:\n";
+"Annotation Summary for %@:" = "Kommentarresumé af %@:";
+"Show Text" = "Vis tekst";
 // title
 "Author Name" = "Forfatternavn";
 // message
@@ -232,17 +239,19 @@
 "Drag to resize" = "Træk for at skalere"; // used as hint that inspector is resizable
 "Convert to" = "Konverter til"; // used as label on action that changes free text intent type
 "Color Presets" = "Farvevalg";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Tekstbox"; // freetext annotation with an arrow
 "Generic" = "Generisk"; // basic freetext annotation
 
 // Line dash styles
 "Line Style" = "linjeudseende";
-"Solid" = "Solid";
+"Solid" = "Fortsat";
 "Narrow Dots" = "Tætte prikker";
 "Wide Dots" = "Spredte prikker";
 "Narrow Dashes" = "Tætte streger";
 "Wide Dashes" = "Spredte streger";
+"Cloudy" = "Skyet"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Godkendt";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Parring";
 // text on a label; app and stylus are connected
-"Connected" = "Tilsluttet";
+"%@ Connected" = "%@ tilsluttet";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Forbindelse afbrudt";
+"%@ Disconnected" = "%@ forbindelse afbrudt";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Indstillinger";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Kommentarer gengives i PDF'en og er skrivebeskyttede.";
 "Annotation Summary" = "Kommentarresumé";
 "Embed Annotations into the PDF and also list them in the email." = "Indlejr kommentarer i PDF'en og oplist dem også i e-mail.";
+"Annotations will be listed in a text file." = "Notater oplistes i en et tekstarkiv.";
 "Files" = "Arkiver";
 "Send as single files" = "Send som enkelte arkiver";
 "Merge files" = "Flet arkiver";
 "Original File" = "Originalt arkiv";
 "Range" = "Omfang";
 "Annotated Pages" = "Kommenterede sider";
+"Message could not be sent." = "Meddelelse kunne ikke sendes.";
+"Export" = "Eksporter";
+"This action can't be performed." = "Denne handling kan ikke udføres.";
 
 // sound annotations
 "Speak" = "Læs op"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Valg-felt";
 "Signature Field" = "Signaturfelt";
 "Clear Field" = "Ryd felt"; // same as delete
-"Type value or pick from list" = "Skriv værdi eller vælg fra listen";
 "Default Values" = "Standardværdier";
 "Custom Value" = "Særlig værdi";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Ugyldig værdi; skal være mindre end eller lig med %s.";
 "Invalid value: must be a number." = "Ugyldig værdi: skal være et tal.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Ugyldig værdi: skal være en dato.";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Roter sider";
 "Page Size" = "Papirstr.";
 "Background Color" = "Baggrundsfarve";
+"Paper" = "Papir";
 "Pattern" = "Formular-felt";
 "Use Document Size" = "Brug dokumentstr.";
 "Orientation" = "Orientering";
 "Portrait" = "Portræt";
 "Landscape" = "Landskab";
-"Name" = "Navn";
 "Document Name" = "Dokumentnavn";
 "Documents" = "Dokumenter"; // Name of directory
-"Use Document Directory" = "Brug dokumentets mappe";
-"Directory" = "Mappe";
+"Use Document Folder" = "Brug dokumentets mappe";
+"Folder" = "Mappe";
 "Replace File?" = "Erstat arkiv?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Der findes allerede et arkiv kaldet, „%@“ i den valgte destination. Vil du erstatte det?";
 "Replace" = "Erstat";
@@ -543,6 +555,15 @@
 "Save As…" = "Arkiver som…";
 "Discard Changes" = "Glem ændringer";
 "Empty" = "Ugyldig";
+"Use Image Size" = "Brug billedstr.";
+"Page Background" = "Sidebaggrund";
+"Insert image annotation" = "Indsæt billednotat";
+"Import page background" = "Importer sidebaggrund";
+"Quality" = "Kvalitet";
+"Low" = "Lav";
+"Medium" = "Centreret";
+"High" = "Høj";
+"Best" = "Bedste";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Et tomt dokument kan ikke arkiveres.";
@@ -567,9 +588,30 @@
 "Export…" = "Eksporter…";
 "Exporting…" = "Eksporterer…";
 "Exported" = "Eksporteret";
-"%@ - Exported" = "%@ - Eksporteret"; // Format for the default filename during export (%@ = existing filename)
-"%@ - Copy" = "%@ - Kopi"; // Format for the default filename during save as (%@ = existing filename)
+"%@ - Exported" = "%@ - eksporteret"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - kopi"; // Format for the default filename during save as (%@ = existing filename)
 "The selected document is currently open. Please choose a different filename." = "Det valgte dokument er aktuelt åbent. Vælg venligst et andet arkivnavn.";
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekst-til-tale er ikke tilgængelig. Sørg for du har en aktiv internetforbindelse eller Google Text-to-speech engine installeret og slået til på din enhed.";
+
+// Settings
+"Page Transition" = "Sideovergang";
+"Single" = "Enkelt";
+"Continuous" = "Fortsat";
+"Curl" = "Bladr";
+"Scroll" = "Rul";
+"Horizontal" = "Vandret";
+"Vertical" = "Lodret";
+"Page Mode" = "Side tilstand";
+"Automatic" = "Automatisk";
+"Double" = "Dobbelt";
+"Appearance" = "Udseende";
+"Scrubber Bar" = "Rullefelt";
+"Jump" = "Skift"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Ikke tilgængelig"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Denne app her ikke adgang til dine fotos.";
+"This app does not have access to your camera." = "Denne app her ikke adgang til dit kamera.";
+"You can enable access in Privacy Settings." = "Du kan tillade adgang i Anonymitetsindstillinger.";

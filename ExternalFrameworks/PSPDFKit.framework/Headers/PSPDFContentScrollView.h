@@ -2,7 +2,7 @@
 //  PSPDFContentScrollView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,11 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// The content scroll view, used for `PSPDFPageTransitionCurl` and `PSPDFPageTransitionScrollContinuous`.
 PSPDF_CLASS_AVAILABLE @interface PSPDFContentScrollView : PSPDFScrollView
 
+PSPDF_DEFAULT_VIEW_INIT_UNAVAILABLE
+
 /// Initializes the `PSPDFContentScrollView` with a `viewController`.
-- (instancetype)initWithTransitionViewController:(UIViewController <PSPDFTransitionProtocol> *)viewController;
+- (instancetype)initWithTransitionViewController:(UIViewController<PSPDFTransitionProtocol> *)viewController NS_DESIGNATED_INITIALIZER;
 
 /// References the page controller.
-@property (nonatomic, readonly) UIViewController <PSPDFTransitionProtocol> *contentController;
+@property (nonatomic, readonly) UIViewController<PSPDFTransitionProtocol> *contentController;
 
 @end
 

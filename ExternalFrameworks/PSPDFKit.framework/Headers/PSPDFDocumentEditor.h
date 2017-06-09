@@ -2,7 +2,7 @@
 //  PSPDFDocumentEditor.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,10 +16,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^PSPDFDocumentEditorSaveBlock)(PSPDFDocument * _Nullable document, NSError * _Nullable error);
+typedef void (^PSPDFDocumentEditorSaveBlock)(PSPDFDocument *_Nullable document, NSError *_Nullable error);
 
 /// Delegate that can be implemented to be notified of changes that the document editor performs.
-PSPDF_AVAILABLE_DECL @protocol PSPDFDocumentEditorDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFDocumentEditorDelegate<NSObject>
 
 @optional
 
@@ -56,10 +56,10 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditor : NSObject
 
 /// Adds a document editor delegate to the subscriber list.
 /// @note Delegates are weakly retained, but be a good citizen and manually deregister.
-- (void)addDelegate:(id <PSPDFDocumentEditorDelegate>)delegate;
+- (void)addDelegate:(id<PSPDFDocumentEditorDelegate>)delegate;
 
 /// Removes a document editor delegate from the subscriber list.
-- (BOOL)removeDelegate:(id <PSPDFDocumentEditorDelegate>)delegate;
+- (BOOL)removeDelegate:(id<PSPDFDocumentEditorDelegate>)delegate;
 
 /// @name Page info
 
@@ -68,7 +68,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditor : NSObject
 @property (nonatomic, readonly) NSUInteger pageCount;
 
 /// Returns the page size, already rotated.
-- (CGSize)pageSizeForPage:(NSUInteger)pageIndex;
+- (CGSize)pageSizeForPageAtIndex:(NSUInteger)pageIndex;
 
 /// @name Operations
 
@@ -76,18 +76,18 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditor : NSObject
 - (NSArray<PSPDFEditingChange *> *)addPageAt:(NSUInteger)index withConfiguration:(PSPDFNewPageConfiguration *)configuration;
 
 /// Moves pages at the given page indexes to a new page index.
-- (NSArray<PSPDFEditingChange *> *)movePages:(NSSet<NSNumber *> *)pageIndexes to:(NSUInteger)destination;
+- (NSArray<PSPDFEditingChange *> *)movePages:(NSIndexSet *)pageIndexes to:(NSUInteger)destination;
 
 /// Removes pages at the given page indexes.
-- (NSArray<PSPDFEditingChange *> *)removePages:(NSSet<NSNumber *> *)pageIndexes;
+- (NSArray<PSPDFEditingChange *> *)removePages:(NSIndexSet *)pageIndexes;
 
 /// Duplicates pages at the given page indexes. The duplicated pages will be inserted exactly after the original page.
-- (NSArray<PSPDFEditingChange *> *)duplicatePages:(NSSet<NSNumber *> *)pageIndexes;
+- (NSArray<PSPDFEditingChange *> *)duplicatePages:(NSIndexSet *)pageIndexes;
 
 /// Rotates the pages with the given page indexes.
 /// Rotation can be 0, 90, 180 and 270. Clockwise and counter-clockwise (depending on the sign).
 /// The rotation is added to the current page rotation value.
-- (NSArray<PSPDFEditingChange *> *)rotatePages:(NSSet<NSNumber *> *)pageIndexes rotation:(NSInteger)rotation;
+- (NSArray<PSPDFEditingChange *> *)rotatePages:(NSIndexSet *)pageIndexes rotation:(NSInteger)rotation;
 
 /// @name Undo / redo
 
@@ -133,19 +133,12 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditor : NSObject
 /// @param path The destination path for the new document. Should be a directory to which the application can write to.
 /// @param block If successful, returns a new document that is configured for the given `path`. Otherwise an
 /// error will be available.
-- (void)exportPages:(NSSet<NSNumber *> *)pageIndexes toPath:(NSString *)path withCompletionBlock:(nullable PSPDFDocumentEditorSaveBlock)block;
+- (void)exportPages:(NSIndexSet *)pageIndexes toPath:(NSString *)path withCompletionBlock:(nullable PSPDFDocumentEditorSaveBlock)block;
 
 /// @name Rendering
 
 /// Returns the rendered page as an `UIImage` with custom scale.
-- (nullable UIImage *)imageForPage:(NSUInteger)pageIndex size:(CGSize)size scale:(CGFloat)scale;
-
-@end
-
-@interface PSPDFDocumentEditor (Deprecated)
-
-/// Returns the rendered page as an `UIImage` with default (device dependent) scale.
-- (nullable UIImage *)imageForPage:(NSUInteger)pageIndex size:(CGSize)size PSPDF_DEPRECATED(5.3, "Use variant with scale parameter instead. Default is 0.0");
+- (nullable UIImage *)imageForPageAtIndex:(NSUInteger)pageIndex size:(CGSize)size scale:(CGFloat)scale;
 
 @end
 

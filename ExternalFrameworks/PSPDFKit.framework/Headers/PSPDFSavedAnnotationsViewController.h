@@ -2,7 +2,7 @@
 //  PSPDFSavedAnnotationsViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,7 +17,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Protocol for the annotation store implementation.
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationSetStore <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationSetStore<NSObject>
 
 /// The annotation set to read/write.
 @property (nonatomic, copy) NSArray<PSPDFAnnotationSet *> *annotationSets;
@@ -25,14 +25,14 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationSetStore <NSObject>
 @end
 
 /// A default store that saves annotations into the keychain.
-PSPDF_CLASS_AVAILABLE @interface PSPDFKeychainAnnotationSetsStore : NSObject <PSPDFAnnotationSetStore> @end
-
+PSPDF_CLASS_AVAILABLE @interface PSPDFKeychainAnnotationSetsStore : NSObject<PSPDFAnnotationSetStore>
+@end
 
 /// Shows an editable grid of saved annotation sets.
-PSPDF_CLASS_AVAILABLE @interface PSPDFSavedAnnotationsViewController : PSPDFAnnotationGridViewController <PSPDFAnnotationGridViewControllerDataSource, PSPDFStyleable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFSavedAnnotationsViewController : PSPDFAnnotationGridViewController<PSPDFAnnotationGridViewControllerDataSource, PSPDFStyleable>
 
 /// The default `PSPDFKeychainAnnotationSetsStore`, used if no custom store is set.
-+ (id <PSPDFAnnotationSetStore>)sharedAnnotationStore;
++ (id<PSPDFAnnotationSetStore>)sharedAnnotationStore;
 
 /// The store object that gets called when annotations are changed. Set to use the controller.
 @property (nonatomic) id<PSPDFAnnotationSetStore> annotationStore;

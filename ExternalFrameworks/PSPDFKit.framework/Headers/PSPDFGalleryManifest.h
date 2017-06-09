@@ -2,7 +2,7 @@
 //  PSPDFGalleryManifest.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PSPDFGalleryManifestCompletionBlock)(NSArray * _Nullable items, NSError * _Nullable error);
+typedef void (^PSPDFGalleryManifestCompletionBlock)(NSArray *_Nullable items, NSError *_Nullable error);
 
 /// `PSPDFGalleryManifest` models the manifest file that is the data source of every gallery.
 /// It abstracts the task of loading an array of `PSPDFGalleryItem`s from potentially multiple

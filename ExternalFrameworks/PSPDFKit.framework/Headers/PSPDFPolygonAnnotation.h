@@ -2,7 +2,7 @@
 //  PSPDFPolygonAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -27,7 +27,6 @@ typedef NS_ENUM(NSInteger, PSPDFPolygonAnnotationIntent) {
 
 /// `NSValueTransformer` to convert between `PSPDFPolygonAnnotationIntent` enum and string value.
 PSPDF_EXPORT NSString *const PSPDFPolygonAnnotationIntentTransformerName;
-
 
 /// Polygon annotations (PDF 1.5) display closed polygons on the page. Such polygons may have any number of vertices connected by straight lines. Polyline annotations (PDF 1.5) are similar to polygons, except that the first and last vertex are not implicitly connected.
 /// @note See `PSPDFAbstractLineAnnotation` for details how to use and initialize.

@@ -2,7 +2,7 @@
 //  PSPDFProcessorItemBuilder.h
 //  PSPDFModel
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,11 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFEnvironment.h"
 
 #import "PSPDFEnvironment.h"
-#import "PSPDFRectAlignment.h"
 #import "PSPDFModel.h"
+#import "PSPDFRectAlignment.h"
 
 /// Specifies if the item (image) should be located in the foreground or background
 typedef NS_ENUM(NSInteger, PSPDFItemZPosition) {

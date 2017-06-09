@@ -2,7 +2,7 @@
 //  PSPDFOpenInCoordinator.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// These notifications represent a small subset of `UIDocumentInteractionControllerDelegate` (but the most important ones)
 /// To get all callbacks, subclass `PSPDFOpenInCoordinator` and implement the callbacks (and also call super)
-PSPDF_EXPORT NSString *const PSPDFDocumentInteractionControllerWillBeginSendingToApplicationNotification;
-PSPDF_EXPORT NSString *const PSPDFDocumentInteractionControllerDidEndSendingToApplicationNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFDocumentInteractionControllerWillBeginSendingToApplicationNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFDocumentInteractionControllerDidEndSendingToApplicationNotification;
 
-PSPDF_CLASS_AVAILABLE @interface PSPDFOpenInCoordinator : PSPDFDocumentSharingCoordinator <UIDocumentInteractionControllerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFOpenInCoordinator : PSPDFDocumentSharingCoordinator<UIDocumentInteractionControllerDelegate>
 @end
 
 @interface PSPDFOpenInCoordinator (SubclassingHooks)

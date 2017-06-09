@@ -2,7 +2,7 @@
 //  PSPDFDocumentEditorToolbar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// A flexible toolbar with various document editing functions. 
+/// A flexible toolbar with various document editing functions.
 /// @note This class requires the Document Editor component to be enabled for your license.
 PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditorToolbar : PSPDFFlexibleToolbar
 

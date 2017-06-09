@@ -2,7 +2,7 @@
 //  PSPDFAnnotationSummarizer.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -31,6 +31,14 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Generates an annotation summary for all `pages` in the current set document.
 - (NSAttributedString *)annotationSummaryForPages:(NSIndexSet *)pages;
 
+/// Generates a .txt file containing the annotation summary as a plain string.
+- (nullable NSURL *)temporaryTextFileURLForPages:(NSIndexSet *)pages error:(NSError **)error;
+
+/// Generates a .txt file contains the annotations summary as a plain string.
++ (nullable NSURL *)temporaryTextFileURLForDocuments:(NSArray<PSPDFDocument *> *)documents error:(NSError **)error;
+
+/// Generates an annotation summary for all pages in the given documents.
++ (NSAttributedString *)annotationSummaryForDocuments:(NSArray<PSPDFDocument *> *)documents;
 @end
 
 NS_ASSUME_NONNULL_END

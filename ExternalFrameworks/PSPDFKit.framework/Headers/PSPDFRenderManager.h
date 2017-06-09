@@ -2,7 +2,7 @@
 //  PSPDFRenderManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,9 +10,43 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFPlugin.h"
+#import "PSPDFEnvironment.h"
+#import "PSPDFMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ This notification is triggered if something happens that changes the way a page looks.
+
+ The user info dictionary of this notification always contains the key `PSPDFRenderManagerRenderResultChangedDocumentKey`
+ which contains the document that changed and optionally `PSPDFRenderManagerRenderResultChangedPagesKey`
+ which contains an index set of the pages that changed within this document.
+
+ If a document was changed e.g. by adding or removing an annotation, this notification
+ tells you that the render engine and the cache have been updated and scheduling
+ a new render task is guaranteed to return the new state of the document.
+
+ In other words: If you constantly want to show up to date data, observe this notification
+ and request a new image when this notification is posted.
+
+ @note This notification is posted on an arbitraty queue. If you need to react on
+ this on the main queue, you need to switch to the main queue yourself.
+ */
+PSPDF_EXPORT NSNotificationName const PSPDFRenderManagerRenderResultDidChangeNotification;
+
+/**
+ The key of a `PSPDFRenderManagerRenderResultDidChangeNotification` userInfo's dictionary,
+ containing the `PSPDFDocument` that was changed.
+ */
+PSPDF_EXPORT NSString *const PSPDFRenderManagerRenderResultChangedDocumentKey;
+
+/**
+ The key of a `PSPDFRenderManagerRenderResultDidChangeNotification` userInfo's dictionary,
+ containing an `NSIndexSet` with all the relevant pages. If the entry for this
+ key in the user info dictionary is `nil`, the whole document should be treated as
+ changed.
+ */
+PSPDF_EXPORT NSString *const PSPDFRenderManagerRenderResultChangedPagesKey;
 
 /// The `PSPDFPageInfo` object containing page info.
 PSPDF_EXPORT NSString *const PSPDFPageRendererPageInfoKey;
@@ -20,14 +54,14 @@ PSPDF_EXPORT NSString *const PSPDFPageRendererPageInfoKey;
 @class PSPDFAnnotation, PSPDFRenderQueue, PSPDFDocumentProvider;
 
 /// Abstract interface for a page renderer.
-PSPDF_AVAILABLE_DECL @protocol PSPDFPageRenderer <PSPDFPlugin>
+PSPDF_AVAILABLE_DECL @protocol PSPDFPageRenderer<NSObject>
 
 /// Currently `options` contains `PSPDFPageRendererPageInfoKey`.
-- (BOOL)drawPage:(NSUInteger)page inContext:(CGContextRef)context documentProvider:(PSPDFDocumentProvider *)documentProvider withOptions:(nullable NSDictionary<NSString *, id> *)options error:(NSError **)error;
+- (BOOL)drawPageIndex:(NSUInteger)pageIndex inContext:(CGContextRef)context documentProvider:(PSPDFDocumentProvider *)documentProvider withOptions:(nullable NSDictionary<NSString *, id> *)options error:(NSError **)error;
 
 /// Renders annotation appearance streams.
 /// @return NO if rendering failed.
-- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context error:(NSError **)error;
+- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context withOptions:(nullable NSDictionary<NSString *, id> *)options error:(NSError **)error;
 
 @end
 
@@ -53,34 +87,34 @@ typedef NS_OPTIONS(NSUInteger, PSPDFRenderFilter) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Multiplies a color used to color a page.
-PSPDF_EXPORT NSString *const PSPDFRenderPageColorKey;
+PSPDF_EXPORT NSString *const PSPDFRenderPageColorKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionPageColorKey instead.");
 
 /// Inverts the rendering output. Defaults to `@(NO)`.
-PSPDF_EXPORT NSString *const PSPDFRenderInvertedKey;
+PSPDF_EXPORT NSString *const PSPDFRenderInvertedKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionInvertedKey instead.");
 
 /// Filters to be applied. Defaults to 0. Filters will increase rendering time.
-PSPDF_EXPORT NSString *const PSPDFRenderFiltersKey;
+PSPDF_EXPORT NSString *const PSPDFRenderFiltersKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionFiltersKey instead.");
 
 /// Set custom interpolation quality. Defaults to `kCGInterpolationHigh`.
-PSPDF_EXPORT NSString *const PSPDFRenderInterpolationQualityKey;
+PSPDF_EXPORT NSString *const PSPDFRenderInterpolationQualityKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionInterpolationQualityKey instead.");
 
 /// Set to YES to NOT draw page content. (Use to just draw an annotation)
-PSPDF_EXPORT NSString *const PSPDFRenderSkipPageContentKey;
+PSPDF_EXPORT NSString *const PSPDFRenderSkipPageContentKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionSkipPageContentKey instead.");
 
 /// Set to YES to render annotations that have isOverlay = YES set.
-PSPDF_EXPORT NSString *const PSPDFRenderOverlayAnnotationsKey;
+PSPDF_EXPORT NSString *const PSPDFRenderOverlayAnnotationsKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionOverlayAnnotationsKey instead.");
 
 /// Skip rendering of any annotations that are in this array.
-PSPDF_EXPORT NSString *const PSPDFRenderSkipAnnotationArrayKey;
+PSPDF_EXPORT NSString *const PSPDFRenderSkipAnnotationArrayKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionSkipAnnotationArrayKey instead.");
 
 /// If YES, will draw outside of page area.
-PSPDF_EXPORT NSString *const PSPDFRenderIgnorePageClipKey;
+PSPDF_EXPORT NSString *const PSPDFRenderIgnorePageClipKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionIgnorePageClipKey instead.");
 
 /// Enabled/Disables antialiasing. Defaults to YES.
-PSPDF_EXPORT NSString *const PSPDFRenderAllowAntiAliasingKey;
+PSPDF_EXPORT NSString *const PSPDFRenderAllowAntiAliasingKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionAllowAntiAliasingKey instead.");
 
 /// Allows custom render color. Default is white.
-PSPDF_EXPORT NSString *const PSPDFRenderBackgroundFillColorKey;
+PSPDF_EXPORT NSString *const PSPDFRenderBackgroundFillColorKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionBackgroundFillColorKey instead.");
 
 /// Sets the interactive fill color, which will override the fill color for all newly
 /// rendered form elements that are editable.
@@ -93,29 +127,19 @@ PSPDF_EXPORT NSString *const PSPDFRenderBackgroundFillColorKey;
 /// specified in the PDF.
 ///
 /// Defaults to a non-nil, light blue color.
-PSPDF_EXPORT NSString *const PSPDFRenderInteractiveFormFillColorKey;
+PSPDF_EXPORT NSString *const PSPDFRenderInteractiveFormFillColorKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionInteractiveFormFillColorKey instead.");
 
 /// Allow custom content rendering after the PDF. `PSPDFRenderDrawBlock`.
-PSPDF_EXPORT NSString *const PSPDFRenderDrawBlockKey;
-
-typedef void (^PSPDFRenderDrawBlock)(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary<NSString *, id> *_Nullable options);
+PSPDF_EXPORT NSString *const PSPDFRenderDrawBlockKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionDrawBlockKey instead.");
 
 /// The PDF render manager coordinates the PDF renderer used.
-PSPDF_AVAILABLE_DECL @protocol PSPDFRenderManager <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFRenderManager<NSObject>
 
 /// Setup the graphics context to the current PDF.
 - (void)setupGraphicsContext:(CGContextRef)context rectangle:(CGRect)displayRectangle pageInfo:(PSPDFPageInfo *)pageInfo;
 
 /// The render queue that manages render jobs.
 @property (nonatomic, readonly) PSPDFRenderQueue *renderQueue;
-
-/// @name Deprecated
-
-/// Returns the name of the current PDF renderer.
-@property (nonatomic, copy, readonly) NSDictionary<NSString *, id> *rendererInfo PSPDF_DEPRECATED(5.3, "Not useful");
-
-/// Returns the pdf renderer.
-@property (nonatomic, readonly) id<PSPDFPageRenderer> renderer PSPDF_DEPRECATED(5.3, "Should not be required to be called directly.");
 
 @end
 

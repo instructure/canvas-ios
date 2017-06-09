@@ -2,7 +2,7 @@
 //  PSPDFNavigationController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, PSPDFPersistentCloseButtonMode) {
 
 /// Simple subclass that forwards following iOS 6+ rotation methods to the top view controller:
 /// `shouldAutorotate`, `supportedInterfaceOrientations`, `preferredInterfaceOrientationForPresentation:`.
-PSPDF_CLASS_AVAILABLE @interface PSPDFNavigationController : UINavigationController <UINavigationControllerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFNavigationController : UINavigationController<UINavigationControllerDelegate>
 
 /// Forward the modern rotation method to the visible view controller. Defaults to YES.
 @property (nonatomic, getter=isRotationForwardingEnabled) BOOL rotationForwardingEnabled;

@@ -2,7 +2,7 @@
 //  PSPDFAssetAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -21,7 +21,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAssetAnnotation : PSPDFLinkAnnotation
 @property (nonatomic, copy, readonly, nullable) NSString *assetName;
 
 /// Extracts the asset into a file and returns the file URL.
-- (nullable NSURL *)fileURLWithError:(NSError *__autoreleasing *)error;
+- (nullable NSURL *)fileURLWithError:(NSError **)error;
 
 @end
 

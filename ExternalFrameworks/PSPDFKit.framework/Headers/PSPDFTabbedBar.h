@@ -2,7 +2,7 @@
 //  PSPDFTabbedBar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -45,7 +45,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTabbedBar : UIView
 
 /// The image used for the button shown on the selected tab that closes that tab.
 /// The image is aligned with the left end of the tab.
-/// To hide the close button, set `allowsClosingDocuments` to `NO` on the parent `PSPDFTabbedViewController`.
+/// To hide the close button, set `closeMode` to `PSPDFTabbedViewControllerCloseModeDisabled` on the parent `PSPDFTabbedViewController`.
 /// The default is a cross in a circle that scales with `barHeight`; the default may be restored by setting this property to `nil`.
 @property (nonatomic, null_resettable) UIImage *closeButtonImage;
 
@@ -76,7 +76,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTabbedBar : UIView
 @property (nonatomic, copy) NSArray<UIView *> *rightViews;
 
 /// The gesture recognizer used to allow the user to change the order of tabs by dragging.
-/// @note This feature is not available on iOS 8, in which case the value of this property is `nil`.
 @property (nonatomic, nullable, readonly) UILongPressGestureRecognizer *interactiveReorderingGestureRecognizer;
 
 @end

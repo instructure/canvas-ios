@@ -2,7 +2,7 @@
 //  UISearchController+PSPDFKitAdditions.h
 //  PSPDFKit
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,14 +14,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Extends `UISearchController` with some helpers.
 @interface UISearchController (PSPDFKitAdditions)
 
 /// If the `searchResultsController` is a `UITableViewController` subclass, this returns its table view.
 @property (nonatomic, readonly, nullable) UITableView *pspdf_searchResultsTableView;
 
-/// Enables a workaround for rdar://352525.
-/// UISearchController: Status Bar on top of Search Bar after rotating
-/// http://openradar.appspot.com/radar?id=5542248011792384
+/**
+ Enables a workaround for rdar://352525.
+ UISearchController: Status Bar on top of Search Bar after rotating
+ http://openradar.appspot.com/radar?id=5542248011792384
+ */
 - (void)pspdf_install352525StatusBarWorkaroundOn:(UIViewController *)controller;
 
 @end

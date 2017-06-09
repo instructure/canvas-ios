@@ -2,7 +2,7 @@
 //  PSPDFStaticTableViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,4 +15,3 @@
 /// Helps to create controllers that show static table view content.
 PSPDF_CLASS_AVAILABLE @interface PSPDFStaticTableViewController : PSPDFBaseTableViewController
 @end
-

@@ -2,7 +2,7 @@
 //  PSPDFGalleryContentCaptionView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,7 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// The caption view used in `PSPDFGalleryContentCaptionView`.
-PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryContentCaptionView : UIView <PSPDFGalleryContentViewCaption>
+PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryContentCaptionView : UIView<PSPDFGalleryContentViewCaption>
 
 /// The caption.
 @property (nonatomic, copy, nullable) NSString *caption;

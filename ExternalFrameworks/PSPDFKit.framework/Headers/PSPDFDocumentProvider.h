@@ -2,7 +2,7 @@
 //  PSPDFDocumentProvider.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,7 +12,7 @@
 
 #import "PSPDFDocumentProviderDelegate.h"
 
-@class PSPDFFormParser, PSPDFEmbeddedFilesParser, PSPDFTextSearch, PSPDFTextParser, PSPDFOutlineParser, PSPDFAnnotationManager, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
+@class PSPDFFormParser, PSPDFTextSearch, PSPDFTextParser, PSPDFOutlineParser, PSPDFAnnotationManager, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
 @protocol PSPDFDataProvider;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -46,11 +46,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentPermissions) {
 /// @note This class is used within `PSPDFDocument` and should not be instantiated externally.
 PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentProvider : NSObject
 
-/// Referenced NSURL. If this is set, `dataProvider` is nil.
-@property (nonatomic, readonly, nullable) NSURL *fileURL;
-
 /// Referenced data provider.
 @property (nonatomic, readonly, nullable) id<PSPDFDataProvider> dataProvider;
+
+/// The data provider URL, if the data provider exposes it.
+@property (nonatomic, readonly, nullable) NSURL *fileURL;
 
 /// Returns a NSData representation, memory-maps files, copies a `PSPDFDataProvider`.
 - (nullable NSData *)dataRepresentationWithError:(NSError **)error;
@@ -64,10 +64,12 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentProvider : NSObject
 /// Delegate for writing annotations. Defaults to the current set document.
 @property (atomic, weak) id<PSPDFDocumentProviderDelegate> delegate;
 
-/// Cached rotation and aspect ratio data for specific page. Page starts at 0.
-/// Unlike with `-[PSPDFDocument pageInfoForPage:]` here the returned `PSPDFPageInfo`'s
-/// `page` property always equals the supplied `page` argument
-- (nullable PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
+/**
+ Returns the page info object for the supplied pageIndex, if it exists.
+@note Unlike with `-[PSPDFDocument pageInfoForPageAtIndex:]` here the returned `PSPDFPageInfo`'s
+ `pageIndex` property always equals the supplied `pageIndex` argument
+ */
+- (nullable PSPDFPageInfo *)pageInfoForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Number of pages in the PDF. 0 if source is invalid. Filtered by `pageRange`.
 @property (nonatomic, readonly) NSUInteger pageCount;
@@ -100,23 +102,30 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentProvider : NSObject
 /// @note Searches and checks the digital signatures on the first call (caches the result for subsequent calls)
 @property (nonatomic, readonly) BOOL allowAnnotationChanges;
 
+/// A file identifier.
+/// @note A permanent identifier based on the contents of the file at the time it was originally created.
+@property (nonatomic, copy, readonly, nullable) NSData *fileId;
+
 /// Access the PDF title. (".pdf" will be truncated)
 /// @note If there's no title in the PDF metadata, the file name will be used.
 @property (nonatomic, copy, readonly) NSString *title;
 
 /// Return a textParser for the specific document page. Page starts at 0.
 /// Will parse the page contents before returning. Might take a while.
-- (nullable PSPDFTextParser *)textParserForPage:(NSUInteger)page;
+- (nullable PSPDFTextParser *)textParserForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Outline extraction class for current PDF.
 /// Lazy initialized. Can be subclassed.
 @property (nonatomic, readonly) PSPDFOutlineParser *outlineParser;
 
-/// AcroForm parser.
-@property (nonatomic, readonly) PSPDFFormParser *formParser;
+/**
+ Returns the AcroForm parser.
+ Forms are a separate component and might not be enabled for your license.
+ If forms are not enabled or not part of your license, this will return nil.
 
-/// Embedded files.
-@property (nonatomic, readonly) PSPDFEmbeddedFilesParser *embeddedFilesParser;
+ @see `formsEnabled` on the `PSPDFDocument` class.
+ */
+@property (nonatomic, readonly, nullable) PSPDFFormParser *formParser;
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed.
@@ -136,8 +145,8 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentProvider : NSObject
 /// @note Valid rotation values are 0, 90, 180 and 270.
 /// A call to `reloadData` is required if the document is currently displayed in a `PSPDFViewController`.
 /// You might also want to clear existing cache, so you don't get a malformed image while re-rendering.
-/// `[self.pspdfkit.cache invalidateImageFromDocument:self.document page:page];`
-- (void)setRotation:(NSUInteger)rotation forPage:(NSUInteger)page;
+/// `[self.pspdfkit.cache invalidateImageFromDocument:self.document pageIndex:pageIndex];`
+- (void)setRotation:(NSUInteger)rotation forPageAtIndex:(NSUInteger)pageIndex;
 
 @end
 

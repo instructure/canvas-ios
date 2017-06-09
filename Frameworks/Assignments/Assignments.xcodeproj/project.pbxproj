@@ -1459,6 +1459,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = Assignments/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1481,6 +1482,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = Assignments/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1502,6 +1504,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = AssignmentKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1525,6 +1532,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = AssignmentKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

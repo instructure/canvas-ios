@@ -2,7 +2,7 @@
 //  PSPDFURLAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -70,7 +70,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFURLAction : PSPDFAction
 /// Determines whether the URL points to a local file.
 @property (nonatomic, getter=isLocalPDFURL, readonly) BOOL localPDFURL;
 
-#if TARGET_OS_EMBEDDED || TARGET_OS_IPHONE
+#if TARGET_OS_IOS
 - (BOOL)configureMailComposeViewController:(MFMailComposeViewController *)mailComposeViewController;
 #endif
 

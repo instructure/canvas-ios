@@ -18,22 +18,44 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -292,22 +314,44 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -566,22 +610,44 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -849,22 +915,44 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -1132,22 +1220,44 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -1338,22 +1448,44 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -1612,22 +1744,44 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={
@@ -1818,22 +1972,44 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
       }
     }
   >
-    <View>
-      <Image
-        source={
-          Object {
-            "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-          }
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
         }
+      }
+    >
+      <View
+        accessibilityLabel=""
         style={
-          Object {
-            "borderRadius": 20,
-            "height": 40,
-            "marginLeft": 16,
-            "width": 40,
-          }
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={

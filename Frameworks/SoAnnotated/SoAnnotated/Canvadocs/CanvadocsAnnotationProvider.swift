@@ -18,7 +18,24 @@
 
 import Foundation
 import PSPDFKit
-import SoPretty
+
+extension UIColor {
+    fileprivate var toHexString: String {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        
+        return String(
+            format: "%02X%02X%02X",
+            Int(r * 0xff),
+            Int(g * 0xff),
+            Int(b * 0xff)
+        )
+    }
+}
 
 class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
     
@@ -46,7 +63,7 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
                 let commentAnnotation = CanvadocsCommentReplyAnnotation(contents: contents)
                 commentAnnotation.name = id
                 commentAnnotation.user = noteAnnotation.user
-                commentAnnotation.page = noteAnnotation.page
+                commentAnnotation.pageIndex = noteAnnotation.pageIndex
                 commentAnnotation.boundingBox = noteAnnotation.boundingBox
                 commentAnnotation.inReplyTo = inReplyTo
                 commentAnnotation.creationDate = noteAnnotation.creationDate
@@ -69,9 +86,9 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
         }
     }
     
-    override func annotations(forPage page: UInt) -> [PSPDFAnnotation]? {
-        var mut_annotations = super.annotations(forPage: page)
-        
+    override func annotationsForPage(at pageIndex: UInt) -> [PSPDFAnnotation]? {
+        var mut_annotations = super.annotationsForPage(at: pageIndex)
+
         if let annotations = mut_annotations {
             // Find and remove any lone note annotations, and send back that filtered list, plus our own comment annotations
 
@@ -90,7 +107,7 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
                     
                     // Don't ask me why, but somehow some notes were going black, this fixes it ¯\_(ツ)_/¯
                     DispatchQueue.main.async(execute: {
-                        if noteAnnotation.color?.hex != "#F2DD47" {
+                        if noteAnnotation.color?.toHexString != "F2DD47" {
                             noteAnnotation.color = UIColor(rgba: "#F2DD47")
                             NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: noteAnnotation, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["color"]])
                         }
@@ -107,6 +124,7 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
         
         return (mut_annotations ?? [])
     }
+    
     override func add(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
         // I tried doing this without the verbose if statement, trust me. IT DIDN'T WORK so here I lay...
         let filtered = annotations.filter {

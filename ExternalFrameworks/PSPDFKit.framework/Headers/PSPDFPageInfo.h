@@ -2,7 +2,7 @@
 //  PSPDFPageInfo.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -27,12 +27,12 @@ typedef NS_ENUM(NSUInteger, PSPDFPageTriggerEvent) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Represents PDF page data. Managed within `PSPDFDocumentProvider`.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFPageInfo : NSObject <NSCopying, NSSecureCoding>
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFPageInfo : NSObject<NSCopying, NSSecureCoding>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Referenced page, relative to the document provider.
-@property (nonatomic, readonly) NSUInteger page;
+@property (nonatomic, readonly) NSUInteger pageIndex;
 
 /// Referenced document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;

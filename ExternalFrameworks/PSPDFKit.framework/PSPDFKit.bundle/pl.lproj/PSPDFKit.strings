@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -13,7 +13,7 @@
 // general
 "Close" = "Zamknij";
 "Cancel" = "Anuluj";
-"OK" = "OK";
+"OK" = "Idź";
 "Open" = "Otwórz";
 "Untitled" = "Bez nazwy";
 "File Not Found" = "Nie znaleziono pliku";
@@ -24,6 +24,9 @@
 "Next" = "Dalej";
 "Previous" = "Wstecz";
 "Error" = "Błąd";
+"More options" = "Więcej opcji";
+"Close All Tabs" = "Zamknij wszystkie karty";
+"Close All Other Tabs" = "Zamknij wszystkie inne karty"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Kontur"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "Wyszukiwanie";
 "Done" = "Gotowe";
 "Indexing Documents" = "Indeksowanie dokumentów";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Dokument bez zawartości";
+"Document" = "Dokument";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Przeszukaj adnotacje";
 
 // inline browser
 "Open in Safari" = "Otwórz w Safari";
 "Open in Chrome" = "Otwórz w Chrome";
 "Your %@ is not configured to send emails." = "W %@ nie skonfigurowano wysyłania e-maili.";
-"The link is requesting to open %@Would you like to continue?" = "To łącze otworzy %@. Kontynuować?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "To łącze otworzy aplikację %1$@. %2$@Czy chcesz kontynuować?"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "aplikację zewnętrzną"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "E-mail"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "Tekst został skopiowany do schowka.";
-"Save To Camera Roll" = "Zapisz w Rolce z aparatu";
+"Save to Photo Library" = "Zachowaj w bibliotece zdjęć";
 "Failed to extract image." = "Błąd wyodrębniania obrazu.";
 "Type value or pick from list" = "Wpisz wartość lub wybierz z listy";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "Tęcza";
 "Monochrome" = "Monochromatyczny";
 "Vintage" = "Klasyka";
+"Modern" = "Nowoczesne";
 "Color" = "Kolor";
 "Border" = "Obramowanie";
 "Fill Color" = "Kolor wypełnienia";
-"Line End Fill Color" = "Kolor wypełnienia końca linii";
+"Start and End Color" = "Kolor początku i końca";
 "Opacity" = "Przezroczystość";
-"%@ %%" = "%@ %%";
 "Thickness" = "Grubość";
 "%@ pt" = "%@ punkt";
 "Yellow" = "Żółty";
@@ -152,6 +157,7 @@
 "Highlight" = "Zakreślenia";
 "Underline" = "Podkreślenie";
 "Squiggle" = "Zawijas";
+"Squiggly" = "Linia falista";
 "StrikeOut" = "Przekreślenie";
 "Rectangle" = "Prostokąt";
 "Ellipse" = "Elipsa";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Usuń podpis";
 "My Signature" = "Mój podpis";
 "No Signatures" = "Bez podpisów"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Podpis klienta";
+"One Time Signature" = "Podpis jednorazowy";
 "Please sign here" = "Podpisz tutaj";
 "Note" = "Uwaga";
 "Text" = "Tekst";
@@ -209,7 +215,8 @@
 "Ungroup" = "Usuń grupowanie";
 "Merge" = "Złącz"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Próbka";
-"Annotation Summary for %@:\n" = "%@ – zestawienie adnotacji:\n";
+"Annotation Summary for %@:" = "%@ – zestawienie adnotacji:";
+"Show Text" = "Pokaż tekst";
 // title
 "Author Name" = "Nazwisko autora";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "Przeciągnij, aby zmienić rozmiar"; // used as hint that inspector is resizable
 "Convert to" = "Konwertuj na"; // used as label on action that changes free text intent type
 "Color Presets" = "Wstępnie ustawione kolory";
+"pt" = "pkt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Dymek"; // freetext annotation with an arrow
 "Generic" = "Ogólne"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "Kropki, szeroko";
 "Narrow Dashes" = "Kreski, wąsko";
 "Wide Dashes" = "Kreski, szeroko";
+"Cloudy" = "Chmurka"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Zatwierdzono";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Łączenie w parę";
 // text on a label; app and stylus are connected
-"Connected" = "Połączono";
+"%@ Connected" = "Połączono %@";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Rozłączony";
+"%@ Disconnected" = "Rozłączono %@";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Ustawienia";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Adnotacje są renderowane w PDF i są tylko do odczytu.";
 "Annotation Summary" = "Zestawienie adnotacji";
 "Embed Annotations into the PDF and also list them in the email." = "Osadź adnotacje w PDF i dodatkowo wyszczególnij je w wiadomości e-mail.";
+"Annotations will be listed in a text file." = "Adnotacje zostaną wymienione w pliku tekstowym.";
 "Files" = "Pliki";
 "Send as single files" = "Wyślij jako pojedyncze pliki";
 "Merge files" = "Złącz pliki";
 "Original File" = "Oryginalny plik";
 "Range" = "Zakres";
 "Annotated Pages" = "Strony z adnotacjami";
+"Message could not be sent." = "Nie można wysłać wiadomości.";
+"Export" = "Eksportuj";
+"This action can't be performed." = "Nie można wykonać tego działania.";
 
 // sound annotations
 "Speak" = "Mowa"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Pole wyboru";
 "Signature Field" = "Pole podpisu";
 "Clear Field" = "Wyczyść pole"; // same as delete
-"Type value or pick from list" = "Wpisz wartość lub wybierz z listy";
 "Default Values" = "Wartości domyślne";
 "Custom Value" = "Własna wartość";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Nieprawidłowa wartość: musi być mniejsza lub równa %s.";
 "Invalid value: must be a number." = "Nieprawidłowa wartość: wymagana jest liczba.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Nieprawidłowa wartość: to musi być data.";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Obróć strony";
 "Page Size" = "Rozmiar strony";
 "Background Color" = "Kolor tła";
+"Paper" = "Papier";
 "Pattern" = "Wzór";
 "Use Document Size" = "Użyj rozmiaru dokumentu";
 "Orientation" = "Orientacja";
 "Portrait" = "Pionowa";
 "Landscape" = "Pozioma";
-"Name" = "Nazwa";
 "Document Name" = "Nazwa dokumentu";
 "Documents" = "Dokumenty"; // Name of directory
-"Use Document Directory" = "Użyj katalogu dokumentu";
-"Directory" = "Katalog";
+"Use Document Folder" = "Użyj folderu dokumentu";
+"Folder" = "Folder";
 "Replace File?" = "Zastąpić plik?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Plik o nazwie \"%@\" już istnieje w wybranym miejscu docelowym. Czy chcesz go zastąpić?";
 "Replace" = "Zastąp";
@@ -543,6 +555,15 @@
 "Save As…" = "Zachowaj jako…";
 "Discard Changes" = "Odrzuć zmiany";
 "Empty" = "Puste";
+"Use Image Size" = "Użyj rozmiaru obrazu";
+"Page Background" = "Tło strony";
+"Insert image annotation" = "Wstaw adnotację z obrazem";
+"Import page background" = "Zaimportuj tło strony";
+"Quality" = "Jakość";
+"Low" = "Niska";
+"Medium" = "Średnia";
+"High" = "Wysoka";
+"Best" = "Najlepsza";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Nie można zachować pustego dokumentu.";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Usługa syntezy mowy jest niedostępna. Upewnij się, że masz aktywne połączenie internetowe lub że mechanizm syntezy mowy Google został zainstalowany i jest włączony na urządzeniu.";
+
+// Settings
+"Page Transition" = "Przejście strony";
+"Single" = "Pojedynczy";
+"Continuous" = "Ciągły";
+"Curl" = "Zwinięty";
+"Scroll" = "Przewijanie";
+"Horizontal" = "Poziomo";
+"Vertical" = "Pionowo";
+"Page Mode" = "Tryb strony";
+"Automatic" = "Automatycznie";
+"Double" = "Podwójny";
+"Appearance" = "Wygląd";
+"Scrubber Bar" = "Pasek przewijania";
+"Jump" = "Skocz"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Niedostępne"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Aplikacja nie ma dostępu do Twoich zdjęć.";
+"This app does not have access to your camera." = "Aplikacja nie ma dostępu do Twojej";
+"You can enable access in Privacy Settings." = "Dostęp możesz włączyć w ustawieniach prywatności.";

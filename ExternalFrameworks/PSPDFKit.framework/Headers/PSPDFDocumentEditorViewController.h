@@ -2,7 +2,7 @@
 //  PSPDFDocumentEditorViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,9 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
-#import "PSPDFViewModePresenter.h"
 #import "PSPDFDocumentEditor.h"
+#import "PSPDFViewModePresenter.h"
+#import <UIKit/UIKit.h>
 
 @class PSPDFDocumentEditorToolbarController;
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// reflect the document editor changes. Selection is performed on this object and the selection state
 /// is than forwarded to `toolbarController`.
 /// @note This class requires the Document Editor component to be enabled for your license.
-PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditorViewController : UICollectionViewController <PSPDFViewModePresenter, PSPDFDocumentEditorDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentEditorViewController : UICollectionViewController<PSPDFViewModePresenter, PSPDFDocumentEditorDelegate>
 
 /// Class used for thumbnails. Defaults to `PSPDFDocumentEditorCell` and customizations should be a subclass of thereof.
 /// @see `-[PSPDFViewModePresenter cellClass]`

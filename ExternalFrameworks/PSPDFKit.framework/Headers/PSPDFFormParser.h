@@ -2,7 +2,7 @@
 //  PSPDFFormParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,7 +12,7 @@
 
 #import "PSPDFEnvironment.h"
 
-@class PSPDFFormElement, PSPDFDocumentProvider;
+@class PSPDFFormElement, PSPDFDocumentProvider, PSPDFFormField;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,8 +27,10 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// A collection of all forms in AcroForm. Lazily evaluated.
-/// @warning Due to implementation details, make sure you first access the annotations before using this property.
 @property (nonatomic, copy, readonly) NSArray<__kindof PSPDFFormElement *> *forms;
+
+/// A collection of all form fields in the AcroForm. Lazily evaluated.
+@property (nonatomic, copy, readonly, nullable) NSArray<__kindof PSPDFFormField *> *formFields;
 
 /// Return all "dirty" = unsaved form elements
 @property (nonatomic, readonly, nullable) NSArray<__kindof PSPDFFormElement *> *dirtyForms;
@@ -36,9 +38,13 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Finds a form element with its field name. Returns nil if not found.
 - (nullable __kindof PSPDFFormElement *)findAnnotationWithFieldName:(NSString *)fieldName;
 
-/// Finds a form element with its fully qualified field name. Returns nil if not found.
-/// Set the parent to nil to search over all fields.
-- (nullable __kindof PSPDFFormElement *)findAnnotationWithFullFieldName:(NSString *)fullFieldName descendingFromForm:(nullable PSPDFFormElement *)parent;
+/**
+ Finds a form field with the given fully qualified field name.
+
+ @param fullFieldName The fully qualified field name.
+ @return The form field, if found. nil otherwise.
+ */
+- (nullable __kindof PSPDFFormField *)findFieldWithFullFieldName:(NSString *)fullFieldName;
 
 @end
 

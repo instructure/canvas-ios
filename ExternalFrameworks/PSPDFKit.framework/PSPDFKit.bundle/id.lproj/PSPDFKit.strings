@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "Berikutnya";
 "Previous" = "Sebelumnya";
 "Error" = "Kesalahan";
+"More options" = "Opsi lainnya";
+"Close All Tabs" = "Tutup Semua Tab";
+"Close All Other Tabs" = "Tutup Semua Tab Lain"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Kerangka"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "Mencari";
 "Done" = "Selesai";
 "Indexing Documents" = "Mengindeks dokumen";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Dokumen tidak memiliki konten";
+"Document" = "Dokumen";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Cari Anotasi";
 
 // inline browser
 "Open in Safari" = "Buka di Safari";
 "Open in Chrome" = "Buka di Chrome";
 "Your %@ is not configured to send emails." = "%@ Anda belum dikonfigurasi untuk mengirim email.";
-"The link is requesting to open %@Would you like to continue?" = "Tautan ingin membuka %@Ingin melanjutkan?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Tautan meminta untuk membuka %1$@. %2$@Ingin melanjutkan?"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "aplikasi eksternal"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "Kirim melalui Email"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "Teks disalin ke papan klip.";
-"Save To Camera Roll" = "Simpan ke Rol Kamera";
+"Save to Photo Library" = "Simpan ke Perpustakaan Foto";
 "Failed to extract image." = "Gagal mengekstrak gambar.";
 "Type value or pick from list" = "Ketik nilai atau pilih dari daftar";
 
@@ -113,7 +118,7 @@
 "Delete" = "Hapus"; // Keyboard command discoverability title when an annotation is selected
 "Edit" = "Edit";
 "Undo" = "Kembalikan";
-"Nothing to undo" = "Tidak ada yang dikembalikan";
+"Nothing to undo" = "Tidak ada yang diurungkan";
 "Redo" = "Ulangi";
 "Nothing to redo" = "Tidak ada yang diulang";
 "Type" = "Jenis"; // kind of Annotation can be selected
@@ -128,12 +133,12 @@
 "Rainbow" = "Pelangi";
 "Monochrome" = "Monokrom";
 "Vintage" = "Vintage";
+"Modern" = "Modern";
 "Color" = "Warna";
 "Border" = "Garis Tepi";
 "Fill Color" = "Warna Isi";
-"Line End Fill Color" = "Warna Isi Ujung Garis";
+"Start and End Color" = "Warna Awal dan Akhir";
 "Opacity" = "Keburaman";
-"%@ %%" = "%@ %%";
 "Thickness" = "Ketebalan";
 "%@ pt" = "%@ poin";
 "Yellow" = "Kuning";
@@ -152,6 +157,7 @@
 "Highlight" = "Sorotan";
 "Underline" = "Garis Bawah";
 "Squiggle" = "Garis Lekak-lekuk";
+"Squiggly" = "Berlekuk";
 "StrikeOut" = "Coret";
 "Rectangle" = "Persegi Panjang";
 "Ellipse" = "Elips";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Hapus Tanda Tangan";
 "My Signature" = "Tanda Tangan Saya";
 "No Signatures" = "Tidak Ada Tanda Tangan"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Tanda Tangan Pelanggan";
+"One Time Signature" = "Tanda Tangan Satu Kali";
 "Please sign here" = "Tanda tangan di sini";
 "Note" = "Catatan";
 "Text" = "Teks";
@@ -209,7 +215,8 @@
 "Ungroup" = "Pisahkan grup";
 "Merge" = "Gabung"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Contoh";
-"Annotation Summary for %@:\n" = "Ringkasan Anotasi untuk %@:\n";
+"Annotation Summary for %@:" = "Ringkasan Anotasi untuk %@:";
+"Show Text" = "Tampilkan Teks";
 // title
 "Author Name" = "Nama Penulis";
 // message
@@ -230,8 +237,9 @@
 "Time" = "Waktu";
 "No Pages" = "Tidak Ada Halaman";
 "Drag to resize" = "Seret untuk mengubah ukuran"; // used as hint that inspector is resizable
-"Convert to" = "Ubah ke"; // used as label on action that changes free text intent type
+"Convert to" = "Konversi ke"; // used as label on action that changes free text intent type
 "Color Presets" = "Preset Warna";
+"pt" = "p"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Keterangan"; // freetext annotation with an arrow
 "Generic" = "Generik"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "Titik Lebar";
 "Narrow Dashes" = "Garis Putus Sempit";
 "Wide Dashes" = "Garis Putus Lebar";
+"Cloudy" = "Berawan"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Disetujui";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Memasangkan";
 // text on a label; app and stylus are connected
-"Connected" = "Terhubung";
+"%@ Connected" = "%@ Terhubung";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Terputus";
+"%@ Disconnected" = "%@ Terputus";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Pengaturan";
 
@@ -339,7 +348,7 @@
 
 // voiceover accessibility
 "Page" = "Halaman";
-"Grid" = "Jaringan"; // grid with thumbnails
+"Grid" = "Kisi"; // grid with thumbnails
 "Translucent" = "Tembus Cahaya";
 "left" = "kiri";
 "center" = "tengah";
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Anotasi disertakan di PDF dan hanya dapat dibaca.";
 "Annotation Summary" = "Ringkasan Anotasi";
 "Embed Annotations into the PDF and also list them in the email." = "Lekatkan Anotasi ke PDF dan buat daftarnya juga di email.";
+"Annotations will be listed in a text file." = "Anotasi akan dicantumkan di file teks.";
 "Files" = "File";
 "Send as single files" = "Kirim sebagai file tunggal";
 "Merge files" = "Gabung file";
 "Original File" = "File Asli";
 "Range" = "Rentang";
 "Annotated Pages" = "Halaman Dianotasi";
+"Message could not be sent." = "Pesan tak dapat dikirim.";
+"Export" = "Ekspor";
+"This action can't be performed." = "Tindakan ini tak dapat dilakukan.";
 
 // sound annotations
 "Speak" = "Ucapkan"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Bidang Pilihan";
 "Signature Field" = "Bidang Tanda Tangan";
 "Clear Field" = "Bersihkan Bidang"; // same as delete
-"Type value or pick from list" = "Ketik nilai atau pilih dari daftar";
 "Default Values" = "Nilai Default";
 "Custom Value" = "Nilai Khusus";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Nilai tidak sah: harus kurang dari atau sama dengan %s.";
 "Invalid value: must be a number." = "Nilai tidak sah: harus berupa angka.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Nilai tidak sah: harus berupa tanggal.";
 
 // General validation
@@ -502,7 +514,7 @@
 "PSPDFPolicyEventNetwork" = "Jaringan";
 
 // Night Mode
-"Default" = "Default"; // Default view (night mode not enabled)
+"Default" = "Pola"; // Default view (night mode not enabled)
 "Sepia" = "Sepia"; // Document uses sepia colors
 "Night" = "Malam"; // UI switches into night mode: Dark and inverted colors
 
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Putar Halaman";
 "Page Size" = "Ukuran Halaman";
 "Background Color" = "Warna Latar Belakang";
+"Paper" = "Kertas";
 "Pattern" = "Pola";
 "Use Document Size" = "Gunakan Ukuran Dokumen";
 "Orientation" = "Orientasi";
 "Portrait" = "Potret";
 "Landscape" = "Lanskap";
-"Name" = "Nama";
 "Document Name" = "Nama Dokumen";
 "Documents" = "Dokumen"; // Name of directory
-"Use Document Directory" = "Gunakan Direktori Dokumen";
-"Directory" = "Direktori";
+"Use Document Folder" = "Gunakan Folder Dokumen";
+"Folder" = "Folder";
 "Replace File?" = "Ganti File?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "File bernama \"%@\" sudah ada di tujuan yang dipilih. Apakah Anda ingin menggantinya?";
 "Replace" = "Ganti";
@@ -543,6 +555,15 @@
 "Save As…" = "Simpan Sebagai…";
 "Discard Changes" = "Buang Perubahan";
 "Empty" = "Kosong";
+"Use Image Size" = "Gunakan Ukuran Gambar";
+"Page Background" = "Latar Belakang Halaman";
+"Insert image annotation" = "Masukkan anotasi gambar";
+"Import page background" = "Impor latar belakang halaman";
+"Quality" = "Kualitas";
+"Low" = "Rendah";
+"Medium" = "Sedang";
+"High" = "Tinggi";
+"Best" = "Terbaik";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Dokumen kosong tidak dapat disimpan.";
@@ -552,7 +573,7 @@
 // Page Patterns
 "None" = "Tidak ada";
 "Dot5mm" = "Titik 5mm";
-"Grid5mm" = "Grid 5mm";
+"Grid5mm" = "Kisi 5mm";
 "Lines5mm" = "Baris 5mm";
 "Lines7mm" = "Baris 7mm";
 
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Layanan Teks-ke-suara tidak tersedia. Pastikan koneksi internet Anda aktif atau mesin Teks-ke-suara Google terinstal dan diaktifkan di perangkat Anda.";
+
+// Settings
+"Page Transition" = "Transisi Halaman";
+"Single" = "Tunggal";
+"Continuous" = "Kontinu";
+"Curl" = "Keriting";
+"Scroll" = "Gulir";
+"Horizontal" = "Lanskap";
+"Vertical" = "Vertikal";
+"Page Mode" = "Mode Halaman";
+"Automatic" = "Otomatis";
+"Double" = "Ganda";
+"Appearance" = "Muncul";
+"Scrubber Bar" = "Bar Penggosok";
+"Jump" = "Lompat"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Tak Tersedia"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "App ini tak memiliki akses ke foto Anda.";
+"This app does not have access to your camera." = "App ini tak memiliki akses ke kamera Anda.";
+"You can enable access in Privacy Settings." = "Anda dapat mengaktifkan akses di Pengaturan Privasi.";

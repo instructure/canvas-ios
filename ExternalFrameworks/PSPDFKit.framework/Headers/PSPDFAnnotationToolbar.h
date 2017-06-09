@@ -2,7 +2,7 @@
 //  PSPDFAnnotationToolbar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFFlexibleToolbar.h"
 #import "PSPDFAnnotationStateManager.h"
+#import "PSPDFFlexibleToolbar.h"
 
 @class PSPDFAnnotationToolbar, PSPDFAnnotationToolbarConfiguration, PSPDFColorButton, PSPDFToolbarDualButton;
 
@@ -23,9 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Further appearance customization options are documented in the superclass header (`PSPDFFlexibleToolbar.h`).
 ///
 /// `PSPDFAnnotationToolbar` needs to be used together with a `PSPDFFlexibleToolbarContainerView` just like its superclass `PSPDFFlexibleToolbar`.
- ///
+///
 /// @note Directly updating `buttons` will not work. Use `additionalButtons` if you want to add custom buttons.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationToolbar : PSPDFFlexibleToolbar <PSPDFAnnotationStateManagerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationToolbar : PSPDFFlexibleToolbar<PSPDFAnnotationStateManagerDelegate>
 
 PSPDF_DEFAULT_VIEW_INIT_UNAVAILABLE
 
@@ -38,7 +38,7 @@ PSPDF_DEFAULT_VIEW_INIT_UNAVAILABLE
 /// The annotation types that may be shown in the annotation toolbar.
 /// In the default state, and if set to `nil`, this will return `pdfController.configuration.editableAnnotationTypes`.
 /// KVO observable.
-@property (nonatomic, copy, null_resettable) NSSet<NSString *> *editableAnnotationTypes;
+@property (nonatomic, copy, null_resettable) NSSet<PSPDFAnnotationString> *editableAnnotationTypes;
 
 /// @name Configuration
 
@@ -59,7 +59,7 @@ PSPDF_DEFAULT_VIEW_INIT_UNAVAILABLE
 /// Access to buttons created based on the state of `annotationGroups`.
 /// If `createFromGroup` is set to `YES`, the toolbar will automatically update and display the queried button,
 /// in case it was previously not the chosen item in the corresponding annotation group.
-- (UIButton *)buttonWithType:(NSString *)type variant:(nullable NSString *)variant createFromGroup:(BOOL)createFromGroup;
+- (UIButton *)buttonWithType:(PSPDFAnnotationString)type variant:(nullable PSPDFAnnotationString)variant createFromGroup:(BOOL)createFromGroup;
 
 /// Allows custom `UIButton` objects to be added after the buttons in `annotationGroups`.
 /// For best results use `PSPDFToolbarButton` objects. Defaults to nil.
@@ -70,10 +70,30 @@ PSPDF_DEFAULT_VIEW_INIT_UNAVAILABLE
 /// @note This currently just hides the redo button.
 @property (nonatomic) BOOL collapseUndoButtonsForCompactSizes;
 
+/// Whether `showingStylusButton` should be set to `YES` if an Apple Pencil is detected.
+/// Set this to `NO` if you don’t want the annotation toolbar to show this button, or want to decide when to show it yourself.
+/// Defaults to `YES`.
+@property (nonatomic) BOOL showsStylusButtonAutomatically;
+
+/**
+ Whether `stylusButton` is shown in the annotation toolbar.
+ The initial value of this property will be `YES` if an Apple Pencil has been detected, or `NO` if not.
+ This property will be changed by PSPDFKit when detecting an Apple Pencil if `showsStylusButtonAutomatically` is `YES`.
+
+ It is recommended to only set this to `YES` only if supporting third-party styli or if your app detects
+ Apple Pencil touches itself, otherwise the button will be shown even though it isn’t possible to connect a stylus.
+
+ Calling the setter of this property does not animate the change. To animate, use `setShowingStylusButton:animated:`.
+ */
+@property (nonatomic, getter=isShowingStylusButton) BOOL showingStylusButton;
+
+/// Animated setter for `showingStylusButton`.
+- (void)setShowingStylusButton:(BOOL)showingStylusButton animated:(BOOL)animated;
+
 /// @name Behavior
 
 /// This will issue a save event after the toolbar has been dismissed.
-/// @note Since saving can take some time, this defaults to NO.
+/// @note Since saving can take some time, this defaults to `NO`.
 @property (nonatomic) BOOL saveAfterToolbarHiding;
 
 @end
@@ -84,6 +104,10 @@ PSPDF_DEFAULT_VIEW_INIT_UNAVAILABLE
 /// Dismisses the annotation toolbar.
 /// @note Not `nil` by default, but can be overridden to return `nil` to remove it from the toolbar.
 @property (nonatomic, readonly, nullable) UIButton *doneButton;
+
+/// Shows whether a stylus is being used. This includes Apple Pencil and vendor styli.
+/// Tapping this button shows `PSPDFStylusViewController` which lets the user change the stylus being used or stop using a stylus.
+@property (nonatomic, readonly, nullable) PSPDFToolbarButton *stylusButton;
 
 /// Undos the last action.
 /// @note Not `nil` by default, but can be overridden to return `nil` to remove it from the toolbar.

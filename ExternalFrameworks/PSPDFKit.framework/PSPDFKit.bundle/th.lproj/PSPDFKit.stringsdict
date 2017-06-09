@@ -75,7 +75,7 @@
     <key>All (%tu Page(s))</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
-        <string>All (%#@pages@)</string>
+        <string>ทั้งหมด (%#@pages@)</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>
@@ -83,7 +83,41 @@
             <key>NSStringFormatValueTypeKey</key>
             <string>tu</string>
             <key>one</key>
-            <string>%%tu หน้า</string>
+            <string>%tu หน้า</string>
+            <key>other</key>
+            <string>%tu หน้า</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>ไม่มีผลลัพธ์</string>
+            <key>one</key>
+            <string>%tu ผลลัพธ์</string>
+            <key>other</key>
+            <string>%tu ผลลัพธ์</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>กำลังค้นหา %#pages@</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu หน้า</string>
             <key>other</key>
             <string>%tu หน้า</string>
         </dict>

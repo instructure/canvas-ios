@@ -2,7 +2,7 @@
 //  PSPDFSignatureManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,15 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// Manages signature handlers for digital signature creation. Thread safe.
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFSignatureManager : NSObject
 
-/// Returns the shared signature manager.
-+ (PSPDFSignatureManager*)sharedManager;
-
 /// Returns all registered signers.
 @property (nonatomic, readonly) NSArray<PSPDFSigner *> *registeredSigners;
 
 /// Registers a signer.
 /// Registering the same signing object more than once will be ignored.
 - (void)registerSigner:(PSPDFSigner *)signer;
+
+/// Removes all registered signers.
+- (void)clearRegisteredSigners;
 
 /// Returns the trusted certificate stack.
 @property (nonatomic, readonly) NSArray<PSPDFX509 *> *trustedCertificates;

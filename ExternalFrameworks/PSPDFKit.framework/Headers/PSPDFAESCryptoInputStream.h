@@ -2,7 +2,7 @@
 //  PSPDFAESCryptoInputStream.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, PSPDFAESCryptoInputStreamErrorCode) {
     PSPDFErrorCodeAESCryptoInputStreamHMACCheckFailed = 180,
     PSPDFErrorCodeAESCryptoInputStreamIncorrectHMACInFile = 190,
     PSPDFErrorCodeAESCryptoInputStreamFailedToAllocateMemory = 200,
-    PSPDFErrorCodeAESCryptoInputStreamUnknown = NSIntegerMax
+    PSPDFErrorCodeAESCryptoInputStreamUnknown = NSIntegerMax,
 } PSPDF_ENUM_AVAILABLE;
 
 NS_ASSUME_NONNULL_END

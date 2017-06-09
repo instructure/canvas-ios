@@ -2,7 +2,7 @@
 //  PSPDFInkAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -25,12 +25,12 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFInkAnnotation : PSPDFAbstractShapeAnnotati
 
 /// Array of arrays of boxed `PSPDFDrawingPoint`.
 /// Example: `annotation.lines = @[@[BOXED(PSPDFDrawingPointMake(CGPointMake(100,100) , 0.5f)), BOXED(PSPDFDrawingPointMake((CGPointMake(100,200), 0.5f)), BOXED(PSPDFDrawingPointMake(CGPointMake(150,300), 0.5f))]]`;
-/// The intensity values determine the line thickness for natural drawing. 
+/// The intensity values determine the line thickness for natural drawing.
 /// @warning: After setting lines, `boundingBox` will be automatically recalculated.
 @property (null_resettable, nonatomic, copy) NSArray<NSArray<NSValue *> *> *lines;
 
 /// The `UIBezierPath` will be dynamically crated from the lines array.
-@property (nonatomic, copy, readonly) UIBezierPath *bezierPath;
+@property (nonatomic, readonly) UIBezierPath *bezierPath;
 
 /// Returns YES if `lines` doesn't contain any points.
 @property (nonatomic, getter=isEmpty, readonly) BOOL empty;

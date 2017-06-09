@@ -2,7 +2,7 @@
 //  PSPDFToolbarButton.h
 //  PSPDFKit
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,9 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
+#import "PSPDFButton.h"
 #import "PSPDFEnvironment.h"
 #import "PSPDFFlexibleToolbar.h"
-#import "PSPDFButton.h"
 
 // Uses the UIControlEventApplicationReserved range.
 typedef NS_OPTIONS(NSUInteger, PSPDFToolbarButtonControlEvents) {
@@ -37,14 +37,14 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFToolbarButton : PSPDFButton
 /// General purpose user data storage.
 @property (nonatomic) id userInfo;
 
-/// Allows animated transitions between the enabled and disabled appearance. 
+/// Allows animated transitions between the enabled and disabled appearance.
 - (void)setEnabled:(BOOL)enabled animated:(BOOL)animated;
 
 /// @name Metrics
 
 /// Designates the button to be collapsible into one item, if toolbar space is limited.
 /// Defaults to YES.
-@property (nonatomic, getter = isCollapsible) BOOL collapsible;
+@property (nonatomic, getter=isCollapsible) BOOL collapsible;
 
 /// The fixed length value. Will become the button width or height depending on the toolbar orientation.
 /// Set to -1.f to use the default toolbar length (the default).
@@ -56,13 +56,13 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFToolbarButton : PSPDFButton
 /// If YES, the actual button space will be computed dynamically by counting all button instances
 /// and dividing the remaining available toolbar space with that number. Otherwise the length will be
 /// taken from the `length` property. Defaults to NO.
-@property (nonatomic, getter = isFlexible) BOOL flexible;
+@property (nonatomic, getter=isFlexible) BOOL flexible;
 
 /// @name Appearance
 
 /// Called whenever the tint color changes. Use to update tint color dependent
 /// content (like a tint color based custom drawn image or attributed text).
-@property (nonatomic, copy) void(^tintColorDidChangeBlock)(UIColor *tintColor);
+@property (nonatomic, copy) void (^tintColorDidChangeBlock)(UIColor *tintColor);
 
 @end
 

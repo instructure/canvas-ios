@@ -2,7 +2,7 @@
 //  PSPDFSignatureSelectorViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,9 +11,9 @@
 //
 
 #import "PSPDFBaseTableViewController.h"
-#import "PSPDFStyleable.h"
-#import "PSPDFStatefulTableViewController.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFStatefulTableViewController.h"
+#import "PSPDFStyleable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PSPDFSignatureStore;
 
 /// Delegate to be notified when the `PSPDFSignatureSelectorViewController` has a valid selection.
-PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureSelectorViewControllerDelegate <PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureSelectorViewControllerDelegate<PSPDFOverridable>
 
 /// A signature has been selected.
 - (void)signatureSelectorViewController:(PSPDFSignatureSelectorViewController *)signatureSelectorController didSelectSignature:(PSPDFInkAnnotation *)signature;
@@ -33,7 +33,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureSelectorViewControllerDelegate <PSP
 
 /// Shows a list of signatures to select one.
 /// Will show up in landscape via `preferredInterfaceOrientationForPresentation`.
-PSPDF_CLASS_AVAILABLE @interface PSPDFSignatureSelectorViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFSignatureSelectorViewController : PSPDFStatefulTableViewController<PSPDFStyleable>
 
 /// Signature store with signatures that are being displayed.
 @property (nonatomic, nullable) id<PSPDFSignatureStore> signatureStore;

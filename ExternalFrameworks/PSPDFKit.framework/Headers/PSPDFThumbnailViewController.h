@@ -2,7 +2,7 @@
 //  PSPDFThumbnailViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,9 +11,9 @@
 //
 
 #import "PSPDFBaseViewController.h"
-#import "PSPDFSegmentedControl.h"
 #import "PSPDFDocument.h"
 #import "PSPDFPresentationContext.h"
+#import "PSPDFSegmentedControl.h"
 #import "PSPDFViewModePresenter.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFThumbnailViewController, PSPDFThumbnailGridViewCell, PSPDFCenteredLabelView;
 
 /// Subclass to enable `UIAppearance` rules on the filter.
-PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailFilterSegmentedControl : PSPDFSegmentedControl @end
+PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailFilterSegmentedControl : PSPDFSegmentedControl
+@end
 
 /// Show all thumbnails.
 PSPDF_EXPORT NSString *const PSPDFThumbnailViewFilterShowAll;
@@ -33,20 +34,20 @@ PSPDF_EXPORT NSString *const PSPDFThumbnailViewFilterBookmarks;
 PSPDF_EXPORT NSString *const PSPDFThumbnailViewFilterAnnotations;
 
 /// Delegate for thumbnail actions.
-PSPDF_AVAILABLE_DECL @protocol PSPDFThumbnailViewControllerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFThumbnailViewControllerDelegate<NSObject>
 
 @optional
 
 /// A thumbnail has been selected.
-- (void)thumbnailViewController:(PSPDFThumbnailViewController *)thumbnailViewController didSelectPage:(NSUInteger)page inDocument:(PSPDFDocument *)document;
+- (void)thumbnailViewController:(PSPDFThumbnailViewController *)thumbnailViewController didSelectPageAtIndex:(NSUInteger)pageIndex inDocument:(PSPDFDocument *)document;
 
 @end
 
 /// The thumbnail view controller.
-PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, PSPDFViewModePresenter>
+PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailViewController : UICollectionViewController<UICollectionViewDataSource, UICollectionViewDelegate, PSPDFViewModePresenter>
 
 /// Data source to get double page mode.
-@property (nonatomic, weak) IBOutlet id <PSPDFPresentationContext> dataSource;
+@property (nonatomic, weak) IBOutlet id<PSPDFPresentationContext> dataSource;
 
 /// Delegate for the thumbnail controller.
 /// @note If this instance has been created by `PSPDFViewController` the delegate is already linked and should not be changed.
@@ -54,11 +55,11 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailViewController : UICollectionView
 
 /// Get the cell for certain page. Compensates against open filters.
 /// @note `document` is ignored in the default implementation.
-- (nullable UICollectionViewCell *)cellForPage:(NSUInteger)page document:(nullable PSPDFDocument *)document;
+- (nullable UICollectionViewCell *)cellForPageAtIndex:(NSUInteger)pageIndex document:(nullable PSPDFDocument *)document;
 
 /// Scrolls to specified page in the grid.
 /// @note `document` is ignored in the default implementation.
-- (void)scrollToPage:(NSUInteger)page document:(nullable PSPDFDocument *)document animated:(BOOL)animated;
+- (void)scrollToPageAtIndex:(NSUInteger)pageIndex document:(nullable PSPDFDocument *)document animated:(BOOL)animated;
 
 /// Stops an ongoing scroll animation.
 - (void)stopScrolling;

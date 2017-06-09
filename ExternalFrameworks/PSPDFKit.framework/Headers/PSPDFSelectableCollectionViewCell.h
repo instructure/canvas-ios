@@ -2,7 +2,7 @@
 //  PSPDFSelectableCollectionViewCell.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,7 +15,7 @@
 typedef NS_ENUM(NSUInteger, PSPDFSelectableCollectionViewCellStyle) {
     PSPDFSelectableCollectionViewCellStyleNone,
     PSPDFSelectableCollectionViewCellStyleCheckmark,
-    PSPDFSelectableCollectionViewCellStyleBorder
+    PSPDFSelectableCollectionViewCellStyleBorder,
 } PSPDF_ENUM_AVAILABLE;
 
 /// Cell that shows a selection status.

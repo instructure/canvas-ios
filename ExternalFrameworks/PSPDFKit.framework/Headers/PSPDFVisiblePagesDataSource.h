@@ -2,7 +2,7 @@
 //  PSPDFVisiblePagesDataSource.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,17 +15,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Defines what page(s) are currently visible.
-PSPDF_AVAILABLE_DECL @protocol PSPDFVisiblePagesDataSource <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFVisiblePagesDataSource<NSObject>
 
 /// The page that fills the majority of the screen.
-@property (nonatomic, readonly) NSUInteger page;
+@property (nonatomic, readonly) NSUInteger pageIndex;
 
-/// All visible page numbers (wrapped as NSNumbers)
-@property (nonatomic, readonly) NSOrderedSet<NSNumber *> *visiblePages;
+/// All visible page indexes (wrapped as NSNumbers)
+@property (nonatomic, readonly) NSOrderedSet<NSNumber *> *visiblePageIndexes;
 
 /// Visible page numbers, calculated. This only includes the second page in double page mode.
-/// The main difference to `visiblePages` is that e.g. in continuous scroll mode, it only returns one page.
-@property (nonatomic, readonly) NSOrderedSet<NSNumber *> *visiblePagesCalculated;
+/// The main difference to `visiblePageIndexes` is that e.g. in continuous scroll mode, it only returns one page.
+@property (nonatomic, readonly) NSOrderedSet<NSNumber *> *visiblePageIndexesCalculated;
 
 @end
 

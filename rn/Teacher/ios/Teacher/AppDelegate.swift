@@ -10,6 +10,7 @@ import UIKit
 import CanvasKeymaster
 import ReactiveSwift
 import UserNotifications
+import PSPDFKit
 
 
 @UIApplicationMain
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BuddyBuildSDK.setup()
         prepareReactNative()
+        preparePSPDFKit()
         createMainWindow()
         initiateLoginProcess()
         setupForPushNotifications()
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func prepareReactNative() {
         Helm.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
+    }
+    
+    func preparePSPDFKit() {
+        PSPDFKit.setLicenseKey("OTHwfJpEorug7eEHAwjZtVUFIa5AgMbKA4o6Z0vO5JHB27GtywIs9XpZ5DVdhYJmBEBLkoKXHxO+juOjUeAjTi5NpUy00bhM0msTMBugxA7hquQYyk0jttdAUYTYZFmJNkQ0a/E/X3ABC7zMYCj18Ntirin6Ac+/sy/4jCgmfnO3rHrWQEGhii2XMtMro3UW9L5JYKNpxD85Civ8cpxm2Im43kh7clwkNcZ+7zfNHCHqRwBjmPKTFd5O1tRvvGIpuSS1F2x406WTF6yh8bymTstWekAy0PXuYCAaHfemopEBSP6VO2M8CICGNfCmO2TUeaL9aXLwuzp37BGTV6rP4w2af+TfpRWJ+oaVGBo4hi+T+aaI7zot6NVDPYPrvJPgmrjtp24FMEm9/mJLsO46905oQyhcdIbc+P6Cx2Dhk9N8zE+PPZO/ByDvGVx4UbYsBcjsasSwvyNf0sGKz3iNnUMGr+o6PK1LXgyb4n6LqKGKWUNFk3zQALNbnj2J4Jel52CY18aO1t3XUzBhBw6txuIyueYYxK+nRv+4DrkO1KHmvmtKAhbl9HKgWbnWxkw7mIVotSAhyCalisg/e7LveQ==")
     }
     
     func createMainWindow() {

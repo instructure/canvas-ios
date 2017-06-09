@@ -2,7 +2,7 @@
 //  PSPDFDocument+DataDetection.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PSPDFDocument (ObjectFinder)
 
 /// Return a textParser for the specific document page. Thread safe.
-- (nullable PSPDFTextParser *)textParserForPage:(NSUInteger)page;
+- (nullable PSPDFTextParser *)textParserForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Find objects (glyphs, words, images, annotations) at the specified `pdfPoint`.
 /// If `options` is nil, we assume `PSPDFObjectsText` and `PSPDFObjectsWordsKey`.
@@ -58,14 +58,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// Returns objects in certain key dictionaries .(`PSPDFObjectsGlyphsKey`, etc)
 ///
 /// This method is thread safe.
-- (NSDictionary<NSString *, id> *)objectsAtPDFPoint:(CGPoint)pdfPoint page:(NSUInteger)page options:(nullable NSDictionary<NSString *, NSNumber *> *)options;
+- (NSDictionary<NSString *, id> *)objectsAtPDFPoint:(CGPoint)pdfPoint pageIndex:(NSUInteger)pageIndex options:(nullable NSDictionary<NSString *, NSNumber *> *)options;
 
 /// Find objects (glyphs, words, images, annotations) at the specified `pdfRect`.
 /// If `options` is nil, we assume `PSPDFObjectsGlyphsKey` only.
 /// Returns objects in certain key dictionaries (`PSPDFObjectsGlyphsKey`, etc)
 ///
 /// This method is thread safe.
-- (NSDictionary<NSString *, id> *)objectsAtPDFRect:(CGRect)pdfRect page:(NSUInteger)page options:(nullable NSDictionary<NSString *, NSNumber *> *)options;
+- (NSDictionary<NSString *, id> *)objectsAtPDFRect:(CGRect)pdfRect pageIndex:(NSUInteger)pageIndex options:(nullable NSDictionary<NSString *, NSNumber *> *)options;
 
 /// @name Options for the object finder.
 

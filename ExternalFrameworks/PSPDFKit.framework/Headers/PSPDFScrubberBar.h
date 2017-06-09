@@ -2,7 +2,7 @@
 //  PSPDFScrubberBar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,28 +10,30 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
 #import "PSPDFCache.h"
+#import "PSPDFEnvironment.h"
 #import "PSPDFPresentationContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFScrubberBar;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFScrubberBarDelegate <NSObject>
+/// Implement this delegate to get notified of scrubber bar events.
+PSPDF_AVAILABLE_DECL @protocol PSPDFScrubberBarDelegate<NSObject>
 
-- (void)scrubberBar:(PSPDFScrubberBar *)scrubberBar didSelectPage:(NSUInteger)page;
+/// Will be called when a page has been selected using the scrubber bar.
+- (void)scrubberBar:(PSPDFScrubberBar *)scrubberBar didSelectPageAtIndex:(NSUInteger)pageIndex;
 
 @end
 
 /// PDF thumbnail scrubber bar - similar to iBooks.
-PSPDF_CLASS_AVAILABLE @interface PSPDFScrubberBar : UIView <PSPDFCacheDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFScrubberBar : UIView
 
 /// The delegate for touch events
-@property (nonatomic, weak) id <PSPDFScrubberBarDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFScrubberBarDelegate> delegate;
 
 /// The data source.
-@property (nonatomic, weak) id <PSPDFPresentationContext> dataSource;
+@property (nonatomic, weak) id<PSPDFPresentationContext> dataSource;
 
 /// Whether this is a horizontally or vertically laid out scrubber bar — defaults to horizontal.
 @property (nonatomic) PSPDFScrubberBarType scrubberBarType;
@@ -46,19 +48,23 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFScrubberBar : UIView <PSPDFCacheDelegate>
 - (void)updatePageMarker;
 
 /// Current selected page.
-@property (nonatomic) NSUInteger page;
+@property (nonatomic) NSUInteger pageIndex;
 
 /// Taps left/right of the pages area (if there aren't enough pages to fill up space) by default count as first/last page. Defaults to YES.
 @property (nonatomic) BOOL allowTapsOutsidePageArea;
 
 /// @name Styling
 
-/// The background tintColor.
-/// Defaults to the PSPDFViewController navigationBar barTintColor (if available).
+/**
+ The background tintColor.
+ Defaults to the PSPDFViewController navigationBar barTintColor (if available).
+ */
 @property (nonatomic, nullable) UIColor *barTintColor UI_APPEARANCE_SELECTOR;
 
-/// If set to a nonzero value, the scrubber bar will render with the standard translucency - blur effect.
-/// Inferred from the dataSource by default.
+/**
+ If set to a nonzero value, the scrubber bar will render with the standard translucency - blur effect.
+ Inferred from the dataSource by default.
+ */
 @property (nonatomic, getter=isTranslucent) BOOL translucent UI_APPEARANCE_SELECTOR;
 
 /// Left border margin. Defaults to `thumbnailMargin`. Set higher to allow custom buttons.
@@ -67,15 +73,16 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFScrubberBar : UIView <PSPDFCacheDelegate>
 /// Right border margin. Defaults to `thumbnailMargin`. Set higher to allow custom buttons.
 @property (nonatomic) CGFloat rightBorderMargin;
 
-/// Thumbnail border color. Defaults to [UIColor blackColor].
+/// Thumbnail border color. Defaults to UIColor.blackColor.
 @property (nonatomic, nullable) UIColor *thumbnailBorderColor UI_APPEARANCE_SELECTOR;
 
-/// Access the internally used toolbar. Can be used to customize the background appearance.
-/// @note If you override this to return — e.g. — an instance of a custom toolbar class, be aware that the default implementation makes itself the delegate of the toolbar to support drawing a bezel along the appropriate edge.
+/**
+ Access the internally used toolbar. Can be used to customize the background appearance.
+ @note If you override this to return — e.g. — an instance of a custom toolbar class, be aware that the default implementation makes itself the delegate of the toolbar to support drawing a bezel along the appropriate edge.
+ */
 @property (nonatomic, readonly) UIToolbar *toolbar;
 
 @end
-
 
 @interface PSPDFScrubberBar (SubclassingHooks)
 

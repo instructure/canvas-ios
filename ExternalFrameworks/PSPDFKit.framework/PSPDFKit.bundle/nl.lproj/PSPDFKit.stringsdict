@@ -75,7 +75,7 @@
     <key>All (%tu Page(s))</key>
     <dict>
         <key>NSStringLocalizedFormatKey</key>
-        <string>All (%#@pages@)</string>
+        <string>Alle (%#@pages@)</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>
@@ -86,6 +86,40 @@
             <string>%tu pagina</string>
             <key>other</key>
             <string>%tu pagina's</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Geen resultaten</string>
+            <key>one</key>
+            <string>%tu resultaat</string>
+            <key>other</key>
+            <string>%tu resultaten</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>Zoeken op %#@pages@</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu pagina</string>
+            <key>other</key>
+            <string>%tu pagina’s</string>
         </dict>
     </dict>
 </dict>

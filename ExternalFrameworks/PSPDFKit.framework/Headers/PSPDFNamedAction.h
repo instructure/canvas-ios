@@ -2,7 +2,7 @@
 //  PSPDFNamedAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, PSPDFNamedActionType) {
     /// Triggers `[document saveChangedAnnotationsWithError:]`
     PSPDFNamedActionTypeSaveAs,
     PSPDFNamedActionTypeInfo,
-    PSPDFNamedActionTypeUnknown = NSUIntegerMax
+    PSPDFNamedActionTypeUnknown = NSUIntegerMax,
 } PSPDF_ENUM_AVAILABLE;
 
 /// Transforms named actions to enum type and back.
@@ -47,7 +47,7 @@ PSPDF_EXPORT NSString *const PSPDFNamedActionTypeTransformerName;
 PSPDF_CLASS_AVAILABLE @interface PSPDFNamedAction : PSPDFAction
 
 /// Initialize with string. Will parse action, set to `PSPDFNamedActionTypeUnknown` if not recognized or nil.
-- (instancetype)initWithActionNamedString:(NSString * _Nullable)actionNameString;
+- (instancetype)initWithActionNamedString:(NSString *_Nullable)actionNameString;
 
 /// The type of the named action.
 /// @note Will update `namedAction` if set.

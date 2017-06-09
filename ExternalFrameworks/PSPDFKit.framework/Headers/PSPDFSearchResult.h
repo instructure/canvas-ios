@@ -2,7 +2,7 @@
 //  PSPDFSearchResult.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFModel.h"
 #import "PSPDFAnnotation.h"
+#import "PSPDFModel.h"
 
 @class PSPDFTextBlock, PSPDFDocument;
 
@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 PSPDF_CLASS_AVAILABLE @interface PSPDFSearchResult : PSPDFModel
 
 /// Designated initializer.
-- (instancetype)initWithDocumentUID:(NSString *)documentUID page:(NSUInteger)page range:(NSRange)range previewText:(nullable NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDocumentUID:(NSString *)documentUID pageIndex:(NSUInteger)pageIndex range:(NSRange)range previewText:(nullable NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page range:(NSRange)range previewText:(nullable NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation;
+- (instancetype)initWithDocument:(PSPDFDocument *)document pageIndex:(NSUInteger)pageIndex range:(NSRange)range previewText:(nullable NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation;
 
 /// Referenced page.
 @property (nonatomic, readonly) NSUInteger pageIndex;

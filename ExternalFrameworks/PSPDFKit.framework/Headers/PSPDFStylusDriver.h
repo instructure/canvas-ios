@@ -2,7 +2,7 @@
 //  PSPDFStylusDriver.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,7 +12,6 @@
 
 #import "PSPDFStylusDriverDelegate.h"
 #import "PSPDFStylusTouch.h"
-#import "PSPDFPlugin.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,11 +20,22 @@ typedef NS_ENUM(NSUInteger, PSPDFStylusConnectionStatus) {
     PSPDFStylusConnectionStatusScanning,
     PSPDFStylusConnectionStatusPairing,
     PSPDFStylusConnectionStatusConnected,
-    PSPDFStylusConnectionStatusDisconnected
+    PSPDFStylusConnectionStatusDisconnected,
 } PSPDF_ENUM_AVAILABLE;
 
+typedef NSString *PSPDFStylusDriverInfoKey NS_STRING_ENUM;
+
+typedef NSString *PSPDFConnectedStylusInfoKey NS_STRING_ENUM;
+
+typedef NSString *PSPDFStylusSettingsControllerInfoKey NS_STRING_ENUM;
+
 /// Abstract driver class for various styli.
-PSPDF_AVAILABLE_DECL @protocol PSPDFStylusDriver <PSPDFPlugin>
+PSPDF_AVAILABLE_DECL @protocol PSPDFStylusDriver<NSObject>
+
++ (NSDictionary<PSPDFStylusDriverInfoKey, id> *)driverInfo;
+
+/// Creates a new instance of the driver with `delegate` set.
+- (instancetype)initWithDelegate:(id<PSPDFStylusDriverDelegate>)delegate;
 
 /// Enable a stylus driver.
 - (BOOL)enableDriverWithOptions:(nullable NSDictionary<NSString *, id> *)options error:(NSError **)error;
@@ -34,7 +44,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFStylusDriver <PSPDFPlugin>
 - (void)disableDriver;
 
 /// Info of the connected stylus. Might also return data if the connection status is not connected.
-@property (nonatomic, readonly) NSDictionary<NSString *, id> *connectedStylusInfo;
+@property (nonatomic, readonly) NSDictionary<PSPDFConnectedStylusInfoKey, id> *connectedStylusInfo;
 
 /// Connection status of the pen managed by the driver.
 @property (nonatomic, readonly) PSPDFStylusConnectionStatus connectionStatus;
@@ -49,7 +59,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFStylusDriver <PSPDFPlugin>
 
 /// Returns a settings/pairing controller, if the driver supports this.
 @property (nonatomic, readonly, nullable) UIViewController *settingsController;
-@property (nonatomic, readonly, nullable) NSDictionary<NSString *, id> *settingsControllerInfo;
+@property (nonatomic, readonly, nullable) NSDictionary<PSPDFStylusSettingsControllerInfoKey, id> *settingsControllerInfo;
 
 /// View registration. (optional, not all drivers need this)
 - (void)registerView:(UIView *)view;
@@ -57,21 +67,19 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFStylusDriver <PSPDFPlugin>
 
 @end
 
-/// Defines in the `options` key from the initializer
-PSPDF_EXPORT NSString *const PSPDFStylusDriverDelegateKey;
+/// Keys for the `driverInfo` dictionary.
+PSPDF_EXPORT PSPDFStylusDriverInfoKey const PSPDFStylusDriverIdentifierKey;
+PSPDF_EXPORT PSPDFStylusDriverInfoKey const PSPDFStylusDriverNameKey;
+PSPDF_EXPORT PSPDFStylusDriverInfoKey const PSPDFStylusDriverSDKNameKey;
+PSPDF_EXPORT PSPDFStylusDriverInfoKey const PSPDFStylusDriverSDKVersionKey;
+PSPDF_EXPORT PSPDFStylusDriverInfoKey const PSPDFStylusDriverProtocolVersionKey;
+PSPDF_EXPORT PSPDFStylusDriverInfoKey const PSPDFStylusDriverPriorityKey;
 
-/// Defines the `driverInfo` dictionary keys.
-PSPDF_EXPORT NSString *const PSPDFStylusDriverNameKey;
-PSPDF_EXPORT NSString *const PSPDFStylusDriverSDKNameKey;
-PSPDF_EXPORT NSString *const PSPDFStylusDriverSDKVersionKey;
-PSPDF_EXPORT NSString *const PSPDFStylusDriverProtocolVersionKey;
-PSPDF_EXPORT NSString *const PSPDFStylusDriverPriorityKey;
+/// Key for the name of the connected stylus for the `connectedStylusInfo` dictionary.
+PSPDF_EXPORT PSPDFConnectedStylusInfoKey const PSPDFStylusNameKey;
 
-/// Defines the `connectedStylusInfo` dictionary keys.
-PSPDF_EXPORT NSString *const PSPDFStylusNameKey;
-
-/// Defiles the `connectedStylusInfo` dictionary keys
-PSPDF_EXPORT NSString *const PSPDFStylusSettingsEmbeddedSizeKey;
+/// Key for the content size in points of the embedded settings controller for the `settingsControllerInfo` dictionary.
+PSPDF_EXPORT PSPDFStylusSettingsControllerInfoKey const PSPDFStylusSettingsEmbeddedSizeKey;
 
 /// Protocol versions.
 PSPDF_EXPORT NSUInteger PSPDFStylusDriverProtocolVersion_1;

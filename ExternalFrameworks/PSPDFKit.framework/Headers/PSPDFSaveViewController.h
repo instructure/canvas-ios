@@ -2,7 +2,7 @@
 //  PSPDFSaveViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,14 +10,14 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFStaticTableViewController.h"
 #import "PSPDFDocumentEditorConfiguration.h"
+#import "PSPDFStaticTableViewController.h"
 
 @class PSPDFSaveViewController;
 
 NS_ASSUME_NONNULL_BEGIN
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFSaveViewControllerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFSaveViewControllerDelegate<NSObject>
 
 /// Called when the save or cancel button is pressed. The delegate should save the document requested.
 - (void)saveViewControllerDidEnd:(PSPDFSaveViewController *)controller shouldSave:(BOOL)shouldSave;
@@ -34,7 +34,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFSaveViewControllerDelegate <NSObject>
 /// Manages a UI for saving documents. Allows file naming and directory selection based on the `PSPDFDirectory` entires
 /// from the passed in  `PSPDFDocumentEditorConfiguration` object.
 /// @note This class requires the Document Editor component to be enabled for your license.
-PSPDF_CLASS_AVAILABLE @interface PSPDFSaveViewController : PSPDFStaticTableViewController <PSPDFDocumentEditorConfigurationConfigurable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFSaveViewController : PSPDFStaticTableViewController<PSPDFDocumentEditorConfigurationConfigurable>
 
 PSPDF_DEFAULT_TABLEVIEWCONTROLLER_INIT_UNAVAILABLE
 

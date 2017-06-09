@@ -2,7 +2,7 @@
 //  PSPDFError.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -35,6 +35,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeAssetNameNotSet = 215,
     PSPDFErrorCodeCantCreateStreamFile = 216,
     PSPDFErrorCodeCantCreateStream = 217,
+    PSPDFErrorCodeCoreAnnotationNotSet = 218,
     PSPDFErrorCodePageRenderSizeIsEmpty = 220,
     PSPDFErrorCodePageRenderClipRectTooLarge = 230,
     PSPDFErrorCodePageRenderGraphicsContextNil = 240,
@@ -43,8 +44,8 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeFailedToWriteAnnotations = 410,
     PSPDFErrorCodeWriteAnnotationsCancelled = 411,
     PSPDFErrorCodeCannotEmbedAnnotations = 420,
-    PSPDFErrorCodeFailedToLoadBookmarks = 450,
     PSPDFErrorCodeFailedToSaveBookmarks = 460,
+    PSPDFErrorCodeFailedToSaveDocument = 470,
     PSPDFErrorCodeOutlineParser = 500,
     PSPDFErrorCodeUnableToConvertToDataRepresentation = 600,
     PSPDFErrorCodeRemoveCacheError = 700,
@@ -85,9 +86,16 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeDocumentEditorUnableToWriteFile = 7400,
     PSPDFErrorCodeDocumentEditorInvalidDocument = 7401,
     PSPDFErrorCodeFailedToFetchResource = 8000,
+    PSPDFErrorCodeFailedToSetResource = 8500,
+    PSPDFErrorCodeFileCoordinationBackgroundTaskCreationFailed PSPDF_DEPRECATED(6.7.1, "This is unused, and will never be returned") = 9000,
+    PSPDFErrorCodeJSONDeserializationError = 9500,
     PSPDFErrorCodeFeatureNotEnabled = 100000,
     PSPDFErrorCodeSecurityNoPermission = 200000,
-    PSPDFErrorCodeUnknown = NSIntegerMax
+    PSPDFErrorCodePKCS12CannotReadData = 300000,
+    PSPDFErrorCodePKCS12CannotCopyData = 300001,
+    PSPDFErrorCodePKCS12UnlockFailed = 300002,
+    PSPDFErrorCodeSearchCouldNotLoadDocument = 400000,
+    PSPDFErrorCodeUnknown = NSIntegerMax,
 } PSPDF_ENUM_AVAILABLE;
 
 NS_ASSUME_NONNULL_END

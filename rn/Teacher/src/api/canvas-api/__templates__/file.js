@@ -9,4 +9,5 @@ export const file: Template<File> = template({
   size: 488212,
   thumbnail_url: 'http://fillmurray.com/322/200',
   mime_class: 'document',
+  preview_url: '/',
 })

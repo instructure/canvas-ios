@@ -2,7 +2,7 @@
 //  PSPDFEnvironment.h
 //  PSPDFFoundation
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,18 +10,38 @@
 //  This notice may not be removed from this file.
 //
 
-#import <TargetConditionals.h>
-#import <Foundation/Foundation.h>
+#import <Availability.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import <TargetConditionals.h>
+// clang-format off
+#if __has_include(<QuartzCore/QuartzCore.h>)
+#import <QuartzCore/QuartzCore.h>
+#endif
+// clang-format on
+
+#if TARGET_OS_OSX
+#import <Cocoa/Cocoa.h>
+#else
+#import <UIKit/UIKit.h>
+#endif
+
+#import "PSPDFNamespace.h"
 #import "PSPDFMacros.h"
 
-#if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
+#define PSPDF_STRINGIZE2(s) #s
+#define PSPDF_STRINGIZE(s) PSPDF_STRINGIZE2(s)
 
-#define PSPDF_TARGET_MAC 1
-#define PSPDF_TARGET_TV  0
-#define PSPDF_TARGET_IOS 0
+#ifndef PSPDF_CUSTOM_PREFIX
+#define PSPDF_STRING_PREFIX "PSPDF"
+#else
+#define PSPDF_STRING_PREFIX PSPDF_STRINGIZE(PSPDF_CUSTOM_PREFIX) "_PSPDF"
+#endif
 
-#import <Cocoa/Cocoa.h>
+// clang-format off
+#define PSPDF_HAS_JS_SUPPORT __has_include(<JavaScriptCore/JavaScriptCore.h>)
+// clang-format on
+
+#if TARGET_OS_OSX
 
 #define UIColor NSColor
 #define UIImage NSImage
@@ -33,16 +53,13 @@
 #define UIFontDescriptorSymbolicTraits NSFontSymbolicTraits
 #define UIFontDescriptorTraitBold NSFontBoldTrait
 #define UIFontDescriptorTraitItalic NSFontItalicTrait
+#define UIFontDescriptorNameAttribute NSFontNameAttribute
+#define UIFontDescriptorFamilyAttribute NSFontFamilyAttribute
+
 #define NSUnderlineStyle NSInteger
 
-#define NSTextAlignmentLeft NSLeftTextAlignment
-#define NSTextAlignmentRight NSRightTextAlignment
-#define NSTextAlignmentCenter NSCenterTextAlignment
-#define NSTextAlignmentNatural NSNaturalTextAlignment
-#define NSTextAlignmentJustified NSJustifiedTextAlignment
-
 #define NSTextAlignmentToCTTextAlignment PSPDFTextAlignmentToCTTextAlignment
-PSPDF_EXTERN CTTextAlignment PSPDFTextAlignmentToCTTextAlignment(NSTextAlignment nsTextAlignment);
+PSPDF_EXPORT CTTextAlignment PSPDFTextAlignmentToCTTextAlignment(NSTextAlignment nsTextAlignment);
 
 #define UIEdgeInsets NSEdgeInsets
 #define UIEdgeInsetsZero NSEdgeInsetsZero
@@ -52,56 +69,49 @@ PSPDF_EXTERN CTTextAlignment PSPDFTextAlignmentToCTTextAlignment(NSTextAlignment
 #define UIEdgeInsetsInsetRect PSPDFEdgeInsetInsetRect
 #define UIEdgeInsetsFromString PSPDFEdgeInsetFromString
 #define NSStringFromUIEdgeInsets NSStringFromPSPDFEdgeInset
-PSPDF_EXTERN CGRect PSPDFEdgeInsetInsetRect(CGRect rect, UIEdgeInsets insets);
-PSPDF_EXTERN NSString *NSStringFromPSPDFEdgeInset(UIEdgeInsets insets);
-PSPDF_EXTERN UIEdgeInsets PSPDFEdgeInsetFromString(NSString *string);
+PSPDF_EXPORT CGRect PSPDFEdgeInsetInsetRect(CGRect rect, UIEdgeInsets insets);
+PSPDF_EXPORT NSString *NSStringFromPSPDFEdgeInset(UIEdgeInsets insets);
+PSPDF_EXPORT UIEdgeInsets PSPDFEdgeInsetFromString(NSString *string);
 
 #define NSStringFromCGPoint PSPDF_NSStringFromCGPoint
 #define NSStringFromCGSize PSPDF_NSStringFromCGSize
 #define NSStringFromCGRect PSPDF_NSStringFromCGRect
 #define NSStringFromCGAffineTransform PSPDF_NSStringFromCGAffineTransform
 
-PSPDF_EXTERN NSString *PSPDF_NSStringFromCGPoint(CGPoint point);
-PSPDF_EXTERN NSString *PSPDF_NSStringFromCGSize(CGSize size);
-PSPDF_EXTERN NSString *PSPDF_NSStringFromCGRect(CGRect rect);
-PSPDF_EXTERN NSString *PSPDF_NSStringFromCGAffineTransform(CGAffineTransform transform);
+PSPDF_EXPORT NSString *PSPDF_NSStringFromCGPoint(CGPoint point);
+PSPDF_EXPORT NSString *PSPDF_NSStringFromCGSize(CGSize size);
+PSPDF_EXPORT NSString *PSPDF_NSStringFromCGRect(CGRect rect);
+PSPDF_EXPORT NSString *PSPDF_NSStringFromCGAffineTransform(CGAffineTransform transform);
 
 #define CGPointFromString PSPDF_CGPointFromString
 #define CGSizeFromString PSPDF_CGSizeFromString
 #define CGRectFromString PSPDF_CGRectFromString
 #define CGAffineTransformFromString PSPDF_CGAffineTransformFromString
 
-PSPDF_EXTERN CGPoint PSPDF_CGPointFromString(NSString *string);
-PSPDF_EXTERN CGSize PSPDF_CGSizeFromString(NSString *string);
-PSPDF_EXTERN CGRect PSPDF_CGRectFromString(NSString *string);
-PSPDF_EXTERN CGAffineTransform PSPDF_CGAffineTransformFromString(NSString *string);
+PSPDF_EXPORT CGPoint PSPDF_CGPointFromString(NSString *string);
+PSPDF_EXPORT CGSize PSPDF_CGSizeFromString(NSString *string);
+PSPDF_EXPORT CGRect PSPDF_CGRectFromString(NSString *string);
+PSPDF_EXPORT CGAffineTransform PSPDF_CGAffineTransformFromString(NSString *string);
 
 #define UIApplicationDidReceiveMemoryWarningNotification PSPDFApplicationDidReceiveMemoryWarningNotification
 #define UIApplicationWillEnterForegroundNotification NSApplicationWillBecomeActiveNotification
 #define UIApplicationDidEnterBackgroundNotification NSApplicationDidHideNotification
 #define UIApplicationWillTerminateNotification NSApplicationWillTerminateNotification
 #define UIApplicationDidFinishLaunchingNotification NSApplicationDidFinishLaunchingNotification
-PSPDF_EXTERN NSString *const PSPDFApplicationDidReceiveMemoryWarningNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFApplicationDidReceiveMemoryWarningNotification;
 
 // This is implemented on PSPDFDocument, but if we ifdef there, apppledoc has parsing issues.
-PSPDF_AVAILABLE_DECL @protocol UIActivityItemSource @end
-
-#import "PSPDFMacCompatibility.h"
+PSPDF_AVAILABLE_DECL @protocol UIActivityItemSource
+@end
 
 #else
 
-#if !defined(TARGET_OS_TV)
-#define TARGET_OS_TV 0
-#endif
-
-#define PSPDF_TARGET_MAC 0
-#define PSPDF_TARGET_TV  TARGET_OS_TV
-#define PSPDF_TARGET_IOS !TARGET_OS_TV
-
-#import <UIKit/UIKit.h>
-
 #define NSLineCapStyle CGLineCap
 #define NSLineJoinStyle CGLineJoin
+
+#if TARGET_OS_WATCH
+#import "watchOS/PSPDFWatchOSSupport.h"
+#endif
 
 // Helper to get the shared application object, also for extensions.
 PSPDF_EXPORT UIApplication *PSPDFSharedApplication(void);

@@ -2,7 +2,7 @@
 //  PSPDFNewPageConfiguration.h
 //  PSPDFModel
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "PSPDFMacros.h"
 #import "PSPDFEnvironment.h"
-#import "PSPDFRectAlignment.h"
+
+#import "PSPDFEnvironment.h"
+#import "PSPDFMacros.h"
 #import "PSPDFNewPageConfigurationBuilder.h"
+#import "PSPDFRectAlignment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -77,7 +77,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, readonly) UIEdgeInsets pageMargins;
 
 /// The tiled pattern that is configured.
-@property (nonatomic, readonly, copy, nullable) NSString *tiledPattern;
+@property (nonatomic, readonly, nullable) NSString *tiledPattern;
 
 /// The source document if a page is being copied.
 @property (nonatomic, readonly, nullable) PSPDFDocument *sourceDocument;

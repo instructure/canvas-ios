@@ -2,7 +2,7 @@
 //  PSPDFScrollView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -18,10 +18,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Scroll view that manages one or multiple `PSPDFPageView's`.
+/// Scroll view that manages one or multiple `PSPDFPageView`s.
 ///
 /// Depending on the `pageTransition`, either every `PSPDFPageView` is embedded in a `PSPDFScrollView`,
-/// or there is one global `PSPDFScrollView` for all `PSPDFPageView's`.
+/// or there is one global `PSPDFScrollView` for all `PSPDFPageView`s.
 /// This is also the center for all the gesture recognizers. Subclass to customize behavior (e.g. override `gestureRecognizerShouldBegin:`)
 ///
 /// @warning If you manually zoom/change the contentOffset, you must use the methods with animation extension.
@@ -30,12 +30,25 @@ NS_ASSUME_NONNULL_BEGIN
 ///`- (void)setZoomScale:(float)scale animated:(BOOL)animated;`
 ///`- (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;`
 ///`- (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;`
-PSPDF_CLASS_AVAILABLE @interface PSPDFScrollView : PSPDFAvoidingScrollView <UIScrollViewDelegate, UIGestureRecognizerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFScrollView : PSPDFAvoidingScrollView<UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/// Current displayed page.
-@property (nonatomic) NSUInteger page;
+/// Current displayed spread.
+/**
+ Index of the currently displayed spread.
+
+ The spread index describes the viewport of a pdf. This essentially means that for
+ documents being displayed in single page mode, the spread index equals the page index,
+ however if displayed in double page mode, one spread contains two pages.
+
+ If you are interested in the actual page index displayed by the scroll view, check
+ the page index from the `leftPage` or `rightPage` property.
+ */
+@property (nonatomic) NSUInteger spreadIndex;
+
+/// Use `spreadIndex` instead, the value returned is the same.
+@property (nonatomic) NSUInteger pageIndex PSPDF_DEPRECATED(6.5, "Renamed to spreadIndex to be more clear about what this property represents.");
 
 /// The configuration data source for this scroll view
 @property (nonatomic, weak, readonly) id<PSPDFPresentationContext> presentationContext;
@@ -60,15 +73,15 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 @interface PSPDFScrollView (SubclassingHooks)
 
-/// Tap gesture recognizers to sync with your own recognizers.
+/// Tap gesture recognizer to sync with your own recognizers.
 /// @warning Don't change the delegate.
 @property (nonatomic, readonly) UITapGestureRecognizer *singleTapGesture;
 
-/// Double tap gesture recognizers to sync with your own recognizers.
+/// Double tap gesture recognizer to sync with your own recognizers.
 /// @warning Don't change the delegate.
 @property (nonatomic, readonly) UITapGestureRecognizer *doubleTapGesture;
 
-/// Long press gesture recognizers to sync with your own recognizers.
+/// Long press gesture recognizer to sync with your own recognizers.
 /// @warning Don't change the delegate.
 @property (nonatomic, readonly) UILongPressGestureRecognizer *longPressGesture;
 
@@ -79,7 +92,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// First, we check if we hit a `PSPDFLinkAnnotationView` and invoke the delegates and default action if found.
 ///
 /// Next, we check if there's text selection and discard if.
-/// Then, touches are relayed to all visible `PSPDFPageView's` and `singleTapped:` is called. If one page reports that the touch has been processed; the loop is stopped.
+/// Then, touches are relayed to all visible `PSPDFPageView`s and `singleTapped:` is called. If one page reports that the touch has been processed; the loop is stopped.
 ///
 /// Next, the `didTapOnPageView:atPoint:` delegate is called if the touch still hasn't been processed.
 ///

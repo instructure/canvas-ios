@@ -2,7 +2,7 @@
 //  PSPDFNoteAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -36,6 +36,10 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFNoteAnnotation : PSPDFAnnotation
 
 /// Called to render the note image.
 - (void)drawImageInContext:(CGContextRef)context boundingBox:(CGRect)boundingBox options:(nullable NSDictionary<NSString *, id> *)options;
+
+/// If the note annotation is rendered as text, this method returns the bounding box to contain the text.
+/// This is used for flattening a note annotation.
+@property (nonatomic, readonly) CGRect boundingBoxIfRenderedAsText;
 
 @end
 

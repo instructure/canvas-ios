@@ -2,7 +2,7 @@
 //  PSPDFConfiguration.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,18 +10,19 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
-#import <UIKit/UIKit.h>
-#import "PSPDFMacros.h"
-#import "PSPDFVersion.h"
-#import "PSPDFOverridable.h"
-#import "PSPDFModel.h"
-#import "PSPDFBookmark.h"
-#import "PSPDFDocumentSharingViewController.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFAppearanceModeManager.h"
+#import "PSPDFBookmarkManager.h"
+#import "PSPDFDocumentSharingViewController.h"
+#import "PSPDFEnvironment.h"
+#import "PSPDFMacros.h"
+#import "PSPDFModel.h"
+#import "PSPDFOverridable.h"
+#import "PSPDFPrintCoordinator.h"
 #import "PSPDFSettingsViewController.h"
+#import "PSPDFVersion.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UIKit.h>
 
 @protocol PSPDFSignatureStore;
 
@@ -79,8 +80,10 @@ typedef NS_ENUM(NSUInteger, PSPDFLinkAction) {
     PSPDFLinkActionInlineBrowserLegacy
 } PSPDF_ENUM_AVAILABLE;
 
-/// Defines the text selection mode in `PSPDFTextSelectionView`.
-/// Requires `PSPDFFeatureMaskTextSelection` to be enabled and `textSelectionEnabled` set to YES.
+/**
+ Defines the text selection mode in `PSPDFTextSelectionView`.
+ Requires `PSPDFFeatureMaskTextSelection` to be enabled and `textSelectionEnabled` set to YES.
+ */
 typedef NS_ENUM(NSUInteger, PSPDFTextSelectionMode) {
     /// Regular text selection mode is similar to Mobile Safari, using two different loupes.
     /// A word will be selected on touch up.
@@ -91,39 +94,36 @@ typedef NS_ENUM(NSUInteger, PSPDFTextSelectionMode) {
     PSPDFTextSelectionModeSimple
 } PSPDF_ENUM_AVAILABLE;
 
-/// Customize how a single page should be displayed.
-typedef NS_ENUM(NSUInteger, PSPDFPageRenderingMode) {
-    /// Load cached page async.
-    PSPDFPageRenderingModeThumbnailThenFullPage,
-    /// Load cached page async. Thumbnail only if in memory.
-    PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage,
-    /// Load cached page async, no upscaled thumb.
-    PSPDFPageRenderingModeFullPage,
-    /// Load cached page directly.
-    PSPDFPageRenderingModeFullPageBlocking,
-    /// Don't use cached page but thumb.
-    PSPDFPageRenderingModeThumbnailThenRender,
-    /// Don't use cached page nor thumb.
-    PSPDFPageRenderingModeRender
+/// Defines how annotations, which are drawn, are created.
+typedef NS_ENUM(NSUInteger, PSPDFDrawCreateMode) {
+    /// Every stroke will result in a separate ink annotation.
+    PSPDFDrawCreateModeSeparate,
+
+    /// Strokes that have the same color/width are automatically merged.
+    PSPDFDrawCreateModeMergeIfPossible
 } PSPDF_ENUM_AVAILABLE;
 
 /// Menu options when text is selected on this document.
 typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
     /// No text selection actions.
-    PSPDFTextSelectionMenuActionNone      = 0,
+    PSPDFTextSelectionMenuActionNone = 0,
     /// Allow search from selected text.
-    PSPDFTextSelectionMenuActionSearch    = 1 << 0,
+    PSPDFTextSelectionMenuActionSearch = 1 << 0,
     /// Offers to show "Define" on selected text.
-    PSPDFTextSelectionMenuActionDefine    = 1 << 1,
+    PSPDFTextSelectionMenuActionDefine = 1 << 1,
     /// Offers a toggle for Wikipedia.
     PSPDFTextSelectionMenuActionWikipedia = 1 << 2,
     /// Allows text-to-speech.
-    PSPDFTextSelectionMenuActionSpeak     = 1 << 3,
-    PSPDFTextSelectionMenuActionAll       = NSUIntegerMax
+    PSPDFTextSelectionMenuActionSpeak = 1 << 3,
+    PSPDFTextSelectionMenuActionAll = NSUIntegerMax
 } PSPDF_ENUM_AVAILABLE;
 
+/**
+ The thumbnail bar mode controls how PSPDFKit displays thumbnails of pages when
+ viewing a document.
+ */
 typedef NS_ENUM(NSUInteger, PSPDFThumbnailBarMode) {
-    /// Don't show thumbnail bottom bar.
+    /// Don't show any thumbnails.
     PSPDFThumbnailBarModeNone,
     /// Show scrubber bar (like iBooks, `PSPDFScrubberBar`)
     PSPDFThumbnailBarModeScrubberBar,
@@ -131,6 +131,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailBarMode) {
     PSPDFThumbnailBarModeScrollable
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines where the scrubber but should be shown.
 typedef NS_ENUM(NSUInteger, PSPDFScrubberBarType) {
     /// The default style: A scrubber bar that lays out its thumbnails along its width.
     PSPDFScrubberBarTypeHorizontal,
@@ -152,6 +153,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailGrouping) {
     PSPDFThumbnailGroupingAlways
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines when the HUD should be shown.
 typedef NS_ENUM(NSUInteger, PSPDFHUDViewMode) {
     /// Always show the HUD.
     PSPDFHUDViewModeAlways,
@@ -163,6 +165,7 @@ typedef NS_ENUM(NSUInteger, PSPDFHUDViewMode) {
     PSPDFHUDViewModeNever
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines how the HUD should animate.
 typedef NS_ENUM(NSUInteger, PSPDFHUDViewAnimation) {
     /// Don't animate HUD appearance.
     PSPDFHUDViewAnimationNone,
@@ -172,6 +175,7 @@ typedef NS_ENUM(NSUInteger, PSPDFHUDViewAnimation) {
     PSPDFHUDViewAnimationSlide
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines how the search is displayed.
 typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
     /// Display search results in a modal view.
     PSPDFSearchModeModal,
@@ -179,6 +183,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSearchMode) {
     PSPDFSearchModeInline
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines where the render status should be disaplyed.
 typedef NS_ENUM(NSUInteger, PSPDFRenderStatusViewPosition) {
     /// Display render status view at the top.
     PSPDFRenderStatusViewPositionTop,
@@ -186,6 +191,7 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderStatusViewPosition) {
     PSPDFRenderStatusViewPositionCentered
 } PSPDF_ENUM_AVAILABLE;
 
+// Defines what happens when tapping.
 typedef NS_ENUM(NSUInteger, PSPDFTapAction) {
     /// Nothing happens.
     PSPDFTapActionNone,
@@ -195,6 +201,7 @@ typedef NS_ENUM(NSUInteger, PSPDFTapAction) {
     PSPDFTapActionSmartZoom,
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines an adaptive value.
 typedef NS_ENUM(NSUInteger, PSPDFAdaptiveConditional) {
     /// Same as BOOL `NO`.
     PSPDFAdaptiveConditionalNO,
@@ -204,6 +211,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAdaptiveConditional) {
     PSPDFAdaptiveConditionalAdaptive
 } PSPDF_ENUM_AVAILABLE;
 
+/// Defines how the scroll view inset should be set.
 typedef NS_ENUM(NSUInteger, PSPDFScrollInsetAdjustment) {
     /// Never adjust scroll view insets.
     PSPDFScrollInsetAdjustmentNone,
@@ -214,138 +222,167 @@ typedef NS_ENUM(NSUInteger, PSPDFScrollInsetAdjustment) {
     PSPDFScrollInsetAdjustmentAllElements
 } PSPDF_ENUM_AVAILABLE;
 
-@class PSPDFAnnotationGroup, PSPDFConfigurationBuilder, PSPDFGalleryConfiguration;
+/// Defines when the bookmark indicator should be shown on a page.
+typedef NS_ENUM(NSUInteger, PSPDFPageBookmarkIndicatorMode) {
+    /// Never show the bookmark indicator on page views.
+    PSPDFPageBookmarkIndicatorModeOff,
+    /// Always shows the bookmark indicator on page views.
+    PSPDFPageBookmarkIndicatorModeAlwaysOn,
+    /// Only display the bookmark indicator when the page is bookmarked.
+    PSPDFPageBookmarkIndicatorModeOnWhenBookmarked
+} PSPDF_ENUM_AVAILABLE;
+
+@class PSPDFAnnotationGroup, PSPDFGalleryConfiguration;
+
+/**
+ The configuration builder object offers all properties of `PSPDFConfiguration`
+ in a writable version, in order to build an immutable `PSPDFConfiguration` object.
+
+ @see `PSPDFConfiguration`
+  */
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFConfigurationBuilder : PSPDFBaseConfigurationBuilder
+@end
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// A `PSPDFConfiguration` defines the behavior of a `PSPDFViewController`.
-/// It uses the builder pattern via `PSPDFConfigurationBuilder` to create an immutable copy via a block.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFConfiguration : PSPDFModel <PSPDFOverridable>
+/**
+ A `PSPDFConfiguration` defines the behavior of a `PSPDFViewController`.
+ It uses the builder pattern via `PSPDFConfigurationBuilder` to create an immutable copy via a block.
+ */
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFConfiguration : PSPDFBaseConfiguration<PSPDFConfigurationBuilder *>
+<PSPDFOverridable>
 
-PSPDF_EMPTY_INIT_UNAVAILABLE
+    /// @name Appearance Properties
 
-/// Returns a copy with the default configuration.
-+ (PSPDFConfiguration *)defaultConfiguration;
+    /**
+     Set a page mode defined in the enum. Defaults to `PSPDFPageModeAutomatic`.
+     Reloads the view, unless it is set while rotation is active. Thus, one can customize the size change behavior by setting this within a size transition animation block.
+     Ignored when `pageTransition` is set to `PSPDFPageTransitionScrollContinuous`.
+     */
+    @property(nonatomic, readonly) PSPDFPageMode pageMode;
 
-/// Returns a copy of the default configuration.
-/// Provide a `builderBlock` to change the value of properties.
-+ (PSPDFConfiguration *)configurationWithBuilder:(nullable void (^)(PSPDFConfigurationBuilder *builder))builderBlock;
-
-/// Modifies an existing configuration with new changes.
-- (PSPDFConfiguration *)configurationUpdatedWithBuilder:(void (^)(PSPDFConfigurationBuilder *builder))builderBlock;
-
-
-/// @name Appearance Properties
-
-/// Set a PageMode defined in the enum. (Single/Double Pages)
-/// Reloads the view, unless it is set while rotation is active. Thus, one can customize the size change behavior by setting this within a size transition animation block. Defaults to `PSPDFPageModeAutomatic`.
-/// Ignored when `pageTransition` is set to `PSPDFPageTransitionScrollContinuous`.
-@property (nonatomic, readonly) PSPDFPageMode pageMode;
-
-
-/// Defines the page transition.
-/// @warning If you change the property dynamically in `viewWillTransitionToSize:withTransitionCoordinator:`, wait for the transition to finish using the coordinator’s completion block, otherwise the controller will get in an invalid state. Child view controllers get rotation events AFTER the parent view controller, so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet, and your app will eventually crash. In that case, use a `dispatch_async(dispatch_get_main_queue(), ^{ ... });` to set. You might just want to set `updateSettingsForBoundsChangeBlock` and set your properties there.
-/// @note , we enable the `automaticallyAdjustsScrollViewInsets` by default. If you don't want this behavior, subclass `reloadData` and set this property to NO.
+/**
+ Defines the page transition. Defaults to `PSPDFPageTransitionScrollPerPage`.
+ @warning If you change the property dynamically in `viewWillTransitionToSize:withTransitionCoordinator:`, wait for the transition to finish using the coordinator’s completion block, otherwise the controller will get in an invalid state. Child view controllers get rotation events AFTER the parent view controller, so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet, and your app will eventually crash. In that case, use a
+ `dispatch_async(dispatch_get_main_queue(), ^{ ... });` to set. You might just want to set `updateSettingsForBoundsChangeBlock` and set your properties there.
+ @note , we enable the `automaticallyAdjustsScrollViewInsets` by default. If you don't want this behavior, subclass `reloadData` and set this property to NO.
+ */
 @property (nonatomic, readonly) PSPDFPageTransition pageTransition;
 
-/// Shows first document page alone. Not relevant in `PSPDFPageModeSingle`. Defaults to NO.
-@property (nonatomic, getter=isDoublePageModeOnFirstPage, readonly) BOOL doublePageModeOnFirstPage;
+// Shows first document page alone. Defaults to YES.
+@property (nonatomic, getter=isFirstPageAlwaysSingle, readonly) BOOL firstPageAlwaysSingle;
 
 /// Allow zooming of small documents to screen width/height. Defaults to YES.
 @property (nonatomic, getter=isZoomingSmallDocumentsEnabled, readonly) BOOL zoomingSmallDocumentsEnabled;
 
-/// For Left-To-Right documents, this sets the page curl to go backwards. Defaults to NO.
-/// @note Doesn't re-order document pages. There's currently no real LTR support in PSPDFKit.
-@property (nonatomic, getter=isPageCurlDirectionLeftToRight, readonly) BOOL pageCurlDirectionLeftToRight;
+/**
+ For Left-To-Right documents, this sets the page curl to go backwards. Defaults to NO.
+ @note Doesn't re-order document pages. There's currently no real LTR support in PSPDFKit.
+ */
+@property (nonatomic, getter=isPageCurlDirectionLeftToRight, readonly) BOOL pageCurlDirectionLeftToRight PSPDF_DEPRECATED(6.5.1, "This is now derived from the document directly and no longer has an effect. See -[PSPDFDocument pageBinding].");
 
-/// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
-/// iPhone switches to yes on rotation - reset back to no if you don't want this.
-/// @note `fitToWidthEnabled` is not supported for `PSPDFPageTransitionCurl` and might produce suboptimal results with `PSPDFPageTransitionScrollContinuous` + `PSPDFScrollDirectionHorizontal`.
-@property (nonatomic, getter=isFitToWidthEnabled, readonly) BOOL fitToWidthEnabled;
+/**
+ If `true` (`PSPDFAdaptiveConditionalYES`), pages are fit to screen width.
+ If `false` (`PSPDFAdaptiveConditionalNO`), pages are fit to either height or width, depending on which one is larger (usually height).
+ Defaults to `PSPDFAdaptiveConditionalAdaptive` - uses `true` when in a compact height size class.
+ @note `fitToWidthEnabled` is not supported for `PSPDFPageTransitionCurl` and might produce suboptimal results with `PSPDFPageTransitionScrollContinuous` + `PSPDFScrollDirectionHorizontal`.
+ */
+@property (nonatomic, getter=isFitToWidthEnabled, readonly) PSPDFAdaptiveConditional fitToWidthEnabled;
 
-/// If this is set to YES, the page remembers its vertical position if `fitToWidthEnabled` is enabled.
-/// If NO, new pages will start at the page top position. Defaults to NO.
+/**
+ If this is set to YES, the page remembers its vertical position if `fitToWidthEnabled` is enabled.
+ If NO, new pages will start at the page top position. Defaults to NO.
+ */
 @property (nonatomic, readonly) BOOL fixedVerticalPositionForFitToWidthEnabledMode;
 
 /// Only useful for `PSPDFPageTransitionCurl`. Clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES. Set to NO if your document is variably sized.
 @property (nonatomic, readonly) BOOL clipToPageBoundaries;
 
-/// Enable/disable page shadow. Defaults NO.
+/// Enable/disable page shadow. Defaults to NO.
 @property (nonatomic, getter=isShadowEnabled, readonly) BOOL shadowEnabled;
 
 /// Set default shadowOpacity. Defaults to 0.7f.
 @property (nonatomic, readonly) CGFloat shadowOpacity;
 
-/// Defaults to a dark gray color.
+/// Background color behind the page view. Defaults to a dark gray color.
 @property (nonatomic, readonly) UIColor *backgroundColor;
 
-/// Allowed appearance modes for `PSPDFBrightnessViewController`. Defaults to PSPDFAppearanceModeAll.
-/// `PSPDFAppearanceModeDefault` is always assumed to be available. Set to only `PSPDFAppearanceModeDefault`
-/// to disable appearance mode picker UI. This needs to be set before `PSPDFBrightnessViewController` is presented.
+/**
+ Allowed appearance modes for `PSPDFBrightnessViewController`. Defaults to `PSPDFAppearanceModeAll`.
+ `PSPDFAppearanceModeDefault` is always assumed to be available. Set to only `PSPDFAppearanceModeDefault`
+ to disable appearance mode picker UI. This needs to be set before `PSPDFBrightnessViewController` is presented.
+ */
 @property (nonatomic, readonly) PSPDFAppearanceMode allowedAppearanceModes;
-
 
 /// @name Scroll View Configuration
 
 /// Page scrolling direction. Defaults to `PSPDFScrollDirectionHorizontal`. Only relevant for scrolling page transitions.
 @property (nonatomic, readonly) PSPDFScrollDirection scrollDirection;
 
-/// Sets the scroll view inset adjustment mode. Defaults to `PSPDFScrollInsetAdjustmentFixedElements`.
-/// This is only evaluated for `PSPDFPageTransitionScrollContinuous` & `PSPDFScrollDirectionVertical`.
-/// @note This is similar to `automaticallyAdjustsScrollViewInsets` but more tailored to PSPDFKit's use case.
-/// @warning `UIViewController's` `automaticallyAdjustsScrollViewInsets` will always be disabled. Don't enable this property.
+/**
+ Sets the scroll view inset adjustment mode. Defaults to `PSPDFScrollInsetAdjustmentFixedElements`.
+ This is only evaluated for `PSPDFPageTransitionScrollContinuous` & `PSPDFScrollDirectionVertical`.
+ @note This is similar to `automaticallyAdjustsScrollViewInsets` but more tailored to PSPDFKit's use case.
+ @warning `UIViewController`’s `automaticallyAdjustsScrollViewInsets` will always be disabled. Don't enable this property.
+ */
 @property (nonatomic, readonly) PSPDFScrollInsetAdjustment scrollViewInsetAdjustment;
 
-/// Always bounces pages in the set scroll direction.
-/// Defaults to NO. If set, pages with only one page will still bounce left/right or up/down instead of being fixed. Corresponds to `UIScrollView's` `alwaysBounceHorizontal` or `alwaysBounceVertical` of the pagingScrollView.
-/// @note Only valid for `PSPDFPageTransitionScrollPerPage` or `PSPDFPageTransitionScrollContinuous`.
+/**
+ Always bounces pages in the set scroll direction. Defaults to NO.
+ If set, pages with only one page will still bounce left/right or up/down instead of being fixed. Corresponds to `UIScrollView`’s `alwaysBounceHorizontal` or `alwaysBounceVertical` of the pagingScrollView.
+ @note Only valid for `PSPDFPageTransitionScrollPerPage` or `PSPDFPageTransitionScrollContinuous`.
+ */
 @property (nonatomic, readonly) BOOL alwaysBouncePages;
 
-/// Controls if the horizontal scroll indicator is displayed. Defaults to YES.
-/// @note Indicators are displayed for page zooming in `PSPDFPageTransitionScrollPerPage` and
-/// always when in `PSPDFPageTransitionScrollContinuous` mode.
+/**
+ Controls if the horizontal scroll indicator is displayed. Defaults to YES.
+ @note Indicators are displayed for page zooming in `PSPDFPageTransitionScrollPerPage` and
+ always when in `PSPDFPageTransitionScrollContinuous` mode.
+ */
 @property (nonatomic, readonly) BOOL showsHorizontalScrollIndicator;
 
-/// Controls if the vertical scroll indicator is displayed. Defaults to YES.
-/// @note Indicators are displayed for page zooming in `PSPDFPageTransitionScrollPerPage` and
-/// always when in `PSPDFPageTransitionScrollContinuous` mode.
+/**
+ Controls if the vertical scroll indicator is displayed. Defaults to YES.
+ @note Indicators are displayed for page zooming in `PSPDFPageTransitionScrollPerPage` and
+ always when in `PSPDFPageTransitionScrollContinuous` mode.
+ */
 @property (nonatomic, readonly) BOOL showsVerticalScrollIndicator;
 
-/// Minimum zoom scale. Defaults to 1. You usually don't want to change this.
-/// @warning This might break certain pageTransitions if not set to 1.
+/**
+ Minimum zoom scale. Defaults to 1. You usually don't want to change this.
+ @warning This might break certain page transitions if not set to 1.
+ */
 @property (nonatomic, readonly) float minimumZoomScale;
 
-/// Maximum zoom scale for the scrollview. Defaults to 10. Set before creating the view.
+/// Maximum zoom scale for the scrollview. Defaults to 20.
 @property (nonatomic, readonly) float maximumZoomScale;
-
 
 /// @name Page Border and Rendering
 
-/// Set margin for document pages. Defaults to `UIEdgeInsetsZero`.
-/// The margin can be used to provide extra space for your (always visible) UI elements. The content view will
-/// be moved accordingly. Note that if you are adding your UI elements to the `hudView` and have HUD auto hiding
-/// enabled, your views will be hidden with the HUD, however the margins will stay the same. In this case it might
-/// work best, if you don't add any margins at all. If you do, you will potentially have to adjust them manually.
-/// In vertical continuous mode, the margins do not affect the content view in the direction off scrolling.
-/// Instead the scroll view insets are modified. Note also that the area outside margin does not receive any touch
-/// events, or is shown while zooming.
-/// @note You need to call `reloadData` after changing this property.
+/**
+ Set margin for document pages. Defaults to `UIEdgeInsetsZero`.
+ The margin can be used to provide extra space for your (always visible) UI elements. The content view will
+ be moved accordingly. Note that if you are adding your UI elements to the `hudView` and have HUD auto hiding
+ enabled, your views will be hidden with the HUD, however the margins will stay the same. In this case it might
+ work best, if you don't add any margins at all. If you do, you will potentially have to adjust them manually.
+ In vertical continuous mode, the margins do not affect the content view in the direction off scrolling.
+ Instead the scroll view insets are modified. Note also that the area outside margin does not receive any touch
+ events, or is shown while zooming.
+ @note You need to call `reloadData` after changing this property.
+ */
 @property (nonatomic, readonly) UIEdgeInsets margin;
 
-/// Padding for document pages. Defaults to `CGSizeZero`.
-/// For `PSPDFPageTransitionScrollPerPage`, padding is space that is displayed around the document. (In fact, the minimum zoom is adapted; thus you can only modify `width`/`height` here (left+right/top+bottom))
-/// For `PSPDFPageTransitionScrollContinuous`, top/bottom is used to allow additional space before/after the first/last document
-/// When changing padding; the touch area is still fully active.
-/// @note You need to call `reloadData` after changing this property.
+/**
+ Padding for document pages. Defaults to `UIEdgeInsetsZero`.
+ For `PSPDFPageTransitionScrollPerPage`, padding is space that is displayed around the document. (In fact, the minimum zoom is adapted; thus you can only modify `width`/`height` here (left+right/top+bottom))
+ For `PSPDFPageTransitionScrollContinuous`, top/bottom is used to allow additional space before/after the first/last document
+ When changing padding; the touch area is still fully active.
+ @note You need to call `reloadData` after changing this property.
+ */
 @property (nonatomic, readonly) UIEdgeInsets padding;
 
-/// Page padding width between single/double pages or between pages for continuous scrolling. Defaults to 20.f.
+/// Page padding width between single/double pages or between pages for continuous scrolling. Defaults to 20.
 @property (nonatomic, readonly) CGFloat pagePadding;
-
-/// This manages how the PDF image cache (thumbnail, full page) is used. Defaults to `PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage`.
-/// `PSPDFPageRenderingModeFullPageBlocking` is a great option for `PSPDFPageTransitionCurl`.
-/// @warning `PSPDFPageRenderingModeFullPageBlocking` will disable certain page scroll animations.
-@property (nonatomic, readonly) PSPDFPageRenderingMode renderingMode;
 
 /// If YES, shows an `UIActivityIndicatorView` on the top right while page is rendering. Defaults to YES.
 @property (nonatomic, getter=isRenderAnimationEnabled, readonly) BOOL renderAnimationEnabled;
@@ -364,37 +401,45 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property (nonatomic, getter=isScrollOnTapPageEndEnabled, readonly) BOOL scrollOnTapPageEndEnabled;
 
-/// Page transition to next or previous page via `scrollOnTapPageEndEnabled` is enabled. Defaults to YES.
-/// @warning Only effective if `scrollOnTapPageEndEnabled` is set to YES.
+/**
+ Page transition to next or previous page via `scrollOnTapPageEndEnabled` is enabled. Defaults to YES.
+ @warning Only effective if `scrollOnTapPageEndEnabled` is set to YES.
+ */
 @property (nonatomic, getter=isScrollOnTapPageEndAnimationEnabled, readonly) BOOL scrollOnTapPageEndAnimationEnabled;
 
 /// Margin at which the scroll to next/previous tap should be invoked. Defaults to 60.
 @property (nonatomic, readonly) CGFloat scrollOnTapPageEndMargin;
 
-
 /// @name Page Actions
 
-/// Set the default link action for pressing on `PSPDFLinkAnnotations`. Default is `PSPDFLinkActionInlineBrowser`.
-/// @note If modal is set in the link, this property has no effect.
+/**
+ Set the default link action for pressing on `PSPDFLinkAnnotation`s. Default is `PSPDFLinkActionInlineBrowser`.
+ @note If modal is set in the link, this property has no effect.
+ */
 @property (nonatomic, readonly) PSPDFLinkAction linkAction;
 
-/// Allows to customize other displayed menu actions when text is selected.
-/// Defaults to `PSPDFTextSelectionMenuActionSearch|PSPDFTextSelectionMenuActionDefine`.
+/**
+ Allows to customize other displayed menu actions when text is selected.
+ Defaults to `PSPDFTextSelectionMenuActionSearch|PSPDFTextSelectionMenuActionDefine|PSPDFTextSelectionMenuActionSpeak`.
+ */
 @property (nonatomic, readonly) PSPDFTextSelectionMenuAction allowedMenuActions;
-
 
 /// @name Features
 
-/// Allows text selection. Defaults to YES.
-/// @note Requires the `PSPDFFeatureMaskTextSelection` feature flag.
-/// This implies that the PDF file actually contains text glyphs.
-/// Sometimes text is represented via embedded images or vectors, in that case PSPDFKit can't select it.
+/**
+ Allows text selection. Defaults to YES.
+ @note Requires the `PSPDFFeatureMaskTextSelection` feature flag.
+ This implies that the PDF file actually contains text glyphs.
+ Sometimes text is represented via embedded images or vectors, in that case PSPDFKit can't select it.
+ */
 @property (nonatomic, getter=isTextSelectionEnabled, readonly) BOOL textSelectionEnabled;
 
-/// Allows image selection. Defaults to NO.
-/// @note Requires the `PSPDFFeatureMaskTextSelection` feature flag.
-/// This implies that the image is not in vector format. Only supports a subset of all possible image types in PDF.
-/// @warning Will only work if `textSelectionEnabled` is also set to YES.
+/**
+ Allows image selection. Defaults to YES.
+ @note Requires the `PSPDFFeatureMaskTextSelection` feature flag.
+ This implies that the image is not in vector format. Only supports a subset of all possible image types in PDF.
+ @warning Will only work if `textSelectionEnabled` is also set to YES.
+ */
 @property (nonatomic, getter=isImageSelectionEnabled, readonly) BOOL imageSelectionEnabled;
 
 /// Defines how the text is selected. Defaults to `PSPDFTextSelectionModeRegular`.
@@ -403,59 +448,92 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Enable to always try to snap to words when selecting text. Defaults to NO.
 @property (nonatomic, readonly) BOOL textSelectionShouldSnapToWord;
 
-/// Modify what annotations are editable and can be created. Set to nil to completely disable annotation editing/creation.
-/// Defaults to all available annotation string constants with the exception of `PSPDFAnnotationStringLink`.
-///
-/// @warning Some annotation types are only behaviorally different in PSPDFKit but are mapped to basic annotation types,
-/// so adding those will only change the creation of those types, not editing.
-/// Example: If you add `PSPDFAnnotationStringInk` but not `PSPDFAnnotationStringSignature`,
-/// signatures added in previous session will still be editable (since they are Ink annotations).
-/// On the other hand, if you set `PSPDFAnnotationStringSignature` but not `PSPDFAnnotationStringInk`,
-/// then your newly created signatures will not be movable. See `PSPDFAnnotation.h` for additional comments.
-@property (nonatomic, readonly) NSSet<NSString *> *editableAnnotationTypes;
+/**
+ Modify what annotations are editable and can be created. Set to nil to completely disable annotation editing/creation.
+ Defaults to all available annotation strings with the exception of `PSPDFAnnotationStringLink`.
 
-/// Shows a custom cell with configurable color presets for the provided annotation types.
-/// Defaults to `PSPDFAnnotationTypeAll`. Set to `PSPDFAnnotationTypeNone` to completely disable color presets.
-/// @note The presets are only displayed if the PSPDFStyleManager returns  supported annotation types only.
+ @warning Some annotation types are only behaviorally different in PSPDFKit but are mapped to basic annotation types,
+ so adding those will only change the creation of those types, not editing.
+ Example: If you add `PSPDFAnnotationStringInk` but not `PSPDFAnnotationStringSignature`,
+ signatures added in previous session will still be editable (since they are Ink annotations).
+ On the other hand, if you set `PSPDFAnnotationStringSignature` but not `PSPDFAnnotationStringInk`,
+ then your newly created signatures will not be movable. See `PSPDFAnnotation.h` for additional comments.
+ */
+@property (nonatomic, readonly) NSSet<PSPDFAnnotationString> *editableAnnotationTypes;
+
+/**
+ Shows a custom cell with configurable color presets for the provided annotation types.
+ Defaults to `PSPDFAnnotationTypeAll`. Set to `PSPDFAnnotationTypeNone` to completely disable color presets.
+ @note The presets are only displayed if the PSPDFStyleManager returns  supported annotation types only.
+ */
 @property (nonatomic, readonly) PSPDFAnnotationType typesShowingColorPresets;
 
-/// Customize the inspector items globally. This currently affects `PSPDFAnnotationStyleViewController` and `PSPDFFreeTextAccessoryView`.
-/// Dictionary in format annotation type string : array of arrays of property strings (`NSArray<NSArray<NSString *> *> *`) OR a block that returns this and takes `annotations` as argument (`NSArray<NSArray<NSString *> *> *(^block)(PSPDFAnnotation *annotation)`).
-/// The following properties are currently supported:
-/// `color`, `fillColor`, `alpha`,
-/// `lineWidth`, `lineEnd1`, `lineEnd2`,
-/// `fontName`, `fontSize`, `textAlignment`, `lineEnd`.
-/// @note If you want to disable all color editing, be sure to also remove the relevant type from `typesShowingColorPresets` (also available in `PSPDFConfiguration`).
-@property (nonatomic, readonly) NSDictionary<NSString *, id> *propertiesForAnnotations;
+/**
+ Customize the inspector items globally. This currently affects `PSPDFAnnotationStyleViewController` and `PSPDFFreeTextAccessoryView`.
+ Dictionary in format annotation type string : array of arrays of property strings (`NSArray<NSArray<PSPDFAnnotationString> *> *`) OR a block that returns this and takes `annotations` as argument (`NSArray<NSArray<PSPDFAnnotationString> *> *(^block)(PSPDFAnnotation *annotation)`).
+ The following properties are currently supported:
+ `color`, `fillColor`, `alpha`,
+ `lineWidth`, `lineEnd1`, `lineEnd2`,
+ `fontName`, `fontSize`, `textAlignment`, `lineEnd`.
+ @note If you want to disable all color editing, be sure to also remove the relevant type from `typesShowingColorPresets` (also available in `PSPDFConfiguration`).
+ */
+@property (nonatomic, readonly) NSDictionary<PSPDFAnnotationString, id> *propertiesForAnnotations;
 
-/// Shows a toolbar with text editing options (`PSPDFFreeTextAccessoryView`) above the keyboard, while editing
-/// free text annotations. You need to set this property before the text annotation is edited. Defaults to `YES`.
+/**
+ Shows a toolbar with text editing options (`PSPDFFreeTextAccessoryView`) above the keyboard, while editing
+ free text annotations. Defaults to YES.
+ You need to set this property before the text annotation is edited.
+ */
 @property (nonatomic, getter=isFreeTextAccessoryViewEnabled, readonly) BOOL freeTextAccessoryViewEnabled;
 
-/// Controls how bookmarks are displayed and managed.
-/// While bookmarks have a custom order, the default is set to `PSPDFSortOrderPageBased`.
-@property (nonatomic, readonly) PSPDFSortOrder bookmarkSortOrder;
+/**
+ Controls how bookmarks are displayed and managed.
+ While bookmarks have a custom order, the default is set to `PSPDFBookmarkManagerSortOrderPageBased`.
+ */
+@property (nonatomic, readonly) PSPDFBookmarkManagerSortOrder bookmarkSortOrder;
+
+/**
+ Sets the page's bookmark indicator mode. Defaults to `PSPDFPageBookmarkIndicatorModeOff`.
+ Depending on this mode, a button indicating the current bookmark status of the page will be displayed on the page itself.
+ Tapping the button will toggle the bookmark mode. For customising the bookmark indicator, see PSPDFBookMarkIndicatorButton.h
+ @see bookmarkIndicatorInteractionEnabled
+ */
+@property (nonatomic, readonly) PSPDFPageBookmarkIndicatorMode bookmarkIndicatorMode;
+
+/**
+ Enables/disables the bookmark indicator's interaction. Defaults to `YES`.
+ If this is enabled, tapping the indicator will bookmark on unbookmark the page it is displayed on.
+ Use this in conjunction with `bookmarkIndicatorMode` to get the desired behaviour
+ @see bookmarkIndicatorMode
+ */
+@property (nonatomic, readonly) BOOL bookmarkIndicatorInteractionEnabled;
 
 /// @name HUD Settings
 
-/// Manages the show/hide mode of the HUD view. Defaults to `PSPDFHUDViewModeAutomatic`.
-/// @note The HUD consists of the thumbnail view at the bottom and the page/document label.
-/// The visibility of the navigation bar of the parent navigation controller can be linked to the HUD via enabling `shouldHideNavigationBarWithHUD`.
-/// @warning HUD will not change when changing this mode after controller is visible. Use `setHUDVisible:animated:` instead.
-/// Does not affect manual calls to `setHUDVisible`.
+/**
+ Manages the show/hide mode of the HUD view. Defaults to `PSPDFHUDViewModeAutomatic`.
+ @note The HUD consists of the thumbnail view at the bottom and the page/document label.
+ The visibility of the navigation bar of the parent navigation controller can be linked to the HUD via enabling `shouldHideNavigationBarWithHUD`.
+ @warning HUD will not change when changing this mode after controller is visible. Use `setHUDVisible:animated:` instead.
+ Does not affect manual calls to `setHUDVisible`.
+ */
 @property (nonatomic, readonly) PSPDFHUDViewMode HUDViewMode;
 
 /// Sets the way the HUD will be animated. Defaults to `PSPDFHUDViewAnimationFade`.
 @property (nonatomic, readonly) PSPDFHUDViewAnimation HUDViewAnimation;
 
-/// Enables/Disables the bottom document site position overlay.
-/// Defaults to YES. Animatable. Will be added to the HUDView.
-/// @note Requires a `setNeedsLayout` on `PSPDFHUDView` to update if there's no full reload.
+/**
+ Enables/Disables the bottom document site position overlay.
+ Defaults to YES. Animatable. Will be added to the HUDView.
+ @note Requires a `setNeedsLayout` on `PSPDFHUDView` to update if there's no full reload.
+ */
 @property (nonatomic, getter=isPageLabelEnabled, readonly) BOOL pageLabelEnabled;
 
-/// Enable/disable the top document label overlay. Defaults to PSPDFAdaptiveConditionalAdaptive -
-/// the document label is shown if there's not enough space to set the navigation bar title instead.
-/// @note Requires a `setNeedsLayout` on the `PSPDFViewController` view to update if there's no full reload.
+/**
+ Enable/disable the top document label overlay. Defaults to `PSPDFAdaptiveConditionalAdaptive` -
+ the document label is shown if there's not enough space to set the navigation bar title instead.
+ @note Requires a `setNeedsLayout` on the `PSPDFViewController` view to update if there's no full reload.
+ */
 @property (nonatomic, readonly) PSPDFAdaptiveConditional documentLabelEnabled;
 
 /// Automatically hides the HUD when the user starts scrolling to different pages in the document. Defaults to YES.
@@ -464,166 +542,253 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Should show the HUD on `viewWillAppear:`, unless the HUD is disabled. Defaults to YES.
 @property (nonatomic, readonly) BOOL shouldShowHUDOnViewWillAppear;
 
-/// Allow PSPDFKit to change the title of this view controller.
-/// If `YES`, the controller title will be set to the document title or `nil`, depending on whether the
-/// document label is visible or not. Set to `NO`, to manage the viewController title manually. Defaults to YES.
+/**
+ Controls whether a `PSPDFViewController` should show a page grabber on the edge
+ of the screen to enable the user to quickly skim through the pages of a document.
+
+ Defaults to `NO`.
+ */
+@property (nonatomic, readonly, getter=isPageGrabberEnabled) BOOL pageGrabberEnabled;
+
+/**
+ Allow PSPDFKit to change the title of this view controller.
+ If `YES`, the controller title will be set to the document title or `nil`, depending on whether the
+ document label is visible or not. Set to `NO`, to manage the viewController title manually. Defaults to YES.
+ */
 @property (nonatomic, readonly) BOOL allowToolbarTitleChange;
 
-/// If YES, the navigation bar will be hidden when the HUD is hidden. If NO, the navigation will stay
-/// shown or hidden depending on the value of `[UINavigationController navigationBarHidden]`. Defaults to YES.
+/**
+ If YES, the navigation bar will be hidden when the HUD is hidden. If NO, the navigation will stay
+ shown or hidden depending on the value of `[UINavigationController navigationBarHidden]`. Defaults to YES.
+ */
 @property (nonatomic, readonly) BOOL shouldHideNavigationBarWithHUD;
 
-/// If YES, the status bar will always remain hidden (regardless of the `shouldHideStatusBarWithHUD` setting).
-/// The setting is also passed on to internally created sub-controllers. Defaults to NO.
+/**
+ If YES, the status bar will always remain hidden (regardless of the `shouldHideStatusBarWithHUD` setting).
+ The setting is also passed on to internally created sub-controllers. Defaults to NO.
+ */
 @property (nonatomic, readonly) BOOL shouldHideStatusBar;
 
-/// If YES, the status bar will be hidden when the HUD is hidden. Defaults to YES.
-/// @note Needs to be set before the view is loaded.
-/// @note This setting is ignored when the navigation bar is always visible (`shouldHideNavigationBarWithHUD`
-/// and `[UINavigationController navigationBarHidden]` both set to `NO`).
+/**
+ If YES, the status bar will be hidden when the HUD is hidden. Defaults to YES.
+ @note Needs to be set before the view is loaded.
+ @note This setting is ignored when the navigation bar is always visible (`shouldHideNavigationBarWithHUD`
+ and `[UINavigationController navigationBarHidden]` both set to `NO`).
+ */
 @property (nonatomic, readonly) BOOL shouldHideStatusBarWithHUD;
-
 
 /// @name Action navigation
 
-/// Shows a floating back button in the lower part of the screen.
-/// Used to navigate back to the origin page when navigating via PDF actions.
-/// Defaults to `YES`.
+/**
+ Shows a floating back button in the lower part of the screen.
+ Used to navigate back to the origin page when navigating via PDF actions.
+ Defaults to `YES`.
+ */
 @property (nonatomic, readonly) BOOL showBackActionButton;
 
-/// Shows a floating forward button in the lower part of the screen.
-/// Used to revert the back button navigation action.
-/// Defaults to `YES`.
+/**
+ Shows a floating forward button in the lower part of the screen.
+ Used to revert the back button navigation action.
+ Defaults to `YES`.
+ */
 @property (nonatomic, readonly) BOOL showForwardActionButton;
 
-/// Adds text labels representing the destination name to the back and forward buttons.
-/// Defaults to `YES` on iPad and `NO` otherwise.
+/**
+ Adds text labels representing the destination name to the back and forward buttons.
+ Defaults to `YES` on iPad and `NO` otherwise.
+ */
 @property (nonatomic, readonly) BOOL showBackForwardActionButtonLabels;
-
 
 /// @name Thumbnail Settings
 
-/// Sets the thumbnail bar mode. Defaults to `PSPDFThumbnailBarModeScrubberBar`.
-/// @note Requires a `setNeedsLayout` on `PSPDFHUDView` to update if there's no full reload.
+/**
+ Sets the thumbnail bar mode. Defaults to `PSPDFThumbnailBarModeScrubberBar`.
+ @note Requires a `setNeedsLayout` on `PSPDFHUDView` to update if there's no full reload.
+ */
 @property (nonatomic, readonly) PSPDFThumbnailBarMode thumbnailBarMode;
 
-/// Controls the placement of the scrubber bar.
+/// Controls the placement of the scrubber bar. Defaults to `PSPDFScrubberBarTypeHorizontal`.
 @property (nonatomic, readonly) PSPDFScrubberBarType scrubberBarType;
 
-/// Controls the thumbnail grouping. Defaults to `PSPDFThumbnailGroupingAutomatic`
+/// Controls the thumbnail grouping. Defaults to `PSPDFThumbnailGroupingAutomatic`.
 @property (nonatomic, readonly) PSPDFThumbnailGrouping thumbnailGrouping;
 
-/// The thumbnail size for `PSPDFThumbnailViewController`.
-/// If one of the width or height is zero, this dimension will be determined from the page aspect ratio.
-/// If both the width and height are zero (the default) then the size is automatic and adaptive, based on the page sizes and view size.
+/**
+ The thumbnail size for `PSPDFThumbnailViewController`. Defaults to `CGSizeZero`.
+ If one of the width or height is zero, this dimension will be determined from the page aspect ratio.
+ If both the width and height are zero, the size is automatic and adaptive, based on the page sizes and view size.
+ */
 @property (nonatomic, readonly) CGSize thumbnailSize;
 
-/// The minimum internal horizontal space between thumbnails in `PSPDFThumbnailViewController`.
-/// The default depends on the screen size, and is the same as `thumbnailLineSpacing` and each element in `thumbnailMargin`.
+/**
+ The minimum internal horizontal space between thumbnails in `PSPDFThumbnailViewController`.
+ The default depends on the screen size, and is the same as `thumbnailLineSpacing` and each element in `thumbnailMargin`.
+ */
 @property (nonatomic, readonly) CGFloat thumbnailInteritemSpacing;
 
-/// The minimum internal vertical space between thumbnails in `PSPDFThumbnailViewController`.
-/// The default depends on the screen size, and is the same as `thumbnailInteritemSpacing` and each element in `thumbnailMargin`.
+/**
+ The minimum internal vertical space between thumbnails in `PSPDFThumbnailViewController`.
+ The default depends on the screen size, and is the same as `thumbnailInteritemSpacing` and each element in `thumbnailMargin`.
+ */
 @property (nonatomic, readonly) CGFloat thumbnailLineSpacing;
 
-/// The external margin around the grid of thumbnails in thumbnail view mode.
-/// The default depends on the screen size, with all elements the same as `thumbnailInteritemSpacing` and `thumbnailLineSpacing`.
+/**
+ The external margin around the grid of thumbnails in thumbnail view mode.
+ The default depends on the screen size, with all elements the same as `thumbnailInteritemSpacing` and `thumbnailLineSpacing`.
+ */
 @property (nonatomic, readonly) UIEdgeInsets thumbnailMargin;
-
 
 /// @name Annotation Settings
 
-/// Overlay annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
+/// Overlay annotations are faded in. Set global duration for this fade here. Defaults to 0.25.
 @property (nonatomic, readonly) CGFloat annotationAnimationDuration;
 
-/// If set to YES, you can group/ungroup annotations with the multi-select tool.
-/// Defaults to YES.
+/**
+ If set to YES, you can group/ungroup annotations with the multi-select tool.
+ Defaults to YES.
+ */
 @property (nonatomic, readonly) BOOL annotationGroupingEnabled;
 
-/// If set to YES, a long-tap that ends on a page area that is not a text/image will show a new menu to create annotations. Defaults to YES.
-/// If set to NO, there's no menu displayed and the loupe is simply hidden.
-/// Menu can be intercepted and customized with the `shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:` delegate. (when annotation is nil)
-/// @note Requires the `PSPDFFeatureMaskAnnotationEditing` feature flag.
+/**
+ If set to YES, a long-tap that ends on a page area that is not a text/image will show a new menu to create annotations. Defaults to YES.
+ If set to NO, there's no menu displayed and the loupe is simply hidden.
+ Menu can be intercepted and customized with the `shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:` delegate. (when annotation is nil)
+ @note Requires the `PSPDFFeatureMaskAnnotationEditing` feature flag.
+ */
 @property (nonatomic, getter=isCreateAnnotationMenuEnabled, readonly) BOOL createAnnotationMenuEnabled;
 
-/// Types allowed in the create annotations menu. Defaults to the most common annotation types. (strings)
-/// Contains a list of `PSPDFAnnotationGroup` and `PSPDFAnnotationGroupItem` items.
-/// @note There is no visual separation for different groups.
-/// Types that are not listed in `editableAnnotationTypes` will be ignored.
+/**
+ Types allowed in the create annotations menu. Defaults to the most common annotation types. (strings)
+ Contains a list of `PSPDFAnnotationGroup` and `PSPDFAnnotationGroupItem` items.
+ @note There is no visual separation for different groups.
+ Types that are not listed in `editableAnnotationTypes` will be ignored.
+ */
 @property (nonatomic, copy, readonly) NSArray<PSPDFAnnotationGroup *> *createAnnotationMenuGroups;
 
-/// Enables natural drawing for ink annotations.
+/// Enables natural drawing for ink annotations. Defaults to `YES`.
 @property (nonatomic, readonly) BOOL naturalDrawingAnnotationEnabled;
+
+/**
+ Defines how ink annotations are created.
+
+ The PDF spec allows an unlimited number of separate paths per ink annotation object.
+ They all need to have the same color and width.
+
+ Defaults to `PSPDFDrawCreateModeMergeIfPossible`,
+ where we try to create as few objects as possible.
+
+ With `PSPDFDrawCreateModeSeparate` separate ink annotation objects will be created
+ with each individual stroke.
+
+ @note This does not affect undo - undo is smart and tracks paths individually.
+ */
+@property (nonatomic, readonly) PSPDFDrawCreateMode drawCreateMode;
 
 /// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
 @property (nonatomic, readonly) BOOL showAnnotationMenuAfterCreation;
 
-/// If YES, asks the user to specify a custom annotation username when first creating a new annotation
-/// (triggered by the `PSPDFAnnotationStateManager` changing its state).
-/// A default name will already be suggested based on the device name.
-/// You can change the default username by setting `-[PSPDFDocument defaultAnnotationUsername]`.
-/// Defaults to YES.
+/**
+ If YES, asks the user to specify a custom annotation username ("author")
+ when first creating a new annotation
+
+ This is triggered by the `PSPDFAnnotationStateManager` changing its state.
+
+ A default name will already be suggested based on the device name.
+ You can change the default username by setting `-[PSPDFDocument defaultAnnotationUsername]`.
+ Defaults to YES.
+ */
 @property (nonatomic, readonly) BOOL shouldAskForAnnotationUsername;
 
-/// Controls if a second tap to an annotation that allows inline editing enters edit mode. Defaults to YES.
-/// (The most probable candidate for this is `PSPDFFreeTextAnnotation`)
+/**
+ Controls if a second tap to an annotation that allows inline editing enters edit mode. Defaults to YES.
+ (The most probable candidate for this is `PSPDFFreeTextAnnotation`)
+ */
 @property (nonatomic, readonly) BOOL annotationEntersEditModeAfterSecondTapEnabled;
 
 /// Scrolls to affected page during an undo/redo operation. Defaults to YES.
 @property (nonatomic, readonly) BOOL shouldScrollToChangedPage;
 
-
 /// @name Annotation Saving
 
-/// Controls if PSPDFKit should save at specific points, like when the app enters background or when the view controller disappears.
-/// Defaults to YES. Implement `PSPDFDocumentDelegate` to be notified of those saving actions.
+/**
+ Controls if PSPDFKit should save at specific points, like when the app enters background or when the view controller disappears.
+ Defaults to YES. Implement `PSPDFDocumentDelegate` to be notified of those saving actions.
+ */
 @property (nonatomic, getter=isAutosaveEnabled, readonly) BOOL autosaveEnabled;
 
-/// The save method will be invoked when the view controller is dismissed. This increases controller dismissal if enabled.
-/// @note Make sure that you don't re-create the `PSPDFDocument` object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
-/// Defaults to NO.
+/**
+ The save method will be invoked when the view controller is dismissed. This increases controller dismissal if enabled.
+ @note Make sure that you don't re-create the `PSPDFDocument` object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
+ Defaults to NO.
+ */
 @property (nonatomic, readonly) BOOL allowBackgroundSaving;
 
-/// Describes the time limit for recording sound annotations in seconds. After
-/// this time has been reached, the recording will stop.
-///
-/// Default to 300 (= 5 minutes).
+/**
+ Describes the time limit for recording sound annotations in seconds. After
+ this time has been reached, the recording will stop.
+
+ Defaults to 300 (= 5 minutes).
+ */
 @property (nonatomic, readonly) NSTimeInterval soundAnnotationTimeLimit;
 
+/**
+ Defines the default options when a sound annotation is created for recording.
+
+ Defaults to an empty dictionary in which case following set is used:
+
+ AVFormatIDKey: @(kAudioFormatLinearPCM)
+ AVSampleRateKey: @(annotation.rate)           // 22050
+ AVNumberOfChannelsKey: @(annotation.channels) // 1
+ AVLinearPCMBitDepthKey: @(annotation.bits)    // 16
+
+ Make sure to set a combination that are supported in
+ - AVAudioRecorder
+ - AVPlayer
+ - The PDF Specification
+
+ @see PDF Reference 1.7, Chapter 13.3 Sounds and `PSPDFSoundAnnotation` for details.
+ */
+@property (nonatomic, readonly) NSDictionary<NSString *, id> *soundAnnotationRecordingOptions;
 
 /// @name Search
 
-/// Controls whether to display search results directly in a PDF, or as a list in a modal.
-/// The default is `PSPDFSearchModeModal`.
+/**
+ Controls whether to display search results directly in a PDF, or as a list in a modal.
+ Defaults to `PSPDFSearchModeModal`.
+ */
 @property (nonatomic, readonly) PSPDFSearchMode searchMode;
 
-/// If a search result is selected, we scroll to the page to make it visible.
-/// By default this is set to `1`, which means no zooming is performed.
-/// Increase this to zoom to the search result.
-/// This value will be clamped by `maximumZoomScale` and should be set below.
-/// Values smaller than 1 will be clamped to 1 as well.
-///
-/// @note This value will be used as a guidance. In case the zoom would be too large,
-/// we reduce the scale to ensure the object fits the screen.
-@property (nonatomic, readonly) CGFloat searchResultZoomScale;
+/**
+ If a search result is selected, we scroll to the page to make it visible. Defaults to 2.
+ If this is set to 1, no zooming is performed.
+ Increase this to zoom to the search result.
+ This value will be clamped by `maximumZoomScale` and should be set below.
+ Values smaller than 1 will be clamped to 1 as well.
 
+ @note This value will be used as a guidance. In case the zoom would be too large,
+ we reduce the scale to ensure the object fits the screen.
+ */
+@property (nonatomic, readonly) CGFloat searchResultZoomScale;
 
 /// @name Signatures
 
-/// If this is set to NO, PSPDFKit will not differentiate between My Signature/Customer signature.
-/// Defaults to YES.
+/**
+ If this is set to NO, PSPDFKit will not differentiate between My Signature/Customer signature.
+ Defaults to YES.
+ */
 @property (nonatomic, readonly) BOOL signatureSavingEnabled;
 
-/// If enabled, the signature feature will show a menu with a customer signature. (will not be saved)
-/// Defaults to YES.
+/**
+ If enabled, the signature feature will show a menu with a customer signature. (will not be saved)
+ Defaults to YES.
+ */
 @property (nonatomic, readonly) BOOL customerSignatureFeatureEnabled;
 
 /// Enables natural drawing for signatures. Defaults to YES.
 @property (nonatomic, readonly) BOOL naturalSignatureDrawingEnabled;
 
-/// The default signature store implementation.
-@property (nonatomic, readonly) id <PSPDFSignatureStore> signatureStore;
-
+/// The default signature store implementation. Defaults to `PSPDFKeychainSignatureStore`.
+@property (nonatomic, readonly) id<PSPDFSignatureStore> signatureStore;
 
 /// @name Sharing
 
@@ -642,18 +807,25 @@ PSPDF_EXPORT NSString *const PSPDFActivityTypeBookmarks;
 /// Pre-provided activity that shows the open in view controller.
 PSPDF_EXPORT NSString *const PSPDFActivityTypeOpenIn;
 
-/// Used for the activity action when the `UIActivityViewController` is displayed.
-/// Defaults to `PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks, PSPDFActivityTypeGoToPage`.
-/// Accepts both preprovided types as `NSString` and `UIActivity` subclasses.
-@property (nonatomic, copy, readonly) NSArray* /* <NSString/UIActivity> */ applicationActivities;
+/**
+ Used for the activity action when the `UIActivityViewController` is displayed.
+ Defaults to `PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks, PSPDFActivityTypeGoToPage`.
+ Accepts both preprovided types as `NSString` and `UIActivity` subclasses.
+ */
+@property (nonatomic, copy, readonly) NSArray * /* <NSString/UIActivity> */ applicationActivities;
 
-/// Used for the activity action when the `UIActivityViewController` is displayed.
-/// Defaults to `UIActivityTypeCopyToPasteboard`, `UIActivityTypeAssignToContact`,
-/// `UIActivityTypePostToFacebook`, `UIActivityTypePostToTwitter`, `UIActivityTypePostToWeibo`.
+/**
+ Used for the activity action when the `UIActivityViewController` is displayed.
+ Defaults to `UIActivityTypeCopyToPasteboard`, `UIActivityTypeAssignToContact`,
+ `UIActivityTypePostToFacebook`, `UIActivityTypePostToTwitter`, `UIActivityTypePostToWeibo`.
+ */
 @property (nonatomic, copy, readonly) NSArray<NSString *> *excludedActivityTypes;
 
 /// The default sharing options for the print action.
 @property (nonatomic, readonly) PSPDFDocumentSharingOptions printSharingOptions;
+
+/// Settings to customize the print behavior.
+@property (nonatomic, readonly) PSPDFPrintConfiguration *printConfiguration;
 
 /// The default sharing options for the open in action.
 @property (nonatomic, readonly) PSPDFDocumentSharingOptions openInSharingOptions;
@@ -664,24 +836,30 @@ PSPDF_EXPORT NSString *const PSPDFActivityTypeOpenIn;
 /// The default sharing options for the message action.
 @property (nonatomic, readonly) PSPDFDocumentSharingOptions messageSharingOptions;
 
-/// Options that will be presented by `PSPDFSettingsViewController`. 
+/// Options that will be presented by `PSPDFSettingsViewController`. Defaults to `PSPDFSettingsOptionDefault`.
 @property (nonatomic, readonly) PSPDFSettingsOptions settingsOptions;
 
 /// @name Advanced Properties
 
-/// Enable/Disable all internal gesture recognizers. Defaults to YES.
-/// Can be useful if you're doing custom drawing on the `PSPDFPageView`.
+/**
+ Enable/Disable all internal gesture recognizers. Defaults to YES.
+ Can be useful if you're doing custom drawing on the `PSPDFPageView`.
+ */
 @property (nonatomic, readonly) BOOL internalTapGesturesEnabled;
 
-/// Set this to true to allow this controller to access the parent `navigationBar`/`navigationController` to add custom buttons.
-/// Has no effect if there's no `parentViewController`. Defaults to NO.
-/// @note When using this feature, you should also implement both `childViewControllerForStatusBarHidden`
-/// and `childViewControllerForStatusBarStyle` to return the `PSPDFViewController` instance that is embedded.
+/**
+ Set this to true to allow this controller to access the parent `navigationBar`/`navigationController` to add custom buttons.
+ Has no effect if there's no `parentViewController`. Defaults to NO.
+ @note When using this feature, you should also implement both `childViewControllerForStatusBarHidden`
+ and `childViewControllerForStatusBarStyle` to return the `PSPDFViewController` instance that is embedded.
+ */
 @property (nonatomic, readonly) BOOL useParentNavigationBar;
 
-/// If enabled, will request that all thumbnails are pre-cached in `viewDidAppear:`. Defaults to YES.
-/// Set this to NO if you are not using thumbnails to improve speed.
-/// @warning Does not delete any cache and doesn't change if set after the controller has been presented.
+/**
+ If enabled, will request that all thumbnails are pre-cached in `viewDidAppear:`. Defaults to NO.
+ Set this to YES if you want to precache thumbnails if you use the thumbnail view mode a lot.
+ @warning Does not delete any cache and doesn't change if set after the controller has been presented.
+ */
 @property (nonatomic, readonly) BOOL shouldCacheThumbnails;
 
 /// @name Gallery Configuration
@@ -691,24 +869,20 @@ PSPDF_EXPORT NSString *const PSPDFActivityTypeOpenIn;
 
 @end
 
+@interface PSPDFConfigurationBuilder ()
 
-/// The configuration builder object offers all properties of `PSPDFConfiguration`
-/// in a writable version, in order to build an immutable `PSPDFConfiguration` object.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFConfigurationBuilder : NSObject
-
-PSPDF_EMPTY_INIT_UNAVAILABLE
-
-/// Use this to use specific subclasses instead of the default PSPDF* classes.
-/// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of `PSPDFPageView.class` / `MyCustomPageView.class` to use the custom subclass. (`MyCustomPageView` must be a subclass of `PSPDFPageView`)
-/// @throws an exception if the overriding class is not a subclass of the overridden class.
-/// @note Only set from the main thread, before you first use the object.
-/// Model objects will use the overrideClass entries from the set document instead.
+/**
+ Use this to use specific subclasses instead of the default PSPDF* classes.
+ This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of `PSPDFPageView.class` / `MyCustomPageView.class` to use the custom subclass. (`MyCustomPageView` must be a subclass of `PSPDFPageView`)
+ @throws an exception if the overriding class is not a subclass of the overridden class.
+ @note Only set from the main thread, before you first use the object.
+ Model objects will use the overrideClass entries from the set document instead.
+ */
 - (void)overrideClass:(Class)builtinClass withClass:(nullable Class)subclass;
 
 @property (nonatomic) UIEdgeInsets margin;
 @property (nonatomic) UIEdgeInsets padding;
 @property (nonatomic) CGFloat pagePadding;
-@property (nonatomic) PSPDFPageRenderingMode renderingMode;
 @property (nonatomic) PSPDFTapAction doubleTapAction;
 @property (nonatomic, getter=isFormElementZoomEnabled) BOOL formElementZoomEnabled;
 @property (nonatomic, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
@@ -719,9 +893,11 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic) PSPDFTextSelectionMode textSelectionMode;
 @property (nonatomic) BOOL textSelectionShouldSnapToWord;
 @property (nonatomic) PSPDFAnnotationType typesShowingColorPresets;
-@property (nonatomic, copy) NSDictionary<NSString *, id> *propertiesForAnnotations;
+@property (nonatomic, copy) NSDictionary<PSPDFAnnotationString, id> *propertiesForAnnotations;
 @property (nonatomic) BOOL freeTextAccessoryViewEnabled;
-@property (nonatomic) PSPDFSortOrder bookmarkSortOrder;
+@property (nonatomic) PSPDFBookmarkManagerSortOrder bookmarkSortOrder;
+@property (nonatomic) PSPDFPageBookmarkIndicatorMode bookmarkIndicatorMode;
+@property (nonatomic) BOOL bookmarkIndicatorInteractionEnabled;
 @property (nonatomic) BOOL internalTapGesturesEnabled;
 @property (nonatomic) BOOL useParentNavigationBar;
 @property (nonatomic) BOOL shouldRestoreNavigationBarStyle;
@@ -734,6 +910,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic) PSPDFAdaptiveConditional documentLabelEnabled;
 @property (nonatomic) BOOL shouldHideHUDOnPageChange;
 @property (nonatomic) BOOL shouldShowHUDOnViewWillAppear;
+@property (nonatomic, getter=isPageGrabberEnabled) BOOL pageGrabberEnabled;
 @property (nonatomic) BOOL allowToolbarTitleChange;
 @property (nonatomic, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
 @property (nonatomic) PSPDFRenderStatusViewPosition renderStatusViewPosition;
@@ -743,10 +920,10 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic) PSPDFPageTransition pageTransition;
 @property (nonatomic) PSPDFScrollDirection scrollDirection;
 @property (nonatomic) PSPDFScrollInsetAdjustment scrollViewInsetAdjustment;
-@property (nonatomic, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
+@property (nonatomic, getter=isFirstPageAlwaysSingle) BOOL firstPageAlwaysSingle;
 @property (nonatomic, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
 @property (nonatomic, getter=isPageCurlDirectionLeftToRight) BOOL pageCurlDirectionLeftToRight;
-@property (nonatomic, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled;
+@property (nonatomic, getter=isFitToWidthEnabled) PSPDFAdaptiveConditional fitToWidthEnabled;
 @property (nonatomic) BOOL showsHorizontalScrollIndicator;
 @property (nonatomic) BOOL showsVerticalScrollIndicator;
 @property (nonatomic) BOOL alwaysBouncePages;
@@ -770,13 +947,15 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
 @property (nonatomic, copy) NSArray<PSPDFAnnotationGroup *> *createAnnotationMenuGroups;
 @property (nonatomic) BOOL naturalDrawingAnnotationEnabled;
+@property (nonatomic) PSPDFDrawCreateMode drawCreateMode;
 @property (nonatomic) BOOL showAnnotationMenuAfterCreation;
 @property (nonatomic) BOOL shouldAskForAnnotationUsername;
 @property (nonatomic) BOOL annotationEntersEditModeAfterSecondTapEnabled;
-@property (nonatomic, copy, nullable) NSSet<NSString *> *editableAnnotationTypes;
+@property (nonatomic, copy, nullable) NSSet<PSPDFAnnotationString> *editableAnnotationTypes;
 @property (nonatomic, getter=isAutosaveEnabled) BOOL autosaveEnabled;
 @property (nonatomic) BOOL allowBackgroundSaving;
 @property (nonatomic) NSTimeInterval soundAnnotationTimeLimit;
+@property (nonatomic) NSDictionary<NSString *, id> *soundAnnotationRecordingOptions;
 @property (nonatomic) BOOL shouldCacheThumbnails;
 @property (nonatomic) BOOL shouldScrollToChangedPage;
 @property (nonatomic) PSPDFSearchMode searchMode;
@@ -784,7 +963,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic) BOOL signatureSavingEnabled;
 @property (nonatomic) BOOL customerSignatureFeatureEnabled;
 @property (nonatomic) BOOL naturalSignatureDrawingEnabled;
-@property (nonatomic) id <PSPDFSignatureStore> signatureStore;
+@property (nonatomic) id<PSPDFSignatureStore> signatureStore;
 @property (nonatomic) PSPDFGalleryConfiguration *galleryConfiguration;
 @property (nonatomic) BOOL showBackActionButton;
 @property (nonatomic) BOOL showForwardActionButton;
@@ -793,6 +972,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, copy) NSArray *applicationActivities;
 @property (nonatomic, copy) NSArray<NSString *> *excludedActivityTypes;
 @property (nonatomic) PSPDFDocumentSharingOptions printSharingOptions;
+@property (nonatomic) PSPDFPrintConfiguration *printConfiguration;
 @property (nonatomic) PSPDFDocumentSharingOptions openInSharingOptions;
 @property (nonatomic) PSPDFDocumentSharingOptions mailSharingOptions;
 @property (nonatomic) PSPDFDocumentSharingOptions messageSharingOptions;
@@ -800,19 +980,16 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 @end
 
-
 @interface PSPDFConfiguration (Deprecated)
 
-/// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
-/// NO will perform a generic zoom into the tap area. Defaults to YES.
-@property (nonatomic, getter=isSmartZoomEnabled, readonly) BOOL smartZoomEnabled PSPDF_DEPRECATED(5.3, "Use `doubleTapAction` instead.");
+/// Shows first document page alone. Not relevant in `PSPDFPageModeSingle`. Defaults to NO.
+@property (nonatomic, getter=isDoublePageModeOnFirstPage, readonly) BOOL doublePageModeOnFirstPage PSPDF_DEPRECATED("6.4", "Use firstPageAlwaysSingle instead");
 
 @end
 
-
 @interface PSPDFConfigurationBuilder (Deprecated)
 
-@property (nonatomic, getter=isSmartZoomEnabled) BOOL smartZoomEnabled PSPDF_DEPRECATED(5.3, "Use `doubleTapAction` instead.");
+@property (nonatomic, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage PSPDF_DEPRECATED("6.4", "Use firstPageAlwaysSingle instead");
 
 @end
 

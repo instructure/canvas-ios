@@ -2,7 +2,7 @@
 //  PSPDFAnnotationStyleManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,9 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationStyle.h"
-#import "PSPDFPlugin.h"
+#import "PSPDFEnvironment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,11 +29,11 @@ PSPDF_EXPORT NSString *const PSPDFStyleManagerColorPresetKey;
 /// The style manager will save UI-specific properties for annotations and apply them after creation.
 /// It also offers a selection of user-defined styles.
 /// There are three categories: Last used, key-specific and generic styles.
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationStyleManager <PSPDFPlugin>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationStyleManager
 
 /// Keeps a list of style keys we want to listen to (like `color` or `lineWidth`).
 /// @note If you want to disable automatic style saving, set this to nil.
-@property (atomic, copy, nullable) NSSet *styleKeys;
+@property (atomic, copy, nullable) NSSet<NSString *> *styleKeys;
 
 /// When annotations are changed and this is enabled, the defaults are updated accordingly.
 /// This defaults to YES.
@@ -45,62 +45,63 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationStyleManager <PSPDFPlugin>
 
 /// Returns the 'last used' annotation style, a special variant that is kept per annotation string type.
 /// Might return nil if there isn't anything saved yet.
-- (nullable NSArray<PSPDFAnnotationStyle *> *)stylesForKey:(NSString *)key;
+- (nullable NSArray<PSPDFAnnotationStyle *> *)stylesForKey:(PSPDFAnnotationString)key;
 
 /// Adds a style on the key store.
-- (void)addStyle:(PSPDFAnnotationStyle *)style forKey:(NSString *)key;
+- (void)addStyle:(PSPDFAnnotationStyle *)style forKey:(PSPDFAnnotationString)key;
 
 /// Removes a style from the key store.
-- (void)removeStyle:(PSPDFAnnotationStyle *)style forKey:(NSString *)key;
+- (void)removeStyle:(PSPDFAnnotationStyle *)style forKey:(PSPDFAnnotationString)key;
 
 /// @name Convenience Helpers
 
 /// Get the last used style for `key`.
-- (nullable PSPDFAnnotationStyle *)lastUsedStyleForKey:(NSString *)key;
+- (nullable PSPDFAnnotationStyle *)lastUsedStyleForKey:(PSPDFAnnotationString)key;
 
 /// Convenience method. Will fetch the last used style for `key` and fetches the styleProperty for it. Might return nil.
-- (nullable id)lastUsedProperty:(NSString *)styleProperty forKey:(NSString *)key;
+- (nullable id)lastUsedProperty:(NSString *)styleProperty forKey:(PSPDFAnnotationString)key;
 
 /// Convenience method. Will set the last used style for `key` and `styleProperty`.
 /// `value` might be a boxed CGFloat, color or whatever matches the property.
 /// `styleProperty` is the NSString-name for the property (e.g. `NSStringFromSelector(@ selector(fontSize))`
-/// `key` is the annotation key, e.g. PSPDFAnnotationStringFreeText.
-- (void)setLastUsedValue:(nullable id)value forProperty:(NSString *)styleProperty forKey:(NSString *)key;
+/// `key` is a annotation string, e.g. PSPDFAnnotationStringFreeText.
+- (void)setLastUsedValue:(nullable id)value forProperty:(NSString *)styleProperty forKey:(PSPDFAnnotationString)key;
 
 /// @name Presets
 
 /// Returns default presets for a given `key` and `type`. Override to customize.
 /// @see presetsForKey:type:
 /// @note The implementation should be thread safe.
-- (nullable NSArray<__kindof PSPDFModel *> *)defaultPresetsForKey:(NSString *)key type:(NSString *)type;
+- (nullable NSArray<__kindof PSPDFModel *> *)defaultPresetsForKey:(PSPDFAnnotationString)key type:(NSString *)type;
 
 /// Get the color presets for a specified key and preset type.
 /// Returns an array of objects corresponding to the preset type (e.g, `PSPDFColorPreset`).
-/// @property key The annotation key, e.g. PSPDFAnnotationStringFreeText.
+/// @property key The annotation string, e.g. PSPDFAnnotationStringFreeText.
 /// @property type The preset type, e.g. PSPDFStyleManagerColorPresetKey (see PSPDFAnnotationStyleManager.h).
-- (nullable NSArray<__kindof PSPDFModel *> *)presetsForKey:(NSString *)key type:(NSString *)type;
+- (nullable NSArray<__kindof PSPDFModel *> *)presetsForKey:(PSPDFAnnotationString)key type:(NSString *)type;
 
 /// Updates the presets for the specified key and preset type.
-/// @property presets An array of presets to save. They object must conform to `NSCoding`. Setting nil removes the presets from storage and reverts to the default presets (if set). 
-/// @property key The annotation key, e.g. PSPDFAnnotationStringFreeText.
+/// @property presets An array of presets to save. They object must conform to `NSCoding`. Setting nil removes the presets from storage and reverts to the default presets (if set).
+/// @property key The annotation string, e.g. PSPDFAnnotationStringFreeText.
 /// @property type The preset type, e.g. PSPDFStyleManagerColorPresetKey (see PSPDFAnnotationStyleManager.h).
-- (void)setPresets:(nullable NSArray<__kindof PSPDFModel *> *)presets forKey:(NSString *)key type:(NSString *)type;
+- (void)setPresets:(nullable NSArray<__kindof PSPDFModel *> *)presets forKey:(PSPDFAnnotationString)key type:(NSString *)type;
 
-/// Checks if the preset at the given index differs from its default value. 
+/// Checks if the preset at the given index differs from its default value.
 /// @property presets Index of preset in the preset array.
-/// @property key The annotation key, e.g. PSPDFAnnotationStringFreeText.
+/// @property key The annotation string, e.g. PSPDFAnnotationStringFreeText.
 /// @property type The preset type, e.g. PSPDFStyleManagerColorPresetKey (see PSPDFAnnotationStyleManager.h).
-- (BOOL)isPresetModifiedAtIndex:(NSUInteger)index forKey:(NSString *)key type:(NSString *)type;
+- (BOOL)isPresetModifiedAtIndex:(NSUInteger)index forKey:(PSPDFAnnotationString)key type:(NSString *)type;
 
 /// Resets the preset at the given index to its default value.
 /// @property presets Index of preset in the preset array.
-/// @property key The annotation key, e.g. PSPDFAnnotationStringFreeText.
+/// @property key The annotation string, e.g. PSPDFAnnotationStringFreeText.
 /// @property type The preset type, e.g. PSPDFStyleManagerColorPresetKey (see PSPDFAnnotationStyleManager.h).
-- (BOOL)resetPresetAtIndex:(NSUInteger)idx forKey:(NSString *)key type:(NSString *)type;
+- (BOOL)resetPresetAtIndex:(NSUInteger)idx forKey:(PSPDFAnnotationString)key type:(NSString *)type;
 
 @end
 
 /// The default implementation for the style manager.
-PSPDF_CLASS_AVAILABLE @interface PSPDFDefaultAnnotationStyleManager : NSObject <PSPDFAnnotationStyleManager> @end
+PSPDF_CLASS_AVAILABLE @interface PSPDFDefaultAnnotationStyleManager : NSObject<PSPDFAnnotationStyleManager>
+@end
 
 NS_ASSUME_NONNULL_END

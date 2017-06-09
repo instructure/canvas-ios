@@ -2,7 +2,7 @@
 //  PSPDFSelectionView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFSelectionView;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFSelectionViewDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFSelectionViewDelegate<NSObject>
 
 @optional
 
@@ -53,6 +53,11 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFSelectionView : UIView
 
 /// Allows to mark an array of `CGRects` on the view. `rects` and `rawRects` are mutually exclusive and will nil out each other.
 @property (nonatomic, copy, nullable) NSArray *rects;
+
+/// The touch types that should be used for selection.
+/// Array of `UITouchType` wrapped in `NSNumber`.
+/// The defaults are `UITouchTypeDirect` and `UITouchTypeStylus`.
+@property (nonatomic, copy) NSArray<NSNumber *> *allowedTouchTypes;
 
 @end
 

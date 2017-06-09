@@ -2,7 +2,7 @@
 //  PSPDFNavigationItem.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
 #import "PSPDFConfiguration.h"
+#import "PSPDFEnvironment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +23,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// The navigation item and the corresponding view controller ensure that displayed bar button items are are
 /// updated correctly when the view mode changes.
 PSPDF_CLASS_AVAILABLE @interface PSPDFNavigationItem : UINavigationItem
+
+/**
+ The button that is used as the close button in presentation contexts.
+
+ This property should always be set. The managing view controller takes care about
+ showing or hiding this button as necessary.
+
+ If you set this property to `nil`, you need to take care of the cases where the
+ related view controller may be presented modally yourself.
+
+ @note The close button may be included in the array returned by `leftBarButtonItems`
+       depending on whether the close button is currently visible or not. You should
+       not call this method but instead call `leftBarButtonItemsForViewMode:` which
+       will not return this button either way.
+ */
+@property (nonatomic, nullable) UIBarButtonItem *closeBarButtonItem;
 
 /// Gets the left bar button items that are assigned to passed in view mode.
 ///

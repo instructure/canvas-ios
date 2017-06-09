@@ -2,7 +2,7 @@
 //  PSPDFGlyph.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFEnvironment.h"
 #import "PSPDFMacros.h"
 
 /// Default padding factor added to the glyph rects in `PSPDFBoundingBoxFromGlyphs` and `PSPDFRectsFromGlyphs`
@@ -22,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Represents a single character (glyph, quad) on the PDF page.
 /// @note Glyphs are created from the PDF contents and not meant to be created manually.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFGlyph : NSObject <NSCopying, NSSecureCoding>
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFGlyph : NSObject<NSCopying, NSSecureCoding>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/// Frame of the glyph. Doesn't have `rotation` applied.
+/// Frame of the glyph. Doesn't have the page rotation applied.
 /// To apply the rotation, use `CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.rotationTransform)`
 /// (`PSPDFWord` etc do have convenience methods for this)
 @property (nonatomic, readonly) CGRect frame;

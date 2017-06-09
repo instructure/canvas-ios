@@ -2,7 +2,7 @@
 //  PSPDFAbstractLineAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
     PSPDFLineEndTypeButt,
     PSPDFLineEndTypeReverseOpenArrow,
     PSPDFLineEndTypeReverseClosedArrow,
-    PSPDFLineEndTypeSlash
+    PSPDFLineEndTypeSlash,
 } PSPDF_ENUM_AVAILABLE;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -41,6 +41,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAbstractLineAnnotation : PSPDFAbstractShap
 
 /// The path of the line.
 /// Might return nil if there are not sufficient points defined in the annotation.
+/// If you override this property, take care to create the path with the annotation's lineDashStyle
 @property (nonatomic, copy, readonly, nullable) UIBezierPath *bezierPath;
 
 /// By default, setting the `boundingBox` will transform the annotation.

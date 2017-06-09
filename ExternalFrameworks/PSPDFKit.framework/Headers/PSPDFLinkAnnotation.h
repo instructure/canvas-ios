@@ -2,7 +2,7 @@
 //  PSPDFLinkAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,7 +24,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationImage,
     PSPDFLinkAnnotationBrowser,
     /// Any annotation format that is not recognized is custom. (e.g. tel://)
-    PSPDFLinkAnnotationCustom
+    PSPDFLinkAnnotationCustom,
 } PSPDF_ENUM_AVAILABLE;
 
 @class PSPDFAction, PSPDFURLAction, PSPDFGoToAction;
@@ -36,7 +36,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 /// If you create a `PSPDFLinkAnnotation` at runtime, be sure to set the correct type and use the URL parameter for your link.
 /// `boundingBox` defines the frame, in PDF space coordinates.
 ///
-/// If you want to customize how links look in the PDF, customize `PSPDFLinkAnnotationView's` properties. There's currently no mapping between `color`/`lineWidth`/etc and the properties of the view. This might change in a future release.
+/// If you want to customize how links look in the PDF, customize `PSPDFLinkAnnotationView`’s properties. There's currently no mapping between `color`/`lineWidth`/etc and the properties of the view. This might change in a future release.
 PSPDF_CLASS_AVAILABLE @interface PSPDFLinkAnnotation : PSPDFAnnotation
 
 /// Designated initializer for custom, at runtime created `PSPDFLinkAnnotations`.
@@ -87,7 +87,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFLinkAnnotation : PSPDFAnnotation
 
 /// Used for the preview string when the user long-presses on a link annotation.
 /// Forwards to `action.localizedDescription`.
-@property (nonatomic, readonly, copy) NSString * _Nullable targetString;
+@property (nonatomic, readonly, nullable) NSString *targetString;
 
 @end
 

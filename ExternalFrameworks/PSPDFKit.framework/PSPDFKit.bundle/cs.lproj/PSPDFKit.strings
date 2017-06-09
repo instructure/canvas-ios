@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,11 +24,14 @@
 "Next" = "Dále";
 "Previous" = "Předchozí";
 "Error" = "Chyba";
+"More options" = "Další možnosti";
+"Close All Tabs" = "Zavřít všechny karty";
+"Close All Other Tabs" = "Zavřít všechny ostatní karty"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
-"Outline" = "Obrys"; // Table of contents
-"No Outline" = "Žádný obras";
-"Search Outline" = "Hledat obrys";
+"Outline" = "Obsah"; // Table of contents
+"No Outline" = "Žádný obsah";
+"Search Outline" = "Hledat v obsahu";
 "Search" = "Hledat";
 "Email" = "E‑mail";
 "Send via Email" = "Poslat emailem";
@@ -39,7 +42,7 @@
 "Pages" = "Stránky";
 "Print with annotations" = "Vytisknout s anotacemi";
 "Print without annotations" = "Vytisknout bez anotací";
-"No Applications found" = "Žádné aplikace, které můžou otevřít PDF dokumenty, jsou nainstalovány.";
+"No Applications found" = "Žádné aplikace, které můžou otevřít PDF dokumenty, nejsou nainstalovány.";
 "Print" = "Tisk";
 "Annotation" = "Anotace";
 "Annotations" = "Anotace";
@@ -78,7 +81,7 @@
 "Leave %@?" = "Opustit %@?";
 
 // search
-"Search Document" = "Hledat dokument"; // to search for a string in the given document
+"Search Document" = "Hledat v dokumentu"; // to search for a string in the given document
 "Searching Page %tu of %tu" = "Hledám na stránce %tu z %tu";
 "Search Completed" = "Hledání bylo dokončeno";
 "Search Cancelled" = "Hledání bylo zrušeno";
@@ -86,23 +89,25 @@
 "Searching" = "Hledání";
 "Done" = "Hotovo";
 "Indexing Documents" = "Indexuji dokumenty";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Dokument nemá obsah";
+"Document" = "Dokument";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Hledat Anotace";
 
 // inline browser
 "Open in Safari" = "Otevřít v Safari";
 "Open in Chrome" = "Otevřít v Chrome";
 "Your %@ is not configured to send emails." = "Váš %@ není konfigurován pro odeslání emailů.";
-"The link is requesting to open %@Would you like to continue?" = "Odkaz vyžaduje otevření %@ Chcete pokračovat?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Odkaz vyžaduje otevření %1$@. %2$@ Chcete pokračovat?";
 "an external application" = "externí aplikace"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Storu"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "E‑mail"; // "The link is requesting to open Mail. Would you like to continue?"
 // This text is shown when no application has been found to open then link in.
-"No handler found for %@" = "Žádný manipulátor pro %@ nebyl nalezen";
+"No handler found for %@" = "Žádná aplikace pro otevření %@ nebyla nalezena";
 
 // text selection
 "Text copied to clipboard." = "Text byl zkopírován do schránky.";
-"Save To Camera Roll" = "Uložit do Camera Roll";
+"Save to Photo Library" = "Uložit do Knihovny fotografií";
 "Failed to extract image." = "Nepodařilo se vytáhnout obrázek.";
 "Type value or pick from list" = "Zadejte hodnotu nebo vyberte ze seznamu";
 
@@ -128,15 +133,15 @@
 "Rainbow" = "Duha";
 "Monochrome" = "Monochróm";
 "Vintage" = "Vintage";
+"Modern" = "Moderní";
 "Color" = "Barva";
 "Border" = "Ohraničení";
 "Fill Color" = "Barva výplně";
-"Line End Fill Color" = "Barva výplně konec řádku";
+"Start and End Color" = "Barva začátku a konce čáry";
 "Opacity" = "Neprůhlednost";
-"%@ %%" = "%@ %%";
 "Thickness" = "Tloušťka";
 "%@ pt" = "%@ pt";
-"Yellow" = "Žluté";
+"Yellow" = "Žlutá";
 "Green" = "Zelená";
 "Red" = "Červená";
 "Blue" = "Modrá";
@@ -152,18 +157,19 @@
 "Highlight" = "Zvýraznění";
 "Underline" = "Podtržení";
 "Squiggle" = "Klikyhák";
+"Squiggly" = "Zkroucený";
 "StrikeOut" = "Přeškrtnout";
 "Rectangle" = "Obdélník";
 "Ellipse" = "Elipsa";
 "Line" = "Čára"; // something that can be drawn
-"Lines" = "Řádky"; // "5 Lines" were drawn
+"Lines" = "Čáry"; // "5 Lines" were drawn
 "Polyline" = "Lomená čára";
 "Polygon" = "Mnohoúhelník";
 "Signature" = "Podpis";
 "Signatures" = "Podpisy";
 "Signed" = "Podepsáno";
 "Sign" = "Podepsat";
-"Sign using %@" = "Podepsat jako %@"; // e.g. Adobe.PPKLite
+"Sign using %@" = "Podepsat s %@"; // e.g. Adobe.PPKLite
 "Methods" = "Metody"; // text on a button. An example for a method would be signing.
 "Choose Identity" = "Zvolte identitu"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "Razítko";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Odstranit podpis";
 "My Signature" = "Můj podpis";
 "No Signatures" = "Žádné podpisy"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Podpis zákazníka";
+"One Time Signature" = "Podpis zákazníka";
 "Please sign here" = "Podepište zde";
 "Note" = "Poznámka";
 "Text" = "Zpráva";
@@ -209,7 +215,8 @@
 "Ungroup" = "Rozdělit skupinu";
 "Merge" = "Sloučit"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Ukázka";
-"Annotation Summary for %@:\n" = "Přehled anotací pro %@:\n";
+"Annotation Summary for %@:" = "Přehled anotací pro %@:";
+"Show Text" = "Ukázat text";
 // title
 "Author Name" = "Jméno autora";
 // message
@@ -232,17 +239,19 @@
 "Drag to resize" = "Táhněte pro změnu velikosti"; // used as hint that inspector is resizable
 "Convert to" = "Konvertovat do"; // used as label on action that changes free text intent type
 "Color Presets" = "Barevné předvolby";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Popisek"; // freetext annotation with an arrow
 "Generic" = "Obecné"; // basic freetext annotation
 
 // Line dash styles
-"Line Style" = "Styl řádku";
+"Line Style" = "Styl čáry";
 "Solid" = "Pevný";
 "Narrow Dots" = "Úzké tečky";
 "Wide Dots" = "Široké tečky";
 "Narrow Dashes" = "Úzké pomlčky";
 "Wide Dashes" = "Široké pomlčky";
+"Cloudy" = "Obláček"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Schváleno";
@@ -259,7 +268,7 @@
 "Information only" = "Pouze informace";
 "Accepted" = "Přijato";
 "Rejected" = "Odmítnuto";
-"Initial Here" = "Počáteční zde";
+"Initial Here" = "Iniciály zde";
 "Sign Here" = "Podepište zde";
 "Witness" = "Svědek";
 "Revised" = "Revidováno";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Párování";
 // text on a label; app and stylus are connected
-"Connected" = "Připojeno";
+"%@ Connected" = "%@ Připojeno";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Odpojeno";
+"%@ Disconnected" = "%@ Odpojeno";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Nastavení";
 
@@ -318,8 +327,8 @@
 "Line.RClosedArrow" = "Obrácená uzavřená šipka";
 "Line.Slash" = "Seknutí";
 "Line.Butt" = "Zakončení";
-"Line Start" = "Začátek řádku";
-"Line End" = "Konec řádku";
+"Line Start" = "Začátek čáry";
+"Line End" = "Konec čáry";
 "Arrow" = "Šipka"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
 
 // link annotation editing
@@ -358,15 +367,19 @@
 "Embed Annotations" = "Vložit anotace";
 "Annotations will remain editable and are embedded into the PDF." = "Anotace zůstanou upravitelné a jsou vloženy do PDF.";
 "Flatten Annotations" = "Srovnat anotace";
-"Annotations are drawn into the PDF and are readonly." = "Anotace jsou vykresleny v PDF and jsou pouze ke čtení.";
+"Annotations are drawn into the PDF and are readonly." = "Anotace jsou vykresleny v PDF a jsou pouze ke čtení.";
 "Annotation Summary" = "Přehled anotací";
 "Embed Annotations into the PDF and also list them in the email." = "Vložit anotace do PDF a uvést je v seznamu v emailu.";
+"Annotations will be listed in a text file." = "Anotace budou uloženy v textovém souboru.";
 "Files" = "Soubory";
 "Send as single files" = "Poslat jako jednotlivé soubory";
 "Merge files" = "Sloučit soubory";
 "Original File" = "Originální soubor";
 "Range" = "Rozsah";
 "Annotated Pages" = "Komentované stránky";
+"Message could not be sent." = "Zpráva nemohla být odeslána.";
+"Export" = "Exportovat";
+"This action can't be performed." = "Táto akce nemůže být vykonána.";
 
 // sound annotations
 "Speak" = "Číst"; // should be translated like the "Speak" Menu in UIKit
@@ -382,24 +395,23 @@
 "Recording paused" = "Nahrávka pozastavena";
 "Continue Recording" = "Pokračovat v nahrávaní";
 "Finish Recording" = "Dokončit nahrávku";
-"Audio Problem" = "Audio-problém";
+"Audio Problem" = "Problém se zvukem";
 // text on a label; Error message, when the before recorded audio file can not be played to the user
-"Could not start playback." = "Nepodařilo se zahájit playback.";
-"Could not resume playback." = "Nepodařilo se obnovit playback.";
+"Could not start playback." = "Nepodařilo se zahájit přehrávání.";
+"Could not resume playback." = "Nepodařilo se obnovit přehrávání.";
 "Microphone permission not granted." = "Povolení k použití mikrofonu nebylo uděleno.";
-"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio nemůže být nahráno v tento moment. Prosím dejte aplikaci povolení pro přístup k mikrofonu.";
-"There was a problem trying to record audio." = "Nastal problém při nahrávání audia.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Zvuk nemůže být nahrán v tento moment. Prosím dejte aplikaci povolení pro přístup k mikrofonu.";
+"There was a problem trying to record audio." = "Nastal problém při nahrávání zvuku.";
 "Already Recording" = "Již nahrávám";
 "You are already recording on page %@." = "Nahráváte pouze na straně %@.";
 
 // Forms
-"Form Element" = "Formulář element";
+"Form Element" = "Prvek formuláře";
 "Text Field" = "Textové pole";
 "Button" = "Tlačítko";
 "Choice Field" = "Pole pro výběr";
 "Signature Field" = "Pole pro podpis";
 "Clear Field" = "Smazat pole"; // same as delete
-"Type value or pick from list" = "Zadejte hodnotu nebo vyberte ze seznamu";
 "Default Values" = "Výchozí hodnoty";
 "Custom Value" = "Vlastní hodnota";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Neplatná hodnota: musí být menší nebo rovno %s.";
 "Invalid value: must be a number." = "Neplatná hodnota: musí být číslo.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Neplatná hodnota: musí být datum.";
 
 // General validation
@@ -444,7 +456,7 @@
 
 // Signatures - PSPDFSignatureVerificationX509Error
 "Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Nepodařilo se přečíst data z certifikátu jako PKCS#7 certifiká. Data správného formátu můžou být exportovány z Adobe Acrobat."; // PKCS#7 should not be translated
-"Unable to decrypt the signature of the certificate." = "Nepodařilo se dekryptovat podpis v certifikátě.";
+"Unable to decrypt the signature of the certificate." = "Nepodařilo se dešifrovat podpis v certifikátě.";
 "The public key in the certificate could not be read." = "Veřejný klíč v certifikátě nebyl přečten.";
 "The signature of the certificate is not valid." = "Podpis certifikátu není platný.";
 "Signature is not valid." = "Podpis je neplatný.";
@@ -484,10 +496,10 @@
 // OPENSSL and PKCS7 should never be translated
 "OpenSSL could not create PKCS7 object" = "OpenSSL nemohl vytvořit PKCS7 objekt";
 "OpenSSL could not add signature to PKCS7 object" = "OpenSSL nemohl přidat podpis do PKCS7 objektu";
-"OpenSSL could not init PKCS7 object" = "OpenSSL nemohl zahájit PKCS7 objekt";
+"OpenSSL could not init PKCS7 object" = "OpenSSL nemohl vytvořit PKCS7 objekt";
 "OpenSSL could generate PKCS7 signature" = "OpenSSL mohl generovat PKCS7 podpis";
 "OpenSSL could not sign hash" = "OpenSSL nemohl podepsat hash";
-"Could not write PKCS7 signature" = "Nepodařilo se napsat PKCS7 podpis";
+"Could not write PKCS7 signature" = "Nepodařilo se zapsat PKCS7 podpis";
 
 // Policy
 "PSPDFPolicyEventOpenIn" = "Otevřít v";
@@ -497,8 +509,8 @@
 "PSPDFPolicyEventQuickLook" = "Rychlý náhled"; // as in Apple's Quick Look
 "PSPDFPolicyEventAudioRecording" = "Audio-nahrávání";
 "PSPDFPolicyEventCamera" = "Fotoaparát";
-"PSPDFPolicyEventPasteboard" = "Lepenka"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
-"PSPDFPolicyEventSubmitForm" = "Odeslat";
+"PSPDFPolicyEventPasteboard" = "Schránka"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "Odeslat formulář";
 "PSPDFPolicyEventNetwork" = "Síť";
 
 // Night Mode
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Otočit strany";
 "Page Size" = "Velikost strany";
 "Background Color" = "Barva pozadí";
-"Pattern" = "Formulář element";
+"Paper" = "Papír";
+"Pattern" = "Vzor";
 "Use Document Size" = "Použít velikost dokumentu";
 "Orientation" = "Orientace";
-"Portrait" = "Portrét";
-"Landscape" = "Krajina";
-"Name" = "Název";
+"Portrait" = "Na výšku";
+"Landscape" = "Na šířku";
 "Document Name" = "Název dokumentu";
 "Documents" = "Dokumenty"; // Name of directory
-"Use Document Directory" = "Použít adresář dokumentu";
-"Directory" = "Adresář";
+"Use Document Folder" = "Použít adresář dokumentu";
+"Folder" = "Adresář";
 "Replace File?" = "Nahradit soubor?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Soubor s názvem \"%@\" již existuje v zvolené destinaci. Chcete jej nahradit?";
 "Replace" = "Nahradit";
@@ -542,7 +554,16 @@
 "Saved" = "Uloženo";
 "Save As…" = "Uložit jako...";
 "Discard Changes" = "Zrušit změny";
-"Empty" = "Neplatný";
+"Empty" = "Prázdný";
+"Use Image Size" = "Použít velikost obrázku";
+"Page Background" = "Pozadí stránky";
+"Insert image annotation" = "Vložit obrázkovou anotaci";
+"Import page background" = "Importovat pozadí stránky";
+"Quality" = "Kvalita";
+"Low" = "Nízká";
+"Medium" = "Střední";
+"High" = "Vysoká";
+"Best" = "Nejlepší";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Prázdný dokument nemůže být uložen.";
@@ -568,8 +589,29 @@
 "Exporting…" = "Exportuji...";
 "Exported" = "Exportováno";
 "%@ - Exported" = "%@ - Exportováno"; // Format for the default filename during export (%@ = existing filename)
-"%@ - Copy" = "%@ - Kopírovat"; // Format for the default filename during save as (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopie"; // Format for the default filename during save as (%@ = existing filename)
 "The selected document is currently open. Please choose a different filename." = "Zvolený dokument je nyní otevřen. Prosím zvolte jiný název souboru.";
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Služba text-to-speech je nedostupná. Ujistěte se, že máte aktivní připojení k internetu nebo nainstalovaný Google text-to-speech, který je povolen v tomto zařízení.";
+
+// Settings
+"Page Transition" = "Přechod stránky";
+"Single" = "Jedna stránka";
+"Continuous" = "Souvisle";
+"Curl" = "Obracet stránky";
+"Scroll" = "Skrolovat";
+"Horizontal" = "Horizontální";
+"Vertical" = "Vertikální";
+"Page Mode" = "Režim stránek";
+"Automatic" = "Automatický";
+"Double" = "Dvě stránky";
+"Appearance" = "Vzhled";
+"Scrubber Bar" = "Navigační lišta";
+"Jump" = "Přeskočit"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Není dostupné"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Tato aplikace nemá přístup k vašim fotografiím.";
+"This app does not have access to your camera." = "Tato aplikace nemá přístup k vašemu fotoaparátu.";
+"You can enable access in Privacy Settings." = "Můžete povolit přístup v nastavení soukromí.";

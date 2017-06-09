@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -13,7 +13,7 @@
 // general
 "Close" = "Κλείσιμο";
 "Cancel" = "Ακύρωση";
-"OK" = "OK";
+"OK" = "Μετάβαση";
 "Open" = "Άνοιγμα";
 "Untitled" = "Χωρίς τίτλο";
 "File Not Found" = "Το αρχείο δεν βρέθηκε";
@@ -24,13 +24,16 @@
 "Next" = "Επόμενο";
 "Previous" = "Προηγούμενο";
 "Error" = "Σφάλμα";
+"More options" = "Περισσότερες επιλογές";
+"Close All Tabs" = "Κλείσιμο όλων των καρτελών";
+"Close All Other Tabs" = "Κλείσιμο όλων των άλλων καρτελών"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Διάρθρωση"; // Table of contents
 "No Outline" = "Δεν υπάρχει διάρθρωση";
 "Search Outline" = "Αναζήτηση διάρθρωσης";
 "Search" = "Αναζήτηση";
-"Email" = "Email";
+"Email" = "Αποστολή μέσω email";
 "Send via Email" = "Αποστολή μέσω email";
 "Send" = "Αποστολή";
 "Open In" = "Άνοιγμα σε";
@@ -42,7 +45,7 @@
 "No Applications found" = "Δεν υπάρχει καμία εγκατεστημένη εφαρμογή που μπορεί να ανοίγει έγγραφα PDF.";
 "Print" = "Εκτύπωση";
 "Annotation" = "Σχόλιο";
-"Annotations" = "Σχόλιο";
+"Annotations" = "Σχόλια";
 "No Annotations" = "Δεν υπάρχουν σχόλια";
 "Bookmarks" = "Σελιδοδείκτες";
 "No Bookmarks" = "Δεν υπάρχουν σελιδοδείκτες";
@@ -86,23 +89,25 @@
 "Searching" = "Γίνεται αναζήτηση";
 "Done" = "Τέλος";
 "Indexing Documents" = "Δημιουργείται ευρετήριο εγγράφων";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Το έγγραφο δεν έχει περιεχόμενο";
+"Document" = "Έγγραφο";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Αναζήτηση σχολίων";
 
 // inline browser
 "Open in Safari" = "Άνοιγμα στο Safari";
 "Open in Chrome" = "Άνοιγμα στο Chrome";
 "Your %@ is not configured to send emails." = "Το %@ σας δεν έχει διαμορφωθεί για αποστολή email.";
-"The link is requesting to open %@Would you like to continue?" = "Αυτός ο σύνδεσμος ζητάει το άνοιγμα του %@Θέλετε να συνεχίσετε;";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Ο σύνδεσμος ζητάει το άνοιγμα του %1$@. %2$@Θέλετε να συνεχίσετε;"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "μια εξωτερική εφαρμογή"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "το App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
-"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
+"Mail" = "Αποστολή μέσω email"; // "The link is requesting to open Mail. Would you like to continue?"
 // This text is shown when no application has been found to open then link in.
 "No handler found for %@" = "Δεν βρέθηκε χειρισμός για %@";
 
 // text selection
 "Text copied to clipboard." = "Το κείμενο αντιγράφηκε στο πρόχειρο.";
-"Save To Camera Roll" = "Αποθήκευση στο άλμπουμ κάμερας";
+"Save to Photo Library" = "Αποθήκευση στη Βιβλιοθήκη φωτογραφιών";
 "Failed to extract image." = "Απέτυχε η εξαγωγή εικόνας.";
 "Type value or pick from list" = "Πληκτρολογήστε τιμή ή επιλέξτε από τη λίστα";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "Ουράνιο τόξο";
 "Monochrome" = "Μονοχρωμία";
 "Vintage" = "Βίνταζ";
+"Modern" = "Μοντέρνα";
 "Color" = "Χρώμα";
 "Border" = "Περιθώριο";
 "Fill Color" = "Χρώμα γεμίσματος";
-"Line End Fill Color" = "Χρώμα γεμίσματος τέλους γραμμής";
+"Start and End Color" = "Χρώμα έναρξης και τέλους";
 "Opacity" = "Αδιαφάνεια";
-"%@ %%" = "%@ %%";
 "Thickness" = "Πάχος";
 "%@ pt" = "%@ στ.";
 "Yellow" = "Κίτρινο";
@@ -152,6 +157,7 @@
 "Highlight" = "Επισήμανση";
 "Underline" = "Υπογράμμιση";
 "Squiggle" = "Κυματιστό";
+"Squiggly" = "Κυματιστά";
 "StrikeOut" = "Διακριτή διαγραφή";
 "Rectangle" = "Ορθογώνιο";
 "Ellipse" = "Έλλειψη";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Αφαίρεση υπογραφής";
 "My Signature" = "Η υπογραφή μου";
 "No Signatures" = "Δεν υπάρχουν υπογραφές"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Υπογραφή πελάτη";
+"One Time Signature" = "Υπογραφή μία φορά";
 "Please sign here" = "Παρακαλώ υπογράψτε εδώ";
 "Note" = "Σημείωση";
 "Text" = "Κείμενο";
@@ -209,7 +215,8 @@
 "Ungroup" = "Κατάργηση ομαδοποίησης";
 "Merge" = "Συγχώνευση"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Δείγμα";
-"Annotation Summary for %@:\n" = "Σύνοψη σχολίων για %@:";
+"Annotation Summary for %@:" = "Σύνοψη σχολίων για %@:";
+"Show Text" = "Εμφάνιση κειμένου";
 // title
 "Author Name" = "Όνομα συντάκτη";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "Σύρετε για αλλαγή μεγέθους"; // used as hint that inspector is resizable
 "Convert to" = "Μετατροπή σε"; // used as label on action that changes free text intent type
 "Color Presets" = "Προεπιλογές χρώματος";
+"pt" = "στ."; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Λεζάντα"; // freetext annotation with an arrow
 "Generic" = "Γενικό"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "Πλατιές τελείες";
 "Narrow Dashes" = "Στενές παύλες";
 "Wide Dashes" = "Πλατιές παύλες";
+"Cloudy" = "Θολό"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Εγκρίθηκε";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Γίνεται ζεύξη";
 // text on a label; app and stylus are connected
-"Connected" = "Συνδεδεμένο";
+"%@ Connected" = "%@ συνδεδεμένο";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Αποσυνδεδεμένο";
+"%@ Disconnected" = "%@ αποσυνδεδεμένο";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Ρυθμίσεις";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Τα σχόλια αποδίδονται στο PDF και είναι μόνο για ανάγνωση.";
 "Annotation Summary" = "Σύνοψη σχολίων";
 "Embed Annotations into the PDF and also list them in the email." = "Να γίνει ενσωμάτωση των σχολίων στο PDF και παρέθεσή τους στο email.";
+"Annotations will be listed in a text file." = "Τα σχόλια θα παρατίθενται σε αρχείο κειμένου.";
 "Files" = "Αρχεία";
 "Send as single files" = "Αποστολή ως μονά αρχεία";
 "Merge files" = "Συγχώνευση αρχείων";
 "Original File" = "Αρχικό αρχείο";
 "Range" = "Εύρος";
 "Annotated Pages" = "Σχολιασμένες σελίδες";
+"Message could not be sent." = "Δεν ήταν δυνατή η αποστολή του μηνύματος.";
+"Export" = "Εξαγωγή";
+"This action can't be performed." = "Δεν είναι δυνατή η εκτέλεση αυτής της ενέργειας.";
 
 // sound annotations
 "Speak" = "Εκφώνηση"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Πεδίο επιλογής";
 "Signature Field" = "Πεδίο υπογραφής";
 "Clear Field" = "Εκκαθάριση πεδίου"; // same as delete
-"Type value or pick from list" = "Πληκτρολογήστε τιμή ή επιλέξτε από τη λίστα";
 "Default Values" = "Προεπιλεγμένες τιμές";
 "Custom Value" = "Προσαρμοσμένη τιμή";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Μη έγκυρη τιμή: πρέπει να είναι μικρότερη από ή ίση με %s.";
 "Invalid value: must be a number." = "Μη έγκυρη τιμή: πρέπει να είναι αριθμός.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Μη έγκυρη τιμή: πρέπει να είναι ημερομηνία.";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Περιστροφή σελίδων";
 "Page Size" = "Μέγεθος σελίδας";
 "Background Color" = "Χρώμα φόντου";
+"Paper" = "Χαρτί";
 "Pattern" = "Μοτίβο";
 "Use Document Size" = "Χρήση μεγέθους εγγράφου";
 "Orientation" = "Προσανατολισμός";
 "Portrait" = "Πορτρέτο";
 "Landscape" = "Τοπίο";
-"Name" = "Όνομα";
 "Document Name" = "Όνομα εγγράφου";
 "Documents" = "Έγγραφα"; // Name of directory
-"Use Document Directory" = "Χρήση καταλόγου εγγράφου";
-"Directory" = "Κατάλογος";
+"Use Document Folder" = "Χρήση φακέλου εγγράφου";
+"Folder" = "Φάκελος";
 "Replace File?" = "Να γίνει αντικατάσταση αρχείου;";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Ένα αρχείο με όνομα «%@» ήδη υπάρχει στον επιλεγμένο προορισμό. Θέλετε να το αντικαταστήσετε;";
 "Replace" = "Αντικατάσταση";
@@ -543,6 +555,15 @@
 "Save As…" = "Αποθήκευση ως…";
 "Discard Changes" = "Απόρριψη αλλαγών";
 "Empty" = "Κενό";
+"Use Image Size" = "Χρήση μεγέθους εικόνας";
+"Page Background" = "Υπόβαθρο σελίδας";
+"Insert image annotation" = "Εισαγωγή σχολιασμού εικόνας";
+"Import page background" = "Εισαγωγή υποβάθρου σελίδας";
+"Quality" = "Ποιότητα";
+"Low" = "Χαμηλή";
+"Medium" = "Μεσαία";
+"High" = "Υψηλή";
+"Best" = "Βέλτιστη";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Δεν είναι δυνατή η αποθήκευση κενού εγγράφου.";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Δεν είναι διαθέσιμη η υπηρεσία κειμένου σε ομιλία. Βεβαιωθείτε ότι έχετε ενεργή σύνδεση στο internet ή μηχανή Google κειμένου σε ομιλία εγκατεστημένη και ενεργοποιημένη στη συσκευή σας.";
+
+// Settings
+"Page Transition" = "Μετάβαση σελίδας";
+"Single" = "Μονή";
+"Continuous" = "Συνεχόμενα";
+"Curl" = "Καμπύλη";
+"Scroll" = "Κύλιση";
+"Horizontal" = "Οριζόντια";
+"Vertical" = "Κατακόρυφα";
+"Page Mode" = "Σελίδα";
+"Automatic" = "Αυτόματα";
+"Double" = "Διπλά";
+"Appearance" = "Εμφάνιση";
+"Scrubber Bar" = "Γραμμή ελέγχου";
+"Jump" = "Μεταπήδηση"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Δεν διατίθεται"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Αυτή η εφαρμογή δεν έχει πρόσβαση στις φωτογραφίες σας.";
+"This app does not have access to your camera." = "Αυτή η εφαρμογή δεν έχει πρόσβαση στην κάμερά σας.";
+"You can enable access in Privacy Settings." = "Μπορείτε να ενεργοποιήσετε την πρόσβαση από τις Ρυθμίσεις απορρήτου.";

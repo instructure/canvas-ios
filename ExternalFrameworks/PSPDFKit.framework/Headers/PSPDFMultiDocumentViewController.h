@@ -2,7 +2,7 @@
 //  PSPDFMultiDocumentViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFMultiDocumentViewController;
 
 /// Delegate for the `PSPDFMultiDocumentViewController`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFMultiDocumentViewControllerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFMultiDocumentViewControllerDelegate<NSObject>
 
 @optional
 
@@ -81,8 +81,9 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFMultiDocumentViewController : PSPDFBaseVie
 /// Defaults to `NO`.
 @property (nonatomic) BOOL thumbnailViewIncludesAllDocuments;
 
-/// A Boolean value specifying whether `title` should be the title of the current visible document, and therefore shown in the navigation bar.
-/// Defaults to `NO`, so no title is shown in the navigation bar.
+/// A Boolean value specifying whether `title` should be the title of the current visible document, and therefore shown in the navigation bar or in the overlay.
+/// When this is set to `YES` and there is enough space available in the navigation bar, the title will be displayed there, if not, the title will be displayed in the overlay.
+/// Defaults to `NO`, so no title is shown in the navigation bar or in the overlay.
 @property (nonatomic) BOOL showTitle;
 
 @end
@@ -96,6 +97,26 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFMultiDocumentViewController : PSPDFBaseVie
 /// Returns the title of the loaded document at a specified index.
 /// Can be subclassed to customize what title should be set.
 - (NSString *)titleForDocumentAtIndex:(NSUInteger)idx;
+
+/// Called when the title of the document at `idx` changes.
+/// Override this to update views.
+- (void)titleDidChangeForDocumentAtIndex:(NSUInteger)idx;
+
+/**
+ Persists the current view state. This method by default persists in an internal dictionary.
+ Called any time the visible document changes at an optimal time to persist the view state.
+
+ @note Can be overridden to disable automatic view state restoration.
+ */
+- (void)persistViewStateForCurrentVisibleDocument;
+
+/**
+ Restores the current view state from an internal dictionary, if found.
+ Called any time the visible document changes at an optimal time to restore the view state.
+
+ @note Can be overridden to disable automatic view state restoration.
+ */
+- (void)restoreViewStateForCurrentVisibleDocument;
 
 @end
 

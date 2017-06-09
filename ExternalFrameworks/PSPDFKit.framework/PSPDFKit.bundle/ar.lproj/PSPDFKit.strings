@@ -1,0 +1,617 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "إغلاق";
+"Cancel" = "إلغاء";
+"OK" = "موافق";
+"Open" = "فتح";
+"Untitled" = "بلا عنوان";
+"File Not Found" = "الملف غير موجود";
+"File couldn't be opened." = "تعذر فتح الملف."; // error message, when embedded files could not be parsed
+"Unnamed PDF" = "ملف PDF بلا اسم";
+"Page %tu" = "الصفحة %tu";
+"Page %@" = "الصفحة %@";
+"Next" = "التالي";
+"Previous" = "السابق";
+"Error" = "خطأ";
+"More options" = "المزيد من الخيارات";
+"Close All Tabs" = "إغلاق كل علامات التبويب";
+"Close All Other Tabs" = "إغلاق كل علامات التبويب الأخرى"; // Alert controller action text for closing all tabs but the selected one
+
+// toolbar
+"Outline" = "تخطيط"; // Table of contents
+"No Outline" = "لا تخطيط";
+"Search Outline" = "بحث في التخطيط";
+"Search" = "بحث";
+"Email" = "البريد الإلكتروني";
+"Send via Email" = "إرسال عبر البريد الإلكتروني";
+"Send" = "إرسال";
+"Open In" = "فتح في";
+"Commit" = "تنفيذ";
+"Sending to %@" = "يتم الإرسال إلى %@"; // Open document with an application
+"Pages" = "صفحات";
+"Print with annotations" = "طباعة مع الشروح";
+"Print without annotations" = "طباعة بدون الشروح";
+"No Applications found" = "لا يوجد تطبيق مثبت يمكنه فتح ملفات PDF.";
+"Print" = "طباعة";
+"Annotation" = "شرح توضيحي";
+"Annotations" = "شروح توضيحية";
+"No Annotations" = "لا شروح توضيجية";
+"Bookmarks" = "إشارات مرجعية";
+"No Bookmarks" = "لا توجد إشارات مرجعية";
+"Add Bookmark" = "إضافة إشارة مرجعية";
+"Remove Bookmark" = "إزالة الإشارة المرجعية";
+"Brightness" = "السطوع";
+"Share" = "مشاركة";
+"Preparing" = "يتم الآن التحضير";
+"Loading" = "تحميل";
+"Expand" = "توسيع";
+"Collapse" = "طي";
+// SMS / iMessage sharing button
+"Message" = "رسالة";
+"Thumbnails" = "صور مصغرة";
+"Drag Toolbar" = "شريط أدوات السحب";
+
+// thumbnails
+"Bookmarked" = "وضعت إشارة مرجعية";
+"Annotated" = "ذات شروح";
+"All" = "الكل";
+
+// password
+"Password" = "كلمة السر"; // text on a label
+"Unlock" = "إلغاء القفل";
+"Please enter the password." = "يرجى إدخال كلمة السر.";
+"This document cannot be unlocked. %@ is unsupported." = "تعذر إلغاء قفل هذا المستند. %@ غير مدعوم.";
+
+// page
+"%tu of %tu" = "%tu من %tu";
+"%tu-%tu of %tu" = "%tu-%tu من %tu";
+"%@ (%tu of %tu)" = "%@ (%tu من %tu)";
+"%@, Page %tu" = "%@، صفحة %tu";
+"Leave %@?" = "مغادرة %@؟";
+
+// search
+"Search Document" = "بحث في المستند"; // to search for a string in the given document
+"Searching Page %tu of %tu" = "البحث في الصفحة %tu من %tu";
+"Search Completed" = "تم البحث";
+"Search Cancelled" = "تم إلغاء البحث";
+"%tu left" = "يتبقى %tu"; // Indexing Documents... 5 left
+"Searching" = "بحث";
+"Done" = "تم";
+"Indexing Documents" = "يتم الآن فهرسة المستندات";
+"Document" = "المستند";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "بحث في الشروح";
+
+// inline browser
+"Open in Safari" = "فتح في سفاري";
+"Open in Chrome" = "فتح في كروم";
+"Your %@ is not configured to send emails." = "لم تتم تهيئة %@ لإرسال بريد إلكتروني.";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "يطلب الرابط فتح %1$@. %2$@ هل ترغب في المتابعة؟"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
+"an external application" = "تطبيق خارجي"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "متجر التطبيقات"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "البريد"; // "The link is requesting to open Mail. Would you like to continue?"
+// This text is shown when no application has been found to open then link in.
+"No handler found for %@" = "لم يتم العثور على معالج لـ %@";
+
+// text selection
+"Text copied to clipboard." = "تم نسخ النص إلى الحافظة.";
+"Save to Photo Library" = "حفظ في مكتبة الصور";
+"Failed to extract image." = "فشل استخراج الصورة.";
+"Type value or pick from list" = "اكتب القيمة أو اختر من القائمة";
+
+// annotations
+"Add %@" = "إضافة %@";
+"Remove %@" = "إزالة %@";
+"Remove" = "إزالة";
+"Delete" = "حذف"; // Keyboard command discoverability title when an annotation is selected
+"Edit" = "تحرير";
+"Undo" = "تراجع";
+"Nothing to undo" = "لا يوجد شيء للتراجع عنه";
+"Redo" = "إعادة";
+"Nothing to redo" = "لا يوجد شيء لإعادته";
+"Type" = "النوع"; // kind of Annotation can be selected
+"Size" = "الحجم";
+"Font" = "الخط";
+"Fonts" = "الخطوط";
+"All Fonts" = "جميع الخطوط";
+"Downloadable Fonts" = "الخطوط القابلة للتنزيل";
+"Search Fonts" = "البحث في الخطوط";
+"Choose Color" = "اختيار اللون";
+"Choose Fill Color" = "اختر لون التعبئة";
+"Rainbow" = "قوس قزح";
+"Monochrome" = "أحادي اللون";
+"Vintage" = "عتيق";
+"Modern" = "عصري";
+"Color" = "اللون";
+"Border" = "حدود";
+"Fill Color" = "لون التعبئة";
+"Start and End Color" = "لون البداية والنهاية";
+"Opacity" = "التعتيم";
+"Thickness" = "السُمك";
+"%@ pt" = "%@ نقطة";
+"Yellow" = "أصفر";
+"Green" = "أخضر";
+"Red" = "أحمر";
+"Blue" = "أزرق";
+"Pink" = "قرنفلي";
+"Black" = "أسود";
+"Orange" = "برتقالي";
+"Purple" = "أرجواني";
+"Cyan" = "سماوي";
+"Gray" = "رمادي";
+"White" = "أبيض";
+"Define" = "تعريف";
+"Wikipedia" = "ويكيبيديا";
+"Highlight" = "تمييز";
+"Underline" = "تسطير";
+"Squiggle" = "تمايل";
+"Squiggly" = "متعرج";
+"StrikeOut" = "شطب";
+"Rectangle" = "مستطيل";
+"Ellipse" = "قطع ناقص";
+"Line" = "سطر"; // something that can be drawn
+"Lines" = "أسطر"; // "5 Lines" were drawn
+"Polyline" = "متعدد الخطوط";
+"Polygon" = "مضلع";
+"Signature" = "التوقيع";
+"Signatures" = "التوقيعات";
+"Signed" = "موقّع";
+"Sign" = "التوقيع";
+"Sign using %@" = "التوقيع باستخدام %@"; // e.g. Adobe.PPKLite
+"Methods" = "الطرق"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "اختيار الهوية"; // text on a label. the user should choose an identity that is used for signing.
+"Stamp" = "ختم";
+"Stamps" = "أختام";
+"Custom" = "مخصص"; // The text shown on a one of the stamps in the stamp selection menu
+"Create Stamp" = "إنشاء ختم";
+"Preview" = "معاينة";
+"Stamp Text" = "نص الختم";
+"Add Signature" = "إضافة توقيع";
+"Remove Signature" = "إزالة التوقيع";
+"My Signature" = "توقيعي";
+"No Signatures" = "لا توجد توقيعات"; // text on label - is shown when there is no signature to display
+"One Time Signature" = "التوقيع لمرة واحدة";
+"Please sign here" = "يرجى التوقيع هنا";
+"Note" = "ملاحظة";
+"Text" = "نص";
+"Delete Note" = "حذف الملاحظة";
+"Remove Note" = "إزالة الملاحظة";
+"%@ could not be found." = "تعذر العثور على %@.";
+"Photo Library" = "مكتبة الصور";
+"Camera" = "الكاميرا";
+"Image" = "صورة";
+"Low Quality" = "جودة منخفضة";
+"Medium Quality" = "جودة متوسطة";
+"High Quality" = "جودة عالية";
+"Clear All" = "مسح الكل";
+"Clear" = "مسح";
+"Style" = "النمط";
+"Link" = "رابط";
+"Ink" = "حبر";
+"FreeText" = "نص";
+"Screen" = "الشاشة";
+"RichMedia" = "وسائط غنية";
+"Left" = "يسار";
+"Center" = "وسط";
+"Right" = "يمين";
+"Alignment" = "محاذاة";
+"Preview File" = "معاينة الملف";
+"Copy" = "نسخ";
+"Paste" = "لصق";
+"Inspector" = "المراقب";
+"Group" = "المجموعة";
+"Ungroup" = "فك المجموعة";
+"Merge" = "دمج"; // text on button - when clicked, two drawings are merged into one drawing
+"Sample" = "نموذج";
+"Annotation Summary for %@:" = "ملخصات الشروح في %@:";
+"Show Text" = "عرض النص";
+// title
+"Author Name" = "اسم المؤلف";
+// message
+"Please enter the author name you want to use for newly inserted annotations." = "يرجى إدخال اسم المحرر الذي تريد استخدامه للشروح التي تم إدراجها مؤخرًا.";
+// text field placeholder
+"Name" = "الاسم";
+// meaning: close
+"Dismiss" = "إلغاء";
+"Fit to Text" = "ملاءمة للنص";
+"Draw" = "رسم";
+"Sound" = "الصوت";
+"Eraser" = "الممحاة";
+"Toggle Eraser" = "تبديل الممحاة"; // Keyboard command discoverability title while drawing
+"SelectionTool" = "أداة التحديد";
+"Saved Annotations" = "الشروح المحفوظة";
+"Add" = "إضافة"; // to add - infinitive
+"Date" = "التاريخ";
+"Time" = "التوقيت";
+"No Pages" = "لا توجد صفحات";
+"Drag to resize" = "سحب لتغيير الحجم"; // used as hint that inspector is resizable
+"Convert to" = "تحويل إلى"; // used as label on action that changes free text intent type
+"Color Presets" = "الألوان المسبقة";
+"pt" = "نقطة"; // Size of e.g. an ink annotation in points or font size in points
+
+"Callout" = "مربع الشروح"; // freetext annotation with an arrow
+"Generic" = "عام"; // basic freetext annotation
+
+// Line dash styles
+"Line Style" = "نمط السطر";
+"Solid" = "سطر كامل";
+"Narrow Dots" = "نقاط ضيقة";
+"Wide Dots" = "نقاط واسعة";
+"Narrow Dashes" = "شرطات ضيقة";
+"Wide Dashes" = "شرطات واسعة";
+"Cloudy" = "سحابي"; // Accessibility label for an annotation border/line style looking like a cloud.
+
+// Stamps
+"Approved" = "مقبول";
+"Not Approved" = "غير مقبول";
+"Draft" = "مسودة";
+"Final" = "نهائي";
+"Completed" = "اكتمل";
+"Confidential" = "سري";
+"For Public Release" = "للإصدار العام";
+"Not For Public Release" = "ليس للإصدار العام";
+"For Comment" = "للتعليق";
+"Void" = "لاغٍ";
+"Preliminary Results" = "النتائج الأولية";
+"Information only" = "معلومات فقط";
+"Accepted" = "مقبول";
+"Rejected" = "مرفوض";
+"Initial Here" = "الحروف الأولى هنا";
+"Sign Here" = "التوقيع هنا";
+"Witness" = "الشاهد";
+"Revised" = "تمت مراجعته";
+
+// Stylus
+// text on a label above a list; a user can choose one stylus form the list and then draw on the iPhone/iPad
+"Stylus" = "قلم";
+// text on a label; shows the connection state of the stylus: it is off
+"Off" = "إيقاف";
+// text on a label: "Scanning..."; the app searches for a new stylus.
+"Scanning" = "مسح";
+// text on a label; app connects to a stylus
+"Pairing" = "اقتران";
+// text on a label; app and stylus are connected
+"%@ Connected" = "%@ متصل";
+// text on a label; app and stylus are not connected
+"%@ Disconnected" = "%@ مفصول";
+// text on a button; if clicked, the settings of the stylus are shown
+"Settings" = "الإعدادات";
+
+
+// PDF annotation name overrides
+"Square" = "مستطيل";
+"Circle" = "قطع ناقص";
+"PolyLine" = "متعدد الخطوط";
+
+// named actions
+"NextPage" = "الصفحة التالية";
+"PrevPage" = "الصفحة السابقة";
+"FirstPage" = "الصفحة الأولى";
+"LastPage" = "الصفحة الأخيرة";
+"GoBack" = "انتقال للخلف";
+"GoForward" = "الانتقال للأمام";
+"GoToPage" = "انتقال إلى صفحة";
+"Find" = "بحث";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "تكبير";
+"ZoomOut" = "تصغير";
+"Execute JavaScript" = "تنفيذ جافا سكريبت";
+"Rich Media Action" = "إجراء وسائط غنية";
+"Rendition Action" = "إجراء التنفيذ";
+"Hide Action" = "إخفاء الإجراء";
+"Submit Form" = "إرسال النموذج";
+"Reset" = "إعادة الضبط";
+
+// line annotations
+"Start" = "بدء";
+"End" = "النهاية";
+"Line.None" = "لا شيء";
+"Line.ClosedArrow" = "سهم مغلق";
+"Line.OpenArrow" = "سهم مفتوح";
+"Line.Square" = "مربع";
+"Line.Circle" = "دائرة";
+"Line.Diamond" = "معيّن";
+"Line.ROpenArrow" = "عكس السهم المفتوح";
+"Line.RClosedArrow" = "عكس السهم المغلق";
+"Line.Slash" = "شرطة مائلة";
+"Line.Butt" = "زر";
+"Line Start" = "بداية السطر";
+"Line End" = "نهاية السطر";
+"Arrow" = "سهم"; // Label of toolbar button activating the arrow tool, which allows to draw arrow line annotations
+
+// link annotation editing
+"Create Link" = "إنشاء رابط";
+"Add Link" = "إضافة رابط";
+"Edit Link" = "تحرير الرابط";
+"Move Link" = "نقل الرابط";
+"Remove Link" = "إزالة الرابط";
+"Open Link" = "فتح الرابط";
+"Go to Page %tu" = "انتقال إلى صفحة %tu";
+"Go to Page" = "انتقال إلى صفحة"; // title of a Popup
+"Go" = "انتقال"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
+"Save" = "حفظ";
+"Link Destination" = "وجهة الرابط";
+"Enter page index or a http:// address to link to an URL." = "أدخل مؤشر الصفحة أو عنوان http:// للربط بعنوان الإنترنت.";
+"Page %@ Not Found" = "الصفحة %@ غير موجودة";
+
+// voiceover accessibility
+"Page" = "صفحة";
+"Grid" = "شبكة"; // grid with thumbnails
+"Translucent" = "شفاف";
+"left" = "يسار";
+"center" = "وسط";
+"right" = "يمين";
+"decrease" = "خفض";
+"increase" = "زيادة";
+"All Open Documents" = "جميع المستندات المفتوحة";
+"Add Documents" = "إضافة مستندات"; // button in tabbed bar that shows document picker to open new documents
+
+// PSPDFDocumentSharingViewController
+"Pages %tu-%tu" = "الصفحات %tu-%tu"; // Range of pages
+"Current Page" = "الصفحة الحالية";
+"Current Page (%tu)" = "الصفحة الحالية (%tu)";
+"Ignore Annotations" = "تجاهل الشروح";
+"The PDF will not contain any annotations." = "لن يتضمن ملف PDF أية شروح.";
+"Embed Annotations" = "تضمين الشروح";
+"Annotations will remain editable and are embedded into the PDF." = "ستظل الشروح قابلة للتحرير ومضمنة في ملف PDF.";
+"Flatten Annotations" = "دمج الشروح";
+"Annotations are drawn into the PDF and are readonly." = "يتم عرض الشروح في ملف PDF وهي للقراءة فقط.";
+"Annotation Summary" = "ملخص الشروح";
+"Embed Annotations into the PDF and also list them in the email." = "تضمين الشروح في مستند PDF، وإدراجها أيضًا في البريد الإلكتروني.";
+"Annotations will be listed in a text file." = "سيتم إدراج الشروح في ملف نصي.";
+"Files" = "الملفات";
+"Send as single files" = "إرسال كملفات منفصلة";
+"Merge files" = "دمج الملفات";
+"Original File" = "الملف الأصلي";
+"Range" = "نطاق";
+"Annotated Pages" = "الصفحات ذات الشروح";
+"Message could not be sent." = "تعذر إرسال الرسالة.";
+"Export" = "تصدير";
+"This action can't be performed." = "لا يمكن تنفيذ هذا الإجراء.";
+
+// sound annotations
+"Speak" = "تحدث"; // should be translated like the "Speak" Menu in UIKit
+"Play" = "تشغيل";
+"Pause" = "إيقاف مؤقت";
+"Resume" = "استئناف";
+"Stop" = "إيقاف";
+"Play/Stop" = "تشغيل/إيقاف";
+// title of a ViewController; View Controller contains a recording and playback button to record audio files
+"Record" = "تسجيل";
+"Pause Recording" = "إيقاف مؤقت للتسجيل";
+// text on a label; is shown, when the recording of an audio file is paused
+"Recording paused" = "تم إيقاف التسجيل مؤقتًا";
+"Continue Recording" = "متابعة التسجيل";
+"Finish Recording" = "إنهاء التسجيل";
+"Audio Problem" = "مشكلة في الصوت";
+// text on a label; Error message, when the before recorded audio file can not be played to the user
+"Could not start playback." = "تعذر بدء التشغيل.";
+"Could not resume playback." = "تعذر استئناف التشغيل.";
+"Microphone permission not granted." = "لم يتم السماح بالوصول إلى الميكروفون.";
+"Audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "لا يمكن تسجيل الصوت في الوقت الحالي. يرجى منح التطبيق صلاحية الوصول إلى الميكروفون.";
+"There was a problem trying to record audio." = "حدثت مشكلة أثناء محاولة تسجيل الصوت.";
+"Already Recording" = "يتم التسجيل بالفعل";
+"You are already recording on page %@." = "أنت تسجل بالفعل على الصفحة %@.";
+
+// Forms
+"Form Element" = "من العنصر";
+"Text Field" = "مربع نص";
+"Button" = "زر";
+"Choice Field" = "خانة الاختيار";
+"Signature Field" = "خانة التوقيع";
+"Clear Field" = "مسح الخانة"; // same as delete
+"Default Values" = "القيم الافتراضية";
+"Custom Value" = "قيمة مخصصة";
+
+// Validation of numbers
+"Invalid value: must be greater than or equal to %s." = "القيمة غير صالحة: يجب أن تكون أكبر من أو تساوي %s.";
+"Invalid value: must be greater than or equal to %s and less than or equal to %s." = "القيمة غير صالحة: يجب أن تكون أكبر من أو تساوي %s وأصغر من أو تساوي %s.";
+"Invalid value: must be less than or equal to %s." = "القيمة غير صالحة: يجب أن تكون أصغر من أو تساوي %s.";
+"Invalid value: must be a number." = "القيمة غير صالحة: يجب أن تكون رقمًا.";
+
+// Validation of dates
+"Invalid value: must be a date." = "القيمة غير صالحة: يجب أن تكون تاريخًا.";
+
+// General validation
+"Invalid value." = "قيمة غير صالحة.";
+
+// Gallery
+"Connection Error" = "خطأ في الاتصال";
+"Unsupported Content" = "محتوى غير مدعوم";
+"The specified content cannot be displayed." = "تعذر عرض المحتوى المحدد.";
+"Something went wrong" = "حدث خطأ ما";
+"This item is currently unavailable." = "هذا العنصر غير متوفر حاليًا.";
+"The information for this gallery could not be loaded." = "تعذر تحميل معلومات هذا الألبوم.";
+"Content Error" = "خطأ في المحتوى";
+"This content is unsupported." = "هذا المحتوى غير مدعوم.";
+
+// Signatures
+"Digital Signature" = "توقيع رقمي";
+"Signature is valid." = "التوقيع صالح.";
+"Signature is valid, but there are some warnings." = "التوقيع صالح، ولكن هناك بعض التحذيرات.";
+"It was signed by %@ on %@ at %@." = "تم التوقيع من قبل %@ بتاريخ %@ في الساعة %@."; // the document was signed by name on date at time
+// the document was signed on date at time
+"It was signed on %@ at %@." = "تم التوقيع بتاريخ %@ في الساعة %@.";
+"It claims to have been signed by %@ on %@ at %@." = "يزعم أنها وقعت من قبل %@ بتاريخ %@ الساعة %@."; // by name on date at time
+// on date at time
+"It claims to have been signed on %@ at %@." = "يزعم أنها وقعت بتاريخ %@ الساعة %@.";
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- لم يتم تعديل المراجعة الموقع عليها بهذا التوقيع، ولكن هناك تغييرات أدخلت على المستند منذ أن تم توقيعه."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- التوقيع صالح، ومحتوى هذا المستند لم يتغير منذ أن تم توقيعه.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- توقيع غير صالح - منذ التوقيع على محتوى هذا المستند، تم تعديل الممستند، أو التلاعب به، أو إتلافه.";
+"Unsigned Signature Field" = "خانة التوقيع بلا توقيع";
+"Do you really want to remove the signature from the document?" = "هل ترغب فعلاً في حذف التوقيع من المستند؟";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "تعذرت قراءة بيانات الشهادة كشهادة PKCS#7. البيانات بالتنسيق الصحيح يمكن تصديرها من أدوبي أكروبات."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "تعذر فك تشفير التوقيع في هذه الشهادة.";
+"The public key in the certificate could not be read." = "تعذرت قراءة المفتاح العام في الشهادة.";
+"The signature of the certificate is not valid." = "التوقيع الخاص بهذه الشهادة غير صالح.";
+"Signature is not valid." = "التوقيع غير صالح.";
+"There is a format error in the notBefore field of the certificate." = "هناك خطأ في التنسيق في خانة notBefore في الشهادة."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "هناك خطأ في التنسيق في خانة notAfter في الشهادة."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "لا يمكن التحقق من أية توقيعات، لأن سلسلة الشهادة تحتوي على شهادة واحدة فقط، وهي ليست موقعة ذاتيًا، وغير موثوق بمحررها.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "شهادة CA غير صالحة، لأنها ليست CA أو لأن امتداداتها لا تتفق مع الغرض المقصود."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
+"The basicConstraints pathlength parameter was exceeded." = "تم تجاوز معامل طول المسار basicConstraints."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "لم يتم تمييز CA الجذر كهيئة موثوق بها للغرض المقصود."; // root CA should be translated
+"The root CA is marked to reject the purpose specified." = "تم تمييز الجذر CA لرفض الغرض المحدد."; // root CA should be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "تم رفض شهادة المحرر لأن اسم الموضوع لم يطابق اسم محرر الشهادة الحالية."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "تم رفض شهادة المحرر لأن معرف مفتاح الموضوع كان حاضرًا ولم يطابق معرف مفتاح المصادقة الخاص بالشهادة الحالية."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "تم رفض شهادة المحرر لأن اسم المحرر والرقم المسلسل كانا حاضرين ولم يطابقا معرف مفتاح المصادقة الخاص بالشهادة الحالية."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "تم إبطال الشهادة من قبل محررها.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "الشهادة المحررة تم توقيعها ذاتيًا، والشهادة نفسها لا يمكن العثور عليها في قائمة الشهادات الموثوقة.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "توجد شهادة موقعة ذاتيًا في سلسلة الشهادات. ربما تم تكوين سلسلة الشهادات باستخدام شهادات غير موثوق بها، ولكن لم يتم العثور على الجذر CA محليًا."; // root CA should be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "تعذر العثور على شهادة لواحدة أو أكثر من هيئات الشهادات (CA) في التسلسل الهرمي للتوقيعات، وهيئة الشهادة هذه غير موثوق بها من قبل التطبيق المحلي."; // CAs should not be translated;
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "تعذر العثور على شهادة المحرر في شهادة يبحث عنها محليًا. هذا يعني عادة أن قائمة الشهادات الموثوق بها ليست كاملة.";
+"The certificate that was provided cannot be used for its intended purpose." = "الشهادة المقدمة لا يمكن استخدامها في الغرض المقصود.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "امتداد keyUsage بشهادة المحرر لا يسمح بالتوقيع على الشهادة.";
+"The certificate has expired." = "انتهت صلاحية الشهادة.";
+"The certificate is not valid until a date in the future." = "الشهادة غير صالحة حتى تاريخ في المستقبل.";
+// X509 should not be translated
+"Could not read X509 certificate from data" = "تعذرت قراءة الشهادة X509 من البيانات.";
+// X509 should not be translated
+"No X509 certificate found" = "لم يتم العثور على أية شهادة X509";
+
+// PKCS12 should not be translated
+"Cannot read PKCS12 file. File is incorrectly formatted or corrupted." = "تعذر فتح الملف PKCS12. تنسيق الملف غير صحيح أو الملف تالف.";
+// PKCS12 should not be translated
+"Could not unlock PKCS12 data. Did you enter the correct password?" = "تعذر إلغاء قفل بيانات PKCS12. هل أدخلت كلمة السر الصحيحة؟";
+
+// the signature of a file should be checked, but this file can not be opened
+"Could not open file for signature validation" = "تعذر فتح الملف للتحقق من التوقيع";
+"Could not get signer info" = "تعذر الحصول على بيانات الموقّع";
+
+// OPENSSL and PKCS7 should never be translated
+"OpenSSL could not create PKCS7 object" = "لم يستطع OpenSSL إنشاء كائن PKCS7";
+"OpenSSL could not add signature to PKCS7 object" = "لم يستطع OpenSSL إضافة توقيع لكائن PKCS7";
+"OpenSSL could not init PKCS7 object" = "لم يستطع OpenSSL تمهيد كائن PKCS7";
+"OpenSSL could generate PKCS7 signature" = "استطاع OpenSSL توليد توقيع PKCS7";
+"OpenSSL could not sign hash" = "لم يستطع OpenSSL توقيع هاش";
+"Could not write PKCS7 signature" = "تعذرت كتابة توقيع PKCS7";
+
+// Policy
+"PSPDFPolicyEventOpenIn" = "فتح في";
+"PSPDFPolicyEventPrint" = "طباعة";
+"PSPDFPolicyEventEmail" = "البريد الإلكتروني";
+"PSPDFPolicyEventMessage" = "رسالة";
+"PSPDFPolicyEventQuickLook" = "معاينة سريعة"; // as in Apple's Quick Look
+"PSPDFPolicyEventAudioRecording" = "تسجيل صوتي";
+"PSPDFPolicyEventCamera" = "الكاميرا";
+"PSPDFPolicyEventPasteboard" = "الحافظة"; // as in using a computer and copying text, so that it get's added to the Pasteboard, from which it can later be retrieved with the paste command
+"PSPDFPolicyEventSubmitForm" = "إرسال النموذج";
+"PSPDFPolicyEventNetwork" = "لشبكة";
+
+// Night Mode
+"Default" = "الافتراضي"; // Default view (night mode not enabled)
+"Sepia" = "بني"; // Document uses sepia colors
+"Night" = "ليلية"; // UI switches into night mode: Dark and inverted colors
+
+// Document States
+"No document set" = "لم يتم تحديد أي مستند";
+"Unable to display document" = "غير قادر على عرض المستند";
+"Loading..." = "يتم الآن التحميل...";
+"Locked" = "مقفل";
+"The file you are trying to access is either not a PDF file or might be corrupted." = "الملف الذي تحاول الوصول إما ليس ملف PDF أو قد يكون تالفًا.";
+"A password is required to access this document." = "يتطلب فتح هذا المستند توفر كلمة السر.";
+"The security scheme of this document is currently not supported." = "مخطط الضمان بهذا المستند غير مدعوم في الوقت الحالي.";
+"An unknown error has occured while trying to open this file." = "حدث خطأ غير معروف أثناء محاولة فتح هذا الملف.";
+
+// Document Editor
+"Document Editor" = "محرر المستندات";
+"Add Page" = "إضافة صفحة";
+"Delete Pages" = "حذف الصفحات";
+"Duplicate Pages" = "تكرار الصفحات";
+"Move Pages" = "نقل الصفحات";
+"Rotate Pages" = "تدوير الصفحات";
+"Page Size" = "مقاس الصفحة";
+"Background Color" = "لون الخلفية";
+"Paper" = "صفحة";
+"Pattern" = "قالب";
+"Use Document Size" = "استخدام حجم المستند";
+"Orientation" = "الاتجاه";
+"Portrait" = "رأسي";
+"Landscape" = "أفقي";
+"Document Name" = "اسم المستند";
+"Documents" = "المستندات"; // Name of directory
+"Use Document Folder" = "استخدام مجلد المستند";
+"Folder" = "المجلد";
+"Replace File?" = "استبدال الملف؟";
+"A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "هناك ملف يحمل الاسم \"%@\" موجود بالفعل في الوجهة المحددة. هل ترغب في استبداله؟";
+"Replace" = "استبدال";
+"Saving…" = "يتم الآن الحفظ…";
+"Saved" = "تم الحفظ";
+"Save As…" = "حفظ باسم…";
+"Discard Changes" = "تجاهل التعديلات";
+"Empty" = "فارغ";
+"Use Image Size" = "استخدام مقاس الصورة";
+"Page Background" = "خلفية الصفحة";
+"Insert image annotation" = "إدراج شرح للصورة";
+"Import page background" = "استيراد خلفية الصفحة";
+"Quality" = "الجودة";
+"Low" = "منخفضة";
+"Medium" = "متوسط";
+"High" = "عالية";
+"Best" = "الأفضل";
+
+// Document Editor Errors
+"A blank document can not be saved." = "لا يمكن حفظ مستند فارغ.";
+"The document could not be saved." = "تعذر حفظ المستند.";
+"This document does not support editing." = "هذا المستند لا يدعم التحرير.";
+
+// Page Patterns
+"None" = "لا يوجد";
+"Dot5mm" = "نقاط ٥ مم";
+"Grid5mm" = "شبكة ٥ مم";
+"Lines5mm" = "أسطر ٥ مم";
+"Lines7mm" = "أسطر ٧ مم";
+
+// Page Sizes
+"A4" = "A4";
+"A5" = "A5";
+"US Letter" = "US Letter";
+"US Legal" = "US Legal";
+
+// Page Export
+"Export Pages" = "تصدير الصفحات";
+"Export…" = "تصدير…";
+"Exporting…" = "يتم الآن التصدير…";
+"Exported" = "تم التصدير";
+"%@ - Exported" = "%@ - تم التصدير"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - نسخ"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "الملف المحدد مفتوح حاليًا. يرجى اختيار اسم آخر للملف.";
+
+// Miscellaneous
+"Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "خدمة تحويل النص إلى كلام غير متوفرة. تأكد من أنك متصل بالإنترنت، أو أن محرك تحويل النص إلى كلام من جوجل مثبت وممكّن على جهازك.";
+
+// Settings
+"Page Transition" = "انتقال الصفحة";
+"Single" = "مفرد";
+"Continuous" = "مستمر";
+"Curl" = "مجعد";
+"Scroll" = "تمرير";
+"Horizontal" = "أفقي";
+"Vertical" = "رأسي";
+"Page Mode" = "وضع الصفحة";
+"Automatic" = "تلقائي";
+"Double" = "مزدوج";
+"Appearance" = "المظهر";
+"Scrubber Bar" = "شريط الانتقال";
+"Jump" = "قفز"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "غير متوفر"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "هذا التطبيق لا يمتلك صلاحيات الوصول إلى صورك.";
+"This app does not have access to your camera." = "هذا التطبيق لا يمتلك صلاحيات الوصول إلى كاميرا جهازك.";
+"You can enable access in Privacy Settings." = "يمكنك السماح بالوصول من إعدادات الخصوصية.";

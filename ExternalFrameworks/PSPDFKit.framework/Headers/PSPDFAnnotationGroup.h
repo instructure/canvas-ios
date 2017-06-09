@@ -2,7 +2,7 @@
 //  PSPDFAnnotationGroup.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,6 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
+#import "PSPDFAnnotation.h"
 #import "PSPDFEnvironment.h"
 #import "PSPDFModel.h"
 
@@ -57,7 +58,7 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFAnnotationGroup : P
 /// Updates the choice index to the first item with the selected type and variant.
 /// Set variant to `nil`, if not relevant.
 /// Returns `YES` is successful and `NO` if no items with the provided parameters were found.
-- (BOOL)updateChoiceToItemWithType:(NSString *)type variant:(nullable NSString *)variant;
+- (BOOL)updateChoiceToItemWithType:(PSPDFAnnotationString)type variant:(nullable PSPDFAnnotationString)variant;
 
 @end
 

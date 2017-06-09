@@ -2,7 +2,7 @@
 //  PSPDFSignatureStatus.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -21,7 +21,7 @@ typedef int OPENSSL_X509_ERR;
 typedef NS_ENUM(NSInteger, PSPDFSignatureStatusSeverity) {
     PSPDFSignatureStatusSeverityNone = 0,
     PSPDFSignatureStatusSeverityWarning,
-    PSPDFSignatureStatusSeverityError
+    PSPDFSignatureStatusSeverityError,
 } PSPDF_ENUM_AVAILABLE;
 
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFSignatureStatus : NSObject

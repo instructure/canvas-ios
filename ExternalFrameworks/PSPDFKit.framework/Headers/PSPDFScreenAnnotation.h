@@ -2,7 +2,7 @@
 //  PSPDFScreenAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,12 +17,12 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaScreenWindowType) {
     PSPDFMediaScreenWindowTypeFullscreen,
     PSPDFMediaScreenWindowTypeHidden,
     /// Default value
-    PSPDFMediaScreenWindowTypeUseAnnotationRectangle
+    PSPDFMediaScreenWindowTypeUseAnnotationRectangle,
 } PSPDF_ENUM_AVAILABLE;
 
 /// A screen annotation (PDF 1.5) specifies a region of a page upon which media clips may be played. It also serves as an object from which actions can be triggered. PSPDFKit also supports the matching Rendition Actions to control the video play state.
 /// @note iOS cannot play all video/audio formats that can be used for PDF.
-PSPDF_CLASS_AVAILABLE  @interface PSPDFScreenAnnotation : PSPDFAssetAnnotation
+PSPDF_CLASS_AVAILABLE @interface PSPDFScreenAnnotation : PSPDFAssetAnnotation
 
 /// Defaults the window type the media should play in.
 /// @note only `.UseAnnotationRectangle` and `.Hidden` is currently supported.

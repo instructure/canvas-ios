@@ -2,7 +2,7 @@
 //  PSPDFFreeTextAccessoryView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,11 +10,11 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
-#import "PSPDFToolbar.h"
-#import "PSPDFFontPickerViewController.h"
 #import "PSPDFAnnotationStyleViewController.h"
+#import "PSPDFEnvironment.h"
+#import "PSPDFFontPickerViewController.h"
 #import "PSPDFPresentationContext.h"
+#import "PSPDFToolbar.h"
 
 @class PSPDFFreeTextAnnotation, PSPDFFreeTextAccessoryView, PSPDFToolbarButton;
 @class PSPDFToolbarSelectableButton, PSPDFToolbarSeparatorButton, PSPDFPresentationContext;
@@ -22,10 +22,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Notification when someone presses "Clear".
-PSPDF_EXPORT NSString *const PSPDFFreeTextAccessoryViewDidPressClearButtonNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFFreeTextAccessoryViewDidPressClearButtonNotification;
 
 /// Delegate to receive actions from the free text accessory view.
-PSPDF_AVAILABLE_DECL @protocol PSPDFFreeTextAccessoryViewDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFFreeTextAccessoryViewDelegate<NSObject>
 
 @optional
 
@@ -50,13 +50,13 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFFreeTextAccessoryViewDelegate <NSObject>
 @end
 
 /// Free Text accessory toolbar for faster styling.
-PSPDF_CLASS_AVAILABLE @interface PSPDFFreeTextAccessoryView : PSPDFToolbar <PSPDFFontPickerViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFFreeTextAccessoryView : PSPDFToolbar<PSPDFFontPickerViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate>
 
 /// The input accessory delegate.
 @property (nonatomic, weak) id<PSPDFFreeTextAccessoryViewDelegate> delegate;
 
 /// Used to present popover pickers for certain button types.
-@property (nonatomic, weak) id <PSPDFPresentationContext> presentationContext;
+@property (nonatomic, weak) id<PSPDFPresentationContext> presentationContext;
 
 /// The annotation that is being edited.
 @property (nonatomic) PSPDFFreeTextAnnotation *annotation;
@@ -64,10 +64,10 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFFreeTextAccessoryView : PSPDFToolbar <PSPD
 /// @name Customization
 
 /// List of supported inspector properties for various annotation types
-/// Dictionary in format annotation type string : array of arrays of property strings (`NSArray<NSArray<NSString *> *> *`) OR a block that returns this and takes `annotations` as argument (`NSArray<NSArray<NSString *> *> *(^block)(PSPDFAnnotation *annotation)`).
+/// Dictionary in format annotation type string : array of arrays of property strings (`NSArray<NSArray<PSPDFAnnotationString> *> *`) OR a block that returns this and takes `annotations` as argument (`NSArray<NSArray<PSPDFAnnotationString> *> *(^block)(PSPDFAnnotation *annotation)`).
 /// @note Only the `PSPDFAnnotationStringFreeText` key is relevant for this component.
 /// Defaults to an empty dictionary. Normally set to the values from PSPDFConfiguration after initialization.
-@property (nonatomic, copy) NSDictionary<NSString *, id> *propertiesForAnnotations;
+@property (nonatomic, copy) NSDictionary<PSPDFAnnotationString, id> *propertiesForAnnotations;
 
 /// @name Styling
 

@@ -2,7 +2,7 @@
 //  PSPDFUndoController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,19 +10,19 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-#import "PSPDFUndoProtocol.h"
+#import "PSPDFEnvironment.h"
 #import "PSPDFMacros.h"
+#import "PSPDFUndoProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Sent once we have new undo operations available.
 /// @note Always sent on the main thread.
-PSPDF_EXPORT NSString *const PSPDFUndoControllerAddedUndoActionNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFUndoControllerAddedUndoActionNotification;
 
 /// Sent once we have available undo actions have been changed/removed.
 /// @note Always sent on the main thread.
-PSPDF_EXPORT NSString *const PSPDFUndoControllerRemovedUndoActionNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFUndoControllerRemovedUndoActionNotification;
 
 /// This is a custom undo manager that can coalesce similar changes within the same group.
 /// This class is thread safe.
@@ -68,9 +68,9 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 - (void)removeAllActionsWithTarget:(id)target;
 
 /// Register/unregister objects.
-- (void)registerObjectForUndo:(NSObject <PSPDFUndoProtocol> *)object;
-- (void)unregisterObjectForUndo:(NSObject <PSPDFUndoProtocol> *)object;
-- (BOOL)isObjectRegisteredForUndo:(NSObject <PSPDFUndoProtocol> *)object;
+- (void)registerObjectForUndo:(NSObject<PSPDFUndoProtocol> *)object;
+- (void)unregisterObjectForUndo:(NSObject<PSPDFUndoProtocol> *)object;
+- (BOOL)isObjectRegisteredForUndo:(NSObject<PSPDFUndoProtocol> *)object;
 
 /// Support for regular invocation based undo.
 /// Perform the call you would normally invoke after [undoManager prepareWithInvocationTarget:target]
@@ -112,9 +112,9 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @end
 
 /// Performs a block and groups all observed changes into one event, if the undo controller is available.
-PSPDF_EXPORT void PSPDFPerformBlockAsGroup(PSPDFUndoController *_Nullable undoController, PSPDF_NOESCAPE dispatch_block_t block, NSString *_Nullable name);
+PSPDF_EXPORT void PSPDFPerformBlockAsGroup(PSPDFUndoController *_Nullable undoController, NS_NOESCAPE dispatch_block_t block, NSString *_Nullable name);
 
 /// Performs a block and ignores all observed changes, if the undo controller is available.
-PSPDF_EXPORT void PSPDFPerformBlockWithoutUndo(PSPDFUndoController *_Nullable undoController, PSPDF_NOESCAPE dispatch_block_t block);
+PSPDF_EXPORT void PSPDFPerformBlockWithoutUndo(PSPDFUndoController *_Nullable undoController, NS_NOESCAPE dispatch_block_t block);
 
 NS_ASSUME_NONNULL_END

@@ -2,7 +2,7 @@
 //  PSPDFImageInfo.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Defines the position if an image in the PDF.
 /// @note This class should not be manually instantated. Use `PSPDFTextParser` to fetch images.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFImageInfo : NSObject <NSCopying, NSSecureCoding>
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFImageInfo : NSObject<NSCopying, NSSecureCoding>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
@@ -38,7 +38,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Page is relative to the document provider.
-@property (nonatomic, readonly) NSUInteger page;
+@property (nonatomic, readonly) NSUInteger pageIndex;
 
 /// @name Calculated properties
 @property (nonatomic, readonly) CGSize displaySize;

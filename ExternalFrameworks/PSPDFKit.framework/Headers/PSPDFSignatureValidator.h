@@ -2,7 +2,7 @@
 //  PSPDFSignatureValidator.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class PSPDFSignatureFormElement, PSPDFSignatureStatus;
+@class PSPDFSignatureFormElement, PSPDFSignatureStatus, PSPDFX509;
 
 /// Allows to validate digital signatures.
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFSignatureValidator : NSObject
@@ -28,9 +28,13 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// The signature form element.
 @property (nonatomic, readonly) PSPDFSignatureFormElement *signatureFormElement;
 
-/// Start the verification process.
-/// @return nil if OpenSSL is not found.
-- (nullable PSPDFSignatureStatus *)verifySignatureWithError:(NSError *__autoreleasing *)error;
+/**
+ *  Starts the digital signature verification process.
+ *  If `trustedCertificates` is nil, the default from the shared signature manager is used.
+ *
+ *  @return nil if OpenSSL is not found.
+ */
+- (nullable PSPDFSignatureStatus *)verifySignatureWithTrustedCertificates:(nullable NSArray<PSPDFX509 *> *)trustedCertificates error:(NSError **)error;
 
 @end
 

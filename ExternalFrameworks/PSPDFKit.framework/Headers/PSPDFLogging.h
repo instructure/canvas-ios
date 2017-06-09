@@ -2,7 +2,7 @@
 //  PSPDFLogging.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,25 +12,25 @@
 
 #import "PSPDFEnvironment.h"
 
-typedef NS_ENUM(NSUInteger, PSPDFLogLevelMask) {
+typedef NS_OPTIONS(NSUInteger, PSPDFLogLevelMask) {
     PSPDFLogLevelMaskNothing = 0,
 
     /// Logs critical issues. Should never be disabled.
-    PSPDFLogLevelMaskError   = 1 << 0,
+    PSPDFLogLevelMaskError = 1 << 0,
 
     /// Logs issues that are not critical but log-worthy.
     PSPDFLogLevelMaskWarning = 1 << 1,
 
     /// Logs important operations.
-    PSPDFLogLevelMaskInfo    = 1 << 2,
+    PSPDFLogLevelMaskInfo = 1 << 2,
 
     /// Will log almost everything and slow down the application flow.
-    PSPDFLogLevelMaskDebug   = 1 << 3,
+    PSPDFLogLevelMaskDebug = 1 << 3,
 
     /// Might log security related details like signature points.
     /// Never enable this in release builds unless they are solely for testing.
     PSPDFLogLevelMaskVerbose = 1 << 4,
 
     /// Enables all logging categories.
-    PSPDFLogLevelMaskAll     = UINT_MAX
+    PSPDFLogLevelMaskAll = UINT_MAX,
 } PSPDF_ENUM_AVAILABLE;

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PDFView renders 1`] = `
+<PSPDFView
+  config={
+    Object {
+      "documentURL": "",
+    }
+  }
+  style={undefined}
+/>
+`;

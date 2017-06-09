@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "다음";
 "Previous" = "이전";
 "Error" = "오류";
+"More options" = "옵션 더보기";
+"Close All Tabs" = "모든 탭 닫기";
+"Close All Other Tabs" = "다른 모든 탭 닫기"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "개요"; // Table of contents
@@ -71,7 +74,7 @@
 "This document cannot be unlocked. %@ is unsupported." = "이 문서를 잠금해제할 수 없습니다. %@을(를) 지원하지 않습니다.";
 
 // page
-"%tu of %tu" = "%2tu 중의 %1tu";
+"%tu of %tu" = "%2$tu 중의 %1$tu";
 "%tu-%tu of %tu" = "%1$tu-%3$tu 중의 %2$tu";
 "%@ (%tu of %tu)" = "%1$@ (%3$tu 중의 %2$tu)";
 "%@, Page %tu" = "%@, %tu 페이지";
@@ -86,23 +89,25 @@
 "Searching" = "검색 중";
 "Done" = "완료";
 "Indexing Documents" = "문서 색인 중";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "내용이 없는 문서입니다";
+"Document" = "문서";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "주석 검색";
 
 // inline browser
 "Open in Safari" = "Safari에서 열기";
 "Open in Chrome" = "Chrome에서 열기";
 "Your %@ is not configured to send emails." = "사용자의 %@은 이메일을 전송할 수 있도록 구성되지 않았습니다.";
-"The link is requesting to open %@Would you like to continue?" = "링크가 다음 경로를 열려고 합니다다: %@계속 진행하시겠습니까?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "링크를 누르면 %1$@ 앱으로 연결됩니다. %2$@계속 하시겠습니까?"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "외부 응용 프로그램"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "앱 스토어"; // "The link is requesting to open the App Store. Would you like to continue?"
-"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
+"Mail" = "이메일"; // "The link is requesting to open Mail. Would you like to continue?"
 // This text is shown when no application has been found to open then link in.
 "No handler found for %@" = "%@을(를) 위한 핸들러가 없습니다";
 
 // text selection
 "Text copied to clipboard." = "텍스트가 클립보드에 복사되었습니다.";
-"Save To Camera Roll" = "카메라 롤에 저장";
+"Save to Photo Library" = "사진 보관함에 저장";
 "Failed to extract image." = "이미지를 추출하는데 실패했습니다.";
 "Type value or pick from list" = "값을 입력하거나 목록에서 선택하십시오";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "무지개";
 "Monochrome" = "흑백";
 "Vintage" = "빈티지";
+"Modern" = "모던";
 "Color" = "색상";
 "Border" = "테두리";
 "Fill Color" = "채우기 색상";
-"Line End Fill Color" = "선 끝 채움 색상";
+"Start and End Color" = "시작 및 끝 색상";
 "Opacity" = "불투명도";
-"%@ %%" = "%@ %%";
 "Thickness" = "두께";
 "%@ pt" = "%@ pt";
 "Yellow" = "노란색";
@@ -152,6 +157,7 @@
 "Highlight" = "하이라이트";
 "Underline" = "밑줄";
 "Squiggle" = "구불한 선";
+"Squiggly" = "구불구불한 선";
 "StrikeOut" = "취소선";
 "Rectangle" = "직사각형";
 "Ellipse" = "타원";
@@ -176,7 +182,7 @@
 "Remove Signature" = "서명 제거하기";
 "My Signature" = "나의 서명";
 "No Signatures" = "서명 없음"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "사용자 지정 서명";
+"One Time Signature" = "일회용 서명";
 "Please sign here" = "여기 서명하십시오";
 "Note" = "메모";
 "Text" = "텍스트";
@@ -209,7 +215,8 @@
 "Ungroup" = "그룹해제";
 "Merge" = "병합"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "샘플";
-"Annotation Summary for %@:\n" = "%@ 주석 요약:\n";
+"Annotation Summary for %@:" = "%@의 주석 요약:";
+"Show Text" = "텍스트 보기";
 // title
 "Author Name" = "저자 이름";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "드래그 하여 크기조절"; // used as hint that inspector is resizable
 "Convert to" = "다음으로 변환"; // used as label on action that changes free text intent type
 "Color Presets" = "색상 미리설정";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "말풍선"; // freetext annotation with an arrow
 "Generic" = "일반"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "넓은 점선";
 "Narrow Dashes" = "좁은 줄표";
 "Wide Dashes" = "넓은 줄표";
+"Cloudy" = "클라우디"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "승인됨";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "페어링";
 // text on a label; app and stylus are connected
-"Connected" = "연결됨";
+"%@ Connected" = "%@ 연결됨";
 // text on a label; app and stylus are not connected
-"Disconnected" = "연결해제";
+"%@ Disconnected" = "%@ 연결해제";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "설정";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "PDF 문서에 주석을 각인하며, 읽기전용으로 전환합니다.";
 "Annotation Summary" = "주석 요약";
 "Embed Annotations into the PDF and also list them in the email." = "주석을 PDF 문서에 첨부하고 이메일에 목록으로 나열합니다.";
+"Annotations will be listed in a text file." = "주석 목록을 텍스트 파일로 저장합니다.";
 "Files" = "파일";
 "Send as single files" = "하나의 파일로 전송";
 "Merge files" = "파일 병합";
 "Original File" = "원본 파일";
 "Range" = "범위";
 "Annotated Pages" = "주석포함 페이지";
+"Message could not be sent." = "메시지를 보낼 수 없습니다.";
+"Export" = "내보내기";
+"This action can't be performed." = "이 액션을 수행할 수 없습니다.";
 
 // sound annotations
 "Speak" = "말하기"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "선택 필드";
 "Signature Field" = "서명 필드";
 "Clear Field" = "필드 지우기"; // same as delete
-"Type value or pick from list" = "값을 입력하거나 목록에서 선택하십시오";
 "Default Values" = "기본값";
 "Custom Value" = "사용자 지정값";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "유효하지 않은 값: 반드시 %s와 같거나 작아야 합니다.";
 "Invalid value: must be a number." = "유효하지 않은 값입니다. 반드시 숫자를 입력하십시오.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "올바르지 않은 값: 날짜 형식이어야 합니다.";
 
 // General validation
@@ -514,7 +526,7 @@
 "The file you are trying to access is either not a PDF file or might be corrupted." = "접근하려는 파일이 PDF 문서가 아니거나 손상되었을 수 있습니다.";
 "A password is required to access this document." = "이 문서에 접근하려면 암호가 필요합니다.";
 "The security scheme of this document is currently not supported." = "현재 이 문서의 보안스킴은 지원하지 않습니다.";
-"An unknown error has occured while trying to open this file." = "파일을 여는 도중 예기치 못한 오류가 발생했습니다.";
+"An unknown error has occured while trying to open this file." = "이 파일을 여는 도중 예기치 못한 오류가 발생했습니다.";
 
 // Document Editor
 "Document Editor" = "문서 편집기";
@@ -525,16 +537,16 @@
 "Rotate Pages" = "페이지 회전";
 "Page Size" = "페이지 크기";
 "Background Color" = "배경 색상";
+"Paper" = "종이";
 "Pattern" = "패턴";
-"Use Document Size" = "문서 크기 이용";
+"Use Document Size" = "문서 크기 사용";
 "Orientation" = "페이지 방향";
 "Portrait" = "세로";
 "Landscape" = "가로";
-"Name" = "이름";
 "Document Name" = "문서 이름";
 "Documents" = "문서"; // Name of directory
-"Use Document Directory" = "문서 디렉토리 이용";
-"Directory" = "디렉토리";
+"Use Document Folder" = "문서 폴더 사용";
+"Folder" = "폴더";
 "Replace File?" = "파일을 대치하시겠습니까?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "선택한 경로에 이름이 \"%@\"인 파일이 존재합니다. 파일을 대치하시겠습니까?";
 "Replace" = "대치";
@@ -543,6 +555,15 @@
 "Save As…" = "다음 이름으로 변경…";
 "Discard Changes" = "변경사항 무시";
 "Empty" = "효력 없음";
+"Use Image Size" = "이미지 크기";
+"Page Background" = "페이지 배경";
+"Insert image annotation" = "이미지 주석 삽입";
+"Import page background" = "페이지 배경 가져오기";
+"Quality" = "품질";
+"Low" = "낮음";
+"Medium" = "중간";
+"High" = "높음";
+"Best" = "최상";
 
 // Document Editor Errors
 "A blank document can not be saved." = "내용이 없는 문서는 저장할 수 없습니다.";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "텍스트 음성변환 서비스를 사용할 수 없습니다. 인터넷에 연결되어 있는지 확인하시거나 Google의 텍스트-투-스피치 엔진이 기기에 설치되어 있는지, 활성화되어 있는지 확인하시기 바랍니다.";
+
+// Settings
+"Page Transition" = "페이지 전환효과";
+"Single" = "단일";
+"Continuous" = "연속";
+"Curl" = "두루마리";
+"Scroll" = "스크롤";
+"Horizontal" = "수평";
+"Vertical" = "수직";
+"Page Mode" = "페이지 모드";
+"Automatic" = "자동";
+"Double" = "두 페이지";
+"Appearance" = "모양";
+"Scrubber Bar" = "스크롤 바";
+"Jump" = "점프"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "사용할 수 없음"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "이 앱은 사용자의 사진에 접근할 수 없습니다.";
+"This app does not have access to your camera." = "이 앱은 카메라에 접근할 수 없습니다.";
+"You can enable access in Privacy Settings." = "개인 정보 보호 설정에서 접근을 활성화할 수 있습니다.";

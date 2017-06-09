@@ -2,7 +2,7 @@
 //  PSPDFMailCoordinator.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,14 +10,14 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-#import <MessageUI/MessageUI.h>
 #import "PSPDFDocumentSharingCoordinator.h"
+#import "PSPDFEnvironment.h"
+#import <MessageUI/MessageUI.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// The mail coordinator shows the document sharing sheet and then the mail sheet and manages the flow during that operation.
-PSPDF_CLASS_AVAILABLE @interface PSPDFMailCoordinator : PSPDFDocumentSharingCoordinator <MFMailComposeViewControllerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFMailCoordinator : PSPDFDocumentSharingCoordinator<MFMailComposeViewControllerDelegate>
 
 @end
 

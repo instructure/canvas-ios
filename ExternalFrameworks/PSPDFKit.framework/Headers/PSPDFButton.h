@@ -2,7 +2,7 @@
 //  PSPDFButton.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -27,7 +27,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFButton : UIButton
 @property (nonatomic) UIEdgeInsets touchAreaInsets;
 
 /// Switch the default button image position.
-/// Defaults to NO (image on left). 
+/// Defaults to NO (image on left).
 @property (nonatomic) BOOL positionImageOnRight;
 
 /// A block that is called when a button action is performed.

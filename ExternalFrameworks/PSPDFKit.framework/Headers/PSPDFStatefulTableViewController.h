@@ -2,7 +2,7 @@
 //  PSPDFStatefulTableViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,20 +11,12 @@
 //
 
 #import "PSPDFBaseTableViewController.h"
+#import "PSPDFStatefulViewControllerProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, PSPDFStatefulTableViewState) {
-    /// Controller is querying data.
-    PSPDFStatefulTableViewStateLoading,
-    /// Controller finished loading, has no data.
-    PSPDFStatefulTableViewStateEmpty,
-    /// Controller has data.
-    PSPDFStatefulTableViewStateFinished
-} PSPDF_ENUM_AVAILABLE;
-
 /// Shows a message when the controller is empty.
-PSPDF_CLASS_AVAILABLE @interface PSPDFStatefulTableViewController : PSPDFBaseTableViewController
+PSPDF_CLASS_AVAILABLE @interface PSPDFStatefulTableViewController : PSPDFBaseTableViewController<PSPDFStatefulViewControllerProtocol>
 
 /// Empty view.
 @property (nonatomic, nullable) UIView *emptyView;
@@ -34,10 +26,10 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFStatefulTableViewController : PSPDFBaseTab
 
 /// Receives the current controller state.
 /// @note This is KVO observable.
-@property (nonatomic) PSPDFStatefulTableViewState controllerState;
+@property (nonatomic) PSPDFStatefulViewState controllerState;
 
 /// Sets the controller state and shows/hides the `emptyView`/`loadingView` depending on the state.
-- (void)setControllerState:(PSPDFStatefulTableViewState)controllerState animated:(BOOL)animated;
+- (void)setControllerState:(PSPDFStatefulViewState)controllerState animated:(BOOL)animated;
 
 @end
 

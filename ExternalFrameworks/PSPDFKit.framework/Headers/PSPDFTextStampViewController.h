@@ -2,7 +2,7 @@
 //  PSPDFTextStampViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,15 +10,15 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFStaticTableViewController.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFStaticTableViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFStampAnnotation, PSPDFTextStampViewController;
 
 /// Delegate to be notified on signature actions.
-PSPDF_AVAILABLE_DECL @protocol PSPDFTextStampViewControllerDelegate <PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFTextStampViewControllerDelegate<PSPDFOverridable>
 
 @optional
 

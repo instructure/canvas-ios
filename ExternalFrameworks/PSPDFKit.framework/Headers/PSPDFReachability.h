@@ -2,7 +2,7 @@
 //  PSPDFReachability.h
 //  PSPDFModel
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, PSPDFReachability) {
     PSPDFReachabilityUnreachable,
     PSPDFReachabilityWiFi,
     /// iOS only
-    PSPDFReachabilityWWAN
+    PSPDFReachabilityWWAN,
 } PSPDF_ENUM_AVAILABLE;
 
 NS_ASSUME_NONNULL_END

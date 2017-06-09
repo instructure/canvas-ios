@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "Slijedeća";
 "Previous" = "Prethodna";
 "Error" = "Greška";
+"More options" = "Više opcija";
+"Close All Tabs" = "Zatvori sve kartice";
+"Close All Other Tabs" = "Zatvori sve preostale kartice"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Sadržaj"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "Pretražujem";
 "Done" = "Izvršeno";
 "Indexing Documents" = "Indeksiranje dokumenta";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Dokument nema sadržaja";
+"Document" = "Dokument";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Pretraži oznake";
 
 // inline browser
 "Open in Safari" = "Otvori koristeći Safari";
 "Open in Chrome" = "Otvori koristeći Chrome";
 "Your %@ is not configured to send emails." = "Vaš %@ nije podešen za slanje e-pošte";
-"The link is requesting to open %@Would you like to continue?" = "Poveznica zahtjeva otvaranje %@Želite li nastaviti?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Poveznica zahtjeva otvaranje %1$@. %2$@Želite li nastaviti?";
 "an external application" = "vanjsku aplikaciju"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "Pošta"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "Tekst kopiran u međuspremnik.";
-"Save To Camera Roll" = "Spremi u galeriju";
+"Save to Photo Library" = "Spremi u fotoalbum";
 "Failed to extract image." = "Neuspješno raspakiranje slike.";
 "Type value or pick from list" = "Upišite vrijednost ili odaberite s liste.";
 
@@ -120,7 +125,7 @@
 "Size" = "Veličina";
 "Font" = "Font";
 "Fonts" = "Fontovi";
-"All Fonts" = "All Fonts";
+"All Fonts" = "Svi fontovi";
 "Downloadable Fonts" = "Fontovi dostupni za preuzimanje";
 "Search Fonts" = "Pretraži fontove";
 "Choose Color" = "Odaberi boju";
@@ -128,12 +133,12 @@
 "Rainbow" = "Duga";
 "Monochrome" = "Jednobojno";
 "Vintage" = "Tradicionalno";
+"Modern" = "Moderno";
 "Color" = "Boja";
 "Border" = "Okvir";
 "Fill Color" = "Boja ispunjenja";
-"Line End Fill Color" = "Boja ispunjenja kraja linije";
+"Start and End Color" = "Početna i završna boja";
 "Opacity" = "Prozirnost";
-"%@ %%" = "%@ %%";
 "Thickness" = "Debljina";
 "%@ pt" = "%@ pt";
 "Yellow" = "Žuta";
@@ -152,8 +157,9 @@
 "Highlight" = "Osvjetli";
 "Underline" = "Podcrtaj";
 "Squiggle" = "Podcrtaj valovito";
+"Squiggly" = "Valovito podcrtano";
 "StrikeOut" = "Prekriżi";
-"Rectangle" = "Rectangle";
+"Rectangle" = "Pravokutnik";
 "Ellipse" = "Elipsa";
 "Line" = "Linija"; // something that can be drawn
 "Lines" = "Linije"; // "5 Lines" were drawn
@@ -176,7 +182,7 @@
 "Remove Signature" = "Ukloni potpis";
 "My Signature" = "Moj potpis";
 "No Signatures" = "Nema potpisa"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Potpis korisnika";
+"One Time Signature" = "Potpis korisnika";
 "Please sign here" = "Molimo potpišite ovdje";
 "Note" = "Bilješka";
 "Text" = "Tekst";
@@ -209,7 +215,8 @@
 "Ungroup" = "Odgrupiraj";
 "Merge" = "Spoji"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Primjer";
-"Annotation Summary for %@:\n" = "Izvještaj o oznaci za %@:\n";
+"Annotation Summary for %@:" = "Izvještaj o oznaci za %@:";
+"Show Text" = "Prikaži tekst";
 // title
 "Author Name" = "Ime autora";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "Povuci"; // used as hint that inspector is resizable
 "Convert to" = "Promijeni u"; // used as label on action that changes free text intent type
 "Color Presets" = "Prijedlozi boja";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Oblačić"; // freetext annotation with an arrow
 "Generic" = "Generički"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "Široke točkice";
 "Narrow Dashes" = "Crtice";
 "Wide Dashes" = "Široke crtice";
+"Cloudy" = "Oblačić"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Odobreno";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Uparivanje";
 // text on a label; app and stylus are connected
-"Connected" = "Povezano";
+"%@ Connected" = "%@ Povezano";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Prekinuto";
+"%@ Disconnected" = "%@ Prekinuto";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Postavke";
 
@@ -350,9 +359,9 @@
 "Add Documents" = "Dodaj dokument"; // button in tabbed bar that shows document picker to open new documents
 
 // PSPDFDocumentSharingViewController
-"Pages %tu-%tu" = "Pages %tu-%tu"; // Range of pages
+"Pages %tu-%tu" = "Stranice %tu-%tu"; // Range of pages
 "Current Page" = "Trenutna stranica";
-"Current Page (%tu)" = "Current Page (%tu)";
+"Current Page (%tu)" = "Trenutna stranica (%tu)";
 "Ignore Annotations" = "Zanemari oznake";
 "The PDF will not contain any annotations." = "PDF neće sadržavati oznake";
 "Embed Annotations" = "Ugradi oznake";
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Oznake su prikazane u PDF-u i moći će se samo isčitavati.";
 "Annotation Summary" = "Izvještaj o oznakama";
 "Embed Annotations into the PDF and also list them in the email." = "Ugradi oznake u PDF i ispiši ih u e-pošti.";
+"Annotations will be listed in a text file." = "Oznake će biti izlistane u tekstualnoj datoteci.";
 "Files" = "Datoteke";
 "Send as single files" = "Pošalji kao zasebne datoteke";
 "Merge files" = "Spoji datoteke";
-"Original File" = "Original File";
-"Range" = "Range";
-"Annotated Pages" = "Annotated Pages";
+"Original File" = "Izvorna datoteka";
+"Range" = "Raspon";
+"Annotated Pages" = "Označene stranice";
+"Message could not be sent." = "Poruku nije bilo moguće poslat.";
+"Export" = "Izvezi";
+"This action can't be performed." = "Odabranu radnju nije moguće izvesti.";
 
 // sound annotations
 "Speak" = "Govori"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Polje s odabirom";
 "Signature Field" = "Polje za potpis";
 "Clear Field" = "Očisti polje"; // same as delete
-"Type value or pick from list" = "Unesite vrijednost ili odaberite sa liste";
 "Default Values" = "Početne vrijednosti";
 "Custom Value" = "Podešena vrijednost";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Neodgovarajuća vrijednost: mora biti manje ili jednako %s.";
 "Invalid value: must be a number." = "Neodgovarajuća vrijednost: mora biti broj.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Neodgovarajuća vrijednost: mora biti datum.";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Rotiraj stranice";
 "Page Size" = "Veličina stranice";
 "Background Color" = "Boja pozadine";
+"Paper" = "Papir";
 "Pattern" = "Obrazac";
 "Use Document Size" = "Koristi veličinu dokumenta";
 "Orientation" = "Orijentacija";
 "Portrait" = "Portret";
 "Landscape" = "Pejzaž";
-"Name" = "Naziv";
 "Document Name" = "Naziv dokumenta";
 "Documents" = "Dokumenti"; // Name of directory
-"Use Document Directory" = "Koristi direktorij dokumenta";
-"Directory" = "Direktorij";
+"Use Document Folder" = "Koristi direktorij dokumenta";
+"Folder" = "Mapa";
 "Replace File?" = "Zamjeniti datoteku?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Datoteka naziva \"%@\" već postoji na odabranoj lokaciji. Želite li ju zamijeniti?";
 "Replace" = "Zamijeni";
@@ -543,6 +555,15 @@
 "Save As…" = "Spremi kao…";
 "Discard Changes" = "Odbaci izmjene";
 "Empty" = "Prazno";
+"Use Image Size" = "Koristi veličinu slike";
+"Page Background" = "Pozadina stranice";
+"Insert image annotation" = "Uvezi slikovnu oznaku";
+"Import page background" = "Uvezi pozadinu stranice";
+"Quality" = "Kvaliteta";
+"Low" = "Niska";
+"Medium" = "Srednja";
+"High" = "Visoka";
+"Best" = "Najbolja";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Nije moguće spremiti prazan dokument.";
@@ -563,13 +584,34 @@
 "US Legal" = "US Legal";
 
 // Page Export
-"Export Pages" = "Export Pages";
-"Export…" = "Export…";
-"Exporting…" = "Exporting…";
-"Exported" = "Exported";
-"%@ - Exported" = "%@ - Exported"; // Format for the default filename during export (%@ = existing filename)
-"%@ - Copy" = "%@ - Copy"; // Format for the default filename during save as (%@ = existing filename)
-"The selected document is currently open. Please choose a different filename." = "The selected document is currently open. Please choose a different filename.";
+"Export Pages" = "Izvezi stranice";
+"Export…" = "Izvoz…";
+"Exporting…" = "Izvozim…";
+"Exported" = "Izveženo";
+"%@ - Exported" = "%@ - Izveženo"; // Format for the default filename during export (%@ = existing filename)
+"%@ - Copy" = "%@ - Kopirano"; // Format for the default filename during save as (%@ = existing filename)
+"The selected document is currently open. Please choose a different filename." = "Odabrani dokument je trenutno otvoren. Molimo odaberite drugi naziv za datoteku.";
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Text-u-govor usluga nije dostupna. Provjerite imate li aktivnu internet konekciju ili Google Text-to-speech engine instaliran na vašem uređaju.";
+
+// Settings
+"Page Transition" = "Stranični prijelaz";
+"Single" = "Jednostruko";
+"Continuous" = "Kontinuirano";
+"Curl" = "Listanje";
+"Scroll" = "Kretanje";
+"Horizontal" = "Horizontalno";
+"Vertical" = "Vertikalno";
+"Page Mode" = "Stranični mod";
+"Automatic" = "Automatski";
+"Double" = "Dvostruko";
+"Appearance" = "Izgled";
+"Scrubber Bar" = "Pomična traka";
+"Jump" = "Skok"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Nije dostupno"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "Aplikacija nema pristup vašim fotografijama.";
+"This app does not have access to your camera." = "Aplikacija nema pristup vašoj kameri.";
+"You can enable access in Privacy Settings." = "Pristup možete omogućiti u postavkama sigurnosti.";

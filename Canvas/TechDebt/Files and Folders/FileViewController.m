@@ -40,6 +40,7 @@
 @import CanvasKeymaster;
 @import AssignmentKit;
 @import SoPersistent;
+@import SoAnnotated_PreSubmission;
 
 // TODO: REMOVE
 

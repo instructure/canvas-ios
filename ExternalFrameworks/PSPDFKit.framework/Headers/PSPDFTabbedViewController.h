@@ -2,7 +2,7 @@
 //  PSPDFTabbedViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFDocumentPickerController, PSPDFTabbedBar, PSPDFTabbedViewController;
 
+/// Possible values for `PSPDFTabbedViewController`’s `barHidingMode` property.
 typedef NS_ENUM(NSInteger, PSPDFTabbedViewControllerBarHidingMode) {
     /// Hide the tabbed bar only when there are no loaded documents.
     PSPDFTabbedViewControllerBarHidingModeAutomatic,
@@ -25,8 +26,20 @@ typedef NS_ENUM(NSInteger, PSPDFTabbedViewControllerBarHidingMode) {
     PSPDFTabbedViewControllerBarHidingModeHide,
 } PSPDF_ENUM_AVAILABLE;
 
+/// Possible values for `PSPDFTabbedViewController`’s `closeMode` property.
+typedef NS_ENUM(NSInteger, PSPDFTabbedViewControllerCloseMode) {
+    /// Only show the close button on the selected tab.
+    PSPDFTabbedViewControllerCloseModeOnlySelectedTab,
+    /// Show the close button on all tabs.
+    PSPDFTabbedViewControllerCloseModeAllTabs,
+    /// Show the close button on all tabs in regular width size classes and only on the selected tab in compact width size classes.
+    PSPDFTabbedViewControllerCloseModeSizeDependent,
+    /// Does not let the user close tabs. This setting hides the close button on all tabs and disables swipe-to-delete in `PSPDFMultiDocumentListController`.
+    PSPDFTabbedViewControllerCloseModeDisabled,
+} PSPDF_ENUM_AVAILABLE;
+
 /// Delegate for the `PSPDFTabbedViewController`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFTabbedViewControllerDelegate <PSPDFMultiDocumentViewControllerDelegate>
+PSPDF_AVAILABLE_DECL @protocol PSPDFTabbedViewControllerDelegate<PSPDFMultiDocumentViewControllerDelegate>
 
 @optional
 
@@ -45,6 +58,8 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFTabbedViewControllerDelegate <PSPDFMultiDocu
 @end
 
 /// Allows displaying multiple `PSPDFDocuments`, easily switchable via a top tab bar.
+/// Defaults to not showing the document title in the navigation bar and in the overlay, because the title is already displayed in the tab.
+/// You can change this behavior by modifying the `showTitle` property.
 PSPDF_CLASS_AVAILABLE @interface PSPDFTabbedViewController : PSPDFMultiDocumentViewController
 
 /// Inserts a document at the end of the tabbed bar, optionally making it the visible document.
@@ -90,10 +105,9 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTabbedViewController : PSPDFMultiDocumentV
 /// or `PSPDFTabbedViewControllerBarHidingModeShow` if `documentPickerController` is non-nil.
 @property (nonatomic) PSPDFTabbedViewControllerBarHidingMode barHidingMode;
 
-/// A Boolean value that determines whether the user can close documents.
-/// The default is `YES`, which allows the user to close documents (if the delegate also allows this change).
-/// Set to `NO` to hide the close buttons in `PSPDFTabbedBar` and disable swipe-to-delete in `PSPDFMultiDocumentListController`.
-@property (nonatomic) BOOL allowsClosingDocuments;
+/// Determines how the user is able to close documents, which is possible using the close buttons in `PSPDFTabbedBar` and swipe-to-delete in `PSPDFMultiDocumentListController`.
+/// The default is `PSPDFTabbedViewControllerCloseModeOnlySelectedTab`.
+@property (nonatomic) PSPDFTabbedViewControllerCloseMode closeMode;
 
 /// A Boolean value that determines whether a PDF action that opens another PDF document should show this document in a separate tab.
 /// The default is `YES`.
@@ -105,6 +119,16 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTabbedViewController : PSPDFMultiDocumentV
 /// It is not usually necessary to call this, but do so if the navigation bar height changes, for example by setting a prompt while the tabbed bar is visible.
 /// If the navigation bar has just started animating, this will animate the tabbed bar alongside.
 - (void)updateTabbedBarFrameAnimated:(BOOL)animated;
+
+@end
+
+@interface PSPDFTabbedViewController (Deprecated)
+
+/// A Boolean value that determines whether the user can close documents.
+/// Use of this property should be replaced with use of `closeMode`.
+/// `YES` corresponds to `PSPDFTabbedViewControllerCloseModeOnlySelectedTab`.
+/// `NO` corresponds to `PSPDFTabbedViewControllerCloseModeDisabled`.
+@property (nonatomic) BOOL allowsClosingDocuments PSPDF_DEPRECATED(6.1.1, "Use `closeMode` instead.");
 
 @end
 

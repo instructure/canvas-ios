@@ -2,7 +2,7 @@
 //  PSPDFTextSearch.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -18,7 +18,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Search status delegate. All delegates are guaranteed to be called within the main thread.
-PSPDF_AVAILABLE_DECL @protocol PSPDFTextSearchDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFTextSearchDelegate<NSObject>
 
 @optional
 
@@ -27,7 +27,15 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFTextSearchDelegate <NSObject>
 
 /// Search was updated, a new page has been scanned.
 /// Consider `page` a hint. There might be situations where this is called with a larger set of search results. page in this case is set to `NSNotFound`.
-- (void)didUpdateSearch:(PSPDFTextSearch *)textSearch term:(NSString *)searchTerm newSearchResults:(NSArray<PSPDFSearchResult *> *)searchResults page:(NSUInteger)page;
+- (void)didUpdateSearch:(PSPDFTextSearch *)textSearch term:(NSString *)searchTerm newSearchResults:(NSArray<PSPDFSearchResult *> *)searchResults pageIndex:(NSUInteger)pageIndex;
+
+/**
+ Called when a text search operation was aborted due to an error.
+
+ @param textSearch The text search operation which was stopped.
+ @param error The error for which it was stopped.
+ */
+- (void)didFailSearch:(PSPDFTextSearch *)textSearch withError:(NSError *)error;
 
 /// Search has finished.
 - (void)didFinishSearch:(PSPDFTextSearch *)textSearch term:(NSString *)searchTerm searchResults:(NSArray<PSPDFSearchResult *> *)searchResults isFullSearch:(BOOL)isFullSearch pageTextFound:(BOOL)pageTextFound;
@@ -40,7 +48,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFTextSearchDelegate <NSObject>
 /// Manages search operations for a specific document.
 /// You can copy this class to be able to use it on your custom class. (and set a different delegate)
 /// Copying will preserve all settings except the delegate.
-PSPDF_CLASS_AVAILABLE @interface PSPDFTextSearch : NSObject <NSCopying>
+PSPDF_CLASS_AVAILABLE @interface PSPDFTextSearch : NSObject<NSCopying>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 

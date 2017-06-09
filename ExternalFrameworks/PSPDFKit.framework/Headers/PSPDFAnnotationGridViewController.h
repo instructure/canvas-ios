@@ -2,7 +2,7 @@
 //  PSPDFAnnotationGridViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,17 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFBaseViewController.h"
-#import "PSPDFStyleable.h"
 #import "PSPDFAnnotationSet.h"
+#import "PSPDFBaseViewController.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFStyleable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFAnnotationGridViewController, PSPDFAnnotationSetCell;
 
 /// Delegate to be notified on signature actions.
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationGridViewControllerDelegate <PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationGridViewControllerDelegate<PSPDFOverridable>
 
 @optional
 
@@ -33,7 +33,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationGridViewControllerDelegate <PSPDFO
 
 @end
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationGridViewControllerDataSource <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationGridViewControllerDataSource<NSObject>
 
 /// Returns number of sections.
 - (NSInteger)numberOfSectionsInAnnotationGridViewController:(PSPDFAnnotationGridViewController *)annotationGridController;
@@ -46,10 +46,9 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationGridViewControllerDataSource <NSOb
 
 @end
 
-
 /// Allows saving/loading of stored annotations.
 /// Annotations are stored securely in the keychain.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationGridViewController : PSPDFBaseViewController <PSPDFStyleable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationGridViewController : PSPDFBaseViewController<PSPDFStyleable>
 
 /// Delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationGridViewControllerDelegate> delegate;

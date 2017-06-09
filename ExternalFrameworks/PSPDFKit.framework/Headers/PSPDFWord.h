@@ -2,7 +2,7 @@
 //  PSPDFWord.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,12 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFGlyph;
 
 /// Represents a word. Formed out of (usually) multiple glyphs.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFWord : NSObject <NSCopying, NSSecureCoding>
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFWord : NSObject<NSCopying, NSSecureCoding>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Initialize with glyphs (`PSPDFGlyph`).
-/// As an optimizations, only the first and last glyph will be used for frame calculations.
 - (instancetype)initWithGlyphs:(NSArray<PSPDFGlyph *> *)wordGlyphs pageRotation:(NSUInteger)pageRotation NS_DESIGNATED_INITIALIZER;
 
 /// Initialize with word frame.
@@ -32,6 +31,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, readonly) NSString *stringValue;
 
 /// All glyphs merged together in the smallest possible bounding box.
+/// As an optimization, only the first and last glyph will be used for frame calculations.
 @property (nonatomic) CGRect frame;
 
 /// All `PSPDFGlyph` objects.

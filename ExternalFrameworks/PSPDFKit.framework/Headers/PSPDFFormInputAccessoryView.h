@@ -2,7 +2,7 @@
 //  PSPDFFormInputAccessoryView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Notification when someone pressed "Clear Field".
-PSPDF_EXPORT NSString *const PSPDFFormInputAccessoryViewDidPressClearButtonNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFFormInputAccessoryViewDidPressClearButtonNotification;
 
 /// Toolbar for Next|Previous controls for Form Elements.
 PSPDF_CLASS_AVAILABLE @interface PSPDFFormInputAccessoryView : UIView
@@ -34,7 +34,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFFormInputAccessoryView : UIView
 - (void)updateToolbar;
 
 @end
-
 
 @interface PSPDFFormInputAccessoryView (SubclassingHooks)
 

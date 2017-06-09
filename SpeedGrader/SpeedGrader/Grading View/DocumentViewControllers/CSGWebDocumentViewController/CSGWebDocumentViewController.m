@@ -494,7 +494,7 @@ static NSTimeInterval const CSGWebDocumentControllerDefaultAnimationDuration = 0
             NSURL *goodURL = components.URL;
             if (goodURL != nil) {
                 // NEW ANNOTATIONS FTW!
-                [CanvadocsPDFDocumentPresenter loadPDFViewController:goodURL completed:^(UIViewController *pdfViewController, NSArray *errors) {
+                [CanvadocsPDFDocumentPresenter loadPDFViewController:goodURL with:[AppAnnotationsConfiguration canvasAndSpeedgraderConfig] completed:^(UIViewController *pdfViewController, NSArray *errors) {
                     if (pdfViewController != nil) {
                         if (self.pspdfViewController) {
                             [self.pspdfViewController.view removeFromSuperview];

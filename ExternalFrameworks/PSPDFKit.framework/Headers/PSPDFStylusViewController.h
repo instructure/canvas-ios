@@ -2,7 +2,7 @@
 //  PSPDFStylusViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFStylusViewControllerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFStylusViewControllerDelegate<NSObject>
 
 /// The driver class has been changed.
 - (void)stylusViewControllerDidUpdateSelectedType:(PSPDFStylusViewController *)stylusViewController;

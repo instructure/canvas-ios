@@ -2,7 +2,7 @@
 //  PSPDFPageView+AnnotationMenu.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -21,18 +21,18 @@ PSPDF_EXPORT const char *PSPDFImagePickerTargetPoint;
 
 @interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate, PSPDFNoteAnnotationViewControllerDelegate, PSPDFFontPickerViewControllerDelegate, PSPDFTextSelectionViewDelegate>
 
-/// Returns available `PSPDFMenuItem's` for the current annotation.
+/// Returns available `PSPDFMenuItem`s for the current annotation.
 /// The better way to extend this is to use the `shouldShowMenuItems:*` delegates.
-- (NSArray<PSPDFMenuItem *> *)menuItemsForAnnotations:(nullable NSArray<PSPDFAnnotation *> *)annotations;
+- (NSArray<PSPDFMenuItem *> *)menuItemsForAnnotations:(NSArray<PSPDFAnnotation *> *)annotations;
 
 /// Menu for new annotations (can be disabled in `PSPDFViewController`)
 - (NSArray<PSPDFMenuItem *> *)menuItemsForNewAnnotationAtPoint:(CGPoint)point;
 
-/// Returns available `PSPDFMenuItem's` to change the color.
+/// Returns available `PSPDFMenuItem`s to change the color.
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray<PSPDFMenuItem *> *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Returns available `PSPDFMenuItem's` to change the fill color (only applies to certain annotations)
+/// Returns available `PSPDFMenuItem`s to change the fill color (only applies to certain annotations)
 - (NSArray<PSPDFMenuItem *> *)fillColorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Returns the opacity menu item
@@ -127,7 +127,7 @@ PSPDF_EXPORT NSString *const PSPDFAnnotationMenuPreviewFile; // File annotations
 
 /// Annotation Style
 PSPDF_EXPORT NSString *const PSPDFAnnotationMenuInspector;
-PSPDF_EXPORT NSString *const PSPDFAnnotationMenuStyle;       // Highlight annotations on iPhone
+PSPDF_EXPORT NSString *const PSPDFAnnotationMenuStyle; // Highlight annotations on iPhone
 
 /// Colors
 /// For menu colors, we use PSPDFAnnotationMenuColor_index_colorName.

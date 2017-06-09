@@ -2,7 +2,7 @@
 //  PSPDFCryptor.h
 //  AESCryptor
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,9 +19,9 @@ PSPDF_EXPORT NSString *const PSPDFCryptorErrorDomain;
 typedef NS_ENUM(NSInteger, PSPDFCryptorErrorCode) {
     PSPDFCryptorErrorFailedToInitCryptor = 100,
     PSPDFCryptorErrorFailedToProcessFile = 110,
-    PSPDFCryptorErrorInvalidIV           = 200,
-    PSPDFCryptorErrorWritingOutputFile   = 600,
-    PSPDFCryptorErrorReadingInputFile   = 700
+    PSPDFCryptorErrorInvalidIV = 200,
+    PSPDFCryptorErrorWritingOutputFile = 600,
+    PSPDFCryptorErrorReadingInputFile = 700,
 } PSPDF_ENUM_AVAILABLE;
 
 /// Simple class that encrypts/decrypts files in a format compatible to `PSPDFAESCryptoDataProvider`.
@@ -55,7 +55,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFCryptor : NSObject
 - (BOOL)decryptFromURL:(NSURL *)sourceURL toURL:(NSURL *)targetURL passphrase:(NSString *)passphrase error:(NSError **)error;
 
 /// Dependency injection property
-@property (nonatomic, nullable) id <PSPDFFileManager> fileManager;
+@property (nonatomic, nullable) id<PSPDFFileManager> fileManager;
 
 @end
 

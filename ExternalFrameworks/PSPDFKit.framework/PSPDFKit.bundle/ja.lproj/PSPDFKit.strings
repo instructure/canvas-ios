@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "次へ";
 "Previous" = "前へ";
 "Error" = "エラー";
+"More options" = "その他のオプション";
+"Close All Tabs" = "すべてのタブを閉じる";
+"Close All Other Tabs" = "他のすべてのタブを閉じる"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "アウトライン"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "検索中";
 "Done" = "完了";
 "Indexing Documents" = "書類の索引を作成中";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "書類に内容がありません";
+"Document" = "書類";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "注釈を検索";
 
 // inline browser
 "Open in Safari" = "Safariで開く";
 "Open in Chrome" = "Chromeで開く";
 "Your %@ is not configured to send emails." = "%@はメールを送信するよう設定されていません。";
-"The link is requesting to open %@Would you like to continue?" = "リンクが%@を開くよう要求しています。続けてよろしいですか。";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "リンクは%1$@を開く要求をしています。%2$@続けますか。"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "外部アプリケーション"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "メール"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "テキストをクリップボードにコピーしました。";
-"Save To Camera Roll" = "カメラロールに保存";
+"Save to Photo Library" = "フォトライブラリに保存";
 "Failed to extract image." = "イメージを抽出できませんでした。";
 "Type value or pick from list" = "値を入力するか、リストから選んでください";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "虹";
 "Monochrome" = "モノクロ";
 "Vintage" = "ビンテージ";
+"Modern" = "モダン";
 "Color" = "カラー";
 "Border" = "境界線";
 "Fill Color" = "塗りつぶしのカラー";
-"Line End Fill Color" = "線の終点の塗りつぶしの色";
+"Start and End Color" = "開始と終了のカラー";
 "Opacity" = "不透明度";
-"%@ %%" = "%@ %%";
 "Thickness" = "太さ";
 "%@ pt" = "%@pt";
 "Yellow" = "イエロー";
@@ -152,6 +157,7 @@
 "Highlight" = "ハイライト";
 "Underline" = "アンダーライン";
 "Squiggle" = "曲線";
+"Squiggly" = "波線";
 "StrikeOut" = "取り消し線";
 "Rectangle" = "長方形";
 "Ellipse" = "楕円形";
@@ -176,7 +182,7 @@
 "Remove Signature" = "署名を削除";
 "My Signature" = "自分の署名";
 "No Signatures" = "署名がありません"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "カスタマーの署名";
+"One Time Signature" = "署名（1度だけ必要）";
 "Please sign here" = "こちらに署名してください";
 "Note" = "メモ";
 "Text" = "テキスト";
@@ -209,7 +215,8 @@
 "Ungroup" = "グループ解除";
 "Merge" = "結合"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "サンプル";
-"Annotation Summary for %@:\n" = "%@の注釈の概要：";
+"Annotation Summary for %@:" = "%@の注釈の概要：";
+"Show Text" = "テキストを表示";
 // title
 "Author Name" = "著者名";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "ドラッグしてサイズ変更"; // used as hint that inspector is resizable
 "Convert to" = "変換"; // used as label on action that changes free text intent type
 "Color Presets" = "カラープリセット";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "コールアウト"; // freetext annotation with an arrow
 "Generic" = "一般"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "ドット（大）";
 "Narrow Dashes" = "ハイフン（短）";
 "Wide Dashes" = "ハイフン（長）";
+"Cloudy" = "雲"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "承認済み";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "ペアリング";
 // text on a label; app and stylus are connected
-"Connected" = "接続中";
+"%@ Connected" = "%@が接続されています";
 // text on a label; app and stylus are not connected
-"Disconnected" = "接続が解除されました";
+"%@ Disconnected" = "%@が接続解除されました";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "設定";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "注釈はPDFにレンダリングされ、読み出し専用となります。";
 "Annotation Summary" = "注釈の概要";
 "Embed Annotations into the PDF and also list them in the email." = "PDFに注釈を埋め込み、またメールにリスト表示します。";
+"Annotations will be listed in a text file." = "注釈はテキストファイルに表示されます。";
 "Files" = "ファイル";
 "Send as single files" = "1つのファイルとして送信";
 "Merge files" = "ファイルを結合";
 "Original File" = "オリジナル書類";
 "Range" = "範囲";
 "Annotated Pages" = "注釈付きのページ";
+"Message could not be sent." = "メッセージを送信できませんでした。";
+"Export" = "書き出す";
+"This action can't be performed." = "このアクションを実行できません。";
 
 // sound annotations
 "Speak" = "読み上げ"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "選択フィールド";
 "Signature Field" = "署名フィールド";
 "Clear Field" = "フィールドを消去"; // same as delete
-"Type value or pick from list" = "値を入力するか、リストから選んでください";
 "Default Values" = "デフォルト値";
 "Custom Value" = "カスタム値";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "値が無効です：値は%s以下である必要があります。";
 "Invalid value: must be a number." = "値が無効です：数値を使用してください。";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "値が無効です：日付を入力してください。";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "ページを回転";
 "Page Size" = "ページサイズ";
 "Background Color" = "背景カラー";
+"Paper" = "用紙";
 "Pattern" = "フォーム要素";
 "Use Document Size" = "書類サイズを使用";
 "Orientation" = "方向";
 "Portrait" = "縦向き";
 "Landscape" = "横向き";
-"Name" = "名前";
 "Document Name" = "書類名";
 "Documents" = "書類"; // Name of directory
-"Use Document Directory" = "書類ディレクトリを使用";
-"Directory" = "ディレクトリ";
+"Use Document Folder" = "書類フォルダを使用";
+"Folder" = "フォルダ";
 "Replace File?" = "ファイルを置き換えますか？";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "選択した保存先には“%@”というファイルがすでに存在します。置き換えますか？";
 "Replace" = "置き換え";
@@ -543,6 +555,15 @@
 "Save As…" = "別名で保存…";
 "Discard Changes" = "変更を破棄";
 "Empty" = "なし";
+"Use Image Size" = "イメージのサイズを使用";
+"Page Background" = "ページの背景";
+"Insert image annotation" = "イメージ注釈を挿入";
+"Import page background" = "ページの背景を読み込む";
+"Quality" = "品質";
+"Low" = "低";
+"Medium" = "中";
+"High" = "高";
+"Best" = "最高";
 
 // Document Editor Errors
 "A blank document can not be saved." = "空白の書類は保存できません。";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "テキスト読み上げサービスは現在使用できません。インターネットに接続されている、またはGoogleのテキスト読み上げエンジンが使用中のデバイスにインストールされ有効になっていることをご確認ください。";
+
+// Settings
+"Page Transition" = "ページトランジション";
+"Single" = "シングル";
+"Continuous" = "連続";
+"Curl" = "カール";
+"Scroll" = "スクロール";
+"Horizontal" = "横方向";
+"Vertical" = "縦方向";
+"Page Mode" = "ページモード";
+"Automatic" = "自動";
+"Double" = "ダブル";
+"Appearance" = "アピアランス";
+"Scrubber Bar" = "スクラバー・バー";
+"Jump" = "ジャンプ"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "利用できません"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "このAppは写真へのアクセスがありません。";
+"This app does not have access to your camera." = "このAppはカメラへのアクセスがありません。";
+"You can enable access in Privacy Settings." = "設定の“プライバシー”からアクセスを許可できます。";

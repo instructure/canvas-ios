@@ -2,7 +2,7 @@
 //  PSPDFX509.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFRSAKey.h"
 #import "PSPDFMacros.h"
+#import "PSPDFRSAKey.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,7 +27,12 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFX509 : NSObject
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/// Initializes the certificate with an OpenSSL X509 type.
+/**
+ Initializes the certificate with an OpenSSL X509 type.
+
+ @param x509 The X509 certificate that this class encapsulates. Note that PSPDFX509 assumes ownership of this object and calls `X509_free()` on it when deallocated.
+ @return An instance of `PSPDFX509`.
+ */
 - (instancetype)initWithX509:(OPENSSL_X509)x509 NS_DESIGNATED_INITIALIZER;
 
 /// The underlying OpenSSL X509 object.

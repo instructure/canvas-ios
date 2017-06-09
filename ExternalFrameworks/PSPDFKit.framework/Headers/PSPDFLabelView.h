@@ -2,7 +2,7 @@
 //  PSPDFLabelView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -53,8 +53,8 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFLabelView : UIView
 /// Defaults to `UIBlurEffectStyleExtraLight`.
 @property (nonatomic) UIBlurEffectStyle blurEffectStyle UI_APPEARANCE_SELECTOR;
 
-/// Eual to `label.textColor`, but can also be used with `UIAppearance`.
-/// Defaults to black. 
+/// Equal to `label.textColor`, but can also be used with `UIAppearance`.
+/// Defaults to black.
 @property (nonatomic) UIColor *textColor UI_APPEARANCE_SELECTOR;
 
 @end

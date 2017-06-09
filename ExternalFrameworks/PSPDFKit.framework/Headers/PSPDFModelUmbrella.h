@@ -2,7 +2,7 @@
 //  PSPDFModelUmbrella.h
 //  PSPDFModel
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,31 +11,37 @@
 //
 
 // @category: Common
-#import "PSPDFEnvironment.h"
-#import "PSPDFMacros.h"
-#import "PSPDFVersion.h"
-#import "PSPDFOverridable.h"
-#import "PSPDFKitObject.h"
-#import "PSPDFLogging.h"
-#import "PSPDFLocalization.h"
-#import "PSPDFError.h"
-#import "PSPDFDocument.h"
+#import "PSPDFBaseConfiguration.h"
 #import "PSPDFDocument+DataDetection.h"
+#import "PSPDFDocument.h"
 #import "PSPDFDocumentDelegate.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFDocumentProviderDelegate.h"
-#import "PSPDFRenderManager.h"
-#import "PSPDFPageInfo.h"
-#import "PSPDFRenderQueue.h"
-#import "PSPDFRenderJob.h"
-#import "PSPDFModel.h"
-#import "PSPDFModel+NSCoding.h"
+#import "PSPDFEnvironment.h"
+#import "PSPDFError.h"
 #import "PSPDFFileManager.h"
+#import "PSPDFFilePresenterCoordinator.h"
+#import "PSPDFFoundationExport.h"
+#import "PSPDFKitObject.h"
+#import "PSPDFLocalization.h"
+#import "PSPDFLogging.h"
+#import "PSPDFMacros.h"
+#import "PSPDFModel+NSCoding.h"
+#import "PSPDFModel.h"
+#import "PSPDFNamespace.h"
+#import "PSPDFOverridable.h"
+#import "PSPDFPageBinding.h"
+#import "PSPDFPageInfo.h"
+#import "PSPDFRenderManager.h"
+#import "PSPDFRenderQueue.h"
+#import "PSPDFRenderRequest.h"
+#import "PSPDFRenderTask.h"
+#import "PSPDFVersion.h"
 
 // @category Networking
-#import "PSPDFReachability.h"
 #import "PSPDFDownloadManager.h"
 #import "PSPDFDownloadManagerPolicy.h"
+#import "PSPDFReachability.h"
 #import "PSPDFRemoteContentObject.h"
 #import "PSPDFRemoteFileObject.h"
 
@@ -47,132 +53,146 @@
 #import "PSPDFProcessorSaveOptions.h"
 
 // @category: Data Provider
-#import "PSPDFDataProvider.h"
+#import "PSPDFCoordinatedFileDataProvider.h"
 #import "PSPDFDataContainerProvider.h"
+#import "PSPDFDataContainerSink.h"
+#import "PSPDFDataProvider.h"
 #import "PSPDFDataSink.h"
 #import "PSPDFFile.h"
-#import "PSPDFDataContainerSink.h"
 #import "PSPDFFileDataProvider.h"
 #import "PSPDFFileDataSink.h"
+#import "PSPDFileCoordinationDelegate.h"
 
 // @category: Annotations
-#import "PSPDFAnnotationManager.h"
+#import "PSPDFAbstractLineAnnotation.h"
+#import "PSPDFAbstractShapeAnnotation.h"
+#import "PSPDFAbstractTextOverlayAnnotation.h"
 #import "PSPDFAnnotation.h"
-#import "PSPDFAnnotationSet.h"
+#import "PSPDFAnnotationManager.h"
 #import "PSPDFAnnotationProvider.h"
+#import "PSPDFAnnotationSet.h"
+#import "PSPDFAnnotationStyle.h"
+#import "PSPDFAnnotationStyleManager.h"
+#import "PSPDFAnnotationSummarizer.h"
+#import "PSPDFAssetAnnotation.h"
+#import "PSPDFCaretAnnotation.h"
+#import "PSPDFCircleAnnotation.h"
 #import "PSPDFContainerAnnotationProvider.h"
+#import "PSPDFDrawingPoint.h"
+#import "PSPDFFileAnnotation.h"
 #import "PSPDFFileAnnotationProvider.h"
-#import "PSPDFHighlightAnnotation.h"
-#import "PSPDFUnderlineAnnotation.h"
-#import "PSPDFStrikeOutAnnotation.h"
-#import "PSPDFSquigglyAnnotation.h"
 #import "PSPDFFreeTextAnnotation.h"
-#import "PSPDFNoteAnnotation.h"
+#import "PSPDFHighlightAnnotation.h"
 #import "PSPDFInkAnnotation.h"
 #import "PSPDFLineAnnotation.h"
 #import "PSPDFLinkAnnotation.h"
-#import "PSPDFSquareAnnotation.h"
-#import "PSPDFCircleAnnotation.h"
-#import "PSPDFStampAnnotation.h"
-#import "PSPDFCaretAnnotation.h"
-#import "PSPDFPopupAnnotation.h"
-#import "PSPDFWidgetAnnotation.h"
-#import "PSPDFScreenAnnotation.h"
-#import "PSPDFRichMediaAnnotation.h"
-#import "PSPDFFileAnnotation.h"
-#import "PSPDFSoundAnnotation.h"
-#import "PSPDFPolygonAnnotation.h"
+#import "PSPDFNoteAnnotation.h"
 #import "PSPDFPolyLineAnnotation.h"
-#import "PSPDFAppearanceCharacteristics.h"
-#import "PSPDFIconFit.h"
-#import "PSPDFAnnotationSummarizer.h"
-#import "PSPDFAnnotationStyleManager.h"
-#import "PSPDFAnnotationStyle.h"
+#import "PSPDFPolygonAnnotation.h"
+#import "PSPDFPopupAnnotation.h"
+#import "PSPDFRichMediaAnnotation.h"
+#import "PSPDFScreenAnnotation.h"
+#import "PSPDFSoundAnnotation.h"
 #import "PSPDFSoundAnnotationController.h"
-#import "PSPDFAbstractShapeAnnotation.h"
-#import "PSPDFDrawingPoint.h"
-#import "PSPDFAbstractLineAnnotation.h"
-#import "PSPDFAbstractTextOverlayAnnotation.h"
-#import "PSPDFAssetAnnotation.h"
+#import "PSPDFSquareAnnotation.h"
+#import "PSPDFSquigglyAnnotation.h"
+#import "PSPDFStampAnnotation.h"
+#import "PSPDFStrikeOutAnnotation.h"
+#import "PSPDFUnderlineAnnotation.h"
+#import "PSPDFWidgetAnnotation.h"
 
 // @category: Forms
-#import "PSPDFFormParser.h"
-#import "PSPDFFormElement.h"
 #import "PSPDFButtonFormElement.h"
+#import "PSPDFButtonFormField.h"
 #import "PSPDFChoiceFormElement.h"
+#import "PSPDFChoiceFormField.h"
+#import "PSPDFFormElement.h"
+#import "PSPDFFormField.h"
+#import "PSPDFFormOption.h"
+#import "PSPDFFormParser.h"
 #import "PSPDFSignatureFormElement.h"
 #import "PSPDFTextFieldFormElement.h"
+#import "PSPDFTextFormField.h"
 
 // @category: Actions
-#import "PSPDFAction.h"
-#import "PSPDFGoToAction.h"
-#import "PSPDFRemoteGoToAction.h"
-#import "PSPDFEmbeddedGoToAction.h"
-#import "PSPDFURLAction.h"
-#import "PSPDFNamedAction.h"
-#import "PSPDFJavaScriptAction.h"
-#import "PSPDFRenditionAction.h"
-#import "PSPDFRichMediaExecuteAction.h"
 #import "PSPDFAbstractFormAction.h"
-#import "PSPDFSubmitFormAction.h"
-#import "PSPDFResetFormAction.h"
-#import "PSPDFHideAction.h"
+#import "PSPDFAction.h"
 #import "PSPDFBackForwardActionList.h"
+#import "PSPDFEmbeddedGoToAction.h"
+#import "PSPDFGoToAction.h"
+#import "PSPDFHideAction.h"
+#import "PSPDFJavaScriptAction.h"
+#import "PSPDFNamedAction.h"
+#import "PSPDFRemoteGoToAction.h"
+#import "PSPDFRenditionAction.h"
+#import "PSPDFResetFormAction.h"
+#import "PSPDFRichMediaExecuteAction.h"
+#import "PSPDFSubmitFormAction.h"
+#import "PSPDFURLAction.h"
 
 // @category: Digital Signatures
+#import "PSPDFDigitalSignatureReference.h"
 #import "PSPDFPKCS12.h"
 #import "PSPDFPKCS12Signer.h"
 #import "PSPDFRSAKey.h"
 #import "PSPDFSignatureDigest.h"
+#import "PSPDFSignatureInfo.h"
 #import "PSPDFSignatureManager.h"
+#import "PSPDFSignaturePropBuild.h"
+#import "PSPDFSignaturePropBuildEntry.h"
+#import "PSPDFSignatureStatus.h"
+#import "PSPDFSignatureValidator.h"
 #import "PSPDFSigner.h"
 #import "PSPDFX509.h"
-#import "PSPDFSignatureStatus.h"
-#import "PSPDFDigitalSignatureReference.h"
-#import "PSPDFSignatureValidator.h"
 
 // @category: Search
-#import "PSPDFSearchResult.h"
-#import "PSPDFTextSearch.h"
-#import "PSPDFTextParser.h"
 #import "PSPDFGlyph.h"
-#import "PSPDFWord.h"
-#import "PSPDFTextBlock.h"
 #import "PSPDFImageInfo.h"
+#import "PSPDFSearchResult.h"
+#import "PSPDFTextBlock.h"
+#import "PSPDFTextParser.h"
+#import "PSPDFTextSearch.h"
+#import "PSPDFWord.h"
 
-// @category: Full-text Search
+// @category: Full-Text Search
 #import "PSPDFDatabaseEncryptionProvider.h"
-#import "PSPDFLibrary.h"
 #import "PSPDFDocument+Library.h"
+#import "PSPDFFileIndexItemDescriptor.h"
+#import "PSPDFLibrary.h"
+#import "PSPDFLibraryFileSystemDataSource.h"
+#import "PSPDFLibraryPreviewResult.h"
 
 // @category: Outline
-#import "PSPDFOutlineParser.h"
 #import "PSPDFOutlineElement.h"
+#import "PSPDFOutlineParser.h"
 
 // @category: Bookmarks
 #import "PSPDFBookmark.h"
-#import "PSPDFBookmarkParser.h"
+#import "PSPDFBookmarkManager.h"
+#import "PSPDFBookmarkProvider.h"
 
-// @category: Embedded files
+// @category: Metadata
+#import "PSPDFDocumentPDFMetadata.h"
+#import "PSPDFDocumentXMPMetadata.h"
+
+// @category: Embedded Files
 #import "PSPDFEmbeddedFile.h"
-#import "PSPDFEmbeddedFilesParser.h"
 
 // @category: Labels
 #import "PSPDFLabelParser.h"
 
 // @category: Cache
 #import "PSPDFCache.h"
-#import "PSPDFMemoryCache.h"
 #import "PSPDFDiskCache.h"
+#import "PSPDFMemoryCache.h"
 
 // @category: Plugin
-#import "PSPDFPlugin.h"
 #import "PSPDFApplicationPolicy.h"
 
 // @category: XFDF
+#import "PSPDFXFDFAnnotationProvider.h"
 #import "PSPDFXFDFParser.h"
 #import "PSPDFXFDFWriter.h"
-#import "PSPDFXFDFAnnotationProvider.h"
 
 // @category JavaScript
 #import "PSPDFApplicationJSExport.h"
@@ -184,12 +204,12 @@
 #import "PSPDFColorPreset.h"
 
 // @category: Encryption
-#import "PSPDFCryptor.h"
-#import "PSPDFCryptoInputStream.h"
-#import "PSPDFCryptoOutputStream.h"
 #import "PSPDFAESCryptoDataProvider.h"
 #import "PSPDFAESCryptoInputStream.h"
 #import "PSPDFAESCryptoOutputStream.h"
+#import "PSPDFCryptoInputStream.h"
+#import "PSPDFCryptoOutputStream.h"
+#import "PSPDFCryptor.h"
 
 // @category: Undo/Redo
 #import "PSPDFUndoController.h"
@@ -199,7 +219,7 @@
 #import "PSPDFJSONAdapter.h"
 
 // @category: Editing
+#import "PSPDFDocumentEditorConfiguration.h"
 #import "PSPDFNewPageConfiguration.h"
 #import "PSPDFNewPageConfigurationBuilder.h"
 #import "PSPDFRectAlignment.h"
-#import "PSPDFDocumentEditorConfiguration.h"

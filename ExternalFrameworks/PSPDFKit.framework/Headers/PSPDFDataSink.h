@@ -1,8 +1,8 @@
 //
 //  PSPDFDataSink.h
-//  PSPDFModel
+//  PSPDFFoundation
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,14 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// Specifies the type of `PSPDFDataSink` you're requesting.
 typedef NS_OPTIONS(NSUInteger, PSPDFDataSinkOptions) {
     /// No option specified, the returned `PSPDFDataSink` is completely empty and writing starts at the beginning.
-    PSPDFDataSinkOptionNone     = 0,
+    PSPDFDataSinkOptionNone = 0,
 
     /// Append mode. The `PSPDFDataProviders` data will be used as a starting point and writing starts at the end.
-    PSPDFDataSinkOptionAppend   = 0x01
+    PSPDFDataSinkOptionAppend = 0x01
 };
 
 /// This protocol allows `PSPDFDataProvider` to return a object that can be used to re-write/append to a data source.
-PSPDF_AVAILABLE_DECL @protocol PSPDFDataSink <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFDataSink<NSObject>
 
 /// `isFinished` should return `YES` if `finish` has been called. This is used for
 /// consistency checks to make sure writing has actually finished.

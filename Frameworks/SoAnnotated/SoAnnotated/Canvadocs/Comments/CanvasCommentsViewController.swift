@@ -77,26 +77,28 @@ class CanvadocsCommentsViewController: UIViewController {
                     self.comments.append(self.rootComment!)
                     NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: self.rootComment!, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["contents"]])
                     do {
-                        try self.pdfDocument.saveAnnotations()
+                        try self.pdfDocument.save()
                     } catch {}
                 } else if self.rootComment == nil {
                     self.rootComment = PSPDFNoteAnnotation(contents: self.replyToolbar.replyTextView.text)
                     self.rootComment?.boundingBox = self.templateAnnotation?.boundingBox ?? CGRect.zero
-                    self.rootComment?.page = self.templateAnnotation?.page ?? 0
+                    self.rootComment?.pageIndex = self.templateAnnotation?.pageIndex ?? 0
                     self.rootComment?.user = self.templateAnnotation?.user
                     self.rootComment?.isEditable = self.templateAnnotation?.isEditable ?? true
                     self.comments.append(self.rootComment!)
-                    self.pdfDocument.add([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey:true])
+                    self.pdfDocument.add([self.rootComment!], options: [:])
+//                    self.pdfDocument.documentProviderForPage(at: self.rootComment!.pageIndex)?.annotationManager.add([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey: true])
                     self.newThread = false
                 } else {
                     if let firstComment = self.comments.first {
                         // There must be some text on it already, so this must be a reply
                         let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
-                        newAnnotation.page = firstComment.page
+                        newAnnotation.pageIndex = firstComment.pageIndex
                         newAnnotation.boundingBox = firstComment.boundingBox
                         newAnnotation.inReplyTo = firstComment.name
                         self.comments.append(newAnnotation)
-                        self.pdfDocument.add([newAnnotation], options: [PSPDFAnnotationOptionUserCreatedKey:true])
+//                        self.pdfDocument.documentProviderForPage(at: self.rootComment!.pageIndex)?.annotationManager.add([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey: true])
+                        self.pdfDocument.add([self.rootComment!], options: [:])
                     }
                     
                 }

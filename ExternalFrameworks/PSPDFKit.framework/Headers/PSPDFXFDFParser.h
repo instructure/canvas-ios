@@ -2,7 +2,7 @@
 //  PSPDFXFDFParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -26,13 +26,15 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Parse XML and block until it's done. Returns the resulting annotations after parsing is finished
 /// (which can also be accessed later on).
+/// `PSPDFFormField` will not be returned by this method, but if values were imported they are now set in the
+/// appropriate fields on `documentProvider.formParser.formFields`.
 - (nullable NSArray<PSPDFAnnotation *> *)parseWithError:(NSError **)error;
 
 /// Return all annotations as array. Annotations are sorted by page.
 @property (nonatomic, copy, readonly) NSArray<PSPDFAnnotation *> *annotations;
 
 /// Returns YES while we're parsing.
-@property (atomic, readonly, getter = isParsing) BOOL parsing;
+@property (atomic, readonly, getter=isParsing) BOOL parsing;
 
 /// Returns YES if parsing has ended for `inputStream`.
 @property (atomic, readonly) BOOL parsingEnded;
@@ -46,6 +48,6 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @end
 
 /// Converts sound encoding format name from XFDF spec values to PDF spec values
-PSPDF_EXPORT NSString *PSPDFConvertXFDFSoundEncodingToPDF(NSString * _Nullable encoding);
+PSPDF_EXPORT NSString *PSPDFConvertXFDFSoundEncodingToPDF(NSString *_Nullable encoding);
 
 NS_ASSUME_NONNULL_END

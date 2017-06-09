@@ -2,7 +2,7 @@
 //  PSPDFWebViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,7 +19,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Delegate for the `PSPDFWebViewController` to customize URL handling.
-PSPDF_AVAILABLE_DECL @protocol PSPDFWebViewControllerDelegate <PSPDFExternalURLHandler>
+PSPDF_AVAILABLE_DECL @protocol PSPDFWebViewControllerDelegate<PSPDFExternalURLHandler>
 
 @optional
 
@@ -35,29 +35,29 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFWebViewControllerDelegate <PSPDFExternalURLH
 @end
 
 typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
-    PSPDFWebViewControllerAvailableActionsNone             = 0,
-    PSPDFWebViewControllerAvailableActionsOpenInSafari     = 1 << 0,
-    PSPDFWebViewControllerAvailableActionsMailLink         = 1 << 1,
-    PSPDFWebViewControllerAvailableActionsCopyLink         = 1 << 2,
-    PSPDFWebViewControllerAvailableActionsPrint            = 1 << 3,
-    PSPDFWebViewControllerAvailableActionsStopReload       = 1 << 4,
-    PSPDFWebViewControllerAvailableActionsBack             = 1 << 5,
-    PSPDFWebViewControllerAvailableActionsForward          = 1 << 6,
-    PSPDFWebViewControllerAvailableActionsFacebook         = 1 << 7,
-    PSPDFWebViewControllerAvailableActionsTwitter          = 1 << 8,
-    PSPDFWebViewControllerAvailableActionsMessage          = 1 << 9,
+    PSPDFWebViewControllerAvailableActionsNone = 0,
+    PSPDFWebViewControllerAvailableActionsOpenInSafari = 1 << 0,
+    PSPDFWebViewControllerAvailableActionsMailLink = 1 << 1,
+    PSPDFWebViewControllerAvailableActionsCopyLink = 1 << 2,
+    PSPDFWebViewControllerAvailableActionsPrint = 1 << 3,
+    PSPDFWebViewControllerAvailableActionsStopReload = 1 << 4,
+    PSPDFWebViewControllerAvailableActionsBack = 1 << 5,
+    PSPDFWebViewControllerAvailableActionsForward = 1 << 6,
+    PSPDFWebViewControllerAvailableActionsFacebook = 1 << 7,
+    PSPDFWebViewControllerAvailableActionsTwitter = 1 << 8,
+    PSPDFWebViewControllerAvailableActionsMessage = 1 << 9,
 
     /// Only offered if Google Chrome is actually installed.
-    PSPDFWebViewControllerAvailableActionsOpenInChrome     = 1 << 10,
-    PSPDFWebViewControllerAvailableActionsAll              = 0xFFFFFF
+    PSPDFWebViewControllerAvailableActionsOpenInChrome = 1 << 10,
+    PSPDFWebViewControllerAvailableActionsAll = 0xFFFFFF,
 } PSPDF_ENUM_AVAILABLE;
 
-PSPDF_EXPORT NSString *const PSPDFWebViewControllerDidStartLoadingNotification;
-PSPDF_EXPORT NSString *const PSPDFWebViewControllerDidFinishLoadingNotification;
-PSPDF_EXPORT NSString *const PSPDFWebViewControllerDidFailToLoadNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFWebViewControllerDidStartLoadingNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFWebViewControllerDidFinishLoadingNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFWebViewControllerDidFailToLoadNotification;
 
 /// Inline Web Browser.
-PSPDF_CLASS_AVAILABLE @interface PSPDFWebViewController : PSPDFBaseViewController <PSPDFStyleable, UIWebViewDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFWebViewController : PSPDFBaseViewController<PSPDFStyleable, UIWebViewDelegate>
 
 /// Use this to get a `UINavigationController` with a done-button.
 + (UINavigationController *)modalWebViewWithURL:(NSURL *)URL;

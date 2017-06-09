@@ -2,7 +2,7 @@
 //  PSPDFFormSubmissionDelegate.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 3.  `formSubmissionController:willSubmitFormValues:`   -- the submission is going ahead.
 /// 4.a `formSubmissionController:didReceiveResponseData:` -- the submission has completed successfully  OR
 /// 4.b `formSubmissionController:didFailWithError:`       -- the submission has failed
-PSPDF_AVAILABLE_DECL @protocol PSPDFFormSubmissionDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFFormSubmissionDelegate<NSObject>
 
 @optional
 

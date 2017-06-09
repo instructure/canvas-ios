@@ -2,7 +2,7 @@
 //  PSPDFDocumentInfoCoordinator.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -34,7 +34,7 @@ PSPDF_EXPORT NSString *const PSPDFDocumentInfoOptionEmbeddedFiles;
 PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentInfoCoordinator : NSObject
 
 /// Present view controller on `targetController`.
-- (nullable UIViewController *)presentToViewController:(UIViewController <PSPDFPresentationActions> *)targetController options:(nullable NSDictionary<NSString *, id> *)options sender:(nullable id)sender animated:(BOOL)animated completion:(nullable void (^)(void))completion;
+- (nullable UIViewController *)presentToViewController:(UIViewController<PSPDFPresentationActions> *)targetController options:(nullable NSDictionary<NSString *, id> *)options sender:(nullable id)sender animated:(BOOL)animated completion:(nullable void (^)(void))completion;
 
 /// Checks if there's data to present.
 @property (nonatomic, getter=isAvailable, readonly) BOOL available;
@@ -43,7 +43,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentInfoCoordinator : NSObject
 @property (nonatomic, nullable) PSPDFDocument *document;
 
 /// Delegate to fetch subclasses.
-@property (nonatomic, weak) id <PSPDFOverridable> delegate;
+@property (nonatomic, weak) id<PSPDFOverridable> delegate;
 
 /// Choose the controller type.
 /// Defaults to `PSPDFDocumentInfoOptionOutline, PSPDFDocumentInfoOptionAnnotations, PSPDFDocumentInfoOptionBookmarks, PSPDFDocumentInfoOptionEmbeddedFiles`.

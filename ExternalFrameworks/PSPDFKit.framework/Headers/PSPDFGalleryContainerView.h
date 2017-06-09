@@ -2,7 +2,7 @@
 //  PSPDFGalleryContainerView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,9 +11,9 @@
 //
 
 #import "PSPDFBlurView.h"
-#import "PSPDFOverridable.h"
 #import "PSPDFGalleryContentViewProtocols.h"
 #import "PSPDFMacros.h"
+#import "PSPDFOverridable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -42,8 +42,10 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryContainerViewPresentationMode) {
 
 // The following dummy classes are created to allow specific UIAppearance targeting.
 // They do not have any functionality besides that.
-PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryEmbeddedBackgroundView : PSPDFBlurView @end
-PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryFullscreenBackgroundView : PSPDFBlurView @end
+PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryEmbeddedBackgroundView : PSPDFBlurView
+@end
+PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryFullscreenBackgroundView : PSPDFBlurView
+@end
 
 /// Used to group the error, loading and gallery view and to properly lay them out.
 PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryContainerView : UIView
@@ -70,7 +72,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryContainerView : UIView
 @property (nonatomic) PSPDFGalleryView *galleryView;
 
 /// The loading view.
-@property (nonatomic) UIView <PSPDFGalleryContentViewLoading> *loadingView;
+@property (nonatomic) UIView<PSPDFGalleryContentViewLoading> *loadingView;
 
 /// The background view.
 @property (nonatomic) PSPDFGalleryEmbeddedBackgroundView *backgroundView;

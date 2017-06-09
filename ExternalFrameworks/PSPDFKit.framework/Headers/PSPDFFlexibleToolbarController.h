@@ -2,7 +2,7 @@
 //  PSPDFFlexibleToolbarController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,15 +10,15 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-#import "PSPDFMacros.h"
+#import "PSPDFEnvironment.h"
 #import "PSPDFFlexibleToolbarContainer.h"
+#import "PSPDFMacros.h"
 
 @class PSPDFFlexibleToolbar;
 
 NS_ASSUME_NONNULL_BEGIN
 
-PSPDF_CLASS_AVAILABLE @interface PSPDFFlexibleToolbarController : NSObject <PSPDFFlexibleToolbarContainerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFFlexibleToolbarController : NSObject<PSPDFFlexibleToolbarContainerDelegate>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 

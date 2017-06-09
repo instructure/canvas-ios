@@ -2,7 +2,7 @@
 //  PSPDFButtonFormElementView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,4 +15,3 @@
 /// Buttons / choice form views.
 PSPDF_CLASS_AVAILABLE @interface PSPDFButtonFormElementView : PSPDFFormElementView
 @end
-

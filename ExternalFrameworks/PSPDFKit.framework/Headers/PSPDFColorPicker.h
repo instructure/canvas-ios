@@ -2,7 +2,7 @@
 //  PSPDFColorPicker.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
 #import "PSPDFMacros.h"
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,7 +29,6 @@ typedef NS_ENUM(NSUInteger, PSPDFColorSet) {
     /// The color set used when selecting page background colors. Its colors are suitable for full page background colors.
     PSPDFColorSetPageBackgrounds,
 } PSPDF_ENUM_AVAILABLE;
-
 
 /// A color patch represents a single patch of colors in the UI. It contains of
 /// one or multiple colors that should be grouped together.
@@ -53,7 +52,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFColorPatch : NSObject
 @property (nonatomic, copy, readonly) NSArray<UIColor *> *colors;
 
 @end
-
 
 /// A color palette is a set of color patches that are grouped together based on a specific
 /// look or theme.
@@ -82,7 +80,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFColorPalette : NSObject
 
 @end
 
-
 @interface PSPDFColorPalette (PSPDFColorPalettes)
 
 /// @return A monochrome color palette containing 6 gray scale colors.
@@ -107,7 +104,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFColorPalette : NSObject
 + (PSPDFColorPalette *)hsvColorPalette;
 
 @end
-
 
 /// The factory used to create color pickers. Subclass this to customize your color
 /// pickers.

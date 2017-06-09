@@ -2,7 +2,7 @@
 //  PSPDFFreeTextAnnotationView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,12 +17,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Free Text View. Allows inline text editing.
-PSPDF_CLASS_AVAILABLE @interface PSPDFFreeTextAnnotationView : PSPDFHostingAnnotationView <UITextViewDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFFreeTextAnnotationView : PSPDFHostingAnnotationView<UITextViewDelegate>
 
-/// Start editing, shows the keyboard.
-- (void)beginEditing;
+/**
+ Starts editing; shows the keyboard.
 
-/// Ends editing, hides the keyboard.
+ @return YES if editing was able to be started, NO otherwise. This can happen in cases where the annotation is locked/has contents locked.
+ */
+- (BOOL)beginEditing;
+
+/// Ends editing; hides the keyboard.
 - (void)endEditing;
 
 /// Internally used textView. Only valid during begin and before `endEditing`.
@@ -36,7 +40,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFFreeTextAnnotationView : PSPDFHostingAnnot
 @interface PSPDFFreeTextAnnotationView (SubclassingHooks)
 
 /// Creates a textView on the fly once we enter edit mode.
-@property (nonatomic, readonly, strong) UITextView *textViewForEditing;
+@property (nonatomic, readonly) UITextView *textViewForEditing;
 
 @end
 

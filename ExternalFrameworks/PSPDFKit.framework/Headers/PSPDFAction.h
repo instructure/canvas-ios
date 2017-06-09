@@ -2,7 +2,7 @@
 //  PSPDFAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,11 +11,13 @@
 //
 
 #import "PSPDFEnvironment.h"
-#import "PSPDFModel.h"
 #import "PSPDFJSONAdapter.h"
+#import "PSPDFModel.h"
 
-/// Defines the type of an action that is defined in the PDF spec.
-/// See the Adobe PDF Specification for more about actions and action types.
+/**
+ Defines the type of an action that is defined in the PDF spec.
+ See the Adobe PDF Specification for more about actions and action types.
+ */
 typedef NS_ENUM(UInt8, PSPDFActionType) {
     /// Go to a destination in the current document. (Resolve a uniform resource identifier)
     PSPDFActionTypeURL,
@@ -124,10 +126,12 @@ PSPDF_EXPORT NSString *const PSPDFActionOptionCloseButtonKey;
 /// Constant to convert `PSPDFActionType` into `NSString` and back.
 PSPDF_EXPORT NSString *const PSPDFActionTypeTransformerName;
 
-/// Defines an action that is defined in the PDF spec, either from an outline or an annotation object.
-/// See the Adobe PDF Specification for more about actions and action types.
-/// @note The PDF spec defines both 'destinations' and 'actions'. PSPDFKit will convert a 'destination' into an equivalent `PSPDFActionTypeGoTo`.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAction : PSPDFModel <PSPDFJSONSerializing, NSSecureCoding>
+/**
+ Defines an action that is defined in the PDF spec, either from an outline or an annotation object.
+ See the Adobe PDF Specification for more about actions and action types.
+ @note The PDF spec defines both 'destinations' and 'actions'. PSPDFKit will convert a 'destination' into an equivalent `PSPDFActionTypeGoTo`.
+ */
+PSPDF_CLASS_AVAILABLE @interface PSPDFAction : PSPDFModel<PSPDFJSONSerializing, NSSecureCoding>
 
 /// Return the class responsible for `actionType`.
 + (nullable Class)actionClassForType:(PSPDFActionType)actionType;
@@ -137,16 +141,26 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAction : PSPDFModel <PSPDFJSONSerializing,
 /// The PDF action type.
 @property (nonatomic, readonly) PSPDFActionType type;
 
-/// PDF actions can be chained together. Defines the sub actions.
-@property (nonatomic, nullable) NSArray<PSPDFAction *> *subActions;
+/**
+ The actions parent action. Only set if it is a subAction of another action.
+ Automatically set when assigning `subActions` on the parent action.
+ */
+@property (atomic, weak, readonly) PSPDFAction *parentAction;
 
-/// If the action contained a pspdfkit:// URL, options between the URL will be parsed and extracted as key/value.
-/// Can also be used for generic key/value storage (but remember that `PSPDFActions` usually are regenerated when using any of the convenience setters)
-/// Will be persisted externally but not within PDF documents.
+/// PDF actions can be chained together. Defines the sub actions.
+@property (nonatomic) NSArray<PSPDFAction *> *subActions;
+
+/**
+ If the action contained a pspdfkit:// URL, options between the URL will be parsed and extracted as key/value.
+ Can also be used for generic key/value storage (but remember that `PSPDFActions` usually are regenerated when using any of the convenience setters)
+ Will be persisted externally but not within PDF documents.
+ */
 @property (nonatomic, copy, readonly, nullable) NSDictionary<NSString *, id> *options;
 
-/// Returns the most appropriate description (Like "Page 3" or "http://google.com")
-/// @name `documentProvider` is used to resolve named destinations and page labels but is optional.
+/**
+ Returns the most appropriate description (Like "Page 3" or "http://google.com")
+ @name `documentProvider` is used to resolve named destinations and page labels but is optional.
+ */
 - (NSString *)localizedDescriptionWithDocumentProvider:(nullable PSPDFDocumentProvider *)documentProvider;
 
 @end

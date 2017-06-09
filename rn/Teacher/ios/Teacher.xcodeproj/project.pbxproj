@@ -100,10 +100,14 @@
 		51FAC2FAFBA2AE0C3653F5CF /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13EF8804255A313109F1 /* ConversationMessage.swift */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6098E7BDB694A6ACEF131151 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70862A515621F745F8148C6 /* DiscussionEntry.swift */; };
+		6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */; };
 		6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */; };
 		6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */; };
+		619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619C94291ED8A25100AC7D7B /* CanvadocView.swift */; };
+		619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */; };
+		619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */; };
 		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
 		61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; };
@@ -113,6 +117,11 @@
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
 		61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */; };
+		61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */; };
+		61B7F5C31ED5EB3300EC6865 /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */; };
+		61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */; };
+		61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5CD1ED619A200EC6865 /* libRNFS.a */; };
 		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
@@ -283,6 +292,13 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Teacher;
 		};
+		61B7F5CC1ED619A200EC6865 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
+			remoteInfo = RNFS;
+		};
 		61FCAF131E5FC0190042921A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -404,6 +420,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */,
 				6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */,
 				6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */,
 				3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */,
@@ -417,6 +434,7 @@
 				4943ECBA1E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Embed Frameworks */,
 				4943ECBC1E5CEFBD001DC5B5 /* CWNotification.framework in Embed Frameworks */,
 				4943ECBE1E5CEFBD001DC5B5 /* FXKeychain.framework in Embed Frameworks */,
+				619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */,
 				4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -525,9 +543,12 @@
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
 		6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
 		6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
 		6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
+		619C94291ED8A25100AC7D7B /* CanvadocView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocView.swift; sourceTree = "<group>"; };
+		619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536A21E774B6A000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../Frameworks/SoGrey/build/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
 		61B536A41E774B70000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../../Carthage/Checkouts/EarlGrey/build/Debug-iphoneos/EarlGrey.framework"; sourceTree = "<group>"; };
@@ -538,6 +559,10 @@
 		61B536ED1E7860CE000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushAnimatedTransitioning.swift; path = Teacher/PushAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
+		61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
+		61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
+		61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bridging-header.h"; path = "Teacher/bridging-header.h"; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
@@ -590,9 +615,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */,
 				496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */,
 				3BEF7C101E7C96940092C864 /* libART.a in Frameworks */,
 				2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */,
+				61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
 				3B8B23ED1EB2AA0D00B61EF8 /* Result.framework in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
@@ -617,6 +644,7 @@
 				3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				4943ECBD1E5CEFBD001DC5B5 /* FXKeychain.framework in Frameworks */,
+				619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				4943ECC11E5CEFBD001DC5B5 /* Reachability.framework in Frameworks */,
 				4943ECBF1E5CEFBD001DC5B5 /* Mantle.framework in Frameworks */,
@@ -732,6 +760,7 @@
 			isa = PBXGroup;
 			children = (
 				4994B2A91ED4E9230054D333 /* Video */,
+				61B7F5C11ED5EABA00EC6865 /* PSPDFKit */,
 				61BD856A1EB290C0005A09A5 /* Login */,
 				3BF71FC71EC117A500234D25 /* Branding */,
 				3B748B601ECA53D4008D6A57 /* React Native Modules */,
@@ -893,6 +922,8 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */,
+				61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */,
 				3BF720FF1EC4054100234D25 /* PocketSVG.framework */,
 				3BF720DF1EC266EB00234D25 /* SDWebImage.framework */,
 				3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */,
@@ -992,6 +1023,26 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		61B7F5C11ED5EABA00EC6865 /* PSPDFKit */ = {
+			isa = PBXGroup;
+			children = (
+				61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */,
+				61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */,
+				6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */,
+				619C94291ED8A25100AC7D7B /* CanvadocView.swift */,
+			);
+			name = PSPDFKit;
+			path = Teacher/PSPDFKit;
+			sourceTree = "<group>";
+		};
+		61B7F5C91ED619A100EC6865 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				61B7F5CD1ED619A200EC6865 /* libRNFS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		61BD856A1EB290C0005A09A5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,6 +1068,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */,
 				3BEF7BF01E7C96860092C864 /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -1165,6 +1217,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
+				61B7F5C71ED5EF8800EC6865 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1226,6 +1279,7 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = B6333T4PXQ;
 						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1319,6 +1373,10 @@
 				{
 					ProductGroup = F95BD4611E7C600000117939 /* Products */;
 					ProjectRef = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
+				},
+				{
+					ProductGroup = 61B7F5C91ED619A100EC6865 /* Products */;
+					ProjectRef = 61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */;
 				},
 				{
 					ProductGroup = B1FE61931EA6AF5500A2A434 /* Products */;
@@ -1442,6 +1500,13 @@
 			fileType = archive.ar;
 			path = libRCTAnimation.a;
 			remoteRef = 5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		61B7F5CD1ED619A200EC6865 /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 61B7F5CC1ED619A200EC6865 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		61FCAF141E5FC0190042921A /* libRCTAnimation.a */ = {
@@ -1601,6 +1666,19 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
+		61B7F5C71ED5EF8800EC6865 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name 'PSPDFKit.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1609,6 +1687,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */,
+				6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */,
 				3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */,
 				6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */,
 				3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */,
@@ -1620,18 +1699,21 @@
 				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
 				61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */,
+				61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */,
 				9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */,
 				3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */,
 				B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */,
 				3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */,
 				3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
 				3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */,
+				61B7F5C31ED5EB3300EC6865 /* PSPDFViewManager.m in Sources */,
 				3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */,
 				4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
 				3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */,
 				61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */,
+				619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1750,10 +1832,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../ExternalFrameworks",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1775,8 +1862,10 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher.beta;
 				PRODUCT_NAME = Teacher;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1792,9 +1881,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../../ExternalFrameworks",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -1815,8 +1909,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher.beta;
 				PRODUCT_NAME = Teacher;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

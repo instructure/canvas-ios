@@ -2,7 +2,7 @@
 //  PSPDFVersion.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,13 +12,13 @@
 
 #import "PSPDFEnvironment.h"
 
-#if PSPDF_TARGET_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_8_0
-#error PSPDFKit 5 supports iOS 8.0 upwards.
+#if TARGET_OS_IOS && __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_9_0
+#error PSPDFKit 6 supports iOS 9.0 upwards.
 #endif
 
-/// Xcode 7.3 is required for PSPDFKit 5.
-#if !defined(__IPHONE_9_3) && !defined(__MAC_10_11)
-#warning PSPDFKit 5 has been designed for Xcode 7.3 with SDK 9. Other combinations are not supported.
+/// Xcode 8.0 is required for PSPDFKit 6.
+#if !defined(__IPHONE_10_0) && !defined(__MAC_10_12)
+#warning PSPDFKit 6 has been designed for Xcode 8 with SDK 10. Other combinations are not supported.
 #endif
 
 #pragma clang diagnostic push
@@ -43,6 +43,14 @@
 #define __PSPDFKIT_5_2 50200
 #define __PSPDFKIT_5_3 50300
 #define __PSPDFKIT_5_4 50400
-#define __PSPDFKIT_5_5 50500
+#define __PSPDFKIT_5_5 50500 // 5.5 is the last version supporting iOS 8.
+#define __PSPDFKIT_6_0 60000
+#define __PSPDFKIT_6_1 60100
+#define __PSPDFKIT_6_2 60200
+#define __PSPDFKIT_6_3 60300
+#define __PSPDFKIT_6_4 60400
+#define __PSPDFKIT_6_5 60500
+#define __PSPDFKIT_6_6 60600
+#define __PSPDFKIT_6_7 60700
 
 #pragma clang diagnostic pop

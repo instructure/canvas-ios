@@ -2,7 +2,7 @@
 //  PSPDFProcessorConfiguration.h
 //  PSPDFModel
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFEnvironment.h"
 
-#import "PSPDFMacros.h"
-#import "PSPDFRenderManager.h"
 #import "PSPDFAnnotation.h"
+#import "PSPDFMacros.h"
 #import "PSPDFProcessorItem.h"
+#import "PSPDFRenderRequest.h"
 
 @class PSPDFDocument;
 @class PSPDFNewPageConfiguration;
@@ -30,7 +30,10 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationChange) {
     PSPDFAnnotationChangeRemove,
 
     /// The annotation will be embedded into the resulting document, allowing it to still be modified.
-    PSPDFAnnotationChangeEmbed
+    PSPDFAnnotationChangeEmbed,
+
+    /// Processses the document for printing. Flattens annotations that can be printed, removes the remaining ones.
+    PSPDFAnnotationChangePrint
 } PSPDF_ENUM_AVAILABLE;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -39,24 +42,40 @@ NS_ASSUME_NONNULL_BEGIN
 /// @note Some basic options are available without the Document Processor component,
 /// however most options do require this component to be licensed.
 /// Learn more at https://pspdfkit.com/features/document-editor/ios
-PSPDF_CLASS_AVAILABLE @interface PSPDFProcessorConfiguration : NSObject <NSCopying>
+PSPDF_CLASS_AVAILABLE @interface PSPDFProcessorConfiguration : NSObject<NSCopying>
 
- /**
- *  Designated initializer
- *
- *  @param document The document that the configuration is based on.
- *  If a document is given, it needs to be valid, else we return nil.
- *
- *  @return The processor configuration or nil in case the document
- *  cannot be processed or is not valid.
- */
-- (nullable instancetype)initWithDocument:(nullable PSPDFDocument *)document;
+/**
+*  Designated initializer
+*
+*  @param document The document that the configuration is based on.
+*  If a document is given, it needs to be valid, else we return nil.
+*
+*  @return The processor configuration or nil in case the document
+*  cannot be processed or is not valid.
+*/
+- (nullable instancetype)initWithDocument:(nullable PSPDFDocument *)document NS_DESIGNATED_INITIALIZER;
 
 /// The source document.
 @property (nonatomic, readonly, nullable) PSPDFDocument *document;
 
 /// Returns the page count of the currently configured generated document.
 @property (nonatomic, readonly) NSInteger pageCount;
+
+/**
+ Instructs the processor to change form field names as described in the mapping.
+ The partial field name (see PDF Reference 1.7, 12.7.3.2, “Field Names”).
+
+ @note This method requires the Document Editor component to be enabled for your license.
+ */
+@property (nonatomic, copy) NSDictionary<NSString *, NSString *> *formFieldNameMappings;
+
+/**
+ Instructs the processor to change form mapping names as described in the mapping.
+ The mapping name that shall be used when exporting interactive form field data from the document.
+
+ @note This method requires the Document Editor component to be enabled for your license.
+ */
+@property (nonatomic, copy) NSDictionary<NSString *, NSString *> *formMappingNameMappings;
 
 /// Moves pages from the specified indexes to the destination index.
 /// @note This method requires the Document Editor component to be enabled for your license.
@@ -95,7 +114,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFProcessorConfiguration : NSObject <NSCopyi
 ///   page’s media box.
 /// TL;DR: The visible part of the page.
 /// @note This method requires the Document Editor component to be enabled for your license.
-- (void)changeCropBoxForPage:(NSUInteger)pageIndex toRect:(CGRect)rect;
+- (void)changeCropBoxForPageAtIndex:(NSUInteger)pageIndex toRect:(CGRect)rect;
 
 /// Changes the `MediaBox` for the given page to the given rect. The rect must be specified in points.
 /// This does NOT scale the page. See `scalePage:toSizeInMillimeter:` and `scalePage:toSize:`.
@@ -107,7 +126,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFProcessorConfiguration : NSObject <NSCopyi
 ///   affecting the meaning of the PDF file.
 /// TL;DR: The size of the page.
 /// @note This method requires the Document Editor component to be enabled for your license.
-- (void)changeMediaBoxForPage:(NSUInteger)pageIndex toRect:(CGRect)rect;
+- (void)changeMediaBoxForPageAtIndex:(NSUInteger)pageIndex toRect:(CGRect)rect;
 
 /// Adds a new page at `destinationPageIndex`.
 /// If `newPageConfiguation` is nil, the size of the new page will match the page size of the first page.

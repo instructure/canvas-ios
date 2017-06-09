@@ -17,6 +17,7 @@
     
 
 import UIKit
+import PSPDFKit
 
 let canvadocsAnnotationBlackColor = UIColor(rgba: "#000000")
 let canvadocsAnnotationRedColor = UIColor(rgba: "#FF0000")
@@ -30,3 +31,72 @@ let canvadocsHighlightAnnotationBlueColor = UIColor(rgba: "#98DDFF")
 
 let standardCanvadocsColors: [UIColor] = [canvadocsAnnotationBlackColor, canvadocsAnnotationRedColor, canvadocsAnnotationBlueColor, canvadocsAnnotationGreenColor]
 let highlightCanvadocsColors: [UIColor] = [canvadocsHighlightAnnotationYellowColor, canvadocsHighlightAnnotationOrangeColor, canvadocsHighlightAnnotationGreenColor, canvadocsHighlightAnnotationBlueColor]
+
+
+
+@objc public class AppAnnotationsConfiguration: NSObject {
+    public class func canvasAndSpeedgraderConfig() -> PSPDFConfiguration {
+        return canvasAppConfiguration
+    }
+    
+    public class func teacherConfig() -> PSPDFConfiguration {
+        return teacherAppConfiguration
+    }
+}
+
+public let canvasAppConfiguration: PSPDFConfiguration = {
+    return PSPDFConfiguration { (builder) -> Void in
+        builder.shouldAskForAnnotationUsername = false
+        builder.pageTransition = PSPDFPageTransition.scrollContinuous
+        builder.scrollDirection = PSPDFScrollDirection.vertical
+        builder.fitToWidthEnabled = .YES
+        builder.pagePadding = 5.0
+        builder.isRenderAnimationEnabled = false
+        builder.shouldHideNavigationBarWithHUD = false
+        builder.shouldHideStatusBarWithHUD = false
+        builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
+        builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink, .square, .circle, .line]
+        builder.drawCreateMode = .separate
+        builder.naturalDrawingAnnotationEnabled = false
+        builder.propertiesForAnnotations = [
+            .highlight: [["color"]],
+            PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
+            .square: [["color"]],
+            .circle: [["color"]],
+            .line: [["color"]],
+            .strikeOut: [[]],
+            .freeText: [["fontSize"]],
+        ]
+    }
+}()
+
+public let teacherAppConfiguration: PSPDFConfiguration = {
+    return PSPDFConfiguration { (builder) -> Void in
+        builder.shouldAskForAnnotationUsername = false
+        builder.pageTransition = PSPDFPageTransition.scrollContinuous
+        builder.scrollDirection = PSPDFScrollDirection.vertical
+        builder.fitToWidthEnabled = .YES
+        builder.pagePadding = 5.0
+        builder.isRenderAnimationEnabled = true
+        builder.shouldHideNavigationBarWithHUD = false
+        builder.shouldHideStatusBarWithHUD = false
+        builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
+        builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink, .square, .circle, .line]
+        builder.drawCreateMode = .separate
+        builder.naturalDrawingAnnotationEnabled = false
+        builder.propertiesForAnnotations = [
+            .highlight: [["color"]],
+            PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
+            .square: [["color"]],
+            .circle: [["color"]],
+            .line: [["color"]],
+            .strikeOut: [[]],
+            .freeText: [["fontSize"]],
+        ]
+        builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
+        builder.hudViewMode = .never
+    }
+}()
+
+
+

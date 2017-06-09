@@ -2,7 +2,7 @@
 //  PSPDFDownloadManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,30 +10,31 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
-#import "PSPDFReachability.h"
-#import "PSPDFFileManager.h"
 #import "PSPDFDownloadManagerPolicy.h"
+#import "PSPDFEnvironment.h"
+#import "PSPDFFileManager.h"
+#import "PSPDFReachability.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Posted whenever a task starts loading.
-PSPDF_EXPORT NSString *const PSPDFDownloadManagerDidStartLoadingTaskNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFDownloadManagerDidStartLoadingTaskNotification;
 
 /// Posted whenever a task finishes loading.
-PSPDF_EXPORT NSString *const PSPDFDownloadManagerDidFinishLoadingTaskNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFDownloadManagerDidFinishLoadingTaskNotification;
 
 /// Posted whenever a task failed to load.
-PSPDF_EXPORT NSString *const PSPDFDownloadManagerDidFailToLoadTaskNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFDownloadManagerDidFailToLoadTaskNotification;
 
 typedef NS_ENUM(NSUInteger, PSPDFDownloadManagerObjectState) {
     PSPDFDownloadManagerObjectStateNotHandled,
     PSPDFDownloadManagerObjectStateWaiting,
     PSPDFDownloadManagerObjectStateLoading,
-    PSPDFDownloadManagerObjectStateFailed
+    PSPDFDownloadManagerObjectStateFailed,
 } PSPDF_ENUM_AVAILABLE;
 
-@protocol PSPDFRemoteContentObject, PSPDFDownloadManagerDelegate;
+@protocol PSPDFRemoteContentObject;
+@protocol PSPDFDownloadManagerDelegate;
 
 PSPDF_CLASS_AVAILABLE @interface PSPDFDownloadManager : NSObject
 
@@ -51,7 +52,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic) BOOL enableDynamicNumberOfConcurrentDownloads;
 
 /// The `PSPDFDownloadManager` delegate.
-@property (nonatomic, weak) id <PSPDFDownloadManagerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFDownloadManagerDelegate> delegate;
 
 /// Controls if objects that are currently loading when the app moves to the background
 /// should be completed in the background. Defaults to YES. iOS only.
@@ -60,14 +61,14 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// @name Enqueueing and Dequeueing Objects
 
 /// See enqueueObject:atFront:. Enqueues the object at the end of the queue.
-- (void)enqueueObject:(id <PSPDFRemoteContentObject>)object;
+- (void)enqueueObject:(id<PSPDFRemoteContentObject>)object;
 
 /// Enqueues an `PSPDFRemoteContentObject` for download. If the object is already downloading,
 /// nothing is enqueued. If the object has been downloaded previously and has failed, it will be
 /// removed from the failedObjects array and re-enqueued.
 /// @param object The object to enqueue.
 /// @param enqueueAtFront Set this to YES to add the object to the front of the queue.
-- (void)enqueueObject:(id <PSPDFRemoteContentObject>)object atFront:(BOOL)enqueueAtFront;
+- (void)enqueueObject:(id<PSPDFRemoteContentObject>)object atFront:(BOOL)enqueueAtFront;
 
 /// Calls enqueueObject:atFont: multiple times. Enqueues the object at the end of the queue.
 /// @param objects need to implement the `PSPDFRemoteContentObject` protocol.
@@ -79,7 +80,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Cancels the download process for the given object.
 /// @param object The object to be cancelled.
-- (void)cancelObject:(id <PSPDFRemoteContentObject>)object;
+- (void)cancelObject:(id<PSPDFRemoteContentObject>)object;
 
 /// Calls `cancelObject:` for all objects in `pendingObjects`, `loadingObjects`, and `failedObjects`.
 - (void)cancelAllObjects;
@@ -104,17 +105,17 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Checks if the given object is currently handled by the download manager.
 /// @param object The object.
 /// @return YES if the download manager handles the object, that is if it is either pending, loading or failed.
-- (BOOL)handlesObject:(id <PSPDFRemoteContentObject>)object;
+- (BOOL)handlesObject:(id<PSPDFRemoteContentObject>)object;
 
 /// Checks and returns the current state of a given object. If the object has never been enqueued,
 /// `PSPDFDownloadManagerObjectStateNotHandled` will be returned.
 /// @param object The object.
 /// @return The state of the object.
-- (PSPDFDownloadManagerObjectState)stateForObject:(id <PSPDFRemoteContentObject>)object;
+- (PSPDFDownloadManagerObjectState)stateForObject:(id<PSPDFRemoteContentObject>)object;
 
 @end
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFDownloadManagerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFDownloadManagerDelegate<NSObject>
 
 @optional
 
@@ -124,7 +125,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFDownloadManagerDelegate <NSObject>
 /// Informs the delegate that the state of the given object has changed.
 /// @param downloadManager The download manager.
 /// @param object The changed object.
-- (void)downloadManager:(PSPDFDownloadManager *)downloadManager didChangeObject:(id <PSPDFRemoteContentObject>)object;
+- (void)downloadManager:(PSPDFDownloadManager *)downloadManager didChangeObject:(id<PSPDFRemoteContentObject>)object;
 
 /// Informs the delegate that the reachability has changed.
 /// @param downloadManager The download manager.

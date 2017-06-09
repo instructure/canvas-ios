@@ -2,7 +2,7 @@
 //  PSPDFAnnotationStyleViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,10 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
+#import "PSPDFAnnotation.h"
 #import "PSPDFFontPickerViewController.h"
 #import "PSPDFStaticTableViewController.h"
 #import "PSPDFStyleable.h"
-#import "PSPDFAnnotation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +23,7 @@ PSPDF_EXPORT NSString *const PSPDFConvertFreeTextAnnotationCalloutActionKey;
 @protocol PSPDFAnnotationViewProtocol;
 
 /// Delegate for `PSPDFAnnotationStyleViewController`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationStyleViewControllerDelegate <PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationStyleViewControllerDelegate<PSPDFOverridable>
 
 /// Called whenever one or more style properties of `PSPDFAnnotationStyleViewController` change.
 - (void)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController didChangeProperties:(NSArray<NSString *> *)propertyNames;
@@ -41,13 +41,13 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationStyleViewControllerDelegate <PSPDF
 
 /// Should return the annotation view that currently represents the provided `annotation`, if available.
 /// Important for free text annotation sizing.
-- (nullable UIView <PSPDFAnnotationViewProtocol> *)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
+- (nullable UIView<PSPDFAnnotationViewProtocol> *)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 @end
 
 /// Allows to set/change the style of an annotation.
 /// @note: The inspector currently only supports setting *one* annotation, but since long-term we want multi-select-change, the API has already been prepared for.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFFontPickerViewControllerDelegate, PSPDFStyleable>
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController<PSPDFFontPickerViewControllerDelegate, PSPDFStyleable>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
@@ -67,9 +67,9 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// @name Customization
 
 /// List of supported inspector properties for various annotation types
-/// Dictionary in format annotation type string : array of arrays of property strings (`NSArray<NSArray<NSString *> *> *`) OR a block that returns this and takes `annotations` as argument (`NSArray<NSArray<NSString *> *> *(^block)(PSPDFAnnotation *annotation)`).
+/// Dictionary in format annotation type string : array of arrays of property strings (`NSArray<NSArray<PSPDFAnnotationString> *> *`) OR a block that returns this and takes `annotations` as argument (`NSArray<NSArray<PSPDFAnnotationString> *> *(^block)(PSPDFAnnotation *annotation)`).
 /// Defaults to an empty dictionary. Normally set to the values from PSPDFConfiguration after initialization.
-@property (nonatomic, copy) NSDictionary<NSString *, id> *propertiesForAnnotations;
+@property (nonatomic, copy) NSDictionary<PSPDFAnnotationString, id> *propertiesForAnnotations;
 
 /// Shows a custom cell with configurable color presets for the provided annotation types.
 /// Defaults to PSPDFAnnotationTypeAll. Normally set to the values from PSPDFConfiguration after initialization.
@@ -80,12 +80,11 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 @end
 
-
 @interface PSPDFAnnotationStyleViewController (SubclassingHooks)
 
 /// Returns the list of properties where we want to build cells for.
 /// @note The arrays can be used to split the properties into different sections.
-- (NSArray<NSArray<NSString *> *> *)propertiesForAnnotations:(NSArray<PSPDFAnnotation *> *)annotations;
+- (NSArray<NSArray<PSPDFAnnotationString> *> *)propertiesForAnnotations:(NSArray<PSPDFAnnotation *> *)annotations;
 
 @end
 

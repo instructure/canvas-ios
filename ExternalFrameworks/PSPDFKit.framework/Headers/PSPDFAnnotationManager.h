@@ -2,7 +2,7 @@
 //  PSPDFAnnotationManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,28 +10,28 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationProvider.h"
+#import "PSPDFEnvironment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Sent when new annotations are added to/removed from the default `PSPDFFileAnnotationProvider`.
-PSPDF_EXPORT NSString *const PSPDFAnnotationsAddedNotification;    // object = array of new `PSPDFAnnotation(s)`.
-PSPDF_EXPORT NSString *const PSPDFAnnotationsRemovedNotification;  // object = array of removed `PSPDFAnnotation(s)`.
+PSPDF_EXPORT NSNotificationName const PSPDFAnnotationsAddedNotification; // object = array of new `PSPDFAnnotation(s)`.
+PSPDF_EXPORT NSNotificationName const PSPDFAnnotationsRemovedNotification; // object = array of removed `PSPDFAnnotation(s)`.
 
 /// Internal events to notify the annotation providers when annotations are being changed.
 /// @warning Only send from main thread! Don't call save during a change notification.
-PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotification;                      // object = new `PSPDFAnnotation`.
-PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;           // set to NO to not animate updates (if it can be animated, that is)
-PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;       // set to YES to disable handling by views.
-PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            // NSArray of selector names.
+PSPDF_EXPORT NSNotificationName const PSPDFAnnotationChangedNotification; // object = new `PSPDFAnnotation`.
+PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotificationAnimatedKey; // set to NO to not animate updates (if it can be animated, that is)
+PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey; // set to YES to disable handling by views.
+PSPDF_EXPORT NSString *const PSPDFAnnotationChangedNotificationKeyPathKey; // NSArray of selector names.
 
 /// Marks the inserted annotations as being user created (use a BOOL NSNumber value).
 /// @see addAnnotations:options:
 PSPDF_EXPORT NSString *const PSPDFAnnotationOptionUserCreatedKey;
 /// Prevents the insertion or removal notifications from being sent (use a BOOL NSNumber value).
-PSPDF_EXPORT NSString *const PSPDFAnnotationOptionSuppressNotificationsKey;
+PSPDF_EXPORT NSNotificationName const PSPDFAnnotationOptionSuppressNotificationsKey;
 
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFDocumentProvider, PSPDFFileAnnotationProvider;
@@ -42,13 +42,12 @@ PSPDF_EXPORT NSString *const PSPDFAnnotationOptionSuppressNotificationsKey;
 /// If you subclass, use `overrideClass:withClass:` in `PSPDFDocument`.
 ///
 /// This class will set the `documentProvider` on both annotation adding and retrieving. You don't have to handle this in your `annotationProvider` subclass.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationManager : NSObject <PSPDFAnnotationProviderChangeNotifier>
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationManager : NSObject<PSPDFAnnotationProviderChangeNotifier>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Initializes the annotation manager with the associated `documentProvider`.
 - (instancetype)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider NS_DESIGNATED_INITIALIZER;
-
 
 /// The simplest way to extend `PSPDFAnnotationManager` is to register a custom `PSPDFAnnotationProvider`.
 /// You can even remove the default `PSPDFFileAnnotationProvider` if you don't want file-based annotations.
@@ -68,7 +67,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// For example, to get all annotations except links, use `PSPDFAnnotationTypeAll &~ PSPDFAnnotationTypeLink` as type.
 ///
 /// @note Fetching annotations may take a while. You can do this in a background thread.
-- (nullable NSArray<__kindof PSPDFAnnotation *> *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
+- (nullable NSArray<__kindof PSPDFAnnotation *> *)annotationsForPageAtIndex:(NSUInteger)pageIndex type:(PSPDFAnnotationType)type;
 
 /// Returns all annotations of all `annotationProviders`.
 
@@ -77,8 +76,8 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 - (NSDictionary<NSNumber *, NSArray<__kindof PSPDFAnnotation *> *> *)allAnnotationsOfType:(PSPDFAnnotationType)annotationType;
 
 /// YES if annotations are loaded for a specific page.
-/// This is used to determine if annotationsForPage:type: should be called directly or in a background thread.
-- (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)page;
+/// This is used to determine if annotationsForPageAtIndex:type: should be called directly or in a background thread.
+- (BOOL)hasLoadedAnnotationsForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Any annotation that returns YES on `isOverlay` needs a view class to be displayed.
 /// Will be called on all `annotationProviders` until someone doesn't return nil.
@@ -149,7 +148,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Searches the annotation cache for annotations that have the dirty flag set.
 /// Dictionary key are the pages, object an array of annotations.
-@property (nonatomic, readonly, nullable) NSDictionary<NSNumber *,NSArray<__kindof PSPDFAnnotation *> *> *dirtyAnnotations;
+@property (nonatomic, readonly, nullable) NSDictionary<NSNumber *, NSArray<__kindof PSPDFAnnotation *> *> *dirtyAnnotations;
 
 /// Filtered `fileTypeTranslationTable` that only returns video or audio elements.
 + (NSArray<NSString *> *)mediaFileTypes;
@@ -161,4 +160,3 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @end
 
 NS_ASSUME_NONNULL_END
-

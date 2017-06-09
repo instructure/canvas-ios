@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "下一步";
 "Previous" = "上一個";
 "Error" = "錯誤";
+"More options" = "更多選項";
+"Close All Tabs" = "關閉所有標籤";
+"Close All Other Tabs" = "關閉其他所有標籤頁"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "中空字"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "搜尋中";
 "Done" = "完成";
 "Indexing Documents" = "正在把文件編入目錄";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "檔案沒有內容";
+"Document" = "文件";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "搜尋註釋";
 
 // inline browser
 "Open in Safari" = "用 Safari 打開";
 "Open in Chrome" = "用 Chrome 打開";
 "Your %@ is not configured to send emails." = "您的 %@ 沒有設定可傳送郵件。";
-"The link is requesting to open %@Would you like to continue?" = "此鏈結請求打開%@。要繼續嗎？";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "這個連結要求開啟\n%1$@\n%2$@您是否確定繼續？"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "外部應用程序"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "郵件"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "文字已複製到剪貼簿。";
-"Save To Camera Roll" = "儲存至 Camera Roll";
+"Save to Photo Library" = "儲存至照片庫";
 "Failed to extract image." = "提取圖像失敗。";
 "Type value or pick from list" = "鍵入數值，或從清單中選擇";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "彩虹";
 "Monochrome" = "單色";
 "Vintage" = "復古";
+"Modern" = "現代";
 "Color" = "顏色";
 "Border" = "邊界";
 "Fill Color" = "填充顏色";
-"Line End Fill Color" = "線條終端填充顏色";
+"Start and End Color" = "起始與結束顏色";
 "Opacity" = "不透明度";
-"%@ %%" = "%@ %%";
 "Thickness" = "粗細";
 "%@ pt" = "%@ 級字";
 "Yellow" = "黃色";
@@ -147,11 +152,12 @@
 "Cyan" = "青藍色";
 "Gray" = "灰色";
 "White" = "白色";
-"Define" = "界定";
+"Define" = "查詢";
 "Wikipedia" = "維基百科";
 "Highlight" = "螢光標示";
 "Underline" = "底線";
 "Squiggle" = "波浪線";
+"Squiggly" = "彎曲線條";
 "StrikeOut" = "刪除線";
 "Rectangle" = "長方形";
 "Ellipse" = "橢圓形";
@@ -176,7 +182,7 @@
 "Remove Signature" = "刪除簽名";
 "My Signature" = "我的簽名";
 "No Signatures" = "無簽署"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "客戶簽名";
+"One Time Signature" = "一次性簽名";
 "Please sign here" = "請簽署";
 "Note" = "備忘";
 "Text" = "文字";
@@ -209,7 +215,8 @@
 "Ungroup" = "取消編組";
 "Merge" = "合併"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "樣本";
-"Annotation Summary for %@:\n" = "%@的註釋摘要";
+"Annotation Summary for %@:" = "%@的註釋摘要：";
+"Show Text" = "顯示文字";
 // title
 "Author Name" = "作者名字";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "拖拉來調整大小"; // used as hint that inspector is resizable
 "Convert to" = "轉換為"; // used as label on action that changes free text intent type
 "Color Presets" = "顏色預設項";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "重點"; // freetext annotation with an arrow
 "Generic" = "一般"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "寬點線";
 "Narrow Dashes" = "窄虛線";
 "Wide Dashes" = "寬虛線";
+"Cloudy" = "朦朧的"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "已批准";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "連接中";
 // text on a label; app and stylus are connected
-"Connected" = "已連接";
+"%@ Connected" = "%@ 已連接";
 // text on a label; app and stylus are not connected
-"Disconnected" = "連接中斷";
+"%@ Disconnected" = "%@ 連接中斷";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "設定";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "註釋在PDF中呈現，只能讀取。";
 "Annotation Summary" = "註釋摘要";
 "Embed Annotations into the PDF and also list them in the email." = "把註釋嵌進PDF中，並把它們列在郵件中。";
+"Annotations will be listed in a text file." = "將於一個文字檔中列出標註內容。";
 "Files" = "檔案";
 "Send as single files" = "以個別檔案傳送";
 "Merge files" = "合併檔案";
 "Original File" = "原始檔案";
 "Range" = "範圍";
 "Annotated Pages" = "已註釋的頁面";
+"Message could not be sent." = "無法寄出訊息。";
+"Export" = "匯出";
+"This action can't be performed." = "無法執行這項動作。";
 
 // sound annotations
 "Speak" = "朗讀"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "選擇欄";
 "Signature Field" = "簽名欄";
 "Clear Field" = "刪除"; // same as delete
-"Type value or pick from list" = "鍵入數值，或從清單中選擇";
 "Default Values" = "預設值";
 "Custom Value" = "自選值";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "無效值：必需為%s或更小。";
 "Invalid value: must be a number." = "無效值：必需為數字。";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "無效值：必需是日期。";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "旋轉頁面";
 "Page Size" = "頁面尺寸";
 "Background Color" = "背景顏色";
+"Paper" = "紙張";
 "Pattern" = "表格元素";
 "Use Document Size" = "使用文件尺寸";
 "Orientation" = "方向";
 "Portrait" = "縱向";
 "Landscape" = "橫向";
-"Name" = "名字";
 "Document Name" = "文件名稱";
 "Documents" = "文件"; // Name of directory
-"Use Document Directory" = "使用文件目錄";
-"Directory" = "目錄";
+"Use Document Folder" = "使用文件目錄";
+"Folder" = "資料夾";
 "Replace File?" = "替換檔案嗎？";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "你選取的目的地已有名為「%@」的檔案。要替換它嗎？";
 "Replace" = "替換";
@@ -543,6 +555,15 @@
 "Save As…" = "儲存為...";
 "Discard Changes" = "清除更改";
 "Empty" = "空白";
+"Use Image Size" = "使用圖片尺寸";
+"Page Background" = "頁面背景";
+"Insert image annotation" = "插入圖片標註";
+"Import page background" = "匯入頁面背景";
+"Quality" = "品質";
+"Low" = "低";
+"Medium" = "中";
+"High" = "高";
+"Best" = "最佳";
 
 // Document Editor Errors
 "A blank document can not be saved." = "無法儲存空白檔案";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "現在不能使用文字轉語音功能。請檢查你的互聯網已連線，或你的裝置中已安裝 Google 的文字轉語音功能，並且它在開啟狀態。";
+
+// Settings
+"Page Transition" = "翻頁";
+"Single" = "單頁";
+"Continuous" = "連續";
+"Curl" = "捲邊";
+"Scroll" = "捲動";
+"Horizontal" = "橫式";
+"Vertical" = "直式";
+"Page Mode" = "頁面模式";
+"Automatic" = "自動";
+"Double" = "雙頁";
+"Appearance" = "出現";
+"Scrubber Bar" = "滾動視圖";
+"Jump" = "跳換"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "禁用"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "這個應用程式沒有取用照片的權限。";
+"This app does not have access to your camera." = "這個應用程式沒有取用照相機的權限。";
+"You can enable access in Privacy Settings." = "您可以從隱私設定中允許取用。";

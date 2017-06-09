@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "下一步";
 "Previous" = "上一页";
 "Error" = "错误";
+"More options" = "更多选项";
+"Close All Tabs" = "关闭所有选项卡";
+"Close All Other Tabs" = "关闭其他所有选项卡"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "大纲"; // Table of contents
@@ -85,15 +88,17 @@
 "%tu left" = "剩下 %tu"; // Indexing Documents... 5 left
 "Searching" = "正在搜索";
 "Done" = "完成";
-"Indexing Documents" = "正在索引文稿";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "文稿没有内容";
+"Indexing Documents" = "正在检索文稿";
+"Document" = "文稿";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "搜索批注";
 
 // inline browser
 "Open in Safari" = "在 Safari 中打开";
 "Open in Chrome" = "在 Chrome 中打开";
 "Your %@ is not configured to send emails." = "您的 %@ 未经配置，无法发送电子邮件。";
-"The link is requesting to open %@Would you like to continue?" = "链接正在请求打开 %@ 您要继续吗？";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "此链接正在请求打开 %1$@。%2$@ 是否继续？"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "一个外部应用程序"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "邮件"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "文本已复制到剪贴板。";
-"Save To Camera Roll" = "保存至相机胶卷";
+"Save to Photo Library" = "存储至图库";
 "Failed to extract image." = "提取图像失败。";
 "Type value or pick from list" = "键入值或从列表中选取";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "彩虹";
 "Monochrome" = "单色";
 "Vintage" = "复古";
+"Modern" = "现代";
 "Color" = "颜色";
 "Border" = "边框";
 "Fill Color" = "填充颜色";
-"Line End Fill Color" = "直线终点填充颜色";
+"Start and End Color" = "开始和结束颜色";
 "Opacity" = "不透明度";
-"%@ %%" = "%@ %%";
 "Thickness" = "粗细";
 "%@ pt" = "%@ 磅";
 "Yellow" = "黄色";
@@ -148,10 +153,11 @@
 "Gray" = "灰色";
 "White" = "白色";
 "Define" = "定义";
-"Wikipedia" = "维基百科\n";
+"Wikipedia" = "维基百科";
 "Highlight" = "高亮显示";
 "Underline" = "下划线";
 "Squiggle" = "波形曲线";
+"Squiggly" = "弯曲";
 "StrikeOut" = "删去";
 "Rectangle" = "矩形";
 "Ellipse" = "椭圆";
@@ -176,7 +182,7 @@
 "Remove Signature" = "移除签名";
 "My Signature" = "我的签名";
 "No Signatures" = "没有签名"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "客户签名";
+"One Time Signature" = "一次签名";
 "Please sign here" = "请在这里签名";
 "Note" = "注释";
 "Text" = "文本";
@@ -209,7 +215,8 @@
 "Ungroup" = "取消群组";
 "Merge" = "合并"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "样本";
-"Annotation Summary for %@:\n" = "%@ 批注摘要：";
+"Annotation Summary for %@:" = "%@ 批注摘要：";
+"Show Text" = "显示文本";
 // title
 "Author Name" = "作者姓名";
 // message
@@ -232,6 +239,7 @@
 "Drag to resize" = "拖动调整尺寸"; // used as hint that inspector is resizable
 "Convert to" = "转换为"; // used as label on action that changes free text intent type
 "Color Presets" = "颜色预设";
+"pt" = "pt"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "标注"; // freetext annotation with an arrow
 "Generic" = "通用"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "宽点";
 "Narrow Dashes" = "窄虚线";
 "Wide Dashes" = "宽虚线";
+"Cloudy" = "模糊"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "已批准";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "配对";
 // text on a label; app and stylus are connected
-"Connected" = "已连接";
+"%@ Connected" = "%@ 已连接";
 // text on a label; app and stylus are not connected
-"Disconnected" = "已断开连接";
+"%@ Disconnected" = "%@ 已断开连接";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "设置";
 
@@ -334,7 +343,7 @@
 "Go" = " 前往"; // Used as a button label: In the "Go to Page" prompt, a user can enter a page number and then press the "Go" button to go this page
 "Save" = "保存";
 "Link Destination" = "链接目标";
-"Enter page index or a http:// address to link to an URL." = "输入页面索引或 http:// 地址链接到 URL。";
+"Enter page index or a http:// address to link to an URL." = "输入页面检索或 http:// 地址链接到 URL。";
 "Page %@ Not Found" = "未找到第 %@ 页";
 
 // voiceover accessibility
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "批注在 PDF 中渲染，而且只读。";
 "Annotation Summary" = "批注摘要";
 "Embed Annotations into the PDF and also list them in the email." = "将批注嵌入 PDF 中且将它们列在电子邮件中";
+"Annotations will be listed in a text file." = "批注将列在文本文件中。";
 "Files" = "文件";
 "Send as single files" = "作为单个文件发送";
 "Merge files" = "合并文件";
 "Original File" = "原始文件";
 "Range" = "范围";
 "Annotated Pages" = "已加批注的页";
+"Message could not be sent." = "无法发送消息。";
+"Export" = "导出";
+"This action can't be performed." = "无法执行此操作。";
 
 // sound annotations
 "Speak" = "朗读"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "选择字段";
 "Signature Field" = "签名字段";
 "Clear Field" = "清除字段"; // same as delete
-"Type value or pick from list" = "键入值或从列表中选取";
 "Default Values" = "默认值";
 "Custom Value" = "自定值";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "值无效：必须不大于 %s。";
 "Invalid value: must be a number." = "值无效。必须是数字。";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "值无效：必须是一个日期。";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "旋转页面";
 "Page Size" = "页面大小";
 "Background Color" = "背景颜色";
+"Paper" = "纸张";
 "Pattern" = "表单元素";
 "Use Document Size" = "使用文稿大小";
 "Orientation" = "方向";
 "Portrait" = "纵向";
 "Landscape" = "横向";
-"Name" = "姓名";
 "Document Name" = "文稿名称";
 "Documents" = "文稿"; // Name of directory
-"Use Document Directory" = "使用文稿目录";
-"Directory" = "目录";
+"Use Document Folder" = "使用文稿文件夹";
+"Folder" = "文件夹";
 "Replace File?" = "替换文件？";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "在所选目标已经存在名称为 \"%@\" 的文件。是否要替换它？";
 "Replace" = "替换";
@@ -543,6 +555,15 @@
 "Save As…" = "另存为…";
 "Discard Changes" = "放弃更改";
 "Empty" = "无效";
+"Use Image Size" = "使用图片大小";
+"Page Background" = "页面背景";
+"Insert image annotation" = "插入图片批注";
+"Import page background" = "导入页面背景";
+"Quality" = "质量";
+"Low" = "低";
+"Medium" = "中等";
+"High" = "高";
+"Best" = "最佳";
 
 // Document Editor Errors
 "A blank document can not be saved." = "空文稿无法保存";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "文本到语音转换服务不可用。确保您的网络处于连接状态或者您的设备安装并启用了 Google 文本到语音转换引擎。";
+
+// Settings
+"Page Transition" = "页面过渡";
+"Single" = "单页";
+"Continuous" = "连续";
+"Curl" = "卷曲";
+"Scroll" = "滚动";
+"Horizontal" = "水平";
+"Vertical" = "垂直";
+"Page Mode" = "页面模式";
+"Automatic" = "自动";
+"Double" = "双页";
+"Appearance" = "外观";
+"Scrubber Bar" = "清理栏";
+"Jump" = "跳转"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "不可用"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "此应用没有访问您的照片的权限。";
+"This app does not have access to your camera." = "此应用没有访问您的相机的权限。";
+"You can enable access in Privacy Settings." = "您可以在“隐私设置”中启用访问权限。";

@@ -2,7 +2,7 @@
 //  PSPDFAppearanceModeManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2016-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -28,13 +28,13 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAppearanceMode) {
 NS_ASSUME_NONNULL_BEGIN
 
 /// Notification sent out after `appearanceMode` is changed.
-PSPDF_EXPORT NSString *const PSPDFAppearanceModeChangedNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFAppearanceModeChangedNotification;
 
 /// Notification `userInfo` dictionary key. Holds a `BOOL` `NSNumber` which is `YES`
 /// when an animated mode change was requested.
 PSPDF_EXPORT NSString *const PSPDFAppearanceModeChangedAnimatedKey;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFAppearanceModeManagerDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFAppearanceModeManagerDelegate<NSObject>
 
 @optional
 

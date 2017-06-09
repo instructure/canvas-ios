@@ -2,7 +2,7 @@
 //  PSPDFResizableView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewOuterKnob) {
     PSPDFResizableViewOuterKnobMiddleRight,
     PSPDFResizableViewOuterKnobBottomLeft,
     PSPDFResizableViewOuterKnobBottomMiddle,
-    PSPDFResizableViewOuterKnobBottomRight
+    PSPDFResizableViewOuterKnobBottomRight,
 } PSPDF_ENUM_AVAILABLE;
 
 /// Constant used to always force guide snapping.
@@ -32,7 +32,7 @@ PSPDF_EXPORT CGFloat const PSPDFGuideSnapAllowanceAlways;
 NS_ASSUME_NONNULL_BEGIN
 
 /// Delegate to be notified on session begin/end and frame changes.
-PSPDF_AVAILABLE_DECL @protocol PSPDFResizableViewDelegate <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFResizableViewDelegate<NSObject>
 
 @optional
 
@@ -42,6 +42,9 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFResizableViewDelegate <NSObject>
 /// Called after frame change.
 /// On the first call, `isInitialChange` will be true.
 - (void)resizableViewChangedFrame:(PSPDFResizableView *)resizableView outerKnobType:(PSPDFResizableViewOuterKnob)outerKnobType isInitialChange:(BOOL)isInitialChange;
+
+/// Called if the annotation's shape is changed (e.g. polyline shape).
+- (void)resizableView:(PSPDFResizableView *)resizableView adjustedProperty:(NSString *)propertyName ofAnnotation:(PSPDFAnnotation *)annotation;
 
 /// The editing session has ended.
 - (void)resizableViewDidEndEditing:(PSPDFResizableView *)resizableView didChangeFrame:(BOOL)didChangeFrame;
@@ -56,7 +59,7 @@ typedef NS_ENUM(NSUInteger, PSPDFKnobType) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Required methods for views that represent resizable view knobs.
-PSPDF_AVAILABLE_DECL @protocol PSPDFKnobView <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFKnobView<NSObject>
 
 /// The knob type. Use to display inner and outer knobs differently.
 /// Redraw if this property changes.
@@ -90,7 +93,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFResizableView : UIView
 @property (nonatomic) PSPDFResizableViewMode mode;
 
 /// View that will be changed on selection change.
-@property (nonatomic, copy, nullable) NSSet *trackedViews;
+@property (nonatomic, copy, nullable) NSSet<UIView *> *trackedViews;
 
 /// Set zoom scale to be able to draw the page knobs at the correct size.
 @property (nonatomic) CGFloat zoomScale;
@@ -181,12 +184,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFResizableView : UIView
 /// We have great defaults but subclassing this can be used to change the style.
 /// @warning Do *NOT* override `drawRect:` in this class, as it will consume a lot of memory when zoomed in.
 - (void)configureGuideLayer:(CAShapeLayer *)layer withZoomScale:(CGFloat)zoomScale NS_REQUIRES_SUPER;
-
-@end
-
-@interface PSPDFResizableView (Deprecated)
-
-@property (nonatomic, readonly, nullable) PSPDFAnnotation *trackedAnnotation PSPDF_DEPRECATED("5.3.6", "Use trackedAnnotations instead.");
 
 @end
 

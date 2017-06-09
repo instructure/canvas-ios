@@ -2,7 +2,7 @@
 //  PSPDFRemoteContentObject.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,10 +14,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^PSPDFRemoteContentObjectAuthenticationBlock)(NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential));
-typedef _Nullable id(^PSPDFRemoteContentObjectTransformerBlock)(NSURL *location);
+typedef void (^PSPDFRemoteContentObjectAuthenticationBlock)(NSURLAuthenticationChallenge *, void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential));
+typedef _Nullable id (^PSPDFRemoteContentObjectTransformerBlock)(NSURL *location);
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFRemoteContentObject <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFRemoteContentObject<NSObject>
 
 /// The URL request used for loading the remote content.
 @property (nonatomic, readonly, nullable) NSURLRequest *URLRequestForRemoteContent;

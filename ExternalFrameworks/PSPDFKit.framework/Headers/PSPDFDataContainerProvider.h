@@ -1,8 +1,8 @@
 //
 //  PSPDFDataContainerProvider.h
-//  PSPDFModel
+//  PSPDFFoundation
 //
-//  Copyright (c) 2015-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2015-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,13 +10,13 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
 #import "PSPDFDataProvider.h"
+#import "PSPDFEnvironment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// A `PSPDFDataProvider` that operates on a single `NSData`.
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFDataContainerProvider : NSObject <PSPDFDataProvider>
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFDataContainerProvider : NSObject<PSPDFDataProvider>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 

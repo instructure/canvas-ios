@@ -2,7 +2,7 @@
 //  PSPDFGalleryViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,10 +12,10 @@
 
 #import "PSPDFBaseViewController.h"
 #import "PSPDFGalleryItem.h"
-#import "PSPDFOverridable.h"
-#import "PSPDFPlugin.h"
-#import "PSPDFMultimediaViewController.h"
+#import "PSPDFGalleryVideoItem.h"
 #import "PSPDFMacros.h"
+#import "PSPDFMultimediaViewController.h"
+#import "PSPDFOverridable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,17 +38,12 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 @class PSPDFGalleryViewController;
 
 /// Handles a gallery of one or multiple images, videos, audio or even web content.
-PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryViewController : PSPDFBaseViewController <PSPDFOverridable, PSPDFPlugin, PSPDFMultimediaViewController>
+PSPDF_CLASS_AVAILABLE @interface PSPDFGalleryViewController : PSPDFBaseViewController<PSPDFOverridable, PSPDFMultimediaViewController>
 
 PSPDF_DEFAULT_VIEWCONTROLLER_INIT_UNAVAILABLE
 
-/// Create a new gallery view controller by passing in the plugin registry and an options dictionary.
-/// The options dictionary must contain the key `PSPDFMultimediaLinkAnnotationKey` that maps to an
-/// `PSPDFLinkAnnotation` object.
-- (instancetype)initWithPluginRegistry:(id)pluginRegistry options:(nullable NSDictionary<NSString *, id> *)options NS_DESIGNATED_INITIALIZER;
-
 /// Create a new gallery view controller by passing in a link annotation.
-- (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)linkAnnotation;
+- (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)linkAnnotation NS_DESIGNATED_INITIALIZER;
 
 /// The configuration. Defaults to `+[PSPDFGalleryConfiguration defaultConfiguration]`.
 @property (nonatomic) PSPDFGalleryConfiguration *configuration;
@@ -70,7 +65,7 @@ PSPDF_DEFAULT_VIEWCONTROLLER_INIT_UNAVAILABLE
 
 /// Indicates if the view controller is currently transitioning between display modes, that
 /// is if the controller is moving from fullscreen to embedded or vice versa.
-@property (nonatomic, getter=isTransitioning) BOOL transitioning;
+@property (nonatomic, getter=isTransitioning) BOOL transitioning PSPDF_DEPRECATED(6.5, "Starting with PSPDFKit v6.5 the view controller is no longer transitioning when its content becomes fullscreen. Therefore this property will always return NO.");
 
 /// Used to enter or exit the fullscreen mode with or without animation.
 /// The transition is only initiated, if all gallery items support fullscreen presentation.

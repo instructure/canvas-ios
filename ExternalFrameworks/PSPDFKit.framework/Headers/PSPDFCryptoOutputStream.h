@@ -2,7 +2,7 @@
 //  PSPDFCryptoOutputStream.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -21,7 +21,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFCryptoOutputStream : NSOutputStream
 
 /// Set the encryption handler. If no encryption block is called, this output stream will simply pass the data through.
 /// @note Set this property before the output stream is being used.
-@property (nonatomic, copy) NSData *(^encryptionBlock)(PSPDFCryptoOutputStream *stream, const uint8_t *buffer, NSUInteger len);
+@property (nonatomic, copy) NSData * (^encryptionBlock)(PSPDFCryptoOutputStream *stream, const uint8_t *buffer, NSUInteger len);
 
 @end
 

@@ -2,7 +2,7 @@
 //  PSPDFEraseOverlay.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,14 +10,14 @@
 //  This notice may not be removed from this file.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "PSPDFEnvironment.h"
+#import <QuartzCore/QuartzCore.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFEraseOverlay;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFEraseOverlayDataSource <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFEraseOverlayDataSource<NSObject>
 
 /// The current zoom scale, for sharp rendering while zoomed in
 - (CGFloat)zoomScaleForEraseOverlay:(PSPDFEraseOverlay *)overlay;

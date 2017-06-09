@@ -2,7 +2,7 @@
 //  PSPDFJSONAdapter.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -86,7 +86,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFJSONAdapter : NSObject
 /// parsing or initializing an instance of `modelClass`.
 ///
 /// Returns an instance of `modelClass` upon success, or nil if a parsing error occurred.
-+ (nullable id)modelOfClass:(Class)modelClass fromJSONDictionary:(NSDictionary<NSString *, id> *)JSONDictionary error:(NSError **)error;
++ (nullable __kindof PSPDFModel *)modelOfClass:(Class)modelClass fromJSONDictionary:(NSDictionary<NSString *, id> *)JSONDictionary error:(NSError **)error;
 
 /// Converts a model into a JSON representation.
 ///
@@ -107,17 +107,17 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFJSONAdapter : NSObject
 /// parsing or initializing an instance of `modelClass`.
 ///
 /// Returns an initialized adapter upon success, or nil if a parsing error occurred.
-- (nullable instancetype)initWithJSONDictionary:(NSDictionary<NSString *, id> *)JSONDictionary modelClass:(Class)modelClass error:(NSError **)error;
+- (nullable instancetype)initWithJSONDictionary:(NSDictionary<NSString *, id> *)JSONDictionary modelClass:(Class)modelClass error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 
 /// Initializes the receiver with an existing model.
 ///
 /// @param model The model to use for JSON serialization. This argument must not be nil.
-- (nullable instancetype)initWithModel:(PSPDFModel<PSPDFJSONSerializing> *)model;
+- (nullable instancetype)initWithModel:(PSPDFModel<PSPDFJSONSerializing> *)model NS_DESIGNATED_INITIALIZER;
 
 /// Serializes the receiver's `model` into JSON.
 ///
 /// Returns a JSON dictionary, or nil if a serialization error occurred.
-@property (nonatomic, readonly, nullable) NSDictionary<NSString *,id> *JSONDictionary;
+@property (nonatomic, readonly, nullable) NSDictionary<NSString *, id> *JSONDictionary;
 
 @end
 

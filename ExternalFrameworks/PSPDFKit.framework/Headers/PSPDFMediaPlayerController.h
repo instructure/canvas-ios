@@ -2,7 +2,7 @@
 //  PSPDFMediaPlayerController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,6 +14,24 @@
 #import <AVFoundation/AVFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**
+ Posted when the media player started playing.
+ Notification includes the played back `PSPDFGalleryVideoItem` object.
+ */
+PSPDF_EXPORT NSNotificationName const PSPDFMediaPlayerControllerPlaybackDidStartNotification;
+
+/**
+ Posted when the media player paused.
+ Notification includes the played back `PSPDFGalleryVideoItem` object.
+ */
+PSPDF_EXPORT NSNotificationName const PSPDFMediaPlayerControllerPlaybackDidPauseNotification;
+
+/**
+ Posted when the media player finished playing the entire video.
+ Notification includes the played back `PSPDFGalleryVideoItem` object.
+ */
+PSPDF_EXPORT NSNotificationName const PSPDFMediaPlayerControllerPlaybackDidFinishNotification;
 
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
     /// Shows no controls whatsoever.
@@ -57,7 +75,7 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerCoverMode) {
 
 @protocol PSPDFMediaPlayerControllerDelegate;
 
-/// A simply media player.
+/// A simple media player used for video playback.
 PSPDF_CLASS_AVAILABLE @interface PSPDFMediaPlayerController : NSObject
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
@@ -98,27 +116,43 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// The cover mode.
 @property (nonatomic) PSPDFMediaPlayerCoverMode coverMode;
 
-/// The URL of the cover image to be displayed. Only effective if `coverMode` is set to
-/// `PSPDFMediaPlayerCoverModeCustom`.
+/**
+ The URL of the cover image to be displayed. Only effective if `coverMode` is set to
+ `PSPDFMediaPlayerCoverModeCustom`.
+ */
 @property (nonatomic, nullable) NSURL *coverImageURL;
 
-/// The time in the video at which the image for the cover is captured. Only effective if `coverMode`
-/// is set to `PSPDFMediaPlayerCoverModePreview`. Defaults to 2 seconds.
+/**
+ The time in the video at which the image for the cover is captured. Only effective if `coverMode`
+ is set to `PSPDFMediaPlayerCoverModePreview`. Defaults to 2 seconds.
+ */
 @property (nonatomic) CMTime coverImagePreviewCaptureTime;
 
 /// The player's delegate.
-@property (nonatomic, weak) IBOutlet id <PSPDFMediaPlayerControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFMediaPlayerControllerDelegate> delegate;
 
-/// Set this to YES if you want to hide the toolbar. This property might be ignored
-/// if it is set to NO in case the `PSPDFMediaPlayerCoverView` is visible. Use view.toolbar.hidden
-/// to access the actual visibility state of the toolbar. Normally you don't need to change
-/// this property yourself because `PSPDFMediaPlayerController` handles it for you.
-/// Defaults to YES.
+/**
+ Set this to YES if you want to hide the toolbar. This property might be ignored
+ if it is set to NO in case the `PSPDFMediaPlayerCoverView` is visible. Use view.toolbar.hidden
+ to access the actual visibility state of the toolbar. Normally you don't need to change
+ this property yourself because `PSPDFMediaPlayerController` handles it for you.
+ Defaults to YES.
+ */
 @property (nonatomic) BOOL shouldHideToolbar;
+
+/**
+ Set this to YES if you want to hide the toolbar. This might be ignored
+ if it is set to NO in case the `PSPDFMediaPlayerCoverView` is visible. Use view.toolbar.hidden
+ to access the actual visibility state of the toolbar. Normally you don't need to change
+ this property yourself because `PSPDFMediaPlayerController` handles it for you.
+ @param animated `BOOL` indicating wheter to hide the toolbar animated.
+ */
 - (void)setShouldHideToolbar:(BOOL)shouldHideToolbar animated:(BOOL)animated;
 
-/// Indicates that the player has started playing, although it might not be playing right now.
-/// Defaults to NO.
+/**
+ Indicates that the player has started playing, although it might not be playing right now.
+ Defaults to NO.
+ */
 @property (nonatomic, readonly) BOOL didStartPlaying;
 
 /// The tap gesture recognizer used for toggling the toolbar.
@@ -133,36 +167,57 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// The control style of the media player. Defaults to `PSPDFMediaPlayerControlStyleDefault`.
 @property (nonatomic) PSPDFMediaPlayerControlStyle controlStyle;
 
-/// The range of the video that should be played. You can use this property to truncate
-/// parts of the video at the start or at the end. Defaults to a range with start `kCMTimeZero`,
-/// and duration `kCMTimeIndefinite`, which means that the entire video will be played from start
-/// to end.
-/// @note You must set this property before playback starts, otherwise it will have no effect.
+/**
+ The range of the video that should be played. You can use this property to truncate
+ parts of the video at the start or at the end. Defaults to a range with start `kCMTimeZero`,
+ and duration `kCMTimeIndefinite`, which means that the entire video will be played from start
+ to end.
+ @note You must set this property before playback starts, otherwise it will have no effect.
+ */
 @property (nonatomic) CMTimeRange playableRange;
 
 @end
 
 @interface PSPDFMediaPlayerController (Advanced)
 
-/// The internally used player. The `AVPlayer` in use might change during the lifecycle
-/// of an `PSPDFMediaPlayerController`! Use with caution!
+/**
+ The internally used player. The `AVPlayer` in use might change during the lifecycle
+ of an `PSPDFMediaPlayerController`! Use with caution!
+ */
 @property (nonatomic, readonly, nullable) AVPlayer *internalPlayer;
 
 @end
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFMediaPlayerControllerDelegate <NSObject>
+/// Delegate informing about state changes of the media player controller.
+PSPDF_AVAILABLE_DECL @protocol PSPDFMediaPlayerControllerDelegate<NSObject>
 
 @optional
 
-/// Controls whether the media player should pause other instances on play. If this method is not
-/// implemented, the default is `YES`.
+/**
+ Controls whether the media player should pause other instances on play. If this method is not
+ implemented, the default is `YES`.
+ */
 - (BOOL)mediaPlayerControllerShouldPauseOtherInstances:(PSPDFMediaPlayerController *)controller;
 
+/// Called when the media player did start playing.
 - (void)mediaPlayerControllerDidStartPlaying:(PSPDFMediaPlayerController *)controller;
+
+/// Called when the media player did pause.
 - (void)mediaPlayerControllerDidPause:(PSPDFMediaPlayerController *)controller;
+
+/// Called when the media player did finish playing the entire video.
 - (void)mediaPlayerControllerDidFinishPlaying:(PSPDFMediaPlayerController *)controller;
+
+/// Called when the seek time changes
+- (void)mediaPlayerController:(PSPDFMediaPlayerController *)controller didSeekToTime:(CMTime)seekTime;
+
+/// Called when the media player did hide or show the toolbar.
 - (void)mediaPlayerController:(PSPDFMediaPlayerController *)controller didHideToolbar:(BOOL)hidden;
+
+/// Called when the media players content state did change.
 - (void)mediaPlayerController:(PSPDFMediaPlayerController *)controller contentStateDidChange:(PSPDFMediaPlayerControllerContentState)contentState;
+
+/// Called when the `externalPlaybackActive` property changed.
 - (void)mediaPlayerController:(PSPDFMediaPlayerController *)controller externalPlaybackActiveDidChange:(BOOL)externalPlaybackActive;
 
 @end

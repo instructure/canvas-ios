@@ -2,7 +2,7 @@
 //  PSPDFAnnotationToolbarController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,15 +10,15 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFFlexibleToolbarController.h"
 #import "PSPDFFlexibleToolbarContainer.h"
+#import "PSPDFFlexibleToolbarController.h"
 
 @class PSPDFAnnotationToolbar;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Fired whenever the toolbar visibility changes.
-PSPDF_EXPORT NSString *const PSPDFAnnotationToolbarControllerVisibilityDidChangeNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFAnnotationToolbarControllerVisibilityDidChangeNotification;
 
 /// Key inside the notification's userInfo.
 PSPDF_EXPORT NSString *const PSPDFAnnotationToolbarControllerVisibilityAnimatedKey;
@@ -34,7 +34,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationToolbarController : PSPDFFlexibl
 @property (nonatomic, readonly) PSPDFAnnotationToolbar *annotationToolbar;
 
 /// Optional. Forwards calls from internal delegate handler.
-@property (nonatomic, weak) id <PSPDFFlexibleToolbarContainerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFFlexibleToolbarContainerDelegate> delegate;
 
 @end
 

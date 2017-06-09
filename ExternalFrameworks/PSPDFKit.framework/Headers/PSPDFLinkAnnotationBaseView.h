@@ -2,7 +2,7 @@
 //  PSPDFLinkAnnotationBaseView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFLinkAnnotation;
 
 /// Base class for all link-annotation subclasses.
-PSPDF_CLASS_AVAILABLE @interface PSPDFLinkAnnotationBaseView : UIView <PSPDFAnnotationViewProtocol>
+PSPDF_CLASS_AVAILABLE @interface PSPDFLinkAnnotationBaseView : UIView<PSPDFAnnotationViewProtocol>
 
 /// Saves the attached link annotation.
 @property (nonatomic, readonly) PSPDFLinkAnnotation *linkAnnotation;

@@ -20,6 +20,7 @@ import type {
 import SubmissionStatus from '../../submissions/list/SubmissionStatus'
 import { formattedDueDate } from '../../../common/formatters'
 import SpeedGraderActions from '../actions'
+import Avatar from '../../../common/components/Avatar'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -119,7 +120,7 @@ export class Header extends Component {
     const sub = this.props.submissionProps
     return <Animated.View style={[styles.header, { height: this.state.easeAnimation }]}>
       <View style={styles.profileContainer}>
-        <View><Image source={{ uri: sub.avatarURL }} style={styles.avatarImage} /></View>
+        <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={sub.name} /></View>
         <View style={styles.nameContainer}>
           <Text style={styles.name} accessibilityTraits='header'>{sub.name}</Text>
           <SubmissionStatus status={sub.status} />
@@ -165,10 +166,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     tintColor: '#008EE2',
   },
-  avatarImage: {
+  avatar: {
     width: 40,
     height: 40,
-    borderRadius: 20,
     marginLeft: 16,
   },
   nameContainer: {

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>15G31</string>
+	<string>16F73</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.5.5</string>
+	<string>6.7.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSupportedPlatforms</key>
@@ -25,31 +25,33 @@
 		<string>iPhoneOS</string>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>93963</string>
+	<string>107980</string>
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>13E230</string>
+	<string>14E269</string>
 	<key>DTPlatformName</key>
 	<string>iphoneos</string>
 	<key>DTPlatformVersion</key>
-	<string>9.3</string>
+	<string>10.3</string>
 	<key>DTSDKBuild</key>
-	<string>13E230</string>
+	<string>14E269</string>
 	<key>DTSDKName</key>
-	<string>iphoneos9.3</string>
+	<string>iphoneos10.3</string>
 	<key>DTXcode</key>
-	<string>0731</string>
+	<string>0832</string>
 	<key>DTXcodeBuild</key>
-	<string>7D1014</string>
+	<string>8E2002</string>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>PSPDFVersionType</key>
-	<string>Dynamic Framework</string>
+	<string></string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<integer>1</integer>
+		<integer>3</integer>
 		<integer>2</integer>
+		<integer>1</integer>
+		<integer>4</integer>
 	</array>
 </dict>
 </plist>

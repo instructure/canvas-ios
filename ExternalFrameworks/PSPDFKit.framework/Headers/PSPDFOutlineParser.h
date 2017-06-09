@@ -2,7 +2,7 @@
 //  PSPDFOutlineParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -25,14 +25,14 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 ///
 /// If `exactPageOnly` is set, the outline will only be returned if it's from the specific page.
 /// Else the last active set outline will be returned.
-- (nullable PSPDFOutlineElement *)outlineElementForPage:(NSUInteger)page exactPageOnly:(BOOL)exactPageOnly;
+- (nullable PSPDFOutlineElement *)outlineElementForPageAtIndex:(NSUInteger)pageIndex exactPageOnly:(BOOL)exactPageOnly;
 
 /// Returns cached outline. starts parsing if outline is not yet created.
 /// Will always return at least a root element.
 @property (nonatomic) PSPDFOutlineElement *outline;
 
 /// Returns YES if outline is already parsed.
-@property (nonatomic, readonly, getter=isOutlineParsed) BOOL outlineParsed;
+@property (atomic, readonly, getter=isOutlineParsed) BOOL outlineParsed;
 
 /// Returns YES if there is an outline in the document and we parsed it (`outline.children > 0`)
 /// Will parse the outline if needed.

@@ -2,7 +2,7 @@
 //  PSPDFFormElementView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,13 +11,12 @@
 //
 
 #import "PSPDFEnvironment.h"
-#import "PSPDFHostingAnnotationView.h"
 #import "PSPDFFormInputAccessoryView.h"
 #import "PSPDFFormInputAccessoryViewDelegate.h"
+#import "PSPDFHostingAnnotationView.h"
 
 /// Generic view for form elements. Adds the form accessory view and additional keyboard support.
 /// Form views are not synced with the page to allow snappier editing.
-PSPDF_CLASS_AVAILABLE @interface PSPDFFormElementView : PSPDFHostingAnnotationView <PSPDFFormInputAccessoryViewDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFFormElementView : PSPDFHostingAnnotationView<PSPDFFormInputAccessoryViewDelegate>
 
 @end
-

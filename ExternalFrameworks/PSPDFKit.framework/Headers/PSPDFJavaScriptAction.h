@@ -2,7 +2,7 @@
 //  PSPDFJavaScriptAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -11,9 +11,9 @@
 //
 
 #import "PSPDFAction.h"
-#import "PSPDFFormElement.h"
-#import "PSPDFDocument.h"
 #import "PSPDFApplicationJSExport.h"
+#import "PSPDFDocument.h"
+#import "PSPDFFormElement.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Note for the calculation method below (Adobe Acrobat SDK JavaScript API - JavaScript for Acrobat API Reference) :
 ///
-/// This event is defined when a change in a form requires that all fields that have a calculation script attached to them be executed. All fields that depend on the value of the changed field will now be recalculated. These fields may in turn generate additional Field/Validate, Field/Blur, and Field/Focus events. Calculated fields may have dependencies on other calculated fields whose values must be determined beforehand. The calculation order array contains an ordered list of all the fields in a document that have a
+/// This event is defined when a change in a form requires that all fields that have a calculation script attached to them be executed. All fields that depend on the value of the changed field will now be recalculated. These fields may in turn generate additional Field/Validate, Field/Blur, and Field/Focus events. Calculated fields may have dependencies on other calculated fields whose values must be determined beforehand. The calculation order array contains an ordered list of all the fields in
+/// a document that have a
 /// calculation script attached. When a full calculation is needed, each of the fields in the array is calculated in turn starting with the zeroth index of the array and continuing in sequence to the end of the array.
 
 /// Executes all calculate actions in the document that depend on the `sourceForm` value.
@@ -64,7 +65,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFJavaScriptAction : PSPDFAction
 /// Form the Adobe Javascript for Acrobat Reference:
 ///
 /// All JavaScript scripts are executed as the result of a particular event. For each of these events, JavaScript creates an event object. During the occurrence of each event, you can access this object to get and possibly manipulate information about the current state of the event. Each event has a type and a name property that uniquely identify the event.
-
 
 /// For the Field/Validate event, it is the value that the field contains when it is committed. For a
 /// combo box, it is the face value, not the export value. For a keystroke event, it is the value, before the keystroke is committed.
@@ -106,7 +106,7 @@ PSPDF_EXPORT NSString *const PSPDFActionEventTypeValueField;
 PSPDF_EXPORT NSString *const PSPDFJavascriptErrorDomain;
 
 typedef NS_ENUM(NSInteger, PSPDFJavascriptErrorCode) {
-    PSPDFJavascriptErrorScriptExecutionFailed = 100
+    PSPDFJavascriptErrorScriptExecutionFailed = 100,
 } PSPDF_ENUM_AVAILABLE;
 
 NS_ASSUME_NONNULL_END

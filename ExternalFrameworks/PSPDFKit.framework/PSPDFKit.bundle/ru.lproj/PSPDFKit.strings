@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+ Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -24,6 +24,9 @@
 "Next" = "Далее";
 "Previous" = "Назад";
 "Error" = "Ошибка";
+"More options" = "Ещё";
+"Close All Tabs" = "Закрыть все вкладки";
+"Close All Other Tabs" = "Закрыть другие вкладки"; // Alert controller action text for closing all tabs but the selected one
 
 // toolbar
 "Outline" = "Содержание"; // Table of contents
@@ -86,14 +89,16 @@
 "Searching" = "Поиск";
 "Done" = "Готово";
 "Indexing Documents" = "Индексация документов";
-// text on a label; after the user has done a search on an empty document, this text is shown
-"Document has no content" = "Документ пуст";
+"Document" = "Документ";
+
+// The title displayed in the search text field inside the annotation list view controller.
+"Search Annotations" = "Поиск в аннотациях";
 
 // inline browser
 "Open in Safari" = "Открыть в Safari";
 "Open in Chrome" = "Открыть в Chrome";
 "Your %@ is not configured to send emails." = "Ваш %@ не настроен на отправку электронной почты.";
-"The link is requesting to open %@Would you like to continue?" = "Требуется открыть %@. Продолжить?";
+"The link is requesting to open %1$@. %2$@Would you like to continue?" = "Переход по ссылке откроет программу «%1$@». %2$@Продолжить?"; // First placeholder is for an app name (e.g. Mail) and the second one is for the URL of the app and automatically begins a newline afterwards
 "an external application" = "внешнее приложение"; // "The link is requesting to open an external application. Would you like to continue?"
 "the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "приложение «Почта»"; // "The link is requesting to open Mail. Would you like to continue?"
@@ -102,7 +107,7 @@
 
 // text selection
 "Text copied to clipboard." = "Текст скопирован в буфер обмена.";
-"Save To Camera Roll" = "Сохранить в Фотогалерею";
+"Save to Photo Library" = "Сохранить в медиатеку";
 "Failed to extract image." = "Не удалось извлечь изображение.";
 "Type value or pick from list" = "Введите значение или выберите из списка";
 
@@ -128,12 +133,12 @@
 "Rainbow" = "Радуга";
 "Monochrome" = "Монохромный";
 "Vintage" = "Винтаж";
+"Modern" = "Модерн";
 "Color" = "Цвет";
 "Border" = "Рамка";
 "Fill Color" = "Цвет заливки";
-"Line End Fill Color" = "Цвет заливки концов линии";
+"Start and End Color" = "Начать и закончить цвет";
 "Opacity" = "Непрозрачность";
-"%@ %%" = "%@ %%";
 "Thickness" = "Толщина";
 "%@ pt" = "%@ пт";
 "Yellow" = "Желтый";
@@ -152,6 +157,7 @@
 "Highlight" = "Выделение";
 "Underline" = "Подчеркивание";
 "Squiggle" = "Волнистое подчеркивание";
+"Squiggly" = "Волнистая линия";
 "StrikeOut" = "Зачеркивание";
 "Rectangle" = "Прямоугольник";
 "Ellipse" = "Эллипс";
@@ -176,7 +182,7 @@
 "Remove Signature" = "Удалить подпись";
 "My Signature" = "Моя подпись";
 "No Signatures" = "Нет подписей"; // text on label - is shown when there is no signature to display
-"Customer Signature" = "Подпись пользователя";
+"One Time Signature" = "Личная подпись";
 "Please sign here" = "Подпишите здесь";
 "Note" = "Заметка";
 "Text" = "Текст";
@@ -209,7 +215,8 @@
 "Ungroup" = "Разгруппировать";
 "Merge" = "Объединить"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Образец";
-"Annotation Summary for %@:\n" = "Сводка аннотаций для %@:\n";
+"Annotation Summary for %@:" = "Сводка аннотаций для %@:";
+"Show Text" = "Показать текст";
 // title
 "Author Name" = "Имя автора";
 // message
@@ -230,8 +237,9 @@
 "Time" = "Время";
 "No Pages" = "Нет страниц";
 "Drag to resize" = "Перетащите для изм. размера"; // used as hint that inspector is resizable
-"Convert to" = "Конвертировать в"; // used as label on action that changes free text intent type
+"Convert to" = "Преобразовать в"; // used as label on action that changes free text intent type
 "Color Presets" = "Библиотека цветов";
+"pt" = "пт"; // Size of e.g. an ink annotation in points or font size in points
 
 "Callout" = "Выноска"; // freetext annotation with an arrow
 "Generic" = "Обычный"; // basic freetext annotation
@@ -243,6 +251,7 @@
 "Wide Dots" = "Широкие точки";
 "Narrow Dashes" = "Узкие штрихи";
 "Wide Dashes" = "Широкие штрихи";
+"Cloudy" = "Облака"; // Accessibility label for an annotation border/line style looking like a cloud.
 
 // Stamps
 "Approved" = "Одобрено";
@@ -274,9 +283,9 @@
 // text on a label; app connects to a stylus
 "Pairing" = "Создание пары";
 // text on a label; app and stylus are connected
-"Connected" = "Подключено";
+"%@ Connected" = "Подключено: %@";
 // text on a label; app and stylus are not connected
-"Disconnected" = "Отключено";
+"%@ Disconnected" = "Отключено: %@";
 // text on a button; if clicked, the settings of the stylus are shown
 "Settings" = "Настройки";
 
@@ -361,12 +370,16 @@
 "Annotations are drawn into the PDF and are readonly." = "Аннотации будут объединены с содержимым PDF и доступны только для чтения.";
 "Annotation Summary" = "Сводка аннотаций";
 "Embed Annotations into the PDF and also list them in the email." = "Встроить аннотации в PDF и добавить их список в сообщение эл. почты.";
+"Annotations will be listed in a text file." = "Аннотации будут помещены в текстовый файл.";
 "Files" = "Файлы";
 "Send as single files" = "Отправить по одному";
 "Merge files" = "Объединить файлы";
 "Original File" = "Исходный файл";
 "Range" = "Диапазон";
 "Annotated Pages" = "Страницы с аннотациями";
+"Message could not be sent." = "Не удалось отправить сообщение.";
+"Export" = "Экспортировать";
+"This action can't be performed." = "Не удалось выполнить действие.";
 
 // sound annotations
 "Speak" = "Произнести"; // should be translated like the "Speak" Menu in UIKit
@@ -399,7 +412,6 @@
 "Choice Field" = "Поле выбора";
 "Signature Field" = "Поле для подписи";
 "Clear Field" = "Очистить поле"; // same as delete
-"Type value or pick from list" = "Введите значение или выберите из списка";
 "Default Values" = "Значения по умолчанию";
 "Custom Value" = "Пользовательское значение";
 
@@ -409,7 +421,7 @@
 "Invalid value: must be less than or equal to %s." = "Неверное значение: должно быть меньше или равно %s.";
 "Invalid value: must be a number." = "Неверное значение: требуется число.";
 
-//  Validation of dates
+// Validation of dates
 "Invalid value: must be a date." = "Неверное значение: требуется дата.";
 
 // General validation
@@ -525,16 +537,16 @@
 "Rotate Pages" = "Повернуть страницы";
 "Page Size" = "Формат страницы";
 "Background Color" = "Цвет фона";
+"Paper" = "Бумага";
 "Pattern" = "Рисунок";
 "Use Document Size" = "Использовать размер документа";
 "Orientation" = "Ориентация";
 "Portrait" = "Книжная";
 "Landscape" = "Альбомная";
-"Name" = "Имя";
 "Document Name" = "Имя документа";
 "Documents" = "Документы"; // Name of directory
-"Use Document Directory" = "Использовать каталог документа";
-"Directory" = "Каталог";
+"Use Document Folder" = "Использовать папку с документом";
+"Folder" = "Папка";
 "Replace File?" = "Заменить файл?";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Выбранная папка уже содержит файл с именем «%@». Заменить существующий файл?";
 "Replace" = "Заменить";
@@ -543,6 +555,15 @@
 "Save As…" = "Сохранить как…";
 "Discard Changes" = "Отменить изменения";
 "Empty" = "Аннулировать";
+"Use Image Size" = "Размер изображения";
+"Page Background" = "Фон страницы";
+"Insert image annotation" = "Вставить изображение-заметку";
+"Import page background" = "Импорт фона страницы";
+"Quality" = "Качество";
+"Low" = "Низкое";
+"Medium" = "Среднее";
+"High" = "Высокое";
+"Best" = "Наилучшее";
 
 // Document Editor Errors
 "A blank document can not be saved." = "Пустой документ сохранить нельзя.";
@@ -573,3 +594,24 @@
 
 // Miscellaneous
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Служба преобразования текста в речь недоступна. Убедитесь, что ваше устройство подключено к интернету, или что на нем установлен и включен Синтезатор речи Google.";
+
+// Settings
+"Page Transition" = "Переход";
+"Single" = "Одна страница";
+"Continuous" = "Непрерывно";
+"Curl" = "Загиб";
+"Scroll" = "Прокрутка";
+"Horizontal" = "Горизонтальная";
+"Vertical" = "Вертикальная";
+"Page Mode" = "Просмотр страниц";
+"Automatic" = "Авто";
+"Double" = "Две страницы";
+"Appearance" = "Внешний вид";
+"Scrubber Bar" = "Панель прокрутки";
+"Jump" = "По одной странице"; // The name of the single page mode transition displayed in settings view
+"Not Available" = "Недоступно"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
+
+// Privacy Access
+"This app does not have access to your photos." = "У приложения нет доступа к фото.";
+"This app does not have access to your camera." = "У приложения нет доступа к камере.";
+"You can enable access in Privacy Settings." = "Разрешить доступ можно в настройках конфиденциальности.";

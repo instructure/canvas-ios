@@ -2,7 +2,7 @@
 //  PSPDFMenuItem.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// If you use `PSPDFMenuItem` with the classic `initWithTitle:selector:` initializer,
 /// this will work and be handled just like a regular `UIMenuItem`.
 ///
-/// @warning By design, `PSPDFMenuItem` will only work with *different* title names. Title is required to be > 0 and unique, even when images are used. If you also use `identifier` than it is sufficient for the combined string to be unique.
+/// @warning By design, `PSPDFMenuItem` will only work with *different* title names. Title is required to be > 0 and unique, even when images are used. If you also use `identifier` then it is sufficient for the combined string to be unique.
 PSPDF_CLASS_AVAILABLE @interface PSPDFMenuItem : UIMenuItem
 
 /// Initialize `PSPDFMenuItem` with a block.
@@ -54,8 +54,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFMenuItem : UIMenuItem
 @property (nonatomic, nullable) UIImage *ps_image;
 
 // Action block.
-@property (nonatomic, copy) void(^actionBlock)(void);
-
+@property (nonatomic, copy) void (^actionBlock)(void);
 
 /// Installs the menu handler. Needs to be called once per class.
 /// (A good place is the +load method)

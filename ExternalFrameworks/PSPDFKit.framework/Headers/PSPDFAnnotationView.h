@@ -2,7 +2,7 @@
 //  PSPDFAnnotationView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFEnvironment.h"
 #import "PSPDFAnnotationViewProtocol.h"
+#import "PSPDFEnvironment.h"
 #import "PSPDFRenderQueue.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PSPDFAnnotation;
 
 /// Generic annotation view that listens on annotation changes.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationView : UIView <PSPDFAnnotationViewProtocol>
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationView : UIView<PSPDFAnnotationViewProtocol>
 
 /// The currently set annotation.
 @property (nonatomic, nullable) PSPDFAnnotation *annotation;

@@ -2,7 +2,7 @@
 //  PSPDFDocumentActionExecutor.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFDocument, PSPDFDocumentActionExecutor;
 
-PSPDF_AVAILABLE_DECL @protocol PSPDFDocumentActionExecutorDelegate <PSPDFErrorHandler, PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFDocumentActionExecutorDelegate<PSPDFErrorHandler, PSPDFOverridable>
 
 @optional
 
@@ -36,7 +36,6 @@ PSPDF_EXPORT NSString *const PSPDFDocumentActionSharingOptionsKey;
 /// Allows to customize the page range. By default all pages are used. Expects an `NSOrderedSet`.
 PSPDF_EXPORT NSString *const PSPDFDocumentActionVisiblePagesKey;
 
-
 /// @name Available actions
 
 /// Presents the `UIPrintInteractionController`.
@@ -51,27 +50,32 @@ PSPDF_EXPORT NSString *const PSPDFDocumentActionOpenIn;
 /// Presents the `MFMessageComposeViewController`.
 PSPDF_EXPORT NSString *const PSPDFDocumentActionMessage;
 
-
 /// Helper class that can invoke common actions on the document.
-PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentActionExecutor : NSObject <PSPDFDocumentSharingCoordinatorDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentActionExecutor : NSObject<PSPDFDocumentSharingCoordinatorDelegate>
 
 /// Initialize with the controller we should present on.
 /// Requires the controller to implement the `<PSPDFPresentationActions>` protocol to have additional control over presentation options.
 /// @warning Will return nil if `sourceViewController` is nil.
-- (instancetype)initWithSourceViewController:(UIViewController <PSPDFPresentationActions> *)sourceViewController NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithSourceViewController:(UIViewController<PSPDFPresentationActions> *)sourceViewController NS_DESIGNATED_INITIALIZER;
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// The view controller from which the document action interface should be presented. Weakly held. If this is nil, actions will no longer work.
-@property (nonatomic, weak, readonly) UIViewController <PSPDFPresentationActions> *sourceViewController;
+@property (nonatomic, weak, readonly) UIViewController<PSPDFPresentationActions> *sourceViewController;
 
 /// Delegate to forward errors and also fetch the currently visible pages.
-@property (nonatomic, weak) id <PSPDFDocumentActionExecutorDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFDocumentActionExecutorDelegate> delegate;
 
-/// The attached document this class operates on.
-@property (nonatomic, nullable) PSPDFDocument *document;
+/// The attached documents this class operates on.
+@property (nonatomic, nullable) NSArray<PSPDFDocument *> *documents;
+@property (nonatomic, nullable, readonly) PSPDFDocument *document PSPDF_DEPRECATED(6.2, "Use `documents` instead.");
 
-/// Checks if `action` can be called. Returns NO on unknown actions, asserts if action is nil.
+/**
+ Checks if `action` can be called.
+
+ Returns NO on unknown actions, asserts if action string is nil.
+ @note If the document is not set, no action will be executable.
+ */
 - (BOOL)canExecuteAction:(NSString *)action;
 
 /// Executes `action` with `options` (optional). `sender` is optional as well.

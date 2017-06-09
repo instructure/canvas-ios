@@ -2,7 +2,7 @@
 //  PSPDFInlineSearchManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,16 +10,16 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFTextSearch.h"
-#import "PSPDFSearchViewController.h" //HACK: imported because of 'PSPDFSearchStatus'
 #import "PSPDFPresentationContext.h"
+#import "PSPDFSearchViewController.h" //HACK: imported because of 'PSPDFSearchStatus'
+#import "PSPDFTextSearch.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFInlineSearchManager;
 
 /// The delegate for the `PSPDFInlineSearchManager` class.
-PSPDF_AVAILABLE_DECL @protocol PSPDFInlineSearchManagerDelegate <PSPDFTextSearchDelegate, PSPDFOverridable>
+PSPDF_AVAILABLE_DECL @protocol PSPDFInlineSearchManagerDelegate<PSPDFTextSearchDelegate, PSPDFOverridable>
 
 @optional
 
@@ -89,7 +89,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, readonly) PSPDFSearchStatus searchStatus;
 
 /// The inline search manager delegate that notifies show/hide and when a search result is focussed.
-@property (nonatomic, weak) id <PSPDFInlineSearchManagerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFInlineSearchManagerDelegate> delegate;
 
 /// The document to be searched.
 /// Assigning a new document resets and hides the search bar.

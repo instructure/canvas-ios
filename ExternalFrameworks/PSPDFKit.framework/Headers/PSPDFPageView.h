@@ -2,7 +2,7 @@
 //  PSPDFPageView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2011-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -13,45 +13,46 @@
 #import <UIKit/UIKit.h>
 
 #import "PSPDFAnnotation.h"
-#import "PSPDFRelayTouchesView.h"
 #import "PSPDFAnnotationStyleViewController.h"
 #import "PSPDFCache.h"
 #import "PSPDFFontPickerViewController.h"
+#import "PSPDFImagePickerController.h"
 #import "PSPDFMacros.h"
 #import "PSPDFNoteAnnotationViewController.h"
 #import "PSPDFPresentationContext.h"
+#import "PSPDFRelayTouchesView.h"
+#import "PSPDFRenderTask.h"
 #import "PSPDFResizableView.h"
 #import "PSPDFSignatureSelectorViewController.h"
 #import "PSPDFSignatureViewController.h"
 #import "PSPDFStampViewController.h"
-
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFMenuItem, PSPDFFreeTextAnnotation;
 
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationContainerView : PSPDFRelayTouchesView @end
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationContainerView : PSPDFRelayTouchesView
+@end
 
 /// Notification is fired when the `selectedAnnotations` value changed.
 /// `object` is the pageView.
-PSPDF_EXPORT NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
+PSPDF_EXPORT NSNotificationName const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 
 /// Display a single PDF page. View is reused.
 /// You can add your own views on top of the `annotationContainerView` (e.g. custom annotations)
 /// Events from a attached `UIScrollView` will be relayed to all visible `PSPDFPageView` classes.
-/// @note The `UINavigationControllerDelegate` is only defined to satisfy the `UIImagePickerController` delegate.
-PSPDF_CLASS_AVAILABLE @interface PSPDFPageView : UIView <PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFAnnotationGridViewControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFPageView : UIView<PSPDFRenderTaskDelegate, PSPDFResizableViewDelegate, PSPDFAnnotationGridViewControllerDelegate, UIScrollViewDelegate>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// @name Show / Destroy a document
 
 /// configure page container with data.
-- (void)displayPage:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale presentationContext:(id <PSPDFPresentationContext>)presentationContext;
+- (void)displayPageIndex:(NSUInteger)pageIndex pageRect:(CGRect)pageRect scale:(CGFloat)scale presentationContext:(id<PSPDFPresentationContext>)presentationContext;
 
 /// The attached presentation context.
-@property (nonatomic, weak, readonly) id <PSPDFPresentationContext> presentationContext;
+@property (nonatomic, weak, readonly) id<PSPDFPresentationContext> presentationContext;
 
 /// Prepares the `PSPDFPageView` for reuse. Removes all unknown internal `UIViews`.
 - (void)prepareForReuse NS_REQUIRES_SUPER;
@@ -66,7 +67,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
 /// (Most PDF annotations are actually rendered into the page; except annotations that return YES for `isOverlay`, like links or notes.
-- (nullable UIView <PSPDFAnnotationViewProtocol> *)annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
+- (nullable UIView<PSPDFAnnotationViewProtocol> *)annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView displaying the whole document.
 @property (nonatomic, readonly) UIImageView *contentView;
@@ -141,13 +142,16 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, readonly) NSArray<UIView<PSPDFAnnotationViewProtocol> *> *visibleAnnotationViews;
 
 /// Page that is displayed. Readonly.
-@property (nonatomic, readonly) NSUInteger page;
+@property (atomic, readonly) NSUInteger pageIndex;
 
 /// Shortcut to access the current boxRect of the set page.
 @property (nonatomic, readonly, nullable) PSPDFPageInfo *pageInfo;
 
+/// Return YES if the pdfPage is displayed in a double page mode setup on the trailing side.
+@property (nonatomic, readonly, getter=isTrailingPage) BOOL trailingPage;
+
 /// Return YES if the pdfPage is displayed in a double page mode setup on the right side.
-@property (nonatomic, readonly, getter=isRightPage) BOOL rightPage;
+@property (nonatomic, readonly, getter=isRightPage) BOOL rightPage PSPDF_DEPRECATED(6.5.1, "This is no longer accurate with the introduction of RTL support.");
 
 @end
 
@@ -155,10 +159,10 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @interface PSPDFPageView (AnnotationViews)
 
 // Associate an annotation with an annotation view
-- (void)setAnnotation:(PSPDFAnnotation *)annotation forAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView;
+- (void)setAnnotation:(PSPDFAnnotation *)annotation forAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView;
 
 // Recall the annotation associated with an annotation view
-- (PSPDFAnnotation *)annotationForAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView;
+- (PSPDFAnnotation *)annotationForAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView;
 
 /// Currently selected annotations (selected by a tap; showing a menu)
 @property (nonatomic, copy, null_resettable) NSArray<__kindof PSPDFAnnotation *> *selectedAnnotations;
@@ -215,7 +219,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 - (void)prepareForReuse;
 
 /// Internally used to add annotations.
-- (void)insertAnnotations:(NSArray<PSPDFAnnotation *> *)annotations forPage:(NSUInteger)page inDocument:(PSPDFDocument *)document;
+- (void)insertAnnotations:(NSArray<PSPDFAnnotation *> *)annotations forPageAtIndex:(NSUInteger)pageIndex inDocument:(PSPDFDocument *)document;
 
 /// Returns annotations that we could tap on. (checks against `editableAnnotationTypes`)
 /// The point will have a variance of a few pixels to improve touch recognition.
@@ -230,6 +234,18 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Can be used for manual tap forwarding.
 - (BOOL)singleTappedAtViewPoint:(CGPoint)viewPoint;
+
+/**
+ Called with the set of annotations that are now selected.
+ Can be used to postprocess annotations or enforce user changes.
+ */
+- (void)didSelectAnnotations:(nullable NSArray<PSPDFAnnotation *> *)annotations NS_REQUIRES_SUPER;
+
+/**
+ Called with the set of annotations that were selected, but are no longer.
+ Can be used to postprocess annotations or enforce user changes.
+ */
+- (void)didDeselectAnnotations:(NSArray<PSPDFAnnotation *> *)annotations NS_REQUIRES_SUPER;
 
 /// Get annotation rect (PDF coordinate space)
 - (CGRect)rectForAnnotations:(NSArray<PSPDFAnnotation *> *)annotations;

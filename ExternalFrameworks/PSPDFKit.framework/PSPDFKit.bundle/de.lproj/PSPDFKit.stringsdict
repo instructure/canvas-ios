@@ -67,7 +67,7 @@
             <key>NSStringFormatValueTypeKey</key>
             <string>tu</string>
             <key>one</key>
-            <string>%%tu Punkt</string>
+            <string>%tu Punkt</string>
             <key>other</key>
             <string>%tu Punkte</string>
         </dict>
@@ -76,6 +76,40 @@
     <dict>
         <key>NSStringLocalizedFormatKey</key>
         <string>Alle (%#@pages@)</string>
+        <key>pages</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>one</key>
+            <string>%tu Seite</string>
+            <key>other</key>
+            <string>%tu Seiten</string>
+        </dict>
+    </dict>
+    <key>%tu result(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@tu_results@</string>
+        <key>tu_results</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>tu</string>
+            <key>zero</key>
+            <string>Kein Treffer</string>
+            <key>one</key>
+            <string>%tu Treffer</string>
+            <key>other</key>
+            <string>%tu Treffer</string>
+        </dict>
+    </dict>
+    <key>Searching %tu page(s)</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@pages@ durchsuchen</string>
         <key>pages</key>
         <dict>
             <key>NSStringFormatSpecTypeKey</key>

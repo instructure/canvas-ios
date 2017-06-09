@@ -2,7 +2,7 @@
 //  PSPDFTextBlock.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -18,7 +18,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Represents multiple words forming a text block. (e.g. a Column)
-PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFTextBlock : NSObject <NSCopying, NSSecureCoding>
+PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFTextBlock : NSObject<NSCopying, NSSecureCoding>
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
@@ -31,7 +31,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 - (instancetype)initWithGlyphs:(NSArray<PSPDFGlyph *> *)glyphs pageRotation:(NSUInteger)pageRotation;
 
 /// Frame of the text block. Not rotated.
-/// @note Use `convertGlyphRectToViewRect:` when converting to view coordinates. 
+/// @note Use `convertGlyphRectToViewRect:` when converting to view coordinates.
 @property (nonatomic, readonly) CGRect frame;
 
 /// All glyphs of the current text block.

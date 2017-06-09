@@ -2,7 +2,7 @@
 //  PSPDFTextFieldFormElement.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,28 +10,30 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFFormElement.h"
 #import "PSPDFApplicationJSExport.h"
+#import "PSPDFFormElement.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class PSPDFTextFormField;
 
 /// The text field flags. Most flags aren't currently supported.
 /// Query `fieldFlags` from the `PSPDFFormElement` base class.
 typedef NS_OPTIONS(NSUInteger, PSPDFTextFieldFlag) {
-    PSPDFTextFieldFlagMultiline       = 1 << (13-1),
-    PSPDFTextFieldFlagPassword        = 1 << (14-1),
-    PSPDFTextFieldFlagFileSelect      = 1 << (21-1),
-    PSPDFTextFieldFlagDoNotSpellCheck = 1 << (23-1),
-    PSPDFTextFieldFlagDoNotScroll     = 1 << (24-1),
-    PSPDFTextFieldFlagComb            = 1 << (25-1),
-    PSPDFTextFieldFlagRichText        = 1 << (26-1)
+    PSPDFTextFieldFlagMultiline = 1 << (13 - 1),
+    PSPDFTextFieldFlagPassword = 1 << (14 - 1),
+    PSPDFTextFieldFlagFileSelect = 1 << (21 - 1),
+    PSPDFTextFieldFlagDoNotSpellCheck = 1 << (23 - 1),
+    PSPDFTextFieldFlagDoNotScroll = 1 << (24 - 1),
+    PSPDFTextFieldFlagComb = 1 << (25 - 1),
+    PSPDFTextFieldFlagRichText = 1 << (26 - 1),
 } PSPDF_ENUM_AVAILABLE;
 
 typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
     PSPDFTextInputFormatNormal,
     PSPDFTextInputFormatNumber,
     PSPDFTextInputFormatDate,
-    PSPDFTextInputFormatTime
+    PSPDFTextInputFormatTime,
 } PSPDF_ENUM_AVAILABLE;
 
 /// Text field form element.
@@ -49,13 +51,16 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTextFieldFormElement : PSPDFFormElement
 /// `isFinal` defines if the user is typing (NO) or if the string should be committed (YES).
 /// The change is the change in text.
 /// Returns the new text contents (possibly different from the passed change) to be applied. Otherwise, if failed, returns nil.
-- (nullable NSString *)textFieldChangedWithContents:(NSString *)contents change:(NSString *)change range:(NSRange)range isFinal:(BOOL)isFinal application:(nullable id<PSPDFApplicationJSExport>)application error:(NSError * __autoreleasing *)validationError;
+- (nullable NSString *)textFieldChangedWithContents:(NSString *)contents change:(NSString *)change range:(NSRange)range isFinal:(BOOL)isFinal application:(nullable id<PSPDFApplicationJSExport>)application error:(NSError **)validationError;
 
 /// Returns the contents formatted based on rules in the annotation (including JavaScript)
 @property (nonatomic, readonly, nullable) NSString *formattedContents;
 
 /// The input format. Some forms are number/date/time specific.
 @property (nonatomic, readonly) PSPDFTextInputFormat inputFormat;
+
+/// Returns the parent property `formField` cast to the appropriate `PSPDFTextFormField` type.
+@property (nonatomic, readonly, nullable) PSPDFTextFormField *textFormField;
 
 @end
 

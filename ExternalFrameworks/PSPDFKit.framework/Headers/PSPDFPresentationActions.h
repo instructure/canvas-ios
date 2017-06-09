@@ -2,7 +2,7 @@
 //  PSPDFPresentationActions.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, PSPDFPresentationStyle) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Presentation style.
-PSPDF_EXPORT NSString *const PSPDFPresentationStyleKey;                  // See `PSPDFPresentationStyle`.
+PSPDF_EXPORT NSString *const PSPDFPresentationStyleKey; // See `PSPDFPresentationStyle`.
 
 /// Set to YES to prevent the presentation from adapting to a different style.
 /// This may be used to show popovers in horizontally compact environments.
@@ -49,8 +49,8 @@ PSPDF_EXPORT NSString *const PSPDFPresentationContentSizeKey;
 /// This is automatically inferred if a close button should be added.
 PSPDF_EXPORT NSString *const PSPDFPresentationInNavigationControllerKey;
 
-PSPDF_EXPORT NSString *const PSPDFPresentationCloseButtonKey;             // Set to YES to add a close button.
-PSPDF_EXPORT NSString *const PSPDFPresentationPersistentCloseButtonKey;   // See `PSPDFPersistentCloseButtonMode`
+PSPDF_EXPORT NSString *const PSPDFPresentationCloseButtonKey; // Set to YES to add a close button.
+PSPDF_EXPORT NSString *const PSPDFPresentationPersistentCloseButtonKey; // See `PSPDFPersistentCloseButtonMode`
 
 /// If this is YES and there is an existing presentation in place that also set this to YES, and both presented view controllers are navigation controllers of the same class, then the existing presentation will be reused by setting the `viewControllers` of the existing navigation controller.
 PSPDF_EXPORT NSString *const PSPDFPresentationReuseNavigationControllerKey;
@@ -72,7 +72,7 @@ PSPDF_EXPORT NSString *const PSPDFPresentationRectKey;
 
 /// Methods to present/dismiss view controllers.
 /// UIViewController doesn't expose enough to conveniently present/dismiss controllers, so this protocol extends it.
-PSPDF_AVAILABLE_DECL @protocol PSPDFPresentationActions <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFPresentationActions<NSObject>
 
 /// Presents a view controller using the specified options.
 /// @note If the presentation is blocked (e.g. return NO on the shouldShow delegate), the completion block will not be called.
@@ -80,11 +80,10 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFPresentationActions <NSObject>
 /// If you need to configure the popover presentation, set values in the options with keys `PSPDFPresentationRectBlockKey`, `PSPDFPresentationPopoverArrowDirectionsKey`, and `PSPDFPresentationPopoverPassthroughViewsKey`.
 - (BOOL)presentViewController:(UIViewController *)viewController options:(nullable NSDictionary<NSString *, id> *)options animated:(BOOL)animated sender:(nullable id)sender completion:(nullable void (^)(void))completion;
 
-/// Dismisses a view controller of class `controllerClass`.
-/// If `controllerClass` is nil, this is the same as `dismissViewControllerAnimated:completion:`.
+/// Dismisses a view controller of class `controllerClass` that was previously presented with `presentViewController:options:animated:sender:completion:`.
+/// If `controllerClass` is `nil` then view controllers of any class may be dismissed.
 - (BOOL)dismissViewControllerOfClass:(nullable Class)controllerClass animated:(BOOL)animated completion:(nullable void (^)(void))completion;
 
 @end
-
 
 NS_ASSUME_NONNULL_END

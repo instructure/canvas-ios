@@ -2,7 +2,7 @@
 //  PSPDFEmbeddedGoToAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, PSPDFEmbeddedGoToActionTarget) {
     /// Not yet supported
     PSPDFEmbeddedGoToActionTargetParentOfCurrentDocument,
-    PSPDFEmbeddedGoToActionTargetChildOfCurrentDocument
+    PSPDFEmbeddedGoToActionTargetChildOfCurrentDocument,
 } PSPDF_ENUM_AVAILABLE;
 
 /// An embedded go-to action (PDF 1.6) is similar to a remote go-to action but allows jumping to or from a PDF file that is embedded in another PDF file.

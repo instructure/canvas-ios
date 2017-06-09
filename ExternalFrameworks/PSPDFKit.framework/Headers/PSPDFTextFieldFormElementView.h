@@ -2,7 +2,7 @@
 //  PSPDFTextFieldFormElementView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -14,10 +14,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class PSPDFTextFieldFormElement;
+@class PSPDFTextFieldFormElement, PSPDFResizableView;
 
 /// Free Text View. Allows inline text editing.
-PSPDF_CLASS_AVAILABLE @interface PSPDFTextFieldFormElementView : PSPDFFormElementView <UITextViewDelegate, UITextFieldDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFTextFieldFormElementView : PSPDFFormElementView<UITextViewDelegate, UITextFieldDelegate>
 
 /// Start editing, shows the keyboard.
 - (void)beginEditing;
@@ -48,7 +48,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTextFieldFormElementView : PSPDFFormElemen
 @interface PSPDFTextFieldFormElementView (SubclassingHooks)
 
 /// Creates a textView on the fly once we enter edit mode.
-@property (nonatomic, readonly, strong) UITextView * _Nonnull setTextViewForEditing;
+@property (nonatomic, readonly) UITextView *setTextViewForEditing;
 
 @end
 

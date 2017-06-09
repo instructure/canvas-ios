@@ -2,7 +2,7 @@
 //  PSPDFAnnotationSetsCell.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Shows multiple annotation sets within a table cell.
-PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationSetsCell : PSPDFTableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationSetsCell : PSPDFTableViewCell<UICollectionViewDelegate, UICollectionViewDataSource>
 
 /// Allows `PSPDFAnnotation` or `PSPDFAnnotationSet` objects.
 @property (nonatomic, copy, nullable) NSArray *annotations;

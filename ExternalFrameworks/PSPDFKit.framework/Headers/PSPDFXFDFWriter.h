@@ -2,7 +2,7 @@
 //  PSPDFXFDFWriter.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -19,7 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// http://partners.adobe.com/public/developer/en/xml/XFDF_Spec_3.0.pdf
 PSPDF_CLASS_AVAILABLE @interface PSPDFXFDFWriter : NSObject
 
-/// Writes the given annotations to the given `outputStream` and blocks until done.
+/**
+ Writes the given annotations to the given `outputStream` and blocks until done.
+
+ @param annotations The annotations that should be written.
+ @param outputStream The output stream the XML will be written to.
+ @param documentProvider The document provider. If nil, form values will NOT be written.
+ @param error Pass an error for better error description.
+ @return YES if the data was written, NO otherwise.
+ */
 - (BOOL)writeAnnotations:(NSArray<__kindof PSPDFAnnotation *> *)annotations toOutputStream:(NSOutputStream *)outputStream documentProvider:(nullable PSPDFDocumentProvider *)documentProvider error:(NSError **)error;
 
 @end

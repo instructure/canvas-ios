@@ -2,7 +2,7 @@
 //  PSPDFSignatureStore.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Allows to securely store ink signatures (as ink annotations) in the keychain.
 /// Supports `NSSecureCoding` since this is part of the `PSPDFConfiguration` object.
-PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureStore <NSObject, NSSecureCoding>
+PSPDF_AVAILABLE_DECL @protocol PSPDFSignatureStore<NSObject, NSSecureCoding>
 
 /// Designated initializer.
 /// `storeName` can be used to differentiate between different stores.
@@ -43,6 +43,7 @@ PSPDF_EXPORT NSString *PSPDFKeychainSignatureStoreDefaultStoreName;
 
 /// Default signature store implementation that uses the keychain.
 /// `storeName` is used as the service name in the keychain.
-PSPDF_CLASS_AVAILABLE @interface PSPDFKeychainSignatureStore : NSObject <PSPDFSignatureStore> @end
+PSPDF_CLASS_AVAILABLE @interface PSPDFKeychainSignatureStore : NSObject<PSPDFSignatureStore>
+@end
 
 NS_ASSUME_NONNULL_END

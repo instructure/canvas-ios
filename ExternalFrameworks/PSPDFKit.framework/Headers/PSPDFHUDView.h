@@ -2,7 +2,7 @@
 //  PSPDFHUDView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2013-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,29 +10,30 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
-#import "PSPDFScrubberBar.h"
+#import "PSPDFBackForwardButton.h"
 #import "PSPDFLabelView.h"
 #import "PSPDFPageLabelView.h"
-#import "PSPDFThumbnailBar.h"
-#import "PSPDFBackForwardButton.h"
 #import "PSPDFRelayTouchesView.h"
+#import "PSPDFScrubberBar.h"
+#import "PSPDFThumbnailBar.h"
+#import <UIKit/UIKit.h>
 
 @class PSPDFDocumentLabelView, PSPDFPageLabelView, PSPDFScrubberBar, PSPDFThumbnailBar, PSPDFDocument;
 
 NS_ASSUME_NONNULL_BEGIN
 
 /// Empty subclass for easier debugging.
-PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentLabelView : PSPDFLabelView @end
+PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentLabelView : PSPDFLabelView
+@end
 
 /// The HUD overlay for the `PSPDFViewController`. Contains the thumbnail and page/title label overlays.
-PSPDF_CLASS_AVAILABLE @interface PSPDFHUDView : PSPDFRelayTouchesView <PSPDFThumbnailBarDelegate, PSPDFScrubberBarDelegate, PSPDFPageLabelViewDelegate>
+PSPDF_CLASS_AVAILABLE @interface PSPDFHUDView : PSPDFRelayTouchesView<PSPDFThumbnailBarDelegate, PSPDFScrubberBarDelegate, PSPDFPageLabelViewDelegate>
 
 /// Convenience initializer.
-- (instancetype)initWithFrame:(CGRect)frame dataSource:(id <PSPDFPresentationContext>)dataSource;
+- (instancetype)initWithFrame:(CGRect)frame dataSource:(id<PSPDFPresentationContext>)dataSource;
 
 /// The data source.
-@property (nonatomic, weak) id <PSPDFPresentationContext> dataSource;
+@property (nonatomic, weak) id<PSPDFPresentationContext> dataSource;
 
 /// Force subview updating.
 - (void)layoutSubviewsAnimated:(BOOL)animated;

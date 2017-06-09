@@ -2,7 +2,7 @@
 //  PSPDFLabelParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2012-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFEnvironment.h"
 #import "PSPDFMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -28,7 +28,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Returns a page label for a certain page. Returns nil if no `pageLabel` is available.
-- (nullable NSString *)pageLabelForPage:(NSUInteger)page;
+- (nullable NSString *)pageLabelForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Search all page labels for a matching page. Returns `NSNotFound` if page not found.
 /// If partialMatching is enabled, the most likely page match is returned.

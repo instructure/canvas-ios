@@ -2,7 +2,7 @@
 //  PSPDFGalleryContentViewProtocols.h
 //  PSPDFKit
 //
-//  Copyright (c) 2014-2016 PSPDFKit GmbH. All rights reserved.
+//  Copyright © 2014-2017 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -15,7 +15,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Protocol for `UIView`s that wish to be the `loadingView` of a `PSPDFGalleryContentView`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewLoading <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewLoading<NSObject>
 
 @property (nonatomic) CGFloat progress;
 
@@ -27,17 +27,15 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewLoading <NSObject>
 
 @end
 
-
 /// Protocol for `UIView`s that wish to be the `errorView` of a `PSPDFGalleryContentView`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewError <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewError<NSObject>
 
 @property (nonatomic, nullable) NSError *error;
 
 @end
 
-
 /// Protocol for `UIView`s that wish to be the `captionView` of a `PSPDFGalleryContentView`.
-PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewCaption <NSObject>
+PSPDF_AVAILABLE_DECL @protocol PSPDFGalleryContentViewCaption<NSObject>
 
 @property (nonatomic, copy, nullable) NSString *caption;
 
