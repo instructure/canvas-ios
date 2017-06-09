@@ -55,6 +55,27 @@ it('calls the refresh function with next if next is present', () => {
   expect(props.refreshInboxAll).toHaveBeenCalledWith(props.next)
 })
 
+it('renders with an empty state', () => {
+  const tree = renderer.create(
+    <Inbox conversations={[]} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+it('renders the starred empty state', () => {
+  const tree = renderer.create(
+    <Inbox conversations={[]} scope='starred' />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+it('renders the activity indicator when loading conversations', () => {
+  const tree = renderer.create(
+    <Inbox conversations={[]} pending={true} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 it('mapStateToProps', () => {
   const c1 = template.conversation({
     id: '1',

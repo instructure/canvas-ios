@@ -65,6 +65,7 @@ const images = {
   check: require('./check-white.png'),
   starFilled: require('./star-filled.png'),
   starLined: require('./star-lined.png'),
+  starLarge: require('./StarLarge.png'),
   add: require('./Add.png'),
   x: require('./x-icon.png'),
   clear: require('./Clear.png'),
@@ -75,6 +76,7 @@ const images = {
   upArrow: require('./mini-arrow-up.png'),
   document: require('./Document.png'),
   attachment: require('./attachment.png'),
+  mail: require('./Mail.png'),
 }
 
 export default (images: Images)
