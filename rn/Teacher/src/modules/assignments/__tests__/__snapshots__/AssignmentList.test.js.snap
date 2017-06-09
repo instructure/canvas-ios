@@ -27,6 +27,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -62,6 +63,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -171,12 +173,13 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -185,7 +188,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
@@ -286,6 +288,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -316,220 +319,220 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         onLayout={[Function]}
       >
         <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
+          <View
+            style={
+              Object {
+                "marginLeft": -10,
               }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "height": undefined,
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomColor": "#C7CDD1",
+                    "borderBottomWidth": 0.5,
+                  },
+                ]
+              }
+              testID="assignment-list-row-123456789.assignments-cell"
             >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
+              <View
                 style={
                   Array [
                     Object {
-                      "height": undefined,
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "paddingBottom": 12.8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12.8,
                     },
-                    undefined,
                     Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
+                      "backgroundColor": "white",
                     },
                   ]
                 }
-                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 12.8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 12.8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
+                    Object {
+                      "alignSelf": "flex-start",
+                    }
                   }
+                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
+                    accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignSelf": "flex-start",
+                        "alignItems": "center",
+                        "flex": 0,
+                        "height": 32,
+                        "width": 46,
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
+                    <Image
+                      source={1}
+                      style={
+                        Array [
+                          Object {
+                            "position": "absolute",
+                          },
+                          Object {
+                            "tintColor": "#fff",
+                          },
+                        ]
+                      }
+                    />
                     <View
-                      accessibilityLabel="Not Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
+                          "backgroundColor": "white",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "left": 20,
+                          "position": "absolute",
+                          "top": 10,
+                          "width": 16,
                         }
                       }
                     >
                       <Image
                         source={1}
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#8B969E",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      learn to write code
-                    </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due May 31, 2037 at 10:59 PM
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
+                            "height": 12,
+                            "tintColor": "#8B969E",
+                            "width": 12,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
-              </TouchableHighlight>
-            </View>
-            <View />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    learn to write code
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Due May 31, 2037 at 10:59 PM
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
+          <View />
         </View>
       </View>
     </View>
@@ -564,6 +567,7 @@ exports[`applyFilter will apply a new filter 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -599,6 +603,7 @@ exports[`applyFilter will apply a new filter 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -768,12 +773,13 @@ exports[`applyFilter will apply a new filter 1`] = `
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -782,7 +788,6 @@ exports[`applyFilter will apply a new filter 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
@@ -944,6 +949,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -974,220 +980,220 @@ exports[`applyFilter will apply a new filter 1`] = `
         onLayout={[Function]}
       >
         <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
+          <View
+            style={
+              Object {
+                "marginLeft": -10,
               }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "height": undefined,
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomColor": "#C7CDD1",
+                    "borderBottomWidth": 0.5,
+                  },
+                ]
+              }
+              testID="assignment-list-row-1.assignments-cell"
             >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
+              <View
                 style={
                   Array [
                     Object {
-                      "height": undefined,
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "paddingBottom": 12.8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12.8,
                     },
-                    undefined,
                     Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
+                      "backgroundColor": "white",
                     },
                   ]
                 }
-                testID="assignment-list-row-1.assignments-cell"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 12.8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 12.8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
+                    Object {
+                      "alignSelf": "flex-start",
+                    }
                   }
+                  testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
                 >
                   <View
+                    accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignSelf": "flex-start",
+                        "alignItems": "center",
+                        "flex": 0,
+                        "height": 32,
+                        "width": 46,
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-1.icon-img"
                   >
+                    <Image
+                      source={1}
+                      style={
+                        Array [
+                          Object {
+                            "position": "absolute",
+                          },
+                          Object {
+                            "tintColor": "#fff",
+                          },
+                        ]
+                      }
+                    />
                     <View
-                      accessibilityLabel="Not Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
+                          "backgroundColor": "white",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "left": 20,
+                          "position": "absolute",
+                          "top": 10,
+                          "width": 16,
                         }
                       }
                     >
                       <Image
                         source={1}
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#8B969E",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      learn to write code
-                    </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due May 31, 2037 at 10:59 PM
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
+                            "height": 12,
+                            "tintColor": "#8B969E",
+                            "width": 12,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
-              </TouchableHighlight>
-            </View>
-            <View />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    learn to write code
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Due May 31, 2037 at 10:59 PM
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
+          <View />
         </View>
       </View>
       <View
@@ -1210,6 +1216,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1240,220 +1247,220 @@ exports[`applyFilter will apply a new filter 1`] = `
         onLayout={[Function]}
       >
         <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
+          <View
+            style={
+              Object {
+                "marginLeft": -10,
               }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "height": undefined,
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomColor": "#C7CDD1",
+                    "borderBottomWidth": 0.5,
+                  },
+                ]
+              }
+              testID="assignment-list-row-2.assignments-cell"
             >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
+              <View
                 style={
                   Array [
                     Object {
-                      "height": undefined,
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "paddingBottom": 12.8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12.8,
                     },
-                    undefined,
                     Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
+                      "backgroundColor": "white",
                     },
                   ]
                 }
-                testID="assignment-list-row-2.assignments-cell"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 12.8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 12.8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
+                    Object {
+                      "alignSelf": "flex-start",
+                    }
                   }
+                  testID="assignment-list-row-assignment-icon-not-published-2.icon-img"
                 >
                   <View
+                    accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignSelf": "flex-start",
+                        "alignItems": "center",
+                        "flex": 0,
+                        "height": 32,
+                        "width": 46,
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-2.icon-img"
                   >
+                    <Image
+                      source={1}
+                      style={
+                        Array [
+                          Object {
+                            "position": "absolute",
+                          },
+                          Object {
+                            "tintColor": "#fff",
+                          },
+                        ]
+                      }
+                    />
                     <View
-                      accessibilityLabel="Not Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
+                          "backgroundColor": "white",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "left": 20,
+                          "position": "absolute",
+                          "top": 10,
+                          "width": 16,
                         }
                       }
                     >
                       <Image
                         source={1}
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#8B969E",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      learn to write code
-                    </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due May 31, 2037 at 10:59 PM
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
+                            "height": 12,
+                            "tintColor": "#8B969E",
+                            "width": 12,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
-              </TouchableHighlight>
-            </View>
-            <View />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    learn to write code
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Due May 31, 2037 at 10:59 PM
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
+          <View />
         </View>
       </View>
     </View>
@@ -1488,6 +1495,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -1584,12 +1592,13 @@ exports[`filter button only shows when there are grading periods 1`] = `
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -1598,7 +1607,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
@@ -1699,6 +1707,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1729,220 +1738,220 @@ exports[`filter button only shows when there are grading periods 1`] = `
         onLayout={[Function]}
       >
         <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
+          <View
+            style={
+              Object {
+                "marginLeft": -10,
               }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "height": undefined,
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomColor": "#C7CDD1",
+                    "borderBottomWidth": 0.5,
+                  },
+                ]
+              }
+              testID="assignment-list-row-123456789.assignments-cell"
             >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
+              <View
                 style={
                   Array [
                     Object {
-                      "height": undefined,
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "paddingBottom": 12.8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12.8,
                     },
-                    undefined,
                     Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
+                      "backgroundColor": "white",
                     },
                   ]
                 }
-                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 12.8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 12.8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
+                    Object {
+                      "alignSelf": "flex-start",
+                    }
                   }
+                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
+                    accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignSelf": "flex-start",
+                        "alignItems": "center",
+                        "flex": 0,
+                        "height": 32,
+                        "width": 46,
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
+                    <Image
+                      source={1}
+                      style={
+                        Array [
+                          Object {
+                            "position": "absolute",
+                          },
+                          Object {
+                            "tintColor": "#fff",
+                          },
+                        ]
+                      }
+                    />
                     <View
-                      accessibilityLabel="Not Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
+                          "backgroundColor": "white",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "left": 20,
+                          "position": "absolute",
+                          "top": 10,
+                          "width": 16,
                         }
                       }
                     >
                       <Image
                         source={1}
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#8B969E",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      learn to write code
-                    </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due May 31, 2037 at 10:59 PM
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
+                            "height": 12,
+                            "tintColor": "#8B969E",
+                            "width": 12,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
-              </TouchableHighlight>
-            </View>
-            <View />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    learn to write code
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Due May 31, 2037 at 10:59 PM
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
+          <View />
         </View>
       </View>
     </View>
@@ -1977,6 +1986,7 @@ exports[`renders correctly 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -2012,6 +2022,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -2121,12 +2132,13 @@ exports[`renders correctly 1`] = `
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -2135,7 +2147,6 @@ exports[`renders correctly 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
@@ -2236,6 +2247,7 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2266,220 +2278,220 @@ exports[`renders correctly 1`] = `
         onLayout={[Function]}
       >
         <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
+          <View
+            style={
+              Object {
+                "marginLeft": -10,
               }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "height": undefined,
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomColor": "#C7CDD1",
+                    "borderBottomWidth": 0.5,
+                  },
+                ]
+              }
+              testID="assignment-list-row-123456789.assignments-cell"
             >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
+              <View
                 style={
                   Array [
                     Object {
-                      "height": undefined,
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "paddingBottom": 12.8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12.8,
                     },
-                    undefined,
                     Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
+                      "backgroundColor": "white",
                     },
                   ]
                 }
-                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 12.8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 12.8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
+                    Object {
+                      "alignSelf": "flex-start",
+                    }
                   }
+                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
+                    accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignSelf": "flex-start",
+                        "alignItems": "center",
+                        "flex": 0,
+                        "height": 32,
+                        "width": 46,
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
+                    <Image
+                      source={1}
+                      style={
+                        Array [
+                          Object {
+                            "position": "absolute",
+                          },
+                          Object {
+                            "tintColor": "#fff",
+                          },
+                        ]
+                      }
+                    />
                     <View
-                      accessibilityLabel="Not Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
+                          "backgroundColor": "white",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "left": 20,
+                          "position": "absolute",
+                          "top": 10,
+                          "width": 16,
                         }
                       }
                     >
                       <Image
                         source={1}
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#8B969E",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      learn to write code
-                    </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due May 31, 2037 at 10:59 PM
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
+                            "height": 12,
+                            "tintColor": "#8B969E",
+                            "width": 12,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
-              </TouchableHighlight>
-            </View>
-            <View />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    learn to write code
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Due May 31, 2037 at 10:59 PM
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
+          <View />
         </View>
       </View>
     </View>
@@ -2514,6 +2526,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -2549,6 +2562,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -2658,12 +2672,13 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -2672,7 +2687,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
@@ -2773,6 +2787,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2803,220 +2818,220 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         onLayout={[Function]}
       >
         <View>
-          <View>
-            <View
-              style={
-                Object {
-                  "marginLeft": -10,
-                }
+          <View
+            style={
+              Object {
+                "marginLeft": -10,
               }
+            }
+          >
+            <TouchableHighlight
+              accessibilityLabel={undefined}
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              onPress={[Function]}
+              style={
+                Array [
+                  Object {
+                    "height": undefined,
+                  },
+                  undefined,
+                  Object {
+                    "borderBottomColor": "#C7CDD1",
+                    "borderBottomWidth": 0.5,
+                  },
+                ]
+              }
+              testID="assignment-list-row-123456789.assignments-cell"
             >
-              <TouchableHighlight
-                accessibilityLabel={undefined}
-                accessibilityTraits={
-                  Array [
-                    "button",
-                  ]
-                }
-                onPress={[Function]}
+              <View
                 style={
                   Array [
                     Object {
-                      "height": undefined,
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "paddingBottom": 12.8,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                      "paddingTop": 12.8,
                     },
-                    undefined,
                     Object {
-                      "borderBottomColor": "#C7CDD1",
-                      "borderBottomWidth": 0.5,
+                      "backgroundColor": "white",
                     },
                   ]
                 }
-                testID="assignment-list-row-123456789.assignments-cell"
               >
                 <View
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "flex": 1,
-                        "flexDirection": "row",
-                        "paddingBottom": 12.8,
-                        "paddingLeft": 16,
-                        "paddingRight": 16,
-                        "paddingTop": 12.8,
-                      },
-                      Object {
-                        "backgroundColor": "white",
-                      },
-                    ]
+                    Object {
+                      "alignSelf": "flex-start",
+                    }
                   }
+                  testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                 >
                   <View
+                    accessibilityLabel="Not Published"
                     style={
                       Object {
-                        "alignSelf": "flex-start",
+                        "alignItems": "center",
+                        "flex": 0,
+                        "height": 32,
+                        "width": 46,
                       }
                     }
-                    testID="assignment-list-row-assignment-icon-not-published-123456789.icon-img"
                   >
+                    <Image
+                      source={1}
+                      style={
+                        Array [
+                          Object {
+                            "position": "absolute",
+                          },
+                          Object {
+                            "tintColor": "#fff",
+                          },
+                        ]
+                      }
+                    />
                     <View
-                      accessibilityLabel="Not Published"
                       style={
                         Object {
                           "alignItems": "center",
-                          "flex": 0,
-                          "height": 32,
-                          "width": 46,
+                          "backgroundColor": "white",
+                          "borderRadius": 8,
+                          "height": 16,
+                          "justifyContent": "center",
+                          "left": 20,
+                          "position": "absolute",
+                          "top": 10,
+                          "width": 16,
                         }
                       }
                     >
                       <Image
                         source={1}
                         style={
-                          Array [
-                            Object {
-                              "position": "absolute",
-                            },
-                            Object {
-                              "tintColor": "#fff",
-                            },
-                          ]
-                        }
-                      />
-                      <View
-                        style={
                           Object {
-                            "alignItems": "center",
-                            "backgroundColor": "white",
-                            "borderRadius": 8,
-                            "height": 16,
-                            "justifyContent": "center",
-                            "left": 20,
-                            "position": "absolute",
-                            "top": 10,
-                            "width": 16,
-                          }
-                        }
-                      >
-                        <Image
-                          source={1}
-                          style={
-                            Object {
-                              "height": 12,
-                              "tintColor": "#8B969E",
-                              "width": 12,
-                            }
-                          }
-                        />
-                      </View>
-                    </View>
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 1,
-                        "flexDirection": "column",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      numberOfLines={2}
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "fontWeight": "600",
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay-semibold",
-                          },
-                        ]
-                      }
-                    >
-                      learn to write code
-                    </Text>
-                    <Text
-                      accessible={true}
-                      allowFontScaling={true}
-                      ellipsizeMode="tail"
-                      style={
-                        Array [
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                          Object {
-                            "color": "#2D3B45",
-                            "fontSize": 16,
-                          },
-                          Object {
-                            "color": "#8B969E",
-                            "fontSize": 14,
-                            "marginTop": 2,
-                          },
-                          Object {
-                            "fontFamily": ".SFUIDisplay",
-                          },
-                        ]
-                      }
-                    >
-                      Due May 31, 2037 at 10:59 PM
-                    </Text>
-                    <View />
-                  </View>
-                  <View
-                    style={
-                      Object {
-                        "flex": 0,
-                      }
-                    }
-                  >
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "justifyContent": "flex-end",
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "center",
-                            "backgroundColor": "transparent",
-                            "borderColor": "#c7c7cc",
-                            "borderRightWidth": 2,
-                            "borderTopWidth": 2,
-                            "height": 10,
-                            "marginLeft": 7,
-                            "transform": Array [
-                              Object {
-                                "rotate": "45deg",
-                              },
-                            ],
-                            "width": 10,
+                            "height": 12,
+                            "tintColor": "#8B969E",
+                            "width": 12,
                           }
                         }
                       />
                     </View>
                   </View>
                 </View>
-              </TouchableHighlight>
-            </View>
-            <View />
+                <View
+                  style={
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    learn to write code
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 14,
+                          "marginTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Due May 31, 2037 at 10:59 PM
+                  </Text>
+                  <View />
+                </View>
+                <View
+                  style={
+                    Object {
+                      "flex": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
+          <View />
         </View>
       </View>
     </View>

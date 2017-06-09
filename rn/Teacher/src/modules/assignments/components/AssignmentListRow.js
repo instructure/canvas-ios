@@ -2,7 +2,7 @@
 * @flow
 */
 
-import React, { Component, Element } from 'react'
+import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
@@ -43,7 +43,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
     return formattedDueDateWithStatus(dates.bestDueAt(), dates.bestAvailableTo()).join('  •  ')
   }
 
-  ungradedBubble (assignment: Assignment): Element<View> {
+  ungradedBubble (assignment: Assignment) {
     if (!assignment.needs_grading_count) {
       return <View />
     }
@@ -54,7 +54,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
     )
   }
 
-  render (): Element<View> {
+  render () {
     const { assignment, selected } = this.props
     return (
       <View>

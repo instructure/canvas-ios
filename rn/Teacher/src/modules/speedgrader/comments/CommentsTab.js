@@ -22,8 +22,8 @@ const textSubmission = i18n('Text Submission')
 
 const urlSubmission = i18n('URL Submission')
 
-export class CommentsTab extends Component<any, Props, any> {
-  constructor (props: Props) {
+export class CommentsTab extends Component<any, CommentsTabProps, any> {
+  constructor (props: CommentsTabProps) {
     super(props)
 
     this.state = { shouldShowStatus: this.props.commentRows.some(c => c.pending) }
@@ -66,8 +66,9 @@ export class CommentsTab extends Component<any, Props, any> {
     this.setState({ shouldShowStatus: false })
   }
 
-  render (): any {
-    const rows = this.props.commentRows || []
+  render () {
+    // $FlowFixMe
+    const rows = this.props.commentRows
     let hasPending = this.props.commentRows.some(c => c.pending)
     return (
       <View style={{ flex: 1 }}>
@@ -91,7 +92,7 @@ export class CommentsTab extends Component<any, Props, any> {
   }
 }
 
-type CommentRows = { commentRows: Array<CommentRowData> }
+type CommentRows = { commentRows: CommentRowData[] }
 
 type RoutingProps = {
   courseID: string,
@@ -101,7 +102,7 @@ type RoutingProps = {
   drawerState: DrawerState,
 }
 
-type Props = CommentRows & RoutingProps & CommentActions
+type CommentsTabProps = CommentRows & RoutingProps & CommentActions
 
 type CommentRowData = {
   error?: string,

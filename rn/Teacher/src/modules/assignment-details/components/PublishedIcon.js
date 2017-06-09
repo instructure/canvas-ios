@@ -10,7 +10,7 @@ import { Text } from '../../../common/text'
 import colors from '../../../common/colors'
 
 export default class PublishedIcon extends React.Component {
-  render (): React.Element<*> {
+  render () {
     let { published, style, iconSize } = this.props
 
     const publishedIcon = published ? Images.published : Images.unpublished

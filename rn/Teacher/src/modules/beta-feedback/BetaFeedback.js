@@ -3,9 +3,8 @@
  * @flow
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 import {
-  View,
   WebView,
 } from 'react-native'
 import i18n from 'format-message'
@@ -21,13 +20,13 @@ type Props = {
   uri: string,
 }
 
-export default class BetaFeedback extends Component<any, Props, any> {
+export default class BetaFeedback extends React.Component<any, Props, any> {
 
   dismiss = () => {
     this.props.navigator.dismiss()
   }
 
-  render (): React.Element<View> {
+  render () {
     let uri
     const session = getSession()
     if (session) {

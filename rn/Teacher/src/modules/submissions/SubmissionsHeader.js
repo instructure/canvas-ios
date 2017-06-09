@@ -98,7 +98,7 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
             </View>)
   }
 
-  renderFilterButton = (): React.Element<View> => {
+  renderFilterButton = () => {
     let title = i18n('Filter')
     let accessibilityLabel = i18n('Filter Submissions')
     let onPress = this.chooseFilter

@@ -36,6 +36,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -77,6 +78,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             accessible={true}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -96,6 +98,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -131,6 +134,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -169,6 +173,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -201,6 +206,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -231,6 +237,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -269,6 +276,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -302,6 +310,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -328,6 +337,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -363,6 +373,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -401,6 +412,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -434,6 +446,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -460,6 +473,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -495,6 +509,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -533,6 +548,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -566,6 +582,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -592,6 +609,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -630,6 +648,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -661,6 +680,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -711,6 +731,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -752,6 +773,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             accessible={true}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -771,6 +793,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -806,6 +829,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -844,6 +868,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -876,6 +901,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -906,6 +932,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -944,6 +971,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -977,6 +1005,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1003,6 +1032,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1038,6 +1068,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1076,6 +1107,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1109,6 +1141,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1135,6 +1168,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1170,6 +1204,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1208,6 +1243,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1241,6 +1277,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1267,6 +1304,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1305,6 +1343,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -1336,6 +1375,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -1386,6 +1426,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -1427,6 +1468,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             accessible={true}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1446,6 +1488,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1481,6 +1524,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1519,6 +1563,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1551,6 +1596,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1581,6 +1627,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1619,6 +1666,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1652,6 +1700,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1678,6 +1727,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1713,6 +1763,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1751,6 +1802,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1784,6 +1836,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1810,6 +1863,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1845,6 +1899,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -1883,6 +1938,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1916,6 +1972,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -1942,6 +1999,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -1980,6 +2038,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -2011,6 +2070,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -2050,6 +2110,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -2100,6 +2161,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2173,6 +2235,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2205,6 +2268,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -2243,6 +2307,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2275,6 +2340,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2305,6 +2371,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -2343,6 +2410,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2376,6 +2444,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2402,6 +2471,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -2437,6 +2507,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -2475,6 +2546,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2508,6 +2580,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2534,6 +2607,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -2569,6 +2643,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -2607,6 +2682,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2640,6 +2716,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2666,6 +2743,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -2704,6 +2782,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -2735,6 +2814,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -2785,6 +2865,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -2826,6 +2907,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             accessible={true}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -2845,6 +2927,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2880,6 +2963,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -2918,6 +3002,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2950,6 +3035,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -2980,6 +3066,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -3018,6 +3105,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3051,6 +3139,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3077,6 +3166,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3112,6 +3202,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -3150,6 +3241,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3183,6 +3275,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3209,6 +3302,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3244,6 +3338,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -3282,6 +3377,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3315,6 +3411,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3341,6 +3438,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3379,6 +3477,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -3410,6 +3509,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -3449,6 +3549,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -3499,6 +3600,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -3572,6 +3674,7 @@ exports[`snapshots! render with single due date 1`] = `
           accessibilityTraits="header"
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [
@@ -3604,6 +3707,7 @@ exports[`snapshots! render with single due date 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -3642,6 +3746,7 @@ exports[`snapshots! render with single due date 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3674,6 +3779,7 @@ exports[`snapshots! render with single due date 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3704,6 +3810,7 @@ exports[`snapshots! render with single due date 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -3742,6 +3849,7 @@ exports[`snapshots! render with single due date 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3775,6 +3883,7 @@ exports[`snapshots! render with single due date 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3801,6 +3910,7 @@ exports[`snapshots! render with single due date 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3836,6 +3946,7 @@ exports[`snapshots! render with single due date 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -3874,6 +3985,7 @@ exports[`snapshots! render with single due date 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -3907,6 +4019,7 @@ exports[`snapshots! render with single due date 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -3933,6 +4046,7 @@ exports[`snapshots! render with single due date 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -3968,6 +4082,7 @@ exports[`snapshots! render with single due date 1`] = `
         hasTVPreferredFocus={undefined}
         hitSlop={undefined}
         isTVSelectable={true}
+        nativeID={undefined}
         onLayout={undefined}
         onResponderGrant={[Function]}
         onResponderMove={[Function]}
@@ -4006,6 +4121,7 @@ exports[`snapshots! render with single due date 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -4039,6 +4155,7 @@ exports[`snapshots! render with single due date 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -4065,6 +4182,7 @@ exports[`snapshots! render with single due date 1`] = `
               accessible={true}
               hitSlop={undefined}
               isTVSelectable={true}
+              nativeID={undefined}
               onLayout={undefined}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -4103,6 +4221,7 @@ exports[`snapshots! render with single due date 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -4134,6 +4253,7 @@ exports[`snapshots! render with single due date 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -4173,6 +4293,7 @@ exports[`snapshots! render with single due date 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -4223,6 +4344,7 @@ exports[`snapshots! render with single due date 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
+          disabled={false}
           ellipsizeMode="tail"
           style={
             Array [

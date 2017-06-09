@@ -36,6 +36,7 @@ exports[`renders circle toggle correctly 1`] = `
       accessibilityTraits="header"
       accessible={false}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -99,6 +100,7 @@ exports[`renders circle toggle when on correctly 1`] = `
       accessibilityTraits="header"
       accessible={false}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

@@ -97,7 +97,7 @@ export class DiscussionsList extends Component<any, Props, any> {
     })
   }
 
-  render (): React.Element<View> {
+  render () {
     return (
       <Screen
         navBarColor={this.props.courseColor}

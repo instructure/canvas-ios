@@ -3,7 +3,8 @@
 * @flow
 */
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   View,
@@ -70,7 +71,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     })
   }
 
-  render (): React.Element<View> {
+  render () {
     const course = this.props.course
     const courseColor = this.props.color
 

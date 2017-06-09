@@ -13,7 +13,7 @@
  * - If multiple due dates, don't show closed unless all availability dates are past
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   View,
@@ -28,9 +28,9 @@ type Props = {
   assignment: Assignment,
 }
 
-export default class DueDates extends Component<any, Props, any> {
+export default class DueDates extends React.Component<any, Props, any> {
 
-  renderMultipleDueDates (): React.Element<View> {
+  renderMultipleDueDates () {
     const title = i18n('Multiple Due Dates')
 
     return <View style={styles.container}>
@@ -38,7 +38,7 @@ export default class DueDates extends Component<any, Props, any> {
            </View>
   }
 
-  renderAvailability (dates: AssignmentDates): React.Element<View> {
+  renderAvailability (dates: AssignmentDates) {
     if (dates.availabilityClosed()) {
       const availabilityClosedTitle = i18n('Availability:')
 
@@ -88,7 +88,7 @@ export default class DueDates extends Component<any, Props, any> {
           </View>)
   }
 
-  renderSingleDueDate (dates: AssignmentDates): ReactElement<View> {
+  renderSingleDueDate (dates: AssignmentDates) {
     const dueTitle = i18n('Due:')
 
     const forTitle = i18n('For:')
@@ -116,7 +116,7 @@ export default class DueDates extends Component<any, Props, any> {
            </View>)
   }
 
-  render (): React.Element<View> {
+  render () {
     const dates = new AssignmentDates(this.props.assignment)
 
     if (dates.hasMultipleDueDates()) {

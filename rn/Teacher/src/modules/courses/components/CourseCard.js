@@ -14,7 +14,7 @@ import Images from '../../../images'
 type Props = {
   course: Course,
   color: string,
-  style: StyleSheet,
+  style: any,
   onPress: Function,
   initialHeight?: number,
   onCoursePreferencesPressed: (courseId: string) => void,
@@ -36,14 +36,14 @@ export default class CourseCard extends Component {
     }
   }
 
-  createImageStyles (): ReactNative.StyleSheet {
+  createImageStyles () {
     return StyleSheet.flatten([styles.imageColor, {
       backgroundColor: this.props.color,
       opacity: this.props.course.image_download_url ? 0.8 : 1,
     }])
   }
 
-  createTitleStyles (): ReactNative.StyleSheet {
+  createTitleStyles () {
     return StyleSheet.flatten([styles.title, {
       color: this.props.color,
     }])
@@ -63,7 +63,7 @@ export default class CourseCard extends Component {
     this.props.onCoursePreferencesPressed(this.props.course.id)
   }
 
-  render (): React.Element<View> {
+  render () {
     let { course } = this.props
     let style = {
       ...this.props.style,

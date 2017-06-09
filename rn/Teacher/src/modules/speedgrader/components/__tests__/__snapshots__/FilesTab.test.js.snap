@@ -28,13 +28,13 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
       maxToRenderPerBatch={10}
       numColumns={1}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
-      removeClippedSubviews={true}
       renderItem={[Function]}
       renderScrollComponent={[Function]}
       scrollEventThrottle={50}
@@ -98,6 +98,7 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -179,13 +180,13 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
       maxToRenderPerBatch={10}
       numColumns={1}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
-      removeClippedSubviews={true}
       renderItem={[Function]}
       renderScrollComponent={[Function]}
       scrollEventThrottle={50}
@@ -249,6 +250,7 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -354,13 +356,13 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
       maxToRenderPerBatch={10}
       numColumns={1}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
-      removeClippedSubviews={true}
       renderItem={[Function]}
       renderScrollComponent={[Function]}
       scrollEventThrottle={50}
@@ -424,6 +426,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -516,6 +519,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -617,6 +621,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -706,6 +711,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -795,6 +801,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -864,13 +871,13 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
       maxToRenderPerBatch={10}
       numColumns={1}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
-      removeClippedSubviews={true}
       renderItem={[Function]}
       renderScrollComponent={[Function]}
       scrollEventThrottle={50}
@@ -934,6 +941,7 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [
@@ -1015,13 +1023,13 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
       maxToRenderPerBatch={10}
       numColumns={1}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
-      removeClippedSubviews={true}
       renderItem={[Function]}
       renderScrollComponent={[Function]}
       scrollEventThrottle={50}
@@ -1085,6 +1093,7 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                   <Text
                     accessible={true}
                     allowFontScaling={true}
+                    disabled={false}
                     ellipsizeMode="tail"
                     style={
                       Array [

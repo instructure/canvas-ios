@@ -5,6 +5,7 @@ exports[`Token renders correctly 1`] = `
   accessible={true}
   allowFontScaling={true}
   color="#0077FF"
+  disabled={false}
   ellipsizeMode="tail"
   style={
     Array [

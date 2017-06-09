@@ -132,7 +132,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     )
   }
 
-  render (): React.Element<*> {
+  render () {
     let tutorials = [{
       id: 'swipe-tutorial',
       text: i18n('Swipe left or right to view other student submissions'),

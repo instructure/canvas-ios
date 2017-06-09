@@ -20,7 +20,7 @@ export default class UnmetRequirementBanner extends React.Component<any, Props, 
     LayoutAnimation.easeInEaseOut()
   }
 
-  render (): React.Element<View> {
+  render () {
     let bannerStyle = this.props.visible ? styles.visible : styles.hidden
 
     return (

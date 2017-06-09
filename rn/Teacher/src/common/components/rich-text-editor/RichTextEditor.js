@@ -28,7 +28,7 @@ export default class RichTextEditor extends Component<any, Props, any> {
     }
   }
 
-  render (): React.Element<*> {
+  render () {
     return (
       <Screen>
         <View style={styles.container}>

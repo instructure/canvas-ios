@@ -17,7 +17,7 @@ export default class Profile extends Component {
     NativeModules.NativeLogin.logout()
   }
 
-  render (): React.Element {
+  render () {
     const session = getSession()
     const user = session.user
     return (

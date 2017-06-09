@@ -119,6 +119,7 @@ exports[`RowWithTextInput renders with a title 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={

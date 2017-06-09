@@ -13,6 +13,7 @@ exports[`Render the base row 1`] = `
   hasTVPreferredFocus={undefined}
   hitSlop={undefined}
   isTVSelectable={true}
+  nativeID={undefined}
   onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -90,6 +91,7 @@ exports[`Render the base row 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={0}
         style={
@@ -115,6 +117,7 @@ exports[`Render the base row 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [

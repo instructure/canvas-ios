@@ -1,6 +1,7 @@
 // @flow
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Store } from 'redux'
 import { Provider } from 'react-redux'
 import URL from 'url-parse'
@@ -39,7 +40,7 @@ export function wrapScreenWithContext (moduleName: string, generator: () => any)
         }
       }
 
-      render (): React.Element<*> {
+      render () {
         const ScreenComponent = generator()
         return <ScreenComponent { ...this.props } />
       }

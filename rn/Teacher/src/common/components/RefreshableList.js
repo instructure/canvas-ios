@@ -12,6 +12,7 @@ type Props = {
   onRefresh: Function,
 }
 
+// $FlowFixMe We will be removing this at some point soon
 export class RefreshableListView extends ListView {
   props: Props & ListView.Props
 
@@ -30,6 +31,7 @@ export class RefreshableListView extends ListView {
   }
 }
 
+// $FlowFixMe We will be removing this at some point soon
 export class RefreshableScrollView extends ScrollView {
   props: Props & ScrollView.Props
 

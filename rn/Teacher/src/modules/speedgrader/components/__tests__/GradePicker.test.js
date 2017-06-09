@@ -92,6 +92,7 @@ describe('GradePicker', () => {
   })
 
   it('calls excuseAssignment with the right ids when the excuse button is pressed', () => {
+    // $FlowFixMe
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[0].onPress())
 
     let tree = renderer.create(
@@ -105,6 +106,7 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission with the prompt value', () => {
+    // $FlowFixMe
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('yo'))
 
     let tree = renderer.create(
@@ -118,6 +120,7 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission with a % at the end of the grade for percentage grading type if the user leaves it off', () => {
+    // $FlowFixMe
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('80'))
 
     let tree = renderer.create(

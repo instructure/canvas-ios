@@ -97,7 +97,7 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
           }
           <View style={styles.inputContainer}>
             <TextInput
-              autoFocus
+              autoFocus={ typeof (jest) === 'undefined' }
               multiline
               testID='comment-input.comment'
               placeholder={placeholder}

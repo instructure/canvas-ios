@@ -22,7 +22,7 @@ export default class ColorButton extends Component {
     this.props.onPress(this.props.color)
   }
 
-  render (): React.Element<*> {
+  render () {
     return (
       <TouchableHighlight
         style={styles.button}

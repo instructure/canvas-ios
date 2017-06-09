@@ -33,7 +33,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     this.props.onEditPressed()
   }
 
-  renderRow (date: AssignmentDate, dates: AssignmentDates): React.Element<View> {
+  renderRow (date: AssignmentDate, dates: AssignmentDates) {
     let title = date.title ? date.title : i18n('Everyone')
 
     const users = this.props.users
@@ -86,7 +86,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
             </View>)
   }
 
-  render (): React.Element<View> {
+  render () {
     const dates = new AssignmentDates(this.props.assignment)
     const rows = dates.allDates().map((date) => {
       return this.renderRow(date, dates)

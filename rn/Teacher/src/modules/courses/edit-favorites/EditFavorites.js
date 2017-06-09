@@ -67,7 +67,7 @@ export class FavoritesList extends Component {
     )
   }
 
-  render (): React.Element<*> {
+  render () {
     return (
       <Screen
         navBarStyle='light'

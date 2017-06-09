@@ -18,7 +18,7 @@ type Props = {
 export class NoCourses extends Component {
   props: Props
 
-  render (): React.Element<View> {
+  render () {
     let welcome = i18n('Welcome!')
 
     let bodyText = i18n('Add a few of your favorite courses to make this place your home.')

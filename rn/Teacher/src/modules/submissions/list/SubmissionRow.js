@@ -78,7 +78,7 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
     this.props.onPress(this.props.userID)
   }
 
-  render (): React.Element<View> {
+  render () {
     let { userID, avatarURL, name, status, grade, disclosure } = this.props
     if (disclosure === undefined) {
       disclosure = true

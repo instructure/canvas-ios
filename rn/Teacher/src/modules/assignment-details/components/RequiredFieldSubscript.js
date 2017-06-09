@@ -2,7 +2,7 @@
  * @flow
  */
 
-import React, { Component } from 'react'
+import React from 'react'
 import { UnmetRequirementSubscriptText } from '../../../common/text'
 import {
   View,
@@ -15,14 +15,14 @@ type Props = {
   visible: boolean,
 }
 
-export default class RequiredFieldSubscript extends Component {
+export default class RequiredFieldSubscript extends React.Component {
   props: Props
 
   componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()
   }
 
-  render (): ReactElement<*> {
+  render () {
     let visibility = this.props.visible ? styles.visible : styles.hidden
 
     return (

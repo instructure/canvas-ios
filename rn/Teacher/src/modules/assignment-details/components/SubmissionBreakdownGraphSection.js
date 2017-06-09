@@ -43,7 +43,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     LayoutAnimation.easeInEaseOut()
   }
 
-  render (): ReactElement<*> {
+  render () {
     let gradedLabel = i18n('Graded')
 
     let ungradedLabel = i18n('Ungraded')

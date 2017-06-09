@@ -68,7 +68,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
   }
 
-  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: Object = {}, focus: boolean = false, keyboardType: string = 'default'): React.Element<*> {
+  renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: any = {}, focus: boolean = false, keyboardType: string = 'default') {
     return (
       <TextInput style={styleParam}
                  value={ this.defaultValueForInput(fieldName) }
@@ -86,7 +86,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.refs.scrollView.scrollToFocusedInput(input)
   }
 
-  renderDataMapPicker = (): React.Element<View> => {
+  renderDataMapPicker = () => {
     if (!this.state.showPicker) return <View/>
 
     return <View style={style.dateEditorContainer}>
@@ -106,7 +106,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     </View>
   }
 
-  render (): React.Element<View> {
+  render () {
     let sectionTitle = i18n('Title')
     let sectionDescription = i18n('Description')
     let sectionDetails = i18n('Details')

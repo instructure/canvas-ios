@@ -88,7 +88,7 @@ export class CourseSettings extends Component<any, Props, any> {
     this.setState({ showingPicker: !this.state.showingPicker })
   }
 
-  render (): React.Element<*> {
+  render () {
     return (
       <Screen
         title={i18n('Course Settings')}

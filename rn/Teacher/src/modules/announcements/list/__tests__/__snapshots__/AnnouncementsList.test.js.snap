@@ -138,12 +138,13 @@ exports[`AnnouncementsList renders 1`] = `
       maxToRenderPerBatch={10}
       numColumns={1}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
       onEndReachedThreshold={2}
       onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
       refreshControl={
         <RefreshControlMock
@@ -152,7 +153,6 @@ exports[`AnnouncementsList renders 1`] = `
         />
       }
       refreshing={false}
-      removeClippedSubviews={true}
       renderItem={[Function]}
       renderScrollComponent={[Function]}
       scrollEventThrottle={50}
@@ -215,6 +215,7 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -240,6 +241,7 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -357,6 +359,7 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={0}
                   style={
@@ -382,6 +385,7 @@ exports[`AnnouncementsList renders 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [

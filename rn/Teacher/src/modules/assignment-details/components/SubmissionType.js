@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 
 export default class SubmissionType extends Component {
-  render (): ReactElement<*> {
+  render () {
     return (<View style={style.vertical}>
       {this.props.data.map(item =>
         <Text style={{ flex: 1 }} key={item}>{SUBMISSION_TYPES[item]}</Text>

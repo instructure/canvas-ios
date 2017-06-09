@@ -102,7 +102,7 @@ export default class WebContainer extends Component<any, Props, any> {
     }
   }
 
-  render (): ReactElement<*> {
+  render () {
     let { html, style, scrollEnabled } = this.props
     scrollEnabled = scrollEnabled === undefined ? true : scrollEnabled
 

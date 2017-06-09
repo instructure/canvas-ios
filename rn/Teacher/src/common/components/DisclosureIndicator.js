@@ -4,7 +4,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 export default class DisclosureIndicator extends React.Component {
-  render (): React.Element<View> {
+  render () {
     return <View style={styles.disclosureIndicator} />
   }
 }

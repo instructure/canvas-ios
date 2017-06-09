@@ -16,7 +16,7 @@ import {
 
 export default class AssignmentSection extends Component {
 
-  render (): ReactElement<*> {
+  render () {
     let dividerStyle = {}
     let headerStyle = {}
     if (!this.props.isFirstRow) {

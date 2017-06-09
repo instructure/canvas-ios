@@ -121,6 +121,7 @@ exports[`QuizRow renders 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -153,6 +154,7 @@ exports[`QuizRow renders 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -200,6 +202,7 @@ exports[`QuizRow renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -229,6 +232,7 @@ exports[`QuizRow renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -257,6 +261,7 @@ exports[`QuizRow renders 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -463,6 +468,7 @@ exports[`QuizRow renders multiple question count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -495,6 +501,7 @@ exports[`QuizRow renders multiple question count 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -542,6 +549,7 @@ exports[`QuizRow renders multiple question count 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -571,6 +579,7 @@ exports[`QuizRow renders multiple question count 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -599,6 +608,7 @@ exports[`QuizRow renders multiple question count 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -805,6 +815,7 @@ exports[`QuizRow renders published 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -837,6 +848,7 @@ exports[`QuizRow renders published 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -884,6 +896,7 @@ exports[`QuizRow renders published 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -913,6 +926,7 @@ exports[`QuizRow renders published 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -941,6 +955,7 @@ exports[`QuizRow renders published 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -1148,6 +1163,7 @@ exports[`QuizRow renders selected 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1180,6 +1196,7 @@ exports[`QuizRow renders selected 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -1227,6 +1244,7 @@ exports[`QuizRow renders selected 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -1256,6 +1274,7 @@ exports[`QuizRow renders selected 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1284,6 +1303,7 @@ exports[`QuizRow renders selected 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -1490,6 +1510,7 @@ exports[`QuizRow renders single question count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1522,6 +1543,7 @@ exports[`QuizRow renders single question count 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -1569,6 +1591,7 @@ exports[`QuizRow renders single question count 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -1598,6 +1621,7 @@ exports[`QuizRow renders single question count 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1626,6 +1650,7 @@ exports[`QuizRow renders single question count 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -1832,6 +1857,7 @@ exports[`QuizRow renders unpublished 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1864,6 +1890,7 @@ exports[`QuizRow renders unpublished 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -1911,6 +1938,7 @@ exports[`QuizRow renders unpublished 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -1940,6 +1968,7 @@ exports[`QuizRow renders unpublished 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1968,6 +1997,7 @@ exports[`QuizRow renders unpublished 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [
@@ -2163,6 +2193,7 @@ exports[`QuizRow renders without points possible 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2195,6 +2226,7 @@ exports[`QuizRow renders without points possible 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               separated={
                 Array [
@@ -2242,6 +2274,7 @@ exports[`QuizRow renders without points possible 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 separated={
                   Array [

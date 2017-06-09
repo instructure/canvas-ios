@@ -73,7 +73,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     })
   }
 
-  renderTab (tab: ?number): ?React.Element<*> {
+  renderTab (tab: ?number) {
     switch (tab) {
       case 0:
         const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined

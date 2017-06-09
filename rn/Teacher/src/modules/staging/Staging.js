@@ -59,7 +59,7 @@ export default class Staging extends Component<any, StagingProps, any> {
       <View style={styles.mainContainer} >
         <TextInput
           value={ path }
-          autoFocus={ true }
+          autoFocus={ typeof (jest) === 'undefined' }
           placeholder='Path'
           ref='url'
           keyboardType='url'

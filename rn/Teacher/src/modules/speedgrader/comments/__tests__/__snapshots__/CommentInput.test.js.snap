@@ -60,7 +60,7 @@ exports[`CommentInput renders 1`] = `
       }
     >
       <TextInput
-        autoFocus={true}
+        autoFocus={false}
         maxHeight={76}
         multiline={true}
         onChangeText={[Function]}
@@ -163,7 +163,7 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
       }
     >
       <TextInput
-        autoFocus={true}
+        autoFocus={false}
         maxHeight={76}
         multiline={true}
         onChangeText={[Function]}
@@ -292,7 +292,7 @@ exports[`disables the send button with a prop 1`] = `
       }
     >
       <TextInput
-        autoFocus={true}
+        autoFocus={false}
         maxHeight={76}
         multiline={true}
         onChangeText={[Function]}

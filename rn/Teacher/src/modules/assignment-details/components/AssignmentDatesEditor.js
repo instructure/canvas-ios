@@ -433,7 +433,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     )
   }
 
-  renderRemoveButton = (date: StagedAssignmentDate): React.Element<View> => {
+  renderRemoveButton = (date: StagedAssignmentDate) => {
     if (date.base) return <View />
 
     return <View style={styles.removeButtonContainer}>
@@ -445,14 +445,14 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     </View>
   }
 
-  renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType): React.Element<View> => {
+  renderDatePicker = (date: StagedAssignmentDate, type: ModifyDateType) => {
     if (type === 'none') return <View />
     return <View style={styles.dateEditorContainer}>
             <DatePickerIOS date={date[type] ? new Date(date[type]) : new Date()} onDateChange={(updated) => this.updateDate(date, type, updated)}/>
           </View>
   }
 
-  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType): React.Element<View> => {
+  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType) => {
     if (type === 'none') return <View />
 
     const stringDate = date[type] ? formattedDueDate(new Date(date[type])) : '--'
@@ -486,7 +486,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
             </TouchableHighlight>)
   }
 
-  renderDate = (date: StagedAssignmentDate): React.Element<View> => {
+  renderDate = (date: StagedAssignmentDate) => {
     let title = i18n('Assign To')
     let requiredAssigneesText = i18n('Assignees required')
     let requiredDueDateText = i18n("'Due Date' must be between 'Available From' and 'Available To' dates")
@@ -524,7 +524,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
             </View>)
   }
 
-  renderButton = (): React.Element<View> => {
+  renderButton = () => {
     return (<TouchableHighlight style={styles.button} onPress={this.addAdditionalDueDate}>
               <View style={styles.buttonInnerContainer}>
                 <Image source={Images.add} style={styles.buttonImage} />
@@ -533,7 +533,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
             </TouchableHighlight>)
   }
 
-  render (): React.Element<View> {
+  render () {
     const rows = this.state.dates.map(this.renderDate)
     const button = this.renderButton()
     const showButton = this.props.canAddDueDates || this.props.canAddDueDates == null

@@ -12,6 +12,8 @@ import { ERROR_TITLE } from '../../../../redux/middleware/error-handler'
 
 jest
   .mock('Button', () => 'Button')
+  .mock('Switch', () => 'Switch')
+  .mock('TextInput', () => 'TextInput')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('LayoutAnimation', () => ({
@@ -283,6 +285,7 @@ describe('QuizEdit', () => {
 
   it('presents errors', () => {
     jest.useFakeTimers()
+    // $FlowFixMe
     Alert.alert = jest.fn()
     const component = render(props)
     const error = { response: template.error('this is an error') }

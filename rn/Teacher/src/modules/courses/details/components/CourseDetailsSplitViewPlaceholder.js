@@ -12,7 +12,7 @@ import Images from '../../../../images/'
 import colors from '../../../../common/colors'
 
 export default class CourseDetailsSplitViewPlaceholder extends Component {
-  render (): React.Element<*> {
+  render () {
     const courseColor = this.props.courseColor
     const course = this.props.course
 

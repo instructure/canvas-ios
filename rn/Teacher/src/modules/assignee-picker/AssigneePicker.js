@@ -93,7 +93,7 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
     })
   }
 
-  render (): React.Element<View> {
+  render () {
     return (
       <Screen
         title={i18n('Assignees')}

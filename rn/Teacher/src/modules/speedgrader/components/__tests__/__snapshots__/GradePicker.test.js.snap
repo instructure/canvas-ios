@@ -24,6 +24,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -52,6 +53,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -98,6 +100,7 @@ exports[`GradePicker renders points based grades 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -130,6 +133,7 @@ exports[`GradePicker renders points based grades 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -177,6 +181,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -236,6 +241,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -352,6 +358,7 @@ exports[`GradePicker renders with excused 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -384,6 +391,7 @@ exports[`GradePicker renders with excused 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -430,6 +438,7 @@ exports[`GradePicker renders with no grade 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

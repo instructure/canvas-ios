@@ -22,7 +22,7 @@ export default class CourseFavorite extends Component<void, Props, void> {
     this.props.onPress(this.props.course.id, !this.props.isFavorite)
   }
 
-  render (): React.Element<TouchableHighlight> {
+  render () {
     return (
       <TouchableHighlight style={styles.courseRow} testID={'edit-fav-courses.' + this.props.course.id + (this.props.isFavorite ? '-favorited' : '-not-favorited') } onPress={this.onPress}>
         <View style={styles.courseWrapper}>

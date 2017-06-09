@@ -18,7 +18,7 @@ export type SubmissionGraphProps = {
 }
 
 export default class SubmissionGraph extends Component<any, SubmissionGraphProps, any> {
-  render (): ReactElement<*> {
+  render () {
     let { current, label, total } = this.props
     let formattedData = current
     if (!current) {

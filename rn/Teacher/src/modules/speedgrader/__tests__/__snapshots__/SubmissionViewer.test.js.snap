@@ -48,6 +48,7 @@ exports[`SubmissionViewer renders a file (stub) 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -123,6 +124,7 @@ exports[`SubmissionViewer renders a moderated graded assignment submission 1`] =
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -310,6 +312,7 @@ exports[`SubmissionViewer renders external tool submission 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -359,6 +362,7 @@ exports[`SubmissionViewer renders external tool submission with a submission 1`]
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -408,6 +412,7 @@ exports[`SubmissionViewer renders grade-only submission 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -457,6 +462,7 @@ exports[`SubmissionViewer renders no submission 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -506,6 +512,7 @@ exports[`SubmissionViewer renders on-paper submission 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -555,6 +562,7 @@ exports[`SubmissionViewer renders submission type of none 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

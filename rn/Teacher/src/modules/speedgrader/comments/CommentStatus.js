@@ -39,14 +39,17 @@ export default class CommentStatus extends Component {
 
   componentDidMount () {
     let duration = 60000 * (1 - this.progress._value)
-    Animated.timing(
+    const animation = Animated.timing(
       this.progress,
       {
         toValue: 0.8,
         duration,
         easing: Easing.linear,
       },
-    ).start()
+    )
+    if (animation) {
+      animation.start()
+    }
   }
 
   componentWillUnmount () {

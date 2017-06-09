@@ -64,13 +64,13 @@ export default class SubmissionViewer extends Component {
     return text
   }
 
-  renderCenteredText (text: string): React.Element<*> {
+  renderCenteredText (text: string) {
     return <View style={styles.centeredText}>
       <Text style={styles.noSubText}>{text}</Text>
     </View>
   }
 
-  renderFile (submission: Submission): ?React.Element<*> {
+  renderFile (submission: Submission) {
     if (submission.attachments) {
       return <CanvadocViewer config={{ previewPath: submission.attachments[0].preview_url }} style={styles.container} />
     }
@@ -78,7 +78,7 @@ export default class SubmissionViewer extends Component {
     return null
   }
 
-  renderSubmission (submission: Submission): React.Element<*> {
+  renderSubmission (submission: Submission) {
     let body = <View></View>
     if (submission.submission_type) {
       switch (submission.submission_type) {
@@ -113,7 +113,7 @@ export default class SubmissionViewer extends Component {
     return <View style={styles.container}>{body}</View>
   }
 
-  render (): React.Element<*> {
+  render () {
     if (this.props.isModeratedGrading) {
       return (
         <View style={styles.container}>

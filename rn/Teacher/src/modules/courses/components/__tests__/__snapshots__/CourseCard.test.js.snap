@@ -115,6 +115,7 @@ exports[`renders 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -142,6 +143,7 @@ exports[`renders 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -275,6 +277,7 @@ exports[`renders with empty image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -302,6 +305,7 @@ exports[`renders with empty image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -447,6 +451,7 @@ exports[`renders with image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -474,6 +479,7 @@ exports[`renders with image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -607,6 +613,7 @@ exports[`renders without image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={2}
         style={
@@ -634,6 +641,7 @@ exports[`renders without image url 1`] = `
       <Text
         accessible={false}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={

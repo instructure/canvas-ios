@@ -27,6 +27,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -55,6 +56,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -73,6 +75,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -131,12 +134,13 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -145,7 +149,6 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -175,6 +178,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -259,6 +263,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -287,6 +292,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -318,6 +324,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -381,6 +388,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -409,6 +417,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -427,6 +436,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -485,12 +495,13 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -499,7 +510,6 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -529,6 +539,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -613,6 +624,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -641,6 +653,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -672,6 +685,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [

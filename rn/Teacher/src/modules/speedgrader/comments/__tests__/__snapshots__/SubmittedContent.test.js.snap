@@ -37,6 +37,7 @@ exports[`my chat bubbles render correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={
@@ -59,6 +60,7 @@ exports[`my chat bubbles render correctly 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       numberOfLines={1}
       style={

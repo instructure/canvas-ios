@@ -80,7 +80,6 @@ export class SubmissionList extends Component {
 
   navigateToSubmission = (userID: string) => {
     if (!global.V04) { return } // such features
-    console.log(this.state.isConnected)
     if (!this.state.isConnected) {
       return AlertIOS.alert(i18n('No internet connection'), i18n('This action requires an internet connection.'))
     }
@@ -133,6 +132,7 @@ export class SubmissionList extends Component {
             onClearFilter={this.clearFilter}
             onSelectFilter={this.updateFilter}
             pointsPossible={this.props.pointsPossible} />
+          { /* $FlowFixMe I seriously have no idea why this is complaining about flatlist not having some properties */ }
           <FlatList
             data={this.state.submissions}
             keyExtractor={this.keyExtractor}

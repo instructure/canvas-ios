@@ -5,6 +5,7 @@ exports[`renders wrapped screen correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    disabled={false}
     ellipsizeMode="tail"
   >
     Test Screen
@@ -17,6 +18,7 @@ exports[`renders wrapped screen with store correctly 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    disabled={false}
     ellipsizeMode="tail"
   >
     Test Screen

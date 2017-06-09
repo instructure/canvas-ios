@@ -73,6 +73,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -99,6 +100,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -125,6 +127,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -243,6 +246,7 @@ exports[`renders correctly with different data 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -269,6 +273,7 @@ exports[`renders correctly with different data 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={
@@ -295,6 +300,7 @@ exports[`renders correctly with different data 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         numberOfLines={1}
         style={

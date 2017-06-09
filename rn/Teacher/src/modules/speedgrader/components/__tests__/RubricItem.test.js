@@ -198,6 +198,7 @@ describe('RubricItem', () => {
     let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
     button.props.onPress()
 
+    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
     expect(defaultProps.deleteComment).not.toHaveBeenCalled()
     expect(defaultProps.openCommentKeyboard).not.toHaveBeenCalled()
@@ -216,6 +217,7 @@ describe('RubricItem', () => {
     let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
     button.props.onPress()
 
+    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](1)
     expect(defaultProps.deleteComment).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })
@@ -233,6 +235,7 @@ describe('RubricItem', () => {
     let button = explore(tree).selectByID(`rubric-item.edit-comment-${defaultProps.rubricItem.id}`) || {}
     button.props.onPress()
 
+    // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](0)
     expect(defaultProps.openCommentKeyboard).toHaveBeenCalledWith(defaultProps.rubricItem.id)
   })

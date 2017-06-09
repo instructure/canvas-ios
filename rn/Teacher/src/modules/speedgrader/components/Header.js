@@ -116,7 +116,7 @@ export class Header extends Component {
     }
   }
 
-  render (): React.Element<*> {
+  render () {
     const sub = this.props.submissionProps
     return <Animated.View style={[styles.header, { height: this.state.easeAnimation }]}>
       <View style={styles.profileContainer}>

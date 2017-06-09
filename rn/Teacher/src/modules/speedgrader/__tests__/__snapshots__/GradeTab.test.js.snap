@@ -47,13 +47,13 @@ exports[`Rubric has the correct score 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -152,6 +152,7 @@ exports[`Rubric has the correct score 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -172,6 +173,7 @@ exports[`Rubric has the correct score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -213,6 +215,7 @@ exports[`Rubric has the correct score 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -289,6 +292,7 @@ exports[`Rubric has the correct score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -356,6 +360,7 @@ exports[`Rubric has the correct score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -423,6 +428,7 @@ exports[`Rubric has the correct score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -513,6 +519,7 @@ exports[`Rubric has the correct score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -563,6 +570,7 @@ exports[`Rubric has the correct score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -654,13 +662,13 @@ exports[`Rubric renders a rubric 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -759,6 +767,7 @@ exports[`Rubric renders a rubric 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -779,6 +788,7 @@ exports[`Rubric renders a rubric 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -820,6 +830,7 @@ exports[`Rubric renders a rubric 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -896,6 +907,7 @@ exports[`Rubric renders a rubric 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -963,6 +975,7 @@ exports[`Rubric renders a rubric 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1030,6 +1043,7 @@ exports[`Rubric renders a rubric 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1120,6 +1134,7 @@ exports[`Rubric renders a rubric 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1170,6 +1185,7 @@ exports[`Rubric renders a rubric 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1261,13 +1277,13 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -1366,6 +1382,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1386,6 +1403,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1427,6 +1445,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1503,6 +1522,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1570,6 +1590,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1637,6 +1658,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1727,6 +1749,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1777,6 +1800,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1851,7 +1875,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
         }
       >
         <TextInput
-          autoFocus={true}
+          autoFocus={false}
           maxHeight={76}
           multiline={true}
           onChangeText={[Function]}
@@ -1941,13 +1965,13 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -2058,13 +2082,13 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -2163,6 +2187,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2183,6 +2208,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2230,6 +2256,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2306,6 +2333,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2373,6 +2401,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2440,6 +2469,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -2530,6 +2560,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2580,6 +2611,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2671,13 +2703,13 @@ exports[`Rubric shows the save button when there is a change in the rubric score
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -2776,6 +2808,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 accessibilityTraits="header"
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2796,6 +2829,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2833,6 +2867,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -2886,6 +2921,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2962,6 +2998,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3029,6 +3066,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3099,6 +3137,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   accessibilityTraits="header"
                   accessible={false}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -3189,6 +3228,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -3239,6 +3279,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [

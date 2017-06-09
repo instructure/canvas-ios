@@ -15,7 +15,7 @@ type SubmissionStatusProps = {
 
 export default class SubmissionStatus extends Component<any, SubmissionStatusProps, any> {
 
-  render (): React.Element<*> {
+  render () {
     let color: string = '#8B969E' // none
     let title: string = i18n('No submission')
 

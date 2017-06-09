@@ -50,7 +50,7 @@ export default class LinkModal extends Component<any, Props, any> {
                 autoCapitalize='none'
                 testID='rich-text-editor.link-modal.titleInput'
                 onChangeText={ (title) => this.setState({ title })}
-                autoFocus={true}
+                autoFocus={ typeof (jest) === 'undefined' }
               />
             </View>
             <View style={styles.textInputContainer}>

@@ -76,7 +76,9 @@ export default class BottomDrawer extends Component<any, Props, State> {
   componentWillReceiveProps (nextProps: Props) {
     if (nextProps.containerHeight !== this.props.containerHeight || nextProps.containerWidth !== this.props.containerWidth) {
       this.setState({ height: nextProps.containerHeight, width: nextProps.containerWidth }, () => {
-        this.drawer.snapTo({ index: this.props.drawerState.currentSnap })
+        if (this.drawer) {
+          this.drawer.snapTo({ index: this.props.drawerState.currentSnap })
+        }
       })
     }
   }

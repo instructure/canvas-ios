@@ -2,7 +2,7 @@
 * @flow
 */
 
-import React, { Component, Element } from 'react'
+import React from 'react'
 import {
   View,
   Image,
@@ -18,8 +18,8 @@ type Props = {
   image: any,
 }
 
-export default class PublishedIcon extends Component<any, Props, any> {
-  render (): Element<View> {
+export default class PublishedIcon extends React.Component<any, Props, any> {
+  render () {
     const published = this.props.published
     const icon = published ? Images.published : Images.unpublished
     const iconStyle = published ? styles.publishedIcon : styles.unpublishedIcon

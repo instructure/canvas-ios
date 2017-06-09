@@ -21,6 +21,7 @@ exports[`renders correctly 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -139,6 +140,7 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -164,6 +166,7 @@ exports[`renders correctly 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -255,6 +258,7 @@ exports[`renders correctly assignment icon 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -373,6 +377,7 @@ exports[`renders correctly assignment icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -398,6 +403,7 @@ exports[`renders correctly assignment icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -489,6 +495,7 @@ exports[`renders correctly discussion icon 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -607,6 +614,7 @@ exports[`renders correctly discussion icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -632,6 +640,7 @@ exports[`renders correctly discussion icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -723,6 +732,7 @@ exports[`renders correctly not published icon 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -841,6 +851,7 @@ exports[`renders correctly not published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -866,6 +877,7 @@ exports[`renders correctly not published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -957,6 +969,7 @@ exports[`renders correctly published icon 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1075,6 +1088,7 @@ exports[`renders correctly published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1100,6 +1114,7 @@ exports[`renders correctly published icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1202,6 +1217,7 @@ exports[`renders correctly quiz icon 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1320,6 +1336,7 @@ exports[`renders correctly quiz icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1345,6 +1362,7 @@ exports[`renders correctly quiz icon 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1436,6 +1454,7 @@ exports[`renders correctly with closed due dates 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1554,6 +1573,7 @@ exports[`renders correctly with closed due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1579,6 +1599,7 @@ exports[`renders correctly with closed due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1670,6 +1691,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1788,6 +1810,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -1813,6 +1836,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1839,6 +1863,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -1941,6 +1966,7 @@ exports[`renders correctly with open due dates 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -2059,6 +2085,7 @@ exports[`renders correctly with open due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2084,6 +2111,7 @@ exports[`renders correctly with open due dates 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [
@@ -2175,6 +2203,7 @@ exports[`renders correctly with selected props 1`] = `
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -2293,6 +2322,7 @@ exports[`renders correctly with selected props 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             numberOfLines={2}
             style={
@@ -2318,6 +2348,7 @@ exports[`renders correctly with selected props 1`] = `
           <Text
             accessible={true}
             allowFontScaling={true}
+            disabled={false}
             ellipsizeMode="tail"
             style={
               Array [

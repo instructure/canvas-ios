@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Dimensions } from 'react-native'
 import i18n from 'format-message'
 import mapStateToProps from './map-state-to-props'
@@ -33,7 +34,7 @@ export class AllCourseList extends Component {
     this.props.navigator.show(`/courses/${course.id}`, { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' })
   }
 
-  render (): React.Element<*> {
+  render () {
     return (
       <Screen
         navBarTranslucent={true}

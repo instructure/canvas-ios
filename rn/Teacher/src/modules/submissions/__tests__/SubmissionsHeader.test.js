@@ -76,6 +76,7 @@ test('SubmissionsHeader update filter', () => {
   const prompt = jest.fn((title, message, cb) => {
     callback = cb
   })
+  // $FlowFixMe
   AlertIOS.prompt = prompt
   instance.updateFilter(3)
   expect(prompt).toHaveBeenCalled()

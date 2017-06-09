@@ -21,7 +21,7 @@ export function Button ({ style, containerStyle, ...props }: Object): ReactNativ
 }
 
 export class LinkButton extends Component {
-  render (): React.Element<any> {
+  render () {
     let brandingStyles = {
       color: colors.primaryButtonColor,
     }

@@ -2,7 +2,7 @@
 * @flow
 */
 
-import React, { Component, Element } from 'react'
+import React from 'react'
 import {
   View,
   StyleSheet,
@@ -14,9 +14,9 @@ type Props = {
   onPress: (AssignmentGroup) => void,
 }
 
-export default class AssignmentListSection extends Component<any, Props, any> {
+export default class AssignmentListSection extends React.Component<any, Props, any> {
 
-  render (): Element<View> {
+  render () {
     const group = this.props.assignmentGroup
     return (
       <View style={styles.section} key={group.id}>

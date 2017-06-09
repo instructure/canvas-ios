@@ -48,7 +48,7 @@ export default class AssigneeRow extends Component<any, Props, any> {
     }
   }
 
-  render (): React.Element<View> {
+  render () {
     const assignee = this.props.assignee
     const image = this.renderImage()
 

@@ -349,6 +349,7 @@ describe('function tests', () => {
     ).getInstance()
 
     let onPress = jest.fn()
+    // $FlowFixMe
     Alert.alert = jest.fn((title, message, buttons) => {
       onPress = buttons[0].onPress
     })

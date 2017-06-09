@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { requireNativeComponent } from 'react-native'
 
 type Props = {
@@ -9,15 +10,16 @@ type Props = {
 }
 
 export default class Video extends Component<any, Props, any> {
-  _container: ?VideoContainer
+  _container: ?typeof VideoContainer
 
   pause = () => {
     if (this._container) {
+      // $FlowFixMe
       this._container.setNativeProps({ paused: true })
     }
   }
 
-  captureContainer = (container: VideoContainer) => {
+  captureContainer = (container: typeof VideoContainer) => {
     this._container = container
   }
 

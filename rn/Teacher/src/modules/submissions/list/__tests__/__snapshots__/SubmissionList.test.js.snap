@@ -27,6 +27,7 @@ exports[`SubmissionList loaded 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -55,6 +56,7 @@ exports[`SubmissionList loaded 1`] = `
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -73,6 +75,7 @@ exports[`SubmissionList loaded 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -150,12 +153,13 @@ exports[`SubmissionList loaded 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -164,7 +168,6 @@ exports[`SubmissionList loaded 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -194,6 +197,7 @@ exports[`SubmissionList loaded 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -278,6 +282,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -306,6 +311,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -376,6 +382,7 @@ exports[`SubmissionList loaded 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -460,6 +467,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -488,6 +496,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -519,6 +528,7 @@ exports[`SubmissionList loaded 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -588,6 +598,7 @@ exports[`SubmissionList loaded 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -672,6 +683,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -700,6 +712,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -732,6 +745,7 @@ exports[`SubmissionList loaded 1`] = `
                 accessible={true}
                 allowFontScaling={true}
                 color="#368BD8"
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -813,6 +827,7 @@ exports[`SubmissionList loaded 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -897,6 +912,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -925,6 +941,7 @@ exports[`SubmissionList loaded 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -956,6 +973,7 @@ exports[`SubmissionList loaded 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [
@@ -1038,6 +1056,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       accessibilityTraits="header"
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [
@@ -1066,6 +1085,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}
+      nativeID={undefined}
       onLayout={undefined}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1084,6 +1104,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -1141,12 +1162,13 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
     maxToRenderPerBatch={10}
     numColumns={1}
     onContentSizeChange={[Function]}
-    onEndReached={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
     onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     refreshControl={
       <RefreshControlMock
@@ -1155,7 +1177,6 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       />
     }
     refreshing={false}
-    removeClippedSubviews={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}
@@ -1185,6 +1206,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
             isTVSelectable={true}
+            nativeID={undefined}
             onLayout={undefined}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1269,6 +1291,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   numberOfLines={2}
                   style={
@@ -1297,6 +1320,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                 <Text
                   accessible={true}
                   allowFontScaling={true}
+                  disabled={false}
                   ellipsizeMode="tail"
                   style={
                     Array [
@@ -1328,6 +1352,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
               <Text
                 accessible={true}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 style={
                   Array [

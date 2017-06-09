@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View } from 'react-native'
 import CourseCard from './CourseCard'
 import GridView from '../../../common/components/GridView'
@@ -62,7 +63,7 @@ export default class CourseList extends Component {
     )
   }
 
-  render (): React.Element<*> {
+  render () {
     let cardStyles = {
       flex: 1,
       margin: this.state.padding,

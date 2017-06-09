@@ -38,6 +38,7 @@ exports[`My message rows render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -65,6 +66,7 @@ exports[`My message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -166,6 +168,7 @@ exports[`My message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -267,6 +270,7 @@ exports[`Their message rows render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -294,6 +298,7 @@ exports[`Their message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -365,6 +370,7 @@ exports[`Their message rows render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -437,6 +443,7 @@ exports[`my media comments render correclty 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -464,6 +471,7 @@ exports[`my media comments render correclty 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -601,6 +609,7 @@ exports[`their media comments render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -628,6 +637,7 @@ exports[`their media comments render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -734,6 +744,7 @@ exports[`their submissions render correctly 1`] = `
         accessibilityTraits="header"
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [
@@ -761,6 +772,7 @@ exports[`their submissions render correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
         style={
           Array [

@@ -4,7 +4,7 @@ import React from 'react'
 import { View, StyleSheet, ActivityIndicator } from 'react-native'
 
 export default class ActivityIndicatorView extends React.Component<any, any, any> {
-  render (): React.Element<View> {
+  render () {
     return <View style={styles.container}>
               <ActivityIndicator style={styles.indicator} />
            </View>

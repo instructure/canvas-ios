@@ -53,7 +53,7 @@ export class Inbox extends Component {
     this.props.updateInboxSelectedScope(scope)
   }
 
-  _renderComponent = (): React.Element<View> => {
+  _renderComponent = () => {
     if (!global.V05) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -96,7 +96,7 @@ export class Inbox extends Component {
     )
   }
 
-  render (): React.Element<{}> {
+  render () {
     return (
       <Screen
         navBarColor={branding.navBarColor}

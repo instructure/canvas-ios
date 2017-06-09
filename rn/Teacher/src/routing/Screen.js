@@ -1,6 +1,7 @@
 // @flow
 
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   NativeModules,
   DeviceEventEmitter,
@@ -48,7 +49,7 @@ class Screen extends React.Component<any, any, any> {
     Helm.setScreenConfig(configFRD, id, hasRendered)
   }
 
-  render (): ?React.Element<any> {
+  render () {
     if (!this.state.hasRendered) return null
     if (!this.props.children) return null
     return React.Children.only(this.props.children)

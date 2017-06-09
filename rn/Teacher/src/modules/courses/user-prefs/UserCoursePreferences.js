@@ -90,7 +90,7 @@ export class UserCoursePreferences extends Component {
     }
   }
 
-  _renderComponent (): React.Element<any> {
+  _renderComponent () {
     return (<View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending} />
           <RefreshableScrollView
@@ -149,7 +149,7 @@ export class UserCoursePreferences extends Component {
         </View>)
   }
 
-  render (): React.Element<*> {
+  render () {
     return (
       <Screen
         title={i18n('Customize Course')}

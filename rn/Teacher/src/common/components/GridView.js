@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ReactNative, {
   StyleSheet,
   View,
@@ -48,8 +49,8 @@ type Props = {
   renderFooter?: Function,
   renderHeader?: Function,
   sections?: boolean,
-  placeholderStyle: StyleSheet,
-  style: StyleSheet,
+  placeholderStyle: any,
+  style: any,
   onLayout: Function,
   contentInset?: Object,
   showsVerticalScrollIndicator?: boolean,
@@ -66,14 +67,14 @@ export default class GridView extends Component<DefaultProps, Props, State> {
   state: State
 
   static propTypes = {
-    itemsPerRow: React.PropTypes.number,
-    onEndReached: React.PropTypes.func,
-    renderItem: React.PropTypes.func.isRequired,
-    renderPlaceholder: React.PropTypes.func,
-    data: React.PropTypes.arrayOf(React.PropTypes.any).isRequired,
-    renderFooter: React.PropTypes.func,
-    contentInset: React.PropTypes.object,
-    showsVerticalScrollIndicator: React.PropTypes.bool,
+    itemsPerRow: PropTypes.number,
+    onEndReached: PropTypes.func,
+    renderItem: PropTypes.func.isRequired,
+    renderPlaceholder: PropTypes.func,
+    data: PropTypes.arrayOf(PropTypes.any).isRequired,
+    renderFooter: PropTypes.func,
+    contentInset: PropTypes.object,
+    showsVerticalScrollIndicator: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -156,7 +157,7 @@ export default class GridView extends Component<DefaultProps, Props, State> {
     this.props.onRefresh()
   }
 
-  render (): React.Element<View> {
+  render () {
     return (
       <View style={[styles.container, this.props.style]} onLayout={this.props.onLayout}>
         <RefreshableListView

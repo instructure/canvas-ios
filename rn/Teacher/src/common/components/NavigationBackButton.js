@@ -7,7 +7,7 @@ import Images from '../../images'
 import i18n from 'format-message'
 
 export default class NavigationBackButton extends React.Component {
-  render (): React.Element<View> {
+  render () {
     return <Button style={styles.backButton} {...this.props}>
             <View style={{ paddingRight: 31 }} accessible={true} accessibilityTraits={'button'} accessibilityLabel={i18n('Back')}>
               <Image source={Images.backIcon} style={styles.navButtonImage} />

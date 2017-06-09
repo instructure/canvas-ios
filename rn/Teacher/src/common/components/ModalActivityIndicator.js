@@ -18,7 +18,7 @@ type Props = {
 }
 
 export default class ModalActivityIndicator extends React.Component<any, Props, any> {
-  render (): React.Element<View> {
+  render () {
     return (
       <Modal animationType={this.props.animationType}
              transparent={this.props.transparent}

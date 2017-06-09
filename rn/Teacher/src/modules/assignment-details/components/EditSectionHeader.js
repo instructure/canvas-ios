@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 
 export default class AssignmentSection extends Component {
-  render (): ReactElement<*> {
+  render () {
     return (
       <View style={[style.container, this.props.style]}>
         <Heading1 style={style.header}>{this.props.title}</Heading1>

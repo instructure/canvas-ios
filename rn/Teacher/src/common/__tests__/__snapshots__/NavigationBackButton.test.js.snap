@@ -8,6 +8,7 @@ exports[`renders button correctly 1`] = `
   accessible={true}
   hitSlop={undefined}
   isTVSelectable={true}
+  nativeID={undefined}
   onLayout={undefined}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}

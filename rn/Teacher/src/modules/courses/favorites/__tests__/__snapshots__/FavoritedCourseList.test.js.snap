@@ -140,6 +140,7 @@ exports[`render 1`] = `
               accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -175,6 +176,7 @@ exports[`render 1`] = `
             <Text
               accessible={true}
               allowFontScaling={true}
+              disabled={false}
               ellipsizeMode="tail"
               style={
                 Array [
@@ -338,6 +340,7 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -365,6 +368,7 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -509,6 +513,7 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -536,6 +541,7 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -680,6 +686,7 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={2}
                 style={
@@ -707,6 +714,7 @@ exports[`render 1`] = `
               <Text
                 accessible={false}
                 allowFontScaling={true}
+                disabled={false}
                 ellipsizeMode="tail"
                 numberOfLines={1}
                 style={
@@ -757,6 +765,7 @@ exports[`render without courses 1`] = `
     accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
+    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -778,6 +787,7 @@ exports[`render without courses 1`] = `
   <Text
     accessible={true}
     allowFontScaling={true}
+    disabled={false}
     ellipsizeMode="tail"
     style={
       Array [
@@ -826,6 +836,7 @@ exports[`render without courses 1`] = `
     <Text
       accessible={true}
       allowFontScaling={true}
+      disabled={false}
       ellipsizeMode="tail"
       style={
         Array [

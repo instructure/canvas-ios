@@ -125,7 +125,7 @@ export class QuizzesList extends Component<any, Props, any> {
     })
   }
 
-  render (): React.Element<View> {
+  render () {
     if (this.data.length === 0) {
       this.data = this._getData()
       this.selectFirstListItemIfNecessary()

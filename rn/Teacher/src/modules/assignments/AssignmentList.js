@@ -161,7 +161,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     }
   }
 
-  render (): React.Element<View> {
+  render () {
     if (this.data.length === 0) {
       this.data = this.prepareListData()
       this.selectFirstListItemIfNecessary()

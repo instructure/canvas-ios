@@ -116,7 +116,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
     this.props.onSelection(data)
   }
 
-  render (): React.Element<View> {
+  render () {
     return (
       <Screen
         title={i18n('Add Assignee')}

@@ -1,6 +1,7 @@
 // @flow
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   Dimensions,
   View,
@@ -73,7 +74,7 @@ export class FavoritedCourseList extends Component {
     )
   }
 
-  render (): React.Element<any> {
+  render () {
     if (!this.props.pending && !this.props.courses.length) {
       return (
         <NoCourses

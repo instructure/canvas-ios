@@ -3,9 +3,8 @@
 * @flow
 */
 
-import React, { Component, Element } from 'react'
+import React from 'react'
 import {
-  View,
 } from 'react-native'
 
 import Images from '../../../../images'
@@ -17,14 +16,14 @@ type Props = {
   onPress: Function,
 }
 
-export default class CourseDetails extends Component<any, Props, any> {
+export default class CourseDetails extends React.Component<any, Props, any> {
 
   onPress = () => {
     const tab = this.props.tab
     this.props.onPress(tab)
   }
 
-  render (): Element<View> {
+  render () {
     const tab = this.props.tab
     return (<Row
                 title={tab.label}
