@@ -12,6 +12,7 @@ import Screen from '../../routing/Screen'
 import branding from '../../common/branding'
 import ConversationRow from './components/ConversationRow'
 import FilterHeader from './components/FilterHeader'
+import i18n from 'format-message'
 
 export type InboxProps = {
   conversations: Conversation[],
