@@ -134,6 +134,11 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock
@@ -904,6 +909,11 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock
@@ -1674,6 +1684,11 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock
@@ -2444,6 +2459,11 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock
@@ -3214,6 +3234,11 @@ exports[`UserCoursePreferences renders 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock
@@ -4000,6 +4025,11 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock
@@ -4770,6 +4800,11 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      contentInset={
+        Object {
+          "bottom": 49,
+        }
+      }
       onRefresh={[Function]}
       refreshControl={
         <RefreshControlMock

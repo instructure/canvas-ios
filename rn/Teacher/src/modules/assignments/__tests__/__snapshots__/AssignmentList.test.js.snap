@@ -5,6 +5,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -541,6 +542,7 @@ exports[`applyFilter will apply a new filter 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -1464,6 +1466,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -1952,6 +1955,7 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -2488,6 +2492,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >

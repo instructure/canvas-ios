@@ -14,6 +14,11 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -1470,6 +1475,11 @@ exports[`QuizDetails displays access code 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -2926,6 +2936,11 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -4266,6 +4281,11 @@ exports[`QuizDetails renders 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -5664,6 +5684,11 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -7120,6 +7145,11 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -8518,6 +8548,11 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -9916,6 +9951,11 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -11314,6 +11354,11 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -12712,6 +12757,11 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -14110,6 +14160,11 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -15450,6 +15505,11 @@ exports[`QuizDetails renders allowed attempts 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -16848,6 +16908,11 @@ exports[`QuizDetails renders allowed attempts 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -18246,6 +18311,11 @@ exports[`QuizDetails renders assignment due dates 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -19676,6 +19746,11 @@ exports[`QuizDetails renders assignment group 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -21132,6 +21207,11 @@ exports[`QuizDetails renders published state 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -22530,6 +22610,11 @@ exports[`QuizDetails renders published state 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -23928,6 +24013,11 @@ exports[`QuizDetails renders quiz type 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -25326,6 +25416,11 @@ exports[`QuizDetails renders quiz type 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -26724,6 +26819,11 @@ exports[`QuizDetails renders scoring policy 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -28122,6 +28222,11 @@ exports[`QuizDetails renders scoring policy 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -29520,6 +29625,11 @@ exports[`QuizDetails renders scoring policy 3`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -30918,6 +31028,11 @@ exports[`QuizDetails renders show correct answers 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -32316,6 +32431,11 @@ exports[`QuizDetails renders show correct answers 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -33714,6 +33834,11 @@ exports[`QuizDetails renders shuffle answers 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -35112,6 +35237,11 @@ exports[`QuizDetails renders shuffle answers 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -36510,6 +36640,11 @@ exports[`QuizDetails renders time limit 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -37908,6 +38043,11 @@ exports[`QuizDetails renders time limit 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -39306,6 +39446,11 @@ exports[`QuizDetails renders view responses 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -40704,6 +40849,11 @@ exports[`QuizDetails renders view responses 2`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -42044,6 +42194,11 @@ exports[`QuizDetails renders view responses 3`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock
@@ -43384,6 +43539,11 @@ exports[`QuizDetails renders without a description 1`] = `
   title="Quiz Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock

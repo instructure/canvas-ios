@@ -203,6 +203,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: global.tabBarHeight,
   },
   header: {
     borderBottomWidth: StyleSheet.hairlineWidth,

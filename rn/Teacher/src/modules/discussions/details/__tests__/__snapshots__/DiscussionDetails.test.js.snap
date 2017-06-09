@@ -5,6 +5,11 @@ exports[`DiscussionDetails renders 1`] = `
   title="Discussion Details"
 >
   <RCTScrollView
+    contentInset={
+      Object {
+        "bottom": 49,
+      }
+    }
     onRefresh={[Function]}
     refreshControl={
       <RefreshControlMock

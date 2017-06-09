@@ -157,6 +157,7 @@ export class QuizzesList extends Component<any, Props, any> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: global.tabBarHeight,
   },
 })
 

@@ -150,6 +150,8 @@ export class SubmissionList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: global.tabBarHeight,
+
   },
   header: {
     borderBottomWidth: StyleSheet.hairlineWidth,

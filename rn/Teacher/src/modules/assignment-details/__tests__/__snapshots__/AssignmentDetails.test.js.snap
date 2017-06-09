@@ -2,6 +2,11 @@
 
 exports[`renders 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={[Function]}
   refreshControl={
     <RefreshControlMock
@@ -1162,6 +1167,11 @@ exports[`renders 1`] = `
 
 exports[`renders loading 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={[Function]}
   refreshControl={
     <RefreshControlMock

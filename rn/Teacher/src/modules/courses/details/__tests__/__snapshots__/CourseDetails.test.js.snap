@@ -13,6 +13,11 @@ exports[`refresh function first test 1`] = `
 
 exports[`refresh function second test 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={[Function]}
   refreshControl={
     <RefreshControlMock
@@ -179,6 +184,11 @@ exports[`render without course 1`] = `
 
 exports[`renders correctly 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={undefined}
   refreshControl={
     <RefreshControlMock
@@ -467,6 +477,11 @@ exports[`renders correctly 1`] = `
 
 exports[`renders correctly without tabs 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={undefined}
   refreshControl={
     <RefreshControlMock
@@ -622,6 +637,11 @@ exports[`renders correctly without tabs 1`] = `
 
 exports[`renders with empty image url 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={undefined}
   refreshControl={
     <RefreshControlMock
@@ -896,6 +916,11 @@ exports[`renders with empty image url 1`] = `
 
 exports[`renders with image url 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={undefined}
   refreshControl={
     <RefreshControlMock
@@ -1184,6 +1209,11 @@ exports[`renders with image url 1`] = `
 
 exports[`renders without image url 1`] = `
 <RCTScrollView
+  contentInset={
+    Object {
+      "bottom": 49,
+    }
+  }
   onRefresh={undefined}
   refreshControl={
     <RefreshControlMock

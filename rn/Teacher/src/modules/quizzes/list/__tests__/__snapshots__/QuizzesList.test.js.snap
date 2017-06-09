@@ -5,6 +5,7 @@ exports[`QuizzesList renders 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -49,6 +50,7 @@ exports[`QuizzesList renders in correct order 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -955,6 +957,7 @@ exports[`QuizzesList renders quizzes 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
