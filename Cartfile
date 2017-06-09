@@ -30,5 +30,5 @@ github "ReactiveCocoa/ReactiveObjCBridge" "master"
 github "AFNetworking/AFNetworking" ~> 3.0.0
 
 # Teacher
-github "rs/SDWebImage"
+github "rs/SDWebImage" "master"
 github "pocketsvg/PocketSVG"

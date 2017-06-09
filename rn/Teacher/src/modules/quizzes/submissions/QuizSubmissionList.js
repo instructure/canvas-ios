@@ -50,6 +50,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
   }
 
   navigateToSubmission = (userID: string) => {
+    if (!global.V04) { return }
     const { quiz, courseID } = this.props
     if (!quiz.data.assignment_id) return
     const path = `/courses/${courseID}/assignments/${quiz.data.assignment_id}/submissions/${userID}`

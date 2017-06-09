@@ -15,7 +15,7 @@ export const tabs: Reducer<TabsState, any> = handleActions({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state, { result }) => {
       const availableCourseTabs = ['assignments']
-      if (global.V04) {
+      if (global.V03) {
         availableCourseTabs.push('quizzes')
       }
       if (global.V05) {
