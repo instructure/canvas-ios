@@ -97,8 +97,9 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
-    if (index >= 0 && index < this.props.submissions.length) {
-      const currentStudentID = this.props.submissions[index].userID
+    const submission = this.props.submissions[index]
+    if (submission) {
+      const currentStudentID = submission.userID
       if (currentStudentID !== this.state.currentStudentID) {
         this.setState({ currentStudentID })
       }
