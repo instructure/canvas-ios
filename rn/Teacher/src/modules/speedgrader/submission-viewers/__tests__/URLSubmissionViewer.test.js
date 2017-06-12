@@ -15,7 +15,7 @@ const t = {
 Image.getSize = jest.fn()
 const mockOpenURL = jest.fn()
 jest.mock('Linking', () => ({ openURL: mockOpenURL }))
-jest.mock('react-native-button', () => 'Button')
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const submission = t.submission({
   attachment: t.attachment(),

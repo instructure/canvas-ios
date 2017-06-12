@@ -31,39 +31,67 @@ exports[`renders button correctly 1`] = `
 `;
 
 exports[`renders link correctly 1`] = `
-<Button>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+      },
+      undefined,
+    ]
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
         Array [
           Object {
-            "color": "#374A59",
-            "fontSize": 14,
+            "fontFamily": ".SFUIDisplay",
           },
           Object {
-            "fontFamily": ".SFUIDisplay-bold",
+            "color": "#2D3B45",
+            "fontSize": 16,
           },
+          Array [
+            Object {
+              "color": "#374A59",
+              "fontSize": 14,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-bold",
+            },
+            Object {
+              "color": "#374A59",
+            },
+            undefined,
+          ],
           Object {
-            "color": "#374A59",
+            "fontFamily": ".SFUIDisplay",
           },
-          undefined,
-        ],
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-      ]
-    }
-  />
-</Button>
+        ]
+      }
+    />
+  </View>
+</View>
 `;

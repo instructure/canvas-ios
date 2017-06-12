@@ -118,7 +118,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       }
     }
   >
-    <Button
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -129,47 +129,49 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       }
       testID="rubric-item.add-comment-2"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        Add Comment
-      </Text>
-    </Button>
-    <Button
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -180,46 +182,48 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       }
       testID="rubric-item.description"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        View long description
-      </Text>
-    </Button>
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
 </View>
 `;
@@ -342,7 +346,7 @@ exports[`RubricItem renders 1`] = `
       }
     }
   >
-    <Button
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -353,47 +357,49 @@ exports[`RubricItem renders 1`] = `
       }
       testID="rubric-item.add-comment-2"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        Add Comment
-      </Text>
-    </Button>
-    <Button
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -404,46 +410,48 @@ exports[`RubricItem renders 1`] = `
       }
       testID="rubric-item.description"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        View long description
-      </Text>
-    </Button>
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
 </View>
 `;
@@ -566,7 +574,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       }
     }
   >
-    <Button
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -577,47 +585,49 @@ exports[`RubricItem renders an already selected grade 1`] = `
       }
       testID="rubric-item.add-comment-2"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        Add Comment
-      </Text>
-    </Button>
-    <Button
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -628,46 +638,48 @@ exports[`RubricItem renders an already selected grade 1`] = `
       }
       testID="rubric-item.description"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        View long description
-      </Text>
-    </Button>
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
 </View>
 `;
@@ -788,7 +800,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       }
     }
   >
-    <Button
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -799,47 +811,49 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       }
       testID="rubric-item.add-comment-2"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        Add Comment
-      </Text>
-    </Button>
-    <Button
+            ]
+          }
+        >
+          Add Comment
+        </Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -850,46 +864,48 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       }
       testID="rubric-item.description"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        View long description
-      </Text>
-    </Button>
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
 </View>
 `;
@@ -1012,7 +1028,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       }
     }
   >
-    <Button
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -1023,46 +1039,48 @@ exports[`RubricItem will not show the add comment button and will show the comme
       }
       testID="rubric-item.description"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay-medium",
               },
-              Object {
-                "fontSize": 14,
-                "fontWeight": "500",
-                "paddingRight": 16,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-medium",
-            },
-          ]
-        }
-      >
-        View long description
-      </Text>
-    </Button>
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
   <View
     style={
@@ -1140,7 +1158,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         A comment
       </Text>
     </View>
-    <Button
+    <TouchableHighlight
       onPress={[Function]}
       style={
         Object {
@@ -1151,46 +1169,48 @@ exports[`RubricItem will not show the add comment button and will show the comme
       }
       testID="rubric-item.edit-comment-2"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-              Object {
-                "color": "#374A59",
-              },
-              Object {
-                "color": "#73818C",
+                "color": "#2D3B45",
                 "fontSize": 16,
-                "fontWeight": "600",
               },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        Edit
-      </Text>
-    </Button>
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "color": "#73818C",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          Edit
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
 </View>
 `;

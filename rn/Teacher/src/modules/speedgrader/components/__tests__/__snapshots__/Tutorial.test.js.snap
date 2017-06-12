@@ -24,7 +24,6 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
   <View
     style={
       Object {
-        "alignItems": "center",
         "backgroundColor": "white",
         "borderRadius": 8,
         "marginHorizontal": 40,
@@ -69,59 +68,72 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
       source={1}
       style={
         Object {
-          "marginVertical": 24,
+          "marginBottom": 24,
         }
       }
     />
-    <Button
+    <TouchableHighlight
+      hitSlop={
+        Object {
+          "bottom": 10,
+          "left": 10,
+          "right": 10,
+          "top": 10,
+        }
+      }
       onPress={[Function]}
       style={
         Object {
           "fontSize": 16,
           "fontWeight": "600",
+          "textAlign": "center",
         }
       }
       testID="tutorial.button-1"
+      underlayColor="#fff"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
-              },
-              Object {
-                "color": "#374A59",
-              },
-              Object {
+                "color": "#2D3B45",
                 "fontSize": 16,
-                "fontWeight": "600",
               },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
-        }
-      >
-        OK
-      </Text>
-    </Button>
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "textAlign": "center",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          OK
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
 </Animated.View>
 `;

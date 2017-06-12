@@ -50,10 +50,11 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       All Submissions
     </Text>
     <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
+      accessibilityComponentType={undefined}
+      accessibilityLabel="Filter Submissions"
+      accessibilityTraits={undefined}
       accessible={true}
+      hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}
@@ -65,50 +66,57 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "opacity": 1,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "marginBottom": 1,
+          },
+        ]
       }
       testID="submission-list.filter"
       tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "marginBottom": 1,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay",
               },
-              Object {
-                "marginBottom": 1,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Filter
-      </Text>
+            ]
+          }
+        >
+          Filter
+        </Text>
+      </View>
     </View>
   </View>
   <RCTScrollView
@@ -411,10 +419,11 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       Graded
     </Text>
     <View
-      accessibilityComponentType="button"
-      accessibilityLabel={undefined}
-      accessibilityTraits="button"
+      accessibilityComponentType={undefined}
+      accessibilityLabel="Clear Filter Submissions"
+      accessibilityTraits={undefined}
       accessible={true}
+      hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}
@@ -426,50 +435,57 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Object {
-          "opacity": 1,
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "marginBottom": 1,
+          },
+        ]
       }
       testID="submission-list.filter"
       tvParallaxProperties={undefined}
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "marginBottom": 1,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay",
               },
-              Object {
-                "marginBottom": 1,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Clear Filter
-      </Text>
+            ]
+          }
+        >
+          Clear Filter
+        </Text>
+      </View>
     </View>
   </View>
   <RCTScrollView

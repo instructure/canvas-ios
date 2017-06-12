@@ -17,7 +17,7 @@ jest
     timing: () => ({ start: jest.fn() }),
     View: 'Animated.View',
   }))
-  .mock('react-native-button', () => 'Button')
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
 
 let defaultProps = {
   tutorials: [{

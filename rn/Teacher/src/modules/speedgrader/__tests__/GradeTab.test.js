@@ -9,7 +9,8 @@ import DrawerState from '../utils/drawer-state'
 
 registerScreens({})
 jest.mock('../components/GradePicker')
-jest.mock('TouchableOpacity', () => 'Button')
+jest.mock('TouchableOpacity', () => 'TouchableOpacity')
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/rubric'),

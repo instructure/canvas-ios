@@ -116,6 +116,8 @@ export default class Tutorial extends PureComponent {
           <LinkButton
             style={styles.button}
             onPress={this.onPress}
+            hitSlop={{ top: 10, left: 10, right: 10, bottom: 10 }}
+            underlayColor='#fff'
             testID={`tutorial.button-${currentTutorial.id}`}
           >
             {i18n('OK')}
@@ -143,7 +145,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     marginHorizontal: 40,
-    alignItems: 'center',
     shadowColor: 'black',
     shadowRadius: 10,
     shadowOpacity: 0.5,
@@ -156,8 +157,9 @@ const styles = StyleSheet.create({
   button: {
     fontSize: 16,
     fontWeight: '600',
+    textAlign: 'center',
   },
   image: {
-    marginVertical: 24,
+    marginBottom: 24,
   },
 })

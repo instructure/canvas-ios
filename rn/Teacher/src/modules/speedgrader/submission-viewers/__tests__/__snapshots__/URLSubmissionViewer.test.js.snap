@@ -17,7 +17,7 @@ exports[`url submission renders correctly 1`] = `
   >
     This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.
   </Text>
-  <Button
+  <TouchableHighlight
     onPress={[Function]}
     style={
       Object {
@@ -28,46 +28,48 @@ exports[`url submission renders correctly 1`] = `
     }
     testID="url-submission-viewer.url"
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
           Array [
             Object {
-              "color": "#374A59",
-              "fontSize": 14,
+              "fontFamily": ".SFUIDisplay",
             },
             Object {
-              "fontFamily": ".SFUIDisplay-bold",
+              "color": "#2D3B45",
+              "fontSize": 16,
             },
+            Array [
+              Object {
+                "color": "#374A59",
+                "fontSize": 14,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-bold",
+              },
+              Object {
+                "color": "#374A59",
+              },
+              Object {
+                "alignSelf": "center",
+                "fontSize": 18,
+                "paddingVertical": 12,
+              },
+            ],
             Object {
-              "color": "#374A59",
+              "fontFamily": ".SFUIDisplay",
             },
-            Object {
-              "alignSelf": "center",
-              "fontSize": 18,
-              "paddingVertical": 12,
-            },
-          ],
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      https://my-blog-about-rockets.com/2017/6/1/rockets-are-splosive
-    </Text>
-  </Button>
+          ]
+        }
+      >
+        https://my-blog-about-rockets.com/2017/6/1/rockets-are-splosive
+      </Text>
+    </View>
+  </TouchableHighlight>
   <Text
     accessible={true}
     allowFontScaling={true}

@@ -247,7 +247,7 @@ exports[`Rubric has the correct score 1`] = `
               }
             }
           >
-            <Button
+            <TouchableOpacity
               accessibilityLabel="10 — Full Credit"
               accessibilityTraits={
                 Array [
@@ -314,8 +314,8 @@ exports[`Rubric has the correct score 1`] = `
                   10
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="5 — Partial Credit"
               accessibilityTraits={
                 Array [
@@ -382,8 +382,8 @@ exports[`Rubric has the correct score 1`] = `
                   5
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="0 — No Credit"
               accessibilityTraits={
                 Array [
@@ -450,8 +450,8 @@ exports[`Rubric has the correct score 1`] = `
                   0
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="Customize Grade"
               accessibilityTraits={
                 Array [
@@ -496,7 +496,7 @@ exports[`Rubric has the correct score 1`] = `
                   source={1}
                 />
               </View>
-            </Button>
+            </TouchableOpacity>
           </View>
           <View
             style={
@@ -505,108 +505,112 @@ exports[`Rubric has the correct score 1`] = `
               }
             }
           >
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.add-comment-2"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                Add Comment
-              </Text>
-            </Button>
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+                    ]
+                  }
+                >
+                  Add Comment
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.description"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                View long description
-              </Text>
-            </Button>
+                    ]
+                  }
+                >
+                  View long description
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -862,7 +866,7 @@ exports[`Rubric renders a rubric 1`] = `
               }
             }
           >
-            <Button
+            <TouchableOpacity
               accessibilityLabel="10 — Full Credit"
               accessibilityTraits={
                 Array [
@@ -929,8 +933,8 @@ exports[`Rubric renders a rubric 1`] = `
                   10
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="5 — Partial Credit"
               accessibilityTraits={
                 Array [
@@ -997,8 +1001,8 @@ exports[`Rubric renders a rubric 1`] = `
                   5
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="0 — No Credit"
               accessibilityTraits={
                 Array [
@@ -1065,8 +1069,8 @@ exports[`Rubric renders a rubric 1`] = `
                   0
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="Customize Grade"
               accessibilityTraits={
                 Array [
@@ -1111,7 +1115,7 @@ exports[`Rubric renders a rubric 1`] = `
                   source={1}
                 />
               </View>
-            </Button>
+            </TouchableOpacity>
           </View>
           <View
             style={
@@ -1120,108 +1124,112 @@ exports[`Rubric renders a rubric 1`] = `
               }
             }
           >
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.add-comment-2"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                Add Comment
-              </Text>
-            </Button>
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+                    ]
+                  }
+                >
+                  Add Comment
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.description"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                View long description
-              </Text>
-            </Button>
+                    ]
+                  }
+                >
+                  View long description
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -1477,7 +1485,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
             }
           >
-            <Button
+            <TouchableOpacity
               accessibilityLabel="10 — Full Credit"
               accessibilityTraits={
                 Array [
@@ -1544,8 +1552,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   10
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="5 — Partial Credit"
               accessibilityTraits={
                 Array [
@@ -1612,8 +1620,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   5
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="0 — No Credit"
               accessibilityTraits={
                 Array [
@@ -1680,8 +1688,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   0
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="Customize Grade"
               accessibilityTraits={
                 Array [
@@ -1726,7 +1734,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   source={1}
                 />
               </View>
-            </Button>
+            </TouchableOpacity>
           </View>
           <View
             style={
@@ -1735,108 +1743,112 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
             }
           >
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.add-comment-2"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                Add Comment
-              </Text>
-            </Button>
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+                    ]
+                  }
+                >
+                  Add Comment
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.description"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                View long description
-              </Text>
-            </Button>
+                    ]
+                  }
+                >
+                  View long description
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -1895,7 +1907,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           testID="comment-input.comment"
           value=""
         />
-        <Button
+        <TouchableOpacity
           accessibilityComponentType="button"
           accessibilityTraits="button"
           activeOpacity={1}
@@ -1923,7 +1935,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
             }
           />
-        </Button>
+        </TouchableOpacity>
       </View>
     </View>
     <View
@@ -2288,7 +2300,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             }
           >
-            <Button
+            <TouchableOpacity
               accessibilityLabel="10 — Full Credit"
               accessibilityTraits={
                 Array [
@@ -2355,8 +2367,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   10
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="5 — Partial Credit"
               accessibilityTraits={
                 Array [
@@ -2423,8 +2435,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   5
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="0 — No Credit"
               accessibilityTraits={
                 Array [
@@ -2491,8 +2503,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   0
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="Customize Grade"
               accessibilityTraits={
                 Array [
@@ -2537,7 +2549,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   source={1}
                 />
               </View>
-            </Button>
+            </TouchableOpacity>
           </View>
           <View
             style={
@@ -2546,108 +2558,112 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             }
           >
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.add-comment-2"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                Add Comment
-              </Text>
-            </Button>
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+                    ]
+                  }
+                >
+                  Add Comment
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.description"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                View long description
-              </Text>
-            </Button>
+                    ]
+                  }
+                >
+                  View long description
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -2853,56 +2869,57 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 10 out of 100
               </Text>
             </View>
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                }
+              }
               testID="rubric-details.save"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "600",
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-semibold",
                       },
-                      Object {
-                        "fontSize": 18,
-                        "fontWeight": "600",
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Save
-              </Text>
-            </Button>
+                    ]
+                  }
+                >
+                  Save
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -2953,7 +2970,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               }
             }
           >
-            <Button
+            <TouchableOpacity
               accessibilityLabel="10 — Full Credit"
               accessibilityTraits={
                 Array [
@@ -3020,8 +3037,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   10
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="5 — Partial Credit"
               accessibilityTraits={
                 Array [
@@ -3088,8 +3105,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   5
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="0 — No Credit"
               accessibilityTraits={
                 Array [
@@ -3159,8 +3176,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   0
                 </Text>
               </View>
-            </Button>
-            <Button
+            </TouchableOpacity>
+            <TouchableOpacity
               accessibilityLabel="Customize Grade"
               accessibilityTraits={
                 Array [
@@ -3205,7 +3222,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   source={1}
                 />
               </View>
-            </Button>
+            </TouchableOpacity>
           </View>
           <View
             style={
@@ -3214,108 +3231,112 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               }
             }
           >
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.add-comment-2"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                Add Comment
-              </Text>
-            </Button>
-            <Button
-              accessibilityComponentType="button"
-              accessibilityTraits="button"
-              activeOpacity={0.2}
-              onLongPress={undefined}
+                    ]
+                  }
+                >
+                  Add Comment
+                </Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
               onPress={[Function]}
-              onPressIn={undefined}
-              onPressOut={undefined}
-              style={undefined}
+              style={
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                  "paddingRight": 16,
+                }
+              }
               testID="rubric-item.description"
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+              <View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "color": "#374A59",
-                        "fontSize": 14,
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "fontFamily": ".SFUIDisplay-bold",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "color": "#374A59",
+                          "fontSize": 14,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-bold",
+                        },
+                        Object {
+                          "color": "#374A59",
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "500",
+                          "paddingRight": 16,
+                        },
+                      ],
                       Object {
-                        "color": "#374A59",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                      Object {
-                        "fontSize": 14,
-                        "fontWeight": "500",
-                        "paddingRight": 16,
-                      },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                View long description
-              </Text>
-            </Button>
+                    ]
+                  }
+                >
+                  View long description
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>

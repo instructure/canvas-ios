@@ -7,7 +7,7 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 
 jest.mock('../../../../common/components/CircleToggle', () => 'CircleToggle')
-jest.mock('react-native-button', () => 'Button')
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 jest.mock('AlertIOS', () => ({
   prompt: jest.fn(),
 }))

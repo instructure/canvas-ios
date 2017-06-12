@@ -162,55 +162,55 @@ exports[`render 1`] = `
               Courses
             </Text>
           </View>
-          <TouchableOpacity
-            accessibilityComponentType="button"
-            accessibilityTraits="button"
-            activeOpacity={0.2}
-            onLongPress={undefined}
+          <TouchableHighlight
             onPress={[Function]}
-            onPressIn={undefined}
-            onPressOut={undefined}
-            style={undefined}
+            style={
+              Object {
+                "fontWeight": "500",
+              }
+            }
             testID="fav-courses.see-all-btn"
           >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
+            <View>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
                   Array [
                     Object {
-                      "color": "#374A59",
-                      "fontSize": 14,
+                      "fontFamily": ".SFUIDisplay",
                     },
                     Object {
-                      "fontFamily": ".SFUIDisplay-bold",
+                      "color": "#2D3B45",
+                      "fontSize": 16,
                     },
+                    Array [
+                      Object {
+                        "color": "#374A59",
+                        "fontSize": 14,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-bold",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                      Object {
+                        "fontWeight": "500",
+                      },
+                    ],
                     Object {
-                      "color": "#374A59",
+                      "fontFamily": ".SFUIDisplay-medium",
                     },
-                    Object {
-                      "fontWeight": "500",
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-medium",
-                  },
-                ]
-              }
-            >
-              See All
-            </Text>
-          </TouchableOpacity>
+                  ]
+                }
+              >
+                See All
+              </Text>
+            </View>
+          </TouchableHighlight>
         </View>
       </View>
       <View

@@ -4,7 +4,9 @@
 
 import React, { Component } from 'react'
 import ReactNative, {
+  View,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native'
 import BaseButton from 'react-native-button'
 import colors from './colors'
@@ -26,7 +28,15 @@ export class LinkButton extends Component {
       color: colors.primaryButtonColor,
     }
     return (
-      <BaseButton {...this.props}><Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>{this.props.children}</Text></BaseButton>
+      <TouchableHighlight
+        {...this.props}
+      >
+        <View>
+          <Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>
+            {this.props.children}
+          </Text>
+        </View>
+      </TouchableHighlight>
     )
   }
 }

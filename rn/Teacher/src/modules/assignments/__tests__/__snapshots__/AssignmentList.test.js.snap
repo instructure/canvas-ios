@@ -49,55 +49,55 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     >
       All Grading Periods
     </Text>
-    <TouchableOpacity
-      accessibilityComponentType="button"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onLongPress={undefined}
+    <TouchableHighlight
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "marginBottom": 1,
+        }
+      }
       testID="assignment-list.filter"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "marginBottom": 1,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay",
               },
-              Object {
-                "marginBottom": 1,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Filter
-      </Text>
-    </TouchableOpacity>
+            ]
+          }
+        >
+          Filter
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -589,55 +589,55 @@ exports[`applyFilter will apply a new filter 1`] = `
     >
       First Block
     </Text>
-    <TouchableOpacity
-      accessibilityComponentType="button"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onLongPress={undefined}
+    <TouchableHighlight
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "marginBottom": 1,
+        }
+      }
       testID="assignment-list.filter"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "marginBottom": 1,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay",
               },
-              Object {
-                "marginBottom": 1,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Clear filter
-      </Text>
-    </TouchableOpacity>
+            ]
+          }
+        >
+          Clear filter
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -2008,55 +2008,55 @@ exports[`renders correctly 1`] = `
     >
       All Grading Periods
     </Text>
-    <TouchableOpacity
-      accessibilityComponentType="button"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onLongPress={undefined}
+    <TouchableHighlight
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "marginBottom": 1,
+        }
+      }
       testID="assignment-list.filter"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "marginBottom": 1,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay",
               },
-              Object {
-                "marginBottom": 1,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Filter
-      </Text>
-    </TouchableOpacity>
+            ]
+          }
+        >
+          Filter
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -2548,55 +2548,55 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     >
       All Grading Periods
     </Text>
-    <TouchableOpacity
-      accessibilityComponentType="button"
-      accessibilityTraits="button"
-      activeOpacity={0.2}
-      onLongPress={undefined}
+    <TouchableHighlight
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "marginBottom": 1,
+        }
+      }
       testID="assignment-list.filter"
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
             Array [
               Object {
-                "color": "#374A59",
-                "fontSize": 14,
+                "fontFamily": ".SFUIDisplay",
               },
               Object {
-                "fontFamily": ".SFUIDisplay-bold",
+                "color": "#2D3B45",
+                "fontSize": 16,
               },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {
+                  "marginBottom": 1,
+                },
+              ],
               Object {
-                "color": "#374A59",
+                "fontFamily": ".SFUIDisplay",
               },
-              Object {
-                "marginBottom": 1,
-              },
-            ],
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-      >
-        Filter
-      </Text>
-    </TouchableOpacity>
+            ]
+          }
+        >
+          Filter
+        </Text>
+      </View>
+    </TouchableHighlight>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
