@@ -94,6 +94,7 @@ class CanvadocView: UIView {
         annotationToolbar.supportedToolbarPositions = [.positionInTopBar]
         annotationToolbar.barTintColor = self.tintColor
         annotationToolbar.tintColor = .white
+        annotationToolbar.isDragEnabled = false
         
         flexibleToolbarContainer.flexibleToolbar = annotationToolbar
         flexibleToolbarContainer.overlaidBar = toolbar
