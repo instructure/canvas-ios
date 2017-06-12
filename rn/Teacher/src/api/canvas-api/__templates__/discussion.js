@@ -3,6 +3,7 @@
 import template, { type Template } from '../../../utils/template'
 import { assignment } from './assignments'
 import { userDisplay } from './users'
+import { type CreateDiscussionParameters } from '../discussions'
 
 export const discussion: Template<Discussion> = template({
   id: '1',
@@ -30,6 +31,10 @@ export const discussion: Template<Discussion> = template({
   assignment: assignment(),
   last_reply_at: '2016-12-11T04:03:17Z',
   author: userDisplay(),
+  allow_rating: false,
+  only_graders_can_rate: false,
+  require_initial_post: false,
+  delayed_post_at: null,
 })
 
 export const discussionView: Template<DiscussionView> = template({
@@ -146,4 +151,20 @@ export const discussionViewLarge: Template<DiscussionView> = template({
         },
       ],
     }],
+})
+
+export const createDiscussionParams: Template<CreateDiscussionParameters> = template({
+  title: 'Infernal Shrines',
+  message: 'Summon a mighty Punisher',
+  allow_rating: false,
+  only_graders_can_rate: false,
+  sort_by_rating: false,
+  require_initial_post: false,
+  delayed_post_at: null,
+  is_announcement: false,
+})
+
+export const announcement: Template<Discussion> = template({
+  ...discussion(),
+  is_announcement: true,
 })

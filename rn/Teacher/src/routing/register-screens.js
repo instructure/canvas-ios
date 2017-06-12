@@ -22,13 +22,14 @@ import RubricDescription from '../modules/speedgrader/RubricDescription'
 import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
-import RichTextEditor from '../common/components/rich-text-editor/RichTextEditor'
+import RichTextEditor from '../modules/rich-text-editor/RichTextEditor'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import DiscussionsList from '../modules/discussions/list/DiscussionsList'
 import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import DiscussionDetails from '../modules/discussions/details/DiscussionDetails'
+import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -65,6 +66,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/rich-text-editor', wrap(RichTextEditor))
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store)
+  registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
 
   // This will never actually be routed to, but this makes it really easy to debug
   registerScreen('/courses/:courseID/assignee-picker', wrap(AssigneePicker), store)

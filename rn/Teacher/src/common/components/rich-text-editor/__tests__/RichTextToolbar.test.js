@@ -9,6 +9,18 @@ import explore from '../../../../../test/helpers/explore'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../ColorPicker', () => 'ColorPicker')
+  .mock('LayoutAnimation', () => ({
+    configureNext: jest.fn(),
+    easeInEaseOut: jest.fn(),
+    Types: {
+      easeInEaseOut: jest.fn(),
+      spring: jest.fn(),
+    },
+    Properties: {
+      opacity: 1,
+    },
+  }))
 
 describe('RichTextToolbar', () => {
   const defaultProps = {
@@ -20,7 +32,7 @@ describe('RichTextToolbar', () => {
       renderer.create(
         <RichTextToolbar {...defaultProps} />
       ).toJSON()
-    )
+    ).toMatchSnapshot()
   })
 
   it('handles undo', () => {
@@ -39,6 +51,30 @@ describe('RichTextToolbar', () => {
     )
     pressItem(component, 'redo')
     expect(redo).toHaveBeenCalled()
+  })
+
+  it('handles setting text color', () => {
+    const setTextColor = jest.fn()
+    const component = renderer.create(
+      <RichTextToolbar {...defaultProps} setTextColor={setTextColor} />
+    )
+    pressItem(component, 'textColor')
+    const colorPicker: any = explore(component.toJSON()).query(({ type }) => type === 'ColorPicker')[0]
+    colorPicker.props.pickedColor('#fff')
+    expect(setTextColor).toHaveBeenCalled()
+  })
+
+  it('renders active items', () => {
+    const component = renderer.create(
+      <RichTextToolbar
+        {...defaultProps}
+        setTextColor={jest.fn()}
+        setBold={jest.fn()}
+        active={['textColor:white', 'bold']}
+      />
+    )
+    pressItem(component, 'textColor')
+    expect(component.toJSON()).toMatchSnapshot()
   })
 })
 

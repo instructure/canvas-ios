@@ -52,6 +52,7 @@ exports[`RowWithTextInput renders 1`] = `
         defaultValue={undefined}
         keyboardType={undefined}
         onChangeText={[Function]}
+        onFocus={undefined}
         placeholder={undefined}
         style={
           Array [
@@ -172,6 +173,7 @@ exports[`RowWithTextInput renders with a title 1`] = `
             defaultValue={undefined}
             keyboardType={undefined}
             onChangeText={[Function]}
+            onFocus={undefined}
             placeholder={undefined}
             style={
               Array [

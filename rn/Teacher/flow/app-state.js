@@ -21,7 +21,7 @@ export type CourseContentState = {
   assignmentGroups: AsyncRefs,
   enrollments: AsyncRefs,
   quizzes: AsyncRefs,
-  discussions: AsyncRefs,
+  discussions: AsyncRefs & PendingNewDiscussionState,
   announcements: AsyncRefs,
 }
 
@@ -50,6 +50,10 @@ export type PendingCommentState = AsyncState & {
 export type PendingCommentsState = {
   // by userID since we may not have a submission
   [string]: Array<PendingCommentState>,
+}
+
+export type PendingNewDiscussionState = {
+  new?: AsyncState & { id?: ?string },
 }
 
 export type AssignmentContentState = {

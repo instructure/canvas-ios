@@ -2,6 +2,15 @@
 
 exports[`AnnouncementsList renders 1`] = `
 <Screen
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "image": 1,
+        "testID": "announcements.list.addButton",
+      },
+    ]
+  }
   title="Announcements"
 >
   <View
@@ -16,6 +25,7 @@ exports[`AnnouncementsList renders 1`] = `
       data={
         Array [
           Object {
+            "allow_rating": false,
             "assignment": Object {
               "assignment_group_id": 1376,
               "automatic_peer_reviews": false,
@@ -48,11 +58,13 @@ exports[`AnnouncementsList renders 1`] = `
               "id": 1,
               "short_name": "The Donald",
             },
+            "delayed_post_at": null,
             "discussion_subentry_count": 2,
             "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
             "id": "1",
             "last_reply_at": "2016-12-11T04:03:17Z",
             "message": "<p>And why?</p>",
+            "only_graders_can_rate": false,
             "permissions": Object {
               "attach": true,
               "delete": true,
@@ -64,6 +76,7 @@ exports[`AnnouncementsList renders 1`] = `
             "posted_at": "2013-11-14T16:55:00-07:00",
             "published": true,
             "read_state": "read",
+            "require_initial_post": false,
             "sort_by_rating": false,
             "subscribed": true,
             "title": "Untitled",
@@ -72,6 +85,7 @@ exports[`AnnouncementsList renders 1`] = `
             "user_name": "Ivy Iversen",
           },
           Object {
+            "allow_rating": false,
             "assignment": Object {
               "assignment_group_id": 1376,
               "automatic_peer_reviews": false,
@@ -104,11 +118,13 @@ exports[`AnnouncementsList renders 1`] = `
               "id": 1,
               "short_name": "The Donald",
             },
+            "delayed_post_at": null,
             "discussion_subentry_count": 2,
             "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
             "id": "2",
             "last_reply_at": "2016-12-11T04:03:17Z",
             "message": "<p>And why?</p>",
+            "only_graders_can_rate": false,
             "permissions": Object {
               "attach": true,
               "delete": true,
@@ -120,6 +136,7 @@ exports[`AnnouncementsList renders 1`] = `
             "posted_at": "2013-10-28T14:16:00-07:00",
             "published": true,
             "read_state": "read",
+            "require_initial_post": false,
             "sort_by_rating": false,
             "subscribed": true,
             "title": "Getting Started in Biology 101",

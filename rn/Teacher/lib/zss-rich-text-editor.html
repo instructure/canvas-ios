@@ -151,6 +151,11 @@ zss_editor.init = function() {
 }//end
 
 zss_editor.postInput = function() {
+    // backspaces leave behind empty line breaks
+    if (['<br>', '<div><br></div>'].includes(this.getHTML())) {
+      zss_editor.setHTML('');
+    }
+
     var html = this.getHTML();
     postMessage(JSON.stringify({type: 'EDITOR_INPUT', data: html}));
 }
@@ -795,7 +800,6 @@ html, body {
 }
 
 body {
-    padding: 10px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     height: 100%;
@@ -818,11 +822,7 @@ div.zs_editor_content {
 
 [placeholder]:empty:before {
     content: attr(placeholder);
-    color: #555; 
-}
-
-[placeholder]:empty:focus:before {
-    content: "";
+    color: #CBCBD0;
 }
 
 </style>

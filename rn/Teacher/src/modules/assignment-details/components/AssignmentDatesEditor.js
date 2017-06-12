@@ -27,7 +27,7 @@ import Button from 'react-native-button'
 import Images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Navigator from '../../../routing/Navigator'
-import RequiredFieldSubscript from './RequiredFieldSubscript'
+import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import { extractDateFromString } from '../../../utils/dateUtils'
 
 type Props = {

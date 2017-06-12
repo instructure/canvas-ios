@@ -61,6 +61,7 @@ exports[`DiscussionsList renders discussions 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -93,11 +94,13 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -109,6 +112,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 1",
@@ -117,6 +121,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "user_name": "Ivy Iversen",
             },
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -149,11 +154,13 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -165,6 +172,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 2",
@@ -203,6 +211,7 @@ exports[`DiscussionsList renders discussions 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -235,11 +244,13 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -251,6 +262,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 1",
@@ -259,6 +271,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "user_name": "Ivy Iversen",
             },
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -291,11 +304,13 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -307,6 +322,7 @@ exports[`DiscussionsList renders discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 2",
@@ -1203,6 +1219,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": null,
               "assignment_id": 123456789,
               "author": Object {
@@ -1211,11 +1228,13 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -1227,6 +1246,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 1",
@@ -1235,6 +1255,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               "user_name": "Ivy Iversen",
             },
             Object {
+              "allow_rating": false,
               "assignment": null,
               "assignment_id": 123456789,
               "author": Object {
@@ -1243,11 +1264,13 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -1259,6 +1282,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 2",
@@ -1297,6 +1321,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": null,
               "assignment_id": 123456789,
               "author": Object {
@@ -1305,11 +1330,13 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -1321,6 +1348,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 1",
@@ -1329,6 +1357,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               "user_name": "Ivy Iversen",
             },
             Object {
+              "allow_rating": false,
               "assignment": null,
               "assignment_id": 123456789,
               "author": Object {
@@ -1337,11 +1366,13 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -1353,6 +1384,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 2",
@@ -2181,6 +2213,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -2213,12 +2246,14 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "due_at": "2118-03-28T15:07:56.312Z",
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -2230,6 +2265,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "First",
@@ -2238,6 +2274,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "user_name": "Ivy Iversen",
             },
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -2270,12 +2307,14 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "due_at": "2117-03-28T15:07:56.312Z",
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -2287,6 +2326,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "Second",
@@ -2325,6 +2365,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -2357,12 +2398,14 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "due_at": "2118-03-28T15:07:56.312Z",
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -2374,6 +2417,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "First",
@@ -2382,6 +2426,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "user_name": "Ivy Iversen",
             },
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -2414,12 +2459,14 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "due_at": "2117-03-28T15:07:56.312Z",
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -2431,6 +2478,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "Second",
@@ -3327,6 +3375,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -3359,11 +3408,13 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -3375,6 +3426,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 1",
@@ -3388,6 +3440,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -3420,12 +3473,14 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "locked": true,
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -3437,6 +3492,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 2",
@@ -3475,6 +3531,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -3507,11 +3564,13 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "1",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -3523,6 +3582,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 1",
@@ -3536,6 +3596,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         Object {
           "data": Array [
             Object {
+              "allow_rating": false,
               "assignment": Object {
                 "assignment_group_id": 1376,
                 "automatic_peer_reviews": false,
@@ -3568,12 +3629,14 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "id": 1,
                 "short_name": "The Donald",
               },
+              "delayed_post_at": null,
               "discussion_subentry_count": 2,
               "html_url": "http://mobiledev.instructure.com/courses/1/discussion_topics",
               "id": "2",
               "last_reply_at": "2016-12-11T04:03:17Z",
               "locked": true,
               "message": "<p>And why?</p>",
+              "only_graders_can_rate": false,
               "permissions": Object {
                 "attach": true,
                 "delete": true,
@@ -3585,6 +3648,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               "posted_at": "2016-11-11T04:03:17Z",
               "published": true,
               "read_state": "read",
+              "require_initial_post": false,
               "sort_by_rating": false,
               "subscribed": true,
               "title": "discussion 2",

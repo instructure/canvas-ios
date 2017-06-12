@@ -13,7 +13,13 @@ exports[`ZSSRichTextEditor link modal triggers insert link with selection 1`] = 
     onLoad={[Function]}
     onMessage={[Function]}
     scalesPageToFit={true}
+    scrollEnabled={true}
     source={Object {}}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
   />
   <LinkModal
     linkCreated={[Function]}
@@ -84,7 +90,13 @@ exports[`ZSSRichTextEditor renders 1`] = `
     onLoad={[Function]}
     onMessage={[Function]}
     scalesPageToFit={true}
+    scrollEnabled={true}
     source={Object {}}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
   />
   <LinkModal
     linkCreated={[Function]}
@@ -99,7 +111,16 @@ exports[`ZSSRichTextEditor renders 1`] = `
 
 exports[`ZSSRichTextEditor responds when zss editor loads 1`] = `Array []`;
 
-exports[`ZSSRichTextEditor sends input changes 1`] = `Array []`;
+exports[`ZSSRichTextEditor sends input changes 1`] = `
+Array [
+  Array [
+    "
+      var height = $('#zss_editor_content').height();
+      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
+    ",
+  ],
+]
+`;
 
 exports[`ZSSRichTextEditor sets custom css on web view loaded 1`] = `
 Array [
@@ -128,7 +149,13 @@ exports[`ZSSRichTextEditor shows link modal 1`] = `
     onLoad={[Function]}
     onMessage={[Function]}
     scalesPageToFit={true}
+    scrollEnabled={true}
     source={Object {}}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
   />
   <LinkModal
     linkCreated={[Function]}
@@ -154,7 +181,13 @@ exports[`ZSSRichTextEditor shows link modal when link touched 1`] = `
     onLoad={[Function]}
     onMessage={[Function]}
     scalesPageToFit={true}
+    scrollEnabled={true}
     source={Object {}}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+      }
+    }
   />
   <LinkModal
     linkCreated={[Function]}
@@ -220,6 +253,25 @@ exports[`ZSSRichTextEditor triggers redo 1`] = `
 Array [
   Array [
     "zss_editor.redo();",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers setPlaceholder 1`] = `
+Array [
+  Array [
+    "zss_editor.setPlaceholder('Add text');",
+  ],
+]
+`;
+
+exports[`ZSSRichTextEditor triggers setPlaceholder 2`] = `
+Array [
+  Array [
+    "zss_editor.setPlaceholder('Add text');",
+  ],
+  Array [
+    "zss_editor.setPlaceholder(null);",
   ],
 ]
 `;

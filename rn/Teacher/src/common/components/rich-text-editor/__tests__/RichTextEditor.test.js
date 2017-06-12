@@ -4,7 +4,7 @@ import { NativeModules } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import RichTextEditor from '../RichTextEditor'
+import RichTextEditor, { type Props } from '../RichTextEditor'
 import explore from '../../../../../test/helpers/explore'
 
 jest
@@ -14,9 +14,10 @@ jest
   .mock('Button', () => 'Button')
   .mock('../ZSSRichTextEditor')
   .mock('../RichTextToolbar')
+  .mock('react-native-keyboard-spacer', () => 'KeyboardSpacer')
 
 describe('RichTextEditor', () => {
-  let props
+  let props: Props
   beforeEach(() => {
     props = {
       onChangeValue: jest.fn(),
@@ -105,6 +106,72 @@ describe('RichTextEditor', () => {
     editor.props.onLoad()
     expect(NativeModules.WebViewHacker.removeInputAccessoryView).toHaveBeenCalled()
     expect(NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction).toHaveBeenCalledWith(false)
+  })
+
+  it('sets editor content height on load', () => {
+    props.contentHeight = 200
+    const mock = jest.fn()
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props._setMock('setContentHeight', mock)
+    editor.props.onLoad()
+    expect(mock).toHaveBeenCalledWith(200)
+  })
+
+  it('can be keyboard aware', () => {
+    props.keyboardAware = true
+    const component = render(props)
+    expect(explore(component.toJSON()).query(({ type }) => type === 'KeyboardSpacer')).toHaveLength(1)
+  })
+
+  it('can ignore keyboard', () => {
+    props.keyboardAware = false
+    const component = render(props)
+    expect(explore(component.toJSON()).query(({ type }) => type === 'KeyboardSpacer')).toHaveLength(0)
+  })
+
+  it('can disable scroll', () => {
+    props.scrollEnabled = false
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    expect(editor.props.scrollEnabled).toBeFalsy()
+  })
+
+  it('does height stuff when color picker shown', () => {
+    props.contentHeight = 200
+    props.showToolbar = 'always'
+    const triggerMock = jest.fn()
+    const setContentHeightMock = jest.fn()
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props._setMock('setContentHeight', setContentHeightMock)
+    editor.props._setMock('trigger', triggerMock)
+    const toolbar: any = explore(component.toJSON()).query(({ type }) => type === 'RichTextToolbar')[0]
+    toolbar.props.onColorPickerShown(true)
+    expect(triggerMock.mock.calls[0][0]).toMatchSnapshot()
+    expect(setContentHeightMock).toHaveBeenCalledWith(154)
+  })
+
+  it('does height stuff when color picker hidden', () => {
+    props.contentHeight = 200
+    props.showToolbar = 'always'
+    const setContentHeightMock = jest.fn()
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props._setMock('setContentHeight', setContentHeightMock)
+    const toolbar: any = explore(component.toJSON()).query(({ type }) => type === 'RichTextToolbar')[0]
+    toolbar.props.onColorPickerShown(false)
+    expect(setContentHeightMock).toHaveBeenCalledWith(200)
+  })
+
+  it('sets placeholder on load', () => {
+    const mock = jest.fn()
+    props.placeholder = 'This is a placeholder'
+    const component = render(props)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props._setMock('setPlaceholder', mock)
+    editor.props.onLoad()
+    expect(mock).toHaveBeenCalledWith('This is a placeholder')
   })
 
   function render (props): any {

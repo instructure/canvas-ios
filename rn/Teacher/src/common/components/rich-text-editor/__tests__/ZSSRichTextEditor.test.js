@@ -113,6 +113,11 @@ describe('ZSSRichTextEditor', () => {
     testTrigger((editor) => editor.setItalic())
   })
 
+  it('triggers setPlaceholder', () => {
+    testTrigger((editor) => editor.setPlaceholder('Add text'))
+    testTrigger((editor) => editor.setPlaceholder(null))
+  })
+
   it('shows link modal', () => {
     const component = renderer.create(
       <ZSSRichTextEditor />, options

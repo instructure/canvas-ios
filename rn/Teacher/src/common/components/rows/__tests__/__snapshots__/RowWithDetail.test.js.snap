@@ -135,6 +135,7 @@ exports[`Render row with detail label 1`] = `
                 },
               ]
             }
+            testID={undefined}
           >
             this is a detail label
           </Text>

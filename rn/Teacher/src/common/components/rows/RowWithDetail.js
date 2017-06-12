@@ -10,6 +10,7 @@ import { Text } from '../../text'
 
 type RowWithSwitchProps = RowProps & {
   detail: string,
+  detailTestID?: string,
 }
 
 export default class RowWithDetail extends Component<any, RowWithSwitchProps, any> {
@@ -17,7 +18,7 @@ export default class RowWithDetail extends Component<any, RowWithSwitchProps, an
   render () {
     const accessories = (
       <View style={style.accessories}>
-        <Text numberOfLines={1}>{this.props.detail}</Text>
+        <Text numberOfLines={1} testID={this.props.detailTestID}>{this.props.detail}</Text>
         {this.props.accessories}
       </View>
     )

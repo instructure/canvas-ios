@@ -1,9 +1,6 @@
 // @flow
 
-export type Navigator = {
-  +show: Function,
-  +dismiss: Function,
-}
+import Navigator from '../src/routing/Navigator'
 
 export type NavigationProps = {
   navigator: Navigator,

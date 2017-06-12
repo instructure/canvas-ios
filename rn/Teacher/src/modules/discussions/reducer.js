@@ -7,17 +7,60 @@ import handleAsync from '../../utils/handleAsync'
 import { default as ListActions } from './list/actions'
 import { default as DetailsActions } from './details/actions'
 import { default as AnnouncementListActions } from '../announcements/list/actions'
+import { default as EditActions } from './edit/actions'
 import i18n from 'format-message'
+import composeReducers from '../../redux/compose-reducers'
+import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
+const { createDiscussion, deletePendingNewDiscussion } = EditActions
 
-export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
+const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshDiscussions.toString(),
   i18n('There was a problem loading discussions.'),
   ({ result }) => result.data.map(discussion => discussion.id)
 )
+
+const refsChanges: Reducer<AsyncRefs, any> = handleActions({
+  [createDiscussion.toString()]: handleAsync({
+    pending: (state) => ({
+      ...state,
+      new: {
+        ...state.new,
+        pending: 1,
+        error: null,
+        id: null,
+      },
+    }),
+    resolved: (state, { result: { data } }) => ({
+      ...state,
+      refs: [...state.refs, data.id],
+      new: {
+        ...state.new,
+        pending: 0,
+        error: null,
+        id: data.id,
+      },
+    }),
+    rejected: (state, { error }) => ({
+      ...state,
+      new: {
+        ...state.new,
+        pending: 0,
+        error: parseErrorMessage(error),
+        id: null,
+      },
+    }),
+  }),
+  [deletePendingNewDiscussion.toString()]: (state) => ({
+    ...state,
+    new: null,
+  }),
+}, {})
+
+export const refs: Reducer<AsyncRefs, any> = composeReducers(list, refsChanges)
 
 const handleAsyncDiscussions = handleAsync({
   resolved: (state, { result }) => {
@@ -54,6 +97,16 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         },
       }
     },
+  }),
+  [createDiscussion.toString()]: handleAsync({
+    resolved: (state, { result: { data } }) => ({
+      ...state,
+      [data.id]: {
+        data,
+        pending: 0,
+        error: null,
+      },
+    }),
   }),
 }, {})
 

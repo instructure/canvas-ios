@@ -2,8 +2,10 @@
 
 import { refs } from '../reducer'
 import { default as ListActions } from '../list/actions'
+import { default as EditActions } from '../../discussions/edit/actions'
 
 const { refreshAnnouncements } = ListActions
+const { createDiscussion } = EditActions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
@@ -41,6 +43,31 @@ describe('refs', () => {
       ).toEqual({
         pending: 0,
         refs: ['1', '2'],
+      })
+    })
+  })
+
+  describe('createDiscussion', () => {
+    const pending = {
+      type: createDiscussion.toString(),
+      pending: true,
+    }
+
+    it('adds ref if discussion is an announcement', () => {
+      const announcement = template.discussion({
+        id: '23',
+        is_announcement: true,
+      })
+      const initialState = refs(undefined, pending)
+      const resolved = {
+        type: createDiscussion.toString(),
+        payload: { result: { data: announcement } },
+      }
+      expect(
+        refs(initialState, resolved)
+      ).toEqual({
+        pending: 0,
+        refs: ['23'],
       })
     })
   })

@@ -14,6 +14,7 @@ import Screen from '../../../routing/Screen'
 import refresh from '../../../utils/refresh'
 import Row from '../../../common/components/rows/Row'
 import Actions from './actions'
+import Images from '../../../images'
 
 type State = AsyncState & {
   announcements: Discussion[],
@@ -31,6 +32,13 @@ export class AnnouncementsList extends Component<any, Props, any> {
     return (
       <Screen
         title={i18n('Announcements')}
+        rightBarButtons={[
+          {
+            image: Images.add,
+            testID: 'announcements.list.addButton',
+            action: this.addAnnouncement,
+          },
+        ]}
       >
         <View style={styles.container}>
           <FlatList
@@ -56,6 +64,10 @@ export class AnnouncementsList extends Component<any, Props, any> {
         disclosureIndicator={true}
       />
     )
+  }
+
+  addAnnouncement = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/announcements/new`, { modal: true })
   }
 }
 

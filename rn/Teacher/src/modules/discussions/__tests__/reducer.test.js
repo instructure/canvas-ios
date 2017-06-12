@@ -4,10 +4,12 @@ import { refs, discussions } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailActions } from '../details/actions'
 import { default as AnnouncementListActions } from '../../announcements/list/actions'
+import { default as EditActions } from '../edit/actions'
 
 const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries } = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
+const { createDiscussion, deletePendingNewDiscussion } = EditActions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
@@ -59,6 +61,99 @@ describe('refs', () => {
       expect(refs(initialState, rejected)).toEqual({ refs: [], pending: 0, error: `There was a problem loading discussions.
 
 User not authorized` })
+    })
+  })
+
+  describe('createDiscussion', () => {
+    const params = template.createDiscussionParams()
+    const discussion = template.discussion({ id: '11', ...params })
+    const pending = {
+      type: createDiscussion.toString(),
+      pending: true,
+      payload: {
+        params,
+        handlesError: true,
+      },
+    }
+
+    it('handles pending', () => {
+      expect(
+        refs(undefined, pending)
+      ).toEqual({
+        pending: 0,
+        refs: [],
+        new: {
+          id: null,
+          pending: 1,
+          error: null,
+        },
+      })
+    })
+
+    it('handles resolved', () => {
+      const initialState = refs(undefined, pending)
+      const resolved = {
+        type: createDiscussion.toString(),
+        payload: {
+          result: { data: discussion },
+          params,
+          handlesError: true,
+        },
+      }
+      expect(refs(initialState, resolved)).toEqual({
+        refs: [discussion.id],
+        pending: 0,
+        new: {
+          id: discussion.id,
+          pending: 0,
+          error: null,
+        },
+      })
+    })
+
+    it('handles rejected', () => {
+      const initialState = refs(undefined, pending)
+      const rejected = {
+        type: createDiscussion.toString(),
+        error: true,
+        payload: {
+          error: template.error('User not authorized'),
+        },
+      }
+      expect(
+        refs(initialState, rejected)
+      ).toEqual({
+        refs: [],
+        pending: 0,
+        new: {
+          pending: 0,
+          error: 'User not authorized',
+          id: null,
+        },
+      })
+    })
+  })
+
+  describe('deletePendingNewDiscussion', () => {
+    const initialState = {
+      refs: ['1'],
+      pending: 0,
+      new: {
+        pending: 0,
+        error: null,
+        id: '2',
+      },
+    }
+    const action = {
+      type: deletePendingNewDiscussion.toString(),
+      courseID: '23',
+    }
+    expect(
+      refs(initialState, action)
+    ).toEqual({
+      refs: ['1'],
+      pending: 0,
+      new: null,
     })
   })
 })
@@ -142,6 +237,34 @@ describe('discussionData', () => {
         },
         '2': {
           data: two,
+          pending: 0,
+          error: null,
+        },
+      })
+    })
+  })
+
+  describe('createDiscussion', () => {
+    it('handles resolved', () => {
+      const discussion = template.discussion({ id: '2' })
+      const initialState = {
+        '1': {
+          data: template.discussion({ id: '1' }),
+          pending: 0,
+          error: null,
+        },
+      }
+      const resolved = {
+        type: createDiscussion.toString(),
+        payload: { result: { data: discussion } },
+      }
+
+      expect(
+        discussions(initialState, resolved)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: discussion,
           pending: 0,
           error: null,
         },

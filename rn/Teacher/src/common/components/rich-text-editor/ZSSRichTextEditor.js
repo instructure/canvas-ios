@@ -13,12 +13,14 @@ import isEqual from 'lodash/isEqual'
 const source = require('../../../../lib/zss-rich-text-editor.html')
 
 type Props = {
-  onInputChange: (value: string) => void,
+  onInputChange?: (value: string) => void,
+  onHeightChange?: (height: number) => void,
   html?: string,
   onLoad?: () => void,
   onFocus?: () => void,
   onBlur?: () => void,
   editorItemsChanged?: (items: [string]) => void,
+  scrollEnabled?: boolean,
 }
 
 export default class ZSSRichTextEditor extends Component<any, Props, any> {
@@ -29,6 +31,7 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
 
     this.state = {
       linkModalVisible: false,
+      lastHeightUpdate: 0,
     }
   }
 
@@ -41,6 +44,8 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
           onMessage={this._onMessage}
           onLoad={this._onLoad}
           scalesPageToFit={true}
+          scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
+          style={{ backgroundColor: 'transparent' }}
         />
         <LinkModal
           visible={this.state.linkModalVisible}
@@ -57,27 +62,27 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   // PUBLIC ACTIONS
 
   setBold = () => {
-    this._trigger('zss_editor.setBold();', true)
+    this.trigger('zss_editor.setBold();', true)
   }
 
   setItalic = () => {
-    this._trigger('zss_editor.setItalic();', true)
+    this.trigger('zss_editor.setItalic();', true)
   }
 
   insertLink = () => {
-    this._trigger(`
+    this.trigger(`
       var selection = getSelection().toString();
       postMessage(JSON.stringify({type: 'INSERT_LINK', data: selection}));
     `)
   }
 
   prepareInsert = () => {
-    this._trigger('zss_editor.prepareInsert();')
+    this.trigger('zss_editor.prepareInsert();')
   }
 
   updateHTML = (html: string) => {
     const cleanHTML = this._escapeJSONString(html)
-    this._trigger(`zss_editor.setHTML("${cleanHTML}");`, true)
+    this.trigger(`zss_editor.setHTML("${cleanHTML}");`, true)
   }
 
   setCustomCSS = (css?: string) => {
@@ -86,50 +91,69 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
 
     const styles = [images, css].join(' ')
 
-    this._trigger(`zss_editor.setCustomCSS('${styles}');`, true)
+    this.trigger(`zss_editor.setCustomCSS('${styles}');`, true)
   }
 
   setUnorderedList = () => {
-    this._trigger(`zss_editor.setUnorderedList();`, true)
+    this.trigger(`zss_editor.setUnorderedList();`, true)
   }
 
   setOrderedList = () => {
-    this._trigger(`zss_editor.setOrderedList();`, true)
+    this.trigger(`zss_editor.setOrderedList();`, true)
   }
 
   setTextColor = (color: string) => {
     this.prepareInsert()
-    this._trigger(`zss_editor.setTextColor('${color}');`, true)
+    this.trigger(`zss_editor.setTextColor('${color}');`, true)
   }
 
   focusEditor = () => {
-    this._trigger('zss_editor.focusEditor();')
+    this.trigger('zss_editor.focusEditor();')
   }
 
   blurEditor = () => {
-    this._trigger('zss_editor.blurEditor();')
+    this.trigger('zss_editor.blurEditor();')
   }
 
   getHTML = () => {
-    this._trigger(`setTimeout(function() { zss_editor.postInput() }, 1);`)
+    this.trigger(`setTimeout(function() { zss_editor.postInput() }, 1);`)
   }
 
   undo = () => {
-    this._trigger('zss_editor.undo();')
+    this.trigger('zss_editor.undo();')
   }
 
   redo = () => {
-    this._trigger('zss_editor.redo();')
+    this.trigger('zss_editor.redo();')
   }
 
-  // PRIVATE
+  setNeedsHeightUpdate = () => {
+    this.trigger(`
+      var height = $('#zss_editor_content').height();
+      postMessage(JSON.stringify({type: 'HEIGHT_UPDATE', data: height}));
+    `)
+  }
 
-  _trigger = (js: string, inputChanged?: boolean) => {
+  setContentHeight = (height: number) => {
+    this.trigger(`zss_editor.contentHeight = ${height};`)
+  }
+
+  setPlaceholder = (placeholder: ?string) => {
+    if (placeholder) {
+      this.trigger(`zss_editor.setPlaceholder('${placeholder}');`)
+    } else {
+      this.trigger(`zss_editor.setPlaceholder(null);`)
+    }
+  }
+
+  trigger = (js: string, inputChanged?: boolean) => {
     this.webView.injectJavaScript(js)
     if (inputChanged) {
       this.getHTML()
     }
   }
+
+  // PRIVATE
 
   _onMessage = (event) => {
     const message = JSON.parse(event.nativeEvent.data)
@@ -154,6 +178,9 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
         break
       case 'EDITOR_INPUT':
         this._handleInput(message.data)
+        break
+      case 'HEIGHT_UPDATE':
+        this._handleHeight(message.data)
         break
     }
   }
@@ -181,16 +208,19 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   }
 
   _handleInput = (value) => {
-    this.props.onInputChange(value)
+    if (this.props.onInputChange) {
+      this.props.onInputChange(value)
+    }
+    this.setNeedsHeightUpdate()
   }
 
   _insertLink = (url, title) => {
-    this._trigger(`zss_editor.insertLink("${url}", "${title}");`, true)
+    this.trigger(`zss_editor.insertLink("${url}", "${title}");`, true)
     this._hideLinkModal()
   }
 
   _updateLink = (url, title) => {
-    this._trigger(`zss_editor.updateLink("${url}", "${title}");`)
+    this.trigger(`zss_editor.updateLink("${url}", "${title}");`)
     this._hideLinkModal()
   }
 
@@ -226,7 +256,7 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   }
 
   _zssInit () {
-    this._trigger('zss_editor.init();')
+    this.trigger('zss_editor.init();')
   }
 
   _handleFocus () {
@@ -238,6 +268,14 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   _handleBlur () {
     if (this.props.onBlur) {
       this.props.onBlur()
+    }
+  }
+
+  _handleHeight (height: number) {
+    if (this.props.onHeightChange && height !== this.state.lastHeightUpdate) {
+      this.setState({ lastHeightUpdate: height })
+      // $FlowFixMe
+      this.props.onHeightChange(height)
     }
   }
 

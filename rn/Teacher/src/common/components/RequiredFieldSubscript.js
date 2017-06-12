@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { UnmetRequirementSubscriptText } from '../../../common/text'
+import { UnmetRequirementSubscriptText } from '../text'
 import {
   View,
   StyleSheet,
@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 
 type Props = {
-  title: string,
+  title: ?string,
   visible: boolean,
 }
 

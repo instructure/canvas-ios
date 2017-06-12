@@ -24,6 +24,7 @@ type Props = {
   insertLink?: () => void,
   insertImage?: () => void,
   onTappedDone: () => void,
+  onColorPickerShown: (shown: boolean) => void,
 }
 
 type Item = {
@@ -116,8 +117,13 @@ export default class RichTextToolbar extends Component<any, Props, any> {
   }
 
   _toggleColorPicker = () => {
-    LayoutAnimation.configureNext(ColorPickerAnimation)
-    this.setState({ colorPickerVisible: !this.state.colorPickerVisible })
+    const shown = !this.state.colorPickerVisible
+    LayoutAnimation.configureNext(ColorPickerAnimation, () => {
+      if (this.props.onColorPickerShown) {
+        this.props.onColorPickerShown(shown)
+      }
+    })
+    this.setState({ colorPickerVisible: shown })
   }
 
   _pickColor = (color: string) => {

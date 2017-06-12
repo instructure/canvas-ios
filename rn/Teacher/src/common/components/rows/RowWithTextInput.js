@@ -15,6 +15,7 @@ type Props = RowProps & {
   inputHeight?: number, // only applies with title, default is 50
   placeholder?: ?string,
   keyboardType?: string,
+  onFocus?: Function,
 }
 
 const ACCESSIBILITY_TRAITS = ['button']
@@ -51,6 +52,7 @@ export default class RowWithTextInput extends Component<any, Props, any> {
         style={[style.input, styles]}
         placeholder={this.props.placeholder}
         keyboardType={this.props.keyboardType}
+        onFocus={this.props.onFocus}
       />
     )
   }

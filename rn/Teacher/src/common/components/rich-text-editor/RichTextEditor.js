@@ -3,7 +3,6 @@
 import React, { Component } from 'react'
 import ZSSRichTextEditor from './ZSSRichTextEditor'
 import RichTextToolbar from './RichTextToolbar'
-import Screen from '../../../routing/Screen'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import {
   StyleSheet,
@@ -11,9 +10,15 @@ import {
   NativeModules,
 } from 'react-native'
 
-type Props = {
-  onChangeValue: (value: string) => void,
-  defaultValue: string,
+export type Props = {
+  onChangeValue?: (value: string) => void,
+  onChangeHeight?: (height: number) => void,
+  defaultValue?: string,
+  showToolbar?: 'never' | 'always' | 'onFocus',
+  keyboardAware?: boolean,
+  scrollEnabled?: boolean,
+  contentHeight?: number,
+  placeholder?: string,
 }
 
 export default class RichTextEditor extends Component<any, Props, any> {
@@ -30,8 +35,8 @@ export default class RichTextEditor extends Component<any, Props, any> {
 
   render () {
     return (
-      <Screen>
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View style={styles.editor}>
           <ZSSRichTextEditor
             ref={(editor) => { this.editor = editor }}
             html={this.props.defaultValue}
@@ -40,23 +45,28 @@ export default class RichTextEditor extends Component<any, Props, any> {
             onBlur={this._onBlur}
             editorItemsChanged={this._onEditorItemsChanged}
             onInputChange={this.props.onChangeValue}
+            onHeightChange={this.props.onChangeHeight}
+            scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
           />
-          { this.state.editorFocused &&
-            <RichTextToolbar
-              setBold={this._setBold}
-              setItalic={this._setItalic}
-              setUnorderedList={this._setUnorderedList}
-              setOrderedList={this._setOrderedList}
-              insertLink={this._insertLink}
-              setTextColor={this._setTextColor}
-              active={this.state.activeEditorItems}
-              undo={this._undo}
-              redo={this._redo}
-            />
-          }
-          <KeyboardSpacer />
         </View>
-      </Screen>
+        { this.toolbarShown() &&
+          <RichTextToolbar
+            setBold={this._setBold}
+            setItalic={this._setItalic}
+            setUnorderedList={this._setUnorderedList}
+            setOrderedList={this._setOrderedList}
+            insertLink={this._insertLink}
+            setTextColor={this._setTextColor}
+            active={this.state.activeEditorItems}
+            undo={this._undo}
+            redo={this._redo}
+            onColorPickerShown={this._handleColorPickerShown}
+          />
+        }
+        { (this.props.keyboardAware === undefined || this.props.keyboardAware) &&
+          <KeyboardSpacer />
+        }
+      </View>
     )
   }
 
@@ -65,6 +75,12 @@ export default class RichTextEditor extends Component<any, Props, any> {
   _onLoad = () => {
     NativeModules.WebViewHacker.removeInputAccessoryView()
     NativeModules.WebViewHacker.setKeyboardDisplayRequiresUserAction(false)
+    if (this.props.contentHeight) {
+      this.editor.setContentHeight(this.props.contentHeight)
+    }
+    if (this.props.placeholder) {
+      this.editor.setPlaceholder(this.props.placeholder)
+    }
   }
 
   _onEditorItemsChanged = (activeEditorItems: string[]) => {
@@ -79,6 +95,19 @@ export default class RichTextEditor extends Component<any, Props, any> {
     this.setState({ editorFocused: false })
   }
 
+  _handleColorPickerShown = (shown) => {
+    const colorPickerHeight = 46
+    if (shown) {
+      this.editor.trigger(`
+        var scrollTop = $(window).scrollTop();
+        $(window).scrollTop(scrollTop+${colorPickerHeight});
+      `)
+    }
+    if (this.props.contentHeight) {
+      this.editor.setContentHeight(shown ? this.props.contentHeight - colorPickerHeight : this.props.contentHeight)
+    }
+  }
+
   // TOOLBAR EVENTS
 
   _setBold = () => {
@@ -91,11 +120,31 @@ export default class RichTextEditor extends Component<any, Props, any> {
   _setTextColor = (color: string) => { this.editor.setTextColor(color) }
   _undo = () => { this.editor.undo() }
   _redo = () => { this.editor.redo() }
+
+  toolbarShown (): boolean {
+    switch (this.props.showToolbar) {
+      case 'always':
+        return true
+      case undefined:
+      case null:
+      case 'onFocus':
+        return this.state.editorFocused
+      default:
+        return false
+    }
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+  },
+  editor: {
+    flex: 1,
+    paddingTop: global.style.defaultPadding / 1.25,
+    paddingBottom: global.style.defaultPadding / 1.25,
+    paddingLeft: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
   },
 })

@@ -49,4 +49,8 @@ export type Discussion = {
   replies: ?DiscussionReply[],
   participants: ?{ [key: string]: UserDisplay },
   author: UserDisplay,
+  allow_rating: boolean,
+  only_graders_can_rate: boolean,
+  require_initial_post: boolean,
+  delayed_post_at: ?string,
 }

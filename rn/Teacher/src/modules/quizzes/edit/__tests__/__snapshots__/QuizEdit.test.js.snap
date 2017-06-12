@@ -247,6 +247,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -572,6 +573,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Survey
                   </Text>
@@ -831,6 +833,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Changed
                     </Text>
@@ -1350,6 +1353,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -1483,6 +1487,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -2427,6 +2432,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -2752,6 +2758,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Survey
                   </Text>
@@ -3033,6 +3040,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -3536,6 +3544,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -3669,6 +3678,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -4613,6 +4623,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -4938,6 +4949,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -5197,6 +5209,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -5700,6 +5713,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -5833,6 +5847,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -6345,6 +6360,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -6492,6 +6508,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -7073,6 +7090,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -7398,6 +7416,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -7657,6 +7676,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -8160,6 +8180,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -8293,6 +8314,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -8805,6 +8827,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -8952,6 +8975,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -9533,6 +9557,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -9858,6 +9883,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -10117,6 +10143,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -10620,6 +10647,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -10753,6 +10781,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -11697,6 +11726,7 @@ exports[`QuizEdit renders 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -12022,6 +12052,7 @@ exports[`QuizEdit renders 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -12281,6 +12312,7 @@ exports[`QuizEdit renders 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -12784,6 +12816,7 @@ exports[`QuizEdit renders 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -12917,6 +12950,7 @@ exports[`QuizEdit renders 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -13861,6 +13895,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -14186,6 +14221,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -14445,6 +14481,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -14958,6 +14995,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -15091,6 +15129,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -16035,6 +16074,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -16360,6 +16400,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -16619,6 +16660,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -17122,6 +17164,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -17255,6 +17298,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -18199,6 +18243,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -18524,6 +18569,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -18805,6 +18851,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -19308,6 +19355,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -19441,6 +19489,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -20385,6 +20434,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -20710,6 +20760,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -20969,6 +21020,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -21472,6 +21524,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -21605,6 +21658,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -22657,6 +22711,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -22982,6 +23037,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -23241,6 +23297,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -23744,6 +23801,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -23877,6 +23935,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -24929,6 +24988,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -25254,6 +25314,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -25513,6 +25574,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -26016,6 +26078,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -26149,6 +26212,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -27201,6 +27265,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -27526,6 +27591,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -27785,6 +27851,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -28288,6 +28355,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -28421,6 +28489,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -29365,6 +29434,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -29690,6 +29760,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -29949,6 +30020,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -30452,6 +30524,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -30585,6 +30658,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -31342,6 +31416,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                     defaultValue=""
                     keyboardType={undefined}
                     onChangeText={[Function]}
+                    onFocus={undefined}
                     placeholder="Enter code"
                     style={
                       Array [
@@ -31653,6 +31728,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -31978,6 +32054,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -32237,6 +32314,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -32740,6 +32818,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -32873,6 +32952,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -33817,6 +33897,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -34142,6 +34223,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -34401,6 +34483,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -34904,6 +34987,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -35037,6 +35121,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -35549,6 +35634,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -35696,6 +35782,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             Dec 31, 1969  5:00 PM
                           </Text>
@@ -36316,6 +36403,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -36641,6 +36729,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -36900,6 +36989,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -37403,6 +37493,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -37536,6 +37627,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -38048,6 +38140,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -38195,6 +38288,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             Dec 31, 1969  5:00 PM
                           </Text>
@@ -38810,6 +38904,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -39135,6 +39230,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -39394,6 +39490,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -39897,6 +39994,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -40030,6 +40128,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -40974,6 +41073,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -41299,6 +41399,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -41558,6 +41659,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -42061,6 +42163,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -42194,6 +42297,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -43246,6 +43350,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -43571,6 +43676,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -43830,6 +43936,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -44333,6 +44440,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -44466,6 +44574,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -45410,6 +45519,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -45735,6 +45845,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -45994,6 +46105,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -46497,6 +46609,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -46630,6 +46743,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -47574,6 +47688,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -47899,6 +48014,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -48158,6 +48274,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -48661,6 +48778,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -48794,6 +48912,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -49306,6 +49425,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             Dec 31, 1969  5:00 PM
                           </Text>
@@ -49492,6 +49612,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -50073,6 +50194,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -50398,6 +50520,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -50657,6 +50780,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -51160,6 +51284,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -51293,6 +51418,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -51805,6 +51931,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             Dec 31, 1969  5:00 PM
                           </Text>
@@ -51986,6 +52113,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -52567,6 +52695,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -52892,6 +53021,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -53151,6 +53281,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -53654,6 +53785,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -53787,6 +53919,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -54731,6 +54864,7 @@ exports[`QuizEdit toggles publish 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -55056,6 +55190,7 @@ exports[`QuizEdit toggles publish 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -55315,6 +55450,7 @@ exports[`QuizEdit toggles publish 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -55818,6 +55954,7 @@ exports[`QuizEdit toggles publish 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -55951,6 +56088,7 @@ exports[`QuizEdit toggles publish 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -56895,6 +57033,7 @@ exports[`QuizEdit toggles publish 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -57220,6 +57359,7 @@ exports[`QuizEdit toggles publish 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -57479,6 +57619,7 @@ exports[`QuizEdit toggles publish 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -57982,6 +58123,7 @@ exports[`QuizEdit toggles publish 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -58115,6 +58257,7 @@ exports[`QuizEdit toggles publish 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -59059,6 +59202,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -59384,6 +59528,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -59643,6 +59788,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -60146,6 +60292,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -60279,6 +60426,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -61223,6 +61371,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -61548,6 +61697,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -61807,6 +61957,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -62310,6 +62461,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -62443,6 +62595,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -63387,6 +63540,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -63712,6 +63866,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -63971,6 +64126,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -64319,6 +64475,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                     defaultValue={null}
                     keyboardType="number-pad"
                     onChangeText={[Function]}
+                    onFocus={undefined}
                     placeholder="Minutes"
                     style={
                       Array [
@@ -64598,6 +64755,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -64731,6 +64889,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -65675,6 +65834,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -66000,6 +66160,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -66259,6 +66420,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -66762,6 +66924,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -66895,6 +67058,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -67839,6 +68003,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -68164,6 +68329,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -68423,6 +68589,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -68926,6 +69093,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -69059,6 +69227,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -69571,6 +69740,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
@@ -69718,6 +69888,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             Dec 31, 1969  5:00 PM
                           </Text>
@@ -70338,6 +70509,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                 defaultValue="Quiz 1"
                 keyboardType={undefined}
                 onChangeText={[Function]}
+                onFocus={undefined}
                 placeholder={undefined}
                 style={
                   Array [
@@ -70663,6 +70835,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                         },
                       ]
                     }
+                    testID={undefined}
                   >
                     Graded Quiz
                   </Text>
@@ -70922,6 +71095,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     />
                   </View>
                   <View
@@ -71425,6 +71599,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                           },
                         ]
                       }
+                      testID={undefined}
                     >
                       Latest
                     </Text>
@@ -71558,6 +71733,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                       defaultValue=""
                       keyboardType="number-pad"
                       onChangeText={[Function]}
+                      onFocus={undefined}
                       placeholder="Unlimited"
                       style={
                         Array [
@@ -72070,6 +72246,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             Dec 31, 1969  5:00 PM
                           </Text>
@@ -72256,6 +72433,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                                 },
                               ]
                             }
+                            testID={undefined}
                           >
                             --
                           </Text>
