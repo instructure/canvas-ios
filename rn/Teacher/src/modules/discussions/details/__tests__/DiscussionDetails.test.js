@@ -17,6 +17,7 @@ jest
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../api/canvas-api/__templates__/course'),
   ...require('../../../../api/canvas-api/__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../__templates__/helm'),
@@ -32,6 +33,7 @@ describe('DiscussionDetails', () => {
       navigator: template.navigator(),
       discussionID: '1',
       courseID: '1',
+      course: template.course({ id: 1 }),
     }
   })
 
@@ -65,6 +67,7 @@ describe('DiscussionDetails', () => {
 describe('mapStateToProps', () => {
   it('maps state to props', () => {
     const discussion = template.discussion({ id: '1' })
+    const course = template.course({ id: '1' })
     const state: AppState = template.appState({
       entities: {
         ...template.appState().entities,
@@ -73,6 +76,11 @@ describe('mapStateToProps', () => {
             data: discussion,
             pending: 1,
             error: null,
+          },
+        },
+        courses: {
+          '1': {
+            course: course,
           },
         },
       },
@@ -86,6 +94,7 @@ describe('mapStateToProps', () => {
       error: null,
       courseID: '1',
       discussionID: '1',
+      course,
     })
   })
 })

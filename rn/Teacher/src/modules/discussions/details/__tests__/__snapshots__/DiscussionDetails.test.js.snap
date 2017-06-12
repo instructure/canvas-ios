@@ -2,6 +2,9 @@
 
 exports[`DiscussionDetails renders 1`] = `
 <Screen
+  navBarColor={undefined}
+  navBarStyle="dark"
+  subtitle="Learn React Native"
   title="Discussion Details"
 >
   <RCTScrollView
@@ -21,265 +24,6 @@ exports[`DiscussionDetails renders 1`] = `
   >
     <RCTRefreshControl />
     <View>
-      <View
-        style={
-          Object {
-            "padding": 16,
-          }
-        }
-      >
-        <Text
-          accessibilityTraits="header"
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-semibold",
-                "fontSize": 20,
-              },
-              undefined,
-            ]
-          }
-        >
-          Dear Ivy Iversen, your last name cannot start with your first name
-        </Text>
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "justifyContent": "flex-start",
-              "marginTop": 16,
-            }
-          }
-        >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "justifyContent": "center",
-                  "marginRight": 16,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "borderRadius": 16,
-                  "height": 32,
-                  "width": 32,
-                },
-              ]
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontSize": 11,
-                  },
-                ]
-              }
-            >
-              TD
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "alignItems": "flex-start",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "flex-start",
-                "marginLeft": 16,
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              The Donald
-               
-            </Text>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {
-                    "color": "#A5AFB5",
-                    "fontSize": 12,
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
-              }
-            >
-              November 10, 2016 9:03 PM
-            </Text>
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 1,
-              "paddingBottom": 16,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 16,
-            }
-          }
-        >
-          <WebView
-            injectedJavaScript="
-            var height = document.getElementById('whizzy_content').clientHeight;
-            postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-          "
-            onMessage={[Function]}
-            scrollEnabled={false}
-            source={
-              Object {
-                "html": "
-              <html>
-                  <head>
-                      <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                          initial-scale = 1.0, user-scalable = no\\" />
-                      <style>
-                          body {
-                              font: -apple-system-body;
-                              margin: 0;
-                              padding: 0;
-                              color: {{font-color}};
-                              background-color: {{background-color}};
-                          }
-                          img {
-                              width: auto;
-                              height: auto;
-                              max-width: 100%;
-                          }
-                          video {
-                              width: auto;
-                              height: auto;
-                              max-width: 100%;
-                          }
-                          #whizzy_content {
-                              padding: {{padding}};
-                              margin: 0;
-                          }
-                      </style>
-                  </head>
-              <body>
-                  <div id='whizzy_content'>
-                  <p>And why?</p>
-                  </div>
-              </body>
-              
-              <script type=\\"text/javascript\\">
-                  function onLoadAllImages(callback) {
-                      var images = document.getElementsByTagName('img');
-              
-                      for (var i = 0; i < images.length; i++) {
-                          if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                              images[i].parentNode.removeChild(images[i]);
-                          }
-                      }
-              
-                      images = document.getElementsByTagName('img');
-              
-                      var loadedImageCount = 0;
-              
-                      if (images.length > 0) {
-                          for(var i = 0; i < images.length; i++) {
-                              images[i].onload=checkIfImagesLoaded;
-                              images[i].onerror=checkIfImagesLoaded;
-                          }
-                      }
-                      else {
-                          callback();
-                      }
-              
-                      function checkIfImagesLoaded() {
-                          loadedImageCount++;
-                          if(loadedImageCount == images.length) {
-                              callback();
-                          }
-                      }
-                  }
-              
-                  onLoadAllImages(function () {
-                      // Inform the DiscussionEntryCell that all the images are loaded
-                      var iframe = document.createElement(\\"iframe\\");
-                      iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                      document.documentElement.appendChild(iframe);
-                      iframe.parentNode.removeChild(iframe);
-                      iframe = null;
-                  });
-              </script>
-              </html>
-              ",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                },
-                Object {
-                  "height": 0,
-                },
-              ]
-            }
-          />
-        </View>
-      </View>
       <TouchableHighlight
         onPress={undefined}
         testID={undefined}
@@ -304,13 +48,7 @@ exports[`DiscussionDetails renders 1`] = `
           }
         >
           <View
-            style={
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
-                "paddingBottom": 16,
-              }
-            }
+            style={Object {}}
           />
           <View
             style={
@@ -359,19 +97,1014 @@ exports[`DiscussionDetails renders 1`] = `
                   ]
                 }
               >
-                Replies
+                Dear Ivy Iversen, your last name cannot start with your first name
               </Text>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "marginTop": 2,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontWeight": "500",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  20 pts
+                </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "marginLeft": 14,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flex": 1,
+                        "flexDirection": "row",
+                      },
+                    ]
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Array [
+                        Object {
+                          "height": 21,
+                          "tintColor": "#00AC18",
+                          "width": 21,
+                        },
+                        Object {},
+                      ]
+                    }
+                  />
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Array [
+                          Object {
+                            "color": "#8B969E",
+                            "fontWeight": "500",
+                            "marginLeft": 5,
+                          },
+                          Object {
+                            "color": "#00AC18",
+                          },
+                        ],
+                        Object {
+                          "fontFamily": ".SFUIDisplay-medium",
+                        },
+                      ]
+                    }
+                  >
+                    Published
+                  </Text>
+                </View>
+              </View>
             </View>
           </View>
         </View>
       </TouchableHighlight>
-      <View
-        style={
-          Object {
-            "flex": 1,
+      <TouchableHighlight
+        onPress={undefined}
+        testID={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              },
+              undefined,
+            ]
           }
-        }
-      />
+        >
+          <View
+            style={
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "paddingBottom": 16,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessibilityLabel={undefined}
+                accessible={false}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 4,
+                  }
+                }
+              >
+                <Image
+                  source={1}
+                  style={
+                    Object {
+                      "height": 19,
+                      "marginRight": 5,
+                      "tintColor": "#8B969E",
+                      "width": 19,
+                    }
+                  }
+                />
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontSize": 16,
+                        "fontWeight": "500",
+                        "paddingTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  Due
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
+                <View
+                  accessibilityLabel={undefined}
+                  accessible={true}
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "paddingTop": 2,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay-semibold",
+                          },
+                        ]
+                      }
+                    >
+                      Due:
+                    </Text>
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {},
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                       May 31, 2037 at 11:59 PM
+                    </Text>
+                  </Text>
+                </View>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "paddingTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    For:
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {},
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                     -
+                  </Text>
+                </Text>
+                <View>
+                  <View
+                    accessibilityLabel={undefined}
+                    accessible={true}
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "paddingTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-semibold",
+                            },
+                          ]
+                        }
+                      >
+                        Available from:
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {},
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                         Mar 17, 2017 at 12:00 AM
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    accessibilityLabel={undefined}
+                    accessible={true}
+                  >
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "paddingTop": 2,
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "fontWeight": "600",
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-semibold",
+                            },
+                          ]
+                        }
+                      >
+                        Available to:
+                      </Text>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {},
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                         May 31, 2037 at 11:59 PM
+                      </Text>
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={undefined}
+        testID={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "paddingBottom": 16,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessibilityLabel={undefined}
+                accessible={false}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 4,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontSize": 16,
+                        "fontWeight": "500",
+                        "paddingTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  Submissions
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={undefined}
+        testID={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "paddingBottom": 16,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessibilityLabel={undefined}
+                accessible={false}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 4,
+                  }
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                  }
+                }
+              >
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderColor": "#C7CDD1",
+                        "borderWidth": 0.5,
+                        "justifyContent": "center",
+                        "marginRight": 16,
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 16,
+                        "height": 32,
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontSize": 11,
+                        },
+                      ]
+                    }
+                  >
+                    TD
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "flex-start",
+                      "flex": 1,
+                      "flexDirection": "column",
+                      "justifyContent": "flex-start",
+                      "marginLeft": 16,
+                    }
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                     
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#A5AFB5",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    November 10, 2016 9:03 PM
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 16,
+                    "paddingTop": 16,
+                  }
+                }
+              >
+                <WebView
+                  injectedJavaScript="
+                  var height = document.getElementById('whizzy_content').clientHeight;
+                  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
+                "
+                  onMessage={[Function]}
+                  scrollEnabled={false}
+                  source={
+                    Object {
+                      "html": "
+                    <html>
+                        <head>
+                            <meta name=\\"viewport\\" content=\\"width={{content-width}},
+                                initial-scale = 1.0, user-scalable = no\\" />
+                            <style>
+                                body {
+                                    font: -apple-system-body;
+                                    margin: 0;
+                                    padding: 0;
+                                    color: {{font-color}};
+                                    background-color: {{background-color}};
+                                }
+                                img {
+                                    width: auto;
+                                    height: auto;
+                                    max-width: 100%;
+                                }
+                                video {
+                                    width: auto;
+                                    height: auto;
+                                    max-width: 100%;
+                                }
+                                #whizzy_content {
+                                    padding: {{padding}};
+                                    margin: 0;
+                                }
+                            </style>
+                        </head>
+                    <body>
+                        <div id='whizzy_content'>
+                        <p>And why?</p>
+                        </div>
+                    </body>
+                    
+                    <script type=\\"text/javascript\\">
+                        function onLoadAllImages(callback) {
+                            var images = document.getElementsByTagName('img');
+                    
+                            for (var i = 0; i < images.length; i++) {
+                                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
+                                    images[i].parentNode.removeChild(images[i]);
+                                }
+                            }
+                    
+                            images = document.getElementsByTagName('img');
+                    
+                            var loadedImageCount = 0;
+                    
+                            if (images.length > 0) {
+                                for(var i = 0; i < images.length; i++) {
+                                    images[i].onload=checkIfImagesLoaded;
+                                    images[i].onerror=checkIfImagesLoaded;
+                                }
+                            }
+                            else {
+                                callback();
+                            }
+                    
+                            function checkIfImagesLoaded() {
+                                loadedImageCount++;
+                                if(loadedImageCount == images.length) {
+                                    callback();
+                                }
+                            }
+                        }
+                    
+                        onLoadAllImages(function () {
+                            // Inform the DiscussionEntryCell that all the images are loaded
+                            var iframe = document.createElement(\\"iframe\\");
+                            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
+                            document.documentElement.appendChild(iframe);
+                            iframe.parentNode.removeChild(iframe);
+                            iframe = null;
+                        });
+                    </script>
+                    </html>
+                    ",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2D3B45",
+                        "flex": 1,
+                      },
+                      Object {
+                        "height": 0,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <TouchableHighlight>
+                <View>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#008EE2",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    Reply
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+      </TouchableHighlight>
+      <TouchableHighlight
+        onPress={undefined}
+        testID={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "white",
+                "flex": 1,
+                "paddingBottom": 16,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+                "paddingBottom": 16,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                }
+              }
+            >
+              <View
+                accessibilityLabel={undefined}
+                accessible={false}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "marginBottom": 4,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "color": "#8B969E",
+                        "fontSize": 16,
+                        "fontWeight": "500",
+                        "paddingTop": 2,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                      },
+                    ]
+                  }
+                >
+                  Replies
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </TouchableHighlight>
     </View>
   </RCTScrollView>
 </Screen>
@@ -379,6 +1112,9 @@ exports[`DiscussionDetails renders 1`] = `
 
 exports[`DiscussionDetails renders without a discussion 1`] = `
 <Screen
+  navBarColor={undefined}
+  navBarStyle="dark"
+  subtitle="Learn React Native"
   title="Discussion Details"
 >
   <View />

@@ -1,4 +1,7 @@
 {
+  "a_title_is_required_71222850": {
+    "message": "A title is required"
+  },
   "access_code_74f4864f": {
     "message": "Access Code"
   },
@@ -26,6 +29,9 @@
   "after_last_attempt_c9168da2": {
     "message": "After Last Attempt"
   },
+  "all_4321c3a1": {
+    "message": "All"
+  },
   "all_courses_a7dbb853": {
     "message": "All Courses"
   },
@@ -47,6 +53,12 @@
   "always_3a59e701": {
     "message": "Always"
   },
+  "announcements_a4b8ed4a": {
+    "message": "Announcements"
+  },
+  "archived_de543437": {
+    "message": "Archived"
+  },
   "are_you_sure_26795d3c": {
     "message": "Are you sure?"
   },
@@ -55,6 +67,9 @@
   },
   "assignees_314d5e55": {
     "message": "Assignees"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "Assignees required"
   },
   "assignment_details_bc488179": {
     "message": "Assignment Details"
@@ -67,6 +82,9 @@
   },
   "assignments_list_fe3e54be": {
     "message": "Assignments List"
+  },
+  "at_791460b3": {
+    "message": "at"
   },
   "availability_closed_429d1ba5": {
     "message": "Availability: Closed"
@@ -131,6 +149,9 @@
   "comment_7ef1428e": {
     "message": "Comment"
   },
+  "comment_failed_acf11b54": {
+    "message": "Comment Failed"
+  },
   "comments_e07bcbe3": {
     "message": "Comments"
   },
@@ -151,6 +172,9 @@
   },
   "count_plural_one_question_other_questions_309aafa": {
     "message": "{ count, plural,\n    one {# Question}\n  other {# Questions}\n}"
+  },
+  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
+    "message": "{ count, plural,\n   zero {# Replies}\n    one {# Reply}\n  other {# Replies}\n}"
   },
   "count_students_4ae780ca": {
     "message": "{ count } students"
@@ -187,6 +211,9 @@
   },
   "details_98a31b68": {
     "message": "Details"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "Discussion Details"
   },
   "discussion_topic_a7bf935": {
     "message": "discussion topic"
@@ -251,6 +278,12 @@
   "external_tool_d6eaa5c1": {
     "message": "external tool"
   },
+  "failed_comment_options_aa19a936": {
+    "message": "Failed comment options"
+  },
+  "favorites_c7e0207c": {
+    "message": "Favorites"
+  },
   "files_c300e900": {
     "message": "Files"
   },
@@ -293,6 +326,9 @@
   "grades_a61eba0a": {
     "message": "Grades"
   },
+  "group_a8f5ed9c": {
+    "message": "Group"
+  },
   "half_screen_9cdd83ad": {
     "message": "Half screen"
   },
@@ -308,8 +344,17 @@
   "highest_28ad71e6": {
     "message": "Highest"
   },
+  "inbox_bb245a60": {
+    "message": "Inbox"
+  },
   "incomplete_da3c2ea2": {
     "message": "Incomplete"
+  },
+  "invalid_field_54480fae": {
+    "message": "Invalid field"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "Last post { lastReplyDateStr }"
   },
   "late_2be42b88": {
     "message": "Late"
@@ -347,6 +392,9 @@
   "missing_1a256b3b": {
     "message": "Missing"
   },
+  "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
+    "message": "Moderated grading is not currently supported in mobile SpeedGrader."
+  },
   "multiple_due_dates_283dd861": {
     "message": "Multiple Due Dates"
   },
@@ -379,6 +427,9 @@
   },
   "no_internet_connection_9df26cf8": {
     "message": "No internet connection"
+  },
+  "no_subject_2e2a413c": {
+    "message": "(no subject)"
   },
   "no_submission_b44e1990": {
     "message": "No submission"
@@ -467,6 +518,9 @@
   "preview_quiz_1ffbf684": {
     "message": "Preview Quiz"
   },
+  "preview_unavailable_aacd459a": {
+    "message": "Preview Unavailable"
+  },
   "pts_699bd9aa": {
     "message": "pts"
   },
@@ -497,8 +551,14 @@
   "remove_f47dc62a": {
     "message": "Remove"
   },
+  "replies_4a8577c8": {
+    "message": "Replies"
+  },
   "require_an_access_code_46a02601": {
     "message": "Require an Access Code"
+  },
+  "retry_ebd5f8ba": {
+    "message": "Retry"
   },
   "rubric_description_3567cf16": {
     "message": "Rubric Description"
@@ -526,6 +586,9 @@
   },
   "send_e3bd0ed0": {
     "message": "Send"
+  },
+  "sent_fe0a1eb4": {
+    "message": "Sent"
   },
   "set_home_to_82ab5119": {
     "message": "Set ''Home'' to..."
@@ -569,11 +632,17 @@
   "text_submission_935eeb5": {
     "message": "Text Submission"
   },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "The value of possible points must be zero or greater"
+  },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"
   },
   "there_was_a_problem_loading_discussions_ce5318af": {
     "message": "There was a problem loading discussions."
+  },
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "There was a problem loading the announcements."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
     "message": "There was a problem loading the assignment submissions."
@@ -583,6 +652,9 @@
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "There was a problem loading the quizzes."
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "There was an problem loading your messages."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
     "message": "There was an unexpected error. Please try again."
@@ -599,11 +671,11 @@
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "This assignment only allows on-paper submissions."
   },
-  "this_is_the_inbox_b957d042": {
-    "message": "This is the inbox"
-  },
   "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
     "message": "This student does not have a submission for this assignment."
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "This submission is a URL to an external page. We''ve included a snapshot of what the page looked like when it was submitted."
   },
   "time_limit_a6f1a51e": {
     "message": "Time Limit"
@@ -629,8 +701,14 @@
   "unpublished_8b6107d6": {
     "message": "Unpublished"
   },
+  "unread_e9c1b19c": {
+    "message": "Unread"
+  },
   "until_date_f3b9f367": {
     "message": "Until { date }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL Preview Image"
   },
   "url_submission_f76327e3": {
     "message": "URL Submission"
@@ -649,5 +727,8 @@
   },
   "you_cannot_undo_this_action_a2dcb2ad": {
     "message": "You cannot undo this action"
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "Your submission comment failed to send."
   }
 }

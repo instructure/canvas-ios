@@ -5,15 +5,18 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native'
 import i18n from 'format-message'
 import Actions from './actions'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
+import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import WebContainer from '../../../common/components/WebContainer'
 import Avatar from '../../../common/components/Avatar'
 import { formattedDate } from '../../../utils/dateUtils'
-
+import PublishedIcon from '../../assignment-details/components/PublishedIcon'
+import Images from '../../../images'
 import {
   Heading1,
   Text,
@@ -44,61 +47,93 @@ export class DiscussionDetails extends Component<any, Props, any> {
     if (!discussion) {
       content = <View />
     } else {
+      const points = this._points(discussion)
       let participants = discussion.participants || []
       let user = discussion.author
       content = (
         <RefreshableScrollView
           refreshing={this.props.refreshing}
           onRefresh={this.props.refresh}>
-
-          <View style={style.container}>
-
-            <Heading1 style={style.title}>{discussion.title}</Heading1>
-
-            <View style={style.authorContainer}>
-              {user && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
-                               style={style.avatar}/> }
-              <View style={style.authorInfoContainer}>
-                <Text style={style.authorName}>{user.display_name} </Text>
-                <Text style={style.authorDate}>{formattedDate(discussion.posted_at)}</Text>
+            <AssignmentSection isFirstRow={true} style={style.topContainer}>
+              <Heading1>{discussion.title}</Heading1>
+              <View style={style.pointsContainer}>
+                {points && <Text style={style.points}>{points}</Text>}
+                <PublishedIcon published={discussion.published} style={style.publishedIcon} />
               </View>
-            </View>
-
-            { Boolean(discussion.message) &&
-            <View style={style.section}>
-              <WebContainer style={{ flex: 1 }} scrollEnabled={false} html={discussion.message}/>
-            </View>
-            }
-
-          </View>
-
-            <AssignmentSection isFirstRow={false} style={style.topContainer}>
-              <Heading1>Replies</Heading1>
             </AssignmentSection>
 
-          <DiscussionReplies style={style.replyContainer} replies={discussion.replies} participants={participants}/>
+            {discussion.assignment && <AssignmentSection
+              title={i18n('Due')}
+              image={Images.assignments.calendar} >
+              <AssignmentDates assignment={discussion.assignment} />
+            </AssignmentSection>}
+
+            {discussion.assignment && <AssignmentSection
+              title={i18n('Submissions')}>
+            </AssignmentSection>}
+
+            <AssignmentSection >
+              <View style={style.authorContainer}>
+                {user && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
+                                style={style.avatar}/> }
+                <View style={style.authorInfoContainer}>
+                  <Text style={style.authorName}>{user.display_name} </Text>
+                  <Text style={style.authorDate}>{formattedDate(discussion.posted_at)}</Text>
+                </View>
+              </View>
+
+              { Boolean(discussion.message) &&
+                <View style={style.section}>
+                  <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
+                </View>
+              }
+
+              <TouchableHighlight>
+                <View>
+                  <Text style={style.link}>Reply</Text>
+                </View>
+              </TouchableHighlight>
+            </AssignmentSection>
+
+            <AssignmentSection
+              title={i18n('Replies')}>
+              <DiscussionReplies style={style.replyContainer} replies={discussion.replies} participants={participants}/>
+            </AssignmentSection>
 
         </RefreshableScrollView>
       )
     }
 
     return (
-      <Screen title={i18n('Discussion Details')}>
+      <Screen
+        title={i18n('Discussion Details')}
+        navBarColor={this.props.course.color}
+        navBarStyle='dark'
+        subtitle={this.props.course.name}>
         {content}
       </Screen>
     )
   }
+
+  _points = (discussion: Discussion) => {
+    if (discussion.assignment) {
+      const pointsPossible = !!discussion.assignment.points_possible &&
+        i18n(`{
+          count, plural,
+          one {# pt}
+          other {# pts}
+        }`
+        , { count: discussion.assignment.points_possible })
+      return pointsPossible
+    }
+  }
 }
 
 const style = StyleSheet.create({
-  container: {
-    padding: global.style.defaultPadding,
-  },
   authorContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: global.style.defaultPadding,
   },
   authorInfoContainer: {
     flex: 1,
@@ -122,13 +157,25 @@ const style = StyleSheet.create({
     paddingRight: global.style.defaultPadding,
     paddingBottom: 17,
   },
-
   section: {
-    flex: 1,
     paddingTop: global.style.defaultPadding,
-    paddingRight: global.style.defaultPadding,
     paddingBottom: global.style.defaultPadding,
-    paddingLeft: global.style.defaultPadding,
+  },
+  pointsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 2,
+  },
+  publishedIcon: {
+    marginLeft: 14,
+  },
+  points: {
+    fontWeight: '500',
+    color: colors.grey4,
+  },
+  link: {
+    color: colors.link,
   },
 })
 
@@ -136,6 +183,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
   let discussion: ?Discussion
   let pending = 0
   let error = null
+  let course = entities.courses[courseID].course
 
   if (entities.discussions &&
     entities.discussions[discussionID] &&
@@ -152,6 +200,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     error,
     courseID,
     discussionID,
+    course,
   }
 }
 

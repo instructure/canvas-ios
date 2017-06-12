@@ -103,9 +103,7 @@ export class DiscussionsList extends Component<any, Props, any> {
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         drawUnderNavBar={true}
-        title={i18n({
-          default: 'Discussions',
-        })}
+        title={i18n('Discussions')}
         subtitle={this.props.courseName}>
         <View style={styles.container}>
           <SectionList
