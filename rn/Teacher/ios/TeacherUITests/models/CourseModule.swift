@@ -17,23 +17,16 @@
 
 /* This is an auto-generated file. */
 
-struct Conversation {
-    static let read = "read"
-    static let unread = "unread"
-    static let starred = "starred"
-    static let archived = "archived"
-
+struct CourseModule {
     let id: Int
-    let subject: String
+    let items: [CourseModuleItem]
+    let name: String
+    let position: Int
+    let prerequisiteModuleIds: [Int]
+    let publishFinalGrade: Bool
+    let requireSequentialProgress: Bool
+    let state: String
+    let unlockAt: String
     let workflowState: String
-    let lastMessage: String
-    let lastMessageAt: String
-    let lastAuthoredMessage: String
-    let lastAuthoredMessageAt: String
-    let messageCount: Int
-    let isPrivate: Bool
-    let starred: Bool
-    let messages: [ConversationMessage]
-    let participatingUserIds: [Int]
-    let contextCode: String
+    let published: Bool
 }

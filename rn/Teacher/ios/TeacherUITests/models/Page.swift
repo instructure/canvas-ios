@@ -23,6 +23,4 @@ struct Page {
     let body: String
     let published: Bool
     let frontPage: Bool
-    let lockedForUser: Bool
-    let lockExplanation: String
 }

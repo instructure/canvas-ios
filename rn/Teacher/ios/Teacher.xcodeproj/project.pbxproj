@@ -16,12 +16,15 @@
 		061073911EA11FD800BEB914 /* CoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061073901EA11FD800BEB914 /* CoursesListPage.swift */; };
 		061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061073921EA11FED00BEB914 /* EditCoursesListPage.swift */; };
 		0AA62E58EBF68C43D256EA3D /* AssignmentOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */; };
+		106B1153CAA11D0DBBDD356E /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ECDED2DD45C1EC5AEB9206 /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1D25A1A4E3FEEA56408EF301 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4CD2A2F10EABBB6B24B6E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift */; };
+		256358B5011A350B9B5F65F5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715FA7B506E025841189821D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift */; };
 		279DC42F392D254716A9F524 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */; };
 		28087A3DB76A7583688C3073 /* CanvasUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71370A64E454689407684D4 /* CanvasUser.swift */; };
 		2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
@@ -74,6 +77,9 @@
 		3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* Brand.swift */; };
 		3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; };
 		3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; };
+		3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */; };
+		3D3630BAF72F9C59B821A01B /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7019E31E382DF66B9D14BD25 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */; };
+		451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
 		4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -124,12 +130,20 @@
 		61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5CD1ED619A200EC6865 /* libRNFS.a */; };
 		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
+		646EA8592A1AF9C81B6877D4 /* CourseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5D28EB09C19518A6BA81F /* CourseModule.swift */; };
+		65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
+		700E43A18ED77E9C4B9B4176 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */; };
 		748E680E19A62B76BAFC5262 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523CC8C3560F5F179BB84D4 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift */; };
+		750B65D07ECFE3D90B2B6095 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA2CE83FCF7E3A5CEF100C6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift */; };
+		81B7EA2B7B492D6C3CB4B65B /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCB88DA3ECC3A55C5772A6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift */; };
 		85B8D236F25588A8E2777CC3 /* Discussion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06E780FA4F813E8535599C4 /* Discussion.swift */; };
+		867670EDD9E2689B080AE92E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10A579F7F9ADB535EC6CAD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift */; };
+		88F5E8BF43D0785FAE27C7F6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A92B769017B28C51D2EFE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
 		9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A14A839A5EB460283B1F75B /* libRNImagePicker.a */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
+		9DB84819BAE9F4B338DDC4AC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */; };
 		9E6536DB74C410F2A191F54F /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */; };
 		9E80454AFF54FA3A301495CC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43F594F5734FBD9DF2146C /* Section.swift */; };
 		9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */; };
@@ -139,17 +153,23 @@
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
 		A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A08992613846128FD3E3D2 /* libRNBlur.a */; };
+		A94ACBBB553790F98F7C9EE5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */; };
+		ACE0FB9C60C46429FCB245BE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */; };
 		ADA15143C8D5C6E6E3DB3076 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
 		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
+		BFA74EE1DDF1A40F2A5AC5B7 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE442A069DF0F82B2A6AE25 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift */; };
 		BFEF14CECBEF3577D41F7BBF /* GradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C40873F5A33402D194B04 /* GradingPeriod.swift */; };
 		C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2411260A6CA04D6D874912A2 /* libRNSearchBar.a */; };
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
 		CB206CA59F21CDA6CF21EB0D /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0679F6C1793F7855CCF998AE /* Submission.swift */; };
 		CDA436B8FCAEB0E0B3CAD077 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F13453A04E64C495109D4 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift */; };
 		D2AEEB32E46E3C2C3D904AC5 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0146025D5E27613B19DA93 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift */; };
+		D6924E8C8F31F0D47E297377 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */; };
+		D7F81812D843E6F9F678D00D /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72ABFA1F7D7A39B7F076CC0C /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
+		DDA2B605FB1586F3495269EF /* CourseModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */; };
 		DE7AAF9B002B30AA97A21897 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9FFEF21ECA9728122AA39D /* Group.swift */; };
 		DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E745A09DE28474C8094A8FB /* libInteractable.a */; };
 		E0FFC2B3DB6D05EE7A864DB7 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A75DDE30E7DF0E48B12475 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift */; };
@@ -221,6 +241,27 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		2C5F35801EEB437E006A26F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3BEF7BF01E7C96860092C864 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 323A12871E5F266B004975B8;
+			remoteInfo = "ART-tvOS";
+		};
+		2C5F359D1EEB437E006A26F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7ECE1E25DB7D00323FB7;
+			remoteInfo = "third-party";
+		};
+		2C5F359F1EEB437E006A26F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
+			remoteInfo = "double-conversion";
 		};
 		2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -467,6 +508,7 @@
 		061073921EA11FED00BEB914 /* EditCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesListPage.swift; sourceTree = "<group>"; };
 		0679F6C1793F7855CCF998AE /* Submission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Submission.swift; path = models/Submission.swift; sourceTree = "<group>"; };
 		06F44325652F4B30CB471123 /* QuizQuestionAnswer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizQuestionAnswer.swift; path = models/QuizQuestionAnswer.swift; sourceTree = "<group>"; };
+		0AF4CD2A2F10EABBB6B24B6E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift; sourceTree = "<group>"; };
 		0E9FFEF21ECA9728122AA39D /* Group.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Group.swift; path = models/Group.swift; sourceTree = "<group>"; };
 		105261256A70B5DFD1139104 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Quiz.swift; path = models/Quiz.swift; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -495,8 +537,11 @@
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
 		2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPageTest.swift; sourceTree = "<group>"; };
 		2F087B531EC509190042C03E /* CourseSettingsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPage.swift; sourceTree = "<group>"; };
+		328A92B769017B28C51D2EFE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
+		371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift; sourceTree = "<group>"; };
+		39ECDED2DD45C1EC5AEB9206 /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift; sourceTree = "<group>"; };
 		3A14A839A5EB460283B1F75B /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		3B2C7FBF1EB7DBF000A99D44 /* Helm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helm.m; path = Teacher/Helm.m; sourceTree = "<group>"; };
 		3B2C7FC01EB7DBF000A99D44 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helm.swift; path = Teacher/Helm.swift; sourceTree = "<group>"; };
@@ -568,9 +613,14 @@
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		6DF7526D87BCDDCAB4075E5E /* Conversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Conversation.swift; path = models/Conversation.swift; sourceTree = "<group>"; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
+		7019E31E382DF66B9D14BD25 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; sourceTree = "<group>"; };
+		715FA7B506E025841189821D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift; sourceTree = "<group>"; };
+		72ABFA1F7D7A39B7F076CC0C /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
+		73DCB88DA3ECC3A55C5772A6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A0EEB8EFFD2C55D1AA39353 /* QuizSubmission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizSubmission.swift; path = models/QuizSubmission.swift; sourceTree = "<group>"; };
 		7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Interactable.xcodeproj; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; };
+		8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8523CC8C3560F5F179BB84D4 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift; path = data/CourseBrowserPageTest/CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
@@ -586,28 +636,39 @@
 		9FCE7BB01ED6340C00DD1693 /* PushNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
 		9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
 		A06E780FA4F813E8535599C4 /* Discussion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Discussion.swift; path = models/Discussion.swift; sourceTree = "<group>"; };
+		A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; sourceTree = "<group>"; };
 		A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		A77ACE41DEF36F816C9F81E2 /* QuizQuestion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizQuestion.swift; path = models/QuizQuestion.swift; sourceTree = "<group>"; };
 		AA8F13453A04E64C495109D4 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift; sourceTree = "<group>"; };
+		AAA2CE83FCF7E3A5CEF100C6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AE0146025D5E27613B19DA93 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysPageObjects.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
 		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewHacker.h; path = Teacher/WebViewHacker.h; sourceTree = "<group>"; };
 		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewHacker.m; path = Teacher/WebViewHacker.m; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
+		B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseModuleItem.swift; path = models/CourseModuleItem.swift; sourceTree = "<group>"; };
+		B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; sourceTree = "<group>"; };
 		B70862A515621F745F8148C6 /* DiscussionEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiscussionEntry.swift; path = models/DiscussionEntry.swift; sourceTree = "<group>"; };
 		BB28BA928334A7C4FFA230C7 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = models/Attachment.swift; sourceTree = "<group>"; };
 		C3B77F1C0B62FA8B31FF0A08 /* EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; sourceTree = "<group>"; };
 		C7A08992613846128FD3E3D2 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
+		CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift; sourceTree = "<group>"; };
 		CAC8D0646677276C36E70E17 /* GroupMembership.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupMembership.swift; path = models/GroupMembership.swift; sourceTree = "<group>"; };
 		CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enrollment.swift; path = models/Enrollment.swift; sourceTree = "<group>"; };
+		CEE442A069DF0F82B2A6AE25 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift; sourceTree = "<group>"; };
 		D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubmissionComment.swift; path = models/SubmissionComment.swift; sourceTree = "<group>"; };
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
+		D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; sourceTree = "<group>"; };
+		E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift; sourceTree = "<group>"; };
+		E8A5D28EB09C19518A6BA81F /* CourseModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseModule.swift; path = models/CourseModule.swift; sourceTree = "<group>"; };
+		EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift; sourceTree = "<group>"; };
 		F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentOverride.swift; path = models/AssignmentOverride.swift; sourceTree = "<group>"; };
 		F6FC13EF8804255A313109F1 /* ConversationMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConversationMessage.swift; path = models/ConversationMessage.swift; sourceTree = "<group>"; };
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
 		F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPage.swift; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
+		FA10A579F7F9ADB535EC6CAD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -788,6 +849,8 @@
 				61FCAF3C1E5FC0190042921A /* libcxxreact.a */,
 				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
 				61FCAF3E1E5FC0190042921A /* libjschelpers.a */,
+				2C5F359E1EEB437E006A26F9 /* libthird-party.a */,
+				2C5F35A01EEB437E006A26F9 /* libdouble-conversion.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -839,6 +902,8 @@
 				56FD6751A8BF861246980476 /* CourseBrowserPageTest */,
 				BAA3161B08EDCBBFF9A59B2D /* CourseSettingsPageTest */,
 				A28EBC62822C9634F1AE7766 /* AllCoursesListPageTest */,
+				46390B051F5EC30034393E49 /* AssignmentDetailsPageTest */,
+				72E0A7F5E2781FAFDAA67148 /* AssignmentsListPageTest */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -898,6 +963,7 @@
 			isa = PBXGroup;
 			children = (
 				3BEF7BF51E7C96860092C864 /* libART.a */,
+				2C5F35811EEB437E006A26F9 /* libART-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -909,6 +975,28 @@
 				3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */,
 			);
 			name = Branding;
+			sourceTree = "<group>";
+		};
+		46390B051F5EC30034393E49 /* AssignmentDetailsPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */,
+				715FA7B506E025841189821D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift */,
+				328A92B769017B28C51D2EFE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift */,
+				0AF4CD2A2F10EABBB6B24B6E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift */,
+				8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */,
+				73DCB88DA3ECC3A55C5772A6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift */,
+				E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */,
+				CEE442A069DF0F82B2A6AE25 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift */,
+				AAA2CE83FCF7E3A5CEF100C6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift */,
+				371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */,
+				D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */,
+				FA10A579F7F9ADB535EC6CAD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift */,
+				A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */,
+				B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */,
+				CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */,
+			);
+			name = AssignmentDetailsPageTest;
 			sourceTree = "<group>";
 		};
 		4924260C1EAEB37C0046ED43 /* Products */ = {
@@ -1056,6 +1144,16 @@
 			path = Teacher/Login;
 			sourceTree = "<group>";
 		};
+		72E0A7F5E2781FAFDAA67148 /* AssignmentsListPageTest */ = {
+			isa = PBXGroup;
+			children = (
+				7019E31E382DF66B9D14BD25 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */,
+				39ECDED2DD45C1EC5AEB9206 /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift */,
+				72ABFA1F7D7A39B7F076CC0C /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */,
+			);
+			name = AssignmentsListPageTest;
+			sourceTree = "<group>";
+		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1167,6 +1265,8 @@
 				7A0EEB8EFFD2C55D1AA39353 /* QuizSubmission.swift */,
 				6DF7526D87BCDDCAB4075E5E /* Conversation.swift */,
 				F6FC13EF8804255A313109F1 /* ConversationMessage.swift */,
+				E8A5D28EB09C19518A6BA81F /* CourseModule.swift */,
+				B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -1451,6 +1551,27 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C5F35811EEB437E006A26F9 /* libART-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libART-tvOS.a";
+			remoteRef = 2C5F35801EEB437E006A26F9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C5F359E1EEB437E006A26F9 /* libthird-party.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libthird-party.a";
+			remoteRef = 2C5F359D1EEB437E006A26F9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C5F35A01EEB437E006A26F9 /* libdouble-conversion.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libdouble-conversion.a";
+			remoteRef = 2C5F359F1EEB437E006A26F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2CF5409B1EA6772800F79DB1 /* libInteractable.a */ = {
@@ -1789,6 +1910,26 @@
 				BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */,
 				B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */,
 				9E6536DB74C410F2A191F54F /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift in Sources */,
+				646EA8592A1AF9C81B6877D4 /* CourseModule.swift in Sources */,
+				DDA2B605FB1586F3495269EF /* CourseModuleItem.swift in Sources */,
+				9DB84819BAE9F4B338DDC4AC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift in Sources */,
+				256358B5011A350B9B5F65F5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift in Sources */,
+				88F5E8BF43D0785FAE27C7F6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift in Sources */,
+				1D25A1A4E3FEEA56408EF301 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift in Sources */,
+				A94ACBBB553790F98F7C9EE5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift in Sources */,
+				81B7EA2B7B492D6C3CB4B65B /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift in Sources */,
+				ACE0FB9C60C46429FCB245BE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift in Sources */,
+				BFA74EE1DDF1A40F2A5AC5B7 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift in Sources */,
+				750B65D07ECFE3D90B2B6095 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift in Sources */,
+				65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */,
+				700E43A18ED77E9C4B9B4176 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift in Sources */,
+				867670EDD9E2689B080AE92E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift in Sources */,
+				D6924E8C8F31F0D47E297377 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift in Sources */,
+				451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */,
+				3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */,
+				3D3630BAF72F9C59B821A01B /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift in Sources */,
+				106B1153CAA11D0DBBDD356E /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift in Sources */,
+				D7F81812D843E6F9F678D00D /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1970,6 +2111,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1994,6 +2136,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;

@@ -17,23 +17,22 @@
 
 /* This is an auto-generated file. */
 
-struct Conversation {
-    static let read = "read"
-    static let unread = "unread"
-    static let starred = "starred"
-    static let archived = "archived"
+struct CourseModuleItem {
+    static let assignment = "Assignment"
+    static let discussion = "Discussion"
+    static let page = "Page"
+    static let quiz = "Quiz"
 
+    let contentId: Int
+    let externalUrl: String
+    let htmlUrl: String
     let id: Int
-    let subject: String
-    let workflowState: String
-    let lastMessage: String
-    let lastMessageAt: String
-    let lastAuthoredMessage: String
-    let lastAuthoredMessageAt: String
-    let messageCount: Int
-    let isPrivate: Bool
-    let starred: Bool
-    let messages: [ConversationMessage]
-    let participatingUserIds: [Int]
-    let contextCode: String
+    let indent: Int
+    let moduleId: Int
+    let newTab: Bool
+    let pageUrl: String
+    let position: Int
+    let title: String
+    let type: String
+    let url: String
 }
