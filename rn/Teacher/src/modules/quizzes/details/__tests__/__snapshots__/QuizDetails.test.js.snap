@@ -783,104 +783,12 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -2281,104 +2189,12 @@ exports[`QuizDetails displays access code 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -3779,104 +3595,12 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -5157,104 +4881,12 @@ exports[`QuizDetails renders 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -6595,104 +6227,12 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -8093,104 +7633,12 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -9531,104 +8979,12 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -10969,104 +10325,12 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -12407,104 +11671,12 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -13845,104 +13017,12 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -15283,104 +14363,12 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -16661,104 +15649,12 @@ exports[`QuizDetails renders allowed attempts 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -18099,104 +16995,12 @@ exports[`QuizDetails renders allowed attempts 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -19569,104 +18373,12 @@ exports[`QuizDetails renders assignment due dates 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -21007,104 +19719,12 @@ exports[`QuizDetails renders assignment group 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -22505,104 +21125,12 @@ exports[`QuizDetails renders published state 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -23943,104 +22471,12 @@ exports[`QuizDetails renders published state 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -25381,104 +23817,12 @@ exports[`QuizDetails renders quiz type 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -26819,104 +25163,12 @@ exports[`QuizDetails renders quiz type 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -28257,104 +26509,12 @@ exports[`QuizDetails renders scoring policy 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -29695,104 +27855,12 @@ exports[`QuizDetails renders scoring policy 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -31133,104 +29201,12 @@ exports[`QuizDetails renders scoring policy 3`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -32571,104 +30547,12 @@ exports[`QuizDetails renders show correct answers 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -34009,104 +31893,12 @@ exports[`QuizDetails renders show correct answers 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -35447,104 +33239,12 @@ exports[`QuizDetails renders shuffle answers 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -36885,104 +34585,12 @@ exports[`QuizDetails renders shuffle answers 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -38323,104 +35931,12 @@ exports[`QuizDetails renders time limit 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -39761,104 +37277,12 @@ exports[`QuizDetails renders time limit 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -41199,104 +38623,12 @@ exports[`QuizDetails renders view responses 1`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -42637,104 +39969,12 @@ exports[`QuizDetails renders view responses 2`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>
@@ -44015,104 +41255,12 @@ exports[`QuizDetails renders view responses 3`] = `
         >
           Description
         </Text>
-        <WebView
-          injectedJavaScript="
-          var height = document.getElementById('whizzy_content').clientHeight;
-          postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-        "
-          onMessage={[Function]}
-          scrollEnabled={true}
-          source={
-            Object {
-              "html": "
-            <html>
-                <head>
-                    <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                        initial-scale = 1.0, user-scalable = no\\" />
-                    <style>
-                        body {
-                            font: -apple-system-body;
-                            margin: 0;
-                            padding: 0;
-                            color: {{font-color}};
-                            background-color: {{background-color}};
-                        }
-                        img {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        video {
-                            width: auto;
-                            height: auto;
-                            max-width: 100%;
-                        }
-                        #whizzy_content {
-                            padding: {{padding}};
-                            margin: 0;
-                        }
-                    </style>
-                </head>
-            <body>
-                <div id='whizzy_content'>
-                This is quiz 1
-                </div>
-            </body>
-            
-            <script type=\\"text/javascript\\">
-                function onLoadAllImages(callback) {
-                    var images = document.getElementsByTagName('img');
-            
-                    for (var i = 0; i < images.length; i++) {
-                        if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                            images[i].parentNode.removeChild(images[i]);
-                        }
-                    }
-            
-                    images = document.getElementsByTagName('img');
-            
-                    var loadedImageCount = 0;
-            
-                    if (images.length > 0) {
-                        for(var i = 0; i < images.length; i++) {
-                            images[i].onload=checkIfImagesLoaded;
-                            images[i].onerror=checkIfImagesLoaded;
-                        }
-                    }
-                    else {
-                        callback();
-                    }
-            
-                    function checkIfImagesLoaded() {
-                        loadedImageCount++;
-                        if(loadedImageCount == images.length) {
-                            callback();
-                        }
-                    }
-                }
-            
-                onLoadAllImages(function () {
-                    // Inform the DiscussionEntryCell that all the images are loaded
-                    var iframe = document.createElement(\\"iframe\\");
-                    iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                    document.documentElement.appendChild(iframe);
-                    iframe.parentNode.removeChild(iframe);
-                    iframe = null;
-                });
-            </script>
-            </html>
-            ",
-            }
-          }
+        <View
+          onLayout={[Function]}
           style={
-            Array [
-              Object {
-                "flex": 1,
-              },
-              Object {
-                "height": 0,
-              },
-            ]
+            Object {
+              "flex": 1,
+            }
           }
         />
       </View>

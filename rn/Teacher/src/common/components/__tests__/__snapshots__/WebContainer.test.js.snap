@@ -1,304 +1,222 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render 1`] = `
-<WebView
-  injectedJavaScript="
-  var height = document.getElementById('whizzy_content').clientHeight;
-  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-"
-  onMessage={[Function]}
-  scrollEnabled={true}
-  source={
-    Object {
-      "html": "
-    <html>
-        <head>
-            <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                initial-scale = 1.0, user-scalable = no\\" />
-            <style>
-                body {
-                    font: -apple-system-body;
-                    margin: 0;
-                    padding: 0;
-                    color: {{font-color}};
-                    background-color: {{background-color}};
-                }
-                img {
-                    width: auto;
-                    height: auto;
-                    max-width: 100%;
-                }
-                video {
-                    width: auto;
-                    height: auto;
-                    max-width: 100%;
-                }
-                #whizzy_content {
-                    padding: {{padding}};
-                    margin: 0;
-                }
-            </style>
-        </head>
-    <body>
-        <div id='whizzy_content'>
-        undefined
-        </div>
-    </body>
-    
-    <script type=\\"text/javascript\\">
-        function onLoadAllImages(callback) {
-            var images = document.getElementsByTagName('img');
-    
-            for (var i = 0; i < images.length; i++) {
-                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                    images[i].parentNode.removeChild(images[i]);
-                }
-            }
-    
-            images = document.getElementsByTagName('img');
-    
-            var loadedImageCount = 0;
-    
-            if (images.length > 0) {
-                for(var i = 0; i < images.length; i++) {
-                    images[i].onload=checkIfImagesLoaded;
-                    images[i].onerror=checkIfImagesLoaded;
-                }
-            }
-            else {
-                callback();
-            }
-    
-            function checkIfImagesLoaded() {
-                loadedImageCount++;
-                if(loadedImageCount == images.length) {
-                    callback();
-                }
-            }
-        }
-    
-        onLoadAllImages(function () {
-            // Inform the DiscussionEntryCell that all the images are loaded
-            var iframe = document.createElement(\\"iframe\\");
-            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-            document.documentElement.appendChild(iframe);
-            iframe.parentNode.removeChild(iframe);
-            iframe = null;
-        });
-    </script>
-    </html>
-    ",
-    }
-  }
-  style={
-    Array [
-      undefined,
-      Object {
-        "height": 0,
-      },
-    ]
-  }
+<View
+  onLayout={[Function]}
+  style={undefined}
 />
 `;
 
 exports[`render html 1`] = `
-<WebView
-  injectedJavaScript="
-  var height = document.getElementById('whizzy_content').clientHeight;
-  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-"
-  onMessage={[Function]}
-  scrollEnabled={true}
-  source={
-    Object {
-      "html": "
-    <html>
-        <head>
-            <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                initial-scale = 1.0, user-scalable = no\\" />
-            <style>
-                body {
-                    font: -apple-system-body;
-                    margin: 0;
-                    padding: 0;
-                    color: {{font-color}};
-                    background-color: {{background-color}};
-                }
-                img {
-                    width: auto;
-                    height: auto;
-                    max-width: 100%;
-                }
-                video {
-                    width: auto;
-                    height: auto;
-                    max-width: 100%;
-                }
-                #whizzy_content {
-                    padding: {{padding}};
-                    margin: 0;
-                }
-            </style>
-        </head>
-    <body>
-        <div id='whizzy_content'>
-        <div>hello world</div>
-        </div>
-    </body>
-    
-    <script type=\\"text/javascript\\">
-        function onLoadAllImages(callback) {
-            var images = document.getElementsByTagName('img');
-    
-            for (var i = 0; i < images.length; i++) {
-                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                    images[i].parentNode.removeChild(images[i]);
-                }
-            }
-    
-            images = document.getElementsByTagName('img');
-    
-            var loadedImageCount = 0;
-    
-            if (images.length > 0) {
-                for(var i = 0; i < images.length; i++) {
-                    images[i].onload=checkIfImagesLoaded;
-                    images[i].onerror=checkIfImagesLoaded;
-                }
-            }
-            else {
-                callback();
-            }
-    
-            function checkIfImagesLoaded() {
-                loadedImageCount++;
-                if(loadedImageCount == images.length) {
-                    callback();
-                }
-            }
-        }
-    
-        onLoadAllImages(function () {
-            // Inform the DiscussionEntryCell that all the images are loaded
-            var iframe = document.createElement(\\"iframe\\");
-            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-            document.documentElement.appendChild(iframe);
-            iframe.parentNode.removeChild(iframe);
-            iframe = null;
-        });
-    </script>
-    </html>
-    ",
-    }
-  }
-  style={
-    Array [
-      undefined,
+<View
+  onLayout={[Function]}
+  style={undefined}
+>
+  <WebView
+    onMessage={[Function]}
+    scrollEnabled={true}
+    source={
       Object {
-        "height": 0,
-      },
-    ]
-  }
+        "html": "
+      <html>
+          <head>
+              <meta name=\\"viewport\\" content=\\"width=300,
+                  initial-scale = 1.0, user-scalable = no\\" />
+              <style>
+                  body {
+                      font: -apple-system-body;
+                      margin: 0;
+                      padding: 0;
+                      color: black;
+                      background-color: white;
+                  }
+                  img {
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                  }
+                  video {
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                  }
+                  #whizzy_content {
+                      padding: 0;
+                      margin: 0;
+                  }
+              </style>
+          </head>
+      <body>
+          <div id='whizzy_content'>
+          <div>hello world</div>
+          </div>
+          <script type=\\"text/javascript\\">
+          window.onload = function () {
+              let interval = setInterval(function () {
+                  if (window.originalPostMessage) {
+                      let height = document.documentElement.clientHeight;
+                      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
+                      clearInterval(interval)
+                  }
+              }, 100)
+          }
+          </script>
+      </body>
+      </html>
+      ",
+      }
+    }
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "height": 1,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`render with width zero 1`] = `
+<View
+  onLayout={[Function]}
+  style={undefined}
 />
 `;
 
 exports[`updates height from js 1`] = `
-<WebView
-  injectedJavaScript="
-  var height = document.getElementById('whizzy_content').clientHeight;
-  postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-"
-  onMessage={[Function]}
-  scrollEnabled={true}
-  source={
-    Object {
-      "html": "
-    <html>
-        <head>
-            <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                initial-scale = 1.0, user-scalable = no\\" />
-            <style>
-                body {
-                    font: -apple-system-body;
-                    margin: 0;
-                    padding: 0;
-                    color: {{font-color}};
-                    background-color: {{background-color}};
-                }
-                img {
-                    width: auto;
-                    height: auto;
-                    max-width: 100%;
-                }
-                video {
-                    width: auto;
-                    height: auto;
-                    max-width: 100%;
-                }
-                #whizzy_content {
-                    padding: {{padding}};
-                    margin: 0;
-                }
-            </style>
-        </head>
-    <body>
-        <div id='whizzy_content'>
-        <div>hello world</div>
-        </div>
-    </body>
-    
-    <script type=\\"text/javascript\\">
-        function onLoadAllImages(callback) {
-            var images = document.getElementsByTagName('img');
-    
-            for (var i = 0; i < images.length; i++) {
-                if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                    images[i].parentNode.removeChild(images[i]);
-                }
-            }
-    
-            images = document.getElementsByTagName('img');
-    
-            var loadedImageCount = 0;
-    
-            if (images.length > 0) {
-                for(var i = 0; i < images.length; i++) {
-                    images[i].onload=checkIfImagesLoaded;
-                    images[i].onerror=checkIfImagesLoaded;
-                }
-            }
-            else {
-                callback();
-            }
-    
-            function checkIfImagesLoaded() {
-                loadedImageCount++;
-                if(loadedImageCount == images.length) {
-                    callback();
-                }
-            }
-        }
-    
-        onLoadAllImages(function () {
-            // Inform the DiscussionEntryCell that all the images are loaded
-            var iframe = document.createElement(\\"iframe\\");
-            iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-            document.documentElement.appendChild(iframe);
-            iframe.parentNode.removeChild(iframe);
-            iframe = null;
-        });
-    </script>
-    </html>
-    ",
-    }
-  }
-  style={
-    Array [
-      undefined,
+<View
+  onLayout={[Function]}
+  style={undefined}
+>
+  <WebView
+    onMessage={[Function]}
+    scrollEnabled={true}
+    source={
       Object {
+        "html": "
+      <html>
+          <head>
+              <meta name=\\"viewport\\" content=\\"width=300,
+                  initial-scale = 1.0, user-scalable = no\\" />
+              <style>
+                  body {
+                      font: -apple-system-body;
+                      margin: 0;
+                      padding: 0;
+                      color: black;
+                      background-color: white;
+                  }
+                  img {
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                  }
+                  video {
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                  }
+                  #whizzy_content {
+                      padding: 0;
+                      margin: 0;
+                  }
+              </style>
+          </head>
+      <body>
+          <div id='whizzy_content'>
+          <div>hello world</div>
+          </div>
+          <script type=\\"text/javascript\\">
+          window.onload = function () {
+              let interval = setInterval(function () {
+                  if (window.originalPostMessage) {
+                      let height = document.documentElement.clientHeight;
+                      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
+                      clearInterval(interval)
+                  }
+              }, 100)
+          }
+          </script>
+      </body>
+      </html>
+      ",
+      }
+    }
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
         "height": 10,
-      },
-    ]
-  }
-/>
+      }
+    }
+  />
+</View>
+`;
+
+exports[`updates height from js with scroll disabled 1`] = `
+<View
+  onLayout={[Function]}
+  style={undefined}
+>
+  <WebView
+    onMessage={[Function]}
+    scrollEnabled={false}
+    source={
+      Object {
+        "html": "
+      <html>
+          <head>
+              <meta name=\\"viewport\\" content=\\"width=300,
+                  initial-scale = 1.0, user-scalable = no\\" />
+              <style>
+                  body {
+                      font: -apple-system-body;
+                      margin: 0;
+                      padding: 0;
+                      color: black;
+                      background-color: white;
+                  }
+                  img {
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                  }
+                  video {
+                      width: auto;
+                      height: auto;
+                      max-width: 100%;
+                  }
+                  #whizzy_content {
+                      padding: 0;
+                      margin: 0;
+                  }
+              </style>
+          </head>
+      <body>
+          <div id='whizzy_content'>
+          <div>hello world</div>
+          </div>
+          <script type=\\"text/javascript\\">
+          window.onload = function () {
+              let interval = setInterval(function () {
+                  if (window.originalPostMessage) {
+                      let height = document.documentElement.clientHeight;
+                      postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
+                      clearInterval(interval)
+                  }
+              }, 100)
+          }
+          </script>
+      </body>
+      </html>
+      ",
+      }
+    }
+    style={
+      Object {
+        "backgroundColor": "rgba(0, 0, 0, 0)",
+        "height": 10,
+      }
+    }
+  />
+</View>
 `;

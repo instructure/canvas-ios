@@ -142,104 +142,12 @@ exports[`DiscussionReplies renders 1`] = `
       >
         May 23, 2017 11:12 AM
       </Text>
-      <WebView
-        injectedJavaScript="
-        var height = document.getElementById('whizzy_content').clientHeight;
-        postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-      "
-        onMessage={[Function]}
-        scrollEnabled={false}
-        source={
-          Object {
-            "html": "
-          <html>
-              <head>
-                  <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                      initial-scale = 1.0, user-scalable = no\\" />
-                  <style>
-                      body {
-                          font: -apple-system-body;
-                          margin: 0;
-                          padding: 0;
-                          color: {{font-color}};
-                          background-color: {{background-color}};
-                      }
-                      img {
-                          width: auto;
-                          height: auto;
-                          max-width: 100%;
-                      }
-                      video {
-                          width: auto;
-                          height: auto;
-                          max-width: 100%;
-                      }
-                      #whizzy_content {
-                          padding: {{padding}};
-                          margin: 0;
-                      }
-                  </style>
-              </head>
-          <body>
-              <div id='whizzy_content'>
-              <p>1.0</p>
-              </div>
-          </body>
-          
-          <script type=\\"text/javascript\\">
-              function onLoadAllImages(callback) {
-                  var images = document.getElementsByTagName('img');
-          
-                  for (var i = 0; i < images.length; i++) {
-                      if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                          images[i].parentNode.removeChild(images[i]);
-                      }
-                  }
-          
-                  images = document.getElementsByTagName('img');
-          
-                  var loadedImageCount = 0;
-          
-                  if (images.length > 0) {
-                      for(var i = 0; i < images.length; i++) {
-                          images[i].onload=checkIfImagesLoaded;
-                          images[i].onerror=checkIfImagesLoaded;
-                      }
-                  }
-                  else {
-                      callback();
-                  }
-          
-                  function checkIfImagesLoaded() {
-                      loadedImageCount++;
-                      if(loadedImageCount == images.length) {
-                          callback();
-                      }
-                  }
-              }
-          
-              onLoadAllImages(function () {
-                  // Inform the DiscussionEntryCell that all the images are loaded
-                  var iframe = document.createElement(\\"iframe\\");
-                  iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                  document.documentElement.appendChild(iframe);
-                  iframe.parentNode.removeChild(iframe);
-                  iframe = null;
-              });
-          </script>
-          </html>
-          ",
-          }
-        }
+      <View
+        onLayout={[Function]}
         style={
-          Array [
-            Object {
-              "flex": 1,
-            },
-            Object {
-              "height": 0,
-            },
-          ]
+          Object {
+            "flex": 1,
+          }
         }
       />
       <Text
@@ -419,104 +327,12 @@ exports[`DiscussionReplies renders 1`] = `
             >
               May 23, 2017 11:12 AM
             </Text>
-            <WebView
-              injectedJavaScript="
-              var height = document.getElementById('whizzy_content').clientHeight;
-              postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height}));
-            "
-              onMessage={[Function]}
-              scrollEnabled={false}
-              source={
-                Object {
-                  "html": "
-                <html>
-                    <head>
-                        <meta name=\\"viewport\\" content=\\"width={{content-width}},
-                            initial-scale = 1.0, user-scalable = no\\" />
-                        <style>
-                            body {
-                                font: -apple-system-body;
-                                margin: 0;
-                                padding: 0;
-                                color: {{font-color}};
-                                background-color: {{background-color}};
-                            }
-                            img {
-                                width: auto;
-                                height: auto;
-                                max-width: 100%;
-                            }
-                            video {
-                                width: auto;
-                                height: auto;
-                                max-width: 100%;
-                            }
-                            #whizzy_content {
-                                padding: {{padding}};
-                                margin: 0;
-                            }
-                        </style>
-                    </head>
-                <body>
-                    <div id='whizzy_content'>
-                    <p>1.0</p>
-                    </div>
-                </body>
-                
-                <script type=\\"text/javascript\\">
-                    function onLoadAllImages(callback) {
-                        var images = document.getElementsByTagName('img');
-                
-                        for (var i = 0; i < images.length; i++) {
-                            if (images[i].src == '' || images[i].src == undefined || !images[i].hasAttribute('src')) {
-                                images[i].parentNode.removeChild(images[i]);
-                            }
-                        }
-                
-                        images = document.getElementsByTagName('img');
-                
-                        var loadedImageCount = 0;
-                
-                        if (images.length > 0) {
-                            for(var i = 0; i < images.length; i++) {
-                                images[i].onload=checkIfImagesLoaded;
-                                images[i].onerror=checkIfImagesLoaded;
-                            }
-                        }
-                        else {
-                            callback();
-                        }
-                
-                        function checkIfImagesLoaded() {
-                            loadedImageCount++;
-                            if(loadedImageCount == images.length) {
-                                callback();
-                            }
-                        }
-                    }
-                
-                    onLoadAllImages(function () {
-                        // Inform the DiscussionEntryCell that all the images are loaded
-                        var iframe = document.createElement(\\"iframe\\");
-                        iframe.setAttribute(\\"src\\", \\"whizzywig://finishedLoadingImages/\\");
-                        document.documentElement.appendChild(iframe);
-                        iframe.parentNode.removeChild(iframe);
-                        iframe = null;
-                    });
-                </script>
-                </html>
-                ",
-                }
-              }
+            <View
+              onLayout={[Function]}
               style={
-                Array [
-                  Object {
-                    "flex": 1,
-                  },
-                  Object {
-                    "height": 0,
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                }
               }
             />
             <Text

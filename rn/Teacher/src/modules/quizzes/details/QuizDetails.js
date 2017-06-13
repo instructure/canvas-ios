@@ -113,7 +113,7 @@ export class QuizDetails extends Component<any, Props, any> {
           { Boolean(quiz.description) &&
             <View style={style.section}>
               <Text style={style.header}>{i18n('Description')}</Text>
-              <WebContainer style={{ flex: 1 }} html={quiz.description}/>
+              <WebContainer style={{ flex: 1 }} html={quiz.description} scrollEnabled={false}/>
             </View>
           }
 

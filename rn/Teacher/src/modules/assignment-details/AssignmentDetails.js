@@ -90,7 +90,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           { Boolean(assignment.description) &&
             <View style={style.section}>
               <Text style={style.header}>{i18n('Description')}</Text>
-              <WebContainer style={{ flex: 1 }} html={assignment.description}/>
+              <WebContainer style={{ flex: 1 }} html={assignment.description} scrollEnabled={false} />
             </View>
           }
 
