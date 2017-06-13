@@ -49,12 +49,14 @@ export default class Avatar extends Component<any, Props, any> {
       )
     } else {
       const altText = this.props.userName
-      .split(' ')
-      .map((word) => word[0])
-      .filter((c) => c)
-      .reduce((m, c) => m + c)
-      .substring(0, 3)
-      .toUpperCase()
+        ? this.props.userName
+          .split(' ')
+          .map((word) => word[0])
+          .filter((c) => c)
+          .reduce((m, c) => m + c)
+          .substring(0, 3)
+          .toUpperCase()
+        : ''
       return (
         <View style={[styles.altImage, { height, width, borderRadius }]} accessibilityLabel=''>
           <Text style={[styles.altImageText, { fontSize }]}>{altText}</Text>
