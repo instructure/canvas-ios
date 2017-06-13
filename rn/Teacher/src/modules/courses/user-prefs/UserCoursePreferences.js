@@ -69,12 +69,6 @@ export class UserCoursePreferences extends Component {
       this.setState({ pending: false })
       this.props.navigator.dismissAllModals()
     }
-
-    if (props.course) {
-      this.setState({
-        name: props.course.name,
-      })
-    }
   }
 
   updateColor = (color: string): void => {
