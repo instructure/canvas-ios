@@ -80,9 +80,7 @@ class TeacherTest: XCTestCase {
     CanvasKeymaster.the().resetKeymasterForTesting()
     NativeLoginManager.shared().injectLoginInformation(nil)
     GREYTestHelper.enableFastAnimation()
-    
-    //NOTE: add this back in when MLB - 7796 is fixed
-    //domainPickerPage.assertPageObjects()
+    domainPickerPage.assertPageObjects()
   }
 
   // logIn(self)

@@ -36,6 +36,7 @@
 		2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
+		2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
@@ -531,6 +532,7 @@
 		2C50EE081E735CCB0096592C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
+		2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
@@ -1139,6 +1141,7 @@
 				6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */,
 				6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */,
 				61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */,
+				2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */,
 			);
 			name = Login;
 			path = Teacher/Login;
@@ -1819,6 +1822,7 @@
 				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
 				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
+				2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */,
 				61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */,
 				61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */,
 				9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */,

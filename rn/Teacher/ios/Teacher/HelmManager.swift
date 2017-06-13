@@ -1,5 +1,5 @@
 //
-//  HelmManager.swift
+//  Helm.swift
 //  Teacher
 //
 //  Created by Ben Kraus on 4/28/17.
@@ -39,17 +39,17 @@ open class HelmManager: NSObject {
     }
 
     open func reactWillReload() {
-        showLoadingState()
+        self.showLoadingState()
     }
 
     //  MARK: - Screen Configuration
 
     func register<T: HelmViewController>(screen: T) where T: HelmScreen {
-        viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
+        Helm.shared.viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
     }
     
     open func setScreenConfig(_ config: [String: Any], forScreenWithID screenInstanceID: String, hasRendered: Bool) {
-        if let vc = viewControllers.object(forKey: screenInstanceID as NSString) {
+        if let vc = Helm.shared.viewControllers.object(forKey: screenInstanceID as NSString) {
             vc.screenConfig = config
             vc.screenConfigRendered = hasRendered
             
@@ -61,13 +61,13 @@ open class HelmManager: NSObject {
     }
     
     open func setDefaultScreenConfig(_ config: [String: Any], forModule module: ModuleName) {
-        defaultScreenConfiguration[module] = config
+        Helm.shared.defaultScreenConfiguration[module] = config
     }
 
     //  MARK: - Navigation
     
     public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any]) {
-        guard let topViewController = topMostViewController() else { return }
+        guard let topViewController = type(of: self).shared.topMostViewController() else { return }
 
         let viewController = HelmViewController(moduleName: destinationModule, props: props)
         viewController.edgesForExtendedLayout = [.left, .right]
@@ -89,13 +89,13 @@ open class HelmManager: NSObject {
         if let splitViewController = topViewController as? UISplitViewController {
             let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
             if canBecomeMaster {
-                masterModules.insert(destinationModule)
+                Helm.shared.masterModules.insert(destinationModule)
             }
             
             let sourceViewController = splitViewController.sourceController(moduleName: sourceModule)
             let resetDetailNavStackIfClickedFromMaster = splitViewController.masterTopViewController == sourceViewController
             
-            if let nav = navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: props, options: options) {
+            if let nav = self.navigationControllerForSplitViewControllerPush(splitViewController: splitViewController, sourceModule: sourceModule, destinationModule: destinationModule, props: props, options: options) {
                 if (resetDetailNavStackIfClickedFromMaster && !canBecomeMaster && splitViewController.viewControllers.count > 1) {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
                     viewController.navigationItem.leftItemsSupplementBackButton = true
@@ -113,7 +113,7 @@ open class HelmManager: NSObject {
     }
 
     open func popFrom(_ sourceModule: ModuleName) {
-        guard let topViewController = topMostViewController() else { return }
+        guard let topViewController = type(of: self).shared.topMostViewController() else { return }
         
         var nav: UINavigationController? = nil
         if let splitViewController = topViewController as? UISplitViewController {
@@ -134,7 +134,7 @@ open class HelmManager: NSObject {
     }
     
     public func present(_ module: ModuleName, withProps props: [String: Any], options: [String: Any]) {
-        guard let current = topMostViewController() else {
+        guard let current = type(of: self).shared.topMostViewController() else {
             return
         }
         
@@ -154,7 +154,7 @@ open class HelmManager: NSObject {
                 case "fade": viewController.modalTransitionStyle = .crossDissolve
                 case "curl": viewController.modalTransitionStyle = .partialCurl
                 case "push":
-                    viewController.transitioningDelegate = pushTransitioningDelegate
+                    viewController.transitioningDelegate = Helm.shared.pushTransitioningDelegate
                 default: viewController.modalTransitionStyle = .coverVertical
                 }
             }
@@ -204,14 +204,14 @@ open class HelmManager: NSObject {
 
     open func dismiss(_ options: [String: Any]) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-        guard let vc = topMostViewController() else { return }
+        guard let vc = type(of: self).shared.topMostViewController() else { return }
         let animated = options["animated"] as? Bool ?? true
         vc.dismiss(animated: animated, completion: nil)
     }
     
     open func dismissAllModals(_ options: [String: Any]) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
-        guard let vc = topMostViewController() else { return }
+        guard let vc = type(of: self).shared.topMostViewController() else { return }
         let animated = options["animated"] as? Bool ?? true
         vc.dismiss(animated: animated, completion: {
             self.dismiss(options)
@@ -219,7 +219,7 @@ open class HelmManager: NSObject {
     }
     
     func traitCollection(_ screenInstanceID: String, moduleName: String, callback: @escaping RCTResponseSenderBlock) {
-        var top = topMostViewController()
+        var top = type(of: self).shared.topMostViewController()
         //  FIXME: - fix sourceController method, something named more appropriate
         if let svc = top as? HelmSplitViewController, let sourceController = svc.sourceController(moduleName: moduleName) {
             top = sourceController
@@ -239,43 +239,33 @@ open class HelmManager: NSObject {
         callback([result])
     }
     
+    func methodQueue() -> DispatchQueue {
+        return .main
+    }
+    
     open func initLoadingStateIfRequired() {
         
         if let _ = UIApplication.shared.keyWindow?.rootViewController as? CKMDomainPickerViewController {
             return
         }
         
-        showLoadingState()
+        self.showLoadingState()
     }
     
     open func initTabs() {
-        let tabs = RootTabBarController(branding: HelmManager.branding)
-        rootViewController = tabs
+        let tabs = RootTabBarController(branding: Helm.branding)
+        Helm.shared.rootViewController = tabs
         UIApplication.shared.keyWindow?.rootViewController = tabs
     }
     
     open func showLoadingState() {
-        cleanup()
         let controller = LoadingStateViewController()
-        rootViewController = controller
+        Helm.shared.rootViewController = controller
         UIApplication.shared.keyWindow?.rootViewController = controller
-    }
-    
-    func cleanup() {
-        
-        // Cleanup is mainly used in rn reload situations or in ui testing
-        // There is a bug where the view controllers are sometimes leaked, and I cannot for the life of me figure out why
-        // This prevents weird rn behavior in cases where those leaks occur
-        let enumerator = viewControllers.objectEnumerator()
-        while let object = enumerator?.nextObject() {
-            guard let vc = object as? HelmViewController else { continue }
-            vc.view = nil
-        }
-        viewControllers.removeAllObjects()
     }
 }
 
-extension HelmManager {
+extension Helm {
     func navigationControllerForSplitViewControllerPush(splitViewController: UISplitViewController?, sourceModule: ModuleName, destinationModule: ModuleName, props: [String: Any], options: [String: Any]) -> HelmNavigationController? {
 
         if let detailViewController = splitViewController?.detailTopViewController, detailViewController.moduleName == sourceModule {
@@ -296,7 +286,7 @@ extension HelmManager {
     }
 }
 
-extension HelmManager {
+extension Helm {
     open func topMostViewController() -> UIViewController? {
         return rootViewController?.topMostViewController()
     }
@@ -312,7 +302,7 @@ extension HelmManager {
 
 extension UIViewController {
     func topMostViewController() -> UIViewController? {
-        if let presented = presentedViewController {
+        if let presented = self.presentedViewController {
             return presented.topMostViewController()
         } else if let tabBarSelected = (self as? UITabBarController)?.selectedViewController {
             return tabBarSelected.topMostViewController()

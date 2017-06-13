@@ -7,17 +7,58 @@
 //
 
 #import <React/RCTBridgeModule.h>
+#import "Teacher-Swift.h"
 
-@interface RCT_EXTERN_MODULE(Helm, NSObject)
+@interface Helm: NSObject <RCTBridgeModule>
 
-RCT_EXTERN_METHOD(setScreenConfig:(NSDictionary *)config forScreenWithID:(NSString *)screenInstanceID hasRendered:(BOOL)hasRendered)
-RCT_EXTERN_METHOD(setDefaultScreenConfig:(NSDictionary *)config forModule:(NSString *)module)
-RCT_EXTERN_METHOD(pushFrom:(NSString *)sourceModule destinationModule:(NSString*)module withProps:(NSDictionary *)props options:(NSDictionary *)options)
-RCT_EXTERN_METHOD(popFrom:(NSString *)sourceModule)
-RCT_EXTERN_METHOD(present:(NSString *)module withProps:(NSDictionary *)props options:(NSDictionary *)options)
-RCT_EXTERN_METHOD(dismiss:(NSDictionary *)options)
-RCT_EXTERN_METHOD(dismissAllModals:(NSDictionary *)options)
-RCT_EXTERN_METHOD(traitCollection:(NSString *)screenInstanceID moduleName:(NSString*)moduleName callback:(RCTResponseSenderBlock *)callback)
-RCT_EXTERN_METHOD(initNativeViewHierarchy)
+@end
+
+@implementation Helm
+
+RCT_EXPORT_MODULE();
+
+- (dispatch_queue_t)methodQueue {
+    return dispatch_get_main_queue();
+}
+
+RCT_EXPORT_METHOD(setScreenConfig:(NSDictionary *)config forScreenWithID:(NSString *)screenInstanceID hasRendered:(BOOL)hasRendered) {
+    [[HelmManager shared] setScreenConfig:config forScreenWithID:screenInstanceID hasRendered:hasRendered];
+}
+
+RCT_EXPORT_METHOD(setDefaultScreenConfig:(NSDictionary *)config forModule:(NSString *)module) {
+    [[HelmManager shared] setDefaultScreenConfig:config forModule:module];
+}
+
+RCT_EXPORT_METHOD(pushFrom:(NSString *)sourceModule destinationModule:(NSString*)module withProps:(NSDictionary *)props options:(NSDictionary *)options) {
+    [[HelmManager shared] pushFrom:sourceModule destinationModule:module withProps:props options:options];
+}
+
+RCT_EXPORT_METHOD(popFrom:(NSString *)sourceModule) {
+    [[HelmManager shared] popFrom:sourceModule];
+}
+
+RCT_EXPORT_METHOD(present:(NSString *)module withProps:(NSDictionary *)props options:(NSDictionary *)options) {
+    [[HelmManager shared] present:module withProps:props options:options];
+}
+
+RCT_EXPORT_METHOD(dismiss:(NSDictionary *)options) {
+    [[HelmManager shared] dismiss:options];
+}
+
+RCT_EXPORT_METHOD(dismissAllModals:(NSDictionary *)options) {
+    [[HelmManager shared] dismissAllModals:options];
+}
+
+RCT_EXPORT_METHOD(traitCollection:(NSString *)screenInstanceID moduleName:(NSString*)moduleName callback:(RCTResponseSenderBlock)callback) {
+    [[HelmManager shared] traitCollection:screenInstanceID moduleName:moduleName callback:callback];
+}
+
+RCT_EXPORT_METHOD(initLoadingStateIfRequired) {
+    [[HelmManager shared] initLoadingStateIfRequired];
+}
+
+RCT_EXPORT_METHOD(initTabs) {
+    [[HelmManager shared] initTabs];
+}
 
 @end

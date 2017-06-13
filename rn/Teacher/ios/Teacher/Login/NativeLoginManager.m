@@ -9,12 +9,22 @@
 #import "NativeLoginManager.h"
 #import <React/RCTLog.h>
 #import <React/RCTBridge.h>
+#import "Teacher-Swift.h"
 
 @import CanvasKeymaster;
 @import CocoaLumberjack;
 
-@interface NativeLoginManager()
+@interface NativeLoginManager ()
+
+@property (nonatomic) NSDictionary *injectedLoginInfo;
+@property (nonatomic) RACDisposable *loginObserver;
+@property (nonatomic) RACDisposable *logoutObserver;
+@property (nonatomic) RACDisposable *clientObserver;
+@property (nonatomic) UIViewController *domainPicker;
+@property (nonatomic) CKIClient *currentClient;
+
 - (void)setup;
+
 @end
 
 // Object used to send events to React Native about login
@@ -56,6 +66,18 @@ RCT_EXPORT_METHOD(logout)
     [TheKeymaster logout];
 }
 
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(loginInformation)
+{
+    NSDictionary *injected = [[NativeLoginManager shared] injectedLoginInfo];
+    if (injected) {
+        return injected;
+    }
+    
+    // I imagine that we can extend this to checking keymaster in a synchronous way,
+    // which would improve app startup time
+    return nil;
+}
+
 RCT_EXPORT_METHOD(startObserving)
 {
     self.isObserving = YES;
@@ -84,17 +106,6 @@ RCT_EXPORT_METHOD(stopObserving)
 - (NSArray<NSString *> *)supportedEvents {
     return @[@"Login"];
 }
-
-@end
-
-@interface NativeLoginManager ()
-
-@property (nonatomic) NSDictionary *injectedLoginInfo;
-@property (nonatomic) RACDisposable *loginObserver;
-@property (nonatomic) RACDisposable *logoutObserver;
-@property (nonatomic) RACDisposable *clientObserver;
-@property (nonatomic) UIViewController *domainPicker;
-@property (nonatomic) CKIClient *currentClient;
 
 @end
 
@@ -182,10 +193,11 @@ RCT_EXPORT_METHOD(stopObserving)
 
 - (void)injectLoginInformation:(NSDictionary *)info {
     
-    self.injectedLoginInfo = info;
+    NSMutableDictionary *mutableInfo = [info mutableCopy];
+    mutableInfo[@"skipHydrate"] = @YES;
+    self.injectedLoginInfo = mutableInfo;
     
     if (!info) {
-        [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:@{}];
         UIViewController *controller = self.domainPicker ?: [UIViewController new];
         [self.delegate didLogout:controller];
     }
@@ -193,13 +205,8 @@ RCT_EXPORT_METHOD(stopObserving)
         
         NSString *accessToken = info[@"authToken"];
         NSAssert(accessToken, @"You must provide an access token when injecting login information");
-        
         [self.delegate didLogin:self.currentClient];
-        
-        // See the above method called startObserving to understand why we need a delay here
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[NativeLogin sharedInstance] sendEventWithName:@"Login" body:info];
-        });
+        [[[HelmManager shared] bridge] reload];
     }
 }
 

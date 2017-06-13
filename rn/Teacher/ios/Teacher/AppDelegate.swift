@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func prepareReactNative() {
-        Helm.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
+        HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
     }
     
     func preparePSPDFKit() {
@@ -71,7 +71,7 @@ extension AppDelegate: RCTBridgeDelegate {
 extension AppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            Helm.branding = Brand(webPayload: brandingInfo)
+            HelmManager.branding = Brand(webPayload: brandingInfo)
         }
     }
     

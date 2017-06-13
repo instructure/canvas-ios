@@ -73,7 +73,7 @@ final class HelmViewController: UIViewController, HelmScreen {
         
         super.init(nibName: nil, bundle: nil)
         
-        Helm.shared.register(screen: self)
+        HelmManager.shared.register(screen: self)
         setupSensibleDefaults()
     }
     
@@ -89,7 +89,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     // MARK: - View lifecycle
     
     override open func loadView() {
-        self.view = RCTRootView(bridge: Helm.shared.bridge, moduleName: moduleName, initialProperties: props)
+        self.view = RCTRootView(bridge: HelmManager.shared.bridge, moduleName: moduleName, initialProperties: props)
     }
     
     // Do stuff that you'd usually do in viewDidLoad here, rather than there.
@@ -120,9 +120,9 @@ final class HelmViewController: UIViewController, HelmScreen {
         defer { statusBarDirty = false }
         
         let duration = statusBarUpdateAnimation != .none ? 0.2 : 0
-        UIView.animate(withDuration: duration, animations: {
-            self.setNeedsStatusBarAppearanceUpdate()
-        })
+        UIView.animate(withDuration: duration) { [weak self] in
+            self?.setNeedsStatusBarAppearanceUpdate()
+        }
     }
     
     override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -202,7 +202,7 @@ final class HelmViewController: UIViewController, HelmScreen {
             navigationController?.setNavigationBarHidden(navBarHidden, animated: true)
         }
         
-        if let navBarColor = screenConfig[PropKeys.navBarColor] ?? Helm.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarColor] {
+        if let navBarColor = screenConfig[PropKeys.navBarColor] ?? HelmManager.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarColor] {
             if let navBarColorNone = navBarColor as? String, navBarColorNone == "none" {
                 navigationController?.navigationBar.barTintColor = nil
             } else {
@@ -210,7 +210,7 @@ final class HelmViewController: UIViewController, HelmScreen {
             }
         }
         
-        if let navBarButtonColor = screenConfig[PropKeys.navBarButtonColor] ?? Helm.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarButtonColor] {
+        if let navBarButtonColor = screenConfig[PropKeys.navBarButtonColor] ?? HelmManager.shared.defaultScreenConfiguration[moduleName]?[PropKeys.navBarButtonColor] {
             if let navBarButtonColorNone = navBarButtonColor as? String, navBarButtonColorNone == "none" {
                 navigationController?.navigationBar.tintColor = nil
             } else {
@@ -367,7 +367,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     
     func barButtonTapped(_ barButton: UIBarButtonItem) {
         if let action: NSString = barButton.getAssociatedObject(&Associated.barButtonAction) {
-            Helm.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
+            HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
         }
     }
     
@@ -397,7 +397,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if let onTraitCollectionChange = screenConfig["onTraitCollectionChange"] as? NSString {
-            Helm.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [onTraitCollectionChange])
+            HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [onTraitCollectionChange])
         }
     }
 }

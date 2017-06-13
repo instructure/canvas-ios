@@ -16,6 +16,7 @@ import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
+import hydrate from './src/redux/hydrate-action'
 
 const PushNotifications = NativeModules.PushNotifications
 
@@ -33,16 +34,17 @@ global.V05 = true
 global.V06 = true
 global.V07 = true
 
-const nativeLogin = NativeModules.NativeLogin
+const NativeLogin = NativeModules.NativeLogin
 
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
+Helm.initLoadingStateIfRequired()
 
-const emitter = new NativeEventEmitter(nativeLogin)
-emitter.addListener('Login', async (info: {
+const loginHandler = async (info: {
   authToken: string,
   baseURL: string,
   branding: Object,
   user: SessionUser,
+  skipHydrate: boolean,
 }) => {
   if (info.user) {
     // flow already thinks the id is a string but it's not so coerce ;)
@@ -54,12 +56,24 @@ emitter.addListener('Login', async (info: {
   }
 
   if (!info.authToken) {
+    setSession(null)
     store.dispatch(logout)
   } else {
     PushNotifications.requestPermissions()
     setSession(info)
-    hydrateStoreFromPersistedState(store)
+    if (!info.skipHydrate) {
+      await hydrateStoreFromPersistedState(store)
+    } else {
+      store.dispatch(hydrate())
+    }
+    Helm.initTabs()
   }
+}
 
-  Helm.initNativeViewHierarchy()
-})
+const loginInfo = NativeLogin.loginInformation()
+if (loginInfo) {
+  loginHandler(loginInfo)
+}
+
+const emitter = new NativeEventEmitter(NativeLogin)
+emitter.addListener('Login', loginHandler)

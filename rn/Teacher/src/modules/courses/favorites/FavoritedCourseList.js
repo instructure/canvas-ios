@@ -74,7 +74,7 @@ export class FavoritedCourseList extends Component {
     )
   }
 
-  render () {
+  _renderComponent = () => {
     if (!this.props.pending && !this.props.courses.length) {
       return (
         <NoCourses
@@ -82,6 +82,18 @@ export class FavoritedCourseList extends Component {
         />
       )
     }
+
+    return <CourseList
+      {...this.props}
+      selectCourse={this.selectCourse}
+      onCoursePreferencesPressed={this.showUserCoursePreferences}
+      width={deviceWidth}
+      header={this.renderHeader()}
+      onRefresh={this.props.refresh}
+    />
+  }
+
+  render () {
     return (
       <Screen
         navBarTranslucent={true}
@@ -105,14 +117,7 @@ export class FavoritedCourseList extends Component {
           },
         ]}
         >
-        <CourseList
-          {...this.props}
-          selectCourse={this.selectCourse}
-          onCoursePreferencesPressed={this.showUserCoursePreferences}
-          width={deviceWidth}
-          header={this.renderHeader()}
-          onRefresh={this.props.refresh}
-        />
+        { this._renderComponent() }
       </Screen>
     )
   }

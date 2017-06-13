@@ -53,7 +53,5 @@ class EditCoursesPageTest: TeacherTest {
         editCoursesListPage.assertCourseIsNotfavorited(favoritedCourse)
         editCoursesListPage.dismissToFavoriteCoursesPage()
         coursesListPage.assertCourseDoesNotExist(favoritedCourse)
-    }
-    
-    
+    } 
 }

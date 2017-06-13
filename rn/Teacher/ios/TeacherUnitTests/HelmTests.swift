@@ -10,7 +10,7 @@ import XCTest
 
 class HelmTests: XCTestCase {
     
-    var helm = Helm.shared
+    var helm = HelmManager.shared
     
     override func setUp() {
         super.setUp()
