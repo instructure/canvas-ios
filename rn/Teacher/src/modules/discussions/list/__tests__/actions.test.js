@@ -30,4 +30,42 @@ describe('refreshDiscussions', () => {
       },
     ])
   })
+
+  it('should update discussion', async () => {
+    const updatedDiscussion = template.discussion({
+      title: 'update',
+      assignment: null,
+      author: null,
+      html_url: '',
+      permissions: [],
+    })
+    const originalDiscussion = template.discussion({ assignment: null, author: null, html_url: '', permissions: [] })
+    const api = {
+      updateDiscussion: apiResponse(updatedDiscussion),
+    }
+    const actions = Actions(api)
+    const action = actions.updateDiscussion(updatedDiscussion, originalDiscussion, 1)
+    const result = await testAsyncAction(action)
+    expect(result).toMatchObject([
+      {
+        type: actions.updateDiscussion.toString(),
+        pending: true,
+        payload: {
+          handlesError: true,
+          updatedDiscussion,
+          originalDiscussion,
+        },
+      },
+      {
+        type: actions.updateDiscussion.toString(),
+        payload: {
+          handlesError: true,
+          result: {
+
+            data: updatedDiscussion,
+          },
+        },
+      },
+    ])
+  })
 })

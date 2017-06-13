@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import {
   StyleSheet,
   View,
+  TouchableHighlight,
+  Image,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -19,6 +21,7 @@ export type Props = {
   onPress: (discussion: Discussion) => void,
   index: number,
   tintColor: ?string,
+  onToggleDiscussionGrouping: Function,
 }
 
 export default class DiscussionsRow extends Component<any, Props, any> {
@@ -35,34 +38,61 @@ export default class DiscussionsRow extends Component<any, Props, any> {
             title={discussion.title}
             titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
             border='bottom'
-            disclosureIndicator={true}
+            disclosureIndicator={false}
             testID={`discussion-row-${this.props.index}`}
             onPress={this._onPress}
             height='auto'
           >
-            <DotSeparated style={style.subtitle} separated={this._dueDate(discussion)} />
+            <View style={style.rowContent}>
+              <View style={style.mainContentColumn}>
+                <DotSeparated style={style.subtitle} separated={this._dueDate(discussion)}/>
 
-            {points &&
-              <View style={style.details}>
-                <Text style={style.points}>{points}</Text>
-              </View>
-            }
+                {points &&
+                <View style={style.details}>
+                  <Text style={style.points}>{points}</Text>
+                </View>
+                }
 
-            {discussionDetails &&
-              <View style={style.details}>
-                {discussionDetails}
+                {discussionDetails &&
+                <View style={style.details}>
+                  {discussionDetails}
+                </View>
+                }
               </View>
-            }
+              { this._renderKabob() }
+            </View>
           </Row>
+
         </View>
-        {discussion.published ? <View style={style.publishedIndicatorLine} /> : <View />}
+        {discussion.published ? <View style={style.publishedIndicatorLine}/> : <View />}
         { unreadDot }
       </View>
     )
   }
 
+  _renderKabob = () => {
+    const discussion = this.props.discussion
+    return (
+      <TouchableHighlight
+        style={style.kabobButton}
+        onPress={this._onToggleDiscussionGrouping}
+        accessibilityTraits='button'
+        accessible={true}
+        accessibilityLabel={i18n('Change {discussionTitle} to different grouping', { discussionTitle: discussion.title })}
+        underlayColor='#ffffff00'
+        testID={`discussion.kabob-${this.props.discussion.id}`}
+      >
+        <Image style={style.kabob} source={Images.kabob}/>
+      </TouchableHighlight>
+    )
+  }
+
   _onPress = () => {
     this.props.onPress(this.props.discussion)
+  }
+
+  _onToggleDiscussionGrouping = () => {
+    this.props.onToggleDiscussionGrouping(this.props.discussion)
   }
 
   _dueDate = (discussion: Discussion) => {
@@ -90,7 +120,8 @@ export default class DiscussionsRow extends Component<any, Props, any> {
   _renderIcon = () => {
     return (
       <View style={style.icon}>
-        <PublishedIcon published={this.props.discussion.published} tintColor={this.props.tintColor} image={ this.props.discussion.assignment ? Images.course.assignments : Images.course.discussions} />
+        <PublishedIcon published={this.props.discussion.published} tintColor={this.props.tintColor}
+                       image={ this.props.discussion.assignment ? Images.course.assignments : Images.course.discussions}/>
       </View>
     )
   }
@@ -127,6 +158,16 @@ export default class DiscussionsRow extends Component<any, Props, any> {
 
 const unreadDotSize = 5
 const style = StyleSheet.create({
+  rowContent: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  mainContentColumn: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   publishedIndicatorLine: {
     backgroundColor: '#00AC18',
     position: 'absolute',
@@ -161,5 +202,21 @@ const style = StyleSheet.create({
     position: 'absolute',
     top: 6,
     left: 8,
+  },
+  kabobButton: {
+    flex: 0,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: 43,
+    height: 43,
+    marginTop: -15,
+  },
+  kabob: {
+    alignSelf: 'flex-end',
+    width: 18,
+    height: 18,
+    tintColor: '#000',
+    transform: [{ rotate: '90deg' }],
   },
 })

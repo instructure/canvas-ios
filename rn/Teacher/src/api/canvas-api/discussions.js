@@ -30,6 +30,11 @@ export function getDiscussions (courseID: string, parameters: GetDiscussionsPara
   return exhaust(discussions)
 }
 
+export function updateDiscussion (courseID: string, discussion: Discussion): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussion.id}`
+  return httpClient().put(url, { ...discussion })
+}
+
 export function getAllDiscussionEntries (courseID: string, discussionID: string): Promise<ApiResponse<DiscussionView>> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/view`
   return httpClient().get(url)

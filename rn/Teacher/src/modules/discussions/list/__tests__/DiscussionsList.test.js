@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import 'react-native'
+import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
@@ -12,6 +12,9 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../../routing')
+  .mock('ActionSheetIOS', () => ({
+    showActionSheetWithOptions: jest.fn(),
+  }))
 
 const template = {
   ...require('../../../../__templates__/helm'),
@@ -22,10 +25,13 @@ const template = {
 describe('DiscussionsList', () => {
   let props: Props
   beforeEach(() => {
+    jest.resetAllMocks()
     props = {
       discussions: [],
       navigator: template.navigator(),
       courseColor: null,
+      updateDiscussion: jest.fn(),
+      courseID: 1,
     }
   })
 
@@ -72,6 +78,69 @@ describe('DiscussionsList', () => {
     ]
     testRender(props)
   })
+
+  it('returns correct options when pinned and locked', () => {
+    props.discussions = []
+    let list = render(props).getInstance()
+    let options = list._optionsForTogglingDiscussion(template.discussion({ id: '2', pinned: true, locked: true }))
+    let expected = ['Unpin', 'Open for comments', 'Delete', 'Cancel']
+    expect(options).toEqual(expected)
+  })
+
+  it('returns correct options when unpinned and unlocked', () => {
+    props.discussions = []
+    let list = render(props).getInstance()
+    let options = list._optionsForTogglingDiscussion(template.discussion({ id: '2', pinned: false, locked: false }))
+    let expected = ['Pin', 'Close for comments', 'Delete', 'Cancel']
+    expect(options).toEqual(expected)
+  })
+
+  it('Will open an action sheet and press pin/unpin', () => {
+    const input = template.discussion({ pinned: false, locked: false })
+    const expected = template.discussion({ pinned: true, locked: false })
+    testActionSheet(input, expected, 0)
+  })
+
+  it('Will open an action sheet and press open/close for comments', () => {
+    const input = template.discussion({ pinned: false, locked: false })
+    const expected = template.discussion({ pinned: false, locked: true })
+    testActionSheet(input, expected, 1)
+  })
+
+  it('Will open an action sheet and press open/close for comments when pinned', () => {
+    const input = template.discussion({ pinned: true, locked: false })
+    const expected = template.discussion({ pinned: false, locked: true })
+    testActionSheet(input, expected, 1)
+  })
+
+  it('Will open an action sheet and press pinned when closed for comments', () => {
+    const input = template.discussion({ pinned: false, locked: true })
+    const expected = template.discussion({ pinned: true, locked: false })
+    testActionSheet(input, expected, 0)
+  })
+
+  it('Will open an action sheet and press delete', () => {
+    const input = template.discussion({ pinned: false, locked: true })
+    const expected = template.discussion({ pinned: true, locked: false })
+    testActionSheet(input, expected, 2, false)
+  })
+
+  it('Will open an action sheet and press cancel', () => {
+    const input = template.discussion({ pinned: false, locked: true })
+    const expected = template.discussion({ pinned: true, locked: false })
+    testActionSheet(input, expected, 3, false)
+  })
+
+  function testActionSheet (inputDiscussion: Discussion, expectedDiscussion: Discussion, buttonIndex: number, expectToCallUpdateDiscussion: boolean = true) {
+    let list = render(props).getInstance()
+    list._onToggleDiscussionGrouping(inputDiscussion)
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](buttonIndex)
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+    if (expectToCallUpdateDiscussion) {
+      expect(props.updateDiscussion).toHaveBeenCalledWith(expectedDiscussion, inputDiscussion, 1)
+    }
+  }
 
   function testRender (props: Props) {
     expect(render(props).toJSON()).toMatchSnapshot()

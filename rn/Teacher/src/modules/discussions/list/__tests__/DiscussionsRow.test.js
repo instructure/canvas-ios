@@ -21,6 +21,7 @@ describe('DiscussionsRow', () => {
       onPress: jest.fn(),
       index: 0,
       tintColor: '#fff',
+      onToggleDiscussionGrouping: jest.fn(),
     }
   })
 

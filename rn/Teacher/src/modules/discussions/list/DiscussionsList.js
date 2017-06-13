@@ -8,6 +8,7 @@ import {
   View,
   StyleSheet,
   SectionList,
+  ActionSheetIOS,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -45,6 +46,7 @@ export class DiscussionsList extends Component<any, Props, any> {
         index={index}
         tintColor={this.props.courseColor}
         onPress={this._selectedDiscussion}
+        onToggleDiscussionGrouping={this._onToggleDiscussionGrouping}
       />
     )
   }
@@ -57,9 +59,42 @@ export class DiscussionsList extends Component<any, Props, any> {
     this.props.navigator.show(discussion.html_url)
   }
 
+  _optionsForTogglingDiscussion = (discussion: Discussion) => {
+    let lockOption = discussion.locked ? i18n('Open for comments') : i18n('Close for comments')
+    let pinOption = discussion.pinned ? i18n('Unpin') : i18n('Pin')
+    let options = [pinOption, lockOption]
+    options.push(i18n('Delete'))
+    options.push(i18n('Cancel'))
+    return options
+  }
+
+  _onToggleDiscussionGrouping = (discussion: Discussion) => {
+    let options = this._optionsForTogglingDiscussion(discussion)
+
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: options,
+      cancelButtonIndex: options.length - 1,
+      destructiveButtonIndex: options.length - 2,
+    }, (button) => {
+      if (button === (options.length - 1)) return
+      if (button === (options.length - 2)) return
+      let updatedDiscussion = Object.assign({}, discussion)
+
+      if (button === 0) { updatedDiscussion.pinned = !updatedDiscussion.pinned; updatedDiscussion.locked = false }
+      if (button === 1) { updatedDiscussion.locked = !updatedDiscussion.locked; updatedDiscussion.pinned = false }
+
+      this.props.updateDiscussion(updatedDiscussion, discussion, this.props.courseID)
+    })
+  }
+
+  _sectionType (discussion: Discussion): string {
+    let type: string = discussion.locked ? 'A_locked' : discussion.pinned ? 'C_pinned' : 'B_discussion'
+    return type
+  }
+
   _getData = () => {
     const sections = this.props.discussions.reduce((data, discussion) => {
-      let type: string = discussion.locked ? 'A_locked' : discussion.pinned ? 'C_pinned' : 'B_discussion'
+      let type: string = this._sectionType(discussion)
       return {
         ...data,
         [type]: (data[type] || []).concat([discussion]),

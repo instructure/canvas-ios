@@ -10,9 +10,10 @@ import { default as AnnouncementListActions } from '../announcements/list/action
 import { default as EditActions } from './edit/actions'
 import i18n from 'format-message'
 import composeReducers from '../../redux/compose-reducers'
+
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
-const { refreshDiscussions } = ListActions
+const { refreshDiscussions, updateDiscussion } = ListActions
 const { refreshDiscussionEntries } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
 const { createDiscussion, deletePendingNewDiscussion } = EditActions
@@ -93,6 +94,35 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         [discussionID]: {
           ...entity,
           pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
+          error: null,
+        },
+      }
+    },
+  }),
+  [updateDiscussion.toString()]: handleAsync({
+    pending: (state, { originalDiscussion }) => ({
+      ...state,
+      [originalDiscussion.id]: {
+        ...state[originalDiscussion.id],
+        pending: state[originalDiscussion.id] && state[originalDiscussion.id].pending ? state[originalDiscussion.id].pending + 1 : 1,
+      },
+    }),
+    rejected: (state, { originalDiscussion, error }) => ({
+      ...state,
+      [originalDiscussion.id]: {
+        ...state[originalDiscussion.id],
+        data: originalDiscussion,
+        pending: state[originalDiscussion.id].pending - 1,
+        error: parseErrorMessage(error),
+      },
+    }),
+    resolved: (state, { updatedDiscussion }) => {
+      return {
+        ...state,
+        [updatedDiscussion.id]: {
+          ...state[updatedDiscussion.id],
+          data: updatedDiscussion,
+          pending: state[updatedDiscussion.id].pending - 1,
           error: null,
         },
       }
