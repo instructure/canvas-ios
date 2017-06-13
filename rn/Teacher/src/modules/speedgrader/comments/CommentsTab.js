@@ -11,6 +11,7 @@ import CommentRow, { type CommentRowProps, type CommentContent } from './Comment
 import CommentInput from './CommentInput'
 import DrawerState from '../utils/drawer-state'
 import SubmissionCommentActions, { type CommentActions } from './actions'
+import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
 import { type SubmittedContentDataProps } from './SubmittedContent'
 import CommentStatus from './CommentStatus'
 import Images from '../../../images'
@@ -52,6 +53,11 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
     )
   }
 
+  switchFile = (submissionID: string, attemptIndex: number, attachmentIndex: number) => {
+    this.props.selectSubmissionFromHistory(submissionID, attemptIndex)
+    this.props.selectFile(submissionID, attachmentIndex)
+  }
+
   renderComment = ({ item }: { item: CommentRowProps }) =>
     <CommentRow
       {...item}
@@ -59,6 +65,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
       style={{ transform: [{ rotate: '180deg' }] }}
       retryPendingComment={this.makeAComment}
       deletePendingComment={this.deletePendingComment}
+      switchFile={this.switchFile}
       localID={item.key}
     />
 
@@ -102,7 +109,7 @@ type RoutingProps = {
   drawerState: DrawerState,
 }
 
-type CommentsTabProps = CommentRows & RoutingProps & CommentActions
+type CommentsTabProps = CommentRows & RoutingProps & CommentActions & SpeedGraderActionsType
 
 type CommentRowData = {
   error?: string,
@@ -176,6 +183,8 @@ function rowForSubmission (user: User, attempt: Submission): CommentRowData {
     contents: {
       type: 'submission',
       items: items,
+      submissionID: attempt.id,
+      attemptIndex: attemptNumber - 1,
     },
     pending: 0,
   }
@@ -232,7 +241,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
 const Connected = connect(
   mapStateToProps,
-  SubmissionCommentActions
+  { ...SubmissionCommentActions, ...SpeedGraderActions }
 )(CommentsTab)
 
 export default (Connected: any)

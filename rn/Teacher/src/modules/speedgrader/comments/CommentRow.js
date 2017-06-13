@@ -77,7 +77,15 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
       case 'text':
         return <ChatBubble from={from} message={contents.message} />
       case 'submission':
-        return contents.items.map(content => <SubmittedContent {...content} />)
+        return contents.items.map((content, i) => (
+          <SubmittedContent
+            {...content}
+            attemptIndex={contents.attemptIndex}
+            attachmentIndex={i}
+            onPress={this.props.switchFile}
+            submissionID={contents.submissionID}
+          />
+          ))
       default:
         return undefined // TODO: other message content types
     }
@@ -104,7 +112,7 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
     return (
       <View style={[styles.row, this.props.style]}>
         {this.renderHeader()}
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
           {this.renderRetry()}
           {this.renderContents()}
         </View>
@@ -149,7 +157,12 @@ const styles = StyleSheet.create({
 })
 
 export type CommentContent = { type: 'text', message: string }
-  | { type: 'submission', items: Array<SubmittedContentDataProps> }
+  | {
+      type: 'submission',
+      items: Array<SubmittedContentDataProps>,
+      attemptIndex: number,
+      submissionID: string,
+    }
 
 export type CommentRowProps = {
   error?: string,
@@ -164,4 +177,5 @@ export type CommentRowProps = {
   localID: string,
   deletePendingComment: (string) => void,
   retryPendingComment: (CommentContent) => void,
+  switchFile: (string, number, number) => void,
 }

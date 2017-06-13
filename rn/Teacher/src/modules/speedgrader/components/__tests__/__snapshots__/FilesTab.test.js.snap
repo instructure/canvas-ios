@@ -49,7 +49,7 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
         >
           <View>
             <TouchableHighlight
-              accessibilityTraits="selected"
+              accessibilityTraits="none"
               accessible={true}
               onPress={[Function]}
               testID="speedgrader.files.row0"
@@ -129,19 +129,7 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
                       "alignSelf": "center",
                     }
                   }
-                >
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "height": 10,
-                        "resizeMode": "contain",
-                        "tintColor": "#008EE2",
-                        "width": 13,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
             </TouchableHighlight>
           </View>
@@ -892,7 +880,7 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
         >
           <View>
             <TouchableHighlight
-              accessibilityTraits="selected"
+              accessibilityTraits="none"
               accessible={true}
               onPress={[Function]}
               testID="speedgrader.files.row0"
@@ -972,19 +960,7 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
                       "alignSelf": "center",
                     }
                   }
-                >
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "height": 10,
-                        "resizeMode": "contain",
-                        "tintColor": "#008EE2",
-                        "width": 13,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
             </TouchableHighlight>
           </View>
@@ -1044,7 +1020,7 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
         >
           <View>
             <TouchableHighlight
-              accessibilityTraits="selected"
+              accessibilityTraits="none"
               accessible={true}
               onPress={[Function]}
               testID="speedgrader.files.row0"
@@ -1124,19 +1100,7 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
                       "alignSelf": "center",
                     }
                   }
-                >
-                  <Image
-                    source={1}
-                    style={
-                      Object {
-                        "height": 10,
-                        "resizeMode": "contain",
-                        "tintColor": "#008EE2",
-                        "width": 13,
-                      }
-                    }
-                  />
-                </View>
+                />
               </View>
             </TouchableHighlight>
           </View>

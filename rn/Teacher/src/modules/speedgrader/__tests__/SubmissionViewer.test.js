@@ -14,7 +14,7 @@ jest
 
 let defaultSelections = {
   selectedIndex: null,
-  selectedAttachmentIndex: null,
+  selectedAttachmentIndex: 0,
 }
 
 let defaultSub = {

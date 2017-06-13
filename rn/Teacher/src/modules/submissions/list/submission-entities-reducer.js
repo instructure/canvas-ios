@@ -20,6 +20,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
             submission,
             pending: 0,
             error: null,
+            selectedAttachmentIndex: 0,
           },
         }), {})
       return { ...state, ...incoming }

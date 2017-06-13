@@ -16,6 +16,7 @@ export type SubmittedContentDataProps = {
   title: string,
   subtitle: string,
 }
+
 export type SubmittedContentActionProps = {
   onPress: () => void,
 }
@@ -23,11 +24,16 @@ export type SubmittedContentActionProps = {
 type Props
   = SubmittedContentDataProps
   & SubmittedContentActionProps
+  & {
+    attachmentIndex: number,
+    attemptIndex: number,
+    submissionID: string,
+  }
 
 export default class SubmittedContent extends Component<any, Props, any> {
 
   selectContent = () => {
-    this.props.onPress()
+    this.props.onPress(this.props.submissionID, this.props.attemptIndex, this.props.attachmentIndex)
   }
 
   render () {
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     paddingVertical: 6,
     paddingHorizontal: 8,
-    marginVertical: 8,
+    marginVertical: 4,
     maxWidth: 304,
   },
   icon: {

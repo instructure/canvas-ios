@@ -60,9 +60,10 @@ describe('SubmissionGrader', () => {
   it('returns a label with the correct number of files', () => {
     let props = {
       selectedIndex: 0,
+      selectedAttachmentIndex: 0,
       submissionProps: {
         submission: template.submissionHistory([{
-          attachments: [{}],
+          attachments: [{ preview_url: 'https://google.com' }],
           submission_type: 'online_upload',
         }]),
       },

@@ -64,6 +64,21 @@ test('comments render properly', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('calling switchFile will call the correct actions', () => {
+  let actions = {
+    selectSubmissionFromHistory: jest.fn(),
+    selectFile: jest.fn(),
+  }
+
+  const instance = renderer.create(
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} {...actions} />
+  ).getInstance()
+
+  instance.switchFile('1', '2', '3')
+  expect(actions.selectSubmissionFromHistory).toHaveBeenCalledWith('1', '2')
+  expect(actions.selectFile).toHaveBeenCalledWith('1', '3')
+})
+
 test('mapStateToProps returns no comments for no submissionID', () => {
   const props = {
     courseID: '123',
@@ -165,12 +180,14 @@ test('mapStateToProps returns comment and submission rows', () => {
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
         contents: {
+          attemptIndex: 3,
           items: [{
             contentID: 'text',
             icon: 1,
             subtitle: 'This is my submission!',
             title: 'Text Submission',
           }],
+          submissionID: '32',
           type: 'submission',
         },
         date: new Date('2017-03-17T19:13:25.000Z'),
@@ -182,6 +199,7 @@ test('mapStateToProps returns comment and submission rows', () => {
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
         contents: {
+          attemptIndex: 2,
           items: [
             {
               contentID: 'url',
@@ -190,6 +208,7 @@ test('mapStateToProps returns comment and submission rows', () => {
               title: 'URL Submission',
             },
           ],
+          submissionID: '32',
           type: 'submission',
         },
         date: new Date('2017-03-17T19:12:25.000Z'),
@@ -201,6 +220,7 @@ test('mapStateToProps returns comment and submission rows', () => {
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
         contents: {
+          attemptIndex: 1,
           items: [
             {
               contentID: 'attachment-111',
@@ -210,6 +230,7 @@ test('mapStateToProps returns comment and submission rows', () => {
             },
           ],
           type: 'submission',
+          submissionID: '32',
         },
         date: new Date('2017-03-17T19:11:25.000Z'),
         from: 'them',
@@ -220,6 +241,7 @@ test('mapStateToProps returns comment and submission rows', () => {
       {
         avatarURL: 'http://www.fillmurray.com/100/100',
         contents: {
+          attemptIndex: 0,
           items: [
             {
               contentID: 'attachment-111',
@@ -228,6 +250,7 @@ test('mapStateToProps returns comment and submission rows', () => {
               title: 'Book Report',
             },
           ],
+          submissionID: '32',
           type: 'submission',
         },
         date: new Date('2017-03-17T19:10:25.000Z'),

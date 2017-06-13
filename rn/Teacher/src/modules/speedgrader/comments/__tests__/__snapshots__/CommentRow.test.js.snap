@@ -128,6 +128,7 @@ exports[`My message rows render correctly 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "flexWrap": "wrap",
         "justifyContent": "space-between",
       }
     }
@@ -331,6 +332,7 @@ exports[`Their message rows render correctly 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "flexWrap": "wrap",
         "justifyContent": "space-between",
       }
     }
@@ -533,6 +535,7 @@ exports[`my media comments render correclty 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "flexWrap": "wrap",
         "justifyContent": "space-between",
       }
     }
@@ -670,6 +673,7 @@ exports[`their media comments render correctly 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "flexWrap": "wrap",
         "justifyContent": "space-between",
       }
     }
@@ -805,6 +809,7 @@ exports[`their submissions render correctly 1`] = `
       Object {
         "alignItems": "center",
         "flexDirection": "row",
+        "flexWrap": "wrap",
         "justifyContent": "space-between",
       }
     }

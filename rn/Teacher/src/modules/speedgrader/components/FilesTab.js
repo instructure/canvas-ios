@@ -61,10 +61,7 @@ export class FilesTab extends Component {
   keyExtractor = (item: Object, index: number) => index
 
   renderRow = ({ item, index }: { item: Object, index: number }) => {
-    let selected = index === 0
-    if (this.props.selectedAttachmentIndex != null) {
-      selected = this.props.selectedAttachmentIndex === index
-    }
+    let selected = this.props.selectedAttachmentIndex === index
     const traits = selected ? 'selected' : 'none'
     return <View>
       <TouchableHighlight

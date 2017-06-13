@@ -34,7 +34,6 @@ export class Header extends Component {
     this.state = {
       showingPicker: false,
       easeAnimation: new Animated.Value(92),
-      display: 'none',
     }
   }
 
@@ -43,11 +42,10 @@ export class Header extends Component {
       Animated.timing(
         this.state.easeAnimation,
         { toValue: previousState.showingPicker ? 92 : 284 }
-      ).start(() => previousState.showingPicker && this.setState({ display: 'none' }))
+      ).start()
 
       return {
         showingPicker: !previousState.showingPicker,
-        display: previousState.showingPicker ? previousState.display : 'flex',
       }
     })
   }
@@ -92,7 +90,6 @@ export class Header extends Component {
           </View>
         </TouchableHighlight>
         <PickerIOS
-          style={[styles.picker, { display: this.state.display }]}
           selectedValue={index}
           onValueChange={this.changeSelectedSubmission}
           testID='header.picker'
@@ -242,7 +239,6 @@ type RouterProps = {
 type State = {
   showingPicker: boolean,
   easeAnimation: Animated.Value,
-  display: 'flex' | 'none',
 }
 
 type HeaderDataProps = {

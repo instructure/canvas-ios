@@ -27,11 +27,13 @@ test('it captures entities', () => {
       submission: data[0],
       pending: 0,
       error: null,
+      selectedAttachmentIndex: 0,
     },
     '2': {
       submission: data[1],
       pending: 0,
       error: null,
+      selectedAttachmentIndex: 0,
     },
   })
 })

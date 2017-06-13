@@ -16,6 +16,7 @@ const testComment: CommentRowProps = {
   localID: '1',
   deletePendingComment: jest.fn(),
   retryPendingComment: jest.fn(),
+  switchFile: jest.fn(),
 }
 
 test('Their message rows render correctly', () => {

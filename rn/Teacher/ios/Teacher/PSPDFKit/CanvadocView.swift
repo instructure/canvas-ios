@@ -41,6 +41,9 @@ class CanvadocView: UIView {
     
     var config: Dictionary<String, Any> = [:] {
         didSet {
+            pdfViewController = nil
+            bringSubview(toFront: activityIndicator)
+            activityIndicator.startAnimating()
             setNeedsLayout()
         }
     }

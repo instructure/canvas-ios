@@ -277,14 +277,6 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
       accessible={false}
       onValueChange={[Function]}
       selectedValue={1}
-      style={
-        Array [
-          undefined,
-          Object {
-            "display": "none",
-          },
-        ]
-      }
       testID="header.picker"
     >
       <Item
@@ -577,14 +569,6 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
       accessible={false}
       onValueChange={[Function]}
       selectedValue={1}
-      style={
-        Array [
-          undefined,
-          Object {
-            "display": "none",
-          },
-        ]
-      }
       testID="header.picker"
     >
       <Item
@@ -886,14 +870,6 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
       accessible={false}
       onValueChange={[Function]}
       selectedValue={0}
-      style={
-        Array [
-          undefined,
-          Object {
-            "display": "none",
-          },
-        ]
-      }
       testID="header.picker"
     >
       <Item
@@ -1195,14 +1171,6 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
       accessible={false}
       onValueChange={[Function]}
       selectedValue={1}
-      style={
-        Array [
-          undefined,
-          Object {
-            "display": "none",
-          },
-        ]
-      }
       testID="header.picker"
     >
       <Item
@@ -1726,14 +1694,6 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
       accessible={false}
       onValueChange={[Function]}
       selectedValue={1}
-      style={
-        Array [
-          undefined,
-          Object {
-            "display": "none",
-          },
-        ]
-      }
       testID="header.picker"
     >
       <Item

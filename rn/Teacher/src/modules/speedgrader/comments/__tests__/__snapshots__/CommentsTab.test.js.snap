@@ -236,6 +236,7 @@ exports[`comments render properly 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "flexWrap": "wrap",
                 "justifyContent": "space-between",
               }
             }
@@ -446,6 +447,7 @@ exports[`comments render properly 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "flexWrap": "wrap",
                 "justifyContent": "space-between",
               }
             }
@@ -655,6 +657,7 @@ exports[`comments render properly 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "flexWrap": "wrap",
                 "justifyContent": "space-between",
               }
             }
@@ -799,6 +802,7 @@ exports[`comments render properly 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "flexWrap": "wrap",
                 "justifyContent": "space-between",
               }
             }
@@ -941,6 +945,7 @@ exports[`comments render properly 1`] = `
               Object {
                 "alignItems": "center",
                 "flexDirection": "row",
+                "flexWrap": "wrap",
                 "justifyContent": "space-between",
               }
             }

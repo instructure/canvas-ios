@@ -34,7 +34,7 @@ type SubmissionGraderProps = {
   submissionID: ?string,
   submissionProps: Object,
   selectedIndex: ?number,
-  selectedAttachmentIndex: ?number,
+  selectedAttachmentIndex: number,
   drawerState: DrawerState,
   assignmentSubmissionTypes: Array<SubmissionType>,
   isModeratedGrading: boolean,

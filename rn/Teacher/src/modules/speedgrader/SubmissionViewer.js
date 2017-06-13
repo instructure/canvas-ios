@@ -20,7 +20,7 @@ type SubmissionViewerProps = {
   isCurrentStudent: boolean,
   submissionProps: SubmissionDataProps,
   selectedIndex: ?number,
-  selectedAttachmentIndex: ?number,
+  selectedAttachmentIndex: number,
   assignmentSubmissionTypes: Array<SubmissionType>,
   size: { width: number, height: number },
   isModeratedGrading: boolean,
@@ -72,7 +72,7 @@ export default class SubmissionViewer extends Component {
 
   renderFile (submission: Submission) {
     if (submission.attachments) {
-      return <CanvadocViewer config={{ previewPath: submission.attachments[0].preview_url }} style={styles.container} />
+      return <CanvadocViewer config={{ previewPath: submission.attachments[this.props.selectedAttachmentIndex].preview_url }} style={styles.container} />
     }
 
     return null
@@ -124,7 +124,7 @@ export default class SubmissionViewer extends Component {
 
     const submission = this.currentSubmission()
     if (submission && submission.attempt) {
-      if (this.props.selectedAttachmentIndex != null && submission.attachments && submission.submission_type === 'online_upload') {
+      if (submission.attachments && submission.submission_type === 'online_upload') {
         return this.renderFile(submission) || <View />
       } else {
         return this.renderSubmission(submission)
