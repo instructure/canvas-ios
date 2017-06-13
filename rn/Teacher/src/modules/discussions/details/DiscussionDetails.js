@@ -74,10 +74,10 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
             <AssignmentSection >
               <View style={style.authorContainer}>
-                {user && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
+                {user && user.display_name && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
                                 style={style.avatar}/> }
-                <View style={style.authorInfoContainer}>
-                  <Text style={style.authorName}>{user.display_name} </Text>
+                <View style={[style.authorInfoContainer, { marginLeft: user.display_name ? global.style.defaultPadding : 0 }]}>
+                  { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
                   <Text style={style.authorDate}>{formattedDate(discussion.posted_at)}</Text>
                 </View>
               </View>
@@ -137,7 +137,6 @@ const style = StyleSheet.create({
   },
   authorInfoContainer: {
     flex: 1,
-    marginLeft: global.style.defaultPadding,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',

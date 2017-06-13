@@ -804,13 +804,17 @@ exports[`DiscussionDetails renders 1`] = `
                 </View>
                 <View
                   style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "flex": 1,
-                      "flexDirection": "column",
-                      "justifyContent": "flex-start",
-                      "marginLeft": 16,
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "flex-start",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "marginLeft": 16,
+                      },
+                    ]
                   }
                 >
                   <Text
@@ -838,7 +842,6 @@ exports[`DiscussionDetails renders 1`] = `
                     }
                   >
                     The Donald
-                     
                   </Text>
                   <Text
                     accessible={true}
