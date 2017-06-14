@@ -12,6 +12,7 @@ import AssignmentSection from './components/AssignmentSection'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
 import WebContainer from '../../common/components/WebContainer'
+import DescriptionDefaultView from '../../common/components/DescriptionDefaultView'
 import PublishedIcon from './components/PublishedIcon'
 import AssignmentDates from './components/AssignmentDates'
 import colors from '../../common/colors'
@@ -87,12 +88,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             </AssignmentSection>
           }
 
-          { Boolean(assignment.description) &&
-            <View style={style.section}>
-              <Text style={style.header}>{i18n('Description')}</Text>
-              <WebContainer style={{ flex: 1 }} html={assignment.description} scrollEnabled={false} />
-            </View>
-          }
+          <View style={style.section}>
+            <Text style={style.header}>{i18n('Description')}</Text>
+            {this.checkAssignmentDescription(assignment.description)}
+          </View>
 
         </RefreshableScrollView>
       </Screen>
@@ -126,6 +125,14 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       } else {
         this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
       }
+    }
+  }
+
+  checkAssignmentDescription (description: ?string) {
+    if (description) {
+      return (<WebContainer style={{ flex: 1 }} html={description}/>)
+    } else {
+      return (<DescriptionDefaultView />)
     }
   }
 }

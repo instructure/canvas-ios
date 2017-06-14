@@ -59,6 +59,17 @@ test('renders loading', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders without description', () => {
+  let props = {
+    ...defaultProps,
+    assignmentDetails: { ...assignment, description: null },
+  }
+  let tree = renderer.create(
+    <AssignmentDetails {...props} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('calls navigator.show when the edit button is pressed', () => {
   let navigator = template.navigator({
     showModal: jest.fn(),

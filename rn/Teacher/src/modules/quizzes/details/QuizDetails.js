@@ -15,6 +15,7 @@ import AssignmentDates from '../../assignment-details/components/AssignmentDates
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import WebContainer from '../../../common/components/WebContainer'
+import DescriptionDefaultView from '../../../common/components/DescriptionDefaultView'
 import {
   Heading1,
   Text,
@@ -110,12 +111,10 @@ export class QuizDetails extends Component<any, Props, any> {
               assignmentID={quiz.assignment_id} />
           </AssignmentSection>
 
-          { Boolean(quiz.description) &&
-            <View style={style.section}>
-              <Text style={style.header}>{i18n('Description')}</Text>
-              <WebContainer style={{ flex: 1 }} html={quiz.description} scrollEnabled={false}/>
-            </View>
-          }
+          <View style={style.section}>
+            <Text style={style.header}>{i18n('Description')}</Text>
+            {this.checkAssignmentDescription(quiz.description)}
+          </View>
 
           {this._renderDetails()}
           <TouchableHighlight
@@ -199,6 +198,14 @@ export class QuizDetails extends Component<any, Props, any> {
     if (this.props.assignment) {
       const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
       this.props.navigator.show(route, { modal: false }, { onEditPressed: this._editQuiz })
+    }
+  }
+
+  checkAssignmentDescription (description: ?string) {
+    if (description) {
+      return (<WebContainer style={{ flex: 1 }} html={description}/>)
+    } else {
+      return (<DescriptionDefaultView />)
     }
   }
 }
