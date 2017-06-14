@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    height: 20,
     backgroundColor: '#F5F5F5',
   },
   hidden: {

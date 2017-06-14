@@ -7,5 +7,6 @@ import { type StagedAssignmentDate } from '../AssignmentDatesEditor'
 export const stagedAssignmentDate: Template<StagedAssignmentDate> = template({
   id: '123456789',
   base: false,
-  valid: true,
+  validAssignees: true,
+  validDates: true,
 })

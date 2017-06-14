@@ -3141,7 +3141,6 @@ exports[`saving invalid name displays banner 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 20,
               "justifyContent": "flex-start",
             }
           }
@@ -4668,7 +4667,6 @@ exports[`saving invalid points possible displays banner 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 20,
               "justifyContent": "flex-start",
             }
           }
@@ -5621,7 +5619,6 @@ exports[`saving negative points possible displays banner 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 20,
               "justifyContent": "flex-start",
             }
           }

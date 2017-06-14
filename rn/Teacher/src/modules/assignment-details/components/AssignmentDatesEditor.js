@@ -267,7 +267,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         base: date.base,
         isNew: true,
         validAssignees: true,
-        validDates: true,
+        validDates: date.validDates,
         due_at: date.due_at,
         unlock_at: date.unlock_at,
         lock_at: date.lock_at,
