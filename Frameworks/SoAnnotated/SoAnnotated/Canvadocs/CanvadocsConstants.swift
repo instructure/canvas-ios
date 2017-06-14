@@ -19,18 +19,42 @@
 import UIKit
 import PSPDFKit
 
-let canvadocsAnnotationBlackColor = UIColor(rgba: "#000000")
-let canvadocsAnnotationRedColor = UIColor(rgba: "#FF0000")
-let canvadocsAnnotationBlueColor = UIColor(rgba: "#0000FF")
-let canvadocsAnnotationGreenColor = UIColor(rgba: "#00AA00")
+let standardCanvadocsColors: [UIColor] = CanvadocsAnnotationColor.allColors.map { $0.color }
+let highlightCanvadocsColors: [UIColor] = CanvadocsHighlightColor.allColors.map { $0.color }
 
-let canvadocsHighlightAnnotationYellowColor = UIColor(rgba: "#FFF688")
-let canvadocsHighlightAnnotationOrangeColor = UIColor(rgba: "#FCCC6A")
-let canvadocsHighlightAnnotationGreenColor = UIColor(rgba: "#BFF694")
-let canvadocsHighlightAnnotationBlueColor = UIColor(rgba: "#98DDFF")
+enum CanvadocsAnnotationColor: String {
+    case red = "#EE0612"
+    case orange = "#FC5E13"
+    case yellow = "#FCB900"
+    case brown = "#8D6437"
+    case green = "#00AC18"
+    case darkBlue = "#234C9F"
+    case blue = "#008EE2"
+    case pink = "#C31FA8"
+    case purple = "#741865"
+    case darkGray = "#363636"
+    
+    static var allColors: [CanvadocsAnnotationColor] = [.red, .orange, .yellow, .brown, .green, .darkBlue, .blue, .pink, .purple, .darkGray]
+    
+    var color: UIColor {
+        return UIColor(rgba: self.rawValue)
+    }
+}
 
-let standardCanvadocsColors: [UIColor] = [canvadocsAnnotationBlackColor, canvadocsAnnotationRedColor, canvadocsAnnotationBlueColor, canvadocsAnnotationGreenColor]
-let highlightCanvadocsColors: [UIColor] = [canvadocsHighlightAnnotationYellowColor, canvadocsHighlightAnnotationOrangeColor, canvadocsHighlightAnnotationGreenColor, canvadocsHighlightAnnotationBlueColor]
+enum CanvadocsHighlightColor: String {
+    case red = "#FF9999"
+    case orange = "#FFC166"
+    case yellow = "#FCE680"
+    case green = "#99EBA4"
+    case blue = "#80D0FF"
+    case pink = "#FFB9F1"
+    
+    static var allColors: [CanvadocsHighlightColor] = [.red, .orange, .yellow, .green, .blue, .pink]
+    
+    var color: UIColor {
+        return UIColor(rgba: self.rawValue)
+    }
+}
 
 
 
@@ -84,15 +108,19 @@ public let teacherAppConfiguration: PSPDFConfiguration = {
         builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink, .square, .circle, .line]
         builder.drawCreateMode = .separate
         builder.naturalDrawingAnnotationEnabled = false
-        builder.propertiesForAnnotations = [
-            .highlight: [["color"]],
-            PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
-            .square: [["color"]],
-            .circle: [["color"]],
-            .line: [["color"]],
-            .strikeOut: [[]],
-            .freeText: [["fontSize"]],
-        ]
+        
+        // This version of PSPDFKit is way buggy... so lets reenable all the options, while they work out the bugs.
+        // As of now (6/13/17), they say the fixes are on the way in 1-2 weeks.
+//        builder.propertiesForAnnotations = [
+//            .highlight: [["color"]],
+//            PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
+//            .square: [["color"]],
+//            .circle: [["color"]],
+//            .line: [["color"]],
+//            .strikeOut: [[]],
+//            .freeText: [["fontSize"]],
+//        ]
+        
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
         builder.hudViewMode = .never
     }

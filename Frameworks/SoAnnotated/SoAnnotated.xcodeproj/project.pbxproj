@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C1CBC6F1E58B97A00D3F15A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61A943461D55184300E0DEA5 /* Info.plist */; };
 		49C98DD51D921EE0006AF2FB /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A943631D5521F000E0DEA5 /* PSPDFKit.framework */; };
+		618878181EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */; };
 		61A943451D55184300E0DEA5 /* SoAnnotated.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A943441D55184300E0DEA5 /* SoAnnotated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A9434C1D55184300E0DEA5 /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A943411D55184300E0DEA5 /* SoAnnotated.framework */; };
 		61A943511D55184300E0DEA5 /* SoAnnotatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943501D55184300E0DEA5 /* SoAnnotatedTests.swift */; };
@@ -54,6 +55,7 @@
 		49998EC01E1D7DF600C98AC2 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998EC61E1D886200C98AC2 /* SoProgressive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BC09051DEF78D2007F6AE3 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFScrollView+Fixed.swift"; sourceTree = "<group>"; };
 		618D35611D64D7440067619F /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		618D35761D64EDE40067619F /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943411D55184300E0DEA5 /* SoAnnotated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 				61A943761D55294500E0DEA5 /* CanvadocsXFDFParser.swift */,
 				61A943771D55294500E0DEA5 /* CanvadocsConstants.swift */,
 				61A9437D1D55296900E0DEA5 /* Comments */,
+				618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */,
 			);
 			path = Canvadocs;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				61A943861D55298400E0DEA5 /* CommentReplyView.swift in Sources */,
 				61A9437B1D55294500E0DEA5 /* CanvadocsXFDFParser.swift in Sources */,
 				61A9437C1D55294500E0DEA5 /* CanvadocsConstants.swift in Sources */,
+				618878181EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift in Sources */,
 				61A943781D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
 				61A943791D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift in Sources */,
 				61A943841D55298400E0DEA5 /* CommentTableViewCell.swift in Sources */,

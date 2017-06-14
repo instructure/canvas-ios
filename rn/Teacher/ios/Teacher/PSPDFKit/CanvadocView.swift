@@ -41,10 +41,9 @@ class CanvadocView: UIView {
     
     var config: Dictionary<String, Any> = [:] {
         didSet {
-            pdfViewController = nil
-            bringSubview(toFront: activityIndicator)
-            activityIndicator.startAnimating()
+            removePDFViewFromView()
             setNeedsLayout()
+            bringSubview(toFront: activityIndicator)
         }
     }
     
@@ -70,7 +69,8 @@ class CanvadocView: UIView {
             addSubview(activityIndicator)
         }
         
-        if pdfViewController == nil {
+        // using the animating prop of the activity indicator as state to determine if we are already trying to load
+        if pdfViewController == nil, !activityIndicator.isAnimating {
             loadDocument()
         }
         
@@ -104,8 +104,18 @@ class CanvadocView: UIView {
         addSubview(flexibleToolbarContainer)
 
         flexibleToolbarContainer.show(animated: true, completion: nil)
+        self.pdfViewController?.annotationStateManager.add(self)
     }
     
+    private func removePDFViewFromView() {
+        toolbar.removeFromSuperview()
+        flexibleToolbarContainer.removeFromSuperview()
+        pdfViewController?.willMove(toParentViewController: nil)
+        pdfViewController?.removeFromParentViewController()
+        pdfViewController?.view.removeFromSuperview()
+        pdfViewController?.didMove(toParentViewController: nil)
+        pdfViewController = nil
+    }
     
     private func loadDocument() {
         activityIndicator.startAnimating()
@@ -142,6 +152,28 @@ class CanvadocView: UIView {
             if let response = task?.response as? HTTPURLResponse, response.statusCode != 302 {
                 // show an error of some sort
             }
+        }
+    }
+    
+    
+    fileprivate func setScrollEnabled(_ enabled: Bool) {
+        var view = self.superview
+        while view != nil {
+            if let scrollContainer = view as? RCTScrollView {
+                let scrollView = scrollContainer.scrollView
+                scrollView?.isScrollEnabled = enabled
+            }
+            view = view?.superview
+        }
+    }
+}
+
+extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
+    public func annotationStateManager(_ manager: PSPDFAnnotationStateManager, didChangeState oldState: PSPDFAnnotationString?, to newState: PSPDFAnnotationString?, variant oldVariant: PSPDFAnnotationString?, to newVariant: PSPDFAnnotationString?) {
+        if let _ = newState {
+            setScrollEnabled(false)
+        } else {
+            setScrollEnabled(true)
         }
     }
 }

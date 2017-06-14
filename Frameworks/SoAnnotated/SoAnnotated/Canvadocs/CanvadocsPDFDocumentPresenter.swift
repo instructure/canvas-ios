@@ -135,16 +135,16 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setPresets(inkPresets, forKey: .square, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .circle, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .line, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets([PSPDFColorPreset(color: canvadocsAnnotationRedColor)], forKey: .strikeOut, type: PSPDFStyleManagerColorPresetKey)
+        styleManager.setPresets(inkPresets, forKey: .strikeOut, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .freeText, type: PSPDFStyleManagerColorPresetKey)
 
-        styleManager.setLastUsedValue(canvadocsHighlightAnnotationYellowColor, forProperty: "color", forKey: .highlight)
-        styleManager.setLastUsedValue(canvadocsAnnotationRedColor, forProperty: "color", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
-        styleManager.setLastUsedValue(canvadocsAnnotationRedColor, forProperty: "color", forKey: .square)
-        styleManager.setLastUsedValue(canvadocsAnnotationRedColor, forProperty: "color", forKey: .circle)
-        styleManager.setLastUsedValue(canvadocsAnnotationRedColor, forProperty: "color", forKey: .line)
-        styleManager.setLastUsedValue(canvadocsAnnotationRedColor, forProperty: "color", forKey: .strikeOut)
-        styleManager.setLastUsedValue(canvadocsAnnotationBlackColor, forProperty: "color", forKey: .freeText)
+        styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: .highlight)
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .square)
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .circle)
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .line)
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .strikeOut)
+        styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: .freeText)
         styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
         styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: .square)
         styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: .circle)
@@ -162,7 +162,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         let strikeoutGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .strikeOut)])
         let freeTextGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .freeText)])
         let commentGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .note)])
-        let inkGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .ink, variant: .inkVariantPen, configurationBlock: PSPDFAnnotationGroupItem.inkConfigurationBlock()), PSPDFAnnotationGroupItem(type: .square), PSPDFAnnotationGroupItem(type: .circle), PSPDFAnnotationGroupItem(type: .line)])
+        let inkGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .ink, variant: .inkVariantPen, configurationBlock: PSPDFAnnotationGroupItem.inkConfigurationBlock())])
         pdfViewController.annotationToolbarController?.annotationToolbar.configurations = [PSPDFAnnotationToolbarConfiguration(annotationGroups: [commentGroup, inkGroup, highlightGroup, freeTextGroup, strikeoutGroup])]
 
         return pdfViewController
