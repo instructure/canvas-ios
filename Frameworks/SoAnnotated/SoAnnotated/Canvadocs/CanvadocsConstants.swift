@@ -105,7 +105,7 @@ public let teacherAppConfiguration: PSPDFConfiguration = {
         builder.shouldHideNavigationBarWithHUD = false
         builder.shouldHideStatusBarWithHUD = false
         builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
-        builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink, .square, .circle, .line]
+        builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink]
         builder.drawCreateMode = .separate
         builder.naturalDrawingAnnotationEnabled = false
         
