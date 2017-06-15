@@ -315,7 +315,7 @@ describe('map state to props', () => {
   })
 
   it('maps announcement state to props using new id', () => {
-    const announcement = template.announcement({ id: '45', title: 'IT WORKED' })
+    const announcement = template.discussion({ id: '45', title: 'IT WORKED' })
     const state: AppState = template.appState({
       entities: {
         ...template.appState().entities,
@@ -350,7 +350,7 @@ describe('map state to props', () => {
   })
 
   it('maps announcement state to props', () => {
-    const announcement = template.announcement({
+    const announcement = template.discussion({
       id: '1',
       title: 'Infernal Shrines',
       message: 'THE ENEMY IS ATTACKING YOUR CORE!',

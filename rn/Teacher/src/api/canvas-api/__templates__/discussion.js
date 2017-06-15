@@ -163,8 +163,3 @@ export const createDiscussionParams: Template<CreateDiscussionParameters> = temp
   delayed_post_at: null,
   is_announcement: false,
 })
-
-export const announcement: Template<Discussion> = template({
-  ...discussion(),
-  is_announcement: true,
-})

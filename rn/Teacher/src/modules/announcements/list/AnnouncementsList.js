@@ -54,7 +54,7 @@ export class AnnouncementsList extends Component<any, Props, any> {
     )
   }
 
-  renderRow = ({ item }: { item: Discussion }) => {
+  renderRow = ({ item, index }: { item: Discussion, index: number }) => {
     return (
       <Row
         title={item.title}
@@ -62,12 +62,20 @@ export class AnnouncementsList extends Component<any, Props, any> {
         border='bottom'
         height='auto'
         disclosureIndicator={true}
+        testID={`announcements.list.announcement.row-${index}`}
+        onPress={this.selectAnnouncement(item)}
       />
     )
   }
 
   addAnnouncement = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/announcements/new`, { modal: true })
+  }
+
+  selectAnnouncement (announcement: Discussion) {
+    return () => this.props.navigator.show(announcement.html_url, { modal: false }, {
+      isAnnouncement: true,
+    })
   }
 }
 

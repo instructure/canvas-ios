@@ -17,11 +17,17 @@
   "add_courses_fd45abf": {
     "message": "Add Courses"
   },
+  "add_description_required_e222e483": {
+    "message": "Add description (required)"
+  },
   "add_due_date_65b08f6c": {
     "message": "Add Due Date"
   },
   "add_media_cfa37b54": {
     "message": "Add Media"
+  },
+  "add_title_4f788d37": {
+    "message": "Add title"
   },
   "after_date_e5d9b0e1": {
     "message": "After { date }"
@@ -52,6 +58,9 @@
   },
   "always_3a59e701": {
     "message": "Always"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "Announcement Details"
   },
   "announcements_a4b8ed4a": {
     "message": "Announcements"
@@ -146,6 +155,9 @@
   "color_a363e1b0": {
     "message": "Color"
   },
+  "coming_soon_b059a738": {
+    "message": "Coming Soon..."
+  },
   "comment_7ef1428e": {
     "message": "Comment"
   },
@@ -202,6 +214,9 @@
   },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } at { timeString }"
+  },
+  "delay_posting_f45eed7d": {
+    "message": "Delay Posting"
   },
   "delete_a6efa79d": {
     "message": "Delete"
@@ -281,9 +296,6 @@
   "failed_comment_options_aa19a936": {
     "message": "Failed comment options"
   },
-  "favorites_c7e0207c": {
-    "message": "Favorites"
-  },
   "files_c300e900": {
     "message": "Files"
   },
@@ -344,9 +356,6 @@
   "highest_28ad71e6": {
     "message": "Highest"
   },
-  "inbox_bb245a60": {
-    "message": "Inbox"
-  },
   "incomplete_da3c2ea2": {
     "message": "Incomplete"
   },
@@ -401,6 +410,9 @@
   "name_1aed4a1b": {
     "message": "Name"
   },
+  "new_13daf639": {
+    "message": "New"
+  },
   "nickname_1e6da3ad": {
     "message": "Nickname"
   },
@@ -427,6 +439,12 @@
   },
   "no_internet_connection_9df26cf8": {
     "message": "No internet connection"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "No Messages"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "No Starred Messages"
   },
   "no_subject_2e2a413c": {
     "message": "(no subject)"
@@ -457,6 +475,9 @@
   },
   "off_5385ef3f": {
     "message": "Off"
+  },
+  "ok_c47544a2": {
+    "message": "OK"
   },
   "ok_ff1b646a": {
     "message": "Ok"
@@ -491,6 +512,9 @@
   "open_drawer_f3c8b11": {
     "message": "Open Drawer"
   },
+  "options_3ab0ea65": {
+    "message": "Options"
+  },
   "out_of_count_fc1cd44d": {
     "message": "Out of { count }"
   },
@@ -511,6 +535,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
+  },
+  "post_at_a9e0fecb": {
+    "message": "Post at..."
   },
   "practice_quiz_19a8505d": {
     "message": "Practice Quiz"
@@ -611,6 +638,12 @@
   "shuffle_answers_edb602b7": {
     "message": "Shuffle Answers"
   },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "Star messages by tapping the star in the message."
+  },
+  "starred_5a9efa8a": {
+    "message": "Starred"
+  },
   "submission_types_af57bf0": {
     "message": "Submission Types"
   },
@@ -626,8 +659,17 @@
   "survey_31a240e6": {
     "message": "Survey"
   },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "Swipe left or right to view other student submissions"
+  },
   "syllabus_f191f65b": {
     "message": "Syllabus"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "Tap and hold a rubric number to see its description"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "Tap the \"+\" to create a new conversation"
   },
   "text_submission_935eeb5": {
     "message": "Text Submission"
@@ -680,6 +722,9 @@
   "time_limit_a6f1a51e": {
     "message": "Time Limit"
   },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } Announcement"
+  },
   "title_ee03d132": {
     "message": "Title"
   },
@@ -712,6 +757,9 @@
   },
   "url_submission_f76327e3": {
     "message": "URL Submission"
+  },
+  "users_must_post_before_seeing_replies_d1761968": {
+    "message": "Users must post before seeing replies"
   },
   "view_long_description_bafad8a4": {
     "message": "View long description"

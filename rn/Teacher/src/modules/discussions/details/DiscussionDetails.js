@@ -38,6 +38,7 @@ type State = {
 
 export type Props = State & OwnProps & RefreshProps & Actions & {
   navigator: Navigator,
+  isAnnouncement?: boolean,
 }
 
 export class DiscussionDetails extends Component<any, Props, any> {
@@ -56,10 +57,12 @@ export class DiscussionDetails extends Component<any, Props, any> {
           onRefresh={this.props.refresh}>
             <AssignmentSection isFirstRow={true} style={style.topContainer}>
               <Heading1>{discussion.title}</Heading1>
-              <View style={style.pointsContainer}>
-                {points && <Text style={style.points}>{points}</Text>}
-                <PublishedIcon published={discussion.published} style={style.publishedIcon} />
-              </View>
+              { !this.props.isAnnouncement &&
+                <View style={style.pointsContainer}>
+                  {Boolean(points) && <Text style={style.points}>{points}</Text>}
+                  <PublishedIcon published={discussion.published} />
+                </View>
+              }
             </AssignmentSection>
 
             {discussion.assignment && <AssignmentSection
@@ -106,7 +109,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
     return (
       <Screen
-        title={i18n('Discussion Details')}
+        title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
         navBarColor={this.props.course.color}
         navBarStyle='dark'
         subtitle={this.props.course.name}>
@@ -166,12 +169,10 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginTop: 2,
   },
-  publishedIcon: {
-    marginLeft: 14,
-  },
   points: {
     fontWeight: '500',
     color: colors.grey4,
+    marginRight: 14,
   },
   link: {
     color: colors.link,

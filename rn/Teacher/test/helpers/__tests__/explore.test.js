@@ -62,4 +62,16 @@ describe('ComponentExplorer', () => {
     expect(results).toHaveLength(2)
     expect(results).toMatchObject([{ type: 'foo' }, { type: 'foo' }])
   })
+
+  it('should select by type', () => {
+    const obj = {
+      children: [
+        { type: 'bar' },
+        { type: 'foo' },
+        { type: 'foo' },
+      ],
+    }
+    expect(explore(obj).selectByType('bar')).toEqual({ type: 'bar' })
+    expect(explore(obj).selectByType('foo')).toEqual({ type: 'foo' })
+  })
 })

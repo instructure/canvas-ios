@@ -4,7 +4,7 @@ import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
 
-import { DiscussionDetails, mapStateToProps } from '../DiscussionDetails'
+import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDetails'
 import explore from '../../../../../test/helpers/explore'
 
 jest
@@ -14,6 +14,7 @@ jest
   .mock('WebView', () => 'WebView')
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
+  .mock('../../../assignment-details/components/PublishedIcon', () => 'PublishedIcon')
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
@@ -24,21 +25,35 @@ const template = {
 }
 
 describe('DiscussionDetails', () => {
-  let props
+  let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
     props = {
       refresh: jest.fn(),
+      refreshing: false,
       discussion: template.discussion({ id: '1' }),
       navigator: template.navigator(),
       discussionID: '1',
       courseID: '1',
       course: template.course({ id: 1 }),
+      title: null,
     }
   })
 
   it('renders', () => {
     testRender(props)
+  })
+
+  it('sets title depending on announcement', () => {
+    const title = (component) => {
+      const screen: any = explore(render(props).toJSON()).query(({ type }) => type === 'Screen')[0]
+      return screen.props.title
+    }
+    props.isAnnouncement = false
+    expect(title(render(props))).toEqual('Discussion Details')
+
+    props.isAnnouncement = true
+    expect(title(render(props))).toEqual('Announcement Details')
   })
 
   it('renders without a discussion', () => {
@@ -51,6 +66,19 @@ describe('DiscussionDetails', () => {
     const refresher: any = explore(tree).query(({ type }) => type === 'RCTScrollView')[0]
     refresher.props.onRefresh()
     expect(props.refresh).toHaveBeenCalled()
+  })
+
+  it('shows publish information', () => {
+    expect(
+      explore(render(props).toJSON()).selectByType('PublishedIcon')
+    ).toBeDefined()
+  })
+
+  it('hides publish information for announcements', () => {
+    props.isAnnouncement = true
+    expect(
+      explore(render(props).toJSON()).selectByType('PublishedIcon')
+    ).not.toBeDefined()
   })
 
   function testRender (props: any) {

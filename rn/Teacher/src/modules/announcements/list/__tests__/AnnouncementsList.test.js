@@ -5,6 +5,7 @@ import 'react-native'
 import renderer from 'react-test-renderer'
 
 import { AnnouncementsList, type Props, mapStateToProps } from '../AnnouncementsList'
+import explore from '../../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
@@ -45,6 +46,17 @@ describe('AnnouncementsList', () => {
 
   it('renders', () => {
     testRender(props)
+  })
+
+  it('navigates to announcement when row tapped', () => {
+    const announcement = template.discussion({ html_url: 'https://canvas.instructure.com/courses/1/discussions/2' })
+    props.navigator.show = jest.fn()
+    props.announcements = [announcement]
+    const row: any = explore(render(props).toJSON()).selectByID('announcements.list.announcement.row-0')
+    row.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith(announcement.html_url, { modal: false }, {
+      isAnnouncement: true,
+    })
   })
 
   function testRender (props: any) {

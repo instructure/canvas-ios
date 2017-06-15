@@ -32,6 +32,10 @@ class ComponentExplorer {
     return results.length > 0 ? results[0] : null
   }
 
+  selectByType (type: string): any {
+    return this.query(node => node.type === type)[0]
+  }
+
   query (match: (any) => boolean): Array<any> {
     return query(this.component, match)
   }
