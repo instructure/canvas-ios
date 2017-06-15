@@ -5,7 +5,7 @@ import { default as ListActions } from '../list/actions'
 import { default as EditActions } from '../../discussions/edit/actions'
 
 const { refreshAnnouncements } = ListActions
-const { createDiscussion } = EditActions
+const { createDiscussion, deleteDiscussion } = EditActions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
@@ -68,6 +68,27 @@ describe('refs', () => {
       ).toEqual({
         pending: 0,
         refs: ['23'],
+      })
+    })
+  })
+
+  describe('deleteDiscussion', () => {
+    it('removes ref', () => {
+      const initialState = {
+        pending: 0,
+        refs: ['3', '33'],
+      }
+      const resolved = {
+        type: deleteDiscussion.toString(),
+        payload: {
+          discussionID: '3',
+        },
+      }
+      expect(
+        refs(initialState, resolved)
+      ).toEqual({
+        pending: 0,
+        refs: ['33'],
       })
     })
   })

@@ -3,6 +3,7 @@
 import React from 'react'
 import {
   Alert,
+  ActionSheetIOS,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -62,6 +63,8 @@ describe('AnnouncementEdit', () => {
       error: null,
       navigator: template.navigator(),
       createDiscussion: jest.fn(),
+      updateDiscussion: jest.fn(),
+      deleteDiscussion: jest.fn(),
       deletePendingNewDiscussion: jest.fn(),
       defaultDate: new Date(0),
     }
@@ -157,6 +160,7 @@ describe('AnnouncementEdit', () => {
   })
 
   it('alerts save errors', () => {
+    props.announcementID = null
     jest.useFakeTimers()
     // $FlowFixMe
     Alert.alert = jest.fn()
@@ -171,6 +175,7 @@ describe('AnnouncementEdit', () => {
   })
 
   it('dismisses on successful save', () => {
+    props.announcementID = null
     props.navigator.dismissAllModals = jest.fn()
     const component = render(props)
     const createDiscussion = jest.fn(() => {
@@ -183,10 +188,10 @@ describe('AnnouncementEdit', () => {
 
   it('updates with new props', () => {
     const component = render(props)
-    const createDiscussion = jest.fn(() => {
+    const updateDiscussion = jest.fn(() => {
       setProps(component, { title: 'component will receive this title prop' })
     })
-    component.update(<AnnouncementEdit {...props} createDiscussion={createDiscussion} />)
+    component.update(<AnnouncementEdit {...props} updateDiscussion={updateDiscussion} />)
     tapDone(component)
     expect(component.toJSON()).toMatchSnapshot()
   })
@@ -224,6 +229,49 @@ describe('AnnouncementEdit', () => {
     expect(getDoneButton(component).disabled).toBeTruthy()
   })
 
+  it('calls updateDiscussion on done', () => {
+    props.updateDiscussion = jest.fn()
+    props.courseID = '1'
+    props.announcementID = '2'
+    const component = render(props)
+    changeTitle(component, 'UPDATED TITLE')
+    tapDone(component)
+    expect(props.updateDiscussion).toHaveBeenCalledWith(
+      '1',
+      { ...formFields, title: 'UPDATED TITLE', is_announcement: true, id: '2' },
+    )
+  })
+
+  it('does not render delete button if new', () => {
+    props.announcementID = null
+    expect(getDeleteButton(render(props))).toBeNull()
+  })
+
+  it('renders the delete button for edit', () => {
+    props.announcementID = '1'
+    expect(getDeleteButton(render(props))).not.toBeNull()
+  })
+
+  it('shows delete confirmation then deletes announcement', () => {
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
+    props.deleteDiscussion = jest.fn()
+    props.courseID = '1'
+    props.announcementID = '2'
+    tapDelete(render(props))
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+    expect(props.deleteDiscussion).toHaveBeenCalledWith('1', '2')
+  })
+
+  it('cancel delete confirmation does not delete announcement', () => {
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+    props.deleteDiscussion = jest.fn()
+    tapDelete(render(props))
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+    expect(props.deleteDiscussion).not.toHaveBeenCalled()
+  })
+
   function testRender (props: Props) {
     expect(render(props)).toMatchSnapshot()
   }
@@ -234,6 +282,11 @@ describe('AnnouncementEdit', () => {
 
   function tapDone (component: any): any {
     getDoneButton(component).action()
+    return component
+  }
+
+  function tapDelete (component: any): any {
+    getDeleteButton(component).props.onPress()
     return component
   }
 
@@ -261,6 +314,10 @@ describe('AnnouncementEdit', () => {
 
   function getDoneButton (component: any): any {
     return explore(component.toJSON()).selectRightBarButton('announcements.edit.doneButton')
+  }
+
+  function getDeleteButton (component: any): any {
+    return explore(component.toJSON()).selectByID('announcements.edit.deleteButton')
   }
 
   function toggleDelayPosting (component: any, enabled: boolean) {
@@ -362,8 +419,8 @@ describe('map state to props', () => {
         ...template.appState().entities,
         discussions: {
           '1': {
-            pending: 0,
-            error: null,
+            pending: 45,
+            error: 'YOUR CORE IS UNDER ATTACK',
             data: announcement,
           },
         },
@@ -376,6 +433,8 @@ describe('map state to props', () => {
       message: 'THE ENEMY IS ATTACKING YOUR CORE!',
       require_initial_post: true,
       delayed_post_at: null,
+      pending: 45,
+      error: 'YOUR CORE IS UNDER ATTACK',
     })
   })
 })

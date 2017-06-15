@@ -20,6 +20,8 @@ export function Text ({ style, ...props }: Object): ReactNative.Element<ReactNat
   return <ReactNative.Text style={ [styles.font, styles.text, style, { fontFamily: font }] } {...props} />
 }
 
+Text.propTypes = ReactNative.Text.propsTypes
+
 export function Heading1 ({ style, ...props }: Object): ReactNative.Element<ReactNative.Text> {
   return <ReactNative.Text style={[styles.font, styles.h1, style]} {...props} accessibilityTraits='header' />
 }

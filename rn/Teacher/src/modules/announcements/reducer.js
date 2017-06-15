@@ -10,7 +10,7 @@ import i18n from 'format-message'
 import composeReducers from '../../redux/compose-reducers'
 
 const { refreshAnnouncements } = ListActions
-const { createDiscussion } = EditActions
+const { createDiscussion, deleteDiscussion } = EditActions
 
 const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshAnnouncements.toString(),
@@ -23,6 +23,12 @@ const refsChanges: Reducer<AsyncRefs, any> = handleActions({
     resolved: (state, { result: { data } }) => ({
       ...state,
       refs: [...state.refs, data.id],
+    }),
+  }),
+  [deleteDiscussion.toString()]: handleAsync({
+    resolved: (state, { discussionID }) => ({
+      ...state,
+      refs: (state.refs || []).filter(ref => ref !== discussionID),
     }),
   }),
 }, {})

@@ -32,6 +32,13 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
     this.state = {
       linkModalVisible: false,
       lastHeightUpdate: 0,
+      setHTML: false,
+    }
+  }
+
+  componentWillReceiveProps (newProps: Props) {
+    if (newProps.html && !this.state.setHTML) {
+      this.updateHTML(newProps.html)
     }
   }
 
@@ -83,6 +90,7 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   updateHTML = (html: string) => {
     const cleanHTML = this._escapeJSONString(html)
     this.trigger(`zss_editor.setHTML("${cleanHTML}");`, true)
+    this.setState({ setHTML: true })
   }
 
   setCustomCSS = (css?: string) => {

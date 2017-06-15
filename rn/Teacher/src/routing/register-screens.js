@@ -67,6 +67,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store)
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
+  registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
 
   // This will never actually be routed to, but this makes it really easy to debug
   registerScreen('/courses/:courseID/assignee-picker', wrap(AssigneePicker), store)

@@ -4,6 +4,15 @@ exports[`DiscussionDetails renders 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "discussions.details.edit.button",
+        "title": "Edit",
+      },
+    ]
+  }
   subtitle="Learn React Native"
   title="Discussion Details"
 >
@@ -969,6 +978,15 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
 <Screen
   navBarColor={undefined}
   navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "discussions.details.edit.button",
+        "title": "Edit",
+      },
+    ]
+  }
   subtitle="Learn React Native"
   title="Discussion Details"
 >

@@ -308,3 +308,14 @@ Array [
   ],
 ]
 `;
+
+exports[`ZSSRichTextEditor updates html if not provided initially 1`] = `
+Array [
+  Array [
+    "zss_editor.setHTML(\\"here it is\\");",
+  ],
+  Array [
+    "setTimeout(function() { zss_editor.postInput() }, 1);",
+  ],
+]
+`;

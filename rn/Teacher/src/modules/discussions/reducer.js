@@ -13,10 +13,15 @@ import composeReducers from '../../redux/compose-reducers'
 
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
-const { refreshDiscussions, updateDiscussion } = ListActions
+const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
-const { createDiscussion, deletePendingNewDiscussion } = EditActions
+const {
+  createDiscussion,
+  deletePendingNewDiscussion,
+  updateDiscussion,
+  deleteDiscussion,
+} = EditActions
 
 const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshDiscussions.toString(),
@@ -53,6 +58,12 @@ const refsChanges: Reducer<AsyncRefs, any> = handleActions({
         error: parseErrorMessage(error),
         id: null,
       },
+    }),
+  }),
+  [deleteDiscussion.toString()]: handleAsync({
+    resolved: (state, { discussionID }) => ({
+      ...state,
+      refs: (state.refs || []).filter(ref => ref !== discussionID),
     }),
   }),
   [deletePendingNewDiscussion.toString()]: (state) => ({
@@ -99,35 +110,6 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       }
     },
   }),
-  [updateDiscussion.toString()]: handleAsync({
-    pending: (state, { originalDiscussion }) => ({
-      ...state,
-      [originalDiscussion.id]: {
-        ...state[originalDiscussion.id],
-        pending: state[originalDiscussion.id] && state[originalDiscussion.id].pending ? state[originalDiscussion.id].pending + 1 : 1,
-      },
-    }),
-    rejected: (state, { originalDiscussion, error }) => ({
-      ...state,
-      [originalDiscussion.id]: {
-        ...state[originalDiscussion.id],
-        data: originalDiscussion,
-        pending: state[originalDiscussion.id].pending - 1,
-        error: parseErrorMessage(error),
-      },
-    }),
-    resolved: (state, { updatedDiscussion }) => {
-      return {
-        ...state,
-        [updatedDiscussion.id]: {
-          ...state[updatedDiscussion.id],
-          data: updatedDiscussion,
-          pending: state[updatedDiscussion.id].pending - 1,
-          error: null,
-        },
-      }
-    },
-  }),
   [createDiscussion.toString()]: handleAsync({
     resolved: (state, { result: { data } }) => ({
       ...state,
@@ -135,6 +117,56 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         data,
         pending: 0,
         error: null,
+      },
+    }),
+  }),
+  [updateDiscussion.toString()]: handleAsync({
+    pending: (state, { params }) => ({
+      ...state,
+      [params.id]: {
+        ...state[params.id],
+        pending: (state[params.id] && state[params.id].pending || 0) + 1,
+        error: null,
+      },
+    }),
+    resolved: (state, { params, result: { data } }) => ({
+      ...state,
+      [params.id]: {
+        ...state[params.id],
+        data,
+        pending: (state[params.id] && state[params.id].pending || 1) - 1,
+        error: null,
+      },
+    }),
+    rejected: (state, { params, error }) => ({
+      ...state,
+      [params.id]: {
+        ...state[params.id],
+        pending: (state[params.id] && state[params.id].pending || 1) - 1,
+        error: parseErrorMessage(error),
+      },
+    }),
+  }),
+  [deleteDiscussion.toString()]: handleAsync({
+    pending: (state, { discussionID }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        pending: (state[discussionID] && state[discussionID].pending || 0) + 1,
+        error: null,
+      },
+    }),
+    resolved: (state, { discussionID }) => {
+      return Object.keys(state).reduce((incoming, current) => {
+        return current === discussionID ? incoming : { ...incoming, [current]: state[current] }
+      }, {})
+    },
+    rejected: (state, { discussionID, error }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        pending: (state[discussionID] && state[discussionID].pending || 1) - 1,
+        error: parseErrorMessage(error),
       },
     }),
   }),

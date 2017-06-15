@@ -3,7 +3,7 @@
 import template, { type Template } from '../../../utils/template'
 import { assignment } from './assignments'
 import { userDisplay } from './users'
-import { type CreateDiscussionParameters } from '../discussions'
+import { type CreateDiscussionParameters, type UpdateDiscussionParameters } from '../discussions'
 
 export const discussion: Template<Discussion> = template({
   id: '1',
@@ -162,4 +162,9 @@ export const createDiscussionParams: Template<CreateDiscussionParameters> = temp
   require_initial_post: false,
   delayed_post_at: null,
   is_announcement: false,
+})
+
+export const updateDiscussionParams: Template<UpdateDiscussionParameters> = template({
+  id: '1',
+  ...createDiscussionParams(),
 })

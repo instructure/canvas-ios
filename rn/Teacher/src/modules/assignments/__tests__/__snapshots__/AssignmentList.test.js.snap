@@ -451,9 +451,12 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        Object {
-                          "fontWeight": "600",
-                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          undefined,
+                        ],
                         Object {
                           "fontFamily": ".SFUIDisplay-semibold",
                         },
@@ -1112,9 +1115,12 @@ exports[`applyFilter will apply a new filter 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        Object {
-                          "fontWeight": "600",
-                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          undefined,
+                        ],
                         Object {
                           "fontFamily": ".SFUIDisplay-semibold",
                         },
@@ -1379,9 +1385,12 @@ exports[`applyFilter will apply a new filter 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        Object {
-                          "fontWeight": "600",
-                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          undefined,
+                        ],
                         Object {
                           "fontFamily": ".SFUIDisplay-semibold",
                         },
@@ -1870,9 +1879,12 @@ exports[`filter button only shows when there are grading periods 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        Object {
-                          "fontWeight": "600",
-                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          undefined,
+                        ],
                         Object {
                           "fontFamily": ".SFUIDisplay-semibold",
                         },
@@ -2410,9 +2422,12 @@ exports[`renders correctly 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        Object {
-                          "fontWeight": "600",
-                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          undefined,
+                        ],
                         Object {
                           "fontFamily": ".SFUIDisplay-semibold",
                         },
@@ -2950,9 +2965,12 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        Object {
-                          "fontWeight": "600",
-                        },
+                        Array [
+                          Object {
+                            "fontWeight": "600",
+                          },
+                          undefined,
+                        ],
                         Object {
                           "fontFamily": ".SFUIDisplay-semibold",
                         },

@@ -248,9 +248,12 @@ exports[`AnnouncementsList renders 1`] = `
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
-                      Object {
-                        "fontWeight": "600",
-                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
                       Object {
                         "fontFamily": ".SFUIDisplay-semibold",
                       },
@@ -396,9 +399,12 @@ exports[`AnnouncementsList renders 1`] = `
                         "color": "#2D3B45",
                         "fontSize": 16,
                       },
-                      Object {
-                        "fontWeight": "600",
-                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
                       Object {
                         "fontFamily": ".SFUIDisplay-semibold",
                       },

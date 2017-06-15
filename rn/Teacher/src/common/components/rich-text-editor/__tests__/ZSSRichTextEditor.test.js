@@ -6,6 +6,7 @@ import renderer from 'react-test-renderer'
 
 import ZSSRichTextEditor from '../ZSSRichTextEditor'
 import explore from '../../../../../test/helpers/explore'
+import setProps from '../../../../../test/helpers/setProps'
 
 jest
   .mock('WebView', () => 'WebView')
@@ -223,6 +224,15 @@ describe('ZSSRichTextEditor', () => {
     const web = webView(component)
     postMessage(web, 'EDITOR_BLURRED')
     expect(onBlur).toHaveBeenCalled()
+  })
+
+  it('updates html if not provided initially', () => {
+    const component = renderer.create(
+      <ZSSRichTextEditor html={null} />, options
+    )
+    expect(js).not.toHaveBeenCalled()
+    setProps(component, { html: 'here it is' })
+    expect(js.mock.calls).toMatchSnapshot()
   })
 
   function testTrigger (trigger: (editor: any) => void): any {

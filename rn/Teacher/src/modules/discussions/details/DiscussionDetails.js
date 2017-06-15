@@ -112,6 +112,13 @@ export class DiscussionDetails extends Component<any, Props, any> {
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
         navBarColor={this.props.course.color}
         navBarStyle='dark'
+        rightBarButtons={[
+          {
+            title: i18n('Edit'),
+            testID: 'discussions.details.edit.button',
+            action: this._editDiscussion,
+          },
+        ]}
         subtitle={this.props.course.name}>
         {content}
       </Screen>
@@ -128,6 +135,12 @@ export class DiscussionDetails extends Component<any, Props, any> {
         }`
         , { count: discussion.assignment.points_possible })
       return pointsPossible
+    }
+  }
+
+  _editDiscussion = () => {
+    if (this.props.isAnnouncement) {
+      this.props.navigator.show(`/courses/${this.props.courseID}/announcements/${this.props.discussion.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
     }
   }
 }

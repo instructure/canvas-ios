@@ -12,11 +12,20 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 
-import Actions from './actions'
+import { default as ListActions } from './actions'
+import { default as EditActions } from '../edit/actions'
 import refresh from '../../../utils/refresh'
 import DiscusionsRow from './DiscussionsRow'
 import { SectionHeader } from '../../../common/text'
 import Screen from '../../../routing/Screen'
+
+const { refreshDiscussions } = ListActions
+const { updateDiscussion } = EditActions
+
+const Actions = {
+  refreshDiscussions,
+  updateDiscussion,
+}
 
 type OwnProps = {
   courseID: string,
@@ -83,7 +92,7 @@ export class DiscussionsList extends Component<any, Props, any> {
       if (button === 0) { updatedDiscussion.pinned = !updatedDiscussion.pinned; updatedDiscussion.locked = false }
       if (button === 1) { updatedDiscussion.locked = !updatedDiscussion.locked; updatedDiscussion.pinned = false }
 
-      this.props.updateDiscussion(updatedDiscussion, discussion, this.props.courseID)
+      this.props.updateDiscussion(this.props.courseID, updatedDiscussion)
     })
   }
 

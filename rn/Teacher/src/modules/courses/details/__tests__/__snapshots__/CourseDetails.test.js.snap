@@ -423,9 +423,12 @@ exports[`renders correctly 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "fontWeight": "600",
-                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
                   },
@@ -867,9 +870,12 @@ exports[`renders with empty image url 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "fontWeight": "600",
-                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
                   },
@@ -1163,9 +1169,12 @@ exports[`renders with image url 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "fontWeight": "600",
-                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
                   },
@@ -1445,9 +1454,12 @@ exports[`renders without image url 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "fontWeight": "600",
-                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay-semibold",
                   },

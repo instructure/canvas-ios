@@ -133,9 +133,12 @@ exports[`DiscussionsRow renders 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -552,9 +555,12 @@ exports[`DiscussionsRow renders published 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -971,9 +977,12 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1379,9 +1388,12 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1764,9 +1776,12 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -2171,9 +2186,12 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -2590,9 +2608,12 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Object {
-                  "fontWeight": "600",
-                },
+                Array [
+                  Object {
+                    "fontWeight": "600",
+                  },
+                  undefined,
+                ],
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },

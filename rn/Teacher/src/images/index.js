@@ -77,6 +77,7 @@ const images = {
   document: require('./Document.png'),
   attachment: require('./attachment.png'),
   mail: require('./Mail.png'),
+  trash: require('./trash.png'),
 }
 
 export default (images: Images)

@@ -162,6 +162,10 @@ zss_editor.postInput = function() {
 
 zss_editor.updateOffset = function() {
 
+    // This stuff only seems to cause wacky bugs with scrolling
+    // Ignoring for now.
+    return;
+
     if (!zss_editor.updateScrollOffset)
         return;
 

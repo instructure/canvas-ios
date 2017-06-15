@@ -48,6 +48,16 @@ describe('AnnouncementsList', () => {
     testRender(props)
   })
 
+  it('navigates to new announcement', () => {
+    props.navigator.show = jest.fn()
+    props.courseID = '2'
+    tapAdd(render(props))
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/courses/2/announcements/new',
+      { modal: true },
+    )
+  })
+
   it('navigates to announcement when row tapped', () => {
     const announcement = template.discussion({ html_url: 'https://canvas.instructure.com/courses/1/discussions/2' })
     props.navigator.show = jest.fn()
@@ -65,6 +75,11 @@ describe('AnnouncementsList', () => {
 
   function render (props: any) {
     return renderer.create(<AnnouncementsList {...props} />)
+  }
+
+  function tapAdd (component: any) {
+    const addBtn: any = explore(component.toJSON()).selectRightBarButton('announcements.list.addButton')
+    addBtn.action()
   }
 })
 
@@ -103,6 +118,19 @@ describe('mapStateToProps', () => {
     ).toEqual({
       announcements: [one, three],
       pending: 1,
+      error: null,
+    })
+  })
+
+  it('maps empty state', () => {
+    const state = template.appState({
+      entities: {},
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1' })
+    ).toEqual({
+      announcements: [],
+      pending: 0,
       error: null,
     })
   })

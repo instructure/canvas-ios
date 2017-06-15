@@ -9,7 +9,12 @@ import { default as EditActions } from '../edit/actions'
 const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries } = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
-const { createDiscussion, deletePendingNewDiscussion } = EditActions
+const {
+  createDiscussion,
+  deletePendingNewDiscussion,
+  updateDiscussion,
+  deleteDiscussion,
+} = EditActions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
@@ -61,6 +66,27 @@ describe('refs', () => {
       expect(refs(initialState, rejected)).toEqual({ refs: [], pending: 0, error: `There was a problem loading discussions.
 
 User not authorized` })
+    })
+  })
+
+  describe('deleteDiscussion', () => {
+    it('removes the ref', () => {
+      const initialState = {
+        pending: 0,
+        refs: ['4', '44'],
+      }
+      const resolved = {
+        type: deleteDiscussion.toString(),
+        payload: {
+          discussionID: '44',
+        },
+      }
+      expect(
+        refs(initialState, resolved)
+      ).toEqual({
+        pending: 0,
+        refs: ['4'],
+      })
     })
   })
 
@@ -267,6 +293,186 @@ describe('discussionData', () => {
           data: discussion,
           pending: 0,
           error: null,
+        },
+      })
+    })
+  })
+
+  describe('updateDiscussion', () => {
+    it('handles pending', () => {
+      const params = template.updateDiscussionParams({ id: '45' })
+      const discussion = template.discussion({ id: '45' })
+      const initialState = {
+        '45': {
+          data: discussion,
+          pending: 0,
+          error: null,
+        },
+      }
+      const pending = {
+        type: updateDiscussion.toString(),
+        pending: true,
+        payload: {
+          params,
+          handlesError: true,
+          courseID: '1',
+        },
+      }
+      expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        '45': {
+          data: discussion,
+          pending: 1,
+          error: null,
+        },
+      })
+    })
+
+    it('handles resolved', () => {
+      const discussion = template.discussion({ id: '35' })
+      const params = template.updateDiscussionParams({ id: '35' })
+      const initialState = {
+        '35': {
+          data: discussion,
+          pending: 1,
+          error: null,
+        },
+      }
+      const resolved = {
+        type: updateDiscussion.toString(),
+        payload: {
+          result: { data: discussion },
+          params,
+          handlesError: true,
+          courseID: '3',
+        },
+      }
+
+      expect(
+        discussions(initialState, resolved)
+      ).toEqual({
+        ...initialState,
+        '35': {
+          data: discussion,
+          pending: 0,
+          error: null,
+        },
+      })
+    })
+
+    it('handles rejected', () => {
+      const discussion = template.discussion({ id: '25' })
+      const params = template.updateDiscussionParams({ id: '25' })
+      const initialState = {
+        '25': {
+          data: discussion,
+          pending: 1,
+          error: null,
+        },
+      }
+      const rejected = {
+        type: updateDiscussion.toString(),
+        error: true,
+        payload: {
+          error: { data: { errors: [{ message: 'Wat' }] } },
+          params,
+          handlesError: true,
+          courseID: '1',
+        },
+      }
+      expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        '25': {
+          data: discussion,
+          error: 'Wat',
+          pending: 0,
+        },
+      })
+    })
+  })
+
+  describe('deleteDiscussion', () => {
+    it('handles pending', () => {
+      const discussion = template.discussion({ id: '45' })
+      const initialState = {
+        '45': {
+          data: discussion,
+          pending: 0,
+          error: null,
+        },
+      }
+      const pending = {
+        type: deleteDiscussion.toString(),
+        pending: true,
+        payload: {
+          discussionID: '45',
+          handlesError: true,
+          courseID: '1',
+        },
+      }
+      expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        '45': {
+          data: discussion,
+          pending: 1,
+          error: null,
+        },
+      })
+    })
+
+    it('handles resolved', () => {
+      const discussion = template.discussion({ id: '35' })
+      const initialState = {
+        '35': {
+          data: discussion,
+          pending: 1,
+          error: null,
+        },
+      }
+      const resolved = {
+        type: deleteDiscussion.toString(),
+        payload: {
+          result: { data: discussion },
+          discussionID: '35',
+          handlesError: true,
+          courseID: '3',
+        },
+      }
+
+      expect(
+        discussions(initialState, resolved)
+      ).toEqual({})
+    })
+
+    it('handles rejected', () => {
+      const discussion = template.discussion({ id: '25' })
+      const initialState = {
+        '25': {
+          data: discussion,
+          pending: 1,
+          error: null,
+        },
+      }
+      const rejected = {
+        type: deleteDiscussion.toString(),
+        error: true,
+        payload: {
+          error: { data: { errors: [{ message: 'Wat' }] } },
+          discussionID: '25',
+          handlesError: true,
+          courseID: '1',
+        },
+      }
+      expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        '25': {
+          data: discussion,
+          error: 'Wat',
+          pending: 0,
         },
       })
     })

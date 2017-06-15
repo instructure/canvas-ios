@@ -31,6 +31,7 @@ export type RowProps = {
   accessibilityTraits: ?string | ?string[],
   titleProps?: { ellipsizeMode?: string, numberOfLines?: number },
   selected: boolean,
+  titleStyles?: Text.propTypes,
 }
 
 export default class Row extends Component<any, RowProps, any> {
@@ -86,7 +87,7 @@ export default class Row extends Component<any, RowProps, any> {
                 <View style={style.titlesContainer}>
                   { Boolean(title) &&
                     <Text
-                      style={style.title}
+                      style={[style.title, this.props.titleStyles]}
                       ellipsizeMode={(this.props.titleProps && this.props.titleProps.ellipsizeMode) || 'tail'}
                       numberOfLines={(this.props.titleProps && this.props.titleProps.numberOfLines) || 0}
                     >

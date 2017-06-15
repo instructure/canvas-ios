@@ -81,9 +81,12 @@ exports[`Render row with switch 1`] = `
               "color": "#2D3B45",
               "fontSize": 16,
             },
-            Object {
-              "fontWeight": "600",
-            },
+            Array [
+              Object {
+                "fontWeight": "600",
+              },
+              undefined,
+            ],
             Object {
               "fontFamily": ".SFUIDisplay-semibold",
             },

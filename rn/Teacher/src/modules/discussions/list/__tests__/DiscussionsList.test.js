@@ -31,7 +31,8 @@ describe('DiscussionsList', () => {
       navigator: template.navigator(),
       courseColor: null,
       updateDiscussion: jest.fn(),
-      courseID: 1,
+      refreshDiscussions: jest.fn(),
+      courseID: '1',
     }
   })
 
@@ -138,7 +139,7 @@ describe('DiscussionsList', () => {
     ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](buttonIndex)
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
     if (expectToCallUpdateDiscussion) {
-      expect(props.updateDiscussion).toHaveBeenCalledWith(expectedDiscussion, inputDiscussion, 1)
+      expect(props.updateDiscussion).toHaveBeenCalledWith('1', expectedDiscussion)
     }
   }
 
