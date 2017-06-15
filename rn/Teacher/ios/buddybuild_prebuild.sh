@@ -64,7 +64,7 @@ pushd ../
 retry_command yarn run lint
 retry_command yarn run flow
 # jest tests are flaky so we retry them.
-retry_command yarn run test
+retry_command yarn run test -- --coverage
 
 if [ "$BUDDYBUILD_BASE_BRANCH" != "" ]; then
     aws s3 cp s3://inseng-code-coverage/ios-teacher/coverage/coverage-summary.json ./coverage-summary-develop.json

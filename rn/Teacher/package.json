@@ -79,7 +79,7 @@
       "^.+\\.html$": "<rootDir>/test/scripts/html-mock"
     },
     "verbose": true,
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       ".android.js",

@@ -56,6 +56,8 @@ We use [jest](https://facebook.github.io/jest/) for testing.
 To run the tests, run `yarn run test` from the command line. To have jest watch
 for changes and intelligently run tests automatically run `yarn run jest -- --watch`.
 
+To run the coverage reports use the `--coverage` flag. `yarn test -- --coverage`.
+
 ### Canvas API
 
 #### Directory Structure
