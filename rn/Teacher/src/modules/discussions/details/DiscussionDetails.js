@@ -16,6 +16,7 @@ import WebContainer from '../../../common/components/WebContainer'
 import Avatar from '../../../common/components/Avatar'
 import { formattedDate } from '../../../utils/dateUtils'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
+import SubmissionBreakdownGraphSection from '../../assignment-details/components/SubmissionBreakdownGraphSection'
 import Images from '../../../images'
 import {
   Heading1,
@@ -72,7 +73,10 @@ export class DiscussionDetails extends Component<any, Props, any> {
             </AssignmentSection>}
 
             {discussion.assignment && <AssignmentSection
-              title={i18n('Submissions')}>
+              title={i18n('Submissions')}
+              onPress={() => this.viewSubmissions()}
+              showDisclosureIndicator>
+              <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={discussion.assignment.id} style={style.submission}/>
             </AssignmentSection>}
 
             <AssignmentSection >
@@ -100,7 +104,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
             <AssignmentSection
               title={i18n('Replies')}>
-              <DiscussionReplies style={style.replyContainer} replies={discussion.replies} participants={participants}/>
+              <DiscussionReplies replies={discussion.replies} participants={participants}/>
             </AssignmentSection>
 
         </RefreshableScrollView>
@@ -123,6 +127,23 @@ export class DiscussionDetails extends Component<any, Props, any> {
         {content}
       </Screen>
     )
+  }
+
+  onSubmissionDialPress = (type: string) => {
+    this.viewSubmissions(type)
+  }
+
+  viewSubmissions = (filterType: ?string) => {
+    const { courseID, discussion } = this.props
+    if (filterType) {
+      this.props.navigator.show(`/courses/${courseID}/assignments/${discussion.assignment.id}/submissions`, { modal: false }, { filterType })
+    } else {
+      this.props.navigator.show(`/courses/${courseID}/assignments/${discussion.assignment.id}/submissions`)
+    }
+  }
+
+  viewAllSubmissions = () => {
+    this.viewSubmissions()
   }
 
   _points = (discussion: Discussion) => {
@@ -189,6 +210,10 @@ const style = StyleSheet.create({
   },
   link: {
     color: colors.link,
+  },
+  submission: {
+    marginRight: 40,
+    marginTop: global.style.defaultPadding / 2,
   },
 })
 

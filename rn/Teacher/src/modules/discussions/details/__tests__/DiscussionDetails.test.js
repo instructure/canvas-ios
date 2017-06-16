@@ -14,6 +14,7 @@ jest
   .mock('WebView', () => 'WebView')
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
+  .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection')
   .mock('../../../assignment-details/components/PublishedIcon', () => 'PublishedIcon')
 
 const template = {
@@ -108,6 +109,42 @@ describe('DiscussionDetails', () => {
       <DiscussionDetails {...props} />
     )
   }
+
+  it('routes to the right place when submissions is tapped', () => {
+    props.discussion.assignment = {
+      id: '42',
+      title: 'test',
+    }
+    let navigator = template.navigator({
+      push: jest.fn(),
+    })
+    let details = renderer.create(
+      <DiscussionDetails {...props} navigator={navigator} />
+    ).getInstance()
+    details.viewAllSubmissions()
+    expect(navigator.show).toHaveBeenCalledWith(
+      `/courses/${props.courseID}/assignments/${props.discussion.assignment.id}/submissions`
+    )
+  })
+
+  it('routes to the right place when submissions dial is tapped', () => {
+    props.discussion.assignment = {
+      id: '42',
+      title: 'test',
+    }
+    let navigator = template.navigator({
+      push: jest.fn(),
+    })
+    let details = renderer.create(
+      <DiscussionDetails {...props} navigator={navigator} />
+    ).getInstance()
+    details.onSubmissionDialPress('graded')
+    expect(navigator.show).toHaveBeenCalledWith(
+      `/courses/${props.courseID}/assignments/${props.discussion.assignment.id}/submissions`,
+      { modal: false },
+      { filterType: 'graded' }
+    )
+  })
 })
 
 describe('mapStateToProps', () => {
