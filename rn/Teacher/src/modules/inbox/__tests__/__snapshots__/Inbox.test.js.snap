@@ -492,7 +492,6 @@ exports[`renders correctly 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -508,6 +507,22 @@ exports[`renders correctly 1`] = `
           >
             All
           </Text>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "height": 3,
+                  "left": 8,
+                  "position": "absolute",
+                  "right": 8,
+                },
+                Object {
+                  "backgroundColor": "#374A59",
+                },
+              ]
+            }
+          />
         </View>
         <View
           accessibilityComponentType={undefined}
@@ -1259,7 +1274,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -1275,6 +1289,22 @@ exports[`renders the activity indicator when loading conversations 1`] = `
           >
             All
           </Text>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "height": 3,
+                  "left": 8,
+                  "position": "absolute",
+                  "right": 8,
+                },
+                Object {
+                  "backgroundColor": "#374A59",
+                },
+              ]
+            }
+          />
         </View>
         <View
           accessibilityComponentType={undefined}
@@ -2030,7 +2060,6 @@ exports[`renders with an empty state 1`] = `
                 },
                 Array [
                   Object {
-                    "color": "#8B969E",
                     "fontSize": 14,
                     "fontWeight": "600",
                   },
@@ -2046,6 +2075,22 @@ exports[`renders with an empty state 1`] = `
           >
             All
           </Text>
+          <View
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "height": 3,
+                  "left": 8,
+                  "position": "absolute",
+                  "right": 8,
+                },
+                Object {
+                  "backgroundColor": "#374A59",
+                },
+              ]
+            }
+          />
         </View>
         <View
           accessibilityComponentType={undefined}

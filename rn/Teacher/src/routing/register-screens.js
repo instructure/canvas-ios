@@ -11,6 +11,7 @@ import AssignmentDetails from '../modules/assignment-details/AssignmentDetails'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import AssignmentDetailsEdit from '../modules/assignment-details/AssignmentDetailsEdit'
 import Inbox from '../modules/inbox/Inbox'
+import Compose from '../modules/inbox/Compose'
 import Profile from '../modules/profile/Profile'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 import Staging from '../modules/staging/Staging'
@@ -62,10 +63,11 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/discussion_topics', wrap(DiscussionsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/discussion_topics/:discussionID', wrap(DiscussionDetails), store)
   registerScreen('/conversations', wrap(Inbox), store)
+  registerScreen('/conversations/compose', wrap(Compose), store)
   registerScreen('/profile', wrap(Profile), store)
   registerScreen('/beta-feedback', wrap(BetaFeedback), store)
-  registerScreen('/staging', wrap(Staging))
-  registerScreen('/rich-text-editor', wrap(RichTextEditor))
+  registerScreen('/staging', wrap(Staging), store)
+  registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store)
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)

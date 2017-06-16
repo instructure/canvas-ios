@@ -39,6 +39,7 @@
 		2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
+		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
@@ -535,6 +536,8 @@
 		2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewDisablerManager.h; sourceTree = "<group>"; };
+		2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
 		2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPageTest.swift; sourceTree = "<group>"; };
@@ -942,6 +945,8 @@
 				9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */,
 				9FCE7BB01ED6340C00DD1693 /* PushNotifications.h */,
 				9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */,
+				2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */,
+				2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */,
 			);
 			name = "React Native Modules";
 			sourceTree = "<group>";
@@ -1819,6 +1824,7 @@
 				6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */,
 				3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */,
 				9FCE7BB21ED6340C00DD1693 /* PushNotifications.m in Sources */,
+				2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */,
 				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
 				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,

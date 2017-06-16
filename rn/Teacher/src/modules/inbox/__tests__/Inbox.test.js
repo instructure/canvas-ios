@@ -3,77 +3,88 @@ import 'react-native'
 import React from 'react'
 import { Inbox, handleRefresh, mapStateToProps, Refreshed } from '../Inbox.js'
 import setProps from '../../../../test/helpers/setProps'
+import renderer from 'react-test-renderer'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/conversations'),
+  ...require('../../../__templates__/helm'),
 }
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
+const c1 = template.conversation({
+  id: '1',
+})
+const c2 = template.conversation({
+  id: '2',
+})
+
+let defaultProps = {
+  conversations: [c1, c2],
+  refreshInboxAll: jest.fn(),
+  scope: 'all',
+  navigator: template.navigator({
+    show: jest.fn(),
+  }),
+}
+
+beforeEach(() => jest.resetAllMocks())
 
 it('renders correctly', () => {
-  const c1 = template.conversation({
-    id: '1',
-  })
-  const c2 = template.conversation({
-    id: '2',
-  })
-  const conversations = [c1, c2]
-
   const tree = renderer.create(
-    <Inbox conversations={conversations} />
+    <Inbox {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 it('doesnt call refresh function if there is no next function', () => {
-  let props = {
-    conversations: [template.conversation()],
-    refreshInboxAll: jest.fn(),
-    scope: 'all',
-  }
   let instance = renderer.create(
-    <Inbox {...props} />
+    <Inbox {...defaultProps} />
   ).getInstance()
 
   expect(instance.getNextPage()).toBeFalsy()
-  expect(props.refreshInboxAll).not.toHaveBeenCalled
+  expect(defaultProps.refreshInboxAll).not.toHaveBeenCalled
 })
 
 it('calls the refresh function with next if next is present', () => {
-  let props = {
-    conversations: [template.conversation()],
-    refreshInboxAll: jest.fn(),
-    scope: 'all',
-    next: jest.fn(),
-  }
+  let next = jest.fn()
   let instance = renderer.create(
-    <Inbox {...props} />
+    <Inbox {...defaultProps} next={next} />
   ).getInstance()
 
   instance.getNextPage()
-  expect(props.refreshInboxAll).toHaveBeenCalledWith(props.next)
+  expect(defaultProps.refreshInboxAll).toHaveBeenCalledWith(next)
 })
 
 it('renders with an empty state', () => {
   const tree = renderer.create(
-    <Inbox conversations={[]} />
+    <Inbox {...defaultProps} conversations={[]} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 it('renders the starred empty state', () => {
   const tree = renderer.create(
-    <Inbox conversations={[]} scope='starred' />
+    <Inbox {...defaultProps} conversations={[]} scope='starred' />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 it('renders the activity indicator when loading conversations', () => {
   const tree = renderer.create(
-    <Inbox conversations={[]} pending={true} />
+    <Inbox {...defaultProps} conversations={[]} pending={true} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+it('calls navigator.show when addMessage is called', () => {
+  const instance = renderer.create(
+    <Inbox {...defaultProps} />
+  ).getInstance()
+
+  instance.addMessage()
+  expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+    '/conversations/compose',
+    { modal: true, modalPresentationStyle: 'fullscreen' }
+  )
 })
 
 it('mapStateToProps', () => {

@@ -19,6 +19,8 @@ export default class Profile extends Component {
 
   render () {
     const session = getSession()
+
+    if (!session) return null
     const user = session.user
     return (
       <View testID="module.profile" accessible={true} style={styles.container}>

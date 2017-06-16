@@ -21,6 +21,7 @@ export type InboxProps = {
   conversations: Conversation[],
   scope: InboxScope,
   next: ?Function,
+  navigator: Navigator,
 }
 
 export class Inbox extends Component {
@@ -35,6 +36,10 @@ export class Inbox extends Component {
   getNextPage = () => {
     if (!this.props.next) return
     handleRefresh(this.props, this.props.next)
+  }
+
+  addMessage = () => {
+    this.props.navigator.show('/conversations/compose', { modal: true, modalPresentationStyle: 'fullscreen' })
   }
 
   _renderItem = ({ item, index }) => {
@@ -103,6 +108,12 @@ export class Inbox extends Component {
         navBarStyle='dark'
         drawUnderNavBar={true}
         navBarImage={branding.headerImage}
+        rightBarButtons={[{
+          accessibilityLabel: 'New Message',
+          testID: 'inbox.new-message',
+          image: Images.add,
+          action: this.addMessage,
+        }]}
       >
         { this._renderComponent() }
       </Screen>
