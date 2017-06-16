@@ -777,7 +777,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -1200,7 +1200,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -1847,7 +1847,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -2236,7 +2236,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -3017,7 +3017,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -3440,7 +3440,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -4230,7 +4230,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,
@@ -4701,7 +4701,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             "tintColor": "#000",
                             "transform": Array [
                               Object {
-                                "rotate": "90deg",
+                                "rotate": "180deg",
                               },
                             ],
                             "width": 18,

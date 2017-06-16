@@ -381,7 +381,7 @@ exports[`DiscussionsRow renders 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,
@@ -803,7 +803,7 @@ exports[`DiscussionsRow renders published 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,
@@ -1225,7 +1225,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,
@@ -1602,7 +1602,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,
@@ -2024,7 +2024,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,
@@ -2434,7 +2434,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,
@@ -2822,7 +2822,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                     "tintColor": "#000",
                     "transform": Array [
                       Object {
-                        "rotate": "90deg",
+                        "rotate": "180deg",
                       },
                     ],
                     "width": 18,

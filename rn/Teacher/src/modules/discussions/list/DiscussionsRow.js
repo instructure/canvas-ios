@@ -217,6 +217,6 @@ const style = StyleSheet.create({
     width: 18,
     height: 18,
     tintColor: '#000',
-    transform: [{ rotate: '90deg' }],
+    transform: [{ rotate: '180deg' }],
   },
 })
