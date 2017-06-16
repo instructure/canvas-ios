@@ -46,5 +46,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     shouldRefresh,
     pointsPossible,
     ...submissions,
+    anonymous: !!assignmentContent && assignmentContent.anonymousGradingOn,
   }
 }

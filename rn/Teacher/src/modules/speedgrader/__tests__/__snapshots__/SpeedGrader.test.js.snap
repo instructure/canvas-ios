@@ -131,6 +131,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             }
           >
             <Header
+              assignmentID="1"
               closeModal={[Function]}
               submissionID={undefined}
               submissionProps={

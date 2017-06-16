@@ -15,6 +15,7 @@ import Profile from '../modules/profile/Profile'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 import Staging from '../modules/staging/Staging'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
+import SubmissionSettings from '../modules/submissions/list/SubmissionSettings'
 import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import SpeedGrader from '../modules/speedgrader/SpeedGrader'
@@ -50,6 +51,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', wrap(AssignmentDetailsEdit), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', wrap(AssignmentDueDates), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', wrap(SubmissionList), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/submission_settings', wrap(SubmissionSettings), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(SpeedGrader), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', wrap(RubricDescription), store)
   registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true })

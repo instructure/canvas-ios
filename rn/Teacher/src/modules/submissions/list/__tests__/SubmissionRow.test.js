@@ -22,6 +22,7 @@ const mockSubmission = (status: SubmissionStatusProp = 'none', grade: ?GradeProp
     grade,
     submissionID: null,
     submission: null,
+    anonymous: false,
   }
 }
 
@@ -76,3 +77,10 @@ test('onPress called on tap', () => {
   expect(onPress).toHaveBeenCalledWith(submission.userID)
 })
 
+test('anonymous grading doesnt show users names', () => {
+  const submission = mockSubmission()
+  let tree = renderer.create(
+    <SubmissionRow {...submission} anonymous />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})

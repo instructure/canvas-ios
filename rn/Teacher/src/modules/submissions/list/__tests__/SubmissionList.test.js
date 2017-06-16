@@ -34,6 +34,7 @@ const props = {
   shouldRefresh: false,
   refreshing: false,
   refresh: jest.fn(),
+  anonymous: false,
 }
 
 test('SubmissionList loaded', () => {
@@ -167,6 +168,22 @@ test('should refresh', () => {
     shouldRefresh: true,
   }
   expect(shouldRefresh(emptyProps)).toBeTruthy()
+})
+
+test('should navigate to submission settings', () => {
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+
+  const tree = renderer.create(
+    <SubmissionList {...props} navigator={navigator} />
+  )
+  tree.getInstance().openSettings()
+
+  expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/submission_settings', {
+    modal: true,
+    modalPresentationStyle: 'fullscreen',
+  })
 })
 
 test('should navigate to a submission', () => {

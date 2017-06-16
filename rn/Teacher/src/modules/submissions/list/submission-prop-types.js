@@ -36,6 +36,7 @@ export type SubmissionListDataProps
   courseColor: string,
   pointsPossible?: string,
   shouldRefresh: boolean,
+  anonymous: boolean,
 }
 
 export type SubmissionListActionProps = {

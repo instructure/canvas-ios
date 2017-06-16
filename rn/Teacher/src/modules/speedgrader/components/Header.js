@@ -115,19 +115,13 @@ export class Header extends Component {
 
   render () {
     const sub = this.props.submissionProps
+    let name = this.props.anonymous ? i18n('Student') : sub.name
     return <Animated.View style={[styles.header, { height: this.state.easeAnimation }]}>
       <View style={styles.profileContainer}>
-        <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={sub.name} /></View>
+        <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={name} /></View>
         <View style={styles.nameContainer}>
-          <Text style={styles.name} accessibilityTraits='header'>{sub.name}</Text>
+          <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
           <SubmissionStatus status={sub.status} />
-        </View>
-        <View>
-          <Button style={styles.settingsButton} onPress={() => {}} testID='header.settings'>
-            <View>
-              <Image source={Images.course.settings} style={styles.navButtonImage} />
-            </View>
-          </Button>
         </View>
         <View style={styles.doneButton}>
           <Button onPress={this.props.closeModal} testID='header.navigation-done'>
@@ -213,14 +207,17 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: RouterProps): HeaderDataProps {
+  let anonymous = state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
   if (!ownProps.submissionID) {
     return {
       selectedIndex: null,
+      anonymous,
     }
   }
 
   return {
     selectedIndex: state.entities.submissions[ownProps.submissionID].selectedIndex,
+    anonymous,
   }
 }
 
@@ -243,6 +240,7 @@ type State = {
 
 type HeaderDataProps = {
   selectedIndex: ?number,
+  anonymous: boolean,
 }
 
 type HeaderActionProps = {

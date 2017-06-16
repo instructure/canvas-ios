@@ -68,6 +68,7 @@ test('map state to props should work', async () => {
     courseColor: 'greenish',
     courseName: 'blah blah',
     selectedRowID: '0',
+    anonymousGrading: jest.fn(),
   }
 
   const result = mapStateToProps(state, props)

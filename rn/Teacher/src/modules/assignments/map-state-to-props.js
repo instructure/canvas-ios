@@ -19,6 +19,7 @@ export type AssignmentListActionProps = {
   +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
   +cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
   +updateCourseDetailsSelectedTabSelectedRow: (rowID: string) => void,
+  +anonymousGrading: (string, string, boolean) => void,
 }
 
 export type AssignmentListProps = AssignmentListDataProps

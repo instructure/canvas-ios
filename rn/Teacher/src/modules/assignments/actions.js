@@ -43,6 +43,9 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
   updateCourseDetailsSelectedTabSelectedRow: createAction(UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION, (rowID: string) => {
     return { rowID }
   }),
+  anonymousGrading: createAction('assignment.anonymous', (courseID: string, assignmentID: string, anonymous: boolean) => ({
+    courseID, assignmentID, anonymous,
+  })),
 })
 
 export default (AssignmentListActions(canvas): AssignmentListActionProps)

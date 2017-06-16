@@ -100,6 +100,7 @@ test('reduces assignment content', () => {
       pending: 0,
       error: null,
       pendingComments: {},
+      anonymousGradingOn: false,
     },
   })
 })
@@ -137,6 +138,7 @@ test('refreshQuiz', () => {
       submissions: { refs: [], pending: 0 },
       gradeableStudents: { refs: [], pending: 0 },
       pendingComments: {},
+      anonymousGradingOn: false,
     },
   }
   const refreshedAssignment = {
@@ -158,5 +160,31 @@ test('refreshQuiz', () => {
       ...initialState['1'],
       data: refreshedAssignment,
     },
+  })
+
+  test('anonymousGrading', () => {
+    let state = {
+      '1': {
+        anonymousGradingOn: false,
+        data: assignment,
+        pending: 0,
+        submissions: { refs: [], pending: 0 },
+        gradeableStudents: { refs: [], pending: 0 },
+        pendingComments: {},
+      },
+    }
+    let action = {
+      type: AssignmentListActions.anonymousGrading,
+      payload: {
+        courseID: '1',
+        assignmentID: '1',
+        anonymous: true,
+      },
+    }
+    expect(assignments(state, action)).toEqual({
+      '1': {
+        anonymousGradingOn: true,
+      },
+    })
   })
 })

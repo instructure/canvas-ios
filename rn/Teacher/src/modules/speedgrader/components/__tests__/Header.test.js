@@ -42,6 +42,7 @@ let noSubProps = {
   selectSubmissionFromHistory: jest.fn(),
   selectedIndex: null,
   selectedAttachmentIndex: null,
+  anonymous: false,
 }
 
 let subProps = {
@@ -172,12 +173,24 @@ describe('SpeedGraderHeader', () => {
     picker.props.onValueChange(0)
     expect(withIndex.selectSubmissionFromHistory).toHaveBeenCalledWith('1', 0)
   })
+
+  it('doesnt show the student name when anonymous', () => {
+    let tree = renderer.create(
+      <Header {...subProps} anonymous={true} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
 
 describe('mapStateToProps', () => {
   it('returns the correct data when there is no submission', () => {
     let state = templates.appState({
       entities: {
+        assignments: {
+          '2': {
+            anonymousGradingOn: true,
+          },
+        },
         submissions: {
           '1': {
             submission: {},
@@ -192,12 +205,18 @@ describe('mapStateToProps', () => {
     let dataProps = mapStateToProps(state, noSubProps)
     expect(dataProps).toMatchObject({
       selectedIndex: null,
+      anonymous: true,
     })
   })
 
   it('returns the correct data when there is a submission', () => {
     let state = templates.appState({
       entities: {
+        assignments: {
+          '2': {
+            anonymousGradingOn: true,
+          },
+        },
         submissions: {
           '1': {
             submission: {},
@@ -212,6 +231,7 @@ describe('mapStateToProps', () => {
     let dataProps = mapStateToProps(state, subProps)
     expect(dataProps).toMatchObject({
       selectedIndex: 3,
+      anonymous: true,
     })
   })
 })

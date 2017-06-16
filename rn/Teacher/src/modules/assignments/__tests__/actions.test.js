@@ -105,3 +105,16 @@ test('should update selected assignment row', async() => {
     },
   })
 })
+
+test('should dispatch anonymous grading', () => {
+  let actions = AssignmentListActions()
+  let action = actions.anonymousGrading('1', '2', true)
+  expect(action).toEqual({
+    type: actions.anonymousGrading.toString(),
+    payload: {
+      courseID: '1',
+      assignmentID: '2',
+      anonymous: true,
+    },
+  })
+})

@@ -17,12 +17,14 @@ export let defaultState: AssignmentGroupsState = {}
 const { refreshAssignmentList,
         updateAssignment,
         refreshAssignment,
-        cancelAssignmentUpdate } = Actions
+        cancelAssignmentUpdate,
+        anonymousGrading } = Actions
 const { refreshQuiz } = QuizDetailsActions
 
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
 const error = error => error || null
+const anonymousGradingOn = anonymous => anonymous || false
 
 const assignmentContent = combineReducers({
   data: assignment,
@@ -31,6 +33,7 @@ const assignmentContent = combineReducers({
   pending,
   error,
   pendingComments,
+  anonymousGradingOn,
 })
 
 const defaultAssignmentContents: AssignmentContentState = {
@@ -129,6 +132,16 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
       }
     },
   }),
+  [anonymousGrading.toString()]: (state, { payload }) => {
+    let { assignmentID, anonymous } = payload
+    return {
+      ...state,
+      [assignmentID]: {
+        ...state[assignmentID],
+        anonymousGradingOn: anonymous,
+      },
+    }
+  },
 }, defaultState)
 
 export function assignments (state: AssignmentsState = {}, action: any): AssignmentDetailState {

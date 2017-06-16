@@ -29,7 +29,7 @@ type SubmissionGraderProps = {
   isCurrentStudent: boolean,
   closeModal: Function,
   courseID: string,
-  assignmnetID: string,
+  assignmentID: string,
   userID: string,
   submissionID: ?string,
   submissionProps: Object,
@@ -131,7 +131,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
         }]}
       >
         <ToolTip ref={this.captureToolTip} />
-        <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} />
+        <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} assignmentID={this.props.assignmentID}/>
         <SubmissionViewer {...this.props} size={{ width, height }} />
         <BottomDrawer
           drawerState={this.props.drawerState}

@@ -24,6 +24,7 @@ import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../SubmissionsHeader'
+import Images from '../../../images'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
@@ -93,7 +94,7 @@ export class SubmissionList extends Component {
   }
 
   renderRow = ({ item }: { item: SubmissionProps }) => {
-    return <SubmissionRow {...item} onPress={this.navigateToSubmission} />
+    return <SubmissionRow {...item} onPress={this.navigateToSubmission} anonymous={this.props.anonymous} />
   }
 
   updateFilter = (filter: SelectedSubmissionFilter) => {
@@ -118,12 +119,25 @@ export class SubmissionList extends Component {
     })
   }
 
+  openSettings = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submission_settings`, {
+      modal: true,
+      modalPresentationStyle: 'fullscreen',
+    })
+  }
+
   render () {
     return (
       <Screen
         title={i18n('Submissions')}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
+        rightBarButtons={[{
+          accessibilityLabel: i18n('Submission Settings'),
+          image: Images.course.settings,
+          testID: 'submission-list.settings',
+          action: this.openSettings,
+        }]}
       >
         <View style={styles.container}>
           <SubmissionsHeader

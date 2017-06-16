@@ -48,6 +48,7 @@ export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string
       status,
       grade,
       score,
+      anonymous: false, // this will be done in another commit
     }
   })
 }
