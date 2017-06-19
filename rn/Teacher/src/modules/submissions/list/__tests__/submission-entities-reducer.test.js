@@ -427,7 +427,7 @@ test('gradeSubmissionWithRubric creates the submission if there is no submission
 })
 
 test('gradeSubmissionWithRubric sets the rubricGradePending to false when there is a submissionID', () => {
-  let submission = templates.submission({ id: '1' })
+  let submission = templates.submission({ id: '1', grade: 100, score: 100 })
   let state = {
     '1': {
       submission,
@@ -448,6 +448,8 @@ test('gradeSubmissionWithRubric sets the rubricGradePending to false when there 
 
   let newState = submissions(state, action)
   expect(newState['1'].rubricGradePending).toEqual(false)
+  expect(newState['1'].submission.grade).toEqual(100)
+  expect(newState['1'].submission.score).toEqual(100)
 })
 
 test('gradeSubmissionWithRubric returns current state if there is no submissionID', () => {

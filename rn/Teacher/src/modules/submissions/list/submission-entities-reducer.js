@@ -152,6 +152,8 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
           rubricGradePending: false,
           submission: {
             ...submissionState.submission,
+            grade: result.data.grade,
+            score: result.data.score,
             rubric_assessment: rubricAssessment,
           },
         },
