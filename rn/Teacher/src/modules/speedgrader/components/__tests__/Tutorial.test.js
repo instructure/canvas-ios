@@ -17,7 +17,7 @@ jest
     timing: () => ({ start: jest.fn() }),
     View: 'Animated.View',
   }))
-  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 let defaultProps = {
   tutorials: [{

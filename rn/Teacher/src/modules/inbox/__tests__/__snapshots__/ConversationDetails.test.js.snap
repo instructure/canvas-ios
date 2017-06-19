@@ -1,0 +1,377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F5F5F5",
+      "flex": 1,
+      "marginBottom": 49,
+    }
+  }
+>
+  <RCTScrollView
+    ListHeaderComponent={
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "padding": 16,
+          }
+        }
+      >
+        <Heading1>
+          learn to write code
+        </Heading1>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          focusedOpacity={0.7}
+          hitSlop={
+            Object {
+              "bottom": 8,
+              "left": 8,
+              "right": 8,
+              "top": 8,
+            }
+          }
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 24,
+                  "tintColor": "#374A59",
+                  "width": 24,
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+    }
+    data={undefined}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={undefined}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshing={undefined}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "padding": 16,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                undefined,
+              ]
+            }
+          >
+            learn to write code
+          </Text>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hitSlop={
+              Object {
+                "bottom": 8,
+                "left": 8,
+                "right": 8,
+                "top": 8,
+              }
+            }
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 24,
+                    "tintColor": "#374A59",
+                    "width": 24,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`renders correctly with some messages 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F5F5F5",
+      "flex": 1,
+      "marginBottom": 49,
+    }
+  }
+>
+  <RCTScrollView
+    ListHeaderComponent={
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderTopColor": "#C7CDD1",
+            "borderTopWidth": 0.5,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "padding": 16,
+          }
+        }
+      >
+        <Heading1>
+          (no subject)
+        </Heading1>
+        <TouchableOpacity
+          activeOpacity={0.2}
+          focusedOpacity={0.7}
+          hitSlop={
+            Object {
+              "bottom": 8,
+              "left": 8,
+              "right": 8,
+              "top": 8,
+            }
+          }
+          onPress={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+              }
+            }
+          >
+            <Image
+              source={1}
+              style={
+                Object {
+                  "height": 24,
+                  "tintColor": "#374A59",
+                  "width": 24,
+                }
+              }
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
+    }
+    data={undefined}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={undefined}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshing={undefined}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+      }
+    }
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "padding": 16,
+            }
+          }
+        >
+          <Text
+            accessibilityTraits="header"
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
+                },
+                undefined,
+              ]
+            }
+          >
+            (no subject)
+          </Text>
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel={undefined}
+            accessibilityTraits={undefined}
+            accessible={true}
+            hitSlop={
+              Object {
+                "bottom": 8,
+                "left": 8,
+                "right": 8,
+                "top": 8,
+              }
+            }
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                }
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 24,
+                    "tintColor": "#374A59",
+                    "width": 24,
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

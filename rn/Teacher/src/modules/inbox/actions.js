@@ -29,6 +29,24 @@ export let InboxActions: (typeof canvas) => any = (api) => ({
   updateInboxSelectedScope: createAction('inbox.update-scope', (selectedScope: InboxScope) => {
     return selectedScope
   }),
+  refreshConversationDetails: createAction('inbox.refresh-conversation', (conversationID: string) => {
+    return {
+      promise: api.getConversationDetails(conversationID),
+      conversationID,
+    }
+  }),
+  starConversation: createAction('inbox.star-conversation', (conversationID: string) => {
+    return {
+      promise: api.starConversation(conversationID),
+      conversationID,
+    }
+  }),
+  unstarConversation: createAction('inbox.unstar-conversation', (conversationID: string) => {
+    return {
+      promise: api.unstarConversation(conversationID),
+      conversationID,
+    }
+  }),
 })
 
 export default (InboxActions(canvas): any)

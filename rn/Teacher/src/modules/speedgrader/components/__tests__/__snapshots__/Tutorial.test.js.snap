@@ -72,7 +72,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
         }
       }
     />
-    <TouchableHighlight
+    <TouchableOpacity
       hitSlop={
         Object {
           "bottom": 10,
@@ -133,7 +133,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
           OK
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
 </Animated.View>
 `;

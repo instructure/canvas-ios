@@ -13,7 +13,10 @@ const { refreshInboxAll,
         refreshInboxStarred,
         refreshInboxSent,
         refreshInboxArchived,
-        updateInboxSelectedScope } = Actions
+        updateInboxSelectedScope,
+        refreshConversationDetails,
+        starConversation,
+        unstarConversation } = Actions
 
 export function createScopeHandler (action: string): Function {
   return asyncRefsReducer(
@@ -27,13 +30,93 @@ export function createScopeHandler (action: string): Function {
   )
 }
 
+export function createStarEntityHandler (starred: boolean): { [string]: Function } {
+  return handleAsync({
+    pending: (state, { conversationID }) => {
+      const convoState = state[conversationID]
+      if (!convoState) return state
+      return {
+        ...state,
+        [conversationID]: {
+          ...convoState,
+          data: {
+            ...convoState.data,
+            starred,
+          },
+        },
+      }
+    },
+    rejected: (state, { conversationID }) => {
+      const convoState = state[conversationID]
+      if (!convoState) return state
+      return {
+        ...state,
+        [conversationID]: {
+          ...convoState,
+          data: {
+            ...convoState.data,
+            starred: !starred,
+          },
+        },
+      }
+    },
+  })
+}
+
 export function entityExtractor (): { [string]: Function } {
   return handleAsync({
     resolved: (state, { result }) => {
-      const pairs = result.data.map((c) => [c.id, c])
+      const pairs = result.data.map((c) => {
+        const current = (state[c.id] || { data: {} }).data
+        return [c.id, {
+          data: {
+            ...current,
+            ...c,
+          },
+        }]
+      })
       return {
         ...state,
         ...fromPairs(pairs),
+      }
+    },
+  })
+}
+
+export function detailEntity (): { [string]: Function } {
+  return handleAsync({
+    pending: (state, { conversationID }) => {
+      const convoState = state[conversationID] || {}
+      return {
+        ...state,
+        [conversationID]: {
+          ...convoState,
+          pending: 1,
+          error: null,
+        },
+      }
+    },
+    resolved: (state, { result, conversationID }) => {
+      const convoState = state[conversationID]
+      return {
+        ...state,
+        [conversationID]: {
+          ...convoState,
+          data: result.data,
+          pending: 0,
+          error: null,
+        },
+      }
+    },
+    rejected: (state, { conversationID }) => {
+      const convoState = state[conversationID]
+      return {
+        ...state,
+        [conversationID]: {
+          ...convoState,
+          pending: 0,
+          error: i18n('An error occured while fetching this conversation.'),
+        },
       }
     },
   })
@@ -45,6 +128,9 @@ export const conversations: Reducer = handleActions({
   [refreshInboxStarred.toString()]: entityExtractor(),
   [refreshInboxSent.toString()]: entityExtractor(),
   [refreshInboxArchived.toString()]: entityExtractor(),
+  [refreshConversationDetails.toString()]: detailEntity(),
+  [starConversation.toString()]: createStarEntityHandler(true),
+  [unstarConversation.toString()]: createStarEntityHandler(false),
 }, {})
 
 export const inbox: Reducer<InboxState, any> = combineReducers({

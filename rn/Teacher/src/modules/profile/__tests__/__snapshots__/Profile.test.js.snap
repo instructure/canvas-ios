@@ -48,6 +48,9 @@ exports[`Profile Tests renders correctly 1`] = `
               "height": 120,
               "width": 120,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >

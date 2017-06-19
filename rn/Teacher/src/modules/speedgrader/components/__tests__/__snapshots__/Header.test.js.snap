@@ -39,6 +39,9 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -305,6 +308,9 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
               "borderRadius": 20,
               "height": 40,
               "width": 40,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -573,6 +579,9 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -839,6 +848,9 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
               "borderRadius": 20,
               "height": 40,
               "width": 40,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -1116,6 +1128,9 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -1392,6 +1407,9 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -1597,6 +1615,9 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
               "borderRadius": 20,
               "height": 40,
               "width": 40,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
             },
           ]
         }
@@ -1865,6 +1886,9 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -2070,6 +2094,9 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
               "borderRadius": 20,
               "height": 40,
               "width": 40,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
             },
           ]
         }

@@ -213,6 +213,9 @@ exports[`comments render properly 1`] = `
                     "height": 40,
                     "width": 40,
                   },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                  },
                 ]
               }
             >
@@ -356,6 +359,9 @@ exports[`comments render properly 1`] = `
                     "borderRadius": 20,
                     "height": 40,
                     "width": 40,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
                   },
                 ]
               }
@@ -634,6 +640,9 @@ exports[`comments render properly 1`] = `
                     "height": 40,
                     "width": 40,
                   },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
+                  },
                 ]
               }
             >
@@ -711,6 +720,9 @@ exports[`comments render properly 1`] = `
                     "borderRadius": 20,
                     "height": 40,
                     "width": 40,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
                   },
                 ]
               }
@@ -854,6 +866,9 @@ exports[`comments render properly 1`] = `
                     "borderRadius": 20,
                     "height": 40,
                     "width": 40,
+                  },
+                  Object {
+                    "backgroundColor": "#F5F5F5",
                   },
                 ]
               }

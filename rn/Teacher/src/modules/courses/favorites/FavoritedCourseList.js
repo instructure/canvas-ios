@@ -62,8 +62,8 @@ export class FavoritedCourseList extends Component {
     return (
       <View style={styles.header}>
         <View style={styles.headerTextWrapper}>
-          <Image source={Images.starFilled} testID = 'fav-courses.header-star-img'/>
-          <Heading1 style={styles.headerText} testID = 'fav-courses.header-courses-lbl'>
+          <Image source={Images.starFilled} style={{ tintColor: '#C7CDD1', height: 18, width: 18 }} testID='fav-courses.header-star-img'/>
+          <Heading1 style={styles.headerText} testID='fav-courses.header-courses-lbl'>
             {i18n('Courses')}
           </Heading1>
         </View>

@@ -43,6 +43,9 @@ exports[`renders correctly 1`] = `
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -70,33 +73,42 @@ exports[`renders correctly 1`] = `
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        numberOfLines={1}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "fontSize": 16,
-              "fontWeight": "600",
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
         }
       >
-        artorias of the abyss, solaire of astora
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          artorias of the abyss, solaire of astora
+        </Text>
+      </View>
       <Text
         accessible={true}
         allowFontScaling={true}
@@ -216,6 +228,9 @@ exports[`renders correctly with different data 1`] = `
               "height": 40,
               "width": 40,
             },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
           ]
         }
       >
@@ -243,33 +258,42 @@ exports[`renders correctly with different data 1`] = `
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        numberOfLines={1}
+      <View
         style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "fontSize": 16,
-              "fontWeight": "600",
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay-semibold",
-            },
-          ]
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
         }
       >
-        
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "fontSize": 16,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          
+        </Text>
+      </View>
       <Text
         accessible={true}
         allowFontScaling={true}

@@ -118,7 +118,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       }
     }
   >
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -170,8 +170,8 @@ exports[`RubricItem changes the currently selected value when a circle is presse
           Add Comment
         </Text>
       </View>
-    </TouchableHighlight>
-    <TouchableHighlight
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -223,7 +223,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
           View long description
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
 </View>
 `;
@@ -346,7 +346,7 @@ exports[`RubricItem renders 1`] = `
       }
     }
   >
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -398,8 +398,8 @@ exports[`RubricItem renders 1`] = `
           Add Comment
         </Text>
       </View>
-    </TouchableHighlight>
-    <TouchableHighlight
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -451,7 +451,7 @@ exports[`RubricItem renders 1`] = `
           View long description
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
 </View>
 `;
@@ -574,7 +574,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       }
     }
   >
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -626,8 +626,8 @@ exports[`RubricItem renders an already selected grade 1`] = `
           Add Comment
         </Text>
       </View>
-    </TouchableHighlight>
-    <TouchableHighlight
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -679,7 +679,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
           View long description
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
 </View>
 `;
@@ -800,7 +800,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       }
     }
   >
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -852,8 +852,8 @@ exports[`RubricItem renders the selected custom grade 1`] = `
           Add Comment
         </Text>
       </View>
-    </TouchableHighlight>
-    <TouchableHighlight
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -905,7 +905,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
           View long description
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
 </View>
 `;
@@ -1028,7 +1028,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       }
     }
   >
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -1080,7 +1080,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
           View long description
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
   <View
     style={
@@ -1158,7 +1158,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         A comment
       </Text>
     </View>
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -1210,7 +1210,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
           Edit
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
 </View>
 `;

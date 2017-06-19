@@ -54,7 +54,6 @@ exports[`SubmissionList loaded 1`] = `
       accessibilityLabel="Filter Submissions"
       accessibilityTraits={undefined}
       accessible={true}
-      hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}
@@ -66,14 +65,10 @@ exports[`SubmissionList loaded 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "marginBottom": 1,
-          },
-        ]
+        Object {
+          "marginBottom": 1,
+          "opacity": 1,
+        }
       }
       testID="submission-list.filter"
       tvParallaxProperties={undefined}
@@ -261,6 +256,9 @@ exports[`SubmissionList loaded 1`] = `
                         "height": 40,
                         "width": 40,
                       },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
+                      },
                     ]
                   }
                 >
@@ -445,6 +443,9 @@ exports[`SubmissionList loaded 1`] = `
                         "borderRadius": 20,
                         "height": 40,
                         "width": 40,
+                      },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
                       },
                     ]
                   }
@@ -661,6 +662,9 @@ exports[`SubmissionList loaded 1`] = `
                         "borderRadius": 20,
                         "height": 40,
                         "width": 40,
+                      },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
                       },
                     ]
                   }
@@ -891,6 +895,9 @@ exports[`SubmissionList loaded 1`] = `
                         "height": 40,
                         "width": 40,
                       },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
+                      },
                     ]
                   }
                 >
@@ -1091,7 +1098,6 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       accessibilityLabel="Clear Filter Submissions"
       accessibilityTraits={undefined}
       accessible={true}
-      hasTVPreferredFocus={undefined}
       hitSlop={undefined}
       isTVSelectable={true}
       nativeID={undefined}
@@ -1103,14 +1109,10 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "marginBottom": 1,
-          },
-        ]
+        Object {
+          "marginBottom": 1,
+          "opacity": 1,
+        }
       }
       testID="submission-list.filter"
       tvParallaxProperties={undefined}
@@ -1277,6 +1279,9 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                         "borderRadius": 20,
                         "height": 40,
                         "width": 40,
+                      },
+                      Object {
+                        "backgroundColor": "#F5F5F5",
                       },
                     ]
                   }

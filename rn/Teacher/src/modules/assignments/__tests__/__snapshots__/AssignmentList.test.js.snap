@@ -49,7 +49,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     >
       All Grading Periods
     </Text>
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -97,7 +97,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           Filter
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -592,7 +592,7 @@ exports[`applyFilter will apply a new filter 1`] = `
     >
       First Block
     </Text>
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -640,7 +640,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           Clear filter
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -2020,7 +2020,7 @@ exports[`renders correctly 1`] = `
     >
       All Grading Periods
     </Text>
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -2068,7 +2068,7 @@ exports[`renders correctly 1`] = `
           Filter
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
@@ -2563,7 +2563,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     >
       All Grading Periods
     </Text>
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={[Function]}
       style={
         Object {
@@ -2611,7 +2611,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           Filter
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}

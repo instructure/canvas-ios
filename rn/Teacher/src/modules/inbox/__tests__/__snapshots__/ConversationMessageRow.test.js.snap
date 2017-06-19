@@ -1,0 +1,892 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "padding": 16,
+        "paddingTop": 12,
+      }
+    }
+    testID="inbox.conversation-message-123456789"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "marginRight": 8,
+              "width": 32,
+            }
+          }
+        >
+          <View
+            accessibilityLabel=""
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderColor": "#C7CDD1",
+                  "borderWidth": 0.5,
+                  "justifyContent": "center",
+                  "marginRight": 16,
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 16,
+                  "height": 32,
+                  "width": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontSize": 11,
+                  },
+                ]
+              }
+            >
+              AOT
+            </Text>
+          </View>
+        </View>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              artorias of the abyss + 1 others 
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              to me
+            </Text>
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 12,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Message options"
+        accessibilityTraits="button"
+        accessible={true}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "height": 32,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 32,
+          }
+        }
+        testID="conversation-message.kabob-123456789"
+        tvParallaxProperties={undefined}
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "tintColor": "#8B969E",
+              "transform": Array [
+                Object {
+                  "rotate": "180deg",
+                },
+              ],
+              "width": 18,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        this is neat
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "height": 16,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`renders correctly with author being the logged in user 1`] = `
+<View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "padding": 16,
+        "paddingTop": 12,
+      }
+    }
+    testID="inbox.conversation-message-123456789"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "marginRight": 8,
+              "width": 32,
+            }
+          }
+        >
+          <View
+            accessibilityLabel=""
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderColor": "#C7CDD1",
+                  "borderWidth": 0.5,
+                  "justifyContent": "center",
+                  "marginRight": 16,
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 16,
+                  "height": 32,
+                  "width": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontSize": 11,
+                  },
+                ]
+              }
+            >
+              HTI
+            </Text>
+          </View>
+        </View>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              me 
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              to hey there i am jane
+            </Text>
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 12,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Message options"
+        accessibilityTraits="button"
+        accessible={true}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "height": 32,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 32,
+          }
+        }
+        testID="conversation-message.kabob-123456789"
+        tvParallaxProperties={undefined}
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "tintColor": "#8B969E",
+              "transform": Array [
+                Object {
+                  "rotate": "180deg",
+                },
+              ],
+              "width": 18,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        this is neat
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "height": 16,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`renders correctly with author lots of participants 1`] = `
+<View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "padding": 16,
+        "paddingTop": 12,
+      }
+    }
+    testID="inbox.conversation-message-123456789"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomColor": "#C7CDD1",
+          "borderBottomWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 12,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 32,
+              "marginRight": 8,
+              "width": 32,
+            }
+          }
+        >
+          <View
+            accessibilityLabel=""
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "borderColor": "#C7CDD1",
+                  "borderWidth": 0.5,
+                  "justifyContent": "center",
+                  "marginRight": 16,
+                  "overflow": "hidden",
+                },
+                Object {
+                  "borderRadius": 16,
+                  "height": 32,
+                  "width": 32,
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontSize": 11,
+                  },
+                ]
+              }
+            >
+              HTI
+            </Text>
+          </View>
+        </View>
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                undefined,
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 14,
+                    "fontWeight": "600",
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              me 
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              to 3 others
+            </Text>
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 12,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Message options"
+        accessibilityTraits="button"
+        accessible={true}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "height": 32,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": 32,
+          }
+        }
+        testID="conversation-message.kabob-123456789"
+        tvParallaxProperties={undefined}
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 18,
+              "tintColor": "#8B969E",
+              "transform": Array [
+                Object {
+                  "rotate": "180deg",
+                },
+              ],
+              "width": 18,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "paddingTop": 16,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        numberOfLines={2}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        this is neat
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F5F5F5",
+        "borderTopColor": "#C7CDD1",
+        "borderTopWidth": 0.5,
+        "flex": 1,
+        "height": 16,
+      }
+    }
+  />
+</View>
+`;

@@ -39,7 +39,7 @@ export default class InboxFilterHeader extends Component<any, InboxFilterHeaderP
 
   _renderButton = (item: any) => {
     const selected = this.props.selected === item.scope
-    const textStyle = [selected ? styles.selectedButtonText : styles.buttonText, { color: branding.primaryBrandColor }]
+    const textStyle = selected ? [styles.selectedButtonText, { color: branding.primaryBrandColor }] : styles.buttonText
     return (
       <TouchableOpacity testID={`inbox.filter-btn-${item.scope}`} style={styles.button} key={item.scope} onPress={() => this._onPress(item.scope)}>
         <Text style={textStyle}>{item.name}</Text>
@@ -94,5 +94,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 8,
     right: 8,
+    backgroundColor: branding.primaryBrandColor,
   },
 })

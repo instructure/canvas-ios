@@ -134,6 +134,13 @@ exports[`render 1`] = `
           >
             <Image
               source={1}
+              style={
+                Object {
+                  "height": 18,
+                  "tintColor": "#C7CDD1",
+                  "width": 18,
+                }
+              }
               testID="fav-courses.header-star-img"
             />
             <Text
@@ -162,7 +169,7 @@ exports[`render 1`] = `
               Courses
             </Text>
           </View>
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={[Function]}
             style={
               Object {
@@ -210,7 +217,7 @@ exports[`render 1`] = `
                 See All
               </Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
       <View

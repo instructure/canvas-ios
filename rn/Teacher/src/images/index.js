@@ -77,6 +77,7 @@ const images = {
   document: require('./Document.png'),
   attachment: require('./attachment.png'),
   mail: require('./Mail.png'),
+  group: require('./group.png'),
   trash: require('./trash.png'),
 }
 

@@ -4,7 +4,7 @@ import { getSession } from '../../api/session'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'
 
-const STORE_VERSION = '2'
+const STORE_VERSION = '3'
 
 function storeName (session: Session): string {
   return `redux.state.${session.user.id}.${STORE_VERSION}`

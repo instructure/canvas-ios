@@ -23,6 +23,15 @@ const emptyAppState: AppState = {
     announcements: {},
     courseDetailsTabSelectedRow: { rowID: '' },
   },
+  inbox: {
+    selectedScope: 'all',
+    conversations: {},
+    unread: { refs: [], pending: 0 },
+    starred: { refs: [], pending: 0 },
+    all: { refs: [], pending: 0 },
+    archived: { refs: [], pending: 0 },
+    sent: { refs: [], pending: 0 },
+  },
 }
 
 export const appState: Template<AppState> = template(emptyAppState)

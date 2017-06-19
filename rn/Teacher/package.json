@@ -10,7 +10,8 @@
     "lint:watch": "esw -w",
     "flow": "flow check --show-all-errors | flow-result-checker",
     "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json",
-    "danger": "danger"
+    "danger": "danger",
+    "packager:kill": "react-native-kill-packager"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -65,7 +66,8 @@
     "redux-logger": "^3.0.1",
     "redux-mock-store": "^1.2.2",
     "timezone-mock": "^0.0.0",
-    "xhr2": "^0.1.4"
+    "xhr2": "^0.1.4",
+    "react-native-kill-packager": "^1.0.0"
   },
   "jest": {
     "preset": "react-native",

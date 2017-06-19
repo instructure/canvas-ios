@@ -1,9 +1,11 @@
 // @flow
 
 import inbox from '../reducer'
-import InboxActions from '../actions'
+import { InboxActions } from '../actions'
+import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
+import { testAsyncReducer } from '../../../../test/helpers/async'
 
-const { refreshInboxAll, updateInboxSelectedScope } = InboxActions
+const { refreshInboxAll, updateInboxSelectedScope } = InboxActions()
 const templates = {
   ...require('../../../api/canvas-api/__templates__/conversations'),
 }
@@ -21,8 +23,8 @@ test('it handles the data', () => {
 
   expect(inbox({}, action)).toEqual({
     conversations: {
-      '1': data[0],
-      '2': data[1],
+      '1': { data: data[0] },
+      '2': { data: data[1] },
     },
     selectedScope: 'all',
     all: {
@@ -57,4 +59,53 @@ test('handles updating scope', () => {
   expect(result).toMatchObject({
     selectedScope: 'unread',
   })
+})
+
+test('handled updating a single conversation', async () => {
+  const convo = templates.conversation({ id: '2' })
+  let action = InboxActions({ getConversationDetails: apiResponse(convo) }).refreshConversationDetails(convo.id)
+  let state = await testAsyncReducer(inbox, action)
+  expect(state).toMatchObject([
+    {
+      conversations: {
+        [convo.id.toString()]: {
+          pending: 1,
+          error: null,
+        },
+      },
+    },
+    {
+      conversations: {
+        [convo.id.toString()]: {
+          pending: 0,
+          data: convo,
+          error: null,
+        },
+      },
+    },
+  ])
+})
+
+test('handled updating a single conversation that errors', async () => {
+  const convo = templates.conversation({ id: '2' })
+  let action = InboxActions({ getConversationDetails: apiError({ message: 'error' }) }).refreshConversationDetails(convo.id)
+  let state = await testAsyncReducer(inbox, action)
+  expect(state).toMatchObject([
+    {
+      conversations: {
+        [convo.id.toString()]: {
+          pending: 1,
+          error: null,
+        },
+      },
+    },
+    {
+      conversations: {
+        [convo.id.toString()]: {
+          pending: 0,
+          error: 'An error occured while fetching this conversation.',
+        },
+      },
+    },
+  ])
 })

@@ -505,7 +505,7 @@ exports[`Rubric has the correct score 1`] = `
               }
             }
           >
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -557,8 +557,8 @@ exports[`Rubric has the correct score 1`] = `
                   Add Comment
                 </Text>
               </View>
-            </TouchableHighlight>
-            <TouchableHighlight
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -610,7 +610,7 @@ exports[`Rubric has the correct score 1`] = `
                   View long description
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -1124,7 +1124,7 @@ exports[`Rubric renders a rubric 1`] = `
               }
             }
           >
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -1176,8 +1176,8 @@ exports[`Rubric renders a rubric 1`] = `
                   Add Comment
                 </Text>
               </View>
-            </TouchableHighlight>
-            <TouchableHighlight
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -1229,7 +1229,7 @@ exports[`Rubric renders a rubric 1`] = `
                   View long description
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -1743,7 +1743,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
             }
           >
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -1795,8 +1795,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   Add Comment
                 </Text>
               </View>
-            </TouchableHighlight>
-            <TouchableHighlight
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -1848,7 +1848,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                   View long description
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -2558,7 +2558,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             }
           >
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -2610,8 +2610,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   Add Comment
                 </Text>
               </View>
-            </TouchableHighlight>
-            <TouchableHighlight
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -2663,7 +2663,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                   View long description
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -2869,7 +2869,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 10 out of 100
               </Text>
             </View>
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -2919,7 +2919,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   Save
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -3231,7 +3231,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               }
             }
           >
-            <TouchableHighlight
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -3283,8 +3283,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   Add Comment
                 </Text>
               </View>
-            </TouchableHighlight>
-            <TouchableHighlight
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={[Function]}
               style={
                 Object {
@@ -3336,7 +3336,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                   View long description
                 </Text>
               </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
+  Image,
 } from 'react-native'
 
 import { Text } from '../../../common/text'
@@ -12,6 +13,8 @@ import Avatar from '../../../common/components/Avatar'
 import color from '../../../common/colors'
 import { getSession } from '../../../api/session'
 import i18n from 'format-message'
+import Images from '../../../images'
+import branding from '../../../common/branding'
 
 export type ConversationRowProps = {
   conversation: Conversation,
@@ -51,7 +54,12 @@ export default class ConversationRow extends Component<any, ConversationRowProps
                   <Avatar avatarURL={c.avatar_url} userName={avatarUserName}/>
                 </View>
                 <View style={styles.contentContainer}>
-                  <Text style={styles.names} numberOfLines={1}>{title}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    { c.starred &&
+                      <Image source={Images.starFilled} style={{ tintColor: branding.primaryBrandColor, height: 14, width: 14, marginRight: 2 }} />
+                    }
+                    <Text style={styles.names} numberOfLines={1}>{title}</Text>
+                  </View>
                   <Text style={styles.subject} numberOfLines={1}>{subject}</Text>
                   { c.last_message && <Text style={styles.message} numberOfLines={1}>{c.last_message}</Text> }
                 </View>
@@ -70,14 +78,6 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  dateContainer: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  avatarContainer: {
     flexDirection: 'column',
     alignItems: 'flex-start',
   },
@@ -113,10 +113,6 @@ const styles = StyleSheet.create({
   },
   message: {
     color: '#8B969E',
-    fontSize: 14,
-  },
-  date: {
-    fontWeight: '500',
     fontSize: 14,
   },
 })

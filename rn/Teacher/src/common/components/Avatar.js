@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import colors from '../colors'
+import Images from '../../images'
 
 type Props = {
   avatarURL?: string,
@@ -24,7 +25,7 @@ export default class Avatar extends Component<any, Props, any> {
     if (!url) return null
 
     // There are a few different forms that the default picture can take
-    const defaults = ['images/dotted_pic.png', 'images%2Fmessages%2Favatar-50.png', 'images/messages/avatar-group-50.png']
+    const defaults = ['images/dotted_pic.png', 'images%2Fmessages%2Favatar-50.png']
     if (defaults.filter(d => url.includes(d)).length) {
       return null
     }
@@ -32,17 +33,42 @@ export default class Avatar extends Component<any, Props, any> {
     return url
   }
 
+  // Provides a replacement image if one exists for a url
+  replacementImage = () => {
+    const url = this.props.avatarURL
+    if (!url) return null
+
+    const group = 'images/messages/avatar-group-50.png'
+    if (url.includes(group)) {
+      return Images.group
+    }
+
+    return null
+  }
+
   render () {
     const url = this.imageURL()
+    let source = { uri: url }
     const height = this.props.height || 40
     const width = height
-    const borderRadius = Math.round(height / 2)
+    let borderRadius = Math.round(height / 2)
     const fontSize = Math.round(height / 3)
+    const replacement = this.replacementImage()
+    if (replacement) {
+      source = replacement
+      borderRadius = 0
+    }
+
+    const containerStyles = [styles.imageContainer, { height, width, borderRadius }]
+    if (!replacement) {
+      containerStyles.push({ backgroundColor: '#F5F5F5' })
+    }
+
     if (url) {
       return (
-        <View style={[styles.imageContainer, { height, width, borderRadius }]} accessibilityLabel=''>
+        <View style={containerStyles} accessibilityLabel=''>
           <Image
-            source={{ uri: url }}
+            source={source}
             style={{ height, width }}
           />
         </View>

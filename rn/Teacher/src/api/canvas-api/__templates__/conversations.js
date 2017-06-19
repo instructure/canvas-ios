@@ -20,3 +20,9 @@ export const conversation: Template<Conversation> = template({
   ],
   avatar_url: 'http://www.fillmurray.com/200/300',
 })
+
+export const conversationMessage: Template<Conversation> = template({
+  id: '123456789',
+  body: 'this is neat',
+  author_id: '1234',
+})

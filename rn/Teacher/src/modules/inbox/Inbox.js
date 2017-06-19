@@ -38,12 +38,20 @@ export class Inbox extends Component {
     handleRefresh(this.props, this.props.next)
   }
 
+  _onSelectConversation = (conversationID: string) => {
+    const path = `/conversations/${conversationID}`
+    this.props.navigator.show(path, { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' })
+  }
+
   addMessage = () => {
     this.props.navigator.show('/conversations/compose', { modal: true, modalPresentationStyle: 'fullscreen' })
   }
 
   _renderItem = ({ item, index }) => {
-    return <ConversationRow conversation={item} drawsTopLine={index === 0} onPress={() => {}}/>
+    return <ConversationRow
+              conversation={item}
+              drawsTopLine={index === 0}
+              onPress={this._onSelectConversation}/>
   }
 
   _renderLoading = () => {
@@ -124,6 +132,7 @@ export class Inbox extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: global.tabBarHeight,
   },
   loading: {
     flex: 1,
@@ -135,7 +144,7 @@ const styles = StyleSheet.create({
 export function mapStateToProps ({ inbox }: InboxState): InboxProps {
   const scope = inbox.selectedScope
   const scopeData = inbox[scope]
-  const conversations = scopeData.refs.map((id) => inbox.conversations[id]).filter((c) => c)
+  const conversations = scopeData.refs.map((id) => inbox.conversations[id].data).filter((c) => c)
   return {
     conversations,
     scope,

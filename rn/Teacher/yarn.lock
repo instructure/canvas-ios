@@ -4089,6 +4089,10 @@ react-native-keyboard-spacer@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.3.1.tgz#9580297ebfd078202dc4c65303d29cda35de67f1"
 
+react-native-kill-packager@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-kill-packager/-/react-native-kill-packager-1.0.0.tgz#8d5dc706429805800298acabca45598d0d39b391"
+
 react-native-progress@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.2.0.tgz#86d756be5537c09936ac3d3c4e23710da590743c"

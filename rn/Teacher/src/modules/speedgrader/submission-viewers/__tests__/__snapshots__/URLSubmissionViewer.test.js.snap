@@ -17,7 +17,7 @@ exports[`url submission renders correctly 1`] = `
   >
     This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted.
   </Text>
-  <TouchableHighlight
+  <TouchableOpacity
     onPress={[Function]}
     style={
       Object {
@@ -69,7 +69,7 @@ exports[`url submission renders correctly 1`] = `
         https://my-blog-about-rockets.com/2017/6/1/rockets-are-splosive
       </Text>
     </View>
-  </TouchableHighlight>
+  </TouchableOpacity>
   <Text
     accessible={true}
     allowFontScaling={true}

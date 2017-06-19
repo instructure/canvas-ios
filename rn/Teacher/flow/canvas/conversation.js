@@ -17,9 +17,22 @@ export type Conversation = {
   avatar_url: string,
   visible: true,
   context_name: string,
+  messages?: ConversationMessage[],
 }
 
 export type ConversationParticipant = {
   id: string,
   name: string,
+  avatar_url?: ?string,
+}
+
+export type ConversationMessage = {
+  id: string,
+  created_at: string,
+  body: string,
+  author_id: string,
+  generated: boolean,
+  media_comment: any,
+  forwarded_messages: any,
+  attachments: any,
 }

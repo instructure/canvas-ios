@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import ReactNative, {
   View,
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native'
 import BaseButton from 'react-native-button'
 import colors from './colors'
@@ -28,7 +28,7 @@ export class LinkButton extends Component {
       color: colors.primaryButtonColor,
     }
     return (
-      <TouchableHighlight
+      <TouchableOpacity
         {...this.props}
       >
         <View>
@@ -36,7 +36,7 @@ export class LinkButton extends Component {
             {this.props.children}
           </Text>
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 }

@@ -123,8 +123,11 @@ export type FavoriteCoursesState = AsyncState
 
 export type InboxScope = 'all' | 'unread' | 'starred' | 'sent' | 'archived'
 
+export type ConversationState = AsyncState & {
+  data: Conversation,
+}
 export type InboxState = {
-  conversations: { string: Conversation },
+  conversations: { [string]: ConversationState },
   selectedScope: InboxScope,
   all: AsyncRefs,
   unread: AsyncRefs,
@@ -136,4 +139,5 @@ export type InboxState = {
 export type AppState = {
   favoriteCourses: FavoriteCoursesState,
   entities: Entities,
+  inbox: InboxState,
 }

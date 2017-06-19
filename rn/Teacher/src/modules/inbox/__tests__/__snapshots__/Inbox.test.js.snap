@@ -5,6 +5,7 @@ exports[`refreshed component 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -89,6 +90,7 @@ exports[`refreshed component 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#374A59",
                   "bottom": 0,
                   "height": 3,
                   "left": 8,
@@ -143,16 +145,11 @@ exports[`refreshed component 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -203,16 +200,11 @@ exports[`refreshed component 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -263,16 +255,11 @@ exports[`refreshed component 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -323,16 +310,11 @@ exports[`refreshed component 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -427,6 +409,7 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -511,6 +494,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#374A59",
                   "bottom": 0,
                   "height": 3,
                   "left": 8,
@@ -565,16 +549,11 @@ exports[`renders correctly 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -625,16 +604,11 @@ exports[`renders correctly 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -685,16 +659,11 @@ exports[`renders correctly 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -745,16 +714,11 @@ exports[`renders correctly 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -838,32 +802,9 @@ exports[`renders correctly 1`] = `
       <View
         onLayout={[Function]}
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              undefined,
-            ]
-          }
+        <TouchableHighlight
+          onPress={[Function]}
           testID="inbox.conversation-1"
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -907,6 +848,9 @@ exports[`renders correctly 1`] = `
                       "height": 40,
                       "width": 40,
                     },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
                   ]
                 }
               >
@@ -934,33 +878,42 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                numberOfLines={1}
+              <View
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
                 }
               >
-                artorias of the abyss, solaire of astora
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  artorias of the abyss, solaire of astora
+                </Text>
+              </View>
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -1017,37 +970,14 @@ exports[`renders correctly 1`] = `
               </Text>
             </View>
           </View>
-        </View>
+        </TouchableHighlight>
       </View>
       <View
         onLayout={[Function]}
       >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              undefined,
-            ]
-          }
+        <TouchableHighlight
+          onPress={[Function]}
           testID="inbox.conversation-2"
-          tvParallaxProperties={undefined}
         >
           <View
             style={
@@ -1087,6 +1017,9 @@ exports[`renders correctly 1`] = `
                       "height": 40,
                       "width": 40,
                     },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
                   ]
                 }
               >
@@ -1114,33 +1047,42 @@ exports[`renders correctly 1`] = `
                 }
               }
             >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                numberOfLines={1}
+              <View
                 style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  }
                 }
               >
-                artorias of the abyss, solaire of astora
-              </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  artorias of the abyss, solaire of astora
+                </Text>
+              </View>
               <Text
                 accessible={true}
                 allowFontScaling={true}
@@ -1197,7 +1139,7 @@ exports[`renders correctly 1`] = `
               </Text>
             </View>
           </View>
-        </View>
+        </TouchableHighlight>
       </View>
     </View>
   </RCTScrollView>
@@ -1209,6 +1151,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -1293,6 +1236,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#374A59",
                   "bottom": 0,
                   "height": 3,
                   "left": 8,
@@ -1347,16 +1291,11 @@ exports[`renders the activity indicator when loading conversations 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1407,16 +1346,11 @@ exports[`renders the activity indicator when loading conversations 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1467,16 +1401,11 @@ exports[`renders the activity indicator when loading conversations 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1527,16 +1456,11 @@ exports[`renders the activity indicator when loading conversations 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1573,6 +1497,7 @@ exports[`renders the starred empty state 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -1636,16 +1561,11 @@ exports[`renders the starred empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1696,16 +1616,11 @@ exports[`renders the starred empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1777,6 +1692,7 @@ exports[`renders the starred empty state 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#374A59",
                   "bottom": 0,
                   "height": 3,
                   "left": 8,
@@ -1831,16 +1747,11 @@ exports[`renders the starred empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1891,16 +1802,11 @@ exports[`renders the starred empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -1995,6 +1901,7 @@ exports[`renders with an empty state 1`] = `
   style={
     Object {
       "flex": 1,
+      "marginBottom": 49,
     }
   }
 >
@@ -2079,6 +1986,7 @@ exports[`renders with an empty state 1`] = `
             style={
               Array [
                 Object {
+                  "backgroundColor": "#374A59",
                   "bottom": 0,
                   "height": 3,
                   "left": 8,
@@ -2133,16 +2041,11 @@ exports[`renders with an empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -2193,16 +2096,11 @@ exports[`renders with an empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -2253,16 +2151,11 @@ exports[`renders with an empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },
@@ -2313,16 +2206,11 @@ exports[`renders with an empty state 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                Array [
-                  Object {
-                    "color": "#8B969E",
-                    "fontSize": 14,
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "color": "#374A59",
-                  },
-                ],
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
                 Object {
                   "fontFamily": ".SFUIDisplay-semibold",
                 },

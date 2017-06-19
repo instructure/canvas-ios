@@ -3,6 +3,7 @@ import 'react-native'
 import React from 'react'
 import { Inbox, handleRefresh, mapStateToProps, Refreshed } from '../Inbox.js'
 import setProps from '../../../../test/helpers/setProps'
+import explore from '../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
 const template = {
@@ -10,6 +11,9 @@ const template = {
   ...require('../../../__templates__/helm'),
 }
 
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+
+// Note: test renderer must be required after react-native.
 const c1 = template.conversation({
   id: '1',
 })
@@ -33,6 +37,24 @@ it('renders correctly', () => {
     <Inbox {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+it('renders correctly', () => {
+  const c1 = template.conversation({
+    id: '1',
+  })
+  const conversations = [c1]
+  const navigator = template.navigator()
+
+  const tree = renderer.create(
+    <Inbox conversations={conversations} navigator={navigator} />
+  ).toJSON()
+  const row = explore(tree).selectByID(`inbox.conversation-${c1.id}`) || {}
+  row.props.onPress(c1.id)
+  expect(navigator.show).toHaveBeenCalledWith(
+    '/conversations/1',
+    { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' }
+  )
 })
 
 it('doesnt call refresh function if there is no next function', () => {
@@ -97,8 +119,8 @@ it('mapStateToProps', () => {
   const appState = {
     inbox: {
       conversations: {
-        '1': c1,
-        '2': c2,
+        '1': { data: c1 },
+        '2': { data: c2 },
       },
       selectedScope: 'all',
       all: { refs: [c1.id, c2.id] },

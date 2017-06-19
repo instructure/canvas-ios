@@ -59,6 +59,9 @@
   "always_3a59e701": {
     "message": "Always"
   },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "An error occured while fetching this conversation."
+  },
   "announcement_details_81b0bda2": {
     "message": "Announcement Details"
   },
@@ -410,8 +413,14 @@
   "logout_a9312e35": {
     "message": "Logout"
   },
+  "me_bf110f4d": {
+    "message": "me"
+  },
   "media_recording_7df9606f": {
     "message": "media recording"
+  },
+  "message_options_59805b8e": {
+    "message": "Message options"
   },
   "minutes_4aee5a41": {
     "message": "Minutes"
@@ -427,6 +436,9 @@
   },
   "name_1aed4a1b": {
     "message": "Name"
+  },
+  "name_count_others_6e5afa7c": {
+    "message": "{ name } + { count } others"
   },
   "new_13daf639": {
     "message": "New"
@@ -608,6 +620,9 @@
   "replies_4a8577c8": {
     "message": "Replies"
   },
+  "reply_389d6fb9": {
+    "message": "Reply"
+  },
   "require_an_access_code_46a02601": {
     "message": "Require an Access Code"
   },
@@ -772,6 +787,15 @@
   },
   "to_51406be9": {
     "message": "To"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "to { count } others"
+  },
+  "to_me_780716c7": {
+    "message": "to me"
+  },
+  "to_name_bb3e415e": {
+    "message": "to { name }"
   },
   "unexpected_error_93991f40": {
     "message": "Unexpected Error"

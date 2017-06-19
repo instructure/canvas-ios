@@ -36,7 +36,6 @@ exports[`renders link correctly 1`] = `
   accessibilityLabel={undefined}
   accessibilityTraits={undefined}
   accessible={true}
-  hasTVPreferredFocus={undefined}
   hitSlop={undefined}
   isTVSelectable={true}
   nativeID={undefined}
@@ -48,12 +47,9 @@ exports[`renders link correctly 1`] = `
   onResponderTerminationRequest={[Function]}
   onStartShouldSetResponder={[Function]}
   style={
-    Array [
-      Object {
-        "backgroundColor": "transparent",
-      },
-      undefined,
-    ]
+    Object {
+      "opacity": 1,
+    }
   }
   testID={undefined}
   tvParallaxProperties={undefined}

@@ -67,6 +67,7 @@ exports[`renders correctly 1`] = `
           style={
             Array [
               Object {
+                "backgroundColor": "#374A59",
                 "bottom": 0,
                 "height": 3,
                 "left": 8,
@@ -106,16 +107,11 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Array [
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-              ],
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -151,16 +147,11 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Array [
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-              ],
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -196,16 +187,11 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Array [
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-              ],
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -241,16 +227,11 @@ exports[`renders correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Array [
-                Object {
-                  "color": "#8B969E",
-                  "fontSize": 14,
-                  "fontWeight": "600",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-              ],
+              Object {
+                "color": "#8B969E",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
