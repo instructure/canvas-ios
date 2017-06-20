@@ -25,7 +25,7 @@ export type RowProps = {
   testID?: string,
   children: any,
   renderImage?: Function,
-  identifier: string, // Passed in as the first parameter to the onPress callback
+  identifier: any, // Passed in as the first parameter to the onPress callback
   accessories: any,
   accessibilityLabel: ?string,
   accessibilityTraits: ?string | ?string[],

@@ -18,6 +18,7 @@ import { quizzes } from '../modules/quizzes/reducer'
 import { quizSubmissions, quizAssignmentSubmissions } from '../modules/quizzes/submissions/reducer'
 import { discussions } from '../modules/discussions/reducer'
 import inbox from '../modules/inbox/reducer'
+import groups from '../modules/groups/reducer'
 
 const entities = combineReducers({
   courses,
@@ -32,6 +33,7 @@ const entities = combineReducers({
   quizSubmissions,
   discussions,
   courseDetailsTabSelectedRow,
+  groups,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({

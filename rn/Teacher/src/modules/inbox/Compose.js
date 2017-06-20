@@ -25,6 +25,7 @@ type ComposeProps = {
 type ComposeState = {
   sendDisabled: boolean,
   sendToAll: boolean,
+  selectedCourse: ?Course,
 }
 
 export default class Compose extends PureComponent {
@@ -38,6 +39,7 @@ export default class Compose extends PureComponent {
     this.state = {
       sendDisabled: true,
       sendToAll: false,
+      selectedCourse: null,
     }
   }
 
@@ -45,7 +47,23 @@ export default class Compose extends PureComponent {
     this.props.navigator.dismiss()
   }
 
-  selectCourse = () => {}
+  selectCourse = () => {
+    this.props.navigator.show(
+      '/conversations/course-select',
+      {
+        modal: true,
+        modalPresentationStyle: 'fullscreen',
+      },
+      {
+        onSelect: (selectedCourse: Course) => {
+          this.props.navigator.dismiss()
+          this.setState({
+            selectedCourse,
+          })
+        },
+      }
+    )
+  }
 
   sendMessage = () => {}
 
@@ -61,6 +79,7 @@ export default class Compose extends PureComponent {
   }
 
   render () {
+    const course = this.state.selectedCourse
     return (
       <Screen
         navBarColor='#fff'
@@ -87,7 +106,9 @@ export default class Compose extends PureComponent {
         >
           <TouchableHighlight underlayColor='#fff' style={styles.wrapper} onPress={this.selectCourse}>
             <View style={styles.courseSelect}>
-              <Text style={styles.courseSelectText}>{i18n('Select a course')}</Text>
+              <Text style={[styles.courseSelectText, course ? styles.courseSelectedText : undefined]}>
+                { course ? course.name : i18n('Select a course') }
+              </Text>
               <DisclosureIndicator />
             </View>
           </TouchableHighlight>
@@ -155,5 +176,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     color: colors.lightText,
+  },
+  courseSelectedText: {
+    color: colors.darkText,
   },
 })

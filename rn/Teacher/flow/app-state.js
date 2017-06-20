@@ -92,6 +92,10 @@ export type CourseDetailsTabSelectedRowState = {
   rowID: ?string,
 }
 
+export type GroupState = AsyncState & {
+  data: Group,
+}
+
 export type CoursesState = { [string]: CourseState & CourseContentState }
 export type AssignmentGroupsState = { [string]: AssignmentGroupState & AssignmentGroupContentState }
 export type AssignmentsState = { [string]: AssignmentDetailState & AssignmentContentState }
@@ -102,6 +106,7 @@ export type SubmissionsState = { [string]: SubmissionState }
 export type QuizzesState = { [string]: QuizState }
 export type QuizSubmissionsState = { [string]: QuizSubmissionState }
 export type DiscussionsState = { [string]: DiscussionState }
+export type GroupsState = { [string]: GroupState }
 
 export type Entities = {
   courses: CoursesState,
@@ -116,6 +121,7 @@ export type Entities = {
   quizSubmissions: QuizSubmissionsState,
   discussions: DiscussionsState,
   courseDetailsTabSelectedRow: CourseDetailsTabSelectedRowState,
+  groups: GroupsState,
 }
 
 export type FavoriteCoursesState = AsyncState

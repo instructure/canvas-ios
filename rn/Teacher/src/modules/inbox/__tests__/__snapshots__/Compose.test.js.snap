@@ -75,11 +75,14 @@ exports[`Compose renders 1`] = `
           disabled={false}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#7F91A7",
-              "fontSize": 16,
-              "lineHeight": 19,
-            }
+            Array [
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              },
+              undefined,
+            ]
           }
         >
           Select a course

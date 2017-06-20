@@ -11,8 +11,9 @@ import AssignmentDetails from '../modules/assignment-details/AssignmentDetails'
 import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import AssignmentDetailsEdit from '../modules/assignment-details/AssignmentDetailsEdit'
 import Inbox from '../modules/inbox/Inbox'
-import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import Compose from '../modules/inbox/Compose'
+import CourseSelect from '../modules/inbox/CourseSelect'
+import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import Profile from '../modules/profile/Profile'
 import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 import Staging from '../modules/staging/Staging'
@@ -70,6 +71,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
   registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
   registerScreen('/conversations/compose', wrap(Compose), store)
+  registerScreen('/conversations/course-select', wrap(CourseSelect), store)
+  registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
   registerScreen('/profile', wrap(Profile), store)
   registerScreen('/beta-feedback', wrap(BetaFeedback), store)
   registerScreen('/staging', wrap(Staging), store)

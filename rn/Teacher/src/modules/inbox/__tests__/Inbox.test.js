@@ -6,14 +6,13 @@ import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
+jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+
 const template = {
   ...require('../../../api/canvas-api/__templates__/conversations'),
   ...require('../../../__templates__/helm'),
 }
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-
-// Note: test renderer must be required after react-native.
 const c1 = template.conversation({
   id: '1',
 })
@@ -39,19 +38,13 @@ it('renders correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
-it('renders correctly', () => {
-  const c1 = template.conversation({
-    id: '1',
-  })
-  const conversations = [c1]
-  const navigator = template.navigator()
-
+it('selected an item from the inbox', () => {
   const tree = renderer.create(
-    <Inbox conversations={conversations} navigator={navigator} />
+    <Inbox {...defaultProps} />
   ).toJSON()
   const row = explore(tree).selectByID(`inbox.conversation-${c1.id}`) || {}
   row.props.onPress(c1.id)
-  expect(navigator.show).toHaveBeenCalledWith(
+  expect(defaultProps.navigator.show).toHaveBeenCalledWith(
     '/conversations/1',
   )
 })

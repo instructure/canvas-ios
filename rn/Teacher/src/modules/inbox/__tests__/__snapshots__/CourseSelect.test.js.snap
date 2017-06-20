@@ -1,0 +1,1013 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseSelect renders 1`] = `
+<RCTScrollView
+  ItemSeparatorComponent={undefined}
+  data={
+    Array [
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "1",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": true,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 0,
+        "title": "favorites",
+      },
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "2",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "3",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 1,
+        "title": "courses",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  onViewableItemsChanged={undefined}
+  renderItem={[Function]}
+  renderScrollComponent={[Function]}
+  renderSectionHeader={[Function]}
+  scrollEventThrottle={50}
+  sections={
+    Array [
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "1",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": true,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 0,
+        "title": "favorites",
+      },
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "2",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "3",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 1,
+        "title": "courses",
+      },
+    ]
+  }
+  stickyHeaderIndices={
+    Array [
+      0,
+      2,
+    ]
+  }
+  stickySectionHeadersEnabled={true}
+  updateCellsBatchingPeriod={50}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          favorites
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+        testID="inbox.course-select.course-1"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            },
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          courses
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+        testID="inbox.course-select.course-2"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+        testID="inbox.course-select.course-3"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`CourseSelect renders and then selects a course and then dismisses 1`] = `
+<RCTScrollView
+  ItemSeparatorComponent={undefined}
+  data={
+    Array [
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "1",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": true,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 0,
+        "title": "favorites",
+      },
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "2",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "3",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 1,
+        "title": "courses",
+      },
+    ]
+  }
+  disableVirtualization={false}
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  onContentSizeChange={[Function]}
+  onEndReachedThreshold={2}
+  onLayout={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  onViewableItemsChanged={undefined}
+  renderItem={[Function]}
+  renderScrollComponent={[Function]}
+  renderSectionHeader={[Function]}
+  scrollEventThrottle={50}
+  sections={
+    Array [
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "1",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": true,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 0,
+        "title": "favorites",
+      },
+      Object {
+        "data": Array [
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "2",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+          Object {
+            "course_code": "rn 101",
+            "default_view": "wiki",
+            "id": "3",
+            "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            "is_favorite": false,
+            "name": "Learn React Native",
+            "short_name": "rn",
+            "term": Object {
+              "name": "Default Term",
+            },
+          },
+        ],
+        "key": 1,
+        "title": "courses",
+      },
+    ]
+  }
+  stickyHeaderIndices={
+    Array [
+      0,
+      2,
+    ]
+  }
+  stickySectionHeadersEnabled={true}
+  updateCellsBatchingPeriod={50}
+  windowSize={21}
+>
+  <View>
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          favorites
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+        testID="inbox.course-select.course-1"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#F5F5F5",
+              "flex": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "paddingLeft": 16,
+              "paddingRight": 8,
+            },
+            undefined,
+            undefined,
+          ]
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "color": "#73818C",
+                "fontSize": 14,
+                "fontWeight": "600",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-semibold",
+              },
+            ]
+          }
+        >
+          courses
+        </Text>
+      </View>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            Object {
+              "borderTopColor": "#C7CDD1",
+              "borderTopWidth": 0.5,
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+        testID="inbox.course-select.course-2"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+    <View
+      onLayout={[Function]}
+    >
+      <TouchableHighlight
+        accessibilityLabel={undefined}
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "height": 54,
+            },
+            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
+          ]
+        }
+        testID="inbox.course-select.course-3"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Learn React Native
+            </Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    </View>
+  </View>
+</RCTScrollView>
+`;
