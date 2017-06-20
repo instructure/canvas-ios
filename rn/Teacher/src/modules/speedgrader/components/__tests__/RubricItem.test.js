@@ -254,4 +254,16 @@ describe('RubricItem', () => {
       defaultProps.rubricItem.ratings[0].description
     )
   })
+
+  it('calls dismissToolTip onPressOut', () => {
+    const dismissToolTip = jest.fn()
+    let tree = renderer.create(
+      <RubricItem {...defaultProps} dismissToolTip={dismissToolTip} />
+    ).toJSON()
+
+    let button = explore(tree).selectByID(`rubric-item.points-${defaultProps.rubricItem.ratings[0].id}`) || {}
+    button.props.onPressOut()
+
+    expect(dismissToolTip).toHaveBeenCalled()
+  })
 })

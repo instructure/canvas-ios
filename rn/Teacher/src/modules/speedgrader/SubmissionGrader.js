@@ -77,7 +77,8 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     switch (tab) {
       case 0:
         const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined
-        return <GradeTab {...this.props} showToolTip={showToolTip} />
+        const dismissToolTip = this.toolTip ? this.toolTip.dismissToolTip : undefined
+        return <GradeTab {...this.props} showToolTip={showToolTip} dismissToolTip={dismissToolTip} />
       case 1:
         return <CommentsTab {...this.props} />
       case 2:

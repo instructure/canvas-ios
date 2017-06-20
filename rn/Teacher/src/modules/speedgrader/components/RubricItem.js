@@ -98,6 +98,12 @@ export default class RubricItem extends Component {
     }
   }
 
+  dismissToolTip = () => {
+    if (this.props.dismissToolTip) {
+      this.props.dismissToolTip()
+    }
+  }
+
   render () {
     let { rubricItem } = this.props
     let isCustomGrade = this.isCustomGrade()
@@ -114,6 +120,7 @@ export default class RubricItem extends Component {
               value={rating.points}
               onPress={this.changeSelected}
               onLongPress={this.showToolTip}
+              onPressOut={this.dismissToolTip}
               accessibilityLabel={`${rating.points} — ${rating.description}`}
               testID={`rubric-item.points-${rating.id}`}
             >
@@ -214,6 +221,7 @@ type RubricItemProps = {
   openCommentKeyboard: (string) => void,
   deleteComment: (string) => void,
   showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
+  dismissToolTip?: () => void,
 }
 
 type RubricItemState = {

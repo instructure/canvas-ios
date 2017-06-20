@@ -258,6 +258,7 @@ exports[`Rubric has the correct score 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -326,6 +327,7 @@ exports[`Rubric has the correct score 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -394,6 +396,7 @@ exports[`Rubric has the correct score 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -877,6 +880,7 @@ exports[`Rubric renders a rubric 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -945,6 +949,7 @@ exports[`Rubric renders a rubric 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -1013,6 +1018,7 @@ exports[`Rubric renders a rubric 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -1496,6 +1502,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -1564,6 +1571,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -1632,6 +1640,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -2311,6 +2320,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -2379,6 +2389,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -2447,6 +2458,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -2981,6 +2993,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -3049,6 +3062,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               on={false}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,
@@ -3117,6 +3131,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               on={true}
               onLongPress={[Function]}
               onPress={[Function]}
+              onPressOut={[Function]}
               style={
                 Object {
                   "marginBottom": 8,

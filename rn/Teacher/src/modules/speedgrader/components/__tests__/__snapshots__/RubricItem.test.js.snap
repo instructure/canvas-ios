@@ -50,6 +50,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -66,6 +67,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -82,6 +84,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -278,6 +281,7 @@ exports[`RubricItem renders 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -294,6 +298,7 @@ exports[`RubricItem renders 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -310,6 +315,7 @@ exports[`RubricItem renders 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -506,6 +512,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       on={true}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -522,6 +529,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -538,6 +546,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -734,6 +743,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -750,6 +760,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -766,6 +777,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -960,6 +972,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -976,6 +989,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
@@ -992,6 +1006,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       on={false}
       onLongPress={[Function]}
       onPress={[Function]}
+      onPressOut={[Function]}
       style={
         Object {
           "marginBottom": 8,
