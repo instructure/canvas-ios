@@ -136,6 +136,37 @@ describe('delete discussion', () => {
   })
 })
 
+describe('subscribeDiscussion', () => {
+  it('should subscribe', async () => {
+    const api = {
+      subscribeDiscussion: apiResponse({}, { status: 204 }),
+    }
+    const actions = Actions(api)
+    const action = actions.subscribeDiscussion('1', '2', true)
+    const result = await testAsyncAction(action)
+    expect(result).toMatchObject([
+      {
+        type: actions.subscribeDiscussion.toString(),
+        pending: true,
+        payload: {
+          discussionID: '2',
+          courseID: '1',
+          subscribed: true,
+        },
+      },
+      {
+        type: actions.subscribeDiscussion.toString(),
+        payload: {
+          result: { data: {} },
+          discussionID: '2',
+          courseID: '1',
+          subscribed: true,
+        },
+      },
+    ])
+  })
+})
+
 test('deletePendingNewDiscussion', () => {
   const actions = Actions({})
   const action = actions.deletePendingNewDiscussion('43')

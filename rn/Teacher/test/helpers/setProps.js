@@ -1,6 +1,6 @@
 /* @flow */
 
-export default function setProps<P> (component: any, changedProps: P): void {
+export default function setProps<P> (component: any, changedProps: P): any {
   const instance = component.getInstance()
   const nextProps = {
     ...instance.props,
@@ -10,4 +10,5 @@ export default function setProps<P> (component: any, changedProps: P): void {
     instance.componentWillReceiveProps(nextProps)
   }
   instance.props = nextProps
+  return component
 }

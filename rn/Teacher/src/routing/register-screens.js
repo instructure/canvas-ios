@@ -30,8 +30,9 @@ import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import DiscussionsList from '../modules/discussions/list/DiscussionsList'
-import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import DiscussionDetails from '../modules/discussions/details/DiscussionDetails'
+import DiscussionEdit from '../modules/discussions/edit/DiscussionEdit'
+import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
 
 import { Store } from 'redux'
@@ -63,6 +64,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/quizzes/:quizID/submissions', wrap(QuizSubmissions), store)
   registerScreen('/courses/:courseID/discussion_topics', wrap(DiscussionsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/discussion_topics/:discussionID', wrap(DiscussionDetails), store)
+  registerScreen('/courses/:courseID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
   registerScreen('/conversations', wrap(Inbox), store)
   registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
   registerScreen('/conversations/compose', wrap(Compose), store)

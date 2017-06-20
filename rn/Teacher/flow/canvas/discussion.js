@@ -26,6 +26,8 @@ export type DiscussionReply = {
   user_id: string,
 }
 
+export type DiscussionType = 'side_comment' | 'threaded'
+
 export type Discussion = {
   id: string,
   assignment_id?: ?string,
@@ -53,4 +55,7 @@ export type Discussion = {
   only_graders_can_rate: boolean,
   require_initial_post: boolean,
   delayed_post_at: ?string,
+  discussion_type: DiscussionType,
+  unlock_at: ?string,
+  can_unpublish: boolean,
 }

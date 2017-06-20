@@ -35,6 +35,9 @@ export const discussion: Template<Discussion> = template({
   only_graders_can_rate: false,
   require_initial_post: false,
   delayed_post_at: null,
+  discussion_type: 'side_comment',
+  unlock_at: null,
+  can_unpublish: true,
 })
 
 export const discussionView: Template<DiscussionView> = template({

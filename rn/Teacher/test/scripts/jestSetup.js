@@ -36,6 +36,19 @@ jest.mock('Animated', () => {
   }
 })
 
+jest.mock('PickerIOS', () => {
+  const RealComponent = require.requireActual('PickerIOS')
+  const React = require('React')
+  const PickerIOS = class extends RealComponent {
+    render () {
+      return React.createElement('PickerIOS', this.props, this.props.children)
+    }
+  }
+  PickerIOS.Item = props => React.createElement('Item', props, props.children)
+  PickerIOS.propTypes = RealComponent.propTypes
+  return PickerIOS
+})
+
 // Fixes network calls in tests env.
 global.XMLHttpRequest = require('xhr2').XMLHttpRequest
 import './../../src/common/global-style'

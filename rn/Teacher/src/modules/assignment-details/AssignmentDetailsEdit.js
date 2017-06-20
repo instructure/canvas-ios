@@ -33,7 +33,7 @@ import ReactNative, {
 
 var PickerItemIOS = PickerIOS.Item
 
-const GRADE_DISPLAY_OPTIONS = new Map([
+export const GRADE_DISPLAY_OPTIONS: Map<string, string> = new Map([
   ['percent', i18n('Percentage')],
   ['pass_fail', i18n('Complete/Incomplete')],
   ['points', i18n('Points')],

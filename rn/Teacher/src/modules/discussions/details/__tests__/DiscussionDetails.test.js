@@ -92,12 +92,14 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/announcements/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
-  it('does not route on edit if not an announcement', () => {
+  it('routes to discussion edit', () => {
     props.isAnnouncement = false
     props.navigator.show = jest.fn()
+    props.courseID = '1'
+    props.discussion = template.discussion({ id: '2' })
     const editButton: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
     editButton.action()
-    expect(props.navigator.show).not.toHaveBeenCalled()
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
   function testRender (props: any) {

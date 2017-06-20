@@ -14,6 +14,7 @@ const {
   deletePendingNewDiscussion,
   updateDiscussion,
   deleteDiscussion,
+  subscribeDiscussion,
 } = EditActions
 
 const template = {
@@ -473,6 +474,66 @@ describe('discussionData', () => {
           data: discussion,
           error: 'Wat',
           pending: 0,
+        },
+      })
+    })
+  })
+
+  describe('subscribeDiscussion', () => {
+    it('should set subscribed in pending', () => {
+      const discussion = template.discussion({ id: '1', subscribed: false })
+      const initialState = {
+        '1': {
+          data: discussion,
+          pending: 0,
+          error: null,
+        },
+      }
+      const pending = {
+        type: subscribeDiscussion.toString(),
+        pending: true,
+        payload: {
+          discussionID: '1',
+          courseID: '1',
+          subscribed: true,
+        },
+      }
+      expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        '1': {
+          data: { ...discussion, subscribed: true },
+          pending: 0,
+          error: null,
+        },
+      })
+    })
+
+    it('should revert subscribed in rejected', () => {
+      const discussion = template.discussion({ id: '1', subscribed: false })
+      const initialState = {
+        '1': {
+          data: { ...discussion, subscribed: true },
+          pending: 0,
+          error: null,
+        },
+      }
+      const rejected = {
+        type: subscribeDiscussion.toString(),
+        error: true,
+        payload: {
+          discussionID: '1',
+          courseID: '1',
+          subscribed: true,
+        },
+      }
+      expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        '1': {
+          data: discussion,
+          pending: 0,
+          error: null,
         },
       })
     })

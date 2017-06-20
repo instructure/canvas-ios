@@ -161,8 +161,14 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
   _editDiscussion = () => {
     if (this.props.isAnnouncement) {
-      this.props.navigator.show(`/courses/${this.props.courseID}/announcements/${this.props.discussion.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+      this._editAnnouncement()
+      return
     }
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussion.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  _editAnnouncement = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/announcements/${this.props.discussion.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 }
 

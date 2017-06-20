@@ -21,6 +21,7 @@ const {
   deletePendingNewDiscussion,
   updateDiscussion,
   deleteDiscussion,
+  subscribeDiscussion,
 } = EditActions
 
 const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
@@ -167,6 +168,28 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         ...state[discussionID],
         pending: (state[discussionID] && state[discussionID].pending || 1) - 1,
         error: parseErrorMessage(error),
+      },
+    }),
+  }),
+  [subscribeDiscussion.toString()]: handleAsync({
+    pending: (state, { discussionID, subscribed }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        data: {
+          ...(state[discussionID] && state[discussionID].data),
+          subscribed,
+        },
+      },
+    }),
+    rejected: (state, { discussionID, subscribed }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        data: {
+          ...(state[discussionID] && state[discussionID].data),
+          subscribed: !subscribed,
+        },
       },
     }),
   }),

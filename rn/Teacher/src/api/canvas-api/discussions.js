@@ -18,6 +18,9 @@ export type CreateDiscussionParameters = {
   is_announcement?: boolean,
   locked?: boolean,
   pinned?: boolean,
+  published?: boolean,
+  discussion_type?: DiscussionType,
+  subscribed?: boolean,
 }
 
 export type UpdateDiscussionParameters = CreateDiscussionParameters & {
@@ -54,4 +57,9 @@ export function updateDiscussion (courseID: string, parameters: UpdateDiscussion
 export function deleteDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}`
   return httpClient().delete(url)
+}
+
+export function subscribeDiscussion (courseID: string, discussionID: string, subscribed: boolean): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/subscribed`
+  return httpClient()[subscribed ? 'put' : 'delete'](url)
 }

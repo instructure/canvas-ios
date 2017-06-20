@@ -20,7 +20,6 @@ jest
     easeInEaseOut: jest.fn(),
   }))
   .mock('DatePickerIOS', () => 'DatePickerIOS')
-  .mock('PickerIOS', () => require('../../../../__mocks__/PickerIOS').default)
   .mock('Alert', () => ({
     alert: jest.fn(),
   }))

@@ -8,7 +8,6 @@ import explore from '../../../../../test/helpers/explore'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
-  .mock('PickerIOS', () => require('../../../../__mocks__/PickerIOS').default)
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('LayoutAnimation', () => ({
     create: jest.fn(),

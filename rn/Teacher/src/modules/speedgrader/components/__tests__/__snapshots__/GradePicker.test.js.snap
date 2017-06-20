@@ -288,48 +288,27 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
       }
     }
   >
-    <View
-      style={undefined}
+    <PickerIOS
+      onValueChange={[Function]}
+      selectedValue=""
     >
-      <RCTPicker
-        items={
-          Array [
-            Object {
-              "label": "---",
-              "textColor": undefined,
-              "value": "",
-            },
-            Object {
-              "label": "Complete",
-              "textColor": undefined,
-              "value": "complete",
-            },
-            Object {
-              "label": "Incomplete",
-              "textColor": undefined,
-              "value": "incomplete",
-            },
-            Object {
-              "label": "Excuse Student",
-              "textColor": undefined,
-              "value": "ex",
-            },
-          ]
-        }
-        onChange={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        selectedIndex={0}
-        style={
-          Array [
-            Object {
-              "height": 216,
-            },
-            undefined,
-          ]
-        }
+      <Item
+        label="---"
+        value=""
       />
-    </View>
+      <Item
+        label="Complete"
+        value="complete"
+      />
+      <Item
+        label="Incomplete"
+        value="incomplete"
+      />
+      <Item
+        label="Excuse Student"
+        value="ex"
+      />
+    </PickerIOS>
   </Animated.View>
 </View>
 `;

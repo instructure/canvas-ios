@@ -74,7 +74,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
     this.state = {
       title: props.title,
       message: props.message,
-      require_initial_post: props.require_initial_post || false,
+      require_initial_post: props.require_initial_post,
       delayed_post_at: props.delayed_post_at,
       delayPosting: Boolean(props.delayed_post_at),
       delayedPostAtPickerShown: false,
@@ -103,7 +103,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
       this.setState({
         title: props.title,
         message: props.message,
-        require_initial_post: props.require_initial_post || false,
+        require_initial_post: props.require_initial_post,
         delayed_post_at: props.delayed_post_at,
         delayPosting: Boolean(props.delayed_post_at),
       })

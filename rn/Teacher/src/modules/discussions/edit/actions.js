@@ -29,6 +29,14 @@ export let Actions: (typeof canvas) => any = (api) => ({
       courseID,
     }
   }),
+  subscribeDiscussion: createAction('discussions.edit.subscribe', (courseID: string, discussionID: string, subscribed: boolean) => {
+    return {
+      promise: api.subscribeDiscussion(courseID, discussionID, subscribed),
+      discussionID,
+      courseID,
+      subscribed,
+    }
+  }),
   deletePendingNewDiscussion: createAction('discussions.edit.deletePendingNew', (courseID: string) => ({
     courseID,
   })),

@@ -13,6 +13,7 @@ import {
 type Props = {
   title: ?string,
   visible: boolean,
+  testID?: string,
 }
 
 export default class RequiredFieldSubscript extends React.Component {
@@ -27,7 +28,7 @@ export default class RequiredFieldSubscript extends React.Component {
 
     return (
       <View style={visibility}>
-        <UnmetRequirementSubscriptText style={styles.subscript}>{this.props.title}</UnmetRequirementSubscriptText>
+        <UnmetRequirementSubscriptText style={styles.subscript} testID={this.props.testID}>{this.props.title}</UnmetRequirementSubscriptText>
       </View>
     )
   }

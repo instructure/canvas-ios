@@ -12,6 +12,7 @@ type Props = {
   visible: boolean,
   text: string,
   backgroundColor: string,
+  testID?: string,
 }
 
 export default class UnmetRequirementBanner extends React.Component<any, Props, any> {
@@ -26,7 +27,7 @@ export default class UnmetRequirementBanner extends React.Component<any, Props, 
     return (
       <View style={bannerStyle}>
         <View style={styles.textContainer}>
-          <UnmetRequirementBannerText style={styles.textContent}>{this.props.text}</UnmetRequirementBannerText>
+          <UnmetRequirementBannerText style={styles.textContent} testID={this.props.testID}>{this.props.text}</UnmetRequirementBannerText>
         </View>
       </View>
     )
