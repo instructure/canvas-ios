@@ -27,6 +27,11 @@ export type UpdateDiscussionParameters = CreateDiscussionParameters & {
   id: string,
 }
 
+export type CreateEntryParameters = {
+  message: string,
+  attachment?: string,
+}
+
 export function getDiscussions (courseID: string, parameters: GetDiscussionsParameters = {}): Promise<ApiResponse<Discussion[]>> {
   const url = `courses/${courseID}/discussion_topics`
   const options = {
@@ -39,13 +44,14 @@ export function getDiscussions (courseID: string, parameters: GetDiscussionsPara
   return exhaust(discussions)
 }
 
-export function getDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {
-  const url = `courses/${courseID}/discussion_topics/${discussionID}`
+export function getAllDiscussionEntries (courseID: string, discussionID: string, includeNewEntries: boolean): Promise<ApiResponse<DiscussionView>> {
+  const parameters = includeNewEntries ? '?include_new_entries=1' : ''
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/view${parameters}`
   return httpClient().get(url)
 }
 
-export function getAllDiscussionEntries (courseID: string, discussionID: string): Promise<ApiResponse<DiscussionView>> {
-  const url = `courses/${courseID}/discussion_topics/${discussionID}/view`
+export function getDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}`
   return httpClient().get(url)
 }
 
@@ -54,9 +60,19 @@ export function createDiscussion (courseID: string, parameters: CreateDiscussion
   return httpClient().post(url, parameters)
 }
 
+export function createEntry (courseID: string, discussionID: string, parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/entries`
+  return httpClient().post(url, parameters)
+}
+
 export function updateDiscussion (courseID: string, parameters: UpdateDiscussionParameters): Promise<ApiResponse<Discussion>> {
   const url = `courses/${courseID}/discussion_topics/${parameters.id}`
   return httpClient().put(url, parameters)
+}
+
+export function deleteDiscussionEntry (courseID: string, discussionID: string, entryID: string): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}`
+  return httpClient().delete(url, {})
 }
 
 export function deleteDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {

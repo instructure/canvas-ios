@@ -1,0 +1,451 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditReply calls dismiss on cancel 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-discussion-reply.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "edit-discussion-reply.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Reply"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Modal
+      animationType="fade"
+      hardwareAccelerated={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(0,0,0,0.6)",
+                "borderRadius": 12,
+              },
+              Object {
+                "backgroundColor": "rgba(0,0,0,0.8)",
+              },
+              Object {
+                "height": 170,
+                "width": 170,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#fff",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 24,
+                    },
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "color": "#fff",
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Saving
+              </Text>
+            </View>
+          </View>
+          <ActivityIndicator
+            animating={true}
+            color="#fff"
+            hidesWhenStopped={true}
+            size="large"
+            style={
+              Object {
+                "flex": 1,
+                "marginTop": -40,
+              }
+            }
+          />
+        </View>
+      </View>
+    </Modal>
+    <RichTextEditor
+      defaultValue=""
+      onChangeValue={[Function]}
+      placeholder="Message"
+      scrollEnabled={true}
+      showToolbar="always"
+    />
+  </View>
+</Screen>
+`;
+
+exports[`EditReply dismisses modal activity upon save error 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-discussion-reply.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "edit-discussion-reply.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Reply"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Modal
+      animationType="fade"
+      hardwareAccelerated={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(0,0,0,0.6)",
+                "borderRadius": 12,
+              },
+              Object {
+                "backgroundColor": "rgba(0,0,0,0.8)",
+              },
+              Object {
+                "height": 170,
+                "width": 170,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#fff",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 24,
+                    },
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "color": "#fff",
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Saving
+              </Text>
+            </View>
+          </View>
+          <ActivityIndicator
+            animating={true}
+            color="#fff"
+            hidesWhenStopped={true}
+            size="large"
+            style={
+              Object {
+                "flex": 1,
+                "marginTop": -40,
+              }
+            }
+          />
+        </View>
+      </View>
+    </Modal>
+    <RichTextEditor
+      defaultValue=""
+      onChangeValue={[Function]}
+      placeholder="Message"
+      scrollEnabled={true}
+      showToolbar="always"
+    />
+  </View>
+</Screen>
+`;
+
+exports[`EditReply renders 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "edit-discussion-reply.cancel-btn",
+        "title": "Cancel",
+      },
+    ]
+  }
+  navBarButtonColor="#008EE2"
+  navBarStyle="light"
+  navBarTitleColor="#2D3B45"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "style": "done",
+        "testID": "edit-discussion-reply.done-btn",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Reply"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Modal
+      animationType="fade"
+      hardwareAccelerated={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      transparent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "rgba(0,0,0,0.6)",
+                "borderRadius": 12,
+              },
+              Object {
+                "backgroundColor": "rgba(0,0,0,0.8)",
+              },
+              Object {
+                "height": 170,
+                "width": 170,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#fff",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 24,
+                    },
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "color": "#fff",
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+              >
+                Saving
+              </Text>
+            </View>
+          </View>
+          <ActivityIndicator
+            animating={true}
+            color="#fff"
+            hidesWhenStopped={true}
+            size="large"
+            style={
+              Object {
+                "flex": 1,
+                "marginTop": -40,
+              }
+            }
+          />
+        </View>
+      </View>
+    </Modal>
+    <RichTextEditor
+      defaultValue=""
+      onChangeValue={[Function]}
+      placeholder="Message"
+      scrollEnabled={true}
+      showToolbar="always"
+    />
+  </View>
+</Screen>
+`;

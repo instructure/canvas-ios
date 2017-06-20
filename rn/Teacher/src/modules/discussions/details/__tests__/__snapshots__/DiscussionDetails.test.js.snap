@@ -905,8 +905,19 @@ exports[`DiscussionDetails renders 1`] = `
                   }
                 />
               </View>
-              <TouchableHighlight>
-                <View>
+              <TouchableHighlight
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                    }
+                  }
+                >
                   <Text
                     accessible={true}
                     allowFontScaling={true}
@@ -1353,8 +1364,19 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   }
                 />
               </View>
-              <TouchableHighlight>
-                <View>
+              <TouchableHighlight
+                onPress={[Function]}
+                testID="discussion-reply"
+                underlayColor="white"
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                    }
+                  }
+                >
                   <Text
                     accessible={true}
                     allowFontScaling={true}

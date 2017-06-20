@@ -14,7 +14,8 @@ import composeReducers from '../../redux/compose-reducers'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries } = DetailsActions
+const { refreshDiscussionEntries, createEntry, deleteDiscussionEntry } = DetailsActions
+
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -29,6 +30,65 @@ const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   i18n('There was a problem loading discussions.'),
   ({ result }) => result.data.map(discussion => discussion.id)
 )
+
+export function mergeDiscussionEntriesWithNewEntries (originalEntries: [DiscussionReply], newEntries: [DiscussionReply]): [DiscussionReply] {
+  if (!newEntries) return originalEntries
+  let mutable = [...originalEntries]
+  newEntries.forEach((entry) => {
+    if (entry.deleted) {
+      mutable = findAndDeleteDiscussionEntry(entry.id, mutable)[1]
+    } else if (entry.message && !entry.parent_id) {
+      mutable = [...originalEntries.slice(), entry]
+    } else {
+      mutable = findAndAddDiscussionEntry(entry, [...originalEntries])[1]
+    }
+  })
+  return mutable
+}
+
+export function findAndDeleteDiscussionEntry (needle: string, haystack: DiscussionReply[]): [boolean, DiscussionReply[]] {
+  let found = false
+  for (let i = 0; i < haystack.length; i++) {
+    let reply = Object.assign({}, haystack[i])
+    if (reply.id === needle) {
+      reply.deleted = true
+      haystack[i] = reply
+      found = true
+      break
+    } else if (reply.replies) {
+      let result = findAndDeleteDiscussionEntry(needle, reply.replies.slice())
+      found = result[0]
+      if (found) {
+        reply.replies = result[1]
+        haystack[i] = reply
+        break
+      }
+    }
+  }
+  return [found, haystack]
+}
+
+export function findAndAddDiscussionEntry (needle: DiscussionReply, haystack: DiscussionReply[]): [boolean, DiscussionReply[]] {
+  let found = false
+  for (let i = 0; i < haystack.length; i++) {
+    let reply = Object.assign({}, haystack[i])
+    if (reply.id === needle.parent_id) {
+      reply.replies = [...reply.replies, needle]
+      haystack[i] = reply
+      found = true
+      break
+    } else if (reply.replies) {
+      let result = findAndAddDiscussionEntry(needle, reply.replies.slice())
+      found = result[0]
+      if (found) {
+        reply.replies = result[1]
+        haystack[i] = reply
+        break
+      }
+    }
+  }
+  return [found, haystack]
+}
 
 const refsChanges: Reducer<AsyncRefs, any> = handleActions({
   [createDiscussion.toString()]: handleAsync({
@@ -99,7 +159,31 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       entity.data = discussion.data
       if (discussionView && discussionView.data) {
         let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
-        entity.data = { ...entity.data, replies: discussionView.data.view, participants: participantsAsMap }
+        let replies = discussionView.data.view
+        let updatedReplies = discussionView.data.new_entries
+        replies = mergeDiscussionEntriesWithNewEntries(replies, updatedReplies)
+        replies = replies.filter((r) => r.deleted !== true)
+        entity.data = { ...entity.data, replies: replies, participants: participantsAsMap }
+      }
+      return {
+        ...state,
+        [discussionID]: {
+          ...entity,
+          pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
+          error: null,
+        },
+      }
+    },
+  }),
+  [deleteDiscussionEntry.toString()]: handleAsync({
+    resolved: (state, { discussionID, entryID }) => {
+      let entity = { ...state[discussionID] } || {}
+      let replies = [...entity.data.replies]
+      replies = findAndDeleteDiscussionEntry(entryID, replies)[1]
+
+      entity = {
+        ...entity,
+        data: { ...entity.data, replies: replies },
       }
       return {
         ...state,
@@ -170,6 +254,49 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         error: parseErrorMessage(error),
       },
     }),
+  }),
+  [createEntry.toString()]: handleAsync({
+    pending: (state, { discussionID }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        replies: {
+          ...(state[discussionID] && state[discussionID].replies),
+          new: {
+            pending: 1,
+            error: null,
+          },
+        },
+      },
+    }),
+    rejected: (state, { discussionID, error }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        replies: {
+          ...(state[discussionID] && state[discussionID].replies),
+          new: {
+            pending: 0,
+            error: parseErrorMessage(error),
+          },
+        },
+      },
+    }),
+    resolved: (state, { discussionID }) => {
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          replies: {
+            ...(state[discussionID] && state[discussionID].replies),
+            new: {
+              pending: 0,
+              error: null,
+            },
+          },
+        },
+      }
+    },
   }),
   [subscribeDiscussion.toString()]: handleAsync({
     pending: (state, { discussionID, subscribed }) => ({

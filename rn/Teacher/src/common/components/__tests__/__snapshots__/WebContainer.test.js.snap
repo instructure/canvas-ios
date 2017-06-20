@@ -54,7 +54,7 @@ exports[`render html 1`] = `
           window.onload = function () {
               let interval = setInterval(function () {
                   if (window.originalPostMessage) {
-                      let height = document.documentElement.clientHeight;
+                      let height = document.getElementById('whizzy_content').clientHeight;
                       postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
                       clearInterval(interval)
                   }
@@ -130,7 +130,7 @@ exports[`updates height from js 1`] = `
           window.onload = function () {
               let interval = setInterval(function () {
                   if (window.originalPostMessage) {
-                      let height = document.documentElement.clientHeight;
+                      let height = document.getElementById('whizzy_content').clientHeight;
                       postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
                       clearInterval(interval)
                   }
@@ -199,7 +199,7 @@ exports[`updates height from js with scroll disabled 1`] = `
           window.onload = function () {
               let interval = setInterval(function () {
                   if (window.originalPostMessage) {
-                      let height = document.documentElement.clientHeight;
+                      let height = document.getElementById('whizzy_content').clientHeight;
                       postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
                       clearInterval(interval)
                   }

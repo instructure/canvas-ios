@@ -42,7 +42,7 @@ const TEMPLATE = `
     window.onload = function () {
         let interval = setInterval(function () {
             if (window.originalPostMessage) {
-                let height = document.documentElement.clientHeight;
+                let height = document.getElementById('whizzy_content').clientHeight;
                 postMessage(JSON.stringify({type: 'UPDATE_HEIGHT', data: height }));
                 clearInterval(interval)
             }

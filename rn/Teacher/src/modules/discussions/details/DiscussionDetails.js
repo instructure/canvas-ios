@@ -114,8 +114,11 @@ export class DiscussionDetails extends Component<any, Props, any> {
                 </View>
               }
 
-              <TouchableHighlight>
-                <View>
+              <TouchableHighlight
+                underlayColor='white'
+                onPress={this._onPressReply}
+                testID='discussion-reply'>
+                <View style={{ flex: 1, backgroundColor: 'white' }}>
                   <Text style={style.link}>Reply</Text>
                 </View>
               </TouchableHighlight>
@@ -195,6 +198,10 @@ export class DiscussionDetails extends Component<any, Props, any> {
         , { count: discussion.assignment.points_possible })
       return pointsPossible
     }
+  }
+
+  _onPressReply = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true })
   }
 
   _editDiscussion = () => {
@@ -308,7 +315,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
 }
 
 let Refreshed = refresh(
-  props => props.refreshDiscussionEntries(props.courseID, props.discussionID),
+  //  TODO - add deep link ability to refreshDiscussion without entry from discussion list
+  props => props.refreshDiscussionEntries(props.courseID, props.discussionID, true),
   props => !props.discussion || (props.discussion.assignment_id && !props.assignment),
   props => Boolean(props.pending)
 )(DiscussionDetails)

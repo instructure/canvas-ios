@@ -36,6 +36,7 @@ import DiscussionDetails from '../modules/discussions/details/DiscussionDetails'
 import DiscussionEdit from '../modules/discussions/edit/DiscussionEdit'
 import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
+import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
 
 import { Store } from 'redux'
@@ -68,6 +69,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/discussion_topics', wrap(DiscussionsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/discussion_topics/new', wrap(DiscussionEdit), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID', wrap(DiscussionDetails), store)
+  registerScreen('/courses/:courseID/discussion_topics/:discussionID/reply', wrap(EditReply), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
   registerScreen('/conversations/compose', wrap(Compose), store)

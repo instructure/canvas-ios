@@ -1,13 +1,13 @@
 /* @flow */
 
-import { refs, discussions } from '../reducer'
+import { refs, discussions, mergeDiscussionEntriesWithNewEntries } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailActions } from '../details/actions'
 import { default as AnnouncementListActions } from '../../announcements/list/actions'
 import { default as EditActions } from '../edit/actions'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries } = DetailActions
+const { refreshDiscussionEntries, createEntry } = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -187,6 +187,53 @@ User not authorized` })
 })
 
 describe('discussionData', () => {
+  it('mergeDiscussionEntriesWithNewEntries for top level reply (no parent)', () => {
+    let r = template.discussionReply({ id: '1' })
+    let rr = template.discussionReply({ id: '2' })
+    let a = template.discussionReply({ id: '11', replies: [r, r] })
+    let result = mergeDiscussionEntriesWithNewEntries([a], [rr])
+
+    expect(result).toEqual([ a, rr ])
+  })
+
+  it('mergeDiscussionEntriesWithNewEntries for nested reply', () => {
+    let r = template.discussionReply({ id: '1' })
+    let rr = template.discussionReply({ id: '2' })
+    let rrr = template.discussionReply({ id: '3', parent_id: '2' })
+    let a = template.discussionReply({ id: '11', replies: [r, rr] })
+    let expected = template.discussionReply({ id: '2', replies: [rrr] })
+    let expectedA = template.discussionReply({ id: '11', replies: [r, expected] })
+    let result = mergeDiscussionEntriesWithNewEntries([a], [rrr])
+
+    expect(result).toEqual([
+      expectedA,
+    ])
+  })
+  it('mergeDiscussionEntriesWithNewEntries for top level reply (no parent)', () => {
+    let r = template.discussionReply({ id: '1' })
+    let rr = template.discussionReply({ id: '2' })
+    let a = template.discussionReply({ id: '11', replies: [r, r] })
+    let result = mergeDiscussionEntriesWithNewEntries([a], [rr])
+
+    expect(result).toEqual([ a, rr ])
+  })
+
+  it('mergeDiscussionEntriesWithNewEntries for nested reply', () => {
+    let r = template.discussionReply({ id: '1' })
+    let rr = template.discussionReply({ id: '2' })
+    let rrr = template.discussionReply({ id: '3', parent_id: '2' })
+    let a = template.discussionReply({ id: '11', replies: [r, rr] })
+    let expected = template.discussionReply({ id: '2', replies: [rrr] })
+    let expectedA = template.discussionReply({ id: '11', replies: [r, expected] })
+    let result = mergeDiscussionEntriesWithNewEntries([a], [rrr])
+
+    expect(result).toEqual([
+      expectedA,
+    ])
+  })
+})
+
+describe('discussionData', () => {
   describe('refreshDiscussions', () => {
     it('handles resolved', () => {
       const one = template.discussion({ id: '1' })
@@ -216,8 +263,8 @@ describe('discussionData', () => {
   })
   describe('refreshDiscussionEntries', () => {
     it('handles resolved with existing disucssion', () => {
-      let participantA = template.userDisplay({ id: 1, display_name: 'A' })
-      let participantB = template.userDisplay({ id: 2, display_name: 'B' })
+      let participantA = template.userDisplay({ id: '1', display_name: 'A' })
+      let participantB = template.userDisplay({ id: '2', display_name: 'B' })
       let view = template.discussionView({ participants: [participantA, participantB] })
       let stateDiscussion = template.discussion({})
       let expected = template.discussion({})
@@ -578,6 +625,217 @@ describe('discussionData', () => {
           data: discussion,
           pending: 0,
           error: null,
+        },
+      })
+    })
+  })
+
+  describe('createEntry', () => {
+    it('handles resolved empty state', () => {
+      const initialState = {}
+      const resolved = {
+        type: createEntry.toString(),
+        payload: {
+          discussionID: '1',
+        },
+      }
+      expect(
+        discussions(initialState, resolved)
+      ).toEqual({
+        '1': {
+          replies: {
+            new: {
+              pending: 0,
+              error: null,
+            },
+          },
+        },
+      })
+    })
+
+    it('handles resolved non empty state', () => {
+      const initialState = {
+        '1': {
+          pending: 0,
+          error: null,
+          data: template.discussion({ id: '1' }),
+        },
+        '2': {
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          data: template.discussion({
+            id: '2',
+            replies: [
+              template.discussionReply({ id: '1' }),
+            ],
+          }),
+          replies: {
+            new: {
+              pending: 2,
+              error: 'WAT',
+            },
+          },
+        },
+      }
+      const resolved = {
+        type: createEntry.toString(),
+        payload: {
+          discussionID: '2',
+        },
+      }
+      expect(
+        discussions(initialState, resolved)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: {
+            ...template.discussion({ id: '2' }),
+            replies: [template.discussionReply({ id: '1' })],
+          },
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          replies: {
+            new: {
+              pending: 0,
+              error: null,
+            },
+          },
+        },
+      })
+    })
+
+    it('handles pending empty state', () => {
+      const initialState = {}
+      const pending = {
+        type: createEntry.toString(),
+        pending: true,
+        payload: {
+          discussionID: '2',
+        },
+      }
+      expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        '2': {
+          replies: {
+            new: {
+              pending: 1,
+              error: null,
+            },
+          },
+        },
+      })
+    })
+
+    it('handles pending non empty state', () => {
+      const initialState = {
+        '1': {
+          pending: 0,
+          error: null,
+          data: template.discussion({ id: '1' }),
+        },
+        '2': {
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          data: template.discussion({ id: '2' }),
+          replies: {
+            new: {
+              pending: 2,
+              error: 'WAT',
+            },
+          },
+        },
+      }
+      const pending = {
+        type: createEntry.toString(),
+        pending: true,
+        payload: {
+          discussionID: '2',
+        },
+      }
+      expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: template.discussion({ id: '2' }),
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          replies: {
+            new: {
+              pending: 1,
+              error: null,
+            },
+          },
+        },
+      })
+    })
+
+    it('handles rejected empty state', () => {
+      const initialState = {}
+      const rejected = {
+        type: createEntry.toString(),
+        error: true,
+        payload: {
+          discussionID: '2',
+          error: template.error('User not authorized'),
+        },
+      }
+      expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        '2': {
+          replies: {
+            new: {
+              pending: 0,
+              error: 'User not authorized',
+            },
+          },
+        },
+      })
+    })
+
+    it('handles rejected non empty state', () => {
+      const initialState = {
+        '1': {
+          pending: 0,
+          error: null,
+          data: template.discussion({ id: '1' }),
+        },
+        '2': {
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          data: template.discussion({ id: '2' }),
+          replies: {
+            new: {
+              pending: 2,
+              error: 'WAT',
+            },
+          },
+        },
+      }
+      const rejected = {
+        type: createEntry.toString(),
+        error: true,
+        payload: {
+          discussionID: '2',
+          error: template.error('User not authorized'),
+        },
+      }
+      expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: template.discussion({ id: '2' }),
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          replies: {
+            new: {
+              pending: 0,
+              error: 'User not authorized',
+            },
+          },
         },
       })
     })

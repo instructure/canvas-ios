@@ -23,7 +23,7 @@ describe('discussion detail tests', () => {
       getAssignment: apiResponse(assignment),
     }
     const actions = Actions(api)
-    const action = actions.refreshDiscussionEntries(courseID, discussionID)
+    const action = actions.refreshDiscussionEntries(courseID, discussionID, false)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -65,6 +65,36 @@ describe('discussion detail tests', () => {
         type: actions.refreshDiscussionEntries.toString(),
         payload: {
           result: [{ data: discussionView }, { data: discussion }],
+          courseID: courseID,
+          discussionID: discussionID,
+        },
+      },
+    ])
+  })
+})
+
+describe('discussion edit reply tests', () => {
+  it('should post a new reply', async () => {
+    const courseID = '1'
+    const discussionID = '2'
+    const discussionReply = template.discussionReply()
+
+    const api = {
+      createEntry: apiResponse(discussionReply),
+    }
+    const actions = Actions(api)
+    const action = actions.createEntry(courseID, discussionID, { messsage: discussionReply.message })
+    const state = await testAsyncAction(action)
+
+    expect(state).toMatchObject([
+      {
+        type: actions.createEntry.toString(),
+        pending: true,
+      },
+      {
+        type: actions.createEntry.toString(),
+        payload: {
+          result: { data: template.discussionReply() },
           courseID: courseID,
           discussionID: discussionID,
         },

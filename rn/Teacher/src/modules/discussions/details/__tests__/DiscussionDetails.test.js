@@ -72,6 +72,16 @@ describe('DiscussionDetails', () => {
     expect(props.refresh).toHaveBeenCalled()
   })
 
+  it('touches the reply button', () => {
+    const navigator = template.navigator({
+      show: jest.fn(),
+    })
+    const tree = renderer.create(<DiscussionDetails {...props} navigator={navigator} />).toJSON()
+    const discussionReply: any = explore(tree).selectByID('discussion-reply')
+    discussionReply.props.onPress()
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true })
+  })
+
   it('shows publish information', () => {
     expect(
       explore(render(props).toJSON()).selectByType('PublishedIcon')

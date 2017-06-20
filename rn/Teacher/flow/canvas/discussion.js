@@ -24,6 +24,7 @@ export type DiscussionReply = {
   replies: DiscussionReply[],
   updated_at: string,
   user_id: string,
+  deleted: boolean,
   attachment: ?Attachment,
 }
 

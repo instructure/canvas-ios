@@ -86,6 +86,9 @@ export type QuizSubmissionState = AsyncState & {
 
 export type DiscussionState = AsyncState & {
   data: Discussion,
+  replies?: {
+    new?: AsyncState,
+  },
 }
 
 export type CourseDetailsTabSelectedRowState = {
