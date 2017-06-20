@@ -281,6 +281,76 @@ exports[`renders correctly 1`] = `
         this is neat
       </Text>
     </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="inbox.conversation-message-123456789.attachment-1"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginTop": 8,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "tintColor": "#008EE2",
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#008EE2",
+                "fontFamily": ".SFUIDisplay-bold",
+                "fontSize": 14,
+                "marginLeft": 6,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
+        >
+          something.pdf
+        </Text>
+      </View>
+    </View>
   </View>
   <View
     style={
@@ -577,6 +647,76 @@ exports[`renders correctly with author being the logged in user 1`] = `
         this is neat
       </Text>
     </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="inbox.conversation-message-123456789.attachment-1"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginTop": 8,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "tintColor": "#008EE2",
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#008EE2",
+                "fontFamily": ".SFUIDisplay-bold",
+                "fontSize": 14,
+                "marginLeft": 6,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
+        >
+          something.pdf
+        </Text>
+      </View>
+    </View>
   </View>
   <View
     style={
@@ -872,6 +1012,76 @@ exports[`renders correctly with author lots of participants 1`] = `
       >
         this is neat
       </Text>
+    </View>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+      testID="inbox.conversation-message-123456789.attachment-1"
+      tvParallaxProperties={undefined}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "marginTop": 8,
+          }
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "tintColor": "#008EE2",
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "color": "#008EE2",
+                "fontFamily": ".SFUIDisplay-bold",
+                "fontSize": 14,
+                "marginLeft": 6,
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+            ]
+          }
+        >
+          something.pdf
+        </Text>
+      </View>
     </View>
   </View>
   <View

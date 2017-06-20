@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
+  TouchableOpacity,
   TouchableHighlight,
   Image,
 } from 'react-native'
@@ -101,14 +102,14 @@ export class DiscussionDetails extends Component<any, Props, any> {
                   }
                   { Boolean(discussion.attachments) && discussion.attachments.length === 1 &&
                     // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
-                    <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
+                    <TouchableOpacity testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
                       <View style={style.attachment}>
                         <Image source={Images.attachment} style={style.attachmentIcon} />
                         <Text style={style.attachmentText}>
                           {discussion.attachments[0].display_name}
                         </Text>
                       </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                   }
                 </View>
               }

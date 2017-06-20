@@ -10,7 +10,10 @@ import {
   Image,
 } from 'react-native'
 
-import { Text } from '../../../common/text'
+import {
+  Text,
+  BOLD_FONT,
+} from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import color from '../../../common/colors'
 import { getSession } from '../../../api/session'
@@ -25,6 +28,7 @@ export type ConversationMessageProps = {
   message: ConversationMessage,
   firstMessage: boolean,
   onReplyButtonPressed: Function,
+  navigator: Navigator,
 }
 
 export default class ConversationMessageRow extends Component<any, ConversationMessageProps, any> {
@@ -38,6 +42,10 @@ export default class ConversationMessageRow extends Component<any, ConversationM
 
   _replyButtonPressed = () => {
     this.props.onReplyButtonPressed(this.props.message.id)
+  }
+
+  _showAttachment = (attachment: Attachment) => {
+    this.props.navigator.show('/attachment', { modal: true }, { attachment })
   }
 
   _toggleExpanded = () => {
@@ -118,6 +126,20 @@ export default class ConversationMessageRow extends Component<any, ConversationM
                     <View style={styles.body}>
                       <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
                     </View>
+                    { this.props.message.attachments &&
+                      this.props.message.attachments.map((attachment, index) => {
+                        return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} onPress={() => {
+                          this._showAttachment(attachment)
+                        }}>
+                          <View style={styles.attachment}>
+                            <Image source={Images.attachment} style={styles.attachmentIcon} />
+                            <Text style={styles.attachmentText}>
+                              {attachment.display_name}
+                            </Text>
+                          </View>
+                        </TouchableOpacity>)
+                      })
+                    }
                     { this.props.firstMessage &&
                       <LinkButton onPress={this._replyButtonPressed}
                                   style={styles.replyButton}>{i18n('Reply')}</LinkButton>}
@@ -209,5 +231,19 @@ const styles = StyleSheet.create({
     height: 18,
     tintColor: color.grey4,
     transform: [{ rotate: '180deg' }],
+  },
+  attachment: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: global.style.defaultPadding / 2,
+  },
+  attachmentIcon: {
+    tintColor: color.link,
+  },
+  attachmentText: {
+    color: color.link,
+    fontFamily: BOLD_FONT,
+    marginLeft: 6,
+    fontSize: 14,
   },
 })

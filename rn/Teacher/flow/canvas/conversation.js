@@ -34,5 +34,5 @@ export type ConversationMessage = {
   generated: boolean,
   media_comment: any,
   forwarded_messages: any,
-  attachments: any,
+  attachments: ?Attachment[],
 }

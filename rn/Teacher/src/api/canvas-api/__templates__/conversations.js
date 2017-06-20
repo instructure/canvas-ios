@@ -25,4 +25,11 @@ export const conversationMessage: Template<Conversation> = template({
   id: '123456789',
   body: 'this is neat',
   author_id: '1234',
+  attachments: [
+    {
+      id: '1',
+      display_name: 'something.pdf',
+      mime_class: 'pdf',
+    },
+  ],
 })

@@ -42,6 +42,7 @@ export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & {
 export class ConversationDetails extends Component <any, ConversationDetailsProps, any> {
   _renderItem = ({ item, index }) => {
     return <ConversationMessage
+              navigator={this.props.navigator}
               message={item}
               conversation={this.props.conversation}
               onReplyButtonPressed={ () => {} }
