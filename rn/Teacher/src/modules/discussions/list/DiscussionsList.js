@@ -18,6 +18,7 @@ import refresh from '../../../utils/refresh'
 import DiscusionsRow from './DiscussionsRow'
 import { SectionHeader } from '../../../common/text'
 import Screen from '../../../routing/Screen'
+import Images from '../../../images'
 
 const { refreshDiscussions } = ListActions
 const { updateDiscussion } = EditActions
@@ -36,7 +37,7 @@ type State = {
   courseColor: ?string,
 }
 
-export type Props = State & typeof Actions & {
+export type Props = State & typeof Actions & OwnProps & {
   navigator: Navigator,
 }
 
@@ -147,6 +148,13 @@ export class DiscussionsList extends Component<any, Props, any> {
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         drawUnderNavBar={true}
+        rightBarButtons={[
+          {
+            image: Images.add,
+            testID: 'discussions.list.add.button',
+            action: this.addDiscussion,
+          },
+        ]}
         title={i18n('Discussions')}
         subtitle={this.props.courseName}>
         <View style={styles.container}>
@@ -162,6 +170,10 @@ export class DiscussionsList extends Component<any, Props, any> {
         </View>
       </Screen>
     )
+  }
+
+  addDiscussion = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/new`, { modal: true })
   }
 }
 

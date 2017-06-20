@@ -15,6 +15,7 @@ jest
   .mock('ActionSheetIOS', () => ({
     showActionSheetWithOptions: jest.fn(),
   }))
+  .mock('../../../../routing/Screen')
 
 const template = {
   ...require('../../../../__templates__/helm'),
@@ -130,6 +131,14 @@ describe('DiscussionsList', () => {
     const input = template.discussion({ pinned: false, locked: true })
     const expected = template.discussion({ pinned: true, locked: false })
     testActionSheet(input, expected, 3, false)
+  })
+
+  it('navigates to new discussion form', () => {
+    props.navigator.show = jest.fn()
+    props.courseID = '1'
+    const addBtn: any = explore(render(props).toJSON()).selectRightBarButton('discussions.list.add.button')
+    addBtn.action()
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true })
   })
 
   function testActionSheet (inputDiscussion: Discussion, expectedDiscussion: Discussion, buttonIndex: number, expectToCallUpdateDiscussion: boolean = true) {
