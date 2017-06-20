@@ -14,6 +14,11 @@ NativeModules.PushNotifications = {
   scheduleLocalNotification: jest.fn(),
 }
 
+NativeModules.RNFSManager = {
+  RNFSFileTypeRegular: 'regular',
+  RNFSFileTypeDirectory: 'directory',
+}
+
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),
   isConnected: {

@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   TouchableHighlight,
+  Image,
 } from 'react-native'
 import i18n from 'format-message'
 import Actions from './actions'
@@ -21,6 +22,7 @@ import Images from '../../../images'
 import {
   Heading1,
   Text,
+  BOLD_FONT,
 } from '../../../common/text'
 import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
@@ -92,9 +94,22 @@ export class DiscussionDetails extends Component<any, Props, any> {
                 </View>
               </View>
 
-              { Boolean(discussion.message) &&
+              { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
                 <View style={style.section}>
-                  <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
+                  { Boolean(discussion.message) &&
+                    <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
+                  }
+                  { Boolean(discussion.attachments) && discussion.attachments.length === 1 &&
+                    // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
+                    <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
+                      <View style={style.attachment}>
+                        <Image source={Images.attachment} style={style.attachmentIcon} />
+                        <Text style={style.attachmentText}>
+                          {discussion.attachments[0].display_name}
+                        </Text>
+                      </View>
+                    </TouchableHighlight>
+                  }
                 </View>
               }
 
@@ -107,7 +122,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
             <AssignmentSection
               title={i18n('Replies')}>
-              <DiscussionReplies replies={discussion.replies} participants={participants}/>
+              <DiscussionReplies style={style.replyContainer} replies={discussion.replies} participants={participants} navigator={this.props.navigator}/>
             </AssignmentSection>
 
         </RefreshableScrollView>
@@ -158,6 +173,14 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
   viewAllSubmissions = () => {
     this.viewSubmissions()
+  }
+
+  showAttachment = () => {
+    if (this.props.discussion.attachments && this.props.discussion.attachments.length === 1) {
+      this.props.navigator.show('/attachment', { modal: true }, {
+        attachment: this.props.discussion.attachments[0],
+      })
+    }
   }
 
   _points = (discussion: Discussion) => {
@@ -234,6 +257,20 @@ const style = StyleSheet.create({
   submission: {
     marginRight: 40,
     marginTop: global.style.defaultPadding / 2,
+  },
+  attachment: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  attachmentIcon: {
+    tintColor: colors.link,
+  },
+  attachmentText: {
+    color: colors.link,
+    fontFamily: BOLD_FONT,
+    marginLeft: 6,
+    fontSize: 14,
   },
 })
 

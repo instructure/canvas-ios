@@ -10,6 +10,7 @@ jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableH
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
   ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../__templates__/helm'),
 }
 
 jest.mock('WebView', () => 'WebView')
@@ -22,6 +23,7 @@ describe('DiscussionReplies', () => {
       replies: [template.discussionReply()],
       depth: 0,
       participants: { [user.id]: user },
+      navigator: template.navigator(),
     }
   })
 

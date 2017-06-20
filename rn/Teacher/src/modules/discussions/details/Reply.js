@@ -2,28 +2,42 @@
 
 import React, { Component } from 'react'
 import {
+  Image,
   View,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native'
-import { Text } from '../../../common/text'
+import { Text, BOLD_FONT } from '../../../common/text'
 import colors from '../../../common/colors'
+import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
 import { formattedDate } from '../../../utils/dateUtils'
 import WebContainer from '../../../common/components/WebContainer'
+import Navigator from '../../../routing/Navigator'
 
 export type Props = {
   reply: DiscussionReply,
   depth: number,
   participants: { [key: string]: UserDisplay },
+  navigator: Navigator,
 }
 
 export default class Reply extends Component <any, Props, any> {
+
+  showAttachment = () => {
+    if (this.props.reply.attachment) {
+      this.props.navigator.show('/attachment', { modal: true }, {
+        attachment: this.props.reply.attachment,
+      })
+    }
+  }
+
   render () {
     let { reply, depth, participants } = this.props
     participants = participants || {}
     let replies = reply.replies || []
 
-    let childReplies = replies.map((r) => <Reply participants={participants} reply={r} depth={depth + 1} key={r.id}/>)
+    let childReplies = replies.map((r) => <Reply participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
     let user = participants[reply.user_id]
 
     return (
@@ -42,6 +56,16 @@ export default class Reply extends Component <any, Props, any> {
             {user && <Text style={style.userName}>{user.display_name}</Text>}
             <Text style={style.date}>{formattedDate(reply.updated_at)}</Text>
             <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={reply.message}/>
+            {reply.attachment &&
+              <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
+                <View style={style.attachment}>
+                  <Image source={Images.attachment} style={style.attachmentIcon} />
+                  <Text style={style.attachmentText}>
+                    {reply.attachment.display_name}
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            }
             <Text style={style.footer}>Reply | Edit</Text>
           </View>
 
@@ -105,6 +129,20 @@ const style = StyleSheet.create({
   footer: {
     marginTop: global.style.defaultPadding,
     color: colors.grey3,
+    fontSize: 14,
+  },
+  attachment: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  attachmentIcon: {
+    tintColor: colors.link,
+  },
+  attachmentText: {
+    color: colors.link,
+    fontFamily: BOLD_FONT,
+    marginLeft: 6,
     fontSize: 14,
   },
 })

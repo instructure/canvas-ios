@@ -120,6 +120,22 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
+  it('shows attachment', () => {
+    // Appease flow
+    if (props.discussion) {
+      props.discussion = Object.assign(props.discussion, { attachments: [{}] })
+    }
+    let tree = render(props)
+
+    tree.getInstance().showAttachment()
+
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/attachment',
+      { modal: true },
+      { attachment: props.discussion.attachments[0] }
+    )
+  })
+
   function testRender (props: any) {
     expect(render(props).toJSON()).toMatchSnapshot()
   }

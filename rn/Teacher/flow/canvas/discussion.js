@@ -24,6 +24,7 @@ export type DiscussionReply = {
   replies: DiscussionReply[],
   updated_at: string,
   user_id: string,
+  attachment: ?Attachment,
 }
 
 export type DiscussionType = 'side_comment' | 'threaded'
@@ -55,6 +56,7 @@ export type Discussion = {
   only_graders_can_rate: boolean,
   require_initial_post: boolean,
   delayed_post_at: ?string,
+  attachments: ?Attachment[],
   discussion_type: DiscussionType,
   unlock_at: ?string,
   can_unpublish: boolean,

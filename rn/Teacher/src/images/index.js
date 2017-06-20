@@ -79,6 +79,7 @@ const images = {
   mail: require('./Mail.png'),
   group: require('./group.png'),
   trash: require('./trash.png'),
+  share: require('./share.png'),
 }
 
 export default (images: Images)

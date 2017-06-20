@@ -34,6 +34,7 @@ import DiscussionDetails from '../modules/discussions/details/DiscussionDetails'
 import DiscussionEdit from '../modules/discussions/edit/DiscussionEdit'
 import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
+import AttachmentView from '../common/components/AttachmentView'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -72,6 +73,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/beta-feedback', wrap(BetaFeedback), store)
   registerScreen('/staging', wrap(Staging), store)
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
+  registerScreen('/attachment', wrap(AttachmentView), store)
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store)
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)

@@ -11,6 +11,7 @@ jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableH
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
   ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../__templates__/helm'),
 }
 jest.mock('WebView', () => 'WebView')
 
@@ -24,6 +25,7 @@ describe('DiscussionReplies', () => {
       reply: reply,
       depth: 0,
       participants: { [user.id]: user },
+      navigator: template.navigator(),
     }
   })
 
@@ -38,4 +40,17 @@ describe('DiscussionReplies', () => {
   function render (props: Props): any {
     return renderer.create(<Reply {...props}/>)
   }
+
+  it('shows attachment', () => {
+    props.reply = Object.assign(props.reply, { attachment: { } })
+    let tree = render(props)
+
+    tree.getInstance().showAttachment()
+
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/attachment',
+      { modal: true },
+      { attachment: props.reply.attachment }
+    )
+  })
 })
