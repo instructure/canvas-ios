@@ -1236,7 +1236,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         "borderColor": "#C7CDD1",
                         "borderWidth": 0.5,
                         "justifyContent": "center",
-                        "marginRight": 16,
                         "overflow": "hidden",
                       },
                       Object {
