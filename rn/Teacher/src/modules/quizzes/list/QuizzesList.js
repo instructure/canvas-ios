@@ -15,7 +15,7 @@ import i18n from 'format-message'
 import Actions from './actions'
 import refresh from '../../../utils/refresh'
 import QuizRow from './QuizRow'
-import { SectionHeader } from '../../../common/text'
+import SectionHeader from '../../../common/components/rows/SectionHeader'
 import Screen from '../../../routing/Screen'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
@@ -84,7 +84,7 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   renderSectionHeader = ({ section }: any) => {
-    return <SectionHeader>{HEADERS[section.key]}</SectionHeader>
+    return <SectionHeader title={HEADERS[section.key]} key={section.key} top={section.index === 0} />
   }
 
   _selectedQuiz = (quiz: Quiz) => {
@@ -99,8 +99,11 @@ export class QuizzesList extends Component<any, Props, any> {
         [quiz.quiz_type]: (data[quiz.quiz_type] || []).concat([quiz]),
       }), {})
 
+    let index = -1
     return Object.keys(sections).map((key) => {
+      index++
       return {
+        index,
         key,
         data: this._sortSectionByKey(sections[key], key),
       }

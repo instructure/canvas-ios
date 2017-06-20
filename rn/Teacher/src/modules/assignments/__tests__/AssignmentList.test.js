@@ -75,30 +75,6 @@ test('selected assignment', () => {
   expect(navigator.show).toHaveBeenCalled()
 })
 
-test('getSectionHeaderData', () => {
-  let tree = renderer.create(
-    <AssignmentList {...defaultProps} />
-  )
-
-  const data = {
-    key: 'data',
-  }
-  const sectionHeaderData = tree.getInstance().getSectionHeaderData(data, 'key')
-  expect(sectionHeaderData).toEqual('data')
-})
-
-test('getRowData', () => {
-  let tree = renderer.create(
-    <AssignmentList {...defaultProps} />
-  )
-
-  const data = {
-    'courseID:assignmentID': 'data',
-  }
-  const sectionHeaderData = tree.getInstance().getRowData(data, 'courseID', 'assignmentID')
-  expect(sectionHeaderData).toEqual('data')
-})
-
 test('filter button only shows when there are grading periods', () => {
   let tree = renderer.create(
     <AssignmentList {...defaultProps} gradingPeriods={[]} />

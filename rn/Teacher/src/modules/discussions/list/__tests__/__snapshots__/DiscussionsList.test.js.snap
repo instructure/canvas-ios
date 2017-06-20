@@ -395,21 +395,25 @@ exports[`DiscussionsList renders discussions 1`] = `
           onLayout={[Function]}
         >
           <View
+            accessibilityTraits="header"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "height": 24,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": 24,
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -1528,21 +1532,25 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
           onLayout={[Function]}
         >
           <View
+            accessibilityTraits="header"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "height": 24,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": 24,
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -2693,21 +2701,25 @@ exports[`DiscussionsList renders in correct order 1`] = `
           onLayout={[Function]}
         >
           <View
+            accessibilityTraits="header"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "height": 24,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": 24,
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -3935,21 +3947,25 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           onLayout={[Function]}
         >
           <View
+            accessibilityTraits="header"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "height": 24,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": 24,
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -4406,21 +4422,25 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
           onLayout={[Function]}
         >
           <View
+            accessibilityTraits="header"
             style={
-              Object {
-                "backgroundColor": "#F5F5F5",
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "height": 24,
-                "justifyContent": "center",
-                "paddingLeft": 16,
-                "paddingRight": 8,
-              }
+              Array [
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "flex": 1,
+                  "height": 24,
+                  "justifyContent": "center",
+                  "paddingLeft": 16,
+                  "paddingRight": 8,
+                },
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
             }
           >
             <Text
-              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}

@@ -18,8 +18,8 @@ import CourseActions from '../courses/actions'
 import { mapStateToProps, type AssignmentListProps } from './map-state-to-props'
 import refresh from '../../utils/refresh'
 
+import SectionHeader from '../../common/components/rows/SectionHeader'
 import AssignmentListRowView from './components/AssignmentListRow'
-import AssignmentListSectionView from './components/AssignmentListSection'
 import { LinkButton } from '../../common/buttons'
 import { Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
@@ -97,21 +97,13 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     }).filter(item => item)
   }
 
-  getSectionHeaderData = (data: any, sectionID: string) => {
-    return data[sectionID]
-  }
-
-  getRowData = (data: any, sectionID: string, rowID: string) => {
-    return data[`${sectionID}:${rowID}`]
-  }
-
   renderRow = ({ item, index }: { item: Assignment, index: number }) => {
     let selected = this.isRegularScreenDisplayMode && this.props.selectedRowID === item.id
     return <AssignmentListRowView assignment={item} tintColor={this.props.courseColor} onPress={this.selectedAssignment} key={index} selected={selected } />
   }
 
   renderSectionHeader = ({ section }: any) => {
-    return <AssignmentListSectionView assignmentGroup={section} key={section.key} />
+    return <SectionHeader title={section.name} key={section.key} top={section.position === 1} />
   }
 
   selectedAssignment = (assignment: Assignment) => {

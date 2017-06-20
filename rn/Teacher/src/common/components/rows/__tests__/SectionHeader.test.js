@@ -10,8 +10,7 @@ test('render', () => {
   let header = renderer.create(
     <SectionHeader
       title='Header'
-      key='key'
-      border='both' />
+      key='key' />
   )
   expect(header.toJSON()).toMatchSnapshot()
 })
@@ -20,7 +19,7 @@ test('render without key', () => {
   let header = renderer.create(
     <SectionHeader
       title='Header'
-      border='top' />
+      top={true} />
   )
   expect(header.toJSON()).toMatchSnapshot()
 })

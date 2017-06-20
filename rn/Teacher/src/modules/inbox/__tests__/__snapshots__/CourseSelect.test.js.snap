@@ -141,6 +141,7 @@ exports[`CourseSelect renders 1`] = `
       onLayout={[Function]}
     >
       <View
+        accessibilityTraits="header"
         style={
           Array [
             Object {
@@ -152,10 +153,9 @@ exports[`CourseSelect renders 1`] = `
               "paddingRight": 8,
             },
             Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
             },
-            undefined,
           ]
         }
       >
@@ -282,6 +282,7 @@ exports[`CourseSelect renders 1`] = `
       onLayout={[Function]}
     >
       <View
+        accessibilityTraits="header"
         style={
           Array [
             Object {
@@ -292,8 +293,10 @@ exports[`CourseSelect renders 1`] = `
               "paddingLeft": 16,
               "paddingRight": 8,
             },
-            undefined,
-            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
           ]
         }
       >
@@ -647,6 +650,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       onLayout={[Function]}
     >
       <View
+        accessibilityTraits="header"
         style={
           Array [
             Object {
@@ -658,10 +662,9 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               "paddingRight": 8,
             },
             Object {
-              "borderTopColor": "#C7CDD1",
-              "borderTopWidth": 0.5,
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
             },
-            undefined,
           ]
         }
       >
@@ -788,6 +791,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
       onLayout={[Function]}
     >
       <View
+        accessibilityTraits="header"
         style={
           Array [
             Object {
@@ -798,8 +802,10 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
               "paddingLeft": 16,
               "paddingRight": 8,
             },
-            undefined,
-            undefined,
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+            },
           ]
         }
       >

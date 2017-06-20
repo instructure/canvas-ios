@@ -113,6 +113,7 @@ exports[`QuizzesList renders in correct order 1`] = `
               "title": "First",
             },
           ],
+          "index": 0,
           "key": "assignment",
         },
       ]
@@ -195,6 +196,7 @@ exports[`QuizzesList renders in correct order 1`] = `
               "title": "First",
             },
           ],
+          "index": 0,
           "key": "assignment",
         },
       ]
@@ -214,21 +216,29 @@ exports[`QuizzesList renders in correct order 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -1033,6 +1043,7 @@ exports[`QuizzesList renders quizzes 1`] = `
               "title": "Quiz 1",
             },
           ],
+          "index": 0,
           "key": "assignment",
         },
       ]
@@ -1115,6 +1126,7 @@ exports[`QuizzesList renders quizzes 1`] = `
               "title": "Quiz 1",
             },
           ],
+          "index": 0,
           "key": "assignment",
         },
       ]
@@ -1134,21 +1146,29 @@ exports[`QuizzesList renders quizzes 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
-            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}

@@ -16,7 +16,7 @@ import { default as ListActions } from './actions'
 import { default as EditActions } from '../edit/actions'
 import refresh from '../../../utils/refresh'
 import DiscusionsRow from './DiscussionsRow'
-import { SectionHeader } from '../../../common/text'
+import SectionHeader from '../../../common/components/rows/SectionHeader'
 import Screen from '../../../routing/Screen'
 import Images from '../../../images'
 
@@ -62,7 +62,7 @@ export class DiscussionsList extends Component<any, Props, any> {
   }
 
   renderSectionHeader = ({ section }: any) => {
-    return <SectionHeader>{HEADERS[section.key]}</SectionHeader>
+    return <SectionHeader title={HEADERS[section.key]} key={HEADERS[section.key]} />
   }
 
   _selectedDiscussion = (discussion: Discussion) => {

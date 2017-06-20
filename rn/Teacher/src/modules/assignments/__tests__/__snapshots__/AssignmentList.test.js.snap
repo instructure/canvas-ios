@@ -272,17 +272,26 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
@@ -936,17 +945,26 @@ exports[`applyFilter will apply a new filter 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
@@ -1206,17 +1224,26 @@ exports[`applyFilter will apply a new filter 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
@@ -1700,17 +1727,26 @@ exports[`filter button only shows when there are grading periods 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
@@ -2243,17 +2279,26 @@ exports[`renders correctly 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text
@@ -2786,17 +2831,26 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
           style={
-            Object {
-              "backgroundColor": "#F5F5F5",
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-              "flex": 1,
-              "height": 24,
-              "justifyContent": "center",
-              "paddingLeft": 16,
-              "paddingRight": 8,
-            }
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+              Object {
+                "borderTopColor": "#C7CDD1",
+                "borderTopWidth": 0.5,
+              },
+            ]
           }
         >
           <Text

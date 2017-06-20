@@ -59,14 +59,6 @@ export function UnmetRequirementSubscriptText ({ style, ...props }: Object): Rea
   return <ReactNative.Text style={[styles.font, styles.unmetRequirementSubscriptText, style]} {...props} />
 }
 
-export function SectionHeader ({ style, ...props }: Object): ReactNative.Element<View> {
-  return (
-    <View style={styles.sectionHeader} key={props.key}>
-      <Text style={styles.sectionHeaderTitle} {...props} accessibilityTraits='header' />
-    </View>
-  )
-}
-
 export function Separated (props: Object): ReactNative.Element<View> {
   const separator = (
     <Text
