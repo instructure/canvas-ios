@@ -26,6 +26,7 @@ import { type SelectedSubmissionFilter } from '../submissions/SubmissionsHeader'
 import Tutorial from './components/Tutorial'
 import i18n from 'format-message'
 import Images from '../../images'
+import shuffle from 'knuth-shuffle-seeded'
 
 type State = {
   size: { width: number, height: number },
@@ -189,9 +190,11 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
     ? selectedFilter.filter.filterFunc(unfilteredProps.submissions, selectedFilter.metadata)
     : unfilteredProps.submissions
 
+  let anonymous = state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
+
   const props = {
     ...unfilteredProps,
-    submissions,
+    submissions: anonymous ? shuffle(submissions.slice(), ownProps.assignmentID) : submissions,
   }
 
   return {

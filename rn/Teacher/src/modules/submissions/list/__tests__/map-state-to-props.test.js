@@ -2,6 +2,9 @@
 
 import { mapStateToProps } from '../map-state-to-props'
 import type { SubmissionDataProps } from '../submission-prop-types'
+import shuffle from 'knuth-shuffle-seeded'
+
+jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 let t = {
   ...require('../../../../api/canvas-api/__templates__/assignments'),
@@ -39,7 +42,7 @@ export const submissionProps: Array<SubmissionDataProps> = [
   }),
 ]
 
-test('submissions', () => {
+function createHappyPathTestState () {
   const enrollments: EnrollmentsState = {
     '0': t.enrollment({ id: '0', user_id: '0', type: 'TeacherEnrollment' }),
     '1': t.enrollment({ id: '1', user_id: '1', user: t.user({ id: '1', name: 'S1', sortable_name: 'S1' }) }),
@@ -115,7 +118,7 @@ test('submissions', () => {
     '1000': { submissions: subRefs, data: { points_possible: 5 } },
   }
 
-  const state = t.appState({
+  return t.appState({
     entities: {
       enrollments,
       submissions,
@@ -123,6 +126,12 @@ test('submissions', () => {
       assignments,
     },
   })
+}
+
+beforeEach(() => jest.resetAllMocks())
+
+test('submissions', () => {
+  let state = createHappyPathTestState()
   expect(mapStateToProps(state, { courseID: '100', assignmentID: '1000' })).toMatchObject({
     courseColor: '#000',
     pending: false,
@@ -145,4 +154,12 @@ test('submissions with missing data', () => {
     courseColor: '#FFFFFF',
     pending: true,
   })
+})
+
+test('anonymous grading shuffles the data', () => {
+  let state = createHappyPathTestState()
+  state.entities.assignments['1000'].anonymousGradingOn = true
+
+  mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
+  expect(shuffle).toHaveBeenCalled()
 })

@@ -12,105 +12,112 @@ exports[`SubmissionList loaded 1`] = `
   <View
     style={
       Object {
-        "alignItems": "flex-end",
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 12,
+        "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "fontSize": 20,
-            "fontWeight": "600",
-          },
-        ]
-      }
-    >
-      All Submissions
-    </Text>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits={undefined}
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "marginBottom": 1,
-          "opacity": 1,
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
         }
       }
-      testID="submission-list.filter"
-      tvParallaxProperties={undefined}
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2d3b44",
+              "fontSize": 20,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        All Submissions
+      </Text>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Filter Submissions"
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+            "opacity": 1,
+          }
+        }
+        testID="submission-list.filter"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
               Array [
                 Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-bold",
+                  "color": "#2D3B45",
+                  "fontSize": 16,
                 },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {
+                    "marginBottom": 1,
+                  },
+                ],
                 Object {
-                  "color": "#374A59",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                Object {
-                  "marginBottom": 1,
-                },
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Filter
-        </Text>
+              ]
+            }
+          >
+            Filter
+          </Text>
+        </View>
       </View>
     </View>
   </View>
@@ -1056,105 +1063,112 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
   <View
     style={
       Object {
-        "alignItems": "flex-end",
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "paddingBottom": 12,
+        "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
       }
     }
   >
-    <Text
-      accessibilityTraits="header"
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontFamily": ".SFUIDisplay-semibold",
-            "fontSize": 20,
-          },
-          Object {
-            "color": "#2d3b44",
-            "fontSize": 20,
-            "fontWeight": "600",
-          },
-        ]
-      }
-    >
-      Graded
-    </Text>
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="Clear Filter Submissions"
-      accessibilityTraits={undefined}
-      accessible={true}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "marginBottom": 1,
-          "opacity": 1,
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
         }
       }
-      testID="submission-list.filter"
-      tvParallaxProperties={undefined}
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            Object {
+              "color": "#2d3b44",
+              "fontSize": 20,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        Graded
+      </Text>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Clear Filter Submissions"
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "marginBottom": 1,
+            "opacity": 1,
+          }
+        }
+        testID="submission-list.filter"
+        tvParallaxProperties={undefined}
+      >
+        <View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
               Array [
                 Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
+                  "fontFamily": ".SFUIDisplay",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-bold",
+                  "color": "#2D3B45",
+                  "fontSize": 16,
                 },
+                Array [
+                  Object {
+                    "color": "#374A59",
+                    "fontSize": 14,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay-bold",
+                  },
+                  Object {
+                    "color": "#374A59",
+                  },
+                  Object {
+                    "marginBottom": 1,
+                  },
+                ],
                 Object {
-                  "color": "#374A59",
+                  "fontFamily": ".SFUIDisplay",
                 },
-                Object {
-                  "marginBottom": 1,
-                },
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-            ]
-          }
-        >
-          Clear Filter
-        </Text>
+              ]
+            }
+          >
+            Clear Filter
+          </Text>
+        </View>
       </View>
     </View>
   </View>

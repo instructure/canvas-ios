@@ -22,6 +22,7 @@ jest
   .mock('AlertIOS', () => ({
     alert: jest.fn(),
   }))
+  .mock('knuth-shuffle-seeded', () => jest.fn())
 
 const props = {
   submissions: submissionProps,
@@ -36,6 +37,8 @@ const props = {
   refresh: jest.fn(),
   anonymous: false,
 }
+
+beforeEach(() => jest.resetAllMocks())
 
 test('SubmissionList loaded', () => {
   const tree = renderer.create(

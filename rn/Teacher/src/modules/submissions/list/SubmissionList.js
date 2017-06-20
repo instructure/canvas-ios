@@ -145,7 +145,9 @@ export class SubmissionList extends Component {
             selectedFilter={this.selectedFilter}
             onClearFilter={this.clearFilter}
             onSelectFilter={this.updateFilter}
-            pointsPossible={this.props.pointsPossible} />
+            pointsPossible={this.props.pointsPossible}
+            anonymous={this.props.anonymous}
+          />
           { /* $FlowFixMe I seriously have no idea why this is complaining about flatlist not having some properties */ }
           <FlatList
             data={this.state.submissions}

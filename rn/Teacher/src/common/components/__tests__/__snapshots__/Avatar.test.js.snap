@@ -46,7 +46,6 @@ exports[`Avatar renders without default canvas avatar 1`] = `
         "borderColor": "#C7CDD1",
         "borderWidth": 0.5,
         "justifyContent": "center",
-        "marginRight": 16,
         "overflow": "hidden",
       },
       Object {
@@ -90,7 +89,6 @@ exports[`Avatar renders without image 1`] = `
         "borderColor": "#C7CDD1",
         "borderWidth": 0.5,
         "justifyContent": "center",
-        "marginRight": 16,
         "overflow": "hidden",
       },
       Object {

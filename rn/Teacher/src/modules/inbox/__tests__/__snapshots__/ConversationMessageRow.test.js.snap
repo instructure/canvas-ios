@@ -66,7 +66,6 @@ exports[`renders correctly 1`] = `
                   "borderColor": "#C7CDD1",
                   "borderWidth": 0.5,
                   "justifyContent": "center",
-                  "marginRight": 16,
                   "overflow": "hidden",
                 },
                 Object {
@@ -363,7 +362,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
                   "borderColor": "#C7CDD1",
                   "borderWidth": 0.5,
                   "justifyContent": "center",
-                  "marginRight": 16,
                   "overflow": "hidden",
                 },
                 Object {
@@ -660,7 +658,6 @@ exports[`renders correctly with author lots of participants 1`] = `
                   "borderColor": "#C7CDD1",
                   "borderWidth": 0.5,
                   "justifyContent": "center",
-                  "marginRight": 16,
                   "overflow": "hidden",
                 },
                 Object {

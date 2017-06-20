@@ -68,6 +68,9 @@
   "announcements_a4b8ed4a": {
     "message": "Announcements"
   },
+  "anonymous_grading_3083dc0": {
+    "message": "Anonymous grading"
+  },
   "anonymous_grading_ccb5045c": {
     "message": "Anonymous Grading"
   },
@@ -775,6 +778,9 @@
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
     "message": "This submission is a URL to an external page. We''ve included a snapshot of what the page looked like when it was submitted."
+  },
+  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
+    "message": "This will anonymize each student and shuffle the submission list."
   },
   "time_limit_a6f1a51e": {
     "message": "Time Limit"

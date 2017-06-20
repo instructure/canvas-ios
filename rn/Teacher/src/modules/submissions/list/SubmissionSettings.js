@@ -9,6 +9,8 @@ import i18n from 'format-message'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import { connect } from 'react-redux'
 import AssignmentActions from '../../assignments/actions'
+import branding from '../../../common/branding'
+import { SubTitle } from '../../../common/text'
 
 type SubmissionSettingsOwnProps = {
   courseID: string,
@@ -46,6 +48,7 @@ export class SubmissionSettings extends PureComponent {
     return (
       <Screen
         title={i18n('Submission Settings')}
+        navBarButtonColor={branding.primaryButtonColor}
         rightBarButtons={[{
           title: i18n('Done'),
           style: 'done',
@@ -56,11 +59,15 @@ export class SubmissionSettings extends PureComponent {
         <View>
           <RowWithSwitch
             border='bottom'
+            height={60}
             title={i18n('Anonymous Grading')}
             value={this.props.anonymous}
             onValueChange={this.toggleAnonymousGrading}
             identifier='submission-settings.anonymous'
           />
+          <SubTitle style={{ paddingHorizontal: 12, paddingVertical: 4 }}>
+            {i18n('This will anonymize each student and shuffle the submission list.')}
+          </SubTitle>
         </View>
       </Screen>
     )

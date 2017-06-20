@@ -89,9 +89,20 @@ test('mapStateToProps returns no comments for no submissionID', () => {
   }
 
   let state = templates.appState()
+  state.entities.assignments = {
+    '245': {
+      data: {},
+      anonymousGradingOn: false,
+      pendingComments: {},
+      submissions: { refs: [], pending: 0 },
+      gradeableStudents: { refs: [], pending: 0 },
+      pending: 0,
+    },
+  }
 
   expect(mapStateToProps(state, props)).toEqual({
     commentRows: [],
+    anonymous: false,
   })
 })
 
@@ -144,6 +155,16 @@ test('mapStateToProps returns comment and submission rows', () => {
   appState.entities.submissions = {
     [submission.id]: { submission, pending: 0 },
   }
+  appState.entities.assignments = {
+    '200': {
+      data: {},
+      anonymousGradingOn: true,
+      pendingComments: {},
+      submissions: { refs: [], pending: 0 },
+      gradeableStudents: { refs: [], pending: 0 },
+      pending: 0,
+    },
+  }
 
   const ownProps = {
     courseID: '100',
@@ -158,6 +179,7 @@ test('mapStateToProps returns comment and submission rows', () => {
   setSession(session)
 
   expect(mapStateToProps(appState, ownProps)).toEqual({
+    anonymous: true,
     commentRows: [
       {
         key: 'comment-' + studentComment.id,

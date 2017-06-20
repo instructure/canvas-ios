@@ -10,7 +10,8 @@ import {
 
 import i18n from 'format-message'
 import { LinkButton } from '../../common/buttons'
-import { Heading1 } from '../../common/text'
+import { Heading1, Text } from '../../common/text'
+import colors from '../../common/colors'
 
 type SubmissionFilterOptionType = 'all' | 'late' | 'notsubmitted' | 'notgraded' | 'graded' | 'lessthan' | 'morethan' | 'cancel'
 
@@ -31,6 +32,8 @@ export type SubmissionsHeaderProps = {
   onClearFilter: Function,
   onSelectFilter: Function,
 }
+
+const anonymous = i18n('Anonymous grading')
 
 export default class SubmissionsHeader extends Component<any, SubmissionsHeaderProps, any> {
 
@@ -88,13 +91,18 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
       title = selected.filter.title
     }
 
-    return (<View style={styles.header}>
-              <Heading1
-                style={styles.headerTitle}
-                >
-                { title }
-              </Heading1>
-              { this.renderFilterButton() }
+    return (<View style={styles.headerWrapper}>
+              <View style={styles.header}>
+                <Heading1
+                  style={styles.headerTitle}
+                  >
+                  { title }
+                </Heading1>
+                { this.renderFilterButton() }
+              </View>
+              {this.props.anonymous &&
+                <Text style={styles.subtitle}>{anonymous}</Text>
+              }
             </View>)
   }
 
@@ -173,20 +181,27 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
 }
 
 const styles = StyleSheet.create({
-  header: {
+  headerWrapper: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgrey',
+    paddingTop: 16,
+    paddingBottom: 8,
+    paddingHorizontal: 16,
+  },
+  header: {
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-between',
-    paddingTop: 16,
-    paddingBottom: 12,
-    paddingHorizontal: 16,
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
     color: '#2d3b44',
+  },
+  subtitle: {
+    color: colors.grey4,
+    fontSize: 14,
+    fontWeight: '500',
   },
   filterButton: {
     marginBottom: 1,

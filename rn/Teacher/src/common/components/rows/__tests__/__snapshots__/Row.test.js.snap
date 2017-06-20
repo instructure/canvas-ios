@@ -28,7 +28,7 @@ exports[`Render the base row 1`] = `
       },
       Array [
         Object {
-          "height": 54,
+          "height": 44,
         },
         Object {
           "borderTopColor": "#C7CDD1",

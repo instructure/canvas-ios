@@ -3,6 +3,7 @@
 import { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
 import { gradeProp, statusProp } from '../../submissions/list/get-submissions-props'
 import { type QuizSubmissionListDataProps } from './QuizSubmissionList'
+import shuffle from 'knuth-shuffle-seeded'
 
 export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string]: QuizSubmissionState }, submissions: { [string]: SubmissionState }): SubmissionRowDataProps[] {
   return enrollments.map((enrollment) => {
@@ -61,6 +62,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
   let pending = false
   let error = null
   let pointsPossible = 0
+  let anonymous = false
 
   if (quiz) {
     pending = Boolean(quiz.pending)
@@ -76,6 +78,10 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     })
     .filter((s) => s)
     .forEach((s) => { submissions[s.submission.user_id] = s })
+
+    if (quiz.data.assignment_id) {
+      anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
+    }
   }
 
   const course = entities.courses[courseID]
@@ -90,10 +96,11 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
   const rows = buildRows(enrollments, quizSubmissions, submissions)
 
   return {
-    rows,
+    rows: anonymous ? shuffle(rows, quiz.data.assignment_id) : rows,
     quiz,
     pending,
     pointsPossible,
     error,
+    anonymous,
   }
 }

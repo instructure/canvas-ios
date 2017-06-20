@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     borderColor: colors.seperatorColor,
     borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
-    marginRight: global.style.defaultPadding,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',

@@ -43,10 +43,17 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
       usOrThem = styles.myHeader
     }
 
+    let name = this.props.name
+    let avatarURL = this.props.avatarURL
+    if (this.props.from === 'them' && this.props.anonymous) {
+      name = i18n('Student')
+      avatarURL = null
+    }
+
     const nameAndDate =
       <View key="1" style={styles.nameAndDate}>
         <Heading1 style={[textAlignment, styles.title]}>
-          {this.props.name}
+          {name}
         </Heading1>
         <Paragraph style={[textAlignment, styles.subtitle]}>
           {formattedDueDate(this.props.date)}
@@ -56,8 +63,8 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
     const avatar =
       <Avatar
         key="0"
-        avatarURL={this.props.avatarURL}
-        userName={this.props.name}
+        avatarURL={avatarURL}
+        userName={name}
       />
 
     const headerContent = [avatar, nameAndDate]

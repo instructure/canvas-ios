@@ -28,7 +28,7 @@ exports[`default icon 1`] = `
       },
       Array [
         Object {
-          "height": 54,
+          "height": 44,
         },
         undefined,
         Object {
@@ -169,7 +169,7 @@ exports[`renders correctly 1`] = `
       },
       Array [
         Object {
-          "height": 54,
+          "height": 44,
         },
         undefined,
         Object {

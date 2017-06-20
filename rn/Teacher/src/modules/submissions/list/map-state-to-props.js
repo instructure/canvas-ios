@@ -4,6 +4,7 @@ import type {
   SubmissionListDataProps,
 } from './submission-prop-types'
 import { getSubmissionsProps } from './get-submissions-props'
+import shuffle from 'knuth-shuffle-seeded'
 
 type RoutingProps = {
   courseID: string,
@@ -41,11 +42,14 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     courseColor = courseContent.color
   }
 
+  let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn
+
   return {
     courseColor,
     shouldRefresh,
     pointsPossible,
-    ...submissions,
-    anonymous: !!assignmentContent && assignmentContent.anonymousGradingOn,
+    pending: submissions.pending,
+    submissions: anonymous ? shuffle(submissions.submissions.slice(), assignmentID) : submissions.submissions,
+    anonymous,
   }
 }

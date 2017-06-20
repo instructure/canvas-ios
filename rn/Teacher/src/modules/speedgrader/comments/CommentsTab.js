@@ -61,6 +61,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
   renderComment = ({ item }: { item: CommentRowProps }) =>
     <CommentRow
       {...item}
+      anonymous={this.props.anonymous}
       testID={'submission-comment-' + item.key}
       style={{ transform: [{ rotate: '180deg' }] }}
       retryPendingComment={this.makeAComment}
@@ -99,7 +100,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
   }
 }
 
-type CommentRows = { commentRows: CommentRowData[] }
+type CommentRows = { commentRows: CommentRowData[], anonymous: boolean }
 
 type RoutingProps = {
   courseID: string,
@@ -236,6 +237,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
   return {
     commentRows,
+    anonymous: !!assignments.anonymousGradingOn,
   }
 }
 

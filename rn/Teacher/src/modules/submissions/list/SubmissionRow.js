@@ -84,7 +84,10 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
     if (disclosure === undefined) {
       disclosure = true
     }
-    name = this.props.anonymous ? i18n('Student') : name
+    if (this.props.anonymous) {
+      name = i18n('Student')
+      avatarURL = null
+    }
     return (
       <Row disclosure={disclosure} testID={`submission-${userID}`} onPress={this.onPress}>
         <View style={styles.avatar}>

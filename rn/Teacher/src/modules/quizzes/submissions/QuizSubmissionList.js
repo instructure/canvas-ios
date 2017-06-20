@@ -16,6 +16,8 @@ import Screen from '../../../routing/Screen'
 import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../../submissions/SubmissionsHeader'
 import SubmissionRow, { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
 import mapStateToProps from './map-state-to-props'
+import Images from '../../../images'
+import i18n from 'format-message'
 
 export type QuizSubmissionListNavProps = {
   courseID: string,
@@ -31,6 +33,7 @@ export type QuizSubmissionListDataProps = {
   pending: boolean,
   error: ?string,
   pointsPossible: number,
+  anonymous: boolean,
 }
 
 export type QuizSubmissionListProps = QuizSubmissionListDataProps & QuizSubmissionListNavProps
@@ -104,32 +107,54 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
     if (this.props.quiz) {
       disclosure = !!this.props.quiz.data.assignment_id
     }
-    return <SubmissionRow {...item} onPress={this.navigateToSubmission} disclosure={disclosure} />
+    return <SubmissionRow {...item} onPress={this.navigateToSubmission} disclosure={disclosure} anonymous={this.props.anonymous} />
   }
 
   keyExtractor = (item: any) => {
     return item.userID
   }
 
+  openSubmissionSettings = () => {
+    this.props.navigator.show(
+      `/courses/${this.props.courseID}/assignments/${this.props.quiz.data.assignment_id}/submission_settings`,
+      { modal: true }
+    )
+  }
+
   render () {
-    return (<Screen>
-              <View style={styles.container}>
-                <SubmissionsHeader
-                  filterOptions={this.filterOptions}
-                  selectedFilter={this.selectedFilter}
-                  onClearFilter={this.clearFilter}
-                  onSelectFilter={this.updateFilter}
-                  pointsPossible={this.props.pointsPossible} />
-                <FlatList
-                  data={this.state.rows}
-                  keyExtractor={this.keyExtractor}
-                  testID='quiz-submission-list'
-                  renderItem={this.renderRow}
-                  refreshing={Boolean(this.props.pending)}
-                  onRefresh={this.props.refresh}
-                  />
-              </View>
-           </Screen>)
+    let rightBarButtons = []
+    if (this.props.quiz && this.props.quiz.data.assignment_id) {
+      rightBarButtons.push({
+        accessibilityLabel: i18n('Submission Settings'),
+        image: Images.course.settings,
+        testID: 'quiz-submissions.settings',
+        action: this.openSubmissionSettings,
+      })
+    }
+
+    return (
+      <Screen
+        rightBarButtons={rightBarButtons}
+      >
+        <View style={styles.container}>
+          <SubmissionsHeader
+            filterOptions={this.filterOptions}
+            selectedFilter={this.selectedFilter}
+            onClearFilter={this.clearFilter}
+            onSelectFilter={this.updateFilter}
+            pointsPossible={this.props.pointsPossible}
+            anonymous={this.props.anonymous} />
+          <FlatList
+            data={this.state.rows}
+            keyExtractor={this.keyExtractor}
+            testID='quiz-submission-list'
+            renderItem={this.renderRow}
+            refreshing={Boolean(this.props.pending)}
+            onRefresh={this.props.refresh}
+            />
+        </View>
+      </Screen>
+    )
   }
 }
 

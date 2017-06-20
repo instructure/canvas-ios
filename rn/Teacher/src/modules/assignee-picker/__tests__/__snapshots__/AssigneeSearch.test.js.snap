@@ -137,7 +137,6 @@ exports[`render correctly 1`] = `
                       "borderColor": "#C7CDD1",
                       "borderWidth": 0.5,
                       "justifyContent": "center",
-                      "marginRight": 16,
                       "overflow": "hidden",
                     },
                     Object {
@@ -276,7 +275,6 @@ exports[`render correctly 1`] = `
                       "borderColor": "#C7CDD1",
                       "borderWidth": 0.5,
                       "justifyContent": "center",
-                      "marginRight": 16,
                       "overflow": "hidden",
                     },
                     Object {
@@ -639,7 +637,6 @@ exports[`render correctly 2`] = `
                       "borderColor": "#C7CDD1",
                       "borderWidth": 0.5,
                       "justifyContent": "center",
-                      "marginRight": 16,
                       "overflow": "hidden",
                     },
                     Object {

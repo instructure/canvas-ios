@@ -101,3 +101,11 @@ test('SubmissionsHeader cancel and clear', () => {
   instance.clearFilter()
   expect(onClearFilter).toHaveBeenCalled()
 })
+
+test('SubmissionHeader anonymous grading', () => {
+  const tree = renderer.create(
+    <SubmissionsHeader filterOptions={filterOptions} anonymous />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})

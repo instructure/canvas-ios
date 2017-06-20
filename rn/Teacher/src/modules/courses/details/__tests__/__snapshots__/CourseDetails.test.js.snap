@@ -353,7 +353,7 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": 44,
             },
             undefined,
             Object {
@@ -800,7 +800,7 @@ exports[`renders with empty image url 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": 44,
             },
             undefined,
             Object {
@@ -1099,7 +1099,7 @@ exports[`renders with image url 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": 44,
             },
             undefined,
             Object {
@@ -1384,7 +1384,7 @@ exports[`renders without image url 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
+              "height": 44,
             },
             undefined,
             Object {

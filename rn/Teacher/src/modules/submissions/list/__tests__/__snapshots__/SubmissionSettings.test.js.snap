@@ -29,7 +29,7 @@ exports[`SubmissionSettings renders properly 1`] = `
         },
         Array [
           Object {
-            "height": 54,
+            "height": 60,
           },
           undefined,
           Object {
@@ -120,6 +120,7 @@ exports[`SubmissionSettings renders properly 1`] = `
           <RCTSwitch
             border="bottom"
             disabled={false}
+            height={60}
             identifier="submission-settings.anonymous"
             onChange={[Function]}
             onResponderTerminationRequest={[Function]}
@@ -144,5 +145,28 @@ exports[`SubmissionSettings renders properly 1`] = `
       </View>
     </View>
   </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#7F91A7",
+          "fontSize": 14,
+        },
+        Object {
+          "paddingHorizontal": 12,
+          "paddingVertical": 4,
+        },
+      ]
+    }
+  >
+    This will anonymize each student and shuffle the submission list.
+  </Text>
 </View>
 `;

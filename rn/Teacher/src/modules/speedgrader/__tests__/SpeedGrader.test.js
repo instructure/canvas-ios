@@ -9,11 +9,13 @@ import {
   isRefreshing,
 } from '../SpeedGrader'
 import renderer from 'react-test-renderer'
+import shuffle from 'knuth-shuffle-seeded'
 
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
 jest.mock('../components/FilesTab')
 jest.mock('../../../common/components/BottomDrawer')
+jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
@@ -171,4 +173,25 @@ test('mapStateToProps filters', () => {
     hasAssignment: true,
     isModeratedGrading: false,
   })
+})
+
+test('mapStateToProps shuffles when anonymous grading is on', () => {
+  const assignment = templates.assignment()
+  const appState = templates.appState({
+    entities: {
+      submissions: {},
+      assignments: {
+        [assignment.id]: {
+          data: assignment,
+          anonymousGradingOn: true,
+        },
+      },
+    },
+  })
+  mapStateToProps(appState, {
+    assignmentID: assignment.id,
+    courseID: '2',
+    userID: '3',
+  })
+  expect(shuffle).toHaveBeenCalled()
 })

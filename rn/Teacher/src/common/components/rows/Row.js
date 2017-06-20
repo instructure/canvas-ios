@@ -47,7 +47,7 @@ export default class Row extends Component<any, RowProps, any> {
     if (typeof height === 'string' && height === 'auto') {
       height = undefined
     } else {
-      height = 54
+      height = height || 54
     }
     const imageSize = this.props.imageSize || { height: 20, width: 20 }
     const title = this.props.title

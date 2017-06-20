@@ -2,6 +2,9 @@
 
 import mapStateToProps from '../map-state-to-props'
 import moment from 'moment'
+import shuffle from 'knuth-shuffle-seeded'
+
+jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/quiz'),
@@ -16,7 +19,9 @@ const template = {
 describe('QuizSubmissionList mapStateToProps', () => {
   test('works correctly with the best of the data', () => {
     const course = template.course()
-    const quiz = template.quiz()
+    const quiz = template.quiz({
+      assignment_id: '1',
+    })
 
     const u1 = template.user({
       id: '1',
@@ -84,6 +89,11 @@ describe('QuizSubmissionList mapStateToProps', () => {
         courses: {
           [course.id]: { enrollments: { refs: [e1.id, e2.id, e3.id, e4.id] } },
         },
+        assignments: {
+          '1': {
+            anonymousGradingOn: true,
+          },
+        },
         enrollments: {
           [e1.id]: e1,
           [e2.id]: e2,
@@ -107,6 +117,29 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
       },
     })
+
+    shuffle.mockReturnValueOnce([
+      {
+        userID: '1',
+        grade: 'ungraded',
+        status: 'submitted',
+      },
+      {
+        userID: '2',
+        grade: 'B-',
+        status: 'submitted',
+      },
+      {
+        userID: '3',
+        grade: 'not_submitted',
+        status: 'none',
+      },
+      {
+        userID: '4',
+        grade: 'not_submitted',
+        status: 'late',
+      },
+    ])
 
     const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
     expect(result).toMatchObject({
@@ -133,7 +166,9 @@ describe('QuizSubmissionList mapStateToProps', () => {
           status: 'late',
         },
       ],
+      anonymous: true,
     })
+    expect(shuffle).toHaveBeenCalled()
   })
 
   test('missing data and it should still work and not explode', () => {
@@ -144,6 +179,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
     expect(result).toMatchObject({
       rows: [],
       quiz: undefined,
+      anonymous: false,
     })
   })
 })
