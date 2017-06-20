@@ -6,9 +6,11 @@ import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 import SubmissionActions from '../../submissions/list/actions'
 import { default as QuizDetailsActions } from '../../quizzes/details/actions'
+import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
 
 const { refreshSubmissions } = SubmissionActions
 const { refreshQuiz } = QuizDetailsActions
+const { refreshDiscussionEntries } = DiscussionDetailsActions
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/submissions'),
@@ -186,5 +188,42 @@ test('refreshQuiz', () => {
         anonymousGradingOn: true,
       },
     })
+  })
+})
+
+test('refreshDiscussionEntries', () => {
+  const assignment = template.assignment({
+    id: '1',
+    name: 'Old',
+  })
+  const initialState = {
+    '1': {
+      data: assignment,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+    },
+  }
+  const refreshedAssignment = {
+    ...assignment,
+    name: 'Refreshed',
+  }
+  const resolved = {
+    type: refreshDiscussionEntries.toString(),
+    payload: {
+      result: [{}, {}, { data: refreshedAssignment }],
+      courseID: '1',
+      discussionID: '1',
+    },
+  }
+  expect(
+    assignments(initialState, resolved)
+  ).toEqual({
+    '1': {
+      ...initialState['1'],
+      data: refreshedAssignment,
+    },
   })
 })

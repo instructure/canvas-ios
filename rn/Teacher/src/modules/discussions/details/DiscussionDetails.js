@@ -68,15 +68,18 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
             {discussion.assignment && <AssignmentSection
               title={i18n('Due')}
-              image={Images.assignments.calendar} >
-              <AssignmentDates assignment={discussion.assignment} />
+              image={Images.assignments.calendar}
+              showDisclosureIndicator={true}
+              onPress={this.viewDueDateDetails} >
+              <AssignmentDates assignment={this.props.assignment} />
             </AssignmentSection>}
 
             {discussion.assignment && <AssignmentSection
               title={i18n('Submissions')}
+              testID='discussions.submission-graphs'
               onPress={() => this.viewSubmissions()}
               showDisclosureIndicator>
-              <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={discussion.assignment.id} style={style.submission}/>
+              <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignment.id} style={style.submission}/>
             </AssignmentSection>}
 
             <AssignmentSection >
@@ -129,16 +132,27 @@ export class DiscussionDetails extends Component<any, Props, any> {
     )
   }
 
+  editAssignment = () => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  viewDueDateDetails = () => {
+    const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
+    this.props.navigator.show(route, { modal: false }, {
+      onEditPressed: this.editAssignment,
+    })
+  }
+
   onSubmissionDialPress = (type: string) => {
     this.viewSubmissions(type)
   }
 
   viewSubmissions = (filterType: ?string) => {
-    const { courseID, discussion } = this.props
+    const { courseID, assignment } = this.props
     if (filterType) {
-      this.props.navigator.show(`/courses/${courseID}/assignments/${discussion.assignment.id}/submissions`, { modal: false }, { filterType })
+      this.props.navigator.show(`/courses/${courseID}/assignments/${assignment.id}/submissions`, { modal: false }, { filterType })
     } else {
-      this.props.navigator.show(`/courses/${courseID}/assignments/${discussion.assignment.id}/submissions`)
+      this.props.navigator.show(`/courses/${courseID}/assignments/${assignment.id}/submissions`)
     }
   }
 
@@ -238,6 +252,12 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     error = state.error
   }
 
+  let assignment = null
+  if (discussion && discussion.assignment_id) {
+    let entity = entities.assignments[discussion.assignment_id]
+    assignment = entity ? entity.data : null
+  }
+
   return {
     discussion,
     pending,
@@ -245,13 +265,13 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     courseID,
     discussionID,
     course,
+    assignment,
   }
 }
 
 let Refreshed = refresh(
-  //  TODO - add deep link ability to refreshDiscussion without entry from discussion list
   props => props.refreshDiscussionEntries(props.courseID, props.discussionID),
-  props => true,
+  props => !props.discussion || (props.discussion.assignment_id && !props.assignment),
   props => Boolean(props.pending)
 )(DiscussionDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)

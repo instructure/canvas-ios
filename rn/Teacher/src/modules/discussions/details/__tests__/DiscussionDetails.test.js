@@ -19,6 +19,7 @@ jest
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../../api/canvas-api/__templates__/course'),
   ...require('../../../../api/canvas-api/__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
@@ -29,15 +30,17 @@ describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
+    let discussion = template.discussion({ id: '1' })
     props = {
       refresh: jest.fn(),
       refreshing: false,
-      discussion: template.discussion({ id: '1' }),
+      discussion: discussion,
       navigator: template.navigator(),
       discussionID: '1',
       courseID: '1',
       course: template.course({ id: 1 }),
       title: null,
+      assignment: discussion.assignment,
     }
   })
 
@@ -82,6 +85,21 @@ describe('DiscussionDetails', () => {
     ).not.toBeDefined()
   })
 
+  it('routes to the right place when due dates details is requested', () => {
+    let navigator = template.navigator({
+      show: jest.fn(),
+    })
+    let details = renderer.create(
+      <DiscussionDetails {...props} navigator={navigator} />
+    ).getInstance()
+    details.viewDueDateDetails()
+    expect(navigator.show).toHaveBeenCalledWith(
+      `/courses/${props.courseID}/assignments/${props.assignment.id}/due_dates`,
+      { modal: false },
+      { onEditPressed: expect.any(Function) }
+    )
+  })
+
   it('routes to announcement edit', () => {
     props.isAnnouncement = true
     props.navigator.show = jest.fn()
@@ -113,45 +131,70 @@ describe('DiscussionDetails', () => {
   }
 
   it('routes to the right place when submissions is tapped', () => {
-    props.discussion.assignment = {
-      id: '42',
-      title: 'test',
-    }
     let navigator = template.navigator({
       push: jest.fn(),
     })
-    let details = renderer.create(
-      <DiscussionDetails {...props} navigator={navigator} />
-    ).getInstance()
+    let details = render({ ...props, navigator }).getInstance()
     details.viewAllSubmissions()
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/assignments/${props.discussion.assignment.id}/submissions`
+      `/courses/${props.courseID}/assignments/${props.assignment.id}/submissions`
+    )
+  })
+
+  it('routes to the right place when submissions is tapped (via onPress)', () => {
+    let navigator = template.navigator({
+      push: jest.fn(),
+    })
+    let tree = render({ ...props, navigator }).toJSON()
+    const doneButton = explore(tree).selectByID('discussions.submission-graphs') || {}
+    doneButton.props.onPress()
+
+    expect(navigator.show).toHaveBeenCalledWith(
+      `/courses/${props.courseID}/assignments/${props.assignment.id}/submissions`
     )
   })
 
   it('routes to the right place when submissions dial is tapped', () => {
-    props.discussion.assignment = {
-      id: '42',
-      title: 'test',
-    }
     let navigator = template.navigator({
       push: jest.fn(),
     })
-    let details = renderer.create(
-      <DiscussionDetails {...props} navigator={navigator} />
-    ).getInstance()
+    let details = render({ ...props, navigator }).getInstance()
     details.onSubmissionDialPress('graded')
     expect(navigator.show).toHaveBeenCalledWith(
-      `/courses/${props.courseID}/assignments/${props.discussion.assignment.id}/submissions`,
+      `/courses/${props.courseID}/assignments/${props.assignment.id}/submissions`,
       { modal: false },
       { filterType: 'graded' }
     )
+  })
+
+  it('routes to the right place when edit is tapped from the due dates screen', () => {
+    let navigator = template.navigator({
+      push: jest.fn(),
+    })
+    let details = render({ ...props, navigator }).getInstance()
+    details.editAssignment()
+    expect(navigator.show).toHaveBeenCalledWith(
+      `/courses/${props.courseID}/assignments/${props.assignment.id}/edit`,
+      { modal: true, modalPresentationStyle: 'formsheet' },
+    )
+  })
+
+  it('renders a non-assignment discussion', () => {
+    let nonAssgProps = {
+      ...props,
+      discussion: {
+        ...props.discussion,
+        assignment: null,
+      },
+    }
+    testRender(nonAssgProps)
   })
 })
 
 describe('mapStateToProps', () => {
   it('maps state to props', () => {
-    const discussion = template.discussion({ id: '1' })
+    const discussion = template.discussion({ id: '1', assignment_id: '1' })
+    const assignment = template.assignment({ id: '1' })
     const course = template.course({ id: '1' })
     const state: AppState = template.appState({
       entities: {
@@ -166,6 +209,50 @@ describe('mapStateToProps', () => {
         courses: {
           '1': {
             course: course,
+          },
+        },
+        assignments: {
+          '1': {
+            data: assignment,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+    ).toMatchObject({
+      discussion,
+      pending: 1,
+      error: null,
+      courseID: '1',
+      discussionID: '1',
+      course,
+      assignment,
+    })
+  })
+
+  it('maps state to props with null assignment data', () => {
+    const discussion = template.discussion({ id: '1', assignment_id: '1' })
+    const course = template.course({ id: '1' })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        discussions: {
+          '1': {
+            data: discussion,
+            pending: 1,
+            error: null,
+          },
+        },
+        courses: {
+          '1': {
+            course: course,
+          },
+        },
+        assignments: {
+          '2': {
+            data: null,
           },
         },
       },

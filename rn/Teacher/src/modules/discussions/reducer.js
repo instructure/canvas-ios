@@ -94,12 +94,12 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
   [refreshDiscussions.toString()]: handleAsyncDiscussions,
   [refreshAnnouncements.toString()]: handleAsyncDiscussions,
   [refreshDiscussionEntries.toString()]: handleAsync({
-    resolved: (state, { result, courseID, discussionID }) => {
+    resolved: (state, { result: [discussionView, discussion], courseID, discussionID }) => {
       let entity = { ...state[discussionID] } || {}
-      entity.data = entity.data || {}
-      if (entity.data) {
-        let participantsAsMap = result.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
-        entity.data = { ...entity.data, replies: result.data.view, participants: participantsAsMap }
+      entity.data = discussion.data
+      if (discussionView && discussionView.data) {
+        let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
+        entity.data = { ...entity.data, replies: discussionView.data.view, participants: participantsAsMap }
       }
       return {
         ...state,

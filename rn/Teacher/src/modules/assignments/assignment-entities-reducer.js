@@ -11,6 +11,7 @@ import fromPairs from 'lodash/fromPairs'
 import cloneDeep from 'lodash/cloneDeep'
 import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 import { default as QuizDetailsActions } from '../quizzes/details/actions'
+import { default as DiscussionDetailsActions } from '../discussions/details/actions'
 
 export let defaultState: AssignmentGroupsState = {}
 
@@ -20,6 +21,7 @@ const { refreshAssignmentList,
         cancelAssignmentUpdate,
         anonymousGrading } = Actions
 const { refreshQuiz } = QuizDetailsActions
+const { refreshDiscussionEntries } = DiscussionDetailsActions
 
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
@@ -119,6 +121,21 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
   },
   [refreshQuiz.toString()]: handleAsync({
     resolved: (state, { result: [quiz, groups, assignment] }) => {
+      if (!assignment || !assignment.data) return state
+      return {
+        ...state,
+        [assignment.data.id]: {
+          ...state[assignment.data.id],
+          data: {
+            ...(state[assignment.data.id] && state[assignment.data.id].data),
+            ...assignment.data,
+          },
+        },
+      }
+    },
+  }),
+  [refreshDiscussionEntries.toString()]: handleAsync({
+    resolved: (state, { result: [view, discussion, assignment] }) => {
       if (!assignment || !assignment.data) return state
       return {
         ...state,

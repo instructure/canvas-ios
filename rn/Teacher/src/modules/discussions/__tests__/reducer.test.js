@@ -19,6 +19,7 @@ const {
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/error'),
   ...require('../../../api/canvas-api/__templates__/users'),
 }
@@ -224,9 +225,14 @@ describe('discussionData', () => {
       const resolved = {
         type: refreshDiscussionEntries.toString(),
         payload: {
-          result: {
-            data: view,
-          },
+          result: [
+            {
+              data: view,
+            },
+            {
+              data: stateDiscussion,
+            },
+          ],
           courseID: '2',
           discussionID: '1',
         },
@@ -241,7 +247,45 @@ describe('discussionData', () => {
           pending: 0,
           error: null,
         },
+      })
+    })
 
+    it('refreshes assignment disucssion', () => {
+      let participantA = template.userDisplay({ id: 1, display_name: 'A' })
+      let participantB = template.userDisplay({ id: 2, display_name: 'B' })
+      let view = template.discussionView({ participants: [participantA, participantB] })
+      let assignment = template.assignment({ id: '123456789' })
+      let stateDiscussion = template.discussion({ assignment: assignment })
+      let expected = template.discussion({ assignment: assignment })
+
+      const resolved = {
+        type: refreshDiscussionEntries.toString(),
+        payload: {
+          result: [
+            {
+              data: view,
+            },
+            {
+              data: stateDiscussion,
+            },
+            {
+              data: assignment,
+            },
+          ],
+          courseID: '2',
+          discussionID: '1',
+        },
+      }
+
+      expected.participants = { [participantA.id]: participantA, [participantB.id]: participantB }
+      expected.replies = view.view
+
+      expect(discussions({ [stateDiscussion.id]: { data: stateDiscussion } }, resolved)).toEqual({
+        '1': {
+          data: expected,
+          pending: 0,
+          error: null,
+        },
       })
     })
   })

@@ -39,6 +39,11 @@ export function getDiscussions (courseID: string, parameters: GetDiscussionsPara
   return exhaust(discussions)
 }
 
+export function getDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}`
+  return httpClient().get(url)
+}
+
 export function getAllDiscussionEntries (courseID: string, discussionID: string): Promise<ApiResponse<DiscussionView>> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/view`
   return httpClient().get(url)
