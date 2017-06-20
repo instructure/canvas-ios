@@ -12,6 +12,7 @@ import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDat
 import AssignmentDetailsEdit from '../modules/assignment-details/AssignmentDetailsEdit'
 import Inbox from '../modules/inbox/Inbox'
 import Compose from '../modules/inbox/Compose'
+import AddressBook from '../modules/address-book/AddressBook'
 import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import Profile from '../modules/profile/Profile'
@@ -69,10 +70,10 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/discussion_topics/:discussionID', wrap(DiscussionDetails), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
-  registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
   registerScreen('/conversations/compose', wrap(Compose), store)
   registerScreen('/conversations/course-select', wrap(CourseSelect), store)
   registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
+  registerScreen('/address-book', wrap(AddressBook), store)
   registerScreen('/profile', wrap(Profile), store)
   registerScreen('/beta-feedback', wrap(BetaFeedback), store)
   registerScreen('/staging', wrap(Staging), store)

@@ -110,24 +110,92 @@ exports[`Compose renders 1`] = `
     </View>
     <View
       style={
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "paddingHorizontal": 16,
-        }
+        Array [
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "paddingHorizontal": 16,
+          },
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          },
+        ]
       }
     >
-      <TextInput
-        placeholder="To"
-        placeholderTextColor="#7F91A7"
+      <View
         style={
           Object {
-            "fontSize": 16,
-            "height": 54,
-            "lineHeight": 19,
+            "flexDirection": "row",
           }
         }
-      />
+      >
+        <View
+          style={
+            Object {
+              "padding": 6,
+              "paddingLeft": 0,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              }
+            }
+          >
+            To
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+            }
+          }
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "tintColor": "#368BD8",
+            }
+          }
+        />
+      </View>
     </View>
     <View
       style={

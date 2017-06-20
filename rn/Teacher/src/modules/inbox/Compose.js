@@ -7,9 +7,12 @@ import {
   TextInput,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
+  Image,
   requireNativeComponent,
 } from 'react-native'
 import i18n from 'format-message'
+import Images from '../../images'
 import Screen from '../../routing/Screen'
 import colors from '../../common/colors'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
@@ -25,6 +28,7 @@ type ComposeProps = {
 type ComposeState = {
   sendDisabled: boolean,
   sendToAll: boolean,
+  selectedRecipients: AddressBookResult[],
   selectedCourse: ?Course,
 }
 
@@ -39,6 +43,7 @@ export default class Compose extends PureComponent {
     this.state = {
       sendDisabled: true,
       sendToAll: false,
+      selectedRecipients: [],
       selectedCourse: null,
     }
   }
@@ -66,6 +71,20 @@ export default class Compose extends PureComponent {
   }
 
   sendMessage = () => {}
+
+  _openAddressBook = () => {
+    const onSelect = (selected) => {
+      this.props.navigator.dismiss()
+      const selectedRecipients = this.state.selectedRecipients.concat(selected)
+      this.setState({
+        selectedRecipients,
+      })
+    }
+
+    const onCancel = () => this.props.navigator.dismiss()
+
+    this.props.navigator.show('/address-book', { modal: true }, { onSelect, onCancel })
+  }
 
   toggleSendAll = (value: boolean) => {
     this.setState({
@@ -112,12 +131,22 @@ export default class Compose extends PureComponent {
               <DisclosureIndicator />
             </View>
           </TouchableHighlight>
-          <View style={styles.wrapper}>
-            <TextInput
-              placeholder={i18n('To')}
-              style={styles.cell}
-              placeholderTextColor={colors.lightText}
-            />
+          <View style={[styles.wrapper, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}>
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ padding: 6, paddingLeft: 0 }}>
+                <Text style={styles.courseSelectText}>{i18n('To')}</Text>
+              </View>
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                {this.state.selectedRecipients.map((r) => {
+                  return (<View style={{ padding: 6, justifyContent: 'center' }}>
+                            <Text key={r.id}>{r.name}</Text>
+                          </View>)
+                })}
+              </View>
+            </View>
+            <TouchableOpacity onPress={this._openAddressBook}>
+              <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
+            </TouchableOpacity>
           </View>
           <View style={styles.wrapper}>
             <TextInput
