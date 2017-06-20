@@ -11,6 +11,7 @@ let t = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../__templates__/submission-props'),
 }
@@ -115,7 +116,14 @@ function createHappyPathTestState () {
 
   const subRefs = { pending: 0, refs: ['20', '30', '40'] }
   const assignments = {
-    '1000': { submissions: subRefs, data: { points_possible: 5 } },
+    '1000': {
+      submissions: subRefs,
+      data: t.assignment({
+        points_possible: 5,
+        muted: true,
+      }),
+      anonymousGradingOn: false,
+    },
   }
 
   return t.appState({
@@ -137,6 +145,8 @@ test('submissions', () => {
     pending: false,
     submissions: submissionProps,
     pointsPossible: 5,
+    anonymous: false,
+    muted: true,
   })
 })
 

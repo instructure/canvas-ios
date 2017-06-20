@@ -143,7 +143,8 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
             onClearFilter={this.clearFilter}
             onSelectFilter={this.updateFilter}
             pointsPossible={this.props.pointsPossible}
-            anonymous={this.props.anonymous} />
+            anonymous={this.props.anonymous}
+            muted={this.props.muted} />
           <FlatList
             data={this.state.rows}
             keyExtractor={this.keyExtractor}

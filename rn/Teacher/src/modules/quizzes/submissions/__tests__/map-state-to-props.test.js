@@ -13,6 +13,7 @@ const template = {
   ...require('../../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../../api/canvas-api/__templates__/quizSubmission'),
+  ...require('../../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 
@@ -91,6 +92,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
         assignments: {
           '1': {
+            data: template.assignment({ muted: true }),
             anonymousGradingOn: true,
           },
         },
@@ -167,6 +169,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
       ],
       anonymous: true,
+      muted: true,
     })
     expect(shuffle).toHaveBeenCalled()
   })

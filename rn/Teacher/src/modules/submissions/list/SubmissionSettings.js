@@ -19,9 +19,12 @@ type SubmissionSettingsOwnProps = {
 }
 type SubmissionSettingsDataProps = {
   anonymous: boolean,
+  muted: boolean,
+  assignment: Assignment,
 }
 type SubmissionSettingsActions = {
   anonymousGrading: (string, string, boolean) => void,
+  updateAssignment: (string, Assignment, Assignment) => void,
 }
 
 type SubmissionSettingsProps =
@@ -44,6 +47,17 @@ export class SubmissionSettings extends PureComponent {
     )
   }
 
+  toggleMutedGrading = (value: boolean) => {
+    this.props.updateAssignment(
+      this.props.courseID,
+      {
+        ...this.props.assignment,
+        muted: value,
+      },
+      this.props.assignment
+    )
+  }
+
   render () {
     return (
       <Screen
@@ -57,6 +71,14 @@ export class SubmissionSettings extends PureComponent {
         }]}
       >
         <View>
+          <RowWithSwitch
+            border='bottom'
+            height={60}
+            title={i18n('Mute Grades')}
+            value={this.props.muted}
+            onValueChange={this.toggleMutedGrading}
+            identifier='submission-settings.muted'
+          />
           <RowWithSwitch
             border='bottom'
             height={60}
@@ -76,7 +98,9 @@ export class SubmissionSettings extends PureComponent {
 
 export function mapStateToProps (state: AppState, ownProps: SubmissionSettingsOwnProps): SubmissionSettingsDataProps {
   let anonymous = !!state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
-  return { anonymous }
+  let assignment = state.entities.assignments[ownProps.assignmentID].data
+  let muted = !!assignment.muted
+  return { anonymous, muted, assignment }
 }
 const Connect = connect(mapStateToProps, AssignmentActions)(SubmissionSettings)
 export default (Connect: any)

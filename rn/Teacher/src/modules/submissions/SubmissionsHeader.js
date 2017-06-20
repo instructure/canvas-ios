@@ -33,7 +33,9 @@ export type SubmissionsHeaderProps = {
   onSelectFilter: Function,
 }
 
-const anonymous = i18n('Anonymous grading')
+const anonymousSubtitle = i18n('Anonymous grading')
+const mutedSubtitle = i18n('Grades muted')
+const bothSubtitle = i18n('Grades muted, Anonymous grading')
 
 export default class SubmissionsHeader extends Component<any, SubmissionsHeaderProps, any> {
 
@@ -91,6 +93,15 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
       title = selected.filter.title
     }
 
+    let subTitle = ''
+    if (this.props.muted && this.props.anonymous) {
+      subTitle = bothSubtitle
+    } else if (this.props.muted) {
+      subTitle = mutedSubtitle
+    } else if (this.props.anonymous) {
+      subTitle = anonymousSubtitle
+    }
+
     return (<View style={styles.headerWrapper}>
               <View style={styles.header}>
                 <Heading1
@@ -100,9 +111,7 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
                 </Heading1>
                 { this.renderFilterButton() }
               </View>
-              {this.props.anonymous &&
-                <Text style={styles.subtitle}>{anonymous}</Text>
-              }
+              {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
             </View>)
   }
 

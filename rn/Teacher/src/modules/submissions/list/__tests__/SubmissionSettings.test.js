@@ -7,6 +7,7 @@ import explore from '../../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../../__templates__/helm'),
+  ...require('../../../../api/canvas-api/__templates__/assignments'),
 }
 
 let defaultProps = {
@@ -14,7 +15,10 @@ let defaultProps = {
   assignmentID: '2',
   navigator: template.navigator(),
   anonymousGrading: jest.fn(),
+  updateAssignment: jest.fn(),
   anonymous: false,
+  muted: false,
+  assignment: template.assignment({ id: '2' }),
 }
 
 describe('SubmissionSettings', () => {
@@ -45,6 +49,21 @@ describe('SubmissionSettings', () => {
 
     expect(defaultProps.anonymousGrading).toHaveBeenCalledWith(
       '1', '2', true
+    )
+  })
+
+  it('calls updateAssignment when mute toggle is pressed', () => {
+    let tree = renderer.create(
+      <SubmissionSettings {...defaultProps} />
+    )
+
+    let toggle = explore(tree.toJSON()).selectByID('submission-settings.muted') || {}
+    toggle.props.onValueChange(true)
+
+    expect(defaultProps.updateAssignment).toHaveBeenCalledWith(
+      '1',
+      { ...defaultProps.assignment, muted: true },
+      defaultProps.assignment
     )
   })
 })

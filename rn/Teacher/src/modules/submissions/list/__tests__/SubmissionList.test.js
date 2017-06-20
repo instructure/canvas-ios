@@ -36,6 +36,7 @@ const props = {
   refreshing: false,
   refresh: jest.fn(),
   anonymous: false,
+  muted: false,
 }
 
 beforeEach(() => jest.resetAllMocks())

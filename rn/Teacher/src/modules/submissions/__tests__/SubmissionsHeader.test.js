@@ -109,3 +109,19 @@ test('SubmissionHeader anonymous grading', () => {
 
   expect(tree).toMatchSnapshot()
 })
+
+test('SubmissionHeader muted grading', () => {
+  const tree = renderer.create(
+    <SubmissionsHeader filterOptions={filterOptions} muted />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})
+
+test('SubmissionHeader anonymous and muted', () => {
+  const tree = renderer.create(
+    <SubmissionsHeader filterOptions={filterOptions} anonymous muted />
+  ).toJSON()
+
+  expect(tree).toMatchSnapshot()
+})

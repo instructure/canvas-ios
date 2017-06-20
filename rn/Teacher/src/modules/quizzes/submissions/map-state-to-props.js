@@ -63,6 +63,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
   let error = null
   let pointsPossible = 0
   let anonymous = false
+  let muted = false
 
   if (quiz) {
     pending = Boolean(quiz.pending)
@@ -81,6 +82,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
 
     if (quiz.data.assignment_id) {
       anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
+      muted = entities.assignments[quiz.data.assignment_id].data.muted
     }
   }
 
@@ -102,5 +104,6 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     pointsPossible,
     error,
     anonymous,
+    muted,
   }
 }

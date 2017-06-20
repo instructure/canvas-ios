@@ -37,6 +37,7 @@ export type SubmissionListDataProps
   pointsPossible?: string,
   shouldRefresh: boolean,
   anonymous: boolean,
+  muted: boolean,
 }
 
 export type SubmissionListActionProps = {

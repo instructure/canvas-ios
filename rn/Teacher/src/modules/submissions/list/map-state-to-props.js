@@ -43,6 +43,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
   }
 
   let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn
+  let muted = !!assignmentContent && assignmentContent.data.muted
 
   return {
     courseColor,
@@ -51,5 +52,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     pending: submissions.pending,
     submissions: anonymous ? shuffle(submissions.submissions.slice(), assignmentID) : submissions.submissions,
     anonymous,
+    muted,
   }
 }
