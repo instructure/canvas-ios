@@ -5,7 +5,6 @@ exports[`refreshed component 1`] = `
   style={
     Object {
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >
@@ -409,7 +408,6 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >
@@ -1151,7 +1149,6 @@ exports[`renders the activity indicator when loading conversations 1`] = `
   style={
     Object {
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >
@@ -1497,7 +1494,6 @@ exports[`renders the starred empty state 1`] = `
   style={
     Object {
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >
@@ -1901,7 +1897,6 @@ exports[`renders with an empty state 1`] = `
   style={
     Object {
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >

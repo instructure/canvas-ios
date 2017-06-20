@@ -6,7 +6,6 @@ exports[`renders correctly 1`] = `
     Object {
       "backgroundColor": "#F5F5F5",
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >
@@ -194,7 +193,6 @@ exports[`renders correctly with some messages 1`] = `
     Object {
       "backgroundColor": "#F5F5F5",
       "flex": 1,
-      "marginBottom": 49,
     }
   }
 >

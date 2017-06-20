@@ -94,15 +94,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         navBarColor={branding.navBarColor}
         navBarStyle='dark'
         drawUnderNavBar={true}
-        navBarImage={branding.headerImage}
-        // TODO: do a real back button
-        leftBarButtons={[
-          {
-            title: i18n('Back'),
-            testID: 'conversation-details.navigation-back-btn',
-            action: this.props.navigator.dismiss.bind(this),
-          },
-        ]}
+        title={i18n('Message Details')}
       >
         { this._renderComponent() }
       </Screen>
@@ -114,7 +106,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-    marginBottom: global.tabBarHeight,
   },
   loading: {
     flex: 1,

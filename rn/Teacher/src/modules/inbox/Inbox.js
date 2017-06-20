@@ -40,7 +40,7 @@ export class Inbox extends Component {
 
   _onSelectConversation = (conversationID: string) => {
     const path = `/conversations/${conversationID}`
-    this.props.navigator.show(path, { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' })
+    this.props.navigator.show(path)
   }
 
   addMessage = () => {
@@ -132,7 +132,6 @@ export class Inbox extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: global.tabBarHeight,
   },
   loading: {
     flex: 1,

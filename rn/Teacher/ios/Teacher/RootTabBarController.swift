@@ -49,9 +49,20 @@ class RootTabBarController: UITabBarController {
     
     func inboxTab() -> UIViewController {
         let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-        inboxVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
-        inboxVC.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
-        return HelmNavigationController(rootViewController: inboxVC)
+        let inboxNav = HelmNavigationController(rootViewController: inboxVC)
+        
+        let inboxSplit = HelmSplitViewController()
+        inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
+        inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
+        
+        let empty = HelmNavigationController()
+        if let brand = self.branding {
+            empty.navigationBar.barTintColor = brand.navBgColor
+            empty.navigationBar.tintColor = brand.navButtonColor
+            empty.navigationBar.isTranslucent = false
+        }
+        inboxSplit.viewControllers = [inboxNav, empty]
+        return inboxSplit
     }
     
     func profileTab() -> UIViewController {

@@ -53,7 +53,6 @@ it('renders correctly', () => {
   row.props.onPress(c1.id)
   expect(navigator.show).toHaveBeenCalledWith(
     '/conversations/1',
-    { modal: true, modalPresentationStyle: 'currentContext', modalTransitionStyle: 'push' }
   )
 })
 
