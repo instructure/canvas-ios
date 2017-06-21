@@ -36,3 +36,15 @@ export type ConversationMessage = {
   forwarded_messages: any,
   attachments: ?Attachment[],
 }
+
+export type CreateConversationParameters = {
+  recipients: string[],
+  body: string,
+  subject?: string,
+  group_conversation?: boolean,
+  attachment_ids?: string[],
+  media_comment_id?: string,
+  media_comment_type?: string,
+  user_note?: boolean,
+  context_code?: string,
+}

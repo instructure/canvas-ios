@@ -1,267 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Compose renders 1`] = `
-<RCTScrollView
-  contentContainerStyle={
-    Object {
-      "flexGrow": 1,
-      "paddingBottom": 16,
-    }
-  }
-  contentInset={
-    Object {
-      "bottom": 0,
-    }
-  }
-  enableAutoAutomaticScroll={true}
-  enableResetScrollToCoords={true}
-  extraHeight={75}
-  extraScrollHeight={0}
-  keyboardDismissMode="interactive"
-  onScroll={[Function]}
-  scrollEventThrottle={0}
-  showsVerticalScrollIndicator={true}
+<View
   style={
     Object {
       "flex": 1,
     }
   }
 >
-  <View>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
     <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "paddingHorizontal": 16,
-          },
-        ]
-      }
-      testID={undefined}
-      tvParallaxProperties={undefined}
-    >
-      <View
-        style={
           Object {
             "alignItems": "center",
-            "flexDirection": "row",
-            "height": 54,
-            "justifyContent": "space-between",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "color": "#7F91A7",
-                "fontSize": 16,
-                "lineHeight": 19,
-              },
-              undefined,
-            ]
-          }
-        >
-          Select a course
-        </Text>
-        <View
-          style={
-            Object {
-              "alignSelf": "center",
-              "backgroundColor": "transparent",
-              "borderColor": "#c7c7cc",
-              "borderRightWidth": 2,
-              "borderTopWidth": 2,
-              "height": 10,
-              "marginLeft": 7,
-              "transform": Array [
-                Object {
-                  "rotate": "45deg",
-                },
-              ],
-              "width": 10,
-            }
-          }
-        />
-      </View>
-    </View>
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomColor": "#C7CDD1",
-            "borderBottomWidth": 0.5,
-            "paddingHorizontal": 16,
-          },
-          Object {
-            "alignItems": "flex-start",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "minHeight": 54,
-          },
-        ]
-      }
-    >
-      <View
-        style={
-          Object {
-            "height": 54,
-            "justifyContent": "center",
-            "padding": 6,
-            "paddingLeft": 0,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "color": "#7F91A7",
-              "fontSize": 16,
-              "lineHeight": 19,
-            }
-          }
-        >
-          To
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
             "flex": 1,
             "flexDirection": "row",
-            "flexWrap": "wrap",
-            "padding": 6,
-          }
-        }
-      />
-      <TouchableOpacity
-        accessibilityLabel="Add recipient"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
-        style={
-          Object {
-            "height": 54,
             "justifyContent": "center",
-          }
-        }
-      >
-        <Image
-          source={1}
-          style={
-            Object {
-              "tintColor": "#368BD8",
-            }
-          }
-        />
-      </TouchableOpacity>
-    </View>
-    <View
-      style={
-        Object {
-          "borderBottomColor": "#C7CDD1",
-          "borderBottomWidth": 0.5,
-          "paddingHorizontal": 16,
-        }
-      }
-    >
-      <TextInput
-        placeholder="Subject"
-        placeholderTextColor="#7F91A7"
-        style={
-          Object {
-            "fontSize": 16,
-            "height": 54,
-            "lineHeight": 19,
-          }
-        }
-      />
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel="Send individual message to each recipient, Off"
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
           },
-          Array [
-            Object {
-              "height": 54,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ],
         ]
       }
-      testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
-              "flexDirection": "row",
-              "paddingBottom": 12.8,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-              "paddingTop": 12.8,
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
             },
             Object {
-              "backgroundColor": "white",
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
             },
           ]
         }
@@ -269,46 +52,10 @@ exports[`Compose renders 1`] = `
         <View
           style={
             Object {
+              "alignItems": "center",
               "flex": 1,
               "flexDirection": "column",
               "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
-            numberOfLines={0}
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Array [
-                  Object {
-                    "fontWeight": "600",
-                  },
-                  undefined,
-                ],
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            Send individual message to each recipient
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "flex": 0,
             }
           }
         >
@@ -317,74 +64,1564 @@ exports[`Compose renders 1`] = `
               Object {
                 "alignItems": "center",
                 "flex": 1,
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
+                "flexDirection": "column",
+                "justifyContent": "center",
               }
             }
           >
-            <RCTSwitch
-              border="bottom"
+            <Text
+              accessible={true}
+              allowFontScaling={true}
               disabled={false}
-              identifier="compose-message.send-all-toggle"
-              onChange={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              onTintColor="#374A59"
-              onValueChange={[Function]}
+              ellipsizeMode="tail"
               style={
                 Array [
                   Object {
-                    "height": 31,
-                    "width": 51,
+                    "fontFamily": ".SFUIDisplay",
                   },
-                  undefined,
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
                 ]
               }
-              testID="compose-message.send-all-toggle"
-              tintColor="#374A59"
-              title="Send individual message to each recipient"
-              value={false}
-            />
+            >
+              Sending...
+            </Text>
           </View>
         </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
       </View>
     </View>
-    <ScrollViewDisabler
-      style={
-        Array [
+  </Modal>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+        "paddingBottom": 16,
+      }
+    }
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 16,
+                  "lineHeight": 19,
+                },
+                undefined,
+              ]
+            }
+          >
+            Select a course
+          </Text>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "minHeight": 54,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+              "padding": 6,
+              "paddingLeft": 0,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              }
+            }
+          >
+            To
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "padding": 6,
+            }
+          }
+        />
+        <TouchableOpacity
+          accessibilityLabel="Add recipient"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
           Object {
             "borderBottomColor": "#C7CDD1",
             "borderBottomWidth": 0.5,
             "paddingHorizontal": 16,
-          },
-          Object {
-            "borderBottomWidth": 0,
-            "paddingVertical": 10,
-          },
-        ]
-      }
-    >
-      <TextInput
-        defaultHeight={54}
-        multiline={true}
-        onContentSizeChange={[Function]}
-        placeholder="Compose message"
-        placeholderTextColor="#7F91A7"
-        scrollEnabled={false}
-        style={
-          Array [
+          }
+        }
+      >
+        <TextInput
+          onChangeText={[Function]}
+          placeholder="Subject"
+          placeholderTextColor="#7F91A7"
+          style={
             Object {
               "fontSize": 16,
               "height": 54,
               "lineHeight": 19,
+            }
+          }
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Send individual message to each recipient, Off"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Array [
+              Object {
+                "height": 54,
+              },
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ],
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Send individual message to each recipient
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <RCTSwitch
+                border="bottom"
+                disabled={false}
+                identifier="compose-message.send-all-toggle"
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onTintColor="#374A59"
+                onValueChange={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": 31,
+                      "width": 51,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="compose-message.send-all-toggle"
+                tintColor="#374A59"
+                title="Send individual message to each recipient"
+                value={false}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <ScrollViewDisabler
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
             },
             Object {
-              "height": 54,
+              "borderBottomWidth": 0,
+              "paddingVertical": 10,
             },
           ]
         }
-      />
-    </ScrollViewDisabler>
-  </View>
-</RCTScrollView>
+      >
+        <TextInput
+          defaultHeight={54}
+          multiline={true}
+          onChangeText={[Function]}
+          onContentSizeChange={[Function]}
+          placeholder="Compose message"
+          placeholderTextColor="#7F91A7"
+          scrollEnabled={false}
+          style={
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "height": 54,
+              },
+            ]
+          }
+        />
+      </ScrollViewDisabler>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Compose renders after picking a course 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Sending...
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+        "paddingBottom": 16,
+      }
+    }
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 16,
+                  "lineHeight": 19,
+                },
+                Object {
+                  "color": "#2D3B45",
+                },
+              ]
+            }
+          >
+            Learn React Native
+          </Text>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "minHeight": 54,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+              "padding": 6,
+              "paddingLeft": 0,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              }
+            }
+          >
+            To
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "padding": 6,
+            }
+          }
+        />
+        <TouchableOpacity
+          accessibilityLabel="Add recipient"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <TextInput
+          onChangeText={[Function]}
+          placeholder="Subject"
+          placeholderTextColor="#7F91A7"
+          style={
+            Object {
+              "fontSize": 16,
+              "height": 54,
+              "lineHeight": 19,
+            }
+          }
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Send individual message to each recipient, Off"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Array [
+              Object {
+                "height": 54,
+              },
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ],
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Send individual message to each recipient
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <RCTSwitch
+                border="bottom"
+                disabled={false}
+                identifier="compose-message.send-all-toggle"
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onTintColor="#374A59"
+                onValueChange={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": 31,
+                      "width": 51,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="compose-message.send-all-toggle"
+                tintColor="#374A59"
+                title="Send individual message to each recipient"
+                value={false}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <ScrollViewDisabler
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+            Object {
+              "borderBottomWidth": 0,
+              "paddingVertical": 10,
+            },
+          ]
+        }
+      >
+        <TextInput
+          defaultHeight={54}
+          multiline={true}
+          onChangeText={[Function]}
+          onContentSizeChange={[Function]}
+          placeholder="Compose message"
+          placeholderTextColor="#7F91A7"
+          scrollEnabled={false}
+          style={
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "height": 54,
+              },
+            ]
+          }
+        />
+      </ScrollViewDisabler>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Compose renders with passed in recipients 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.6)",
+              "borderRadius": 12,
+            },
+            Object {
+              "backgroundColor": "rgba(0,0,0,0.8)",
+            },
+            Object {
+              "height": 170,
+              "width": 170,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#fff",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 24,
+                  },
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "color": "#fff",
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ],
+                ]
+              }
+            >
+              Sending...
+            </Text>
+          </View>
+        </View>
+        <ActivityIndicator
+          animating={true}
+          color="#fff"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+              "marginTop": -40,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+        "paddingBottom": 16,
+      }
+    }
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutoAutomaticScroll={true}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    keyboardDismissMode="interactive"
+    onScroll={[Function]}
+    scrollEventThrottle={0}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel={undefined}
+        accessibilityTraits={undefined}
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 54,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "color": "#7F91A7",
+                  "fontSize": 16,
+                  "lineHeight": 19,
+                },
+                undefined,
+              ]
+            }
+          >
+            Select a course
+          </Text>
+          <View
+            style={
+              Object {
+                "alignSelf": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#c7c7cc",
+                "borderRightWidth": 2,
+                "borderTopWidth": 2,
+                "height": 10,
+                "marginLeft": 7,
+                "transform": Array [
+                  Object {
+                    "rotate": "45deg",
+                  },
+                ],
+                "width": 10,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+            Object {
+              "alignItems": "flex-start",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "minHeight": 54,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+              "padding": 6,
+              "paddingLeft": 0,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#7F91A7",
+                "fontSize": 16,
+                "lineHeight": 19,
+              }
+            }
+          >
+            To
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "flexWrap": "wrap",
+              "padding": 6,
+            }
+          }
+        >
+          <View
+            accessibilityLabel="Recipient: Donald Trump"
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#EBEDEE",
+                "borderRadius": 15,
+                "flexDirection": "row",
+                "height": 30,
+                "justifyContent": "center",
+                "marginHorizontal": 3,
+                "marginVertical": 4,
+                "paddingLeft": 2,
+                "paddingRight": 12,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "marginLeft": 0,
+                }
+              }
+            >
+              Donald Trump
+            </Text>
+            <TouchableOpacity
+              accessibilityLabel="Delete recipient Donald Trump"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
+              onPress={[Function]}
+              testID="message-recipient.1.delete-btn"
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "marginLeft": 8,
+                    "tintColor": "#2D3B45",
+                    "width": 12,
+                  }
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View
+            accessibilityLabel="Recipient: Donald Trump"
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#EBEDEE",
+                "borderRadius": 15,
+                "flexDirection": "row",
+                "height": 30,
+                "justifyContent": "center",
+                "marginHorizontal": 3,
+                "marginVertical": 4,
+                "paddingLeft": 2,
+                "paddingRight": 12,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "marginLeft": 0,
+                }
+              }
+            >
+              Donald Trump
+            </Text>
+            <TouchableOpacity
+              accessibilityLabel="Delete recipient Donald Trump"
+              accessibilityTraits={
+                Array [
+                  "button",
+                ]
+              }
+              accessible={true}
+              onPress={[Function]}
+              testID="message-recipient.2.delete-btn"
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "height": 12,
+                    "marginLeft": 8,
+                    "tintColor": "#2D3B45",
+                    "width": 12,
+                  }
+                }
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <TouchableOpacity
+          accessibilityLabel="Add recipient"
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Object {
+              "height": 54,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "tintColor": "#368BD8",
+              }
+            }
+          />
+        </TouchableOpacity>
+      </View>
+      <View
+        style={
+          Object {
+            "borderBottomColor": "#C7CDD1",
+            "borderBottomWidth": 0.5,
+            "paddingHorizontal": 16,
+          }
+        }
+      >
+        <TextInput
+          onChangeText={[Function]}
+          placeholder="Subject"
+          placeholderTextColor="#7F91A7"
+          style={
+            Object {
+              "fontSize": 16,
+              "height": 54,
+              "lineHeight": 19,
+            }
+          }
+        />
+      </View>
+      <View
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Send individual message to each recipient, Off"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        accessible={true}
+        hasTVPreferredFocus={undefined}
+        hitSlop={undefined}
+        isTVSelectable={true}
+        nativeID={undefined}
+        onLayout={undefined}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Array [
+              Object {
+                "height": 54,
+              },
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ],
+          ]
+        }
+        testID={undefined}
+        tvParallaxProperties={undefined}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingBottom": 12.8,
+                "paddingLeft": 16,
+                "paddingRight": 16,
+                "paddingTop": 12.8,
+              },
+              Object {
+                "backgroundColor": "white",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "column",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              numberOfLines={0}
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay-semibold",
+                  },
+                ]
+              }
+            >
+              Send individual message to each recipient
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "flex": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                }
+              }
+            >
+              <RCTSwitch
+                border="bottom"
+                disabled={false}
+                identifier="compose-message.send-all-toggle"
+                onChange={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                onTintColor="#374A59"
+                onValueChange={[Function]}
+                style={
+                  Array [
+                    Object {
+                      "height": 31,
+                      "width": 51,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="compose-message.send-all-toggle"
+                tintColor="#374A59"
+                title="Send individual message to each recipient"
+                value={false}
+              />
+            </View>
+          </View>
+        </View>
+      </View>
+      <ScrollViewDisabler
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "paddingHorizontal": 16,
+            },
+            Object {
+              "borderBottomWidth": 0,
+              "paddingVertical": 10,
+            },
+          ]
+        }
+      >
+        <TextInput
+          defaultHeight={54}
+          multiline={true}
+          onChangeText={[Function]}
+          onContentSizeChange={[Function]}
+          placeholder="Compose message"
+          placeholderTextColor="#7F91A7"
+          scrollEnabled={false}
+          style={
+            Array [
+              Object {
+                "fontSize": 16,
+                "height": 54,
+                "lineHeight": 19,
+              },
+              Object {
+                "height": 54,
+              },
+            ]
+          }
+        />
+      </ScrollViewDisabler>
+    </View>
+  </RCTScrollView>
+</View>
 `;

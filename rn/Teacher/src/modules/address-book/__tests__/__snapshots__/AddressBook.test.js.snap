@@ -9,6 +9,7 @@ exports[`renders correctly 1`] = `
   }
 >
   <RCTScrollView
+    ListEmptyComponent={null}
     ListHeaderComponent={
       <SearchBar
         onCancelButtonPress={[Function]}
@@ -33,6 +34,7 @@ exports[`renders correctly 1`] = `
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
+    refreshing={true}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
     scrollEventThrottle={50}

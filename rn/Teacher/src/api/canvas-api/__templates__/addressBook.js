@@ -2,7 +2,7 @@
 
 import template, { type Template } from '../../../utils/template'
 
-export const addressBookResult: Template<User> = template({
+export const addressBookResult: Template<AddressBookResult> = template({
   id: 1,
   name: 'Donald Trump',
 })

@@ -5,14 +5,14 @@ import {
   StyleSheet,
 } from 'react-native'
 import { connect } from 'react-redux'
-import { getSession } from '../../api/session.js'
 import Screen from '../../routing/Screen'
 import i18n from 'format-message'
 import Row from '../../common/components/rows/Row'
 import SearchBar from 'react-native-search-bar'
 import { searchAddressBook } from '../../api/canvas-api/addressBook'
-import axios from 'axios'
 import Avatar from '../../common/components/Avatar'
+import TypeAheadSearch from '../../common/TypeAheadSearch'
+import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 
 export type AddressBookDataProps = {
   courseID?: string,
@@ -24,39 +24,49 @@ export type AddressBookNavigationProps = {
   navigator: Navigator,
 }
 
+export type AddressBookDefaultOption = {
+  name: string,
+  type: 'enrollment' | 'group',
+  context: ?any,
+}
+
 export class AddressBook extends Component {
 
-  cancelSearch: Function
+  typeAhead: TypeAheadSearch
 
   constructor (props: AddressBookDataProps) {
     super(props)
+
     this.state = {
       searchResults: [],
+      searchString: null,
       error: null,
+      pending: false,
     }
+
+    this.typeAhead = new TypeAheadSearch(() => {
+      this.setState({
+        pending: true,
+      })
+      return searchAddressBook(this.state.searchString, this.props.courseID)
+    }, (results, error) => {
+      this.setState({
+        searchResults: results,
+        pending: false,
+        error,
+      })
+    })
+  }
+
+  componentDidMount () {
+    this._searchFor('')
   }
 
   _searchFor = (searchString: string) => {
-    if (this.cancelSearch) {
-      this.cancelSearch()
-    }
-
-    let session = getSession()
-    let senderID = session ? session.user.id : null
-    const search = searchAddressBook(senderID, searchString)
-    const promise = search.promise
-    this.cancelSearch = search.cancel
-    promise.then((response) => {
-      this.setState({
-        searchResults: response.data,
-        error: null,
-      })
-    }).catch((thrown) => {
-      if (!axios.isCancel(thrown)) {
-        this.setState({
-          error: thrown.message,
-        })
-      }
+    this.setState({
+      searchString,
+    }, () => {
+      this.typeAhead.execute()
     })
   }
 
@@ -99,11 +109,14 @@ export class AddressBook extends Component {
 
   _renderComponent = () => {
     const searchBar = this._renderSearchBar()
+    const empty = <ListEmptyComponent title={i18n('No results')} />
     return (<View style={styles.container}>
               <FlatList
                 data={this.state.searchResults}
                 renderItem={this._renderRow}
                 ListHeaderComponent={searchBar}
+                ListEmptyComponent={this.state.pending ? null : empty}
+                refreshing={this.state.pending}
               />
             </View>)
   }

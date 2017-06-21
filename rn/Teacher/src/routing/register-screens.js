@@ -71,6 +71,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/discussion_topics/:discussionID', wrap(DiscussionDetails), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/reply', wrap(EditReply), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
+  registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
   registerScreen('/conversations/compose', wrap(Compose), store)
   registerScreen('/conversations/course-select', wrap(CourseSelect), store)
