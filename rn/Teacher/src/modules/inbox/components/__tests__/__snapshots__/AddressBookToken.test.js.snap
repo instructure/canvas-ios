@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddressBookToken renders 1`] = `
+<View
+  accessibilityLabel="Recipient: Donald Trump"
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#EBEDEE",
+      "borderRadius": 15,
+      "flexDirection": "row",
+      "height": 30,
+      "justifyContent": "center",
+      "marginHorizontal": 3,
+      "marginVertical": 4,
+      "paddingLeft": 2,
+      "paddingRight": 12,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "marginLeft": 0,
+      }
+    }
+  >
+    Donald Trump
+  </Text>
+  <TouchableOpacity
+    accessibilityLabel="Delete recipient Donald Trump"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    onPress={[Function]}
+    testID="message-recipient.1.delete-btn"
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 12,
+          "marginLeft": 8,
+          "tintColor": "#2D3B45",
+          "width": 12,
+        }
+      }
+    />
+  </TouchableOpacity>
+</View>
+`;

@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   Image,
+  LayoutAnimation,
   requireNativeComponent,
 } from 'react-native'
 import i18n from 'format-message'
@@ -19,6 +20,7 @@ import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import AutoGrowingTextInput from '../../common/components/AutoGrowingTextInput'
+import AddressBookToken from './components/AddressBookToken'
 const ScrollViewDisabler = requireNativeComponent('ScrollViewDisabler')
 
 type ComposeProps = {
@@ -86,6 +88,16 @@ export default class Compose extends PureComponent {
     this.props.navigator.show('/address-book', { modal: true }, { onSelect, onCancel })
   }
 
+  _deleteRecipient = (id: string) => {
+    const selectedRecipients = this.state.selectedRecipients.filter((recipient) => {
+      return recipient.id !== id
+    })
+    LayoutAnimation.easeInEaseOut()
+    this.setState({
+      selectedRecipients,
+    })
+  }
+
   toggleSendAll = (value: boolean) => {
     this.setState({
       sendToAll: value,
@@ -131,20 +143,16 @@ export default class Compose extends PureComponent {
               <DisclosureIndicator />
             </View>
           </TouchableHighlight>
-          <View style={[styles.wrapper, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}>
-            <View style={{ flexDirection: 'row' }}>
-              <View style={{ padding: 6, paddingLeft: 0 }}>
-                <Text style={styles.courseSelectText}>{i18n('To')}</Text>
-              </View>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                {this.state.selectedRecipients.map((r) => {
-                  return (<View style={{ padding: 6, justifyContent: 'center' }}>
-                            <Text key={r.id}>{r.name}</Text>
-                          </View>)
-                })}
-              </View>
+          <View style={[styles.wrapper, styles.toContainer]}>
+            <View style={{ padding: 6, paddingLeft: 0, height: 54, justifyContent: 'center' }}>
+              <Text style={styles.courseSelectText}>{i18n('To')}</Text>
             </View>
-            <TouchableOpacity onPress={this._openAddressBook}>
+            <View style={styles.tokenContainer}>
+              {this.state.selectedRecipients.map((r) => {
+                return (<AddressBookToken item={r} delete={this._deleteRecipient} />)
+              })}
+            </View>
+            <TouchableOpacity onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
               <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
             </TouchableOpacity>
           </View>
@@ -208,5 +216,17 @@ const styles = StyleSheet.create({
   },
   courseSelectedText: {
     color: colors.darkText,
+  },
+  toContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    minHeight: 54,
+  },
+  tokenContainer: {
+    flexDirection: 'row',
+    padding: 6,
+    flex: 1,
+    flexWrap: 'wrap',
   },
 })

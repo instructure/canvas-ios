@@ -15,6 +15,20 @@ let defaultProps = {
   }),
 }
 
+jest
+  .mock('LayoutAnimation', () => ({
+    configureNext: jest.fn(),
+    easeInEaseOut: jest.fn(),
+    Types: {
+      easeInEaseOut: jest.fn(),
+      spring: jest.fn(),
+    },
+    Properties: {
+      opacity: 1,
+    },
+  }))
+.mock('TouchableOpacity', () => 'TouchableOpacity')
+
 describe('Compose', () => {
   beforeEach(() => jest.resetAllMocks())
 
@@ -44,5 +58,25 @@ describe('Compose', () => {
     toggle.props.onValueChange(true)
 
     expect(tree.getInstance().state.sendToAll).toBeTruthy()
+  })
+
+  it('deletes a recipient from state', () => {
+    let tree = renderer.create(
+      <Compose {...defaultProps} />
+    )
+    let instance = tree.getInstance()
+
+    instance.setState({
+      selectedRecipients: [
+        {
+          id: '1',
+          name: 'Donald Trump',
+        },
+      ],
+    })
+
+    instance._deleteRecipient('1')
+
+    expect(instance.state.selectedRecipients.length).toBe(0)
   })
 })

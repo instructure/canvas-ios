@@ -117,9 +117,10 @@ exports[`Compose renders 1`] = `
             "paddingHorizontal": 16,
           },
           Object {
-            "alignItems": "center",
+            "alignItems": "flex-start",
             "flexDirection": "row",
             "justifyContent": "space-between",
+            "minHeight": 54,
           },
         ]
       }
@@ -127,65 +128,53 @@ exports[`Compose renders 1`] = `
       <View
         style={
           Object {
-            "flexDirection": "row",
+            "height": 54,
+            "justifyContent": "center",
+            "padding": 6,
+            "paddingLeft": 0,
           }
         }
       >
-        <View
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
           style={
             Object {
-              "padding": 6,
-              "paddingLeft": 0,
+              "color": "#7F91A7",
+              "fontSize": 16,
+              "lineHeight": 19,
             }
           }
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
-            style={
-              Object {
-                "color": "#7F91A7",
-                "fontSize": 16,
-                "lineHeight": 19,
-              }
-            }
-          >
-            To
-          </Text>
-        </View>
-        <View
-          style={
-            Object {
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-            }
-          }
-        />
+          To
+        </Text>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "opacity": 1,
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "padding": 6,
           }
         }
-        testID={undefined}
-        tvParallaxProperties={undefined}
+      />
+      <TouchableOpacity
+        accessibilityLabel="Add recipient"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
+        onPress={[Function]}
+        style={
+          Object {
+            "height": 54,
+            "justifyContent": "center",
+          }
+        }
       >
         <Image
           source={1}
@@ -195,7 +184,7 @@ exports[`Compose renders 1`] = `
             }
           }
         />
-      </View>
+      </TouchableOpacity>
     </View>
     <View
       style={
