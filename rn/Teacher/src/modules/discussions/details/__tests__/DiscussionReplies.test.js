@@ -20,7 +20,7 @@ describe('DiscussionReplies', () => {
   let user = template.userDisplay()
   beforeEach(() => {
     props = {
-      replies: [template.discussionReply()],
+      reply: template.discussionReply(),
       depth: 0,
       participants: { [user.id]: user },
       navigator: template.navigator(),

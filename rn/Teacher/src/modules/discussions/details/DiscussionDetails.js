@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
-  TouchableOpacity,
   TouchableHighlight,
   Image,
+  SectionList,
 } from 'react-native'
 import i18n from 'format-message'
 import Actions from './actions'
-import { RefreshableScrollView } from '../../../common/components/RefreshableList'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
 import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import WebContainer from '../../../common/components/WebContainer'
@@ -46,93 +45,106 @@ export type Props = State & OwnProps & RefreshProps & Actions & {
 }
 
 export class DiscussionDetails extends Component<any, Props, any> {
-  render () {
-    const { discussion } = this.props
-    let content
-    if (!discussion) {
-      content = <View />
-    } else {
-      const points = this._points(discussion)
-      let participants = discussion.participants || []
-      let user = discussion.author
-      content = (
-        <RefreshableScrollView
-          refreshing={this.props.refreshing}
-          onRefresh={this.props.refresh}>
-            <AssignmentSection isFirstRow={true} style={style.topContainer}>
-              <Heading1>{discussion.title}</Heading1>
-              { !this.props.isAnnouncement &&
-                <View style={style.pointsContainer}>
-                  {Boolean(points) && <Text style={style.points}>{points}</Text>}
+  renderDetails = ({ item, index }: { item: Discussion, index: number }) => {
+    const discussion = item
+    const points = this._points(discussion)
+    let user = discussion.author
+    return (
+      <View>
+        <AssignmentSection isFirstRow={true} style={style.topContainer}>
+          <Heading1>{discussion.title}</Heading1>
+            { !this.props.isAnnouncement &&
+              <View style={style.pointsContainer}>
+                {Boolean(points) && <Text style={style.points}>{points}</Text>}
                   <PublishedIcon published={discussion.published} />
-                </View>
-              }
-            </AssignmentSection>
-
-            {discussion.assignment && <AssignmentSection
-              title={i18n('Due')}
-              image={Images.assignments.calendar}
-              showDisclosureIndicator={true}
-              onPress={this.viewDueDateDetails} >
-              <AssignmentDates assignment={this.props.assignment} />
-            </AssignmentSection>}
-
-            {discussion.assignment && <AssignmentSection
-              title={i18n('Submissions')}
-              testID='discussions.submission-graphs'
-              onPress={() => this.viewSubmissions()}
-              showDisclosureIndicator>
-              <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignment.id} style={style.submission}/>
-            </AssignmentSection>}
-
-            <AssignmentSection >
-              <View style={style.authorContainer}>
-                {user && user.display_name && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
-                                style={style.avatar}/> }
-                <View style={[style.authorInfoContainer, { marginLeft: user.display_name ? global.style.defaultPadding : 0 }]}>
-                  { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-                  <Text style={style.authorDate}>{formattedDate(discussion.posted_at)}</Text>
-                </View>
               </View>
+            }
+        </AssignmentSection>
 
-              { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
-                <View style={style.section}>
-                  { Boolean(discussion.message) &&
-                    <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
-                  }
-                  { Boolean(discussion.attachments) && discussion.attachments.length === 1 &&
-                    // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
-                    <TouchableOpacity testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
-                      <View style={style.attachment}>
-                        <Image source={Images.attachment} style={style.attachmentIcon} />
-                        <Text style={style.attachmentText}>
-                          {discussion.attachments[0].display_name}
-                        </Text>
-                      </View>
-                    </TouchableOpacity>
-                  }
-                </View>
+        {discussion.assignment && <AssignmentSection
+          title={i18n('Due')}
+          image={Images.assignments.calendar}
+          showDisclosureIndicator={true}
+          onPress={this.viewDueDateDetails} >
+          <AssignmentDates assignment={discussion.assignment} />
+        </AssignmentSection>}
+
+        {discussion.assignment && <AssignmentSection
+          title={i18n('Submissions')}
+          testID='discussions.submission-graphs'
+          onPress={() => this.viewSubmissions()}
+          showDisclosureIndicator>
+          <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={discussion.assignment.id} style={style.submission}/>
+        </AssignmentSection>}
+
+        <AssignmentSection >
+          <View style={style.authorContainer}>
+            {user && user.display_name && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
+              style={style.avatar}/> }
+            <View style={[style.authorInfoContainer, { marginLeft: user.display_name ? global.style.defaultPadding : 0 }]}>
+              { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
+                <Text style={style.authorDate}>{formattedDate(discussion.posted_at)}</Text>
+            </View>
+          </View>
+
+        { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
+           <View style={style.section}>
+              { Boolean(discussion.message) &&
+                 <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
               }
+              { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
+              // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
+                <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
+                  <View style={style.attachment}>
+                    <Image source={Images.attachment} style={style.attachmentIcon} />
+                    <Text style={style.attachmentText}>
+                      {discussion.attachments[0].display_name}
+                    </Text>
+                  </View>
+                </TouchableHighlight>
+              }
+          </View>
+        }
 
-              <TouchableHighlight
-                underlayColor='white'
-                onPress={this._onPressReply}
-                testID='discussion-reply'>
+          <View style={style.authorContainer}>
+            <TouchableHighlight
+              underlayColor='white'
+              onPress={this._onPressReply}
+              testID='discussion-reply'>
                 <View style={{ flex: 1, backgroundColor: 'white' }}>
                   <Text style={style.link}>Reply</Text>
                 </View>
-              </TouchableHighlight>
-            </AssignmentSection>
+            </TouchableHighlight>
+          </View>
+        </AssignmentSection>
 
-            <AssignmentSection
-              title={i18n('Replies')}>
-              <DiscussionReplies style={style.replyContainer} replies={discussion.replies} participants={participants} navigator={this.props.navigator}/>
-            </AssignmentSection>
+        <AssignmentSection
+          title={i18n('Replies')}
+          style={{ paddingBottom: 0 }}>
+        </AssignmentSection>
+      </View>
+    )
+  }
 
-        </RefreshableScrollView>
-      )
+  renderReply = (discussion: ?Discussion) => ({ item, index }: { item: DiscussionReply, index: number }) => {
+    const reply = item
+    let participants = discussion && discussion.participants || []
+    return (
+      <View>
+        <DiscussionReplies reply={reply} participants={participants} navigator={this.props.navigator}/>
+      </View>
+    )
+  }
+
+  render () {
+    const { discussion } = this.props
+    let data = []
+    if (discussion) {
+      data = [
+        { data: [discussion], title: '', renderItem: this.renderDetails },
+        { data: discussion.replies || [], title: '', renderItem: this.renderReply(discussion) },
+      ]
     }
-
     return (
       <Screen
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
@@ -146,7 +158,14 @@ export class DiscussionDetails extends Component<any, Props, any> {
           },
         ]}
         subtitle={this.props.course.name}>
-        {content}
+        <View style={style.sectionListContainer}>
+          <SectionList
+            refreshing={this.props.refreshing}
+            onRefresh={this.props.refresh}
+            renderItem={({ item }) => <View/>}
+            sections={data}
+          />
+        </View>
       </Screen>
     )
   }
@@ -218,6 +237,10 @@ export class DiscussionDetails extends Component<any, Props, any> {
 }
 
 const style = StyleSheet.create({
+  sectionListContainer: {
+    flex: 1,
+    marginBottom: global.tabBarHeight,
+  },
   authorContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -317,7 +340,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
 let Refreshed = refresh(
   //  TODO - add deep link ability to refreshDiscussion without entry from discussion list
   props => props.refreshDiscussionEntries(props.courseID, props.discussionID, true),
-  props => !props.discussion || (props.discussion.assignment_id && !props.assignment),
+  props => !props.discussion || !props.discussion.replies || (props.discussion.assignment_id && !props.assignment),
   props => Boolean(props.pending)
 )(DiscussionDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)
