@@ -26,6 +26,7 @@ describe('DiscussionReplies', () => {
       courseID: '1',
       discussionID: '1',
       deleteDiscussionEntry: jest.fn(),
+      replyToEntry: jest.fn(),
       navigator: template.navigator(),
       pathIndex: 0,
     }

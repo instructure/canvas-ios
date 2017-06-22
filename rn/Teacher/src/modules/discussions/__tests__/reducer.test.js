@@ -1,6 +1,6 @@
 /* @flow */
 
-import { refs, discussions, mergeDiscussionEntriesWithNewEntries } from '../reducer'
+import { refs, discussions, addOrUpdateReply } from '../reducer'
 import { default as ListActions } from '../list/actions'
 import { default as DetailActions } from '../details/actions'
 import { default as AnnouncementListActions } from '../../announcements/list/actions'
@@ -249,29 +249,6 @@ describe('discussionData', () => {
         error: null,
       },
     })
-
-    it('mergeDiscussionEntriesWithNewEntries for top level reply (no parent)', () => {
-      let r = template.discussionReply({ id: '1' })
-      let rr = template.discussionReply({ id: '2' })
-      let a = template.discussionReply({ id: '11', replies: [r, r] })
-      let result = mergeDiscussionEntriesWithNewEntries([a], [rr])
-
-      expect(result).toEqual([ a, rr ])
-    })
-
-    it('mergeDiscussionEntriesWithNewEntries for nested reply', () => {
-      let r = template.discussionReply({ id: '1' })
-      let rr = template.discussionReply({ id: '2' })
-      let rrr = template.discussionReply({ id: '3', parent_id: '2' })
-      let a = template.discussionReply({ id: '11', replies: [r, rr] })
-      let expected = template.discussionReply({ id: '2', replies: [rrr] })
-      let expectedA = template.discussionReply({ id: '11', replies: [r, expected] })
-      let result = mergeDiscussionEntriesWithNewEntries([a], [rrr])
-
-      expect(result).toEqual([
-        expectedA,
-      ])
-    })
   })
 
   it('PENDING deletes discussion entry 1 level deep PENDING', () => {
@@ -345,29 +322,6 @@ describe('discussionData', () => {
       },
     })
   })
-
-  it('mergeDiscussionEntriesWithNewEntries for top level reply (no parent)', () => {
-    let r = template.discussionReply({ id: '1' })
-    let rr = template.discussionReply({ id: '2' })
-    let a = template.discussionReply({ id: '11', replies: [r, r] })
-    let result = mergeDiscussionEntriesWithNewEntries([a], [rr])
-
-    expect(result).toEqual([ a, rr ])
-  })
-
-  it('mergeDiscussionEntriesWithNewEntries for nested reply', () => {
-    let r = template.discussionReply({ id: '1' })
-    let rr = template.discussionReply({ id: '2' })
-    let rrr = template.discussionReply({ id: '3', parent_id: '2' })
-    let a = template.discussionReply({ id: '11', replies: [r, rr] })
-    let expected = template.discussionReply({ id: '2', replies: [rrr] })
-    let expectedA = template.discussionReply({ id: '11', replies: [r, expected] })
-    let result = mergeDiscussionEntriesWithNewEntries([a], [rrr])
-
-    expect(result).toEqual([
-      expectedA,
-    ])
-  })
 })
 
 describe('refreshDiscussions', () => {
@@ -397,6 +351,7 @@ describe('refreshDiscussions', () => {
     })
   })
 })
+
 describe('refreshDiscussionEntries', () => {
   it('handles resolved with existing disucssion', () => {
     let participantA = template.userDisplay({ id: '1', display_name: 'A' })
@@ -852,10 +807,15 @@ describe('subscribeDiscussion', () => {
 describe('createEntry', () => {
   it('handles resolved empty state', () => {
     const initialState = {}
+    const reply = template.discussionReply()
+    let expectedReply = Object.assign({}, reply)
+    expectedReply.pending = true
     const resolved = {
       type: createEntry.toString(),
       payload: {
+        id: '1',
         discussionID: '1',
+        result: { data: reply },
       },
     }
     expect(
@@ -868,11 +828,15 @@ describe('createEntry', () => {
               error: null,
             },
           },
+          pendingReplies: { [reply.id]: { data: expectedReply } },
         },
       })
   })
 
   it('handles resolved non empty state', () => {
+    const reply = template.discussionReply({ id: '1' })
+    let expectedReply = Object.assign({}, reply)
+    expectedReply.pending = true
     const initialState = {
       '1': {
         pending: 0,
@@ -885,7 +849,7 @@ describe('createEntry', () => {
         data: template.discussion({
           id: '2',
           replies: [
-            template.discussionReply({ id: '1' }),
+            reply,
           ],
         }),
         replies: {
@@ -900,6 +864,7 @@ describe('createEntry', () => {
       type: createEntry.toString(),
       payload: {
         discussionID: '2',
+        result: { data: reply },
       },
     }
     expect(
@@ -919,6 +884,7 @@ describe('createEntry', () => {
               error: null,
             },
           },
+          pendingReplies: { [reply.id]: { data: expectedReply } },
         },
       })
   })
@@ -1057,6 +1023,61 @@ describe('createEntry', () => {
           },
         },
       })
+  })
+
+  it('addOrUpdateReply ADD reply 1 deep', () => {
+    let c = template.discussionReply({ id: '3' })
+    let b = template.discussionReply({ id: '2', replies: [c] })
+    let a = template.discussionReply({ id: '1' })
+    let replies = [a, b]
+
+    let d = template.discussionReply({ id: '4' })
+    let localIndexPath = [1, 0]
+    let result = addOrUpdateReply(d, localIndexPath, { replies }, true)
+
+    let cEx = template.discussionReply({ id: '3', replies: [d] })
+    let bEx = template.discussionReply({ id: '2', replies: [cEx] })
+    let expected = [a, bEx]
+    expect(result).toEqual(expected)
+  })
+
+  it('addOrUpdateReply ADD reply top level', () => {
+    let b = template.discussionReply({ id: '2' })
+    let a = template.discussionReply({ id: '1' })
+    let replies = [a]
+
+    let localIndexPath = []
+    let result = addOrUpdateReply(b, localIndexPath, { replies }, true)
+
+    let expected = [a, b]
+    expect(result).toEqual(expected)
+  })
+
+  it('addOrUpdateReply UPDATE reply top level', () => {
+    let b = template.discussionReply({ id: '2', message: 'b' })
+    let a = template.discussionReply({ id: '1' })
+    let replies = [a, b]
+
+    let localIndexPath = [1]
+    let bUpdated = template.discussionReply({ id: '2', message: 'UPDATED' })
+    let result = addOrUpdateReply(bUpdated, localIndexPath, { replies })
+
+    let expected = [a, bUpdated]
+    expect(result).toEqual(expected)
+  })
+
+  it('addOrUpdateReply UPDATE reply 1 deep', () => {
+    let c = template.discussionReply({ id: '3', message: 'c' })
+    let b = template.discussionReply({ id: '2', replies: [c] })
+    let a = template.discussionReply({ id: '1' })
+    let replies = [a, b]
+
+    let cUpdated = template.discussionReply({ id: '3', message: 'UPDATED' })
+    let localIndexPath = [1, 0]
+    let result = addOrUpdateReply(cUpdated, localIndexPath, { replies })
+
+    let expected = [a, b]
+    expect(result).toEqual(expected)
   })
 })
 

@@ -32,6 +32,7 @@ describe('DiscussionReplies', () => {
       discussionID: '1',
       entryID: '1',
       deleteDiscussionEntry: jest.fn(),
+      replyToEntry: jest.fn(),
       myPath: [0],
       navigator: template.navigator(),
     }
@@ -49,6 +50,12 @@ describe('DiscussionReplies', () => {
   it('edit action sheet calls delete', () => {
     testEditActionSheet(0)
     expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0])
+  })
+
+  it('reply to entry', () => {
+    let reply = render(props).getInstance()
+    reply._actionReply()
+    expect(props.replyToEntry).toHaveBeenCalledWith('1', [0])
   })
 
   function testEditActionSheet (buttonIndex: number) {

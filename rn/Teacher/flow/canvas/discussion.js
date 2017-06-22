@@ -26,6 +26,7 @@ export type DiscussionReply = {
   user_id: string,
   deleted: boolean,
   attachment: ?Attachment,
+  pendng?: boolean,
 }
 
 export type DiscussionType = 'side_comment' | 'threaded'

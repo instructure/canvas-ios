@@ -18,6 +18,8 @@ import {
 type OwnProps = {
   discussionID: string,
   courseID: string,
+  parentIndexPath?: number[],
+  entryID?: ?string,
 }
 
 type State = {
@@ -94,7 +96,7 @@ export class EditReply extends React.Component<any, Props, any> {
       message: this.state.message,
     }
     this.setState({ pending: true })
-    this.props.createEntry(this.props.courseID, this.props.discussionID, params)
+    this.props.createEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath)
   }
 
   _actionCancelPressed = () => {

@@ -134,6 +134,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
       <View>
         <DiscussionReplies
         deleteDiscussionEntry={this.props.deleteDiscussionEntry}
+        replyToEntry={this._onPressReplyToEntry}
         style={style.replyContainer}
         navigator={this.props.navigator}
         courseID={this.props.courseID}
@@ -230,7 +231,11 @@ export class DiscussionDetails extends Component<any, Props, any> {
   }
 
   _onPressReply = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true })
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { parentIndexPath: [] })
+  }
+
+  _onPressReplyToEntry = (entryID: string, parentIndexPath: number[]) => {
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { parentIndexPath: parentIndexPath, entryID })
   }
 
   _editDiscussion = () => {

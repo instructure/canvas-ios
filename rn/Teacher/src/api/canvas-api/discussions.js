@@ -62,8 +62,8 @@ export function createDiscussion (courseID: string, parameters: CreateDiscussion
   return httpClient().post(url, parameters)
 }
 
-export function createEntry (courseID: string, discussionID: string, parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
-  const url = `courses/${courseID}/discussion_topics/${discussionID}/entries`
+export function createEntry (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
+  const url = entryID ? `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}/replies` : `courses/${courseID}/discussion_topics/${discussionID}/entries`
   return httpClient().post(url, parameters)
 }
 

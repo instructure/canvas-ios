@@ -30,19 +30,6 @@ const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   ({ result }) => result.data.map(discussion => discussion.id)
 )
 
-export function mergeDiscussionEntriesWithNewEntries (originalEntries: [DiscussionReply], newEntries: [DiscussionReply]): [DiscussionReply] {
-  if (!newEntries) return originalEntries
-  let mutable = [...originalEntries]
-  newEntries.forEach((entry) => {
-    if (entry.message && !entry.parent_id) {
-      mutable = [...originalEntries.slice(), entry]
-    } else {
-      mutable = findAndAddDiscussionEntry(entry, [...originalEntries])[1]
-    }
-  })
-  return mutable
-}
-
 export function replyFromLocalIndexPath (localIndexPath: number[], replies: DiscussionReply[]): ?DiscussionReply {
   let r = replies
   let reply
@@ -50,7 +37,6 @@ export function replyFromLocalIndexPath (localIndexPath: number[], replies: Disc
     let index = localIndexPath[i]
     if (i === localIndexPath.length - 1) {
       reply = Object.assign({ }, r[index])
-      reply.deleted = true
     } else {
       r = r[index].replies
     }
@@ -75,26 +61,31 @@ export function deleteReply (localIndexPath: number[], objectWithRepliesProperty
   return result
 }
 
-export function findAndAddDiscussionEntry (needle: DiscussionReply, haystack: DiscussionReply[]): [boolean, DiscussionReply[]] {
-  let found = false
-  for (let i = 0; i < haystack.length; i++) {
-    let reply = Object.assign({}, haystack[i])
-    if (reply.id === needle.parent_id) {
-      reply.replies = [...reply.replies, needle]
-      haystack[i] = reply
-      found = true
-      break
-    } else if (reply.replies) {
-      let result = findAndAddDiscussionEntry(needle, reply.replies.slice())
-      found = result[0]
-      if (found) {
-        reply.replies = result[1]
-        haystack[i] = reply
-        break
+export function addOrUpdateReply (reply: DiscussionReply, localIndexPath: number[], objectWithRepliesProperty: any, isAdd: boolean = false): DiscussionReply[] {
+  let r = objectWithRepliesProperty.replies.slice()
+  let result = r
+
+  //  top level add
+  if (isAdd && localIndexPath.length === 0) {
+    r.push(reply)
+  }
+
+  for (let i = 0; i < localIndexPath.length; i++) {
+    let index = localIndexPath[i]
+    if (!isAdd && i === localIndexPath.length - 1) {
+      r[index] = Object.assign(reply, r[index])
+    } else {
+      r[index] = Object.assign({}, r[index])
+      r[index].replies = (r[index].replies) ? r[index].replies.slice() : []
+
+      if (isAdd && i === localIndexPath.length - 1) {
+        r[index].replies.push(reply)
+      } else {
+        r = r[index].replies
       }
     }
   }
-  return [found, haystack]
+  return result
 }
 
 export function newEntriesContainsReply (newEntries: DiscussionReply[], reply: DiscussionReply): boolean {
@@ -184,6 +175,8 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           let reply = pendingReplies[pendingReplyKeys[i]]
           if (reply && reply.data.deleted) {
             replies = deleteReply(reply.localIndexPath, { replies: replies })
+          } else {
+            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, !!reply.data.pending)
           }
 
           if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
@@ -229,7 +222,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
     pending: (state, { courseID, discussionID, entryID, localIndexPath }) => {
       let entity = { ...state[discussionID] } || {}
       let pendingReply = replyFromLocalIndexPath(localIndexPath, entity.data.replies)
-      if (pendingReply) pendingReply.deleted = true
+      if (pendingReply) { pendingReply.deleted = true; pendingReply.replies = [] }
       let pendingReplies = entity.pendingReplies || {}
       pendingReplies = {
         ...pendingReplies,
@@ -342,6 +335,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
             error: null,
           },
         },
+
       },
     }),
     rejected: (state, { discussionID, error }) => ({
@@ -357,7 +351,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         },
       },
     }),
-    resolved: (state, { discussionID }) => {
+    resolved: (state, { discussionID, result, parentIndexPath }) => {
       return {
         ...state,
         [discussionID]: {
@@ -369,6 +363,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
               error: null,
             },
           },
+          pendingReplies: { [result.data.id]: { localIndexPath: parentIndexPath, data: Object.assign({ pending: true, replies: [] }, result.data) } },
         },
       }
     },

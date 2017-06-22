@@ -43,7 +43,9 @@ describe('EditReply', () => {
       navigator: template.navigator(),
       discussionID: '1',
       courseID: '1',
+      entryID: '1',
       course: template.course({ id: 1 }),
+      parentIndexPath: [],
     }
   })
 
@@ -132,7 +134,7 @@ describe('EditReply', () => {
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
-    expect(postReply).toBeCalledWith(defaultProps.courseID, defaultProps.discussionID, { message })
+    expect(postReply).toBeCalledWith(defaultProps.courseID, defaultProps.discussionID, defaultProps.entryID, { message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 })
@@ -146,7 +148,7 @@ describe('MapStateToProps', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+      mapStateToProps(state, { courseID: '1', discussionID: '1', parentIndexPath: [] })
     ).toMatchObject({
       pending: 0,
       error: null,

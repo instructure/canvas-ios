@@ -79,7 +79,7 @@ describe('DiscussionDetails', () => {
     const tree = renderer.create(<DiscussionDetails {...props} navigator={navigator} />).toJSON()
     const discussionReply: any = explore(tree).selectByID('discussion-reply')
     discussionReply.props.onPress()
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true })
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, { parentIndexPath: [] })
   })
 
   it('shows publish information', () => {
@@ -128,6 +128,17 @@ describe('DiscussionDetails', () => {
     const editButton: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
     editButton.action()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
+  })
+
+  it('routes to discussion edit on entry reply', () => {
+    props.isAnnouncement = false
+    props.navigator.show = jest.fn()
+    props.courseID = '1'
+    props.discussion = template.discussion({ id: '2' })
+
+    let tree = render(props)
+    tree.getInstance()._onPressReplyToEntry('3', [1, 0])
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/entries/3/replies', { modal: true }, { 'entryID': '3', 'parentIndexPath': [1, 0] })
   })
 
   it('shows attachment', () => {

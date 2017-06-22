@@ -14,16 +14,18 @@ export type Props = {
   courseID: string,
   discussionID: string,
   deleteDiscussionEntry: Function,
+  replyToEntry: Function,
   navigator: Navigator,
   pathIndex: number,
 }
 
 export default class DiscussionReplies extends Component<any, Props, any> {
   render () {
-    let { courseID, discussionID, deleteDiscussionEntry, pathIndex, reply } = this.props
+    let { courseID, discussionID, deleteDiscussionEntry, pathIndex, reply, replyToEntry } = this.props
     let participants = this.props.participants || {}
     let r = (
      <Reply
+     replyToEntry={replyToEntry}
      myPath={[pathIndex]}
      navigator={this.props.navigator}
      deleteDiscussionEntry={deleteDiscussionEntry}

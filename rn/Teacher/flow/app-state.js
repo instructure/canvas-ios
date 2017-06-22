@@ -91,8 +91,13 @@ export type DiscussionState = AsyncState & {
   },
 }
 
+export type PendingDiscussionReply = {
+  localIndexPath: number[],
+  data: DiscussionReply,
+}
+
 export type PendingDiscussionReplyState = {
-  pendingReplies: DiscussionReply[],
+  pendingReplies: PendingDiscussionReply[],
 }
 
 export type CourseDetailsTabSelectedRowState = {

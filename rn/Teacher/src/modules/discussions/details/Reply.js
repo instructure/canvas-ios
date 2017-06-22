@@ -25,6 +25,7 @@ export type Props = {
   courseID: string,
   discussionID: string,
   deleteDiscussionEntry: Function,
+  replyToEntry: Function,
   myPath: number[],
   navigator: Navigator,
 }
@@ -40,10 +41,10 @@ export default class Reply extends Component <any, Props, any> {
   }
 
   render () {
-    let { reply, depth, participants, courseID, discussionID } = this.props
+    let { reply, depth, participants, courseID, discussionID, replyToEntry } = this.props
     participants = participants || {}
     let replies = reply.replies || []
-    let childReplies = replies.map((r, i) => <Reply myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
+    let childReplies = replies.map((r, i) => <Reply replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
     let user = participants[reply.user_id]
 
     if (reply.deleted) {
@@ -102,7 +103,9 @@ export default class Reply extends Component <any, Props, any> {
     )
   }
 
-  _actionReply = () => {}
+  _actionReply = () => {
+    this.props.replyToEntry(this.props.reply.id, this.props.myPath)
+  }
   _actionEdit = () => {
     const { courseID, discussionID } = this.props
     let options = []
