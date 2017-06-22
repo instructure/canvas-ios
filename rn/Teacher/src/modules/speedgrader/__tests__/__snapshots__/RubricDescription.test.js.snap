@@ -2,7 +2,106 @@
 
 exports[`RubricDescription renders 1`] = `
 <View
-  onLayout={[Function]}
-  style={undefined}
-/>
+  style={
+    Object {
+      "paddingBottom": 16,
+      "paddingHorizontal": 16,
+      "paddingTop": 24,
+    }
+  }
+>
+  <RCTScrollView
+    alwaysBounceHorizontal={undefined}
+    alwaysBounceVertical={true}
+    bounces={false}
+    onContentSizeChange={null}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onResponderGrant={[Function]}
+    onResponderReject={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={undefined}
+    onResponderTerminationRequest={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onScrollShouldSetResponder={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onStartShouldSetResponderCapture={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    scrollEventThrottle={undefined}
+    sendMomentumEvents={false}
+    style={
+      Array [
+        Object {
+          "flexDirection": "column",
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "overflow": "scroll",
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollContentView
+      collapsable={false}
+      removeClippedSubviews={undefined}
+      style={
+        Array [
+          undefined,
+          undefined,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+            "lineHeight": 19,
+          }
+        }
+      >
+        A satisfactory description
+      </Text>
+    </RCTScrollContentView>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`RubricDescription renders without description 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "paddingHorizontal": 32,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#2D3B45",
+        "fontSize": 16,
+        "lineHeight": 19,
+        "textAlign": "center",
+      }
+    }
+  >
+    There currently is no long description for this item.
+  </Text>
+</View>
 `;

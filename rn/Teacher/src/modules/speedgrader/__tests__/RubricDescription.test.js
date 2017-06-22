@@ -42,6 +42,17 @@ describe('RubricDescription', () => {
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  it('renders without description', () => {
+    let props = {
+      ...defaultProps,
+      description: null,
+    }
+    let tree = renderer.create(
+      <RubricDescription {...props} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })
 
 describe('mapStateToProps', () => {

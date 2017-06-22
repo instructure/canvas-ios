@@ -1,9 +1,9 @@
 // @flow
 
 import React, { Component } from 'react'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
-import WebContainer from '../../common/components/WebContainer'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
 
@@ -13,22 +13,65 @@ export class RubricDescription extends Component {
     this.props.navigator.dismiss()
   }
 
+  renderLongDescription () {
+    if (!this.props.description) {
+      return (
+        <View style={styles.emptyState}>
+          <Text style={styles.emptyStateText}>There currently is no long description for this item.</Text>
+        </View>
+      )
+    }
+    return (
+      <View style={styles.container}>
+        <ScrollView bounces={false}>
+          <Text style={styles.text}>{this.props.description}</Text>
+        </ScrollView>
+      </View>
+    )
+  }
+
   render () {
-    let html = this.props.description + '<style>body { padding: 24 16 }</style>'
+    const description = this.renderLongDescription()
     return (
       <Screen
-        title={i18n('Rubric Description')}
+        title={i18n('Long Description')}
         rightBarButtons={[{
           title: i18n('Done'),
           style: 'done',
           testID: 'rubric-description.done',
           action: this.dismiss,
         }]}>
-        <WebContainer html={html} />
+        { description }
       </Screen>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 24,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+  },
+  emptyState: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 32,
+  },
+  emptyStateText: {
+    color: '#2D3B45',
+    fontSize: 16,
+    lineHeight: 19,
+    textAlign: 'center',
+  },
+  text: {
+    color: '#2D3B45',
+    fontSize: 16,
+    lineHeight: 19,
+  },
+})
 
 export function mapStateToProps (state: AppState, ownProps: RubricDescriptionOwnProps): RubricDescriptionDataProps {
   let rubric = state.entities.assignments[ownProps.assignmentID].data.rubric
