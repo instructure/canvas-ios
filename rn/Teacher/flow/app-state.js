@@ -91,6 +91,10 @@ export type DiscussionState = AsyncState & {
   },
 }
 
+export type PendingDiscussionReplyState = {
+  pendingReplies: DiscussionReply[],
+}
+
 export type CourseDetailsTabSelectedRowState = {
   rowID: ?string,
 }
@@ -108,7 +112,7 @@ export type UserProfileState = { [string]: User }
 export type SubmissionsState = { [string]: SubmissionState }
 export type QuizzesState = { [string]: QuizState }
 export type QuizSubmissionsState = { [string]: QuizSubmissionState }
-export type DiscussionsState = { [string]: DiscussionState }
+export type DiscussionsState = { [string]: DiscussionState & PendingDiscussionReplyState }
 export type GroupsState = { [string]: GroupState }
 
 export type Entities = {

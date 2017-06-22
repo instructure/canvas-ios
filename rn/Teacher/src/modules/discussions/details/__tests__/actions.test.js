@@ -101,4 +101,32 @@ describe('discussion edit reply tests', () => {
       },
     ])
   })
+  it('should delete discussion entry', async () => {
+    const courseID = '1'
+    const discussionID = '2'
+    const entryID = '3'
+
+    const api = {
+      deleteDiscussionEntry: apiResponse({}),
+    }
+    const actions = Actions(api)
+    const action = actions.deleteDiscussionEntry(courseID, discussionID, entryID)
+    const state = await testAsyncAction(action)
+
+    expect(state).toMatchObject([
+      {
+        type: actions.deleteDiscussionEntry.toString(),
+        pending: true,
+      },
+      {
+        type: actions.deleteDiscussionEntry.toString(),
+        payload: {
+          result: { data: {} },
+          courseID,
+          discussionID,
+          entryID,
+        },
+      },
+    ])
+  })
 })

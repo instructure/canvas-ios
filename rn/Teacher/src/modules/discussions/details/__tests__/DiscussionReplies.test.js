@@ -23,7 +23,11 @@ describe('DiscussionReplies', () => {
       reply: template.discussionReply(),
       depth: 0,
       participants: { [user.id]: user },
+      courseID: '1',
+      discussionID: '1',
+      deleteDiscussionEntry: jest.fn(),
       navigator: template.navigator(),
+      pathIndex: 0,
     }
   })
 

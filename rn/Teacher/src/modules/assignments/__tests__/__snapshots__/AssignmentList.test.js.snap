@@ -84,6 +84,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "marginBottom": 1,
                 },
@@ -636,6 +637,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "marginBottom": 1,
                 },
@@ -2091,6 +2093,7 @@ exports[`renders correctly 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "marginBottom": 1,
                 },
@@ -2643,6 +2646,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "marginBottom": 1,
                 },

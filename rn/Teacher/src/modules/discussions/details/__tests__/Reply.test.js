@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import 'react-native'
+import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 
 import Reply, { type Props } from '../Reply'
@@ -14,17 +14,25 @@ const template = {
   ...require('../../../../__templates__/helm'),
 }
 jest.mock('WebView', () => 'WebView')
+  .mock('ActionSheetIOS', () => ({
+    showActionSheetWithOptions: jest.fn(),
+  }))
 
 describe('DiscussionReplies', () => {
   let props
   beforeEach(() => {
-    let reply = template.discussionReply()
+    let reply = template.discussionReply({ id: '1' })
     reply.replies = [template.discussionReply({ id: 2 })]
     let user = template.userDisplay()
     props = {
       reply: reply,
       depth: 0,
       participants: { [user.id]: user },
+      courseID: '1',
+      discussionID: '1',
+      entryID: '1',
+      deleteDiscussionEntry: jest.fn(),
+      myPath: [0],
       navigator: template.navigator(),
     }
   })
@@ -32,6 +40,24 @@ describe('DiscussionReplies', () => {
   it('renders', () => {
     testRender(props)
   })
+
+  it('renders deleted', () => {
+    props.reply.deleted = true
+    testRender(props)
+  })
+
+  it('edit action sheet calls delete', () => {
+    testEditActionSheet(0)
+    expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0])
+  })
+
+  function testEditActionSheet (buttonIndex: number) {
+    let reply = render(props).getInstance()
+    reply._actionEdit()
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](buttonIndex)
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+  }
 
   function testRender (props: Props) {
     expect(render(props).toJSON()).toMatchSnapshot()
@@ -54,3 +80,4 @@ describe('DiscussionReplies', () => {
     )
   })
 })
+

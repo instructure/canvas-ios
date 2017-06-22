@@ -24,19 +24,20 @@ export let Actions: (typeof canvas) => any = (api) => ({
       discussionID,
     }
   }),
-  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, parameters: CreateEntryParameters) => {
-    return {
-      promise: api.createEntry(courseID, discussionID, parameters),
-      courseID,
-      discussionID,
-    }
-  }),
-  deleteDiscussionEntry: createAction('discussionDetail.delete-entry', (courseID: string, discussionID: string, entryID: string) => {
+  deleteDiscussionEntry: createAction('discussionDetail.delete-entry', (courseID: string, discussionID: string, entryID: string, localIndexPath: number[]) => {
     return {
       promise: api.deleteDiscussionEntry(courseID, discussionID, entryID),
       courseID,
       discussionID,
       entryID,
+      localIndexPath,
+    }
+  }),
+  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, parameters: CreateEntryParameters) => {
+    return {
+      promise: api.createEntry(courseID, discussionID, parameters),
+      courseID,
+      discussionID,
     }
   }),
 })

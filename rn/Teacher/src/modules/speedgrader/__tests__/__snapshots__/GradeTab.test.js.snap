@@ -545,6 +545,7 @@ exports[`Rubric has the correct score 1`] = `
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -598,6 +599,7 @@ exports[`Rubric has the correct score 1`] = `
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1167,6 +1169,7 @@ exports[`Rubric renders a rubric 1`] = `
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1220,6 +1223,7 @@ exports[`Rubric renders a rubric 1`] = `
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1789,6 +1793,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -1842,6 +1847,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -2607,6 +2613,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -2660,6 +2667,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -2917,6 +2925,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 18,
                           "fontWeight": "600",
@@ -3283,6 +3292,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
@@ -3336,6 +3346,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         Object {
                           "color": "#374A59",
                         },
+                        Object {},
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",

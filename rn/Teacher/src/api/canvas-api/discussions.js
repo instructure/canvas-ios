@@ -44,10 +44,12 @@ export function getDiscussions (courseID: string, parameters: GetDiscussionsPara
   return exhaust(discussions)
 }
 
-export function getAllDiscussionEntries (courseID: string, discussionID: string, includeNewEntries: boolean): Promise<ApiResponse<DiscussionView>> {
-  const parameters = includeNewEntries ? '?include_new_entries=1' : ''
-  const url = `courses/${courseID}/discussion_topics/${discussionID}/view${parameters}`
-  return httpClient().get(url)
+export function getAllDiscussionEntries (courseID: string, discussionID: string, includeNewEntries: boolean = true): Promise<ApiResponse<DiscussionView>> {
+  const options = {
+    params: { include_new_entries: includeNewEntries ? 1 : 0 },
+  }
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/view`
+  return httpClient().get(url, options)
 }
 
 export function getDiscussion (courseID: string, discussionID: string): Promise<ApiResponse<Discussion>> {

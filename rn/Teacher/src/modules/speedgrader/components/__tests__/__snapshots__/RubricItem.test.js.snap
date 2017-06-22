@@ -158,6 +158,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -211,6 +212,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -389,6 +391,7 @@ exports[`RubricItem renders 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -442,6 +445,7 @@ exports[`RubricItem renders 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -620,6 +624,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -673,6 +678,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -849,6 +855,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -902,6 +909,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -1080,6 +1088,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
@@ -1210,6 +1219,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "color": "#73818C",
                   "fontSize": 16,

@@ -118,6 +118,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
                 Object {
                   "color": "#374A59",
                 },
+                Object {},
                 Object {
                   "fontSize": 16,
                   "fontWeight": "600",

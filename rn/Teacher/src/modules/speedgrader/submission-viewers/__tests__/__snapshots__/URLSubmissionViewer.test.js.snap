@@ -54,6 +54,7 @@ exports[`url submission renders correctly 1`] = `
               Object {
                 "color": "#374A59",
               },
+              Object {},
               Object {
                 "alignSelf": "center",
                 "fontSize": 18,

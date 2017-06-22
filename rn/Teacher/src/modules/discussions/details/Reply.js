@@ -5,20 +5,27 @@ import {
   Image,
   View,
   StyleSheet,
+  ActionSheetIOS,
   TouchableHighlight,
 } from 'react-native'
 import { Text, BOLD_FONT } from '../../../common/text'
+import { LinkButton } from '../../../common/buttons'
 import colors from '../../../common/colors'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
 import { formattedDate } from '../../../utils/dateUtils'
 import WebContainer from '../../../common/components/WebContainer'
+import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 
 export type Props = {
   reply: DiscussionReply,
   depth: number,
   participants: { [key: string]: UserDisplay },
+  courseID: string,
+  discussionID: string,
+  deleteDiscussionEntry: Function,
+  myPath: number[],
   navigator: Navigator,
 }
 
@@ -33,12 +40,15 @@ export default class Reply extends Component <any, Props, any> {
   }
 
   render () {
-    let { reply, depth, participants } = this.props
+    let { reply, depth, participants, courseID, discussionID } = this.props
     participants = participants || {}
     let replies = reply.replies || []
-
-    let childReplies = replies.map((r) => <Reply participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
+    let childReplies = replies.map((r, i) => <Reply myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
     let user = participants[reply.user_id]
+
+    if (reply.deleted) {
+      return (<View style={{ height: 0 }} />)
+    }
 
     return (
       <View style={style.parentRow}>
@@ -56,6 +66,7 @@ export default class Reply extends Component <any, Props, any> {
             {user && <Text style={style.userName}>{user.display_name}</Text>}
             <Text style={style.date}>{formattedDate(reply.updated_at)}</Text>
             <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={reply.message}/>
+
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
                 <View style={style.attachment}>
@@ -66,7 +77,7 @@ export default class Reply extends Component <any, Props, any> {
                 </View>
               </TouchableHighlight>
             }
-            <Text style={style.footer}>Reply | Edit</Text>
+            {this._renderButtons()}
           </View>
 
           <View style={style.rowB}>
@@ -75,6 +86,36 @@ export default class Reply extends Component <any, Props, any> {
         </View>
       </View>
     )
+  }
+
+  _renderButtons = () => {
+    return (
+      <View style={style.footerContainer}>
+       <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionReply} testID='discussion.reply-btn'>
+            {i18n('Reply')}
+        </LinkButton>
+        <Text style={[style.footer, { color: colors.grey3, textAlign: 'center', alignSelf: 'center' }]}>|</Text>
+        <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
+            {i18n('Edit')}
+        </LinkButton>
+      </View>
+    )
+  }
+
+  _actionReply = () => {}
+  _actionEdit = () => {
+    const { courseID, discussionID } = this.props
+    let options = []
+    options.push(i18n('Delete'))
+    options.push(i18n('Cancel'))
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: options,
+      cancelButtonIndex: options.length - 1,
+      destructiveButtonIndex: options.length - 2,
+    }, (button) => {
+      if (button === (options.length - 1)) { return }
+      if (button === (options.length - 2)) { this.props.deleteDiscussionEntry(courseID, discussionID, this.props.reply.id, this.props.myPath); return }
+    })
   }
 }
 
@@ -127,9 +168,13 @@ const style = StyleSheet.create({
     marginBottom: global.style.defaultPadding,
   },
   footer: {
+    padding: 2,
+    alignSelf: 'flex-end',
+  },
+  footerContainer: {
     marginTop: global.style.defaultPadding,
-    color: colors.grey3,
-    fontSize: 14,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   attachment: {
     flex: 1,

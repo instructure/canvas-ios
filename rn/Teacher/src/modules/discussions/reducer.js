@@ -15,7 +15,6 @@ import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
 const { refreshDiscussionEntries, createEntry, deleteDiscussionEntry } = DetailsActions
-
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -35,9 +34,7 @@ export function mergeDiscussionEntriesWithNewEntries (originalEntries: [Discussi
   if (!newEntries) return originalEntries
   let mutable = [...originalEntries]
   newEntries.forEach((entry) => {
-    if (entry.deleted) {
-      mutable = findAndDeleteDiscussionEntry(entry.id, mutable)[1]
-    } else if (entry.message && !entry.parent_id) {
+    if (entry.message && !entry.parent_id) {
       mutable = [...originalEntries.slice(), entry]
     } else {
       mutable = findAndAddDiscussionEntry(entry, [...originalEntries])[1]
@@ -46,26 +43,36 @@ export function mergeDiscussionEntriesWithNewEntries (originalEntries: [Discussi
   return mutable
 }
 
-export function findAndDeleteDiscussionEntry (needle: string, haystack: DiscussionReply[]): [boolean, DiscussionReply[]] {
-  let found = false
-  for (let i = 0; i < haystack.length; i++) {
-    let reply = Object.assign({}, haystack[i])
-    if (reply.id === needle) {
+export function replyFromLocalIndexPath (localIndexPath: number[], replies: DiscussionReply[]): ?DiscussionReply {
+  let r = replies
+  let reply
+  for (let i = 0; i < localIndexPath.length; i++) {
+    let index = localIndexPath[i]
+    if (i === localIndexPath.length - 1) {
+      reply = Object.assign({ }, r[index])
       reply.deleted = true
-      haystack[i] = reply
-      found = true
-      break
-    } else if (reply.replies) {
-      let result = findAndDeleteDiscussionEntry(needle, reply.replies.slice())
-      found = result[0]
-      if (found) {
-        reply.replies = result[1]
-        haystack[i] = reply
-        break
-      }
+    } else {
+      r = r[index].replies
     }
   }
-  return [found, haystack]
+  return reply
+}
+
+export function deleteReply (localIndexPath: number[], objectWithRepliesProperty: any): DiscussionReply[] {
+  let r = objectWithRepliesProperty.replies.slice()
+  let result = r
+
+  for (let i = 0; i < localIndexPath.length; i++) {
+    let index = localIndexPath[i]
+    if (i === localIndexPath.length - 1) {
+      r[index] = Object.assign({ deleted: true }, r[index])
+    } else {
+      r[index] = Object.assign({}, r[index])
+      r[index].replies = r[index].replies.slice()
+      r = r[index].replies
+    }
+  }
+  return result
 }
 
 export function findAndAddDiscussionEntry (needle: DiscussionReply, haystack: DiscussionReply[]): [boolean, DiscussionReply[]] {
@@ -88,6 +95,15 @@ export function findAndAddDiscussionEntry (needle: DiscussionReply, haystack: Di
     }
   }
   return [found, haystack]
+}
+
+export function newEntriesContainsReply (newEntries: DiscussionReply[], reply: DiscussionReply): boolean {
+  for (let i = 0; i < newEntries.length; i++) {
+    if (newEntries[i].id === reply.id) {
+      return true
+    }
+  }
+  return false
 }
 
 const refsChanges: Reducer<AsyncRefs, any> = handleActions({
@@ -156,14 +172,27 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
   [refreshDiscussionEntries.toString()]: handleAsync({
     resolved: (state, { result: [discussionView, discussion], courseID, discussionID }) => {
       let entity = { ...state[discussionID] } || {}
-      entity.data = discussion.data
-      if (discussionView && discussionView.data) {
+      entity.data = entity.data || {}
+      if (entity.data) {
         let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
         let replies = discussionView.data.view
-        let updatedReplies = discussionView.data.new_entries
-        replies = mergeDiscussionEntriesWithNewEntries(replies, updatedReplies)
-        replies = replies.filter((r) => r.deleted !== true)
+        let newEntries = discussionView.data.new_entries || []
+        let pendingReplies = { ...(entity.pendingReplies || {}) }
+
+        let pendingReplyKeys = Object.keys(pendingReplies)
+        for (let i = 0; i < pendingReplyKeys.length; i++) {
+          let reply = pendingReplies[pendingReplyKeys[i]]
+          if (reply && reply.data.deleted) {
+            replies = deleteReply(reply.localIndexPath, { replies: replies })
+          }
+
+          if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
+            delete pendingReplies[pendingReplyKeys[i]]
+          }
+        }
+
         entity.data = { ...entity.data, replies: replies, participants: participantsAsMap }
+        entity.pendingReplies = pendingReplies
       }
       return {
         ...state,
@@ -176,14 +205,60 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
     },
   }),
   [deleteDiscussionEntry.toString()]: handleAsync({
-    resolved: (state, { discussionID, entryID }) => {
+    rejected: (state, { error, discussionID, entryID }) => {
       let entity = { ...state[discussionID] } || {}
-      let replies = [...entity.data.replies]
-      replies = findAndDeleteDiscussionEntry(entryID, replies)[1]
+      let pendingReplies = entity.pendingReplies || {}
+      pendingReplies = { ...pendingReplies }
+
+      delete pendingReplies[entryID]
 
       entity = {
         ...entity,
-        data: { ...entity.data, replies: replies },
+        pendingReplies: pendingReplies,
+      }
+
+      return {
+        ...state,
+        [discussionID]: {
+          ...entity,
+          pending: (state[discussionID] && state[discussionID].pending || 1) - 1,
+          error: parseErrorMessage(error),
+        },
+      }
+    },
+    pending: (state, { courseID, discussionID, entryID, localIndexPath }) => {
+      let entity = { ...state[discussionID] } || {}
+      let pendingReply = replyFromLocalIndexPath(localIndexPath, entity.data.replies)
+      if (pendingReply) pendingReply.deleted = true
+      let pendingReplies = entity.pendingReplies || {}
+      pendingReplies = {
+        ...pendingReplies,
+        [entryID]: {
+          localIndexPath: localIndexPath,
+          data: pendingReply,
+        },
+      }
+
+      entity = {
+        ...entity,
+        pendingReplies: pendingReplies,
+      }
+
+      return {
+        ...state,
+        [discussionID]: {
+          ...entity,
+          pending: (state[discussionID] && state[discussionID].pending || 0) + 1,
+          error: null,
+        },
+      }
+    },
+    resolved: (state, { discussionID, entryID, localIndexPath }) => {
+      let entity = { ...state[discussionID] } || {}
+      let result = deleteReply(localIndexPath, entity.data)
+      entity = {
+        ...entity,
+        data: { ...entity.data, replies: result },
       }
       return {
         ...state,
@@ -323,6 +398,5 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
 }, {})
 
 export function discussions (state: any = {}, action: any): any {
-  let newState = state
-  return discussionData(newState, action)
+  return discussionData(state, action)
 }

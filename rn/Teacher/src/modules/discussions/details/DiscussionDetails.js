@@ -126,12 +126,22 @@ export class DiscussionDetails extends Component<any, Props, any> {
     )
   }
 
-  renderReply = (discussion: ?Discussion) => ({ item, index }: { item: DiscussionReply, index: number }) => {
+  renderReply = (discussion: Discussion) => ({ item, index }: { item: DiscussionReply, index: number }) => {
     const reply = item
     let participants = discussion && discussion.participants || []
+
     return (
       <View>
-        <DiscussionReplies reply={reply} participants={participants} navigator={this.props.navigator}/>
+        <DiscussionReplies
+        deleteDiscussionEntry={this.props.deleteDiscussionEntry}
+        style={style.replyContainer}
+        navigator={this.props.navigator}
+        courseID={this.props.courseID}
+        discussionID={discussion.id}
+        reply={reply}
+        pathIndex={index}
+        participants={participants}
+        />
       </View>
     )
   }

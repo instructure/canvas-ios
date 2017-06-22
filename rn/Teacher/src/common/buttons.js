@@ -24,15 +24,14 @@ export function Button ({ style, containerStyle, ...props }: Object): ReactNativ
 
 export class LinkButton extends Component {
   render () {
-    let brandingStyles = {
-      color: colors.primaryButtonColor,
-    }
+    let brandingStyles = { color: colors.primaryButtonColor }
+    let textAttributes = this.props.textAttributes || {}
     return (
       <TouchableOpacity
         {...this.props}
       >
         <View>
-          <Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, this.props.style]}>
+          <Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, textAttributes, this.props.style]}>
             {this.props.children}
           </Text>
         </View>

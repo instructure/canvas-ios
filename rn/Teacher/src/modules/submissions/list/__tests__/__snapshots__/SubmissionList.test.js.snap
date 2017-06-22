@@ -105,6 +105,7 @@ exports[`SubmissionList loaded 1`] = `
                   Object {
                     "color": "#374A59",
                   },
+                  Object {},
                   Object {
                     "marginBottom": 1,
                   },
@@ -1156,6 +1157,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                   Object {
                     "color": "#374A59",
                   },
+                  Object {},
                   Object {
                     "marginBottom": 1,
                   },

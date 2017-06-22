@@ -105,6 +105,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                   Object {
                     "color": "#374A59",
                   },
+                  Object {},
                   Object {
                     "marginBottom": 1,
                   },
@@ -479,6 +480,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                   Object {
                     "color": "#374A59",
                   },
+                  Object {},
                   Object {
                     "marginBottom": 1,
                   },
@@ -853,6 +855,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                   Object {
                     "color": "#374A59",
                   },
+                  Object {},
                   Object {
                     "marginBottom": 1,
                   },
