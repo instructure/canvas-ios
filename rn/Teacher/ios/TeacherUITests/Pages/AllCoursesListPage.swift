@@ -17,19 +17,14 @@
 import SoGrey
 import EarlGrey
 
-class AllCoursesListPage {
+class AllCoursesListPage: UITabBarControllerPage {
     
     // MARK: Singleton
     
     static let sharedInstance = AllCoursesListPage()
-    private init() {}
+    private override init() {}
     
     // MARK: Elements
-    
-    private let coursesTabButton = e.selectBy(id: "tab-bar.courses-btn")
-    private let inboxTabButton = e.selectBy(id: "tab-bar.inbox-btn")
-    private let profileTabButton = e.selectBy(id: "tab-bar.profile-btn")
-    private let stagingTabButton = e.selectBy(id: "tab-bar.staging-btn")
     
     // MARK: - Helpers
     
@@ -56,12 +51,9 @@ class AllCoursesListPage {
     
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
+        assertUITabBar()
         navBarTitleView().assertExists()
         backButton().assertExists()
-        coursesTabButton.assertExists()
-        inboxTabButton.assertExists()
-        profileTabButton.assertExists()
-        stagingTabButton.assertExists()
     }
     
     func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {

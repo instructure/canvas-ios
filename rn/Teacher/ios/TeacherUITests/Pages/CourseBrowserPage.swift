@@ -17,12 +17,12 @@
 import SoGrey
 import EarlGrey
 
-class CourseBrowserPage {
+class CourseBrowserPage: UITabBarControllerPage {
 
     // MARK: Singleton
 
     static let sharedInstance = CourseBrowserPage()
-    private init() {}
+    private override init() {}
 
     // MARK: Elements
 
@@ -31,10 +31,6 @@ class CourseBrowserPage {
     private let assignmentsCell = e.selectBy(id: "courses-details.assignments-cell")
     private let titleLabel = e.selectBy(id: "course-details.title-lbl")
     private let subtitleLabel = e.selectBy(id: "course-details.subtitle-lbl")
-    private let coursesTabButton = e.selectBy(id: "tab-bar.courses-btn")
-    private let inboxTabButton = e.selectBy(id: "tab-bar.inbox-btn")
-    private let profileTabButton = e.selectBy(id: "tab-bar.profile-btn")
-    private let stagingTabButton = e.selectBy(id: "tab-bar.staging-btn")
 
     // MARK: Helpers
 
@@ -50,16 +46,13 @@ class CourseBrowserPage {
 
     func assertPageObjects(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
+        assertUITabBar()
         navBarTitleView(course).assertExists()
         backButton.assertExists()
         editButton.assertExists()
         titleLabel.assertExists()
         subtitleLabel.assertExists()
         assignmentsCell.assertExists()
-        coursesTabButton.assertExists()
-        inboxTabButton.assertExists()
-        profileTabButton.assertExists()
-        stagingTabButton.assertExists()
     }
 
     // MARK: UI Actions

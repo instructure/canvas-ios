@@ -17,12 +17,12 @@
 import SoGrey
 import EarlGrey
 
-class CoursesListPage {
+class CoursesListPage: UITabBarControllerPage {
 
     // MARK: Singleton
 
     static let sharedInstance = CoursesListPage()
-    private init() {}
+    private override init() {}
 
     // MARK: Elements
     
@@ -35,10 +35,6 @@ class CoursesListPage {
     private let emptyStateDescriptionLabel = e.selectBy(id: "mt-fav-courses.descr-lbl")
     private let emptyStateAddCourseButton = e.selectBy(id: "mt-fav-courses.add-courses-btn")
     private let favoriteCoursesView = e.selectBy(id: "fav-courses.view")
-    private let coursesTabButton = e.selectBy(id: "tab-bar.courses-btn")
-    private let inboxTabButton = e.selectBy(id: "tab-bar.inbox-btn")
-    private let profileTabButton = e.selectBy(id: "tab-bar.profile-btn")
-    private let stagingTabButton = e.selectBy(id: "tab-bar.staging-btn")
 
     // MARK: - Helpers
 
@@ -54,11 +50,8 @@ class CoursesListPage {
     
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
+        assertUITabBar()
         favoriteCoursesView.assertExists()
-        coursesTabButton.assertExists()
-        inboxTabButton.assertExists()
-        profileTabButton.assertExists()
-        stagingTabButton.assertExists()
     }
     
     func assertEmptyStatePageObjects(_ file: StaticString = #file, _ line: UInt = #line) {

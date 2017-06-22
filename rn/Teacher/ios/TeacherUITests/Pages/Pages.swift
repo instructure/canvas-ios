@@ -26,4 +26,5 @@ extension XCTestCase {
     var editCoursesListPage: EditCoursesListPage { return EditCoursesListPage.sharedInstance }
     var courseBrowserPage: CourseBrowserPage { return CourseBrowserPage.sharedInstance }
     var courseSettingsPage: CourseSettingsPage { return CourseSettingsPage.sharedInstance }
+    var inboxPage: InboxPage { return InboxPage.sharedInstance }
 }
