@@ -130,6 +130,7 @@ export class SubmissionList extends Component {
     return (
       <Screen
         title={i18n('Submissions')}
+        subtitle={this.props.courseName}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         rightBarButtons={[{

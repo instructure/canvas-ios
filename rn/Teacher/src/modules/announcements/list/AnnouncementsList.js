@@ -31,7 +31,9 @@ export class AnnouncementsList extends Component<any, Props, any> {
   render () {
     return (
       <Screen
+        navBarStyle='dark'
         title={i18n('Announcements')}
+        subtitle={this.props.courseName}
         rightBarButtons={[
           {
             image: Images.add,
@@ -90,6 +92,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   let announcements = []
   let pending = 0
   let error = null
+  let courseName = ''
   if (entities &&
     entities.courses &&
     entities.courses[courseID] &&
@@ -99,11 +102,15 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
     const refs = course.announcements.refs
     pending = course.announcements.pending
     error = course.announcements.error
+    if (course.course) {
+      courseName = course.course.name
+    }
     announcements = refs
       .map(ref => entities.discussions[ref].data)
   }
   return {
     announcements,
+    courseName,
     pending,
     error,
   }

@@ -42,11 +42,17 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     courseColor = courseContent.color
   }
 
+  let courseName = ''
+  if (courseContent && courseContent.course) {
+    courseName = courseContent.course.name
+  }
+
   let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn
   let muted = !!assignmentContent && assignmentContent.data.muted
 
   return {
     courseColor,
+    courseName,
     shouldRefresh,
     pointsPossible,
     pending: submissions.pending,

@@ -2,6 +2,7 @@
 
 exports[`AnnouncementsList renders 1`] = `
 <Screen
+  navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
@@ -11,6 +12,7 @@ exports[`AnnouncementsList renders 1`] = `
       },
     ]
   }
+  subtitle={undefined}
   title="Announcements"
 >
   <View

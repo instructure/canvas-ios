@@ -97,6 +97,9 @@ describe('mapStateToProps', () => {
               error: null,
               refs: ['1', '3'],
             },
+            course: {
+              name: 'CS 1010',
+            },
           },
         },
         discussions: {
@@ -118,6 +121,7 @@ describe('mapStateToProps', () => {
     ).toEqual({
       announcements: [one, three],
       pending: 1,
+      courseName: 'CS 1010',
       error: null,
     })
   })
@@ -130,7 +134,47 @@ describe('mapStateToProps', () => {
       mapStateToProps(state, { courseID: '1' })
     ).toEqual({
       announcements: [],
+      courseName: '',
       pending: 0,
+      error: null,
+    })
+  })
+
+  it('maps without course', () => {
+    const one = template.discussion({ id: '1' })
+    const two = template.discussion({ id: '2' })
+    const three = template.discussion({ id: '3' })
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            announcements: {
+              pending: 1,
+              error: null,
+              refs: ['1', '3'],
+            },
+          },
+        },
+        discussions: {
+          '1': {
+            data: one,
+          },
+          '2': {
+            data: two,
+          },
+          '3': {
+            data: three,
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1' })
+    ).toEqual({
+      announcements: [one, three],
+      pending: 1,
+      courseName: '',
       error: null,
     })
   })

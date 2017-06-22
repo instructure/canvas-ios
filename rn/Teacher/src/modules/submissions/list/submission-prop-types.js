@@ -34,6 +34,7 @@ export type SubmissionListDataProps
   = AsyncSubmissionsDataProps
   & {
   courseColor: string,
+  courseName: string,
   pointsPossible?: string,
   shouldRefresh: boolean,
   anonymous: boolean,

@@ -46,6 +46,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
         title={i18n('Assignment Details')}
+        subtitle={this.props.courseName}
         rightBarButtons={[
           {
             title: i18n('Edit'),

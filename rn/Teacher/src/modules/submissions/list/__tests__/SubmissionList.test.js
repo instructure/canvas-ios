@@ -30,6 +30,7 @@ const props = {
   courseID: '12',
   assignmentID: '32',
   courseColor: '#ddd',
+  courseName: 'fancy name',
   refreshSubmissions: jest.fn(),
   refreshEnrollments: jest.fn(),
   shouldRefresh: false,

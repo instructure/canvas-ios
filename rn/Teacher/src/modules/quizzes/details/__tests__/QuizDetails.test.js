@@ -275,6 +275,13 @@ describe('mapStateToProps', () => {
             error: null,
           },
         },
+        courses: {
+          '1': {
+            course: {
+              name: 'CS1010',
+            },
+          },
+        },
       },
     })
 
@@ -285,6 +292,7 @@ describe('mapStateToProps', () => {
       pending: 1,
       error: null,
       courseID: '1',
+      courseName: 'CS1010',
       quizID: '1',
       assignmentGroup: null,
       assignment: null,

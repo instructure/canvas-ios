@@ -64,6 +64,8 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
   let pointsPossible = 0
   let anonymous = false
   let muted = false
+  let courseColor = '#FFFFFF'
+  let courseName = ''
 
   if (quiz) {
     pending = Boolean(quiz.pending)
@@ -93,11 +95,20 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     })
     .filter((r) => r)
     .filter((r) => r.type === 'StudentEnrollment')
+
+    if (course.color) {
+      courseColor = course.color
+    }
+    if (course.course) {
+      courseName = course.course.name
+    }
   }
 
   const rows = buildRows(enrollments, quizSubmissions, submissions)
 
   return {
+    courseColor,
+    courseName,
     rows: anonymous ? shuffle(rows, quiz.data.assignment_id) : rows,
     quiz,
     pending,

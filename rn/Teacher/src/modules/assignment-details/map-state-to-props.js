@@ -14,6 +14,7 @@ export type AssignmentDetailsProps = {
   navigator: Navigator,
   courseID: string,
   courseColor?: string,
+  courseName?: string,
   assignmentID: string,
   error?: any,
   pending?: number,
@@ -25,10 +26,16 @@ export type AssignmentDetailsProps = {
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
   const assignment = state.entities.assignments[ownProps.assignmentID].data
   const course = state.entities.courses[ownProps.courseID]
+  let courseName = ''
+
+  if (course.course) {
+    courseName = course.course.name
+  }
 
   return {
     assignmentDetails: assignment,
     courseColor: course.color,
+    courseName,
     pending: state.entities.courses[ownProps.courseID].assignmentGroups.pending,
   }
 }

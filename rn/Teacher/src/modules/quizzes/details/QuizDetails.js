@@ -135,7 +135,9 @@ export class QuizDetails extends Component<any, Props, any> {
 
     return (
       <Screen
+        navBarStyle='dark'
         title={i18n('Quiz Details')}
+        subtitle={this.props.courseName}
         rightBarButtons={[
           {
             title: i18n('Edit'),
@@ -281,6 +283,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
   let error = null
   let assignmentGroup = null
   let assignment = null
+  let courseName = ''
 
   if (entities.quizzes &&
     entities.quizzes[quizID] &&
@@ -289,6 +292,13 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     quiz = state.data
     pending = state.pending
     error = state.error
+
+    if (entities &&
+      entities.courses &&
+      entities.courses[courseID] &&
+      entities.courses[courseID].course) {
+      courseName = entities.courses[courseID].course.name
+    }
 
     if (quiz.assignment_group_id &&
       entities.assignmentGroups &&
@@ -308,6 +318,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     pending,
     error,
     courseID,
+    courseName,
     quizID,
     assignmentGroup,
     assignment,

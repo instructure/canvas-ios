@@ -111,7 +111,7 @@ function createHappyPathTestState () {
   }
 
   const courses = {
-    '100': { enrollments: enrRefs, color: '#000' },
+    '100': { enrollments: enrRefs, color: '#000', course: { name: 'fancy name' } },
   }
 
   const subRefs = { pending: 0, refs: ['20', '30', '40'] }
@@ -142,6 +142,7 @@ test('submissions', () => {
   let state = createHappyPathTestState()
   expect(mapStateToProps(state, { courseID: '100', assignmentID: '1000' })).toMatchObject({
     courseColor: '#000',
+    courseName: 'fancy name',
     pending: false,
     submissions: submissionProps,
     pointsPossible: 5,
@@ -162,6 +163,7 @@ test('submissions with missing data', () => {
 
   expect(mapStateToProps(state, { courseID: '100', assignmentID: '1000' })).toMatchObject({
     courseColor: '#FFFFFF',
+    courseName: '',
     pending: true,
   })
 })

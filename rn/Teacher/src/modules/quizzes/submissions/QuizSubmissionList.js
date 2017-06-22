@@ -134,6 +134,10 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
 
     return (
       <Screen
+        title={i18n('Submissions')}
+        subtitle={this.props.courseName}
+        navBarColor={this.props.courseColor}
+        navBarStyle='dark'
         rightBarButtons={rightBarButtons}
       >
         <View style={styles.container}>

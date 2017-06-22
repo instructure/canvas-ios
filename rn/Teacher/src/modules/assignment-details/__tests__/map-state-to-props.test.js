@@ -48,6 +48,49 @@ test('map state to props assignment', async () => {
   const result = mapStateToProps(state, props)
   expect(result).toMatchObject({
     assignmentDetails: assignment,
+    courseName: course.name,
+  })
+})
+
+test('map state to props without course', async () => {
+  let course = template.course()
+  let assignmentGroup = template.assignmentGroup()
+  let assignment = template.assignment()
+
+  let state = template.appState({
+    entities: {
+      courses: {
+        [course.id]: {
+          assignmentGroups: { refs: [assignmentGroup.id] },
+        },
+      },
+      assignmentGroups: {
+        [assignmentGroup.id]: assignmentGroup,
+      },
+      assignments: {
+        [assignment.id]: { data: assignment, pending: 0 },
+      },
+      gradingPeriods: {},
+    },
+  })
+
+  let props: AssignmentDetailsProps = {
+    courseID: course.id,
+    assignmentID: assignment.id,
+    refreshAssignmentDetails: jest.fn(),
+    navigator: template.navigator(),
+    assignmentDetails: assignment,
+    refresh: jest.fn(),
+    refreshing: false,
+    updateAssignment: jest.fn(),
+    refreshAssignment: jest.fn(),
+    cancelAssignmentUpdate: jest.fn(),
+  }
+
+  const result = mapStateToProps(state, props)
+  expect(result).toMatchObject({
+    assignmentDetails: assignment,
+    courseName: '',
   })
 })
 
