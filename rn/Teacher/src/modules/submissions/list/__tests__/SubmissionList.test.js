@@ -248,6 +248,7 @@ test('shows message compose with correct data', () => {
       subject: subject,
       course: expandedProps.course,
       canAddRecipients: false,
+      onlySendIndividualMessages: true,
     })
   }
   expect(navigator.show).toHaveBeenCalledW

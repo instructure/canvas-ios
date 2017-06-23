@@ -36,6 +36,7 @@ type ComposeProps = {
   subject?: string,
   course?: Course,
   canAddRecipients: boolean,
+  onlySendIndividualMessages: boolean,
 }
 
 type ComposeState = {
@@ -55,6 +56,7 @@ export class Compose extends PureComponent {
 
   static defaultProps = {
     canAddRecipients: true,
+    onlySendIndividualMessages: false,
   }
 
   constructor (props: ComposeProps) {
@@ -62,7 +64,7 @@ export class Compose extends PureComponent {
 
     this.state = {
       sendDisabled: true,
-      sendToAll: false,
+      sendToAll: props.onlySendIndividualMessages,
       recipients: props.recipients || [],
       course: props.course || null,
       body: null,
@@ -233,13 +235,15 @@ export class Compose extends PureComponent {
                 onChangeText={this._subjectChanged}
               />
             </View>
-            <RowWithSwitch
-              border='bottom'
-              title={i18n('Send individual message to each recipient')}
-              onValueChange={this.toggleSendAll}
-              value={this.state.sendToAll}
-              identifier='compose-message.send-all-toggle'
-            />
+            { !this.props.onlySendIndividualMessages &&
+              <RowWithSwitch
+                border='bottom'
+                title={i18n('Send individual message to each recipient')}
+                onValueChange={this.toggleSendAll}
+                value={this.state.sendToAll}
+                identifier='compose-message.send-all-toggle'
+              />
+            }
             <ScrollViewDisabler style={[styles.wrapper, styles.messageWrapper]}>
               <AutoGrowingTextInput
                 placeholder={i18n('Compose message')}

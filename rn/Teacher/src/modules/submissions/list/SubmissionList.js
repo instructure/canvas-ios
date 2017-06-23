@@ -163,6 +163,7 @@ export class SubmissionList extends Component {
       subject: subject,
       course: this.props.course,
       canAddRecipients: false,
+      onlySendIndividualMessages: true,
     })
   }
 
