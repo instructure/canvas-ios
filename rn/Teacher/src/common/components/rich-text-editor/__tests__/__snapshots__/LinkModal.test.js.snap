@@ -128,7 +128,6 @@ exports[`LinkModal renders 1`] = `
         >
           <Button
             onPress={[Function]}
-            style={undefined}
             testID="rich-text-editor.link-modal.cancelButton"
             title="Cancel"
           />
@@ -154,7 +153,6 @@ exports[`LinkModal renders 1`] = `
         >
           <Button
             onPress={[Function]}
-            style={undefined}
             testID="rich-text-editor.link-modal.okButton"
             title="OK"
           />

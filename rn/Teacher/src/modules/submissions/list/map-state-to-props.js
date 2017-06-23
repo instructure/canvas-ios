@@ -5,38 +5,40 @@ import type {
 } from './submission-prop-types'
 import { getSubmissionsProps } from './get-submissions-props'
 import shuffle from 'knuth-shuffle-seeded'
+import {
+  getGroupSubmissionProps,
+} from '../../groups/submissions/get-group-submission-props'
 
 type RoutingProps = {
   courseID: string,
   assignmentID: string,
 }
 
-function getEnrollments (courseContent?: CourseContentState, enrollments: EnrollmentsState): Array<Enrollment> {
-  if (!courseContent) { return [] }
-  return courseContent.enrollments.refs
-    .map(ref => enrollments[ref])
-}
-
 export function mapStateToProps ({ entities }: AppState, { courseID, assignmentID }: RoutingProps): SubmissionListDataProps {
-  // enrollments
-  const courseContent = entities.courses[courseID]
-  const enrollments = getEnrollments(courseContent, entities.enrollments)
-
   // submissions
   const assignmentContent = entities.assignments[assignmentID]
-  let submissionCount = 0
-  if (assignmentContent && assignmentContent.submissions && assignmentContent.submissions.refs) {
-    submissionCount = assignmentContent.submissions.refs.length
-  }
-
   let pointsPossible
+  let groupAssignment = null
   if (assignmentContent && assignmentContent.data) {
+    const a = assignmentContent.data
+    if (a.group_category_id) {
+      groupAssignment = {
+        groupCategoryID: a.group_category_id,
+        gradeIndividually: a.grade_group_students_individually,
+      }
+    }
     pointsPossible = assignmentContent.data.points_possible
   }
 
-  const submissions = getSubmissionsProps(entities, courseID, assignmentID)
-  const shouldRefresh = enrollments.length === 0 || submissionCount === 0
+  let submissions
+  if (groupAssignment != null && !groupAssignment.gradeIndividually) {
+    submissions = getGroupSubmissionProps(entities, courseID, assignmentID)
+  } else {
+    submissions = getSubmissionsProps(entities, courseID, assignmentID)
+  }
+  const shouldRefresh = submissions.submissions.length === 0
 
+  const courseContent = entities.courses[courseID]
   let courseColor = '#FFFFFF'
   if (courseContent && courseContent.color) {
     courseColor = courseContent.color
@@ -51,6 +53,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
   let muted = !!assignmentContent && assignmentContent.data.muted
 
   return {
+    groupAssignment,
     courseColor,
     courseName,
     shouldRefresh,

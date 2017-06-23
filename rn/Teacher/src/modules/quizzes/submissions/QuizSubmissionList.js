@@ -110,7 +110,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
     return <SubmissionRow {...item} onPress={this.navigateToSubmission} disclosure={disclosure} anonymous={this.props.anonymous} />
   }
 
-  keyExtractor = (item: any) => {
+  keyExtractor = (item: SubmissionRowDataProps) => {
     return item.userID
   }
 

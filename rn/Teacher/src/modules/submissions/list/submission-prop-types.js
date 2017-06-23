@@ -12,7 +12,8 @@ export type GradeProp = 'not_submitted' | 'ungraded' | 'excused' | string
 
 export type SubmissionDataProps = {
   userID: string,
-  avatarURL: string,
+  groupID?: string,
+  avatarURL?: string,
   name: string,
   status: SubmissionStatusProp,
   grade: ?GradeProp,
@@ -33,16 +34,21 @@ export type AsyncSubmissionsDataProps = {
 export type SubmissionListDataProps
   = AsyncSubmissionsDataProps
   & {
-  courseColor: string,
-  courseName: string,
-  pointsPossible?: string,
-  shouldRefresh: boolean,
-  anonymous: boolean,
-  muted: boolean,
-}
+    groupAssignment: ?{ groupCategoryID: string, gradeIndividually: boolean },
+    courseColor: string,
+    courseName: string,
+    pointsPossible?: string,
+    shouldRefresh: boolean,
+    anonymous: boolean,
+    muted: boolean,
+  }
 
 export type SubmissionListActionProps = {
-  refreshSubmissions: (courseID: string, assignmentID: string) => void,
+  refreshSubmissions: (courseID: string, assignmentID: string, grouped: boolean) => void,
+}
+
+export type GroupSubmissionListActionProps = {
+  refreshGroupsForCourse: (courseID: string) => void,
 }
 
 export type SubmissionListNavigationParameters = {
@@ -55,4 +61,5 @@ export type SubmissionListProps
   = SubmissionListDataProps
   & SubmissionListActionProps
   & EnrollmentsActionProps
+  & GroupSubmissionListActionProps
   & SubmissionListNavigationParameters

@@ -19,14 +19,15 @@ import SubmissionStatus from './SubmissionStatus'
 import Avatar from '../../../common/components/Avatar'
 
 type RowProps = {
-  +testID: string,
-  +onPress: () => void,
-  +children?: Array<any>,
-  +disclosure?: boolean,
+  testID: string,
+  onPress: () => void,
+  children?: Array<any>,
+  disclosure?: boolean,
 }
 
 export type SubmissionRowDataProps = {
   userID: string,
+  groupID?: string,
   avatarURL: string,
   name: string,
   status: SubmissionStatusProp,
@@ -85,7 +86,7 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
       disclosure = true
     }
     if (this.props.anonymous) {
-      name = i18n('Student')
+      name = (this.props.groupID ? i18n('Group') : i18n('Student'))
       avatarURL = null
     }
     return (

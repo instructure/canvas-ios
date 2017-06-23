@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { getSession } from '../../../api/session'
 import CommentRow, { type CommentRowProps, type CommentContent } from './CommentRow'
-import CommentInput from './CommentInput'
+import CommentInput, { type Comment } from './CommentInput'
 import DrawerState from '../utils/drawer-state'
 import SubmissionCommentActions, { type CommentActions } from './actions'
 import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
@@ -30,7 +30,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
     this.state = { shouldShowStatus: this.props.commentRows.some(c => c.pending) }
   }
 
-  makeAComment = (comment: SubmissionCommentParams) => {
+  makeAComment = (comment: Comment) => {
     const {
       courseID,
       assignmentID,
@@ -41,7 +41,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
       courseID,
       assignmentID,
       userID,
-      comment,
+      { ...comment, groupComment: !this.props.gradeIndividually },
     )
   }
 
@@ -107,6 +107,7 @@ type RoutingProps = {
   assignmentID: string,
   userID: string,
   submissionID: ?string,
+  gradeIndividually: boolean,
   drawerState: DrawerState,
 }
 

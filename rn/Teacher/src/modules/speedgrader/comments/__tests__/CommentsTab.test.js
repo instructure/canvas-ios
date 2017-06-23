@@ -86,6 +86,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
     userID: '55',
     submissionID: undefined,
     drawerState: new DrawerState(),
+    gradeIndividually: true,
   }
 
   let state = templates.appState()
@@ -97,6 +98,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
       submissions: { refs: [], pending: 0 },
       gradeableStudents: { refs: [], pending: 0 },
       pending: 0,
+      groups: { refs: [], pending: 0 },
     },
   }
 
@@ -163,6 +165,7 @@ test('mapStateToProps returns comment and submission rows', () => {
       submissions: { refs: [], pending: 0 },
       gradeableStudents: { refs: [], pending: 0 },
       pending: 0,
+      groups: { refs: [], pending: 0 },
     },
   }
 
@@ -172,6 +175,7 @@ test('mapStateToProps returns comment and submission rows', () => {
     userID: student.id,
     submissionID: submission.id,
     drawerState: new DrawerState(),
+    gradeIndividually: true,
   }
 
   const session = templates.session()

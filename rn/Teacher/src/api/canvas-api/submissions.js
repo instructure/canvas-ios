@@ -3,15 +3,19 @@
 import { paginate, exhaust } from '../utils/pagination'
 import httpClient from './httpClient'
 
-export function getSubmissions (courseID: string, assignmentID: string): Promise<ApiResponse<Array<SubmissionWithHistory>>> {
+export function getSubmissions (courseID: string, assignmentID: string, grouped: boolean = false): Promise<ApiResponse<Array<SubmissionWithHistory>>> {
   const submissions = paginate(`courses/${courseID}/assignments/${assignmentID}/submissions`, {
-    params: { include: [
-      'submission_history',
-      'submission_comments',
-      'rubric_assessment',
-      'total_scores',
-      'user',
-    ] },
+    params: {
+      include: [
+        'submission_history',
+        'submission_comments',
+        'rubric_assessment',
+        'total_scores',
+        'user',
+        'group',
+      ],
+      grouped,
+    },
   })
 
   return exhaust(submissions)
@@ -40,6 +44,10 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
     case 'text':
       data.comment.text_comment = comment.message
       break
+  }
+
+  if (comment.groupComment) {
+    data.comment.group_comment = true
   }
 
   return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)

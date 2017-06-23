@@ -58,7 +58,7 @@ export class FilesTab extends Component {
     return <Image source={src} style={styles.icons} />
   }
 
-  keyExtractor = (item: Object, index: number) => index
+  keyExtractor = (item: Object, index: number) => `${index}`
 
   renderRow = ({ item, index }: { item: Object, index: number }) => {
     let selected = this.props.selectedAttachmentIndex === index

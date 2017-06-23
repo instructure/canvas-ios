@@ -1,12 +1,10 @@
-/* @flow */
+// @flow
 
 import { paginate, exhaust } from '../utils/pagination'
 
-export function getUserGroups (): Promise<ApiResponse<Group[]>> {
-  const groups = paginate('users/self/groups', {
-    params: {
-      include: ['tabs'],
-    },
+export function getGroupsForCourse (courseID: string): Promise<ApiResponse<Array<Group>>> {
+  const groups = paginate(`courses/${courseID}/groups`, {
+    params: { include: ['users'] },
   })
   return exhaust(groups)
 }

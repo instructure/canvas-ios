@@ -18,7 +18,7 @@ test('should refresh submissions', async () => {
     getSubmissions: apiResponse(submissions),
   })
 
-  let result = await testAsyncAction(actions.refreshSubmissions('1', '4'))
+  let result = await testAsyncAction(actions.refreshSubmissions('1', '4', false))
 
   expect(result).toMatchObject([
     {

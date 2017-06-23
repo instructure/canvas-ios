@@ -33,11 +33,13 @@ const props = {
   courseName: 'fancy name',
   refreshSubmissions: jest.fn(),
   refreshEnrollments: jest.fn(),
+  refreshGroupsForCourse: jest.fn(),
   shouldRefresh: false,
   refreshing: false,
   refresh: jest.fn(),
   anonymous: false,
   muted: false,
+  groupAssignment: null,
 }
 
 beforeEach(() => jest.resetAllMocks())
@@ -225,6 +227,16 @@ test('should prevent going to speed grader when offline', () => {
 
 test('refreshSubmissionList', () => {
   refreshSubmissionList(props)
-  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID)
+  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, false)
   expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
+})
+
+test('refreshSubmissionList (group submissions)', () => {
+  refreshSubmissionList({
+    ...props,
+    groupAssignment: { groupCategoryID: '2', gradeIndividually: false },
+  })
+  expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID,
+  true)
+  expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
 })

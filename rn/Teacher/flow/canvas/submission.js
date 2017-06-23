@@ -23,6 +23,7 @@ export type SubmissionType
 export type Submission = {
   id: string,
   user: User,
+  group?: Group,
   user_id: string,
   grade?: ?string,
   score?: ?number,
@@ -78,4 +79,4 @@ export type SubmissionComment = {
 }
 
 export type SubmissionCommentParams
-  = { type: 'text', message: string }
+  = { type: 'text', message: string, groupComment: boolean }

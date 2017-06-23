@@ -12,7 +12,7 @@ import i18n from 'format-message'
 const { refreshSubmissions } = Actions
 const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 
-type Response = { +result: { +data: Array<SubmissionWithHistory> } }
+type Response = { result: { data: Array<SubmissionWithHistory> } }
 
 function submissionRefsForResponse ({ result }: Response): EntityRefs {
   return result.data.map(submission => submission.id)

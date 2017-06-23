@@ -10,6 +10,7 @@ const emptyAppState: AppState = {
   },
   entities: {
     courses: {},
+    groups: {},
     assignmentGroups: {},
     gradingPeriods: {},
     enrollments: {},
@@ -22,7 +23,6 @@ const emptyAppState: AppState = {
     discussions: {},
     announcements: {},
     courseDetailsTabSelectedRow: { rowID: '' },
-    groups: {},
   },
   inbox: {
     selectedScope: 'all',

@@ -14,8 +14,11 @@ import colors from '../../../common/colors'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import DrawerState from '../utils/drawer-state'
 
+export type Comment
+  = { type: 'text', message: string }
+
 type CommentInputProps = {
-  makeComment(comment: SubmissionCommentParams): void,
+  makeComment(comment: Comment): void,
   drawerState: DrawerState,
   allowMediaComments: boolean,
   initialValue: ?string,

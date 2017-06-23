@@ -59,9 +59,8 @@ export function gradeProp (submission: ?Submission): GradeProp {
 }
 
 function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDate: ?string): SubmissionDataProps {
-  const userID = user.id
+  const { id, name } = user
   const avatarURL = user.avatar_url
-  const name = user.name
   const status = statusProp(submission, dueDate)
   const grade = gradeProp(submission)
   const score = submission ? submission.score : null
@@ -69,7 +68,7 @@ function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDat
   if (submission) {
     submissionID = submission.id
   }
-  return { userID, avatarURL, name, status, grade, submissionID, submission, score }
+  return { userID: id, avatarURL, name, status, grade, submissionID, submission, score }
 }
 
 function dueDate (state: ?AssignmentDetailState): ?string {

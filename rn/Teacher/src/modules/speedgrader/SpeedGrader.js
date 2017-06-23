@@ -13,8 +13,12 @@ import { connect } from 'react-redux'
 import SubmissionActions from '../submissions/list/actions'
 import EnrollmentActions from '../enrollments/actions'
 import AssignmentActions from '../assignments/actions'
+import GroupActions from '../groups/actions'
 import SubmissionGrader from './SubmissionGrader'
 import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
+import {
+  getGroupSubmissionProps,
+} from '../groups/submissions/get-group-submission-props'
 import type {
   AsyncSubmissionsDataProps,
   SubmissionDataProps,
@@ -182,7 +186,27 @@ const styles = StyleSheet.create({
 })
 
 export function mapStateToProps (state: AppState, ownProps: RoutingProps): SpeedGraderDataProps {
-  const unfilteredProps = getSubmissionsProps(state.entities, ownProps.courseID, ownProps.assignmentID)
+  const entities = state.entities
+  const { courseID, assignmentID } = ownProps
+
+  const assignmentContent = entities.assignments[assignmentID]
+  let groupAssignment = null
+  if (assignmentContent && assignmentContent.data) {
+    const a = assignmentContent.data
+    if (a.group_category_id) {
+      groupAssignment = {
+        groupCategoryID: a.group_category_id,
+        gradeIndividually: a.grade_group_students_individually,
+      }
+    }
+  }
+
+  let unfilteredProps
+  if (groupAssignment && !groupAssignment.gradeIndividually) {
+    unfilteredProps = getGroupSubmissionProps(entities, courseID, assignmentID)
+  } else {
+    unfilteredProps = getSubmissionsProps(entities, courseID, assignmentID)
+  }
 
   const { selectedFilter } = ownProps
 
@@ -192,13 +216,10 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 
   let anonymous = state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
 
-  const props = {
+  return {
     ...unfilteredProps,
     submissions: anonymous ? shuffle(submissions.slice(), ownProps.assignmentID) : submissions,
-  }
-
-  return {
-    ...props,
+    groupAssignment,
     submissionEntities: state.entities.submissions,
     assignmentSubmissionTypes: state.entities.assignments[ownProps.assignmentID].data.submission_types,
     isModeratedGrading: !!state.entities.assignments[ownProps.assignmentID].data.moderated_grading,
@@ -208,9 +229,14 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 }
 
 export function refreshSpeedGrader (props: SpeedGraderProps): void {
-  props.refreshSubmissions(props.courseID, props.assignmentID)
-  props.refreshEnrollments(props.courseID)
   props.refreshAssignment(props.courseID, props.assignmentID)
+  if (props.groupAssignment && !props.groupAssignment.gradeIndividually) {
+    props.refreshGroupsForCourse(props.courseID)
+    props.refreshSubmissions(props.courseID, props.assignmentID, true)
+  } else {
+    props.refreshSubmissions(props.courseID, props.assignmentID, false)
+    props.refreshEnrollments(props.courseID)
+  }
 }
 
 export function shouldRefresh (props: SpeedGraderProps): boolean {
@@ -226,7 +252,12 @@ const Refreshed = refresh(
   shouldRefresh,
   isRefreshing
 )(SpeedGrader)
-const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions, ...AssignmentActions })(Refreshed)
+const Connected = connect(mapStateToProps, {
+  ...SubmissionActions,
+  ...EnrollmentActions,
+  ...AssignmentActions,
+  ...GroupActions,
+})(Refreshed)
 
 export default (Connected: any)
 
@@ -244,9 +275,11 @@ type SpeedGraderActionProps = {
   refreshSubmissions: Function,
   refreshEnrollments: Function,
   refreshAssignment: Function,
+  refreshGroupsForCourse: Function,
 }
 type SpeedGraderDataProps = {
   submissionEntities: SubmissionsState,
+  groupAssignment: ?{ groupCategoryID: string, gradeIndividually: boolean },
   assignmentSubmissionTypes: Array<SubmissionType>,
   isModeratedGrading: boolean,
   hasRubric: boolean,

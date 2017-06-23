@@ -15,8 +15,8 @@ type Props = {
   visible: boolean,
   title?: ?string,
   url?: ?string,
-  linkUpdated: () => void,
-  linkCreated: () => void,
+  linkUpdated: (url: string, title: string) => void,
+  linkCreated: (url: string, title: string) => void,
   onCancel: () => void,
 }
 
@@ -70,7 +70,6 @@ export default class LinkModal extends Component<any, Props, any> {
               <View style={styles.actionContainer}>
                 <Button
                   title='Cancel'
-                  style={styles.action}
                   testID='rich-text-editor.link-modal.cancelButton'
                   onPress={this._onPressCancel}
                 />
@@ -79,7 +78,6 @@ export default class LinkModal extends Component<any, Props, any> {
               <View style={styles.actionContainer}>
                 <Button
                   title='OK'
-                  style={styles.action}
                   testID='rich-text-editor.link-modal.okButton'
                   onPress={this._onPressOK}
                 />

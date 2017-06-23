@@ -15,7 +15,7 @@ test('should refresh submissions', async () => {
     commentOnSubmission: apiResponse(submission),
   })
 
-  const comment = { type: 'text', message: 'Hello!' }
+  const comment = { type: 'text', message: 'Hello!', groupComment: false }
   const result = await testAsyncAction(
     actions.makeAComment('1', '10', '100', comment)
   )

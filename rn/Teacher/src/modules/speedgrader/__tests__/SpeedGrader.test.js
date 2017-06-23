@@ -104,6 +104,7 @@ describe('refresh functions', () => {
     refreshSubmissions: jest.fn(),
     refreshEnrollments: jest.fn(),
     refreshAssignment: jest.fn(),
+    refreshGroupsForCourse: jest.fn(),
     resetDrawer: jest.fn(),
     assignmentSubmissionTypes: ['none'],
     submissions: [],
@@ -115,11 +116,21 @@ describe('refresh functions', () => {
     isModeratedGrading: false,
     hasAssignment: true,
     hasRubric: false,
+    groupAssignment: null,
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)
-    expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID)
+    expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, false)
     expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
+    expect(props.refreshAssignment).toHaveBeenCalledWith(props.courseID, props.assignmentID)
+  })
+  it('refreshSubmissions on group assignments', () => {
+    refreshSpeedGrader({
+      ...props,
+      groupAssignment: { groupCategoryID: '334', gradeIndividually: false },
+    })
+    expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, true)
+    expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
     expect(props.refreshAssignment).toHaveBeenCalledWith(props.courseID, props.assignmentID)
   })
   it('isRefreshing', () => {
@@ -172,6 +183,7 @@ test('mapStateToProps filters', () => {
     hasRubric: false,
     hasAssignment: true,
     isModeratedGrading: false,
+    groupAssignment: null,
   })
 })
 

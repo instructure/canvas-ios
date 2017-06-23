@@ -132,7 +132,9 @@ export default class SubmissionViewer extends Component {
     }
 
     let text = this.unviewableSubmissionText(this.props.assignmentSubmissionTypes)
-    text = text || i18n('This student does not have a submission for this assignment.')
+    text = text || (this.props.submissionProps.groupID
+      ? i18n('This group does not have a submission for this assignment.')
+      : i18n('This student does not have a submission for this assignment.'))
     return <View style={styles.container}>
       {this.renderCenteredText(text)}
     </View>

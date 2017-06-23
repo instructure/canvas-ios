@@ -115,7 +115,9 @@ export class Header extends Component {
 
   render () {
     const sub = this.props.submissionProps
-    let name = this.props.anonymous ? i18n('Student') : sub.name
+    let name = this.props.anonymous
+      ? (sub.groupID ? i18n('Group') : i18n('Student'))
+      : sub.name
     return <Animated.View style={[styles.header, { height: this.state.easeAnimation }]}>
       <View style={styles.profileContainer}>
         <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={name} /></View>

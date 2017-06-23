@@ -20,6 +20,7 @@ import i18n from 'format-message'
 import SubmissionRow from './SubmissionRow'
 import SubmissionActions from './actions'
 import EnrollmentActions from '../../enrollments/actions'
+import GroupActions from '../../groups/actions'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
@@ -192,8 +193,13 @@ const styles = StyleSheet.create({
 })
 
 export function refreshSubmissionList (props: SubmissionListProps): void {
-  props.refreshSubmissions(props.courseID, props.assignmentID)
-  props.refreshEnrollments(props.courseID)
+  if (props.groupAssignment && !props.groupAssignment.gradeIndividually) {
+    props.refreshGroupsForCourse(props.courseID)
+    props.refreshSubmissions(props.courseID, props.assignmentID, true)
+  } else {
+    props.refreshSubmissions(props.courseID, props.assignmentID, false)
+    props.refreshEnrollments(props.courseID)
+  }
 }
 
 export function shouldRefresh (props: SubmissionListProps): boolean {
@@ -205,5 +211,9 @@ const Refreshed = refresh(
   shouldRefresh,
   props => props.pending
 )(SubmissionList)
-const Connected = connect(mapStateToProps, { ...SubmissionActions, ...EnrollmentActions })(Refreshed)
+const Connected = connect(mapStateToProps, {
+  ...SubmissionActions,
+  ...EnrollmentActions,
+  ...GroupActions,
+})(Refreshed)
 export default (Connected: Component<any, SubmissionListProps, any>)

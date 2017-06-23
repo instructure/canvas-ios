@@ -304,4 +304,21 @@ describe('SubmissionViewer', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  it('renders no group submission', () => {
+    let props = {
+      ...defaultSelections,
+      assignmentSubmissionTypes: ['online_text_entry'],
+      submissionProps: { ...defaultSub, groupID: '44' },
+      isCurrentStudent: true,
+      size: { width: 375, height: 667 },
+      isModeratedGrading: false,
+    }
+
+    let tree = renderer.create(
+      <SubmissionViewer {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
 })
