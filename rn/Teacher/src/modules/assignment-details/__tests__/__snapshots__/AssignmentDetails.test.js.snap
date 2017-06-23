@@ -821,7 +821,7 @@ exports[`renders 1`] = `
                   ]
                 }
               >
-                online text entry
+                Online Text Entry
               </Text>
               <Text
                 accessible={true}
@@ -846,7 +846,7 @@ exports[`renders 1`] = `
                   ]
                 }
               >
-                online url
+                Online URL
               </Text>
               <Text
                 accessible={true}
@@ -871,7 +871,7 @@ exports[`renders 1`] = `
                   ]
                 }
               >
-                media recording
+                Media Recording
               </Text>
               <Text
                 accessible={true}
@@ -896,7 +896,7 @@ exports[`renders 1`] = `
                   ]
                 }
               >
-                online upload
+                Online Upload
               </Text>
             </View>
           </View>
@@ -1921,7 +1921,7 @@ exports[`renders loading 1`] = `
                   ]
                 }
               >
-                online text entry
+                Online Text Entry
               </Text>
               <Text
                 accessible={true}
@@ -1946,7 +1946,7 @@ exports[`renders loading 1`] = `
                   ]
                 }
               >
-                online url
+                Online URL
               </Text>
               <Text
                 accessible={true}
@@ -1971,7 +1971,7 @@ exports[`renders loading 1`] = `
                   ]
                 }
               >
-                media recording
+                Media Recording
               </Text>
               <Text
                 accessible={true}
@@ -1996,7 +1996,7 @@ exports[`renders loading 1`] = `
                   ]
                 }
               >
-                online upload
+                Online Upload
               </Text>
             </View>
           </View>
@@ -3021,7 +3021,7 @@ exports[`renders without description 1`] = `
                   ]
                 }
               >
-                online text entry
+                Online Text Entry
               </Text>
               <Text
                 accessible={true}
@@ -3046,7 +3046,7 @@ exports[`renders without description 1`] = `
                   ]
                 }
               >
-                online url
+                Online URL
               </Text>
               <Text
                 accessible={true}
@@ -3071,7 +3071,7 @@ exports[`renders without description 1`] = `
                   ]
                 }
               >
-                media recording
+                Media Recording
               </Text>
               <Text
                 accessible={true}
@@ -3096,7 +3096,7 @@ exports[`renders without description 1`] = `
                   ]
                 }
               >
-                online upload
+                Online Upload
               </Text>
             </View>
           </View>

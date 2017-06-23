@@ -8,15 +8,15 @@ import { SUBMISSION_TYPES } from '../submissionTypes'
 test('test submission types', () => {
   expect(SUBMISSION_TYPES).toEqual(
     {
-      'discussion_topic': 'discussion topic',
-      'external_tool': 'external tool',
-      'media_recording': 'media recording',
-      'none': 'none',
-      'on_paper': 'on paper',
-      'online_quiz': 'online quiz',
-      'online_text_entry': 'online text entry',
-      'online_upload': 'online upload',
-      'online_url': 'online url',
+      'discussion_topic': 'Discussion Topic',
+      'external_tool': 'External Tool',
+      'media_recording': 'Media Recording',
+      'none': 'None',
+      'on_paper': 'On Paper',
+      'online_quiz': 'Online Quiz',
+      'online_text_entry': 'Online Text Entry',
+      'online_upload': 'Online Upload',
+      'online_url': 'Online URL',
     }
   )
 })
