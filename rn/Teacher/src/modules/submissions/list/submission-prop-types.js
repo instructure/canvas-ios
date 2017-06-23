@@ -41,6 +41,8 @@ export type SubmissionListDataProps
     shouldRefresh: boolean,
     anonymous: boolean,
     muted: boolean,
+    assignmentName: string,
+    course: ?Course,
   }
 
 export type SubmissionListActionProps = {

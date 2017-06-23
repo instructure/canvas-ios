@@ -121,6 +121,7 @@ function createHappyPathTestState () {
       data: t.assignment({
         points_possible: 5,
         muted: true,
+        name: "Trump's Tweets",
       }),
       anonymousGradingOn: false,
     },

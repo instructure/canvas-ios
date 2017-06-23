@@ -33,6 +33,9 @@ type ComposeProps = {
   navigator: Navigator,
   refreshInboxSent: Function,
   recipients?: AddressBookResult[],
+  subject?: string,
+  course?: Course,
+  canAddRecipients: boolean,
 }
 
 type ComposeState = {
@@ -50,6 +53,10 @@ export class Compose extends PureComponent {
   state: ComposeState
   scrollView: KeyboardAwareScrollView
 
+  static defaultProps = {
+    canAddRecipients: true,
+  }
+
   constructor (props: ComposeProps) {
     super(props)
 
@@ -57,9 +64,9 @@ export class Compose extends PureComponent {
       sendDisabled: true,
       sendToAll: false,
       recipients: props.recipients || [],
-      course: null,
+      course: props.course || null,
       body: null,
-      subject: null,
+      subject: props.subject || null,
       pending: false,
     }
   }
@@ -210,14 +217,17 @@ export class Compose extends PureComponent {
                     return (<AddressBookToken item={r} delete={this._deleteRecipient} />)
                   })}
                 </View>
-                <TouchableOpacity onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
-                  <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
-                </TouchableOpacity>
+                { this.props.canAddRecipients &&
+                  <TouchableOpacity onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
+                    <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
+                  </TouchableOpacity>
+                }
               </View>
             }
             <View style={styles.wrapper}>
               <TextInput
                 placeholder={i18n('Subject')}
+                value={this.state.subject}
                 style={styles.cell}
                 placeholderTextColor={colors.lightText}
                 onChangeText={this._subjectChanged}

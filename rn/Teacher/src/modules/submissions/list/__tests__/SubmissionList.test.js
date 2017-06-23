@@ -15,6 +15,7 @@ import cloneDeep from 'lodash/cloneDeep'
 const template = {
   ...require('../../../../__templates__/helm'),
   ...require('../__templates__/submission-props'),
+  ...require('../../../../api/canvas-api/__templates__/course'),
 }
 
 jest
@@ -39,6 +40,8 @@ const props = {
   refresh: jest.fn(),
   anonymous: false,
   muted: false,
+  assignmentName: 'Blah',
+  course: template.course(),
   groupAssignment: null,
 }
 
@@ -208,6 +211,97 @@ test('should navigate to a submission', () => {
     { modal: true },
     { selectedFilter: undefined }
   )
+})
+
+test('shows message compose with correct data', () => {
+  const expandedProps = cloneDeep(props)
+  expandedProps.submissions = expandedProps.submissions.concat([
+    template.submissionProps({
+      name: 'S5',
+      status: 'submitted',
+      grade: '60',
+      score: 60,
+      userID: '5',
+    }),
+    template.submissionProps({
+      name: 'S6',
+      status: 'submitted',
+      grade: '30',
+      score: 30,
+      userID: '6',
+    }),
+  ])
+  let navigator = template.navigator({
+    show: jest.fn(),
+  })
+  const tree = renderer.create(
+    <SubmissionList {...expandedProps} navigator={navigator} />
+  )
+  let instance = tree.getInstance()
+
+  let expectSubjectToBeCorrect = (subject: string) => {
+    instance.messageStudentsWho()
+    expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
+      recipients: instance.state.submissions.map((submission) => {
+        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
+      }),
+      subject: subject,
+      course: expandedProps.course,
+      canAddRecipients: false,
+    })
+  }
+  expect(navigator.show).toHaveBeenCalledW
+
+  it('handles all submissions', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[0],
+    })
+    expectSubjectToBeCorrect('All submissions - Blah')
+  })
+
+  it('handles late submissions', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[1],
+    })
+    expectSubjectToBeCorrect('Submitted late - Blah')
+  })
+
+  it('handles un-submissions', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[2],
+    })
+    expectSubjectToBeCorrect("Haven't submitted yet - Blah")
+  })
+
+  it('handles un-gradedness', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[3],
+    })
+    expectSubjectToBeCorrect("Haven't been graded - Blah")
+  })
+
+  it('handles graded', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[4],
+    })
+    expectSubjectToBeCorrect('Graded - Blah')
+  })
+
+  it('handles scored less than', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[5],
+      metadata: 50,
+    })
+    expectSubjectToBeCorrect('Scored less than 50 - Blah')
+  })
+
+  it('handles scored more than', () => {
+    instance.updateFilter({
+      filter: instance.filterOptions[6],
+      metadata: 50,
+    })
+    expectSubjectToBeCorrect('Scored more than 50 - Blah')
+  })
 })
 
 test('should prevent going to speed grader when offline', () => {

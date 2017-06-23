@@ -52,6 +52,15 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
   let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn
   let muted = !!assignmentContent && assignmentContent.data.muted
 
+  let assignmentName = ''
+  if (assignmentContent && assignmentContent.data) {
+    assignmentName = assignmentContent.data.name
+  }
+  let course = null
+  if (courseContent && courseContent.course) {
+    course = courseContent.course
+  }
+
   return {
     groupAssignment,
     courseColor,
@@ -62,5 +71,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     submissions: anonymous ? shuffle(submissions.submissions.slice(), assignmentID) : submissions.submissions,
     anonymous,
     muted,
+    assignmentName,
+    course,
   }
 }

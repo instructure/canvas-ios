@@ -127,6 +127,45 @@ export class SubmissionList extends Component {
     })
   }
 
+  messageStudentsWho = () => {
+    var subject = ''
+    if (this.selectedFilter) {
+      switch (this.selectedFilter.filter.type) {
+        case 'all':
+          subject = i18n('All submissions - {assignmentName}', { assignmentName: this.props.assignmentName })
+          break
+        case 'late':
+          subject = i18n('Submitted late - {assignmentName}', { assignmentName: this.props.assignmentName })
+          break
+        case 'notsubmitted':
+          subject = i18n("Haven't submitted yet - {assignmentName}", { assignmentName: this.props.assignmentName })
+          break
+        case 'notgraded':
+          subject = i18n("Haven't been graded - {assignmentName}", { assignmentName: this.props.assignmentName })
+          break
+        case 'graded':
+          subject = i18n('Graded - {assignmentName}', { assignmentName: this.props.assignmentName })
+          break
+        case 'lessthan':
+          subject = i18n('Scored less than {score} - {assignmentName}', { score: this.selectedFilter.metadata || '', assignmentName: this.props.assignmentName })
+          break
+        case 'morethan':
+          subject = i18n('Score more than {score} - {assignmentName}', { score: this.selectedFilter.metadata || '', assignmentName: this.props.assignmentName })
+          break
+        default:
+          break
+      }
+    }
+    this.props.navigator.show('/conversations/compose', { modal: true }, {
+      recipients: this.state.submissions.map((submission) => {
+        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
+      }),
+      subject: subject,
+      course: this.props.course,
+      canAddRecipients: false,
+    })
+  }
+
   render () {
     return (
       <Screen
@@ -134,12 +173,20 @@ export class SubmissionList extends Component {
         subtitle={this.props.courseName}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
-        rightBarButtons={[{
-          accessibilityLabel: i18n('Submission Settings'),
-          image: Images.course.settings,
-          testID: 'submission-list.settings',
-          action: this.openSettings,
-        }]}
+        rightBarButtons={[
+          {
+            accessibilityLabel: i18n('Message students who'),
+            image: Images.smallMail,
+            testID: 'submission-list.message-who-btn',
+            action: this.messageStudentsWho,
+          },
+          {
+            accessibilityLabel: i18n('Submission Settings'),
+            image: Images.course.settings,
+            testID: 'submission-list.settings',
+            action: this.openSettings,
+          },
+        ]}
       >
         <View style={styles.container}>
           <SubmissionsHeader
