@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import i18n from 'format-message'
 import Navigator from '../../routing/Navigator'
 import Screen from '../../routing/Screen'
+import WebContainer from '../../common/components/WebContainer'
 
 export class RubricDescription extends Component {
 
@@ -24,7 +25,7 @@ export class RubricDescription extends Component {
     return (
       <View style={styles.container}>
         <ScrollView bounces={false}>
-          <Text style={styles.text}>{this.props.description}</Text>
+          <WebContainer html={this.props.description} scrollEnabled={false}/>
         </ScrollView>
       </View>
     )
@@ -51,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 24,
     paddingHorizontal: 16,
-    paddingBottom: 16,
   },
   emptyState: {
     flex: 1,
@@ -65,11 +65,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     textAlign: 'center',
-  },
-  text: {
-    color: '#2D3B45',
-    fontSize: 16,
-    lineHeight: 19,
   },
 })
 

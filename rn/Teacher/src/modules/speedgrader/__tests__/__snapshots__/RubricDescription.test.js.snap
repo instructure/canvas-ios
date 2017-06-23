@@ -4,7 +4,6 @@ exports[`RubricDescription renders 1`] = `
 <View
   style={
     Object {
-      "paddingBottom": 16,
       "paddingHorizontal": 16,
       "paddingTop": 24,
     }
@@ -55,21 +54,10 @@ exports[`RubricDescription renders 1`] = `
         ]
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-            "lineHeight": 19,
-          }
-        }
-      >
-        A satisfactory description
-      </Text>
+      <View
+        onLayout={[Function]}
+        style={undefined}
+      />
     </RCTScrollContentView>
   </RCTScrollView>
 </View>
