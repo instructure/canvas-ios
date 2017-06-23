@@ -33,7 +33,8 @@ describe('function tests', () => {
       id: 'base',
       base: true,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }
 
     expect(AssignmentDatesEditor.assigneesFromDate(base)).toMatchObject([{
@@ -48,7 +49,8 @@ describe('function tests', () => {
       base: false,
       student_ids: ['34234'],
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }
 
     expect(AssignmentDatesEditor.assigneesFromDate(studentIds)).toMatchObject([{
@@ -63,7 +65,8 @@ describe('function tests', () => {
       base: false,
       course_section_id: '23432',
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }
 
     expect(AssignmentDatesEditor.assigneesFromDate(section)).toMatchObject([{
@@ -78,7 +81,8 @@ describe('function tests', () => {
       base: false,
       group_id: '23432',
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }
 
     expect(AssignmentDatesEditor.assigneesFromDate(group)).toMatchObject([{
@@ -99,7 +103,8 @@ describe('function tests', () => {
       id: 'base',
       base: true,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       due_at: date,
       lock_at: date,
       unlock_at: date,
@@ -117,7 +122,8 @@ describe('function tests', () => {
       id: '12345',
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       due_at: date,
       lock_at: date,
       unlock_at: date,
@@ -139,7 +145,8 @@ describe('function tests', () => {
       id: '12345',
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       due_at: date,
       lock_at: date,
       unlock_at: date,
@@ -161,7 +168,8 @@ describe('function tests', () => {
       id: '12345',
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       due_at: date,
       lock_at: date,
       unlock_at: date,
@@ -207,7 +215,8 @@ describe('function tests', () => {
       id: 'base',
       title: 'Everyone',
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }])
 
     let section = template.sectionAssignee()
@@ -218,7 +227,8 @@ describe('function tests', () => {
       base: false,
       course_section_id: '1234',
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }])
 
     // Anytime there are updated dates from assignees, the ids should be different
@@ -229,14 +239,16 @@ describe('function tests', () => {
       base: false,
       group_id: '1234',
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }])
 
     result = AssignmentDatesEditor.updateDateWithAssignees(date, [])
     expect(result).toMatchObject([{
       base: false,
       validAssignees: false,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     }])
   })
 
@@ -255,13 +267,15 @@ describe('function tests', () => {
     expect(result).toMatchObject([{
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       course_section_id: '12345',
     },
     {
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       course_section_id: '111111',
     },
     ])
@@ -301,41 +315,47 @@ describe('function tests', () => {
       base: true,
       id: 'base',
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     })
 
     expect(result[1]).toMatchObject({
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       student_ids: ['444444', '555555'],
     })
 
     expect(result[2]).toMatchObject({
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       course_section_id: '12345',
     })
 
     expect(result[3]).toMatchObject({
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       course_section_id: '111111',
     })
 
     expect(result[4]).toMatchObject({
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       group_id: '222222',
     })
 
     expect(result[5]).toMatchObject({
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
       group_id: '333333',
     })
   })
@@ -416,7 +436,7 @@ describe('function tests', () => {
     })
   })
 
-  test('check Dates should work', () => {
+  test('check DueDates should work', () => {
     var assignment = template.assignment({
       all_dates: [template.assignmentDueDate({ base: true, id: 'base' })],
     })
@@ -424,13 +444,52 @@ describe('function tests', () => {
       <AssignmentDatesEditor assignment={assignment} />
     ).getInstance()
 
-    expect(editor.checkDates(editor.state.dates[0])).toBeTruthy()
+    expect(editor.checkDueDate(editor.state.dates[0])).toBeTruthy()
 
     assignment.all_dates = [template.assignmentDueDate({
-      due_at: '2017-06-01T05:59:59Z',
+      due_at: '2017-06-01T07:59:00Z',
       lock_at: '2017-06-01T05:59:00Z',
     })]
-    expect(editor.checkDates(assignment.all_dates[0])).toBeFalsy()
+    expect(editor.checkDueDate(assignment.all_dates[0])).toBeFalsy()
+
+    assignment.all_dates = [template.assignmentDueDate({
+      due_at: null,
+      unlock_at: '2017-06-01T05:59:00Z',
+      lock_at: '2017-06-01T07:59:00Z',
+    })]
+    expect(editor.checkDueDate(assignment.all_dates[0])).toBeTruthy()
+  })
+
+  test('check LockDates should work', () => {
+    var assignment = template.assignment({
+      all_dates: [template.assignmentDueDate({ base: true, id: 'base' })],
+    })
+    const editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+
+    expect(editor.checkLockDates(editor.state.dates[0])).toBeTruthy()
+
+    assignment.all_dates = [template.assignmentDueDate({
+      due_at: '2017-06-01T07:59:00Z',
+      lock_at: null,
+      unlock_at: null,
+    })]
+    expect(editor.checkLockDates(assignment.all_dates[0])).toBeTruthy()
+
+    assignment.all_dates = [template.assignmentDueDate({
+      due_at: '2017-06-01T07:59:00Z',
+      lock_at: '2017-06-01T05:59:00Z',
+      unlock_at: null,
+    })]
+    expect(editor.checkLockDates(assignment.all_dates[0])).toBeTruthy()
+
+    assignment.all_dates = [template.assignmentDueDate({
+      due_at: null,
+      unlock_at: '2017-06-01T07:59:00Z',
+      lock_at: '2017-06-01T05:59:00Z',
+    })]
+    expect(editor.checkLockDates(assignment.all_dates[0])).toBeFalsy()
   })
 
   test('validator should be false with no assignees', () => {
@@ -456,7 +515,7 @@ describe('function tests', () => {
         ...template.assignmentDueDate({
           base: true,
           id: 'none',
-          due_at: '2017-06-01T05:59:59Z',
+          due_at: '2017-06-01T07:59:00Z',
           lock_at: '2017-06-01T05:59:00Z',
         }),
       }],
@@ -466,7 +525,7 @@ describe('function tests', () => {
       <AssignmentDatesEditor assignment={assignment} />
     ).getInstance()
     expect(editor.validate()).toBeFalsy()
-    expect(editor.state.validDates).toBeFalsy()
+    expect(editor.state.validDueDate).toBeFalsy()
   })
 
   test('validator should be false when due date is before unlock date', () => {
@@ -476,7 +535,7 @@ describe('function tests', () => {
           base: true,
           id: 'none',
           due_at: '2017-06-01T05:59:00Z',
-          unlock_at: '2017-06-01T05:59:59Z',
+          unlock_at: '2017-06-01T07:59:00Z',
         }),
       }],
     })
@@ -485,7 +544,53 @@ describe('function tests', () => {
       <AssignmentDatesEditor assignment={assignment} />
     ).getInstance()
     expect(editor.validate()).toBeFalsy()
-    expect(editor.state.validDates).toBeFalsy()
+    expect(editor.state.validDueDate).toBeFalsy()
+  })
+
+  test('validator should be false when lock date is before unlock date', () => {
+    const assignment = template.assignment({
+      all_dates: [{
+        ...template.assignmentDueDate({
+          base: true,
+          id: 'none',
+          lock_at: '2017-06-01T05:59:00Z',
+          unlock_at: '2017-06-01T07:59:00Z',
+        }),
+      }],
+    })
+
+    const editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+    expect(editor.validate()).toBeFalsy()
+    expect(editor.state.validLockDates).toBeFalsy()
+  })
+
+  test('validator should be false when unlock date is after lock date not base', () => {
+    const assignment = template.assignment({
+      overrides: [
+        {
+          id: '1',
+          group_id: '1',
+          course_section_id: '1',
+          student_ids: ['1'],
+        },
+      ],
+      all_dates: [
+        template.assignmentDueDate({
+          base: false,
+          id: '1',
+          unlock_at: '2017-06-01T07:59:00Z',
+          lock_at: '2017-06-01T05:59:00Z',
+        }),
+      ],
+    })
+
+    const editor = renderer.create(
+      <AssignmentDatesEditor assignment={assignment} />
+    ).getInstance()
+    expect(editor.validate()).toBeFalsy()
+    expect(editor.state.validLockDates).toBeFalsy()
   })
 
   test('validator should be false when due date is after lock date not base', () => {
@@ -502,7 +607,7 @@ describe('function tests', () => {
         template.assignmentDueDate({
           base: false,
           id: '1',
-          due_at: '2017-06-01T05:59:59Z',
+          due_at: '2017-06-01T07:59:00Z',
           lock_at: '2017-06-01T05:59:00Z',
         }),
       ],
@@ -512,7 +617,7 @@ describe('function tests', () => {
       <AssignmentDatesEditor assignment={assignment} />
     ).getInstance()
     expect(editor.validate()).toBeFalsy()
-    expect(editor.state.validDates).toBeFalsy()
+    expect(editor.state.validDueDate).toBeFalsy()
   })
 
   test('validator should be false when both assignees and dates are invalid', () => {
@@ -533,7 +638,7 @@ describe('function tests', () => {
     ).getInstance()
     expect(editor.validate()).toBeFalsy()
     expect(editor.state.validAssignees).toBeFalsy()
-    expect(editor.state.validDates).toBeFalsy()
+    expect(editor.state.validDueDate).toBeFalsy()
   })
 })
 

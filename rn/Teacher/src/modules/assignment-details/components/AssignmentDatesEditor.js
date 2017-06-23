@@ -28,7 +28,7 @@ import Images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Navigator from '../../../routing/Navigator'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
-import { extractDateFromString } from '../../../utils/dateUtils'
+import { formattedDate, extractDateFromString } from '../../../utils/dateUtils'
 
 type Props = {
   assignment: Assignment,
@@ -57,7 +57,8 @@ export type StagedAssignmentDate = {
   course_section_id?: ?string,
   group_id?: ?string,
   validAssignees: boolean,
-  validDates: boolean,
+  validDueDate: boolean,
+  validLockDates: boolean,
   modifyType?: ModifyDateType,
 }
 
@@ -85,7 +86,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         unlock_at: date.unlock_at,
         lock_at: date.lock_at,
         validAssignees: true,
-        validDates: true,
+        validDueDate: true,
+        validLockDates: true,
       }
       const dateID = date.id
       // If the date has an ID, there is a override associated with it
@@ -108,10 +110,10 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     this.layouts = {}
   }
 
-  checkDates (date: StagedAssignmentDate) {
-    let dueDate = extractDateFromString(date.due_at)
-    let lockDate = extractDateFromString(date.lock_at)
-    let unlockDate = extractDateFromString(date.unlock_at)
+  checkDueDate (date: StagedAssignmentDate) {
+    let dueDate = extractDateFromString(formattedDate(date.due_at))
+    let lockDate = extractDateFromString(formattedDate(date.lock_at))
+    let unlockDate = extractDateFromString(formattedDate(date.unlock_at))
     if (!dueDate) {
       return true
     }
@@ -120,13 +122,23 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     return insideLock && insideUnlock
   }
 
+  checkLockDates (date: StagedAssignmentDate) {
+    let lockDate = extractDateFromString(formattedDate(date.lock_at))
+    let unlockDate = extractDateFromString(formattedDate(date.unlock_at))
+    if (!lockDate || !unlockDate) {
+      return true
+    }
+    return (unlockDate <= lockDate)
+  }
+
   validate () {
     var allDatesAreValid = true
     const dates = this.state.dates.map((date) => {
-      let thisDateIsValid = this.checkDates(date)
+      let thisDueDateIsValid = this.checkDueDate(date)
+      let thisLockDatesAreValid = this.checkLockDates(date)
 
       if (date.base) {
-        if (allDatesAreValid && !thisDateIsValid) {
+        if (allDatesAreValid && (!thisDueDateIsValid || !thisLockDatesAreValid)) {
           allDatesAreValid = false
         }
         return date
@@ -135,14 +147,14 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
           !date.group_id) {
         const newDate = cloneDeep(date)
         newDate.validAssignees = false
-        if (!thisDateIsValid) {
-          newDate.validDates = false
-        }
+        newDate.validDueDate = thisDueDateIsValid
+        newDate.validLockDates = thisLockDatesAreValid
         allDatesAreValid = false
         return newDate
-      } else if (!thisDateIsValid) {
+      } else if (!thisDueDateIsValid || !thisLockDatesAreValid) {
         const newDate = cloneDeep(date)
-        newDate.validDates = false
+        newDate.validDueDate = thisDueDateIsValid
+        newDate.validLockDates = thisLockDatesAreValid
         allDatesAreValid = false
         return newDate
       } else {
@@ -169,7 +181,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       isNew: true,
       base: false,
       validAssignees: true,
-      validDates: true,
+      validDueDate: true,
+      validLockDates: true,
     })
     this.setState({
       dates,
@@ -267,7 +280,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         base: date.base,
         isNew: true,
         validAssignees: true,
-        validDates: date.validDates,
+        validDueDate: date.validDueDate,
+        validLockDates: date.validLockDates,
         due_at: date.due_at,
         unlock_at: date.unlock_at,
         lock_at: date.lock_at,
@@ -406,9 +420,9 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   }
 
   validateDateChange (date: StagedAssignmentDate) {
-    let datesAreValid = this.checkDates(date)
     const newDate = cloneDeep(date)
-    newDate.validDates = datesAreValid
+    newDate.validDueDate = this.checkDueDate(date)
+    newDate.validLockDates = this.checkLockDates(date)
     return newDate
   }
 
@@ -490,6 +504,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     let title = i18n('Assign To')
     let requiredAssigneesText = i18n('Assignees required')
     let requiredDueDateText = i18n("'Due Date' must be between 'Available From' and 'Available To' dates")
+    let requiredFromToText = i18n("'Available From' must be before 'Available To'")
 
     let removeButton = this.renderRemoveButton(date)
     let detailTextStyle = date.title ? styles.detailText : styles.detailTextMissing
@@ -520,7 +535,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
                 { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
               </View>
               <RequiredFieldSubscript title={requiredAssigneesText} visible={!date.validAssignees} />
-              <RequiredFieldSubscript title={requiredDueDateText} visible={!date.validDates} />
+              <RequiredFieldSubscript title={requiredFromToText} visible={!date.validLockDates} />
+              <RequiredFieldSubscript title={requiredDueDateText} visible={!date.validDueDate} />
             </View>)
   }
 

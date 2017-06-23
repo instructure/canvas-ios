@@ -701,6 +701,39 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
         testID={undefined}
       >
+        'Available From' must be before 'Available To'
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#EE0612",
+              "fontFamily": ".SFUIDisplay",
+              "fontSize": 14,
+            },
+            Object {
+              "marginHorizontal": 16,
+              "marginTop": 4,
+            },
+          ]
+        }
+        testID={undefined}
+      >
         'Due Date' must be between 'Available From' and 'Available To' dates
       </Text>
     </View>
@@ -1398,6 +1431,39 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         }
         testID={undefined}
       >
+        'Available From' must be before 'Available To'
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#EE0612",
+              "fontFamily": ".SFUIDisplay",
+              "fontSize": 14,
+            },
+            Object {
+              "marginHorizontal": 16,
+              "marginTop": 4,
+            },
+          ]
+        }
+        testID={undefined}
+      >
         'Due Date' must be between 'Available From' and 'Available To' dates
       </Text>
     </View>
@@ -2063,6 +2129,39 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
         testID={undefined}
       >
         Assignees required
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#EE0612",
+              "fontFamily": ".SFUIDisplay",
+              "fontSize": 14,
+            },
+            Object {
+              "marginHorizontal": 16,
+              "marginTop": 4,
+            },
+          ]
+        }
+        testID={undefined}
+      >
+        'Available From' must be before 'Available To'
       </Text>
     </View>
     <View
@@ -2841,6 +2940,39 @@ exports[`snapshots! render with multiple due dates 1`] = `
         }
         testID={undefined}
       >
+        'Available From' must be before 'Available To'
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#EE0612",
+              "fontFamily": ".SFUIDisplay",
+              "fontSize": 14,
+            },
+            Object {
+              "marginHorizontal": 16,
+              "marginTop": 4,
+            },
+          ]
+        }
+        testID={undefined}
+      >
         'Due Date' must be between 'Available From' and 'Available To' dates
       </Text>
     </View>
@@ -3506,6 +3638,39 @@ exports[`snapshots! render with multiple due dates 1`] = `
         testID={undefined}
       >
         Assignees required
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#EE0612",
+              "fontFamily": ".SFUIDisplay",
+              "fontSize": 14,
+            },
+            Object {
+              "marginHorizontal": 16,
+              "marginTop": 4,
+            },
+          ]
+        }
+        testID={undefined}
+      >
+        'Available From' must be before 'Available To'
       </Text>
     </View>
     <View
@@ -4252,6 +4417,39 @@ exports[`snapshots! render with single due date 1`] = `
         testID={undefined}
       >
         Assignees required
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "height": 0,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#EE0612",
+              "fontFamily": ".SFUIDisplay",
+              "fontSize": 14,
+            },
+            Object {
+              "marginHorizontal": 16,
+              "marginTop": 4,
+            },
+          ]
+        }
+        testID={undefined}
+      >
+        'Available From' must be before 'Available To'
       </Text>
     </View>
     <View

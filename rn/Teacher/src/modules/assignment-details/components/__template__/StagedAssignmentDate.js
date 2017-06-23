@@ -8,5 +8,6 @@ export const stagedAssignmentDate: Template<StagedAssignmentDate> = template({
   id: '123456789',
   base: false,
   validAssignees: true,
-  validDates: true,
+  validDueDate: true,
+  validLockDates: true,
 })
