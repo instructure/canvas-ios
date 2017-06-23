@@ -1,17 +1,22 @@
 /* @flow */
 import 'react-native'
 import React from 'react'
-import { AddressBook } from '../AddressBook'
+import { AddressBook, mapStateToProps, type Props } from '../AddressBook'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
+import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/addressBook'),
+  ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
-jest.mock('react-native-search-bar', () => require('../../../__mocks__/SearchBar').default)
+jest
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../../../routing/Screen')
+  .mock('../../../common/TypeAheadSearch', () => 'TypeAheadSearch')
+  .mock('../../../common/components/rows/Row', () => 'Row')
 
 const u1 = template.addressBookResult({
   id: '1',
@@ -20,17 +25,155 @@ const u2 = template.addressBookResult({
   id: '2',
 })
 
-let defaultProps = {
-  results: [u1, u2],
-  onSelect: jest.fn(),
-  onCancel: jest.fn(),
-}
+describe('AddressBook', () => {
+  let props: Props
+  beforeEach(() => {
+    jest.resetAllMocks()
+    props = {
+      onSelect: jest.fn(),
+      context: 'course_1',
+      name: 'Address Book Course',
+      navigator: template.navigator(),
+    }
+  })
 
-beforeEach(() => jest.resetAllMocks())
+  it('renders', () => {
+    testRender(props)
+  })
 
-it('renders correctly', () => {
-  const tree = renderer.create(
-    <AddressBook {...defaultProps} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  it('renders "All in" row', () => {
+    props.context = 'course_1'
+    props.name = 'React Native for Dummies'
+    const screen = render(props)
+    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    expect(rows).toHaveLength(1)
+    expect(rows[0].props.title).toEqual('All in React Native for Dummies')
+  })
+
+  it('does not render "All in" row if there is a query', () => {
+    props.context = 'course_1'
+    props.name = 'React Native for Dummies'
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    typeahead.props.onChangeText('this is a query')
+    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    expect(rows).toHaveLength(0)
+  })
+
+  it('renders type ahead search results', () => {
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    typeahead.props.onRequestFinished([u1, u2], null)
+    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    expect(rows).toHaveLength(3)
+  })
+
+  it('renders next type ahead search results', () => {
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    typeahead.props.onRequestStarted()
+    typeahead.props.onRequestFinished([u1], null)
+    typeahead.props.onNextRequestFinished([u2], null)
+    const rows: any[] = explore(screen.toJSON()).query(({ type }) => type === 'Row')
+    expect(rows).toHaveLength(3)
+  })
+
+  it('pushes next branch', () => {
+    props.navigator.show = jest.fn()
+    const teachers = template.addressBookResult({
+      id: 'course_1_teachers',
+      name: 'Teachers',
+    })
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    typeahead.props.onRequestFinished([teachers], null)
+    const row: any = explore(screen.toJSON()).selectByID('course_1_teachers')
+    row.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      '/address-book',
+      { modal: false },
+      {
+        onSelect: expect.any(Function),
+        context: 'course_1_teachers',
+        name: 'Teachers',
+      },
+    )
+  })
+
+  it('selects item', () => {
+    props.onSelect = jest.fn()
+    const item = template.addressBookResult({
+      id: '1',
+      name: 'E.T.C',
+    })
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    typeahead.props.onRequestFinished([item], null)
+    const row: any = explore(screen.toJSON()).selectByID('1')
+    row.props.onPress()
+    expect(props.onSelect).toHaveBeenCalledWith([item])
+  })
+
+  it('selects "All in" item', () => {
+    props.context = 'course_1_teachers'
+    props.name = 'Teachers'
+    props.onSelect = jest.fn()
+    const screen = render(props)
+    const row: any = explore(screen.toJSON()).query(({ type }) => type === 'Row')[0]
+    row.props.onPress()
+    expect(props.onSelect).toHaveBeenCalledWith([{
+      id: 'course_1_teachers',
+      name: 'Teachers',
+    }])
+  })
+
+  it('dismisses on cancel', () => {
+    props.navigator.dismiss = jest.fn()
+    const cancel: any = explore(render(props).toJSON()).selectRightBarButton('address-book.cancel')
+    cancel.action()
+    expect(props.navigator.dismiss).toHaveBeenCalled()
+  })
+
+  it('calls next on end reached', () => {
+    const mock = jest.fn()
+    const createNodeMock = ({ type }) => {
+      if (type === 'TypeAheadSearch') {
+        return {
+          next: mock,
+        }
+      }
+    }
+    const screen = render(props, { createNodeMock })
+    const list: any = explore(screen.toJSON()).selectByType('RCTScrollView')
+    list.props.onEndReached()
+    expect(mock).toHaveBeenCalled()
+  })
+
+  it('give type ahead the correct params', () => {
+    props.context = 'course_2'
+    const screen = render(props)
+    const typeahead: any = explore(screen.toJSON()).selectByType('TypeAheadSearch')
+    expect(typeahead.props.parameters('Malthael')).toEqual({
+      context: 'course_2',
+      search: 'Malthael',
+      synthetic_contexts: 1,
+      per_page: 10,
+    })
+  })
+
+  function render (props: Props, options: Object = {}) {
+    return renderer.create(
+      <AddressBook {...props} />, options
+    )
+  }
+
+  function testRender (props: Props) {
+    expect(render(props).toJSON()).toMatchSnapshot()
+  }
+})
+
+describe('map state to props', () => {
+  it('returns an empty object for now', () => {
+    expect(mapStateToProps(template.appState())).toEqual({})
+  })
 })

@@ -128,13 +128,14 @@ export class Compose extends PureComponent {
   _openAddressBook = () => {
     const onSelect = (selected) => {
       this.props.navigator.dismiss()
-      const recipients = this.state.recipients.concat(selected)
+      const recipients = this.state.recipients.concat(selected.filter(i => !this.state.recipients.map(ii => ii.id).includes(i.id)))
       this.setStateAndUpdate({ recipients })
     }
 
     const onCancel = () => this.props.navigator.dismiss()
 
-    this.props.navigator.show('/address-book', { modal: true }, { onSelect, onCancel })
+    // $FlowFixMe
+    this.props.navigator.show('/address-book', { modal: true }, { onSelect, onCancel, context: `course_${this.state.course.id}`, name: this.state.course.name })
   }
 
   _deleteRecipient = (id: string) => {
@@ -199,19 +200,21 @@ export class Compose extends PureComponent {
                 <DisclosureIndicator />
               </View>
             </TouchableHighlight>
-            <View style={[styles.wrapper, styles.toContainer]}>
-              <View style={{ padding: 6, paddingLeft: 0, height: 54, justifyContent: 'center' }}>
-                <Text style={styles.courseSelectText}>{i18n('To')}</Text>
+            { course &&
+              <View style={[styles.wrapper, styles.toContainer]}>
+                <View style={{ padding: 6, paddingLeft: 0, height: 54, justifyContent: 'center' }}>
+                  <Text style={styles.courseSelectText}>{i18n('To')}</Text>
+                </View>
+                <View style={styles.tokenContainer}>
+                  {this.state.recipients.map((r) => {
+                    return (<AddressBookToken item={r} delete={this._deleteRecipient} />)
+                  })}
+                </View>
+                <TouchableOpacity onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
+                  <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
+                </TouchableOpacity>
               </View>
-              <View style={styles.tokenContainer}>
-                {this.state.recipients.map((r) => {
-                  return (<AddressBookToken item={r} delete={this._deleteRecipient} />)
-                })}
-              </View>
-              <TouchableOpacity onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
-                <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
-              </TouchableOpacity>
-            </View>
+            }
             <View style={styles.wrapper}>
               <TextInput
                 placeholder={i18n('Subject')}

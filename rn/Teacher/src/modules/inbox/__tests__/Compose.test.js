@@ -104,6 +104,8 @@ describe('Compose', () => {
       <Compose {...defaultProps} navigator={navigator} />
     )
 
+    component.getInstance().selectCourse()
+    onSelect(template.course())
     component.getInstance()._openAddressBook()
     onSelect([recipient])
     expect(navigator.dismiss).toHaveBeenCalled()

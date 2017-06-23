@@ -1,58 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
+exports[`AddressBook renders 1`] = `
+<Screen
+  drawUnderNavBar={true}
+  navBarColor="#fff"
+  navBarStyle="light"
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "address-book.cancel",
+        "title": "Cancel",
+      },
+    ]
   }
+  title="Address Book Course"
 >
-  <RCTScrollView
-    ListEmptyComponent={null}
-    ListHeaderComponent={
-      <SearchBar
-        onCancelButtonPress={[Function]}
-        onChangeText={[Function]}
-        onSearchButtonPress={[Function]}
-      />
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
     }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    refreshing={true}
-    renderItem={[Function]}
-    renderScrollComponent={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
   >
-    <View>
-      <View
-        onLayout={[Function]}
-      >
-        <SearchBar
-          onCancelButtonPress={[Function]}
-          onChangeText={[Function]}
-          onSearchButtonPress={[Function]}
+    <RCTScrollView
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="No results"
         />
+      }
+      ListHeaderComponent={
+        <TypeAheadSearch
+          defaultQuery=""
+          endpoint="/search/recipients"
+          onChangeText={[Function]}
+          onNextRequestFinished={[Function]}
+          onRequestFinished={[Function]}
+          onRequestStarted={[Function]}
+          parameters={[Function]}
+        />
+      }
+      data={
+        Array [
+          Object {
+            "id": "branch_course_1",
+            "name": "All in Address Book Course",
+          },
+        ]
+      }
+      disableVirtualization={false}
+      getItem={[Function]}
+      getItemCount={[Function]}
+      horizontal={false}
+      initialNumToRender={10}
+      keyExtractor={[Function]}
+      maxToRenderPerBatch={10}
+      numColumns={1}
+      onContentSizeChange={[Function]}
+      onEndReached={[Function]}
+      onEndReachedThreshold={2}
+      onLayout={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      onViewableItemsChanged={undefined}
+      refreshing={false}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      updateCellsBatchingPeriod={50}
+      windowSize={21}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+        >
+          <TypeAheadSearch
+            defaultQuery=""
+            endpoint="/search/recipients"
+            onChangeText={[Function]}
+            onNextRequestFinished={[Function]}
+            onRequestFinished={[Function]}
+            onRequestStarted={[Function]}
+            parameters={[Function]}
+          />
+        </View>
+        <View
+          onLayout={[Function]}
+        >
+          <Row
+            border="both"
+            disclosureIndicator={false}
+            onPress={[Function]}
+            renderImage={[Function]}
+            testID="branch_course_1"
+            title="All in Address Book Course"
+          />
+        </View>
       </View>
-    </View>
-  </RCTScrollView>
-</View>
+    </RCTScrollView>
+  </View>
+</Screen>
 `;

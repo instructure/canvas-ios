@@ -17,9 +17,13 @@ function parseNextFromJSON (response: any): ?string {
   return null
 }
 
+export function parseNext (response: any): ?string {
+  return parseNextFromLinkHeader(response) || parseNextFromJSON(response)
+}
+
 export function paginate<T> (url: string, config: AxiosRequestConfig = {}): Promise<ApiResponse<T>> {
   return httpClient().get(url, config).then((response: any) => {
-    const next = parseNextFromLinkHeader(response) || parseNextFromJSON(response)
+    const next = parseNext(response)
     return {
       ...response,
       next: next ? () => { return paginate(next) } : null,
