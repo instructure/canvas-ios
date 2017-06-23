@@ -47,6 +47,7 @@ describe('DiscussionDetails', () => {
       title: null,
       assignment: discussion.assignment,
       deleteDiscussion: jest.fn(),
+      deleteDiscussionEntry: jest.fn(),
       pending: 0,
       error: null,
       refreshDiscussionEntries: jest.fn(),

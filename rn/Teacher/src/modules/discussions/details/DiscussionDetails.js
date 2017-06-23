@@ -44,12 +44,13 @@ type State = {
   courseName: string,
 }
 
-const { refreshDiscussionEntries } = DetailActions
+const { refreshDiscussionEntries, deleteDiscussionEntry } = DetailActions
 const { deleteDiscussion } = EditActions
 
 const Actions = {
   refreshDiscussionEntries,
   deleteDiscussion,
+  deleteDiscussionEntry,
 }
 
 export type Props = State & OwnProps & RefreshProps & typeof Actions & NavigationProps & AsyncState & {

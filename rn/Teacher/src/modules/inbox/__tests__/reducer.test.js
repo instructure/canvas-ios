@@ -1,6 +1,6 @@
 // @flow
 
-import inbox from '../reducer'
+import inbox, { conversations } from '../reducer'
 import { InboxActions } from '../actions'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
@@ -108,4 +108,79 @@ test('handled updating a single conversation that errors', async () => {
       },
     },
   ])
+})
+
+describe('deleteConversation', () => {
+  it('handles deleting a conversation that resolves', async () => {
+    const data = templates.conversation({ id: '2' })
+    const api = {
+      deleteConversation: apiResponse(data),
+    }
+    const action = InboxActions(api).deleteConversation('2')
+
+    const defaultState = {
+      '1': {
+        pending: 0,
+        error: null,
+        data: templates.conversation({ id: '1' }),
+      },
+      '2': {
+        pending: 0,
+        error: null,
+        data,
+      },
+    }
+    const expectedPending = {
+      ...defaultState,
+      '2': {
+        pending: 1,
+        error: null,
+        data,
+      },
+    }
+    const expectedResolved = {
+      '1': {
+        pending: 0,
+        error: null,
+        data: templates.conversation({ id: '1' }),
+      },
+    }
+    expect(await testAsyncReducer(conversations, action, defaultState)).toEqual([
+      expectedPending,
+      expectedResolved,
+    ])
+  })
+
+  it('handles deleting a conversation that errors', async () => {
+    const data = templates.conversation({ id: '2' })
+    const api = {
+      deleteConversation: apiError({ message: 'Something bad happened' }),
+    }
+    const action = InboxActions(api).deleteConversation('2')
+    const defaultState = {
+      '2': {
+        pending: 0,
+        error: null,
+        data,
+      },
+    }
+    const expectedPending = {
+      '2': {
+        pending: 1,
+        error: null,
+        data,
+      },
+    }
+    const expectedRejected = {
+      '2': {
+        pending: 0,
+        error: 'Something bad happened',
+        data,
+      },
+    }
+    expect(await testAsyncReducer(conversations, action, defaultState)).toEqual([
+      expectedPending,
+      expectedRejected,
+    ])
+  })
 })

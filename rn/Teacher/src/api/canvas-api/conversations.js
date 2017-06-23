@@ -42,6 +42,10 @@ export function unstarConversation (conversationID: string): Promise<ApiResponse
   return httpClient().put(url, { conversation })
 }
 
+export function deleteConversation (conversationID: string): Promise<ApiResponse<Conversation>> {
+  return httpClient().delete(`conversations/${conversationID}`)
+}
+
 export function createConversation (conversation: CreateConversationParameters): Promise<ApiResponse<Conversation>> {
   const url = 'conversations'
   return httpClient().post(url, conversation)

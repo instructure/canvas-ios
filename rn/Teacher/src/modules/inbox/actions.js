@@ -47,6 +47,12 @@ export let InboxActions: (typeof canvas) => any = (api) => ({
       conversationID,
     }
   }),
+  deleteConversation: createAction('inbox.delete-conversation', (conversationID: string) => {
+    return {
+      promise: api.deleteConversation(conversationID),
+      conversationID,
+    }
+  }),
 })
 
 export default (InboxActions(canvas): any)

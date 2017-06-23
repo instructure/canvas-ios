@@ -71,3 +71,30 @@ test('update scope', async () => {
   const result = actions.updateInboxSelectedScope('unread')
   expect(result).toEqual({ 'payload': 'unread', 'type': 'inbox.update-scope' })
 })
+
+test('deleteConversation', async () => {
+  const data = template.conversation()
+  const api = {
+    deleteConversation: apiResponse(data),
+  }
+  const actions = InboxActions(api)
+  const action = actions.deleteConversation('12')
+  const result = await testAsyncAction(action)
+  expect(result).toMatchObject([
+    {
+      type: actions.deleteConversation.toString(),
+      pending: true,
+      payload: {
+        conversationID: '12',
+      },
+    },
+    {
+      type: actions.deleteConversation.toString(),
+      payload: {
+        result: { data },
+        conversationID: '12',
+      },
+    },
+  ])
+  expect(api.deleteConversation).toHaveBeenCalledWith('12')
+})

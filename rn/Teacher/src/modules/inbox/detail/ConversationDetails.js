@@ -7,10 +7,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ActionSheetIOS,
 } from 'react-native'
 import { connect } from 'react-redux'
 import refresh from '../../../utils/refresh'
-import Actions from '../actions'
+import { default as InboxActions } from '../actions'
 import Screen from '../../../routing/Screen'
 import branding from '../../../common/branding'
 import i18n from 'format-message'
@@ -18,6 +19,20 @@ import ConversationMessage from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
 import Images from '../../../images'
+
+const {
+  refreshConversationDetails,
+  starConversation,
+  unstarConversation,
+  deleteConversation,
+} = InboxActions
+
+const Actions = {
+  refreshConversationDetails,
+  starConversation,
+  unstarConversation,
+  deleteConversation,
+}
 
 export type ConversationOwnProps = {
   conversation: ?Conversation,
@@ -35,11 +50,17 @@ export type RefreshProps = {
   unstarConversation: Function,
 }
 
-export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & {
-  navigator: Navigator,
-}
+export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps
 
 export class ConversationDetails extends Component <any, ConversationDetailsProps, any> {
+  constructor (props: ConversationDetailsProps) {
+    super(props)
+
+    this.state = {
+      deletePending: false,
+    }
+  }
+
   _renderItem = ({ item, index }) => {
     return <ConversationMessage
               navigator={this.props.navigator}
@@ -96,10 +117,53 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         navBarStyle='dark'
         drawUnderNavBar={true}
         title={i18n('Message Details')}
+        rightBarButtons={[
+          {
+            image: Images.kabob,
+            testID: 'inbox.detail.options.button',
+            action: this.showOptionsActionSheet,
+          },
+        ]}
       >
         { this._renderComponent() }
       </Screen>
     )
+  }
+
+  componentWillReceiveProps (nextProps: ConversationDetailsProps) {
+    if (this.state.deletePending && !nextProps.pending && !nextProps.conversation) {
+      this.setState({ deletePending: false })
+      this.props.navigator.pop()
+    }
+  }
+
+  showOptionsActionSheet = () => {
+    const options = [
+      i18n('Delete'),
+      i18n('Cancel'),
+    ]
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options,
+        destructiveButtonIndex: options.length - 2,
+        cancelButtonIndex: options.length - 1,
+      },
+      this.handleOptionsActionSheet,
+    )
+  }
+
+  handleOptionsActionSheet = (index: number) => {
+    switch (index) {
+      case 0:
+        this.deleteConversation()
+        break
+    }
+  }
+
+  deleteConversation () {
+    this.setState({ deletePending: true })
+    // $FlowFixMe
+    this.props.deleteConversation(this.props.conversationID)
   }
 }
 
@@ -132,14 +196,15 @@ export function mapStateToProps (state: AppState, props: any): ConversationOwnPr
   const conversationID = props.conversationID
   const convoState = inbox.conversations[conversationID]
   let messages = []
+  let conversation: ?Conversation
   if (convoState &&
-      convoState.data &&
-      convoState.data.messages) {
-    messages = convoState.data.messages
+    convoState.data) {
+    conversation = convoState.data
+    messages = convoState.data.messages || []
   }
 
   return {
-    conversation: convoState.data,
+    conversation,
     conversationID,
     messages,
     pending: convoState.pending > 0,

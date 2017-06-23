@@ -7,16 +7,20 @@ import { Reducer, combineReducers } from 'redux'
 import i18n from 'format-message'
 import fromPairs from 'lodash/fromPairs'
 import { asyncRefsReducer } from '../../redux/async-refs-reducer'
+import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
-const { refreshInboxAll,
-        refreshInboxUnread,
-        refreshInboxStarred,
-        refreshInboxSent,
-        refreshInboxArchived,
-        updateInboxSelectedScope,
-        refreshConversationDetails,
-        starConversation,
-        unstarConversation } = Actions
+const {
+  refreshInboxAll,
+  refreshInboxUnread,
+  refreshInboxStarred,
+  refreshInboxSent,
+  refreshInboxArchived,
+  updateInboxSelectedScope,
+  refreshConversationDetails,
+  starConversation,
+  unstarConversation,
+  deleteConversation,
+} = Actions
 
 export function createScopeHandler (action: string): Function {
   return asyncRefsReducer(
@@ -131,6 +135,29 @@ export const conversations: Reducer = handleActions({
   [refreshConversationDetails.toString()]: detailEntity(),
   [starConversation.toString()]: createStarEntityHandler(true),
   [unstarConversation.toString()]: createStarEntityHandler(false),
+  [deleteConversation.toString()]: handleAsync({
+    pending: (state, { conversationID }) => ({
+      ...state,
+      [conversationID]: {
+        ...state[conversationID],
+        pending: (state[conversationID] && state[conversationID].pending || 0) + 1,
+        error: null,
+      },
+    }),
+    resolved: (state, { conversationID }) => {
+      return Object.keys(state).reduce((incoming, current) => {
+        return current === conversationID ? incoming : { ...incoming, [current]: state[current] }
+      }, {})
+    },
+    rejected: (state, { conversationID, error }) => ({
+      ...state,
+      [conversationID]: {
+        ...state[conversationID],
+        pending: (state[conversationID] && state[conversationID].pending || 1) - 1,
+        error: parseErrorMessage(error),
+      },
+    }),
+  }),
 }, {})
 
 export const inbox: Reducer<InboxState, any> = combineReducers({
