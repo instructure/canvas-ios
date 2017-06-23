@@ -8,9 +8,12 @@ import {
   TouchableHighlight,
   Image,
   SectionList,
+  ActionSheetIOS,
+  AlertIOS,
 } from 'react-native'
 import i18n from 'format-message'
-import Actions from './actions'
+import { default as DetailActions } from './actions'
+import { default as EditActions } from '../edit/actions'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
 import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import WebContainer from '../../../common/components/WebContainer'
@@ -27,7 +30,6 @@ import {
 import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
-import Navigator from '../../../routing/Navigator'
 import DiscussionReplies from './DiscussionReplies'
 
 type OwnProps = {
@@ -37,18 +39,44 @@ type OwnProps = {
 
 type State = {
   discussion: ?Discussion,
+  assignment: ?Assignment,
+  courseColor: string,
+  courseName: string,
 }
 
-export type Props = State & OwnProps & RefreshProps & Actions & {
-  navigator: Navigator,
+const { refreshDiscussionEntries } = DetailActions
+const { deleteDiscussion } = EditActions
+
+const Actions = {
+  refreshDiscussionEntries,
+  deleteDiscussion,
+}
+
+export type Props = State & OwnProps & RefreshProps & typeof Actions & NavigationProps & AsyncState & {
   isAnnouncement?: boolean,
 }
 
 export class DiscussionDetails extends Component<any, Props, any> {
+  constructor (props: Props) {
+    super(props)
+
+    this.state = {
+      deletePending: false,
+    }
+  }
+
+  componentWillReceiveProps (nextProps: Props) {
+    if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {
+      this.setState({ deletePending: false })
+      this.props.navigator.pop()
+    }
+  }
+
   renderDetails = ({ item, index }: { item: Discussion, index: number }) => {
     const discussion = item
     const points = this._points(discussion)
     let user = discussion.author
+    const assignmentID = this.props.assignment ? this.props.assignment.id : null
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
@@ -61,20 +89,20 @@ export class DiscussionDetails extends Component<any, Props, any> {
             }
         </AssignmentSection>
 
-        {discussion.assignment && <AssignmentSection
+        {this.props.assignment && <AssignmentSection
           title={i18n('Due')}
           image={Images.assignments.calendar}
           showDisclosureIndicator={true}
           onPress={this.viewDueDateDetails} >
-          <AssignmentDates assignment={discussion.assignment} />
+          <AssignmentDates assignment={this.props.assignment} />
         </AssignmentSection>}
 
-        {discussion.assignment && <AssignmentSection
+        {assignmentID && <AssignmentSection
           title={i18n('Submissions')}
           testID='discussions.submission-graphs'
           onPress={() => this.viewSubmissions()}
           showDisclosureIndicator>
-          <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={discussion.assignment.id} style={style.submission}/>
+          <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={assignmentID} style={style.submission}/>
         </AssignmentSection>}
 
         <AssignmentSection >
@@ -159,16 +187,16 @@ export class DiscussionDetails extends Component<any, Props, any> {
     return (
       <Screen
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
-        navBarColor={this.props.course.color}
+        navBarColor={this.props.courseColor}
         navBarStyle='dark'
         rightBarButtons={[
           {
-            title: i18n('Edit'),
+            image: Images.kabob,
             testID: 'discussions.details.edit.button',
-            action: this._editDiscussion,
+            action: this.showEditActionSheet,
           },
         ]}
-        subtitle={this.props.course.name}>
+        subtitle={this.props.courseName}>
         <View style={style.sectionListContainer}>
           <SectionList
             refreshing={this.props.refreshing}
@@ -181,14 +209,44 @@ export class DiscussionDetails extends Component<any, Props, any> {
     )
   }
 
-  editAssignment = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+  showEditActionSheet = () => {
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: [i18n('Edit'), i18n('Delete'), i18n('Cancel')],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 2,
+      },
+      this._editActionSheetSelected,
+    )
+  }
+
+  _editActionSheetSelected = (index: number) => {
+    switch (index) {
+      case 0:
+        this._editDiscussion()
+        break
+      case 1:
+        this._confirmDeleteDiscussion()
+        break
+    }
+  }
+
+  _confirmDeleteDiscussion = () => {
+    AlertIOS.alert(
+      i18n('Are you sure you want to delete this discussion?'),
+      null,
+      [
+        { text: i18n('Cancel'), style: 'cancel' },
+        { text: i18n('OK'), onPress: this._deleteDiscussion },
+      ],
+    )
   }
 
   viewDueDateDetails = () => {
+    // $FlowFixMe
     const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
     this.props.navigator.show(route, { modal: false }, {
-      onEditPressed: this.editAssignment,
+      onEditPressed: this._editDiscussion,
     })
   }
 
@@ -198,6 +256,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
   viewSubmissions = (filterType: ?string) => {
     const { courseID, assignment } = this.props
+    if (!assignment) return
     if (filterType) {
       this.props.navigator.show(`/courses/${courseID}/assignments/${assignment.id}/submissions`, { modal: false }, { filterType })
     } else {
@@ -210,9 +269,10 @@ export class DiscussionDetails extends Component<any, Props, any> {
   }
 
   showAttachment = () => {
-    if (this.props.discussion.attachments && this.props.discussion.attachments.length === 1) {
+    const discussion = this.props.discussion
+    if (discussion && discussion.attachments) {
       this.props.navigator.show('/attachment', { modal: true }, {
-        attachment: this.props.discussion.attachments[0],
+        attachment: discussion.attachments[0],
       })
     }
   }
@@ -243,11 +303,16 @@ export class DiscussionDetails extends Component<any, Props, any> {
       this._editAnnouncement()
       return
     }
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussion.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 
   _editAnnouncement = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/announcements/${this.props.discussion.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/courses/${this.props.courseID}/announcements/${this.props.discussionID}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  _deleteDiscussion = () => {
+    this.setState({ deletePending: true })
+    this.props.deleteDiscussion(this.props.courseID, this.props.discussionID)
   }
 }
 
@@ -324,7 +389,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
   let discussion: ?Discussion
   let pending = 0
   let error = null
-  let course = entities.courses[courseID].course
+  let courseColor = entities.courses[courseID].color
+  let courseName = entities.courses[courseID].course.name
 
   if (entities.discussions &&
     entities.discussions[discussionID] &&
@@ -347,7 +413,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     error,
     courseID,
     discussionID,
-    course,
+    courseName,
+    courseColor,
     assignment,
   }
 }

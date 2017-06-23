@@ -138,7 +138,7 @@ describe('DiscussionsList', () => {
     props.courseID = '1'
     const addBtn: any = explore(render(props).toJSON()).selectRightBarButton('discussions.list.add.button')
     addBtn.action()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true })
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/new', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
   function testActionSheet (inputDiscussion: Discussion, expectedDiscussion: Discussion, buttonIndex: number, expectToCallUpdateDiscussion: boolean = true) {

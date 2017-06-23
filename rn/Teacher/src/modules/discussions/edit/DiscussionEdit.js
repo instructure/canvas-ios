@@ -7,7 +7,6 @@ import ReactNative, {
   StyleSheet,
   LayoutAnimation,
   Alert,
-  ActionSheetIOS,
   PickerIOS,
   DatePickerIOS,
   Image,
@@ -19,7 +18,6 @@ import moment from 'moment'
 
 import Screen from '../../../routing/Screen'
 import { Heading1 } from '../../../common/text'
-import Row from '../../../common/components/rows/Row'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
@@ -40,7 +38,6 @@ const {
   createDiscussion,
   deletePendingNewDiscussion,
   updateDiscussion,
-  deleteDiscussion,
   subscribeDiscussion,
 } = EditDiscussionActions
 
@@ -50,7 +47,6 @@ const Actions = {
   createDiscussion,
   updateDiscussion,
   deletePendingNewDiscussion,
-  deleteDiscussion,
   subscribeDiscussion,
   updateAssignment,
 }
@@ -77,11 +73,6 @@ type State = {
 
 export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Actions & {
   defaultDate?: ?Date,
-}
-
-const DELETE_ACTION_SHEET_BUTTON_INDEX = {
-  destructive: 0,
-  cancel: 1,
 }
 
 export class DiscussionEdit extends Component<any, Props, any> {
@@ -365,19 +356,6 @@ export class DiscussionEdit extends Component<any, Props, any> {
                 <Heading1 style={style.heading}> </Heading1>
               </View>
             }
-
-            { Boolean(this.props.discussionID) &&
-              <View>
-                <Row
-                  title={i18n('Delete Discussion')}
-                  image={Images.trash}
-                  testID='discussions.edit.deleteButton'
-                  onPress={this._showDeleteConfirmation}
-                  titleStyles={style.deleteButtonTitle}
-                />
-                <Heading1 style={style.heading}> </Heading1>
-              </View>
-            }
           </KeyboardAwareScrollView>
         </View>
       </Screen>
@@ -420,26 +398,6 @@ export class DiscussionEdit extends Component<any, Props, any> {
     setTimeout(() => {
       Alert.alert(ERROR_TITLE, error)
     }, 1000)
-  }
-
-  _showDeleteConfirmation = () => {
-    const { destructive, cancel } = DELETE_ACTION_SHEET_BUTTON_INDEX
-    const options = {
-      title: i18n('Are you sure you want to delete this discussion?'),
-      options: [i18n('Delete'), i18n('Cancel')],
-      destructiveButtonIndex: destructive,
-      cancelButtonIndex: cancel,
-    }
-    ActionSheetIOS.showActionSheetWithOptions(options, this._handleDeleteActionSheet)
-  }
-
-  _handleDeleteActionSheet = (index: number) => {
-    index === DELETE_ACTION_SHEET_BUTTON_INDEX.destructive && this._deleteDiscussion()
-  }
-
-  _deleteDiscussion = () => {
-    this.setState({ pending: true })
-    this.props.deleteDiscussion(this.props.courseID, this.props.discussionID)
   }
 
   _toggleGradingTypePicker = () => {

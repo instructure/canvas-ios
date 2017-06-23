@@ -3,7 +3,6 @@
 import React from 'react'
 import {
   Alert,
-  ActionSheetIOS,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -64,7 +63,6 @@ describe('AnnouncementEdit', () => {
       navigator: template.navigator(),
       createDiscussion: jest.fn(),
       updateDiscussion: jest.fn(),
-      deleteDiscussion: jest.fn(),
       deletePendingNewDiscussion: jest.fn(),
       defaultDate: new Date(0),
     }
@@ -242,36 +240,6 @@ describe('AnnouncementEdit', () => {
     )
   })
 
-  it('does not render delete button if new', () => {
-    props.announcementID = null
-    expect(getDeleteButton(render(props))).toBeNull()
-  })
-
-  it('renders the delete button for edit', () => {
-    props.announcementID = '1'
-    expect(getDeleteButton(render(props))).not.toBeNull()
-  })
-
-  it('shows delete confirmation then deletes announcement', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
-    props.deleteDiscussion = jest.fn()
-    props.courseID = '1'
-    props.announcementID = '2'
-    tapDelete(render(props))
-    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
-    expect(props.deleteDiscussion).toHaveBeenCalledWith('1', '2')
-  })
-
-  it('cancel delete confirmation does not delete announcement', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    props.deleteDiscussion = jest.fn()
-    tapDelete(render(props))
-    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
-    expect(props.deleteDiscussion).not.toHaveBeenCalled()
-  })
-
   function testRender (props: Props) {
     expect(render(props)).toMatchSnapshot()
   }
@@ -282,11 +250,6 @@ describe('AnnouncementEdit', () => {
 
   function tapDone (component: any): any {
     getDoneButton(component).action()
-    return component
-  }
-
-  function tapDelete (component: any): any {
-    getDeleteButton(component).props.onPress()
     return component
   }
 
@@ -314,10 +277,6 @@ describe('AnnouncementEdit', () => {
 
   function getDoneButton (component: any): any {
     return explore(component.toJSON()).selectRightBarButton('announcements.edit.doneButton')
-  }
-
-  function getDeleteButton (component: any): any {
-    return explore(component.toJSON()).selectByID('announcements.edit.deleteButton')
   }
 
   function toggleDelayPosting (component: any, enabled: boolean) {

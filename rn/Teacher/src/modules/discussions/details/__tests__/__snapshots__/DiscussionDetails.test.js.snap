@@ -2,18 +2,18 @@
 
 exports[`DiscussionDetails renders 1`] = `
 <Screen
-  navBarColor={undefined}
+  navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "image": 1,
         "testID": "discussions.details.edit.button",
-        "title": "Edit",
       },
     ]
   }
-  subtitle="Learn React Native"
+  subtitle="HOTS For Dummies"
   title="Discussion Details"
 >
   <View
@@ -1255,18 +1255,18 @@ exports[`DiscussionDetails renders 1`] = `
 
 exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
 <Screen
-  navBarColor={undefined}
+  navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "image": 1,
         "testID": "discussions.details.edit.button",
-        "title": "Edit",
       },
     ]
   }
-  subtitle="Learn React Native"
+  subtitle="HOTS For Dummies"
   title="Discussion Details"
 >
   <View
@@ -1521,6 +1521,568 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         published={true}
                       />
                     </View>
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={[Function]}
+              testID={undefined}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderTopColor": "#C7CDD1",
+                      "borderTopWidth": 0.5,
+                      "paddingBottom": 16,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel={undefined}
+                      accessible={false}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "marginBottom": 4,
+                        }
+                      }
+                    >
+                      <Image
+                        source={1}
+                        style={
+                          Object {
+                            "height": 19,
+                            "marginRight": 5,
+                            "tintColor": "#8B969E",
+                            "width": 19,
+                          }
+                        }
+                      />
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 16,
+                              "fontWeight": "500",
+                              "paddingTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-medium",
+                            },
+                          ]
+                        }
+                      >
+                        Due
+                      </Text>
+                    </View>
+                    <View
+                      style={
+                        Object {
+                          "flex": 1,
+                        }
+                      }
+                    >
+                      <View
+                        accessibilityLabel={undefined}
+                        accessible={true}
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "paddingTop": 2,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            disabled={false}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                                Object {
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
+                                },
+                                Object {
+                                  "fontWeight": "600",
+                                },
+                                Object {
+                                  "fontFamily": ".SFUIDisplay-semibold",
+                                },
+                              ]
+                            }
+                          >
+                            Due:
+                          </Text>
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            disabled={false}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                                Object {
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
+                                },
+                                Object {},
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                              ]
+                            }
+                          >
+                             May 31, 2037 at 11:59 PM
+                          </Text>
+                        </Text>
+                      </View>
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "paddingTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                          ]
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          For:
+                        </Text>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                           -
+                        </Text>
+                      </Text>
+                      <View>
+                        <View
+                          accessibilityLabel={undefined}
+                          accessible={true}
+                        >
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            disabled={false}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                                Object {
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
+                                },
+                                Object {
+                                  "paddingTop": 2,
+                                },
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                              ]
+                            }
+                          >
+                            <Text
+                              accessible={true}
+                              allowFontScaling={true}
+                              disabled={false}
+                              ellipsizeMode="tail"
+                              style={
+                                Array [
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay",
+                                  },
+                                  Object {
+                                    "color": "#2D3B45",
+                                    "fontSize": 16,
+                                  },
+                                  Object {
+                                    "fontWeight": "600",
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-semibold",
+                                  },
+                                ]
+                              }
+                            >
+                              Available from:
+                            </Text>
+                            <Text
+                              accessible={true}
+                              allowFontScaling={true}
+                              disabled={false}
+                              ellipsizeMode="tail"
+                              style={
+                                Array [
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay",
+                                  },
+                                  Object {
+                                    "color": "#2D3B45",
+                                    "fontSize": 16,
+                                  },
+                                  Object {},
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay",
+                                  },
+                                ]
+                              }
+                            >
+                               Mar 17, 2017 at 12:00 AM
+                            </Text>
+                          </Text>
+                        </View>
+                        <View
+                          accessibilityLabel={undefined}
+                          accessible={true}
+                        >
+                          <Text
+                            accessible={true}
+                            allowFontScaling={true}
+                            disabled={false}
+                            ellipsizeMode="tail"
+                            style={
+                              Array [
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                                Object {
+                                  "color": "#2D3B45",
+                                  "fontSize": 16,
+                                },
+                                Object {
+                                  "paddingTop": 2,
+                                },
+                                Object {
+                                  "fontFamily": ".SFUIDisplay",
+                                },
+                              ]
+                            }
+                          >
+                            <Text
+                              accessible={true}
+                              allowFontScaling={true}
+                              disabled={false}
+                              ellipsizeMode="tail"
+                              style={
+                                Array [
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay",
+                                  },
+                                  Object {
+                                    "color": "#2D3B45",
+                                    "fontSize": 16,
+                                  },
+                                  Object {
+                                    "fontWeight": "600",
+                                  },
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay-semibold",
+                                  },
+                                ]
+                              }
+                            >
+                              Available to:
+                            </Text>
+                            <Text
+                              accessible={true}
+                              allowFontScaling={true}
+                              disabled={false}
+                              ellipsizeMode="tail"
+                              style={
+                                Array [
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay",
+                                  },
+                                  Object {
+                                    "color": "#2D3B45",
+                                    "fontSize": 16,
+                                  },
+                                  Object {},
+                                  Object {
+                                    "fontFamily": ".SFUIDisplay",
+                                  },
+                                ]
+                              }
+                            >
+                               May 31, 2037 at 11:59 PM
+                            </Text>
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                        "paddingRight": 2,
+                        "width": 10,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={[Function]}
+              testID="discussions.submission-graphs"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "white",
+                      "flex": 1,
+                      "paddingBottom": 16,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "borderTopColor": "#C7CDD1",
+                      "borderTopWidth": 0.5,
+                      "paddingBottom": 16,
+                    }
+                  }
+                />
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityLabel={undefined}
+                      accessible={false}
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "marginBottom": 4,
+                        }
+                      }
+                    >
+                      <Text
+                        accessible={true}
+                        allowFontScaling={true}
+                        disabled={false}
+                        ellipsizeMode="tail"
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": ".SFUIDisplay",
+                            },
+                            Object {
+                              "color": "#2D3B45",
+                              "fontSize": 16,
+                            },
+                            Object {
+                              "color": "#8B969E",
+                              "fontSize": 16,
+                              "fontWeight": "500",
+                              "paddingTop": 2,
+                            },
+                            Object {
+                              "fontFamily": ".SFUIDisplay-medium",
+                            },
+                          ]
+                        }
+                      >
+                        Submissions
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "flex": 0,
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
+                        "paddingRight": 2,
+                        "width": 10,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "backgroundColor": "transparent",
+                          "borderColor": "#c7c7cc",
+                          "borderRightWidth": 2,
+                          "borderTopWidth": 2,
+                          "height": 10,
+                          "marginLeft": 7,
+                          "transform": Array [
+                            Object {
+                              "rotate": "45deg",
+                            },
+                          ],
+                          "width": 10,
+                        }
+                      }
+                    />
                   </View>
                 </View>
               </View>
@@ -1871,18 +2433,18 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
 
 exports[`DiscussionDetails renders without a discussion 1`] = `
 <Screen
-  navBarColor={undefined}
+  navBarColor="#fff"
   navBarStyle="dark"
   rightBarButtons={
     Array [
       Object {
         "action": [Function],
+        "image": 1,
         "testID": "discussions.details.edit.button",
-        "title": "Edit",
       },
     ]
   }
-  subtitle="Learn React Native"
+  subtitle="HOTS For Dummies"
   title="Discussion Details"
 >
   <View

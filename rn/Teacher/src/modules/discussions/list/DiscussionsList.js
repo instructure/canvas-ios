@@ -173,7 +173,7 @@ export class DiscussionsList extends Component<any, Props, any> {
   }
 
   addDiscussion = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/new`, { modal: true })
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/new`, { modal: true, modalPresentationStyle: 'formsheet' })
   }
 }
 

@@ -84,7 +84,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
   registerScreen('/attachment', wrap(AttachmentView), store)
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
-  registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store)
+  registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
 

@@ -3,7 +3,6 @@
 import React from 'react'
 import {
   Alert,
-  ActionSheetIOS,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -70,7 +69,6 @@ describe('DiscussionEdit', () => {
       navigator: template.navigator(),
       createDiscussion: jest.fn(),
       updateDiscussion: jest.fn(),
-      deleteDiscussion: jest.fn(),
       deletePendingNewDiscussion: jest.fn(),
       subscribeDiscussion: jest.fn(),
       updateAssignment: jest.fn(),
@@ -215,36 +213,6 @@ describe('DiscussionEdit', () => {
     props.updateAssignment = jest.fn()
     tapDone(render(props, { createNodeMock }))
     expect(props.updateAssignment).toHaveBeenCalledWith('1', assignment, assignment)
-  })
-
-  it('does not render delete button if new', () => {
-    props.discussionID = null
-    expect(getDeleteButton(render(props))).toBeNull()
-  })
-
-  it('renders the delete button for edit', () => {
-    props.discussionID = '1'
-    expect(getDeleteButton(render(props))).not.toBeNull()
-  })
-
-  it('shows delete confirmation then deletes discussion', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(0))
-    props.deleteDiscussion = jest.fn()
-    props.courseID = '1'
-    props.discussionID = '2'
-    tapDelete(render(props))
-    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
-    expect(props.deleteDiscussion).toHaveBeenCalledWith('1', '2')
-  })
-
-  it('cancel delete confirmation does not delete discussion', () => {
-    // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
-    props.deleteDiscussion = jest.fn()
-    tapDelete(render(props))
-    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
-    expect(props.deleteDiscussion).not.toHaveBeenCalled()
   })
 
   it('transforms thread switch into threaded discussion type', () => {
@@ -447,11 +415,6 @@ describe('DiscussionEdit', () => {
     return component
   }
 
-  function tapDelete (component: any): any {
-    getDeleteButton(component).props.onPress()
-    return component
-  }
-
   function tapCancel (component: any) {
     const done: any = explore(component.toJSON()).selectLeftBarButton('discussions.edit.cancelButton')
     done.action()
@@ -484,10 +447,6 @@ describe('DiscussionEdit', () => {
 
   function getDoneButton (component: any): any {
     return explore(component.toJSON()).selectRightBarButton('discussions.edit.doneButton')
-  }
-
-  function getDeleteButton (component: any): any {
-    return explore(component.toJSON()).selectByID('discussions.edit.deleteButton')
   }
 
   function toggleThreadedReplies (component: any, enabled: boolean): any {

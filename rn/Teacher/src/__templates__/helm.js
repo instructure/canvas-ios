@@ -7,4 +7,5 @@ export const navigator: Template<any> = template({
   dismiss: jest.fn(),
   dismissAllModals: jest.fn(),
   traitCollection: jest.fn(),
+  pop: jest.fn(),
 })

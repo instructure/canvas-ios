@@ -943,6 +943,7 @@ exports[`error occurs when done pressed 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -1897,6 +1898,7 @@ exports[`modal saving is shown on assignment update 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -2851,6 +2853,7 @@ exports[`renders 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -3812,6 +3815,7 @@ exports[`saving invalid name displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -4773,6 +4777,7 @@ exports[`saving invalid points possible displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }
@@ -5734,6 +5739,7 @@ exports[`saving negative points possible displays banner 1`] = `
             Object {
               "dismiss": [Function],
               "dismissAllModals": [Function],
+              "pop": [Function],
               "show": [Function],
               "traitCollection": [Function],
             }

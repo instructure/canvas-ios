@@ -125,7 +125,7 @@ export function mapStateToProps (state: AppState, ownProps: SubmissionBreakdownG
   const assignment = state.entities.assignments[ownProps.assignmentID]
   let submissions = []
   let pending = false
-  if (assignment && assignment.submissions) {
+  if (assignment && assignment.submissions && assignment.submissions.refs) {
     submissions = assignment.submissions.refs.map((id) => {
       const submission = state.entities.submissions[id].submission
       if (!submission) return null
@@ -141,7 +141,7 @@ export function mapStateToProps (state: AppState, ownProps: SubmissionBreakdownG
 
   let submissionTotalCount = 0
 
-  if (assignment && assignment.gradeableStudents) {
+  if (assignment && assignment.gradeableStudents && assignment.gradeableStudents.refs) {
     submissionTotalCount = assignment.gradeableStudents.refs.length
     pending = pending || assignment.gradeableStudents.pending
   } else {
