@@ -112,6 +112,10 @@ export default class BottomDrawer extends Component<any, Props, State> {
     }
   }
 
+  captureDrawer = (d: InteractableView) => {
+    this.drawer = d
+  }
+
   getSnapPoints = () => {
     // for testing...
     const minHeight = Math.max(this.state.height, 140)
@@ -140,15 +144,14 @@ export default class BottomDrawer extends Component<any, Props, State> {
     return (
       <View style={[styles.drawer, { left: position, right: position }]}>
         <Interactable.View
-          ref={(e) => { this.drawer = e }}
+          ref={this.captureDrawer}
           onSnap={this.onSnap}
           verticalOnly={true}
           snapPoints={this.getSnapPoints()}
           initialPosition={this.getSnapPoints()[this.props.drawerState.currentSnap]}
           animatedValueY={this._deltaY}
           style={styles.handle}
-        >
-        </Interactable.View>
+        />
         <Animated.View
           style={[styles.drawerContent, {
             height: clampedHeight,
