@@ -207,8 +207,8 @@ export function mapStateToProps (state: AppState, props: any): ConversationOwnPr
     conversation,
     conversationID,
     messages,
-    pending: convoState.pending > 0,
-    error: convoState.error,
+    pending: convoState ? convoState.pending > 0 : false,
+    error: convoState ? convoState.error : null,
   }
 }
 
