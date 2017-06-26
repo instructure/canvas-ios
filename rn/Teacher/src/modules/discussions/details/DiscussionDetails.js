@@ -30,8 +30,7 @@ import {
 import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
-import DiscussionReplies from './DiscussionReplies'
-import { MAX_NODE_DEPTH } from './Reply'
+import Reply, { MAX_NODE_DEPTH } from './Reply'
 import { replyFromLocalIndexPath } from '../reducer'
 
 type OwnProps = {
@@ -188,7 +187,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
     return (
       <View>
-        <DiscussionReplies
+        <Reply
         deleteDiscussionEntry={this.props.deleteDiscussionEntry}
         replyToEntry={this._onPressReplyToEntry}
         style={style.replyContainer}
@@ -196,7 +195,8 @@ export class DiscussionDetails extends Component<any, Props, any> {
         courseID={this.props.courseID}
         discussionID={discussion.id}
         reply={reply}
-        pathIndex={path}
+        depth={0}
+        myPath={[...path]}
         participants={participants}
         onPressMoreReplies={this._onPressMoreReplies}
         />
