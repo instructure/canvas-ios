@@ -111,6 +111,7 @@ export default class URLSubmissionViewer extends Component {
         <LinkButton
           testID='url-submission-viewer.url'
           style={styles.linkButton}
+          textStyle={styles.linkButtonText}
           onPress={this.onFollowLink}
         >
           { submission.url || '' }
@@ -135,6 +136,8 @@ const styles = StyleSheet.create({
   linkButton: {
     alignSelf: 'center',
     paddingVertical: 12,
+  },
+  linkButtonText: {
     fontSize: 18,
   },
 })

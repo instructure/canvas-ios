@@ -199,11 +199,6 @@ exports[`render 1`] = `
           <TouchableOpacity
             accessibilityTraits="button"
             onPress={[Function]}
-            style={
-              Object {
-                "fontWeight": "500",
-              }
-            }
             testID="fav-courses.see-all-btn"
           >
             <View>
@@ -915,11 +910,6 @@ exports[`render without courses and *zero* total courses 1`] = `
           <TouchableOpacity
             accessibilityTraits="button"
             onPress={[Function]}
-            style={
-              Object {
-                "fontWeight": "500",
-              }
-            }
             testID="fav-courses.see-all-btn"
           >
             <View>

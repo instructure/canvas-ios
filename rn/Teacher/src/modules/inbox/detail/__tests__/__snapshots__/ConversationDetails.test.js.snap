@@ -797,8 +797,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 onStartShouldSetResponder={[Function]}
                 style={
                   Object {
-                    "fontSize": 16,
-                    "fontWeight": "500",
                     "marginTop": 8,
                     "opacity": 1,
                   }
@@ -836,7 +834,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                           Object {
                             "fontSize": 16,
                             "fontWeight": "500",
-                            "marginTop": 8,
                           },
                         ],
                         Object {

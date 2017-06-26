@@ -91,7 +91,7 @@ export class FavoritedCourseList extends Component {
             {i18n('Courses')}
           </Heading1>
         </View>
-        <LinkButton style={styles.seeAll} onPress={this.goToAllCourses} testID='fav-courses.see-all-btn'>
+        <LinkButton textStyle={styles.seeAll} onPress={this.goToAllCourses} testID='fav-courses.see-all-btn'>
             {i18n('See All')}
         </LinkButton>
       </View>

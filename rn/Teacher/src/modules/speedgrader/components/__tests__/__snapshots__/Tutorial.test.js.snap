@@ -83,13 +83,6 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
         }
       }
       onPress={[Function]}
-      style={
-        Object {
-          "fontSize": 16,
-          "fontWeight": "600",
-          "textAlign": "center",
-        }
-      }
       testID="tutorial.button-1"
       underlayColor="#fff"
     >

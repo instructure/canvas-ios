@@ -144,12 +144,13 @@ export default class RubricItem extends Component {
         </View>
         <View style={styles.buttons}>
           {!hasComment &&
-            <LinkButton style={styles.button} onPress={this.openKeyboard} testID={`rubric-item.add-comment-${rubricItem.id}`}>
+            <LinkButton style={styles.button} textStyle={styles.buttonText} onPress={this.openKeyboard} testID={`rubric-item.add-comment-${rubricItem.id}`}>
               {i18n('Add Comment')}
             </LinkButton>
           }
           <LinkButton
             style={styles.button}
+            textStyle={styles.buttonText}
             onPress={this.showDescription}
             testID='rubric-item.description'
           >
@@ -160,7 +161,7 @@ export default class RubricItem extends Component {
           <View style={styles.chatBubble}>
             <ChatBubble from='them' message={this.props.grade.comments} />
             <LinkButton
-              style={styles.editButton}
+              textStyle={styles.editButtonText}
               testID={`rubric-item.edit-comment-${rubricItem.id}`}
               onPress={this.openActionSheet}
             >
@@ -196,9 +197,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   button: {
+    paddingRight: 16,
+  },
+  buttonText: {
     fontSize: 14,
     fontWeight: '500',
-    paddingRight: 16,
   },
   chatBubble: {
     paddingTop: 16,
@@ -206,7 +209,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  editButton: {
+  editButtonText: {
     fontSize: 16,
     fontWeight: '600',
     color: '#73818C',

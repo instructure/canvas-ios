@@ -203,10 +203,6 @@ exports[`DiscussionReplies renders 1`] = `
                     Object {
                       "color": "#A5AFB5",
                     },
-                    Object {
-                      "alignSelf": "flex-end",
-                      "padding": 2,
-                    },
                   ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
@@ -297,10 +293,6 @@ exports[`DiscussionReplies renders 1`] = `
                     },
                     Object {
                       "color": "#A5AFB5",
-                    },
-                    Object {
-                      "alignSelf": "flex-end",
-                      "padding": 2,
                     },
                   ],
                   Object {
@@ -526,10 +518,6 @@ exports[`DiscussionReplies renders 1`] = `
                           Object {
                             "color": "#A5AFB5",
                           },
-                          Object {
-                            "alignSelf": "flex-end",
-                            "padding": 2,
-                          },
                         ],
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -620,10 +608,6 @@ exports[`DiscussionReplies renders 1`] = `
                           },
                           Object {
                             "color": "#A5AFB5",
-                          },
-                          Object {
-                            "alignSelf": "flex-end",
-                            "padding": 2,
                           },
                         ],
                         Object {

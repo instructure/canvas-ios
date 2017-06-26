@@ -514,8 +514,6 @@ exports[`Rubric has the correct score 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -551,7 +549,6 @@ exports[`Rubric has the correct score 1`] = `
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -569,8 +566,6 @@ exports[`Rubric has the correct score 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -606,7 +601,6 @@ exports[`Rubric has the correct score 1`] = `
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -1141,8 +1135,6 @@ exports[`Rubric renders a rubric 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -1178,7 +1170,6 @@ exports[`Rubric renders a rubric 1`] = `
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -1196,8 +1187,6 @@ exports[`Rubric renders a rubric 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -1233,7 +1222,6 @@ exports[`Rubric renders a rubric 1`] = `
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -1768,8 +1756,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -1805,7 +1791,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -1823,8 +1808,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -1860,7 +1843,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -2592,8 +2574,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -2629,7 +2609,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -2647,8 +2626,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -2684,7 +2661,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -2906,12 +2882,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                }
-              }
               testID="rubric-details.save"
             >
               <View>
@@ -3275,8 +3245,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -3312,7 +3280,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {
@@ -3330,8 +3297,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               onPress={[Function]}
               style={
                 Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
                   "paddingRight": 16,
                 }
               }
@@ -3367,7 +3332,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         Object {
                           "fontSize": 14,
                           "fontWeight": "500",
-                          "paddingRight": 16,
                         },
                       ],
                       Object {

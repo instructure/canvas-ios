@@ -98,9 +98,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -241,9 +238,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -384,9 +378,6 @@ exports[`SubmissionHeader muted grading 1`] = `
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",

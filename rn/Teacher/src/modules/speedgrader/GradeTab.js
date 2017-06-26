@@ -141,7 +141,7 @@ export class GradeTab extends Component {
               <ActivityIndicator />
             }
             {this.state.hasChanges &&
-              <LinkButton testID='rubric-details.save' style={styles.saveStyles} onPress={this.saveRubricPoints}>
+              <LinkButton testID='rubric-details.save' textStyle={styles.saveStyles} onPress={this.saveRubricPoints}>
                 {i18n('Save')}
               </LinkButton>
             }

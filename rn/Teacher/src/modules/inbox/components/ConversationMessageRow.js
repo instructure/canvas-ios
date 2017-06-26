@@ -144,8 +144,9 @@ export default class ConversationMessageRow extends Component<any, ConversationM
             })
           }
           { this.props.firstMessage &&
-            <LinkButton onPress={this._replyButtonPressed}
-              style={styles.replyButton}>{i18n('Reply')}</LinkButton>
+            <LinkButton onPress={this._replyButtonPressed} style={styles.replyButton} textStyle={styles.replyButtonText}>
+              {i18n('Reply')}
+            </LinkButton>
           }
         </View>
       </View>
@@ -215,6 +216,8 @@ const styles = StyleSheet.create({
   },
   replyButton: {
     marginTop: global.style.defaultPadding / 2,
+  },
+  replyButtonText: {
     fontSize: 16,
     fontWeight: '500',
   },

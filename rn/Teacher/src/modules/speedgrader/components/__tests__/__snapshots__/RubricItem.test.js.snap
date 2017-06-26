@@ -126,8 +126,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -163,7 +161,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -181,8 +178,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -218,7 +213,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -361,8 +355,6 @@ exports[`RubricItem renders 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -398,7 +390,6 @@ exports[`RubricItem renders 1`] = `
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -416,8 +407,6 @@ exports[`RubricItem renders 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -453,7 +442,6 @@ exports[`RubricItem renders 1`] = `
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -596,8 +584,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -633,7 +619,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -651,8 +636,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -688,7 +671,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -829,8 +811,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -866,7 +846,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -884,8 +863,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -921,7 +898,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -1064,8 +1040,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
       onPress={[Function]}
       style={
         Object {
-          "fontSize": 14,
-          "fontWeight": "500",
           "paddingRight": 16,
         }
       }
@@ -1101,7 +1075,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
                 Object {
                   "fontSize": 14,
                   "fontWeight": "500",
-                  "paddingRight": 16,
                 },
               ],
               Object {
@@ -1194,13 +1167,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "color": "#73818C",
-          "fontSize": 16,
-          "fontWeight": "600",
-        }
-      }
       testID="rubric-item.edit-comment-2"
     >
       <View>

@@ -81,7 +81,6 @@ exports[`renders link correctly 1`] = `
               "color": "#374A59",
             },
             Object {},
-            undefined,
           ],
           Object {
             "fontFamily": ".SFUIDisplay",

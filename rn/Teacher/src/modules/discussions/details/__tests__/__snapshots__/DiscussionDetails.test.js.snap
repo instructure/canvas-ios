@@ -3867,10 +3867,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 Object {
                                   "color": "#A5AFB5",
                                 },
-                                Object {
-                                  "alignSelf": "flex-end",
-                                  "padding": 2,
-                                },
                               ],
                               Object {
                                 "fontFamily": ".SFUIDisplay",
@@ -3961,10 +3957,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                                 Object {
                                   "color": "#A5AFB5",
-                                },
-                                Object {
-                                  "alignSelf": "flex-end",
-                                  "padding": 2,
                                 },
                               ],
                               Object {
@@ -4135,10 +4127,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                       Object {
                                         "color": "#A5AFB5",
                                       },
-                                      Object {
-                                        "alignSelf": "flex-end",
-                                        "padding": 2,
-                                      },
                                     ],
                                     Object {
                                       "fontFamily": ".SFUIDisplay",
@@ -4229,10 +4217,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                       },
                                       Object {
                                         "color": "#A5AFB5",
-                                      },
-                                      Object {
-                                        "alignSelf": "flex-end",
-                                        "padding": 2,
                                       },
                                     ],
                                     Object {

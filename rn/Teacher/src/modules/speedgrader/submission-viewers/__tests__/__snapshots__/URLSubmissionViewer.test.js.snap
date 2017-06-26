@@ -23,7 +23,6 @@ exports[`url submission renders correctly 1`] = `
     style={
       Object {
         "alignSelf": "center",
-        "fontSize": 18,
         "paddingVertical": 12,
       }
     }
@@ -57,9 +56,7 @@ exports[`url submission renders correctly 1`] = `
               },
               Object {},
               Object {
-                "alignSelf": "center",
                 "fontSize": 18,
-                "paddingVertical": 12,
               },
             ],
             Object {

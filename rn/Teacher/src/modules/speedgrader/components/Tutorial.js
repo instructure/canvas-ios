@@ -114,7 +114,7 @@ export default class Tutorial extends PureComponent {
           <Text style={styles.text}>{currentTutorial.text}</Text>
           <Image style={styles.image} source={currentTutorial.image} />
           <LinkButton
-            style={styles.button}
+            textStyle={styles.buttonText}
             onPress={this.onPress}
             hitSlop={{ top: 10, left: 10, right: 10, bottom: 10 }}
             underlayColor='#fff'
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 18,
   },
-  button: {
+  buttonText: {
     fontSize: 16,
     fontWeight: '600',
     textAlign: 'center',

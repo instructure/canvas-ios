@@ -86,9 +86,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -640,9 +637,6 @@ exports[`applyFilter will apply a new filter 1`] = `
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -2097,9 +2091,6 @@ exports[`renders correctly 1`] = `
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",
@@ -2651,9 +2642,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   "color": "#374A59",
                 },
                 Object {},
-                Object {
-                  "marginBottom": 1,
-                },
               ],
               Object {
                 "fontFamily": ".SFUIDisplay",
