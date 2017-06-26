@@ -98,3 +98,29 @@ test('deleteConversation', async () => {
   ])
   expect(api.deleteConversation).toHaveBeenCalledWith('12')
 })
+
+test('markAsRead', async () => {
+  let data = template.conversation()
+  let api = {
+    markConversationAsRead: apiResponse(data),
+  }
+  const actions = InboxActions(api)
+  const action = actions.markAsRead('1')
+  const result = await testAsyncAction(action)
+  expect(result).toMatchObject([
+    {
+      type: actions.markAsRead.toString(),
+      pending: true,
+      payload: {
+        conversationID: '1',
+      },
+    },
+    {
+      type: actions.markAsRead.toString(),
+      payload: {
+        result: { data },
+        conversationID: '1',
+      },
+    },
+  ])
+})

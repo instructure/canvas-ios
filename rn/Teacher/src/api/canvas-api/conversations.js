@@ -50,3 +50,12 @@ export function createConversation (conversation: CreateConversationParameters):
   const url = 'conversations'
   return httpClient().post(url, conversation)
 }
+
+export function markConversationAsRead (conversationID: string): Promise<ApiResponse<Conversation>> {
+  const url = `conversations/${conversationID}`
+  const conversation = {
+    id: conversationID,
+    workflow_state: 'read',
+  }
+  return httpClient().put(url, { conversation })
+}

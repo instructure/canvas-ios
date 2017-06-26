@@ -53,6 +53,12 @@ export let InboxActions: (typeof canvas) => any = (api) => ({
       conversationID,
     }
   }),
+  markAsRead: createAction('inbox.mark-as-read', (conversationID: string) => {
+    return {
+      promise: api.markConversationAsRead(conversationID),
+      conversationID,
+    }
+  }),
 })
 
 export default (InboxActions(canvas): any)

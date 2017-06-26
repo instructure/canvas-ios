@@ -20,6 +20,7 @@ const {
   starConversation,
   unstarConversation,
   deleteConversation,
+  markAsRead,
 } = Actions
 
 export function createScopeHandler (action: string): Function {
@@ -157,6 +158,32 @@ export const conversations: Reducer = handleActions({
         error: parseErrorMessage(error),
       },
     }),
+  }),
+  [markAsRead.toString()]: handleAsync({
+    pending: (state, { conversationID }) => {
+      return {
+        ...state,
+        [conversationID]: {
+          ...state[conversationID],
+          data: {
+            ...state[conversationID].data,
+            workflow_state: 'read',
+          },
+        },
+      }
+    },
+    rejected: (state, { conversationID }) => {
+      return {
+        ...state,
+        [conversationID]: {
+          ...state[conversationID],
+          data: {
+            ...state[conversationID].data,
+            workflow_state: 'unread',
+          },
+        },
+      }
+    },
   }),
 }, {})
 

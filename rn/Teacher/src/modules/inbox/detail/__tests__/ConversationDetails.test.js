@@ -54,6 +54,7 @@ describe('ConversationDetails', () => {
       starConversation: jest.fn(),
       unstarConversation: jest.fn(),
       deleteConversation: jest.fn(),
+      markAsRead: jest.fn(),
       navigator: template.navigator(),
     }
   })
@@ -108,6 +109,14 @@ describe('ConversationDetails', () => {
     screen.tapOptionsButton()
     expect(props.navigator.pop).toHaveBeenCalled()
   })
+
+  it('calls markAsRead on componentDidMount', () => {
+    renderer.create(
+      <ConversationDetails {...props} />
+    )
+
+    expect(props.markAsRead).toHaveBeenCalledWith('1')
+  })
 })
 
 it('mapStateToProps', () => {
@@ -137,6 +146,7 @@ it('handleRefresh', () => {
     refreshConversationDetails: jest.fn(),
     starConversation: jest.fn(),
     unstarConversation: jest.fn(),
+    markAsRead: jest.fn(),
     conversationID: '1',
     conversation: null,
     messages: [],

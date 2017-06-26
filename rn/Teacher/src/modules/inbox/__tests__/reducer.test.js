@@ -5,7 +5,7 @@ import { InboxActions } from '../actions'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
-const { refreshInboxAll, updateInboxSelectedScope } = InboxActions()
+const { refreshInboxAll, updateInboxSelectedScope, markAsRead } = InboxActions()
 const templates = {
   ...require('../../../api/canvas-api/__templates__/conversations'),
 }
@@ -182,5 +182,53 @@ describe('deleteConversation', () => {
       expectedPending,
       expectedRejected,
     ])
+  })
+})
+
+describe('markAsRead', () => {
+  it('optimistically sets the workflow_state', () => {
+    let conversationID = '1'
+
+    let state = {
+      '1': {
+        data: templates.conversation({ workflow_state: 'unread' }),
+        pending: 0,
+        error: null,
+      },
+    }
+
+    let action = {
+      type: markAsRead.toString(),
+      pending: true,
+      payload: {
+        conversationID,
+      },
+    }
+
+    let nextState = conversations(state, action)
+    expect(nextState['1'].data.workflow_state).toEqual('read')
+  })
+
+  it('reverts on error', () => {
+    let conversationID = '1'
+    let state = {
+      '1': {
+        data: templates.conversation({ workflow_state: 'read' }),
+        pending: 0,
+        error: null,
+      },
+    }
+
+    let action = {
+      type: markAsRead.toString(),
+      error: true,
+      payload: {
+        conversationID,
+        error: 'this is an error',
+      },
+    }
+
+    let nextState = conversations(state, action)
+    expect(nextState['1'].data.workflow_state).toEqual('unread')
   })
 })

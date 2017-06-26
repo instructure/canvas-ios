@@ -56,7 +56,6 @@ exports[`ConversationDetails renders correctly 1`] = `
               }
             }
             onPress={[Function]}
-            style={undefined}
             testID="inbox.detail.not-starred"
           >
             <View
@@ -263,7 +262,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
               }
             }
             onPress={[Function]}
-            style={undefined}
             testID="inbox.detail.not-starred"
           >
             <View

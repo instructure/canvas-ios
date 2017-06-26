@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import refresh from '../../../utils/refresh'
-import { default as InboxActions } from '../actions'
+import InboxActions from '../actions'
 import Screen from '../../../routing/Screen'
 import branding from '../../../common/branding'
 import i18n from 'format-message'
@@ -19,20 +19,6 @@ import ConversationMessage from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
 import Images from '../../../images'
-
-const {
-  refreshConversationDetails,
-  starConversation,
-  unstarConversation,
-  deleteConversation,
-} = InboxActions
-
-const Actions = {
-  refreshConversationDetails,
-  starConversation,
-  unstarConversation,
-  deleteConversation,
-}
 
 export type ConversationOwnProps = {
   conversation: ?Conversation,
@@ -48,6 +34,7 @@ export type RefreshProps = {
   refreshConversationDetails: Function,
   starConversation: Function,
   unstarConversation: Function,
+  markAsRead: Function,
 }
 
 export type ConversationDetailsProps = ConversationOwnProps & RefreshProps & NavigationProps
@@ -59,6 +46,10 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     this.state = {
       deletePending: false,
     }
+  }
+
+  componentDidMount () {
+    this.props.markAsRead(this.props.conversationID)
   }
 
   _renderItem = ({ item, index }) => {
@@ -88,7 +79,6 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     return (<View style={styles.header}>
               <Heading1>{this.props.conversation.subject || i18n('(no subject)')}</Heading1>
               <TouchableOpacity
-                style={styles.courseRow}
                 accessibilityLabel={starred ? i18n('Starred') : i18n('Unstarred')}
                 accessibilityTraits='button'
                 testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
@@ -234,5 +224,5 @@ export const Refreshed: any = refresh(
   shouldRefresh,
   props => Boolean(props.pending)
 )(ConversationDetails)
-const Connected = connect(mapStateToProps, Actions)(Refreshed)
+const Connected = connect(mapStateToProps, InboxActions)(Refreshed)
 export default (Connected: Component<any, ConversationDetailsProps, any>)
