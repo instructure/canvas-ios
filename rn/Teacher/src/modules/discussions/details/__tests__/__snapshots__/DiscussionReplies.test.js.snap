@@ -247,6 +247,8 @@ exports[`DiscussionReplies renders 1`] = `
                   Object {
                     "alignSelf": "center",
                     "color": "#A5AFB5",
+                    "paddingLeft": 10,
+                    "paddingRight": 10,
                     "textAlign": "center",
                   },
                 ],
@@ -319,6 +321,7 @@ exports[`DiscussionReplies renders 1`] = `
             </View>
           </TouchableOpacity>
         </View>
+        <View />
       </View>
       <View
         style={

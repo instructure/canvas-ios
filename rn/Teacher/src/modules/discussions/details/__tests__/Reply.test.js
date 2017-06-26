@@ -35,6 +35,7 @@ describe('DiscussionReplies', () => {
       replyToEntry: jest.fn(),
       myPath: [0],
       navigator: template.navigator(),
+      onPressMoreReplies: jest.fn(),
     }
   })
 

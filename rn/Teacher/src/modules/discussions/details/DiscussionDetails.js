@@ -31,6 +31,8 @@ import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import DiscussionReplies from './DiscussionReplies'
+import { MAX_NODE_DEPTH } from './Reply'
+import { replyFromLocalIndexPath } from '../reducer'
 
 type OwnProps = {
   discussionID: string,
@@ -60,7 +62,13 @@ export type Props = State & OwnProps & RefreshProps & typeof Actions & Navigatio
 export class DiscussionDetails extends Component<any, Props, any> {
   constructor (props: Props) {
     super(props)
+    this.state = {
+      rootNodePath: [],
+      deletePending: false,
+    }
+  }
 
+  componentWillUpdate () {
     this.state = {
       deletePending: false,
     }
@@ -147,17 +155,36 @@ export class DiscussionDetails extends Component<any, Props, any> {
           </View>
         </View>
 
-        <AssignmentSection
-          title={i18n('Replies')}
-          style={{ paddingBottom: 0 }}>
-        </AssignmentSection>
+        { this.state.rootNodePath.length === 0 &&
+            <AssignmentSection
+              title={i18n('Replies')}
+              style={{ paddingBottom: 0 }}>
+            </AssignmentSection>
+        }
+
+        { this.renderPopReplyStackButton() }
       </View>
     )
+  }
+
+  renderPopReplyStackButton = () => {
+    if (this.state.rootNodePath.length !== 0) {
+      return (
+        <AssignmentSection style={{ paddingBottom: 0 }}>
+              <TouchableHighlight testID={`discussion.popToLastDiscussionList`} onPress={this._onPopReplyRootPath}>
+                  <View style={style.popReplyStackContainer}>
+                    <Image source={Images.backIcon} style={style.popReplyStackIcon} />
+                  </View>
+            </TouchableHighlight>
+            </AssignmentSection>
+      )
+    } else return (<View/>)
   }
 
   renderReply = (discussion: Discussion) => ({ item, index }: { item: DiscussionReply, index: number }) => {
     const reply = item
     let participants = discussion && discussion.participants || []
+    let path = [...this.state.rootNodePath.slice(0, -1), index]
 
     return (
       <View>
@@ -169,11 +196,23 @@ export class DiscussionDetails extends Component<any, Props, any> {
         courseID={this.props.courseID}
         discussionID={discussion.id}
         reply={reply}
-        pathIndex={index}
+        pathIndex={path}
         participants={participants}
+        onPressMoreReplies={this._onPressMoreReplies}
         />
       </View>
     )
+  }
+
+  rootRepliesData = () => {
+    const { discussion } = this.props
+    if (!discussion) return []
+
+    if (this.state.rootNodePath.length === 0) return discussion.replies
+
+    let replies = discussion.replies || []
+    let reply = replyFromLocalIndexPath(this.state.rootNodePath, replies, false)
+    return [reply]
   }
 
   render () {
@@ -182,7 +221,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     if (discussion) {
       data = [
         { data: [discussion], title: '', renderItem: this.renderDetails },
-        { data: discussion.replies || [], title: '', renderItem: this.renderReply(discussion) },
+        { data: this.rootRepliesData() || [], title: '', renderItem: this.renderReply(discussion) },
       ]
     }
     return (
@@ -291,6 +330,20 @@ export class DiscussionDetails extends Component<any, Props, any> {
     }
   }
 
+  _onPressMoreReplies = (rootPath: number[]) => {
+    this.setState({
+      rootNodePath: rootPath,
+    })
+  }
+
+  _onPopReplyRootPath = () => {
+    let path = this.state.rootNodePath.slice(0, this.state.rootNodePath.length - MAX_NODE_DEPTH)
+    if (path.length === 1) path = []
+    this.setState({
+      rootNodePath: path,
+    })
+  }
+
   _onPressReply = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { parentIndexPath: [] })
   }
@@ -379,6 +432,15 @@ const style = StyleSheet.create({
     fontFamily: BOLD_FONT,
     marginLeft: 6,
     fontSize: 14,
+  },
+  popReplyStackContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: global.style.defaultPadding / 2,
+  },
+  popReplyStackIcon: {
+    tintColor: colors.link,
   },
   message: {
     paddingTop: global.style.defaultPadding,

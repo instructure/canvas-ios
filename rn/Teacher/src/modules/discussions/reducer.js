@@ -30,13 +30,13 @@ const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
   ({ result }) => result.data.map(discussion => discussion.id)
 )
 
-export function replyFromLocalIndexPath (localIndexPath: number[], replies: DiscussionReply[]): ?DiscussionReply {
+export function replyFromLocalIndexPath (localIndexPath: number[], replies: DiscussionReply[], createNewCopyOfReply: boolean = true): ?DiscussionReply {
   let r = replies
   let reply
   for (let i = 0; i < localIndexPath.length; i++) {
     let index = localIndexPath[i]
     if (i === localIndexPath.length - 1) {
-      reply = Object.assign({ }, r[index])
+      reply = (createNewCopyOfReply) ? Object.assign({ }, r[index]) : r[index]
     } else {
       r = r[index].replies
     }

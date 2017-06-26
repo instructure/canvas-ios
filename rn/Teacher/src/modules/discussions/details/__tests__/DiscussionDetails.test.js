@@ -20,6 +20,9 @@ jest
   .mock('../../../../routing/Screen')
   .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection')
   .mock('../../../assignment-details/components/PublishedIcon', () => 'PublishedIcon')
+  .mock('LayoutAnimation', () => ({
+    easeInEaseOut: jest.fn(),
+  }))
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
@@ -56,6 +59,23 @@ describe('DiscussionDetails', () => {
 
   it('renders', () => {
     testRender(props)
+  })
+
+  it('renders with nested replies selected', () => {
+    let aaaaa = template.discussionReply({ id: '5' })
+    let aaaa = template.discussionReply({ id: '4', replies: [aaaaa] })
+    let aaa = template.discussionReply({ id: '3', replies: [aaaa] })
+    let aa = template.discussionReply({ id: '2', replies: [aaa] })
+    let a = template.discussionReply({ id: '1', replies: [aa] })
+    let discussion = { ...props.discussion, replies: [a] }
+    const tree = render({ ...props, discussion })
+    const instance = tree.getInstance()
+    instance._onPressMoreReplies([0, 0, 0, 0])
+    expect(tree.toJSON()).toMatchSnapshot()
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0] })
+
+    let rootNodes = instance.rootRepliesData()
+    expect(rootNodes).toEqual([aaaa])
   })
 
   it('sets title depending on announcement', () => {
@@ -165,6 +185,28 @@ describe('DiscussionDetails', () => {
         { text: 'OK', onPress: expect.any(Function) },
       ],
     )
+  })
+
+  it('_onPopReplyRootPath pops to correct set of replies', () => {
+    let aaaaaaaaa = template.discussionReply({ id: '9' })
+    let aaaaaaaa = template.discussionReply({ id: '8', replies: [aaaaaaaaa] })
+    let aaaaaaa = template.discussionReply({ id: '7', replies: [aaaaaaaa] })
+    let aaaaaa = template.discussionReply({ id: '6', replies: [aaaaaaa] })
+    let aaaaa = template.discussionReply({ id: '5', replies: [aaaaaa] })
+    let aaaa = template.discussionReply({ id: '4', replies: [aaaaa] })
+    let aaa = template.discussionReply({ id: '3', replies: [aaaa] })
+    let aa = template.discussionReply({ id: '2', replies: [aaa] })
+    let a = template.discussionReply({ id: '1', replies: [aa] })
+    let discussion = { ...props.discussion, replies: [a] }
+    const tree = render({ ...props, discussion })
+    const instance = tree.getInstance()
+    instance._onPressMoreReplies([0, 0, 0, 0])
+    instance._onPressMoreReplies([0, 0, 0, 0, 0, 0, 0])
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0] })
+    instance._onPopReplyRootPath()
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0] })
+    instance._onPopReplyRootPath()
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [] })
   })
 
   it('deletes discussion', () => {

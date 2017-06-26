@@ -28,7 +28,8 @@ describe('DiscussionReplies', () => {
       deleteDiscussionEntry: jest.fn(),
       replyToEntry: jest.fn(),
       navigator: template.navigator(),
-      pathIndex: 0,
+      pathIndex: [0],
+      onPressMoreReplies: jest.fn(),
     }
   })
 

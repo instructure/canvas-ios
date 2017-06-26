@@ -15,24 +15,26 @@ export type Props = {
   discussionID: string,
   deleteDiscussionEntry: Function,
   replyToEntry: Function,
+  onPressMoreReplies: Function,
   navigator: Navigator,
-  pathIndex: number,
+  pathIndex: number[],
 }
 
 export default class DiscussionReplies extends Component<any, Props, any> {
   render () {
-    let { courseID, discussionID, deleteDiscussionEntry, pathIndex, reply, replyToEntry } = this.props
+    let { courseID, discussionID, deleteDiscussionEntry, pathIndex, reply, replyToEntry, onPressMoreReplies } = this.props
     let participants = this.props.participants || {}
     let r = (
      <Reply
      replyToEntry={replyToEntry}
-     myPath={[pathIndex]}
+     myPath={[...pathIndex]}
      navigator={this.props.navigator}
      deleteDiscussionEntry={deleteDiscussionEntry}
      courseID={courseID}
      discussionID={discussionID}
      participants={participants}
      reply={reply}
+     onPressMoreReplies={onPressMoreReplies}
      depth={0}/>
     )
     return (

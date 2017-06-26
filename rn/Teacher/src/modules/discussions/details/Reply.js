@@ -9,7 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 import { Text, BOLD_FONT } from '../../../common/text'
-import { LinkButton } from '../../../common/buttons'
+import { LinkButton, Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
@@ -17,6 +17,8 @@ import { formattedDate } from '../../../utils/dateUtils'
 import WebContainer from '../../../common/components/WebContainer'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
+
+export const MAX_NODE_DEPTH: number = 3
 
 export type Props = {
   reply: DiscussionReply,
@@ -26,6 +28,7 @@ export type Props = {
   discussionID: string,
   deleteDiscussionEntry: Function,
   replyToEntry: Function,
+  onPressMoreReplies: Function,
   myPath: number[],
   navigator: Navigator,
 }
@@ -41,10 +44,10 @@ export default class Reply extends Component <any, Props, any> {
   }
 
   render () {
-    let { reply, depth, participants, courseID, discussionID, replyToEntry } = this.props
+    let { reply, depth, participants, courseID, discussionID, replyToEntry, onPressMoreReplies } = this.props
     participants = participants || {}
     let replies = reply.replies || []
-    let childReplies = replies.map((r, i) => <Reply replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
+    let childReplies = (depth > MAX_NODE_DEPTH - 1) ? [] : replies.map((r, i) => <Reply onPressMoreReplies={onPressMoreReplies} replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
     let user = participants[reply.user_id]
 
     if (reply.deleted) {
@@ -79,6 +82,7 @@ export default class Reply extends Component <any, Props, any> {
               </TouchableHighlight>
             }
             {this._renderButtons()}
+            {this._renderMoreRepliesButton(depth, reply)}
           </View>
 
           <View style={style.rowB}>
@@ -89,18 +93,40 @@ export default class Reply extends Component <any, Props, any> {
     )
   }
 
+  _renderMoreRepliesButton = (depth: number, reply: DiscussionReply) => {
+    let showMoreButton = depth === MAX_NODE_DEPTH
+    if (!(showMoreButton && reply.replies && reply.replies.length > 0)) { return (<View/>) }
+    let repliesText = i18n(`{
+          count, plural,
+          one {# Reply}
+          other {# Replies}
+        }`
+        , { count: reply.replies.length })
+    return (
+      <View style={style.moreContainer}>
+        <Button containerStyle={style.moreButtonContainer} style={style.moreButton} onPress={this._actionMore} testID='discussion.more-replies'>
+          {repliesText}
+        </Button>
+      </View>
+    )
+  }
+
   _renderButtons = () => {
     return (
       <View style={style.footerContainer}>
        <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionReply} testID='discussion.reply-btn'>
             {i18n('Reply')}
         </LinkButton>
-        <Text style={[style.footer, { color: colors.grey3, textAlign: 'center', alignSelf: 'center' }]} accessible={false}>|</Text>
+        <Text style={[style.footer, { color: colors.grey3, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
         <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
             {i18n('Edit')}
         </LinkButton>
       </View>
     )
+  }
+
+  _actionMore = () => {
+    this.props.onPressMoreReplies(this.props.myPath)
   }
 
   _actionReply = () => {
@@ -178,6 +204,28 @@ const style = StyleSheet.create({
     marginTop: global.style.defaultPadding,
     flexDirection: 'row',
     justifyContent: 'flex-start',
+  },
+  moreContainer: {
+    marginTop: global.style.defaultPadding / 2,
+    marginBottom: global.style.defaultPadding / 2,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    height: 27,
+    flex: 1,
+    paddingRight: global.style.defaultPadding,
+  },
+  moreButton: {
+    fontSize: 12,
+    fontWeight: 'normal',
+    color: colors.grey4,
+  },
+  moreButtonContainer: {
+    backgroundColor: colors.grey1,
+    borderColor: colors.grey2,
+    borderWidth: 1,
+    borderRadius: 4,
+    flex: 1,
+    padding: 5,
   },
   attachment: {
     flex: 1,
