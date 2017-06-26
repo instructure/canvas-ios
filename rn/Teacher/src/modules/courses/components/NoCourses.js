@@ -27,7 +27,7 @@ export class NoCourses extends Component {
 
     return (
       <View style={style.container}>
-        <Heading1 style={style.header} testID='mt-fav-courses.welcome-lbl'>{welcome}</Heading1>
+        <Heading1 testID='mt-fav-courses.welcome-lbl'>{welcome}</Heading1>
         <Paragraph
           style={style.paragraph} testID='mt-fav-courses.descr-lbl'>{bodyText}</Paragraph>
         <Button accessibilityLabel={buttonText} testID='mt-fav-courses.add-courses-btn' onPress={this.props.onAddCoursePressed}>
@@ -52,5 +52,4 @@ const style = StyleSheet.create({
   },
 })
 
-// TODO - this any needs to go away.
 export default (NoCourses: any)

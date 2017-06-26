@@ -56,6 +56,7 @@ let defaultProps = {
   pending: 0,
   refresh: jest.fn(),
   refreshing: false,
+  totalCourseCount: courses.length,
 }
 
 test('render', () => {
@@ -65,9 +66,16 @@ test('render', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('render without courses', () => {
+test('render without favorite courses', () => {
   let tree = renderer.create(
-    <FavoritedCourseList {...defaultProps} courses={[]} />
+    <FavoritedCourseList {...defaultProps} courses={[]} totalCourseCount={3} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('render without courses and *zero* total courses', () => {
+  let tree = renderer.create(
+    <FavoritedCourseList {...defaultProps} courses={[]} totalCourseCount={0} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

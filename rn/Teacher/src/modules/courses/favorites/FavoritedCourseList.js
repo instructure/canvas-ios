@@ -9,14 +9,14 @@ import {
   StyleSheet,
 } from 'react-native'
 
+import localeSort from '../../../utils/locale-sort'
 import { LinkButton } from '../../../common/buttons'
 import i18n from 'format-message'
-import { mapStateToProps } from './map-state-to-props'
 import CoursesActions from '../actions'
 import { connect } from 'react-redux'
 import CourseList from '../components/CourseList'
 import NoCourses from '../components/NoCourses'
-import type { CourseProps } from '../course-prop-types'
+import type { CourseProps, CourseListDataProps } from '../course-prop-types'
 import Images from '../../../images/'
 import refresh from '../../../utils/refresh'
 import { Heading1 } from '../../../common/text'
@@ -33,10 +33,34 @@ type Props = {
   courses: Array<CourseProps>,
   error?: string,
   pending?: number,
+  totalCourseCount: number,
 } & RefreshProps
+
+type FavoritedCourseListDataProps = CourseListDataProps & {
+  totalCourseCount: number,
+}
+
+type State = {
+  showingModal: boolean,
+}
 
 export class FavoritedCourseList extends Component {
   props: Props
+  state: State
+
+  constructor (props: Props) {
+    super(props)
+    this.state = { showingModal: false }
+  }
+
+  componentWillReceiveProps (newProps: Props) {
+    if (!newProps.pending && !newProps.error && !newProps.totalCourseCount && !this.state.showingModal) {
+      this.props.navigator.show('/notATeacher', { modal: true })
+      this.setState({
+        showingModal: true,
+      })
+    }
+  }
 
   showFavoritesList = () => {
     this.props.navigator.show('/course_favorites', { modal: true, modalPresentationStyle: 'formsheet' })
@@ -75,12 +99,8 @@ export class FavoritedCourseList extends Component {
   }
 
   _renderComponent = () => {
-    if (!this.props.pending && !this.props.courses.length) {
-      return (
-        <NoCourses
-          onAddCoursePressed={this.showFavoritesList}
-        />
-      )
+    if (!this.props.pending && !this.props.courses.length && this.props.totalCourseCount) {
+      return <NoCourses onAddCoursePressed={this.showFavoritesList} />
     }
 
     return <CourseList
@@ -106,6 +126,7 @@ export class FavoritedCourseList extends Component {
             title: i18n('Edit'),
             testID: 'fav-courses.edit-btn',
             action: this.showFavoritesList,
+            disabled: !this.props.totalCourseCount,
           },
         ]}
         leftBarButtons={[
@@ -156,6 +177,18 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 })
+
+export function mapStateToProps (state: AppState): FavoritedCourseListDataProps {
+  const allCourses = state.entities.courses
+  const totalCourseCount = Object.keys(allCourses).length
+  const { pending, error, courseRefs } = state.favoriteCourses
+  const courses: Array<CourseProps> = courseRefs
+    .map(ref => allCourses[ref])
+    .map(({ course, color }) => ({ ...course, color }))
+    .sort((c1, cs2) => localeSort(c1.name, cs2.name))
+
+  return { pending, error, courses, totalCourseCount }
+}
 
 let Refreshed = refresh(
   props => props.refreshCourses(),

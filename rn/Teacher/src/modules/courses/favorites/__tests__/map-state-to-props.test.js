@@ -1,6 +1,6 @@
 // @flow
 
-import { mapStateToProps } from '../map-state-to-props'
+import { mapStateToProps } from '../FavoritedCourseList'
 import { normalizeCourse } from '../../courses-reducer'
 import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
 import { appState } from '../../../../redux/__templates__/app-state'

@@ -11,6 +11,13 @@ export const course: Template<Course> = template({
   is_favorite: true,
   default_view: 'wiki',
   term: { name: 'Default Term' },
+  enrollments: [{
+    enrollment_state: 'active',
+    role: 'TeacherEnrollment',
+    role_id: '1',
+    type: 'teacher',
+    user_id: '1',
+  }],
 })
 
 export const customColors: Template<CustomColors> = template({

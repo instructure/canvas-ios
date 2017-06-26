@@ -22,6 +22,7 @@
 @property (nonatomic) RACDisposable *clientObserver;
 @property (nonatomic) UIViewController *domainPicker;
 @property (nonatomic) CKIClient *currentClient;
+@property (nonatomic) BOOL shouldCleanupOnNextLogoutEvent;
 
 - (void)setup;
 
@@ -63,6 +64,7 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(logout)
 {
+    [[NativeLoginManager shared] setShouldCleanupOnNextLogoutEvent:YES];
     [TheKeymaster logout];
 }
 
@@ -92,6 +94,10 @@ RCT_EXPORT_METHOD(startObserving)
 RCT_EXPORT_METHOD(stopObserving)
 {
     self.isObserving = NO;
+}
+
+- (dispatch_queue_t)methodQueue {
+    return dispatch_get_main_queue();
 }
 
 - (void)sendEventWithName:(NSString *)name body:(id)body {
@@ -131,6 +137,7 @@ RCT_EXPORT_METHOD(stopObserving)
 
 - (void)setup {
     
+    self.shouldCleanupOnNextLogoutEvent = NO;
     [self.logoutObserver dispose];
     [self.loginObserver dispose];
     [self.clientObserver dispose];
@@ -141,7 +148,13 @@ RCT_EXPORT_METHOD(stopObserving)
         self.domainPicker = x;
         if (self.injectedLoginInfo) { return; }
         
+        if (self.shouldCleanupOnNextLogoutEvent) {
+            [[HelmManager shared] showLoadingState];
+            self.shouldCleanupOnNextLogoutEvent = NO;
+        }
+        
         [self.delegate didLogout:x];
+        [self sendLoginEvent:nil];
     }];
     
     self.loginObserver = [TheKeymaster.signalForLogin subscribeNext:^(CKIClient * _Nullable client) {

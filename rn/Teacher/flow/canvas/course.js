@@ -20,6 +20,7 @@ export type Course = {
   is_favorite?: boolean,
   default_view: CourseHome,
   term: Term,
+  enrollments?: ?CourseEnrollment[],
 }
 
 export type CustomColors = {
@@ -35,4 +36,12 @@ export type UpdateCustomColorResponse = {
 export type Favorite = {
   context_id: string,
   context_type: string,
+}
+
+export type CourseEnrollment = {
+  enrollment_state: string,
+  role: string,
+  role_id: string,
+  type: string,
+  user_id: string,
 }

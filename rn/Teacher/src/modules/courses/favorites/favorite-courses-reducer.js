@@ -6,6 +6,7 @@ import CourseListActions from '../actions'
 import FavoritesActions from '../edit-favorites/actions'
 import handleAsync from '../../../utils/handleAsync'
 import { parseErrorMessage } from '../../../redux/middleware/error-handler'
+import { filterCourses } from '../courses-reducer'
 
 let { refreshCourses } = CourseListActions
 let { toggleFavorite } = FavoritesActions
@@ -42,6 +43,7 @@ export const favoriteCourses: Reducer<FavoriteCoursesState, any> = handleActions
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state, { result: [coursesResponse] }) => {
       const favorites: EntityRefs = coursesResponse.data
+        .filter(filterCourses)
         .filter((course) => course.is_favorite)
         .map((course) => course.id)
 

@@ -30,6 +30,15 @@ exports[`AllCourseList render 1`] = `
           "color": "#27B9CD",
           "course_code": "BIO 101",
           "default_view": "wiki",
+          "enrollments": Array [
+            Object {
+              "enrollment_state": "active",
+              "role": "TeacherEnrollment",
+              "role_id": "1",
+              "type": "teacher",
+              "user_id": "1",
+            },
+          ],
           "id": "1",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,
@@ -43,6 +52,15 @@ exports[`AllCourseList render 1`] = `
           "color": "#8F3E97",
           "course_code": "LIT 401",
           "default_view": "wiki",
+          "enrollments": Array [
+            Object {
+              "enrollment_state": "active",
+              "role": "TeacherEnrollment",
+              "role_id": "1",
+              "type": "teacher",
+              "user_id": "1",
+            },
+          ],
           "id": "2",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": false,
@@ -56,6 +74,15 @@ exports[`AllCourseList render 1`] = `
           "color": "#8F3E99",
           "course_code": "FOO 102",
           "default_view": "wiki",
+          "enrollments": Array [
+            Object {
+              "enrollment_state": "active",
+              "role": "TeacherEnrollment",
+              "role_id": "1",
+              "type": "teacher",
+              "user_id": "1",
+            },
+          ],
           "id": "3",
           "image_download_url": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
           "is_favorite": true,

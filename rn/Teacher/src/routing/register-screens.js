@@ -38,6 +38,7 @@ import AnnouncementsList from '../modules/announcements/list/AnnouncementsList'
 import AnnouncementEdit from '../modules/announcements/edit/AnnouncementEdit'
 import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
+import NoATeacher from '../modules/courses/components/NotATeacher'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -87,6 +88,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
+  registerScreen('/notATeacher', wrap(NoATeacher), store)
 
   // This will never actually be routed to, but this makes it really easy to debug
   registerScreen('/courses/:courseID/assignee-picker', wrap(AssigneePicker), store)

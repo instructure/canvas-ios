@@ -272,6 +272,9 @@ open class HelmManager: NSObject {
             vc.view = nil
         }
         viewControllers.removeAllObjects()
+        dismissAllModals(["animated": false])
+        rootViewController = nil
+        UIApplication.shared.keyWindow?.rootViewController = UIViewController()
     }
 }
 

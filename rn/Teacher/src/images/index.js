@@ -58,6 +58,10 @@ const images = {
     longPress: require('./speedgrader/Longpress.png'),
     swipe: require('./speedgrader/Swipe.png'),
   },
+  noTeacher: {
+    parent: require('./Canvas-Parent.png'),
+    student: require('./Canvas-Student.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),
