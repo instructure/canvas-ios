@@ -21,6 +21,12 @@ exports[`renders correctly 1`] = `
   >
     <View>
       <TouchableOpacity
+        accessibilityTraits={
+          Array [
+            "button",
+            "selected",
+          ]
+        }
         onPress={[Function]}
         style={
           Object {
@@ -82,6 +88,7 @@ exports[`renders correctly 1`] = `
         />
       </TouchableOpacity>
       <TouchableOpacity
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {
@@ -122,6 +129,7 @@ exports[`renders correctly 1`] = `
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {
@@ -162,6 +170,7 @@ exports[`renders correctly 1`] = `
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {
@@ -202,6 +211,7 @@ exports[`renders correctly 1`] = `
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {

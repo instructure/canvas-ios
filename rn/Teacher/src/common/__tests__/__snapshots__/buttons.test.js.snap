@@ -34,7 +34,7 @@ exports[`renders link correctly 1`] = `
 <View
   accessibilityComponentType={undefined}
   accessibilityLabel={undefined}
-  accessibilityTraits={undefined}
+  accessibilityTraits="button"
   accessible={true}
   hitSlop={undefined}
   isTVSelectable={true}

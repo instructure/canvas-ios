@@ -99,9 +99,10 @@ export default class ConversationMessageRow extends Component<any, ConversationM
       }
       recipientName = i18n('to me')
     }
+    const date = formattedDate(message.created_at)
 
     return (<View style={styles.header}>
-              <View style={{ flexDirection: 'row' }}>
+              <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
                 <View style={styles.avatar}>
                     <Avatar height={32} avatarURL={author.avatar_url} userName={author.name}/>
                   </View>
@@ -110,7 +111,7 @@ export default class ConversationMessageRow extends Component<any, ConversationM
                     <Text style={styles.author}>{`${authorName} `}</Text>
                     <Text style={styles.recipient}>{recipientName}</Text>
                   </Text>
-                  <Text style={styles.dateText}>{formattedDate(message.created_at)}</Text>
+                  <Text style={styles.dateText}>{date}</Text>
                 </View>
               </View>
               { this._renderKabob() }
@@ -119,34 +120,36 @@ export default class ConversationMessageRow extends Component<any, ConversationM
 
   render () {
     const message = this.props.message
-    return (<View>
-              <TouchableWithoutFeedback testID={`inbox.conversation-message-${message.id}`} onPress={this._toggleExpanded}>
-                  <View style={styles.container}>
-                    { this._renderHeader() }
-                    <View style={styles.body}>
-                      <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
-                    </View>
-                    { this.props.message.attachments &&
-                      this.props.message.attachments.map((attachment, index) => {
-                        return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} onPress={() => {
-                          this._showAttachment(attachment)
-                        }}>
-                          <View style={styles.attachment}>
-                            <Image source={Images.attachment} style={styles.attachmentIcon} />
-                            <Text style={styles.attachmentText}>
-                              {attachment.display_name}
-                            </Text>
-                          </View>
-                        </TouchableOpacity>)
-                      })
-                    }
-                    { this.props.firstMessage &&
-                      <LinkButton onPress={this._replyButtonPressed}
-                                  style={styles.replyButton}>{i18n('Reply')}</LinkButton>}
-                  </View>
-              </TouchableWithoutFeedback>
-              <View style={styles.bottomSpacer} />
-            </View>)
+    return (
+      <View testID={`inbox.conversation-message-${message.id}`}>
+        <View style={styles.container}>
+          { this._renderHeader() }
+          <TouchableWithoutFeedback onPress={this._toggleExpanded}>
+            <View style={styles.body}>
+              <Text style={styles.bodyText} numberOfLines={this.state.expanded ? 0 : 2}>{message.body}</Text>
+            </View>
+          </TouchableWithoutFeedback>
+          { this.props.message.attachments &&
+            this.props.message.attachments.map((attachment, index) => {
+              return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} onPress={() => {
+                this._showAttachment(attachment)
+              }}>
+                <View style={styles.attachment}>
+                  <Image source={Images.attachment} style={styles.attachmentIcon} />
+                  <Text style={styles.attachmentText}>
+                    {attachment.display_name}
+                  </Text>
+                </View>
+              </TouchableOpacity>)
+            })
+          }
+          { this.props.firstMessage &&
+            <LinkButton onPress={this._replyButtonPressed}
+              style={styles.replyButton}>{i18n('Reply')}</LinkButton>
+          }
+        </View>
+      </View>
+    )
   }
 
   _renderKabob = () => {

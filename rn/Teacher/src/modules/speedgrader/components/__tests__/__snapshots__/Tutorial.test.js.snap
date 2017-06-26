@@ -73,6 +73,7 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
       }
     />
     <TouchableOpacity
+      accessibilityTraits="button"
       hitSlop={
         Object {
           "bottom": 10,

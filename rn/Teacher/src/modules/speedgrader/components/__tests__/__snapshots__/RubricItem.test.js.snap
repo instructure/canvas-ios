@@ -122,6 +122,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     }
   >
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -176,6 +177,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       </View>
     </TouchableOpacity>
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -355,6 +357,7 @@ exports[`RubricItem renders 1`] = `
     }
   >
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -409,6 +412,7 @@ exports[`RubricItem renders 1`] = `
       </View>
     </TouchableOpacity>
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -588,6 +592,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
     }
   >
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -642,6 +647,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       </View>
     </TouchableOpacity>
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -819,6 +825,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
     }
   >
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -873,6 +880,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       </View>
     </TouchableOpacity>
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -1052,6 +1060,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
     }
   >
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {
@@ -1183,6 +1192,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       </Text>
     </View>
     <TouchableOpacity
+      accessibilityTraits="button"
       onPress={[Function]}
       style={
         Object {

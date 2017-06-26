@@ -29,6 +29,7 @@ export class LinkButton extends Component {
     return (
       <TouchableOpacity
         {...this.props}
+        accessibilityTraits='button'
       >
         <View>
           <Text style={[linkButtonStyles.textColor, linkButtonStyles.font, brandingStyles, textAttributes, this.props.style]}>

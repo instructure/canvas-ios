@@ -58,7 +58,7 @@ exports[`SubmissionList loaded 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel="Filter Submissions"
-        accessibilityTraits={undefined}
+        accessibilityTraits="button"
         accessible={true}
         hitSlop={undefined}
         isTVSelectable={true}
@@ -1110,7 +1110,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       <View
         accessibilityComponentType={undefined}
         accessibilityLabel="Clear Filter Submissions"
-        accessibilityTraits={undefined}
+        accessibilityTraits="button"
         accessible={true}
         hitSlop={undefined}
         isTVSelectable={true}

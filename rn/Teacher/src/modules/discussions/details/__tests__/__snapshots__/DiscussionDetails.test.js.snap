@@ -909,250 +909,207 @@ exports[`DiscussionDetails renders 1`] = `
                 </View>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                  "flex": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
             >
               <View
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                  }
                 }
               >
                 <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderColor": "#C7CDD1",
+                        "borderWidth": 0.5,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 16,
+                        "height": 32,
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontSize": 11,
+                        },
+                      ]
+                    }
+                  >
+                    TD
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-start",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "marginLeft": 16,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#A5AFB5",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    November 10, 2016 9:03 PM
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 16,
+                    "paddingTop": 16,
+                  }
+                }
+              >
+                <View
+                  onLayout={[Function]}
                   style={
                     Object {
-                      "borderTopColor": "#C7CDD1",
-                      "borderTopWidth": 0.5,
-                      "paddingBottom": 16,
+                      "color": "#2D3B45",
+                      "flex": 1,
                     }
                   }
                 />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 1,
-                      "flexDirection": "row",
-                    }
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
                   }
+                }
+              >
+                <TouchableHighlight
+                  onPress={[Function]}
+                  testID="discussion-reply"
+                  underlayColor="white"
                 >
                   <View
                     style={
                       Object {
+                        "backgroundColor": "white",
                         "flex": 1,
                       }
                     }
                   >
-                    <View
-                      accessibilityLabel={undefined}
-                      accessible={false}
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "marginBottom": 4,
-                        }
-                      }
-                    />
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "flex-start",
-                        }
-                      }
-                    >
-                      <View
-                        accessibilityLabel=""
-                        style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderColor": "#C7CDD1",
-                              "borderWidth": 0.5,
-                              "justifyContent": "center",
-                              "overflow": "hidden",
-                            },
-                            Object {
-                              "borderRadius": 16,
-                              "height": 32,
-                              "width": 32,
-                            },
-                          ]
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontSize": 11,
-                              },
-                            ]
-                          }
-                        >
-                          TD
-                        </Text>
-                      </View>
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "alignItems": "flex-start",
-                              "flex": 1,
-                              "flexDirection": "column",
-                              "justifyContent": "flex-start",
-                            },
-                            Object {
-                              "marginLeft": 16,
-                            },
-                          ]
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
-                              Object {
-                                "fontSize": 14,
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontFamily": ".SFUIDisplay-semibold",
-                              },
-                            ]
-                          }
-                        >
-                          The Donald
-                        </Text>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
-                              Object {
-                                "color": "#A5AFB5",
-                                "fontSize": 12,
-                              },
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                            ]
-                          }
-                        >
-                          November 10, 2016 9:03 PM
-                        </Text>
-                      </View>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "paddingBottom": 16,
-                          "paddingTop": 16,
-                        }
-                      }
-                    >
-                      <View
-                        onLayout={[Function]}
-                        style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
                           Object {
                             "color": "#2D3B45",
-                            "flex": 1,
-                          }
-                        }
-                      />
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "flex-start",
-                        }
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#008EE2",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
                       }
                     >
-                      <TouchableHighlight
-                        onPress={[Function]}
-                        testID="discussion-reply"
-                        underlayColor="white"
-                      >
-                        <View
-                          style={
-                            Object {
-                              "backgroundColor": "white",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {
-                                  "color": "#008EE2",
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                          >
-                            Reply
-                          </Text>
-                        </View>
-                      </TouchableHighlight>
-                    </View>
+                      Reply
+                    </Text>
                   </View>
-                </View>
+                </TouchableHighlight>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={undefined}
               testID={undefined}
@@ -2087,250 +2044,207 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 </View>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight
-              onPress={undefined}
-              testID={undefined}
+            <View
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderTopColor": "#C7CDD1",
+                  "borderTopWidth": 0.5,
+                  "flex": 1,
+                  "paddingBottom": 16,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 16,
+                }
+              }
             >
               <View
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "white",
-                      "flex": 1,
-                      "paddingBottom": 16,
-                      "paddingLeft": 16,
-                      "paddingRight": 16,
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
+                  }
                 }
               >
                 <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderColor": "#C7CDD1",
+                        "borderWidth": 0.5,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 16,
+                        "height": 32,
+                        "width": 32,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontSize": 11,
+                        },
+                      ]
+                    }
+                  >
+                    TD
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-start",
+                        "flex": 1,
+                        "flexDirection": "column",
+                        "justifyContent": "flex-start",
+                      },
+                      Object {
+                        "marginLeft": 16,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    The Donald
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#A5AFB5",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    November 10, 2016 9:03 PM
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "paddingBottom": 16,
+                    "paddingTop": 16,
+                  }
+                }
+              >
+                <View
+                  onLayout={[Function]}
                   style={
                     Object {
-                      "borderTopColor": "#C7CDD1",
-                      "borderTopWidth": 0.5,
-                      "paddingBottom": 16,
+                      "color": "#2D3B45",
+                      "flex": 1,
                     }
                   }
                 />
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "flex": 1,
-                      "flexDirection": "row",
-                    }
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-start",
                   }
+                }
+              >
+                <TouchableHighlight
+                  onPress={[Function]}
+                  testID="discussion-reply"
+                  underlayColor="white"
                 >
                   <View
                     style={
                       Object {
+                        "backgroundColor": "white",
                         "flex": 1,
                       }
                     }
                   >
-                    <View
-                      accessibilityLabel={undefined}
-                      accessible={false}
+                    <Text
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
                       style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "marginBottom": 4,
-                        }
-                      }
-                    />
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "flex-start",
-                        }
-                      }
-                    >
-                      <View
-                        accessibilityLabel=""
-                        style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderColor": "#C7CDD1",
-                              "borderWidth": 0.5,
-                              "justifyContent": "center",
-                              "overflow": "hidden",
-                            },
-                            Object {
-                              "borderRadius": 16,
-                              "height": 32,
-                              "width": 32,
-                            },
-                          ]
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontSize": 11,
-                              },
-                            ]
-                          }
-                        >
-                          TD
-                        </Text>
-                      </View>
-                      <View
-                        style={
-                          Array [
-                            Object {
-                              "alignItems": "flex-start",
-                              "flex": 1,
-                              "flexDirection": "column",
-                              "justifyContent": "flex-start",
-                            },
-                            Object {
-                              "marginLeft": 16,
-                            },
-                          ]
-                        }
-                      >
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
-                              Object {
-                                "fontSize": 14,
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontFamily": ".SFUIDisplay-semibold",
-                              },
-                            ]
-                          }
-                        >
-                          The Donald
-                        </Text>
-                        <Text
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
-                              Object {
-                                "color": "#A5AFB5",
-                                "fontSize": 12,
-                              },
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                            ]
-                          }
-                        >
-                          November 10, 2016 9:03 PM
-                        </Text>
-                      </View>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "paddingBottom": 16,
-                          "paddingTop": 16,
-                        }
-                      }
-                    >
-                      <View
-                        onLayout={[Function]}
-                        style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
                           Object {
                             "color": "#2D3B45",
-                            "flex": 1,
-                          }
-                        }
-                      />
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                          "justifyContent": "flex-start",
-                        }
+                            "fontSize": 16,
+                          },
+                          Object {
+                            "color": "#008EE2",
+                          },
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
                       }
                     >
-                      <TouchableHighlight
-                        onPress={[Function]}
-                        testID="discussion-reply"
-                        underlayColor="white"
-                      >
-                        <View
-                          style={
-                            Object {
-                              "backgroundColor": "white",
-                              "flex": 1,
-                            }
-                          }
-                        >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {
-                                  "color": "#008EE2",
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                          >
-                            Reply
-                          </Text>
-                        </View>
-                      </TouchableHighlight>
-                    </View>
+                      Reply
+                    </Text>
                   </View>
-                </View>
+                </TouchableHighlight>
               </View>
-            </TouchableHighlight>
+            </View>
             <TouchableHighlight
               onPress={undefined}
               testID={undefined}

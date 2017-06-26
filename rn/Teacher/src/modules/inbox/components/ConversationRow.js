@@ -47,9 +47,10 @@ export default class ConversationRow extends Component<any, ConversationRowProps
     if (this.props.drawsTopLine) {
       containerStyles.push(styles.topHairline)
     }
+    const unread = c.workflow_state === 'unread'
     return (<TouchableHighlight onPress={this._onPress} testID={`inbox.conversation-${c.id}`}>
               <View style={containerStyles}>
-                { c.workflow_state === 'unread' && <View style={styles.unreadDot} /> }
+                { unread && <View style={styles.unreadDot} accessibilityLabel={i18n('Unread')} /> }
                 <View style={styles.avatar}>
                   <Avatar avatarURL={c.avatar_url} userName={avatarUserName}/>
                 </View>

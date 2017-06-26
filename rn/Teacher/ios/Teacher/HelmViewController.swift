@@ -339,6 +339,7 @@ final class HelmViewController: UIViewController, HelmScreen {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.text = title
         titleLabel.sizeToFit()
+        titleLabel.isAccessibilityElement = false
         
         let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
         subtitleLabel.backgroundColor = UIColor.clear
@@ -346,8 +347,11 @@ final class HelmViewController: UIViewController, HelmScreen {
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.text = subtitle
         subtitleLabel.sizeToFit()
+        subtitleLabel.isAccessibilityElement = false
         
         let titleView = UIView(frame: CGRect(x:0, y:0, width:max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height:30))
+        titleView.isAccessibilityElement = true
+        titleView.accessibilityLabel = "\(title), \(subtitle)"
         titleView.addSubview(titleLabel)
         titleView.addSubview(subtitleLabel)
         

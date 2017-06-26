@@ -106,7 +106,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
           <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={assignmentID} style={style.submission}/>
         </AssignmentSection>}
 
-        <AssignmentSection >
+        <View style={style.section} >
           <View style={style.authorContainer}>
             {user && user.display_name && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
               style={style.avatar}/> }
@@ -116,24 +116,24 @@ export class DiscussionDetails extends Component<any, Props, any> {
             </View>
           </View>
 
-        { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
-           <View style={style.section}>
-              { Boolean(discussion.message) &&
-                 <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
-              }
-              { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
-              // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
-                <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
-                  <View style={style.attachment}>
-                    <Image source={Images.attachment} style={style.attachmentIcon} />
-                    <Text style={style.attachmentText}>
-                      {discussion.attachments[0].display_name}
-                    </Text>
-                  </View>
-                </TouchableHighlight>
-              }
-          </View>
-        }
+          { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
+             <View style={style.message}>
+                { Boolean(discussion.message) &&
+                   <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
+                }
+                { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
+                // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:
+                  <TouchableHighlight testID={`discussion.${discussion.id}.attachment`} onPress={this.showAttachment}>
+                    <View style={style.attachment}>
+                      <Image source={Images.attachment} style={style.attachmentIcon} />
+                      <Text style={style.attachmentText}>
+                        {discussion.attachments[0].display_name}
+                      </Text>
+                    </View>
+                  </TouchableHighlight>
+                }
+            </View>
+          }
 
           <View style={style.authorContainer}>
             <TouchableHighlight
@@ -145,7 +145,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
                 </View>
             </TouchableHighlight>
           </View>
-        </AssignmentSection>
+        </View>
 
         <AssignmentSection
           title={i18n('Replies')}
@@ -348,10 +348,6 @@ const style = StyleSheet.create({
     paddingRight: global.style.defaultPadding,
     paddingBottom: 17,
   },
-  section: {
-    paddingTop: global.style.defaultPadding,
-    paddingBottom: global.style.defaultPadding,
-  },
   pointsContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -383,6 +379,20 @@ const style = StyleSheet.create({
     fontFamily: BOLD_FONT,
     marginLeft: 6,
     fontSize: 14,
+  },
+  message: {
+    paddingTop: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding,
+  },
+  section: {
+    flex: 1,
+    paddingTop: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
+    paddingBottom: global.style.defaultPadding,
+    paddingLeft: global.style.defaultPadding,
+    backgroundColor: 'white',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.grey2,
   },
 })
 

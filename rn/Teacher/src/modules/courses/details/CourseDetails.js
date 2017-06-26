@@ -149,6 +149,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
             image: Images.course.settings,
             testID: 'course-details.navigation-edit-course-btn',
             action: this.editCourse.bind(this),
+            accessibilityLabel: i18n('Edit course settings'),
           },
         ]}
       >

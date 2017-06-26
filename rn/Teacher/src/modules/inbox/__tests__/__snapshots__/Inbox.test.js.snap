@@ -30,7 +30,12 @@ exports[`refreshed component 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+              "selected",
+            ]
+          }
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -106,7 +111,7 @@ exports[`refreshed component 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -161,7 +166,7 @@ exports[`refreshed component 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -216,7 +221,7 @@ exports[`refreshed component 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -271,7 +276,7 @@ exports[`refreshed component 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -433,7 +438,12 @@ exports[`renders correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+              "selected",
+            ]
+          }
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -509,7 +519,7 @@ exports[`renders correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -564,7 +574,7 @@ exports[`renders correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -619,7 +629,7 @@ exports[`renders correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -674,7 +684,7 @@ exports[`renders correctly 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1174,7 +1184,12 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+              "selected",
+            ]
+          }
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1250,7 +1265,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1305,7 +1320,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1360,7 +1375,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1415,7 +1430,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1519,7 +1534,7 @@ exports[`renders the starred empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1574,7 +1589,7 @@ exports[`renders the starred empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1629,7 +1644,12 @@ exports[`renders the starred empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+              "selected",
+            ]
+          }
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1705,7 +1725,7 @@ exports[`renders the starred empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1760,7 +1780,7 @@ exports[`renders the starred empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1922,7 +1942,12 @@ exports[`renders with an empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+              "selected",
+            ]
+          }
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -1998,7 +2023,7 @@ exports[`renders with an empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -2053,7 +2078,7 @@ exports[`renders with an empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -2108,7 +2133,7 @@ exports[`renders with an empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}
@@ -2163,7 +2188,7 @@ exports[`renders with an empty state 1`] = `
         <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
+          accessibilityTraits="button"
           accessible={true}
           hitSlop={undefined}
           isTVSelectable={true}

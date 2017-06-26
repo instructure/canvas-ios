@@ -197,6 +197,7 @@ exports[`render 1`] = `
             </Text>
           </View>
           <TouchableOpacity
+            accessibilityTraits="button"
             onPress={[Function]}
             style={
               Object {

@@ -95,7 +95,7 @@ export default class Reply extends Component <any, Props, any> {
        <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionReply} testID='discussion.reply-btn'>
             {i18n('Reply')}
         </LinkButton>
-        <Text style={[style.footer, { color: colors.grey3, textAlign: 'center', alignSelf: 'center' }]}>|</Text>
+        <Text style={[style.footer, { color: colors.grey3, textAlign: 'center', alignSelf: 'center' }]} accessible={false}>|</Text>
         <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
             {i18n('Edit')}
         </LinkButton>

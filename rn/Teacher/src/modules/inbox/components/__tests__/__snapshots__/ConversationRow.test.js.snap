@@ -195,6 +195,7 @@ exports[`renders correctly with different data 1`] = `
     }
   >
     <View
+      accessibilityLabel="Unread"
       style={
         Object {
           "backgroundColor": "blue",

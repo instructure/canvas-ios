@@ -82,11 +82,19 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   _renderHeader = () => {
     if (!this.props.conversation) return <View />
 
-    const star = this.props.conversation.starred ? Images.starFilled : Images.starLined
+    const starred = this.props.conversation.starred
+    const star = starred ? Images.starFilled : Images.starLined
 
     return (<View style={styles.header}>
               <Heading1>{this.props.conversation.subject || i18n('(no subject)')}</Heading1>
-              <TouchableOpacity onPress={this._toggleStarred} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+              <TouchableOpacity
+                style={styles.courseRow}
+                accessibilityLabel={starred ? i18n('Starred') : i18n('Unstarred')}
+                accessibilityTraits='button'
+                testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
+                onPress={this._toggleStarred}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
                 <View style={{ backgroundColor: 'white' }}>
                   <Image source={star} style={{ tintColor: branding.primaryBrandColor, height: 24, width: 24 }}/>
                 </View>

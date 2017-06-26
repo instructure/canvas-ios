@@ -159,6 +159,7 @@ exports[`DiscussionReplies renders 1`] = `
         }
       >
         <TouchableOpacity
+          accessibilityTraits="button"
           onPress={[Function]}
           style={
             Object {
@@ -218,7 +219,7 @@ exports[`DiscussionReplies renders 1`] = `
           </View>
         </TouchableOpacity>
         <Text
-          accessible={true}
+          accessible={false}
           allowFontScaling={true}
           disabled={false}
           ellipsizeMode="tail"
@@ -251,6 +252,7 @@ exports[`DiscussionReplies renders 1`] = `
           |
         </Text>
         <TouchableOpacity
+          accessibilityTraits="button"
           onPress={[Function]}
           style={
             Object {
@@ -477,6 +479,7 @@ exports[`DiscussionReplies renders 1`] = `
               }
             >
               <TouchableOpacity
+                accessibilityTraits="button"
                 onPress={[Function]}
                 style={
                   Object {
@@ -536,7 +539,7 @@ exports[`DiscussionReplies renders 1`] = `
                 </View>
               </TouchableOpacity>
               <Text
-                accessible={true}
+                accessible={false}
                 allowFontScaling={true}
                 disabled={false}
                 ellipsizeMode="tail"
@@ -569,6 +572,7 @@ exports[`DiscussionReplies renders 1`] = `
                 |
               </Text>
               <TouchableOpacity
+                accessibilityTraits="button"
                 onPress={[Function]}
                 style={
                   Object {

@@ -50,7 +50,7 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel="Filter Submissions"
-      accessibilityTraits={undefined}
+      accessibilityTraits="button"
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}
@@ -193,7 +193,7 @@ exports[`SubmissionHeader anonymous grading 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel="Filter Submissions"
-      accessibilityTraits={undefined}
+      accessibilityTraits="button"
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}
@@ -336,7 +336,7 @@ exports[`SubmissionHeader muted grading 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel="Filter Submissions"
-      accessibilityTraits={undefined}
+      accessibilityTraits="button"
       accessible={true}
       hitSlop={undefined}
       isTVSelectable={true}

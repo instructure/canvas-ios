@@ -1,21 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<View>
+<View
+  testID="inbox.conversation-message-123456789"
+>
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
-    accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "backgroundColor": "white",
@@ -26,7 +15,6 @@ exports[`renders correctly 1`] = `
         "paddingTop": 12,
       }
     }
-    testID="inbox.conversation-message-123456789"
   >
     <View
       style={
@@ -41,6 +29,8 @@ exports[`renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="artorias of the abyss + 1 others to me "
+        accessible={true}
         style={
           Object {
             "flexDirection": "row",
@@ -246,12 +236,26 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
           "flex": 1,
           "paddingTop": 16,
         }
       }
+      testID={undefined}
     >
       <Text
         accessible={true}
@@ -352,36 +356,14 @@ exports[`renders correctly 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#F5F5F5",
-        "borderTopColor": "#C7CDD1",
-        "borderTopWidth": 0.5,
-        "flex": 1,
-        "height": 16,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`renders correctly with author being the logged in user 1`] = `
-<View>
+<View
+  testID="inbox.conversation-message-123456789"
+>
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
-    accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "backgroundColor": "white",
@@ -392,7 +374,6 @@ exports[`renders correctly with author being the logged in user 1`] = `
         "paddingTop": 12,
       }
     }
-    testID="inbox.conversation-message-123456789"
   >
     <View
       style={
@@ -407,6 +388,8 @@ exports[`renders correctly with author being the logged in user 1`] = `
       }
     >
       <View
+        accessibilityLabel="me to hey there i am jane "
+        accessible={true}
         style={
           Object {
             "flexDirection": "row",
@@ -612,12 +595,26 @@ exports[`renders correctly with author being the logged in user 1`] = `
       </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
           "flex": 1,
           "paddingTop": 16,
         }
       }
+      testID={undefined}
     >
       <Text
         accessible={true}
@@ -718,36 +715,14 @@ exports[`renders correctly with author being the logged in user 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#F5F5F5",
-        "borderTopColor": "#C7CDD1",
-        "borderTopWidth": 0.5,
-        "flex": 1,
-        "height": 16,
-      }
-    }
-  />
 </View>
 `;
 
 exports[`renders correctly with author lots of participants 1`] = `
-<View>
+<View
+  testID="inbox.conversation-message-123456789"
+>
   <View
-    accessibilityComponentType={undefined}
-    accessibilityLabel={undefined}
-    accessibilityTraits={undefined}
-    accessible={true}
-    hitSlop={undefined}
-    nativeID={undefined}
-    onLayout={undefined}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
     style={
       Object {
         "backgroundColor": "white",
@@ -758,7 +733,6 @@ exports[`renders correctly with author lots of participants 1`] = `
         "paddingTop": 12,
       }
     }
-    testID="inbox.conversation-message-123456789"
   >
     <View
       style={
@@ -773,6 +747,8 @@ exports[`renders correctly with author lots of participants 1`] = `
       }
     >
       <View
+        accessibilityLabel="me to 3 others "
+        accessible={true}
         style={
           Object {
             "flexDirection": "row",
@@ -978,12 +954,26 @@ exports[`renders correctly with author lots of participants 1`] = `
       </View>
     </View>
     <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
           "flex": 1,
           "paddingTop": 16,
         }
       }
+      testID={undefined}
     >
       <Text
         accessible={true}
@@ -1084,16 +1074,5 @@ exports[`renders correctly with author lots of participants 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "backgroundColor": "#F5F5F5",
-        "borderTopColor": "#C7CDD1",
-        "borderTopWidth": 0.5,
-        "flex": 1,
-        "height": 16,
-      }
-    }
-  />
 </View>
 `;
