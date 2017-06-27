@@ -68,6 +68,25 @@ describe('SpeedGrader', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders with a filter', () => {
+    let props = {
+      ...defaultProps,
+      submissions: [templates.submissionProps(), templates.submissionProps({ status: 'missing' })],
+      selectedFilter: {
+        filter: {
+          type: 'notsubmitted',
+          title: 'Who Cares?',
+          filterFunc: subs => subs.filter(sub => sub.status === 'missing'),
+        },
+      },
+    }
+    let tree = renderer.create(
+      <SpeedGrader {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('shows the loading spinner when there are no submissions', () => {
     let tree = renderer.create(
       <SpeedGrader {...defaultProps} />
@@ -147,43 +166,6 @@ describe('refresh functions', () => {
     const submissions = [templates.submissionProps()]
     const shouldNot = shouldRefresh({ ...props, submissions })
     expect(shouldNot).toBeFalsy()
-  })
-})
-
-test('mapStateToProps filters', () => {
-  const assignment = templates.assignment()
-  const appState = templates.appState({
-    entities: {
-      submissions: {},
-      assignments: {
-        [assignment.id]: {
-          data: assignment,
-        },
-      },
-    },
-  })
-  expect(mapStateToProps(appState, {
-    assignmentID: assignment.id,
-    courseID: '2',
-    userID: '3',
-    selectedFilter: {
-      filter: {
-        type: 'notsubmitted',
-        title: 'Who Cares?',
-        filterFunc: subs => subs.filter(sub => sub.status === 'missing'),
-      },
-    },
-  })).toEqual({
-    pending: false,
-    submissions: [
-      templates.submissionProps({ status: 'missing' }),
-    ],
-    submissionEntities: {},
-    assignmentSubmissionTypes: assignment.submission_types,
-    hasRubric: false,
-    hasAssignment: true,
-    isModeratedGrading: false,
-    groupAssignment: null,
   })
 })
 

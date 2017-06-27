@@ -1,51 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpeedGrader renders 1`] = `
-<View>
-  <RCTScrollView
-    contentOffset={
-      Object {
-        "x": 0,
-        "y": 0,
-      }
-    }
-    data={Array []}
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={true}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    keyboardShouldPersistTaps="handled"
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    pagingEnabled={true}
-    renderItem={[Function]}
-    renderScrollComponent={[Function]}
-    scrollEventThrottle={50}
-    showsHorizontalScrollIndicator={false}
-    stickyHeaderIndices={Array []}
-    style={
-      Object {
-        "marginLeft": -10,
-        "marginRight": -10,
-      }
-    }
-    updateCellsBatchingPeriod={50}
-    windowSize={5}
-  >
-    <View />
-  </RCTScrollView>
-</View>
-`;
+exports[`SpeedGrader renders 1`] = `<View />`;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
 <View>
@@ -199,28 +154,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
 </View>
 `;
 
-exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
-<View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
-    }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
-</View>
-`;
-
-exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
+exports[`SpeedGrader renders with a filter 1`] = `
 <View>
   <RCTScrollView
     contentOffset={
@@ -229,7 +163,30 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
         "y": 0,
       }
     }
-    data={Array []}
+    data={
+      Array [
+        Object {
+          "key": "55",
+          "submission": Object {
+            "avatarURL": "http://www.fillmurray.com/100/100",
+            "grade": "B-",
+            "name": "Donald Trump",
+            "status": "submitted",
+            "userID": "55",
+          },
+        },
+        Object {
+          "key": "55",
+          "submission": Object {
+            "avatarURL": "http://www.fillmurray.com/100/100",
+            "grade": "B-",
+            "name": "Donald Trump",
+            "status": "missing",
+            "userID": "55",
+          },
+        },
+      ]
+    }
     disableVirtualization={false}
     getItem={[Function]}
     getItemCount={[Function]}
@@ -262,7 +219,194 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
     updateCellsBatchingPeriod={50}
     windowSize={5}
   >
-    <View />
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+                "paddingLeft": 10,
+                "paddingRight": 10,
+              },
+              Object {
+                "height": 1334,
+                "width": 750,
+              },
+            ]
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "flex": 1,
+                "paddingBottom": 52,
+              }
+            }
+          >
+            <Header
+              assignmentID="1"
+              closeModal={[Function]}
+              submissionID={undefined}
+              submissionProps={
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "status": "submitted",
+                  "userID": "55",
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 0,
+                    "height": 200,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  This assignment does not allow submissions.
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+                "paddingLeft": 10,
+                "paddingRight": 10,
+              },
+              Object {
+                "height": 1334,
+                "width": 750,
+              },
+            ]
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              Object {
+                "flex": 1,
+                "paddingBottom": 52,
+              }
+            }
+          >
+            <Header
+              assignmentID="1"
+              closeModal={[Function]}
+              submissionID={undefined}
+              submissionProps={
+                Object {
+                  "avatarURL": "http://www.fillmurray.com/100/100",
+                  "grade": "B-",
+                  "name": "Donald Trump",
+                  "status": "missing",
+                  "userID": "55",
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 0,
+                    "height": 200,
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay-medium",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  This assignment does not allow submissions.
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
   </RCTScrollView>
 </View>
 `;
+
+exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `<View />`;
+
+exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `<View />`;

@@ -35,6 +35,7 @@ import shuffle from 'knuth-shuffle-seeded'
 type State = {
   size: { width: number, height: number },
   currentStudentID: string,
+  filteredIDs?: Array<string>,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
@@ -52,6 +53,26 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     this.state = {
       size: { width, height },
       currentStudentID: props.userID,
+    }
+  }
+
+  componentWillMount () {
+    this.setFilteredIDs(this.props)
+  }
+
+  componentWillReceiveProps (nextProps: SpeedGraderProps) {
+    this.setFilteredIDs(nextProps)
+  }
+
+  setFilteredIDs = (props: SpeedGraderProps) => {
+    if (props.submissions.length && !this.state.filteredIDs) {
+      let filteredSubmissions = props.selectedFilter && props.selectedFilter.filter.filterFunc
+        ? props.selectedFilter.filter.filterFunc(props.submissions, props.selectedFilter.metadata)
+        : props.submissions
+
+      this.setState({
+        filteredIDs: filteredSubmissions.map(({ userID }) => userID),
+      })
     }
   }
 
@@ -117,8 +138,9 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     }
 
     const items: Array<SubmissionItem> = this.props.submissions
+      .filter(submission => this.state.filteredIDs && this.state.filteredIDs.includes(submission.userID))
       .map(submission => ({ key: submission.userID, submission }))
-    const studentIndex = Math.max(0, this.props.submissions.findIndex(sub => sub.userID === this.state.currentStudentID))
+    const studentIndex = Math.max(0, items.findIndex(sub => sub.submission.userID === this.state.currentStudentID))
     const x = this.state.size.width * studentIndex
 
     return (
@@ -159,7 +181,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         statusBarHidden={true}
       >
         <View>
-          { this.renderBody() }
+          { !!this.state.filteredIDs && this.renderBody() }
           <Tutorial
             tutorials={tutorials}
           />
@@ -201,24 +223,18 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
     }
   }
 
-  let unfilteredProps
+  let props
   if (groupAssignment && !groupAssignment.gradeIndividually) {
-    unfilteredProps = getGroupSubmissionProps(entities, courseID, assignmentID)
+    props = getGroupSubmissionProps(entities, courseID, assignmentID)
   } else {
-    unfilteredProps = getSubmissionsProps(entities, courseID, assignmentID)
+    props = getSubmissionsProps(entities, courseID, assignmentID)
   }
-
-  const { selectedFilter } = ownProps
-
-  const submissions = selectedFilter && selectedFilter.filter.filterFunc
-    ? selectedFilter.filter.filterFunc(unfilteredProps.submissions, selectedFilter.metadata)
-    : unfilteredProps.submissions
 
   let anonymous = state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
 
   return {
-    ...unfilteredProps,
-    submissions: anonymous ? shuffle(submissions.slice(), ownProps.assignmentID) : submissions,
+    ...props,
+    submissions: anonymous ? shuffle(props.submissions.slice(), ownProps.assignmentID) : props.submissions,
     groupAssignment,
     submissionEntities: state.entities.submissions,
     assignmentSubmissionTypes: state.entities.assignments[ownProps.assignmentID].data.submission_types,
