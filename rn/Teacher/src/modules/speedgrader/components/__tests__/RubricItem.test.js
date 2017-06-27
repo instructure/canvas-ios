@@ -89,6 +89,26 @@ describe('RubricItem', () => {
     expect(tree.toJSON()).toMatchSnapshot()
   })
 
+  it('removes a selection when a selected circle is pressed', () => {
+    let props = {
+      ...defaultProps,
+      grade: {
+        points: 10,
+        comments: '',
+      },
+    }
+    let tree = renderer.create(
+      <RubricItem {...props} />
+    )
+
+    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-3`) || {}
+    expect(button.props.on).toEqual(true)
+    button.props.onPress()
+
+    button = explore(tree.toJSON()).selectByID(`rubric-item.points-3`) || {}
+    expect(button.props.on).toEqual(false)
+  })
+
   it('calls changeRating with the id and value', () => {
     let tree = renderer.create(
       <RubricItem {...defaultProps} />

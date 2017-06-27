@@ -39,7 +39,10 @@ export default class RubricItem extends Component {
     this.props.showDescription(this.props.rubricItem.id)
   }
 
-  changeSelected = (value: number) => {
+  changeSelected = (value: ?number) => {
+    if (this.state.selectedOption === value) {
+      value = null
+    }
     this.setState({ selectedOption: value })
     this.props.changeRating(this.props.rubricItem.id, value)
   }
@@ -220,7 +223,7 @@ type RubricItemProps = {
   rubricItem: Rubric,
   grade: RubricAssessment,
   showDescription: (string) => void,
-  changeRating: (string, number) => void,
+  changeRating: (string, ?number) => void,
   openCommentKeyboard: (string) => void,
   deleteComment: (string) => void,
   showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,

@@ -43,7 +43,7 @@ export class GradeTab extends Component {
     this.props.navigator.show(url, { modal: true })
   }
 
-  updateScore = (id: string, value: number) => {
+  updateScore = (id: string, value: ?number) => {
     this.setState({
       ratings: {
         ...this.state.ratings,
