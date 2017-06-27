@@ -40,7 +40,7 @@ export class EditReply extends React.Component<any, Props, any> {
   }
 
   render () {
-    let message = this.state.message ? this.state.message : ''
+    let message = this.props.message || ''
     return (
       <Screen
         title={i18n('Reply')}
