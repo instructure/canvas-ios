@@ -42,6 +42,18 @@ export let Actions: (typeof canvas) => any = (api) => ({
       parentIndexPath,
     }
   }),
+  editEntry: createAction('discussions.details.editEntry', (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters, parentIndexPath: number[]) => {
+    return {
+      promise: api.editEntry(courseID, discussionID, entryID, parameters),
+      courseID,
+      discussionID,
+      entryID,
+      parentIndexPath,
+    }
+  }),
+  deletePendingReplies: createAction('discussions.details.deletePendingReplies', (discussionID) => ({
+    discussionID,
+  })),
 })
 
 export default (Actions(canvas): any)

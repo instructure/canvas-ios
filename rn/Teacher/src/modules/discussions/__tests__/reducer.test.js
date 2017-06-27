@@ -7,7 +7,7 @@ import { default as AnnouncementListActions } from '../../announcements/list/act
 import { default as EditActions } from '../edit/actions'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, createEntry, deleteDiscussionEntry } = DetailActions
+const { refreshDiscussionEntries, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies } = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -470,6 +470,47 @@ describe('refreshDiscussionEntries', () => {
     })
   })
 
+  it('handles resolved with edited entries and existing record in new entries', () => {
+    let participantA = template.userDisplay({ id: '1', display_name: 'A' })
+    let participantB = template.userDisplay({ id: '2', display_name: 'B' })
+    let reply = template.discussionReply({ id: 1 })
+    let view = template.discussionView({ view: [reply], participants: [participantA, participantB], new_entries: [template.discussionEditReply({ id: 1 })] })
+
+    let stateDiscussion = template.discussion({})
+    let expected = template.discussion({})
+
+    const resolved = {
+      type: refreshDiscussionEntries.toString(),
+      payload: {
+        result: [
+          {
+            data: view,
+          },
+          {
+            data: stateDiscussion,
+          },
+        ],
+        courseID: '2',
+        discussionID: '1',
+      },
+    }
+
+    let pendingReply = template.discussionEditReply({ id: 1 })
+    let pending = { [pendingReply.id]: { data: pendingReply, localIndexPath: [0] } }
+
+    expected.participants = { [participantA.id]: participantA, [participantB.id]: participantB }
+    expected.replies = [pendingReply]
+
+    expect(discussions({ [stateDiscussion.id]: { data: stateDiscussion, pendingReplies: pending } }, resolved)).toEqual({
+      '1': {
+        data: expected,
+        pending: 0,
+        error: null,
+        pendingReplies: pending,
+      },
+    })
+  })
+
   it('refreshes assignment disucssion', () => {
     let participantA = template.userDisplay({ id: 1, display_name: 'A' })
     let participantB = template.userDisplay({ id: 2, display_name: 'B' })
@@ -810,7 +851,6 @@ describe('createEntry', () => {
     const initialState = {}
     const reply = template.discussionReply()
     let expectedReply = Object.assign({}, reply)
-    expectedReply.pending = true
     const resolved = {
       type: createEntry.toString(),
       payload: {
@@ -837,7 +877,6 @@ describe('createEntry', () => {
   it('handles resolved non empty state', () => {
     const reply = template.discussionReply({ id: '1' })
     let expectedReply = Object.assign({}, reply)
-    expectedReply.pending = true
     const initialState = {
       '1': {
         pending: 0,
@@ -1113,3 +1152,259 @@ describe('createEntry', () => {
   })
 })
 
+describe('editEntry', () => {
+  it('handles resolved empty state', () => {
+    const initialState = {}
+    const reply = template.discussionEditReply()
+    let expectedReply = Object.assign({}, reply)
+    const resolved = {
+      type: editEntry.toString(),
+      payload: {
+        id: '1',
+        discussionID: '1',
+        result: { data: reply },
+      },
+    }
+    expect(
+        discussions(initialState, resolved)
+      ).toEqual({
+        '1': {
+          replies: {
+            edit: {
+              pending: 0,
+              error: null,
+            },
+          },
+          pendingReplies: { [reply.id]: { data: expectedReply } },
+        },
+      })
+  })
+
+  it('handles resolved non empty state', () => {
+    const reply = template.discussionEditReply({ id: '1' })
+    let expectedReply = Object.assign({}, reply)
+    const initialState = {
+      '1': {
+        pending: 0,
+        error: null,
+        data: template.discussion({ id: '1' }),
+      },
+      '2': {
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        data: template.discussion({
+          id: '2',
+          replies: [
+            reply,
+          ],
+        }),
+        replies: {
+          edit: {
+            pending: 2,
+            error: 'WAT',
+          },
+        },
+      },
+    }
+    const resolved = {
+      type: editEntry.toString(),
+      payload: {
+        discussionID: '2',
+        result: { data: reply },
+      },
+    }
+    expect(
+        discussions(initialState, resolved)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: {
+            ...template.discussion({ id: '2' }),
+            replies: [template.discussionEditReply({ id: '1' })],
+          },
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          replies: {
+            edit: {
+              pending: 0,
+              error: null,
+            },
+          },
+          pendingReplies: { [reply.id]: { data: expectedReply } },
+        },
+      })
+  })
+
+  it('handles pending empty state', () => {
+    const initialState = {}
+    const pending = {
+      type: editEntry.toString(),
+      pending: true,
+      payload: {
+        discussionID: '2',
+      },
+    }
+    expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        '2': {
+          replies: {
+            edit: {
+              pending: 1,
+              error: null,
+            },
+          },
+        },
+      })
+  })
+
+  it('handles pending non empty state', () => {
+    const initialState = {
+      '1': {
+        pending: 0,
+        error: null,
+        data: template.discussion({ id: '1' }),
+      },
+      '2': {
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        data: template.discussion({ id: '2' }),
+        replies: {
+          edit: {
+            pending: 2,
+            error: 'WAT',
+          },
+        },
+      },
+    }
+    const pending = {
+      type: editEntry.toString(),
+      pending: true,
+      payload: {
+        discussionID: '2',
+      },
+    }
+    expect(
+        discussions(initialState, pending)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: template.discussion({ id: '2' }),
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          replies: {
+            edit: {
+              pending: 1,
+              error: null,
+            },
+          },
+        },
+      })
+  })
+
+  it('handles rejected empty state', () => {
+    const initialState = {}
+    const rejected = {
+      type: editEntry.toString(),
+      error: true,
+      payload: {
+        discussionID: '2',
+        error: template.error('User not authorized'),
+      },
+    }
+    expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        '2': {
+          replies: {
+            edit: {
+              pending: 0,
+              error: 'User not authorized',
+            },
+          },
+        },
+      })
+  })
+
+  it('handles rejected non empty state', () => {
+    const initialState = {
+      '1': {
+        pending: 0,
+        error: null,
+        data: template.discussion({ id: '1' }),
+      },
+      '2': {
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        data: template.discussion({ id: '2' }),
+        replies: {
+          edit: {
+            pending: 2,
+            error: 'WAT',
+          },
+        },
+      },
+    }
+    const rejected = {
+      type: editEntry.toString(),
+      error: true,
+      payload: {
+        discussionID: '2',
+        error: template.error('User not authorized'),
+      },
+    }
+    expect(
+        discussions(initialState, rejected)
+      ).toEqual({
+        ...initialState,
+        '2': {
+          data: template.discussion({ id: '2' }),
+          pending: 1,
+          error: 'SOMETHING HAPPENED',
+          replies: {
+            edit: {
+              pending: 0,
+              error: 'User not authorized',
+            },
+          },
+        },
+      })
+  })
+})
+
+describe('deletePendingReplies', () => {
+  const initialState = {
+    '1': {
+      pending: 0,
+      error: null,
+      data: template.discussion({ id: '1' }),
+    },
+    '2': {
+      pending: 1,
+      error: 'SOMETHING HAPPENED',
+      data: template.discussion({ id: '2' }),
+      replies: {
+        edit: {
+          pending: 2,
+          error: 'WAT',
+        },
+      },
+    },
+  }
+  const action = {
+    type: deletePendingReplies.toString(),
+    discussionID: '2',
+  }
+  expect(refs(initialState, action)).toEqual({
+    ...initialState,
+    '2': {
+      pending: 1,
+      error: 'SOMETHING HAPPENED',
+      data: template.discussion({ id: '2' }),
+      replies: {
+        new: null,
+        edit: null,
+      },
+    },
+  })
+})

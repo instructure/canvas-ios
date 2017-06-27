@@ -67,6 +67,11 @@ export function createEntry (courseID: string, discussionID: string, entryID: st
   return httpClient().post(url, parameters)
 }
 
+export function editEntry (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/entries/${entryID}`
+  return httpClient().put(url, parameters)
+}
+
 export function updateDiscussion (courseID: string, parameters: UpdateDiscussionParameters): Promise<ApiResponse<Discussion>> {
   const url = `courses/${courseID}/discussion_topics/${parameters.id}`
   return httpClient().put(url, parameters)

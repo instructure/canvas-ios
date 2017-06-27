@@ -60,8 +60,22 @@ describe('DiscussionReplies', () => {
   })
 
   it('edit action sheet calls delete', () => {
-    testEditActionSheet(0)
+    testEditActionSheet(1)
     expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0])
+  })
+
+  it('edit action sheet calls cancel', () => {
+    let reply = render(props).getInstance()
+    reply._actionEdit()
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+    expect(render(props).toJSON()).toMatchSnapshot()
+  })
+
+  it('edit action sheet calls edit', () => {
+    testEditActionSheet(0)
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, { message: props.reply.message, entryID: props.reply.id, isEdit: true, parentIndexPath: props.myPath })
   })
 
   it('reply to entry', () => {

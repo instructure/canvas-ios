@@ -91,12 +91,20 @@ export class EditReply extends React.Component<any, Props, any> {
     }
   }
 
+  componentWillUnmount () {
+    this.props.deletePendingReplies(this.props.discussionID)
+  }
+
   _actionDonePressed = () => {
     const params = {
       message: this.state.message,
     }
     this.setState({ pending: true })
-    this.props.createEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath)
+    if (this.props.isEdit) {
+      this.props.editEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath)
+    } else {
+      this.props.createEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath)
+    }
   }
 
   _actionCancelPressed = () => {
@@ -133,6 +141,11 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
       entities.discussions[discussionID].replies.new) {
     pending = entities.discussions[discussionID].replies.new.pending
     error = entities.discussions[discussionID].replies.new.error
+  } else if (entities.discussions[discussionID] &&
+      entities.discussions[discussionID].replies &&
+      entities.discussions[discussionID].replies.edit) {
+    pending = entities.discussions[discussionID].replies.edit.pending
+    error = entities.discussions[discussionID].replies.edit.error
   }
 
   return {

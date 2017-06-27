@@ -101,6 +101,41 @@ describe('discussion edit reply tests', () => {
       },
     ])
   })
+
+  it('should edit an existing reply', async () => {
+    const courseID = '1'
+    const discussionID = '2'
+    const discussionReply = template.discussionEditReply()
+    const entryID = discussionReply.id
+    const newMessage = 'this is the new message'
+    const expectedData = {
+      ...discussionReply,
+      message: newMessage,
+    }
+    const api = {
+      editEntry: apiResponse(expectedData),
+    }
+    const actions = Actions(api)
+    const action = actions.editEntry(courseID, discussionID, entryID, { messsage: newMessage })
+    const state = await testAsyncAction(action)
+
+    expect(state).toMatchObject([
+      {
+        type: actions.editEntry.toString(),
+        pending: true,
+      },
+      {
+        type: actions.editEntry.toString(),
+        payload: {
+          result: { data: expectedData },
+          courseID: courseID,
+          discussionID: discussionID,
+          entryID: entryID,
+        },
+      },
+    ])
+  })
+
   it('should delete discussion entry', async () => {
     const courseID = '1'
     const discussionID = '2'
@@ -128,5 +163,16 @@ describe('discussion edit reply tests', () => {
         },
       },
     ])
+  })
+})
+
+test('deletePendingReplies', () => {
+  const actions = Actions({})
+  const action = actions.deletePendingReplies('43')
+  expect(action).toEqual({
+    type: actions.deletePendingReplies.toString(),
+    payload: {
+      discussionID: '43',
+    },
   })
 })

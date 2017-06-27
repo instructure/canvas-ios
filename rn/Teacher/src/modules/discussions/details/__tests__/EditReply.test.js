@@ -46,6 +46,7 @@ describe('EditReply', () => {
       entryID: '1',
       course: template.course({ id: 1 }),
       parentIndexPath: [],
+      deletePendingReplies: jest.fn(),
     }
   })
 
@@ -82,6 +83,14 @@ describe('EditReply', () => {
     const doneButton: any = explore(component.toJSON()).selectLeftBarButton('edit-discussion-reply.cancel-btn')
     doneButton.action()
     expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  it('deletes pending replies on unmount', () => {
+    let component = renderer.create(
+      <EditReply {...defaultProps} />
+    )
+    component.getInstance().componentWillUnmount()
+    expect(defaultProps.deletePendingReplies).toHaveBeenCalledWith(defaultProps.discussionID)
   })
 
   it('dismisses modal activity upon save error', () => {
@@ -137,9 +146,33 @@ describe('EditReply', () => {
     expect(postReply).toBeCalledWith(defaultProps.courseID, defaultProps.discussionID, defaultProps.entryID, { message }, [])
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
+
+  it('edits an existing reply', () => {
+    let editProps = {
+      ...defaultProps,
+      message: 'default message',
+      isEdit: true,
+    }
+    let component = renderer.create(
+      <EditReply {...editProps} />
+    )
+    let editReply = jest.fn(() => {
+      setProps(component, { pending: 0 })
+    })
+    let textEditor = explore(component.toJSON()).query(({ type }) => type === 'RichTextEditor')[0]
+    let message = 'edited message'
+    textEditor.props.onChangeValue(message)
+    let refresh = jest.fn()
+    component.update(<EditReply {...editProps} editEntry={editReply} refreshDiscussionEntries={refresh} />)
+    const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
+    doneButton.action()
+    expect(editReply).toBeCalledWith(editProps.courseID, editProps.discussionID, editProps.entryID, { message }, [])
+    expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
+  })
 })
+
 describe('MapStateToProps', () => {
-  test('maps default data', () => {
+  test('maps default data for new reply', () => {
     const state: AppState = template.appState({
       entities: {
         discussions: {
@@ -155,7 +188,7 @@ describe('MapStateToProps', () => {
     })
   })
 
-  test('finds the correct data', () => {
+  test('finds the correct data for new reply', () => {
     const state: AppState = template.appState({
       entities: {
         ...template.appState().entities,
@@ -168,6 +201,35 @@ describe('MapStateToProps', () => {
               error: null,
               refs: [],
               new: {
+                pending: 14,
+                error: 'Map this error',
+              },
+            },
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+    ).toMatchObject({
+      pending: 14,
+      error: 'Map this error',
+    })
+  })
+
+  test('finds the correct data for editing a reply', () => {
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        discussions: {
+          '1': {
+            pending: 0,
+            error: null,
+            replies: {
+              pending: 0,
+              error: null,
+              refs: [],
+              edit: {
                 pending: 14,
                 error: 'Map this error',
               },

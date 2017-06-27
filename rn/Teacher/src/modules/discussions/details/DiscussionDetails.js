@@ -10,6 +10,7 @@ import {
   SectionList,
   ActionSheetIOS,
   AlertIOS,
+  LayoutAnimation,
 } from 'react-native'
 import i18n from 'format-message'
 import { default as DetailActions } from './actions'
@@ -71,6 +72,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     this.state = {
       deletePending: false,
     }
+    LayoutAnimation.easeInEaseOut()
   }
 
   componentWillReceiveProps (nextProps: Props) {
@@ -170,7 +172,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     if (this.state.rootNodePath.length !== 0) {
       return (
         <AssignmentSection style={{ paddingBottom: 0 }}>
-              <TouchableHighlight testID={`discussion.popToLastDiscussionList`} onPress={this._onPopReplyRootPath}>
+              <TouchableHighlight testID={`discussion.popToLastDiscussionList`} onPress={this._onPopReplyRootPath} underlayColor='white'>
                   <View style={style.popReplyStackContainer}>
                     <Image source={Images.backIcon} style={style.popReplyStackIcon} />
                   </View>
@@ -183,7 +185,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
   renderReply = (discussion: Discussion) => ({ item, index }: { item: DiscussionReply, index: number }) => {
     const reply = item
     let participants = discussion && discussion.participants || []
-    let path = [...this.state.rootNodePath.slice(0, -1), index]
+    let path = (this.state.rootNodePath.length > 1) ? [...this.state.rootNodePath] : [index]
 
     return (
       <View>

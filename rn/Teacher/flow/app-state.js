@@ -93,6 +93,7 @@ export type DiscussionState = AsyncState & {
   data: Discussion,
   replies?: {
     new?: AsyncState,
+    edit?: AsyncState,
   },
 }
 

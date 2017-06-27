@@ -14,7 +14,7 @@ import composeReducers from '../../redux/compose-reducers'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, createEntry, deleteDiscussionEntry } = DetailsActions
+const { refreshDiscussionEntries, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -75,7 +75,12 @@ export function addOrUpdateReply (reply: DiscussionReply, localIndexPath: number
   for (let i = 0; i < localIndexPath.length; i++) {
     let index = localIndexPath[i]
     if (!isAdd && i === localIndexPath.length - 1) {
+      const replies = r[index].replies
       r[index] = Object.assign(reply, r[index])
+      r[index] = {
+        ...r[index],
+        replies: replies,
+      }
     } else {
       r[index] = Object.assign({}, r[index])
       r[index].replies = (r[index].replies) ? r[index].replies.slice() : []
@@ -140,6 +145,17 @@ const refsChanges: Reducer<AsyncRefs, any> = handleActions({
     ...state,
     new: null,
   }),
+  [deletePendingReplies.toString()]: (state, { discussionID }) => ({
+    ...state,
+    [discussionID]: {
+      ...state[discussionID],
+      replies: {
+        ...(state[discussionID] && state[discussionID].replies),
+        edit: null,
+        new: null,
+      },
+    },
+  }),
 }, {})
 
 export const refs: Reducer<AsyncRefs, any> = composeReducers(list, refsChanges)
@@ -178,7 +194,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           if (reply && reply.data.deleted) {
             replies = deleteReply(reply.localIndexPath, { replies: replies })
           } else {
-            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, !!reply.data.pending, entity.data.discussion_type)
+            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, Boolean(!reply.data.editor_id), entity.data.discussion_type)
           }
 
           if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
@@ -365,7 +381,52 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
               error: null,
             },
           },
-          pendingReplies: { [result.data.id]: { localIndexPath: parentIndexPath, data: Object.assign({ pending: true, replies: [] }, result.data) } },
+          pendingReplies: { [result.data.id]: { localIndexPath: parentIndexPath, data: Object.assign({ replies: [] }, result.data) } },
+        },
+      }
+    },
+  }),
+  [editEntry.toString()]: handleAsync({
+    pending: (state, { discussionID }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        replies: {
+          ...(state[discussionID] && state[discussionID].replies),
+          edit: {
+            pending: 1,
+            error: null,
+          },
+        },
+
+      },
+    }),
+    rejected: (state, { discussionID, error }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        replies: {
+          ...(state[discussionID] && state[discussionID].replies),
+          edit: {
+            pending: 0,
+            error: parseErrorMessage(error),
+          },
+        },
+      },
+    }),
+    resolved: (state, { discussionID, result, parentIndexPath }) => {
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          replies: {
+            ...(state[discussionID] && state[discussionID].replies),
+            edit: {
+              pending: 0,
+              error: null,
+            },
+          },
+          pendingReplies: { [result.data.id]: { localIndexPath: parentIndexPath, data: result.data } },
         },
       }
     },

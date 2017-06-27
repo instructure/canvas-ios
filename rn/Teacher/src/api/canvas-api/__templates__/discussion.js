@@ -73,6 +73,19 @@ export const discussionReply: Template<DiscussionReply> = template({
   'replies': [],
 })
 
+export const discussionEditReply: Template<DiscussionReply> = template({
+  'id': '25472827',
+  'editor_id': '1',
+  'user_id': '1',
+  'parent_id': null,
+  'created_at': '2017-05-23T17:12:04Z',
+  'updated_at': '2017-05-23T17:12:04Z',
+  'rating_count': null,
+  'rating_sum': null,
+  'message': '<p>2.0</p>',
+  'replies': [],
+})
+
 export const discussionViewLarge: Template<DiscussionView> = template({
   'unread_entries': [
     '25458826',

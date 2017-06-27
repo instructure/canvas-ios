@@ -137,6 +137,7 @@ export default class Reply extends Component <any, Props, any> {
   _actionEdit = () => {
     const { courseID, discussionID } = this.props
     let options = []
+    options.push(i18n('Edit'))
     options.push(i18n('Delete'))
     options.push(i18n('Cancel'))
     ActionSheetIOS.showActionSheetWithOptions({
@@ -146,6 +147,10 @@ export default class Reply extends Component <any, Props, any> {
     }, (button) => {
       if (button === (options.length - 1)) { return }
       if (button === (options.length - 2)) { this.props.deleteDiscussionEntry(courseID, discussionID, this.props.reply.id, this.props.myPath); return }
+      if (button === 0) {
+        this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { message: this.props.reply.message, entryID: this.props.reply.id, isEdit: true, parentIndexPath: this.props.myPath })
+        return
+      }
     })
   }
 }

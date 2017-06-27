@@ -3686,6 +3686,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     <TouchableHighlight
                       onPress={[Function]}
                       testID="discussion.popToLastDiscussionList"
+                      underlayColor="white"
                     >
                       <View
                         style={
