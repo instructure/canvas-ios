@@ -510,6 +510,7 @@ describe('refreshDiscussionEntries', () => {
     })
   })
 })
+
 describe('refreshAnnouncements', () => {
   it('handles resolved', () => {
     const one = template.discussion({ id: '1' })
@@ -1025,7 +1026,38 @@ describe('createEntry', () => {
       })
   })
 
-  it('addOrUpdateReply ADD reply 1 deep', () => {
+  it('addOrUpdateReply ADD reply 1 deep side_comment discussion', () => {
+    let d = template.discussionReply({ id: '4' })
+    let c = template.discussionReply({ id: '3' })
+    let b = template.discussionReply({ id: '2' })
+    let a = template.discussionReply({ id: '1', replies: [c, d] })
+    let replies = [a, b]
+
+    let e = template.discussionReply({ id: '5' })
+    let localIndexPath = [0, 1]
+    let result = addOrUpdateReply(e, localIndexPath, { replies }, true, 'side_comment')
+
+    let aUpdated = template.discussionReply({ id: '1', replies: [c, d, e] })
+    let expected = [aUpdated, b]
+    expect(result).toEqual(expected)
+  })
+
+  it('addOrUpdateReply ADD top_level side_comment discussion', () => {
+    let c = template.discussionReply({ id: '3' })
+    let b = template.discussionReply({ id: '2' })
+    let a = template.discussionReply({ id: '1' })
+    let replies = [a, b]
+
+    let localIndexPath = [1]
+    let result = addOrUpdateReply(c, localIndexPath, { replies }, true, 'side_comment')
+
+    let cEx = template.discussionReply({ id: '3' })
+    let bEx = template.discussionReply({ id: '2', replies: [cEx] })
+    let expected = [a, bEx]
+    expect(result).toEqual(expected)
+  })
+
+  it('addOrUpdateReply ADD reply 1 deep threaded discussion', () => {
     let c = template.discussionReply({ id: '3' })
     let b = template.discussionReply({ id: '2', replies: [c] })
     let a = template.discussionReply({ id: '1' })
@@ -1033,7 +1065,7 @@ describe('createEntry', () => {
 
     let d = template.discussionReply({ id: '4' })
     let localIndexPath = [1, 0]
-    let result = addOrUpdateReply(d, localIndexPath, { replies }, true)
+    let result = addOrUpdateReply(d, localIndexPath, { replies }, true, 'threaded')
 
     let cEx = template.discussionReply({ id: '3', replies: [d] })
     let bEx = template.discussionReply({ id: '2', replies: [cEx] })
@@ -1047,7 +1079,7 @@ describe('createEntry', () => {
     let replies = [a]
 
     let localIndexPath = []
-    let result = addOrUpdateReply(b, localIndexPath, { replies }, true)
+    let result = addOrUpdateReply(b, localIndexPath, { replies }, true, 'threaded')
 
     let expected = [a, b]
     expect(result).toEqual(expected)
@@ -1060,7 +1092,7 @@ describe('createEntry', () => {
 
     let localIndexPath = [1]
     let bUpdated = template.discussionReply({ id: '2', message: 'UPDATED' })
-    let result = addOrUpdateReply(bUpdated, localIndexPath, { replies })
+    let result = addOrUpdateReply(bUpdated, localIndexPath, { replies }, false, 'threaded')
 
     let expected = [a, bUpdated]
     expect(result).toEqual(expected)
@@ -1074,7 +1106,7 @@ describe('createEntry', () => {
 
     let cUpdated = template.discussionReply({ id: '3', message: 'UPDATED' })
     let localIndexPath = [1, 0]
-    let result = addOrUpdateReply(cUpdated, localIndexPath, { replies })
+    let result = addOrUpdateReply(cUpdated, localIndexPath, { replies }, false, 'threaded')
 
     let expected = [a, b]
     expect(result).toEqual(expected)

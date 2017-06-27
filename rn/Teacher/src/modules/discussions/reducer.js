@@ -61,13 +61,15 @@ export function deleteReply (localIndexPath: number[], objectWithRepliesProperty
   return result
 }
 
-export function addOrUpdateReply (reply: DiscussionReply, localIndexPath: number[], objectWithRepliesProperty: any, isAdd: boolean = false): DiscussionReply[] {
+export function addOrUpdateReply (reply: DiscussionReply, localIndexPath: number[], objectWithRepliesProperty: any, isAdd: boolean, discussionType: DiscussionType): DiscussionReply[] {
   let r = objectWithRepliesProperty.replies.slice()
   let result = r
 
   //  top level add
   if (isAdd && localIndexPath.length === 0) {
     r.push(reply)
+  } else if (isAdd && discussionType === 'side_comment' && localIndexPath.length >= 2) {
+    localIndexPath = localIndexPath.slice(0, 1)
   }
 
   for (let i = 0; i < localIndexPath.length; i++) {
@@ -176,7 +178,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           if (reply && reply.data.deleted) {
             replies = deleteReply(reply.localIndexPath, { replies: replies })
           } else {
-            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, !!reply.data.pending)
+            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, !!reply.data.pending, entity.data.discussion_type)
           }
 
           if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
