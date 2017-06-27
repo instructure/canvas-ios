@@ -95,13 +95,15 @@ export default class Reply extends Component <any, Props, any> {
 
   _renderMoreRepliesButton = (depth: number, reply: DiscussionReply) => {
     let showMoreButton = depth === MAX_NODE_DEPTH
-    if (!(showMoreButton && reply.replies && reply.replies.length > 0)) { return (<View/>) }
+    let replies = reply.replies || []
+    replies = replies.filter(r => !r.deleted)
+    if (!(showMoreButton && replies.length > 0)) { return (<View/>) }
     let repliesText = i18n(`{
           count, plural,
           one {# Reply}
           other {# Replies}
         }`
-        , { count: reply.replies.length })
+        , { count: replies.length })
     return (
       <View style={style.moreContainer}>
         <Button containerStyle={style.moreButtonContainer} style={style.moreButton} onPress={this._actionMore} testID='discussion.more-replies'>

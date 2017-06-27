@@ -48,6 +48,17 @@ describe('DiscussionReplies', () => {
     testRender(props)
   })
 
+  it('renders more button with some deleted replies', () => {
+    let a = template.discussionReply({ id: '2' })
+    let b = template.discussionReply({ id: '3' })
+    let c = template.discussionReply({ id: '4', deleted: true })
+
+    let reply = template.discussionReply({ id: '1', replies: [a, b, c] })
+    props.reply = reply
+    props.depth = 3
+    testRender(props)
+  })
+
   it('edit action sheet calls delete', () => {
     testEditActionSheet(0)
     expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0])
