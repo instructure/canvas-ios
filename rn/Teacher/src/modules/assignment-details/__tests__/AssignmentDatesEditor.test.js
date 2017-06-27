@@ -67,7 +67,8 @@ test('validation should work correctly', () => {
 test('validation should be false when due date is after lock date', () => {
   let assignment = template.assignment({
     all_dates: [{
-      due_at: '2017-06-01T05:59:59Z',
+      base: false,
+      due_at: '2017-06-01T07:59:00Z',
       lock_at: '2017-06-01T05:59:00Z',
     }],
   })

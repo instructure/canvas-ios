@@ -214,6 +214,20 @@ test('saving invalid points possible displays banner', () => {
   expect(component.toJSON()).toMatchSnapshot()
 })
 
+test('saving invalid dates displays banner', () => {
+  // $FlowFixMe
+  defaultProps.assignmentDetails.all_dates = {
+    due_at: '2017-06-01T07:59:00Z',
+    lock_at: '2017-06-01T05:59:00Z',
+  }
+  const component = renderer.create(
+    <AssignmentDetailsEdit {...defaultProps} />, options
+  )
+  const doneBtn: any = explore(component.toJSON()).selectRightBarButton('edit-assignment.dismiss-btn')
+  doneBtn.action()
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
 test('saving negative points possible displays banner', () => {
   defaultProps.assignmentDetails.points_possible = -1
   const component = renderer.create(

@@ -24,7 +24,7 @@ import Row from '../../../common/components/rows/Row'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import formatter, { SCORING_POLICIES, QUIZ_TYPES } from '../formatter'
-import { extractDateFromString } from '../../../utils/dateUtils'
+import { extractDateFromString, formattedDate } from '../../../utils/dateUtils'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as QuizEditActions } from './actions'
 import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
@@ -32,6 +32,8 @@ import Navigator from '../../../routing/Navigator'
 import Screen from '../../../routing/Screen'
 import AssignmentActions from '../../assignments/actions'
 import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
+import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
+import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 
 const { updateAssignment, refreshAssignment } = AssignmentActions
 
@@ -39,6 +41,13 @@ const Actions = {
   ...QuizEditActions,
   updateAssignment,
   refreshAssignment,
+}
+
+type Validation = {
+  isValid: boolean,
+  title: boolean,
+  showCorrectAnswerDates: boolean,
+  accessCode: boolean,
 }
 
 type OwnProps = {
@@ -75,6 +84,12 @@ export class QuizEdit extends Component<any, Props, any> {
       quiz: props.quiz,
       pickers: {},
       assignment: props.assignment,
+      validation: {
+        isValid: true,
+        title: true,
+        showCorrectAnswerDates: true,
+        accessCode: true,
+      },
     }
   }
 
@@ -147,6 +162,7 @@ export class QuizEdit extends Component<any, Props, any> {
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending}/>
+          <UnmetRequirementBanner text={i18n('Invalid field')} visible={!this.state.validation.isValid}/>
           <KeyboardAwareScrollView
             style={style.container}
             keyboardShouldPersistTaps='handled'
@@ -158,6 +174,7 @@ export class QuizEdit extends Component<any, Props, any> {
               border='both'
               onChangeText={this._updateQuiz('title')}
             />
+            <RequiredFieldSubscript title={i18n('A title is required')} visible={!this.state.validation.title} />
 
             <Heading1 style={style.heading}>{i18n('Description')}</Heading1>
             <Row
@@ -372,6 +389,7 @@ export class QuizEdit extends Component<any, Props, any> {
                 }
               </View>
             }
+            <RequiredFieldSubscript title={i18n("'Hide Date' cannot be before 'Show Date'")} visible={!this.state.validation.showCorrectAnswerDates} />
 
             <Heading1 style={style.heading} accessible={false}> </Heading1>
             <RowWithSwitch
@@ -414,6 +432,8 @@ export class QuizEdit extends Component<any, Props, any> {
                 placeholder={i18n('Enter code')}
               />
             }
+            <RequiredFieldSubscript title={i18n('You must enter an access code')} visible={!this.state.validation.accessCode} />
+
             <AssignmentDatesEditor
               assignment={this.state.assignment || { ...quiz, all_dates: quiz.all_dates.filter(d => d.base) }}
               ref={c => { this.datesEditor = c }}
@@ -425,6 +445,55 @@ export class QuizEdit extends Component<any, Props, any> {
         </View>
       </Screen>
     )
+  }
+
+  _validateChanges (): Validation {
+    const quiz = this.state.quiz
+
+    let validator = {
+      isValid: true,
+      title: true,
+      showCorrectAnswerDates: true,
+      accessCode: true,
+    }
+
+    if (!quiz.title || quiz.title.replace(/\s/g, '') === '') {
+      validator = {
+        ...validator,
+        title: false,
+        isValid: false,
+      }
+    }
+
+    if (quiz.show_correct_answers && quiz.show_correct_answers_at && quiz.hide_correct_answers_at) {
+      let show = extractDateFromString(formattedDate(quiz.show_correct_answers_at))
+      let hide = extractDateFromString(formattedDate(quiz.hide_correct_answers_at))
+      if (show && hide && hide < show) {
+        validator = {
+          ...validator,
+          showCorrectAnswerDates: false,
+          isValid: false,
+        }
+      }
+    }
+
+    if (quiz.access_code != null && quiz.access_code.replace(/\s/g, '') === '') {
+      validator = {
+        ...validator,
+        accessCode: false,
+        isValid: false,
+      }
+    }
+
+    const datesAreValid = this.datesEditor.validate()
+    if (!datesAreValid) {
+      validator = {
+        ...validator,
+        isValid: false,
+      }
+    }
+
+    return validator
   }
 
   _updateQuiz (property: string, transformer?: any, animated?: boolean = true): Function {
@@ -503,20 +572,26 @@ export class QuizEdit extends Component<any, Props, any> {
   }
 
   _donePressed = () => {
-    this.setState({ pending: true })
+    const validator = this._validateChanges()
+    if (!validator.isValid) {
+      this.setState({ validation: validator })
+      return
+    }
 
     // Update assignment overrides
+    let updatedAssignment = this.state.assignment
     if (this.state.quiz.quiz_type === 'assignment' && this.state.assignment) {
-      const isValid = this.datesEditor.validate()
-      if (!isValid) {
-        this.setState({ pending: false })
-        return
-      }
-      const updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
+      updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
       this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignment)
     }
 
     const updatedQuiz = this.datesEditor.updateAssignment({ ...this.state.quiz })
+    this.setState({
+      quiz: updatedQuiz,
+      assignment: updatedAssignment,
+      pending: true,
+      validation: validator,
+    })
     this.props.updateQuiz(updatedQuiz, this.props.courseID, this.props.quiz)
   }
 

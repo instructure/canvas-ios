@@ -24,13 +24,15 @@ export default class RequiredFieldSubscript extends React.Component {
   }
 
   render () {
-    let visibility = this.props.visible ? styles.visible : styles.hidden
-
-    return (
-      <View style={visibility}>
+    if (this.props.visible) {
+      return (
+      <View style={styles.visible}>
         <UnmetRequirementSubscriptText style={styles.subscript} testID={this.props.testID}>{this.props.title}</UnmetRequirementSubscriptText>
       </View>
-    )
+      )
+    } else {
+      return (<View/>)
+    }
   }
 }
 
@@ -41,9 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     backgroundColor: '#F5F5F5',
-  },
-  hidden: {
-    height: 0,
   },
   subscript: {
     marginTop: global.style.defaultPadding / 4,

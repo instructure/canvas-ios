@@ -33,6 +33,12 @@ import ReactNative, {
 
 var PickerItemIOS = PickerIOS.Item
 
+type Validation = {
+  isValid: boolean,
+  title: boolean,
+  points: boolean,
+}
+
 export const GRADE_DISPLAY_OPTIONS: Map<string, string> = new Map([
   ['percent', i18n('Percentage')],
   ['pass_fail', i18n('Complete/Incomplete')],
@@ -255,10 +261,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     return assignment[key]
   }
 
-  validateChanges () {
+  validateChanges (): Validation {
     const assignment = this.state.assignment
 
-    var validator = {
+    let validator = {
       isValid: true,
       title: true,
       points: true,

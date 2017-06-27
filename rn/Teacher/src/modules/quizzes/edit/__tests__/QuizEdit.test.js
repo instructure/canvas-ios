@@ -9,6 +9,7 @@ import renderer from 'react-test-renderer'
 import { QuizEdit, mapStateToProps } from '../QuizEdit'
 import explore from '../../../../../test/helpers/explore'
 import { ERROR_TITLE } from '../../../../redux/middleware/error-handler'
+import setProps from '../../../../../test/helpers/setProps'
 
 jest
   .mock('Button', () => 'Button')
@@ -34,6 +35,17 @@ const template = {
   ...require('../../../../api/canvas-api/__templates__/error'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
+}
+
+const options = {
+  createNodeMock: ({ type }) => {
+    if (type === 'AssignmentDatesEditor') {
+      return {
+        validate: jest.fn().mockReturnValue(true),
+        updateAssignment: jest.fn(a => a),
+      }
+    }
+  },
 }
 
 describe('QuizEdit', () => {
@@ -206,8 +218,15 @@ describe('QuizEdit', () => {
 
   it('saves quiz on done', () => {
     props.updateQuiz = jest.fn()
-    const tree = render(props).toJSON()
-    const doneButton: any = explore(tree).selectRightBarButton('quizzes.edit.doneButton')
+    let navigator = template.navigator({
+      dismiss: jest.fn(),
+    })
+
+    let tree = renderer.create(
+      <QuizEdit {...props} navigator={navigator} />, options
+    )
+
+    const doneButton: any = explore(tree.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneButton.action()
     expect(props.updateQuiz).toHaveBeenCalledWith(props.quiz, props.courseID, props.quiz)
   })
@@ -265,13 +284,24 @@ describe('QuizEdit', () => {
   })
 
   it('calls dismiss when save finishes', () => {
-    const mock = jest.fn()
-    props.navigator.dismissAllModals = mock
-    const component = render(props)
+    let doneProps = {
+      ...props,
+      navigator: template.navigator({
+        dismiss: jest.fn(),
+      }),
+    }
+    let component = renderer.create(
+    <QuizEdit {...doneProps} />, options
+  )
+    let updateQuiz = jest.fn(() => {
+      setProps(component, { pending: false })
+    })
+    component.update(<QuizEdit {...doneProps} updateQuiz={updateQuiz}/>)
+
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
     doneButton.action()
-    component.update(<QuizEdit {...props} pending={false} />)
-    expect(mock).toHaveBeenCalled()
+
+    expect(doneProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
   it('calls dismiss on cancel', () => {
@@ -395,6 +425,51 @@ describe('QuizEdit', () => {
       <QuizEdit {...props} />, opts
     )
   }
+
+  test('saving invalid name displays banner', () => {
+    props.quiz.title = ''
+    const component = renderer.create(
+    <QuizEdit {...props} />, options
+  )
+    const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
+    doneBtn.action()
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  test('saving password displays banner', () => {
+    props.quiz.access_code = ''
+    const component = renderer.create(
+    <QuizEdit {...props} />, options
+  )
+    const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
+    doneBtn.action()
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  test('saving invalid viewing dates displays banner', () => {
+    props.quiz.show_correct_answers = true
+    props.quiz.show_correct_answers_at = '2017-06-01T07:59:00Z'
+    props.quiz.hide_correct_answers_at = '2017-06-01T05:59:00Z'
+    const component = renderer.create(
+    <QuizEdit {...props} />, options
+  )
+    const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
+    doneBtn.action()
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+
+  test('saving invalid due dates displays banner', () => {
+    props.quiz.all_dates = [{
+      due_at: '2017-06-01T07:59:00Z',
+      lock_at: '2017-06-01T05:59:00Z',
+    }]
+    const component = renderer.create(
+    <QuizEdit {...props} />, options
+  )
+    const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
+    doneBtn.action()
+    expect(component.toJSON()).toMatchSnapshot()
+  })
 })
 
 describe('map state to props', () => {
