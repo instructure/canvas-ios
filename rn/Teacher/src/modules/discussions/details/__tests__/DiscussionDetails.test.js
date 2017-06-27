@@ -187,6 +187,34 @@ describe('DiscussionDetails', () => {
     )
   })
 
+  it('alerts to confirm delete reply', () => {
+    // $FlowFixMe
+    AlertIOS.alert = jest.fn()
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+    const tree = render(props).getInstance()
+    tree._confirmDeleteReply('1', '1', '1')
+    expect(AlertIOS.alert).toHaveBeenCalledWith(
+      'Are you sure you want to delete this reply?',
+      null,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { text: 'OK', onPress: expect.any(Function) },
+      ],
+    )
+  })
+
+  it('deletes discussion reply', () => {
+    props.deleteDiscussionEntry = jest.fn()
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+    // $FlowFixMe
+    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    const tree = render(props).getInstance()
+    tree._confirmDeleteReply('1', '1', '1', [0, 1])
+    expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0, 1])
+  })
+
   it('_onPopReplyRootPath pops to correct set of replies', () => {
     let aaaaaaaaa = template.discussionReply({ id: '9' })
     let aaaaaaaa = template.discussionReply({ id: '8', replies: [aaaaaaaaa] })

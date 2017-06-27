@@ -188,7 +188,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     return (
       <View>
         <Reply
-        deleteDiscussionEntry={this.props.deleteDiscussionEntry}
+        deleteDiscussionEntry={this._confirmDeleteReply}
         replyToEntry={this._onPressReplyToEntry}
         style={style.replyContainer}
         navigator={this.props.navigator}
@@ -278,6 +278,17 @@ export class DiscussionDetails extends Component<any, Props, any> {
       [
         { text: i18n('Cancel'), style: 'cancel' },
         { text: i18n('OK'), onPress: this._deleteDiscussion },
+      ],
+    )
+  }
+
+  _confirmDeleteReply = (...args) => {
+    AlertIOS.alert(
+      i18n('Are you sure you want to delete this reply?'),
+      null,
+      [
+        { text: i18n('Cancel'), style: 'cancel' },
+        { text: i18n('OK'), onPress: () => { this.props.deleteDiscussionEntry(...args) } },
       ],
     )
   }
