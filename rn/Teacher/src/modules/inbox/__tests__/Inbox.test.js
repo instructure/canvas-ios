@@ -10,14 +10,17 @@ jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/conversations'),
+  ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../__templates__/helm'),
 }
 
 const c1 = template.conversation({
   id: '1',
+  context_code: 'course_1',
 })
 const c2 = template.conversation({
   id: '2',
+  context_code: 'course_2',
 })
 
 let defaultProps = {
@@ -108,6 +111,8 @@ it('mapStateToProps', () => {
   const c2 = template.conversation({
     id: '2',
   })
+  const course1 = template.course({ id: '1' })
+  const course2 = template.course({ id: '2' })
   const appState = {
     inbox: {
       conversations: {
@@ -117,11 +122,18 @@ it('mapStateToProps', () => {
       selectedScope: 'all',
       all: { refs: [c1.id, c2.id] },
     },
+    entities: {
+      courses: {
+        '1': { course: course1 },
+        '2': { course: course2 },
+      },
+    },
   }
 
   const results = mapStateToProps(appState)
   expect(results).toMatchObject({
     conversations: [c1, c2],
+    courses: [course1, course2],
   })
 })
 
@@ -207,4 +219,39 @@ it('should call the right functions in handleRefresh', () => {
   }
   handleRefresh(props)
   expect(props.refreshInboxArchived).toHaveBeenCalled()
+})
+
+it('filters conversations based on course', () => {
+  const courses = [
+    { id: '1' },
+    { id: '2' },
+  ]
+  const tree = renderer.create(
+    <Inbox {...defaultProps} courses={courses} scope='all' />
+  )
+  const instance = tree.getInstance()
+  instance.setState({ selectedCourse: '1' })
+  const node = tree.toJSON()
+  expect(node).toMatchSnapshot()
+})
+
+it('filters out conversations without a context_code', () => {
+  const courses = [
+    { id: '1' },
+    { id: '2' },
+  ]
+  let props = {
+    ...defaultProps,
+    conversations: [
+      ...defaultProps.conversations,
+      { id: '3', context_code: null },
+    ],
+  }
+  const tree = renderer.create(
+    <Inbox {...props} courses={courses} scope='all' />
+  )
+  const instance = tree.getInstance()
+  instance.setState({ selectedCourse: '1' })
+  const node = tree.toJSON()
+  expect(node).toMatchSnapshot()
 })

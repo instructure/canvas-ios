@@ -12,6 +12,7 @@ import Actions from './actions'
 import Screen from '../../routing/Screen'
 import branding from '../../common/branding'
 import ConversationRow from './components/ConversationRow'
+import CourseFilter from './components/CourseFilter'
 import FilterHeader from './components/FilterHeader'
 import EmptyInbox from './components/EmptyInbox'
 import Images from '../../images'
@@ -20,12 +21,16 @@ import i18n from 'format-message'
 export type InboxProps = {
   conversations: Conversation[],
   scope: InboxScope,
+  courses: Array<Course>,
   next: ?Function,
   navigator: Navigator,
 }
 
 export class Inbox extends Component {
-  props: InboxProps
+  constructor (props: InboxProps) {
+    super(props)
+    this.state = { selectedCourse: 'all' }
+  }
 
   componentWillReceiveProps (newProps: InboxProps) {
     if (newProps.scope !== this.props.scope) {
@@ -66,7 +71,27 @@ export class Inbox extends Component {
     this.props.updateInboxSelectedScope(scope)
   }
 
+  _clearCourseFilter = () => {
+    this.setState({ selectedCourse: 'all' })
+  }
+
+  _updateCourseFilter = (id: string) => {
+    this.setState({ selectedCourse: id })
+  }
+
+  _filteredConversations () {
+    if (this.state.selectedCourse === 'all') {
+      return this.props.conversations
+    } else {
+      return this.props.conversations.filter((convo) => {
+        if (!convo.context_code) return false
+        return convo.context_code.replace('course_', '') === this.state.selectedCourse
+      })
+    }
+  }
+
   _renderComponent = () => {
+    const conversations = this._filteredConversations()
     if (!global.V05) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -76,7 +101,7 @@ export class Inbox extends Component {
     }
 
     let emptyState
-    if (this.props.conversations.length === 0) {
+    if (conversations.length === 0) {
       if (this.props.scope === 'starred') {
         emptyState = <EmptyInbox
           image={Images.starLarge}
@@ -95,10 +120,14 @@ export class Inbox extends Component {
     return (
       <View style={styles.container}>
         <FilterHeader selected={this.props.scope} onFilterChange={this._onChangeFilter} />
-        { this.props.conversations.length === 0 && this.props.pending
+        <CourseFilter courses={this.props.courses}
+            selectedCourse={this.state.selectedCourse}
+            onClearFilter={this._clearCourseFilter}
+            onSelectFilter={this._updateCourseFilter} />
+        { conversations.length === 0 && this.props.pending
             ? this._renderLoading()
             : emptyState || <FlatList
-                data={this.props.conversations}
+                data={conversations}
                 renderItem={this._renderItem}
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}
@@ -140,13 +169,15 @@ const styles = StyleSheet.create({
   },
 })
 
-export function mapStateToProps ({ inbox }: InboxState): InboxProps {
+export function mapStateToProps ({ inbox, entities }: AppState): InboxProps {
   const scope = inbox.selectedScope
   const scopeData = inbox[scope]
   const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter((c) => c)
+  const courses = Object.keys(entities.courses).reduce((acc, id) => { acc.push(entities.courses[id].course); return acc }, [])
   return {
     conversations,
     scope,
+    courses,
     pending: scopeData.pending,
     error: scopeData.error,
     next: scopeData.next,
