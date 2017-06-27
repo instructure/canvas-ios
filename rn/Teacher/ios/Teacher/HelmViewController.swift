@@ -95,10 +95,21 @@ final class HelmViewController: UIViewController, HelmScreen {
     // Do stuff that you'd usually do in viewDidLoad here, rather than there.
     // This is due to the way the Screen component works and it's flow with
     // setting the screenConfig and doing a prerender
+    private var _screenDidRender = false
     private func screenDidRender() {
-        if let title = screenConfig[PropKeys.title] as? String, let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
-            self.navigationItem.titleView = titleView(with: title, and: subtitle, given: screenConfig)
+        if (_screenDidRender) { return }
+        if let title = screenConfig[PropKeys.title] as? String {
+            if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
+                let titleView = self.titleView(with: title, and: subtitle, given: screenConfig)
+                titleView.isAccessibilityElement = true
+                titleView.accessibilityLabel = "\(title), \(subtitle)"
+                titleView.accessibilityTraits = UIAccessibilityTraitHeader
+                self.navigationItem.titleView = titleView
+                self.navigationItem.title = nil
+            }
+            self.title = title
         }
+        _screenDidRender = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,12 +160,8 @@ final class HelmViewController: UIViewController, HelmScreen {
     // MARK: - Styles
     
     open func handleStyles() {
-        if let title = screenConfig[PropKeys.title] as? String {
-            self.title = title
-        }
-        
         // Nav bar props
-        
+
         let drawUnderNavBar = screenConfig[PropKeys.drawUnderNavBar] as? Bool ?? false
         if (drawUnderNavBar) {
             edgesForExtendedLayout.insert(.top)
@@ -339,19 +346,18 @@ final class HelmViewController: UIViewController, HelmScreen {
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.text = title
         titleLabel.sizeToFit()
-        titleLabel.isAccessibilityElement = false
-        
+        titleLabel.textAlignment = .center
+
         let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
         subtitleLabel.backgroundColor = UIColor.clear
         subtitleLabel.textColor = subtitleColor
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.text = subtitle
         subtitleLabel.sizeToFit()
-        subtitleLabel.isAccessibilityElement = false
-        
-        let titleView = UIView(frame: CGRect(x:0, y:0, width:max(titleLabel.frame.size.width, subtitleLabel.frame.size.width), height:30))
-        titleView.isAccessibilityElement = true
-        titleView.accessibilityLabel = "\(title), \(subtitle)"
+        subtitleLabel.textAlignment = .center
+
+        let maxWidth = max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: maxWidth, height: 30))
         titleView.addSubview(titleLabel)
         titleView.addSubview(subtitleLabel)
         
@@ -365,7 +371,7 @@ final class HelmViewController: UIViewController, HelmScreen {
             adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (titleLabel.frame.width/2)
             titleLabel.frame = adjustment
         }
-        
+
         return titleView
     }
     

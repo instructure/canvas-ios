@@ -148,9 +148,11 @@ export class DiscussionDetails extends Component<any, Props, any> {
             <TouchableHighlight
               underlayColor='white'
               onPress={this._onPressReply}
-              testID='discussion-reply'>
+              testID='discussion-reply'
+              accessibilityTraits='button'
+            >
                 <View style={{ flex: 1, backgroundColor: 'white' }}>
-                  <Text style={style.link}>Reply</Text>
+                  <Text style={style.link}>{i18n('Reply')}</Text>
                 </View>
             </TouchableHighlight>
           </View>

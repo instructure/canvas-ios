@@ -1069,6 +1069,7 @@ exports[`DiscussionDetails renders 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
                   underlayColor="white"
@@ -2205,6 +2206,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
                   underlayColor="white"
@@ -3586,6 +3588,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 }
               >
                 <TouchableHighlight
+                  accessibilityTraits="button"
                   onPress={[Function]}
                   testID="discussion-reply"
                   underlayColor="white"

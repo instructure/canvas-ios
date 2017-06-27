@@ -78,7 +78,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     return (<View style={styles.header}>
               <Heading1>{this.props.conversation.subject || i18n('(no subject)')}</Heading1>
               <TouchableOpacity
-                accessibilityLabel={starred ? i18n('Starred') : i18n('Unstarred')}
+                accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
                 accessibilityTraits='button'
                 testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
                 onPress={this._toggleStarred}
@@ -119,6 +119,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
             image: Images.kabob,
             testID: 'inbox.detail.options.button',
             action: this.showOptionsActionSheet,
+            accessibilityLabel: i18n('Conversation options'),
           },
         ]}
       >

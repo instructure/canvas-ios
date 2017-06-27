@@ -8,6 +8,7 @@ exports[`ConversationDetails renders correctly 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Conversation options",
         "action": [Function],
         "image": 1,
         "testID": "inbox.detail.options.button",
@@ -43,7 +44,7 @@ exports[`ConversationDetails renders correctly 1`] = `
             learn to write code
           </Heading1>
           <TouchableOpacity
-            accessibilityLabel="Unstarred"
+            accessibilityLabel="Un-starred"
             accessibilityTraits="button"
             activeOpacity={0.2}
             focusedOpacity={0.7}
@@ -151,7 +152,7 @@ exports[`ConversationDetails renders correctly 1`] = `
             </Text>
             <View
               accessibilityComponentType={undefined}
-              accessibilityLabel="Unstarred"
+              accessibilityLabel="Un-starred"
               accessibilityTraits="button"
               accessible={true}
               hitSlop={
@@ -214,6 +215,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Conversation options",
         "action": [Function],
         "image": 1,
         "testID": "inbox.detail.options.button",
@@ -249,7 +251,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
             learn to write code
           </Heading1>
           <TouchableOpacity
-            accessibilityLabel="Unstarred"
+            accessibilityLabel="Un-starred"
             accessibilityTraits="button"
             activeOpacity={0.2}
             focusedOpacity={0.7}
@@ -372,7 +374,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
             </Text>
             <View
               accessibilityComponentType={undefined}
-              accessibilityLabel="Unstarred"
+              accessibilityLabel="Un-starred"
               accessibilityTraits="button"
               accessible={true}
               hitSlop={
