@@ -27,7 +27,6 @@ export type ConversationMessageProps = {
   conversation: Conversation,
   message: ConversationMessage,
   firstMessage: boolean,
-  onReplyButtonPressed: Function,
   navigator: Navigator,
 }
 
@@ -41,7 +40,14 @@ export default class ConversationMessageRow extends Component<any, ConversationM
   }
 
   _replyButtonPressed = () => {
-    this.props.onReplyButtonPressed(this.props.message.id)
+    this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true, modalPresentationStyle: 'fullscreen' }, {
+      recipients: this.props.conversation.participants.filter(p => this.props.conversation.audience.includes(p.id)),
+      contextName: this.props.conversation.context_name,
+      contextCode: this.props.conversation.context_code,
+      subject: this.props.conversation.subject,
+      canSelectCourse: false,
+      canEditSubject: false,
+    })
   }
 
   _showAttachment = (attachment: Attachment) => {
@@ -144,7 +150,12 @@ export default class ConversationMessageRow extends Component<any, ConversationM
             })
           }
           { this.props.firstMessage &&
-            <LinkButton onPress={this._replyButtonPressed} style={styles.replyButton} textStyle={styles.replyButtonText}>
+            <LinkButton
+              testID='inbox.conversation-message-row.reply-button'
+              onPress={this._replyButtonPressed}
+              style={styles.replyButton}
+              textStyle={styles.replyButtonText}
+            >
               {i18n('Reply')}
             </LinkButton>
           }

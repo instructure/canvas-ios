@@ -4,6 +4,8 @@ import React from 'react'
 import { Compose } from '../Compose'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
+// $FlowFixMe
+import { createConversationMock, addMessageMock } from '../../../api/canvas-api/conversations'
 
 let template = {
   ...require('../../../__templates__/helm'),
@@ -30,7 +32,9 @@ jest
       opacity: 1,
     },
   }))
-.mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('../../../api/canvas-api/conversations')
+  .mock('../../../routing/Screen')
 
 describe('Compose', () => {
   beforeEach(() => jest.resetAllMocks())
@@ -85,7 +89,7 @@ describe('Compose', () => {
     const instance = component.getInstance()
     instance._bodyChanged('body of the message')
     instance._subjectChanged('subject of the message')
-    instance.setStateAndUpdate({ course })
+    instance.setStateAndUpdate({ contextName: course.name, contextCode: `course_${course.id}` })
     instance.setStateAndUpdate({ recipients: [recipient] })
     expect(instance.state.sendDisabled).toEqual(false)
   })
@@ -152,5 +156,96 @@ describe('Compose', () => {
     instance._deleteRecipient('1')
 
     expect(instance.state.recipients.length).toBe(0)
+  })
+
+  it('creates conversation on send', () => {
+    const u1 = template.addressBookResult({
+      id: '1',
+    })
+    const props = {
+      ...defaultProps,
+      recipients: [u1],
+      subject: 'new conversation subject',
+      onlySendIndividualMessages: false,
+    }
+    const screen = renderer.create(
+      <Compose {...props} />
+    )
+    const body: any = explore(screen.toJSON()).selectByID('compose-message.body-text-input')
+    body.props.onChangeText('new conversation')
+    const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
+    sendButton.action()
+    expect(createConversationMock).toHaveBeenCalledWith({
+      recipients: ['1'],
+      body: 'new conversation',
+      subject: 'new conversation subject',
+      group_conversation: false,
+    })
+  })
+
+  it('adds message on send', () => {
+    const u1 = template.addressBookResult({
+      id: '1',
+    })
+    const props = {
+      ...defaultProps,
+      recipients: [u1],
+      subject: 'new conversation subject',
+      onlySendIndividualMessages: false,
+      conversationID: '1',
+    }
+    const screen = renderer.create(
+      <Compose {...props} />
+    )
+    const body: any = explore(screen.toJSON()).selectByID('compose-message.body-text-input')
+    body.props.onChangeText('new conversation')
+    const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
+    sendButton.action()
+    expect(addMessageMock).toHaveBeenCalledWith('1', {
+      recipients: ['1'],
+      body: 'new conversation',
+      subject: 'new conversation subject',
+      group_conversation: false,
+    })
+  })
+
+  it('refreshes conversation on unmount if adding reply', () => {
+    const props = {
+      ...defaultProps,
+      refreshConversationDetails: jest.fn(),
+      conversationID: '1',
+    }
+    const screen = renderer.create(
+      <Compose {...props} />
+    )
+    screen.getInstance().componentWillUnmount()
+    expect(props.refreshConversationDetails).toHaveBeenCalledWith('1')
+  })
+
+  it('does not refresh conversation on unmount', () => {
+    const props = {
+      ...defaultProps,
+      refreshConversationDetails: jest.fn(),
+    }
+    const screen = renderer.create(
+      <Compose {...props} />
+    )
+    screen.getInstance().componentWillUnmount()
+    expect(props.refreshConversationDetails).not.toHaveBeenCalled()
+  })
+
+  it('renders reply', () => {
+    const props = {
+      ...defaultProps,
+      contextName: 'Course 1',
+      contextCode: 'course_1',
+      canSelectCourse: false,
+      canEditSubject: false,
+    }
+    expect(
+      renderer.create(
+        <Compose {...props} />
+      ).toJSON()
+    ).toMatchSnapshot()
   })
 })

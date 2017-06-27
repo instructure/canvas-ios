@@ -25,17 +25,24 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import AutoGrowingTextInput from '../../common/components/AutoGrowingTextInput'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import AddressBookToken from './components/AddressBookToken'
-import { createConversation } from '../../api/canvas-api/conversations'
+import { createConversation, addMessage } from '../../api/canvas-api/conversations'
 import axios from 'axios'
 const ScrollViewDisabler = requireNativeComponent('ScrollViewDisabler')
+
+type OwnProps = {
+  conversationID?: string,
+}
 
 type ComposeProps = {
   navigator: Navigator,
   refreshInboxSent: Function,
   recipients?: AddressBookResult[],
   subject?: string,
+  contextCode?: string,
+  contextName?: string,
   course?: Course,
   canAddRecipients: boolean,
+  canSelectCourse: boolean,
   onlySendIndividualMessages: boolean,
 }
 
@@ -43,19 +50,22 @@ type ComposeState = {
   sendDisabled: boolean,
   sendToAll: boolean,
   recipients: AddressBookResult[],
-  course: ?Course,
+  contextCode: ?string,
+  contextName: ?string,
   body: ?string,
   subject: ?string,
   pending: boolean,
 }
 
 export class Compose extends PureComponent {
-  props: ComposeProps
+  props: ComposeProps & OwnProps
   state: ComposeState
   scrollView: KeyboardAwareScrollView
 
   static defaultProps = {
     canAddRecipients: true,
+    canSelectCourse: true,
+    canEditSubject: true,
     onlySendIndividualMessages: false,
   }
 
@@ -66,7 +76,8 @@ export class Compose extends PureComponent {
       sendDisabled: true,
       sendToAll: props.onlySendIndividualMessages,
       recipients: props.recipients || [],
-      course: props.course || null,
+      contextCode: props.contextCode || null,
+      contextName: props.contextName || null,
       body: null,
       subject: props.subject || null,
       pending: false,
@@ -87,7 +98,9 @@ export class Compose extends PureComponent {
       {
         onSelect: (course: Course) => {
           this.props.navigator.dismiss()
-          this.setStateAndUpdate({ course })
+          const contextName = course.name
+          const contextCode = `course_${course.id}`
+          this.setStateAndUpdate({ contextName, contextCode })
         },
       }
     )
@@ -102,7 +115,7 @@ export class Compose extends PureComponent {
       group_conversation: state.sendToAll,
     }
     this.setState({ pending: true })
-    const promise = createConversation(convo)
+    const promise = this.props.conversationID ? addMessage(this.props.conversationID, convo) : createConversation(convo)
     promise.then((response) => {
       this.props.refreshInboxSent()
       this.props.navigator.dismissAllModals()
@@ -120,7 +133,7 @@ export class Compose extends PureComponent {
 
   _validateSendButton = () => {
     const state = this.state
-    const sendDisabled = !(state.recipients.length > 0 && state.body && state.body.length > 0 && state.course)
+    const sendDisabled = !(state.recipients.length > 0 && state.body && state.body.length > 0)
     this.setState({
       sendDisabled,
     })
@@ -143,8 +156,7 @@ export class Compose extends PureComponent {
 
     const onCancel = () => this.props.navigator.dismiss()
 
-    // $FlowFixMe
-    this.props.navigator.show('/address-book', { modal: true }, { onSelect, onCancel, context: `course_${this.state.course.id}`, name: this.state.course.name })
+    this.props.navigator.show('/address-book', { modal: true }, { onSelect, onCancel, context: this.state.contextCode, name: this.state.contextName })
   }
 
   _deleteRecipient = (id: string) => {
@@ -173,8 +185,11 @@ export class Compose extends PureComponent {
     })
   }
 
+  componentWillUnmount () {
+    this.props.conversationID && this.props.refreshConversationDetails(this.props.conversationID)
+  }
+
   render () {
-    const course = this.state.course
     return (
       <Screen
         navBarColor='#fff'
@@ -201,15 +216,17 @@ export class Compose extends PureComponent {
             ref={e => { this.scrollView = e }}
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
-            <TouchableHighlight underlayColor='#fff' style={styles.wrapper} onPress={this.selectCourse}>
+            <TouchableHighlight underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : null}>
               <View style={styles.courseSelect}>
-                <Text style={[styles.courseSelectText, course ? styles.courseSelectedText : undefined]}>
-                  { course ? course.name : i18n('Select a course') }
+                <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
+                  { this.state.contextName || i18n('Select a course') }
                 </Text>
-                <DisclosureIndicator />
+                { this.props.canSelectCourse &&
+                  <DisclosureIndicator />
+                }
               </View>
             </TouchableHighlight>
-            { course &&
+            { Boolean(this.state.contextCode) &&
               <View style={[styles.wrapper, styles.toContainer]}>
                 <View style={{ padding: 6, paddingLeft: 0, height: 54, justifyContent: 'center' }}>
                   <Text style={styles.courseSelectText}>{i18n('To')}</Text>
@@ -229,10 +246,11 @@ export class Compose extends PureComponent {
             <View style={styles.wrapper}>
               <TextInput
                 placeholder={i18n('Subject')}
-                value={this.state.subject}
+                value={this.props.canEditSubject ? this.state.subject : this.state.subject || i18n('(no subject)')}
                 style={styles.cell}
                 placeholderTextColor={colors.lightText}
                 onChangeText={this._subjectChanged}
+                editable={this.props.canEditSubject}
               />
             </View>
             { !this.props.onlySendIndividualMessages &&
@@ -252,6 +270,7 @@ export class Compose extends PureComponent {
                 defaultHeight={54}
                 onContentSizeChange={this.scrollToEnd}
                 onChangeText={this._bodyChanged}
+                testID='compose-message.body-text-input'
               />
             </ScrollViewDisabler>
           </KeyboardAwareScrollView>

@@ -799,7 +799,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                     "opacity": 1,
                   }
                 }
-                testID={undefined}
+                testID="inbox.conversation-message-row.reply-button"
                 tvParallaxProperties={undefined}
               >
                 <View>

@@ -17,6 +17,7 @@ export type Conversation = {
   avatar_url: string,
   visible: true,
   context_name: string,
+  context_code: string,
   messages?: ConversationMessage[],
 }
 
@@ -47,4 +48,9 @@ export type CreateConversationParameters = {
   media_comment_type?: string,
   user_note?: boolean,
   context_code?: string,
+}
+
+export type AddMessageParameters = {
+  recipients: string[],
+  body: string,
 }

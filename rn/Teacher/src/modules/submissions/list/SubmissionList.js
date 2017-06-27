@@ -161,7 +161,8 @@ export class SubmissionList extends Component {
         return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
       }),
       subject: subject,
-      course: this.props.course,
+      contextName: this.props.course ? this.props.course.name : null,
+      contextCode: this.props.course ? `course_${this.props.course.id}` : null,
       canAddRecipients: false,
       onlySendIndividualMessages: true,
     })

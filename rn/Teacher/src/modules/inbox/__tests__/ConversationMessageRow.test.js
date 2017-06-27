@@ -3,6 +3,7 @@ import 'react-native'
 import React from 'react'
 import ConversationMessage from '../components/ConversationMessageRow'
 import { setSession } from '../../../api/session'
+import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/conversations'),
@@ -11,7 +12,9 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/session'),
 }
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -72,4 +75,56 @@ it('renders correctly with author lots of participants', () => {
     <ConversationMessage conversation={convo} message={message} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+it('navigates to compose when reply to first message button pressed', () => {
+  const session = template.session({
+    user: {
+      ...template.session().user,
+      id: '1',
+    },
+  })
+  setSession(session)
+  const conversation = template.conversation({
+    id: '1',
+    participants: [
+      { id: '1', name: 'hey there i am bob' },
+      { id: '2', name: 'hey there i am joe' },
+      { id: '3', name: 'hey there i am jim' },
+    ],
+    audience: ['2', '3'],
+    context_name: 'Course 1',
+    context_code: 'course_1',
+    subject: 'Subject 1',
+  })
+  const navigator = template.navigator({ show: jest.fn() })
+  const message = template.conversationMessage({
+    author_id: session.user.id,
+  })
+  const props = {
+    conversation,
+    navigator,
+    message,
+    firstMessage: true,
+  }
+  const tree = renderer.create(
+    <ConversationMessage {...props} />
+  ).toJSON()
+  const replyButton: any = explore(tree).selectByID('inbox.conversation-message-row.reply-button')
+  replyButton.props.onPress()
+  expect(navigator.show).toHaveBeenCalledWith(
+    '/conversations/1/add_message',
+    { modal: true, modalPresentationStyle: 'fullscreen' },
+    {
+      recipients: [
+        { id: '2', name: 'hey there i am joe' },
+        { id: '3', name: 'hey there i am jim' },
+      ],
+      contextName: 'Course 1',
+      contextCode: 'course_1',
+      subject: 'Subject 1',
+      canSelectCourse: false,
+      canEditSubject: false,
+    },
+  )
 })

@@ -51,6 +51,10 @@ export function createConversation (conversation: CreateConversationParameters):
   return httpClient().post(url, conversation)
 }
 
+export function addMessage (conversationID: string, message: CreateConversationParameters): Promise<ApiResponse<Conversation>> {
+  return httpClient().post(`conversations/${conversationID}/add_message`, message)
+}
+
 export function markConversationAsRead (conversationID: string): Promise<ApiResponse<Conversation>> {
   const url = `conversations/${conversationID}`
   const conversation = {

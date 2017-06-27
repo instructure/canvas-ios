@@ -76,6 +76,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
   registerScreen('/conversations/compose', wrap(Compose), store)
+  registerScreen('/conversations/:conversationID/add_message', wrap(Compose), store)
   registerScreen('/conversations/course-select', wrap(CourseSelect), store)
   registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
   registerScreen('/address-book', wrap(AddressBook), store)

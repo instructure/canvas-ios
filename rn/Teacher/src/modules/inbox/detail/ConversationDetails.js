@@ -57,7 +57,6 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
               navigator={this.props.navigator}
               message={item}
               conversation={this.props.conversation}
-              onReplyButtonPressed={ () => {} }
               firstMessage={index === 0} />
   }
 
