@@ -32,6 +32,10 @@ const Screen = (props: ConversationDetailsProps) => {
       return explore(tree()).selectRightBarButton('inbox.detail.options.button')
     },
 
+    get instance (): any {
+      return screen.getInstance()
+    },
+
     tapOptionsButton () {
       this.optionsButton.action()
       return this
@@ -79,9 +83,9 @@ describe('ConversationDetails', () => {
     Screen(props).tapOptionsButton()
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith(
       {
-        options: ['Delete', 'Cancel'],
-        destructiveButtonIndex: 0,
-        cancelButtonIndex: 1,
+        options: ['Forward', 'Delete', 'Cancel'],
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 2,
       },
       expect.any(Function),
     )
@@ -94,6 +98,15 @@ describe('ConversationDetails', () => {
     props.conversationID = '1'
     Screen(props).tapOptionsButton()
     expect(props.deleteConversation).toHaveBeenCalledWith('1')
+  })
+
+  it('calls options with an id', () => {
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 2))
+    props.deleteConversation = jest.fn()
+    props.conversationID = '1'
+    Screen(props).instance.showOptionsActionSheet('2')
+    expect(props.deleteConversation).toHaveBeenCalledWith('2')
   })
 
   it('calls pop after delete finishes', () => {

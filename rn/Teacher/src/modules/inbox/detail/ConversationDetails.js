@@ -57,7 +57,9 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
               navigator={this.props.navigator}
               message={item}
               conversation={this.props.conversation}
-              firstMessage={index === 0} />
+              onReplyButtonPressed={ () => {} }
+              firstMessage={index === 0}
+              showOptionsActionSheet={this.showOptionsActionSheet} />
   }
 
   _toggleStarred = () => {
@@ -135,8 +137,11 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     }
   }
 
-  showOptionsActionSheet = () => {
+  showOptionsActionSheet = (id: string) => {
+    id = id || this.props.conversationID
+
     const options = [
+      i18n('Forward'),
       i18n('Delete'),
       i18n('Cancel'),
     ]
@@ -146,22 +151,29 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         destructiveButtonIndex: options.length - 2,
         cancelButtonIndex: options.length - 1,
       },
-      this.handleOptionsActionSheet,
+      this.handleOptionsActionSheet.bind(null, id),
     )
   }
 
-  handleOptionsActionSheet = (index: number) => {
+  handleOptionsActionSheet = (id: string, index: number) => {
     switch (index) {
       case 0:
-        this.deleteConversation()
+        this.forwardMessage(id)
+        break
+      case 1:
+        this.deleteConversation(id)
         break
     }
   }
 
-  deleteConversation () {
+  deleteConversation (id: string) {
     this.setState({ deletePending: true })
     // $FlowFixMe
-    this.props.deleteConversation(this.props.conversationID)
+    this.props.deleteConversation(id)
+  }
+
+  forwardMessage (id: string) {
+    // TODO
   }
 }
 

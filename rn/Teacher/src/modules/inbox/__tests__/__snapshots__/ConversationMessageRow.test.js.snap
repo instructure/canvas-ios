@@ -195,6 +195,7 @@ exports[`renders correctly 1`] = `
         accessibilityLabel="Message options"
         accessibilityTraits="button"
         accessible={true}
+        onPress={[Function]}
         style={
           Object {
             "alignItems": "flex-end",
@@ -523,6 +524,7 @@ exports[`renders correctly with author being the logged in user 1`] = `
         accessibilityLabel="Message options"
         accessibilityTraits="button"
         accessible={true}
+        onPress={[Function]}
         style={
           Object {
             "alignItems": "flex-end",
@@ -851,6 +853,7 @@ exports[`renders correctly with author lots of participants 1`] = `
         accessibilityLabel="Message options"
         accessibilityTraits="button"
         accessible={true}
+        onPress={[Function]}
         style={
           Object {
             "alignItems": "flex-end",

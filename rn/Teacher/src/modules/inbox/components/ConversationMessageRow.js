@@ -27,6 +27,8 @@ export type ConversationMessageProps = {
   conversation: Conversation,
   message: ConversationMessage,
   firstMessage: boolean,
+  onReplyButtonPressed: Function,
+  showOptionsActionSheet: Function,
   navigator: Navigator,
 }
 
@@ -52,6 +54,10 @@ export default class ConversationMessageRow extends Component<any, ConversationM
 
   _showAttachment = (attachment: Attachment) => {
     this.props.navigator.show('/attachment', { modal: true }, { attachment })
+  }
+
+  _showActionSheet = () => {
+    this.props.showOptionsActionSheet(this.props.message.id)
   }
 
   _toggleExpanded = () => {
@@ -169,10 +175,11 @@ export default class ConversationMessageRow extends Component<any, ConversationM
       <TouchableOpacity
           style={styles.kabobButton}
           accessibilityTraits='button'
-          accessible={true}
+          accessible
           accessibilityLabel={i18n('Message options')}
           underlayColor='#ffffff00'
           testID={`conversation-message.kabob-${this.props.message.id}`}
+          onPress={this._showActionSheet}
         >
         <Image style={styles.kabob} source={Images.kabob}/>
       </TouchableOpacity>
