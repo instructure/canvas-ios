@@ -100,7 +100,7 @@ export class Compose extends PureComponent {
           this.props.navigator.dismiss()
           const contextName = course.name
           const contextCode = `course_${course.id}`
-          this.setStateAndUpdate({ contextName, contextCode })
+          this.setStateAndUpdate({ contextName, contextCode, recipients: [] })
         },
       }
     )
