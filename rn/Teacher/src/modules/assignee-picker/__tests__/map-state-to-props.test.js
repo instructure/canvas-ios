@@ -72,7 +72,7 @@ test('correct output from searchMapStateToProps', () => {
 
   const result = searchMapStateToProps(state, props)
   expect(result).toMatchObject({
-    enrollments: [enrollmentOne],
+    enrollments: [enrollmentOne, enrollmentThree],
     sections: [section],
   })
 })

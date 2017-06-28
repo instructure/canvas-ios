@@ -20,8 +20,6 @@ function studentEnrollmentsForCourseID (courseID: string, state: AppState): any 
     if (item.course_id !== courseID) return false
     // $FlowFixMe
     if (item.type !== 'StudentEnrollment') return false
-    // $FlowFixMe
-    if (item.enrollment_state !== 'active') return false
     return true
   })
 }
