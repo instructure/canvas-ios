@@ -42,6 +42,13 @@ export let Actions: (typeof canvas) => any = (api) => ({
       parentIndexPath,
     }
   }),
+  markAllAsRead: createAction('discussions.details.markAllAsRead', (courseID: string, discussionID: string, oldUnreadCount: number) => {
+    return {
+      promise: api.markAllAsRead(courseID, discussionID),
+      discussionID,
+      oldUnreadCount,
+    }
+  }),
   editEntry: createAction('discussions.details.editEntry', (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters, parentIndexPath: number[]) => {
     return {
       promise: api.editEntry(courseID, discussionID, entryID, parameters),

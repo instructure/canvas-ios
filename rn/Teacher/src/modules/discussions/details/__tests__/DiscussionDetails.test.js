@@ -54,6 +54,7 @@ describe('DiscussionDetails', () => {
       pending: 0,
       error: null,
       refreshDiscussionEntries: jest.fn(),
+      markAllAsRead: jest.fn(),
     }
   })
 
@@ -154,7 +155,7 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/announcements/2/edit', { modal: true, modalPresentationStyle: 'formsheet' })
   })
 
-  it('right bar button shows options to edit or delete', () => {
+  it('right bar button shows options', () => {
     const mock = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = mock
@@ -162,19 +163,28 @@ describe('DiscussionDetails', () => {
     kabob.action()
     expect(mock).toHaveBeenCalledWith(
       {
-        options: ['Edit', 'Delete', 'Cancel'],
-        destructiveButtonIndex: 1,
-        cancelButtonIndex: 2,
+        options: ['Edit', 'Mark All as Read', 'Delete', 'Cancel'],
+        destructiveButtonIndex: 2,
+        cancelButtonIndex: 3,
       },
       expect.any(Function)
     )
+  })
+
+  it('calls markAllAsRead when that option is selected', () => {
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+
+    const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
+    kabob.action()
+    expect(props.markAllAsRead).toHaveBeenCalledWith('1', '1', 1)
   })
 
   it('alerts to confirm delete discussion', () => {
     // $FlowFixMe
     AlertIOS.alert = jest.fn()
     // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     const kabob: any = explore(render(props).toJSON()).selectRightBarButton('discussions.details.edit.button')
     kabob.action()
     expect(AlertIOS.alert).toHaveBeenCalledWith(
@@ -240,7 +250,7 @@ describe('DiscussionDetails', () => {
   it('deletes discussion', () => {
     props.deleteDiscussion = jest.fn()
     // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
     AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.courseID = '1'
@@ -360,7 +370,7 @@ describe('DiscussionDetails', () => {
   it('pops after delete', () => {
     props.navigator.pop = jest.fn()
     // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(1))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
     AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     const screen = render(props)

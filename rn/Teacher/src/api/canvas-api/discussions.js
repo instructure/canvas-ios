@@ -91,3 +91,8 @@ export function subscribeDiscussion (courseID: string, discussionID: string, sub
   const url = `courses/${courseID}/discussion_topics/${discussionID}/subscribed`
   return httpClient()[subscribed ? 'put' : 'delete'](url)
 }
+
+export function markAllAsRead (courseID: string, discussionID: string): Promise<ApiResponse<>> {
+  const url = `courses/${courseID}/discussion_topics/${discussionID}/read_all`
+  return httpClient().put(url)
+}

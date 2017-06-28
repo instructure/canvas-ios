@@ -46,13 +46,14 @@ type State = {
   courseName: string,
 }
 
-const { refreshDiscussionEntries, deleteDiscussionEntry } = DetailActions
+const { refreshDiscussionEntries, deleteDiscussionEntry, markAllAsRead } = DetailActions
 const { deleteDiscussion } = EditActions
 
 const Actions = {
   refreshDiscussionEntries,
   deleteDiscussion,
   deleteDiscussionEntry,
+  markAllAsRead,
 }
 
 export type Props = State & OwnProps & RefreshProps & typeof Actions & NavigationProps & AsyncState & {
@@ -192,17 +193,16 @@ export class DiscussionDetails extends Component<any, Props, any> {
     return (
       <View>
         <Reply
-        deleteDiscussionEntry={this._confirmDeleteReply}
-        replyToEntry={this._onPressReplyToEntry}
-        style={style.replyContainer}
-        navigator={this.props.navigator}
-        courseID={this.props.courseID}
-        discussionID={discussion.id}
-        reply={reply}
-        depth={0}
-        myPath={[...path]}
-        participants={participants}
-        onPressMoreReplies={this._onPressMoreReplies}
+          deleteDiscussionEntry={this._confirmDeleteReply}
+          replyToEntry={this._onPressReplyToEntry}
+          navigator={this.props.navigator}
+          courseID={this.props.courseID}
+          discussionID={discussion.id}
+          reply={reply}
+          depth={0}
+          myPath={[...path]}
+          participants={participants}
+          onPressMoreReplies={this._onPressMoreReplies}
         />
       </View>
     )
@@ -256,9 +256,9 @@ export class DiscussionDetails extends Component<any, Props, any> {
   showEditActionSheet = () => {
     ActionSheetIOS.showActionSheetWithOptions(
       {
-        options: [i18n('Edit'), i18n('Delete'), i18n('Cancel')],
-        destructiveButtonIndex: 1,
-        cancelButtonIndex: 2,
+        options: [i18n('Edit'), i18n('Mark All as Read'), i18n('Delete'), i18n('Cancel')],
+        destructiveButtonIndex: 2,
+        cancelButtonIndex: 3,
       },
       this._editActionSheetSelected,
     )
@@ -270,6 +270,13 @@ export class DiscussionDetails extends Component<any, Props, any> {
         this._editDiscussion()
         break
       case 1:
+        this.props.markAllAsRead(
+          this.props.courseID,
+          this.props.discussionID,
+          this.props.discussion && this.props.discussion.unread_count
+        )
+        break
+      case 2:
         this._confirmDeleteDiscussion()
         break
     }

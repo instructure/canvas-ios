@@ -1,7 +1,7 @@
 /* @flow */
 
 import { Actions } from '../actions'
-import { apiResponse } from '../../../../../test/helpers/apiMock'
+import { apiResponse, apiError } from '../../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../../test/helpers/async'
 
 const template = {
@@ -160,6 +160,36 @@ describe('discussion edit reply tests', () => {
           courseID,
           discussionID,
           entryID,
+        },
+      },
+    ])
+  })
+})
+
+describe('markAllAsRead', () => {
+  it('has the correct data', async () => {
+    const api = {
+      markAllAsRead: apiError({ message: 'error' }),
+    }
+    const actions = Actions(api)
+    const action = actions.markAllAsRead('1', '2', 3)
+    const result = await testAsyncAction(action)
+
+    expect(result).toMatchObject([
+      {
+        type: actions.markAllAsRead.toString(),
+        pending: true,
+        payload: {
+          discussionID: '2',
+          oldUnreadCount: 3,
+        },
+      },
+      {
+        type: actions.markAllAsRead.toString(),
+        error: true,
+        payload: {
+          discussionID: '2',
+          oldUnreadCount: 3,
         },
       },
     ])

@@ -7,7 +7,7 @@ import { default as AnnouncementListActions } from '../../announcements/list/act
 import { default as EditActions } from '../edit/actions'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies } = DetailActions
+const { refreshDiscussionEntries, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead } = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -347,6 +347,60 @@ describe('refreshDiscussions', () => {
         data: two,
         pending: 0,
         error: null,
+      },
+    })
+  })
+})
+
+describe('markAllAsRead', () => {
+  it('updates unread_count optimistically', () => {
+    let discussion = template.discussion({ unread_count: 2 })
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+      },
+    }
+    let action = {
+      type: markAllAsRead.toString(),
+      pending: true,
+      payload: {
+        courseID: '1',
+        discussionID: discussion.id,
+        oldUnreadCount: 2,
+      },
+    }
+
+    expect(discussions(state, action)).toMatchObject({
+      [discussion.id]: {
+        data: {
+          unread_count: 0,
+        },
+      },
+    })
+  })
+
+  it('reverts on error', () => {
+    let discussion = template.discussion({ unread_count: 0 })
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+      },
+    }
+    let action = {
+      type: markAllAsRead.toString(),
+      error: true,
+      payload: {
+        courseID: '1',
+        discussionID: discussion.id,
+        oldUnreadCount: 2,
+      },
+    }
+
+    expect(discussions(state, action)).toMatchObject({
+      [discussion.id]: {
+        data: {
+          unread_count: 2,
+        },
       },
     })
   })
