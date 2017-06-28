@@ -116,7 +116,6 @@ export class FavoritedCourseList extends Component {
   render () {
     return (
       <Screen
-        navBarTranslucent={true}
         navBarHidden={false}
         navBarImage={branding.headerImage}
         navBarColor={color.navBarColor}
