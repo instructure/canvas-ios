@@ -4,6 +4,7 @@ exports[`DiscussionDetails renders 1`] = `
 <Screen
   navBarColor="#fff"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -1211,6 +1212,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
 <Screen
   navBarColor="#fff"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -2341,6 +2343,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
 <Screen
   navBarColor="#fff"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {
@@ -4395,6 +4398,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
 <Screen
   navBarColor="#fff"
   navBarStyle="dark"
+  onTraitCollectionChange={[Function]}
   rightBarButtons={
     Array [
       Object {

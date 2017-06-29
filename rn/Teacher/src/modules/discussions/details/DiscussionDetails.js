@@ -31,8 +31,10 @@ import {
 import colors from '../../../common/colors'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
-import Reply, { MAX_NODE_DEPTH } from './Reply'
+import Reply from './Reply'
 import { replyFromLocalIndexPath } from '../reducer'
+import { type TraitCollection } from '../../../routing/Navigator'
+import { isRegularDisplayMode } from '../../../routing/utils'
 
 type OwnProps = {
   discussionID: string,
@@ -66,6 +68,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     this.state = {
       rootNodePath: [],
       deletePending: false,
+      maxReplyNodeDepth: 2,
     }
   }
 
@@ -81,6 +84,16 @@ export class DiscussionDetails extends Component<any, Props, any> {
       this.setState({ deletePending: false })
       this.props.navigator.pop()
     }
+  }
+
+  onTraitCollectionChange () {
+    this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
+  }
+
+  traitCollectionDidChange (traits: TraitCollection) {
+    this.setState({
+      maxReplyNodeDepth: isRegularDisplayMode(traits) ? 4 : 2,
+    })
   }
 
   renderDetails = ({ item, index }: { item: Discussion, index: number }) => {
@@ -193,6 +206,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     return (
       <View>
         <Reply
+          maxReplyNodeDepth={this.state.maxReplyNodeDepth}
           deleteDiscussionEntry={this._confirmDeleteReply}
           replyToEntry={this._onPressReplyToEntry}
           navigator={this.props.navigator}
@@ -230,6 +244,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     }
     return (
       <Screen
+        onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         title={this.props.isAnnouncement ? i18n('Announcement Details') : i18n('Discussion Details')}
         navBarColor={this.props.courseColor}
         navBarStyle='dark'
@@ -359,7 +374,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
   }
 
   _onPopReplyRootPath = () => {
-    let path = this.state.rootNodePath.slice(0, this.state.rootNodePath.length - MAX_NODE_DEPTH)
+    let path = this.state.rootNodePath.slice(0, this.state.rootNodePath.length - this.state.maxReplyNodeDepth)
     if (path.length === 1) path = []
     this.setState({
       rootNodePath: path,

@@ -18,8 +18,6 @@ import WebContainer from '../../../common/components/WebContainer'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
 
-export const MAX_NODE_DEPTH: number = 3
-
 export type Props = {
   reply: DiscussionReply,
   depth: number,
@@ -31,6 +29,7 @@ export type Props = {
   onPressMoreReplies: Function,
   myPath: number[],
   navigator: Navigator,
+  maxReplyNodeDepth: number,
 }
 
 export default class Reply extends Component <any, Props, any> {
@@ -59,10 +58,11 @@ export default class Reply extends Component <any, Props, any> {
   }
 
   render () {
-    let { reply, depth, participants, courseID, discussionID, replyToEntry, onPressMoreReplies } = this.props
+    let { reply, depth, participants, courseID, discussionID, replyToEntry, onPressMoreReplies, maxReplyNodeDepth } = this.props
     participants = participants || {}
     let replies = reply.replies || []
-    let childReplies = (depth > MAX_NODE_DEPTH - 1) ? [] : replies.map((r, i) => <Reply onPressMoreReplies={onPressMoreReplies} replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
+
+    let childReplies = (depth > maxReplyNodeDepth - 1) ? [] : replies.map((r, i) => <Reply maxReplyNodeDepth={maxReplyNodeDepth} onPressMoreReplies={onPressMoreReplies} replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
     let user = this._userFromParticipants(reply, participants)
     let message = reply.deleted ? `<i style="color:${colors.grey4}">${i18n('Deleted this reply.')}</i>` : reply.message
 
@@ -92,9 +92,11 @@ export default class Reply extends Component <any, Props, any> {
                 </View>
               </TouchableHighlight>
             }
+
             {reply.deleted && <View style={{ marginTop: global.style.defaultPadding }}/>}
             {(!reply.deleted) && this._renderButtons()}
-            {this._renderMoreRepliesButton(depth, reply)}
+            {this._renderMoreRepliesButton(depth, reply, maxReplyNodeDepth)}
+
           </View>
 
           <View style={style.rowB}>
@@ -105,8 +107,8 @@ export default class Reply extends Component <any, Props, any> {
     )
   }
 
-  _renderMoreRepliesButton = (depth: number, reply: DiscussionReply) => {
-    let showMoreButton = depth === MAX_NODE_DEPTH
+  _renderMoreRepliesButton = (depth: number, reply: DiscussionReply, maxReplyNodeDepth: number) => {
+    let showMoreButton = depth === maxReplyNodeDepth
     let replies = reply.replies || []
     if (!(showMoreButton && replies.length > 0)) { return (<View/>) }
     let repliesText = i18n(`{

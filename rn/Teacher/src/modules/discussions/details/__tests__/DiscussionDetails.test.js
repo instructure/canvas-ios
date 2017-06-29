@@ -73,7 +73,7 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     expect(tree.toJSON()).toMatchSnapshot()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0] })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0], maxReplyNodeDepth: 2 })
 
     let rootNodes = instance.rootRepliesData()
     expect(rootNodes).toEqual([aaaa])
@@ -240,11 +240,13 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     instance._onPressMoreReplies([0, 0, 0, 0, 0, 0, 0])
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0] })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2 })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0] })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2 })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [] })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2 })
+    instance._onPopReplyRootPath()
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2 })
   })
 
   it('deletes discussion', () => {

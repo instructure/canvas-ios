@@ -36,6 +36,7 @@ describe('DiscussionReplies', () => {
       myPath: [0],
       navigator: template.navigator(),
       onPressMoreReplies: jest.fn(),
+      maxReplyNodeDepth: 2,
     }
   })
 
