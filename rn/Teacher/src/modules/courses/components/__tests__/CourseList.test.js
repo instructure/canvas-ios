@@ -76,7 +76,7 @@ test('calls props.onCoursePreferencesPressed when a kabob is pressed', () => {
     <CourseList {...defaultProps} onCoursePreferencesPressed={onCoursePreferencesPressed} />
   ).toJSON()
 
-  let kabob = explore(tree).selectByID(`courseCard.kabob_${defaultProps.courses[0].id}`) || {}
+  let kabob = explore(tree).selectByID(`course-card.kabob-${defaultProps.courses[0].id}`) || {}
   kabob.props.onPress()
   expect(onCoursePreferencesPressed).toHaveBeenCalledWith(defaultProps.courses[0].id)
 })

@@ -26,10 +26,10 @@ class EditCoursesListPage {
 
     // MARK: Elements
 
-    private let doneButton = e.selectBy(id: "edit-fav-courses.done-btn")
-    
+    private let doneButton = e.selectBy(id: "edit-favorites.done-btn")
+
     // MARK: - Helpers
-    
+
     private func navBarTitleView() -> GREYElementInteraction {
         let titleViewElement = EarlGrey.select(
             elementWithMatcher: grey_allOf([grey_accessibilityLabel("Edit Courses"),
@@ -37,45 +37,45 @@ class EditCoursesListPage {
                                             grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
         return titleViewElement
     }
-    
+
     func selectFavoritedCourse(_ course: Course) -> GREYElementInteraction {
-        let courseIsFavoritedID = "edit-fav-courses.\(course.id)-favorited"
+        let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
         let courseIsFavoritedElement = e.selectBy(id: courseIsFavoritedID)
         return courseIsFavoritedElement
     }
-    
+
     func selectNotFavoritedCourse(_ course: Course) -> GREYElementInteraction {
-        let courseIsNotFavoritedID = "edit-fav-courses.\(course.id)-not-favorited"
+        let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
         let courseIsNotFavoritedElement = e.selectBy(id: courseIsNotFavoritedID)
         return courseIsNotFavoritedElement
     }
 
     // MARK: - Assertions
-    
+
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         navBarTitleView().assertExists()
         doneButton.assertExists()
     }
-    
+
     func assertCourseIsFavorited(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         let courseIsFavoritedElement = selectFavoritedCourse(course)
         courseIsFavoritedElement.assertExists()
     }
-    
+
     func assertCourseIsNotfavorited(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         let courseIsNotFavoritedElement = selectNotFavoritedCourse(course)
         courseIsNotFavoritedElement.assertExists()
     }
-    
+
     func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         
         for course in courses {
-            let courseIsFavoritedID = "edit-fav-courses.\(course.id)-favorited"
-            let courseIsNotFavoritedID = "edit-fav-courses.\(course.id)-not-favorited"
+            let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
+            let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
             
             let courseElement = EarlGrey.select(
                 elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
@@ -86,22 +86,21 @@ class EditCoursesListPage {
     }
 
     // MARK: - UI Actions
-    
+
     func dismissToFavoriteCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         doneButton.tapUntilHidden()
     }
-    
+
     func toggleFavoritedCourse(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         let courseIsFavoritedElement = selectFavoritedCourse(course)
         courseIsFavoritedElement.tap()
     }
-    
+
     func toggleNotFavoritedCourse(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         let courseIsNotFavoritedElement = selectNotFavoritedCourse(course)
         courseIsNotFavoritedElement.tap()
-        
     }
 }

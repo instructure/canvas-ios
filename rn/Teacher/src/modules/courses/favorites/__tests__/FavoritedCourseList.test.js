@@ -111,7 +111,7 @@ test('opens course preferences', () => {
     <FavoritedCourseList {...props} />
   ).toJSON()
 
-  const kabob = explore(tree).selectByID(`courseCard.kabob_${course.id}`) || {}
+  const kabob = explore(tree).selectByID(`course-card.kabob-${course.id}`) || {}
   kabob.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith(
     '/courses/1/user_preferences',
@@ -132,7 +132,7 @@ test('go to all courses', () => {
     <FavoritedCourseList {...props} />
   ).toJSON()
 
-  const allButton = explore(tree).selectByID('fav-courses.see-all-btn') || {}
+  const allButton = explore(tree).selectByID('favorited-course-list.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })
@@ -148,7 +148,7 @@ test('calls navigator.push when a course is selected', () => {
     <FavoritedCourseList {...props} />
   ).toJSON()
 
-  const allButton = explore(tree).selectByID('fav-courses.see-all-btn') || {}
+  const allButton = explore(tree).selectByID('favorited-course-list.see-all-btn') || {}
   allButton.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith('/courses')
 })

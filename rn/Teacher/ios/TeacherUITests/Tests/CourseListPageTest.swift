@@ -15,12 +15,12 @@
 //
 
 class CourseListPageTest: TeacherTest {
-    
+
     func testCourseListEmptyPage_displaysEmptyState() {
         logIn(self)
         coursesListPage.assertEmptyStatePageObjects()
     }
-    
+
     func testCourseListPage_displaysPageObjects() {
         logIn(self)
         coursesListPage.assertHasFavoritesStatePageObjects()
@@ -30,5 +30,5 @@ class CourseListPageTest: TeacherTest {
         logIn(self)
         let course = Data.getNextCourse(self)
         coursesListPage.assertCourseExists(course)
-  }
+    }
 }

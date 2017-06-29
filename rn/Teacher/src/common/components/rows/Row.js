@@ -51,6 +51,7 @@ export default class Row extends Component<any, RowProps, any> {
     }
     const imageSize = this.props.imageSize || { height: 20, width: 20 }
     const title = this.props.title
+    const testID = this.props.testID || 'row.undefined-cell'
 
     let topBorder
     let bottomBorder
@@ -94,7 +95,7 @@ export default class Row extends Component<any, RowProps, any> {
                       {title}
                     </Text>
                   }
-                  { Boolean(this.props.subtitle) && <Text style={style.subtitle}>{this.props.subtitle}</Text> }
+                  { Boolean(this.props.subtitle) && <Text style={style.subtitle} testID={`${testID}-subtitle-lbl`}>{this.props.subtitle}</Text> }
                   { this.props.children }
                 </View>
                 { Boolean(this.props.accessories || this.props.disclosureIndicator) &&

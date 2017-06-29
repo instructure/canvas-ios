@@ -22,5 +22,6 @@ class CourseSettingsPageTest: TeacherTest {
         coursesListPage.openCourseDetailsPage(course)
         courseBrowserPage.openCourseSettingsPage()
         courseSettingsPage.assertPageObjects()
+        courseSettingsPage.dismissToCourseBrowserPage()
     }
 }

@@ -168,6 +168,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -198,6 +199,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -271,6 +273,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -297,6 +300,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -334,6 +338,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -407,6 +412,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -484,6 +490,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -561,6 +568,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -697,6 +705,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -792,6 +801,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -1576,6 +1586,7 @@ exports[`QuizDetails displays access code 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -1606,6 +1617,7 @@ exports[`QuizDetails displays access code 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -1679,6 +1691,7 @@ exports[`QuizDetails displays access code 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -1705,6 +1718,7 @@ exports[`QuizDetails displays access code 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -1742,6 +1756,7 @@ exports[`QuizDetails displays access code 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -1815,6 +1830,7 @@ exports[`QuizDetails displays access code 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -1892,6 +1908,7 @@ exports[`QuizDetails displays access code 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -1969,6 +1986,7 @@ exports[`QuizDetails displays access code 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -2105,6 +2123,7 @@ exports[`QuizDetails displays access code 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -2200,6 +2219,7 @@ exports[`QuizDetails displays access code 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -2984,6 +3004,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -3014,6 +3035,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -3087,6 +3109,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -3113,6 +3136,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -3150,6 +3174,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -3223,6 +3248,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -3300,6 +3326,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -3377,6 +3404,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -3513,6 +3541,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -3608,6 +3637,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -4272,6 +4302,7 @@ exports[`QuizDetails renders 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -4302,6 +4333,7 @@ exports[`QuizDetails renders 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -4375,6 +4407,7 @@ exports[`QuizDetails renders 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -4401,6 +4434,7 @@ exports[`QuizDetails renders 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -4438,6 +4472,7 @@ exports[`QuizDetails renders 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -4511,6 +4546,7 @@ exports[`QuizDetails renders 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -4588,6 +4624,7 @@ exports[`QuizDetails renders 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -4665,6 +4702,7 @@ exports[`QuizDetails renders 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -4801,6 +4839,7 @@ exports[`QuizDetails renders 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -4896,6 +4935,7 @@ exports[`QuizDetails renders 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -5620,6 +5660,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -5650,6 +5691,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -5723,6 +5765,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -5749,6 +5792,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -5786,6 +5830,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -5859,6 +5904,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -5936,6 +5982,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -6013,6 +6060,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -6149,6 +6197,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -6244,6 +6293,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -7028,6 +7078,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -7058,6 +7109,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -7131,6 +7183,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -7157,6 +7210,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -7194,6 +7248,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -7267,6 +7322,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -7344,6 +7400,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -7421,6 +7478,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -7557,6 +7615,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -7652,6 +7711,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -8376,6 +8436,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -8406,6 +8467,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -8479,6 +8541,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -8505,6 +8568,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -8542,6 +8606,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -8615,6 +8680,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -8692,6 +8758,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -8769,6 +8836,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -8905,6 +8973,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -9000,6 +9069,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -9724,6 +9794,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -9754,6 +9825,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -9827,6 +9899,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -9853,6 +9926,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -9890,6 +9964,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -9963,6 +10038,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -10040,6 +10116,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -10117,6 +10194,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -10253,6 +10331,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -10348,6 +10427,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -11072,6 +11152,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -11102,6 +11183,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -11175,6 +11257,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -11201,6 +11284,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -11238,6 +11322,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -11311,6 +11396,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -11388,6 +11474,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -11465,6 +11552,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -11601,6 +11689,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -11696,6 +11785,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -12420,6 +12510,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -12450,6 +12541,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -12523,6 +12615,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -12549,6 +12642,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -12586,6 +12680,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -12659,6 +12754,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -12736,6 +12832,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -12813,6 +12910,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -12949,6 +13047,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -13044,6 +13143,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -13768,6 +13868,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -13798,6 +13899,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -13871,6 +13973,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -13897,6 +14000,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -13934,6 +14038,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -14007,6 +14112,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -14084,6 +14190,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -14161,6 +14268,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -14297,6 +14405,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -14392,6 +14501,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -15056,6 +15166,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -15086,6 +15197,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -15159,6 +15271,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -15185,6 +15298,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -15222,6 +15336,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -15295,6 +15410,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -15372,6 +15488,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -15449,6 +15566,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -15585,6 +15703,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -15680,6 +15799,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -16404,6 +16524,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -16434,6 +16555,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -16507,6 +16629,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -16533,6 +16656,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -16570,6 +16694,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -16643,6 +16768,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -16720,6 +16846,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -16797,6 +16924,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -16933,6 +17061,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -17028,6 +17157,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -17752,6 +17882,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -17782,6 +17913,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -17855,6 +17987,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -17881,6 +18014,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -17918,6 +18052,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -17991,6 +18126,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -18068,6 +18204,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -18145,6 +18282,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -18313,6 +18451,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -18408,6 +18547,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -19132,6 +19272,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -19162,6 +19303,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -19235,6 +19377,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -19261,6 +19404,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -19298,6 +19442,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -19371,6 +19516,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -19448,6 +19594,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -19525,6 +19672,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -19661,6 +19809,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -19756,6 +19905,7 @@ exports[`QuizDetails renders assignment group 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -20540,6 +20690,7 @@ exports[`QuizDetails renders published state 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.unpublished-status-img"
                   />
                   <Text
                     accessible={true}
@@ -20570,6 +20721,7 @@ exports[`QuizDetails renders published state 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Unpublished
                   </Text>
@@ -20643,6 +20795,7 @@ exports[`QuizDetails renders published state 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -20669,6 +20822,7 @@ exports[`QuizDetails renders published state 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -20706,6 +20860,7 @@ exports[`QuizDetails renders published state 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -20779,6 +20934,7 @@ exports[`QuizDetails renders published state 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -20856,6 +21012,7 @@ exports[`QuizDetails renders published state 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -20933,6 +21090,7 @@ exports[`QuizDetails renders published state 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -21069,6 +21227,7 @@ exports[`QuizDetails renders published state 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -21164,6 +21323,7 @@ exports[`QuizDetails renders published state 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -21888,6 +22048,7 @@ exports[`QuizDetails renders published state 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -21918,6 +22079,7 @@ exports[`QuizDetails renders published state 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -21991,6 +22153,7 @@ exports[`QuizDetails renders published state 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -22017,6 +22180,7 @@ exports[`QuizDetails renders published state 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -22054,6 +22218,7 @@ exports[`QuizDetails renders published state 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -22127,6 +22292,7 @@ exports[`QuizDetails renders published state 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -22204,6 +22370,7 @@ exports[`QuizDetails renders published state 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -22281,6 +22448,7 @@ exports[`QuizDetails renders published state 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -22417,6 +22585,7 @@ exports[`QuizDetails renders published state 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -22512,6 +22681,7 @@ exports[`QuizDetails renders published state 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -23236,6 +23406,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -23266,6 +23437,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -23339,6 +23511,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -23365,6 +23538,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -23402,6 +23576,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -23475,6 +23650,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -23552,6 +23728,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -23629,6 +23806,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -23765,6 +23943,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -23860,6 +24039,7 @@ exports[`QuizDetails renders quiz type 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -24584,6 +24764,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -24614,6 +24795,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -24687,6 +24869,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -24713,6 +24896,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -24750,6 +24934,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -24823,6 +25008,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -24900,6 +25086,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -24977,6 +25164,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -25113,6 +25301,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -25208,6 +25397,7 @@ exports[`QuizDetails renders quiz type 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -25932,6 +26122,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -25962,6 +26153,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -26035,6 +26227,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -26061,6 +26254,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -26098,6 +26292,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -26171,6 +26366,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -26248,6 +26444,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -26325,6 +26522,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -26461,6 +26659,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -26556,6 +26755,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -27280,6 +27480,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -27310,6 +27511,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -27383,6 +27585,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -27409,6 +27612,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -27446,6 +27650,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -27519,6 +27724,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -27596,6 +27802,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -27673,6 +27880,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -27809,6 +28017,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -27904,6 +28113,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -28628,6 +28838,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -28658,6 +28869,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -28731,6 +28943,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -28757,6 +28970,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -28794,6 +29008,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -28867,6 +29082,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -28944,6 +29160,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -29021,6 +29238,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -29157,6 +29375,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -29252,6 +29471,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -29976,6 +30196,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -30006,6 +30227,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -30079,6 +30301,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -30105,6 +30328,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -30142,6 +30366,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -30215,6 +30440,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -30292,6 +30518,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -30369,6 +30596,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -30505,6 +30733,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -30600,6 +30829,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -31324,6 +31554,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -31354,6 +31585,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -31427,6 +31659,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -31453,6 +31686,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -31490,6 +31724,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -31563,6 +31798,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -31640,6 +31876,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -31717,6 +31954,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -31853,6 +32091,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -31948,6 +32187,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -32672,6 +32912,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -32702,6 +32943,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -32775,6 +33017,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -32801,6 +33044,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -32838,6 +33082,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -32911,6 +33156,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -32988,6 +33234,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -33065,6 +33312,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -33201,6 +33449,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -33296,6 +33545,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -34020,6 +34270,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -34050,6 +34301,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -34123,6 +34375,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -34149,6 +34402,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -34186,6 +34440,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -34259,6 +34514,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -34336,6 +34592,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -34413,6 +34670,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -34549,6 +34807,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -34644,6 +34903,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -35368,6 +35628,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -35398,6 +35659,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -35471,6 +35733,7 @@ exports[`QuizDetails renders time limit 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -35497,6 +35760,7 @@ exports[`QuizDetails renders time limit 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -35534,6 +35798,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -35607,6 +35872,7 @@ exports[`QuizDetails renders time limit 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -35684,6 +35950,7 @@ exports[`QuizDetails renders time limit 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -35761,6 +36028,7 @@ exports[`QuizDetails renders time limit 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -35897,6 +36165,7 @@ exports[`QuizDetails renders time limit 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -35992,6 +36261,7 @@ exports[`QuizDetails renders time limit 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -36716,6 +36986,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -36746,6 +37017,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -36819,6 +37091,7 @@ exports[`QuizDetails renders time limit 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -36845,6 +37118,7 @@ exports[`QuizDetails renders time limit 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -36882,6 +37156,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -36955,6 +37230,7 @@ exports[`QuizDetails renders time limit 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -37032,6 +37308,7 @@ exports[`QuizDetails renders time limit 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -37109,6 +37386,7 @@ exports[`QuizDetails renders time limit 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -37245,6 +37523,7 @@ exports[`QuizDetails renders time limit 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -37340,6 +37619,7 @@ exports[`QuizDetails renders time limit 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -38064,6 +38344,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -38094,6 +38375,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -38167,6 +38449,7 @@ exports[`QuizDetails renders view responses 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -38193,6 +38476,7 @@ exports[`QuizDetails renders view responses 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -38230,6 +38514,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -38303,6 +38588,7 @@ exports[`QuizDetails renders view responses 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -38380,6 +38666,7 @@ exports[`QuizDetails renders view responses 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -38457,6 +38744,7 @@ exports[`QuizDetails renders view responses 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -38593,6 +38881,7 @@ exports[`QuizDetails renders view responses 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -38688,6 +38977,7 @@ exports[`QuizDetails renders view responses 1`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -39412,6 +39702,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -39442,6 +39733,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -39515,6 +39807,7 @@ exports[`QuizDetails renders view responses 2`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -39541,6 +39834,7 @@ exports[`QuizDetails renders view responses 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -39578,6 +39872,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -39651,6 +39946,7 @@ exports[`QuizDetails renders view responses 2`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -39728,6 +40024,7 @@ exports[`QuizDetails renders view responses 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -39805,6 +40102,7 @@ exports[`QuizDetails renders view responses 2`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -39941,6 +40239,7 @@ exports[`QuizDetails renders view responses 2`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -40036,6 +40335,7 @@ exports[`QuizDetails renders view responses 2`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -40700,6 +41000,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -40730,6 +41031,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -40803,6 +41105,7 @@ exports[`QuizDetails renders view responses 3`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -40829,6 +41132,7 @@ exports[`QuizDetails renders view responses 3`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -40866,6 +41170,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -40939,6 +41244,7 @@ exports[`QuizDetails renders view responses 3`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -41016,6 +41322,7 @@ exports[`QuizDetails renders view responses 3`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -41093,6 +41400,7 @@ exports[`QuizDetails renders view responses 3`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -41229,6 +41537,7 @@ exports[`QuizDetails renders view responses 3`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -41324,6 +41633,7 @@ exports[`QuizDetails renders view responses 3`] = `
               "flex": 1,
             }
           }
+          testID="web-container.view"
         />
       </View>
       <View
@@ -41988,6 +42298,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         Object {},
                       ]
                     }
+                    testID="assignment-details.published-icon.published-status-img"
                   />
                   <Text
                     accessible={true}
@@ -42018,6 +42329,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.published-icon.publish-status-lbl"
                   >
                     Published
                   </Text>
@@ -42091,6 +42403,7 @@ exports[`QuizDetails renders without a description 1`] = `
                       "width": 19,
                     }
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-img"
                 />
                 <Text
                   accessible={true}
@@ -42117,6 +42430,7 @@ exports[`QuizDetails renders without a description 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewDueDatesButton-title-lbl"
                 >
                   Due
                 </Text>
@@ -42154,6 +42468,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.due-date-lbl"
                   >
                     <Text
                       accessible={true}
@@ -42227,6 +42542,7 @@ exports[`QuizDetails renders without a description 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-for-lbl"
                 >
                   <Text
                     accessible={true}
@@ -42304,6 +42620,7 @@ exports[`QuizDetails renders without a description 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-from-lbl"
                     >
                       <Text
                         accessible={true}
@@ -42381,6 +42698,7 @@ exports[`QuizDetails renders without a description 1`] = `
                           },
                         ]
                       }
+                      testID="assignment-details.assignment-dates.available-to-lbl"
                     >
                       <Text
                         accessible={true}
@@ -42517,6 +42835,7 @@ exports[`QuizDetails renders without a description 1`] = `
                       },
                     ]
                   }
+                  testID="quizzes.details.viewAllSubmissionsRow-title-lbl"
                 >
                   Submissions
                 </Text>
@@ -42619,6 +42938,7 @@ exports[`QuizDetails renders without a description 1`] = `
               },
             ]
           }
+          testID="undefined.view"
         >
           <Text
             accessible={true}

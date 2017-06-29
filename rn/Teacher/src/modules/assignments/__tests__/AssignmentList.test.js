@@ -70,7 +70,7 @@ test('selected assignment', () => {
   const tree = renderer.create(
     <AssignmentList {...defaultProps} navigator={navigator} />
   )
-  const row: any = explore(tree.toJSON()).selectByID(`assignment-list-row-${assignment.id}.assignments-cell`)
+  const row: any = explore(tree.toJSON()).selectByID(`assignment-list.assignment-list-row.cell-${assignment.id}`)
   row.props.onPress()
   expect(navigator.show).toHaveBeenCalled()
 })
@@ -88,7 +88,7 @@ test('selected graded discussion', () => {
   const tree = renderer.create(
     <AssignmentList {...props} navigator={navigator} />
   )
-  const row: any = explore(tree.toJSON()).selectByID(`assignment-list-row-${assignment.id}.assignments-cell`)
+  const row: any = explore(tree.toJSON()).selectByID(`assignment-list.assignment-list-row.cell-${assignment.id}`)
   row.props.onPress()
   expect(navigator.show).toHaveBeenCalledWith('/courses/987654321/discussion_topics/1')
 })
@@ -106,7 +106,7 @@ test('selected quiz', () => {
   const tree = renderer.create(
     <AssignmentList {...props} navigator={navigator} />
   )
-  const row: any = explore(tree.toJSON()).selectByID(`assignment-list-row-${assignment.id}.assignments-cell`)
+  const row: any = explore(tree.toJSON()).selectByID(`assignment-list.assignment-list-row.cell-${assignment.id}`)
   row.props.onPress()
   expect(navigator.show).toHaveBeenCalledWith('/courses/987654321/quizzes/1')
 })

@@ -203,7 +203,7 @@ final class HelmViewController: UIViewController, HelmScreen {
         if screenConfig[PropKeys.hideNavBarShadowImage] as? Bool ?? false {
             navigationController?.navigationBar.shadowImage = UIImage()
         }
-       
+
         let navBarHidden = screenConfig[PropKeys.navBarHidden] as? Bool ?? false
         if navigationController?.isNavigationBarHidden != navBarHidden {
             navigationController?.setNavigationBarHidden(navBarHidden, animated: true)
@@ -370,6 +370,10 @@ final class HelmViewController: UIViewController, HelmScreen {
             var adjustment = titleLabel.frame
             adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (titleLabel.frame.width/2)
             titleLabel.frame = adjustment
+        }
+        
+        if let testID = screenConfig["testID"] as? String {
+            titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
         }
 
         return titleView

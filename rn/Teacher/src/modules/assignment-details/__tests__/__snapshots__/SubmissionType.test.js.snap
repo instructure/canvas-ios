@@ -40,6 +40,7 @@ exports[`render 1`] = `
         },
       ]
     }
+    testID="assignment-details.submission-type.details-lbl"
   />
   <Text
     accessible={true}
@@ -63,6 +64,7 @@ exports[`render 1`] = `
         },
       ]
     }
+    testID="assignment-details.submission-type.details-lbl"
   />
 </View>
 `;
@@ -97,6 +99,7 @@ exports[`render single type 1`] = `
         },
       ]
     }
+    testID="assignment-details.submission-type.details-lbl"
   />
 </View>
 `;

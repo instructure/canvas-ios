@@ -68,6 +68,7 @@ exports[`render with multiple due dates 2`] = `
           },
         ]
       }
+      testID="assignment-details.assignment-dates.due-date-lbl"
     >
       <Text
         accessible={true}
@@ -141,6 +142,7 @@ exports[`render with multiple due dates 2`] = `
         },
       ]
     }
+    testID="assignment-details.assignment-dates.due-for-lbl"
   >
     <Text
       accessible={true}

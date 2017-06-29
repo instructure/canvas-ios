@@ -103,6 +103,7 @@ exports[`render 1`] = `
                 },
               ]
             }
+            testID="undefined-title-lbl"
           >
             foo
           </Text>

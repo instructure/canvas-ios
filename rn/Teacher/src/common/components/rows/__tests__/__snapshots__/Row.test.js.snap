@@ -141,6 +141,7 @@ exports[`Render the base row 1`] = `
             },
           ]
         }
+        testID="row.undefined-cell-subtitle-lbl"
       >
         Subtitle
       </Text>

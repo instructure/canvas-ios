@@ -32,22 +32,16 @@ class CourseSettingsPage {
     private let courseNameTextbox = e.selectBy(id: "course-settings.name-input-textbox")
     private let setHomeLabel = e.selectBy(id: "course-settings.set-home-lbl")
     private let homePicker = e.selectBy(id: "course-settings.toggle-home-picker")
-    
-    // MARK: Helpers
-    
-    private func navBarTitleView() -> GREYElementInteraction {
-        let titleViewElement = EarlGrey.select(
-            elementWithMatcher: grey_allOf([grey_accessibilityLabel("Course Settings"),
-                                            grey_accessibilityTrait(UIAccessibilityTraitHeader),
-                                            grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
-        return titleViewElement
-    }
+
+    private let navBarTitleView = e.selectBy(matchers: [grey_accessibilityLabel("Course Settings"),
+                                                        grey_accessibilityTrait(UIAccessibilityTraitHeader),
+                                                        grey_accessibilityTrait(UIAccessibilityTraitStaticText)])
 
     // MARK: - Assertions
 
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        navBarTitleView().assertExists()
+        navBarTitleView.assertExists()
         cancelButton.assertExists()
         doneButton.assertExists()
         courseNameLabel.assertExists()
@@ -58,4 +52,8 @@ class CourseSettingsPage {
 
     // MARK: - UI Actions
 
+    func dismissToCourseBrowserPage(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        doneButton.tapUntilHidden()
+    }
 }

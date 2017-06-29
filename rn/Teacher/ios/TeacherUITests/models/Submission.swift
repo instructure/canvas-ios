@@ -18,6 +18,15 @@
 /* This is an auto-generated file. */
 
 struct Submission {
+    static let none: String = "none"
+    static let on_paper: String = "on_paper"
+    static let online_quiz: String = "online_quiz"
+    static let discussion_topic: String = "discussion_topic"
+    static let external_tool: String = "external_tool"
+    static let online_upload: String = "online_upload"
+    static let online_text_entry: String = "online_text_entry"
+    static let online_url: String = "online_url"
+
     let id: Int
     let attempt: Int
     let assignmentId: Int

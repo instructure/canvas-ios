@@ -387,6 +387,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             "width": 19,
                           }
                         }
+                        testID="undefined-title-img"
                       />
                       <Text
                         accessible={true}
@@ -413,6 +414,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             },
                           ]
                         }
+                        testID="undefined-title-lbl"
                       >
                         Due
                       </Text>
@@ -450,6 +452,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                               },
                             ]
                           }
+                          testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
                             accessible={true}
@@ -523,6 +526,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             },
                           ]
                         }
+                        testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
                           accessible={true}
@@ -600,6 +604,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
                               accessible={true}
@@ -677,6 +682,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
                               accessible={true}
@@ -845,6 +851,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                             },
                           ]
                         }
+                        testID="discussions.submission-graphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -1033,6 +1040,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       "flex": 1,
                     }
                   }
+                  testID="web-container.view"
                 />
               </View>
               <View
@@ -1326,6 +1334,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         "flex": 1,
                       }
                     }
+                    testID="web-container.view"
                   />
                   <View
                     style={
@@ -1922,6 +1931,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             "width": 19,
                           }
                         }
+                        testID="undefined-title-img"
                       />
                       <Text
                         accessible={true}
@@ -1948,6 +1958,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             },
                           ]
                         }
+                        testID="undefined-title-lbl"
                       >
                         Due
                       </Text>
@@ -1985,6 +1996,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                               },
                             ]
                           }
+                          testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
                             accessible={true}
@@ -2058,6 +2070,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             },
                           ]
                         }
+                        testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
                           accessible={true}
@@ -2135,6 +2148,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
                               accessible={true}
@@ -2212,6 +2226,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
                               accessible={true}
@@ -2380,6 +2395,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                             },
                           ]
                         }
+                        testID="discussions.submission-graphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -2568,6 +2584,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       "flex": 1,
                     }
                   }
+                  testID="web-container.view"
                 />
               </View>
               <View
@@ -3217,6 +3234,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             "width": 19,
                           }
                         }
+                        testID="undefined-title-img"
                       />
                       <Text
                         accessible={true}
@@ -3243,6 +3261,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             },
                           ]
                         }
+                        testID="undefined-title-lbl"
                       >
                         Due
                       </Text>
@@ -3280,6 +3299,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                               },
                             ]
                           }
+                          testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
                             accessible={true}
@@ -3353,6 +3373,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             },
                           ]
                         }
+                        testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
                           accessible={true}
@@ -3430,6 +3451,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
                               accessible={true}
@@ -3507,6 +3529,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
                               accessible={true}
@@ -3675,6 +3698,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             },
                           ]
                         }
+                        testID="discussions.submission-graphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -3863,6 +3887,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       "flex": 1,
                     }
                   }
+                  testID="web-container.view"
                 />
               </View>
               <View
@@ -4184,6 +4209,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         "flex": 1,
                       }
                     }
+                    testID="web-container.view"
                   />
                   <View
                     style={
@@ -4503,6 +4529,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                               "flex": 1,
                             }
                           }
+                          testID="web-container.view"
                         />
                         <View
                           style={
@@ -5152,6 +5179,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             "width": 19,
                           }
                         }
+                        testID="undefined-title-img"
                       />
                       <Text
                         accessible={true}
@@ -5178,6 +5206,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             },
                           ]
                         }
+                        testID="undefined-title-lbl"
                       >
                         Due
                       </Text>
@@ -5215,6 +5244,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                               },
                             ]
                           }
+                          testID="assignment-details.assignment-dates.due-date-lbl"
                         >
                           <Text
                             accessible={true}
@@ -5288,6 +5318,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             },
                           ]
                         }
+                        testID="assignment-details.assignment-dates.due-for-lbl"
                       >
                         <Text
                           accessible={true}
@@ -5365,6 +5396,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-from-lbl"
                           >
                             <Text
                               accessible={true}
@@ -5442,6 +5474,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 },
                               ]
                             }
+                            testID="assignment-details.assignment-dates.available-to-lbl"
                           >
                             <Text
                               accessible={true}
@@ -5610,6 +5643,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                             },
                           ]
                         }
+                        testID="discussions.submission-graphs-title-lbl"
                       >
                         Submissions
                       </Text>
@@ -5798,6 +5832,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       "flex": 1,
                     }
                   }
+                  testID="web-container.view"
                 />
               </View>
               <View
@@ -6091,6 +6126,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         "flex": 1,
                       }
                     }
+                    testID="web-container.view"
                   />
                   <View
                     style={

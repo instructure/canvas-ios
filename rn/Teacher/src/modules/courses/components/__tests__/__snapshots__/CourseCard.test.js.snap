@@ -86,7 +86,7 @@ exports[`renders 1`] = `
             "width": 43,
           }
         }
-        testID="courseCard.kabob_1"
+        testID="course-card.kabob-1"
         underlayColor="#ffffff00"
       >
         <Image
@@ -248,7 +248,7 @@ exports[`renders with empty image url 1`] = `
             "width": 43,
           }
         }
-        testID="courseCard.kabob_1"
+        testID="course-card.kabob-1"
         underlayColor="#ffffff00"
       >
         <Image
@@ -422,7 +422,7 @@ exports[`renders with image url 1`] = `
             "width": 43,
           }
         }
-        testID="courseCard.kabob_1"
+        testID="course-card.kabob-1"
         underlayColor="#ffffff00"
       >
         <Image
@@ -584,7 +584,7 @@ exports[`renders without image url 1`] = `
             "width": 43,
           }
         }
-        testID="courseCard.kabob_1"
+        testID="course-card.kabob-1"
         underlayColor="#ffffff00"
       >
         <Image

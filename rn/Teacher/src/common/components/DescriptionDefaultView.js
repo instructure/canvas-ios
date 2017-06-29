@@ -9,13 +9,14 @@ import {
 
 type Props = {
   text: string,
+  testID: string,
 }
 
 export default class DescriptionDefaultView extends React.Component<any, Props, any> {
 
   render () {
     return (
-      <View style={[styles.container]}>
+      <View style={[styles.container]} testID={`${this.props.testID}.view`}>
         <Text style={styles.text}>{this.props.text}</Text>
       </View>
     )

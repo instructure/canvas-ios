@@ -52,6 +52,8 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
 
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
 
+    let ids = ['graded', 'ungraded', 'not-submitted']
+
     if (this.props.pending || !this.props.submissions) {
       return <View style={style.loadingWrapper}><ActivityIndicator /></View>
     }
@@ -67,9 +69,15 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
       <View style={[style.container, this.props.style]}>
         {data.map((item, index) =>
           <TouchableOpacity underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
-                              testID={`submission_dial_${index}`} onPress={() => this.onPress(index) }>
+                              testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) }>
             <View>
-              <SubmissionGraph label={labels[index]} total={totalStudents} current={data[index]} key={index}/>
+              <SubmissionGraph
+                label={labels[index]}
+                total={totalStudents}
+                current={data[index]}
+                key={index}
+                testID={`${ids[index]}`}
+              />
             </View>
           </TouchableOpacity>
         )}

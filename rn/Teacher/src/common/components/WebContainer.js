@@ -80,7 +80,7 @@ export default class WebContainer extends Component<any, Props, any> {
     html = TEMPLATE.replace('{{content}}', html)
     html = html.replace('{{content-width}}', `${this.state.viewportWidth}`)
     return (
-      <View style={style} onLayout={this.onLayout}>
+      <View style={style} onLayout={this.onLayout} testID='web-container.view'>
         {
           this.state.viewportWidth == null
             ? null

@@ -172,10 +172,11 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
         subtitle={this.props.courseName}
         navBarStyle='dark'
         navBarColor={this.props.courseColor}
+        testID='assignment-list'
         >
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Heading1 style={styles.headerTitle}>{this.state.currentFilter.title}</Heading1>
+        <View style={styles.container} testID='assignment-list.container-view'>
+          <View style={styles.header} testID='assignment-list.filter-header-view'>
+            <Heading1 style={styles.headerTitle} testID='assignment-list.filter-title-lbl'>{this.state.currentFilter.title}</Heading1>
             {this.props.gradingPeriods.length > 0 &&
               <LinkButton testID='assignment-list.filter' onPress={this.toggleFilter} style={styles.filterButton}>
                 {this.state.filterApplied

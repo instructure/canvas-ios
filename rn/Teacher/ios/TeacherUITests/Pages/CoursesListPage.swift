@@ -17,29 +17,30 @@
 import SoGrey
 import EarlGrey
 
-class CoursesListPage: UITabBarControllerPage {
+class CoursesListPage {
 
     // MARK: Singleton
 
     static let sharedInstance = CoursesListPage()
-    private override init() {}
+    private let tabBarController = TabBarControllerPage.sharedInstance
+    private init() {}
 
     // MARK: Elements
-    
-    private let feedbackButton = e.selectBy(id: "fav-courses.feedback-btn")
-    private let editButton = e.selectBy(id: "fav-courses.edit-btn")
-    private let headerStarImage = e.selectBy(id: "fav-courses.header-star-img")
-    private let headerCoursesLabel = e.selectBy(id: "fav-courses.header-courses-lbl")
-    private let seeAllCoursesButton = e.selectBy(id: "fav-courses.see-all-btn")
-    private let emptyStateWelcomeLabel = e.selectBy(id: "mt-fav-courses.welcome-lbl")
-    private let emptyStateDescriptionLabel = e.selectBy(id: "mt-fav-courses.descr-lbl")
-    private let emptyStateAddCourseButton = e.selectBy(id: "mt-fav-courses.add-courses-btn")
-    private let favoriteCoursesView = e.selectBy(id: "fav-courses.view")
+
+    private let feedbackButton = e.selectBy(id: "favorited-course-list.feedback-btn")
+    private let editButton = e.selectBy(id: "favorited-course-list.edit-btn")
+    private let headerStarImage = e.selectBy(id: "favorited-course-list.header-star-img")
+    private let headerCoursesLabel = e.selectBy(id: "favorited-course-list.header-courses-lbl")
+    private let seeAllCoursesButton = e.selectBy(id: "favorited-course-list.see-all-btn")
+    private let pageView = e.selectBy(id: "favorited-course-list.view")
+    private let emptyStateWelcomeLabel = e.selectBy(id: "no-courses.welcome-lbl")
+    private let emptyStateDescriptionLabel = e.selectBy(id: "no-courses.description-lbl")
+    private let emptyStateAddCourseButton = e.selectBy(id: "no-courses.add-courses-btn")
 
     // MARK: - Helpers
 
     private func courseId(_ course: Course) -> String {
-        return "courseCard.kabob_\(course.id)"
+        return "course-card.kabob-\(course.id)"
     }
 
     private func courseCard(_ course: Course) -> GREYElementInteraction {
@@ -47,20 +48,20 @@ class CoursesListPage: UITabBarControllerPage {
     }
 
     // MARK: - Assertions
-    
+
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        assertUITabBar()
-        favoriteCoursesView.assertExists()
+        tabBarController.assertTabBarItems()
+        pageView.assertExists()
     }
-    
+
     func assertEmptyStatePageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         emptyStateWelcomeLabel.assertExists()
         emptyStateDescriptionLabel.assertExists()
         emptyStateAddCourseButton.assertExists()
     }
-    
+
     func assertHasFavoritesStatePageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         feedbackButton.assertExists()
@@ -74,7 +75,7 @@ class CoursesListPage: UITabBarControllerPage {
         grey_fromFile(file, line)
         e.selectBy(id: courseId(course)).assertExists()
     }
-    
+
     func assertCourseDoesNotExist(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         e.selectBy(id: courseId(course)).assertHidden()
@@ -86,7 +87,7 @@ class CoursesListPage: UITabBarControllerPage {
     }
 
     // MARK: - UI Actions
-    
+
     func openCourseFavoritesEditPage(_ emptyState: Bool, file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         if emptyState {
@@ -95,7 +96,7 @@ class CoursesListPage: UITabBarControllerPage {
             editButton.tapUntilHidden()
         }
     }
-    
+
     func openAllCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         seeAllCoursesButton.tap()

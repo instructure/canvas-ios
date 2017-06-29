@@ -41,7 +41,7 @@ class RootTabBarController: UITabBarController {
     
     func coursesTab() -> UIViewController {
         let enrollmentsVC = HelmViewController(moduleName: "/", props: [:])
-        enrollmentsVC.view.accessibilityIdentifier = "fav-courses.view"
+        enrollmentsVC.view.accessibilityIdentifier = "favorited-course-list.view"
         enrollmentsVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Courses", comment: ""), image: UIImage(named: "courses"), selectedImage: nil)
         enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         return HelmNavigationController(rootViewController: enrollmentsVC)

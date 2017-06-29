@@ -17,45 +17,38 @@
 import SoGrey
 import EarlGrey
 
-class AllCoursesListPage: UITabBarControllerPage {
-    
+class AllCoursesListPage {
+
     // MARK: Singleton
-    
+
     static let sharedInstance = AllCoursesListPage()
-    private override init() {}
-    
+    private let tabBarController = TabBarControllerPage.sharedInstance
+    private init() {}
+
     // MARK: Elements
-    
+
+    private let navBarTitleView = e.selectBy(matchers: [grey_accessibilityLabel("All Courses"),
+                                                        grey_accessibilityTrait(UIAccessibilityTraitHeader),
+                                                        grey_accessibilityTrait(UIAccessibilityTraitStaticText)])
+
+    private let backButton = e.selectBy(matchers: [grey_accessibilityLabel("Back"),
+                                                   grey_accessibilityTrait(UIAccessibilityTraitButton)])
+
     // MARK: - Helpers
-    
-    private func backButton() -> GREYElementInteraction {
-        let backButtonElement = EarlGrey.select(
-            elementWithMatcher: grey_allOf([grey_accessibilityLabel("Back"),
-                                            grey_accessibilityTrait(UIAccessibilityTraitButton)]))
-        return backButtonElement
-    }
-    
-    private func navBarTitleView() -> GREYElementInteraction {
-        let titleViewElement = EarlGrey.select(
-            elementWithMatcher: grey_allOf([grey_accessibilityLabel("All Courses"),
-                                            grey_accessibilityTrait(UIAccessibilityTraitHeader),
-                                            grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
-        return titleViewElement
-    }
-    
+
     private func courseCard(_ course: Course) -> GREYElementInteraction {
         return e.selectBy(id: course.courseCode)
     }
-    
+
     // MARK: - Assertions
-    
+
     func assertPageObjects(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        assertUITabBar()
-        navBarTitleView().assertExists()
-        backButton().assertExists()
+        tabBarController.assertTabBarItems()
+        navBarTitleView.assertExists()
+        backButton.assertExists()
     }
-    
+
     func assertHasCourses(_ courses: [Course], _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         
@@ -63,12 +56,11 @@ class AllCoursesListPage: UITabBarControllerPage {
             courseCard(course).assertExists()
         }
     }
-    
+
     // MARK: - UI Actions
-    
+
     func backToCoursesListPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        backButton().tapUntilHidden()
+        backButton.tapUntilHidden()
     }
-    
 }

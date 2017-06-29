@@ -195,7 +195,7 @@ exports[`render courses 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_1"
+                testID="course-card.kabob-1"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -490,7 +490,7 @@ exports[`render courses pending 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_1"
+                testID="course-card.kabob-1"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -785,7 +785,7 @@ exports[`render narrow width 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_1"
+                testID="course-card.kabob-1"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -1080,7 +1080,7 @@ exports[`render wide width 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_1"
+                testID="course-card.kabob-1"
                 underlayColor="#ffffff00"
               >
                 <Image

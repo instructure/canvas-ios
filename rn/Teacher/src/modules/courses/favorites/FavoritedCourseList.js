@@ -86,12 +86,12 @@ export class FavoritedCourseList extends Component {
     return (
       <View style={styles.header}>
         <View style={styles.headerTextWrapper}>
-          <Image source={Images.starFilled} style={{ tintColor: '#C7CDD1', height: 18, width: 18 }} testID='fav-courses.header-star-img'/>
-          <Heading1 style={styles.headerText} testID='fav-courses.header-courses-lbl'>
+          <Image source={Images.starFilled} style={{ tintColor: '#C7CDD1', height: 18, width: 18 }} testID='favorited-course-list.header-star-img'/>
+          <Heading1 style={styles.headerText} testID='favorited-course-list.header-courses-lbl'>
             {i18n('Courses')}
           </Heading1>
         </View>
-        <LinkButton textStyle={styles.seeAll} onPress={this.goToAllCourses} testID='fav-courses.see-all-btn'>
+        <LinkButton textStyle={styles.seeAll} onPress={this.goToAllCourses} testID='favorited-course-list.see-all-btn'>
             {i18n('See All')}
         </LinkButton>
       </View>
@@ -123,7 +123,7 @@ export class FavoritedCourseList extends Component {
         rightBarButtons={[
           {
             title: i18n('Edit'),
-            testID: 'fav-courses.edit-btn',
+            testID: 'favorited-course-list.edit-btn',
             action: this.showFavoritesList,
             disabled: !this.props.totalCourseCount,
           },
@@ -131,7 +131,7 @@ export class FavoritedCourseList extends Component {
         leftBarButtons={[
           {
             accessibilityLabel: i18n('Leave Feedback'),
-            testID: 'fav-courses.feedback-btn',
+            testID: 'favorited-course-list.feedback-btn',
             image: Images.feedback,
             action: this.presentBetaFeedback,
           },

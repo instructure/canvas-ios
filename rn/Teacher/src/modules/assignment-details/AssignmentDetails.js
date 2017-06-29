@@ -47,10 +47,11 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
         navBarStyle='dark'
         title={i18n('Assignment Details')}
         subtitle={this.props.courseName}
+        testID='assignment-details'
         rightBarButtons={[
           {
             title: i18n('Edit'),
-            testID: 'assignment-deets.edit-btn',
+            testID: 'assignment-details.edit-btn',
             action: this.editAssignment,
           },
         ]}
@@ -60,9 +61,9 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           onRefresh={this.props.refresh}
         >
           <AssignmentSection isFirstRow={true} style={style.topContainer}>
-            <Heading1>{assignment.name}</Heading1>
+            <Heading1 testID='assignment-details.assignment-name-lbl'>{assignment.name}</Heading1>
             <View style={style.pointsContainer}>
-              <Text style={style.points}>{assignment.points_possible} {assignmentPoints}</Text>
+              <Text style={style.points} testID='assignment-details.points-possible-lbl'>{assignment.points_possible} {assignmentPoints}</Text>
               <PublishedIcon published={assignment.published} style={style.publishedIcon} />
             </View>
           </AssignmentSection>
@@ -70,19 +71,23 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           <AssignmentSection
             title={sectionTitleDue}
             accessibilityLabel={i18n('Due Dates, Double tap for details.')}
+            testID='assignment-details.assignment-section.due'
             image={Images.assignments.calendar}
             showDisclosureIndicator={true}
-            onPress={this.viewDueDateDetails} >
-            <AssignmentDates assignment={assignment} />
+            onPress={this.viewDueDateDetails}>
+            <AssignmentDates assignment={assignment}/>
           </AssignmentSection>
 
-          <AssignmentSection title={sectionTitleSubmissionTypes}>
+          <AssignmentSection
+           title={sectionTitleSubmissionTypes}
+           testID='assignment-details.assignment-section.submission-type'>
             <SubmissionType data={assignment.submission_types} />
           </AssignmentSection>
 
           { global.V02 &&
             <AssignmentSection
               title={sectionTitleSubmissions}
+              testID='assignment-details.assignment-section.submissions'
               onPress={() => this.viewSubmissions()}
               showDisclosureIndicator>
               <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
@@ -90,7 +95,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           }
 
           <View style={style.section}>
-            <Text style={style.header}>{i18n('Description')}</Text>
+            <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
             {this.checkAssignmentDescription(assignment.description)}
           </View>
 
@@ -131,9 +136,9 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
   checkAssignmentDescription (description: ?string) {
     if (description) {
-      return (<WebContainer style={{ flex: 1 }} html={description} scrollEnabled={false}/>)
+      return (<WebContainer style={{ flex: 1 }} html={description} testID='assignment-details.description-section-info-lbl' scrollEnabled={false}/>)
     } else {
-      return (<DescriptionDefaultView />)
+      return (<DescriptionDefaultView testID='assignment-details.description-default-view'/>)
     }
   }
 }

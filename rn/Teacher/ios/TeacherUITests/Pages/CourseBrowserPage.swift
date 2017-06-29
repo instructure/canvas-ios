@@ -17,12 +17,13 @@
 import SoGrey
 import EarlGrey
 
-class CourseBrowserPage: UITabBarControllerPage {
+class CourseBrowserPage {
 
     // MARK: Singleton
 
     static let sharedInstance = CourseBrowserPage()
-    private override init() {}
+    private let tabBarController = TabBarControllerPage.sharedInstance
+    private init() {}
 
     // MARK: Elements
 
@@ -46,7 +47,7 @@ class CourseBrowserPage: UITabBarControllerPage {
 
     func assertPageObjects(_ course: Course, _ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
-        assertUITabBar()
+        tabBarController.assertTabBarItems()
         navBarTitleView(course).assertExists()
         backButton.assertExists()
         editButton.assertExists()
@@ -60,5 +61,15 @@ class CourseBrowserPage: UITabBarControllerPage {
     func openCourseSettingsPage(_ file: StaticString = #file, _ line: UInt = #line) {
         grey_fromFile(file, line)
         editButton.tapUntilHidden()
+    }
+
+    func openAssignmentListPage(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        assignmentsCell.tapUntilHidden()
+    }
+
+    func dismissToFavoriteCoursesPage(_ file: StaticString = #file, _ line: UInt = #line) {
+        grey_fromFile(file, line)
+        backButton.tapUntilHidden()
     }
 }

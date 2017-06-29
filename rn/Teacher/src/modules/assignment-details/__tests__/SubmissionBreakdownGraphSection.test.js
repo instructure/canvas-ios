@@ -100,15 +100,15 @@ test('render loading with pending set', () => {
 })
 
 test('onPress is called graded dial', () => {
-  testDialOnPress('submission_dial_0', 'graded')
+  testDialOnPress('assignment-details.submission-breakdown-graph-section.graded-dial', 'graded')
 })
 
 test('onPress is called ungraded dial', () => {
-  testDialOnPress('submission_dial_1', 'notgraded')
+  testDialOnPress('assignment-details.submission-breakdown-graph-section.ungraded-dial', 'notgraded')
 })
 
 test('onPress is called not_submitted dial', () => {
-  testDialOnPress('submission_dial_2', 'notsubmitted')
+  testDialOnPress('assignment-details.submission-breakdown-graph-section.not-submitted-dial', 'notsubmitted')
 })
 
 function testDialOnPress (expectedID: string, expectedValueParameter: string) {

@@ -9,7 +9,7 @@ exports[`renders favorited correctly 1`] = `
       "borderBottomWidth": 1,
     }
   }
-  testID="edit-fav-courses.1-favorited"
+  testID="edit-favorites.course-favorite.1-favorited"
 >
   <View
     style={
@@ -76,7 +76,7 @@ exports[`renders unfavorited correctly 1`] = `
       "borderBottomWidth": 1,
     }
   }
-  testID="edit-fav-courses.1-not-favorited"
+  testID="edit-favorites.course-favorite.1-not-favorited"
 >
   <View
     style={

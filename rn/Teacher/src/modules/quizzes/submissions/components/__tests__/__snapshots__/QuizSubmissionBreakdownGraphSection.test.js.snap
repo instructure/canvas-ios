@@ -48,6 +48,7 @@ exports[`render 0 submissions 1`] = `
             progress={0.000033333333333333335}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -85,6 +86,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Graded
         </Text>
@@ -126,6 +128,7 @@ exports[`render 0 submissions 1`] = `
             progress={0.000033333333333333335}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -163,6 +166,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Ungraded
         </Text>
@@ -204,6 +208,7 @@ exports[`render 0 submissions 1`] = `
             progress={1}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -241,6 +246,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Not Submitted
         </Text>
@@ -298,6 +304,7 @@ exports[`render 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -335,6 +342,7 @@ exports[`render 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Graded
         </Text>
@@ -376,6 +384,7 @@ exports[`render 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -413,6 +422,7 @@ exports[`render 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Ungraded
         </Text>
@@ -454,6 +464,7 @@ exports[`render 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -491,6 +502,7 @@ exports[`render 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Not Submitted
         </Text>
@@ -586,6 +598,7 @@ exports[`render multiple data points  1`] = `
             progress={2}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -623,6 +636,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Graded
         </Text>
@@ -664,6 +678,7 @@ exports[`render multiple data points  1`] = `
             progress={0.000033333333333333335}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -701,6 +716,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Ungraded
         </Text>
@@ -742,6 +758,7 @@ exports[`render multiple data points  1`] = `
             progress={-1}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -779,6 +796,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Not Submitted
         </Text>
@@ -836,6 +854,7 @@ exports[`render with an assignment id 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -873,6 +892,7 @@ exports[`render with an assignment id 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Graded
         </Text>
@@ -914,6 +934,7 @@ exports[`render with an assignment id 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -951,6 +972,7 @@ exports[`render with an assignment id 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Ungraded
         </Text>
@@ -992,6 +1014,7 @@ exports[`render with an assignment id 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -1029,6 +1052,7 @@ exports[`render with an assignment id 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
         >
           Not Submitted
         </Text>

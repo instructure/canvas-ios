@@ -52,7 +52,7 @@ struct Assignment {
     // let quizId: Int // may be null
     // rubric // model not yet defined
     // rubric_settings // model not yet defined
-    // let submissionTypes: [String] // trailing comma
+    let submissionTypes: [String]
     let unlockAt: String
     let unpublishable: Bool
     let updatedAt: String

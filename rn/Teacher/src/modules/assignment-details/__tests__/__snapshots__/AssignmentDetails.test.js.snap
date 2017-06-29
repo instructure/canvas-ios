@@ -113,6 +113,7 @@ exports[`renders 1`] = `
                   undefined,
                 ]
               }
+              testID="assignment-details.assignment-name-lbl"
             >
               learn to write code
             </Text>
@@ -149,6 +150,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.points-possible-lbl"
               >
                 20
                  
@@ -180,6 +182,7 @@ exports[`renders 1`] = `
                       Object {},
                     ]
                   }
+                  testID="assignment-details.published-icon.unpublished-status-img"
                 />
                 <Text
                   accessible={true}
@@ -210,6 +213,7 @@ exports[`renders 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.published-icon.publish-status-lbl"
                 >
                   Unpublished
                 </Text>
@@ -243,7 +247,7 @@ exports[`renders 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.due"
       tvParallaxProperties={undefined}
     >
       <View
@@ -306,6 +310,7 @@ exports[`renders 1`] = `
                     "width": 19,
                   }
                 }
+                testID="assignment-details.assignment-section.due-title-img"
               />
               <Text
                 accessible={true}
@@ -332,6 +337,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.due-title-lbl"
               >
                 Due
               </Text>
@@ -369,6 +375,7 @@ exports[`renders 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-date-lbl"
                 >
                   <Text
                     accessible={true}
@@ -442,6 +449,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-dates.due-for-lbl"
               >
                 <Text
                   accessible={true}
@@ -519,6 +527,7 @@ exports[`renders 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.available-from-lbl"
                   >
                     <Text
                       accessible={true}
@@ -596,6 +605,7 @@ exports[`renders 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.available-to-lbl"
                   >
                     <Text
                       accessible={true}
@@ -709,7 +719,7 @@ exports[`renders 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.submission-type"
       tvParallaxProperties={undefined}
     >
       <View
@@ -787,6 +797,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.submission-type-title-lbl"
               >
                 Submission Types
               </Text>
@@ -820,6 +831,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online Text Entry
               </Text>
@@ -845,6 +857,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online URL
               </Text>
@@ -870,6 +883,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Media Recording
               </Text>
@@ -895,6 +909,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online Upload
               </Text>
@@ -927,7 +942,7 @@ exports[`renders 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.submissions"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1005,6 +1020,7 @@ exports[`renders 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.submissions-title-lbl"
               >
                 Submissions
               </Text>
@@ -1084,6 +1100,7 @@ exports[`renders 1`] = `
             },
           ]
         }
+        testID="assignment-details.description-section-title-lbl"
       >
         Description
       </Text>
@@ -1094,6 +1111,7 @@ exports[`renders 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
     </View>
   </View>
@@ -1213,6 +1231,7 @@ exports[`renders loading 1`] = `
                   undefined,
                 ]
               }
+              testID="assignment-details.assignment-name-lbl"
             >
               learn to write code
             </Text>
@@ -1249,6 +1268,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.points-possible-lbl"
               >
                 20
                  
@@ -1280,6 +1300,7 @@ exports[`renders loading 1`] = `
                       Object {},
                     ]
                   }
+                  testID="assignment-details.published-icon.unpublished-status-img"
                 />
                 <Text
                   accessible={true}
@@ -1310,6 +1331,7 @@ exports[`renders loading 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.published-icon.publish-status-lbl"
                 >
                   Unpublished
                 </Text>
@@ -1343,7 +1365,7 @@ exports[`renders loading 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.due"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1406,6 +1428,7 @@ exports[`renders loading 1`] = `
                     "width": 19,
                   }
                 }
+                testID="assignment-details.assignment-section.due-title-img"
               />
               <Text
                 accessible={true}
@@ -1432,6 +1455,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.due-title-lbl"
               >
                 Due
               </Text>
@@ -1469,6 +1493,7 @@ exports[`renders loading 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-date-lbl"
                 >
                   <Text
                     accessible={true}
@@ -1542,6 +1567,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-dates.due-for-lbl"
               >
                 <Text
                   accessible={true}
@@ -1619,6 +1645,7 @@ exports[`renders loading 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.available-from-lbl"
                   >
                     <Text
                       accessible={true}
@@ -1696,6 +1723,7 @@ exports[`renders loading 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.available-to-lbl"
                   >
                     <Text
                       accessible={true}
@@ -1809,7 +1837,7 @@ exports[`renders loading 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.submission-type"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1887,6 +1915,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.submission-type-title-lbl"
               >
                 Submission Types
               </Text>
@@ -1920,6 +1949,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online Text Entry
               </Text>
@@ -1945,6 +1975,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online URL
               </Text>
@@ -1970,6 +2001,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Media Recording
               </Text>
@@ -1995,6 +2027,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online Upload
               </Text>
@@ -2027,7 +2060,7 @@ exports[`renders loading 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.submissions"
       tvParallaxProperties={undefined}
     >
       <View
@@ -2105,6 +2138,7 @@ exports[`renders loading 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.submissions-title-lbl"
               >
                 Submissions
               </Text>
@@ -2184,6 +2218,7 @@ exports[`renders loading 1`] = `
             },
           ]
         }
+        testID="assignment-details.description-section-title-lbl"
       >
         Description
       </Text>
@@ -2194,6 +2229,7 @@ exports[`renders loading 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
     </View>
   </View>
@@ -2313,6 +2349,7 @@ exports[`renders without description 1`] = `
                   undefined,
                 ]
               }
+              testID="assignment-details.assignment-name-lbl"
             >
               learn to write code
             </Text>
@@ -2349,6 +2386,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.points-possible-lbl"
               >
                 20
                  
@@ -2380,6 +2418,7 @@ exports[`renders without description 1`] = `
                       Object {},
                     ]
                   }
+                  testID="assignment-details.published-icon.unpublished-status-img"
                 />
                 <Text
                   accessible={true}
@@ -2410,6 +2449,7 @@ exports[`renders without description 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.published-icon.publish-status-lbl"
                 >
                   Unpublished
                 </Text>
@@ -2443,7 +2483,7 @@ exports[`renders without description 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.due"
       tvParallaxProperties={undefined}
     >
       <View
@@ -2506,6 +2546,7 @@ exports[`renders without description 1`] = `
                     "width": 19,
                   }
                 }
+                testID="assignment-details.assignment-section.due-title-img"
               />
               <Text
                 accessible={true}
@@ -2532,6 +2573,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.due-title-lbl"
               >
                 Due
               </Text>
@@ -2569,6 +2611,7 @@ exports[`renders without description 1`] = `
                       },
                     ]
                   }
+                  testID="assignment-details.assignment-dates.due-date-lbl"
                 >
                   <Text
                     accessible={true}
@@ -2642,6 +2685,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-dates.due-for-lbl"
               >
                 <Text
                   accessible={true}
@@ -2719,6 +2763,7 @@ exports[`renders without description 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.available-from-lbl"
                   >
                     <Text
                       accessible={true}
@@ -2796,6 +2841,7 @@ exports[`renders without description 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-details.assignment-dates.available-to-lbl"
                   >
                     <Text
                       accessible={true}
@@ -2909,7 +2955,7 @@ exports[`renders without description 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.submission-type"
       tvParallaxProperties={undefined}
     >
       <View
@@ -2987,6 +3033,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.submission-type-title-lbl"
               >
                 Submission Types
               </Text>
@@ -3020,6 +3067,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online Text Entry
               </Text>
@@ -3045,6 +3093,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online URL
               </Text>
@@ -3070,6 +3119,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Media Recording
               </Text>
@@ -3095,6 +3145,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.submission-type.details-lbl"
               >
                 Online Upload
               </Text>
@@ -3127,7 +3178,7 @@ exports[`renders without description 1`] = `
           undefined,
         ]
       }
-      testID={undefined}
+      testID="assignment-details.assignment-section.submissions"
       tvParallaxProperties={undefined}
     >
       <View
@@ -3205,6 +3256,7 @@ exports[`renders without description 1`] = `
                     },
                   ]
                 }
+                testID="assignment-details.assignment-section.submissions-title-lbl"
               >
                 Submissions
               </Text>
@@ -3284,6 +3336,7 @@ exports[`renders without description 1`] = `
             },
           ]
         }
+        testID="assignment-details.description-section-title-lbl"
       >
         Description
       </Text>
@@ -3301,6 +3354,7 @@ exports[`renders without description 1`] = `
             },
           ]
         }
+        testID="assignment-details.description-default-view.view"
       >
         <Text
           accessible={true}

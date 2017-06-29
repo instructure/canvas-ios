@@ -16,6 +16,7 @@ export default class PublishedIcon extends React.Component {
     const publishedIcon = published ? Images.published : Images.unpublished
 
     let iconStyle = published ? internalStyle.publishedIcon : internalStyle.unpublishedIcon
+    let statusID = published ? 'published' : 'unpublished'
     let customStyle = {}
     if (iconSize) {
       customStyle = { width: iconSize, height: iconSize }
@@ -27,8 +28,17 @@ export default class PublishedIcon extends React.Component {
 
     return (
       <View style={[ style, internalStyle.container ]}>
-        <Image source={publishedIcon} style={[iconStyle, customStyle]}/>
-        <Text style={[internalStyle.text, published ? internalStyle.publishedTextStyle : internalStyle.unPublishedTextStyle]}>{(published) ? publishedText : unpublishedText}</Text>
+        <Image
+          source={publishedIcon}
+          style={[iconStyle, customStyle]}
+          testID={`assignment-details.published-icon.${statusID}-status-img`}
+        />
+        <Text
+          style={[internalStyle.text, published ? internalStyle.publishedTextStyle : internalStyle.unPublishedTextStyle]}
+          testID='assignment-details.published-icon.publish-status-lbl'
+        >
+          {(published) ? publishedText : unpublishedText}
+        </Text>
       </View>
     )
   }

@@ -52,7 +52,7 @@ exports[`renders correctly 1`] = `
           },
         ]
       }
-      testID="edit-fav-courses.1-favorited"
+      testID="edit-favorites.course-favorite.1-favorited"
       tvParallaxProperties={undefined}
     >
       <View
@@ -136,7 +136,7 @@ exports[`renders correctly 1`] = `
           },
         ]
       }
-      testID="edit-fav-courses.1-favorited"
+      testID="edit-favorites.course-favorite.1-favorited"
       tvParallaxProperties={undefined}
     >
       <View
@@ -249,7 +249,7 @@ exports[`updates when courses prop changes 1`] = `
           },
         ]
       }
-      testID="edit-fav-courses.1-favorited"
+      testID="edit-favorites.course-favorite.1-favorited"
       tvParallaxProperties={undefined}
     >
       <View
@@ -362,7 +362,7 @@ exports[`updates when courses prop changes 2`] = `
           },
         ]
       }
-      testID="edit-fav-courses.1-favorited"
+      testID="edit-favorites.course-favorite.1-favorited"
       tvParallaxProperties={undefined}
     >
       <View

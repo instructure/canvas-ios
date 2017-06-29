@@ -15,10 +15,13 @@ export type SubmissionGraphProps = {
   total: number,
   current: number,
   label: string,
+  testID?: string,
 }
 
 export default class SubmissionGraph extends Component<any, SubmissionGraphProps, any> {
   render () {
+    const testID = this.props.testID || 'submissions.submissionGraph.undefined'
+
     let { current, label, total } = this.props
     let formattedData = current
     if (!current) {
@@ -37,9 +40,12 @@ export default class SubmissionGraph extends Component<any, SubmissionGraphProps
                            color={submissionCircles.tint}
                            showsText={true}
                            textStyle={submissionsGraphStyle.innerText}
-                           formatText={progress => `${formattedData}`} />
+                           formatText={progress => `${formattedData}`}
+                           testID={`submissions.submission-graph.${testID}-progress-view`} />
         </View>
-        <Text style={submissionsGraphStyle.label}>{label}</Text>
+        <Text
+          style={submissionsGraphStyle.label}
+          testID={`submissions.submission-graph.${testID}-title-lbl`}>{label}</Text>
       </View>
     )
   }

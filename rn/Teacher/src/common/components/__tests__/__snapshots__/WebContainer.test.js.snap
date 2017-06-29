@@ -4,6 +4,7 @@ exports[`render 1`] = `
 <View
   onLayout={[Function]}
   style={undefined}
+  testID="web-container.view"
 />
 `;
 
@@ -11,6 +12,7 @@ exports[`render html 1`] = `
 <View
   onLayout={[Function]}
   style={undefined}
+  testID="web-container.view"
 >
   <WebView
     onMessage={[Function]}
@@ -80,6 +82,7 @@ exports[`render with width zero 1`] = `
 <View
   onLayout={[Function]}
   style={undefined}
+  testID="web-container.view"
 />
 `;
 
@@ -87,6 +90,7 @@ exports[`updates height from js 1`] = `
 <View
   onLayout={[Function]}
   style={undefined}
+  testID="web-container.view"
 >
   <WebView
     onMessage={[Function]}
@@ -156,6 +160,7 @@ exports[`updates height from js with scroll disabled 1`] = `
 <View
   onLayout={[Function]}
   style={undefined}
+  testID="web-container.view"
 >
   <WebView
     onMessage={[Function]}

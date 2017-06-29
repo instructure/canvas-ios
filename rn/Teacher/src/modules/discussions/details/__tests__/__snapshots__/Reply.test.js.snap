@@ -148,6 +148,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
       <View
         style={
@@ -467,6 +468,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                   "flex": 1,
                 }
               }
+              testID="web-container.view"
             />
             <View
               style={
@@ -794,6 +796,7 @@ exports[`DiscussionReplies renders 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
       <View
         style={
@@ -1113,6 +1116,7 @@ exports[`DiscussionReplies renders 1`] = `
                   "flex": 1,
                 }
               }
+              testID="web-container.view"
             />
             <View
               style={
@@ -1440,6 +1444,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
       <View
         style={
@@ -1605,6 +1610,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
                   "flex": 1,
                 }
               }
+              testID="web-container.view"
             />
             <View
               style={
@@ -1932,6 +1938,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
       <View
         style={
@@ -2256,6 +2263,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
             "flex": 1,
           }
         }
+        testID="web-container.view"
       />
       <View
         style={
@@ -2575,6 +2583,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
                   "flex": 1,
                 }
               }
+              testID="web-container.view"
             />
             <View
               style={

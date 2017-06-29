@@ -15,14 +15,10 @@
 //
 
 class DomainPickerTests: TeacherTest {
-
-/*
-    NOTE: add this back in when MLB - 7796 is fixed
-     
+    
     func testDomainPicker_domainFieldAllowsInput() {
         let domain = "mobiledev"
         domainPickerPage.enterDomain(domain)
         domainPickerPage.assertDomainField(contains: domain)
     }
- */
 }

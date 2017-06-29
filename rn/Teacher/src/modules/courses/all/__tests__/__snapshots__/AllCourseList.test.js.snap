@@ -239,7 +239,7 @@ exports[`AllCourseList render 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_1"
+                testID="course-card.kabob-1"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -412,7 +412,7 @@ exports[`AllCourseList render 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_2"
+                testID="course-card.kabob-2"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -585,7 +585,7 @@ exports[`AllCourseList render 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_3"
+                testID="course-card.kabob-3"
                 underlayColor="#ffffff00"
               >
                 <Image

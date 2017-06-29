@@ -21,7 +21,7 @@ exports[`render 0 submissions 1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_0"
+    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -49,6 +49,7 @@ exports[`render 0 submissions 1`] = `
             progress={Infinity}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.graded-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -86,6 +87,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.graded-title-lbl"
         >
           Graded
         </Text>
@@ -99,7 +101,7 @@ exports[`render 0 submissions 1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_1"
+    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -127,6 +129,7 @@ exports[`render 0 submissions 1`] = `
             progress={Infinity}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.ungraded-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -164,6 +167,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.ungraded-title-lbl"
         >
           Ungraded
         </Text>
@@ -177,7 +181,7 @@ exports[`render 0 submissions 1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_2"
+    testID="assignment-details.submission-breakdown-graph-section.not-submitted-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -205,6 +209,7 @@ exports[`render 0 submissions 1`] = `
             progress={Infinity}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.not-submitted-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -242,6 +247,7 @@ exports[`render 0 submissions 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.not-submitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -272,7 +278,7 @@ exports[`render 1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_0"
+    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -300,6 +306,7 @@ exports[`render 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.graded-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -337,6 +344,7 @@ exports[`render 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.graded-title-lbl"
         >
           Graded
         </Text>
@@ -350,7 +358,7 @@ exports[`render 1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_1"
+    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -378,6 +386,7 @@ exports[`render 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.ungraded-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -415,6 +424,7 @@ exports[`render 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.ungraded-title-lbl"
         >
           Ungraded
         </Text>
@@ -428,7 +438,7 @@ exports[`render 1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_2"
+    testID="assignment-details.submission-breakdown-graph-section.not-submitted-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -456,6 +466,7 @@ exports[`render 1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.not-submitted-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -493,6 +504,7 @@ exports[`render 1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.not-submitted-title-lbl"
         >
           Not Submitted
         </Text>
@@ -561,7 +573,7 @@ exports[`render multiple data points  1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_0"
+    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -589,6 +601,7 @@ exports[`render multiple data points  1`] = `
             progress={0.5}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.graded-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -626,6 +639,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.graded-title-lbl"
         >
           Graded
         </Text>
@@ -639,7 +653,7 @@ exports[`render multiple data points  1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_1"
+    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -667,6 +681,7 @@ exports[`render multiple data points  1`] = `
             progress={0.3333333333333333}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.ungraded-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -704,6 +719,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.ungraded-title-lbl"
         >
           Ungraded
         </Text>
@@ -717,7 +733,7 @@ exports[`render multiple data points  1`] = `
         "flex": 1,
       }
     }
-    testID="submission_dial_2"
+    testID="assignment-details.submission-breakdown-graph-section.not-submitted-dial"
     underlayColor="#eeeeee00"
   >
     <View>
@@ -745,6 +761,7 @@ exports[`render multiple data points  1`] = `
             progress={0.16666666666666666}
             showsText={true}
             size={70}
+            testID="submissions.submission-graph.not-submitted-progress-view"
             textStyle={
               Object {
                 "color": "#2D3B45",
@@ -782,6 +799,7 @@ exports[`render multiple data points  1`] = `
               },
             ]
           }
+          testID="submissions.submission-graph.not-submitted-title-lbl"
         >
           Not Submitted
         </Text>

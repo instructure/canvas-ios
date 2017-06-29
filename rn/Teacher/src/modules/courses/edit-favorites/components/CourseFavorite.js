@@ -24,7 +24,7 @@ export default class CourseFavorite extends Component<void, Props, void> {
 
   render () {
     return (
-      <TouchableHighlight style={styles.courseRow} testID={'edit-fav-courses.' + this.props.course.id + (this.props.isFavorite ? '-favorited' : '-not-favorited') } onPress={this.onPress}>
+      <TouchableHighlight style={styles.courseRow} testID={'edit-favorites.course-favorite.' + this.props.course.id + (this.props.isFavorite ? '-favorited' : '-not-favorited') } onPress={this.onPress}>
         <View style={styles.courseWrapper}>
           <Image source={this.props.isFavorite ? Images.starFilled : Images.starLined} style={[styles.favoritesImage, { tintColor: colors.primaryBrandColor }]} />
           <Text style={styles.courseName}>{this.props.course.name}</Text>

@@ -46,7 +46,7 @@ exports[`renders correctly 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -190,6 +190,7 @@ exports[`renders correctly 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             No due date
           </Text>
@@ -286,7 +287,7 @@ exports[`renders correctly assignment icon 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -430,6 +431,7 @@ exports[`renders correctly assignment icon 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Due May 31, 2037 at 11:59 PM
           </Text>
@@ -526,7 +528,7 @@ exports[`renders correctly discussion icon 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -670,6 +672,7 @@ exports[`renders correctly discussion icon 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Due May 31, 2037 at 11:59 PM
           </Text>
@@ -766,7 +769,7 @@ exports[`renders correctly not published icon 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -910,6 +913,7 @@ exports[`renders correctly not published icon 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Due May 31, 2037 at 11:59 PM
           </Text>
@@ -1006,7 +1010,7 @@ exports[`renders correctly published icon 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1150,6 +1154,7 @@ exports[`renders correctly published icon 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Due May 31, 2037 at 11:59 PM
           </Text>
@@ -1257,7 +1262,7 @@ exports[`renders correctly quiz icon 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1401,6 +1406,7 @@ exports[`renders correctly quiz icon 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Due May 31, 2037 at 11:59 PM
           </Text>
@@ -1497,7 +1503,7 @@ exports[`renders correctly with closed due dates 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1641,6 +1647,7 @@ exports[`renders correctly with closed due dates 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Availability: Closed
           </Text>
@@ -1737,7 +1744,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -1881,6 +1888,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             No due date
           </Text>
@@ -2015,7 +2023,7 @@ exports[`renders correctly with open due dates 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -2159,6 +2167,7 @@ exports[`renders correctly with open due dates 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             Multiple Due Dates
           </Text>
@@ -2255,7 +2264,7 @@ exports[`renders correctly with selected props 1`] = `
           ],
         ]
       }
-      testID="assignment-list-row-123456789.assignments-cell"
+      testID="assignment-list.assignment-list-row.cell-123456789"
       tvParallaxProperties={undefined}
     >
       <View
@@ -2399,6 +2408,7 @@ exports[`renders correctly with selected props 1`] = `
                 },
               ]
             }
+            testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
             No due date
           </Text>

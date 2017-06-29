@@ -66,7 +66,7 @@ export default class AssignmentListRow extends Component<any, Props, any> {
             subtitle={this.dueDate(assignment)}
             border='bottom'
             disclosureIndicator={true}
-            testID={`assignment-list-row-${assignment.id}.assignments-cell`}
+            testID={`assignment-list.assignment-list-row.cell-${assignment.id}`}
             onPress={this.onPress}
             selected={selected}
             height='auto'

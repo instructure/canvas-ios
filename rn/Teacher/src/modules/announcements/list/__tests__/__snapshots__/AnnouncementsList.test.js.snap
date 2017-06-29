@@ -296,6 +296,7 @@ exports[`AnnouncementsList renders 1`] = `
                       },
                     ]
                   }
+                  testID="announcements.list.announcement.row-0-subtitle-lbl"
                 >
                   Nov 14 at 4:55 PM
                 </Text>
@@ -447,6 +448,7 @@ exports[`AnnouncementsList renders 1`] = `
                       },
                     ]
                   }
+                  testID="announcements.list.announcement.row-1-subtitle-lbl"
                 >
                   Oct 28 at 3:16 PM
                 </Text>

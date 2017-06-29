@@ -94,7 +94,7 @@ export default class CourseCard extends Component {
                 accessible={true}
                 accessibilityLabel={i18n('Open {courseName} user preferences', { courseName: course.name })}
                 underlayColor='#ffffff00'
-                testID={`courseCard.kabob_${course.id}`}
+                testID={`course-card.kabob-${course.id}`}
               >
                 <Image style={styles.kabob} source={Images.kabob} />
               </TouchableHighlight>

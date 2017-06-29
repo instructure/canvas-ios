@@ -8,6 +8,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       "marginBottom": 49,
     }
   }
+  testID="assignment-list.container-view"
 >
   <View
     style={
@@ -22,6 +23,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
         "paddingTop": 16,
       }
     }
+    testID="assignment-list.filter-header-view"
   >
     <Text
       accessibilityTraits="header"
@@ -46,6 +48,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           },
         ]
       }
+      testID="assignment-list.filter-title-lbl"
     >
       All Grading Periods
     </Text>
@@ -374,7 +377,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                   },
                 ]
               }
-              testID="assignment-list-row-123456789.assignments-cell"
+              testID="assignment-list.assignment-list-row.cell-123456789"
             >
               <View
                 style={
@@ -517,6 +520,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                         },
                       ]
                     }
+                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
                     Due May 31, 2037 at 10:59 PM
                   </Text>
@@ -579,6 +583,7 @@ exports[`applyFilter will apply a new filter 1`] = `
       "marginBottom": 49,
     }
   }
+  testID="assignment-list.container-view"
 >
   <View
     style={
@@ -593,6 +598,7 @@ exports[`applyFilter will apply a new filter 1`] = `
         "paddingTop": 16,
       }
     }
+    testID="assignment-list.filter-header-view"
   >
     <Text
       accessibilityTraits="header"
@@ -617,6 +623,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           },
         ]
       }
+      testID="assignment-list.filter-title-lbl"
     >
       First Block
     </Text>
@@ -1054,7 +1061,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                   },
                 ]
               }
-              testID="assignment-list-row-1.assignments-cell"
+              testID="assignment-list.assignment-list-row.cell-1"
             >
               <View
                 style={
@@ -1197,6 +1204,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-list.assignment-list-row.cell-1-subtitle-lbl"
                   >
                     Due May 31, 2037 at 10:59 PM
                   </Text>
@@ -1333,7 +1341,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                   },
                 ]
               }
-              testID="assignment-list-row-2.assignments-cell"
+              testID="assignment-list.assignment-list-row.cell-2"
             >
               <View
                 style={
@@ -1476,6 +1484,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-list.assignment-list-row.cell-2-subtitle-lbl"
                   >
                     Due May 31, 2037 at 10:59 PM
                   </Text>
@@ -1538,6 +1547,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
       "marginBottom": 49,
     }
   }
+  testID="assignment-list.container-view"
 >
   <View
     style={
@@ -1552,6 +1562,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
         "paddingTop": 16,
       }
     }
+    testID="assignment-list.filter-header-view"
   >
     <Text
       accessibilityTraits="header"
@@ -1576,6 +1587,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
           },
         ]
       }
+      testID="assignment-list.filter-title-lbl"
     >
       All Grading Periods
     </Text>
@@ -1856,7 +1868,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                   },
                 ]
               }
-              testID="assignment-list-row-123456789.assignments-cell"
+              testID="assignment-list.assignment-list-row.cell-123456789"
             >
               <View
                 style={
@@ -1999,6 +2011,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
                     Due May 31, 2037 at 10:59 PM
                   </Text>
@@ -2061,6 +2074,7 @@ exports[`renders correctly 1`] = `
       "marginBottom": 49,
     }
   }
+  testID="assignment-list.container-view"
 >
   <View
     style={
@@ -2075,6 +2089,7 @@ exports[`renders correctly 1`] = `
         "paddingTop": 16,
       }
     }
+    testID="assignment-list.filter-header-view"
   >
     <Text
       accessibilityTraits="header"
@@ -2099,6 +2114,7 @@ exports[`renders correctly 1`] = `
           },
         ]
       }
+      testID="assignment-list.filter-title-lbl"
     >
       All Grading Periods
     </Text>
@@ -2411,7 +2427,7 @@ exports[`renders correctly 1`] = `
                   },
                 ]
               }
-              testID="assignment-list-row-123456789.assignments-cell"
+              testID="assignment-list.assignment-list-row.cell-123456789"
             >
               <View
                 style={
@@ -2554,6 +2570,7 @@ exports[`renders correctly 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
                     Due May 31, 2037 at 10:59 PM
                   </Text>
@@ -2616,6 +2633,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       "marginBottom": 49,
     }
   }
+  testID="assignment-list.container-view"
 >
   <View
     style={
@@ -2630,6 +2648,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
         "paddingTop": 16,
       }
     }
+    testID="assignment-list.filter-header-view"
   >
     <Text
       accessibilityTraits="header"
@@ -2654,6 +2673,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           },
         ]
       }
+      testID="assignment-list.filter-title-lbl"
     >
       All Grading Periods
     </Text>
@@ -2982,7 +3002,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                   },
                 ]
               }
-              testID="assignment-list-row-123456789.assignments-cell"
+              testID="assignment-list.assignment-list-row.cell-123456789"
             >
               <View
                 style={
@@ -3125,6 +3145,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                         },
                       ]
                     }
+                    testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
                     Due May 31, 2037 at 10:59 PM
                   </Text>

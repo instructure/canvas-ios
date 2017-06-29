@@ -29,7 +29,7 @@ test('calls onAddCoursePressed when button is pressed', () => {
     <NoCourses {...defaultProps} onAddCoursePressed={func} />
   ).toJSON()
 
-  let button: any = explore(tree).selectByID('mt-fav-courses.add-courses-btn')
+  let button: any = explore(tree).selectByID('no-courses.add-courses-btn')
   button.props.onPress()
   expect(func).toHaveBeenCalled()
 })

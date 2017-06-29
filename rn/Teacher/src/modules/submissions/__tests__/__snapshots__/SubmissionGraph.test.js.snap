@@ -25,6 +25,7 @@ exports[`render 0 on graph 1`] = `
       progress={0.000001}
       showsText={true}
       size={70}
+      testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
       textStyle={
         Object {
           "color": "#2D3B45",
@@ -62,6 +63,7 @@ exports[`render 0 on graph 1`] = `
         },
       ]
     }
+    testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
   >
     foo
   </Text>
@@ -93,6 +95,7 @@ exports[`render 1`] = `
       progress={0.000001}
       showsText={true}
       size={70}
+      testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
       textStyle={
         Object {
           "color": "#2D3B45",
@@ -130,6 +133,7 @@ exports[`render 1`] = `
         },
       ]
     }
+    testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
   >
     foo
   </Text>
@@ -161,6 +165,7 @@ exports[`render undefined label 1`] = `
       progress={0.000001}
       showsText={true}
       size={70}
+      testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
       textStyle={
         Object {
           "color": "#2D3B45",
@@ -198,6 +203,7 @@ exports[`render undefined label 1`] = `
         },
       ]
     }
+    testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
   />
 </View>
 `;

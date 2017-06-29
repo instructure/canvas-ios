@@ -78,7 +78,7 @@ export class FavoritesList extends Component {
           {
             title: i18n('Done'),
             style: 'done',
-            testID: 'edit-fav-courses.done-btn',
+            testID: 'edit-favorites.done-btn',
             action: this.dismiss,
           },
         ]}

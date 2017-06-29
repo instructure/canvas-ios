@@ -15,14 +15,14 @@
 //
 
 class EditCoursesPageTest: TeacherTest {
-    
+
     func testEditCoursesPage_displaysPageObjects() {
         logIn(self)
         coursesListPage.openCourseFavoritesEditPage(false)
         editCoursesListPage.assertPageObjects()
         editCoursesListPage.dismissToFavoriteCoursesPage()
     }
-    
+
     func testEditCoursesPage_displaysCourseList() {
         logIn(self)
         let courses = Data.getAllCourses(self)
@@ -30,7 +30,7 @@ class EditCoursesPageTest: TeacherTest {
         editCoursesListPage.assertHasCourses(courses)
         editCoursesListPage.dismissToFavoriteCoursesPage()
     }
-    
+
     func testEditCoursesPage_favoriteCourse() {
         logIn(self)
         let favoritedCourse = Data.getNextFavoriteCourse(self)
@@ -43,7 +43,7 @@ class EditCoursesPageTest: TeacherTest {
         editCoursesListPage.dismissToFavoriteCoursesPage()
         coursesListPage.assertCourseExists(course)
     }
-    
+
     func testEditCoursesPage_unfavoriteCourse() {
         logIn(self)
         let favoritedCourse = Data.getNextFavoriteCourse(self)
@@ -53,5 +53,5 @@ class EditCoursesPageTest: TeacherTest {
         editCoursesListPage.assertCourseIsNotfavorited(favoritedCourse)
         editCoursesListPage.dismissToFavoriteCoursesPage()
         coursesListPage.assertCourseDoesNotExist(favoritedCourse)
-    } 
+    }
 }

@@ -168,7 +168,7 @@ exports[`render 1`] = `
                   "width": 18,
                 }
               }
-              testID="fav-courses.header-star-img"
+              testID="favorited-course-list.header-star-img"
             />
             <Text
               accessibilityTraits="header"
@@ -191,7 +191,7 @@ exports[`render 1`] = `
                   },
                 ]
               }
-              testID="fav-courses.header-courses-lbl"
+              testID="favorited-course-list.header-courses-lbl"
             >
               Courses
             </Text>
@@ -199,7 +199,7 @@ exports[`render 1`] = `
           <TouchableOpacity
             accessibilityTraits="button"
             onPress={[Function]}
-            testID="fav-courses.see-all-btn"
+            testID="favorited-course-list.see-all-btn"
           >
             <View>
               <Text
@@ -342,7 +342,7 @@ exports[`render 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_1"
+                testID="course-card.kabob-1"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -515,7 +515,7 @@ exports[`render 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_2"
+                testID="course-card.kabob-2"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -688,7 +688,7 @@ exports[`render 1`] = `
                     "width": 43,
                   }
                 }
-                testID="courseCard.kabob_3"
+                testID="course-card.kabob-3"
                 underlayColor="#ffffff00"
               >
                 <Image
@@ -879,7 +879,7 @@ exports[`render without courses and *zero* total courses 1`] = `
                   "width": 18,
                 }
               }
-              testID="fav-courses.header-star-img"
+              testID="favorited-course-list.header-star-img"
             />
             <Text
               accessibilityTraits="header"
@@ -902,7 +902,7 @@ exports[`render without courses and *zero* total courses 1`] = `
                   },
                 ]
               }
-              testID="fav-courses.header-courses-lbl"
+              testID="favorited-course-list.header-courses-lbl"
             >
               Courses
             </Text>
@@ -910,7 +910,7 @@ exports[`render without courses and *zero* total courses 1`] = `
           <TouchableOpacity
             accessibilityTraits="button"
             onPress={[Function]}
-            testID="fav-courses.see-all-btn"
+            testID="favorited-course-list.see-all-btn"
           >
             <View>
               <Text
@@ -991,7 +991,7 @@ exports[`render without favorite courses 1`] = `
         undefined,
       ]
     }
-    testID="mt-fav-courses.welcome-lbl"
+    testID="no-courses.welcome-lbl"
   >
     Welcome!
   </Text>
@@ -1016,7 +1016,7 @@ exports[`render without favorite courses 1`] = `
         },
       ]
     }
-    testID="mt-fav-courses.descr-lbl"
+    testID="no-courses.description-lbl"
   >
     Add a few of your favorite courses to make this place your home.
   </Text>
@@ -1042,7 +1042,7 @@ exports[`render without favorite courses 1`] = `
         undefined,
       ]
     }
-    testID="mt-fav-courses.add-courses-btn"
+    testID="no-courses.add-courses-btn"
   >
     <Text
       accessible={true}

@@ -18,7 +18,7 @@ class InboxPageTest: TeacherTest {
 
     func testInboxPage_displaysPageObjects() {
         logIn(self)
-        inboxPage.openInboxTab()
+        tabBarController.openInboxPage()
         inboxPage.assertPageObjects()
     }
 }

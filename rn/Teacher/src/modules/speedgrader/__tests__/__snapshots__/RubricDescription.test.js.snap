@@ -57,6 +57,7 @@ exports[`RubricDescription renders 1`] = `
       <View
         onLayout={[Function]}
         style={undefined}
+        testID="web-container.view"
       />
     </RCTScrollContentView>
   </RCTScrollView>

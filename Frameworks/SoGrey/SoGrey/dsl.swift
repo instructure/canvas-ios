@@ -36,6 +36,10 @@ open class e {
     return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
   }
 
+  open static func selectBy(matchers:[GREYMatcher], file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
+    return EarlGrey.select(elementWithMatcher: grey_allOf(matchers), file: file, line: line)
+  }
+
   @available(*, deprecated, message: "Only you can prevent memory leaks 🔥🐻")
   open static func firstElement(_ matcher:GREYElementInteraction) -> GREYElementInteraction {
     return matcher.atIndex(0)
@@ -129,4 +133,15 @@ extension GREYInteraction {
     if (!success) { self.assert(with: grey_nil()) }
   }
 
+  public func assertContains(text:String, file:StaticString = #file, line:UInt = #line) {
+    grey_fromFile(file, line)
+    let assertionBlock = GREYAssertionBlock(name: "Contains Text", assertionBlockWithError: { element, errorOrNil -> Bool in
+      let elementObject = element as? NSObject
+      if let labelText = elementObject?.accessibilityLabel {
+        return labelText.range(of:text) != nil
+      }
+        return false
+    })
+    self.assert(assertionBlock)
+  }
 }

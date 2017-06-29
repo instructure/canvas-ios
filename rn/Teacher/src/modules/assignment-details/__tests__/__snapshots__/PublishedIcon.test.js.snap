@@ -28,6 +28,7 @@ exports[`render larger icon size 1`] = `
         },
       ]
     }
+    testID="assignment-details.published-icon.published-status-img"
   />
   <Text
     accessible={true}
@@ -58,6 +59,7 @@ exports[`render larger icon size 1`] = `
         },
       ]
     }
+    testID="assignment-details.published-icon.publish-status-lbl"
   >
     Published
   </Text>
@@ -89,6 +91,7 @@ exports[`render published 1`] = `
         Object {},
       ]
     }
+    testID="assignment-details.published-icon.published-status-img"
   />
   <Text
     accessible={true}
@@ -119,6 +122,7 @@ exports[`render published 1`] = `
         },
       ]
     }
+    testID="assignment-details.published-icon.publish-status-lbl"
   >
     Published
   </Text>
@@ -150,6 +154,7 @@ exports[`render unpublished 1`] = `
         Object {},
       ]
     }
+    testID="assignment-details.published-icon.unpublished-status-img"
   />
   <Text
     accessible={true}
@@ -180,6 +185,7 @@ exports[`render unpublished 1`] = `
         },
       ]
     }
+    testID="assignment-details.published-icon.publish-status-lbl"
   >
     Unpublished
   </Text>
