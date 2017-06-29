@@ -98,6 +98,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
   renderDetails = ({ item, index }: { item: Discussion, index: number }) => {
     const discussion = item
+    const showReplies = discussion.replies && discussion.replies.length > 0
     const points = this._points(discussion)
     let user = discussion.author
     const assignmentID = this.props.assignment ? this.props.assignment.id : null
@@ -172,13 +173,14 @@ export class DiscussionDetails extends Component<any, Props, any> {
           </View>
         </View>
 
-        { this.state.rootNodePath.length === 0 &&
+        { showReplies && this.state.rootNodePath.length === 0 &&
             <AssignmentSection style={{ paddingBottom: 0 }}>
               <Heading1>{i18n('Replies')}</Heading1>
             </AssignmentSection>
         }
 
-        { this.renderPopReplyStackButton() }
+        { showReplies && this.renderPopReplyStackButton() }
+
       </View>
     )
   }

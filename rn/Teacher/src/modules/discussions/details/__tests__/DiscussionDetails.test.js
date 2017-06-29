@@ -37,7 +37,7 @@ describe('DiscussionDetails', () => {
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
-    let discussion = template.discussion({ id: '1' })
+    let discussion = template.discussion({ id: '1', replies: [template.discussionReply()] })
     props = {
       refresh: jest.fn(),
       refreshing: false,
@@ -58,7 +58,12 @@ describe('DiscussionDetails', () => {
     }
   })
 
-  it('renders', () => {
+  it('renders with replies', () => {
+    testRender(props)
+  })
+
+  it('renders no replies', () => {
+    props.discussion = template.discussion({ id: '1' })
     testRender(props)
   })
 
