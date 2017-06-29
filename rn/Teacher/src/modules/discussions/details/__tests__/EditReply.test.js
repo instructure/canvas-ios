@@ -47,6 +47,7 @@ describe('EditReply', () => {
       course: template.course({ id: 1 }),
       parentIndexPath: [],
       deletePendingReplies: jest.fn(),
+      lastReplyAt: (new Date()).toISOString(),
     }
   })
 
@@ -143,7 +144,7 @@ describe('EditReply', () => {
     component.update(<EditReply {...defaultProps} createEntry={postReply} refreshDiscussionEntries={refresh} />)
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('edit-discussion-reply.done-btn')
     doneButton.action()
-    expect(postReply).toBeCalledWith(defaultProps.courseID, defaultProps.discussionID, defaultProps.entryID, { message }, [])
+    expect(postReply).toBeCalledWith(defaultProps.courseID, defaultProps.discussionID, defaultProps.entryID, { message }, [], defaultProps.lastReplyAt)
     expect(defaultProps.navigator.dismissAllModals).toHaveBeenCalled()
   })
 
@@ -172,6 +173,7 @@ describe('EditReply', () => {
 })
 
 describe('MapStateToProps', () => {
+  let lastReplyAt = (new Date(0)).toISOString()
   test('maps default data for new reply', () => {
     const state: AppState = template.appState({
       entities: {
@@ -181,7 +183,7 @@ describe('MapStateToProps', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1', parentIndexPath: [] })
+      mapStateToProps(state, { courseID: '1', discussionID: '1', parentIndexPath: [], lastReplyAt })
     ).toMatchObject({
       pending: 0,
       error: null,
@@ -210,7 +212,7 @@ describe('MapStateToProps', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+      mapStateToProps(state, { courseID: '1', discussionID: '1', lastReplyAt })
     ).toMatchObject({
       pending: 14,
       error: 'Map this error',
@@ -239,7 +241,7 @@ describe('MapStateToProps', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1' })
+      mapStateToProps(state, { courseID: '1', discussionID: '1', lastReplyAt })
     ).toMatchObject({
       pending: 14,
       error: 'Map this error',

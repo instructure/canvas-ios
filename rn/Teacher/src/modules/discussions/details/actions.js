@@ -33,13 +33,14 @@ export let Actions: (typeof canvas) => any = (api) => ({
       localIndexPath,
     }
   }),
-  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters, parentIndexPath: number[]) => {
+  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters, parentIndexPath: number[], lastReplyAt: string) => {
     return {
       promise: api.createEntry(courseID, discussionID, entryID, parameters),
       courseID,
       discussionID,
       entryID,
       parentIndexPath,
+      lastReplyAt,
     }
   }),
   markAllAsRead: createAction('discussions.details.markAllAsRead', (courseID: string, discussionID: string, oldUnreadCount: number) => {

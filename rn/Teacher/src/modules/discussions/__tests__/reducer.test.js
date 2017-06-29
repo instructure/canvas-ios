@@ -224,7 +224,7 @@ describe('discussionData', () => {
     let b = template.discussionReply({ id: '2', replies: [b1, b2] })
     let c = template.discussionReply({ id: '3' })
 
-    let discussion = template.discussion({ id: '1', replies: [a, b, c] })
+    let discussion = template.discussion({ id: '1', replies: [a, b, c], discussion_subentry_count: 2 })
     let localIndexPath = [1, 0]
 
     const resolved = {
@@ -244,7 +244,10 @@ describe('discussionData', () => {
 
     expect(discussions({ [discussion.id]: { data: discussion } }, resolved)).toEqual({
       '1': {
-        data: { ...discussion, replies: expectedReplies },
+        data: {
+          ...discussion,
+          replies: expectedReplies,
+        },
         pending: 0,
         error: null,
       },
@@ -259,7 +262,11 @@ describe('discussionData', () => {
     let b = template.discussionReply({ id: '2', replies: [b1, b2] })
     let c = template.discussionReply({ id: '3' })
 
-    let discussion = template.discussion({ id: '1', replies: [a, b, c] })
+    let discussion = template.discussion({
+      id: '1',
+      replies: [a, b, c],
+      discussion_subentry_count: 3,
+    })
     let localIndexPath = [1, 0]
 
     const pending = {
@@ -276,7 +283,10 @@ describe('discussionData', () => {
 
     expect(actual).toEqual({
       '1': {
-        data: discussion,
+        data: {
+          ...discussion,
+          discussion_subentry_count: 2,
+        },
         pendingReplies: {
           [b1.id]: {
             localIndexPath,
@@ -297,7 +307,11 @@ describe('discussionData', () => {
     let b = template.discussionReply({ id: '2', replies: [b1, b2] })
     let c = template.discussionReply({ id: '3' })
 
-    let discussion = template.discussion({ id: '1', replies: [a, b, c] })
+    let discussion = template.discussion({
+      id: '1',
+      replies: [a, b, c],
+      discussion_subentry_count: 1,
+    })
     let localIndexPath = [1, 0]
 
     const rejected = {
@@ -315,7 +329,10 @@ describe('discussionData', () => {
 
     expect(actual).toEqual({
       '1': {
-        data: discussion,
+        data: {
+          ...discussion,
+          discussion_subentry_count: 2,
+        },
         pendingReplies: {},
         pending: 0,
         error: 'Wat',
@@ -901,34 +918,7 @@ describe('subscribeDiscussion', () => {
 })
 
 describe('createEntry', () => {
-  it('handles resolved empty state', () => {
-    const initialState = {}
-    const reply = template.discussionReply()
-    let expectedReply = Object.assign({}, reply)
-    const resolved = {
-      type: createEntry.toString(),
-      payload: {
-        id: '1',
-        discussionID: '1',
-        result: { data: reply },
-      },
-    }
-    expect(
-        discussions(initialState, resolved)
-      ).toEqual({
-        '1': {
-          replies: {
-            new: {
-              pending: 0,
-              error: null,
-            },
-          },
-          pendingReplies: { [reply.id]: { data: expectedReply } },
-        },
-      })
-  })
-
-  it('handles resolved non empty state', () => {
+  it('handles resolved', () => {
     const reply = template.discussionReply({ id: '1' })
     const pendingReply = template.discussionReply({ id: '3' })
     let expectedReply = Object.assign({}, reply)
@@ -985,30 +975,13 @@ describe('createEntry', () => {
       })
   })
 
-  it('handles pending empty state', () => {
-    const initialState = {}
-    const pending = {
-      type: createEntry.toString(),
-      pending: true,
-      payload: {
-        discussionID: '2',
-      },
-    }
-    expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        '2': {
-          replies: {
-            new: {
-              pending: 1,
-              error: null,
-            },
-          },
-        },
-      })
-  })
-
-  it('handles pending non empty state', () => {
+  it('handles pending', () => {
+    const lastReplyAt = new Date(0)
+    const discussion = template.discussion({
+      id: '2',
+      discussion_subentry_count: 1,
+      last_reply_at: lastReplyAt.toISOString(),
+    })
     const initialState = {
       '1': {
         pending: 0,
@@ -1018,7 +991,7 @@ describe('createEntry', () => {
       '2': {
         pending: 1,
         error: 'SOMETHING HAPPENED',
-        data: template.discussion({ id: '2' }),
+        data: discussion,
         replies: {
           new: {
             pending: 2,
@@ -1034,49 +1007,36 @@ describe('createEntry', () => {
         discussionID: '2',
       },
     }
-    expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: template.discussion({ id: '2' }),
-          pending: 1,
-          error: 'SOMETHING HAPPENED',
-          replies: {
-            new: {
-              pending: 1,
-              error: null,
-            },
+    let newState = discussions(initialState, pending)
+    delete discussion.last_reply_at
+
+    expect(newState).toMatchObject({
+      ...initialState,
+      '2': {
+        data: {
+          ...discussion,
+          discussion_subentry_count: 2,
+        },
+        pending: 1,
+        error: 'SOMETHING HAPPENED',
+        replies: {
+          new: {
+            pending: 1,
+            error: null,
           },
         },
-      })
-  })
-
-  it('handles rejected empty state', () => {
-    const initialState = {}
-    const rejected = {
-      type: createEntry.toString(),
-      error: true,
-      payload: {
-        discussionID: '2',
-        error: template.error('User not authorized'),
       },
-    }
-    expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        '2': {
-          replies: {
-            new: {
-              pending: 0,
-              error: 'User not authorized',
-            },
-          },
-        },
-      })
+    })
+    expect(new Date(newState['2'].data.last_reply_at) > lastReplyAt).toEqual(true)
   })
 
-  it('handles rejected non empty state', () => {
+  it('handles rejected', () => {
+    let lastReplyAt = new Date()
+    const discussion = template.discussion({
+      id: '2',
+      discussion_subentry_count: 2,
+      last_reply_at: lastReplyAt.toISOString(),
+    })
     const initialState = {
       '1': {
         pending: 0,
@@ -1086,7 +1046,7 @@ describe('createEntry', () => {
       '2': {
         pending: 1,
         error: 'SOMETHING HAPPENED',
-        data: template.discussion({ id: '2' }),
+        data: discussion,
         replies: {
           new: {
             pending: 2,
@@ -1101,6 +1061,7 @@ describe('createEntry', () => {
       payload: {
         discussionID: '2',
         error: template.error('User not authorized'),
+        lastReplyAt: (new Date(0)).toISOString(),
       },
     }
     expect(
@@ -1108,7 +1069,11 @@ describe('createEntry', () => {
       ).toEqual({
         ...initialState,
         '2': {
-          data: template.discussion({ id: '2' }),
+          data: {
+            ...discussion,
+            discussion_subentry_count: 1,
+            last_reply_at: (new Date(0)).toISOString(),
+          },
           pending: 1,
           error: 'SOMETHING HAPPENED',
           replies: {
@@ -1209,34 +1174,7 @@ describe('createEntry', () => {
 })
 
 describe('editEntry', () => {
-  it('handles resolved empty state', () => {
-    const initialState = {}
-    const reply = template.discussionEditReply()
-    let expectedReply = Object.assign({}, reply)
-    const resolved = {
-      type: editEntry.toString(),
-      payload: {
-        id: '1',
-        discussionID: '1',
-        result: { data: reply },
-      },
-    }
-    expect(
-        discussions(initialState, resolved)
-      ).toEqual({
-        '1': {
-          replies: {
-            edit: {
-              pending: 0,
-              error: null,
-            },
-          },
-          pendingReplies: { [reply.id]: { data: expectedReply } },
-        },
-      })
-  })
-
-  it('handles resolved non empty state', () => {
+  it('handles resolved', () => {
     const reply = template.discussionEditReply({ id: '1' })
     let expectedReply = Object.assign({}, reply)
     const pendingReply = template.discussionReply({ id: '3' })
@@ -1294,30 +1232,7 @@ describe('editEntry', () => {
       })
   })
 
-  it('handles pending empty state', () => {
-    const initialState = {}
-    const pending = {
-      type: editEntry.toString(),
-      pending: true,
-      payload: {
-        discussionID: '2',
-      },
-    }
-    expect(
-        discussions(initialState, pending)
-      ).toEqual({
-        '2': {
-          replies: {
-            edit: {
-              pending: 1,
-              error: null,
-            },
-          },
-        },
-      })
-  })
-
-  it('handles pending non empty state', () => {
+  it('handles pending', () => {
     const initialState = {
       '1': {
         pending: 0,
@@ -1361,31 +1276,7 @@ describe('editEntry', () => {
       })
   })
 
-  it('handles rejected empty state', () => {
-    const initialState = {}
-    const rejected = {
-      type: editEntry.toString(),
-      error: true,
-      payload: {
-        discussionID: '2',
-        error: template.error('User not authorized'),
-      },
-    }
-    expect(
-        discussions(initialState, rejected)
-      ).toEqual({
-        '2': {
-          replies: {
-            edit: {
-              pending: 0,
-              error: 'User not authorized',
-            },
-          },
-        },
-      })
-  })
-
-  it('handles rejected non empty state', () => {
+  it('handles rejected', () => {
     const initialState = {
       '1': {
         pending: 0,

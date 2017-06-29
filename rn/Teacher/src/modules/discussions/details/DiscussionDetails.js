@@ -384,11 +384,13 @@ export class DiscussionDetails extends Component<any, Props, any> {
   }
 
   _onPressReply = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { parentIndexPath: [] })
+    let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { parentIndexPath: [], lastReplyAt })
   }
 
   _onPressReplyToEntry = (entryID: string, parentIndexPath: number[]) => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { parentIndexPath: parentIndexPath, entryID })
+    let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { parentIndexPath: parentIndexPath, entryID, lastReplyAt })
   }
 
   _editDiscussion = () => {

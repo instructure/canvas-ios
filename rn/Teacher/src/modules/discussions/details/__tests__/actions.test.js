@@ -77,13 +77,15 @@ describe('discussion edit reply tests', () => {
   it('should post a new reply', async () => {
     const courseID = '1'
     const discussionID = '2'
+    const entryID = '3'
     const discussionReply = template.discussionReply()
+    const lastReplyAt = (new Date()).toISOString()
 
     const api = {
       createEntry: apiResponse(discussionReply),
     }
     const actions = Actions(api)
-    const action = actions.createEntry(courseID, discussionID, { messsage: discussionReply.message })
+    const action = actions.createEntry(courseID, discussionID, entryID, { messsage: discussionReply.message }, [], lastReplyAt)
     const state = await testAsyncAction(action)
 
     expect(state).toMatchObject([
@@ -95,8 +97,11 @@ describe('discussion edit reply tests', () => {
         type: actions.createEntry.toString(),
         payload: {
           result: { data: template.discussionReply() },
-          courseID: courseID,
-          discussionID: discussionID,
+          courseID,
+          discussionID,
+          entryID,
+          parentIndexPath: [],
+          lastReplyAt,
         },
       },
     ])

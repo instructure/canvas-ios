@@ -231,6 +231,10 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         ...state,
         [discussionID]: {
           ...entity,
+          data: {
+            ...entity.data,
+            discussion_subentry_count: entity.data.discussion_subentry_count + 1,
+          },
           pending: (state[discussionID] && state[discussionID].pending || 1) - 1,
           error: parseErrorMessage(error),
         },
@@ -258,6 +262,10 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         ...state,
         [discussionID]: {
           ...entity,
+          data: {
+            ...entity.data,
+            discussion_subentry_count: entity.data.discussion_subentry_count - 1,
+          },
           pending: (state[discussionID] && state[discussionID].pending || 0) + 1,
           error: null,
         },
@@ -345,6 +353,11 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       ...state,
       [discussionID]: {
         ...state[discussionID],
+        data: {
+          ...state[discussionID].data,
+          discussion_subentry_count: state[discussionID].data.discussion_subentry_count + 1,
+          last_reply_at: (new Date()).toISOString(),
+        },
         replies: {
           ...(state[discussionID] && state[discussionID].replies),
           new: {
@@ -355,10 +368,15 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
 
       },
     }),
-    rejected: (state, { discussionID, error }) => ({
+    rejected: (state, { discussionID, error, lastReplyAt }) => ({
       ...state,
       [discussionID]: {
         ...state[discussionID],
+        data: {
+          ...state[discussionID].data,
+          discussion_subentry_count: state[discussionID].data.discussion_subentry_count - 1,
+          last_reply_at: lastReplyAt,
+        },
         replies: {
           ...(state[discussionID] && state[discussionID].replies),
           new: {

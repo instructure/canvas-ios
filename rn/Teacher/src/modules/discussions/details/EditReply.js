@@ -20,6 +20,7 @@ type OwnProps = {
   courseID: string,
   parentIndexPath?: number[],
   entryID?: ?string,
+  lastReplyAt: string,
 }
 
 type State = {
@@ -103,7 +104,7 @@ export class EditReply extends React.Component<any, Props, any> {
     if (this.props.isEdit) {
       this.props.editEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath)
     } else {
-      this.props.createEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath)
+      this.props.createEntry(this.props.courseID, this.props.discussionID, this.props.entryID, params, this.props.parentIndexPath, this.props.lastReplyAt)
     }
   }
 

@@ -115,7 +115,10 @@ describe('DiscussionDetails', () => {
     const tree = renderer.create(<DiscussionDetails {...props} navigator={navigator} />).toJSON()
     const discussionReply: any = explore(tree).selectByID('discussion-reply')
     discussionReply.props.onPress()
-    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, { parentIndexPath: [] })
+    expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
+      parentIndexPath: [],
+      lastReplyAt: props.discussion && props.discussion.last_reply_at,
+    })
   })
 
   it('shows publish information', () => {
@@ -288,7 +291,11 @@ describe('DiscussionDetails', () => {
 
     let tree = render(props)
     tree.getInstance()._onPressReplyToEntry('3', [1, 0])
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/entries/3/replies', { modal: true }, { 'entryID': '3', 'parentIndexPath': [1, 0] })
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/entries/3/replies', { modal: true }, {
+      'entryID': '3',
+      'parentIndexPath': [1, 0],
+      lastReplyAt: props.discussion && props.discussion.last_reply_at,
+    })
   })
 
   it('shows attachment', () => {
