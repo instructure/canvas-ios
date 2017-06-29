@@ -380,7 +380,10 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
               error: null,
             },
           },
-          pendingReplies: { [result.data.id]: { localIndexPath: parentIndexPath, data: Object.assign({ replies: [] }, result.data) } },
+          pendingReplies: {
+            ...(state[discussionID] && state[discussionID].pendingReplies),
+            [result.data.id]: { localIndexPath: parentIndexPath, data: Object.assign({ replies: [] }, result.data) },
+          },
         },
       }
     },
@@ -425,7 +428,10 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
               error: null,
             },
           },
-          pendingReplies: { [result.data.id]: { localIndexPath: parentIndexPath, data: result.data } },
+          pendingReplies: {
+            ...(state[discussionID] && state[discussionID].pendingReplies),
+            [result.data.id]: { localIndexPath: parentIndexPath, data: result.data },
+          },
         },
       }
     },

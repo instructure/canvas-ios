@@ -930,6 +930,7 @@ describe('createEntry', () => {
 
   it('handles resolved non empty state', () => {
     const reply = template.discussionReply({ id: '1' })
+    const pendingReply = template.discussionReply({ id: '3' })
     let expectedReply = Object.assign({}, reply)
     const initialState = {
       '1': {
@@ -952,6 +953,7 @@ describe('createEntry', () => {
             error: 'WAT',
           },
         },
+        pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply } },
       },
     }
     const resolved = {
@@ -978,7 +980,7 @@ describe('createEntry', () => {
               error: null,
             },
           },
-          pendingReplies: { [reply.id]: { data: expectedReply } },
+          pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply }, [reply.id]: { data: expectedReply } },
         },
       })
   })
@@ -1237,6 +1239,7 @@ describe('editEntry', () => {
   it('handles resolved non empty state', () => {
     const reply = template.discussionEditReply({ id: '1' })
     let expectedReply = Object.assign({}, reply)
+    const pendingReply = template.discussionReply({ id: '3' })
     const initialState = {
       '1': {
         pending: 0,
@@ -1258,6 +1261,8 @@ describe('editEntry', () => {
             error: 'WAT',
           },
         },
+        pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply } },
+
       },
     }
     const resolved = {
@@ -1284,7 +1289,7 @@ describe('editEntry', () => {
               error: null,
             },
           },
-          pendingReplies: { [reply.id]: { data: expectedReply } },
+          pendingReplies: { [pendingReply.id]: { localIndexPath: [0], data: pendingReply }, [reply.id]: { data: expectedReply } },
         },
       })
   })
