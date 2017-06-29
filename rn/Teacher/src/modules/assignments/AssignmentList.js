@@ -108,7 +108,14 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
   selectedAssignment = (assignment: Assignment) => {
     this.props.updateCourseDetailsSelectedTabSelectedRow(assignment.id)
-    this.props.navigator.show(assignment.html_url)
+
+    if (assignment.quiz_id) {
+      this.props.navigator.show(`/courses/${assignment.course_id}/quizzes/${assignment.quiz_id}`)
+    } else if (assignment.discussion_topic) {
+      this.props.navigator.show(`/courses/${assignment.course_id}/discussion_topics/${assignment.discussion_topic.id}`)
+    } else {
+      this.props.navigator.show(assignment.html_url)
+    }
   }
 
   clearFilter = () => {

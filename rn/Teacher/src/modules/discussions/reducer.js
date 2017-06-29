@@ -181,30 +181,29 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
   [refreshDiscussionEntries.toString()]: handleAsync({
     resolved: (state, { result: [discussionView, discussion], courseID, discussionID }) => {
       let entity = { ...state[discussionID] } || {}
-      entity.data = entity.data || {}
-      if (entity.data) {
-        let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
-        let replies = discussionView.data.view
-        let newEntries = discussionView.data.new_entries || []
-        let pendingReplies = { ...(entity.pendingReplies || {}) }
 
-        let pendingReplyKeys = Object.keys(pendingReplies)
-        for (let i = 0; i < pendingReplyKeys.length; i++) {
-          let reply = pendingReplies[pendingReplyKeys[i]]
-          if (reply && reply.data.deleted) {
-            replies = deleteReply(reply.localIndexPath, { replies: replies })
-          } else {
-            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, Boolean(!reply.data.editor_id), entity.data.discussion_type)
-          }
+      let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
+      let replies = discussionView.data.view
+      let newEntries = discussionView.data.new_entries || []
+      let pendingReplies = { ...(entity.pendingReplies || {}) }
 
-          if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
-            delete pendingReplies[pendingReplyKeys[i]]
-          }
+      let pendingReplyKeys = Object.keys(pendingReplies)
+      for (let i = 0; i < pendingReplyKeys.length; i++) {
+        let reply = pendingReplies[pendingReplyKeys[i]]
+        if (reply && reply.data.deleted) {
+          replies = deleteReply(reply.localIndexPath, { replies: replies })
+        } else {
+          replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, Boolean(!reply.data.editor_id), discussion.data.discussion_type)
         }
 
-        entity.data = { ...entity.data, replies: replies, participants: participantsAsMap }
-        entity.pendingReplies = pendingReplies
+        if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
+          delete pendingReplies[pendingReplyKeys[i]]
+        }
       }
+
+      entity.data = { ...discussion.data, replies: replies, participants: participantsAsMap }
+      entity.pendingReplies = pendingReplies
+
       return {
         ...state,
         [discussionID]: {

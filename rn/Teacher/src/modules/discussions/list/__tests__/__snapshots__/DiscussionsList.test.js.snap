@@ -98,6 +98,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -161,6 +162,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -254,6 +256,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -317,6 +320,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -2400,6 +2404,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -2464,6 +2469,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -2558,6 +2564,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -2622,6 +2629,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -3637,6 +3645,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -3705,6 +3714,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -3799,6 +3809,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
@@ -3867,6 +3878,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
+                  "course_id": 987654321,
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",

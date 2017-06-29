@@ -75,6 +75,42 @@ test('selected assignment', () => {
   expect(navigator.show).toHaveBeenCalled()
 })
 
+test('selected graded discussion', () => {
+  const navigator = template.navigator({
+    show: jest.fn(),
+  })
+  const assignment = Object.assign(group.assignments[0], { discussion_topic: { id: '1' } })
+  const assignmentGroup = Object.assign(defaultProps.assignmentGroups[0], { assignments: [assignment] })
+  const props = {
+    ...defaultProps,
+    assignmentGroups: [assignmentGroup],
+  }
+  const tree = renderer.create(
+    <AssignmentList {...props} navigator={navigator} />
+  )
+  const row: any = explore(tree.toJSON()).selectByID(`assignment-list-row-${assignment.id}.assignments-cell`)
+  row.props.onPress()
+  expect(navigator.show).toHaveBeenCalledWith('/courses/987654321/discussion_topics/1')
+})
+
+test('selected quiz', () => {
+  const navigator = template.navigator({
+    show: jest.fn(),
+  })
+  const assignment = Object.assign(group.assignments[0], { quiz_id: '1' })
+  const assignmentGroup = Object.assign(defaultProps.assignmentGroups[0], { assignments: [assignment] })
+  const props = {
+    ...defaultProps,
+    assignmentGroups: [assignmentGroup],
+  }
+  const tree = renderer.create(
+    <AssignmentList {...props} navigator={navigator} />
+  )
+  const row: any = explore(tree.toJSON()).selectByID(`assignment-list-row-${assignment.id}.assignments-cell`)
+  row.props.onPress()
+  expect(navigator.show).toHaveBeenCalledWith('/courses/987654321/quizzes/1')
+})
+
 test('filter button only shows when there are grading periods', () => {
   let tree = renderer.create(
     <AssignmentList {...defaultProps} gradingPeriods={[]} />

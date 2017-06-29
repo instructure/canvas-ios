@@ -7,7 +7,7 @@ import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../cours
 
 export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps = (api) => ({
   refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string) => {
-    const include = ['assignments', 'all_dates', 'overrides']
+    const include = ['assignments', 'all_dates', 'overrides', 'discussion_topic']
     return {
       promise: api.getAssignmentGroups(courseID, gradingPeriodID, include),
       courseID,
