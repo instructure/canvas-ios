@@ -1,7 +1,7 @@
 // @flow
 
 import React, { PureComponent } from 'react'
-import {
+import ReactNative, {
   View,
   StyleSheet,
   TextInput,
@@ -175,8 +175,8 @@ export class Compose extends PureComponent {
     })
   }
 
-  scrollToEnd = () => {
-    this.scrollView.scrollToEnd()
+  scrollToEnd = (e: any) => {
+    this.scrollView.scrollToFocusedInput(ReactNative.findNodeHandle(e.target))
   }
 
   setStateAndUpdate = (state: any) => {
@@ -262,7 +262,7 @@ export class Compose extends PureComponent {
                 identifier='compose-message.send-all-toggle'
               />
             }
-            <ScrollViewDisabler style={[styles.wrapper, styles.messageWrapper]}>
+            <ScrollViewDisabler style={[styles.message, styles.messageWrapper]}>
               <AutoGrowingTextInput
                 placeholder={i18n('Compose message')}
                 style={styles.cell}
@@ -271,6 +271,7 @@ export class Compose extends PureComponent {
                 onContentSizeChange={this.scrollToEnd}
                 onChangeText={this._bodyChanged}
                 testID='compose-message.body-text-input'
+                extraHeight={20}
               />
             </ScrollViewDisabler>
           </KeyboardAwareScrollView>
@@ -292,6 +293,14 @@ const styles = StyleSheet.create({
   messageWrapper: {
     borderBottomWidth: 0,
     paddingVertical: 10,
+  },
+  message: {
+    fontSize: 16,
+    lineHeight: 19,
+    paddingTop: global.style.defaultPadding / 1.25,
+    paddingBottom: global.style.defaultPadding / 1.25,
+    paddingLeft: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
   },
   wrapper: {
     borderBottomColor: '#C7CDD1',
