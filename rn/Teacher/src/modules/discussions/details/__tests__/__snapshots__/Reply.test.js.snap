@@ -129,7 +129,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
               "fontSize": 12,
               "marginBottom": 16,
             },
@@ -170,7 +170,8 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
           testID="discussion.reply-btn"
           textAttributes={
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
+              "fontWeight": "500",
             }
           }
         >
@@ -201,11 +202,12 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                       "color": "#374A59",
                     },
                     Object {
-                      "color": "#A5AFB5",
+                      "color": "#8B969E",
+                      "fontWeight": "500",
                     },
                   ],
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -235,7 +237,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                 },
                 Object {
                   "alignSelf": "center",
-                  "color": "#A5AFB5",
+                  "color": "#C7CDD1",
                   "paddingLeft": 10,
                   "paddingRight": 10,
                   "textAlign": "center",
@@ -261,7 +263,8 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
           testID="discussion.edit-btn"
           textAttributes={
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
+              "fontWeight": "500",
             }
           }
         >
@@ -292,11 +295,12 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                       "color": "#374A59",
                     },
                     Object {
-                      "color": "#A5AFB5",
+                      "color": "#8B969E",
+                      "fontWeight": "500",
                     },
                   ],
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -444,7 +448,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#A5AFB5",
+                    "color": "#8B969E",
                     "fontSize": 12,
                     "marginBottom": 16,
                   },
@@ -485,7 +489,8 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                 testID="discussion.reply-btn"
                 textAttributes={
                   Object {
-                    "color": "#A5AFB5",
+                    "color": "#8B969E",
+                    "fontWeight": "500",
                   }
                 }
               >
@@ -516,11 +521,12 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                             "color": "#374A59",
                           },
                           Object {
-                            "color": "#A5AFB5",
+                            "color": "#8B969E",
+                            "fontWeight": "500",
                           },
                         ],
                         Object {
-                          "fontFamily": ".SFUIDisplay",
+                          "fontFamily": ".SFUIDisplay-medium",
                         },
                       ]
                     }
@@ -550,7 +556,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                       },
                       Object {
                         "alignSelf": "center",
-                        "color": "#A5AFB5",
+                        "color": "#C7CDD1",
                         "paddingLeft": 10,
                         "paddingRight": 10,
                         "textAlign": "center",
@@ -576,7 +582,8 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                 testID="discussion.edit-btn"
                 textAttributes={
                   Object {
-                    "color": "#A5AFB5",
+                    "color": "#8B969E",
+                    "fontWeight": "500",
                   }
                 }
               >
@@ -607,11 +614,12 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
                             "color": "#374A59",
                           },
                           Object {
-                            "color": "#A5AFB5",
+                            "color": "#8B969E",
+                            "fontWeight": "500",
                           },
                         ],
                         Object {
-                          "fontFamily": ".SFUIDisplay",
+                          "fontFamily": ".SFUIDisplay-medium",
                         },
                       ]
                     }
@@ -767,7 +775,7 @@ exports[`DiscussionReplies renders 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
               "fontSize": 12,
               "marginBottom": 16,
             },
@@ -808,7 +816,8 @@ exports[`DiscussionReplies renders 1`] = `
           testID="discussion.reply-btn"
           textAttributes={
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
+              "fontWeight": "500",
             }
           }
         >
@@ -839,11 +848,12 @@ exports[`DiscussionReplies renders 1`] = `
                       "color": "#374A59",
                     },
                     Object {
-                      "color": "#A5AFB5",
+                      "color": "#8B969E",
+                      "fontWeight": "500",
                     },
                   ],
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -873,7 +883,7 @@ exports[`DiscussionReplies renders 1`] = `
                 },
                 Object {
                   "alignSelf": "center",
-                  "color": "#A5AFB5",
+                  "color": "#C7CDD1",
                   "paddingLeft": 10,
                   "paddingRight": 10,
                   "textAlign": "center",
@@ -899,7 +909,8 @@ exports[`DiscussionReplies renders 1`] = `
           testID="discussion.edit-btn"
           textAttributes={
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
+              "fontWeight": "500",
             }
           }
         >
@@ -930,11 +941,12 @@ exports[`DiscussionReplies renders 1`] = `
                       "color": "#374A59",
                     },
                     Object {
-                      "color": "#A5AFB5",
+                      "color": "#8B969E",
+                      "fontWeight": "500",
                     },
                   ],
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -1082,7 +1094,7 @@ exports[`DiscussionReplies renders 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#A5AFB5",
+                    "color": "#8B969E",
                     "fontSize": 12,
                     "marginBottom": 16,
                   },
@@ -1123,7 +1135,8 @@ exports[`DiscussionReplies renders 1`] = `
                 testID="discussion.reply-btn"
                 textAttributes={
                   Object {
-                    "color": "#A5AFB5",
+                    "color": "#8B969E",
+                    "fontWeight": "500",
                   }
                 }
               >
@@ -1154,11 +1167,12 @@ exports[`DiscussionReplies renders 1`] = `
                             "color": "#374A59",
                           },
                           Object {
-                            "color": "#A5AFB5",
+                            "color": "#8B969E",
+                            "fontWeight": "500",
                           },
                         ],
                         Object {
-                          "fontFamily": ".SFUIDisplay",
+                          "fontFamily": ".SFUIDisplay-medium",
                         },
                       ]
                     }
@@ -1188,7 +1202,7 @@ exports[`DiscussionReplies renders 1`] = `
                       },
                       Object {
                         "alignSelf": "center",
-                        "color": "#A5AFB5",
+                        "color": "#C7CDD1",
                         "paddingLeft": 10,
                         "paddingRight": 10,
                         "textAlign": "center",
@@ -1214,7 +1228,8 @@ exports[`DiscussionReplies renders 1`] = `
                 testID="discussion.edit-btn"
                 textAttributes={
                   Object {
-                    "color": "#A5AFB5",
+                    "color": "#8B969E",
+                    "fontWeight": "500",
                   }
                 }
               >
@@ -1245,11 +1260,12 @@ exports[`DiscussionReplies renders 1`] = `
                             "color": "#374A59",
                           },
                           Object {
-                            "color": "#A5AFB5",
+                            "color": "#8B969E",
+                            "fontWeight": "500",
                           },
                         ],
                         Object {
-                          "fontFamily": ".SFUIDisplay",
+                          "fontFamily": ".SFUIDisplay-medium",
                         },
                       ]
                     }
@@ -1415,7 +1431,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
               "fontSize": 16,
             },
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
               "fontSize": 12,
               "marginBottom": 16,
             },
@@ -1456,7 +1472,8 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
           testID="discussion.reply-btn"
           textAttributes={
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
+              "fontWeight": "500",
             }
           }
         >
@@ -1487,11 +1504,12 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
                       "color": "#374A59",
                     },
                     Object {
-                      "color": "#A5AFB5",
+                      "color": "#8B969E",
+                      "fontWeight": "500",
                     },
                   ],
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -1521,7 +1539,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
                 },
                 Object {
                   "alignSelf": "center",
-                  "color": "#A5AFB5",
+                  "color": "#C7CDD1",
                   "paddingLeft": 10,
                   "paddingRight": 10,
                   "textAlign": "center",
@@ -1547,7 +1565,8 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
           testID="discussion.edit-btn"
           textAttributes={
             Object {
-              "color": "#A5AFB5",
+              "color": "#8B969E",
+              "fontWeight": "500",
             }
           }
         >
@@ -1578,11 +1597,12 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
                       "color": "#374A59",
                     },
                     Object {
-                      "color": "#A5AFB5",
+                      "color": "#8B969E",
+                      "fontWeight": "500",
                     },
                   ],
                   Object {
-                    "fontFamily": ".SFUIDisplay",
+                    "fontFamily": ".SFUIDisplay-medium",
                   },
                 ]
               }
@@ -1599,8 +1619,8 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
             "flexDirection": "row",
             "height": 27,
             "justifyContent": "flex-start",
-            "marginBottom": 8,
-            "marginTop": 8,
+            "marginBottom": 16,
+            "marginTop": 16,
             "paddingRight": 16,
           }
         }

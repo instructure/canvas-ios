@@ -116,11 +116,11 @@ export default class Reply extends Component <any, Props, any> {
   _renderButtons = () => {
     return (
       <View style={style.footerContainer}>
-       <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionReply} testID='discussion.reply-btn'>
+       <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionReply} testID='discussion.reply-btn'>
             {i18n('Reply')}
         </LinkButton>
-        <Text style={[style.footer, { color: colors.grey3, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
-        <LinkButton style={style.footer} textAttributes={{ color: colors.grey3 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
+        <Text style={[style.footer, { color: colors.grey2, textAlign: 'center', alignSelf: 'center', paddingLeft: 10, paddingRight: 10 }]} accessible={false}>|</Text>
+        <LinkButton style={style.footer} textAttributes={{ fontWeight: '500', color: colors.grey4 }} onPress={this._actionEdit} testID='discussion.edit-btn'>
             {i18n('Edit')}
         </LinkButton>
       </View>
@@ -199,7 +199,7 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   date: {
-    color: colors.grey3,
+    color: colors.grey4,
     fontSize: 12,
     marginBottom: global.style.defaultPadding,
   },
@@ -213,8 +213,8 @@ const style = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   moreContainer: {
-    marginTop: global.style.defaultPadding / 2,
-    marginBottom: global.style.defaultPadding / 2,
+    marginTop: global.style.defaultPadding,
+    marginBottom: global.style.defaultPadding,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     height: 27,

@@ -160,9 +160,8 @@ export class DiscussionDetails extends Component<any, Props, any> {
         </View>
 
         { this.state.rootNodePath.length === 0 &&
-            <AssignmentSection
-              title={i18n('Replies')}
-              style={{ paddingBottom: 0 }}>
+            <AssignmentSection style={{ paddingBottom: 0 }}>
+              <Heading1>{i18n('Replies')}</Heading1>
             </AssignmentSection>
         }
 
@@ -178,6 +177,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
               <TouchableHighlight testID={`discussion.popToLastDiscussionList`} onPress={this._onPopReplyRootPath} underlayColor='white'>
                   <View style={style.popReplyStackContainer}>
                     <Image source={Images.backIcon} style={style.popReplyStackIcon} />
+                    <Text style={{ paddingLeft: 5, color: colors.link }}>{i18n('Back')}</Text>
                   </View>
             </TouchableHighlight>
             </AssignmentSection>

@@ -1166,36 +1166,29 @@ exports[`DiscussionDetails renders 1`] = `
                           "marginBottom": 4,
                         }
                       }
+                    />
+                    <Text
+                      accessibilityTraits="header"
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
                     >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 16,
-                              "fontWeight": "500",
-                              "paddingTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay-medium",
-                            },
-                          ]
-                        }
-                      >
-                        Replies
-                      </Text>
-                    </View>
+                      Replies
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -2303,36 +2296,29 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           "marginBottom": 4,
                         }
                       }
+                    />
+                    <Text
+                      accessibilityTraits="header"
+                      accessible={true}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontFamily": ".SFUIDisplay-semibold",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
                     >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Object {
-                              "color": "#8B969E",
-                              "fontSize": 16,
-                              "fontWeight": "500",
-                              "paddingTop": 2,
-                            },
-                            Object {
-                              "fontFamily": ".SFUIDisplay-medium",
-                            },
-                          ]
-                        }
-                      >
-                        Replies
-                      </Text>
-                    </View>
+                      Replies
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -3709,6 +3695,32 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             }
                           }
                         />
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "color": "#008EE2",
+                                "paddingLeft": 5,
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
+                          }
+                        >
+                          Back
+                        </Text>
                       </View>
                     </TouchableHighlight>
                   </View>
@@ -3797,7 +3809,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "color": "#A5AFB5",
+                          "color": "#8B969E",
                           "fontSize": 12,
                           "marginBottom": 16,
                         },
@@ -3838,7 +3850,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       testID="discussion.reply-btn"
                       textAttributes={
                         Object {
-                          "color": "#A5AFB5",
+                          "color": "#8B969E",
+                          "fontWeight": "500",
                         }
                       }
                     >
@@ -3869,11 +3882,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                   "color": "#374A59",
                                 },
                                 Object {
-                                  "color": "#A5AFB5",
+                                  "color": "#8B969E",
+                                  "fontWeight": "500",
                                 },
                               ],
                               Object {
-                                "fontFamily": ".SFUIDisplay",
+                                "fontFamily": ".SFUIDisplay-medium",
                               },
                             ]
                           }
@@ -3903,7 +3917,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             },
                             Object {
                               "alignSelf": "center",
-                              "color": "#A5AFB5",
+                              "color": "#C7CDD1",
                               "paddingLeft": 10,
                               "paddingRight": 10,
                               "textAlign": "center",
@@ -3929,7 +3943,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       testID="discussion.edit-btn"
                       textAttributes={
                         Object {
-                          "color": "#A5AFB5",
+                          "color": "#8B969E",
+                          "fontWeight": "500",
                         }
                       }
                     >
@@ -3960,11 +3975,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                   "color": "#374A59",
                                 },
                                 Object {
-                                  "color": "#A5AFB5",
+                                  "color": "#8B969E",
+                                  "fontWeight": "500",
                                 },
                               ],
                               Object {
-                                "fontFamily": ".SFUIDisplay",
+                                "fontFamily": ".SFUIDisplay-medium",
                               },
                             ]
                           }
@@ -4057,7 +4073,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 "fontSize": 16,
                               },
                               Object {
-                                "color": "#A5AFB5",
+                                "color": "#8B969E",
                                 "fontSize": 12,
                                 "marginBottom": 16,
                               },
@@ -4098,7 +4114,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             testID="discussion.reply-btn"
                             textAttributes={
                               Object {
-                                "color": "#A5AFB5",
+                                "color": "#8B969E",
+                                "fontWeight": "500",
                               }
                             }
                           >
@@ -4129,11 +4146,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                         "color": "#374A59",
                                       },
                                       Object {
-                                        "color": "#A5AFB5",
+                                        "color": "#8B969E",
+                                        "fontWeight": "500",
                                       },
                                     ],
                                     Object {
-                                      "fontFamily": ".SFUIDisplay",
+                                      "fontFamily": ".SFUIDisplay-medium",
                                     },
                                   ]
                                 }
@@ -4163,7 +4181,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                   },
                                   Object {
                                     "alignSelf": "center",
-                                    "color": "#A5AFB5",
+                                    "color": "#C7CDD1",
                                     "paddingLeft": 10,
                                     "paddingRight": 10,
                                     "textAlign": "center",
@@ -4189,7 +4207,8 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                             testID="discussion.edit-btn"
                             textAttributes={
                               Object {
-                                "color": "#A5AFB5",
+                                "color": "#8B969E",
+                                "fontWeight": "500",
                               }
                             }
                           >
@@ -4220,11 +4239,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                         "color": "#374A59",
                                       },
                                       Object {
-                                        "color": "#A5AFB5",
+                                        "color": "#8B969E",
+                                        "fontWeight": "500",
                                       },
                                     ],
                                     Object {
-                                      "fontFamily": ".SFUIDisplay",
+                                      "fontFamily": ".SFUIDisplay-medium",
                                     },
                                   ]
                                 }
