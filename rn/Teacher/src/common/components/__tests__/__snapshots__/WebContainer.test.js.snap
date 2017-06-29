@@ -15,6 +15,7 @@ exports[`render html 1`] = `
   testID="web-container.view"
 >
   <WebView
+    contentInset={undefined}
     onMessage={[Function]}
     scrollEnabled={true}
     source={
@@ -93,6 +94,7 @@ exports[`updates height from js 1`] = `
   testID="web-container.view"
 >
   <WebView
+    contentInset={undefined}
     onMessage={[Function]}
     scrollEnabled={true}
     source={
@@ -163,6 +165,7 @@ exports[`updates height from js with scroll disabled 1`] = `
   testID="web-container.view"
 >
   <WebView
+    contentInset={undefined}
     onMessage={[Function]}
     scrollEnabled={false}
     source={

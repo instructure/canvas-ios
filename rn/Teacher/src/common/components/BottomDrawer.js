@@ -11,7 +11,14 @@ import {
 import Interactable from 'react-native-interactable'
 import Button from 'react-native-button'
 import i18n from 'format-message'
-import DrawerState from '../../modules/speedgrader/utils/drawer-state'
+import DrawerState, {
+  HANDLE_PADDING_BOTTOM,
+  HANDLE_INVISIBLE_TOP_PADDING,
+  HANDLE_HEIGHT,
+  HANDLE_BAR_HEIGHT,
+  HANDLE_PADDING_TOP,
+  HANDLE_VISIBLE_PADDING,
+} from '../../modules/speedgrader/utils/drawer-state'
 
 let { height, width } = Dimensions.get('window')
 
@@ -25,17 +32,6 @@ const snapPointStates = [
 const DrawerHandle = requireNativeComponent('DrawerHandleView')
 
 export type Snap = 0 | 1 | 2
-
-// just a little extra above the drawer for usability
-const HANDLE_INVISIBLE_TOP_PADDING = 16
-const HANDLE_VISIBLE_PADDING = 6
-const HANDLE_PADDING_TOP = HANDLE_INVISIBLE_TOP_PADDING + HANDLE_VISIBLE_PADDING
-const HANDLE_PADDING_BOTTOM = 52
-const HANDLE_BAR_HEIGHT = 4
-const HANDLE_HEIGHT = HANDLE_PADDING_TOP + HANDLE_PADDING_BOTTOM + HANDLE_BAR_HEIGHT
-// space the drawer will not enter when fully open
-const DRAWER_MIN_TOP_PADDING = 60 - HANDLE_INVISIBLE_TOP_PADDING
-
 const SNAP_DEFAULT_INDEX = 0
 
 type Props = {
@@ -117,12 +113,11 @@ export default class BottomDrawer extends Component<any, Props, State> {
   }
 
   getSnapPoints = () => {
-    // for testing...
-    const minHeight = Math.max(this.state.height, 140)
-    const closed = 0
-    const open = minHeight * 0.5 - HANDLE_PADDING_BOTTOM
-    const fullscreen = minHeight - HANDLE_HEIGHT - DRAWER_MIN_TOP_PADDING
-    return [{ y: closed }, { y: open }, { y: fullscreen }]
+    const drawerState = this.props.drawerState
+    return [0, 1, 2]
+      .map(snap => ({
+        y: drawerState.drawerSnapPoint(snap, this.state.height),
+      }))
   }
 
   render () {
@@ -188,7 +183,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     height: HANDLE_PADDING_BOTTOM,
-    backgroundColor: 'white',
   },
   drawerContent: {
     transform: [{ rotate: '180deg' }],

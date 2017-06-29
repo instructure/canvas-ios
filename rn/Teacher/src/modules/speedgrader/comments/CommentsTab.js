@@ -94,7 +94,11 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
             userID={this.props.userID}
           />
         }
-        <CommentInput makeComment={this.makeAComment} drawerState={this.props.drawerState} disabled={hasPending} />
+        <CommentInput
+          makeComment={this.makeAComment}
+          drawerState={this.props.drawerState}
+          disabled={hasPending}
+        />
       </View>
     )
   }

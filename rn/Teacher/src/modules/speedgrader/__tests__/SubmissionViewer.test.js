@@ -44,6 +44,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -69,6 +70,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -94,6 +96,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -111,6 +114,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -137,6 +141,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -154,6 +159,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -171,6 +177,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -195,6 +202,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -212,6 +220,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -240,6 +249,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -265,6 +275,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let component = renderer.create(
@@ -296,6 +307,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: true,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(
@@ -313,6 +325,7 @@ describe('SubmissionViewer', () => {
       isCurrentStudent: true,
       size: { width: 375, height: 667 },
       isModeratedGrading: false,
+      drawerInset: 0,
     }
 
     let tree = renderer.create(

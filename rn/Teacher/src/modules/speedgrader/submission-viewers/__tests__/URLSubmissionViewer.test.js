@@ -25,14 +25,14 @@ const submission = t.submission({
 
 test('url submission renders correctly', () => {
   const tree = renderer.create(
-    <URLSubmissionViewer submission={submission} />
+    <URLSubmissionViewer submission={submission} drawerInset={0} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
 test('on new url received, fetch image height if attachment', () => {
   const rendered = renderer.create(
-    <URLSubmissionViewer submission={submission} />
+    <URLSubmissionViewer submission={submission} drawerInset={0} />
   )
   const fetch = jest.fn()
   rendered.getInstance().fetchImageSize = fetch
@@ -52,7 +52,7 @@ test('on new url received, fetch image height if attachment', () => {
 
 test('on scrollview layout, the state is updated', () => {
   const rendered = renderer.create(
-    <URLSubmissionViewer submission={submission} />
+    <URLSubmissionViewer submission={submission} drawerInset={0} />
   )
 
   rendered.getInstance().onScrollViewLayout(
@@ -64,7 +64,7 @@ test('on scrollview layout, the state is updated', () => {
 
 test('loaded image sets aspect ration for rendered image view', () => {
   const rendered = renderer.create(
-    <URLSubmissionViewer submission={submission} />
+    <URLSubmissionViewer submission={submission} drawerInset={0} />
   )
 
   rendered.getInstance().imageSizeLoaded(800, 600)
@@ -81,7 +81,7 @@ test('changing the fetches the dimensions', () => {
   }
 
   const rendered = renderer.create(
-    <URLSubmissionViewer submission={submission} />
+    <URLSubmissionViewer submission={submission} drawerInset={0} />
   )
 
   setProps(rendered, { submission: newSub })
@@ -90,7 +90,7 @@ test('changing the fetches the dimensions', () => {
 
 test('tapping the url opens the link in Safari', () => {
   const tree = renderer.create(
-    <URLSubmissionViewer submission={submission} />
+    <URLSubmissionViewer submission={submission} drawerInset={0} />
   ).toJSON()
 
   const urlButton = explore(tree).selectByID('url-submission-viewer.url')

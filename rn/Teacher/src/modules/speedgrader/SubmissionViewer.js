@@ -24,6 +24,7 @@ type SubmissionViewerProps = {
   assignmentSubmissionTypes: Array<SubmissionType>,
   size: { width: number, height: number },
   isModeratedGrading: boolean,
+  drawerInset: number,
 }
 
 export default class SubmissionViewer extends Component {
@@ -72,7 +73,13 @@ export default class SubmissionViewer extends Component {
 
   renderFile (submission: Submission) {
     if (submission.attachments) {
-      return <CanvadocViewer config={{ previewPath: submission.attachments[this.props.selectedAttachmentIndex].preview_url }} style={styles.container} />
+      return <CanvadocViewer
+        config={{
+          previewPath: submission.attachments[this.props.selectedAttachmentIndex].preview_url,
+          drawerInset: this.props.drawerInset,
+        }}
+        style={[styles.container, { backgroundColor: '#A3ADB3' }]}
+      />
     }
 
     return null
@@ -83,14 +90,25 @@ export default class SubmissionViewer extends Component {
     if (submission.submission_type) {
       switch (submission.submission_type) {
         case 'online_url':
-          body = <URLSubmissionViewer submission={submission} />
+          body = <URLSubmissionViewer
+            submission={submission}
+            drawerInset={this.props.drawerInset}
+          />
           break
         case 'online_text_entry':
-          body = <WebContainer style={styles.webContainer} html={submission.body} />
+          body = <WebContainer
+            style={styles.webContainer}
+            html={submission.body}
+            contentInset={{ bottom: this.props.drawerInset }}
+          />
           break
         case 'online_quiz':
         case 'discussion_topic':
-          body = <WebView style={styles.webContainer} source={{ uri: submission.preview_url }} />
+          body = <WebView
+            style={styles.webContainer}
+            source={{ uri: submission.preview_url }}
+            contentInset={{ bottom: this.props.drawerInset }}
+          />
           break
         case 'media_recording':
           const width = this.props.size.width - global.style.defaultPadding * 2.0
@@ -146,6 +164,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     flex: 1,
+    backgroundColor: 'white',
   },
   webContainer: {
     flex: 1,

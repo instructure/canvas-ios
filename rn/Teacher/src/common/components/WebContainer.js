@@ -57,6 +57,7 @@ type Props = {
   html: string,
   style?: any,
   scrollEnabled: boolean,
+  contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
 }
 export default class WebContainer extends Component<any, Props, any> {
   constructor (props: Props) {
@@ -89,6 +90,7 @@ export default class WebContainer extends Component<any, Props, any> {
                 source={{ html: html }}
                 onMessage={this._onMessage}
                 scrollEnabled={scrollEnabled}
+                contentInset={this.props.contentInset}
             />
         }
       </View>

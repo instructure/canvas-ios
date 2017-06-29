@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react'
 import {
-  View,
   Text,
   Image,
   ScrollView,
@@ -15,6 +14,7 @@ import { LinkButton } from '../../../common/buttons'
 
 type Props = {
   submission: Submission,
+  drawerInset: number,
 }
 
 type State = {
@@ -102,7 +102,10 @@ export default class URLSubmissionViewer extends Component {
         </Paragraph>
 
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView
+        contentContainerStyle={{ flex: 1 }}
+        contentInset={{ bottom: this.props.drawerInset }}
+      >
         <Text
           testID='url-submission-viewer.explanation'
         >
@@ -117,7 +120,7 @@ export default class URLSubmissionViewer extends Component {
           { submission.url || '' }
         </LinkButton>
         {image}
-      </View>
+      </ScrollView>
     )
   }
 }

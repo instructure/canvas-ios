@@ -63,8 +63,8 @@ enum CanvadocsHighlightColor: String {
         return canvasAppConfiguration
     }
     
-    public class func teacherConfig() -> PSPDFConfiguration {
-        return teacherAppConfiguration
+    public class func teacherConfig(bottomInset: CGFloat) -> PSPDFConfiguration {
+        return teacherAppConfiguration(bottomInset: bottomInset)
     }
 }
 
@@ -94,7 +94,7 @@ public let canvasAppConfiguration: PSPDFConfiguration = {
     }
 }()
 
-public let teacherAppConfiguration: PSPDFConfiguration = {
+public func teacherAppConfiguration(bottomInset: CGFloat) -> PSPDFConfiguration {
     return PSPDFConfiguration { (builder) -> Void in
         builder.shouldAskForAnnotationUsername = false
         builder.pageTransition = PSPDFPageTransition.scrollContinuous
@@ -108,6 +108,7 @@ public let teacherAppConfiguration: PSPDFConfiguration = {
         builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink]
         builder.drawCreateMode = .separate
         builder.naturalDrawingAnnotationEnabled = false
+        builder.margin = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
         
         // This version of PSPDFKit is way buggy... so lets reenable all the options, while they work out the bugs.
         // As of now (6/13/17), they say the fixes are on the way in 1-2 weeks.
@@ -124,7 +125,7 @@ public let teacherAppConfiguration: PSPDFConfiguration = {
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
         builder.hudViewMode = .never
     }
-}()
+}
 
 
 

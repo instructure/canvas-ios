@@ -30,9 +30,23 @@ class NonHideableAnnotationToolbar: PSPDFAnnotationToolbar {
     }
 }
 
+// swift should just provide these...
+private func == <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
+    if case .none = lhs, case .none = rhs {
+        return true
+    }
+    
+    return lhs.map { left in rhs.map { right in left == right } ?? false } ?? false
+}
+
+private func != <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
+    return !(lhs == rhs)
+}
+
 class CanvadocView: UIView {
     
     weak var pdfViewController: PSPDFViewController?
+    var bottomInset = CGFloat(0.0)
     
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
@@ -41,9 +55,14 @@ class CanvadocView: UIView {
     
     var config: Dictionary<String, Any> = [:] {
         didSet {
-            removePDFViewFromView()
+            if let inset = config["drawerInset"] as? CGFloat {
+                bottomInset = inset
+            }
+            if config["previewPath"] as? String != oldValue["previewPath"] as? String {
+                removePDFViewFromView()
+                bringSubview(toFront: activityIndicator)
+            }
             setNeedsLayout()
-            bringSubview(toFront: activityIndicator)
         }
     }
     
@@ -78,6 +97,14 @@ class CanvadocView: UIView {
         activityIndicator.frame = CGRect(x: (bounds.width/2)-(activityIndicator.bounds.width/2), y: (bounds.height/2)-(activityIndicator.bounds.height/2), width: activityIndicator.bounds.width, height: activityIndicator.bounds.height)
         toolbar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 33.0)
         flexibleToolbarContainer.frame = bounds
+        
+        if let margin = pdfViewController?.configuration.margin, margin.bottom != self.bottomInset {
+            pdfViewController?.updateConfigurationWithoutReloading { config in
+                var updated = margin
+                updated.bottom = self.bottomInset
+                config.margin = updated
+            }
+        }
     }
     
     private func embed(pdfViewController: PSPDFViewController) {
@@ -135,7 +162,7 @@ class CanvadocView: UIView {
             components.path = (components.path as NSString).deletingLastPathComponent
             
             if let goodURL = components.url {
-                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration) { (pdfViewController, errors) in
+                CanvadocsPDFDocumentPresenter.loadPDFViewController(goodURL, with: teacherAppConfiguration(bottomInset: self.bottomInset)) { (pdfViewController, errors) in
                     if let pdfViewController = pdfViewController as? PSPDFViewController {
                         self.activityIndicator.stopAnimating()
                         self.embed(pdfViewController: pdfViewController)

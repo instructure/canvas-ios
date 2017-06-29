@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   PickerIOS,
   Animated,
+  Easing,
 } from 'react-native'
 import { Text } from '../../../common/text'
 import Images from '../../../images'
@@ -33,7 +34,7 @@ export class Header extends Component {
 
     this.state = {
       showingPicker: false,
-      easeAnimation: new Animated.Value(92),
+      easeAnimation: new Animated.Value(0),
     }
   }
 
@@ -41,7 +42,11 @@ export class Header extends Component {
     this.setState((previousState: State) => {
       Animated.timing(
         this.state.easeAnimation,
-        { toValue: previousState.showingPicker ? 92 : 284 }
+        {
+          toValue: previousState.showingPicker ? 0 : 1,
+          easing: previousState.showingPicker ? Easing.in(Easing.ease) : Easing.out(Easing.ease),
+          duration: 400,
+        }
       ).start()
 
       return {
@@ -89,19 +94,30 @@ export class Header extends Component {
             <Image source={Images.pickerArrow} style={[{ alignSelf: 'center' }, this.state.showingPicker && styles.arrowSelecting]} />
           </View>
         </TouchableHighlight>
-        <PickerIOS
-          selectedValue={index}
-          onValueChange={this.changeSelectedSubmission}
-          testID='header.picker'
-          accessible={false}>
-          {submission.submission_history.map((sub, idx) => (
-            <PickerItemIOS
-              key={sub.id}
-              value={idx}
-              label={formattedDueDate(new Date(sub.submitted_at || ''))}
-            />
-          ))}
-        </PickerIOS>
+        <Animated.View
+          style={{
+            height: this.state.easeAnimation.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 192],
+            }),
+            justifyContent: 'flex-end',
+            overflow: 'hidden',
+          }}
+        >
+          <PickerIOS
+            selectedValue={index}
+            onValueChange={this.changeSelectedSubmission}
+            testID='header.picker'
+            accessible={false}>
+            {submission.submission_history.map((sub, idx) => (
+              <PickerItemIOS
+                key={sub.id}
+                value={idx}
+                label={formattedDueDate(new Date(sub.submitted_at || ''))}
+              />
+            ))}
+          </PickerIOS>
+        </Animated.View>
       </View>
     } else {
       if (!submission) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
@@ -118,7 +134,12 @@ export class Header extends Component {
     let name = this.props.anonymous
       ? (sub.groupID ? i18n('Group') : i18n('Student'))
       : sub.name
-    return <Animated.View style={[styles.header, { height: this.state.easeAnimation }]}>
+    return <Animated.View style={[styles.header, {
+      height: this.state.easeAnimation.interpolate({
+        inputRange: [0, 1],
+        outputRange: [92, 284],
+      }),
+    }]}>
       <View style={styles.profileContainer}>
         <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={name} /></View>
         <View style={styles.nameContainer}>
@@ -143,6 +164,7 @@ export class Header extends Component {
 const styles = StyleSheet.create({
   header: {
     marginBottom: 18,
+    backgroundColor: 'white',
   },
   profileContainer: {
     flexDirection: 'row',

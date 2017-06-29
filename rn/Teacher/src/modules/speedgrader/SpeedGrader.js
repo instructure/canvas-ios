@@ -25,7 +25,7 @@ import type {
 } from '../submissions/list/submission-prop-types'
 import Screen from '../../routing/Screen'
 import Navigator from '../../routing/Navigator'
-import DrawerState from './utils/drawer-state'
+import DrawerState, { type DrawerPosition } from './utils/drawer-state'
 import { type SelectedSubmissionFilter } from '../submissions/SubmissionsHeader'
 import Tutorial from './components/Tutorial'
 import i18n from 'format-message'
@@ -36,6 +36,7 @@ type State = {
   size: { width: number, height: number },
   currentStudentID: string,
   filteredIDs?: Array<string>,
+  drawerInset: number,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
@@ -50,10 +51,20 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     super(props)
 
     const { height, width } = Dimensions.get('window')
+    const position = SpeedGrader.drawerState.currentSnap
     this.state = {
-      size: { width, height },
+      size: {
+        width: width + PAGE_GUTTER_HALF_WIDTH + PAGE_GUTTER_HALF_WIDTH,
+        height,
+      },
       currentStudentID: props.userID,
+      drawerInset: SpeedGrader.drawerState.drawerHeight(position, height),
     }
+    SpeedGrader.drawerState.registerDrawer(this)
+  }
+
+  snapTo = (position: DrawerPosition) => {
+    this.setState({ drawerInset: SpeedGrader.drawerState.drawerHeight(position, this.state.size.height) })
   }
 
   componentWillMount () {
@@ -77,6 +88,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   }
 
   componentWillUnmount () {
+    SpeedGrader.drawerState.unregisterDrawer(this)
     SpeedGrader.drawerState.snapTo(0, false)
   }
 
@@ -84,7 +96,6 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     const { width, height } = event.nativeEvent.layout
     if (height !== 0 && width !== this.state.width && height !== this.state.height) {
       this.setState({ size: { width, height } })
-      // TODO: scroll to current student
     }
   }
 
@@ -102,6 +113,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     const selectedAttachmentIndex = submissionEntity != null
       ? submissionEntity.selectedAttachmentIndex
       : null
+
     return <View style={[styles.page, this.state.size]}>
       <SubmissionGrader
         isCurrentStudent={this.state.currentStudentID === item.submission.userID}
@@ -117,6 +129,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         assignmentSubmissionTypes={this.props.assignmentSubmissionTypes}
         isModeratedGrading={this.props.isModeratedGrading}
         navigator={this.props.navigator}
+        drawerInset={this.state.drawerInset}
       />
     </View>
   }

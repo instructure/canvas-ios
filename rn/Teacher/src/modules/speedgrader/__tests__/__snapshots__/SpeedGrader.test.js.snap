@@ -71,7 +71,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               },
               Object {
                 "height": 1334,
-                "width": 750,
+                "width": 770,
               },
             ]
           }
@@ -81,7 +81,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             style={
               Object {
                 "flex": 1,
-                "paddingBottom": 52,
               }
             }
           >
@@ -102,6 +101,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
                   "flex": 1,
                   "paddingLeft": 16,
                   "paddingRight": 16,
@@ -233,7 +233,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
               },
               Object {
                 "height": 1334,
-                "width": 750,
+                "width": 770,
               },
             ]
           }
@@ -243,7 +243,6 @@ exports[`SpeedGrader renders with a filter 1`] = `
             style={
               Object {
                 "flex": 1,
-                "paddingBottom": 52,
               }
             }
           >
@@ -264,6 +263,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
                   "flex": 1,
                   "paddingLeft": 16,
                   "paddingRight": 16,
@@ -324,7 +324,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
               },
               Object {
                 "height": 1334,
-                "width": 750,
+                "width": 770,
               },
             ]
           }
@@ -334,7 +334,6 @@ exports[`SpeedGrader renders with a filter 1`] = `
             style={
               Object {
                 "flex": 1,
-                "paddingBottom": 52,
               }
             }
           >
@@ -355,6 +354,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             <View
               style={
                 Object {
+                  "backgroundColor": "white",
                   "flex": 1,
                   "paddingLeft": 16,
                   "paddingRight": 16,

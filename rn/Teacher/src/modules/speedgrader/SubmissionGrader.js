@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react'
 import {
-  Animated,
   View,
   SegmentedControlIOS,
   StyleSheet,
@@ -38,6 +37,7 @@ type SubmissionGraderProps = {
   drawerState: DrawerState,
   assignmentSubmissionTypes: Array<SubmissionType>,
   isModeratedGrading: boolean,
+  drawerInset: number,
 }
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
@@ -120,16 +120,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
 
   render () {
     const { width, height } = this.state
-    const maxHeight = Math.max(200, height)
     return (
-      <Animated.View
+      <View
         onLayout={this.onLayout}
-        style={[styles.speedGrader, {
-          paddingBottom: this.props.drawerState.deltaY.interpolate({
-            inputRange: [0, maxHeight * 0.5 - 52],
-            outputRange: [52, maxHeight * 0.5],
-          }),
-        }]}
+        style={styles.speedGrader}
       >
         <ToolTip ref={this.captureToolTip} />
         <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} assignmentID={this.props.assignmentID}/>
@@ -142,7 +136,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
         >
           {this.renderTab(this.state.selectedTabIndex)}
         </BottomDrawer>
-      </Animated.View>
+      </View>
     )
   }
 }

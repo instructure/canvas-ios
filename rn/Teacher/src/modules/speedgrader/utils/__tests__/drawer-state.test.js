@@ -2,6 +2,15 @@
 
 import DrawerState from '../drawer-state'
 import BottomDrawer from '../../../../common/components/BottomDrawer'
+import { Animated } from 'react-native'
+
+class MockAnimated extends Animated.Value {
+  mock = jest.fn()
+  setValue (v: number) {
+    super.setValue(v)
+    this.mock(v)
+  }
+}
 
 describe('DrawerState', () => {
   const state = new DrawerState()
@@ -21,13 +30,14 @@ describe('DrawerState', () => {
 
   it('snaps registered drawers', () => {
     drawer.snapTo = jest.fn()
-    state.deltaY.setValue = jest.fn()
+    const mockValue = new MockAnimated(0)
+    state.deltaY = mockValue
     state.snapTo(2, false)
     state.deltaY.setValue(120)
 
     state.didSnapTo(0)
     expect(state.currentSnap).toEqual(0)
-    expect(state.deltaY.setValue).toHaveBeenCalledWith(0)
+    expect(mockValue.mock).toHaveBeenCalledWith(0)
     expect(drawer.snapTo).toHaveBeenCalledWith(0, false)
   })
 
@@ -37,8 +47,8 @@ describe('DrawerState', () => {
   })
 
   it('registers comment progress', () => {
-    state.registerCommentProgress('1', 1234)
-    expect(state.commentProgress['1']).toEqual(1234)
+    state.registerCommentProgress('1', new Animated.Value(1234))
+    expect(state.commentProgress['1']._value).toEqual(1234)
   })
 
   it('unregisters comment progress', () => {

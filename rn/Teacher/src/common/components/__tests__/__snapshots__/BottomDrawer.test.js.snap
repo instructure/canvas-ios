@@ -5,7 +5,6 @@ exports[`BottomDrawer renders any children 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "white",
         "bottom": 0,
         "height": 52,
         "position": "absolute",

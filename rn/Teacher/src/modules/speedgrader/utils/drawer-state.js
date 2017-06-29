@@ -1,13 +1,39 @@
 // @flow
 
 import { Animated } from 'react-native'
-import BottomDrawer, { type Snap } from '../../../common/components/BottomDrawer'
+
+export type DrawerPosition = 0 | 1 | 2
+export type DrawerObserver = {
+  snapTo: (position: DrawerPosition) => void,
+}
+
+export const HANDLE_PADDING_BOTTOM: number = 52
+export const HANDLE_INVISIBLE_TOP_PADDING: number = 16
+export const HANDLE_VISIBLE_PADDING: number = 6
+export const HANDLE_PADDING_TOP: number = HANDLE_INVISIBLE_TOP_PADDING + HANDLE_VISIBLE_PADDING
+export const HANDLE_BAR_HEIGHT: number = 4
+export const HANDLE_HEIGHT: number = HANDLE_PADDING_TOP + HANDLE_PADDING_BOTTOM + HANDLE_BAR_HEIGHT
+// space the drawer will not enter when fully open
+const DRAWER_MIN_TOP_PADDING = 60 - HANDLE_INVISIBLE_TOP_PADDING
 
 export default class DrawerState {
-  currentSnap: Snap
+  currentSnap: DrawerPosition
   deltaY: Animated.Value
-  drawers: Array<BottomDrawer>
+  drawers: Array<DrawerObserver>
   commentProgress: { [string]: Animated.Value }
+
+  drawerHeight (position: DrawerPosition, screenHeight: number): number {
+    return this.drawerSnapPoint(position, screenHeight) + HANDLE_HEIGHT - HANDLE_INVISIBLE_TOP_PADDING
+  }
+
+  drawerSnapPoint (position: DrawerPosition, screenHeight: number): number {
+    const minHeight = Math.max(screenHeight, 140) // for tests
+    switch (position) {
+      case 1: return minHeight * 0.5 - HANDLE_PADDING_BOTTOM
+      case 2: return minHeight - HANDLE_HEIGHT - DRAWER_MIN_TOP_PADDING
+      default: return 0
+    }
+  }
 
   constructor () {
     this.currentSnap = 0
@@ -16,20 +42,20 @@ export default class DrawerState {
     this.commentProgress = {}
   }
 
-  registerDrawer (drawer: BottomDrawer) {
+  registerDrawer (drawer: DrawerObserver) {
     drawer.snapTo(this.currentSnap, false)
     this.drawers.push(drawer)
   }
 
-  unregisterDrawer (drawer: BottomDrawer) {
+  unregisterDrawer (drawer: DrawerObserver) {
     this.drawers = this.drawers.filter(registered => registered !== drawer)
   }
 
-  didSnapTo = (snap: Snap) => {
+  didSnapTo = (snap: DrawerPosition) => {
     this.snapTo(snap, false)
   }
 
-  snapTo = (snap: Snap, animated: boolean = true) => {
+  snapTo = (snap: DrawerPosition, animated: boolean = true) => {
     if (snap !== this.currentSnap) {
       this.currentSnap = snap
       this.drawers.forEach(drawer => drawer.snapTo(snap, animated))
