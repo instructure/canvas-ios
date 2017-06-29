@@ -48,6 +48,12 @@ describe('DiscussionReplies', () => {
     testRender(props)
   })
 
+  it('renders with no user', () => {
+    props.reply.user_id = ''
+    props.reply.editor_id = ''
+    testRender(props)
+  })
+
   it('renders more button with some deleted replies', () => {
     let a = template.discussionReply({ id: '2' })
     let b = template.discussionReply({ id: '3' })

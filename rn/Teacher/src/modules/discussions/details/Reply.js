@@ -43,24 +43,35 @@ export default class Reply extends Component <any, Props, any> {
     }
   }
 
+  _userFromParticipants (reply: DiscussionReply, participants: { [key: string]: UserDisplay }): UserDisplay {
+    let user = participants[reply.user_id ? reply.user_id : reply.editor_id]
+    if (!user) {
+      user = {
+        id: '0',
+        display_name: i18n('Unknown Author'),
+        avatar_image_url: '',
+        avatar_url: '',
+        short_name: '',
+        html_url: '',
+      }
+    }
+    return user
+  }
+
   render () {
     let { reply, depth, participants, courseID, discussionID, replyToEntry, onPressMoreReplies } = this.props
     participants = participants || {}
     let replies = reply.replies || []
     let childReplies = (depth > MAX_NODE_DEPTH - 1) ? [] : replies.map((r, i) => <Reply onPressMoreReplies={onPressMoreReplies} replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
-    let user = participants[reply.user_id]
-
-    if (reply.deleted) {
-      return (<View style={{ height: 0 }} />)
-    }
+    let user = this._userFromParticipants(reply, participants)
+    let message = reply.deleted ? `<i style="color:${colors.grey4}">${i18n('Deleted this reply.')}</i>` : reply.message
 
     return (
       <View style={style.parentRow}>
 
         <View style={style.colA}>
           {user &&
-          <Avatar height={AVATAR_SIZE} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name} style={style.avatar}/> }
-          {!user && <View style={style.avatar}/> }
+          <Avatar height={AVATAR_SIZE} key={user.id} avatarURL={user.avatar_image_url} userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}/> }
           <View style={style.threadLine}/>
         </View>
 
@@ -69,7 +80,7 @@ export default class Reply extends Component <any, Props, any> {
           <View style={style.rowA}>
             {user && <Text style={style.userName}>{user.display_name}</Text>}
             <Text style={style.date}>{formattedDate(reply.updated_at)}</Text>
-            <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={reply.message}/>
+            <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={message}/>
 
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>
@@ -81,7 +92,8 @@ export default class Reply extends Component <any, Props, any> {
                 </View>
               </TouchableHighlight>
             }
-            {this._renderButtons()}
+            {reply.deleted && <View style={{ marginTop: global.style.defaultPadding }}/>}
+            {(!reply.deleted) && this._renderButtons()}
             {this._renderMoreRepliesButton(depth, reply)}
           </View>
 
@@ -96,7 +108,6 @@ export default class Reply extends Component <any, Props, any> {
   _renderMoreRepliesButton = (depth: number, reply: DiscussionReply) => {
     let showMoreButton = depth === MAX_NODE_DEPTH
     let replies = reply.replies || []
-    replies = replies.filter(r => !r.deleted)
     if (!(showMoreButton && replies.length > 0)) { return (<View/>) }
     let repliesText = i18n(`{
           count, plural,

@@ -2464,23 +2464,23 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                     "rating_sum": null,
                                     "replies": Array [],
                                     "updated_at": "2017-05-23T17:12:04Z",
-                                    "user_id": "1",
+                                    "user_id": 1,
                                   },
                                 ],
                                 "updated_at": "2017-05-23T17:12:04Z",
-                                "user_id": "1",
+                                "user_id": 1,
                               },
                             ],
                             "updated_at": "2017-05-23T17:12:04Z",
-                            "user_id": "1",
+                            "user_id": 1,
                           },
                         ],
                         "updated_at": "2017-05-23T17:12:04Z",
-                        "user_id": "1",
+                        "user_id": 1,
                       },
                     ],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
+                    "user_id": 1,
                   },
                 ],
                 "require_initial_post": false,
@@ -2515,11 +2515,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
+                    "user_id": 1,
                   },
                 ],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
+                "user_id": 1,
               },
             ],
             "renderItem": [Function],
@@ -2654,23 +2654,23 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                     "rating_sum": null,
                                     "replies": Array [],
                                     "updated_at": "2017-05-23T17:12:04Z",
-                                    "user_id": "1",
+                                    "user_id": 1,
                                   },
                                 ],
                                 "updated_at": "2017-05-23T17:12:04Z",
-                                "user_id": "1",
+                                "user_id": 1,
                               },
                             ],
                             "updated_at": "2017-05-23T17:12:04Z",
-                            "user_id": "1",
+                            "user_id": 1,
                           },
                         ],
                         "updated_at": "2017-05-23T17:12:04Z",
-                        "user_id": "1",
+                        "user_id": 1,
                       },
                     ],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
+                    "user_id": 1,
                   },
                 ],
                 "require_initial_post": false,
@@ -2705,11 +2705,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": "1",
+                    "user_id": 1,
                   },
                 ],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": "1",
+                "user_id": 1,
               },
             ],
             "renderItem": [Function],
@@ -3763,16 +3763,45 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 }
               >
                 <View
+                  accessibilityLabel=""
                   style={
-                    Object {
-                      "backgroundColor": "#f5f5f5",
-                      "borderRadius": 12,
-                      "height": 24,
-                      "marginTop": 12.8,
-                      "width": 24,
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderColor": "#C7CDD1",
+                        "borderWidth": 0.5,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 12,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
                   }
-                />
+                >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontSize": 8,
+                        },
+                      ]
+                    }
+                  >
+                    ?
+                  </Text>
+                </View>
                 <View
                   style={
                     Object {
@@ -3798,6 +3827,32 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     }
                   }
                 >
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Unknown Author
+                  </Text>
                   <Text
                     accessible={true}
                     allowFontScaling={true}
@@ -4027,16 +4082,45 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     >
                       <View
+                        accessibilityLabel=""
                         style={
-                          Object {
-                            "backgroundColor": "#f5f5f5",
-                            "borderRadius": 12,
-                            "height": 24,
-                            "marginTop": 12.8,
-                            "width": 24,
-                          }
+                          Array [
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "white",
+                              "borderColor": "#C7CDD1",
+                              "borderWidth": 0.5,
+                              "justifyContent": "center",
+                              "overflow": "hidden",
+                            },
+                            Object {
+                              "borderRadius": 12,
+                              "height": 24,
+                              "width": 24,
+                            },
+                          ]
                         }
-                      />
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontSize": 8,
+                              },
+                            ]
+                          }
+                        >
+                          ?
+                        </Text>
+                      </View>
                       <View
                         style={
                           Object {
@@ -4062,6 +4146,32 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           }
                         }
                       >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontSize": 14,
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Unknown Author
+                        </Text>
                         <Text
                           accessible={true}
                           allowFontScaling={true}
