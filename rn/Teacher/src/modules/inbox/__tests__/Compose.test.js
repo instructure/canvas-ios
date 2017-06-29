@@ -179,7 +179,7 @@ describe('Compose', () => {
       recipients: ['1'],
       body: 'new conversation',
       subject: 'new conversation subject',
-      group_conversation: false,
+      group_conversation: true,
     })
   })
 
@@ -191,7 +191,7 @@ describe('Compose', () => {
       ...defaultProps,
       recipients: [u1],
       subject: 'new conversation subject',
-      onlySendIndividualMessages: false,
+      onlySendIndividualMessages: true,
       conversationID: '1',
     }
     const screen = renderer.create(
