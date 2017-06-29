@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react'
-import { ActionSheetIOS } from 'react-native'
+import { ActionSheetIOS, AlertIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 
 import { DiscussionsList, mapStateToProps, type Props } from '../DiscussionsList'
@@ -33,6 +33,7 @@ describe('DiscussionsList', () => {
       courseColor: null,
       updateDiscussion: jest.fn(),
       refreshDiscussions: jest.fn(),
+      deleteDiscussion: jest.fn(),
       courseID: '1',
     }
   })
@@ -131,6 +132,31 @@ describe('DiscussionsList', () => {
     const input = template.discussion({ pinned: false, locked: true })
     const expected = template.discussion({ pinned: true, locked: false })
     testActionSheet(input, expected, 3, false)
+  })
+
+  it('Will ask to confirm delete discussion', () => {
+    const input = template.discussion({ pinned: false, locked: true })
+    let list = render(props).getInstance()
+    list._confirmDeleteDiscussion = jest.fn()
+    list._onToggleDiscussionGrouping(input)
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions.mock.calls[0][1](2)
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalled()
+    expect(list._confirmDeleteDiscussion).toHaveBeenCalledWith(input)
+  })
+
+  it('deletes discussion onConfirmation', () => {
+    const one = template.discussion({ id: '1', title: 'discussion 1' })
+    props.discussions = [one]
+    props.deleteDiscussion = jest.fn()
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
+    // $FlowFixMe
+    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    props.courseID = '1'
+    const kabob: any = explore(render(props).toJSON()).selectByID(`discussion.kabob-${props.discussions[0].id}`)
+    kabob.props.onPress()
+    expect(props.deleteDiscussion).toHaveBeenCalledWith('1', '1')
   })
 
   it('navigates to new discussion form', () => {

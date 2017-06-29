@@ -9,6 +9,7 @@ import {
   StyleSheet,
   SectionList,
   ActionSheetIOS,
+  AlertIOS,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -21,11 +22,12 @@ import Screen from '../../../routing/Screen'
 import Images from '../../../images'
 
 const { refreshDiscussions } = ListActions
-const { updateDiscussion } = EditActions
+const { updateDiscussion, deleteDiscussion } = EditActions
 
 const Actions = {
   refreshDiscussions,
   updateDiscussion,
+  deleteDiscussion,
 }
 
 type OwnProps = {
@@ -87,7 +89,10 @@ export class DiscussionsList extends Component<any, Props, any> {
       destructiveButtonIndex: options.length - 2,
     }, (button) => {
       if (button === (options.length - 1)) return
-      if (button === (options.length - 2)) return
+      if (button === (options.length - 2)) {
+        this._confirmDeleteDiscussion(discussion)
+        return
+      }
       let updatedDiscussion = Object.assign({}, discussion)
 
       if (button === 0) { updatedDiscussion.pinned = !updatedDiscussion.pinned; updatedDiscussion.locked = false }
@@ -174,6 +179,21 @@ export class DiscussionsList extends Component<any, Props, any> {
 
   addDiscussion = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/new`, { modal: true, modalPresentationStyle: 'formsheet' })
+  }
+
+  _confirmDeleteDiscussion = (discussion: Discussion) => {
+    AlertIOS.alert(
+      i18n('Are you sure you want to delete this discussion?'),
+      null,
+      [
+        { text: i18n('Cancel'), style: 'cancel' },
+        { text: i18n('OK'), onPress: () => { this._deleteDiscussion(discussion) } },
+      ],
+    )
+  }
+
+  _deleteDiscussion = (discussion: Discussion) => {
+    this.props.deleteDiscussion(this.props.courseID, discussion.id)
   }
 }
 

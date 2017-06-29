@@ -25,7 +25,6 @@ export let Actions: (typeof canvas) => any = (api) => ({
     return {
       promise: api.deleteDiscussion(courseID, discussionID),
       discussionID,
-      handlesError: true,
       courseID,
     }
   }),

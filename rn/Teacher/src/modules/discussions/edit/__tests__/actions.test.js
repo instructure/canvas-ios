@@ -119,7 +119,6 @@ describe('delete discussion', () => {
         pending: true,
         payload: {
           discussionID: '43',
-          handlesError: true,
           courseID: '21',
         },
       },
@@ -128,7 +127,6 @@ describe('delete discussion', () => {
         payload: {
           result: { data: discussion },
           discussionID: '43',
-          handlesError: true,
           courseID: '21',
         },
       },
