@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageSubmissionViewer renders 1`] = `
+<RCTScrollView
+  maximumZoomScale={2}
+  minimumZoomScale={0.5}
+  showsHorizontalScrollIndicator={true}
+  showsVerticalScrollIndicator={true}
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View>
+    <Image
+      resizeMode="contain"
+      source={
+        Object {
+          "uri": "https://fillmurray/200/200",
+        }
+      }
+      style={null}
+    />
+  </View>
+</RCTScrollView>
+`;

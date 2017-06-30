@@ -15,6 +15,7 @@ import WebContainer from '../../common/components/WebContainer'
 import Video from '../../common/components/Video'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 import CanvadocViewer from './components/CanvadocViewer'
+import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
 
 type SubmissionViewerProps = {
   isCurrentStudent: boolean,
@@ -73,13 +74,18 @@ export default class SubmissionViewer extends Component {
 
   renderFile (submission: Submission) {
     if (submission.attachments) {
-      return <CanvadocViewer
-        config={{
-          previewPath: submission.attachments[this.props.selectedAttachmentIndex].preview_url,
-          drawerInset: this.props.drawerInset,
-        }}
-        style={[styles.container, { backgroundColor: '#A3ADB3' }]}
-      />
+      let attachment = submission.attachments[this.props.selectedAttachmentIndex]
+      if (attachment.mime_class === 'image') {
+        return <ImageSubmissionViewer attachment={attachment} {...this.props.size} />
+      } else {
+        return <CanvadocViewer
+          config={{
+            previewPath: attachment.preview_url,
+            drawerInset: this.props.drawerInset,
+          }}
+          style={[styles.container, { backgroundColor: '#A3ADB3' }]}
+        />
+      }
     }
 
     return null

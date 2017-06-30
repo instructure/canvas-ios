@@ -4,6 +4,7 @@ import React from 'react'
 import SubmissionViewer from '../SubmissionViewer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
+import explore from '../../../../test/helpers/explore'
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
@@ -257,6 +258,35 @@ describe('SubmissionViewer', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders an image using the ImageSubmissionViewer', () => {
+    let sub = {
+      ...defaultSub,
+      submission: {
+        submission_type: 'online_text_entry',
+        body: '<p>Form Voltron</p>',
+        attachments: [
+          { mime_class: 'image', url: 'https://fillmurray.com/200/200' },
+        ],
+      },
+    }
+    let props = {
+      selectedIndex: null,
+      selectedAttachmentIndex: 0,
+      assignmentSubmissionTypes: ['online_upload'],
+      submissionProps: sub,
+      isCurrentStudent: true,
+      size: { width: 375, height: 667 },
+      isModeratedGrading: false,
+      drawerInset: 0,
+    }
+
+    let tree = renderer.create(
+      <SubmissionViewer {...props} />
+    ).toJSON()
+
+    expect(explore(tree).selectByType('ImageSubmissionViewer')).not.toBeNull()
   })
 
   it('renders a media submission', () => {
