@@ -105,6 +105,7 @@
 		4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C81ED4E9390054D333 /* VideoContainerManager.m */; };
 		4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C91ED4E9390054D333 /* VideoContainerView.swift */; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
+		49D86BD21F059E6B008951CE /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D86BD11F059E6B008951CE /* A11yGroupManager.m */; };
 		51FAC2FAFBA2AE0C3653F5CF /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13EF8804255A313109F1 /* ConversationMessage.swift */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6098E7BDB694A6ACEF131151 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70862A515621F745F8148C6 /* DiscussionEntry.swift */; };
@@ -605,6 +606,7 @@
 		4994B2C81ED4E9390054D333 /* VideoContainerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
 		4994B2C91ED4E9390054D333 /* VideoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
+		49D86BD11F059E6B008951CE /* A11yGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				49D86BAE1F059E42008951CE /* A11y */,
 				4994B2A91ED4E9230054D333 /* Video */,
 				61B7F5C11ED5EABA00EC6865 /* PSPDFKit */,
 				61BD856A1EB290C0005A09A5 /* Login */,
@@ -1091,6 +1094,14 @@
 				4994B2C91ED4E9390054D333 /* VideoContainerView.swift */,
 			);
 			path = Video;
+			sourceTree = "<group>";
+		};
+		49D86BAE1F059E42008951CE /* A11y */ = {
+			isa = PBXGroup;
+			children = (
+				49D86BD11F059E6B008951CE /* A11yGroupManager.m */,
+			);
+			path = A11y;
 			sourceTree = "<group>";
 		};
 		56FD6751A8BF861246980476 /* CourseBrowserPageTest */ = {
@@ -1912,6 +1923,7 @@
 				4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
+				49D86BD21F059E6B008951CE /* A11yGroupManager.m in Sources */,
 				3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */,
 				61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */,
 				619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */,

@@ -163,7 +163,7 @@ export class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    marginBottom: 18,
+    marginBottom: 1,
     backgroundColor: 'white',
   },
   profileContainer: {

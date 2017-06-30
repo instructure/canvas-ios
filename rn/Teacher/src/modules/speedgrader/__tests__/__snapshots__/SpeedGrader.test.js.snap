@@ -76,7 +76,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             ]
           }
         >
-          <View
+          <A11yGroup
             onLayout={[Function]}
             style={
               Object {
@@ -105,6 +105,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "flex": 1,
                   "paddingLeft": 16,
                   "paddingRight": 16,
+                  "paddingTop": 16,
                 }
               }
             >
@@ -146,7 +147,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
+          </A11yGroup>
         </View>
       </View>
     </View>
@@ -238,7 +239,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             ]
           }
         >
-          <View
+          <A11yGroup
             onLayout={[Function]}
             style={
               Object {
@@ -267,6 +268,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "flex": 1,
                   "paddingLeft": 16,
                   "paddingRight": 16,
+                  "paddingTop": 16,
                 }
               }
             >
@@ -308,7 +310,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
+          </A11yGroup>
         </View>
       </View>
       <View
@@ -329,7 +331,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             ]
           }
         >
-          <View
+          <A11yGroup
             onLayout={[Function]}
             style={
               Object {
@@ -358,6 +360,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "flex": 1,
                   "paddingLeft": 16,
                   "paddingRight": 16,
+                  "paddingTop": 16,
                 }
               }
             >
@@ -399,7 +402,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                 </Text>
               </View>
             </View>
-          </View>
+          </A11yGroup>
         </View>
       </View>
     </View>

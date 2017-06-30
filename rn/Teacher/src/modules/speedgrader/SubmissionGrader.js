@@ -15,6 +15,7 @@ import CommentsTab from './comments/CommentsTab'
 import DrawerState from './utils/drawer-state'
 import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
+import A11yGroup from '../../common/components/A11yGroup'
 
 let { width, height } = Dimensions.get('window')
 
@@ -121,7 +122,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   render () {
     const { width, height } = this.state
     return (
-      <View
+      <A11yGroup
         onLayout={this.onLayout}
         style={styles.speedGrader}
       >
@@ -136,7 +137,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
         >
           {this.renderTab(this.state.selectedTabIndex)}
         </BottomDrawer>
-      </View>
+      </A11yGroup>
     )
   }
 }
