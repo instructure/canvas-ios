@@ -18,7 +18,7 @@
 RCT_EXPORT_MODULE()
 
 - (UIView *)view {
-    UIView *a11yGroup = [UIView new];
+    RCTView *a11yGroup = [RCTView new];
     a11yGroup.shouldGroupAccessibilityChildren = YES;
     return a11yGroup;
 }
