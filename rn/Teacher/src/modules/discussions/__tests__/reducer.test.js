@@ -501,10 +501,51 @@ describe('refreshDiscussionEntries', () => {
     })
   })
 
-  it('handles resolved with pre-existing deleted entries but no existing record in new entries', () => {
+  it('handles resolved with pending added entries that was just moved to cached api response (out of new entries)', () => {
     let participantA = template.userDisplay({ id: '1', display_name: 'A' })
     let participantB = template.userDisplay({ id: '2', display_name: 'B' })
     let reply = template.discussionReply({ id: 1 })
+    let view = template.discussionView({ view: [reply], participants: [participantA, participantB], new_entries: [] })
+
+    let stateDiscussion = template.discussion({})
+    let expected = template.discussion({})
+
+    const resolved = {
+      type: refreshDiscussionEntries.toString(),
+      payload: {
+        result: [
+          {
+            data: view,
+          },
+          {
+            data: stateDiscussion,
+          },
+        ],
+        courseID: '2',
+        discussionID: '1',
+      },
+    }
+
+    let pendingReply = template.discussionReply({ id: 1 })
+    let pending = { [pendingReply.id]: { data: pendingReply, localIndexPath: [] } }
+
+    expected.participants = { [participantA.id]: participantA, [participantB.id]: participantB }
+    expected.replies = [pendingReply]
+
+    expect(discussions({ [stateDiscussion.id]: { data: stateDiscussion, pendingReplies: pending } }, resolved)).toEqual({
+      '1': {
+        data: expected,
+        pending: 0,
+        error: null,
+        pendingReplies: {},
+      },
+    })
+  })
+
+  it('handles resolved with pre-existing deleted entries but no existing record in new entries', () => {
+    let participantA = template.userDisplay({ id: '1', display_name: 'A' })
+    let participantB = template.userDisplay({ id: '2', display_name: 'B' })
+    let reply = template.discussionReply({ id: 1, deleted: true })
     let view = template.discussionView({ view: [reply], participants: [participantA, participantB] })
     let stateDiscussion = template.discussion({})
     let expected = template.discussion({})

@@ -188,18 +188,21 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       let pendingReplies = { ...(entity.pendingReplies || {}) }
 
       let pendingReplyKeys = Object.keys(pendingReplies)
+      let pendingRepliesNeedingToBeRemoved = []
       for (let i = 0; i < pendingReplyKeys.length; i++) {
         let reply = pendingReplies[pendingReplyKeys[i]]
-        if (reply && reply.data.deleted) {
-          replies = deleteReply(reply.localIndexPath, { replies: replies })
-        } else {
-          replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, Boolean(!reply.data.editor_id), discussion.data.discussion_type)
-        }
-
         if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
-          delete pendingReplies[pendingReplyKeys[i]]
+          pendingRepliesNeedingToBeRemoved.push(pendingReplyKeys[i])
+        } else {
+          if (reply && reply.data.deleted) {
+            replies = deleteReply(reply.localIndexPath, { replies: replies })
+          } else {
+            replies = addOrUpdateReply(reply.data, reply.localIndexPath, { replies }, Boolean(!reply.data.editor_id), discussion.data.discussion_type)
+          }
         }
       }
+
+      pendingRepliesNeedingToBeRemoved.forEach((r) => { delete pendingReplies[r] })
 
       entity.data = { ...discussion.data, replies: replies, participants: participantsAsMap }
       entity.pendingReplies = pendingReplies
