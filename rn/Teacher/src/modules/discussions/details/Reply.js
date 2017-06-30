@@ -111,15 +111,10 @@ export default class Reply extends Component <any, Props, any> {
     let showMoreButton = depth === maxReplyNodeDepth
     let replies = reply.replies || []
     if (!(showMoreButton && replies.length > 0)) { return (<View/>) }
-    let repliesText = i18n(`{
-          count, plural,
-          one {# Reply}
-          other {# Replies}
-        }`
-        , { count: replies.length })
+    let repliesText = i18n('View more replies')
     return (
       <View style={style.moreContainer}>
-        <Button containerStyle={style.moreButtonContainer} style={style.moreButton} onPress={this._actionMore} testID='discussion.more-replies'>
+        <Button containerStyle={style.moreButtonContainer} style={style.moreButton} onPress={this._actionMore} accessibilityLabel={repliesText} testID='discussion.more-replies'>
           {repliesText}
         </Button>
       </View>

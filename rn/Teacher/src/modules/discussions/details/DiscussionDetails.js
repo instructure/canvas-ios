@@ -189,13 +189,18 @@ export class DiscussionDetails extends Component<any, Props, any> {
     if (this.state.rootNodePath.length !== 0) {
       return (
         <AssignmentSection style={{ paddingBottom: 0 }}>
-              <TouchableHighlight testID={`discussion.popToLastDiscussionList`} onPress={this._onPopReplyRootPath} underlayColor='white'>
-                  <View style={style.popReplyStackContainer}>
-                    <Image source={Images.backIcon} style={style.popReplyStackIcon} />
-                    <Text style={{ paddingLeft: 5, color: colors.link }}>{i18n('Back')}</Text>
-                  </View>
-            </TouchableHighlight>
-            </AssignmentSection>
+          <TouchableHighlight testID={`discussion.popToLastDiscussionList`}
+                              accessibilityLabel={i18n('Back to replies')}
+                              accessible={true}
+                              accessibilityTraits={['button']}
+                              onPress={this._onPopReplyRootPath}
+                              underlayColor='white'>
+            <View style={style.popReplyStackContainer}>
+              <Image source={Images.backIcon} style={style.popReplyStackIcon}/>
+              <Text style={{ paddingLeft: 5, color: colors.link }}>{i18n('Back')}</Text>
+            </View>
+          </TouchableHighlight>
+        </AssignmentSection>
       )
     } else return (<View/>)
   }

@@ -3999,6 +3999,13 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       }
                     />
                     <TouchableHighlight
+                      accessibilityLabel="Back to replies"
+                      accessibilityTraits={
+                        Array [
+                          "button",
+                        ]
+                      }
+                      accessible={true}
                       onPress={[Function]}
                       testID="discussion.popToLastDiscussionList"
                       underlayColor="white"
