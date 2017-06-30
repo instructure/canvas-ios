@@ -17,6 +17,7 @@ struct PropKeys {
     static let statusBarUpdateAnimation = "statusBarUpdateAnimation"
     static let automaticallyAdjustsScrollViewInsets = "automaticallyAdjustsScrollViewInsets"
     static let supportedOrientations = "supportedOrientations"
+    static let noRotationInVerticallyCompact = "noRotationInVerticallyCompact"
     
     // Nav bar stuff
     static let navBarStyle = "navBarStyle"

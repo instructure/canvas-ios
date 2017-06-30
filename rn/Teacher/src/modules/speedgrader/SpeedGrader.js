@@ -192,6 +192,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       <Screen
         navBarHidden={true}
         statusBarHidden={true}
+        noRotationInVerticallyCompact={true}
       >
         <View>
           { !!this.state.filteredIDs && this.renderBody() }

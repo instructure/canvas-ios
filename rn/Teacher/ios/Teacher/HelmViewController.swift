@@ -151,8 +151,15 @@ final class HelmViewController: UIViewController, HelmScreen {
     
     // MARK: - Orientation
     
+    override var shouldAutorotate: Bool {
+        return super.shouldAutorotate
+    }
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        // TODO: Finish me, check screen config
+        if let cantRotate = screenConfig[PropKeys.noRotationInVerticallyCompact] as? Bool, cantRotate, (self.traitCollection.verticalSizeClass == .compact || self.traitCollection.horizontalSizeClass == .compact) {
+            return .portrait
+        }
+        
         return super.supportedInterfaceOrientations
     }
     
