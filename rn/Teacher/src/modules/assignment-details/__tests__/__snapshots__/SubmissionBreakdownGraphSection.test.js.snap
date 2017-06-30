@@ -15,6 +15,7 @@ exports[`render 0 submissions 1`] = `
   }
 >
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -95,6 +96,7 @@ exports[`render 0 submissions 1`] = `
     </View>
   </TouchableOpacity>
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -175,6 +177,7 @@ exports[`render 0 submissions 1`] = `
     </View>
   </TouchableOpacity>
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -272,6 +275,7 @@ exports[`render 1`] = `
   }
 >
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -352,6 +356,7 @@ exports[`render 1`] = `
     </View>
   </TouchableOpacity>
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -432,6 +437,7 @@ exports[`render 1`] = `
     </View>
   </TouchableOpacity>
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -567,6 +573,7 @@ exports[`render multiple data points  1`] = `
   }
 >
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -647,6 +654,7 @@ exports[`render multiple data points  1`] = `
     </View>
   </TouchableOpacity>
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -727,6 +735,7 @@ exports[`render multiple data points  1`] = `
     </View>
   </TouchableOpacity>
   <TouchableOpacity
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {

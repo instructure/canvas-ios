@@ -69,7 +69,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
       <View style={[style.container, this.props.style]}>
         {data.map((item, index) =>
           <TouchableOpacity underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
-                              testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) }>
+                              testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
             <View>
               <SubmissionGraph
                 label={labels[index]}

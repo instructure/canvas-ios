@@ -17,6 +17,7 @@ import PublishedIcon from './components/PublishedIcon'
 import AssignmentDates from './components/AssignmentDates'
 import colors from '../../common/colors'
 import { RefreshableScrollView } from '../../common/components/RefreshableList'
+import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
 import Images from '../../images'
@@ -25,6 +26,7 @@ import Screen from '../../routing/Screen'
 import {
   View,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native'
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
@@ -85,13 +87,29 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           </AssignmentSection>
 
           { global.V02 &&
-            <AssignmentSection
-              title={sectionTitleSubmissions}
-              testID='assignment-details.assignment-section.submissions'
-              onPress={() => this.viewSubmissions()}
-              showDisclosureIndicator>
-              <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
-            </AssignmentSection>
+            <View style={style.section}>
+              <Text style={style.header}>{sectionTitleSubmissions}</Text>
+              <View style={style.submissions}>
+                <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
+                  <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+                </View>
+                <TouchableOpacity
+                  testID='assignment-details.assignment-section.submissions'
+                  accessibilityLabel={i18n('View all submissions')}
+                  accessibilityTraits='button'
+                  onPress={() => this.viewSubmissions()}
+                  style={{
+                    justifyContent: 'center',
+                    width: 44,
+                    alignItems: 'flex-end',
+                    marginTop: 8,
+                    marginBottom: 8,
+                  }}
+                >
+                  <DisclosureIndicator />
+                </TouchableOpacity>
+              </View>
+            </View>
           }
 
           <View style={style.section}>
@@ -168,8 +186,11 @@ const style = StyleSheet.create({
   publishedIcon: {
     marginLeft: 14,
   },
+  submissions: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   submission: {
-    marginRight: 40,
     marginTop: global.style.defaultPadding / 2,
   },
   points: {
