@@ -30,6 +30,7 @@ export type Props = {
   myPath: number[],
   navigator: Navigator,
   maxReplyNodeDepth: number,
+  isRootReply?: boolean,
 }
 
 export default class Reply extends Component <any, Props, any> {
@@ -68,7 +69,6 @@ export default class Reply extends Component <any, Props, any> {
 
     return (
       <View style={style.parentRow}>
-
         <View style={style.colA}>
           {user &&
           <Avatar height={AVATAR_SIZE} key={user.id} avatarURL={user.avatar_image_url} userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}/> }
@@ -76,9 +76,15 @@ export default class Reply extends Component <any, Props, any> {
         </View>
 
         <View style={style.colB}>
-
           <View style={style.rowA}>
-            {user && <Text style={style.userName}>{user.display_name}</Text>}
+            {user &&
+              <Text
+                style={style.userName}
+                accessibilityTraits={this.props.isRootReply ? 'header' : 'none'}
+              >
+                {user.display_name}
+              </Text>
+            }
             <Text style={style.date}>{formattedDate(reply.updated_at)}</Text>
             <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={message}/>
 

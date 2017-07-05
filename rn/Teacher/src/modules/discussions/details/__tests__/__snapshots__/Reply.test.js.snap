@@ -89,6 +89,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
       }
     >
       <Text
+        accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
         disabled={false}
@@ -409,6 +410,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
             }
           >
             <Text
+              accessibilityTraits="none"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -737,6 +739,7 @@ exports[`DiscussionReplies renders 1`] = `
       }
     >
       <Text
+        accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
         disabled={false}
@@ -1057,6 +1060,7 @@ exports[`DiscussionReplies renders 1`] = `
             }
           >
             <Text
+              accessibilityTraits="none"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -1385,6 +1389,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
       }
     >
       <Text
+        accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
         disabled={false}
@@ -1551,6 +1556,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
             }
           >
             <Text
+              accessibilityTraits="none"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -1879,6 +1885,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
       }
     >
       <Text
+        accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
         disabled={false}
@@ -2204,6 +2211,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
       }
     >
       <Text
+        accessibilityTraits="none"
         accessible={true}
         allowFontScaling={true}
         disabled={false}
@@ -2524,6 +2532,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
             }
           >
             <Text
+              accessibilityTraits="none"
               accessible={true}
               allowFontScaling={true}
               disabled={false}

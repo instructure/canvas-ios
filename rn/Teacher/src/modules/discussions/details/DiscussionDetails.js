@@ -224,6 +224,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
           myPath={[...path]}
           participants={participants}
           onPressMoreReplies={this._onPressMoreReplies}
+          isRootReply
         />
       </View>
     )

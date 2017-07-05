@@ -1275,6 +1275,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   }
                 >
                   <Text
+                    accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
                     disabled={false}
@@ -4157,6 +4158,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   }
                 >
                   <Text
+                    accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
                     disabled={false}
@@ -4477,6 +4479,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         }
                       >
                         <Text
+                          accessibilityTraits="none"
                           accessible={true}
                           allowFontScaling={true}
                           disabled={false}
@@ -6074,6 +6077,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   }
                 >
                   <Text
+                    accessibilityTraits="header"
                     accessible={true}
                     allowFontScaling={true}
                     disabled={false}
