@@ -77,10 +77,16 @@ class TeacherTest: XCTestCase {
 
   override func setUp() {
     super.setUp()
+    BuddyBuildSDK.startUITests()
     CanvasKeymaster.the().resetKeymasterForTesting()
     NativeLoginManager.shared().injectLoginInformation(nil)
     GREYTestHelper.enableFastAnimation()
     domainPickerPage.assertPageObjects()
+  }
+
+  override func tearDown() {
+    BuddyBuildSDK.stopUITests()
+    super.tearDown()
   }
 
   // logIn(self)

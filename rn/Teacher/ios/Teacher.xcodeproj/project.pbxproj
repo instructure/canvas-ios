@@ -197,6 +197,14 @@
 		F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */; };
 		F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */; };
 		F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */; };
+		F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
+		F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
+		F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
+		F99A8E8C1F06C0FA0032449B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE001E735CB50096592C /* CoreMedia.framework */; };
+		F99A8E8D1F06C1010032449B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE021E735CBB0096592C /* AVFoundation.framework */; };
+		F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE041E735CC00096592C /* CoreVideo.framework */; };
+		F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
+		F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */; };
 		FBD9009A45B87D7B6929CA7C /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0EEB8EFFD2C55D1AA39353 /* QuizSubmission.swift */; };
 		FE4948A645404B267D1C81A5 /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
@@ -704,6 +712,7 @@
 		F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeacherTest+FormattedString.swift"; sourceTree = "<group>"; };
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
 		F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPage.swift; sourceTree = "<group>"; };
+		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 		FA10A579F7F9ADB535EC6CAD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -770,6 +779,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */,
+				F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */,
+				F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */,
+				F99A8E8D1F06C1010032449B /* AVFoundation.framework in Frameworks */,
+				F99A8E8C1F06C0FA0032449B /* CoreMedia.framework in Frameworks */,
+				F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */,
+				F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */,
+				F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */,
 				61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */,
 				61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */,
 			);
@@ -1144,6 +1161,7 @@
 				61B5365C1E7749F5000FEABB /* Info.plist */,
 				3B379781808A96719F53B283 /* data */,
 				A8E2B112896154A95919D6FF /* models */,
+				F99A8E911F06C1450032449B /* bridge.h */,
 			);
 			path = TeacherUITests;
 			sourceTree = "<group>";
@@ -2229,6 +2247,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = TeacherUITests/bridge.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
@@ -2253,6 +2272,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = TeacherUITests/bridge.h;
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Teacher.app/Teacher";
 			};
