@@ -20,6 +20,8 @@ class RootTabBarController: UITabBarController {
             UITabBar.appearance().tintColor = branding.primaryBrandColor
             UITabBar.appearance().barTintColor = UIColor.white
         }
+        
+        self.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -77,5 +79,14 @@ class RootTabBarController: UITabBarController {
         stagingVC.tabBarItem = UITabBarItem(title: "Staging", image: UIImage(named: "link-solid"), selectedImage: nil)
         stagingVC.tabBarItem.accessibilityIdentifier = "tab-bar.staging-btn"
         return HelmNavigationController(rootViewController: stagingVC)
+    }
+}
+
+// UIKit has a bug, when using the custom transitioning apis. Ash Furrow filed this bug back in iOS 8 days:
+// http://openradar.appspot.com/radar?id=5320103646199808
+// This fixes that, yay!
+extension RootTabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, animationControllerForTransitionFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return NoAnimatedTransitioning()
     }
 }

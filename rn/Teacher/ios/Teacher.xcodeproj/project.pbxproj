@@ -109,6 +109,7 @@
 		51FAC2FAFBA2AE0C3653F5CF /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13EF8804255A313109F1 /* ConversationMessage.swift */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6098E7BDB694A6ACEF131151 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70862A515621F745F8148C6 /* DiscussionEntry.swift */; };
+		611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */; };
 		6118BE291F0561F000E14869 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */; };
 		6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */; };
 		618D511E4EB75555E78C7A6B /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092C7F1FFB519DC8F91E3B7 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */; };
@@ -619,6 +620,7 @@
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
 		6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
@@ -1017,6 +1019,7 @@
 				3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */,
 				3B3946B81EBA6DD2002F7B9C /* Extensions */,
 				61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */,
+				611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */,
 			);
 			name = Helm;
 			sourceTree = "<group>";
@@ -1932,6 +1935,7 @@
 				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
 				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
+				611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */,
 				2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */,
 				61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */,
 				61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */,
