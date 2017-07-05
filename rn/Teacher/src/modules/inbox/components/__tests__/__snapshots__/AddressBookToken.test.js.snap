@@ -11,7 +11,7 @@ exports[`AddressBookToken renders 1`] = `
       "flexDirection": "row",
       "height": 30,
       "justifyContent": "center",
-      "marginHorizontal": 3,
+      "marginRight": 6,
       "marginVertical": 4,
       "paddingLeft": 2,
       "paddingRight": 12,

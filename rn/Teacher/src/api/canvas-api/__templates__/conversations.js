@@ -19,9 +19,11 @@ export const conversation: Template<Conversation> = template({
     },
   ],
   avatar_url: 'http://www.fillmurray.com/200/300',
+  context_name: 'Test Class',
+  context_code: 'course_123456789',
 })
 
-export const conversationMessage: Template<Conversation> = template({
+export const conversationMessage: Template<ConversationMessage> = template({
   id: '123456789',
   body: 'this is neat',
   author_id: '1234',

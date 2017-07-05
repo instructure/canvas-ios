@@ -196,7 +196,7 @@ exports[`Compose renders 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="compose.course-select"
           tvParallaxProperties={undefined}
         >
           <View
@@ -217,11 +217,23 @@ exports[`Compose renders 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#7F91A7",
-                    "fontSize": 16,
-                    "lineHeight": 19,
+                    "fontFamily": ".SFUIDisplay",
                   },
-                  undefined,
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "color": "#7F91A7",
+                      "fontSize": 16,
+                      "lineHeight": 19,
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
                 ]
               }
             >
@@ -440,7 +452,6 @@ exports[`Compose renders 1`] = `
             onContentSizeChange={[Function]}
             placeholder="Compose message"
             placeholderTextColor="#7F91A7"
-            scrollEnabled={false}
             style={
               Array [
                 Object {
@@ -658,7 +669,7 @@ exports[`Compose renders after picking a course 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="compose.course-select"
           tvParallaxProperties={undefined}
         >
           <View
@@ -679,12 +690,24 @@ exports[`Compose renders after picking a course 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#7F91A7",
-                    "fontSize": 16,
-                    "lineHeight": 19,
+                    "fontFamily": ".SFUIDisplay",
                   },
                   Object {
                     "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "color": "#7F91A7",
+                      "fontSize": 16,
+                      "lineHeight": 19,
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -738,6 +761,7 @@ exports[`Compose renders after picking a course 1`] = `
                 "paddingLeft": 0,
               }
             }
+            testID="compose.recipients-placeholder"
           >
             <Text
               accessible={true}
@@ -745,11 +769,23 @@ exports[`Compose renders after picking a course 1`] = `
               disabled={false}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 16,
-                  "lineHeight": 19,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 16,
+                    "lineHeight": 19,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
               }
             >
               To
@@ -761,7 +797,7 @@ exports[`Compose renders after picking a course 1`] = `
                 "flex": 1,
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "padding": 6,
+                "paddingTop": 6,
               }
             }
           />
@@ -982,7 +1018,6 @@ exports[`Compose renders after picking a course 1`] = `
             onContentSizeChange={[Function]}
             placeholder="Compose message"
             placeholderTextColor="#7F91A7"
-            scrollEnabled={false}
             style={
               Array [
                 Object {
@@ -1200,7 +1235,7 @@ exports[`Compose renders reply 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="compose.course-select"
           tvParallaxProperties={undefined}
         >
           <View
@@ -1221,12 +1256,24 @@ exports[`Compose renders reply 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#7F91A7",
-                    "fontSize": 16,
-                    "lineHeight": 19,
+                    "fontFamily": ".SFUIDisplay",
                   },
                   Object {
                     "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "color": "#7F91A7",
+                      "fontSize": 16,
+                      "lineHeight": 19,
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                    },
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -1261,6 +1308,7 @@ exports[`Compose renders reply 1`] = `
                 "paddingLeft": 0,
               }
             }
+            testID="compose.recipients-placeholder"
           >
             <Text
               accessible={true}
@@ -1268,11 +1316,23 @@ exports[`Compose renders reply 1`] = `
               disabled={false}
               ellipsizeMode="tail"
               style={
-                Object {
-                  "color": "#7F91A7",
-                  "fontSize": 16,
-                  "lineHeight": 19,
-                }
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#7F91A7",
+                    "fontSize": 16,
+                    "lineHeight": 19,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
               }
             >
               To
@@ -1284,7 +1344,7 @@ exports[`Compose renders reply 1`] = `
                 "flex": 1,
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "padding": 6,
+                "paddingTop": 6,
               }
             }
           />
@@ -1505,7 +1565,6 @@ exports[`Compose renders reply 1`] = `
             onContentSizeChange={[Function]}
             placeholder="Compose message"
             placeholderTextColor="#7F91A7"
-            scrollEnabled={false}
             style={
               Array [
                 Object {
@@ -1723,7 +1782,7 @@ exports[`Compose renders with passed in recipients 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="compose.course-select"
           tvParallaxProperties={undefined}
         >
           <View
@@ -1744,11 +1803,23 @@ exports[`Compose renders with passed in recipients 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#7F91A7",
-                    "fontSize": 16,
-                    "lineHeight": 19,
+                    "fontFamily": ".SFUIDisplay",
                   },
-                  undefined,
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Array [
+                    Object {
+                      "color": "#7F91A7",
+                      "fontSize": 16,
+                      "lineHeight": 19,
+                    },
+                    undefined,
+                  ],
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
                 ]
               }
             >
@@ -1967,7 +2038,6 @@ exports[`Compose renders with passed in recipients 1`] = `
             onContentSizeChange={[Function]}
             placeholder="Compose message"
             placeholderTextColor="#7F91A7"
-            scrollEnabled={false}
             style={
               Array [
                 Object {

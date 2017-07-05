@@ -6,7 +6,6 @@ exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`
   extraHeight={0}
   multiline={true}
   onContentSizeChange={[Function]}
-  scrollEnabled={false}
   style={
     Array [
       undefined,
@@ -24,7 +23,6 @@ exports[`AutoGrowingTextInput renders 1`] = `
   extraHeight={0}
   multiline={true}
   onContentSizeChange={[Function]}
-  scrollEnabled={false}
   style={
     Array [
       undefined,

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 4,
-    marginHorizontal: 3,
+    marginRight: 6,
     paddingRight: 12,
     paddingLeft: 2,
     height: TOKEN_HEIGHT,

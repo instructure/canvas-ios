@@ -5,7 +5,6 @@ import ReactNative, {
   View,
   StyleSheet,
   TextInput,
-  Text,
   TouchableHighlight,
   TouchableOpacity,
   Image,
@@ -27,6 +26,7 @@ import ModalActivityIndicator from '../../common/components/ModalActivityIndicat
 import AddressBookToken from './components/AddressBookToken'
 import { createConversation, addMessage } from '../../api/canvas-api/conversations'
 import axios from 'axios'
+import { Text } from '../../common/text'
 const ScrollViewDisabler = requireNativeComponent('ScrollViewDisabler')
 
 type OwnProps = {
@@ -44,6 +44,8 @@ type ComposeProps = {
   canAddRecipients: boolean,
   canSelectCourse: boolean,
   onlySendIndividualMessages: boolean,
+  includedMessages?: Array<ConversationMessage>,
+  navBarTitle?: string,
 }
 
 type ComposeState = {
@@ -66,6 +68,7 @@ export class Compose extends PureComponent {
     canAddRecipients: true,
     canSelectCourse: true,
     canEditSubject: true,
+    showCourseSelect: true,
     onlySendIndividualMessages: false,
   }
 
@@ -113,7 +116,9 @@ export class Compose extends PureComponent {
       body: state.body || '',
       subject: state.subject || '',
       group_conversation: !state.sendToAll,
+      included_messages: this.props.includedMessages && this.props.includedMessages.map(({ id }) => id),
     }
+
     this.setState({ pending: true })
     const promise = this.props.conversationID ? addMessage(this.props.conversationID, convo) : createConversation(convo)
     promise.then((response) => {
@@ -195,7 +200,7 @@ export class Compose extends PureComponent {
         navBarColor='#fff'
         navBarStyle='light'
         drawUnderNavBar={true}
-        title={i18n('New Message')}
+        title={this.props.navBarTitle || i18n('New Message')}
         leftBarButtons={[{
           title: i18n('Cancel'),
           testID: 'compose-message.cancel',
@@ -216,21 +221,25 @@ export class Compose extends PureComponent {
             ref={e => { this.scrollView = e }}
             contentContainerStyle={{ flexGrow: 1, paddingBottom: 16 }}
           >
-            <TouchableHighlight underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : null}>
-              <View style={styles.courseSelect}>
-                <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
-                  { this.state.contextName || i18n('Select a course') }
-                </Text>
-                { this.props.canSelectCourse &&
-                  <DisclosureIndicator />
-                }
-              </View>
-            </TouchableHighlight>
+            { this.props.showCourseSelect &&
+              <TouchableHighlight testID='compose.course-select' underlayColor='#fff' style={styles.wrapper} onPress={this.props.canSelectCourse ? this.selectCourse : null}>
+                <View style={styles.courseSelect}>
+                  <Text style={[styles.courseSelectText, this.state.contextName ? styles.courseSelectedText : undefined]}>
+                    { this.state.contextName || i18n('Select a course') }
+                  </Text>
+                  { this.props.canSelectCourse &&
+                    <DisclosureIndicator />
+                  }
+                </View>
+              </TouchableHighlight>
+            }
             { Boolean(this.state.contextCode) &&
               <View style={[styles.wrapper, styles.toContainer]}>
-                <View style={{ padding: 6, paddingLeft: 0, height: 54, justifyContent: 'center' }}>
-                  <Text style={styles.courseSelectText}>{i18n('To')}</Text>
-                </View>
+                {this.state.recipients.length === 0 &&
+                  <View testID='compose.recipients-placeholder' style={{ padding: 6, paddingLeft: 0, height: 54, justifyContent: 'center' }}>
+                    <Text style={styles.courseSelectText}>{i18n('To')}</Text>
+                  </View>
+                }
                 <View style={styles.tokenContainer}>
                   {this.state.recipients.map((r) => {
                     return (<AddressBookToken item={r} delete={this._deleteRecipient} />)
@@ -274,6 +283,12 @@ export class Compose extends PureComponent {
                 extraHeight={20}
               />
             </ScrollViewDisabler>
+            {this.props.includedMessages &&
+              <View testID='compose.forwarded-message' style={styles.forwardedMessage}>
+                <Text style={styles.forwardedMessageTitle}>{i18n('Forwarded Message:')}</Text>
+                <Text style={styles.forwardedMessageText}>{this.props.includedMessages[0].body}</Text>
+              </View>
+            }
           </KeyboardAwareScrollView>
         </View>
       </Screen>
@@ -329,9 +344,19 @@ const styles = StyleSheet.create({
   },
   tokenContainer: {
     flexDirection: 'row',
-    padding: 6,
     flex: 1,
     flexWrap: 'wrap',
+    paddingTop: 6,
+  },
+  forwardedMessage: {
+    paddingHorizontal: 16,
+  },
+  forwardedMessageTitle: {
+    fontWeight: '500',
+    marginBottom: 8,
+  },
+  forwardedMessageText: {
+    fontWeight: '300',
   },
 })
 

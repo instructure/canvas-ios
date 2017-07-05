@@ -445,6 +445,7 @@ exports[`filters conversations based on course 1`] = `
         Object {
           "avatar_url": "http://www.fillmurray.com/200/300",
           "context_code": "course_1",
+          "context_name": "Test Class",
           "id": "1",
           "last_message": "this is the worst class ever",
           "last_message_at": "2037-06-01T05:59:00Z",
@@ -1113,6 +1114,7 @@ exports[`filters out conversations without a context_code 1`] = `
         Object {
           "avatar_url": "http://www.fillmurray.com/200/300",
           "context_code": "course_1",
+          "context_name": "Test Class",
           "id": "1",
           "last_message": "this is the worst class ever",
           "last_message_at": "2037-06-01T05:59:00Z",
@@ -2301,6 +2303,7 @@ exports[`renders correctly 1`] = `
         Object {
           "avatar_url": "http://www.fillmurray.com/200/300",
           "context_code": "course_1",
+          "context_name": "Test Class",
           "id": "1",
           "last_message": "this is the worst class ever",
           "last_message_at": "2037-06-01T05:59:00Z",
@@ -2320,6 +2323,7 @@ exports[`renders correctly 1`] = `
         Object {
           "avatar_url": "http://www.fillmurray.com/200/300",
           "context_code": "course_2",
+          "context_name": "Test Class",
           "id": "2",
           "last_message": "this is the worst class ever",
           "last_message_at": "2037-06-01T05:59:00Z",

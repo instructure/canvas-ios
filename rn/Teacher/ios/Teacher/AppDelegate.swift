@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         initiateLoginProcess()
         setupForPushNotifications()
         return true
-    }
+    }   
     
     func prepareReactNative() {
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)

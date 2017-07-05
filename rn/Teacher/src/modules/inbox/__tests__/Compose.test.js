@@ -11,6 +11,7 @@ let template = {
   ...require('../../../__templates__/helm'),
   ...require('../../../api/canvas-api/__templates__/addressBook'),
   ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/conversations'),
 }
 
 let defaultProps = {
@@ -47,6 +48,23 @@ describe('Compose', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('allows for a navbar title to be passed in as a prop', () => {
+    let tree = renderer.create(
+      <Compose {...defaultProps} navBarTitle='title' />
+    ).toJSON()
+
+    let screen = explore(tree).selectByType('Screen') || {}
+    expect(screen.props.title).toEqual('title')
+  })
+
+  it('doesnt show the course select when told not to', () => {
+    let tree = renderer.create(
+      <Compose {...defaultProps} showCourseSelect={false} />
+    ).toJSON()
+    let courseSelect = explore(tree).selectByID('compose.course-select')
+    expect(courseSelect).toBeNull()
+  })
+
   it('renders with passed in recipients', () => {
     const u1 = template.addressBookResult({
       id: '1',
@@ -60,6 +78,15 @@ describe('Compose', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('doesnt show the To placeholder when there are recipients', () => {
+    const recipient = template.addressBookResult({ id: '1' })
+    let tree = renderer.create(
+      <Compose {...defaultProps} recipients={[recipient]} />
+    ).toJSON()
+    let recipientsPlaceholder = explore(tree).selectByID('compose.recipients-placeholder')
+    expect(recipientsPlaceholder).toBeNull()
   })
 
   it('renders after picking a course', () => {
@@ -193,6 +220,7 @@ describe('Compose', () => {
       subject: 'new conversation subject',
       onlySendIndividualMessages: true,
       conversationID: '1',
+      includedMessages: [template.conversationMessage({ id: '1' }), template.conversationMessage({ id: '2' })],
     }
     const screen = renderer.create(
       <Compose {...props} />
@@ -206,6 +234,7 @@ describe('Compose', () => {
       body: 'new conversation',
       subject: 'new conversation subject',
       group_conversation: false,
+      included_messages: ['1', '2'],
     })
   })
 
@@ -247,5 +276,15 @@ describe('Compose', () => {
         <Compose {...props} />
       ).toJSON()
     ).toMatchSnapshot()
+  })
+
+  it('renders the forwarded message body', () => {
+    let includedMessages = [template.conversationMessage({ body: 'yo' })]
+    let tree = renderer.create(
+      <Compose {...defaultProps} includedMessages={includedMessages} />
+    ).toJSON()
+    let forwardedMessage = explore(tree).selectByID('compose.forwarded-message') || {}
+    expect(forwardedMessage).not.toBeNull()
+    expect(forwardedMessage.children[1].children[0]).toEqual(includedMessages[0].body)
   })
 })

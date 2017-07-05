@@ -15,7 +15,7 @@ import InboxActions from '../actions'
 import Screen from '../../../routing/Screen'
 import branding from '../../../common/branding'
 import i18n from 'format-message'
-import ConversationMessage from '../components/ConversationMessageRow'
+import ConversationMessageRow from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
 import Images from '../../../images'
@@ -53,7 +53,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   }
 
   _renderItem = ({ item, index }) => {
-    return <ConversationMessage
+    return <ConversationMessageRow
               navigator={this.props.navigator}
               message={item}
               conversation={this.props.conversation}
@@ -173,7 +173,27 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   }
 
   forwardMessage (id: string) {
-    // TODO
+    let conversation = this.props.conversation || {}
+    let includedMessages = []
+    if (id === this.props.conversationID) {
+      includedMessages = this.props.messages
+    } else {
+      includedMessages = this.props.messages.filter(message => message.id === id)
+    }
+    this.props.navigator.show(`/conversations/${conversation.id}/add_message`, {
+      modal: true,
+    }, {
+      contextName: conversation.context_name,
+      contextCode: conversation.context_code,
+      subject: i18n('Fw: {subject}', {
+        subject: conversation.subject,
+      }),
+      canEditSubject: false,
+      showCourseSelect: false,
+      includedMessages,
+      navBarTitle: i18n('Forward'),
+      requireMessageBody: false,
+    })
   }
 }
 

@@ -37,7 +37,6 @@ export default class AutoGrowingTextInput extends PureComponent {
         style={[this.props.style, { height: this.state.height }]}
         multiline
         onContentSizeChange={this.updateContentSize}
-        scrollEnabled={false}
       />
     )
   }

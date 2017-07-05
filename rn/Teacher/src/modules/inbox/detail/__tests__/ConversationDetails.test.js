@@ -72,7 +72,6 @@ describe('ConversationDetails', () => {
   })
 
   it('renders correctly with some messages', () => {
-    // $FlowFixMe
     props.messages = [template.conversationMessage()]
     Screen(props).testRender()
   })
@@ -98,6 +97,43 @@ describe('ConversationDetails', () => {
     props.conversationID = '1'
     Screen(props).tapOptionsButton()
     expect(props.deleteConversation).toHaveBeenCalledWith('1')
+  })
+
+  it('it passess all messages as included messages when forwarding the conversation', () => {
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 3))
+    props.conversationID = '1'
+    props.messages = [
+      template.conversationMessage({ id: '1' }),
+      template.conversationMessage({ id: '2' }),
+    ]
+    Screen(props).tapOptionsButton()
+    expect(props.navigator.show).toHaveBeenCalledWith('/conversations/1/add_message', { modal: true }, {
+      contextName: props.conversation.context_name,
+      contextCode: props.conversation.context_code,
+      subject: `Fw: ${props.conversation.subject}`,
+      showCourseSelect: false,
+      canEditSubject: false,
+      navBarTitle: 'Forward',
+      requireMessageBody: false,
+      includedMessages: props.messages,
+    })
+  })
+
+  it('it only passes one message when forwarding a single message', () => {
+    props.conversationID = '1'
+    props.messages = [template.conversationMessage({ id: '3' })]
+    Screen(props).instance.forwardMessage('3')
+    expect(props.navigator.show).toHaveBeenCalledWith('/conversations/1/add_message', { modal: true }, {
+      contextName: props.conversation.context_name,
+      contextCode: props.conversation.context_code,
+      subject: `Fw: ${props.conversation.subject}`,
+      showCourseSelect: false,
+      canEditSubject: false,
+      navBarTitle: 'Forward',
+      requireMessageBody: false,
+      includedMessages: [props.messages[0]],
+    })
   })
 
   it('calls options with an id', () => {
