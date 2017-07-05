@@ -69,9 +69,13 @@ export default class Row extends Component<any, RowProps, any> {
       accessibilityTraits.push('button')
     }
 
-    let traits = {
+    let traits: {[string]: any} = {
       accessibilityTraits,
       accessibilityLabel: this.props.accessibilityLabel,
+    }
+
+    if (this.props.accessible !== undefined) {
+      traits['accessible'] = this.props.accessible
     }
 
     let underlayProps = {}

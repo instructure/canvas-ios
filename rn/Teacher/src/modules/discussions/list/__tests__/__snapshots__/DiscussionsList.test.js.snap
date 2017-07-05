@@ -450,8 +450,11 @@ exports[`DiscussionsList renders discussions 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -459,12 +462,13 @@ exports[`DiscussionsList renders discussions 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="discussion 1"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -606,6 +610,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -873,8 +878,11 @@ exports[`DiscussionsList renders discussions 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -882,12 +890,13 @@ exports[`DiscussionsList renders discussions 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="discussion 2"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -1029,6 +1038,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -1587,8 +1597,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -1596,12 +1609,13 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="discussion 1"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -1743,6 +1757,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -1976,8 +1991,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -1985,12 +2003,13 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="discussion 2"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2132,6 +2151,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -2760,8 +2780,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -2769,12 +2792,13 @@ exports[`DiscussionsList renders in correct order 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="First"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -2916,6 +2940,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -3183,8 +3208,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -3192,12 +3220,13 @@ exports[`DiscussionsList renders in correct order 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="Second"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -3339,6 +3368,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -4010,8 +4040,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -4019,12 +4052,13 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="discussion 1"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -4166,6 +4200,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,
@@ -4485,8 +4520,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            accessible={false}
+          >
             <View
+              accessible={false}
               style={
                 Object {
                   "marginLeft": -12,
@@ -4494,12 +4532,13 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
               }
             >
               <TouchableHighlight
-                accessibilityLabel={undefined}
+                accessibilityLabel="discussion 2"
                 accessibilityTraits={
                   Array [
                     "button",
                   ]
                 }
+                accessible={false}
                 onPress={[Function]}
                 style={
                   Array [
@@ -4641,6 +4680,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                       }
                     >
                       <View
+                        accessible={false}
                         style={
                           Object {
                             "flex": 1,

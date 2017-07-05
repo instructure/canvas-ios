@@ -31,9 +31,10 @@ export default class DiscussionsRow extends Component<any, Props, any> {
     const discussionDetails = this._discussionDetails(discussion)
     const unreadDot = this._renderUnreadDot(discussion)
     return (
-      <View>
-        <View style={{ marginLeft: -12 }}>
-          <Row
+      <View accessible={false}>
+        <View style={{ marginLeft: -12 }} accessible={false}>
+          <Row accessible={false}
+            accessibilityLabel={`${discussion.title}`}
             renderImage={this._renderIcon}
             title={discussion.title}
             titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
@@ -44,7 +45,7 @@ export default class DiscussionsRow extends Component<any, Props, any> {
             height='auto'
           >
             <View style={style.rowContent}>
-              <View style={style.mainContentColumn}>
+              <View style={style.mainContentColumn} accessible={false}>
                 <DotSeparated style={style.subtitle} separated={this._dueDate(discussion)}/>
 
                 {points &&

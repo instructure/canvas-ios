@@ -1,8 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DiscussionsRow renders 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -10,12 +13,13 @@ exports[`DiscussionsRow renders 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -157,6 +161,7 @@ exports[`DiscussionsRow renders 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -423,8 +428,11 @@ exports[`DiscussionsRow renders 1`] = `
 `;
 
 exports[`DiscussionsRow renders published 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -432,12 +440,13 @@ exports[`DiscussionsRow renders published 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -579,6 +588,7 @@ exports[`DiscussionsRow renders published 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -845,8 +855,11 @@ exports[`DiscussionsRow renders published 1`] = `
 `;
 
 exports[`DiscussionsRow renders unpublished 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -854,12 +867,13 @@ exports[`DiscussionsRow renders unpublished 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -1001,6 +1015,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -1256,8 +1271,11 @@ exports[`DiscussionsRow renders unpublished 1`] = `
 `;
 
 exports[`DiscussionsRow renders with no assignment 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -1265,12 +1283,13 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -1412,6 +1431,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -1644,8 +1664,11 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
 `;
 
 exports[`DiscussionsRow renders with no unread count 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -1653,12 +1676,13 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -1800,6 +1824,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -2054,8 +2079,11 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
 `;
 
 exports[`DiscussionsRow renders with points possible 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -2063,12 +2091,13 @@ exports[`DiscussionsRow renders with points possible 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -2210,6 +2239,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
@@ -2476,8 +2506,11 @@ exports[`DiscussionsRow renders with points possible 1`] = `
 `;
 
 exports[`DiscussionsRow renders without points possible 1`] = `
-<View>
+<View
+  accessible={false}
+>
   <View
+    accessible={false}
     style={
       Object {
         "marginLeft": -12,
@@ -2485,12 +2518,13 @@ exports[`DiscussionsRow renders without points possible 1`] = `
     }
   >
     <TouchableHighlight
-      accessibilityLabel={undefined}
+      accessibilityLabel="Dear Ivy Iversen, your last name cannot start with your first name"
       accessibilityTraits={
         Array [
           "button",
         ]
       }
+      accessible={false}
       onPress={[Function]}
       style={
         Array [
@@ -2632,6 +2666,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
             }
           >
             <View
+              accessible={false}
               style={
                 Object {
                   "flex": 1,
