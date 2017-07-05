@@ -10,10 +10,15 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('LayoutAnimation', () => ({
-    create: jest.fn(),
     configureNext: jest.fn(),
-    Types: { linear: null },
-    Properties: { opacity: null },
+    easeInEaseOut: jest.fn(),
+    Types: {
+      easeInEaseOut: jest.fn(),
+      spring: jest.fn(),
+    },
+    Properties: {
+      opacity: 1,
+    },
   }))
 
 const templates = {

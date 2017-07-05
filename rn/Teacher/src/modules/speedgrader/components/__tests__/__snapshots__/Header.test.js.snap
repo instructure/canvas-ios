@@ -5,7 +5,6 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -252,31 +251,6 @@ exports[`SpeedGraderHeader closes the picker 1`] = `
         />
       </View>
     </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "height": 0,
-          "justifyContent": "flex-end",
-          "overflow": "hidden",
-        }
-      }
-    >
-      <PickerIOS
-        accessible={false}
-        onValueChange={[Function]}
-        selectedValue={1}
-        testID="header.picker"
-      >
-        <Item
-          label="Apr 26, 2017 at 11:46 AM"
-          value={0}
-        />
-        <Item
-          label="Dec 31, 2015 at 5:01 PM"
-          value={1}
-        />
-      </PickerIOS>
-    </View>
   </View>
 </View>
 `;
@@ -286,7 +260,6 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -533,31 +506,6 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
         />
       </View>
     </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "height": 0,
-          "justifyContent": "flex-end",
-          "overflow": "hidden",
-        }
-      }
-    >
-      <PickerIOS
-        accessible={false}
-        onValueChange={[Function]}
-        selectedValue={1}
-        testID="header.picker"
-      >
-        <Item
-          label="Apr 26, 2017 at 11:46 AM"
-          value={0}
-        />
-        <Item
-          label="Dec 31, 2015 at 5:01 PM"
-          value={1}
-        />
-      </PickerIOS>
-    </View>
   </View>
 </View>
 `;
@@ -567,7 +515,6 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -814,31 +761,6 @@ exports[`SpeedGraderHeader opens the picker 1`] = `
         />
       </View>
     </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "height": 0,
-          "justifyContent": "flex-end",
-          "overflow": "hidden",
-        }
-      }
-    >
-      <PickerIOS
-        accessible={false}
-        onValueChange={[Function]}
-        selectedValue={1}
-        testID="header.picker"
-      >
-        <Item
-          label="Apr 26, 2017 at 11:46 AM"
-          value={0}
-        />
-        <Item
-          label="Dec 31, 2015 at 5:01 PM"
-          value={1}
-        />
-      </PickerIOS>
-    </View>
   </View>
 </View>
 `;
@@ -848,7 +770,6 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -1104,31 +1025,20 @@ exports[`SpeedGraderHeader renders the picker with a 0 index 1`] = `
         />
       </View>
     </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "height": 0,
-          "justifyContent": "flex-end",
-          "overflow": "hidden",
-        }
-      }
+    <PickerIOS
+      onValueChange={[Function]}
+      selectedValue={0}
+      testID="header.picker"
     >
-      <PickerIOS
-        accessible={false}
-        onValueChange={[Function]}
-        selectedValue={0}
-        testID="header.picker"
-      >
-        <Item
-          label="Apr 26, 2017 at 11:46 AM"
-          value={0}
-        />
-        <Item
-          label="Dec 31, 2015 at 5:01 PM"
-          value={1}
-        />
-      </PickerIOS>
-    </View>
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
   </View>
 </View>
 `;
@@ -1138,7 +1048,6 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -1394,31 +1303,20 @@ exports[`SpeedGraderHeader renders the picker with a non-zero index 1`] = `
         />
       </View>
     </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "height": 0,
-          "justifyContent": "flex-end",
-          "overflow": "hidden",
-        }
-      }
+    <PickerIOS
+      onValueChange={[Function]}
+      selectedValue={1}
+      testID="header.picker"
     >
-      <PickerIOS
-        accessible={false}
-        onValueChange={[Function]}
-        selectedValue={1}
-        testID="header.picker"
-      >
-        <Item
-          label="Apr 26, 2017 at 11:46 AM"
-          value={0}
-        />
-        <Item
-          label="Dec 31, 2015 at 5:01 PM"
-          value={1}
-        />
-      </PickerIOS>
-    </View>
+      <Item
+        label="Apr 26, 2017 at 11:46 AM"
+        value={0}
+      />
+      <Item
+        label="Dec 31, 2015 at 5:01 PM"
+        value={1}
+      />
+    </PickerIOS>
   </View>
 </View>
 `;
@@ -1428,7 +1326,6 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -1638,7 +1535,6 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -1885,31 +1781,6 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
         />
       </View>
     </TouchableHighlight>
-    <View
-      style={
-        Object {
-          "height": 0,
-          "justifyContent": "flex-end",
-          "overflow": "hidden",
-        }
-      }
-    >
-      <PickerIOS
-        accessible={false}
-        onValueChange={[Function]}
-        selectedValue={1}
-        testID="header.picker"
-      >
-        <Item
-          label="Apr 26, 2017 at 11:46 AM"
-          value={0}
-        />
-        <Item
-          label="Dec 31, 2015 at 5:01 PM"
-          value={1}
-        />
-      </PickerIOS>
-    </View>
   </View>
 </View>
 `;
@@ -1919,7 +1790,6 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
@@ -2129,7 +1999,6 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
   style={
     Object {
       "backgroundColor": "white",
-      "height": 92,
       "marginBottom": 1,
     }
   }
