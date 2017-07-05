@@ -9,29 +9,69 @@ exports[`render correctly 1`] = `
   }
 >
   <RCTScrollView
-    ListHeaderComponent={[Function]}
+    ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="No results"
+      />
+    }
+    ListHeaderComponent={
+      <SearchBar
+        onCancelButtonPress={[Function]}
+        onChangeText={[Function]}
+        onSearchButtonPress={[Function]}
+        placeholder="Search"
+      />
+    }
     data={
       Array [
         Object {
-          "dataId": "everyone",
-          "id": "everyone",
-          "name": "Everyone",
-          "type": "everyone",
+          "data": Array [
+            Object {
+              "dataId": "everyone",
+              "id": "everyone",
+              "name": "Everyone",
+              "type": "everyone",
+            },
+          ],
+          "key": "everyone",
         },
         Object {
-          "dataId": "32",
-          "id": "section-32",
-          "info": "undefined students",
-          "name": "the section 1",
-          "type": "section",
+          "data": Array [
+            Object {
+              "dataId": "32",
+              "id": "section-32",
+              "info": "984534 students",
+              "name": "the section 1",
+              "type": "section",
+            },
+          ],
+          "key": "Course Sections",
         },
         Object {
-          "dataId": 1,
-          "id": "student-1",
-          "imageURL": "http://www.fillmurray.com/100/100",
-          "info": undefined,
-          "name": "Donald Trump",
-          "type": "student",
+          "data": Array [
+            Object {
+              "dataId": "1",
+              "id": "group-1",
+              "info": "23432343 students",
+              "name": "Red Squadron",
+              "type": "group",
+            },
+          ],
+          "key": "Groups",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "dataId": 1,
+              "id": "student-1",
+              "imageURL": "http://www.fillmurray.com/100/100",
+              "info": undefined,
+              "name": "Donald Trump",
+              "type": "student",
+            },
+          ],
+          "key": "Students",
         },
       ]
     }
@@ -42,7 +82,6 @@ exports[`render correctly 1`] = `
     initialNumToRender={10}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
-    numColumns={1}
     onContentSizeChange={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
@@ -53,8 +92,69 @@ exports[`render correctly 1`] = `
     onViewableItemsChanged={undefined}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
     scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "dataId": "everyone",
+              "id": "everyone",
+              "name": "Everyone",
+              "type": "everyone",
+            },
+          ],
+          "key": "everyone",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "dataId": "32",
+              "id": "section-32",
+              "info": "984534 students",
+              "name": "the section 1",
+              "type": "section",
+            },
+          ],
+          "key": "Course Sections",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "dataId": "1",
+              "id": "group-1",
+              "info": "23432343 students",
+              "name": "Red Squadron",
+              "type": "group",
+            },
+          ],
+          "key": "Groups",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "dataId": 1,
+              "id": "student-1",
+              "imageURL": "http://www.fillmurray.com/100/100",
+              "info": undefined,
+              "name": "Donald Trump",
+              "type": "student",
+            },
+          ],
+          "key": "Students",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        1,
+        3,
+        5,
+        7,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignee-picker.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
@@ -67,8 +167,12 @@ exports[`render correctly 1`] = `
           onCancelButtonPress={[Function]}
           onChangeText={[Function]}
           onSearchButtonPress={[Function]}
+          placeholder="Search"
         />
       </View>
+      <View
+        onLayout={[Function]}
+      />
       <View
         onLayout={[Function]}
       >
@@ -211,6 +315,58 @@ exports[`render correctly 1`] = `
         onLayout={[Function]}
       >
         <View
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Course Sections
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
           accessibilityComponentType={undefined}
           accessibilityLabel={undefined}
           accessibilityTraits={undefined}
@@ -366,10 +522,279 @@ exports[`render correctly 1`] = `
                   ]
                 }
               >
-                undefined students
+                984534 students
               </Text>
             </View>
           </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Groups
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": 54,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "marginRight": 16,
+                  "overflow": "hidden",
+                  "width": 40,
+                }
+              }
+            >
+              <View
+                accessibilityLabel=""
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "borderColor": "#C7CDD1",
+                      "borderWidth": 0.5,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "borderRadius": 20,
+                      "height": 40,
+                      "width": 40,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontSize": 13,
+                      },
+                    ]
+                  }
+                >
+                  RS
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Red Squadron
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                23432343 students
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Students
+          </Text>
         </View>
       </View>
       <View
@@ -502,13 +927,6 @@ exports[`render correctly 1`] = `
           </View>
         </View>
       </View>
-      <View
-        style={
-          Object {
-            "height": 0,
-          }
-        }
-      />
     </View>
   </RCTScrollView>
 </View>
@@ -523,15 +941,45 @@ exports[`render correctly 2`] = `
   }
 >
   <RCTScrollView
-    ListHeaderComponent={[Function]}
+    ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="No results"
+      />
+    }
+    ListHeaderComponent={
+      <SearchBar
+        onCancelButtonPress={[Function]}
+        onChangeText={[Function]}
+        onSearchButtonPress={[Function]}
+        placeholder="Search"
+      />
+    }
     data={
       Array [
         Object {
-          "dataId": "32",
-          "id": "section-32",
-          "info": "undefined students",
-          "name": "the section 1",
-          "type": "section",
+          "data": Array [
+            Object {
+              "dataId": "32",
+              "id": "section-32",
+              "info": "984534 students",
+              "name": "the section 1",
+              "type": "section",
+            },
+          ],
+          "key": "Course Sections",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "dataId": "1",
+              "id": "group-1",
+              "info": "23432343 students",
+              "name": "Red Squadron",
+              "type": "group",
+            },
+          ],
+          "key": "Groups",
         },
       ]
     }
@@ -542,7 +990,6 @@ exports[`render correctly 2`] = `
     initialNumToRender={10}
     keyExtractor={[Function]}
     maxToRenderPerBatch={10}
-    numColumns={1}
     onContentSizeChange={[Function]}
     onEndReachedThreshold={2}
     onLayout={[Function]}
@@ -553,8 +1000,43 @@ exports[`render correctly 2`] = `
     onViewableItemsChanged={undefined}
     renderItem={[Function]}
     renderScrollComponent={[Function]}
+    renderSectionHeader={[Function]}
     scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
+    sections={
+      Array [
+        Object {
+          "data": Array [
+            Object {
+              "dataId": "32",
+              "id": "section-32",
+              "info": "984534 students",
+              "name": "the section 1",
+              "type": "section",
+            },
+          ],
+          "key": "Course Sections",
+        },
+        Object {
+          "data": Array [
+            Object {
+              "dataId": "1",
+              "id": "group-1",
+              "info": "23432343 students",
+              "name": "Red Squadron",
+              "type": "group",
+            },
+          ],
+          "key": "Groups",
+        },
+      ]
+    }
+    stickyHeaderIndices={
+      Array [
+        1,
+        3,
+      ]
+    }
+    stickySectionHeadersEnabled={true}
     testID="assignee-picker.list"
     updateCellsBatchingPeriod={50}
     windowSize={21}
@@ -567,7 +1049,60 @@ exports[`render correctly 2`] = `
           onCancelButtonPress={[Function]}
           onChangeText={[Function]}
           onSearchButtonPress={[Function]}
+          placeholder="Search"
         />
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Course Sections
+          </Text>
+        </View>
       </View>
       <View
         onLayout={[Function]}
@@ -728,7 +1263,224 @@ exports[`render correctly 2`] = `
                   ]
                 }
               >
-                undefined students
+                984534 students
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityTraits="header"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#F5F5F5",
+                "flex": 1,
+                "height": 24,
+                "justifyContent": "center",
+                "paddingLeft": 16,
+                "paddingRight": 8,
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "backgroundColor": "#F5F5F5",
+                  "color": "#73818C",
+                  "fontSize": 14,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Groups
+          </Text>
+        </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "flex": 1,
+                "height": 54,
+              },
+            ]
+          }
+          testID={undefined}
+          tvParallaxProperties={undefined}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingLeft": 16,
+                "paddingRight": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 20,
+                  "height": 40,
+                  "marginRight": 16,
+                  "overflow": "hidden",
+                  "width": 40,
+                }
+              }
+            >
+              <View
+                accessibilityLabel=""
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "white",
+                      "borderColor": "#C7CDD1",
+                      "borderWidth": 0.5,
+                      "justifyContent": "center",
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "borderRadius": 20,
+                      "height": 40,
+                      "width": 40,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "fontSize": 13,
+                      },
+                    ]
+                  }
+                >
+                  RS
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Red Squadron
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "color": "#8B969E",
+                      "fontSize": 14,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                23432343 students
               </Text>
             </View>
           </View>

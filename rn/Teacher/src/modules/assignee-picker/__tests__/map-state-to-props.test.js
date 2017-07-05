@@ -8,14 +8,22 @@ import { searchMapStateToProps, pickerMapStateToProps, type AssigneeSearchProps,
 const template = {
   ...require('../__template__/Assignee.js'),
   ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../api/canvas-api/__templates__/section'),
+  ...require('../../../api/canvas-api/__templates__/group'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }
 
 test('correct output from searchMapStateToProps', () => {
   let course = template.course()
+  let assignment = template.assignment({
+    group_category_id: '9999',
+  })
+  let group = template.group({
+    group_category_id: '9999',
+  })
   let enrollmentOne = template.enrollment({
     id: '1',
     course_id: course.id,
@@ -46,7 +54,11 @@ test('correct output from searchMapStateToProps', () => {
         },
       },
       assignmentGroups: {},
-      assignments: {},
+      assignments: {
+        [assignment.id]: {
+          data: assignment,
+        },
+      },
       gradingPeriods: {},
       enrollments: {
         [enrollmentOne.id]: enrollmentOne,
@@ -57,17 +69,27 @@ test('correct output from searchMapStateToProps', () => {
       sections: {
         [section.id]: section,
       },
+      groups: {
+        [group.id]: {
+          group,
+        },
+        '999999': {},
+      },
     },
   })
 
   const props: AssigneeSearchProps = {
     courseID: course.id,
+    assignmentID: assignment.id,
+    assignment,
     sections: [],
     enrollments: [],
+    groups: [],
     onSelection: jest.fn(),
     navigator: template.navigator(),
     refreshSections: jest.fn(),
     refreshEnrollments: jest.fn(),
+    refreshGroupsForCategory: jest.fn(),
   }
 
   const result = searchMapStateToProps(state, props)
@@ -79,6 +101,7 @@ test('correct output from searchMapStateToProps', () => {
 
 test('correct output from pickerMapStateToProps', () => {
   let course = template.course()
+  let assignment = template.assignment()
   let enrollment = template.enrollment({
     course_id: course.id,
   })
@@ -120,6 +143,7 @@ test('correct output from pickerMapStateToProps', () => {
 
   let props: AssigneePickerProps = {
     courseID: course.id,
+    assignmentID: assignment.id,
     assignees: [assigneeOne, assigneeTwo, assigneeThree],
     callback: jest.fn(),
     navigator: template.navigator(),
@@ -190,6 +214,7 @@ test('correct output from pickerMapStateToProps', () => {
 
 test('pickerMapStateToProps should not explode when user data is missing', () => {
   let course = template.course()
+  let assignment = template.assignment()
   let state = template.appState()
 
   let enrollment = template.enrollment({
@@ -202,6 +227,7 @@ test('pickerMapStateToProps should not explode when user data is missing', () =>
 
   let props: AssigneePickerProps = {
     courseID: course.id,
+    assignmentID: assignment.id,
     assignees: [assigneeOne],
     callback: jest.fn(),
     navigator: template.navigator(),

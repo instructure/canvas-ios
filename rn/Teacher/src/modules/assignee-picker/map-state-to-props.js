@@ -6,12 +6,16 @@ import Navigator from '../../routing/Navigator'
 
 export type AssigneeSearchProps = {
   courseID: string,
+  assignmentID: string,
+  assignment: Assignment,
   sections: Section[],
   enrollments: Enrollment[],
+  groups: Group[],
   onSelection: Function,
   navigator: Navigator,
   refreshSections: Function,
   refreshEnrollments: Function,
+  refreshGroupsForCategory: Function,
 }
 
 function studentEnrollmentsForCourseID (courseID: string, state: AppState): any {
@@ -33,9 +37,19 @@ export function searchMapStateToProps (state: AppState, ownProps: AssigneeSearch
     return item.course_id === courseID
   })
 
+  const assignment = state.entities.assignments[ownProps.assignmentID].data
+  const groups = Object.values(state.entities.groups).filter((groupState) => {
+    // $FlowFixMe
+    if (!groupState.group) return false
+    return groupState.group.group_category_id === assignment.group_category_id
+    // $FlowFixMe
+  }).map((groupState) => groupState.group)
+
   return {
     sections,
     enrollments,
+    assignment,
+    groups,
   }
 }
 
@@ -50,6 +64,7 @@ export type Assignee = {
 
 export type AssigneePickerProps = {
   courseID: string,
+  assignmentID: string,
   assignees: Assignee[],
   navigator: Navigator,
   callback?: Function, // Called when finished picking assignees. Will send the new list of assignees as the first parameter

@@ -58,6 +58,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID', wrap(AssignmentDetails), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/edit', wrap(AssignmentDetailsEdit), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', wrap(AssignmentDueDates), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', wrap(AssigneePicker), store)
+  registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', wrap(AssigneeSearch), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', wrap(SubmissionList), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submission_settings', wrap(SubmissionSettings), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(SpeedGrader), store)
@@ -90,8 +92,4 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/notATeacher', wrap(NoATeacher), store)
-
-  // This will never actually be routed to, but this makes it really easy to debug
-  registerScreen('/courses/:courseID/assignee-picker', wrap(AssigneePicker), store)
-  registerScreen('/courses/:courseID/assignee-search', wrap(AssigneeSearch), store)
 }

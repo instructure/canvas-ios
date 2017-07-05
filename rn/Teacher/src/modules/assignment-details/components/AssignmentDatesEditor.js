@@ -367,7 +367,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     }
 
     const assignees = AssignmentDatesEditor.assigneesFromDate(date)
-    const route = `/courses/${this.props.assignment.course_id}/assignee-picker`
+    const route = `/courses/${this.props.assignment.course_id}/assignments/${this.props.assignment.id}/assignee-picker`
     this.props.navigator.show(route, { modal: true }, { assignees, callback })
   }
 

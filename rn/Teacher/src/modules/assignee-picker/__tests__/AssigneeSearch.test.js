@@ -8,6 +8,7 @@ import { AssigneeSearch } from '../AssigneeSearch'
 import renderer from 'react-test-renderer'
 import { registerScreens } from '../../../../src/routing/register-screens'
 import setProps from '../../../../test/helpers/setProps'
+import { type AssigneeSearchProps } from '../map-state-to-props'
 
 registerScreens({})
 
@@ -16,19 +17,26 @@ jest.mock('react-native-search-bar', () => require('../../../__mocks__/SearchBar
 const template = {
   ...require('../__template__/Assignee.js'),
   ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../api/canvas-api/__templates__/section'),
+  ...require('../../../api/canvas-api/__templates__/group'),
   ...require('../../../__templates__/helm'),
 }
 
-const defaultProps = {
+const defaultProps: AssigneeSearchProps = {
   courseID: template.course().id,
+  assignmentID: template.assignment().id,
+  assignment: template.assignment(),
   sections: [template.section()],
   enrollments: [template.enrollment()],
+  groups: [template.group()],
   navigator: template.navigator(),
   handleSelectedAssignee: jest.fn(),
   refreshSections: jest.fn(),
   refreshEnrollments: jest.fn(),
+  refreshGroupsForCategory: jest.fn(),
+  onSelection: jest.fn(),
 }
 
 test('render correctly', () => {

@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   View,
-  FlatList,
+  SectionList,
   StyleSheet,
 } from 'react-native'
 
@@ -18,6 +18,8 @@ import AssigneeRow from './AssigneeRow'
 import SearchBar from 'react-native-search-bar'
 import { escapeRegExp } from 'lodash'
 import Screen from '../../routing/Screen'
+import SectionHeader from '../../common/components/rows/SectionHeader'
+import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 
 export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   searchBar: SearchBar
@@ -25,24 +27,23 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
 
   constructor (props: AssigneeSearchProps) {
     super(props)
-
     this.state = {
-      data: [],
+      sections: [],
     }
   }
 
   updateFilterString = (filterString: string) => {
     this.filterString = filterString
-    this.updateData(this.props.sections, this.props.enrollments)
+    this.updateData(this.props)
   }
 
   componentWillReceiveProps (props: AssigneeSearchProps) {
-    this.updateData(props.sections, props.enrollments)
+    this.updateData(props)
   }
 
   componentWillMount () {
     this.refreshData()
-    this.updateData()
+    this.updateData(this.props)
   }
 
   dismiss = () => {
@@ -52,10 +53,11 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   refreshData () {
     this.props.refreshSections(this.props.courseID)
     this.props.refreshEnrollments(this.props.courseID)
+    this.props.refreshGroupsForCategory(this.props.assignment.group_category_id)
   }
 
-  updateData (newSections: Section[] = [], newEnrollments: Enrollment[] = []) {
-    const sections = newSections.map((item) => {
+  updateData (props: AssigneeSearchProps) {
+    const sections = props.sections.map((item) => {
       return {
         id: 'section-' + item.id,
         dataId: item.id,
@@ -65,7 +67,17 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
       }
     })
 
-    const enrollments = newEnrollments.map((item) => {
+    const groups = props.groups.map((item) => {
+      return {
+        id: 'group-' + item.id,
+        dataId: item.id,
+        type: 'group',
+        name: item.name,
+        info: i18n('{count} students', { count: item.members_count }),
+      }
+    })
+
+    const enrollments = props.enrollments.map((item) => {
       return {
         id: 'student-' + item.user.id,
         dataId: item.user.id,
@@ -83,10 +95,11 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
       name: i18n('Everyone'),
     }
 
-    let data = [everyone, ...sections, ...enrollments]
-    if (this.filterString) {
-      data = data.filter((item) => {
-        const regex = RegExp(this.filterString, 'i')
+    const filter = (items) => {
+      if (!this.filterString) return items
+      const trimmed = this.filterString.trim()
+      const regex = RegExp(trimmed, 'i')
+      return items.filter((item) => {
         let result = regex.test(escapeRegExp(item.name))
         if (item.info) {
           result = result || regex.test(escapeRegExp(item.info))
@@ -94,13 +107,28 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
         return result
       })
     }
+
+    const data = [
+      { data: filter([everyone]), key: 'everyone' },
+      { data: filter(sections), key: i18n('Course Sections') },
+      { data: filter(groups), key: i18n('Groups') },
+      { data: filter(enrollments), key: i18n('Students') },
+    ]
+
     this.setState({
-      data,
+      sections: data.filter((section) => section.data.length > 0),
     })
   }
 
   renderRow = ({ item, index }: {item: Assignee, index: number }) => {
     return <AssigneeRow assignee={item} onPress={this.onRowPress} />
+  }
+
+  renderSectionHeader = ({ section }: any) => {
+    if (section.key === 'everyone') {
+      return null
+    }
+    return <SectionHeader title={section.key} />
   }
 
   renderSearchBar = () => {
@@ -109,6 +137,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
             onChangeText={this.updateFilterString}
             onSearchButtonPress={() => this.searchBar.unFocus()}
             onCancelButtonPress={() => this.searchBar.unFocus()}
+            placeholder={i18n('Search')}
             />
   }
 
@@ -117,6 +146,8 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   }
 
   render () {
+    const search = this.renderSearchBar()
+    const empty = <ListEmptyComponent title={i18n('No results')} />
     return (
       <Screen
         title={i18n('Add Assignee')}
@@ -129,12 +160,14 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
         ]}
       >
         <View style={styles.container}>
-          <FlatList
+          <SectionList
             testID='assignee-picker.list'
-            data={this.state.data}
+            sections={this.state.sections}
             renderItem={this.renderRow}
+            renderSectionHeader={this.renderSectionHeader}
             keyExtractor={(item) => item.id}
-            ListHeaderComponent={this.renderSearchBar}
+            ListHeaderComponent={search}
+            ListEmptyComponent={empty}
           />
         </View>
       </Screen>

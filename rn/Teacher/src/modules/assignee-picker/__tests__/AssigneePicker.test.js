@@ -16,12 +16,14 @@ registerScreens({})
 const template = {
   ...require('../__template__/Assignee.js'),
   ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../__templates__/helm'),
 }
 
 const defaultProps: AssigneePickerProps = {
   assignees: [template.enrollmentAssignee(), template.enrollmentAssignee({ imageURL: null, id: '9909342324234' })],
   courseID: template.course().id,
+  assignmentID: template.assignment().id,
   navigator: template.navigator(),
   handleSelectedAssignee: jest.fn(),
   refreshSections: jest.fn(),
