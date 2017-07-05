@@ -17,6 +17,10 @@ RCT_EXPORT_MODULE()
 
 RCT_EXPORT_METHOD(requestPermissions)
 {
+    if (NSClassFromString(@"EarlGreyImpl") != nil) {
+        return;
+    }
+
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     UNAuthorizationOptions options = UNAuthorizationOptionAlert + UNAuthorizationOptionSound;
     
