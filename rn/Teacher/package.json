@@ -14,7 +14,7 @@
     "packager:kill": "react-native-kill-packager"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.16.2",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
@@ -26,23 +26,23 @@
     "querystring": "^0.2.0",
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
-    "react-native-blur": "^3.0.0-alpha",
+    "react-native-blur": "^3.1.2",
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.1",
     "react-native-fs": "^2.3.2",
     "react-native-image-picker": "^0.26.3",
     "react-native-interactable": "https://github.com/derrh/react-native-interactable.git",
-    "react-native-keyboard-aware-scroll-view": "^0.2.8",
+    "react-native-keyboard-aware-scroll-view": "^0.2.9",
     "react-native-keyboard-spacer": "^0.3.1",
-    "react-native-progress": "^3.2.0",
+    "react-native-progress": "^3.3.0",
     "react-native-search-bar": "3.0.0",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",
     "route-parser": "^0.0.5",
     "striptags": "^3.0.1",
-    "url-parse": "^1.1.8",
-    "uuid": "3.0.1"
+    "url-parse": "^1.1.9",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -65,9 +65,9 @@
     "react-native-kill-packager": "^1.0.0",
     "react-test-renderer": "16.0.0-alpha.12",
     "redux-freeze": "^0.1.5",
-    "redux-logger": "^3.0.1",
-    "redux-mock-store": "^1.2.2",
-    "timezone-mock": "^0.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.2.3",
+    "timezone-mock": "^0.0.4",
     "xhr2": "^0.1.4"
   },
   "jest": {

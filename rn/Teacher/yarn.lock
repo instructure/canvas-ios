@@ -232,11 +232,12 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axios@^0.15.3:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.15.3.tgz#2c9d638b2e191a08ea1d6cc988eadd6ba5bdc053"
+axios@^0.16.2:
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.16.2.tgz#ba4f92f17167dfbab40983785454b9ac149c3c6d"
   dependencies:
-    follow-redirects "1.0.0"
+    follow-redirects "^1.2.3"
+    is-buffer "^1.1.5"
 
 babel-code-frame@^6.16.0, babel-code-frame@^6.22.0:
   version "6.22.0"
@@ -1418,7 +1419,7 @@ debug@2.2.0, debug@~2.2.0:
   dependencies:
     ms "0.7.1"
 
-debug@2.6.3, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0, debug@^2.6.3:
+debug@2.6.3, debug@^2.1.1, debug@^2.2.0, debug@^2.4.5, debug@^2.6.0, debug@^2.6.3:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
@@ -1428,9 +1429,9 @@ decamelize@^1.0.0, decamelize@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
 
-deep-diff@0.3.4:
-  version "0.3.4"
-  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.4.tgz#aac5c39952236abe5f037a2349060ba01b00ae48"
+deep-diff@^0.3.5:
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/deep-diff/-/deep-diff-0.3.8.tgz#c01de63efb0eec9798801d40c7e0dae25b582c84"
 
 deep-extend@~0.4.0:
   version "0.4.1"
@@ -2032,11 +2033,11 @@ flux-standard-action@^1.2.0:
   dependencies:
     lodash "^4.0.0"
 
-follow-redirects@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.0.0.tgz#8e34298cbd2e176f254effec75a1c78cc849fd37"
+follow-redirects@^1.2.3:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.2.4.tgz#355e8f4d16876b43f577b0d5ce2668b9723214ea"
   dependencies:
-    debug "^2.2.0"
+    debug "^2.4.5"
 
 for-in@^1.0.1:
   version "1.0.2"
@@ -2500,7 +2501,7 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.0.2:
+is-buffer@^1.0.2, is-buffer@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.5.tgz#1f3b26ef613b214b88cbca23cc6c01d87961eecc"
 
@@ -4007,9 +4008,9 @@ querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
-querystringify@0.0.x:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-0.0.4.tgz#0cf7f84f9463ff0ae51c4c4b142d95be37724d9c"
+querystringify@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
 
 random-bytes@~1.0.0:
   version "1.0.0"
@@ -4058,9 +4059,11 @@ react-devtools-core@^2.1.8:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
-react-native-blur@^3.0.0-alpha:
-  version "3.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-3.0.0-alpha.tgz#d1efa6fca64a56301f1ae3c052dfc07ad0e19e85"
+react-native-blur@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-3.1.2.tgz#82492a4db1d99aaa61956bbabc50a98930974e6d"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-button@^1.8.2:
   version "1.8.2"
@@ -4085,9 +4088,9 @@ react-native-image-picker@^0.26.3:
   version "0.0.9"
   resolved "https://github.com/derrh/react-native-interactable.git#cc1bca18c6194afd4f3c3cb552f003a0884ab0a3"
 
-react-native-keyboard-aware-scroll-view@^0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.8.tgz#e9843c0d7467a2e6a2a737883bd9c2b7c7e38e35"
+react-native-keyboard-aware-scroll-view@^0.2.9:
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.9.tgz#2a1ae49cfae90a9665b21763c1f8bd03ed5fb92c"
   dependencies:
     react-timer-mixin "^0.13.3"
 
@@ -4099,9 +4102,11 @@ react-native-kill-packager@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-kill-packager/-/react-native-kill-packager-1.0.0.tgz#8d5dc706429805800298acabca45598d0d39b391"
 
-react-native-progress@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.2.0.tgz#86d756be5537c09936ac3d3c4e23710da590743c"
+react-native-progress@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.3.0.tgz#da7a6942f44c42aed507576525d9e15cee1a7c2f"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-native-search-bar@3.0.0:
   version "3.0.0"
@@ -4321,15 +4326,15 @@ redux-freeze@^0.1.5:
   dependencies:
     deep-freeze-strict "1.1.1"
 
-redux-logger@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.1.tgz#ae8ae4c3c55ed3dd7aa31509f0856c5d3751057a"
+redux-logger@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-3.0.6.tgz#f7555966f3098f3c88604c449cf0baf5778274bf"
   dependencies:
-    deep-diff "0.3.4"
+    deep-diff "^0.3.5"
 
-redux-mock-store@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.2.2.tgz#38007dc38f12ca8d965c7521afee5ccacc234d03"
+redux-mock-store@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/redux-mock-store/-/redux-mock-store-1.2.3.tgz#1b3ad299da91cb41ba30d68e3b6f024475fb9e1b"
 
 redux@^3.6.0:
   version "3.6.0"
@@ -4916,9 +4921,9 @@ time-stamp@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.0.1.tgz#9f4bd23559c9365966f3302dbba2b07c6b99b151"
 
-timezone-mock@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/timezone-mock/-/timezone-mock-0.0.0.tgz#895370ea10a61fe9839ef3c40e4d0831064a4e38"
+timezone-mock@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/timezone-mock/-/timezone-mock-0.0.4.tgz#4d5cae0e0248cd462dadd6297db7e8494042ad98"
 
 tmpl@1.0.x:
   version "1.0.4"
@@ -5032,11 +5037,11 @@ unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
 
-url-parse@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.1.8.tgz#7a65b3a8d57a1e86af6b4e2276e34774167c0156"
+url-parse@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.1.9.tgz#c67f1d775d51f0a18911dd7b3ffad27bb9e5bd19"
   dependencies:
-    querystringify "0.0.x"
+    querystringify "~1.0.0"
     requires-port "1.0.x"
 
 user-home@^2.0.0:
@@ -5057,9 +5062,13 @@ utils-merge@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
-uuid@3.0.1, uuid@^3.0.0:
+uuid@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
+
+uuid@^3.0.0, uuid@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
