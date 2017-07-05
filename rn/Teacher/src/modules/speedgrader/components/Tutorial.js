@@ -7,10 +7,13 @@ import {
   Image,
   StyleSheet,
   Animated,
+  NativeModules,
 } from 'react-native'
 import { LinkButton } from '../../../common/buttons'
 import { Text } from '../../../common/text'
 import i18n from 'format-message'
+
+const { NativeAccessibility } = NativeModules
 
 type TutorialType = {
   id: string,
@@ -66,7 +69,7 @@ export default class Tutorial extends PureComponent {
       {
         toValue: 1,
       }
-    ).start()
+    ).start(this.focusCurrentTutorial)
   }
 
   onPress = async () => {
@@ -87,13 +90,26 @@ export default class Tutorial extends PureComponent {
         {
           toValue: 0,
         }
-      ).start(resolve)
+      ).start(() => {
+        this.focusCurrentTutorial()
+        resolve()
+      })
     })
 
     this.setState({
       hasSeen,
       currentTutorial: nextTutorial,
     })
+  }
+
+  focusCurrentTutorial = () => {
+    if (this.state.currentTutorial) {
+      const current = this.state.currentTutorial
+      const elementID = `${current.id}-title`
+      setTimeout(() => {
+        NativeAccessibility.focusElement(elementID)
+      }, 500)
+    }
   }
 
   render () {
@@ -111,7 +127,7 @@ export default class Tutorial extends PureComponent {
         ]}
       >
         <View style={styles.box}>
-          <Text style={styles.text}>{currentTutorial.text}</Text>
+          <Text style={styles.text} testID={`${currentTutorial.id}-title`}>{currentTutorial.text}</Text>
           <Image style={styles.image} source={currentTutorial.image} />
           <LinkButton
             textStyle={styles.buttonText}
@@ -153,6 +169,7 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: '600',
     fontSize: 18,
+    marginBottom: 16,
   },
   buttonText: {
     fontSize: 16,

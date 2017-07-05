@@ -1,11 +1,13 @@
 // @flow
 
 import React from 'react'
-import { Animated } from 'react-native'
+import { Animated, NativeModules } from 'react-native'
 import renderer from 'react-test-renderer'
 import Tutorial from '../Tutorial'
 import Images from '../../../../images'
 import explore from '../../../../../test/helpers/explore'
+
+const { NativeAccessibility } = NativeModules
 
 jest
   .mock('AsyncStorage', () => ({
@@ -91,5 +93,36 @@ describe('Tutorial', () => {
     })
 
     Animated.timing = oldTiming
+  })
+
+  it('focus current tutorial function should work', async () => {
+    let tree = renderer.create(
+      <Tutorial {...defaultProps} />
+    )
+    const currentTutorial = defaultProps.tutorials[0]
+    tree.getInstance().setState({
+      hasLoaded: true,
+      hasSeen: {},
+      currentTutorial,
+    })
+
+    jest.useFakeTimers()
+    tree.getInstance().focusCurrentTutorial()
+    jest.runAllTimers()
+    expect(NativeAccessibility.focusElement).toHaveBeenCalledWith(`${currentTutorial.id}-title`)
+  })
+
+  it('focus current tutorial function should not do anything when there is no current tutorial', async () => {
+    let tree = renderer.create(
+      <Tutorial {...defaultProps} />
+    )
+    tree.getInstance().setState({
+      hasLoaded: true,
+      hasSeen: {},
+      currentTutorial: null,
+    })
+
+    tree.getInstance().focusCurrentTutorial()
+    expect(NativeAccessibility.focusElement).not.toHaveBeenCalled()
   })
 })

@@ -182,7 +182,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     if (this.props.hasRubric) {
       tutorials.push({
-        id: 'long-press',
+        id: 'long-press-tutorial',
         text: i18n('Tap and hold a rubric number to see its description'),
         image: Images.speedGrader.longPress,
       })

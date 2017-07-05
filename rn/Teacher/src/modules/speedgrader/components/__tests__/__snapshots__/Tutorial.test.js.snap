@@ -55,12 +55,14 @@ exports[`Tutorial will render the tutorial after data from async storage has bee
           Object {
             "fontSize": 18,
             "fontWeight": "600",
+            "marginBottom": 16,
           },
           Object {
             "fontFamily": ".SFUIDisplay-semibold",
           },
         ]
       }
+      testID="1-title"
     >
       Some text
     </Text>
