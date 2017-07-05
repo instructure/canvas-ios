@@ -67,7 +67,7 @@ exports[`renders correctly 1`] = `
             }
           >
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"
@@ -396,7 +396,7 @@ exports[`renders correctly with author being the logged in user 1`] = `
             }
           >
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"
@@ -725,7 +725,7 @@ exports[`renders correctly with author lots of participants 1`] = `
             }
           >
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"

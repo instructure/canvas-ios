@@ -492,7 +492,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                       }
                     >
                       <Text
-                        accessible={true}
+                        accessible={false}
                         allowFontScaling={true}
                         disabled={false}
                         ellipsizeMode="tail"

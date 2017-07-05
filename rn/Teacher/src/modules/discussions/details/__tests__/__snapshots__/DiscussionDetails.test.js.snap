@@ -936,7 +936,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"
@@ -1230,7 +1230,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"
@@ -2480,7 +2480,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"
@@ -3783,7 +3783,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"
@@ -4112,7 +4112,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"
@@ -4432,7 +4432,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         }
                       >
                         <Text
-                          accessible={true}
+                          accessible={false}
                           allowFontScaling={true}
                           disabled={false}
                           ellipsizeMode="tail"
@@ -5735,7 +5735,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"
@@ -6029,7 +6029,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   }
                 >
                   <Text
-                    accessible={true}
+                    accessible={false}
                     allowFontScaling={true}
                     disabled={false}
                     ellipsizeMode="tail"

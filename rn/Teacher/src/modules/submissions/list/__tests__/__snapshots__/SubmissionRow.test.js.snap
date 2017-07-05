@@ -62,7 +62,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
           }
         >
           <Text
-            accessible={true}
+            accessible={false}
             allowFontScaling={true}
             disabled={false}
             ellipsizeMode="tail"

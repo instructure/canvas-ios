@@ -85,7 +85,7 @@ export default class Avatar extends Component<any, Props, any> {
         : ''
       return (
         <View style={[styles.altImage, { height, width, borderRadius }]} accessibilityLabel=''>
-          <Text style={[styles.altImageText, { fontSize }]}>{altText}</Text>
+          <Text style={[styles.altImageText, { fontSize }]} accessible={false}>{altText}</Text>
         </View>
       )
     }

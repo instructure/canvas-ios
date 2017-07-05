@@ -148,7 +148,7 @@ exports[`render correctly 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
+                  accessible={false}
                   allowFontScaling={true}
                   disabled={false}
                   ellipsizeMode="tail"
@@ -286,7 +286,7 @@ exports[`render correctly 1`] = `
                 }
               >
                 <Text
-                  accessible={true}
+                  accessible={false}
                   allowFontScaling={true}
                   disabled={false}
                   ellipsizeMode="tail"
@@ -648,7 +648,7 @@ exports[`render correctly 2`] = `
                 }
               >
                 <Text
-                  accessible={true}
+                  accessible={false}
                   allowFontScaling={true}
                   disabled={false}
                   ellipsizeMode="tail"
