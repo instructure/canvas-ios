@@ -48,3 +48,9 @@ export const submissionComment: Template<SubmissionComment> = template({
   created_at: '2017-03-17T19:15:25Z',
   media_comment: undefined,
 })
+
+export const submissionSummary: Template<SubmissionSummary> = template({
+  graded: 1,
+  ungraded: 1,
+  not_submitted: 0,
+})

@@ -12,6 +12,7 @@ import cloneDeep from 'lodash/cloneDeep'
 import pendingComments from '../speedgrader/comments/pending-comments-reducer'
 import { default as QuizDetailsActions } from '../quizzes/details/actions'
 import { default as DiscussionDetailsActions } from '../discussions/details/actions'
+import { default as SubmissionActions } from '../submissions/list/actions'
 
 export let defaultState: AssignmentGroupsState = {}
 
@@ -22,15 +23,18 @@ const { refreshAssignmentList,
         anonymousGrading } = Actions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
+const { refreshSubmissionSummary } = SubmissionActions
 
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
 const error = error => error || null
 const anonymousGradingOn = anonymous => anonymous || false
+const submissionSummaryReducer = data => data || { error: null, pending: 0, data: { graded: 0, ungraded: 0, not_submitted: 0 } }
 
 const assignmentContent = combineReducers({
   data: assignment,
   submissions,
+  submissionSummary: submissionSummaryReducer,
   gradeableStudents,
   pending,
   error,
@@ -40,6 +44,7 @@ const assignmentContent = combineReducers({
 
 const defaultAssignmentContents: AssignmentContentState = {
   submissions: { refs: [], pending: 0 },
+  submissionSummary: { pending: 0, error: null, data: { graded: 0, ungraded: 0, not_submitted: 0 } },
   gradeableStudents: { refs: [], pending: 0 },
   pendingComments: {},
 }
@@ -145,6 +150,36 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
             ...(state[assignment.data.id] && state[assignment.data.id].data),
             ...assignment.data,
           },
+        },
+      }
+    },
+  }),
+  [refreshSubmissionSummary.toString()]: handleAsync({
+    resolved: (state, { result, courseID, assignmentID }) => {
+      return {
+        ...state,
+        [assignmentID]: {
+          ...state[assignmentID],
+          submissionSummary: { data: result.data, pending: 0, error: null },
+        },
+      }
+    },
+    rejected: (state, { courseID, assignmentID, error }) => {
+      return {
+        ...state,
+        [assignmentID]: {
+          ...state[assignmentID],
+          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 0, error: error },
+        },
+      }
+    },
+    pending: (state, { courseID, assignmentID }) => {
+      let summaryEntity = (state[assignmentID] || {}).submissionSummary || {}
+      return {
+        ...state,
+        [assignmentID]: {
+          ...state[assignmentID],
+          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: (summaryEntity.pending || 0) + 1, error: null },
         },
       }
     },

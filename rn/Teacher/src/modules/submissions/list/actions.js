@@ -2,13 +2,18 @@
 
 import { createAction } from 'redux-actions'
 import canvas from '../../../api/canvas-api'
-import type { SubmissionListActionProps } from './submission-prop-types'
 
-export const SubmissionActions = (api: typeof canvas): SubmissionListActionProps => ({
+export let Actions: (typeof canvas) => any = (api) => ({
+  refreshSubmissionSummary: createAction('submissions.summary', (courseID: string, assignmentID: string) => ({
+    promise: api.refreshSubmissionSummary(courseID, assignmentID),
+    courseID,
+    assignmentID,
+  })),
   refreshSubmissions: createAction('submissions.update', (courseID: string, assignmentID: string, grouped: boolean = false) => ({
     promise: api.getSubmissions(courseID, assignmentID, grouped),
     assignmentID,
   })),
+
 })
 
-export default (SubmissionActions(canvas): SubmissionListActionProps)
+export default (Actions(canvas): any)

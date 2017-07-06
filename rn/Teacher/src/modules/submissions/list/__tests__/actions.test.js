@@ -1,6 +1,6 @@
 // @flow
 
-import { SubmissionActions } from '../actions'
+import { Actions } from '../actions'
 import { testAsyncAction } from '../../../../../test/helpers/async'
 import { apiResponse } from '../../../../../test/helpers/apiMock'
 
@@ -14,7 +14,7 @@ test('should refresh submissions', async () => {
     template.submissionHistory([{ id: '67' }], []),
   ]
 
-  let actions = SubmissionActions({
+  let actions = Actions({
     getSubmissions: apiResponse(submissions),
   })
 
@@ -33,6 +33,34 @@ test('should refresh submissions', async () => {
       payload: {
         result: { data: submissions },
         assignmentID: '4',
+      },
+    },
+  ])
+})
+
+test('should refresh submission summary', async () => {
+  let summary = template.submissionSummary({ graded: 1, ungraded: 1, not_submitted: 1 })
+
+  let actions = Actions({
+    refreshSubmissionSummary: apiResponse(summary),
+  })
+
+  let result = await testAsyncAction(actions.refreshSubmissionSummary('1', '1', false))
+
+  expect(result).toMatchObject([
+    {
+      type: actions.refreshSubmissionSummary.toString(),
+      pending: true,
+      payload: {
+        courseID: '1', assignmentID: '1',
+      },
+    },
+    {
+      type: actions.refreshSubmissionSummary.toString(),
+      payload: {
+        result: { data: summary },
+        courseID: '1',
+        assignmentID: '1',
       },
     },
   ])

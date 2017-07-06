@@ -61,8 +61,15 @@ export type PendingNewDiscussionState = {
   new?: AsyncState & { id?: ?string },
 }
 
+export type SubmissionSummaryState = {
+  data: SubmissionSummary,
+  pending: number,
+  error: ?string,
+}
+
 export type AssignmentContentState = {
   submissions: AsyncRefs,
+  submissionSummary: SubmissionSummaryState,
   gradeableStudents: AsyncRefs,
   pendingComments: PendingCommentsState,
 }

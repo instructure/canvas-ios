@@ -53,3 +53,7 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
   return httpClient().put(`/courses/${courseID}/assignments/${assignmentID}/submissions/${userID}`, data)
 }
 
+export function refreshSubmissionSummary (courseID: string, assignmentID: string): Promise<ApiResponse<Submission>> {
+  return httpClient().get(`/courses/${courseID}/assignments/${assignmentID}/submission_summary`)
+}
+

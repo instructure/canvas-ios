@@ -6,8 +6,7 @@ import React, { Component } from 'react'
 import SubmissionGraph from '../../submissions/SubmissionGraph'
 import { connect } from 'react-redux'
 import SubmissionActions from '../../submissions/list/actions'
-import AssignmentActions from '../../assignments/actions'
-import { gradeProp } from '../../submissions/list/get-submissions-props'
+
 import {
   View,
   StyleSheet,
@@ -22,11 +21,11 @@ export type SubmissionBreakdownGraphSectionProps = {
   assignmentID: string,
   style: any,
   onPress: (string) => void,
-  refreshSubmissions: Function,
-  refreshGradeableStudents: Function,
-  refreshAssignment: Function,
+  graded: number,
+  ungraded: number,
+  not_submitted: number,
   submissionTotalCount: number,
-  submissions: Submission[],
+  refreshSubmissionSummary: Function,
 }
 
 export type SubmissionBreakdownGraphSectionInitProps = {
@@ -54,14 +53,14 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
 
     let ids = ['graded', 'ungraded', 'not-submitted']
 
-    if (this.props.pending || !this.props.submissions) {
+    if (this.props.pending) {
       return <View style={style.loadingWrapper}><ActivityIndicator /></View>
     }
 
     let totalStudents = this.props.submissionTotalCount
-    let graded = this.props.submissions.filter((s) => { return s.grade !== 'not_submitted' && s.grade !== 'ungraded' }).length
-    let ungraded = this.props.submissions.filter((s) => { return s.grade === 'ungraded' }).length
-    let notSubmitted = this.props.submissions.filter((s) => s.grade === 'not_submitted').length
+    let graded = this.props.graded
+    let ungraded = this.props.ungraded
+    let notSubmitted = this.props.not_submitted
 
     let data = [graded, ungraded, notSubmitted]
 
@@ -124,44 +123,28 @@ const style = StyleSheet.create({
 })
 
 export function refreshSubmissionList (props: SubmissionBreakdownGraphSectionProps): void {
-  props.refreshSubmissions(props.courseID, props.assignmentID)
-  props.refreshGradeableStudents(props.courseID, props.assignmentID)
-  props.refreshAssignment(props.courseID, props.assignmentID)
+  props.refreshSubmissionSummary(props.courseID, props.assignmentID)
 }
 
 export function mapStateToProps (state: AppState, ownProps: SubmissionBreakdownGraphSectionInitProps): any {
   const assignment = state.entities.assignments[ownProps.assignmentID]
-  let submissions = []
-  let pending = false
-  if (assignment && assignment.submissions && assignment.submissions.refs) {
-    submissions = assignment.submissions.refs.map((id) => {
-      const submission = state.entities.submissions[id].submission
-      if (!submission) return null
-      return {
-        ...submission,
-        grade: gradeProp(submission),
-      }
-    }).filter((a) => a)
-    pending = assignment.pending || assignment.submissions.pending
-  } else {
-    pending = true
-  }
-
+  let pending = 0
   let submissionTotalCount = 0
-
-  if (assignment && assignment.gradeableStudents && assignment.gradeableStudents.refs) {
-    submissionTotalCount = assignment.gradeableStudents.refs.length
-    pending = pending || assignment.gradeableStudents.pending
+  let summary = { graded: 0, ungraded: 0, not_submitted: 0 }
+  if (assignment && assignment.submissionSummary) {
+    summary = assignment.submissionSummary.data
+    submissionTotalCount = summary.graded + summary.ungraded + summary.not_submitted
+    pending = assignment.pending || assignment.submissionSummary.pending
   } else {
     pending = true
   }
 
   return {
-    submissions,
+    ...summary,
     submissionTotalCount,
-    pending,
+    pending: pending,
   }
 }
 
-const Connected = connect(mapStateToProps, { ...SubmissionActions, ...AssignmentActions })(SubmissionBreakdownGraphSection)
+const Connected = connect(mapStateToProps, { ...SubmissionActions })(SubmissionBreakdownGraphSection)
 export default (Connected: any)

@@ -80,3 +80,9 @@ export type SubmissionComment = {
 
 export type SubmissionCommentParams
   = { type: 'text', message: string, groupComment: boolean }
+
+export type SubmissionSummary = {
+  graded: number,
+  ungraded: number,
+  not_submitted: number,
+}

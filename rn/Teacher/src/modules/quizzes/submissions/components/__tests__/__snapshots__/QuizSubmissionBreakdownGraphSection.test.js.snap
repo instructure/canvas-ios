@@ -45,7 +45,7 @@ exports[`render 0 submissions 1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.000033333333333333335}
+            progress={Infinity}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
@@ -125,7 +125,7 @@ exports[`render 0 submissions 1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.000033333333333333335}
+            progress={Infinity}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
@@ -205,7 +205,7 @@ exports[`render 0 submissions 1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={1}
+            progress={Infinity}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
@@ -512,25 +512,6 @@ exports[`render 1`] = `
 </View>
 `;
 
-exports[`render loading with null submissions 1`] = `
-<View
-  style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-    }
-  }
->
-  <ActivityIndicator
-    animating={true}
-    color="#999999"
-    hidesWhenStopped={true}
-    size="small"
-  />
-</View>
-`;
-
 exports[`render loading with pending set 1`] = `
 <View
   style={
@@ -550,7 +531,7 @@ exports[`render loading with pending set 1`] = `
 </View>
 `;
 
-exports[`render multiple data points  1`] = `
+exports[`render no graded 1`] = `
 <View
   style={
     Object {
@@ -595,7 +576,7 @@ exports[`render multiple data points  1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={2}
+            progress={0.00005}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
@@ -675,7 +656,7 @@ exports[`render multiple data points  1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.000033333333333333335}
+            progress={0.5}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
@@ -755,7 +736,7 @@ exports[`render multiple data points  1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={-1}
+            progress={0.5}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"

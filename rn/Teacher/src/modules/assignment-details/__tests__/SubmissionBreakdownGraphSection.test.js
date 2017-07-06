@@ -47,6 +47,7 @@ beforeEach(() => {
     refresh: jest.fn(),
     refreshing: false,
     onPress: jest.fn(),
+    refreshSubmissionSummary: jest.fn(),
   }
 })
 
@@ -140,11 +141,9 @@ test('mapStateToProps with an assignment id', () => {
         [assignment.id]: {
           assignment,
           submissions: { refs: [s1.id], pending: 0 },
+          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 1 }, error: null, pending: 0 },
           gradeableStudents: { refs: ['1'], pending: 0 },
         },
-      },
-      submissions: {
-        [s1.id]: { submission: s1 },
       },
     },
   })
@@ -152,10 +151,10 @@ test('mapStateToProps with an assignment id', () => {
   const result = mapStateToProps(appState, { courseID: course.id, assignmentID: assignment.id })
   expect(result).toMatchObject({
     submissionTotalCount: 1,
-    submissions: [{
-      ...s1,
-      grade: 'not_submitted',
-    }],
+    graded: 0,
+    ungraded: 0,
+    not_submitted: 1,
+    pending: 0,
   })
 })
 
@@ -168,7 +167,10 @@ test('mapStateToProps no datas', () => {
   const result = mapStateToProps(appState, { courseID: course.id, assignmentID: assignment.id })
   expect(result).toMatchObject({
     submissionTotalCount: 0,
-    submissions: [],
+    graded: 0,
+    ungraded: 0,
+    not_submitted: 0,
+    pending: true,
   })
 })
 

@@ -32,11 +32,6 @@ let quiz: any = template.quiz()
 let defaultProps = {}
 
 beforeEach(() => {
-  let a = template.quizSubmission({ id: 1, kept_score: 5 })
-  let b = template.quizSubmission({ id: 2, workflow_state: 'untaken' })
-  let c = template.quizSubmission({ id: 3, workflow_state: 'pending_review' })
-  let quizSubmissions = [{ data: a }, { data: b }, { data: c }]
-
   defaultProps = {
     courseID: course.id,
     quizID: quiz.id,
@@ -44,12 +39,15 @@ beforeEach(() => {
     refreshEnrollments: jest.fn(),
     refreshAssignment: jest.fn(),
     refreshGradeableStudents: jest.fn(),
-    quizSubmissions,
-    submissionTotalCount: quizSubmissions.length,
+    submissionTotalCount: 3,
     pending: 0,
     refresh: jest.fn(),
     refreshing: false,
     onPress: jest.fn(),
+    graded: 1,
+    ungraded: 1,
+    notSubmitted: 1,
+    refreshSubmissionSummary: jest.fn(),
   }
 })
 
@@ -65,6 +63,11 @@ test('render with an assignment id', () => {
   // Why doesn't this work
   // $FlowFixMe
   defaultProps.assignmentID = assignment.id
+  defaultProps.graded = 1
+  defaultProps.ungraded = 1
+  defaultProps.notSubmitted = 1
+  defaultProps.submissionTotalCount = 3
+
   const tree = renderer.create(
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
@@ -72,30 +75,21 @@ test('render with an assignment id', () => {
 })
 
 test('render 0 submissions', () => {
-  defaultProps.quizSubmissions = []
+  defaultProps.graded = 0
+  defaultProps.ungraded = 0
+  defaultProps.notSubmitted = 0
+  defaultProps.submissionTotalCount = 0
   let tree = renderer.create(
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('render multiple data points ', () => {
-  let a = template.quizSubmission({ id: 1, kept_score: 1 })
-  let b = template.quizSubmission({ id: 2, kept_score: 2 })
-  let c = template.quizSubmission({ id: 3, kept_score: 3 })
-  let d = template.quizSubmission({ id: 4, kept_score: 4 })
-  let e = template.quizSubmission({ id: 5, kept_score: 5 })
-  let f = template.quizSubmission({ id: 6, kept_score: 6 })
-  defaultProps.quizSubmissions = [{ data: a }, { data: b }, { data: c }, { data: d }, { data: e }, { data: f }]
-
-  let tree = renderer.create(
-    <QuizSubmissionBreakdownGraphSection {...defaultProps} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
-})
-
-test('render loading with null submissions', () => {
-  defaultProps.quizSubmissions = null
+test('render no graded', () => {
+  defaultProps.graded = 0
+  defaultProps.ungraded = 1
+  defaultProps.notSubmitted = 1
+  defaultProps.submissionTotalCount = 2
   let tree = renderer.create(
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
@@ -175,7 +169,7 @@ test('mapStateToProps', () => {
       quizzes: {
         [quiz.id]: {
           data: quiz,
-          quizSubmissions: { refs: [qs1.id] },
+          quizSubmissions: { refs: [qs1.id], pending: 0 },
         },
       },
       quizSubmissions: {
@@ -185,13 +179,12 @@ test('mapStateToProps', () => {
   })
 
   const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
-  expect(result).toMatchObject({
+  expect(result).toEqual({
     submissionTotalCount: 1,
-    quizSubmissions: [
-      {
-        data: qs1,
-      },
-    ],
+    graded: 0,
+    notSubmitted: 0,
+    ungraded: 1,
+    pending: 0,
   })
 })
 
@@ -224,6 +217,7 @@ test('mapStateToProps with an assignment id', () => {
         [assignment.id]: {
           assignment,
           gradeableStudents: { refs: ['1'], pending: 0 },
+          submissionSummary: { error: null, pending: 0, data: { graded: 0, ungraded: 0, not_submitted: 1 } },
         },
       },
       enrollments: {
@@ -242,13 +236,12 @@ test('mapStateToProps with an assignment id', () => {
   })
 
   const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id, assignmentID: assignment.id })
-  expect(result).toMatchObject({
+  expect(result).toEqual({
     submissionTotalCount: 1,
-    quizSubmissions: [
-      {
-        data: qs1,
-      },
-    ],
+    graded: 0,
+    ungraded: 0,
+    notSubmitted: 1,
+    pending: 0,
   })
 })
 
@@ -258,14 +251,21 @@ test('mapStateToProps with no data should not explode', () => {
   const assignment = template.assignment()
   const appState = template.appState()
   let result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id, assignmentID: assignment.id })
-  expect(result).toMatchObject({
+  expect(result).toEqual({
     submissionTotalCount: 0,
-    quizSubmissions: [],
+    graded: 0,
+    ungraded: 0,
+    notSubmitted: 0,
+    pending: true,
   })
 
   result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
-  expect(result).toMatchObject({
+  expect(result).toEqual({
     submissionTotalCount: 0,
-    quizSubmissions: [],
+    graded: 0,
+    ungraded: 0,
+    notSubmitted: 0,
+    pending: false,
   })
 })
+

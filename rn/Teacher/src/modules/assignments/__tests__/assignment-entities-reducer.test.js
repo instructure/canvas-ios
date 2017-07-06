@@ -8,12 +8,13 @@ import SubmissionActions from '../../submissions/list/actions'
 import { default as QuizDetailsActions } from '../../quizzes/details/actions'
 import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
 
-const { refreshSubmissions } = SubmissionActions
+const { refreshSubmissions, refreshSubmissionSummary } = SubmissionActions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../api/canvas-api/__templates__/error'),
 }
 
 test('refresh assignments', async () => {
@@ -26,6 +27,7 @@ test('refresh assignments', async () => {
     [assignment.id.toString()]: {
       data: assignment,
       submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, error: null, pending: 0 },
       gradeableStudents: { refs: [], pending: 0 },
       pendingComments: {},
     },
@@ -98,6 +100,7 @@ test('reduces assignment content', () => {
         pending: 0,
         refs: ['3'],
       },
+      submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, error: null, pending: 0 },
       gradeableStudents: { pending: 0, refs: [] },
       pending: 0,
       error: null,
@@ -138,6 +141,7 @@ test('refreshQuiz', () => {
       data: assignment,
       pending: 0,
       submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
       pendingComments: {},
       anonymousGradingOn: false,
@@ -171,6 +175,7 @@ test('refreshQuiz', () => {
         data: assignment,
         pending: 0,
         submissions: { refs: [], pending: 0 },
+        submissionSummary: { data: {}, pending: 0, error: null },
         gradeableStudents: { refs: [], pending: 0 },
         pendingComments: {},
       },
@@ -201,6 +206,7 @@ test('refreshDiscussionEntries', () => {
       data: assignment,
       pending: 0,
       submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
       gradeableStudents: { refs: [], pending: 0 },
       pendingComments: {},
       anonymousGradingOn: false,
@@ -224,6 +230,113 @@ test('refreshDiscussionEntries', () => {
     '1': {
       ...initialState['1'],
       data: refreshedAssignment,
+    },
+  })
+})
+
+test('refreshSubmissionSummary', () => {
+  const assignment = template.assignment({
+    id: '1',
+    name: 'Old',
+  })
+  const submissionSummary = template.submissionSummary({ graded: 1, ungraded: 1, not_submitted: 1 })
+  const initialState = {
+    '1': {
+      data: assignment,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+      error: null,
+    },
+  }
+
+  const resolved = {
+    type: refreshSubmissionSummary.toString(),
+    payload: {
+      result: { data: submissionSummary },
+      courseID: '1',
+      assignmentID: '1',
+    },
+  }
+  expect(assignments(initialState, resolved)).toEqual({
+    '1': {
+      ...initialState['1'],
+      submissionSummary: { data: submissionSummary, pending: 0, error: null },
+    },
+  })
+})
+
+test('refreshSubmissionSummary with error', async () => {
+  const assignment = template.assignment({ id: '1' })
+  const emptySummary = template.submissionSummary({ graded: 0, ungraded: 0, not_submitted: 0 })
+  const initialState = {
+    '1': {
+      data: assignment,
+      pending: 0,
+
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+      error: null,
+    },
+  }
+
+  const error = template.error('summary error')
+  const action = {
+    type: refreshSubmissionSummary.toString(),
+    error: true,
+    payload: {
+      courseID: '1',
+      assignmentID: '1',
+      error,
+    },
+  }
+
+  const state = assignments(initialState, action)
+
+  expect(state).toEqual({
+    '1': {
+      ...initialState['1'],
+      submissionSummary: { data: emptySummary, pending: 0, error: error },
+    },
+  })
+})
+
+test('refreshSubmissionSummary pending', async () => {
+  const assignment = template.assignment({ id: '1' })
+  const initialState = {
+    '1': {
+      data: assignment,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+      error: null,
+    },
+  }
+
+  const action = {
+    type: refreshSubmissionSummary.toString(),
+    pending: true,
+    payload: {
+      courseID: '1',
+      assignmentID: '1',
+    },
+  }
+
+  const state = assignments(initialState, action)
+
+  expect(state).toEqual({
+    '1': {
+      ...initialState['1'],
+      submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 1, error: null },
     },
   })
 })

@@ -307,7 +307,7 @@ exports[`render 1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.3333333333333333}
+            progress={0.000033333333333333335}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.graded-progress-view"
@@ -388,7 +388,7 @@ exports[`render 1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.3333333333333333}
+            progress={0.000033333333333333335}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.ungraded-progress-view"
@@ -469,7 +469,7 @@ exports[`render 1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.3333333333333333}
+            progress={0.000033333333333333335}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.not-submitted-progress-view"
@@ -523,19 +523,260 @@ exports[`render 1`] = `
 exports[`render loading with null submissions 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "justifyContent": "center",
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      },
+      undefined,
+    ]
   }
 >
-  <ActivityIndicator
-    animating={true}
-    color="#999999"
-    hidesWhenStopped={true}
-    size="small"
-  />
+  <TouchableOpacity
+    accessibilityTraits="button"
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="assignment-details.submission-breakdown-graph-section.graded-dial"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#374A59"
+            formatText={[Function]}
+            progress={0.000033333333333333335}
+            showsText={true}
+            size={70}
+            testID="submissions.submission-graph.graded-progress-view"
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.graded-title-lbl"
+        >
+          Graded
+        </Text>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    accessibilityTraits="button"
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="assignment-details.submission-breakdown-graph-section.ungraded-dial"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#374A59"
+            formatText={[Function]}
+            progress={0.000033333333333333335}
+            showsText={true}
+            size={70}
+            testID="submissions.submission-graph.ungraded-progress-view"
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.ungraded-title-lbl"
+        >
+          Ungraded
+        </Text>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    accessibilityTraits="button"
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="assignment-details.submission-breakdown-graph-section.not-submitted-dial"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            borderWidth={0}
+            color="#374A59"
+            formatText={[Function]}
+            progress={0.000033333333333333335}
+            showsText={true}
+            size={70}
+            testID="submissions.submission-graph.not-submitted-progress-view"
+            textStyle={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.not-submitted-title-lbl"
+        >
+          Not Submitted
+        </Text>
+      </View>
+    </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -605,7 +846,7 @@ exports[`render multiple data points  1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.5}
+            progress={0.000016666666666666667}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.graded-progress-view"
@@ -686,7 +927,7 @@ exports[`render multiple data points  1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.3333333333333333}
+            progress={0.000016666666666666667}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.ungraded-progress-view"
@@ -767,7 +1008,7 @@ exports[`render multiple data points  1`] = `
             borderWidth={0}
             color="#374A59"
             formatText={[Function]}
-            progress={0.16666666666666666}
+            progress={0.000016666666666666667}
             showsText={true}
             size={70}
             testID="submissions.submission-graph.not-submitted-progress-view"
