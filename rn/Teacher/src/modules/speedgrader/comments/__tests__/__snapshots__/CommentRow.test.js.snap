@@ -101,10 +101,10 @@ exports[`My message rows render correctly 1`] = `
             "overflow": "hidden",
           },
           Object {
-            "borderRadius": 20,
             "height": 40,
             "width": 40,
           },
+          Object {},
           Object {
             "backgroundColor": "#F5F5F5",
           },
@@ -241,10 +241,10 @@ exports[`Their message rows render correctly 1`] = `
             "overflow": "hidden",
           },
           Object {
-            "borderRadius": 20,
             "height": 40,
             "width": 40,
           },
+          Object {},
           Object {
             "backgroundColor": "#F5F5F5",
           },
@@ -514,10 +514,10 @@ exports[`my media comments render correclty 1`] = `
             "overflow": "hidden",
           },
           Object {
-            "borderRadius": 20,
             "height": 40,
             "width": 40,
           },
+          Object {},
           Object {
             "backgroundColor": "#F5F5F5",
           },
@@ -588,10 +588,10 @@ exports[`their media comments render correctly 1`] = `
             "overflow": "hidden",
           },
           Object {
-            "borderRadius": 20,
             "height": 40,
             "width": 40,
           },
+          Object {},
           Object {
             "backgroundColor": "#F5F5F5",
           },
@@ -727,10 +727,10 @@ exports[`their submissions render correctly 1`] = `
             "overflow": "hidden",
           },
           Object {
-            "borderRadius": 20,
             "height": 40,
             "width": 40,
           },
+          Object {},
           Object {
             "backgroundColor": "#F5F5F5",
           },

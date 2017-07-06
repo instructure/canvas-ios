@@ -4102,6 +4102,10 @@ react-native-kill-packager@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-kill-packager/-/react-native-kill-packager-1.0.0.tgz#8d5dc706429805800298acabca45598d0d39b391"
 
+react-native-mail@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-mail/-/react-native-mail-3.0.3.tgz#9890cd9abf2a897e1ae5b635b2e6b613595ae8fd"
+
 react-native-progress@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.3.0.tgz#da7a6942f44c42aed507576525d9e15cee1a7c2f"

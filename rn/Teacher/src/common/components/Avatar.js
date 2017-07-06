@@ -14,6 +14,7 @@ type Props = {
   avatarURL?: string,
   userName: string,
   height?: number, // Width will always be equal to the height
+  border?: boolean,
 }
 
 export default class Avatar extends Component<any, Props, any> {
@@ -59,7 +60,17 @@ export default class Avatar extends Component<any, Props, any> {
       borderRadius = 0
     }
 
-    const containerStyles = [styles.imageContainer, { height, width, borderRadius }]
+    let border = {}
+    if (this.props.border) {
+      border = {
+        borderColor: 'white',
+        borderStyle: 'solid',
+        borderWidth: 4,
+        borderRadius: borderRadius,
+      }
+    }
+
+    const containerStyles = [styles.imageContainer, { height, width }, { ...border }]
     if (!replacement) {
       containerStyles.push({ backgroundColor: '#F5F5F5' })
     }

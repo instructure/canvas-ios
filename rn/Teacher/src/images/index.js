@@ -74,6 +74,7 @@ const images = {
   x: require('./x-icon.png'),
   clear: require('./Clear.png'),
   edit: require('./edit.png'),
+  pencilBG: require('./Pencil-BG.jpg'),
   pickerArrow: require('./picker-arrow.png'),
   published: require('./Published.png'),
   unpublished: require('./Unpublished.png'),

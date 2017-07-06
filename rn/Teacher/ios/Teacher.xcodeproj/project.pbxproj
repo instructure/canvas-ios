@@ -138,6 +138,7 @@
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		646EA8592A1AF9C81B6877D4 /* CourseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5D28EB09C19518A6BA81F /* CourseModule.swift */; };
 		65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */; };
+		685999502ED04B3D8C1FF049 /* libRNMail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A173E7C1016F4F56BBFC43B7 /* libRNMail.a */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
 		700E43A18ED77E9C4B9B4176 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */; };
 		748E680E19A62B76BAFC5262 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523CC8C3560F5F179BB84D4 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift */; };
@@ -472,6 +473,20 @@
 			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
 			remoteInfo = RNImagePicker;
 		};
+		E4B8ECC41F0D7D220038C5F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 46FEDE7F1AFF192F00D3261C;
+			remoteInfo = RNMail;
+		};
+		E4B8ECC61F0D7D220038C5F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 46FEDE8A1AFF192F00D3261C;
+			remoteInfo = RNMailTests;
+		};
 		F95BD47D1E7C600000117939 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
@@ -669,11 +684,13 @@
 		9FCE7BB01ED6340C00DD1693 /* PushNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
 		9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
 		A06E780FA4F813E8535599C4 /* Discussion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Discussion.swift; path = models/Discussion.swift; sourceTree = "<group>"; };
+		A173E7C1016F4F56BBFC43B7 /* libRNMail.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNMail.a; sourceTree = "<group>"; };
 		A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InboxPageTest_testInboxPage_displaysPageObjects.swift; path = data/InboxPageTest/InboxPageTest_testInboxPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; sourceTree = "<group>"; };
 		A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		A77ACE41DEF36F816C9F81E2 /* QuizQuestion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizQuestion.swift; path = models/QuizQuestion.swift; sourceTree = "<group>"; };
 		A8420872227378302E813DF7 /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift; sourceTree = "<group>"; };
+		A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMail.xcodeproj; path = "../node_modules/react-native-mail/RNMail.xcodeproj"; sourceTree = "<group>"; };
 		AA8F13453A04E64C495109D4 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift; sourceTree = "<group>"; };
 		AAA2CE83FCF7E3A5CEF100C6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift; sourceTree = "<group>"; };
 		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
@@ -766,6 +783,7 @@
 				A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */,
 				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
 				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
+				685999502ED04B3D8C1FF049 /* libRNMail.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,6 +1286,7 @@
 				2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */,
 				7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */,
 				5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */,
+				A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1411,6 +1430,15 @@
 			name = AssignmentsListPageTest;
 			sourceTree = "<group>";
 		};
+		E4B8EC9F1F0D7D220038C5F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E4B8ECC51F0D7D220038C5F5 /* libRNMail.a */,
+				E4B8ECC71F0D7D220038C5F5 /* RNMailTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F95BD4611E7C600000117939 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1486,7 +1514,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 830;
 				LastUpgradeCheck = 820;
 				ORGANIZATIONNAME = Instructure;
 				TargetAttributes = {
@@ -1595,6 +1623,10 @@
 				{
 					ProductGroup = B1FE61931EA6AF5500A2A434 /* Products */;
 					ProjectRef = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
+				},
+				{
+					ProductGroup = E4B8EC9F1F0D7D220038C5F5 /* Products */;
+					ProjectRef = A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */;
 				},
 				{
 					ProductGroup = 4924260C1EAEB37C0046ED43 /* Products */;
@@ -1847,6 +1879,20 @@
 			fileType = archive.ar;
 			path = libRNImagePicker.a;
 			remoteRef = B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E4B8ECC51F0D7D220038C5F5 /* libRNMail.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNMail.a;
+			remoteRef = E4B8ECC41F0D7D220038C5F5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E4B8ECC71F0D7D220038C5F5 /* RNMailTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RNMailTests.xctest;
+			remoteRef = E4B8ECC61F0D7D220038C5F5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		F95BD47E1E7C600000117939 /* libRNDeviceInfo.a */ = {
@@ -2122,12 +2168,14 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
+					"$(SRCROOT)/../node_modules/react-native-mail/RNMail",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2170,12 +2218,14 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
+					"$(SRCROOT)/../node_modules/react-native-mail/RNMail",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
 				OTHER_LDFLAGS = (

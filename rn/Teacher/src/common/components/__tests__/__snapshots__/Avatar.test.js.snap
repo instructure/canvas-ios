@@ -1,5 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Avatar renders with border 1`] = `
+<View
+  accessibilityLabel=""
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderColor": "#C7CDD1",
+        "borderWidth": 0.5,
+        "justifyContent": "center",
+        "overflow": "hidden",
+      },
+      Object {
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "fontWeight": "600",
+        },
+        Object {
+          "fontSize": 13,
+        },
+      ]
+    }
+  >
+    LL
+  </Text>
+</View>
+`;
+
 exports[`Avatar renders with image 1`] = `
 <View
   accessibilityLabel=""
@@ -9,10 +52,10 @@ exports[`Avatar renders with image 1`] = `
         "overflow": "hidden",
       },
       Object {
-        "borderRadius": 20,
         "height": 40,
         "width": 40,
       },
+      Object {},
       Object {
         "backgroundColor": "#F5F5F5",
       },

@@ -64,10 +64,10 @@ exports[`render correctly 1`] = `
               "overflow": "hidden",
             },
             Object {
-              "borderRadius": 20,
               "height": 40,
               "width": 40,
             },
+            Object {},
             Object {
               "backgroundColor": "#F5F5F5",
             },
