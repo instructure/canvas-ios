@@ -1,9 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SpeedGrader renders 1`] = `<View />`;
+exports[`SpeedGrader renders 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
   <RCTScrollView
     contentOffset={
       Object {
@@ -156,7 +170,13 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
 `;
 
 exports[`SpeedGrader renders with a filter 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
   <RCTScrollView
     contentOffset={
       Object {
@@ -410,6 +430,22 @@ exports[`SpeedGrader renders with a filter 1`] = `
 </View>
 `;
 
-exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `<View />`;
+exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;
 
-exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `<View />`;
+exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;

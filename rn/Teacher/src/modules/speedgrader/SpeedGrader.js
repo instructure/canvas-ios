@@ -194,7 +194,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         statusBarHidden={true}
         noRotationInVerticallyCompact={true}
       >
-        <View>
+        <View style={styles.speedGrader}>
           { !!this.state.filteredIDs && this.renderBody() }
           <Tutorial
             tutorials={tutorials}
