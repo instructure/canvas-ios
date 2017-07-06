@@ -957,6 +957,7 @@ exports[`renders 1`] = `
             },
           ]
         }
+        testID="assignment-details.assignment-section.submissions-title-lbl"
       >
         Submissions
       </Text>
@@ -2041,6 +2042,7 @@ exports[`renders loading 1`] = `
             },
           ]
         }
+        testID="assignment-details.assignment-section.submissions-title-lbl"
       >
         Submissions
       </Text>
@@ -3125,6 +3127,7 @@ exports[`renders without description 1`] = `
             },
           ]
         }
+        testID="assignment-details.assignment-section.submissions-title-lbl"
       >
         Submissions
       </Text>
