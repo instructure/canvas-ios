@@ -11,6 +11,7 @@ import {
   ActionSheetIOS,
   AlertIOS,
   LayoutAnimation,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 import { default as DetailActions } from './actions'
@@ -48,6 +49,7 @@ type State = {
   courseName: string,
 }
 
+const { NativeAccessibility } = NativeModules
 const { refreshDiscussionEntries, deleteDiscussionEntry, markAllAsRead } = DetailActions
 const { deleteDiscussion } = EditActions
 
@@ -379,6 +381,8 @@ export class DiscussionDetails extends Component<any, Props, any> {
     this.setState({
       rootNodePath: rootPath,
     })
+
+    setTimeout(function () { NativeAccessibility.focusElement('discussion.popToLastDiscussionList') }, 500)
   }
 
   _onPopReplyRootPath = () => {
