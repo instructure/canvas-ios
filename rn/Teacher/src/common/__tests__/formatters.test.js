@@ -5,6 +5,7 @@ import {
   formattedDueDate,
   extractTimeString,
   extractDateString,
+  formatGradeText,
 } from '../formatters'
 
 import { extractDateFromString } from '../../utils/dateUtils'
@@ -83,6 +84,48 @@ describe('util functions', () => {
     const date = new Date('jlakjsdflkjasldkfkjalsd')
     const formattedTime = extractTimeString(date)
     expect(formattedTime).toEqual(null)
+  })
+})
+
+describe('formatGradeText', () => {
+  test('formatGradeText with whole number', () => {
+    const grade = '75'
+    const formattedGrade = formatGradeText(grade, 0)
+    expect(formattedGrade).toEqual('75')
+  })
+
+  test('formatGradeText removes unnecesary decimals', () => {
+    const grade = '75'
+    const formattedGrade = formatGradeText(grade, 2)
+    expect(formattedGrade).toEqual('75')
+
+    const grade1 = '75.000000000'
+    const formattedGrade1 = formatGradeText(grade1, 5)
+    expect(formattedGrade1).toEqual('75')
+  })
+
+  test('formatGradeText with decimal places', () => {
+    const grade1 = '75.1234567'
+    const formattedGrade1 = formatGradeText(grade1, 0)
+    expect(formattedGrade1).toEqual('75')
+
+    const grade2 = '75.1234567'
+    const formattedGrade2 = formatGradeText(grade2, 1)
+    expect(formattedGrade2).toEqual('75.1')
+
+    const grade3 = '75.129'
+    const formattedGrade3 = formatGradeText(grade3, 2)
+    expect(formattedGrade3).toEqual('75.13')
+
+    const grade4 = '75.1234567'
+    const formattedGrade4 = formatGradeText(grade4, 6)
+    expect(formattedGrade4).toEqual('75.123457')
+  })
+
+  test('formatGradeText with not a number', () => {
+    const grade = 'excused'
+    const formattedGrade = formatGradeText(grade, 2)
+    expect(formattedGrade).toEqual('excused')
   })
 })
 

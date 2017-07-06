@@ -36,3 +36,10 @@ export function extractTimeString (date: Date): ?string {
   if (!isDateValid(date)) return null
   return moment(date).format('LT')
 }
+
+export function formatGradeText (grade: string, decimals: number): string {
+  if (isNaN(grade)) return grade
+  let gradeText = grade
+  gradeText = Math.round(Number(grade) * Math.pow(10, decimals)) / Math.pow(10, decimals)
+  return String(gradeText)
+}

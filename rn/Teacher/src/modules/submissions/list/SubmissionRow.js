@@ -17,6 +17,7 @@ import colors from '../../../common/colors'
 import { Text } from '../../../common/text'
 import SubmissionStatus from './SubmissionStatus'
 import Avatar from '../../../common/components/Avatar'
+import { formatGradeText } from '../../../common/formatters'
 
 type RowProps = {
   testID: string,
@@ -70,6 +71,8 @@ const Grade = ({ grade }: {grade: ?GradeProp}): * => {
   let gradeText = grade
   if (grade === 'excused') {
     gradeText = i18n('Excused')
+  } else {
+    gradeText = formatGradeText(grade, 2)
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
