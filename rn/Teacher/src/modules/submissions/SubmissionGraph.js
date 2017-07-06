@@ -37,7 +37,7 @@ export default class SubmissionGraph extends Component<any, SubmissionGraphProps
                            progress={ current / total }
                            borderWidth={0}
                            unfilledColor={submissionCircles.backgroundColor}
-                           color={submissionCircles.tint}
+                           color={color.primaryBrandColor}
                            showsText={true}
                            textStyle={submissionsGraphStyle.innerText}
                            formatText={progress => `${formattedData}`}
@@ -54,7 +54,6 @@ export default class SubmissionGraph extends Component<any, SubmissionGraphProps
 const submissionCircles: { [key: string]: any } = {
   size: 70,
   thickness: 7,
-  tint: '#00e0ff',
   backgroundColor: '#F5F5F5',
 }
 

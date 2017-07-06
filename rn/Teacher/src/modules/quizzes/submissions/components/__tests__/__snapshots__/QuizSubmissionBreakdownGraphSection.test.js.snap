@@ -43,7 +43,7 @@ exports[`render 0 submissions 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.000033333333333333335}
             showsText={true}
@@ -123,7 +123,7 @@ exports[`render 0 submissions 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.000033333333333333335}
             showsText={true}
@@ -203,7 +203,7 @@ exports[`render 0 submissions 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={1}
             showsText={true}
@@ -299,7 +299,7 @@ exports[`render 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.3333333333333333}
             showsText={true}
@@ -379,7 +379,7 @@ exports[`render 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.3333333333333333}
             showsText={true}
@@ -459,7 +459,7 @@ exports[`render 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.3333333333333333}
             showsText={true}
@@ -593,7 +593,7 @@ exports[`render multiple data points  1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={2}
             showsText={true}
@@ -673,7 +673,7 @@ exports[`render multiple data points  1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.000033333333333333335}
             showsText={true}
@@ -753,7 +753,7 @@ exports[`render multiple data points  1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={-1}
             showsText={true}
@@ -849,7 +849,7 @@ exports[`render with an assignment id 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.3333333333333333}
             showsText={true}
@@ -929,7 +929,7 @@ exports[`render with an assignment id 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.3333333333333333}
             showsText={true}
@@ -1009,7 +1009,7 @@ exports[`render with an assignment id 1`] = `
         >
           <Circle
             borderWidth={0}
-            color="#00e0ff"
+            color="#374A59"
             formatText={[Function]}
             progress={0.3333333333333333}
             showsText={true}

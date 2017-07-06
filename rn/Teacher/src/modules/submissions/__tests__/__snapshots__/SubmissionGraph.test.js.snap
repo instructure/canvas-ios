@@ -20,7 +20,7 @@ exports[`render 0 on graph 1`] = `
   >
     <Circle
       borderWidth={0}
-      color="#00e0ff"
+      color="#374A59"
       formatText={[Function]}
       progress={0.000001}
       showsText={true}
@@ -90,7 +90,7 @@ exports[`render 1`] = `
   >
     <Circle
       borderWidth={0}
-      color="#00e0ff"
+      color="#374A59"
       formatText={[Function]}
       progress={0.000001}
       showsText={true}
@@ -160,7 +160,7 @@ exports[`render undefined label 1`] = `
   >
     <Circle
       borderWidth={0}
-      color="#00e0ff"
+      color="#374A59"
       formatText={[Function]}
       progress={0.000001}
       showsText={true}
