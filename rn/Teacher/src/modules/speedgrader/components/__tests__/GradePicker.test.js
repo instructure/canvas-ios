@@ -107,7 +107,7 @@ describe('GradePicker', () => {
 
   it('calls gradeSubmission with the prompt value', () => {
     // $FlowFixMe
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('yo'))
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('yo'))
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} />
@@ -121,7 +121,7 @@ describe('GradePicker', () => {
 
   it('calls gradeSubmission with a % at the end of the grade for percentage grading type if the user leaves it off', () => {
     // $FlowFixMe
-    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[2].onPress('80'))
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('80'))
 
     let tree = renderer.create(
       <GradePicker {...defaultProps} gradingType='percent' />

@@ -20,6 +20,10 @@ import colors from '../../../common/colors'
 import branding from '../../../common/branding'
 
 const PASS_FAIL = 'pass_fail'
+const POINTS = 'points'
+const PERCENTAGE = 'percent'
+const LETTER = 'letter_grade'
+const GPA = 'gpa_scale'
 const NOT_GRADED = 'not_graded'
 
 export class GradePicker extends Component {
@@ -45,9 +49,6 @@ export class GradePicker extends Component {
   openPrompt = () => {
     let buttons = [
       {
-        text: i18n('Cancel'),
-      },
-      {
         text: i18n('Ok'),
         onPress: (promptValue) => {
           if (this.props.gradingType === 'percent') {
@@ -57,6 +58,9 @@ export class GradePicker extends Component {
           this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
         },
       },
+      {
+        text: i18n('Cancel'),
+      },
     ]
     if (!this.props.excused) {
       buttons.unshift({
@@ -64,10 +68,25 @@ export class GradePicker extends Component {
         onPress: () => this.props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID),
       })
     }
+    let message = ''
+    switch (this.props.gradingType) {
+      case POINTS:
+        message = i18n('Out of {points}', { points: this.props.pointsPossible })
+        break
+      case PERCENTAGE:
+        message = i18n('Percent (%)')
+        break
+      case GPA:
+        message = i18n('GPA')
+        break
+      case LETTER:
+        message = i18n('Letter grade')
+        break
+    }
 
     AlertIOS.prompt(
       i18n('Customize Grade'),
-      null,
+      message,
       buttons,
       'plain-text',
       this.props.excused ? i18n('Excused') : this.props.grade
