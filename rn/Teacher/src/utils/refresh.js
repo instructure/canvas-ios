@@ -38,8 +38,9 @@ export default function refresh (
       }
 
       refresh = () => {
-        refreshFunction(this.props)
-        this.setState({ refreshing: true })
+        this.setState({ refreshing: true }, () => {
+          refreshFunction(this.props)
+        })
       }
 
       render = () => <TheirComponent {...this.props} refresh={this.refresh} refreshing={this.state.refreshing} />

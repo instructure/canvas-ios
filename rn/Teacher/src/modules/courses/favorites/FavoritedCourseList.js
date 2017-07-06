@@ -24,6 +24,7 @@ import Navigator from '../../../routing/Navigator'
 import Screen from '../../../routing/Screen'
 import branding from '../../../common/branding'
 import color from '../../../common/colors'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -99,6 +100,10 @@ export class FavoritedCourseList extends Component {
   }
 
   _renderComponent = () => {
+    if (this.props.pending && !this.props.refreshing) {
+      return <ActivityIndicatorView />
+    }
+
     if (!this.props.pending && !this.props.courses.length && this.props.totalCourseCount) {
       return <NoCourses onAddCoursePressed={this.showFavoritesList} />
     }

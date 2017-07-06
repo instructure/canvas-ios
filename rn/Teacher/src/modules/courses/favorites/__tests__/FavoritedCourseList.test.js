@@ -66,6 +66,13 @@ test('render', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('render while pending', () => {
+  let tree = renderer.create(
+    <FavoritedCourseList {...defaultProps} pending={1} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('render without favorite courses', () => {
   let tree = renderer.create(
     <FavoritedCourseList {...defaultProps} courses={[]} totalCourseCount={3} />
