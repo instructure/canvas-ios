@@ -21,6 +21,11 @@ RCT_EXPORT_METHOD(focusElement:(NSString *)identifier)
   }
 }
 
+RCT_EXPORT_METHOD(refresh)
+{
+    UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, nil);
+}
+
 - (nullable UIView *)subviewWithIdentifier:(NSString *)identifier {
   NSArray<UIWindow *> *windows = [[UIApplication sharedApplication] windows];
   for (UIWindow *window in windows) {

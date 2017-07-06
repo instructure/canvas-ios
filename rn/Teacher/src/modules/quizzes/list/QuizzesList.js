@@ -9,6 +9,7 @@ import {
   View,
   StyleSheet,
   SectionList,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -19,6 +20,8 @@ import SectionHeader from '../../../common/components/rows/SectionHeader'
 import Screen from '../../../routing/Screen'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
+
+const { NativeAccessibility } = NativeModules
 
 type OwnProps = {
   courseID: string,
@@ -44,6 +47,12 @@ export class QuizzesList extends Component<any, Props, any> {
   isRegularScreenDisplayMode: boolean
   didSelectFirstItem = false
   data: any = []
+
+  componentWillReceiveProps (nextProps: Props) {
+    if (nextProps.quizzes.length) {
+      NativeAccessibility.refresh()
+    }
+  }
 
   onTraitCollectionChange () {
     this.props.navigator.traitCollection((traits) => { this.traitCollectionDidChange(traits) })
@@ -99,9 +108,7 @@ export class QuizzesList extends Component<any, Props, any> {
         [quiz.quiz_type]: (data[quiz.quiz_type] || []).concat([quiz]),
       }), {})
 
-    let index = -1
-    return Object.keys(sections).map((key) => {
-      index++
+    return Object.keys(sections).map((key, index) => {
       return {
         index,
         key,
@@ -133,6 +140,7 @@ export class QuizzesList extends Component<any, Props, any> {
       this.data = this._getData()
       this.selectFirstListItemIfNecessary()
     }
+
     return (
       <Screen
         navBarColor={this.props.courseColor}

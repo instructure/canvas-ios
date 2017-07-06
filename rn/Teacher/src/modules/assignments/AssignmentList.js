@@ -10,6 +10,7 @@ import {
   StyleSheet,
   ActionSheetIOS,
   SectionList,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -38,6 +39,8 @@ const DEFAULT_FILTER = {
   title: i18n('All Grading Periods'),
 }
 
+const { NativeAccessibility } = NativeModules
+
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
   state: State
   isRegularScreenDisplayMode: boolean
@@ -50,6 +53,12 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     this.state = {
       currentFilter: DEFAULT_FILTER,
       filterApplied: false,
+    }
+  }
+
+  componentWillReceiveProps (nextProps: AssignmentListProps) {
+    if (nextProps.assignmentGroups.length && nextProps.gradingPeriods.length) {
+      NativeAccessibility.refresh()
     }
   }
 
@@ -165,6 +174,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
       this.data = this.prepareListData()
       this.selectFirstListItemIfNecessary()
     }
+
     return (
       <Screen
         title={i18n('Assignments')}
@@ -173,7 +183,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
         navBarStyle='dark'
         navBarColor={this.props.courseColor}
         testID='assignment-list'
-        >
+      >
         <View style={styles.container} testID='assignment-list.container-view'>
           <View style={styles.header} testID='assignment-list.filter-header-view'>
             <Heading1 style={styles.headerTitle} testID='assignment-list.filter-title-lbl'>{this.state.currentFilter.title}</Heading1>
