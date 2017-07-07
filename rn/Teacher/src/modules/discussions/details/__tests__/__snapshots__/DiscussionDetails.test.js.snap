@@ -91,11 +91,16 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             "data": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
                 "id": "25472827",
                 "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
                 "parent_id": null,
                 "rating_count": null,
                 "rating_sum": null,
+                "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": 1,
@@ -107,6 +112,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         ]
       }
       disableVirtualization={false}
+      extraData={Array []}
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -114,14 +120,15 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
+      onEndReached={[Function]}
+      onEndReachedThreshold={0}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
+      onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -196,11 +203,16 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             "data": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
                 "id": "25472827",
                 "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
                 "parent_id": null,
                 "rating_count": null,
                 "rating_sum": null,
+                "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": 1,
@@ -1186,7 +1198,15 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
             <View
               style={
                 Object {
@@ -1195,20 +1215,20 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 }
               }
             >
+              <View />
               <View
                 style={
                   Object {
                     "alignItems": "center",
-                    "flex": 0.1,
                     "flexDirection": "column",
                     "justifyContent": "flex-start",
-                    "marginLeft": 10,
-                    "marginRight": 10,
+                    "marginRight": 8,
                     "marginTop": 10,
-                    "padding": 0,
+                    "paddingTop": 6,
                   }
                 }
               >
+                <View />
                 <View
                   accessibilityLabel=""
                   style={
@@ -1352,7 +1372,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       style={
                         Object {
                           "alignSelf": "flex-end",
-                          "padding": 2,
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
                       }
                       testID="discussion.reply-btn"
@@ -1421,7 +1443,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                           Array [
                             Object {
                               "alignSelf": "flex-end",
-                              "padding": 2,
+                              "paddingBottom": 2,
+                              "paddingRight": 2,
+                              "paddingTop": 2,
                             },
                             Object {
                               "alignSelf": "center",
@@ -1445,7 +1469,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       style={
                         Object {
                           "alignSelf": "flex-end",
-                          "padding": 2,
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
                       }
                       testID="discussion.edit-btn"
@@ -1500,14 +1526,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   </View>
                   <View />
                 </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "stretch",
-                      "flex": 1,
-                    }
-                  }
-                />
               </View>
             </View>
           </View>
@@ -1625,6 +1643,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
         ]
       }
       disableVirtualization={false}
+      extraData={Array []}
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -1632,14 +1651,15 @@ exports[`DiscussionDetails renders no replies 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
+      onEndReached={[Function]}
+      onEndReachedThreshold={0}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
+      onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -2815,11 +2835,16 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             "data": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
                 "id": "4",
                 "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
                 "parent_id": null,
                 "rating_count": null,
                 "rating_sum": null,
+                "readState": "read",
                 "replies": Array [
                   Object {
                     "created_at": "2017-05-23T17:12:04Z",
@@ -2836,6 +2861,23 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": 1,
               },
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "depth": 1,
+                "id": "5",
+                "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                  0,
+                ],
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
+                "readState": "read",
+                "replies": Array [],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": 1,
+              },
             ],
             "renderItem": [Function],
             "title": "",
@@ -2843,6 +2885,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         ]
       }
       disableVirtualization={false}
+      extraData={Array []}
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -2850,14 +2893,15 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
+      onEndReached={[Function]}
+      onEndReachedThreshold={0}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
+      onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -3005,11 +3049,16 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             "data": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
                 "id": "4",
                 "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
                 "parent_id": null,
                 "rating_count": null,
                 "rating_sum": null,
+                "readState": "read",
                 "replies": Array [
                   Object {
                     "created_at": "2017-05-23T17:12:04Z",
@@ -3023,6 +3072,23 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "user_id": 1,
                   },
                 ],
+                "updated_at": "2017-05-23T17:12:04Z",
+                "user_id": 1,
+              },
+              Object {
+                "created_at": "2017-05-23T17:12:04Z",
+                "depth": 1,
+                "id": "5",
+                "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                  0,
+                ],
+                "parent_id": null,
+                "rating_count": null,
+                "rating_sum": null,
+                "readState": "read",
+                "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": 1,
               },
@@ -4069,7 +4135,15 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
             <View
               style={
                 Object {
@@ -4078,20 +4152,20 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 }
               }
             >
+              <View />
               <View
                 style={
                   Object {
                     "alignItems": "center",
-                    "flex": 0.1,
                     "flexDirection": "column",
                     "justifyContent": "flex-start",
-                    "marginLeft": 10,
-                    "marginRight": 10,
+                    "marginRight": 8,
                     "marginTop": 10,
-                    "padding": 0,
+                    "paddingTop": 6,
                   }
                 }
               >
+                <View />
                 <View
                   accessibilityLabel=""
                   style={
@@ -4235,7 +4309,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       style={
                         Object {
                           "alignSelf": "flex-end",
-                          "padding": 2,
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
                       }
                       testID="discussion.reply-btn"
@@ -4304,7 +4380,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                           Array [
                             Object {
                               "alignSelf": "flex-end",
-                              "padding": 2,
+                              "paddingBottom": 2,
+                              "paddingRight": 2,
+                              "paddingTop": 2,
                             },
                             Object {
                               "alignSelf": "center",
@@ -4328,7 +4406,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       style={
                         Object {
                           "alignSelf": "flex-end",
-                          "padding": 2,
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
                       }
                       testID="discussion.edit-btn"
@@ -4383,128 +4463,221 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   </View>
                   <View />
                 </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          onLayout={[Function]}
+        >
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "marginRight": 8,
+                    "width": 24,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "flex": 1,
+                      "width": 1,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "column",
+                    "justifyContent": "flex-start",
+                    "marginRight": 8,
+                    "marginTop": 10,
+                    "paddingTop": 6,
+                  }
+                }
+              >
+                <View />
+                <View
+                  accessibilityLabel=""
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "white",
+                        "borderColor": "#C7CDD1",
+                        "borderWidth": 0.5,
+                        "justifyContent": "center",
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "borderRadius": 12,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    accessible={false}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontSize": 8,
+                        },
+                      ]
+                    }
+                  >
+                    ?
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "flex": 1,
+                      "width": 1,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                  }
+                }
+              >
                 <View
                   style={
                     Object {
                       "alignSelf": "stretch",
-                      "flex": 1,
+                      "marginTop": 12.8,
                     }
                   }
                 >
+                  <Text
+                    accessibilityTraits="header"
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay-semibold",
+                        },
+                      ]
+                    }
+                  >
+                    Unknown Author
+                  </Text>
+                  <Text
+                    accessible={true}
+                    allowFontScaling={true}
+                    disabled={false}
+                    ellipsizeMode="tail"
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                        Object {
+                          "color": "#2D3B45",
+                          "fontSize": 16,
+                        },
+                        Object {
+                          "color": "#8B969E",
+                          "fontSize": 12,
+                          "marginBottom": 16,
+                        },
+                        Object {
+                          "fontFamily": ".SFUIDisplay",
+                        },
+                      ]
+                    }
+                  >
+                    May 23, 2017 11:12 AM
+                  </Text>
                   <View
+                    onLayout={[Function]}
                     style={
                       Object {
                         "flex": 1,
+                      }
+                    }
+                    testID="web-container.view"
+                  />
+                  <View
+                    style={
+                      Object {
                         "flexDirection": "row",
+                        "justifyContent": "flex-start",
+                        "marginTop": 16,
                       }
                     }
                   >
-                    <View
+                    <TouchableOpacity
+                      accessibilityTraits="button"
+                      onPress={[Function]}
                       style={
                         Object {
-                          "alignItems": "center",
-                          "flex": 0.1,
-                          "flexDirection": "column",
-                          "justifyContent": "flex-start",
-                          "marginLeft": 10,
-                          "marginRight": 10,
-                          "marginTop": 10,
-                          "padding": 0,
+                          "alignSelf": "flex-end",
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
+                        }
+                      }
+                      testID="discussion.reply-btn"
+                      textAttributes={
+                        Object {
+                          "color": "#8B969E",
+                          "fontWeight": "500",
                         }
                       }
                     >
-                      <View
-                        accessibilityLabel=""
-                        style={
-                          Array [
-                            Object {
-                              "alignItems": "center",
-                              "backgroundColor": "white",
-                              "borderColor": "#C7CDD1",
-                              "borderWidth": 0.5,
-                              "justifyContent": "center",
-                              "overflow": "hidden",
-                            },
-                            Object {
-                              "borderRadius": 12,
-                              "height": 24,
-                              "width": 24,
-                            },
-                          ]
-                        }
-                      >
-                        <Text
-                          accessible={false}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontSize": 8,
-                              },
-                            ]
-                          }
-                        >
-                          ?
-                        </Text>
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "backgroundColor": "#f5f5f5",
-                            "flex": 1,
-                            "width": 1,
-                          }
-                        }
-                      />
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 1,
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "stretch",
-                            "marginTop": 12.8,
-                          }
-                        }
-                      >
-                        <Text
-                          accessibilityTraits="none"
-                          accessible={true}
-                          allowFontScaling={true}
-                          disabled={false}
-                          ellipsizeMode="tail"
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                              Object {
-                                "color": "#2D3B45",
-                                "fontSize": 16,
-                              },
-                              Object {
-                                "fontSize": 14,
-                                "fontWeight": "600",
-                              },
-                              Object {
-                                "fontFamily": ".SFUIDisplay-semibold",
-                              },
-                            ]
-                          }
-                        >
-                          Unknown Author
-                        </Text>
+                      <View>
                         <Text
                           accessible={true}
                           allowFontScaling={true}
@@ -4519,201 +4692,131 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 "color": "#2D3B45",
                                 "fontSize": 16,
                               },
-                              Object {
-                                "color": "#8B969E",
-                                "fontSize": 12,
-                                "marginBottom": 16,
-                              },
-                              Object {
-                                "fontFamily": ".SFUIDisplay",
-                              },
-                            ]
-                          }
-                        >
-                          May 23, 2017 11:12 AM
-                        </Text>
-                        <View
-                          onLayout={[Function]}
-                          style={
-                            Object {
-                              "flex": 1,
-                            }
-                          }
-                          testID="web-container.view"
-                        />
-                        <View
-                          style={
-                            Object {
-                              "flexDirection": "row",
-                              "justifyContent": "flex-start",
-                              "marginTop": 16,
-                            }
-                          }
-                        >
-                          <TouchableOpacity
-                            accessibilityTraits="button"
-                            onPress={[Function]}
-                            style={
-                              Object {
-                                "alignSelf": "flex-end",
-                                "padding": 2,
-                              }
-                            }
-                            testID="discussion.reply-btn"
-                            textAttributes={
-                              Object {
-                                "color": "#8B969E",
-                                "fontWeight": "500",
-                              }
-                            }
-                          >
-                            <View>
-                              <Text
-                                accessible={true}
-                                allowFontScaling={true}
-                                disabled={false}
-                                ellipsizeMode="tail"
-                                style={
-                                  Array [
-                                    Object {
-                                      "fontFamily": ".SFUIDisplay",
-                                    },
-                                    Object {
-                                      "color": "#2D3B45",
-                                      "fontSize": 16,
-                                    },
-                                    Array [
-                                      Object {
-                                        "color": "#374A59",
-                                        "fontSize": 14,
-                                      },
-                                      Object {
-                                        "fontFamily": ".SFUIDisplay-bold",
-                                      },
-                                      Object {
-                                        "color": "#374A59",
-                                      },
-                                      Object {
-                                        "color": "#8B969E",
-                                        "fontWeight": "500",
-                                      },
-                                    ],
-                                    Object {
-                                      "fontFamily": ".SFUIDisplay-medium",
-                                    },
-                                  ]
-                                }
-                              >
-                                Reply
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                          <Text
-                            accessible={false}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            style={
                               Array [
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
+                                  "color": "#374A59",
+                                  "fontSize": 14,
                                 },
                                 Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
+                                  "fontFamily": ".SFUIDisplay-bold",
                                 },
-                                Array [
-                                  Object {
-                                    "alignSelf": "flex-end",
-                                    "padding": 2,
-                                  },
-                                  Object {
-                                    "alignSelf": "center",
-                                    "color": "#C7CDD1",
-                                    "paddingLeft": 10,
-                                    "paddingRight": 10,
-                                    "textAlign": "center",
-                                  },
-                                ],
                                 Object {
-                                  "fontFamily": ".SFUIDisplay",
+                                  "color": "#374A59",
                                 },
-                              ]
-                            }
-                          >
-                            |
-                          </Text>
-                          <TouchableOpacity
-                            accessibilityTraits="button"
-                            onPress={[Function]}
-                            style={
+                                Object {
+                                  "color": "#8B969E",
+                                  "fontWeight": "500",
+                                },
+                              ],
                               Object {
-                                "alignSelf": "flex-end",
-                                "padding": 2,
-                              }
-                            }
-                            testID="discussion.edit-btn"
-                            textAttributes={
-                              Object {
-                                "color": "#8B969E",
-                                "fontWeight": "500",
-                              }
-                            }
-                          >
-                            <View>
-                              <Text
-                                accessible={true}
-                                allowFontScaling={true}
-                                disabled={false}
-                                ellipsizeMode="tail"
-                                style={
-                                  Array [
-                                    Object {
-                                      "fontFamily": ".SFUIDisplay",
-                                    },
-                                    Object {
-                                      "color": "#2D3B45",
-                                      "fontSize": 16,
-                                    },
-                                    Array [
-                                      Object {
-                                        "color": "#374A59",
-                                        "fontSize": 14,
-                                      },
-                                      Object {
-                                        "fontFamily": ".SFUIDisplay-bold",
-                                      },
-                                      Object {
-                                        "color": "#374A59",
-                                      },
-                                      Object {
-                                        "color": "#8B969E",
-                                        "fontWeight": "500",
-                                      },
-                                    ],
-                                    Object {
-                                      "fontFamily": ".SFUIDisplay-medium",
-                                    },
-                                  ]
-                                }
-                              >
-                                Edit
-                              </Text>
-                            </View>
-                          </TouchableOpacity>
-                        </View>
-                        <View />
-                      </View>
-                      <View
-                        style={
-                          Object {
-                            "alignSelf": "stretch",
-                            "flex": 1,
+                                "fontFamily": ".SFUIDisplay-medium",
+                              },
+                            ]
                           }
+                        >
+                          Reply
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
+                    <Text
+                      accessible={false}
+                      allowFontScaling={true}
+                      disabled={false}
+                      ellipsizeMode="tail"
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                          Object {
+                            "color": "#2D3B45",
+                            "fontSize": 16,
+                          },
+                          Array [
+                            Object {
+                              "alignSelf": "flex-end",
+                              "paddingBottom": 2,
+                              "paddingRight": 2,
+                              "paddingTop": 2,
+                            },
+                            Object {
+                              "alignSelf": "center",
+                              "color": "#C7CDD1",
+                              "paddingLeft": 10,
+                              "paddingRight": 10,
+                              "textAlign": "center",
+                            },
+                          ],
+                          Object {
+                            "fontFamily": ".SFUIDisplay",
+                          },
+                        ]
+                      }
+                    >
+                      |
+                    </Text>
+                    <TouchableOpacity
+                      accessibilityTraits="button"
+                      onPress={[Function]}
+                      style={
+                        Object {
+                          "alignSelf": "flex-end",
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
-                      />
-                    </View>
+                      }
+                      testID="discussion.edit-btn"
+                      textAttributes={
+                        Object {
+                          "color": "#8B969E",
+                          "fontWeight": "500",
+                        }
+                      }
+                    >
+                      <View>
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Array [
+                                Object {
+                                  "color": "#374A59",
+                                  "fontSize": 14,
+                                },
+                                Object {
+                                  "fontFamily": ".SFUIDisplay-bold",
+                                },
+                                Object {
+                                  "color": "#374A59",
+                                },
+                                Object {
+                                  "color": "#8B969E",
+                                  "fontWeight": "500",
+                                },
+                              ],
+                              Object {
+                                "fontFamily": ".SFUIDisplay-medium",
+                              },
+                            ]
+                          }
+                        >
+                          Edit
+                        </Text>
+                      </View>
+                    </TouchableOpacity>
                   </View>
+                  <View />
                 </View>
               </View>
             </View>
@@ -4841,11 +4944,16 @@ exports[`DiscussionDetails renders with replies 1`] = `
             "data": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
                 "id": "25472827",
                 "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
                 "parent_id": null,
                 "rating_count": null,
                 "rating_sum": null,
+                "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": 1,
@@ -4857,6 +4965,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
         ]
       }
       disableVirtualization={false}
+      extraData={Array []}
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -4864,14 +4973,15 @@ exports[`DiscussionDetails renders with replies 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
+      onEndReached={[Function]}
+      onEndReachedThreshold={0}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
+      onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
@@ -4971,11 +5081,16 @@ exports[`DiscussionDetails renders with replies 1`] = `
             "data": Array [
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
+                "depth": 0,
                 "id": "25472827",
                 "message": "<p>1.0</p>",
+                "myPath": Array [
+                  0,
+                ],
                 "parent_id": null,
                 "rating_count": null,
                 "rating_sum": null,
+                "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
                 "user_id": 1,
@@ -5988,7 +6103,15 @@ exports[`DiscussionDetails renders with replies 1`] = `
         <View
           onLayout={[Function]}
         >
-          <View>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "flexDirection": "row",
+                "paddingHorizontal": 16,
+              }
+            }
+          >
             <View
               style={
                 Object {
@@ -5997,20 +6120,20 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 }
               }
             >
+              <View />
               <View
                 style={
                   Object {
                     "alignItems": "center",
-                    "flex": 0.1,
                     "flexDirection": "column",
                     "justifyContent": "flex-start",
-                    "marginLeft": 10,
-                    "marginRight": 10,
+                    "marginRight": 8,
                     "marginTop": 10,
-                    "padding": 0,
+                    "paddingTop": 6,
                   }
                 }
               >
+                <View />
                 <View
                   accessibilityLabel=""
                   style={
@@ -6154,7 +6277,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       style={
                         Object {
                           "alignSelf": "flex-end",
-                          "padding": 2,
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
                       }
                       testID="discussion.reply-btn"
@@ -6223,7 +6348,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
                           Array [
                             Object {
                               "alignSelf": "flex-end",
-                              "padding": 2,
+                              "paddingBottom": 2,
+                              "paddingRight": 2,
+                              "paddingTop": 2,
                             },
                             Object {
                               "alignSelf": "center",
@@ -6247,7 +6374,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       style={
                         Object {
                           "alignSelf": "flex-end",
-                          "padding": 2,
+                          "paddingBottom": 2,
+                          "paddingRight": 2,
+                          "paddingTop": 2,
                         }
                       }
                       testID="discussion.edit-btn"
@@ -6302,14 +6431,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   </View>
                   <View />
                 </View>
-                <View
-                  style={
-                    Object {
-                      "alignSelf": "stretch",
-                      "flex": 1,
-                    }
-                  }
-                />
               </View>
             </View>
           </View>
@@ -6349,6 +6470,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       ItemSeparatorComponent={undefined}
       data={Array []}
       disableVirtualization={false}
+      extraData={Array []}
       getItem={[Function]}
       getItemCount={[Function]}
       horizontal={false}
@@ -6356,14 +6478,15 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReachedThreshold={2}
+      onEndReached={[Function]}
+      onEndReachedThreshold={0}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
       onScroll={[Function]}
       onScrollBeginDrag={[Function]}
       onScrollEndDrag={[Function]}
-      onViewableItemsChanged={undefined}
+      onViewableItemsChanged={[Function]}
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}

@@ -47,17 +47,27 @@ type State = {
   assignment: ?Assignment,
   courseColor: string,
   courseName: string,
+  unreadEntries: ?string[],
 }
 
+type ViewableReply = {
+  index: number,
+  isViewable: boolean,
+  key: string,
+  item: DiscussionReply,
+}
+
+const { refreshDiscussionEntries, refreshSingleDiscussion, deleteDiscussionEntry, markAllAsRead, markEntryAsRead } = DetailActions
 const { NativeAccessibility } = NativeModules
-const { refreshDiscussionEntries, deleteDiscussionEntry, markAllAsRead } = DetailActions
 const { deleteDiscussion } = EditActions
 
 const Actions = {
   refreshDiscussionEntries,
+  refreshSingleDiscussion,
   deleteDiscussion,
   deleteDiscussionEntry,
   markAllAsRead,
+  markEntryAsRead,
 }
 
 export type Props = State & OwnProps & RefreshProps & typeof Actions & NavigationProps & AsyncState & {
@@ -71,21 +81,28 @@ export class DiscussionDetails extends Component<any, Props, any> {
       rootNodePath: [],
       deletePending: false,
       maxReplyNodeDepth: 2,
+      unread_entries: this.props.unreadEntries || [],
     }
   }
 
   componentWillUpdate () {
-    this.state = {
-      deletePending: false,
+    if (this.state.deletePending) {
+      this.setState({ deletePending: false })
     }
     LayoutAnimation.easeInEaseOut()
   }
 
+  componentWillUnmount () {
+    this.props.refreshSingleDiscussion(this.props.courseID, this.props.discussionID)
+  }
+
   componentWillReceiveProps (nextProps: Props) {
     if (this.state.deletePending && !nextProps.pending && !nextProps.error && !nextProps.discussion) {
-      this.setState({ deletePending: false })
+      this.setState({ deletePending: false, unread_entries: nextProps.unreadEntries })
       this.props.navigator.pop()
+      return
     }
+    this.setState({ unread_entries: nextProps.unreadEntries })
   }
 
   onTraitCollectionChange () {
@@ -207,13 +224,13 @@ export class DiscussionDetails extends Component<any, Props, any> {
     } else return (<View/>)
   }
 
-  renderReply = (discussion: Discussion) => ({ item, index }: { item: DiscussionReply, index: number }) => {
+  renderReply = (discussion: Discussion) => ({ item, index }: { item: any, index: number }) => {
     const reply = item
     let participants = discussion && discussion.participants || []
-    let path = (this.state.rootNodePath.length > 1) ? [...this.state.rootNodePath] : [index]
+    let path = (this.state.rootNodePath.length > 1) ? this.state.rootNodePath.concat(reply.myPath.slice(1, reply.myPath.length)) : reply.myPath
 
     return (
-      <View>
+      <View style={style.row}>
         <Reply
           maxReplyNodeDepth={this.state.maxReplyNodeDepth}
           deleteDiscussionEntry={this._confirmDeleteReply}
@@ -222,8 +239,9 @@ export class DiscussionDetails extends Component<any, Props, any> {
           courseID={this.props.courseID}
           discussionID={discussion.id}
           reply={reply}
-          depth={0}
-          myPath={[...path]}
+          readState={reply.readState}
+          depth={reply.depth}
+          myPath={path}
           participants={participants}
           onPressMoreReplies={this._onPressMoreReplies}
           isRootReply
@@ -235,12 +253,33 @@ export class DiscussionDetails extends Component<any, Props, any> {
   rootRepliesData = () => {
     const { discussion } = this.props
     if (!discussion) return []
-
-    if (this.state.rootNodePath.length === 0) return discussion.replies
-
     let replies = discussion.replies || []
+
+    if (this.state.rootNodePath.length === 0) return this.flattenRepliesData([], 0, replies, [])
+
     let reply = replyFromLocalIndexPath(this.state.rootNodePath, replies, false)
-    return [reply]
+    if (reply) {
+      return this.flattenRepliesData([], 0, [reply], [])
+    } else {
+      return [reply]
+    }
+  }
+
+  flattenRepliesData (flatList: DiscussionReply[], depth: number, replies: DiscussionReply[], indexPath: number[]): DiscussionReply[] {
+    if (!replies || depth > this.state.maxReplyNodeDepth) return flatList
+
+    for (let i = 0; i < replies.length; i++) {
+      const readState = this.checkReadState(replies[i].id)
+      const reply = {
+        ...replies[i],
+        depth: depth,
+        myPath: [...indexPath, i],
+        readState: readState,
+      }
+      flatList.push(reply)
+      flatList = this.flattenRepliesData(flatList, depth + 1, replies[i].replies, reply.myPath)
+    }
+    return flatList
   }
 
   render () {
@@ -272,10 +311,19 @@ export class DiscussionDetails extends Component<any, Props, any> {
             onRefresh={this.props.refresh}
             renderItem={({ item }) => <View/>}
             sections={data}
+            onViewableItemsChanged={this._markViewableAsRead}
+            initialNumToRender={10}
+            extraData={this.state.unread_entries}
+            onEndReached={this._onEndReached}
+            onEndReachedThreshold={0}
           />
         </View>
       </Screen>
     )
+  }
+
+  _onEndReached = () => {
+    this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
   }
 
   showEditActionSheet = () => {
@@ -395,12 +443,12 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
   _onPressReply = () => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { parentIndexPath: [], lastReplyAt })
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { indexPath: [], lastReplyAt })
   }
 
-  _onPressReplyToEntry = (entryID: string, parentIndexPath: number[]) => {
+  _onPressReplyToEntry = (entryID: string, indexPath: number[]) => {
     let lastReplyAt = this.props.discussion && this.props.discussion.last_reply_at
-    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { parentIndexPath: parentIndexPath, entryID, lastReplyAt })
+    this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/entries/${entryID}/replies`, { modal: true }, { indexPath: indexPath, entryID, lastReplyAt })
   }
 
   _editDiscussion = () => {
@@ -418,6 +466,35 @@ export class DiscussionDetails extends Component<any, Props, any> {
   _deleteDiscussion = () => {
     this.setState({ deletePending: true })
     this.props.deleteDiscussion(this.props.courseID, this.props.discussionID)
+  }
+
+  checkReadState (id: string) {
+    let unread = new Set(this.state.unread_entries)
+    return (unread.has(id)) ? 'unread' : 'read'
+  }
+
+  _markViewableAsRead = (info: { viewableItems: Array<ViewableReply>, changed: Array<ViewableReply>}) => {
+    setTimeout(() => {
+      let dID = this.props.discussionID
+      let inView = info.viewableItems
+      let unread = [...this.state.unread_entries] || []
+      let update = false
+      for (let i = 0; i < inView.length; i++) {
+        if (inView[i].index !== null && inView[i].isViewable) {
+          let reply = inView[i].item
+          if (reply.id === dID) { continue }
+          if (this.checkReadState(reply.id) === 'unread') {
+            update = true
+            let index = unread.indexOf(reply.id)
+            if (index > -1) unread.splice(index, 1)
+            if (this.props.discussion) {
+              this.props.markEntryAsRead(this.props.courseID, dID, reply.id)
+            }
+          }
+        }
+      }
+      if (update) this.setState({ unread_entries: unread })
+    }, 1000)
   }
 }
 
@@ -507,6 +584,11 @@ const style = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.grey2,
   },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingHorizontal: global.style.defaultPadding,
+  },
 })
 
 export function mapStateToProps ({ entities }: AppState, { courseID, discussionID }: OwnProps): State {
@@ -515,12 +597,14 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
   let error = null
   let courseColor = entities.courses[courseID].color
   let courseName = entities.courses[courseID].course.name
+  let unreadEntries = []
 
   if (entities.discussions &&
     entities.discussions[discussionID] &&
     entities.discussions[discussionID].data) {
     const state = entities.discussions[discussionID]
     discussion = state.data
+    unreadEntries = state.unread_entries || []
     pending = state.pending
     error = state.error
   }
@@ -533,6 +617,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
 
   return {
     discussion,
+    unreadEntries,
     pending,
     error,
     courseID,
@@ -546,7 +631,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
 let Refreshed = refresh(
   //  TODO - add deep link ability to refreshDiscussion without entry from discussion list
   props => props.refreshDiscussionEntries(props.courseID, props.discussionID, true),
-  props => !props.discussion || !props.discussion.replies || (props.discussion.assignment_id && !props.assignment),
+  props => !props.discussion || !props.discussion.replies || (props.discussion.assignment_id && !props.assignment) || (!props.unreadEntries && props.discussion.unread_count > 0),
   props => Boolean(props.pending)
 )(DiscussionDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)

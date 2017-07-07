@@ -102,6 +102,7 @@ export type DiscussionState = AsyncState & {
     new?: AsyncState,
     edit?: AsyncState,
   },
+  unread_entries: string[],
 }
 
 export type PendingDiscussionReply = {

@@ -100,7 +100,7 @@ describe('discussion edit reply tests', () => {
           courseID,
           discussionID,
           entryID,
-          parentIndexPath: [],
+          indexPath: [],
           lastReplyAt,
         },
       },
@@ -198,6 +198,65 @@ describe('markAllAsRead', () => {
         },
       },
     ])
+  })
+})
+
+describe('markEntryAsRead', () => {
+  it('has the correct data', async () => {
+    const courseID = '1'
+    const discussionID = '2'
+    const entryID = '3'
+    const api = {
+      markEntryAsRead: apiError({ message: 'error' }),
+    }
+    const actions = Actions(api)
+    const action = actions.markEntryAsRead(courseID, discussionID, entryID)
+    const result = await testAsyncAction(action)
+
+    expect(result).toMatchObject([
+      {
+        type: actions.markEntryAsRead.toString(),
+        pending: true,
+        payload: {
+          discussionID: '2',
+        },
+      },
+      {
+        type: actions.markEntryAsRead.toString(),
+        error: true,
+        payload: {
+          discussionID: '2',
+        },
+      },
+    ])
+  })
+})
+
+describe('refreshSingleDiscussion', () => {
+  it('gets the correct data', async () => {
+    const courseID = '1'
+    const discussionID = '2'
+    const discussion = template.discussion()
+
+    const api = {
+      getDiscussion: apiResponse(discussion),
+    }
+    const actions = Actions(api)
+    const action = actions.refreshSingleDiscussion(courseID, discussionID)
+    const state = await testAsyncAction(action)
+
+    expect(state).toMatchObject([
+      {
+        type: actions.refreshSingleDiscussion.toString(),
+        pending: true,
+      }, {
+        type: actions.refreshSingleDiscussion.toString(),
+        payload: {
+          result: { data: discussion },
+          discussionID: discussionID,
+        },
+      }],
+    )
   })
 })
 

@@ -24,6 +24,12 @@ export let Actions: (typeof canvas) => any = (api) => ({
       discussionID,
     }
   }),
+  refreshSingleDiscussion: createAction('discussions.details.refreshSingle', (courseID: string, discussionID: string) => {
+    return {
+      promise: api.getDiscussion(courseID, discussionID),
+      discussionID,
+    }
+  }),
   deleteDiscussionEntry: createAction('discussionDetail.delete-entry', (courseID: string, discussionID: string, entryID: string, localIndexPath: number[]) => {
     return {
       promise: api.deleteDiscussionEntry(courseID, discussionID, entryID),
@@ -33,14 +39,20 @@ export let Actions: (typeof canvas) => any = (api) => ({
       localIndexPath,
     }
   }),
-  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters, parentIndexPath: number[], lastReplyAt: string) => {
+  createEntry: createAction('discussions.details.createEntry', (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters, indexPath: number[], lastReplyAt: string) => {
     return {
       promise: api.createEntry(courseID, discussionID, entryID, parameters),
       courseID,
       discussionID,
       entryID,
-      parentIndexPath,
+      indexPath,
       lastReplyAt,
+    }
+  }),
+  markEntryAsRead: createAction('discussions.details.markEntryAsRead', (courseID: string, discussionID: string, entryID: string) => {
+    return {
+      promise: api.markEntryAsRead(courseID, discussionID, entryID),
+      discussionID,
     }
   }),
   markAllAsRead: createAction('discussions.details.markAllAsRead', (courseID: string, discussionID: string, oldUnreadCount: number) => {
@@ -50,13 +62,13 @@ export let Actions: (typeof canvas) => any = (api) => ({
       oldUnreadCount,
     }
   }),
-  editEntry: createAction('discussions.details.editEntry', (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters, parentIndexPath: number[]) => {
+  editEntry: createAction('discussions.details.editEntry', (courseID: string, discussionID: string, entryID: string, parameters: CreateEntryParameters, indexPath: number[]) => {
     return {
       promise: api.editEntry(courseID, discussionID, entryID, parameters),
       courseID,
       discussionID,
       entryID,
-      parentIndexPath,
+      indexPath,
     }
   }),
   deletePendingReplies: createAction('discussions.details.deletePendingReplies', (discussionID) => ({

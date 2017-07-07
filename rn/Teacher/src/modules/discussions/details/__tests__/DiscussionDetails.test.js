@@ -54,7 +54,10 @@ describe('DiscussionDetails', () => {
       pending: 0,
       error: null,
       refreshDiscussionEntries: jest.fn(),
+      refreshSingleDiscussion: jest.fn(),
       markAllAsRead: jest.fn(),
+      markEntryAsRead: jest.fn(),
+      unreadEntries: [],
     }
   })
 
@@ -78,10 +81,22 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     expect(tree.toJSON()).toMatchSnapshot()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0], maxReplyNodeDepth: 2 })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
 
     let rootNodes = instance.rootRepliesData()
-    expect(rootNodes).toEqual([aaaa])
+    let expected = [{
+      ...aaaa,
+      depth: 0,
+      readState: 'read',
+      myPath: [0],
+    }, {
+      ...aaaaa,
+      depth: 1,
+      readState: 'read',
+      myPath: [0, 0],
+    },
+    ]
+    expect(rootNodes).toEqual(expected)
   })
 
   it('sets title depending on announcement', () => {
@@ -116,7 +131,7 @@ describe('DiscussionDetails', () => {
     const discussionReply: any = explore(tree).selectByID('discussion-reply')
     discussionReply.props.onPress()
     expect(navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, {
-      parentIndexPath: [],
+      indexPath: [],
       lastReplyAt: props.discussion && props.discussion.last_reply_at,
     })
   })
@@ -233,6 +248,112 @@ describe('DiscussionDetails', () => {
     expect(props.deleteDiscussionEntry).toHaveBeenCalledWith('1', '1', '1', [0, 1])
   })
 
+  it('marks unread entry as read when viewable', () => {
+    jest.useFakeTimers()
+    let a = template.discussionReply({ id: '0', readState: 'unread' })
+    let discussion = { ...props.discussion, replies: [a] }
+    const tree = render({ ...props, discussion })
+    const instance = tree.getInstance()
+    instance.setState({ unread_entries: ['0'] })
+
+    let info = {
+      viewableItems: [{
+        isViewable: true,
+        index: 0,
+        item: a,
+      }],
+      changed: [{
+        isViewable: true,
+        index: 0,
+        item: a,
+      }],
+    }
+    instance._markViewableAsRead(info)
+    jest.runAllTimers()
+    expect(props.markEntryAsRead).toHaveBeenCalledWith('1', '1', '0')
+  })
+
+  it('does not marks unread entry as read when not in view', () => {
+    jest.useFakeTimers()
+    let a = template.discussionReply({ id: '0', readState: 'unread' })
+    let discussion = { ...props.discussion, replies: [a] }
+    const tree = render({ ...props, discussion })
+    const instance = tree.getInstance()
+    instance.setState({ unread_entries: ['0'] })
+
+    let info = {
+      viewableItems: [{
+        isViewable: false,
+        index: 0,
+        item: a,
+      }],
+      changed: [{
+        isViewable: false,
+        index: 0,
+        item: a,
+      }],
+    }
+    instance._markViewableAsRead(info)
+    jest.runAllTimers()
+    expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
+  })
+
+  it('does not call markEntryAsRead action if it has already been read', () => {
+    jest.useFakeTimers()
+    let a = template.discussionReply({ id: '0', readState: 'read' })
+    let discussion = { ...props.discussion, replies: [a] }
+    const tree = render({ ...props, discussion })
+    const instance = tree.getInstance()
+    instance.setState({ unread_entries: ['2', '3'] })
+
+    let info = {
+      viewableItems: [{
+        isViewable: true,
+        index: 0,
+        item: a,
+      }],
+      changed: [{
+        isViewable: true,
+        index: 0,
+        item: a,
+      }],
+    }
+    instance._markViewableAsRead(info)
+    jest.runAllTimers()
+    expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
+  })
+
+  it('catches the discussion details section when on screen so it doesnt try to mark as read', () => {
+    jest.useFakeTimers()
+    let a = template.discussionReply({ id: '1', readState: 'unread' })
+    let discussion = { ...props.discussion, replies: [a] }
+    const tree = render({ ...props, discussion })
+    const instance = tree.getInstance()
+    instance.setState({ unread_entries: ['0'] })
+
+    let info = {
+      viewableItems: [{
+        isViewable: true,
+        index: 0,
+        item: a,
+      }],
+      changed: [{
+        isViewable: true,
+        index: 0,
+        item: a,
+      }],
+    }
+    instance._markViewableAsRead(info)
+    jest.runAllTimers()
+    expect(props.markEntryAsRead).toHaveBeenCalledTimes(0)
+  })
+
+  it('calls refreshSingleDiscussion on unmount to update unread count', () => {
+    props.refreshSingleDiscussion = jest.fn()
+    render(props).getInstance().componentWillUnmount()
+    expect(props.refreshSingleDiscussion).toHaveBeenCalledWith(props.courseID, props.discussionID)
+  })
+
   it('_onPopReplyRootPath pops to correct set of replies', () => {
     let aaaaaaaaa = template.discussionReply({ id: '9' })
     let aaaaaaaa = template.discussionReply({ id: '8', replies: [aaaaaaaaa] })
@@ -248,13 +369,13 @@ describe('DiscussionDetails', () => {
     const instance = tree.getInstance()
     instance._onPressMoreReplies([0, 0, 0, 0])
     instance._onPressMoreReplies([0, 0, 0, 0, 0, 0, 0])
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2 })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2 })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2 })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [0, 0, 0], maxReplyNodeDepth: 2, unread_entries: [] })
     instance._onPopReplyRootPath()
-    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2 })
+    expect(instance.state).toEqual({ deletePending: false, rootNodePath: [], maxReplyNodeDepth: 2, unread_entries: [] })
   })
 
   it('deletes discussion', () => {
@@ -291,9 +412,10 @@ describe('DiscussionDetails', () => {
 
     let tree = render(props)
     tree.getInstance()._onPressReplyToEntry('3', [1, 0])
+
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/entries/3/replies', { modal: true }, {
       'entryID': '3',
-      'parentIndexPath': [1, 0],
+      'indexPath': [1, 0],
       lastReplyAt: props.discussion && props.discussion.last_reply_at,
     })
   })

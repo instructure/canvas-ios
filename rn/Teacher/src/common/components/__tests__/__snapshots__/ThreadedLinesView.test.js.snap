@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with depth 1 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "column",
+      "justifyContent": "flex-start",
+      "marginRight": 8,
+      "width": 24,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#f5f5f5",
+        "flex": 1,
+        "width": 1,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`renders correctly with depth 2 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "width": 64,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`renders correctly with depth 5 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "width": 160,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "marginRight": 8,
+        "width": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "flex": 1,
+          "width": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`renders correctly with empty depth 1`] = `<View />`;

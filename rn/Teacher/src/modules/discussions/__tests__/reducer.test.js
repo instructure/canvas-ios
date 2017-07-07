@@ -7,7 +7,14 @@ import { default as AnnouncementListActions } from '../../announcements/list/act
 import { default as EditActions } from '../edit/actions'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead } = DetailActions
+const {
+  refreshDiscussionEntries,
+  refreshSingleDiscussion,
+  createEntry, editEntry,
+  deleteDiscussionEntry,
+  deletePendingReplies,
+  markAllAsRead,
+} = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -423,6 +430,36 @@ describe('markAllAsRead', () => {
   })
 })
 
+describe('refreshSingleDiscussion', () => {
+  it('returns correct data', () => {
+    let discussion = template.discussion({ unread_count: 2 })
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+      },
+    }
+
+    let actionRefresh = {
+      type: refreshSingleDiscussion.toString(),
+      payload: {
+        courseID: '1',
+        result: {
+          data: template.discussion({ unread_count: 0 }),
+        },
+        discussionID: discussion.id,
+      },
+    }
+    expect(discussions(state, actionRefresh)).toEqual({
+      [discussion.id]: {
+        data: {
+          ...template.discussion(),
+          unread_count: 0,
+        },
+      },
+    })
+  })
+})
+
 describe('refreshDiscussionEntries', () => {
   it('handles resolved with existing disucssion', () => {
     let participantA = template.userDisplay({ id: '1', display_name: 'A' })
@@ -450,10 +487,11 @@ describe('refreshDiscussionEntries', () => {
     expected.participants = { [participantA.id]: participantA, [participantB.id]: participantB }
     expected.replies = view.view
 
-    expect(discussions({ [stateDiscussion.id]: { data: stateDiscussion } }, resolved)).toEqual({
+    expect(discussions({ [stateDiscussion.id]: { data: stateDiscussion, unread_entries: template.discussionView().unread_entries } }, resolved)).toEqual({
       '1': {
         data: expected,
         pendingReplies: {},
+        unread_entries: template.discussionView().unread_entries,
         pending: 0,
         error: null,
       },
@@ -497,6 +535,7 @@ describe('refreshDiscussionEntries', () => {
         pending: 0,
         error: null,
         pendingReplies: pending,
+        unread_entries: template.discussionView().unread_entries,
       },
     })
   })
@@ -538,6 +577,7 @@ describe('refreshDiscussionEntries', () => {
         pending: 0,
         error: null,
         pendingReplies: {},
+        unread_entries: template.discussionView().unread_entries,
       },
     })
   })
@@ -576,6 +616,7 @@ describe('refreshDiscussionEntries', () => {
       '1': {
         data: expected,
         pendingReplies: {},
+        unread_entries: template.discussionView().unread_entries,
         pending: 0,
         error: null,
       },
@@ -619,6 +660,7 @@ describe('refreshDiscussionEntries', () => {
         pending: 0,
         error: null,
         pendingReplies: pending,
+        unread_entries: template.discussionView().unread_entries,
       },
     })
   })
@@ -657,6 +699,7 @@ describe('refreshDiscussionEntries', () => {
       '1': {
         data: expected,
         pendingReplies: {},
+        unread_entries: template.discussionView().unread_entries,
         pending: 0,
         error: null,
       },

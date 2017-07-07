@@ -17,10 +17,14 @@ import { formattedDate } from '../../../utils/dateUtils'
 import WebContainer from '../../../common/components/WebContainer'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
+import ThreadedLinesView from '../../../common/components/ThreadedLinesView'
+
+type ReadState = 'read' | 'unread'
 
 export type Props = {
   reply: DiscussionReply,
   depth: number,
+  readState: ReadState,
   participants: { [key: string]: UserDisplay },
   courseID: string,
   discussionID: string,
@@ -59,17 +63,17 @@ export default class Reply extends Component <any, Props, any> {
   }
 
   render () {
-    let { reply, depth, participants, courseID, discussionID, replyToEntry, onPressMoreReplies, maxReplyNodeDepth } = this.props
+    let { reply, depth, participants, maxReplyNodeDepth, readState } = this.props
     participants = participants || {}
-    let replies = reply.replies || []
 
-    let childReplies = (depth > maxReplyNodeDepth - 1) ? [] : replies.map((r, i) => <Reply maxReplyNodeDepth={maxReplyNodeDepth} onPressMoreReplies={onPressMoreReplies} replyToEntry={replyToEntry} myPath={[...this.props.myPath, i]} deleteDiscussionEntry={this.props.deleteDiscussionEntry} courseID={courseID} discussionID={discussionID} participants={participants} reply={r} depth={depth + 1} key={r.id} navigator={this.props.navigator}/>)
     let user = this._userFromParticipants(reply, participants)
     let message = reply.deleted ? `<i style="color:${colors.grey4}">${i18n('Deleted this reply.')}</i>` : reply.message
-
+    const unreadDot = this._renderUnreadDot(readState)
     return (
       <View style={style.parentRow}>
+        <ThreadedLinesView depth={depth} avatarSize={AVATAR_SIZE} marginRight={AVATAR_MARGIN_RIGHT}/>
         <View style={style.colA}>
+          { unreadDot }
           {user &&
           <Avatar height={AVATAR_SIZE} key={user.id} avatarURL={user.avatar_image_url} userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}/> }
           <View style={style.threadLine}/>
@@ -104,10 +108,6 @@ export default class Reply extends Component <any, Props, any> {
             {this._renderMoreRepliesButton(depth, reply, maxReplyNodeDepth)}
 
           </View>
-
-          <View style={style.rowB}>
-            {childReplies}
-          </View>
         </View>
       </View>
     )
@@ -141,6 +141,10 @@ export default class Reply extends Component <any, Props, any> {
     )
   }
 
+  _renderUnreadDot (state: ReadState) {
+    return state === 'unread' ? (<View style={style.unreadDot}/>) : <View />
+  }
+
   _actionMore = () => {
     this.props.onPressMoreReplies(this.props.myPath)
   }
@@ -148,6 +152,7 @@ export default class Reply extends Component <any, Props, any> {
   _actionReply = () => {
     this.props.replyToEntry(this.props.reply.id, this.props.myPath)
   }
+
   _actionEdit = () => {
     const { courseID, discussionID } = this.props
     let options = []
@@ -162,7 +167,7 @@ export default class Reply extends Component <any, Props, any> {
       if (button === (options.length - 1)) { return }
       if (button === (options.length - 2)) { this.props.deleteDiscussionEntry(courseID, discussionID, this.props.reply.id, this.props.myPath); return }
       if (button === 0) {
-        this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { message: this.props.reply.message, entryID: this.props.reply.id, isEdit: true, parentIndexPath: this.props.myPath })
+        this.props.navigator.show(`/courses/${this.props.courseID}/discussion_topics/${this.props.discussionID}/reply`, { modal: true }, { message: this.props.reply.message, entryID: this.props.reply.id, isEdit: true, indexPath: this.props.myPath })
         return
       }
     })
@@ -170,6 +175,8 @@ export default class Reply extends Component <any, Props, any> {
 }
 
 const AVATAR_SIZE = 24
+const AVATAR_MARGIN_RIGHT = 8
+const unreadDotSize = 6
 const style = StyleSheet.create({
   parentRow: {
     flex: 1,
@@ -179,11 +186,9 @@ const style = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    padding: 0,
+    paddingTop: unreadDotSize,
     marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    flex: 0.1,
+    marginRight: AVATAR_MARGIN_RIGHT,
   },
   colB: {
     flex: 1,
@@ -208,6 +213,15 @@ const style = StyleSheet.create({
     backgroundColor: colors.grey1,
     marginTop: global.style.defaultPadding / 1.25,
   },
+  unreadDot: {
+    width: unreadDotSize,
+    height: unreadDotSize,
+    borderRadius: unreadDotSize / 2,
+    backgroundColor: '#008EE4',
+    position: 'absolute',
+    top: 0,
+    left: unreadDotSize * -1,
+  },
   userName: {
     fontSize: 14,
     fontWeight: '600',
@@ -218,7 +232,9 @@ const style = StyleSheet.create({
     marginBottom: global.style.defaultPadding,
   },
   footer: {
-    padding: 2,
+    paddingTop: 2,
+    paddingBottom: 2,
+    paddingRight: 2,
     alignSelf: 'flex-end',
   },
   footerContainer: {

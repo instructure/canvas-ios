@@ -14,7 +14,7 @@ import composeReducers from '../../redux/compose-reducers'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead } = DetailsActions
+const { refreshDiscussionEntries, refreshSingleDiscussion, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -184,6 +184,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
 
       let participantsAsMap = discussionView.data.participants.reduce((map, p) => ({ ...map, [p.id]: p }), {})
       let replies = discussionView.data.view
+      let unreadEntries = discussionView.data.unread_entries || []
       let newEntries = discussionView.data.new_entries || []
       let pendingReplies = { ...(entity.pendingReplies || {}) }
 
@@ -213,9 +214,21 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           ...entity,
           pending: state[discussionID] && state[discussionID].pending ? state[discussionID].pending - 1 : 0,
           error: null,
+          unread_entries: unreadEntries,
         },
       }
     },
+  }),
+  [refreshSingleDiscussion.toString()]: handleAsync({
+    resolved: (state, { result, discussionID }) => ({
+      ...state,
+      [discussionID]: {
+        ...state[discussionID],
+        data: {
+          ...result.data,
+        },
+      },
+    }),
   }),
   [deleteDiscussionEntry.toString()]: handleAsync({
     rejected: (state, { error, discussionID, entryID }) => {
@@ -389,7 +402,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         },
       },
     }),
-    resolved: (state, { discussionID, result, parentIndexPath }) => {
+    resolved: (state, { discussionID, result, indexPath }) => {
       return {
         ...state,
         [discussionID]: {
@@ -403,7 +416,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           },
           pendingReplies: {
             ...(state[discussionID] && state[discussionID].pendingReplies),
-            [result.data.id]: { localIndexPath: parentIndexPath, data: Object.assign({ replies: [] }, result.data) },
+            [result.data.id]: { localIndexPath: indexPath, data: Object.assign({ replies: [] }, result.data) },
           },
         },
       }
@@ -437,7 +450,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         },
       },
     }),
-    resolved: (state, { discussionID, result, parentIndexPath }) => {
+    resolved: (state, { discussionID, result, indexPath }) => {
       return {
         ...state,
         [discussionID]: {
@@ -451,7 +464,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
           },
           pendingReplies: {
             ...(state[discussionID] && state[discussionID].pendingReplies),
-            [result.data.id]: { localIndexPath: parentIndexPath, data: result.data },
+            [result.data.id]: { localIndexPath: indexPath, data: result.data },
           },
         },
       }

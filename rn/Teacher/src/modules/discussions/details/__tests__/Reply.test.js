@@ -27,6 +27,7 @@ describe('DiscussionReplies', () => {
     props = {
       reply: reply,
       depth: 0,
+      readState: 'read',
       participants: { [user.id]: user },
       courseID: '1',
       discussionID: '1',
@@ -82,7 +83,7 @@ describe('DiscussionReplies', () => {
 
   it('edit action sheet calls edit', () => {
     testEditActionSheet(0)
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, { message: props.reply.message, entryID: props.reply.id, isEdit: true, parentIndexPath: props.myPath })
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/discussion_topics/1/reply', { modal: true }, { message: props.reply.message, entryID: props.reply.id, isEdit: true, indexPath: props.myPath })
   })
 
   it('reply to entry', () => {

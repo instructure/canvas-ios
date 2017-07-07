@@ -45,7 +45,7 @@ describe('EditReply', () => {
       courseID: '1',
       entryID: '1',
       course: template.course({ id: 1 }),
-      parentIndexPath: [],
+      indexPath: [],
       deletePendingReplies: jest.fn(),
       lastReplyAt: (new Date()).toISOString(),
     }
@@ -183,7 +183,7 @@ describe('MapStateToProps', () => {
       },
     })
     expect(
-      mapStateToProps(state, { courseID: '1', discussionID: '1', parentIndexPath: [], lastReplyAt })
+      mapStateToProps(state, { courseID: '1', discussionID: '1', indexPath: [], lastReplyAt })
     ).toMatchObject({
       pending: 0,
       error: null,
