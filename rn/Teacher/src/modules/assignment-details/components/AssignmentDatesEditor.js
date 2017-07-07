@@ -438,7 +438,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
     Alert.alert(
       i18n('Are you sure?'),
-      i18n('You cannot undo this action'),
+      i18n('You cannot undo this action.'),
       [
         { text: i18n('Remove'), onPress: remove, style: 'destructive' },
         { text: i18n('Cancel'), style: 'cancel' },
