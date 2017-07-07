@@ -31,6 +31,7 @@ import Tutorial from './components/Tutorial'
 import i18n from 'format-message'
 import Images from '../../images'
 import shuffle from 'knuth-shuffle-seeded'
+import A11yGroup from '../../common/components/A11yGroup'
 
 type State = {
   size: { width: number, height: number },
@@ -114,7 +115,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       ? submissionEntity.selectedAttachmentIndex
       : null
 
-    return <View style={[styles.page, this.state.size]}>
+    return <A11yGroup style={[styles.page, this.state.size]}>
       <SubmissionGrader
         isCurrentStudent={this.state.currentStudentID === item.submission.userID}
         drawerState={SpeedGrader.drawerState}
@@ -131,7 +132,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         navigator={this.props.navigator}
         drawerInset={this.state.drawerInset}
       />
-    </View>
+    </A11yGroup>
   }
 
   scrollEnded = (event: Object) => {

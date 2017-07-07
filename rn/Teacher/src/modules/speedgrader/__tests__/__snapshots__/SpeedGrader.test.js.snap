@@ -75,7 +75,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
       <View
         onLayout={[Function]}
       >
-        <View
+        <A11yGroup
           style={
             Array [
               Object {
@@ -162,7 +162,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
               </View>
             </View>
           </A11yGroup>
-        </View>
+        </A11yGroup>
       </View>
     </View>
   </RCTScrollView>
@@ -244,7 +244,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
       <View
         onLayout={[Function]}
       >
-        <View
+        <A11yGroup
           style={
             Array [
               Object {
@@ -331,12 +331,12 @@ exports[`SpeedGrader renders with a filter 1`] = `
               </View>
             </View>
           </A11yGroup>
-        </View>
+        </A11yGroup>
       </View>
       <View
         onLayout={[Function]}
       >
-        <View
+        <A11yGroup
           style={
             Array [
               Object {
@@ -423,7 +423,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
               </View>
             </View>
           </A11yGroup>
-        </View>
+        </A11yGroup>
       </View>
     </View>
   </RCTScrollView>

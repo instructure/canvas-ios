@@ -131,14 +131,23 @@ exports[`BottomDrawer renders any children 1`] = `
         }
       />
     </DrawerHandleView>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "opacity": 0,
+        }
+      }
     >
-      Yo yo yo
-    </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+      >
+        Yo yo yo
+      </Text>
+    </View>
   </View>
 </View>
 `;

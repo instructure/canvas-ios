@@ -125,7 +125,8 @@ export default class BottomDrawer extends Component<any, Props, State> {
     let position = (this.state.width - width) / 2
 
     const snap = this.getSnapPoints().map(point => point.y) // [0, 300, 600]
-    const heights = [ snap[1], snap[1], snap[snap.length - 1] ] // [300, 300, 600]
+    const maxSnap = snap[snap.length - 1]
+    const heights = [ snap[1], snap[1], maxSnap ] // [300, 300, 600]
     const clampedHeight = this._deltaY.interpolate({
       inputRange: snap,
       outputRange: heights.map(h => h + HANDLE_PADDING_BOTTOM),
@@ -134,6 +135,10 @@ export default class BottomDrawer extends Component<any, Props, State> {
     const clampedBottom = this._deltaY.interpolate({
       inputRange: snap,
       outputRange: bottoms,
+    })
+    const hideContentForA11y = this._deltaY.interpolate({
+      inputRange: [0, 1, maxSnap],
+      outputRange: [0, 1, 1],
     })
 
     return (
@@ -170,7 +175,9 @@ export default class BottomDrawer extends Component<any, Props, State> {
                 : undefined
             }</View>
           </DrawerHandle>
-          {this.props.children}
+          <Animated.View style={{ flex: 1, opacity: hideContentForA11y }}>
+            {this.props.children}
+          </Animated.View>
         </Animated.View>
       </View>
     )
