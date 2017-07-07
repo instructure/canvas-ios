@@ -124,7 +124,7 @@ export class UserCoursePreferences extends Component {
                   {i18n('Color')}
                 </Text>
                 <Text style={styles.colorDescription}>
-                  {i18n('Set this for the default color of the course. This won’t override a personal color setting.')}
+                  {i18n('This is your personal color setting. Only you will see this color for the course.')}
                 </Text>
                 <ScrollView contentContainerStyle={styles.colorButtonsWrapper} horizontal showsHorizontalScrollIndicator={false}>
                   {PICKER_COLORS.map(color => (

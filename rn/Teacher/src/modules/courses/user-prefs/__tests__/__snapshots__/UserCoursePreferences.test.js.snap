@@ -314,7 +314,7 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
@@ -1093,7 +1093,7 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
@@ -1872,7 +1872,7 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
@@ -2651,7 +2651,7 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
@@ -3446,7 +3446,7 @@ exports[`UserCoursePreferences renders 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
@@ -4225,7 +4225,7 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
@@ -5004,7 +5004,7 @@ exports[`UserCoursePreferences renders without a course image url 1`] = `
                 ]
               }
             >
-              Set this for the default color of the course. This won’t override a personal color setting.
+              This is your personal color setting. Only you will see this color for the course.
             </Text>
             <RCTScrollView
               contentContainerStyle={
