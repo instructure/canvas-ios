@@ -217,14 +217,12 @@ describe('AnnouncementEdit', () => {
     expect(getMessageEditor(render(props)).props.placeholder).toEqual('Add description (required)')
   })
 
-  it('disables done button if message is blank', () => {
+  it('shows banner on done press if message is blank', () => {
     props.message = null
     const component = render(props)
-    expect(getDoneButton(component).disabled).toBeTruthy()
-    changeMessage(component, 'not empty')
-    expect(getDoneButton(component).disabled).toBeFalsy()
-    changeMessage(component, '')
-    expect(getDoneButton(component).disabled).toBeTruthy()
+    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
+    tapDone(component)
+    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
   })
 
   it('calls updateDiscussion on done', () => {
@@ -263,10 +261,6 @@ describe('AnnouncementEdit', () => {
     input.props.onChangeText(value)
   }
 
-  function changeMessage (component: any, value: string) {
-    getMessageEditor(component).props.onChangeValue(value)
-  }
-
   function getTitle (component: any): string {
     return explore(component.toJSON()).query(({ type }) => type === 'Screen')[0].props.title
   }
@@ -297,6 +291,10 @@ describe('AnnouncementEdit', () => {
   function clearDelayPostAt (component: any) {
     const clearButton: any = explore(component.toJSON()).selectByID('announcements.edit.clear-delayed-post-at-button')
     clearButton.props.onPress()
+  }
+
+  function getUnmetRequirementBanner (component: any): any {
+    return explore(component.toJSON()).selectByID('announcement.edit.unmet-requirement-banner')
   }
 })
 

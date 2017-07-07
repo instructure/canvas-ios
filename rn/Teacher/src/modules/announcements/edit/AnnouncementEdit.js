@@ -27,6 +27,8 @@ import Images from '../../../images'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
+import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 
 const {
   createDiscussion,
@@ -69,6 +71,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
       delayed_post_at: props.delayed_post_at,
       delayPosting: Boolean(props.delayed_post_at),
       delayedPostAtPickerShown: false,
+      isValid: true,
     }
   }
 
@@ -103,7 +106,6 @@ export class AnnouncementEdit extends Component<any, Props, any> {
 
   render () {
     const title = this.props.announcementID ? i18n('Edit') : i18n('New')
-
     return (
       <Screen
         title={i18n('{title} Announcement', { title })}
@@ -113,7 +115,6 @@ export class AnnouncementEdit extends Component<any, Props, any> {
             testID: 'announcements.edit.doneButton',
             style: 'done',
             action: this._donePressed,
-            disabled: !this.state.message,
           },
         ]}
         leftBarButtons={[
@@ -127,6 +128,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending}/>
+          <UnmetRequirementBanner text={i18n('Invalid field')} visible={!this.state.isValid} testID='announcement.edit.unmet-requirement-banner'/>
           <KeyboardAwareScrollView
             style={style.container}
             keyboardShouldPersistTaps='handled'
@@ -157,6 +159,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
                 placeholder={i18n('Add description (required)')}
               />
             </View>
+            <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />
 
             <Heading1 style={style.heading}>{i18n('Options')}</Heading1>
             <RowWithSwitch
@@ -251,6 +254,11 @@ export class AnnouncementEdit extends Component<any, Props, any> {
   }
 
   _donePressed = () => {
+    if (!this.state.message) {
+      this.setState({ isValid: false })
+      return
+    }
+
     const params = {
       title: this.state.title === '' ? null : this.state.title,
       message: this.state.message,
@@ -262,7 +270,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
       // $FlowFixMe
       params.id = this.props.announcementID
     }
-    this.setState({ pending: true })
+    this.setState({ pending: true, isValid: true })
     this.props.announcementID
       ? this.props.updateDiscussion(this.props.courseID, params)
       : this.props.createDiscussion(this.props.courseID, params)

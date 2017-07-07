@@ -31,7 +31,6 @@ exports[`AnnouncementEdit renders 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": false,
         "style": "done",
         "testID": "announcements.edit.doneButton",
         "title": "Done",
@@ -153,6 +152,11 @@ exports[`AnnouncementEdit renders 1`] = `
         </View>
       </View>
     </Modal>
+    <UnmetRequirementBanner
+      testID="announcement.edit.unmet-requirement-banner"
+      text="Invalid field"
+      visible={false}
+    />
     <RCTScrollView
       contentInset={
         Object {
@@ -325,6 +329,10 @@ exports[`AnnouncementEdit renders 1`] = `
             showToolbar="always"
           />
         </View>
+        <RequiredFieldSubscript
+          title="A description is required"
+          visible={false}
+        />
         <Text
           accessibilityTraits="header"
           accessible={true}
@@ -625,7 +633,6 @@ exports[`AnnouncementEdit updates with new props 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": false,
         "style": "done",
         "testID": "announcements.edit.doneButton",
         "title": "Done",
@@ -747,6 +754,11 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         </View>
       </View>
     </Modal>
+    <UnmetRequirementBanner
+      testID="announcement.edit.unmet-requirement-banner"
+      text="Invalid field"
+      visible={false}
+    />
     <RCTScrollView
       contentInset={
         Object {
@@ -919,6 +931,10 @@ exports[`AnnouncementEdit updates with new props 1`] = `
             showToolbar="always"
           />
         </View>
+        <RequiredFieldSubscript
+          title="A description is required"
+          visible={false}
+        />
         <Text
           accessibilityTraits="header"
           accessible={true}
