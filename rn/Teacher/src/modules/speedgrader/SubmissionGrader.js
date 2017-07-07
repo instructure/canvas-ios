@@ -9,6 +9,7 @@ import {
 import i18n from 'format-message'
 import BottomDrawer from '../../common/components/BottomDrawer'
 import Header from './components/Header'
+import SubmissionPicker from './components/SubmissionPicker'
 import GradeTab from './GradeTab'
 import FilesTab from './components/FilesTab'
 import CommentsTab from './comments/CommentsTab'
@@ -16,6 +17,7 @@ import DrawerState from './utils/drawer-state'
 import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
+import colors from '../../common/colors'
 
 let { width, height } = Dimensions.get('window')
 
@@ -40,6 +42,9 @@ type SubmissionGraderProps = {
   isModeratedGrading: boolean,
   drawerInset: number,
 }
+
+const DRAWER_WIDTH = 375
+const COMPACT_DEVICE_WIDTH = 768
 
 export default class SubmissionGrader extends Component<any, SubmissionGraderProps, State> {
   state: State
@@ -119,15 +124,23 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     )
   }
 
-  render () {
-    const { width, height } = this.state
+  renderCompact (width: number, height: number) {
     return (
       <A11yGroup
         onLayout={this.onLayout}
         style={styles.speedGrader}
       >
         <ToolTip ref={this.captureToolTip} />
-        <Header closeModal={this.props.closeModal} submissionProps={this.props.submissionProps} submissionID={this.props.submissionID} assignmentID={this.props.assignmentID}/>
+        <Header
+          closeModal={this.props.closeModal}
+          submissionProps={this.props.submissionProps}
+          submissionID={this.props.submissionID}
+          assignmentID={this.props.assignmentID}
+        />
+        <SubmissionPicker
+          submissionProps={this.props.submissionProps}
+          submissionID={this.props.submissionID}
+        />
         <SubmissionViewer {...this.props} size={{ width, height }} />
         <BottomDrawer
           drawerState={this.props.drawerState}
@@ -140,6 +153,52 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       </A11yGroup>
     )
   }
+
+  renderWide (width: number, height: number) {
+    return (
+      <A11yGroup
+        onLayout={this.onLayout}
+        style={styles.speedGrader}
+      >
+        <Header
+          style={styles.splitViewHeader}
+          closeModal={this.props.closeModal}
+          submissionProps={this.props.submissionProps}
+          submissionID={this.props.submissionID}
+          assignmentID={this.props.assignmentID}
+        />
+        <View style={styles.splitView}>
+          <A11yGroup style={styles.left}>
+            <SubmissionPicker
+              submissionProps={this.props.submissionProps}
+              submissionID={this.props.submissionID}
+            />
+            <SubmissionViewer
+              {...this.props}
+              size={{
+                width: width - DRAWER_WIDTH, height,
+              }}
+              drawerInset={0}
+            />
+          </A11yGroup>
+          <A11yGroup style={styles.right}>
+            {this.renderHandleContent()}
+            {this.renderTab(this.state.selectedTabIndex)}
+          </A11yGroup>
+        </View>
+        <ToolTip ref={this.captureToolTip} />
+      </A11yGroup>
+    )
+  }
+
+  render () {
+    const { width, height } = this.state
+    if (width > COMPACT_DEVICE_WIDTH) {
+      return this.renderWide(width, height)
+    } else {
+      return this.renderCompact(width, height)
+    }
+  }
 }
 
 const styles = StyleSheet.create({
@@ -151,5 +210,23 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgray',
     paddingBottom: 8,
+  },
+  splitViewHeader: {
+    paddingBottom: 4,
+    borderBottomColor: colors.seperatorColor,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  splitView: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  right: {
+    width: DRAWER_WIDTH,
+    paddingTop: 16,
+    borderLeftWidth: StyleSheet.hairlineWidth,
+    borderLeftColor: colors.seperatorColor,
+  },
+  left: {
+    flex: 1,
   },
 })

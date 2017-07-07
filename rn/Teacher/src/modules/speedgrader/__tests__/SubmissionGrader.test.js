@@ -6,11 +6,13 @@ import renderer from 'react-test-renderer'
 import DrawerState from '../utils/drawer-state'
 
 jest
+  .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('WebView', () => 'WebView')
   .mock('SegmentedControlIOS', () => 'SegmentedControlIOS')
   .mock('../GradeTab')
   .mock('../components/GradePicker')
   .mock('../components/Header')
+  .mock('../components/SubmissionPicker')
   .mock('../components/FilesTab')
   .mock('../comments/CommentsTab')
 

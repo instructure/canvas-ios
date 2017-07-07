@@ -13,6 +13,7 @@ import shuffle from 'knuth-shuffle-seeded'
 
 jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
+jest.mock('../components/SubmissionPicker.js')
 jest.mock('../components/FilesTab')
 jest.mock('../../../common/components/BottomDrawer')
 jest.mock('knuth-shuffle-seeded', () => jest.fn())

@@ -1,14 +1,24 @@
 // @flow
 
-import _ from 'lodash'
 import React from 'react'
-import { Header, mapStateToProps } from '../Header'
+import { SubmissionPicker, mapStateToProps } from '../SubmissionPicker'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
 
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('LayoutAnimation', () => ({
+    configureNext: jest.fn(),
+    easeInEaseOut: jest.fn(),
+    Types: {
+      easeInEaseOut: jest.fn(),
+      spring: jest.fn(),
+    },
+    Properties: {
+      opacity: 1,
+    },
+  }))
 
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
@@ -29,13 +39,11 @@ let noSubProps = {
     submissionID: null,
     submission: null,
   },
-  closeModal: jest.fn(),
   excuseAssignment: jest.fn(),
   gradeSubmission: jest.fn(),
   selectSubmissionFromHistory: jest.fn(),
   selectedIndex: null,
   selectedAttachmentIndex: null,
-  anonymous: false,
 }
 
 let subProps = {
@@ -55,10 +63,20 @@ let subProps = {
   },
 }
 
-describe('SpeedGraderHeader', () => {
+let withIndex = {
+  ...subProps,
+  selectedIndex: 1,
+}
+
+let withZeroIndex = {
+  ...subProps,
+  selectedIndex: 0,
+}
+
+describe('SubmissionPicker', () => {
   it('renders with no submission', () => {
     let tree = renderer.create(
-      <Header {...noSubProps} />
+      <SubmissionPicker {...noSubProps} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -66,50 +84,62 @@ describe('SpeedGraderHeader', () => {
 
   it('renders with a submission', () => {
     let tree = renderer.create(
-      <Header {...subProps} />
+      <SubmissionPicker {...subProps} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
   })
 
-  it('renders with a grade-only submission', () => {
-    let props = _.cloneDeep(subProps)
-    props.submissionProps.status = 'none'
-
+  it('opens the picker', () => {
     let tree = renderer.create(
-      <Header {...props} />
+      <SubmissionPicker {...withIndex} />
     ).toJSON()
 
+    const pickerToggle = explore(tree).selectByID('header.toggle-submission_history-picker') || {}
+    pickerToggle.props.onPress()
     expect(tree).toMatchSnapshot()
   })
 
-  it('renders with an over-due grade-only submission', () => {
-    let props = _.cloneDeep(subProps)
-    props.submissionProps.status = 'missing'
-    props.submissionProps.submission = null
-
+  it('renders the picker with a non-zero index', () => {
     let tree = renderer.create(
-      <Header {...props} />
-    ).toJSON()
+      <SubmissionPicker {...withIndex} />
+    )
 
+    tree.getInstance().setState({ showingPicker: true })
     expect(tree).toMatchSnapshot()
   })
 
-  it('closes the modal', () => {
+  it('renders the picker with a 0 index', () => {
     let tree = renderer.create(
-      <Header {...subProps} />
-    ).toJSON()
+      <SubmissionPicker {...withZeroIndex} />
+    )
 
-    const doneButton = explore(tree).selectByID('header.navigation-done') || {}
-    doneButton.props.onPress()
-    expect(subProps.closeModal).toHaveBeenCalled()
+    tree.getInstance().setState({ showingPicker: true })
+    expect(tree).toMatchSnapshot()
   })
 
-  it('doesnt show the student name when anonymous', () => {
+  it('closes the picker', () => {
     let tree = renderer.create(
-      <Header {...subProps} anonymous={true} />
-    ).toJSON()
+      <SubmissionPicker {...withIndex} />
+    )
+
+    tree.getInstance().setState({ showingPicker: true })
+
+    const pickerToggle = explore(tree.toJSON()).selectByID('header.toggle-submission_history-picker') || {}
+    pickerToggle.props.onPress()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('chooses a different submission from history', () => {
+    let tree = renderer.create(
+      <SubmissionPicker {...withIndex} />
+    )
+
+    tree.getInstance().setState({ showingPicker: true })
+
+    const picker = explore(tree.toJSON()).selectByID('header.picker') || {}
+    picker.props.onValueChange(0)
+    expect(withIndex.selectSubmissionFromHistory).toHaveBeenCalledWith('1', 0)
   })
 })
 
@@ -135,7 +165,7 @@ describe('mapStateToProps', () => {
 
     let dataProps = mapStateToProps(state, noSubProps)
     expect(dataProps).toMatchObject({
-      anonymous: true,
+      selectedIndex: null,
     })
   })
 
@@ -160,7 +190,7 @@ describe('mapStateToProps', () => {
 
     let dataProps = mapStateToProps(state, subProps)
     expect(dataProps).toMatchObject({
-      anonymous: true,
+      selectedIndex: 3,
     })
   })
 })
