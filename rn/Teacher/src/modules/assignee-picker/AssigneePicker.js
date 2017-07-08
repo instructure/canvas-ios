@@ -20,6 +20,7 @@ import Images from '../../images'
 import { pickerMapStateToProps, type AssigneePickerProps, type Assignee } from './map-state-to-props'
 import Actions from './actions.js'
 import EnrollmentActions from '../enrollments/actions'
+import GroupActions from '../groups/actions'
 import UserActions from '../users/actions'
 import { Text } from '../../common/text'
 import Screen from '../../routing/Screen'
@@ -52,6 +53,11 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
     this.props.refreshSections(this.props.courseID)
     const userIds = this.props.assignees.filter(a => a.type === 'student').map(a => a.dataId)
     this.props.refreshUsers(userIds)
+    this.props.assignees
+      .filter(a => a.type === 'group')
+      .forEach((group) => {
+        this.props.refreshGroup(group.dataId)
+      })
   }
 
   done = () => {
@@ -166,5 +172,5 @@ const styles = StyleSheet.create({
   },
 })
 
-let Connected = connect(pickerMapStateToProps, { ...Actions, ...EnrollmentActions, ...UserActions })(AssigneePicker)
+let Connected = connect(pickerMapStateToProps, { ...Actions, ...EnrollmentActions, ...UserActions, ...GroupActions })(AssigneePicker)
 export default (Connected: Component<any, AssigneePickerProps, any>)

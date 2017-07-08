@@ -4,7 +4,7 @@ import Actions, { GroupActions } from '../actions'
 import { testAsyncAction } from '../../../../test/helpers/async'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 
-const { refreshGroupsForCourse } = Actions
+const { refreshGroupsForCourse, refreshGroup } = Actions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/group'),
@@ -36,3 +36,25 @@ test('should refresh groups', async () => {
   ])
 })
 
+test('should refresh a single group', async () => {
+  const group = template.group({ id: '1' })
+
+  let actions = GroupActions({
+    getGroupByID: apiResponse(group),
+  })
+
+  let result = await testAsyncAction(actions.refreshGroup('i care you silly'))
+  expect(result).toMatchObject([
+    {
+      type: refreshGroup.toString(),
+      pending: true,
+      payload: {},
+    },
+    {
+      type: refreshGroup.toString(),
+      payload: {
+        result: { data: group },
+      },
+    },
+  ])
+})

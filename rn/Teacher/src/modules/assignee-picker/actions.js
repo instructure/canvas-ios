@@ -17,6 +17,7 @@ export let AssigneeSearchActions: (typeof canvas) => AssigneeActionsProps = (api
   refreshGroupsForCategory: createAction('category-groups.refresh', (groupCategoryID: string) => {
     return {
       promise: api.getGroupsForCategoryID(groupCategoryID),
+      handlesError: true,
     }
   }),
 })

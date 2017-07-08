@@ -3,7 +3,7 @@
 import Actions from '../actions'
 import { groups } from '../group-entities-reducer'
 
-const { refreshGroupsForCourse } = Actions
+const { refreshGroupsForCourse, refreshGroup } = Actions
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/group'),
@@ -32,5 +32,19 @@ test('captures entities', () => {
   expect(groups({}, action)).toEqual({
     '1': { group: groupTemplates[0] },
     '2': { group: groupTemplates[1] },
+  })
+})
+
+test('captures a single entity', () => {
+  const group = template.group({ id: '1' })
+  const action = {
+    type: refreshGroup.toString(),
+    payload: {
+      result: { data: group },
+    },
+  }
+
+  expect(groups({}, action)).toEqual({
+    '1': { group },
   })
 })

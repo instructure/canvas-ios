@@ -70,6 +70,7 @@ export type AssigneePickerProps = {
   callback?: Function, // Called when finished picking assignees. Will send the new list of assignees as the first parameter
   refreshSections: Function,
   refreshUsers: Function,
+  refreshGroup: Function,
 }
 
 export function pickerMapStateToProps (state: AppState, ownProps: AssigneePickerProps): any {
@@ -99,7 +100,12 @@ export function pickerMapStateToProps (state: AppState, ownProps: AssigneePicker
           newAssignee.name = section.name
         }
         break
-        // TODO groups
+      case 'group':
+        const groupState = state.entities.groups[assignee.dataId]
+        if (groupState) {
+          newAssignee.name = groupState.group.name
+        }
+        break
     }
 
     return newAssignee

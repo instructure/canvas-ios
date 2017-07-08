@@ -101,7 +101,12 @@ test('correct output from searchMapStateToProps', () => {
 
 test('correct output from pickerMapStateToProps', () => {
   let course = template.course()
-  let assignment = template.assignment()
+  let assignment = template.assignment({
+    group_category_id: '9999',
+  })
+  let group = template.group({
+    group_category_id: '9999',
+  })
   let enrollment = template.enrollment({
     course_id: course.id,
   })
@@ -128,6 +133,12 @@ test('correct output from pickerMapStateToProps', () => {
       users: {
         [enrollment.user_id]: enrollment.user,
       },
+      groups: {
+        [group.id]: {
+          group,
+        },
+        '999999': {},
+      },
     },
   })
 
@@ -140,15 +151,19 @@ test('correct output from pickerMapStateToProps', () => {
   })
 
   let assigneeThree = template.everyoneAssignee()
+  let assigneeFour = template.groupAssignee({
+    dataId: group.id,
+  })
 
   let props: AssigneePickerProps = {
     courseID: course.id,
     assignmentID: assignment.id,
-    assignees: [assigneeOne, assigneeTwo, assigneeThree],
+    assignees: [assigneeOne, assigneeTwo, assigneeThree, assigneeFour],
     callback: jest.fn(),
     navigator: template.navigator(),
     refreshUsers: jest.fn(),
     refreshSections: jest.fn(),
+    refreshGroup: jest.fn(),
   }
 
   let result = pickerMapStateToProps(state, props)
@@ -164,6 +179,10 @@ test('correct output from pickerMapStateToProps', () => {
     {
       dataId: 'everyone',
       name: 'Everyone else',
+    },
+    {
+      dataId: group.id,
+      name: group.name,
     }],
   })
 
@@ -233,6 +252,7 @@ test('pickerMapStateToProps should not explode when user data is missing', () =>
     navigator: template.navigator(),
     refreshUsers: jest.fn(),
     refreshSections: jest.fn(),
+    refreshGroup: jest.fn(),
   }
 
   let result = pickerMapStateToProps(state, props)

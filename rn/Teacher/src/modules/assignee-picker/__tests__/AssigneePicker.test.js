@@ -20,14 +20,20 @@ const template = {
   ...require('../../../__templates__/helm'),
 }
 
+const assignees = [
+  template.enrollmentAssignee(),
+  template.enrollmentAssignee({ imageURL: null, id: '9909342324234' }),
+  template.groupAssignee(),
+]
 const defaultProps: AssigneePickerProps = {
-  assignees: [template.enrollmentAssignee(), template.enrollmentAssignee({ imageURL: null, id: '9909342324234' })],
+  assignees,
   courseID: template.course().id,
   assignmentID: template.assignment().id,
   navigator: template.navigator(),
   handleSelectedAssignee: jest.fn(),
   refreshSections: jest.fn(),
   refreshUsers: jest.fn(),
+  refreshGroup: jest.fn(),
 }
 
 test('render correctly', () => {
@@ -114,7 +120,7 @@ test('handles adding', () => {
     <AssigneePicker {...defaultProps} />
   ).getInstance()
   picker.handleSelectedAssignee(assignee)
-  expect(picker.state.selected.length).toEqual(3)
+  expect(picker.state.selected.length).toEqual(4)
 })
 
 test('cannot add the same assignee two times in a row', () => {
@@ -126,7 +132,7 @@ test('cannot add the same assignee two times in a row', () => {
   ).getInstance()
   picker.handleSelectedAssignee(assignee)
   picker.handleSelectedAssignee(assignee)
-  expect(picker.state.selected.length).toEqual(3)
+  expect(picker.state.selected.length).toEqual(4)
 })
 
 test('handles removing', () => {
@@ -135,5 +141,5 @@ test('handles removing', () => {
     <AssigneePicker {...defaultProps} />
   ).getInstance()
   picker.deleteAssignee(assignee)
-  expect(picker.state.selected.length).toEqual(1)
+  expect(picker.state.selected.length).toEqual(2)
 })

@@ -6,7 +6,7 @@ import AssigneeSearchActions from '../assignee-picker/actions'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
 
-const { refreshGroupsForCourse } = Actions
+const { refreshGroupsForCourse, refreshGroup } = Actions
 const { refreshGroupsForCategory } = AssigneeSearchActions
 
 const groupsEntitiyReducer = handleAsync({
@@ -28,4 +28,15 @@ const groupsEntitiyReducer = handleAsync({
 export const groups: Reducer<GroupsState, any> = handleActions({
   [refreshGroupsForCourse.toString()]: groupsEntitiyReducer,
   [refreshGroupsForCategory.toString()]: groupsEntitiyReducer,
+  [refreshGroup.toString()]: handleAsync({
+    resolved: (state, { result }) => {
+      const group = result.data
+      const incoming = {
+        [group.id]: {
+          group: { ...state[group.id], ...group },
+        },
+      }
+      return { ...state, ...incoming }
+    },
+  }),
 }, {})
