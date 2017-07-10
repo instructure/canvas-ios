@@ -37,7 +37,6 @@ export class AllCourseList extends Component {
   render () {
     return (
       <Screen
-        navBarTranslucent={true}
         navBarColor={branding.navBarColor}
         navBarStyle='dark'
         title={i18n('All Courses')}>
