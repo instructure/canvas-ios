@@ -13,6 +13,7 @@ import {
   ActivityIndicator,
   LayoutAnimation,
   TouchableOpacity,
+  Text,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -26,6 +27,7 @@ export type SubmissionBreakdownGraphSectionProps = {
   not_submitted: number,
   submissionTotalCount: number,
   refreshSubmissionSummary: Function,
+  submissionTypes: string[],
 }
 
 export type SubmissionBreakdownGraphSectionInitProps = {
@@ -62,7 +64,21 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     let ungraded = this.props.ungraded
     let notSubmitted = this.props.not_submitted
 
-    let data = [graded, ungraded, notSubmitted]
+    let paperOnly = this.props.submissionTypes.includes('on_paper')
+    let paperOnlyMessage = i18n({
+      default: `{
+        count, plural,
+        one {There is # assignee without a grade.}
+        other {There are # assignees without grades.}
+      }`,
+      message: 'Number of assignees without grades.',
+    }, { count: ungraded + notSubmitted })
+
+    let data = [graded]
+    if (!paperOnly) {
+      data.push(ungraded)
+      data.push(notSubmitted)
+    }
 
     return (
       <View style={[style.container, this.props.style]}>
@@ -80,6 +96,15 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
             </View>
           </TouchableOpacity>
         )}
+
+        {paperOnly &&
+          <View style={style.paperOnlyContainer} accessible={true} accessibilityLabel={paperOnlyMessage}>
+            <View style={style.paperOnlyContainer} >
+            <Text style={style.paperOnlyContainerLabel}>{paperOnlyMessage}</Text>
+            </View>
+          </View>
+        }
+
       </View>
     )
   }
@@ -119,6 +144,11 @@ const style = StyleSheet.create({
   },
   common: {
     flex: 1,
+  },
+  paperOnlyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

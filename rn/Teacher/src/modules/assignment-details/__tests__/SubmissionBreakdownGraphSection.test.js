@@ -41,13 +41,16 @@ beforeEach(() => {
     refreshSubmissions: jest.fn(),
     refreshGradeableStudents: jest.fn(),
     refreshAssignment: jest.fn(),
-    submissions,
     submissionTotalCount: submissions.length,
     pending: 0,
     refresh: jest.fn(),
     refreshing: false,
     onPress: jest.fn(),
     refreshSubmissionSummary: jest.fn(),
+    submissionTypes: ['online'],
+    graded: 1,
+    ungraded: 1,
+    not_submitted: 1,
   }
 })
 
@@ -59,7 +62,9 @@ test('render', () => {
 })
 
 test('render 0 submissions', () => {
-  defaultProps.submissions = []
+  defaultProps.graded = 0
+  defaultProps.ungraded = 0
+  defaultProps.not_submitted = 0
   defaultProps.submissionTotalCount = 0
   let tree = renderer.create(
     <SubmissionBreakdownGraphSection {...defaultProps} />
@@ -67,26 +72,24 @@ test('render 0 submissions', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('render multiple data points ', () => {
-  const a = template.submission({ id: 1, grade: '95' })
-  const b = template.submission({ id: 2, grade: 'A' })
-  const c = template.submission({ id: 3, grade: 'B-' })
-  const d = template.submission({ id: 4, grade: 'ungraded' })
-  const e = template.submission({ id: 5, grade: 'ungraded' })
-  const f = template.submission({ id: 6, grade: 'not_submitted' })
-  const submissions = [a, b, c, d, e, f]
-  defaultProps.submissions = submissions
-  defaultProps.submissionTotalCount = submissions.length
-
-  const tree = renderer.create(
+test('render on paper submission type', () => {
+  defaultProps.graded = 2
+  defaultProps.ungraded = 1
+  defaultProps.not_submitted = 1
+  defaultProps.submissionTotalCount = 4
+  defaultProps.submissionTypes = ['on_paper']
+  let tree = renderer.create(
     <SubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
 
-test('render loading with null submissions', () => {
-  defaultProps.submissions = null
-  let tree = renderer.create(
+test('render multiple data points ', () => {
+  defaultProps.graded = 3
+  defaultProps.ungraded = 2
+  defaultProps.not_submitted = 1
+  defaultProps.submissionTotalCount = 6
+  const tree = renderer.create(
     <SubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()

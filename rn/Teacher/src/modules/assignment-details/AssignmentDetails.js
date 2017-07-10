@@ -91,7 +91,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
               <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
               <View style={style.submissions}>
                 <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
-                  <SubmissionBreakdownGraphSection onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+                  <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
                 </View>
                 <TouchableOpacity
                   testID='assignment-details.assignment-section.submissions'
