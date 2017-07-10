@@ -3,6 +3,7 @@
 import React from 'react'
 import {
   Alert,
+  NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -223,6 +224,17 @@ describe('AnnouncementEdit', () => {
     expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
     tapDone(component)
     expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+  })
+
+  it('focuses unmetRequirementBanner when it shows', () => {
+    jest.useFakeTimers()
+    props.message = null
+    const component = render(props)
+    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
+    tapDone(component)
+    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+    jest.runAllTimers()
+    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`announcement.edit.unmet-requirement-banner`)
   })
 
   it('calls updateDiscussion on done', () => {

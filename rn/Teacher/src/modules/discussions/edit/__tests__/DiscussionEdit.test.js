@@ -3,6 +3,7 @@
 import React from 'react'
 import {
   Alert,
+  NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -175,14 +176,15 @@ describe('DiscussionEdit', () => {
     expect(getMessageEditor(render(props)).props.placeholder).toEqual('Add description (required)')
   })
 
-  it('disables done button if message is blank', () => {
+  it('focus unmetRequirementBanner after it shows', () => {
+    jest.useFakeTimers()
     props.message = null
     const component = render(props)
-    expect(getDoneButton(component).disabled).toBeTruthy()
-    changeMessage(component, 'not empty')
-    expect(getDoneButton(component).disabled).toBeFalsy()
-    changeMessage(component, '')
-    expect(getDoneButton(component).disabled).toBeTruthy()
+    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
+    tapDone(component)
+    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+    jest.runAllTimers()
+    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`discussions.edit.unmet-requirement-banner`)
   })
 
   it('calls updateDiscussion on done', () => {

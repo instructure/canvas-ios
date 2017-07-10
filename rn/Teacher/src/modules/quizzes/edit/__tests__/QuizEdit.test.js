@@ -3,6 +3,7 @@
 import React from 'react'
 import {
   Alert,
+  NativeModules,
 } from 'react-native'
 import renderer from 'react-test-renderer'
 
@@ -425,6 +426,18 @@ describe('QuizEdit', () => {
       <QuizEdit {...props} />, opts
     )
   }
+
+  it('focuses unmetRequirementBanner after it shows', () => {
+    jest.useFakeTimers()
+    props.quiz.title = ''
+    const component = renderer.create(
+    <QuizEdit {...props} />, options
+    )
+    const doneBtn: any = explore(component.toJSON()).selectRightBarButton('quizzes.edit.doneButton')
+    doneBtn.action()
+    jest.runAllTimers()
+    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`quizEdit.unmet-requirement-banner`)
+  })
 
   test('saving invalid name displays banner', () => {
     props.quiz.title = ''

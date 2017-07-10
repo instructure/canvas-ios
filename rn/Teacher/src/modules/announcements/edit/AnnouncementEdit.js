@@ -9,6 +9,7 @@ import ReactNative, {
   DatePickerIOS,
   Image,
   Alert,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -29,6 +30,8 @@ import { default as EditDiscussionActions } from '../../discussions/edit/actions
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
+
+const { NativeAccessibility } = NativeModules
 
 const {
   createDiscussion,
@@ -256,6 +259,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
   _donePressed = () => {
     if (!this.state.message) {
       this.setState({ isValid: false })
+      setTimeout(function () { NativeAccessibility.focusElement('announcement.edit.unmet-requirement-banner') }, 500)
       return
     }
 

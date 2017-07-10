@@ -177,7 +177,7 @@ exports[`error occurs when done pressed 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>
@@ -1070,7 +1070,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>
@@ -1963,7 +1963,7 @@ exports[`renders 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>
@@ -2856,7 +2856,7 @@ exports[`saving invalid dates displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>
@@ -3756,7 +3756,7 @@ exports[`saving invalid name displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>
@@ -4688,7 +4688,7 @@ exports[`saving invalid points possible displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>
@@ -5620,7 +5620,7 @@ exports[`saving negative points possible displays banner 1`] = `
               },
             ]
           }
-          testID={undefined}
+          testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
           Invalid field
         </Text>

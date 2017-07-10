@@ -10,6 +10,7 @@ import ReactNative, {
   PickerIOS,
   DatePickerIOS,
   Image,
+  NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -33,6 +34,8 @@ import { default as AssignmentsActions } from '../../assignments/actions'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import { extractDateFromString } from '../../../utils/dateUtils'
+
+const { NativeAccessibility } = NativeModules
 
 const {
   createDiscussion,
@@ -153,7 +156,6 @@ export class DiscussionEdit extends Component<any, Props, any> {
             testID: 'discussions.edit.doneButton',
             style: 'done',
             action: this._donePressed,
-            disabled: !this.state.message,
           },
         ]}
         leftBarButtons={[
@@ -378,6 +380,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
 
   _donePressed = () => {
     if (!this.validate()) {
+      setTimeout(function () { NativeAccessibility.focusElement('discussions.edit.unmet-requirement-banner') }, 500)
       return
     }
     this.setState({ pending: true })

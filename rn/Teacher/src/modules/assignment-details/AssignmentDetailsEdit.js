@@ -29,7 +29,10 @@ import ReactNative, {
   TouchableHighlight,
   LayoutAnimation,
   Image,
+  NativeModules,
 } from 'react-native'
+
+const { NativeAccessibility } = NativeModules
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -152,7 +155,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
-          <UnmetRequirementBanner text={requiredText} visible={!this.state.validation.isValid}/>
+          <UnmetRequirementBanner text={requiredText} visible={!this.state.validation.isValid} testID={'assignmentDetailsEdit.unmet-requirement-banner'}/>
           <KeyboardAwareScrollView
             style={style.container}
             ref='scrollView'
@@ -303,6 +306,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
     if (!validator.isValid) {
       this.setState({ validation: validator })
+      setTimeout(function () { NativeAccessibility.focusElement('assignmentDetailsEdit.unmet-requirement-banner') }, 500)
       return
     }
 

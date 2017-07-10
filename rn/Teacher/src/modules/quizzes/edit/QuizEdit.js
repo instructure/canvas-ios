@@ -12,6 +12,7 @@ import {
   PickerIOS,
   DatePickerIOS,
   Alert,
+  NativeModules,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Button from 'react-native-button'
@@ -34,6 +35,8 @@ import AssignmentActions from '../../assignments/actions'
 import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
+
+const { NativeAccessibility } = NativeModules
 
 const { updateAssignment, refreshAssignment } = AssignmentActions
 
@@ -162,7 +165,7 @@ export class QuizEdit extends Component<any, Props, any> {
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Saving')} visible={this.state.pending}/>
-          <UnmetRequirementBanner text={i18n('Invalid field')} visible={!this.state.validation.isValid}/>
+          <UnmetRequirementBanner text={i18n('Invalid field')} visible={!this.state.validation.isValid} testID={'quizEdit.unmet-requirement-banner'}/>
           <KeyboardAwareScrollView
             style={style.container}
             keyboardShouldPersistTaps='handled'
@@ -173,6 +176,7 @@ export class QuizEdit extends Component<any, Props, any> {
               defaultValue={quiz.title}
               border='both'
               onChangeText={this._updateQuiz('title')}
+              placeholder={i18n('Title')}
             />
             <RequiredFieldSubscript title={i18n('A title is required')} visible={!this.state.validation.title} />
 
@@ -575,6 +579,7 @@ export class QuizEdit extends Component<any, Props, any> {
     const validator = this._validateChanges()
     if (!validator.isValid) {
       this.setState({ validation: validator })
+      setTimeout(function () { NativeAccessibility.focusElement('quizEdit.unmet-requirement-banner') }, 500)
       return
     }
 

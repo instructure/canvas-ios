@@ -2,7 +2,7 @@
  * @flow
  */
 
-import 'react-native'
+import { NativeModules } from 'react-native'
 import React from 'react'
 import { AssignmentDetailsEdit } from '../AssignmentDetailsEdit'
 import setProps from '../../../../test/helpers/setProps'
@@ -191,6 +191,18 @@ test('edit description', () => {
     defaultValue: 'i am a description',
     onChangeValue: expect.any(Function),
   })
+})
+
+it('focuses unmetRequirementBanner after it shows', () => {
+  jest.useFakeTimers()
+  defaultProps.assignmentDetails.name = ''
+  const component = renderer.create(
+    <AssignmentDetailsEdit {...defaultProps} />, options
+  )
+  const doneBtn: any = explore(component.toJSON()).selectRightBarButton('edit-assignment.dismiss-btn')
+  doneBtn.action()
+  jest.runAllTimers()
+  expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`assignmentDetailsEdit.unmet-requirement-banner`)
 })
 
 test('saving invalid name displays banner', () => {

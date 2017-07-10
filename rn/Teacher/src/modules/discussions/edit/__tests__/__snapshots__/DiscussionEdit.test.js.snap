@@ -16,7 +16,6 @@ exports[`DiscussionEdit renders 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": false,
         "style": "done",
         "testID": "discussions.edit.doneButton",
         "title": "Done",
@@ -1140,7 +1139,6 @@ exports[`DiscussionEdit renders new form 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": true,
         "style": "done",
         "testID": "discussions.edit.doneButton",
         "title": "Done",
@@ -2264,7 +2262,6 @@ exports[`DiscussionEdit updates from props 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": true,
         "style": "done",
         "testID": "discussions.edit.doneButton",
         "title": "Done",
@@ -3388,7 +3385,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
     Array [
       Object {
         "action": [Function],
-        "disabled": false,
         "style": "done",
         "testID": "discussions.edit.doneButton",
         "title": "Done",
