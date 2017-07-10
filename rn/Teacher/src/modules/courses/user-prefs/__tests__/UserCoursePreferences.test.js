@@ -191,4 +191,20 @@ describe('UserCoursePreferences', () => {
     setProps(refreshed, refreshProps)
     expect(refreshCourses).toHaveBeenCalled()
   })
+
+  test('color buttons with uneven rows', () => {
+    let tree = renderer.create(
+      <UserCoursePreferences {...defaultProps} />
+    )
+    tree.getInstance().setState({ width: 600 })
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  test('color buttons with 0 width', () => {
+    let tree = renderer.create(
+      <UserCoursePreferences {...defaultProps} />
+    )
+    tree.getInstance().setState({ width: 0 })
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
 })
