@@ -32,4 +32,5 @@ struct PropKeys {
     static let drawUnderTabBar = "drawUnderTabBar"
     static let leftBarButtons = "leftBarButtons"
     static let rightBarButtons = "rightBarButtons"
+    static let backButtonTitle = "backButtonTitle"
 }

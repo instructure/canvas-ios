@@ -74,4 +74,22 @@ describe('routing util tests', () => {
     const result = utils.isRegularDisplayMode(traits)
     expect(result).toBe(false)
   })
+
+  test('check defaults with custom back button title', () => {
+    let input = {
+      backButtonTitle: 'Bananas',
+      navBarTitle: 'Strawberries',
+    }
+    let output = utils.checkDefaults(input)
+    expect(input).toEqual(output)
+
+    input = {
+      navBarTitle: 'I feel empty inside',
+    }
+    output = utils.checkDefaults(input)
+    expect(output).toEqual({
+      navBarTitle: 'I feel empty inside',
+      backButtonTitle: 'Back',
+    })
+  })
 })

@@ -5,6 +5,7 @@ import {
   Image,
 } from 'react-native'
 import { type TraitCollection } from './Navigator'
+import i18n from 'format-message'
 
 function isColorKey (key: string): boolean {
   const COLOR_REGEX = /color$/i
@@ -55,7 +56,15 @@ function isRegularDisplayMode (traits: TraitCollection): boolean {
   return false   //  default to false
 }
 
+function checkDefaults (props: Object): Object {
+  return {
+    ...props,
+    backButtonTitle: props.backButtonTitle || i18n('Back'),
+  }
+}
+
 module.exports = {
   processConfig,
   isRegularDisplayMode,
+  checkDefaults,
 }

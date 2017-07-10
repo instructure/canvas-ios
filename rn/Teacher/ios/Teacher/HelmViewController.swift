@@ -311,6 +311,10 @@ final class HelmViewController: UIViewController, HelmScreen {
             }
         }
         updateStatusBarIfNeeded()
+        
+        if let backButtonTitle = screenConfig[PropKeys.backButtonTitle] as? String {
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .plain, target: nil, action: nil)
+        }
     }
     
     private func titleView(with title: String, and subtitle: String, given config: [String: Any]) -> UIView {

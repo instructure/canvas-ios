@@ -7,7 +7,7 @@ import {
   DeviceEventEmitter,
 } from 'react-native'
 
-import { processConfig } from './utils'
+import { processConfig, checkDefaults } from './utils'
 
 const Helm = NativeModules.Helm
 
@@ -37,8 +37,7 @@ class Screen extends React.Component<any, any, any> {
 
   handleProps (props: Object, id: string, hasRendered: boolean) {
     if (!id) return
-
-    let configFRD = processConfig(props, id, (event, callback) => {
+    const configFRD = processConfig(props, id, (event, callback) => {
       const key = `HelmScreen.${id}.${event}`
       if (this.deviceEventEmitterSubscriptions[key]) {
         DeviceEventEmitter.removeSubscription(this.deviceEventEmitterSubscriptions[key])
@@ -46,7 +45,7 @@ class Screen extends React.Component<any, any, any> {
       this.deviceEventEmitterSubscriptions[key] = DeviceEventEmitter.addListener(key, callback)
       return key
     })
-    Helm.setScreenConfig(configFRD, id, hasRendered)
+    Helm.setScreenConfig(checkDefaults(configFRD), id, hasRendered)
   }
 
   render () {
