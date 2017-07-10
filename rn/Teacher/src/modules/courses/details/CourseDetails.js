@@ -8,9 +8,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import {
   View,
-  Image,
   StyleSheet,
-  ActivityIndicator,
+  Animated,
+  RefreshControl,
 } from 'react-native'
 
 import Images from '../../../images'
@@ -19,19 +19,21 @@ import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
 import mapStateToProps, { type CourseDetailsProps } from './map-state-to-props'
 import refresh from '../../../utils/refresh'
-import { RefreshableScrollView } from '../../../common/components/RefreshableList'
-import { Text } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import i18n from 'format-message'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import OnLayout from 'react-native-on-layout'
 
 export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   props: CourseDetailsProps
   placeholderDidShow: boolean = false
+  animatedValue: Animated.Value
 
   constructor (props: CourseDetailsProps) {
     super(props)
-    this.state = { compactMode: true }
+    this.state = { windowTraits: { horizontal: 'compact', vertical: 'regular' } }
+    this.animatedValue = new Animated.Value(-235)
   }
 
   componentDidMount () {
@@ -56,81 +58,67 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
       if (traits.window.horizontal !== 'compact' && !this.placeholderDidShow && this.props.course) {
         this.placeholderDidShow = true
         this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
-        this.setState({ compactMode: false })
+        this.setState({ windowTraits: traits.window })
       }
     })
   }
 
   onTraitCollectionChange () {
     this.props.navigator.traitCollection((traits) => {
-      this.setState({ compactMode: traits.window.horizontal === 'compact' })
-      if (!this.placeholderDidShow && !this.state.compactMode) {
+      this.setState({ windowTraits: traits.window })
+      if (!this.placeholderDidShow && this.state.windowTraits.horizontal !== 'compact') {
         this.props.navigator.show(`/courses/${this.props.course.id}/placeholder`, {}, { courseColor: this.props.color, course: this.props.course })
         this.placeholderDidShow = true
       }
     })
   }
 
+  renderTab = (tab: Tab) => {
+    return <CourseDetailsTab key={tab.id} tab={tab} courseColor={this.props.color} onPress={this.selectTab} />
+  }
+
   render () {
     const course = this.props.course
     const courseColor = this.props.color
 
-    const tabs = this.props.tabs.map((tab) => {
-      return <CourseDetailsTab key={tab.id} tab={tab} courseColor={courseColor} onPress={this.selectTab} />
+    if (!course) return <ActivityIndicatorView />
+
+    const courseCode = course.course_code || ''
+    const name = course.name || ''
+    const termName = (course.term || {}).name || ''
+
+    let compactMode = this.state.windowTraits.horizontal === 'compact'
+    let screenProps = {}
+    if (compactMode) {
+      screenProps.navBarTransparent = true
+      screenProps.automaticallyAdjustsScrollViewInsets = false
+      screenProps.drawUnderNavBar = true
+    } else {
+      screenProps.automaticallyAdjustsScrollViewInsets = true
+      screenProps.navBarTransparent = false
+    }
+
+    let bothCompact = this.state.windowTraits.horizontal === 'compact' && this.state.windowTraits.vertical === 'compact'
+
+    let navbarHeight = bothCompact ? 52 : 64
+
+    let fadeOut = this.animatedValue.interpolate({
+      inputRange: [-235, -navbarHeight],
+      outputRange: [1, 0],
     })
 
-    let view
-    if (!course) {
-      view = <View>
-               <ActivityIndicator />
-             </View>
-    } else {
-      const name = course.name || ''
-      const termName = (course.term || {}).name || ''
-      view = (<RefreshableScrollView
-                style={styles.container}
-                refreshing={this.props.refreshing}
-                onRefresh={this.props.refresh}>
-
-                {this.state.compactMode &&
-                <View style={styles.header}>
-                  <View style={styles.headerImageContainer}>
-                    {Boolean(course.image_download_url) &&
-                        <Image source={{ uri: course.image_download_url }} style={styles.headerImage} />
-                    }
-                    <View style={[styles.headerImageOverlay, { backgroundColor: courseColor, opacity: this.props.course.image_download_url ? 0.8 : 1 }]} />
-                  </View>
-
-                  <View style={styles.headerBottomContainer} >
-                    <Text style={styles.headerTitle} testID='course-details.title-lbl'>{name}</Text>
-                    <Text style={styles.headerSubtitle} testID='course-details.subtitle-lbl'>{termName}</Text>
-                  </View>
-                </View>
-                }
-
-                <View style={styles.tabContainer}>
-                  {tabs}
-                </View>
-              </RefreshableScrollView>)
+    let inOffsets = {}
+    if (compactMode) {
+      inOffsets = {
+        contentInset: { top: 235 },
+        contentOffset: { y: -235 },
+      }
     }
 
-    let screenProps = {}
-    if (this.state.compactMode) {
-      screenProps['navBarTransparent'] = true
-      screenProps['automaticallyAdjustsScrollViewInsets'] = false
-      screenProps['drawUnderNavBar'] = true
-    } else {
-      screenProps['automaticallyAdjustsScrollViewInsets'] = true
-      screenProps['navBarTransparent'] = false
-    }
-
-    var courseCode = ''
-    if (course && course.course_code) {
-      courseCode = course.course_code
-    }
     return (
       <Screen
-        title={courseCode || ''}
+        title={courseCode}
+        navBarTitleColor={compactMode ? 'transparent' : '#fff'}
         statusBarStyle='light'
         navBarColor={courseColor}
         navBarStyle='dark'
@@ -153,7 +141,127 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
           },
         ]}
       >
-        { view }
+        <View
+          style={styles.container}
+          refreshing={this.props.refreshing}
+          onRefresh={this.props.refresh}
+        >
+          <OnLayout style={styles.tabContainer}>
+            {({ height }) => (
+              <Animated.ScrollView
+                scrollEventThrottle={1}
+                onScroll={Animated.event(
+                  [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
+                )}
+                refreshControl={
+                  <RefreshControl
+                    refreshing={this.props.refreshing}
+                    onRefresh={this.props.refresh}
+                    style={{ position: 'absolute', top: 235 }}
+                  />
+                }
+                style={{ flex: 1 }}
+                {...inOffsets}
+              >
+                <View style={{ minHeight: height - navbarHeight }}>
+                  {this.props.tabs.map(this.renderTab)}
+                </View>
+              </Animated.ScrollView>
+            )}
+          </OnLayout>
+
+          {compactMode &&
+            <Animated.View
+              style={[styles.header, {
+                height: this.animatedValue.interpolate({
+                  inputRange: [-235, -navbarHeight],
+                  outputRange: [235, navbarHeight],
+                  extrapolate: 'clamp',
+                }),
+              }]}
+              pointerEvents='none'
+            >
+              <OnLayout style={styles.headerImageContainer}>
+                {({ width }) => (
+                  <View style={styles.headerImageContainer}>
+                    {Boolean(course.image_download_url) &&
+                        <Animated.Image
+                          source={{ uri: course.image_download_url }}
+                          style={[styles.headerImage, {
+                            width,
+                            height: this.animatedValue.interpolate({
+                              inputRange: [-235, -navbarHeight],
+                              outputRange: [235, navbarHeight],
+                              extrapolate: 'clamp',
+                            }),
+                            opacity: fadeOut,
+                          }]}
+                          resizeMode='cover'
+                        />
+                    }
+                    <Animated.View
+                      style={[styles.headerImageOverlay, {
+                        backgroundColor: courseColor,
+                        opacity: this.props.course.image_download_url
+                          ? this.animatedValue.interpolate({
+                            inputRange: [-235, -navbarHeight],
+                            outputRange: [0.8, 1],
+                            extrapolate: 'clamp',
+                          })
+                          : 1,
+                      }]}
+                    />
+                  </View>
+                )}
+              </OnLayout>
+
+              <View style={styles.headerBottomContainer} >
+                <Animated.Text
+                  style={[styles.headerTitle, {
+                    fontSize: this.animatedValue.interpolate({
+                      inputRange: [-235, -navbarHeight],
+                      outputRange: [24, 16],
+                      extrapolate: 'clamp',
+                    }),
+                    transform: [{
+                      translateY: this.animatedValue.interpolate({
+                        inputRange: [-235, -navbarHeight],
+                        outputRange: [0, bothCompact ? -6 : -5],
+                        extrapolate: 'clamp',
+                      }),
+                    }],
+                    marginHorizontal: this.animatedValue.interpolate({
+                      inputRange: [-235, -navbarHeight],
+                      outputRange: [0, 60],
+                      extrapolate: 'clamp',
+                    }),
+                  }]}
+                  testID='course-details.title-lbl'
+                >
+                  {name}
+                </Animated.Text>
+                <Animated.Text
+                  style={[styles.headerSubtitle, {
+                    opacity: fadeOut,
+                  }]}
+                  testID='course-details.subtitle-lbl'
+                >
+                  {termName}
+                </Animated.Text>
+              </View>
+            </Animated.View>
+          }
+          <Animated.Text
+            style={[styles.fakeTitle, {
+              opacity: fadeOut,
+            }]}
+            numberOfLines={1}
+            ellipsizeMode='tail'
+            accessible={false}
+          >
+            {courseCode}
+          </Animated.Text>
+        </View>
       </Screen>
     )
   }
@@ -168,15 +276,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 10,
     paddingTop: 20,
-    height: 235,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    overflow: 'hidden',
   },
   headerTitle: {
     backgroundColor: 'transparent',
     color: 'white',
     fontWeight: '600',
-    fontSize: 24,
     textAlign: 'center',
-    marginBottom: 2,
+    marginBottom: 3,
   },
   headerSubtitle: {
     color: 'white',
@@ -194,7 +305,6 @@ const styles = StyleSheet.create({
   headerImage: {
     position: 'absolute',
     height: 235,
-    width: 400,
   },
   headerImageOverlay: {
     position: 'absolute',
@@ -225,6 +335,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  fakeTitle: {
+    position: 'absolute',
+    top: 33,
+    left: 0,
+    right: 0,
+    backgroundColor: 'transparent',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+    paddingHorizontal: 60,
+    letterSpacing: 0.6,
+    textAlign: 'center',
   },
 })
 

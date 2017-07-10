@@ -1,30 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`refresh function first test 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
   <ActivityIndicator
     animating={true}
     color="#999999"
     hidesWhenStopped={true}
     size="small"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
   />
 </View>
 `;
 
 exports[`refresh function second test 1`] = `
-<RCTScrollView
-  contentInset={
-    Object {
-      "bottom": 49,
-    }
-  }
+<View
   onRefresh={[Function]}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[Function]}
-      refreshing={false}
-    />
-  }
   refreshing={false}
   style={
     Object {
@@ -32,16 +34,84 @@ exports[`refresh function second test 1`] = `
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTScrollView
+      contentInset={
+        Object {
+          "top": 235,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -235,
+        }
+      }
+      onScroll={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={[Function]}
+          refreshing={false}
+          style={
+            Object {
+              "position": "absolute",
+              "top": 235,
+            }
+          }
+        />
+      }
+      scrollEventThrottle={1}
       style={
         Object {
-          "alignItems": "center",
-          "height": 235,
-          "justifyContent": "center",
-          "padding": 10,
-          "paddingTop": 20,
+          "flex": 1,
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          style={
+            Object {
+              "minHeight": -64,
+            }
+          }
+        />
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 235,
+        "justifyContent": "center",
+        "left": 0,
+        "overflow": "hidden",
+        "padding": 10,
+        "paddingTop": 20,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -57,6 +127,7 @@ exports[`refresh function second test 1`] = `
         }
       >
         <Image
+          resizeMode="cover"
           source={
             Object {
               "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
@@ -65,139 +136,136 @@ exports[`refresh function second test 1`] = `
           style={
             Object {
               "height": 235,
+              "opacity": 1,
               "position": "absolute",
-              "width": 400,
+              "width": 0,
             }
           }
         />
         <View
           style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.75,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": undefined,
-                "opacity": 0.8,
-              },
-            ]
+            Object {
+              "backgroundColor": undefined,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
           }
         />
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-            "marginTop": 44,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "marginBottom": 2,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.title-lbl"
-        >
-          Learn React Native
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontWeight": "600",
-                "opacity": 0.9,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.subtitle-lbl"
-        >
-          Default Term
-        </Text>
       </View>
     </View>
     <View
       style={
         Object {
+          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
+          "marginTop": 44,
         }
       }
-    />
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "marginBottom": 3,
+            "marginHorizontal": 0,
+            "textAlign": "center",
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+          }
+        }
+        testID="course-details.title-lbl"
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontWeight": "600",
+            "opacity": 1,
+          }
+        }
+        testID="course-details.subtitle-lbl"
+      >
+        Default Term
+      </Text>
+    </View>
   </View>
-</RCTScrollView>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "left": 0,
+        "letterSpacing": 0.6,
+        "opacity": 1,
+        "paddingHorizontal": 60,
+        "position": "absolute",
+        "right": 0,
+        "textAlign": "center",
+        "top": 33,
+      }
+    }
+  >
+    rn 101
+  </Text>
+</View>
 `;
 
 exports[`render without course 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
   <ActivityIndicator
     animating={true}
     color="#999999"
     hidesWhenStopped={true}
     size="small"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
   />
 </View>
 `;
 
 exports[`renders correctly 1`] = `
-<RCTScrollView
-  contentInset={
-    Object {
-      "bottom": 49,
-    }
-  }
+<View
   onRefresh={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={undefined}
-      refreshing={false}
-    />
-  }
   refreshing={false}
   style={
     Object {
@@ -205,16 +273,221 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTScrollView
+      contentInset={
+        Object {
+          "top": 235,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -235,
+        }
+      }
+      onScroll={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={undefined}
+          refreshing={false}
+          style={
+            Object {
+              "position": "absolute",
+              "top": 235,
+            }
+          }
+        />
+      }
+      scrollEventThrottle={1}
       style={
         Object {
-          "alignItems": "center",
-          "height": 235,
-          "justifyContent": "center",
-          "padding": 10,
-          "paddingTop": 20,
+          "flex": 1,
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          style={
+            Object {
+              "minHeight": -64,
+            }
+          }
+        >
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 44,
+                },
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID="courses-details.assignments-cell"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 12.8,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12.8,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "marginRight": 8,
+                      "resizeMode": "contain",
+                    },
+                    Object {
+                      "height": 20,
+                      "tintColor": undefined,
+                      "width": 21,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Home
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 235,
+        "justifyContent": "center",
+        "left": 0,
+        "overflow": "hidden",
+        "padding": 10,
+        "paddingTop": 20,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -230,6 +503,7 @@ exports[`renders correctly 1`] = `
         }
       >
         <Image
+          resizeMode="cover"
           source={
             Object {
               "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
@@ -238,265 +512,112 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "height": 235,
+              "opacity": 1,
               "position": "absolute",
-              "width": 400,
+              "width": 0,
             }
           }
         />
         <View
           style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.75,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": undefined,
-                "opacity": 0.8,
-              },
-            ]
+            Object {
+              "backgroundColor": undefined,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
           }
         />
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-            "marginTop": 44,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "marginBottom": 2,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.title-lbl"
-        >
-          Learn React Native
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontWeight": "600",
-                "opacity": 0.9,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.subtitle-lbl"
-        >
-          Default Term
-        </Text>
       </View>
     </View>
     <View
       style={
         Object {
+          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
+          "marginTop": 44,
         }
       }
     >
-      <TouchableHighlight
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "height": 44,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="courses-details.assignments-cell"
-      >
-        <View
-          style={
-            Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "marginBottom": 3,
+            "marginHorizontal": 0,
+            "textAlign": "center",
+            "transform": Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flex": 1,
-                "flexDirection": "row",
-                "paddingBottom": 12.8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12.8,
+                "translateY": 0,
               },
-              Object {
-                "backgroundColor": "white",
-              },
-            ]
+            ],
           }
-        >
-          <Image
-            source={1}
-            style={
-              Array [
-                Object {
-                  "marginRight": 8,
-                  "resizeMode": "contain",
-                },
-                Object {
-                  "height": 20,
-                  "tintColor": undefined,
-                  "width": 21,
-                },
-              ]
-            }
-          />
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              numberOfLines={0}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontWeight": "600",
-                    },
-                    undefined,
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Home
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+        testID="course-details.title-lbl"
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontWeight": "600",
+            "opacity": 1,
+          }
+        }
+        testID="course-details.subtitle-lbl"
+      >
+        Default Term
+      </Text>
     </View>
   </View>
-</RCTScrollView>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "left": 0,
+        "letterSpacing": 0.6,
+        "opacity": 1,
+        "paddingHorizontal": 60,
+        "position": "absolute",
+        "right": 0,
+        "textAlign": "center",
+        "top": 33,
+      }
+    }
+  >
+    rn 101
+  </Text>
+</View>
 `;
 
 exports[`renders correctly without tabs 1`] = `
-<RCTScrollView
-  contentInset={
-    Object {
-      "bottom": 49,
-    }
-  }
+<View
   onRefresh={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={undefined}
-      refreshing={false}
-    />
-  }
   refreshing={false}
   style={
     Object {
@@ -504,16 +625,84 @@ exports[`renders correctly without tabs 1`] = `
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTScrollView
+      contentInset={
+        Object {
+          "top": 235,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -235,
+        }
+      }
+      onScroll={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={undefined}
+          refreshing={false}
+          style={
+            Object {
+              "position": "absolute",
+              "top": 235,
+            }
+          }
+        />
+      }
+      scrollEventThrottle={1}
       style={
         Object {
-          "alignItems": "center",
-          "height": 235,
-          "justifyContent": "center",
-          "padding": 10,
-          "paddingTop": 20,
+          "flex": 1,
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          style={
+            Object {
+              "minHeight": -64,
+            }
+          }
+        />
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 235,
+        "justifyContent": "center",
+        "left": 0,
+        "overflow": "hidden",
+        "padding": 10,
+        "paddingTop": 20,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -529,6 +718,7 @@ exports[`renders correctly without tabs 1`] = `
         }
       >
         <Image
+          resizeMode="cover"
           source={
             Object {
               "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
@@ -537,128 +727,112 @@ exports[`renders correctly without tabs 1`] = `
           style={
             Object {
               "height": 235,
+              "opacity": 1,
               "position": "absolute",
-              "width": 400,
+              "width": 0,
             }
           }
         />
         <View
           style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.75,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": undefined,
-                "opacity": 0.8,
-              },
-            ]
+            Object {
+              "backgroundColor": undefined,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
           }
         />
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-            "marginTop": 44,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "marginBottom": 2,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.title-lbl"
-        >
-          Learn React Native
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontWeight": "600",
-                "opacity": 0.9,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.subtitle-lbl"
-        >
-          Default Term
-        </Text>
       </View>
     </View>
     <View
       style={
         Object {
+          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
+          "marginTop": 44,
         }
       }
-    />
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "marginBottom": 3,
+            "marginHorizontal": 0,
+            "textAlign": "center",
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+          }
+        }
+        testID="course-details.title-lbl"
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontWeight": "600",
+            "opacity": 1,
+          }
+        }
+        testID="course-details.subtitle-lbl"
+      >
+        Default Term
+      </Text>
+    </View>
   </View>
-</RCTScrollView>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "left": 0,
+        "letterSpacing": 0.6,
+        "opacity": 1,
+        "paddingHorizontal": 60,
+        "position": "absolute",
+        "right": 0,
+        "textAlign": "center",
+        "top": 33,
+      }
+    }
+  >
+    rn 101
+  </Text>
+</View>
 `;
 
 exports[`renders with empty image url 1`] = `
-<RCTScrollView
-  contentInset={
-    Object {
-      "bottom": 49,
-    }
-  }
+<View
   onRefresh={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={undefined}
-      refreshing={false}
-    />
-  }
   refreshing={false}
   style={
     Object {
@@ -666,16 +840,221 @@ exports[`renders with empty image url 1`] = `
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTScrollView
+      contentInset={
+        Object {
+          "top": 235,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -235,
+        }
+      }
+      onScroll={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={undefined}
+          refreshing={false}
+          style={
+            Object {
+              "position": "absolute",
+              "top": 235,
+            }
+          }
+        />
+      }
+      scrollEventThrottle={1}
       style={
         Object {
-          "alignItems": "center",
-          "height": 235,
-          "justifyContent": "center",
-          "padding": 10,
-          "paddingTop": 20,
+          "flex": 1,
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          style={
+            Object {
+              "minHeight": -64,
+            }
+          }
+        >
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 44,
+                },
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID="courses-details.assignments-cell"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 12.8,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12.8,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "marginRight": 8,
+                      "resizeMode": "contain",
+                    },
+                    Object {
+                      "height": 20,
+                      "tintColor": undefined,
+                      "width": 21,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Home
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 235,
+        "justifyContent": "center",
+        "left": 0,
+        "overflow": "hidden",
+        "padding": 10,
+        "paddingTop": 20,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -692,258 +1071,104 @@ exports[`renders with empty image url 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.75,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": undefined,
-                "opacity": 1,
-              },
-            ]
+            Object {
+              "backgroundColor": undefined,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 1,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
           }
         />
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-            "marginTop": 44,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "marginBottom": 2,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.title-lbl"
-        >
-          Learn React Native
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontWeight": "600",
-                "opacity": 0.9,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.subtitle-lbl"
-        >
-          Default Term
-        </Text>
       </View>
     </View>
     <View
       style={
         Object {
+          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
+          "marginTop": 44,
         }
       }
     >
-      <TouchableHighlight
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "height": 44,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="courses-details.assignments-cell"
-      >
-        <View
-          style={
-            Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "marginBottom": 3,
+            "marginHorizontal": 0,
+            "textAlign": "center",
+            "transform": Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flex": 1,
-                "flexDirection": "row",
-                "paddingBottom": 12.8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12.8,
+                "translateY": 0,
               },
-              Object {
-                "backgroundColor": "white",
-              },
-            ]
+            ],
           }
-        >
-          <Image
-            source={1}
-            style={
-              Array [
-                Object {
-                  "marginRight": 8,
-                  "resizeMode": "contain",
-                },
-                Object {
-                  "height": 20,
-                  "tintColor": undefined,
-                  "width": 21,
-                },
-              ]
-            }
-          />
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              numberOfLines={0}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontWeight": "600",
-                    },
-                    undefined,
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Home
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+        testID="course-details.title-lbl"
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontWeight": "600",
+            "opacity": 1,
+          }
+        }
+        testID="course-details.subtitle-lbl"
+      >
+        Default Term
+      </Text>
     </View>
   </View>
-</RCTScrollView>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "left": 0,
+        "letterSpacing": 0.6,
+        "opacity": 1,
+        "paddingHorizontal": 60,
+        "position": "absolute",
+        "right": 0,
+        "textAlign": "center",
+        "top": 33,
+      }
+    }
+  >
+    rn 101
+  </Text>
+</View>
 `;
 
 exports[`renders with image url 1`] = `
-<RCTScrollView
-  contentInset={
-    Object {
-      "bottom": 49,
-    }
-  }
+<View
   onRefresh={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={undefined}
-      refreshing={false}
-    />
-  }
   refreshing={false}
   style={
     Object {
@@ -951,16 +1176,221 @@ exports[`renders with image url 1`] = `
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTScrollView
+      contentInset={
+        Object {
+          "top": 235,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -235,
+        }
+      }
+      onScroll={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={undefined}
+          refreshing={false}
+          style={
+            Object {
+              "position": "absolute",
+              "top": 235,
+            }
+          }
+        />
+      }
+      scrollEventThrottle={1}
       style={
         Object {
-          "alignItems": "center",
-          "height": 235,
-          "justifyContent": "center",
-          "padding": 10,
-          "paddingTop": 20,
+          "flex": 1,
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          style={
+            Object {
+              "minHeight": -64,
+            }
+          }
+        >
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 44,
+                },
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID="courses-details.assignments-cell"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 12.8,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12.8,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "marginRight": 8,
+                      "resizeMode": "contain",
+                    },
+                    Object {
+                      "height": 20,
+                      "tintColor": undefined,
+                      "width": 21,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Home
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 235,
+        "justifyContent": "center",
+        "left": 0,
+        "overflow": "hidden",
+        "padding": 10,
+        "paddingTop": 20,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -976,6 +1406,7 @@ exports[`renders with image url 1`] = `
         }
       >
         <Image
+          resizeMode="cover"
           source={
             Object {
               "uri": "http://www.fillmurray.com/100/100",
@@ -984,265 +1415,112 @@ exports[`renders with image url 1`] = `
           style={
             Object {
               "height": 235,
+              "opacity": 1,
               "position": "absolute",
-              "width": 400,
+              "width": 0,
             }
           }
         />
         <View
           style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.75,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": undefined,
-                "opacity": 0.8,
-              },
-            ]
+            Object {
+              "backgroundColor": undefined,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 0.8,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
           }
         />
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-            "marginTop": 44,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "marginBottom": 2,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.title-lbl"
-        >
-          Learn React Native
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontWeight": "600",
-                "opacity": 0.9,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.subtitle-lbl"
-        >
-          Default Term
-        </Text>
       </View>
     </View>
     <View
       style={
         Object {
+          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
+          "marginTop": 44,
         }
       }
     >
-      <TouchableHighlight
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "height": 44,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="courses-details.assignments-cell"
-      >
-        <View
-          style={
-            Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "marginBottom": 3,
+            "marginHorizontal": 0,
+            "textAlign": "center",
+            "transform": Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flex": 1,
-                "flexDirection": "row",
-                "paddingBottom": 12.8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12.8,
+                "translateY": 0,
               },
-              Object {
-                "backgroundColor": "white",
-              },
-            ]
+            ],
           }
-        >
-          <Image
-            source={1}
-            style={
-              Array [
-                Object {
-                  "marginRight": 8,
-                  "resizeMode": "contain",
-                },
-                Object {
-                  "height": 20,
-                  "tintColor": undefined,
-                  "width": 21,
-                },
-              ]
-            }
-          />
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              numberOfLines={0}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontWeight": "600",
-                    },
-                    undefined,
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Home
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+        testID="course-details.title-lbl"
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontWeight": "600",
+            "opacity": 1,
+          }
+        }
+        testID="course-details.subtitle-lbl"
+      >
+        Default Term
+      </Text>
     </View>
   </View>
-</RCTScrollView>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "left": 0,
+        "letterSpacing": 0.6,
+        "opacity": 1,
+        "paddingHorizontal": 60,
+        "position": "absolute",
+        "right": 0,
+        "textAlign": "center",
+        "top": 33,
+      }
+    }
+  >
+    rn 101
+  </Text>
+</View>
 `;
 
 exports[`renders without image url 1`] = `
-<RCTScrollView
-  contentInset={
-    Object {
-      "bottom": 49,
-    }
-  }
+<View
   onRefresh={undefined}
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={undefined}
-      refreshing={false}
-    />
-  }
   refreshing={false}
   style={
     Object {
@@ -1250,16 +1528,221 @@ exports[`renders without image url 1`] = `
     }
   }
 >
-  <RCTRefreshControl />
-  <View>
-    <View
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <RCTScrollView
+      contentInset={
+        Object {
+          "top": 235,
+        }
+      }
+      contentOffset={
+        Object {
+          "y": -235,
+        }
+      }
+      onScroll={[Function]}
+      refreshControl={
+        <RefreshControlMock
+          onRefresh={undefined}
+          refreshing={false}
+          style={
+            Object {
+              "position": "absolute",
+              "top": 235,
+            }
+          }
+        />
+      }
+      scrollEventThrottle={1}
       style={
         Object {
-          "alignItems": "center",
-          "height": 235,
-          "justifyContent": "center",
-          "padding": 10,
-          "paddingTop": 20,
+          "flex": 1,
+        }
+      }
+    >
+      <RCTRefreshControl />
+      <View>
+        <View
+          style={
+            Object {
+              "minHeight": -64,
+            }
+          }
+        >
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "height": 44,
+                },
+                undefined,
+                Object {
+                  "borderBottomColor": "#C7CDD1",
+                  "borderBottomWidth": 0.5,
+                },
+              ]
+            }
+            testID="courses-details.assignments-cell"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "paddingBottom": 12.8,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12.8,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Array [
+                    Object {
+                      "marginRight": 8,
+                      "resizeMode": "contain",
+                    },
+                    Object {
+                      "height": 20,
+                      "tintColor": undefined,
+                      "width": 21,
+                    },
+                  ]
+                }
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Home
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#c7c7cc",
+                        "borderRightWidth": 2,
+                        "borderTopWidth": 2,
+                        "height": 10,
+                        "marginLeft": 7,
+                        "transform": Array [
+                          Object {
+                            "rotate": "45deg",
+                          },
+                        ],
+                        "width": 10,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    pointerEvents="none"
+    style={
+      Object {
+        "alignItems": "center",
+        "height": 235,
+        "justifyContent": "center",
+        "left": 0,
+        "overflow": "hidden",
+        "padding": 10,
+        "paddingTop": 20,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
@@ -1276,240 +1759,97 @@ exports[`renders without image url 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 0,
-                "opacity": 0.75,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-              },
-              Object {
-                "backgroundColor": undefined,
-                "opacity": 1,
-              },
-            ]
+            Object {
+              "backgroundColor": undefined,
+              "bottom": 0,
+              "left": 0,
+              "opacity": 1,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
           }
         />
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-            "marginTop": 44,
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "marginBottom": 2,
-                "textAlign": "center",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.title-lbl"
-        >
-          Learn React Native
-        </Text>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "backgroundColor": "transparent",
-                "color": "white",
-                "fontWeight": "600",
-                "opacity": 0.9,
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
-          }
-          testID="course-details.subtitle-lbl"
-        >
-          Default Term
-        </Text>
       </View>
     </View>
     <View
       style={
         Object {
+          "alignItems": "center",
           "flex": 1,
-          "justifyContent": "flex-start",
+          "justifyContent": "center",
+          "marginTop": 44,
         }
       }
     >
-      <TouchableHighlight
-        accessibilityLabel={undefined}
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        onPress={[Function]}
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
         style={
-          Array [
-            Object {
-              "height": 44,
-            },
-            undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
-          ]
-        }
-        testID="courses-details.assignments-cell"
-      >
-        <View
-          style={
-            Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "marginBottom": 3,
+            "marginHorizontal": 0,
+            "textAlign": "center",
+            "transform": Array [
               Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flex": 1,
-                "flexDirection": "row",
-                "paddingBottom": 12.8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 12.8,
+                "translateY": 0,
               },
-              Object {
-                "backgroundColor": "white",
-              },
-            ]
+            ],
           }
-        >
-          <Image
-            source={1}
-            style={
-              Array [
-                Object {
-                  "marginRight": 8,
-                  "resizeMode": "contain",
-                },
-                Object {
-                  "height": 20,
-                  "tintColor": undefined,
-                  "width": 21,
-                },
-              ]
-            }
-          />
-          <View
-            style={
-              Object {
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              numberOfLines={0}
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "fontWeight": "600",
-                    },
-                    undefined,
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Home
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flex": 0,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "row",
-                  "justifyContent": "flex-end",
-                }
-              }
-            >
-              <View
-                style={
-                  Object {
-                    "alignSelf": "center",
-                    "backgroundColor": "transparent",
-                    "borderColor": "#c7c7cc",
-                    "borderRightWidth": 2,
-                    "borderTopWidth": 2,
-                    "height": 10,
-                    "marginLeft": 7,
-                    "transform": Array [
-                      Object {
-                        "rotate": "45deg",
-                      },
-                    ],
-                    "width": 10,
-                  }
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </TouchableHighlight>
+        }
+        testID="course-details.title-lbl"
+      >
+        Learn React Native
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontWeight": "600",
+            "opacity": 1,
+          }
+        }
+        testID="course-details.subtitle-lbl"
+      >
+        Default Term
+      </Text>
     </View>
   </View>
-</RCTScrollView>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    numberOfLines={1}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "600",
+        "left": 0,
+        "letterSpacing": 0.6,
+        "opacity": 1,
+        "paddingHorizontal": 60,
+        "position": "absolute",
+        "right": 0,
+        "textAlign": "center",
+        "top": 33,
+      }
+    }
+  >
+    rn 101
+  </Text>
+</View>
 `;

@@ -35,6 +35,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.2.9",
     "react-native-keyboard-spacer": "^0.3.1",
     "react-native-mail": "^3.0.3",
+    "react-native-on-layout": "^2.0.0",
     "react-native-progress": "^3.3.0",
     "react-native-search-bar": "3.0.0",
     "react-redux": "^5.0.3",
