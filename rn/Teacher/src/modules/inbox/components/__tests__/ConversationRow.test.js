@@ -26,6 +26,7 @@ it('renders correctly with different data', () => {
     participants: null,
     subject: null,
     workflow_state: 'unread',
+    starred: true,
   })
   const tree = renderer.create(
     <ConversationRow conversation={conversation} drawsTopLine={true} />

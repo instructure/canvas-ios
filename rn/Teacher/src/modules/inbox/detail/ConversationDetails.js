@@ -78,7 +78,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     const star = starred ? Images.starFilled : Images.starLined
 
     return (<View style={styles.header}>
-              <Heading1>{this.props.conversation.subject || i18n('(no subject)')}</Heading1>
+              <Heading1>{this.props.conversation.subject || i18n('No Subject')}</Heading1>
               <TouchableOpacity
                 accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
                 accessibilityTraits='button'

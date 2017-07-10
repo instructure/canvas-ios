@@ -15,6 +15,7 @@ import { getSession } from '../../../api/session'
 import i18n from 'format-message'
 import Images from '../../../images'
 import branding from '../../../common/branding'
+import { formattedDate } from '../../../utils/dateUtils'
 
 export type ConversationRowProps = {
   conversation: Conversation,
@@ -39,7 +40,7 @@ export default class ConversationRow extends Component<any, ConversationRowProps
 
   render () {
     const c = this.props.conversation
-    const subject = c.subject || i18n('(no subject)')
+    const subject = c.subject || i18n('No Subject')
     const names = this._participantNames()
     const title = names.join(', ')
     const avatarUserName = names.length > 1 ? i18n('Group') : names[0]
@@ -48,6 +49,8 @@ export default class ConversationRow extends Component<any, ConversationRowProps
       containerStyles.push(styles.topHairline)
     }
     const unread = c.workflow_state === 'unread'
+    const date = formattedDate(c.last_authored_message_at, 'l') || formattedDate(c.last_message_at, 'l')
+    const accessibilityDate = formattedDate(c.last_authored_message_at, 'LLLL') || formattedDate(c.last_message_at, 'LLLL')
     return (<TouchableHighlight onPress={this._onPress} testID={`inbox.conversation-${c.id}`}>
               <View style={containerStyles}>
                 { unread && <View style={styles.unreadDot} accessibilityLabel={i18n('Unread')} /> }
@@ -57,9 +60,17 @@ export default class ConversationRow extends Component<any, ConversationRowProps
                 <View style={styles.contentContainer}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     { c.starred &&
-                      <Image source={Images.starFilled} style={{ tintColor: branding.primaryBrandColor, height: 14, width: 14, marginRight: 2 }} />
+                      <Image source={Images.starFilled}
+                             accessible={true}
+                             accessibilityLabel={i18n('Starred')}
+                             style={{ tintColor: branding.primaryBrandColor, height: 14, width: 14, marginRight: 2 }} />
                     }
-                    <Text style={styles.names} numberOfLines={1}>{title}</Text>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Text style={styles.names} numberOfLines={1}>{title}</Text>
+                      <View accessible={true} accessibilityLabel={accessibilityDate}>
+                        <Text style={styles.date}>{date}</Text>
+                      </View>
+                    </View>
                   </View>
                   <Text style={styles.subject} numberOfLines={1}>{subject}</Text>
                   { c.last_message && <Text style={styles.message} numberOfLines={1}>{c.last_message}</Text> }
@@ -107,6 +118,7 @@ const styles = StyleSheet.create({
   names: {
     fontWeight: '600',
     fontSize: 16,
+    flex: 1,
   },
   subject: {
     color: '#2D3B45',
@@ -115,5 +127,10 @@ const styles = StyleSheet.create({
   message: {
     color: '#8B969E',
     fontSize: 14,
+  },
+  date: {
+    color: '#8B969E',
+    fontSize: 12,
+    flexShrink: 0,
   },
 })

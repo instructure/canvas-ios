@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Compose } from '../Compose'
+import { Compose, mapStateToProps } from '../Compose'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 // $FlowFixMe
@@ -286,5 +286,10 @@ describe('Compose', () => {
     let forwardedMessage = explore(tree).selectByID('compose.forwarded-message') || {}
     expect(forwardedMessage).not.toBeNull()
     expect(forwardedMessage.children[1].children[0]).toEqual(includedMessages[0].body)
+  })
+
+  it('mapStateToProps', () => {
+    const result = mapStateToProps({})
+    expect(result).toEqual({})
   })
 })

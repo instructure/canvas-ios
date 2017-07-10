@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
 export function mapStateToProps ({ inbox, entities }: AppState): InboxProps {
   const scope = inbox.selectedScope
   const scopeData = inbox[scope]
-  const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter((c) => c)
+  const conversations = scopeData.refs.map((id) => inbox.conversations[id] && inbox.conversations[id].data).filter(Boolean)
   const courses = Object.keys(entities.courses).reduce((acc, id) => { acc.push(entities.courses[id].course); return acc }, [])
   return {
     conversations,

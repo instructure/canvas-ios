@@ -25,6 +25,18 @@ describe('AddressBookToken', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders with avatar url', () => {
+    const item = {
+      ...defaultProps.item,
+      avatar_url: 'http://www.fillmurray.com/100/100',
+    }
+    let tree = renderer.create(
+      <AddressBookToken {...defaultProps} item={item} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('calls delete when delete button tapped', () => {
     let tree = renderer.create(
       <AddressBookToken {...defaultProps} />

@@ -6,6 +6,8 @@ export type Conversation = {
   workflow_state: 'read' | 'unread' | 'archived',
   last_message: string,
   last_message_at: string,
+  last_authored_message: string,
+  last_authored_message_at: string,
   participants: ConversationParticipant[],
   message_count: number,
   subscribed: boolean,

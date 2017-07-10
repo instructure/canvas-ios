@@ -28,9 +28,7 @@ export function createScopeHandler (action: string): Function {
     action,
     i18n('There was an problem loading your messages.'),
     ({ result }) => {
-      return result.data.sort((a, b) => {
-        return new Date(b.last_message_at) - new Date(a.last_message_at)
-      }).map(c => c.id)
+      return result.data.map(c => c.id)
     }
   )
 }

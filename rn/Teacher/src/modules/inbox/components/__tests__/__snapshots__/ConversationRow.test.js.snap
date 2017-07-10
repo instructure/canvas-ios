@@ -83,33 +83,77 @@ exports[`renders correctly 1`] = `
           }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          numberOfLines={1}
+        <View
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "fontSize": 16,
-                "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
           }
         >
-          artorias of the abyss, solaire of astora
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            artorias of the abyss, solaire of astora
+          </Text>
+          <View
+            accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+            accessible={true}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "flexShrink": 0,
+                    "fontSize": 12,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              5/31/2037
+            </Text>
+          </View>
+        </View>
       </View>
       <Text
         accessible={true}
@@ -271,33 +315,90 @@ exports[`renders correctly with different data 1`] = `
           }
         }
       >
-        <Text
+        <Image
+          accessibilityLabel="Starred"
           accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          numberOfLines={1}
+          source={1}
           style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Object {
-                "fontSize": 16,
-                "fontWeight": "600",
-              },
-              Object {
-                "fontFamily": ".SFUIDisplay-semibold",
-              },
-            ]
+            Object {
+              "height": 14,
+              "marginRight": 2,
+              "tintColor": "#374A59",
+              "width": 14,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
           }
         >
-          
-        </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "flex": 1,
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            
+          </Text>
+          <View
+            accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+            accessible={true}
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "color": "#8B969E",
+                    "flexShrink": 0,
+                    "fontSize": 12,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              5/31/2037
+            </Text>
+          </View>
+        </View>
       </View>
       <Text
         accessible={true}
@@ -324,7 +425,7 @@ exports[`renders correctly with different data 1`] = `
           ]
         }
       >
-        (no subject)
+        No Subject
       </Text>
       <Text
         accessible={true}
