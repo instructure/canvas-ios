@@ -227,7 +227,9 @@ exports[`excused row renders correctly 1`] = `
                 "height": 40,
                 "width": 40,
               },
-              Object {},
+              Object {
+                "borderRadius": 20,
+              },
               Object {
                 "backgroundColor": "#F5F5F5",
               },
@@ -425,7 +427,9 @@ exports[`late graded row renders correctly 1`] = `
                 "height": 40,
                 "width": 40,
               },
-              Object {},
+              Object {
+                "borderRadius": 20,
+              },
               Object {
                 "backgroundColor": "#F5F5F5",
               },
@@ -623,7 +627,9 @@ exports[`missing ungraded row renders correctly 1`] = `
                 "height": 40,
                 "width": 40,
               },
-              Object {},
+              Object {
+                "borderRadius": 20,
+              },
               Object {
                 "backgroundColor": "#F5F5F5",
               },
@@ -790,7 +796,9 @@ exports[`submitted ungraded row renders correctly 1`] = `
                 "height": 40,
                 "width": 40,
               },
-              Object {},
+              Object {
+                "borderRadius": 20,
+              },
               Object {
                 "backgroundColor": "#F5F5F5",
               },
@@ -1001,7 +1009,9 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
                 "height": 40,
                 "width": 40,
               },
-              Object {},
+              Object {
+                "borderRadius": 20,
+              },
               Object {
                 "backgroundColor": "#F5F5F5",
               },

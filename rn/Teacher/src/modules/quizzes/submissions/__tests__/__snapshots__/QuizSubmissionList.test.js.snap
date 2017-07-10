@@ -241,7 +241,9 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         "height": 40,
                         "width": 40,
                       },
-                      Object {},
+                      Object {
+                        "borderRadius": 20,
+                      },
                       Object {
                         "backgroundColor": "#F5F5F5",
                       },
@@ -613,7 +615,9 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         "height": 40,
                         "width": 40,
                       },
-                      Object {},
+                      Object {
+                        "borderRadius": 20,
+                      },
                       Object {
                         "backgroundColor": "#F5F5F5",
                       },
@@ -985,7 +989,9 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                         "height": 40,
                         "width": 40,
                       },
-                      Object {},
+                      Object {
+                        "borderRadius": 20,
+                      },
                       Object {
                         "backgroundColor": "#F5F5F5",
                       },

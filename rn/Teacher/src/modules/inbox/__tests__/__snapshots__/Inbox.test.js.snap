@@ -539,7 +539,9 @@ exports[`filters conversations based on course 1`] = `
                       "height": 40,
                       "width": 40,
                     },
-                    Object {},
+                    Object {
+                      "borderRadius": 20,
+                    },
                     Object {
                       "backgroundColor": "#F5F5F5",
                     },
@@ -1208,7 +1210,9 @@ exports[`filters out conversations without a context_code 1`] = `
                       "height": 40,
                       "width": 40,
                     },
-                    Object {},
+                    Object {
+                      "borderRadius": 20,
+                    },
                     Object {
                       "backgroundColor": "#F5F5F5",
                     },
@@ -2417,7 +2421,9 @@ exports[`renders correctly 1`] = `
                       "height": 40,
                       "width": 40,
                     },
-                    Object {},
+                    Object {
+                      "borderRadius": 20,
+                    },
                     Object {
                       "backgroundColor": "#F5F5F5",
                     },
@@ -2586,7 +2592,9 @@ exports[`renders correctly 1`] = `
                       "height": 40,
                       "width": 40,
                     },
-                    Object {},
+                    Object {
+                      "borderRadius": 20,
+                    },
                     Object {
                       "backgroundColor": "#F5F5F5",
                     },

@@ -55,7 +55,9 @@ exports[`Avatar renders with image 1`] = `
         "height": 40,
         "width": 40,
       },
-      Object {},
+      Object {
+        "borderRadius": 20,
+      },
       Object {
         "backgroundColor": "#F5F5F5",
       },

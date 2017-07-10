@@ -60,13 +60,13 @@ export default class Avatar extends Component<any, Props, any> {
       borderRadius = 0
     }
 
-    let border = {}
+    let border = { borderRadius }
     if (this.props.border) {
       border = {
+        ...border,
         borderColor: 'white',
         borderStyle: 'solid',
         borderWidth: 4,
-        borderRadius: borderRadius,
       }
     }
 
