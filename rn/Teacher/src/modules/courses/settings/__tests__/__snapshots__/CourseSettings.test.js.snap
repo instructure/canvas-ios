@@ -228,7 +228,9 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -252,14 +254,14 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -316,7 +318,9 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -344,14 +348,14 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -616,7 +620,9 @@ exports[`CourseSettings renders 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -640,14 +646,14 @@ exports[`CourseSettings renders 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -704,7 +710,9 @@ exports[`CourseSettings renders 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -732,14 +740,14 @@ exports[`CourseSettings renders 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -1004,7 +1012,9 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -1028,14 +1038,14 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1092,7 +1102,9 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -1120,14 +1132,14 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -1376,7 +1388,9 @@ exports[`CourseSettings renders with empty image url 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -1400,14 +1414,14 @@ exports[`CourseSettings renders with empty image url 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1464,7 +1478,9 @@ exports[`CourseSettings renders with empty image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -1492,14 +1508,14 @@ exports[`CourseSettings renders with empty image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -1764,7 +1780,9 @@ exports[`CourseSettings renders with image url 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -1788,14 +1806,14 @@ exports[`CourseSettings renders with image url 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -1852,7 +1870,9 @@ exports[`CourseSettings renders with image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -1880,14 +1900,14 @@ exports[`CourseSettings renders with image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -2136,7 +2156,9 @@ exports[`CourseSettings renders without image url 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -2160,14 +2182,14 @@ exports[`CourseSettings renders without image url 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -2224,7 +2246,9 @@ exports[`CourseSettings renders without image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -2252,14 +2276,14 @@ exports[`CourseSettings renders without image url 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }
@@ -2524,7 +2548,9 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                   "fontSize": 16,
                 },
                 Object {
+                  "color": "#2D3B45",
                   "flex": 2,
+                  "fontSize": 16,
                   "fontWeight": "600",
                   "lineHeight": 54,
                 },
@@ -2548,14 +2574,14 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                   "fontSize": 17,
                 },
                 Object {
-                  "color": "#008EE2",
+                  "color": "#2D3B45",
                   "flex": 3,
-                  "fontWeight": "600",
+                  "fontSize": 16,
                   "lineHeight": 54,
                   "textAlign": "right",
                 },
                 Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontFamily": ".SFUIDisplay",
                 },
               ]
             }
@@ -2612,7 +2638,9 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                     "fontSize": 16,
                   },
                   Object {
+                    "color": "#2D3B45",
                     "flex": 2,
+                    "fontSize": 16,
                     "fontWeight": "600",
                     "lineHeight": 54,
                   },
@@ -2640,14 +2668,14 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                     "fontSize": 16,
                   },
                   Object {
-                    "color": "#008EE2",
+                    "color": "#2D3B45",
                     "flex": 3,
-                    "fontWeight": "600",
+                    "fontSize": 16,
                     "lineHeight": 54,
                     "textAlign": "right",
                   },
                   Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontFamily": ".SFUIDisplay",
                   },
                 ]
               }

@@ -214,12 +214,14 @@ const styles = StyleSheet.create({
   primaryText: {
     flex: 2,
     fontWeight: '600',
+    fontSize: 16,
+    color: colors.darkText,
     lineHeight: 54,
   },
   actionableText: {
     flex: 3,
-    color: colors.link,
-    fontWeight: '600',
+    color: colors.darkText,
+    fontSize: 16,
     textAlign: 'right',
     lineHeight: 54,
   },
