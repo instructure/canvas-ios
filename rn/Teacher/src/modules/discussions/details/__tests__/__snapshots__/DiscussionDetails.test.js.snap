@@ -226,7 +226,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       stickyHeaderIndices={
         Array [
           0,
-          2,
+          3,
         ]
       }
       stickySectionHeadersEnabled={true}
@@ -1197,6 +1197,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         />
         <View
           onLayout={[Function]}
+        />
+        <View
+          onLayout={[Function]}
         >
           <View
             style={
@@ -1530,6 +1533,9 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
             </View>
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -1752,7 +1758,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
       stickyHeaderIndices={
         Array [
           0,
-          2,
+          3,
         ]
       }
       stickySectionHeadersEnabled={true}
@@ -2665,6 +2671,12 @@ exports[`DiscussionDetails renders no replies 1`] = `
         <View
           onLayout={[Function]}
         />
+        <View
+          onLayout={[Function]}
+        />
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -3101,7 +3113,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       stickyHeaderIndices={
         Array [
           0,
-          2,
+          3,
         ]
       }
       stickySectionHeadersEnabled={true}
@@ -4134,6 +4146,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         />
         <View
           onLayout={[Function]}
+        />
+        <View
+          onLayout={[Function]}
         >
           <View
             style={
@@ -4822,6 +4837,9 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
             </View>
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -5104,7 +5122,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
       stickyHeaderIndices={
         Array [
           0,
-          2,
+          3,
         ]
       }
       stickySectionHeadersEnabled={true}
@@ -6102,6 +6120,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
         />
         <View
           onLayout={[Function]}
+        />
+        <View
+          onLayout={[Function]}
         >
           <View
             style={
@@ -6435,6 +6456,9 @@ exports[`DiscussionDetails renders with replies 1`] = `
             </View>
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>

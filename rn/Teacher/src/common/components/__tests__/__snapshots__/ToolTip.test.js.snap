@@ -30,6 +30,7 @@ exports[`ToolTip renders something interesting when showToolTip is called 1`] = 
   testID="tool-tip.dismiss"
 >
   <View
+    collapsable={undefined}
     style={
       Object {
         "height": 0,

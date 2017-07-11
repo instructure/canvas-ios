@@ -1,6 +1,13 @@
 /* @flow */
 const { NativeModules } = require('react-native')
 
+require.requireActual('View').displayName = 'View'
+require.requireActual('Text').displayName = 'Text'
+require.requireActual('Image').displayName = 'Image'
+require.requireActual('TextInput').displayName = 'TextInput'
+require.requireActual('ActivityIndicator').displayName = 'ActivityIndicator'
+require.requireActual('TouchableOpacity').displayName = 'TouchableOpacity'
+
 NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),
 }

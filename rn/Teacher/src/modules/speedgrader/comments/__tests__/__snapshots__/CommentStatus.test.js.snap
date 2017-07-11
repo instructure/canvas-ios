@@ -15,6 +15,7 @@ exports[`CommentStatus renders 1`] = `
   }
 >
   <View
+    collapsable={undefined}
     style={
       Object {
         "backgroundColor": "#008EE2",

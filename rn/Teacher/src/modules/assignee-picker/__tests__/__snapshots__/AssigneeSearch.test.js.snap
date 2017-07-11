@@ -149,9 +149,9 @@ exports[`render correctly 1`] = `
     stickyHeaderIndices={
       Array [
         1,
-        3,
-        5,
+        4,
         7,
+        10,
       ]
     }
     stickySectionHeadersEnabled={true}
@@ -313,6 +313,9 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+      />
+      <View
+        onLayout={[Function]}
       >
         <View
           accessibilityTraits="header"
@@ -528,6 +531,9 @@ exports[`render correctly 1`] = `
           </View>
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
       <View
         onLayout={[Function]}
       >
@@ -747,6 +753,9 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+      />
+      <View
+        onLayout={[Function]}
       >
         <View
           accessibilityTraits="header"
@@ -798,137 +807,12 @@ exports[`render correctly 1`] = `
         </View>
       </View>
       <View
-        onLayout={[Function]}
-      >
-        <View
-          accessibilityComponentType={undefined}
-          accessibilityLabel={undefined}
-          accessibilityTraits={undefined}
-          accessible={true}
-          hasTVPreferredFocus={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-              },
-              Object {
-                "borderBottomColor": "#C7CDD1",
-                "borderBottomWidth": 0.5,
-                "flex": 1,
-                "height": 54,
-              },
-            ]
+        style={
+          Object {
+            "height": 0,
           }
-          testID={undefined}
-          tvParallaxProperties={undefined}
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "flex": 1,
-                "flexDirection": "row",
-                "paddingLeft": 16,
-                "paddingRight": 16,
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "borderRadius": 20,
-                  "height": 40,
-                  "marginRight": 16,
-                  "overflow": "hidden",
-                  "width": 40,
-                }
-              }
-            >
-              <View
-                accessibilityLabel=""
-                style={
-                  Array [
-                    Object {
-                      "overflow": "hidden",
-                    },
-                    Object {
-                      "height": 40,
-                      "width": 40,
-                    },
-                    Object {
-                      "borderRadius": 20,
-                    },
-                    Object {
-                      "backgroundColor": "#F5F5F5",
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={
-                    Object {
-                      "uri": "http://www.fillmurray.com/100/100",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                />
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                numberOfLines={1}
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                Donald Trump
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
+        }
+      />
     </View>
   </RCTScrollView>
 </View>
@@ -1035,7 +919,7 @@ exports[`render correctly 2`] = `
     stickyHeaderIndices={
       Array [
         1,
-        3,
+        4,
       ]
     }
     stickySectionHeadersEnabled={true}
@@ -1273,6 +1157,9 @@ exports[`render correctly 2`] = `
       </View>
       <View
         onLayout={[Function]}
+      />
+      <View
+        onLayout={[Function]}
       >
         <View
           accessibilityTraits="header"
@@ -1488,6 +1375,9 @@ exports[`render correctly 2`] = `
           </View>
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>

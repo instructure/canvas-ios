@@ -155,6 +155,7 @@ exports[`ConversationDetails renders correctly 1`] = `
               accessibilityLabel="Un-starred"
               accessibilityTraits="button"
               accessible={true}
+              collapsable={undefined}
               hitSlop={
                 Object {
                   "bottom": 8,
@@ -377,6 +378,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
               accessibilityLabel="Un-starred"
               accessibilityTraits="button"
               accessible={true}
+              collapsable={undefined}
               hitSlop={
                 Object {
                   "bottom": 8,
@@ -621,6 +623,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                   accessibilityLabel="Message options"
                   accessibilityTraits="button"
                   accessible={true}
+                  collapsable={undefined}
                   hitSlop={undefined}
                   isTVSelectable={true}
                   nativeID={undefined}
@@ -715,6 +718,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 accessibilityLabel={undefined}
                 accessibilityTraits={undefined}
                 accessible={true}
+                collapsable={undefined}
                 hitSlop={undefined}
                 isTVSelectable={true}
                 nativeID={undefined}
@@ -785,6 +789,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 accessibilityLabel={undefined}
                 accessibilityTraits="button"
                 accessible={true}
+                collapsable={undefined}
                 hitSlop={undefined}
                 isTVSelectable={true}
                 nativeID={undefined}

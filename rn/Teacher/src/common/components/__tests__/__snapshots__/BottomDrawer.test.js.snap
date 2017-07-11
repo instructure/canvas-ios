@@ -53,6 +53,7 @@ exports[`BottomDrawer renders any children 1`] = `
     verticalOnly={true}
   />
   <View
+    collapsable={undefined}
     style={
       Object {
         "height": 667,
@@ -132,6 +133,7 @@ exports[`BottomDrawer renders any children 1`] = `
       />
     </DrawerHandleView>
     <View
+      collapsable={undefined}
       style={
         Object {
           "flex": 1,

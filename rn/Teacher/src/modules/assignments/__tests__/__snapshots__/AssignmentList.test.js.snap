@@ -570,6 +570,9 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           <View />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>
@@ -964,7 +967,7 @@ exports[`applyFilter will apply a new filter 1`] = `
     stickyHeaderIndices={
       Array [
         0,
-        2,
+        3,
       ]
     }
     stickySectionHeadersEnabled={true}
@@ -1256,6 +1259,9 @@ exports[`applyFilter will apply a new filter 1`] = `
       </View>
       <View
         onLayout={[Function]}
+      />
+      <View
+        onLayout={[Function]}
       >
         <View
           accessibilityTraits="header"
@@ -1534,6 +1540,9 @@ exports[`applyFilter will apply a new filter 1`] = `
           <View />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>
@@ -2061,6 +2070,9 @@ exports[`filter button only shows when there are grading periods 1`] = `
           <View />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>
@@ -2620,6 +2632,9 @@ exports[`renders correctly 1`] = `
           <View />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>
@@ -3195,6 +3210,9 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           <View />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>

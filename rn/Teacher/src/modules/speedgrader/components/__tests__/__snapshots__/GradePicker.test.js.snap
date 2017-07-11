@@ -280,10 +280,11 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
       />
     </TouchableOpacity>
   </View>
-  <Animated.View
+  <View
+    collapsable={undefined}
     style={
       Object {
-        "height": mockConstructor {},
+        "height": 0,
         "overflow": "hidden",
       }
     }
@@ -309,7 +310,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
         value="ex"
       />
     </PickerIOS>
-  </Animated.View>
+  </View>
 </View>
 `;
 

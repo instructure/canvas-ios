@@ -1327,6 +1327,9 @@ exports[`DiscussionsList renders discussions 1`] = `
             />
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -2406,6 +2409,9 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
             />
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -3657,6 +3663,9 @@ exports[`DiscussionsList renders in correct order 1`] = `
             />
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>
@@ -4000,7 +4009,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
       stickyHeaderIndices={
         Array [
           0,
-          2,
+          3,
         ]
       }
       stickySectionHeadersEnabled={true}
@@ -4491,6 +4500,9 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+        />
+        <View
+          onLayout={[Function]}
         >
           <View
             accessibilityTraits="header"
@@ -4969,6 +4981,9 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
             />
           </View>
         </View>
+        <View
+          onLayout={[Function]}
+        />
       </View>
     </RCTScrollView>
   </View>

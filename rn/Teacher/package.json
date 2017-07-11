@@ -11,7 +11,8 @@
     "flow": "flow check --show-all-errors | flow-result-checker",
     "extract-strings": "format-message extract \"src/**/*.js\" index.ios.js -o i18n/locales/en.json",
     "danger": "danger",
-    "packager:kill": "react-native-kill-packager"
+    "packager:kill": "react-native-kill-packager",
+    "postinstall": "./fix-rn-crap.sh"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -25,7 +26,7 @@
     "prop-types": "^15.5.10",
     "querystring": "^0.2.0",
     "react": "16.0.0-alpha.12",
-    "react-native": "0.45.1",
+    "react-native": "0.46.1",
     "react-native-blur": "^3.1.2",
     "react-native-button": "^1.8.2",
     "react-native-device-info": "^0.10.1",
@@ -35,7 +36,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.2.9",
     "react-native-keyboard-spacer": "^0.3.1",
     "react-native-mail": "^3.0.3",
-    "react-native-on-layout": "^2.0.0",
+    "react-native-on-layout": "^2.0.2",
     "react-native-progress": "^3.3.0",
     "react-native-search-bar": "3.0.0",
     "react-redux": "^5.0.3",
@@ -47,9 +48,9 @@
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "babel-jest": "19.0.0",
-    "babel-preset-react-native": "1.9.1",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-preset-react-native": "2.1.0",
     "danger": "https://github.com/benkraus/danger-js/tarball/with-distribution",
     "eslint": "^3.16.0",
     "eslint-config-standard": "^6.2.1",

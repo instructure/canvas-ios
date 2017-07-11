@@ -970,6 +970,9 @@ exports[`QuizzesList renders in correct order 1`] = `
           />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>
@@ -1900,6 +1903,9 @@ exports[`QuizzesList renders quizzes 1`] = `
           />
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+      />
     </View>
   </RCTScrollView>
 </View>

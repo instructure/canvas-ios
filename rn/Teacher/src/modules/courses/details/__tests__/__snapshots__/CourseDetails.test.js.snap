@@ -44,6 +44,7 @@ exports[`refresh function second test 1`] = `
     }
   >
     <RCTScrollView
+      collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
@@ -87,6 +88,7 @@ exports[`refresh function second test 1`] = `
     </RCTScrollView>
   </View>
   <View
+    collapsable={undefined}
     pointerEvents="none"
     style={
       Object {
@@ -127,6 +129,7 @@ exports[`refresh function second test 1`] = `
         }
       >
         <Image
+          collapsable={undefined}
           resizeMode="cover"
           source={
             Object {
@@ -143,6 +146,7 @@ exports[`refresh function second test 1`] = `
           }
         />
         <View
+          collapsable={undefined}
           style={
             Object {
               "backgroundColor": undefined,
@@ -170,6 +174,7 @@ exports[`refresh function second test 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -195,6 +200,7 @@ exports[`refresh function second test 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -214,6 +220,7 @@ exports[`refresh function second test 1`] = `
   <Text
     accessible={false}
     allowFontScaling={true}
+    collapsable={undefined}
     disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
@@ -283,6 +290,7 @@ exports[`renders correctly 1`] = `
     }
   >
     <RCTScrollView
+      collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
@@ -463,6 +471,7 @@ exports[`renders correctly 1`] = `
     </RCTScrollView>
   </View>
   <View
+    collapsable={undefined}
     pointerEvents="none"
     style={
       Object {
@@ -503,6 +512,7 @@ exports[`renders correctly 1`] = `
         }
       >
         <Image
+          collapsable={undefined}
           resizeMode="cover"
           source={
             Object {
@@ -519,6 +529,7 @@ exports[`renders correctly 1`] = `
           }
         />
         <View
+          collapsable={undefined}
           style={
             Object {
               "backgroundColor": undefined,
@@ -546,6 +557,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -571,6 +583,7 @@ exports[`renders correctly 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -590,6 +603,7 @@ exports[`renders correctly 1`] = `
   <Text
     accessible={false}
     allowFontScaling={true}
+    collapsable={undefined}
     disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
@@ -635,6 +649,7 @@ exports[`renders correctly without tabs 1`] = `
     }
   >
     <RCTScrollView
+      collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
@@ -678,6 +693,7 @@ exports[`renders correctly without tabs 1`] = `
     </RCTScrollView>
   </View>
   <View
+    collapsable={undefined}
     pointerEvents="none"
     style={
       Object {
@@ -718,6 +734,7 @@ exports[`renders correctly without tabs 1`] = `
         }
       >
         <Image
+          collapsable={undefined}
           resizeMode="cover"
           source={
             Object {
@@ -734,6 +751,7 @@ exports[`renders correctly without tabs 1`] = `
           }
         />
         <View
+          collapsable={undefined}
           style={
             Object {
               "backgroundColor": undefined,
@@ -761,6 +779,7 @@ exports[`renders correctly without tabs 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -786,6 +805,7 @@ exports[`renders correctly without tabs 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -805,6 +825,7 @@ exports[`renders correctly without tabs 1`] = `
   <Text
     accessible={false}
     allowFontScaling={true}
+    collapsable={undefined}
     disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
@@ -850,6 +871,7 @@ exports[`renders with empty image url 1`] = `
     }
   >
     <RCTScrollView
+      collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
@@ -1030,6 +1052,7 @@ exports[`renders with empty image url 1`] = `
     </RCTScrollView>
   </View>
   <View
+    collapsable={undefined}
     pointerEvents="none"
     style={
       Object {
@@ -1070,6 +1093,7 @@ exports[`renders with empty image url 1`] = `
         }
       >
         <View
+          collapsable={undefined}
           style={
             Object {
               "backgroundColor": undefined,
@@ -1097,6 +1121,7 @@ exports[`renders with empty image url 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -1122,6 +1147,7 @@ exports[`renders with empty image url 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -1141,6 +1167,7 @@ exports[`renders with empty image url 1`] = `
   <Text
     accessible={false}
     allowFontScaling={true}
+    collapsable={undefined}
     disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
@@ -1186,6 +1213,7 @@ exports[`renders with image url 1`] = `
     }
   >
     <RCTScrollView
+      collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
@@ -1366,6 +1394,7 @@ exports[`renders with image url 1`] = `
     </RCTScrollView>
   </View>
   <View
+    collapsable={undefined}
     pointerEvents="none"
     style={
       Object {
@@ -1406,6 +1435,7 @@ exports[`renders with image url 1`] = `
         }
       >
         <Image
+          collapsable={undefined}
           resizeMode="cover"
           source={
             Object {
@@ -1422,6 +1452,7 @@ exports[`renders with image url 1`] = `
           }
         />
         <View
+          collapsable={undefined}
           style={
             Object {
               "backgroundColor": undefined,
@@ -1449,6 +1480,7 @@ exports[`renders with image url 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -1474,6 +1506,7 @@ exports[`renders with image url 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -1493,6 +1526,7 @@ exports[`renders with image url 1`] = `
   <Text
     accessible={false}
     allowFontScaling={true}
+    collapsable={undefined}
     disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}
@@ -1538,6 +1572,7 @@ exports[`renders without image url 1`] = `
     }
   >
     <RCTScrollView
+      collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
@@ -1718,6 +1753,7 @@ exports[`renders without image url 1`] = `
     </RCTScrollView>
   </View>
   <View
+    collapsable={undefined}
     pointerEvents="none"
     style={
       Object {
@@ -1758,6 +1794,7 @@ exports[`renders without image url 1`] = `
         }
       >
         <View
+          collapsable={undefined}
           style={
             Object {
               "backgroundColor": undefined,
@@ -1785,6 +1822,7 @@ exports[`renders without image url 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -1810,6 +1848,7 @@ exports[`renders without image url 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        collapsable={undefined}
         disabled={false}
         ellipsizeMode="tail"
         style={
@@ -1829,6 +1868,7 @@ exports[`renders without image url 1`] = `
   <Text
     accessible={false}
     allowFontScaling={true}
+    collapsable={undefined}
     disabled={false}
     ellipsizeMode="tail"
     numberOfLines={1}

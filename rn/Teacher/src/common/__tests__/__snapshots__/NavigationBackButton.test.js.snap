@@ -6,6 +6,7 @@ exports[`renders button correctly 1`] = `
   accessibilityLabel={undefined}
   accessibilityTraits="button"
   accessible={true}
+  collapsable={undefined}
   hitSlop={undefined}
   isTVSelectable={true}
   nativeID={undefined}

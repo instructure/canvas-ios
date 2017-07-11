@@ -183,7 +183,7 @@ exports[`CourseSelect renders 1`] = `
   stickyHeaderIndices={
     Array [
       0,
-      2,
+      3,
     ]
   }
   stickySectionHeadersEnabled={true}
@@ -332,6 +332,9 @@ exports[`CourseSelect renders 1`] = `
         </View>
       </TouchableHighlight>
     </View>
+    <View
+      onLayout={[Function]}
+    />
     <View
       onLayout={[Function]}
     >
@@ -559,6 +562,9 @@ exports[`CourseSelect renders 1`] = `
         </View>
       </TouchableHighlight>
     </View>
+    <View
+      onLayout={[Function]}
+    />
   </View>
 </RCTScrollView>
 `;
@@ -746,7 +752,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
   stickyHeaderIndices={
     Array [
       0,
-      2,
+      3,
     ]
   }
   stickySectionHeadersEnabled={true}
@@ -895,6 +901,9 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         </View>
       </TouchableHighlight>
     </View>
+    <View
+      onLayout={[Function]}
+    />
     <View
       onLayout={[Function]}
     >
@@ -1122,6 +1131,9 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         </View>
       </TouchableHighlight>
     </View>
+    <View
+      onLayout={[Function]}
+    />
   </View>
 </RCTScrollView>
 `;

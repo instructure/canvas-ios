@@ -45,7 +45,9 @@ let defaultProps = {
 describe('GradePicker', () => {
   beforeEach(() => {
     jest.resetAllMocks()
-    Animated.timing.mockReturnValue({ start: jest.fn() })
+    Animated.timing = jest.fn(() => ({
+      start: jest.fn(),
+    }))
   })
 
   it('renders with no grade', () => {
