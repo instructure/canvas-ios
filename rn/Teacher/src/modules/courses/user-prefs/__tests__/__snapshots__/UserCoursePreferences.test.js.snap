@@ -2,12 +2,11 @@
 
 exports[`UserCoursePreferences color buttons with 0 width 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -781,12 +780,11 @@ exports[`UserCoursePreferences color buttons with 0 width 1`] = `
 
 exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -1589,12 +1587,11 @@ exports[`UserCoursePreferences color buttons with uneven rows 1`] = `
 
 exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -2571,12 +2568,11 @@ exports[`UserCoursePreferences dismisses error alert and resets name 1`] = `
 
 exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -3553,12 +3549,11 @@ exports[`UserCoursePreferences dismisses modal activity upon save error 1`] = `
 
 exports[`UserCoursePreferences refresh function first test 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -4535,12 +4530,11 @@ exports[`UserCoursePreferences refresh function first test 1`] = `
 
 exports[`UserCoursePreferences refresh function second test 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -5517,12 +5511,11 @@ exports[`UserCoursePreferences refresh function second test 1`] = `
 
 exports[`UserCoursePreferences renders 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -6515,12 +6508,11 @@ exports[`UserCoursePreferences renders 1`] = `
 
 exports[`UserCoursePreferences renders the refreshed component 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {
@@ -7497,12 +7489,11 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
 
 exports[`UserCoursePreferences renders without a course image url 1`] = `
 <Screen
-  drawUnderNavBar={true}
+  drawUnderNavBar={false}
   navBarButtonColor="#008EE2"
   navBarStyle="light"
   navBarSubtitleColor="#333"
   navBarTitleColor="#2D3B45"
-  navBarTranslucent={true}
   rightBarButtons={
     Array [
       Object {

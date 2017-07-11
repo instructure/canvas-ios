@@ -7,6 +7,7 @@ import {
   Image,
   Alert,
   Dimensions,
+  NativeModules,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
@@ -22,6 +23,8 @@ import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
+
+const HapticFeedback = NativeModules.HapticFeedback
 
 const PICKER_COLORS = [
   '#F26090', '#EA1661', '#903A99', '#65469F', '#4452A6',
@@ -82,7 +85,12 @@ export class UserCoursePreferences extends Component {
     }
   }
 
+  componentDidMount () {
+    HapticFeedback.prepare()
+  }
+
   updateColor = (color: string): void => {
+    HapticFeedback.generate('selection')
     this.props.updateCourseColor(this.props.course.id, color)
   }
 
@@ -187,10 +195,9 @@ export class UserCoursePreferences extends Component {
       <Screen
         title={i18n('Customize Course')}
         subtitle={this.state.name}
-        drawUnderNavBar={true}
+        drawUnderNavBar={false}
         navBarStyle='light'
         navBarButtonColor={colors.link}
-        navBarTranslucent={true}
         navBarTitleColor={colors.darkText}
         navBarSubtitleColor={this.props.color}
         rightBarButtons={[{

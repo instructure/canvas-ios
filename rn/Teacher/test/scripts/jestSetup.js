@@ -14,6 +14,11 @@ NativeModules.PushNotifications = {
   scheduleLocalNotification: jest.fn(),
 }
 
+NativeModules.HapticFeedback = {
+  prepare: jest.fn(),
+  generate: jest.fn(),
+}
+
 NativeModules.RNFSManager = {
   RNFSFileTypeRegular: 'regular',
   RNFSFileTypeDirectory: 'directory',

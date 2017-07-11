@@ -136,6 +136,7 @@
 		61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5CD1ED619A200EC6865 /* libRNFS.a */; };
 		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
+		61E6C4E11F14263900B7B6C1 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */; };
 		646EA8592A1AF9C81B6877D4 /* CourseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5D28EB09C19518A6BA81F /* CourseModule.swift */; };
 		65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */; };
 		685999502ED04B3D8C1FF049 /* libRNMail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A173E7C1016F4F56BBFC43B7 /* libRNMail.a */; };
@@ -367,6 +368,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
 			remoteInfo = RNFS;
+		};
+		61E6C5011F14263A00B7B6C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
+			remoteInfo = "RNBlur-tvOS";
 		};
 		61FCAF131E5FC0190042921A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -660,6 +668,8 @@
 		61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bridging-header.h"; path = "Teacher/bridging-header.h"; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
+		61E6C4DF1F14263900B7B6C1 /* HapticFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HapticFeedback.h; sourceTree = "<group>"; };
+		61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HapticFeedback.m; sourceTree = "<group>"; };
 		621E9A4A25A91690500722D2 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift; sourceTree = "<group>"; };
 		6DF7526D87BCDDCAB4075E5E /* Conversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Conversation.swift; path = models/Conversation.swift; sourceTree = "<group>"; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
@@ -1022,6 +1032,8 @@
 				9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */,
 				2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */,
 				2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */,
+				61E6C4DF1F14263900B7B6C1 /* HapticFeedback.h */,
+				61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */,
 			);
 			name = "React Native Modules";
 			sourceTree = "<group>";
@@ -1339,6 +1351,7 @@
 			isa = PBXGroup;
 			children = (
 				9F053B951E98360A00135AD0 /* libRNBlur.a */,
+				61E6C5021F14263A00B7B6C1 /* libRNBlur.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1776,6 +1789,13 @@
 			remoteRef = 61B7F5CC1ED619A200EC6865 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		61E6C5021F14263A00B7B6C1 /* libRNBlur.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNBlur.a;
+			remoteRef = 61E6C5011F14263A00B7B6C1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		61FCAF141E5FC0190042921A /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1980,6 +2000,7 @@
 				2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */,
 				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
 				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
+				61E6C4E11F14263900B7B6C1 /* HapticFeedback.m in Sources */,
 				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
 				611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */,
 				2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */,

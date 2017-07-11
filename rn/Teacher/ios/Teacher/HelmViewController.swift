@@ -25,6 +25,9 @@ final class HelmViewController: UIViewController, HelmScreen {
     let props: Props
     var screenConfig: [String: Any] = [:]
     
+    fileprivate var titleViewTitleLabel: UILabel?
+    fileprivate var titleViewSubtitleLabel: UILabel?
+    
     open var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
             if (statusBarStyle != oldValue) {
@@ -100,12 +103,16 @@ final class HelmViewController: UIViewController, HelmScreen {
         if (_screenDidRender) { return }
         if let title = screenConfig[PropKeys.title] as? String {
             if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
-                let titleView = self.titleView(with: title, and: subtitle, given: screenConfig)
+                let title = self.titleView(with: title, and: subtitle, given: screenConfig)
+                let titleView = title.titleView
                 titleView.isAccessibilityElement = true
                 titleView.accessibilityLabel = "\(title), \(subtitle)"
                 titleView.accessibilityTraits = UIAccessibilityTraitHeader
                 self.navigationItem.titleView = titleView
                 self.navigationItem.title = nil
+                
+                self.titleViewTitleLabel = title.titleLabel
+                self.titleViewSubtitleLabel = title.subtitleLabel
             }
             self.title = title
         }
@@ -168,6 +175,10 @@ final class HelmViewController: UIViewController, HelmScreen {
     
     open func handleStyles() {
         // Nav bar props
+        
+        if let titleLabel = titleViewTitleLabel, let subtitleLabel = titleViewSubtitleLabel {
+            styleTitleViewLabels(titleLabel: titleLabel, subtitleLabel: subtitleLabel)
+        }
 
         let drawUnderNavBar = screenConfig[PropKeys.drawUnderNavBar] as? Bool ?? false
         if (drawUnderNavBar) {
@@ -332,9 +343,40 @@ final class HelmViewController: UIViewController, HelmScreen {
         }
     }
     
-    private func titleView(with title: String, and subtitle: String, given config: [String: Any]) -> UIView {
+    private func titleView(with title: String, and subtitle: String, given config: [String: Any]) -> (titleView: UIView, titleLabel: UILabel, subtitleLabel: UILabel) {
         let titleLabel = UILabel(frame: CGRect(x:0, y:-2, width:0, height:0))
+        let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
+        styleTitleViewLabels(titleLabel: titleLabel, subtitleLabel: subtitleLabel)
         
+        titleLabel.text = title
+        titleLabel.sizeToFit()
+        subtitleLabel.text = subtitle
+        subtitleLabel.sizeToFit()
+
+        let maxWidth = max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: maxWidth, height: 30))
+        titleView.addSubview(titleLabel)
+        titleView.addSubview(subtitleLabel)
+        
+        // Center title or subtitle on screen (depending on which is larger)
+        if titleLabel.frame.width >= subtitleLabel.frame.width {
+            var adjustment = subtitleLabel.frame
+            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (subtitleLabel.frame.width/2)
+            subtitleLabel.frame = adjustment
+        } else {
+            var adjustment = titleLabel.frame
+            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (titleLabel.frame.width/2)
+            titleLabel.frame = adjustment
+        }
+        
+        if let testID = screenConfig["testID"] as? String {
+            titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
+        }
+
+        return (titleView, titleLabel, subtitleLabel)
+    }
+    
+    private func styleTitleViewLabels(titleLabel: UILabel, subtitleLabel: UILabel) {
         // TODO: support custom fonts, sizes
         
         let titleColor: UIColor
@@ -370,39 +412,12 @@ final class HelmViewController: UIViewController, HelmScreen {
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textColor = titleColor
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        titleLabel.text = title
-        titleLabel.sizeToFit()
         titleLabel.textAlignment = .center
-
-        let subtitleLabel = UILabel(frame: CGRect(x:0, y:18, width:0, height:0))
+        
         subtitleLabel.backgroundColor = UIColor.clear
         subtitleLabel.textColor = subtitleColor
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
-        subtitleLabel.text = subtitle
-        subtitleLabel.sizeToFit()
         subtitleLabel.textAlignment = .center
-
-        let maxWidth = max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: maxWidth, height: 30))
-        titleView.addSubview(titleLabel)
-        titleView.addSubview(subtitleLabel)
-        
-        // Center title or subtitle on screen (depending on which is larger)
-        if titleLabel.frame.width >= subtitleLabel.frame.width {
-            var adjustment = subtitleLabel.frame
-            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (subtitleLabel.frame.width/2)
-            subtitleLabel.frame = adjustment
-        } else {
-            var adjustment = titleLabel.frame
-            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (titleLabel.frame.width/2)
-            titleLabel.frame = adjustment
-        }
-        
-        if let testID = screenConfig["testID"] as? String {
-            titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
-        }
-
-        return titleView
     }
     
     func barButtonTapped(_ barButton: UIBarButtonItem) {

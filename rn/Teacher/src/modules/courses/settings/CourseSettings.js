@@ -92,8 +92,7 @@ export class CourseSettings extends Component<any, Props, any> {
     return (
       <Screen
         title={i18n('Course Settings')}
-        drawUnderNavBar={true}
-        navBarTranslucent={true}
+        drawUnderNavBar={false}
         navBarStyle='light'
         navBarTitleColor={colors.darkText}
         navBarButtonColor={colors.link}
