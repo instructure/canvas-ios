@@ -127,7 +127,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
         // TODO: do a real back button
         leftBarButtons={[
           {
-            title: i18n('Back'),
+            image: Images.backIcon,
+            simulateBackButton: true,
             testID: 'course-details.navigation-back-btn',
             action: this.props.navigator.dismiss.bind(this),
           },

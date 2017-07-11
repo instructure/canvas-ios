@@ -253,9 +253,24 @@ final class HelmViewController: UIViewController, HelmScreen {
             for buttonConfig in config {
                 let styleConfig = buttonConfig["style"] as? String
                 let style: UIBarButtonItemStyle = styleConfig == "done" ? .done : .plain
-                
                 let barButtonItem: UIBarButtonItem
-                if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
+                if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig), let simulateBackChevron = buttonConfig["simulateBackChevron"] as? Bool, simulateBackChevron {
+                    let button =  UIButton(type: .custom)
+                    button.setImage(image, for: .normal)
+                    var width: CGFloat = 26
+                    let height: CGFloat = 31
+                    if let imageConfig = imageConfig as? [String: Any], let w = imageConfig["width"] as? CGFloat, let scale = imageConfig["scale"] as? CGFloat {
+                        width = w * scale
+                    }
+                    button.frame = CGRect(x: 0, y: 0, width: width, height: height)
+                    button.imageEdgeInsets = UIEdgeInsetsMake(-1, -width, 1, 0)
+                    button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
+                    if let action = buttonConfig["action"] as? NSString {
+                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                    }
+                    barButtonItem = UIBarButtonItem(customView: button)
+                }
+                else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
                     barButtonItem = UIBarButtonItem(image: image, style: style, target: self, action: #selector(barButtonTapped(_:)))
                 } else if let title = buttonConfig["title"] as? String {
                     barButtonItem = UIBarButtonItem(title: title, style: style, target: self, action: #selector(barButtonTapped(_:)))
