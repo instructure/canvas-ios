@@ -19,6 +19,7 @@ class RootTabBarController: UITabBarController {
         if let branding = branding {
             UITabBar.appearance().tintColor = branding.primaryBrandColor
             UITabBar.appearance().barTintColor = UIColor.white
+            UITabBar.appearance().isTranslucent = false
         }
         
         self.delegate = self
