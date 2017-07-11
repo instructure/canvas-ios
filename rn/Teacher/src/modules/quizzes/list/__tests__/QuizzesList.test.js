@@ -23,6 +23,8 @@ describe('QuizzesList', () => {
   let props: Props
   beforeEach(() => {
     props = {
+      pending: false,
+      refreshing: false,
       quizzes: [],
       navigator: template.navigator(),
       courseColor: null,
@@ -32,6 +34,13 @@ describe('QuizzesList', () => {
 
   it('renders', () => {
     testRender(props)
+  })
+
+  it('renders the activity indicator when loading', () => {
+    testRender({
+      ...props,
+      pending: true,
+    })
   })
 
   it('renders quizzes', () => {

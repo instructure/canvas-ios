@@ -20,6 +20,7 @@ import DiscusionsRow from './DiscussionsRow'
 import SectionHeader from '../../../common/components/rows/SectionHeader'
 import Screen from '../../../routing/Screen'
 import Images from '../../../images'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 
 const { refreshDiscussions } = ListActions
 const { updateDiscussion, deleteDiscussion } = EditActions
@@ -37,6 +38,7 @@ type OwnProps = {
 type State = {
   discussions: Discussion[],
   courseColor: ?string,
+  pending: boolean,
 }
 
 export type Props = State & typeof Actions & OwnProps & {
@@ -148,6 +150,10 @@ export class DiscussionsList extends Component<any, Props, any> {
   }
 
   render () {
+    if (this.props.pending && !this.props.refreshing) {
+      return <ActivityIndicatorView />
+    }
+
     return (
       <Screen
         navBarColor={this.props.courseColor}
@@ -208,6 +214,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   let discussions = []
   let courseColor = null
   let courseName = null
+  let pending = false
   if (entities &&
     entities.courses &&
     entities.courses[courseID] &&
@@ -218,9 +225,11 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
       .map(ref => entities.discussions[ref].data)
     courseColor = course.color
     courseName = course.course.name
+    pending = !!course.discussions.pending
   }
 
   return {
+    pending,
     discussions,
     courseColor,
     courseName,

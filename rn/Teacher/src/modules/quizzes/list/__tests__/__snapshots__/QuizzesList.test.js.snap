@@ -1904,3 +1904,27 @@ exports[`QuizzesList renders quizzes 1`] = `
   </RCTScrollView>
 </View>
 `;
+
+exports[`QuizzesList renders the activity indicator when loading 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
+`;

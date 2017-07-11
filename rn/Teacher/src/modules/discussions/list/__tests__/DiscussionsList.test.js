@@ -28,6 +28,8 @@ describe('DiscussionsList', () => {
   beforeEach(() => {
     jest.resetAllMocks()
     props = {
+      pending: false,
+      refreshing: false,
       discussions: [],
       navigator: template.navigator(),
       courseColor: null,
@@ -40,6 +42,13 @@ describe('DiscussionsList', () => {
 
   it('renders', () => {
     testRender(props)
+  })
+
+  it('renders an activity indicator while loading', () => {
+    testRender({
+      ...props,
+      pending: true,
+    })
   })
 
   it('renders discussions', () => {

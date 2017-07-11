@@ -20,6 +20,7 @@ import SectionHeader from '../../../common/components/rows/SectionHeader'
 import Screen from '../../../routing/Screen'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 
 const { NativeAccessibility } = NativeModules
 
@@ -30,6 +31,7 @@ type OwnProps = {
 type State = {
   quizzes: Quiz[],
   courseColor: ?string,
+  pending: boolean,
 }
 
 export type Props = State & typeof Actions & {
@@ -139,6 +141,10 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   render () {
+    if (this.props.pending && !this.props.refreshing) {
+      return <ActivityIndicatorView />
+    }
+
     if (this.data.length === 0) {
       this.data = this._getData()
       this.selectFirstListItemIfNecessary()
@@ -179,6 +185,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
   let quizzes = []
   let courseColor = null
   let courseName = null
+  let pending = false
   let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
 
   if (entities &&
@@ -192,9 +199,11 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: OwnProps)
       .map(ref => entities.quizzes[ref].data)
     courseColor = course.color
     courseName = course.course.name
+    pending = !!course.quizzes.pending
   }
 
   return {
+    pending,
     quizzes,
     courseColor,
     courseName,
