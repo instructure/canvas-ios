@@ -20,7 +20,6 @@ class HelmSplitViewControllerWrapper: UIViewController {
 }
 
 class HelmSplitViewController: UISplitViewController {
-    public var shouldCollapseDetail: Bool = true
 
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -63,8 +62,39 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     }
 
     public func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-        // Returns true, cuz on iPad we don't use overlay types (so far). It's either hidden or all. If that changes, change this and logic in EnrollmentsTab to handle everything correctly
-        return shouldCollapseDetail
+        if let nav = secondaryViewController as? UINavigationController {
+            if let _ = nav.topViewController as? EmptyViewController {
+                return true
+            } else if let helmVC = nav.topViewController as? HelmViewController, helmVC.moduleName.contains("placeholder") {
+                return true
+            } else {
+                // Remove the display mode button item
+                nav.topViewController?.navigationItem.leftBarButtonItem = nil
+            }
+        }
+        
+        return false
+    }
+    
+    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+        if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
+            var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
+            
+            if let helmVC = newDeets as? HelmViewController {
+                if HelmManager.shared.masterModules.contains(helmVC.moduleName) {
+                    newDeets = UINavigationController(rootViewController: EmptyViewController())
+                }
+            }
+            
+            if !(newDeets is UINavigationController) {
+                let nav = HelmNavigationController(rootViewController: newDeets)
+                return nav
+            }
+            
+            return newDeets
+        }
+        
+        return nil
     }
 }
 

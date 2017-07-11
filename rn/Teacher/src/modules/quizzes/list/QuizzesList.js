@@ -60,6 +60,9 @@ export class QuizzesList extends Component<any, Props, any> {
 
   traitCollectionDidChange (traits: TraitCollection) {
     this.isRegularScreenDisplayMode = isRegularDisplayMode(traits)
+    if (!this.isRegularScreenDisplayMode) {
+      this.didSelectFirstItem = false
+    }
     this.selectFirstListItemIfNecessary()
   }
 

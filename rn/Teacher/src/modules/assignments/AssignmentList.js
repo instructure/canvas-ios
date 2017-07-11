@@ -68,6 +68,9 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
   traitCollectionDidChange (traits: TraitCollection) {
     this.isRegularScreenDisplayMode = isRegularDisplayMode(traits)
+    if (!this.isRegularScreenDisplayMode) {
+      this.didSelectFirstItem = false
+    }
     this.selectFirstListItemIfNecessary()
   }
 
