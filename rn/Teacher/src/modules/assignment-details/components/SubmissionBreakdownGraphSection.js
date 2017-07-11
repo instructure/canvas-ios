@@ -63,8 +63,9 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     let graded = this.props.graded
     let ungraded = this.props.ungraded
     let notSubmitted = this.props.not_submitted
+    let submissionTypes = this.props.submissionTypes || []
 
-    let paperOnly = this.props.submissionTypes.includes('on_paper')
+    let paperOnly = submissionTypes.includes('on_paper')
     let paperOnlyMessage = i18n({
       default: `{
         count, plural,

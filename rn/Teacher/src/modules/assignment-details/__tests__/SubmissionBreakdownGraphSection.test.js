@@ -84,6 +84,18 @@ test('render on paper submission type', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('render undefined submission type', () => {
+  defaultProps.graded = 2
+  defaultProps.ungraded = 1
+  defaultProps.not_submitted = 1
+  defaultProps.submissionTotalCount = 4
+  defaultProps.submissionTypes = undefined
+  let tree = renderer.create(
+    <SubmissionBreakdownGraphSection {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('render multiple data points ', () => {
   defaultProps.graded = 3
   defaultProps.ungraded = 2
