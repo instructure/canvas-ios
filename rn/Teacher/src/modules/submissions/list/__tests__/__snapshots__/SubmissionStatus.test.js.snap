@@ -30,7 +30,7 @@ exports[`SubmissionStatus status \`late\` renders properly 1`] = `
     ]
   }
 >
-  Late
+  LATE
 </Text>
 `;
 
@@ -64,7 +64,7 @@ exports[`SubmissionStatus status \`missing\` renders properly 1`] = `
     ]
   }
 >
-  Missing
+  MISSING
 </Text>
 `;
 
@@ -98,7 +98,7 @@ exports[`SubmissionStatus status \`none\` renders properly 1`] = `
     ]
   }
 >
-  No submission
+  Not Submitted
 </Text>
 `;
 
@@ -132,6 +132,6 @@ exports[`SubmissionStatus status \`submitted\` renders properly 1`] = `
     ]
   }
 >
-  Submitted
+  SUBMITTED
 </Text>
 `;

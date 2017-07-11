@@ -350,7 +350,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  No submission
+                  Not Submitted
                 </Text>
               </View>
               <View
@@ -540,7 +540,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  No submission
+                  Not Submitted
                 </Text>
               </View>
               <Text
@@ -559,15 +559,16 @@ exports[`SubmissionList loaded 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#368BD8",
+                        "color": "#374A59",
                         "fontSize": 14,
+                        "fontWeight": "600",
                       },
                       Object {
                         "alignSelf": "center",
                       },
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -761,7 +762,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  Late
+                  LATE
                 </Text>
               </View>
               <Text
@@ -995,7 +996,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  Submitted
+                  SUBMITTED
                 </Text>
               </View>
               <Text
@@ -1014,15 +1015,16 @@ exports[`SubmissionList loaded 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#368BD8",
+                        "color": "#374A59",
                         "fontSize": 14,
+                        "fontWeight": "600",
                       },
                       Object {
                         "alignSelf": "center",
                       },
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1387,7 +1389,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                     ]
                   }
                 >
-                  Submitted
+                  SUBMITTED
                 </Text>
               </View>
               <Text
@@ -1406,15 +1408,16 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#368BD8",
+                        "color": "#374A59",
                         "fontSize": 14,
+                        "fontWeight": "600",
                       },
                       Object {
                         "alignSelf": "center",
                       },
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }

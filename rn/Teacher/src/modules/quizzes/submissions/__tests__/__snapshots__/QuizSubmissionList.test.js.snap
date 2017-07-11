@@ -331,7 +331,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                     ]
                   }
                 >
-                  Submitted
+                  SUBMITTED
                 </Text>
               </View>
               <Text
@@ -350,15 +350,16 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#368BD8",
+                        "color": "#374A59",
                         "fontSize": 14,
+                        "fontWeight": "600",
                       },
                       Object {
                         "alignSelf": "center",
                       },
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -705,7 +706,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                     ]
                   }
                 >
-                  Submitted
+                  SUBMITTED
                 </Text>
               </View>
               <Text
@@ -724,15 +725,16 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#368BD8",
+                        "color": "#374A59",
                         "fontSize": 14,
+                        "fontWeight": "600",
                       },
                       Object {
                         "alignSelf": "center",
                       },
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }
@@ -1079,7 +1081,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                     ]
                   }
                 >
-                  Submitted
+                  SUBMITTED
                 </Text>
               </View>
               <Text
@@ -1098,15 +1100,16 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                     },
                     Array [
                       Object {
-                        "color": "#368BD8",
+                        "color": "#374A59",
                         "fontSize": 14,
+                        "fontWeight": "600",
                       },
                       Object {
                         "alignSelf": "center",
                       },
                     ],
                     Object {
-                      "fontFamily": ".SFUIDisplay",
+                      "fontFamily": ".SFUIDisplay-semibold",
                     },
                   ]
                 }

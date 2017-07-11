@@ -130,7 +130,7 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
           ]
         }
       >
-        Submitted
+        SUBMITTED
       </Text>
     </View>
     <View
@@ -322,7 +322,7 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
           ]
         }
       >
-        No submission
+        Not Submitted
       </Text>
     </View>
     <View
@@ -514,7 +514,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
           ]
         }
       >
-        Submitted
+        SUBMITTED
       </Text>
     </View>
     <View
@@ -706,7 +706,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
           ]
         }
       >
-        Missing
+        MISSING
       </Text>
     </View>
     <View
@@ -898,7 +898,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
           ]
         }
       >
-        No submission
+        Not Submitted
       </Text>
     </View>
     <View

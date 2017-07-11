@@ -17,20 +17,20 @@ export default class SubmissionStatus extends Component<any, SubmissionStatusPro
 
   render () {
     let color: string = '#8B969E' // none
-    let title: string = i18n('No submission')
+    let title: string = i18n('Not Submitted')
 
     switch (this.props.status) {
       case 'late':
         color = '#FC5E13'
-        title = i18n('Late')
+        title = i18n('LATE')
         break
       case 'missing':
         color = '#EE0612'
-        title = i18n('Missing')
+        title = i18n('MISSING')
         break
       case 'submitted':
         color = '#07AF1F'
-        title = i18n('Submitted')
+        title = i18n('SUBMITTED')
         break
     }
 

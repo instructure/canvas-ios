@@ -145,7 +145,8 @@ const styles = StyleSheet.create({
   },
   gradeText: {
     fontSize: 14,
-    color: colors.primaryButton,
+    fontWeight: '600',
+    color: colors.primaryButtonColor,
   },
   avatar: {
     width: 40,

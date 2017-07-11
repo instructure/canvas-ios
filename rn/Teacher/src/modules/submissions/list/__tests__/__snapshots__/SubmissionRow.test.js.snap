@@ -148,7 +148,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
             ]
           }
         >
-          No submission
+          Not Submitted
         </Text>
       </View>
       <View
@@ -317,7 +317,7 @@ exports[`excused row renders correctly 1`] = `
             ]
           }
         >
-          Missing
+          MISSING
         </Text>
       </View>
       <Text
@@ -336,15 +336,16 @@ exports[`excused row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#368BD8",
+                "color": "#374A59",
                 "fontSize": 14,
+                "fontWeight": "600",
               },
               Object {
                 "alignSelf": "center",
               },
             ],
             Object {
-              "fontFamily": ".SFUIDisplay",
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
@@ -517,7 +518,7 @@ exports[`late graded row renders correctly 1`] = `
             ]
           }
         >
-          Late
+          LATE
         </Text>
       </View>
       <Text
@@ -536,15 +537,16 @@ exports[`late graded row renders correctly 1`] = `
             },
             Array [
               Object {
-                "color": "#368BD8",
+                "color": "#374A59",
                 "fontSize": 14,
+                "fontWeight": "600",
               },
               Object {
                 "alignSelf": "center",
               },
             ],
             Object {
-              "fontFamily": ".SFUIDisplay",
+              "fontFamily": ".SFUIDisplay-semibold",
             },
           ]
         }
@@ -717,7 +719,7 @@ exports[`missing ungraded row renders correctly 1`] = `
             ]
           }
         >
-          Missing
+          MISSING
         </Text>
       </View>
       <View
@@ -886,7 +888,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
             ]
           }
         >
-          Submitted
+          SUBMITTED
         </Text>
       </View>
       <Text
@@ -1099,7 +1101,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
             ]
           }
         >
-          No submission
+          Not Submitted
         </Text>
       </View>
       <View
