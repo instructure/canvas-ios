@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { getSession } from '../session'
 
-export default function httpClient (): any {
+export default function httpClient (version: ?string = 'api/v1'): any {
   let session = getSession()
 
   if (session == null) {
@@ -14,7 +14,7 @@ export default function httpClient (): any {
   }
 
   return axios.create({
-    baseURL: `${session.baseURL}api/v1`,
+    baseURL: `${session.baseURL}${version || ''}`,
     headers: {
       common: {
         Authorization: `Bearer ${session.authToken}`,

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuizPreview renders 1`] = `
-<WebView
+<AuthenticatedWebView
   automaticallyAdjustContentInsets={false}
   injectedJavaScript="document.getElementById('preview_quiz_button').click();"
   source={

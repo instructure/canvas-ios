@@ -2,12 +2,12 @@
 import React, { Component } from 'react'
 import {
   StyleSheet,
-  WebView,
 } from 'react-native'
 
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import Screen from '../../../routing/Screen'
+import AuthenticatedWebView from '../../../common/components/AuthenticatedWebView'
 
 type Props = {
   quizID: string,
@@ -19,6 +19,7 @@ type LocalProps = Props & {
 }
 
 export class QuizPreview extends Component<any, LocalProps, any> {
+
   render () {
     const javascript = "document.getElementById('preview_quiz_button').click();"
     const uri = `${this.props.quiz.html_url}/take?preview=1&persist_headless=1&force_user=1`
@@ -34,10 +35,10 @@ export class QuizPreview extends Component<any, LocalProps, any> {
           },
         ]}
       >
-        <WebView style={style.webView}
-                        source={{ uri }}
-                        injectedJavaScript={javascript}
-                        automaticallyAdjustContentInsets={false} />
+        <AuthenticatedWebView style={style.webView}
+                              source={{ uri }}
+                              injectedJavaScript={javascript}
+                              automaticallyAdjustContentInsets={false} />
       </Screen>
     )
   }

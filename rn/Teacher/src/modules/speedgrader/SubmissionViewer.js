@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
-  WebView,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text, MEDIUM_FONT } from '../../common/text'
@@ -13,6 +12,7 @@ import type {
 } from '../submissions/list/submission-prop-types'
 import WebContainer from '../../common/components/WebContainer'
 import Video from '../../common/components/Video'
+import AuthenticatedWebView from '../../common/components/AuthenticatedWebView'
 import URLSubmissionViewer from './submission-viewers/URLSubmissionViewer'
 import CanvadocViewer from './components/CanvadocViewer'
 import ImageSubmissionViewer from './submission-viewers/ImageSubmissionViewer'
@@ -110,7 +110,7 @@ export default class SubmissionViewer extends Component {
           break
         case 'online_quiz':
         case 'discussion_topic':
-          body = <WebView
+          body = <AuthenticatedWebView
             style={styles.webContainer}
             source={{ uri: submission.preview_url }}
             contentInset={{ bottom: this.props.drawerInset }}

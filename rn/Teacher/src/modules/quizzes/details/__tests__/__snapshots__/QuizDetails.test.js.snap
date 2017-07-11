@@ -1364,7 +1364,14 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -1376,12 +1383,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -2782,7 +2784,14 @@ exports[`QuizDetails displays access code 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -2794,12 +2803,7 @@ exports[`QuizDetails displays access code 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -4080,7 +4084,14 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -4092,12 +4103,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -5438,7 +5444,14 @@ exports[`QuizDetails renders 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -5450,12 +5463,7 @@ exports[`QuizDetails renders 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -6856,7 +6864,14 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -6868,12 +6883,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -8214,7 +8224,14 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -8226,12 +8243,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -9572,7 +9584,14 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -9584,12 +9603,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -10930,7 +10944,14 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -10942,12 +10963,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -12288,7 +12304,14 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -12300,12 +12323,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -13646,7 +13664,14 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -13658,12 +13683,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -14944,7 +14964,14 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -14956,12 +14983,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -16302,7 +16324,14 @@ exports[`QuizDetails renders allowed attempts 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -16314,12 +16343,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -17660,7 +17684,14 @@ exports[`QuizDetails renders allowed attempts 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -17672,12 +17703,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -19050,7 +19076,14 @@ exports[`QuizDetails renders assignment due dates 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -19062,12 +19095,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -20468,7 +20496,14 @@ exports[`QuizDetails renders assignment group 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -20480,12 +20515,7 @@ exports[`QuizDetails renders assignment group 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -21826,7 +21856,14 @@ exports[`QuizDetails renders published state 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -21838,12 +21875,7 @@ exports[`QuizDetails renders published state 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -23184,7 +23216,14 @@ exports[`QuizDetails renders published state 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -23196,12 +23235,7 @@ exports[`QuizDetails renders published state 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -24542,7 +24576,14 @@ exports[`QuizDetails renders quiz type 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -24554,12 +24595,7 @@ exports[`QuizDetails renders quiz type 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -25900,7 +25936,14 @@ exports[`QuizDetails renders quiz type 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -25912,12 +25955,7 @@ exports[`QuizDetails renders quiz type 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -27258,7 +27296,14 @@ exports[`QuizDetails renders scoring policy 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -27270,12 +27315,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -28616,7 +28656,14 @@ exports[`QuizDetails renders scoring policy 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -28628,12 +28675,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -29974,7 +30016,14 @@ exports[`QuizDetails renders scoring policy 3`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -29986,12 +30035,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -31332,7 +31376,14 @@ exports[`QuizDetails renders show correct answers 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -31344,12 +31395,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -32690,7 +32736,14 @@ exports[`QuizDetails renders show correct answers 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -32702,12 +32755,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -34048,7 +34096,14 @@ exports[`QuizDetails renders shuffle answers 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -34060,12 +34115,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -35406,7 +35456,14 @@ exports[`QuizDetails renders shuffle answers 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -35418,12 +35475,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -36764,7 +36816,14 @@ exports[`QuizDetails renders time limit 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -36776,12 +36835,7 @@ exports[`QuizDetails renders time limit 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -38122,7 +38176,14 @@ exports[`QuizDetails renders time limit 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -38134,12 +38195,7 @@ exports[`QuizDetails renders time limit 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -39480,7 +39536,14 @@ exports[`QuizDetails renders view responses 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -39492,12 +39555,7 @@ exports[`QuizDetails renders view responses 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -40778,7 +40836,14 @@ exports[`QuizDetails renders view responses 2`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -40790,12 +40855,7 @@ exports[`QuizDetails renders view responses 2`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -42076,7 +42136,14 @@ exports[`QuizDetails renders view responses 3`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -42088,12 +42155,7 @@ exports[`QuizDetails renders view responses 3`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >
@@ -43458,7 +43520,14 @@ exports[`QuizDetails renders without a description 1`] = `
         onPress={[Function]}
         style={
           Object {
+            "backgroundColor": "#008EE2",
             "borderRadius": 4,
+            "flex": 1,
+            "height": 51,
+            "marginBottom": 16,
+            "marginLeft": 16,
+            "marginRight": 16,
+            "marginTop": 16,
           }
         }
         testID="quizzes.details.previewQuiz.btn"
@@ -43470,12 +43539,7 @@ exports[`QuizDetails renders without a description 1`] = `
               "backgroundColor": "#008EE2",
               "borderRadius": 4,
               "flex": 1,
-              "height": 51,
               "justifyContent": "center",
-              "marginBottom": 16,
-              "marginLeft": 16,
-              "marginRight": 16,
-              "marginTop": 16,
             }
           }
         >

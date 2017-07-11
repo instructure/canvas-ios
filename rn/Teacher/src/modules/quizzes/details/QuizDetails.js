@@ -119,13 +119,13 @@ export class QuizDetails extends Component<any, Props, any> {
           {this._renderDetails()}
           <TouchableHighlight
             onPress={this.previewQuiz}
-            style={{ borderRadius: 4 }}
+            style={style.previewQuizButton}
             accessible={true}
             accessibilityLabel={i18n('Preview Quiz')}
             accessibilityTraits='button'
             testID='quizzes.details.previewQuiz.btn'
           >
-            <View style={style.previewQuizButton}>
+            <View style={style.previewQuizButtonContainer}>
               <Text style={style.previewQuizButtonTitle}>{i18n('Preview Quiz')}</Text>
             </View>
           </TouchableHighlight>
@@ -240,12 +240,17 @@ const style = StyleSheet.create({
     backgroundColor: '#008EE2',
     height: 51,
     borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: global.style.defaultPadding,
     marginBottom: global.style.defaultPadding,
     marginLeft: global.style.defaultPadding,
     marginRight: global.style.defaultPadding,
+  },
+  previewQuizButtonContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    backgroundColor: '#008EE2',
   },
   previewQuizButtonTitle: {
     color: 'white',

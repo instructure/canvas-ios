@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthenticatedWebView renders 1`] = `
+<WebView
+  source={
+    Object {
+      "uri": "http://fillmurray.com/100/100",
+    }
+  }
+/>
+`;
+
+exports[`AuthenticatedWebView renders without uri 1`] = `
+<WebView
+  source={
+    Object {
+      "html": "html is the coolest",
+    }
+  }
+/>
+`;

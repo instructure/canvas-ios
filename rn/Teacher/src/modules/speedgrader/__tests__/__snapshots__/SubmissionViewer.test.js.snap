@@ -12,7 +12,7 @@ exports[`SubmissionViewer renders a discussion_topic submission 1`] = `
     }
   }
 >
-  <Webview
+  <AuthenticatedWebView
     contentInset={
       Object {
         "bottom": 0,
@@ -176,7 +176,7 @@ exports[`SubmissionViewer renders an online_quiz submission 1`] = `
     }
   }
 >
-  <Webview
+  <AuthenticatedWebView
     contentInset={
       Object {
         "bottom": 0,
