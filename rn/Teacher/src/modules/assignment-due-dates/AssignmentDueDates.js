@@ -104,9 +104,11 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
           },
         ]}
       >
-        <ScrollView style={styles.container}>
-          {rows}
-        </ScrollView>
+        <View style={styles.container}>
+          <ScrollView style={styles.scrollContainer}>
+            {rows}
+          </ScrollView>
+        </View>
       </Screen>
     )
   }
@@ -114,6 +116,10 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    marginBottom: global.tabBarHeight,
+  },
+  scrollContainer: {
     flex: 1,
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
