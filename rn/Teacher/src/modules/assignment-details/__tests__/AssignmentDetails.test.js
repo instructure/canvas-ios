@@ -51,6 +51,14 @@ test('renders', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders with no submission types', () => {
+  defaultProps.assignmentDetails = template.assignment({ submission_types: ['none'] })
+  let tree = renderer.create(
+    <AssignmentDetails {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('renders loading', () => {
   defaultProps.pending = 1
   let tree = renderer.create(

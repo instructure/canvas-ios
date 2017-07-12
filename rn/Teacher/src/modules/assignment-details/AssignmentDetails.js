@@ -43,6 +43,15 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
     let sectionTitleSubmissions = i18n('Submissions')
 
+    let submissionTypes = assignment.submission_types || []
+    let noSubmissions = submissionTypes.includes('none')
+    let noSubmissionsMessage = i18n('Tap to view submissions list.')
+    let submissionContainerAccessibilityTraits = noSubmissions ? {
+      accessibilityTraits: 'button',
+      accessibilityLabel: noSubmissionsMessage,
+      accessible: noSubmissions,
+    } : {}
+
     return (
       <Screen
         navBarColor={this.props.courseColor}
@@ -89,7 +98,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           { global.V02 &&
             <View style={style.section}>
               <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
-              <View style={style.submissions}>
+              <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
                 <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}>
                   <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
                 </View>
@@ -97,6 +106,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
                   testID='assignment-details.assignment-section.submissions'
                   accessibilityLabel={i18n('View all submissions')}
                   accessibilityTraits='button'
+                  accessible={!noSubmissions}
                   onPress={() => this.viewSubmissions()}
                   style={{
                     justifyContent: 'center',

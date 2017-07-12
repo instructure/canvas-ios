@@ -928,6 +928,67 @@ exports[`render on paper submission type 1`] = `
 </View>
 `;
 
+exports[`render on paper submission type 2`] = `
+<View
+  accessible={false}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityLabel="Tap to view submissions list."
+    accessible={false}
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <TouchableOpacity
+        accessible={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="assignment-details.submission-breakdown-graph-section.no-submissions"
+        underlayColor="#eeeeee00"
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={undefined}
+        >
+          Tap to view submissions list.
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`render undefined submission type 1`] = `
 <View
   style={

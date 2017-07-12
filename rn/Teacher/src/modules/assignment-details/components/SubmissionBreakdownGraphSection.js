@@ -44,6 +44,24 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     LayoutAnimation.easeInEaseOut()
   }
 
+  renderNoSubmissions () {
+    let noSubmissionsMessage = i18n('Tap to view submissions list.')
+    return (
+        <View style={[style.container, this.props.style]} accessible={false}>
+          <View style={style.paperOnlyContainer} accessible={false} accessibilityLabel={noSubmissionsMessage}>
+            <View style={style.paperOnlyContainer}>
+              <TouchableOpacity underlayColor='#eeeeee00' style={style.common}
+                                key={`submission_dial_highlight_no_submissions`}
+                                testID={`assignment-details.submission-breakdown-graph-section.no-submissions`}
+                                onPress={() => this.props.onPress('') } accessible={false}>
+                <Text style={style.paperOnlyContainerLabel} accessible={false}>{noSubmissionsMessage}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+    )
+  }
+
   render () {
     let gradedLabel = i18n('Graded')
 
@@ -64,6 +82,9 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     let ungraded = this.props.ungraded
     let notSubmitted = this.props.not_submitted
     let submissionTypes = this.props.submissionTypes || []
+
+    let noSubmissions = submissionTypes.includes('none')
+    if (noSubmissions) { return this.renderNoSubmissions() }
 
     let paperOnly = submissionTypes.includes('on_paper')
     let paperOnlyMessage = i18n({
