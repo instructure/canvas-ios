@@ -17,6 +17,7 @@ import FilterHeader from './components/FilterHeader'
 import EmptyInbox from './components/EmptyInbox'
 import Images from '../../images'
 import i18n from 'format-message'
+import color from '../../common/colors'
 
 export type InboxProps = {
   conversations: Conversation[],
@@ -141,7 +142,8 @@ export class Inbox extends Component {
   render () {
     return (
       <Screen
-        navBarColor={branding.navBarColor}
+        navBarColor={color.navBarColor}
+        navBarButtonColor={color.navBarButtonColor}
         navBarStyle='dark'
         drawUnderNavBar={true}
         navBarImage={branding.headerImage}

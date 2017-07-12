@@ -28,7 +28,7 @@ exports[`default icon 1`] = `
       },
       Array [
         Object {
-          "height": 44,
+          "height": 54,
         },
         undefined,
         Object {
@@ -88,10 +88,13 @@ exports[`default icon 1`] = `
               Object {
                 "fontWeight": "600",
               },
-              undefined,
+              Object {
+                "fontWeight": "500",
+                "marginLeft": -4,
+              },
             ],
             Object {
-              "fontFamily": ".SFUIDisplay-semibold",
+              "fontFamily": ".SFUIDisplay-medium",
             },
           ]
         }
@@ -169,7 +172,7 @@ exports[`renders correctly 1`] = `
       },
       Array [
         Object {
-          "height": 44,
+          "height": 54,
         },
         undefined,
         Object {
@@ -206,13 +209,13 @@ exports[`renders correctly 1`] = `
       style={
         Array [
           Object {
-            "marginRight": 8,
+            "marginRight": 16,
             "resizeMode": "contain",
           },
           Object {
-            "height": 20,
+            "height": 24,
             "tintColor": "white",
-            "width": 21,
+            "width": 24,
           },
         ]
       }
@@ -245,10 +248,13 @@ exports[`renders correctly 1`] = `
               Object {
                 "fontWeight": "600",
               },
-              undefined,
+              Object {
+                "fontWeight": "500",
+                "marginLeft": -4,
+              },
             ],
             Object {
-              "fontFamily": ".SFUIDisplay-semibold",
+              "fontFamily": ".SFUIDisplay-medium",
             },
           ]
         }

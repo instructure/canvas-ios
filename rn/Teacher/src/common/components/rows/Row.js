@@ -158,6 +158,6 @@ const style = StyleSheet.create({
   },
   image: {
     resizeMode: 'contain',
-    marginRight: 8,
+    marginRight: global.style.defaultPadding,
   },
 })

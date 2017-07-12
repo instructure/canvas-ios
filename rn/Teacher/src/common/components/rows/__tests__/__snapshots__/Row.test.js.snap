@@ -68,7 +68,7 @@ exports[`Render the base row 1`] = `
       style={
         Array [
           Object {
-            "marginRight": 8,
+            "marginRight": 16,
             "resizeMode": "contain",
           },
           Object {

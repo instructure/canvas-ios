@@ -29,11 +29,12 @@ export default class CourseDetails extends React.Component<any, Props, any> {
                 title={tab.label}
                 image={Images.course[tab.id]}
                 imageTint={this.props.courseColor}
-                imageSize={{ height: 20, width: 21 }}
+                imageSize={{ height: 24, width: 24 }}
                 onPress={this.onPress}
                 disclosureIndicator={true}
-                height={44}
+                height={54}
                 border={'bottom'}
-                testID={`courses-details.${tab.id}-cell`} />)
+                testID={`courses-details.${tab.id}-cell`}
+                titleStyles={{ marginLeft: -4, fontWeight: '500' }}/>)
   }
 }

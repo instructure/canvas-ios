@@ -341,7 +341,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "height": 44,
+                  "height": 54,
                 },
                 undefined,
                 Object {
@@ -376,13 +376,13 @@ exports[`renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "marginRight": 8,
+                      "marginRight": 16,
                       "resizeMode": "contain",
                     },
                     Object {
-                      "height": 20,
+                      "height": 24,
                       "tintColor": undefined,
-                      "width": 21,
+                      "width": 24,
                     },
                   ]
                 }
@@ -415,10 +415,13 @@ exports[`renders correctly 1`] = `
                         Object {
                           "fontWeight": "600",
                         },
-                        undefined,
+                        Object {
+                          "fontWeight": "500",
+                          "marginLeft": -4,
+                        },
                       ],
                       Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -922,7 +925,7 @@ exports[`renders with empty image url 1`] = `
             style={
               Array [
                 Object {
-                  "height": 44,
+                  "height": 54,
                 },
                 undefined,
                 Object {
@@ -957,13 +960,13 @@ exports[`renders with empty image url 1`] = `
                 style={
                   Array [
                     Object {
-                      "marginRight": 8,
+                      "marginRight": 16,
                       "resizeMode": "contain",
                     },
                     Object {
-                      "height": 20,
+                      "height": 24,
                       "tintColor": undefined,
-                      "width": 21,
+                      "width": 24,
                     },
                   ]
                 }
@@ -996,10 +999,13 @@ exports[`renders with empty image url 1`] = `
                         Object {
                           "fontWeight": "600",
                         },
-                        undefined,
+                        Object {
+                          "fontWeight": "500",
+                          "marginLeft": -4,
+                        },
                       ],
                       Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -1264,7 +1270,7 @@ exports[`renders with image url 1`] = `
             style={
               Array [
                 Object {
-                  "height": 44,
+                  "height": 54,
                 },
                 undefined,
                 Object {
@@ -1299,13 +1305,13 @@ exports[`renders with image url 1`] = `
                 style={
                   Array [
                     Object {
-                      "marginRight": 8,
+                      "marginRight": 16,
                       "resizeMode": "contain",
                     },
                     Object {
-                      "height": 20,
+                      "height": 24,
                       "tintColor": undefined,
-                      "width": 21,
+                      "width": 24,
                     },
                   ]
                 }
@@ -1338,10 +1344,13 @@ exports[`renders with image url 1`] = `
                         Object {
                           "fontWeight": "600",
                         },
-                        undefined,
+                        Object {
+                          "fontWeight": "500",
+                          "marginLeft": -4,
+                        },
                       ],
                       Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
@@ -1623,7 +1632,7 @@ exports[`renders without image url 1`] = `
             style={
               Array [
                 Object {
-                  "height": 44,
+                  "height": 54,
                 },
                 undefined,
                 Object {
@@ -1658,13 +1667,13 @@ exports[`renders without image url 1`] = `
                 style={
                   Array [
                     Object {
-                      "marginRight": 8,
+                      "marginRight": 16,
                       "resizeMode": "contain",
                     },
                     Object {
-                      "height": 20,
+                      "height": 24,
                       "tintColor": undefined,
-                      "width": 21,
+                      "width": 24,
                     },
                   ]
                 }
@@ -1697,10 +1706,13 @@ exports[`renders without image url 1`] = `
                         Object {
                           "fontWeight": "600",
                         },
-                        undefined,
+                        Object {
+                          "fontWeight": "500",
+                          "marginLeft": -4,
+                        },
                       ],
                       Object {
-                        "fontFamily": ".SFUIDisplay-semibold",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
                     ]
                   }
