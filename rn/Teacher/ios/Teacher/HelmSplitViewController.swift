@@ -79,6 +79,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
+            nav.popViewController(animated: true)
             
             if let helmVC = newDeets as? HelmViewController {
                 if HelmManager.shared.masterModules.contains(helmVC.moduleName) {

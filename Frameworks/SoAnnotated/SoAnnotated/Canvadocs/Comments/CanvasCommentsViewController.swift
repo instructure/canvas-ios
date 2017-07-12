@@ -87,7 +87,6 @@ class CanvadocsCommentsViewController: UIViewController {
                     self.rootComment?.isEditable = self.templateAnnotation?.isEditable ?? true
                     self.comments.append(self.rootComment!)
                     self.pdfDocument.add([self.rootComment!], options: [:])
-//                    self.pdfDocument.documentProviderForPage(at: self.rootComment!.pageIndex)?.annotationManager.add([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey: true])
                     self.newThread = false
                 } else {
                     if let firstComment = self.comments.first {
@@ -97,8 +96,7 @@ class CanvadocsCommentsViewController: UIViewController {
                         newAnnotation.boundingBox = firstComment.boundingBox
                         newAnnotation.inReplyTo = firstComment.name
                         self.comments.append(newAnnotation)
-//                        self.pdfDocument.documentProviderForPage(at: self.rootComment!.pageIndex)?.annotationManager.add([self.rootComment!], options: [PSPDFAnnotationOptionUserCreatedKey: true])
-                        self.pdfDocument.add([self.rootComment!], options: [:])
+                        self.pdfDocument.add([newAnnotation], options: [:])
                     }
                     
                 }
