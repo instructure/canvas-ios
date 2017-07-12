@@ -8,11 +8,13 @@ import {
   ScrollView,
   View,
   LayoutAnimation,
+  NativeModules,
 } from 'react-native'
 
 import { ColorPicker } from './'
 import images from '../../../images'
 import colors from '../../colors'
+import i18n from 'format-message'
 
 type Props = {
   active?: string[],
@@ -30,22 +32,23 @@ type Props = {
 type Item = {
   image: string,
   action: string,
+  accessibilityLabel: string,
 }
 
-function item (image: string, action: string): Item {
-  return { image, action }
+function item (image: string, action: string, accessibilityLabel: string): Item {
+  return { image, action, accessibilityLabel }
 }
 
 const ITEMS = [
-  item('undo', 'undo'),
-  item('redo', 'redo'),
-  item('bold', 'setBold'),
-  item('italic', 'setItalic'),
-  item('textColor', 'setTextColor'),
-  item('unorderedList', 'setUnorderedList'),
-  item('orderedList', 'setOrderedList'),
-  item('link', 'insertLink'),
-  item('embedImage', 'insertImage'),
+  item('undo', 'undo', i18n('Undo')),
+  item('redo', 'redo', i18n('Redo')),
+  item('bold', 'setBold', i18n('Bold')),
+  item('italic', 'setItalic', i18n('Italic')),
+  item('textColor', 'setTextColor', i18n('Text Color')),
+  item('unorderedList', 'setUnorderedList', i18n('Unordered List')),
+  item('orderedList', 'setOrderedList', i18n('Ordered List')),
+  item('link', 'insertLink', i18n('Insert Link')),
+  item('embedImage', 'insertImage', i18n('Insert Image')),
 ]
 
 const ColorPickerAnimation = {
@@ -60,6 +63,8 @@ const ColorPickerAnimation = {
     springDamping: 0.7,
   },
 }
+
+const { NativeAccessibility } = NativeModules
 
 export default class RichTextToolbar extends Component<any, Props, any> {
   constructor (props: Props) {
@@ -87,6 +92,8 @@ export default class RichTextToolbar extends Component<any, Props, any> {
                   underlayColor={colors.grey1}
                   key={item.image}
                   testID={`rich-text-toolbar-item-${item.image}`}
+                  accessibilityLabel={item.accessibilityLabel}
+                  accessibilityTraits={['button']}
                 >
                   {this._renderItem(item)}
                 </TouchableHighlight>
@@ -124,6 +131,7 @@ export default class RichTextToolbar extends Component<any, Props, any> {
       }
     })
     this.setState({ colorPickerVisible: shown })
+    setTimeout(function () { NativeAccessibility.focusElement('color-picker.options') }, 500)
   }
 
   _pickColor = (color: string) => {

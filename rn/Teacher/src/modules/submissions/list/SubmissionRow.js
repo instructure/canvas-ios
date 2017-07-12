@@ -47,7 +47,7 @@ class Row extends Component<any, RowProps, any> {
     const { onPress, testID, children, disclosure } = this.props
     return (
       <View style={styles.row}>
-        <TouchableHighlight style={styles.touchableHighlight} onPress={onPress} testID={testID}>
+        <TouchableHighlight style={styles.touchableHighlight} onPress={onPress} testID={testID} accessibilityTraits={['button']}>
           <View style={styles.container}>
             {children}
             {disclosure && <DisclosureIndicator />}

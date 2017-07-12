@@ -8,6 +8,7 @@ exports[`DiscussionsList renders 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Discussion",
         "action": [Function],
         "image": 1,
         "testID": "discussions.list.add.button",
@@ -94,6 +95,7 @@ exports[`DiscussionsList renders discussions 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Discussion",
         "action": [Function],
         "image": 1,
         "testID": "discussions.list.add.button",
@@ -442,6 +444,7 @@ exports[`DiscussionsList renders discussions 1`] = `
             }
           >
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -453,16 +456,14 @@ exports[`DiscussionsList renders discussions 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontSize": 16,
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
                   },
                   Object {
                     "backgroundColor": "#F5F5F5",
                     "color": "#73818C",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -1344,6 +1345,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Discussion",
         "action": [Function],
         "image": 1,
         "testID": "discussions.list.add.button",
@@ -1592,6 +1594,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
             }
           >
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -1603,16 +1606,14 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontSize": 16,
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
                   },
                   Object {
                     "backgroundColor": "#F5F5F5",
                     "color": "#73818C",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -2426,6 +2427,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Discussion",
         "action": [Function],
         "image": 1,
         "testID": "discussions.list.add.button",
@@ -2778,6 +2780,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
             }
           >
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -2789,16 +2792,14 @@ exports[`DiscussionsList renders in correct order 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontSize": 16,
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
                   },
                   Object {
                     "backgroundColor": "#F5F5F5",
                     "color": "#73818C",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -3680,6 +3681,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "New Discussion",
         "action": [Function],
         "image": 1,
         "testID": "discussions.list.add.button",
@@ -4041,6 +4043,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
             }
           >
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -4052,16 +4055,14 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontSize": 16,
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
                   },
                   Object {
                     "backgroundColor": "#F5F5F5",
                     "color": "#73818C",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }
@@ -4524,6 +4525,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
             }
           >
             <Text
+              accessibilityTraits="header"
               accessible={true}
               allowFontScaling={true}
               disabled={false}
@@ -4535,16 +4537,14 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                   },
                   Object {
                     "color": "#2D3B45",
-                    "fontSize": 16,
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 20,
                   },
                   Object {
                     "backgroundColor": "#F5F5F5",
                     "color": "#73818C",
                     "fontSize": 14,
                     "fontWeight": "600",
-                  },
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
                   },
                 ]
               }

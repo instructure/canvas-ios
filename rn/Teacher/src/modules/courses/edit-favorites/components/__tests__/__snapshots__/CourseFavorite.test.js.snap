@@ -2,6 +2,12 @@
 
 exports[`renders favorited correctly 1`] = `
 <TouchableHighlight
+  accessibilityTraits={
+    Array [
+      "selected",
+      "button",
+    ]
+  }
   onPress={[Function]}
   style={
     Object {
@@ -69,6 +75,11 @@ exports[`renders favorited correctly 1`] = `
 
 exports[`renders unfavorited correctly 1`] = `
 <TouchableHighlight
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
   onPress={[Function]}
   style={
     Object {

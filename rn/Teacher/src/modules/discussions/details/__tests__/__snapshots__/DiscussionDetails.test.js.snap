@@ -8,6 +8,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Options",
         "action": [Function],
         "image": 1,
         "testID": "discussions.details.edit.button",
@@ -1550,6 +1551,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Options",
         "action": [Function],
         "image": 1,
         "testID": "discussions.details.edit.button",
@@ -2691,6 +2693,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Options",
         "action": [Function],
         "image": 1,
         "testID": "discussions.details.edit.button",
@@ -4854,6 +4857,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Options",
         "action": [Function],
         "image": 1,
         "testID": "discussions.details.edit.button",
@@ -6473,6 +6477,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
   rightBarButtons={
     Array [
       Object {
+        "accessibilityLabel": "Options",
         "action": [Function],
         "image": 1,
         "testID": "discussions.details.edit.button",

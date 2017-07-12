@@ -201,7 +201,11 @@ exports[`SubmissionList loaded 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -391,7 +395,11 @@ exports[`SubmissionList loaded 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -613,7 +621,11 @@ exports[`SubmissionList loaded 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -847,7 +859,11 @@ exports[`SubmissionList loaded 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}
@@ -1241,7 +1257,11 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
-            accessibilityTraits={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             accessible={true}
             hasTVPreferredFocus={undefined}
             hitSlop={undefined}

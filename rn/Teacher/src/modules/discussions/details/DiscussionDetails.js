@@ -301,6 +301,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
           {
             image: Images.kabob,
             testID: 'discussions.details.edit.button',
+            accessibilityLabel: i18n('Options'),
             action: this.showEditActionSheet,
           },
         ]}

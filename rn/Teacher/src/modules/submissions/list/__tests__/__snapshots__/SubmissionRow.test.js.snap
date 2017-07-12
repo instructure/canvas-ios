@@ -10,6 +10,11 @@ exports[`anonymous grading doesnt show users names 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     onPress={[Function]}
     style={
       Object {
@@ -185,6 +190,11 @@ exports[`excused row renders correctly 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     onPress={[Function]}
     style={
       Object {
@@ -386,6 +396,11 @@ exports[`late graded row renders correctly 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     onPress={[Function]}
     style={
       Object {
@@ -587,6 +602,11 @@ exports[`missing ungraded row renders correctly 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     onPress={[Function]}
     style={
       Object {
@@ -756,6 +776,11 @@ exports[`submitted ungraded row renders correctly 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     onPress={[Function]}
     style={
       Object {
@@ -969,6 +994,11 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
     onPress={[Function]}
     style={
       Object {

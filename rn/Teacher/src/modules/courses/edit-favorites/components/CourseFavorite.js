@@ -24,11 +24,19 @@ export default class CourseFavorite extends Component<void, Props, void> {
 
   render () {
     return (
-      <TouchableHighlight style={styles.courseRow} testID={'edit-favorites.course-favorite.' + this.props.course.id + (this.props.isFavorite ? '-favorited' : '-not-favorited') } onPress={this.onPress}>
-        <View style={styles.courseWrapper}>
-          <Image source={this.props.isFavorite ? Images.starFilled : Images.starLined} style={[styles.favoritesImage, { tintColor: colors.primaryBrandColor }]} />
-          <Text style={styles.courseName}>{this.props.course.name}</Text>
-        </View>
+      <TouchableHighlight
+        style={styles.courseRow}
+        testID={'edit-favorites.course-favorite.' + this.props.course.id + (this.props.isFavorite ? '-favorited' : '-not-favorited') }
+        onPress={this.onPress}
+        accessibilityTraits={this.props.isFavorite ? ['selected', 'button'] : ['button']}
+        >
+          <View style={styles.courseWrapper}>
+            <Image
+              source={this.props.isFavorite ? Images.starFilled : Images.starLined}
+              style={[styles.favoritesImage, { tintColor: colors.primaryBrandColor }]}
+            />
+            <Text style={styles.courseName}>{this.props.course.name}</Text>
+          </View>
       </TouchableHighlight>
     )
   }

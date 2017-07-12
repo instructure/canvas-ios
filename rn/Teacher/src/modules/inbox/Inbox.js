@@ -146,7 +146,7 @@ export class Inbox extends Component {
         drawUnderNavBar={true}
         navBarImage={branding.headerImage}
         rightBarButtons={[{
-          accessibilityLabel: 'New Message',
+          accessibilityLabel: i18n('New Message'),
           testID: 'inbox.new-message',
           image: Images.add,
           action: this.addMessage,

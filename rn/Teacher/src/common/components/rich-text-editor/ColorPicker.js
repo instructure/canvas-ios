@@ -8,6 +8,8 @@ import {
   TouchableHighlight,
 } from 'react-native'
 
+import i18n from 'format-message'
+
 type Props = {
   pickedColor: (color: string) => void,
 }
@@ -37,7 +39,7 @@ export default class ColorPicker extends Component<any, Props, any> {
   render () {
     return (
       <View style={styles.container}>
-        <ScrollView horizontal={true}>
+        <ScrollView horizontal={true} testID={'color-picker.options'}>
           <View style={styles.scrollViewContent}>
             {COLORS.map((color) => {
               const style = {
@@ -52,6 +54,8 @@ export default class ColorPicker extends Component<any, Props, any> {
                   key={color}
                   testID={`color-picker-option-${color}`}
                   underlayColor='transparent'
+                  accessibilityLabel={`${i18n('Choose')} ${color}`}
+                  accessibilityTraits={['button']}
                 >
                   <View style={[styles.option, style]} />
                 </TouchableHighlight>

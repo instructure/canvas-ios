@@ -28,7 +28,12 @@ exports[`renders correctly 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "selected",
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
@@ -112,7 +117,12 @@ exports[`renders correctly 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "selected",
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
@@ -225,7 +235,12 @@ exports[`updates when courses prop changes 1`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "selected",
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}
@@ -338,7 +353,12 @@ exports[`updates when courses prop changes 2`] = `
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
+      accessibilityTraits={
+        Array [
+          "selected",
+          "button",
+        ]
+      }
       accessible={true}
       hasTVPreferredFocus={undefined}
       hitSlop={undefined}

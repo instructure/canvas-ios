@@ -7,7 +7,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native'
-import { Text } from '../../../common/text'
+import { Heading1 } from '../../../common/text'
 import color from '../../colors'
 
 type Props = {
@@ -24,7 +24,7 @@ export default class SectionHeader extends React.PureComponent<any, Props, any> 
     const containerStyle = [styles.section, styles.bottomHairline, topHairline].filter(Boolean)
     return (
       <View style={containerStyle} key={key} accessibilityTraits='header'>
-        <Text style={styles.title}>{this.props.title}</Text>
+        <Heading1 style={styles.title}>{this.props.title}</Heading1>
       </View>
     )
   }

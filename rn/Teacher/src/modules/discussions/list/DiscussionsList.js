@@ -163,6 +163,7 @@ export class DiscussionsList extends Component<any, Props, any> {
           {
             image: Images.add,
             testID: 'discussions.list.add.button',
+            accessibilityLabel: i18n('New Discussion'),
             action: this.addDiscussion,
           },
         ]}

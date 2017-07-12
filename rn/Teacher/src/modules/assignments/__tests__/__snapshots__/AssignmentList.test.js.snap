@@ -317,6 +317,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -328,16 +329,14 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -1004,6 +1003,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -1015,16 +1015,14 @@ exports[`applyFilter will apply a new filter 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -1287,6 +1285,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -1298,16 +1297,14 @@ exports[`applyFilter will apply a new filter 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -1817,6 +1814,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -1828,16 +1826,14 @@ exports[`filter button only shows when there are grading periods 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -2379,6 +2375,7 @@ exports[`renders correctly 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -2390,16 +2387,14 @@ exports[`renders correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -2957,6 +2952,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -2968,16 +2964,14 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }

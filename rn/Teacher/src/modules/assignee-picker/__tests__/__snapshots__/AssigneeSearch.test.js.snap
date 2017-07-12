@@ -337,6 +337,7 @@ exports[`render correctly 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -348,16 +349,14 @@ exports[`render correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -557,6 +556,7 @@ exports[`render correctly 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -568,16 +568,14 @@ exports[`render correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -777,6 +775,7 @@ exports[`render correctly 1`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -788,16 +787,14 @@ exports[`render correctly 1`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -961,6 +958,7 @@ exports[`render correctly 2`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -972,16 +970,14 @@ exports[`render correctly 2`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
@@ -1181,6 +1177,7 @@ exports[`render correctly 2`] = `
           }
         >
           <Text
+            accessibilityTraits="header"
             accessible={true}
             allowFontScaling={true}
             disabled={false}
@@ -1192,16 +1189,14 @@ exports[`render correctly 2`] = `
                 },
                 Object {
                   "color": "#2D3B45",
-                  "fontSize": 16,
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 20,
                 },
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "color": "#73818C",
                   "fontSize": 14,
                   "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
                 },
               ]
             }
