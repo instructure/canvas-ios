@@ -2649,7 +2649,7 @@ exports[`renders with no submission types 1`] = `
                         ]
                       }
                     >
-                      Available from:
+                      Available From:
                     </Text>
                     <Text
                       accessible={true}
@@ -2727,7 +2727,7 @@ exports[`renders with no submission types 1`] = `
                         ]
                       }
                     >
-                      Available to:
+                      Available Until:
                     </Text>
                     <Text
                       accessible={true}

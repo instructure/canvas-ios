@@ -130,7 +130,7 @@ exports[`refresh function second test 1`] = `
       >
         <Image
           collapsable={undefined}
-          resizeMode="cover"
+          resizeMode="contain"
           source={
             Object {
               "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
@@ -340,7 +340,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "height": 54,
+                  "height": undefined,
                 },
                 undefined,
                 Object {
@@ -515,7 +515,7 @@ exports[`renders correctly 1`] = `
       >
         <Image
           collapsable={undefined}
-          resizeMode="cover"
+          resizeMode="contain"
           source={
             Object {
               "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
@@ -736,7 +736,7 @@ exports[`renders correctly without tabs 1`] = `
       >
         <Image
           collapsable={undefined}
-          resizeMode="cover"
+          resizeMode="contain"
           source={
             Object {
               "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
@@ -922,7 +922,7 @@ exports[`renders with empty image url 1`] = `
             style={
               Array [
                 Object {
-                  "height": 54,
+                  "height": undefined,
                 },
                 undefined,
                 Object {
@@ -1266,7 +1266,7 @@ exports[`renders with image url 1`] = `
             style={
               Array [
                 Object {
-                  "height": 54,
+                  "height": undefined,
                 },
                 undefined,
                 Object {
@@ -1441,7 +1441,7 @@ exports[`renders with image url 1`] = `
       >
         <Image
           collapsable={undefined}
-          resizeMode="cover"
+          resizeMode="contain"
           source={
             Object {
               "uri": "http://www.fillmurray.com/100/100",
@@ -1627,7 +1627,7 @@ exports[`renders without image url 1`] = `
             style={
               Array [
                 Object {
-                  "height": 54,
+                  "height": undefined,
                 },
                 undefined,
                 Object {

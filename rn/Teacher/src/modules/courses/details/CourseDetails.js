@@ -197,7 +197,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                             }),
                             opacity: fadeOut,
                           }]}
-                          resizeMode='cover'
+                          resizeMode='contain'
                         />
                     }
                     <Animated.View
