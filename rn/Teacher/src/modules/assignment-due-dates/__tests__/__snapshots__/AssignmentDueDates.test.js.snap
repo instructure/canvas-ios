@@ -191,7 +191,7 @@ exports[`renders with overrides 1`] = `
                 ]
               }
             >
-              Available from
+              Available From
             </Text>
             <Text
               accessible={true}
@@ -228,7 +228,7 @@ exports[`renders with overrides 1`] = `
             }
           />
           <View
-            accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
+            accessibilityLabel="Available until: May 31, 2037 at 11:59 PM"
             accessible={true}
           >
             <Text
@@ -256,7 +256,7 @@ exports[`renders with overrides 1`] = `
                 ]
               }
             >
-              Available to
+              Available Until
             </Text>
             <Text
               accessible={true}
@@ -453,7 +453,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available from
+              Available From
             </Text>
             <Text
               accessible={true}
@@ -490,7 +490,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             }
           />
           <View
-            accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
+            accessibilityLabel="Available until: May 31, 2037 at 11:59 PM"
             accessible={true}
           >
             <Text
@@ -518,7 +518,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available to
+              Available Until
             </Text>
             <Text
               accessible={true}
@@ -677,7 +677,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available from
+              Available From
             </Text>
             <Text
               accessible={true}
@@ -714,7 +714,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             }
           />
           <View
-            accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
+            accessibilityLabel="Available until: May 31, 2037 at 11:59 PM"
             accessible={true}
           >
             <Text
@@ -742,7 +742,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available to
+              Available Until
             </Text>
             <Text
               accessible={true}
@@ -901,7 +901,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available from
+              Available From
             </Text>
             <Text
               accessible={true}
@@ -938,7 +938,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             }
           />
           <View
-            accessibilityLabel="Available to: May 31, 2037 at 11:59 PM"
+            accessibilityLabel="Available until: May 31, 2037 at 11:59 PM"
             accessible={true}
           >
             <Text
@@ -966,7 +966,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available to
+              Available Until
             </Text>
             <Text
               accessible={true}
@@ -1030,7 +1030,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
               ]
             }
           >
-            No due date
+            No Due Date
           </Text>
           <View
             accessible={true}
@@ -1125,7 +1125,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available from
+              Available From
             </Text>
             <Text
               accessible={true}
@@ -1162,7 +1162,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
             }
           />
           <View
-            accessibilityLabel="No available to date set"
+            accessibilityLabel="No available until date set"
             accessible={true}
           >
             <Text
@@ -1190,7 +1190,7 @@ exports[`renders with overrides and specific student ids and sections 1`] = `
                 ]
               }
             >
-              Available to
+              Available Until
             </Text>
             <Text
               accessible={true}

@@ -571,7 +571,7 @@ exports[`render correctly 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={
@@ -1325,7 +1325,7 @@ exports[`render correctly with overide 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={

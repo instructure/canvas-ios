@@ -192,7 +192,7 @@ exports[`renders correctly 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            No due date
+            No Due Date
           </Text>
           <View />
         </View>
@@ -1890,7 +1890,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            No due date
+            No Due Date
           </Text>
           <Text
             accessible={true}
@@ -2410,7 +2410,7 @@ exports[`renders correctly with selected props 1`] = `
             }
             testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
           >
-            No due date
+            No Due Date
           </Text>
           <View />
         </View>

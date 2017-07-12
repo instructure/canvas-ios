@@ -34,12 +34,12 @@ describe('assignment due date with status', () => {
 
   test('due date that is missing', () => {
     const garbage = formattedDueDateWithStatus(null)
-    expect(garbage).toEqual(['No due date'])
+    expect(garbage).toEqual(['No Due Date'])
   })
 
   test('due date that is garbage', () => {
     const garbage = formattedDueDateWithStatus(new Date('lkjaklsjdfljaslkdfjads'))
-    expect(garbage).toEqual(['No due date'])
+    expect(garbage).toEqual(['No Due Date'])
   })
 })
 
@@ -55,7 +55,7 @@ describe('due date with status', () => {
 
   test('test assignment due date that is garbage', () => {
     const garbage = formattedDueDate(new Date('klaljsdflkjs'))
-    expect(garbage).toEqual('No due date')
+    expect(garbage).toEqual('No Due Date')
   })
 })
 
@@ -132,6 +132,6 @@ describe('formatGradeText', () => {
 describe('edge cases', () => {
   it('should handle bad data', () => {
     let result = formattedDueDate(null)
-    expect(result).toEqual('No due date')
+    expect(result).toEqual('No Due Date')
   })
 })

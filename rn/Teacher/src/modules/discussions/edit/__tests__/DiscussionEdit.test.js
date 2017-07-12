@@ -315,8 +315,8 @@ describe('DiscussionEdit', () => {
     props.assignment = template.assignment({ points_possible: null })
     const component = render(props, { createNodeMock })
     tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeFalsy()
+    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeTruthy()
 
     changePoints(component, 'D')
     tapDone(component)
@@ -335,8 +335,8 @@ describe('DiscussionEdit', () => {
 
     changePoints(component, '')
     tapDone(component)
-    expect(getUnmetRequirementBanner(component).props.visible).toBeFalsy()
-    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeFalsy()
+    expect(getUnmetRequirementBanner(component).props.visible).toBeTruthy()
+    expect(getPointsPossibleRequiredFieldSubscript(component).props.visible).toBeTruthy()
   })
 
   it('updates from props', () => {

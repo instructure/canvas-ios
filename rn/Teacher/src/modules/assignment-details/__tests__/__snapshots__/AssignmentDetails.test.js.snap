@@ -552,7 +552,7 @@ exports[`renders 1`] = `
                         ]
                       }
                     >
-                      Available from:
+                      Available From:
                     </Text>
                     <Text
                       accessible={true}
@@ -630,7 +630,7 @@ exports[`renders 1`] = `
                         ]
                       }
                     >
-                      Available to:
+                      Available Until:
                     </Text>
                     <Text
                       accessible={true}
@@ -1638,7 +1638,7 @@ exports[`renders loading 1`] = `
                         ]
                       }
                     >
-                      Available from:
+                      Available From:
                     </Text>
                     <Text
                       accessible={true}
@@ -1716,7 +1716,7 @@ exports[`renders loading 1`] = `
                         ]
                       }
                     >
-                      Available to:
+                      Available Until:
                     </Text>
                     <Text
                       accessible={true}
@@ -2724,7 +2724,7 @@ exports[`renders without description 1`] = `
                         ]
                       }
                     >
-                      Available from:
+                      Available From:
                     </Text>
                     <Text
                       accessible={true}
@@ -2802,7 +2802,7 @@ exports[`renders without description 1`] = `
                         ]
                       }
                     >
-                      Available to:
+                      Available Until:
                     </Text>
                     <Text
                       accessible={true}

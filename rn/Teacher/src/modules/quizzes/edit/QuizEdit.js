@@ -196,6 +196,7 @@ export class QuizEdit extends Component<any, Props, any> {
             <Heading1 style={style.heading} accessible={false}> </Heading1>
             <RowWithDetail
               title={i18n('Quiz Type')}
+              detailSelected={this.state.pickers.quiz_type}
               detail={readable.quizType}
               disclosureIndicator={true}
               border='both'
@@ -227,6 +228,7 @@ export class QuizEdit extends Component<any, Props, any> {
               <View>
                 <RowWithDetail
                   title={i18n('Assignment Group')}
+                  detailSelected={this.state.pickers.assignment_group_id}
                   detail={assignmentGroup && assignmentGroup.name}
                   disclosureIndicator={true}
                   border='bottom'
@@ -288,6 +290,7 @@ export class QuizEdit extends Component<any, Props, any> {
               <View>
                 <RowWithDetail
                   title={i18n('Quiz Score to Keep')}
+                  detailSelected={this.state.pickers.scoring_policy}
                   detail={readable.scoringPolicy}
                   disclosureIndicator={true}
                   border='bottom'
@@ -349,6 +352,7 @@ export class QuizEdit extends Component<any, Props, any> {
                       <View style={{ flex: 1 }}>
                         <RowWithDetail
                           title={i18n('Show Correct Answers At')}
+                          detailSelected={this.state.pickers.show_correct_answers_at}
                           detail={readable.showCorrectAnswersAt || '--'}
                           border='bottom'
                           onPress={this._togglePicker('show_correct_answers_at', null, (shown) => {
@@ -371,6 +375,7 @@ export class QuizEdit extends Component<any, Props, any> {
                       <View style={{ flex: 1 }}>
                         <RowWithDetail
                           title={i18n('Hide Correct Answers At')}
+                          detailSelected={this.state.pickers.hide_correct_answers_at}
                           detail={readable.hideCorrectAnswersAt || '--'}
                           border='bottom'
                           onPress={this._togglePicker('hide_correct_answers_at', null, (shown) => {
@@ -614,6 +619,8 @@ export class QuizEdit extends Component<any, Props, any> {
     this.props.navigator.show('/rich-text-editor', { modal: false }, {
       defaultValue: this.state.quiz.description,
       onChangeValue: this._updateQuiz('description'),
+      showToolbar: 'always',
+      placeholder: i18n('Description'),
     })
   }
 

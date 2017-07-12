@@ -52,9 +52,9 @@ export default class DueDates extends React.Component<any, Props, any> {
              </View>
     }
 
-    const availableFromTitle = i18n('Available from:')
+    const availableFromTitle = i18n('Available From:')
 
-    const availableToTitle = i18n('Available to:')
+    const availableToTitle = i18n('Available Until:')
 
     const availableFrom = dates.bestAvailableFrom()
     const availableTo = dates.bestAvailableTo()
@@ -69,7 +69,7 @@ export default class DueDates extends React.Component<any, Props, any> {
     }
 
     if (!availableTo) {
-      availableToAccessibilityLabel = i18n('No available to date set.')
+      availableToAccessibilityLabel = i18n('No available until date set.')
     }
 
     return (<View>

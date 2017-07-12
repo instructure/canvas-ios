@@ -20,6 +20,7 @@ import images from '../../images/'
 import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 import RowWithSwitch from '../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../common/components/rows/RowWithDetail'
+import RowWithTextInput from '../../common/components/rows/RowWithTextInput'
 import Screen from '../../routing/Screen'
 import ReactNative, {
   View,
@@ -37,9 +38,9 @@ const { NativeAccessibility } = NativeModules
 var PickerItemIOS = PickerIOS.Item
 
 type Validation = {
-  isValid: boolean,
-  title: boolean,
-  points: boolean,
+  invalid: string,
+  title: string,
+  points: string,
 }
 
 export const GRADE_DISPLAY_OPTIONS: Map<string, string> = new Map([
@@ -66,9 +67,9 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       pickerSelectedValue: 'initial value set in constructor',
       currentAssignmentKey: null,
       validation: {
-        isValid: true,
-        title: true,
-        points: true,
+        invalid: '',
+        title: '',
+        points: '',
       },
     }
   }
@@ -80,27 +81,27 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   renderTextInput (fieldName: string, placeholder: string, testID: string, styleParam: any = {}, focus: boolean = false, keyboardType: string = 'default') {
     return (
       <TextInput style={styleParam}
-                 value={ this.defaultValueForInput(fieldName) }
-                 placeholder={ placeholder }
-                 returnKeyType={'done'}
-                 keyboardType={keyboardType}
-                 blurOnSubmit={true}
-                 onChangeText={ value => this.updateFromInput(fieldName, value) }
-                 onFocus={(event) => this._scrollToInput(ReactNative.findNodeHandle(event.target))}
-                 testID={testID}/>
+        value={ this.defaultValueForInput(fieldName) }
+        placeholder={ placeholder }
+        returnKeyType={'done'}
+        keyboardType={keyboardType}
+        blurOnSubmit={true}
+        onChangeText={ value => this.updateFromInput(fieldName, value) }
+        onFocus={(event) => this._scrollToInput}
+        testID={testID}/>
     )
   }
 
-  _scrollToInput = (input: any) => {
+  _scrollToInput = (event: any) => {
+    const input = ReactNative.findNodeHandle(event.target)
     this.refs.scrollView.scrollToFocusedInput(input)
   }
 
   renderDataMapPicker = () => {
     if (!this.state.showPicker) return <View/>
 
-    return <View style={style.dateEditorContainer}>
+    return <View>
       <PickerIOS
-        style={style.picker}
         selectedValue={this.state.pickerSelectedValue}
         onValueChange={this.pickerValueDidChange.bind(this)}
         testID='assignmentPicker'>
@@ -122,18 +123,14 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
     let savingText = i18n('Saving')
 
-    let requiredText = i18n('Invalid field')
-    let requiredTitleText = i18n('A title is required')
-    let requiredPointsText = i18n('The value of possible points must be zero or greater')
-
     let titlePlaceHolder = i18n('Title')
-    let pointsPlaceHolder = i18n('Points')
+    let pointsLabel = i18n('Points')
     let displayGradeAs = i18n('Display Grade As')
     let publish = i18n('Publish')
 
     return (
       <Screen
-        title={i18n('Edit Assignment Details')}
+        title={i18n('Edit Assignment')}
         navBarStyle='light'
         navBarTitleColor={color.darkText}
         navBarButtonColor={color.link}
@@ -155,7 +152,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={savingText} visible={this.state.pending}/>
-          <UnmetRequirementBanner text={requiredText} visible={!this.state.validation.isValid} testID={'assignmentDetailsEdit.unmet-requirement-banner'}/>
+          <UnmetRequirementBanner text={this.state.validation.invalid} visible={this.state.validation.invalid} testID={'assignmentDetailsEdit.unmet-requirement-banner'}/>
           <KeyboardAwareScrollView
             style={style.container}
             ref='scrollView'
@@ -167,10 +164,10 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             <View style={[style.row, style.topRow, style.bottomRow]}>
               { this.renderTextInput('name', titlePlaceHolder, 'titleInput', style.title) }
             </View>
-            <RequiredFieldSubscript title={requiredTitleText} visible={!this.state.validation.title} />
+            <RequiredFieldSubscript title={this.state.validation.title} visible={this.state.validation.title} />
 
             {/* Description */}
-            <EditSectionHeader title={sectionDescription} style={[style.sectionHeader, { marginTop: 0 }]}/>
+            <EditSectionHeader title={sectionDescription} style={{ marginTop: 0 }}/>
             <TouchableHighlight
               testID='edit-description'
               onPress={this._editDescription}
@@ -186,19 +183,25 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
             {/* Points */}
             <EditSectionHeader title={sectionDetails} />
-            <View style={[style.row, style.twoColumnRow, style.topRow]}>
-              <View accessible={true} accessibilityLabel={pointsPlaceHolder} style={{ flex: 0, height: 50, justifyContent: 'center' }}>
-                <Text style={[style.twoColumnRowLeftText, { flex: 0 }]}>{pointsPlaceHolder}</Text>
-              </View>
-              { this.renderTextInput('points_possible', pointsPlaceHolder, 'pointsInput', style.points, false, 'numeric') }
-            </View>
+            <RowWithTextInput
+              title={pointsLabel}
+              border='bottom'
+              placeholder='--'
+              inputWidth={200}
+              onChangeText={detail => this.updateFromInput('points_possible', detail)}
+              keyboardType='number-pad'
+              defaultValue={this.defaultValueForInput('points_possible')}
+              onFocus={this._scrollToInput}
+              identifier='assignmentDetails.edit.points_possible.input'
+            />
 
             {/* Display Grade As */}
             <RowWithDetail title={displayGradeAs}
-                          detail={GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}
-                          onPress={this.toggleDisplayGradeAsPicker}
-                          border={'bottom'}
-                          testID="assignment-details.toggle-display-grade-as-picker" />
+              detailSelected={this.state.showPicker}
+              detail={GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}
+              onPress={this.toggleDisplayGradeAsPicker}
+              border={'bottom'}
+              testID="assignment-details.toggle-display-grade-as-picker" />
             {this.renderDataMapPicker()}
 
             {/* Publish */}
@@ -208,10 +211,15 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
               value={this.defaultValueForBooleanInput('published')}
               identifier='published'
               onValueChange={this._updateToggleValue} />
-            <RequiredFieldSubscript title={requiredPointsText} visible={!this.state.validation.points} />
+
+            <RequiredFieldSubscript title={this.state.validation.points} visible={this.state.validation.points} />
 
             {/* Due Dates */}
-            <AssignmentDatesEditor assignment={this.props.assignmentDetails} ref={c => { this.datesEditor = c }} navigator={this.props.navigator} />
+            <AssignmentDatesEditor
+              assignment={this.props.assignmentDetails}
+              ref={c => { this.datesEditor = c }}
+              canEditAssignees={Boolean(this.state.assignment)}
+              navigator={this.props.navigator} />
 
           </KeyboardAwareScrollView>
         </View>
@@ -227,6 +235,8 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     this.props.navigator.show('/rich-text-editor', { modal: false }, {
       onChangeValue: (value) => { this.updateFromInput('description', value) },
       defaultValue: this.state.assignment.description,
+      placeholder: i18n('Description'),
+      showToolbar: 'always',
     })
   }
 
@@ -255,7 +265,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   defaultValueForInput (key: string): string {
     const value = this.state.assignment[key]
-    if (!value) { return '' }
+    if (!value && key !== 'points_possible') { return '' }
     return value.toString()
   }
 
@@ -266,27 +276,34 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   validateChanges (): Validation {
     const assignment = this.state.assignment
+    let requiredText = i18n('Invalid field')
 
     let validator = {
-      isValid: true,
-      title: true,
-      points: true,
+      invalid: '',
+      title: '',
+      points: '',
     }
 
     if (!assignment.name || assignment.name.replace(/\s/g, '') === '') {
       validator = {
         ...validator,
-        title: false,
-        isValid: false,
+        title: i18n('A title is required'),
+        invalid: requiredText,
       }
     }
 
-    const pointsPossible = Number(assignment.points_possible)
-    if (isNaN(pointsPossible) || pointsPossible < 0) {
+    const pointsPossible = String(assignment.points_possible)
+    if (isNaN(pointsPossible) || !pointsPossible) {
       validator = {
         ...validator,
-        points: false,
-        isValid: false,
+        points: i18n('Points possible must be a number'),
+        invalid: requiredText,
+      }
+    } else if (Number(pointsPossible) < 0) {
+      validator = {
+        ...validator,
+        points: i18n('The value of possible points must be zero or greater'),
+        invalid: requiredText,
       }
     }
 
@@ -294,7 +311,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
     if (!datesAreValid) {
       validator = {
         ...validator,
-        isValid: false,
+        invalid: requiredText,
       }
     }
 
@@ -304,7 +321,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   actionDonePressed () {
     const validator = this.validateChanges()
 
-    if (!validator.isValid) {
+    if (validator.invalid !== '') {
       this.setState({ validation: validator })
       setTimeout(function () { NativeAccessibility.focusElement('assignmentDetailsEdit.unmet-requirement-banner') }, 500)
       return

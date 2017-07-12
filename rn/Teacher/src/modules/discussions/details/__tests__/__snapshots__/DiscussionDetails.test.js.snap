@@ -642,7 +642,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 ]
                               }
                             >
-                              Available from:
+                              Available From:
                             </Text>
                             <Text
                               accessible={true}
@@ -720,7 +720,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 ]
                               }
                             >
-                              Available to:
+                              Available Until:
                             </Text>
                             <Text
                               accessible={true}
@@ -2204,7 +2204,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                 ]
                               }
                             >
-                              Available from:
+                              Available From:
                             </Text>
                             <Text
                               accessible={true}
@@ -2282,7 +2282,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                 ]
                               }
                             >
-                              Available to:
+                              Available Until:
                             </Text>
                             <Text
                               accessible={true}
@@ -3561,7 +3561,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 ]
                               }
                             >
-                              Available from:
+                              Available From:
                             </Text>
                             <Text
                               accessible={true}
@@ -3639,7 +3639,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 ]
                               }
                             >
-                              Available to:
+                              Available Until:
                             </Text>
                             <Text
                               accessible={true}
@@ -5574,7 +5574,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 ]
                               }
                             >
-                              Available from:
+                              Available From:
                             </Text>
                             <Text
                               accessible={true}
@@ -5652,7 +5652,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 ]
                               }
                             >
-                              Available to:
+                              Available Until:
                             </Text>
                             <Text
                               accessible={true}

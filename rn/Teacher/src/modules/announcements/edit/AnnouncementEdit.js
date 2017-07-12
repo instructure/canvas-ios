@@ -176,6 +176,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
               <View>
                 <RowWithDetail
                   title={i18n('Post at...')}
+                  detailSelected={this.state.delayedPostAtPickerShown}
                   detail={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
                   border='bottom'
                   onPress={this._toggleDelayedPostAtPicker}

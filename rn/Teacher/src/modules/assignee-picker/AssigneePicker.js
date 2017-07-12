@@ -24,6 +24,7 @@ import GroupActions from '../groups/actions'
 import UserActions from '../users/actions'
 import { Text } from '../../common/text'
 import Screen from '../../routing/Screen'
+import DisclosureIndicator from '../../common/components/DisclosureIndicator'
 
 export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 
@@ -124,9 +125,12 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
           { this.state.selected.map((assignee: Assignee) => <AssigneeRow assignee={assignee} onDelete={this.deleteAssignee} key={assignee.id}/>) }
           <View style={styles.space} />
           <TouchableHighlight style={styles.button} onPress={this.addAssignee}>
-            <View style={styles.buttonContainer}>
-              <Image source={Images.add} style={styles.buttonImage} />
-              <Text style={styles.buttonText}>Add Assignee</Text>
+            <View style ={styles.rowContainer}>
+              <View style={styles.buttonContainer}>
+                <Image source={Images.add} style={styles.buttonImage} />
+                <Text style={styles.buttonText}>{i18n('Add Assignee')}</Text>
+              </View>
+              <DisclosureIndicator />
             </View>
           </TouchableHighlight>
         </ScrollView>
@@ -169,6 +173,14 @@ const styles = StyleSheet.create({
     marginRight: 8,
     height: 18,
     width: 18,
+  },
+  rowContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingRight: global.style.defaultPadding,
   },
 })
 

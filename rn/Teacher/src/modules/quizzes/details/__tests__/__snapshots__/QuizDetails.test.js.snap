@@ -515,7 +515,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -543,7 +543,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -593,7 +593,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -1935,7 +1935,7 @@ exports[`QuizDetails displays access code 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -1963,7 +1963,7 @@ exports[`QuizDetails displays access code 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -2013,7 +2013,7 @@ exports[`QuizDetails displays access code 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -3355,7 +3355,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -3383,7 +3383,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -3433,7 +3433,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -4655,7 +4655,7 @@ exports[`QuizDetails renders 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -4683,7 +4683,7 @@ exports[`QuizDetails renders 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -4733,7 +4733,7 @@ exports[`QuizDetails renders 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -6015,7 +6015,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -6043,7 +6043,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -6093,7 +6093,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -7435,7 +7435,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -7463,7 +7463,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -7513,7 +7513,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -8795,7 +8795,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -8823,7 +8823,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -8873,7 +8873,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -10155,7 +10155,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -10183,7 +10183,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -10233,7 +10233,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -11515,7 +11515,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -11543,7 +11543,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -11593,7 +11593,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -12875,7 +12875,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -12903,7 +12903,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -12953,7 +12953,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -14235,7 +14235,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -14263,7 +14263,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -14313,7 +14313,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -15535,7 +15535,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -15563,7 +15563,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -15613,7 +15613,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -16895,7 +16895,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -16923,7 +16923,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -16973,7 +16973,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -18255,7 +18255,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -18333,7 +18333,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -19647,7 +19647,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -19675,7 +19675,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -19725,7 +19725,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -21067,7 +21067,7 @@ exports[`QuizDetails renders published state 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -21095,7 +21095,7 @@ exports[`QuizDetails renders published state 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -21145,7 +21145,7 @@ exports[`QuizDetails renders published state 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -22427,7 +22427,7 @@ exports[`QuizDetails renders published state 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -22455,7 +22455,7 @@ exports[`QuizDetails renders published state 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -22505,7 +22505,7 @@ exports[`QuizDetails renders published state 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -23787,7 +23787,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -23815,7 +23815,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -23865,7 +23865,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -25147,7 +25147,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -25175,7 +25175,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -25225,7 +25225,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -26507,7 +26507,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -26535,7 +26535,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -26585,7 +26585,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -27867,7 +27867,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -27895,7 +27895,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -27945,7 +27945,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -29227,7 +29227,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -29255,7 +29255,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -29305,7 +29305,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -30587,7 +30587,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -30615,7 +30615,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -30665,7 +30665,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -31947,7 +31947,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -31975,7 +31975,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -32025,7 +32025,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -33307,7 +33307,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -33335,7 +33335,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -33385,7 +33385,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -34667,7 +34667,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -34695,7 +34695,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -34745,7 +34745,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -36027,7 +36027,7 @@ exports[`QuizDetails renders time limit 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -36055,7 +36055,7 @@ exports[`QuizDetails renders time limit 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -36105,7 +36105,7 @@ exports[`QuizDetails renders time limit 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -37387,7 +37387,7 @@ exports[`QuizDetails renders time limit 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -37415,7 +37415,7 @@ exports[`QuizDetails renders time limit 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -37465,7 +37465,7 @@ exports[`QuizDetails renders time limit 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -38747,7 +38747,7 @@ exports[`QuizDetails renders view responses 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -38775,7 +38775,7 @@ exports[`QuizDetails renders view responses 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -38825,7 +38825,7 @@ exports[`QuizDetails renders view responses 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -40107,7 +40107,7 @@ exports[`QuizDetails renders view responses 2`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -40135,7 +40135,7 @@ exports[`QuizDetails renders view responses 2`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -40185,7 +40185,7 @@ exports[`QuizDetails renders view responses 2`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -41407,7 +41407,7 @@ exports[`QuizDetails renders view responses 3`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -41435,7 +41435,7 @@ exports[`QuizDetails renders view responses 3`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -41485,7 +41485,7 @@ exports[`QuizDetails renders view responses 3`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}
@@ -42707,7 +42707,7 @@ exports[`QuizDetails renders without a description 1`] = `
                           ]
                         }
                       >
-                        Available from:
+                        Available From:
                       </Text>
                       <Text
                         accessible={true}
@@ -42735,7 +42735,7 @@ exports[`QuizDetails renders without a description 1`] = `
                     </Text>
                   </View>
                   <View
-                    accessibilityLabel="No available to date set."
+                    accessibilityLabel="No available until date set."
                     accessible={true}
                   >
                     <Text
@@ -42785,7 +42785,7 @@ exports[`QuizDetails renders without a description 1`] = `
                           ]
                         }
                       >
-                        Available to:
+                        Available Until:
                       </Text>
                       <Text
                         accessible={true}

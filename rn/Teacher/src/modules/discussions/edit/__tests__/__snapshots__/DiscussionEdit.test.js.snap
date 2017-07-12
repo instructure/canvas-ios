@@ -820,7 +820,7 @@ exports[`DiscussionEdit renders 1`] = `
             Availability
           </Text>
           <TouchableHighlight
-            accessibilityLabel="Available from, --"
+            accessibilityLabel="Available From, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -896,7 +896,7 @@ exports[`DiscussionEdit renders 1`] = `
                     ]
                   }
                 >
-                  Available from
+                  Available From
                 </Text>
               </View>
               <View
@@ -939,7 +939,7 @@ exports[`DiscussionEdit renders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -955,7 +955,7 @@ exports[`DiscussionEdit renders 1`] = `
             </View>
           </TouchableHighlight>
           <TouchableHighlight
-            accessibilityLabel="Available until, --"
+            accessibilityLabel="Available Until, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -1031,7 +1031,7 @@ exports[`DiscussionEdit renders 1`] = `
                     ]
                   }
                 >
-                  Available until
+                  Available Until
                 </Text>
               </View>
               <View
@@ -1074,7 +1074,7 @@ exports[`DiscussionEdit renders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -1943,7 +1943,7 @@ exports[`DiscussionEdit renders new form 1`] = `
             Availability
           </Text>
           <TouchableHighlight
-            accessibilityLabel="Available from, --"
+            accessibilityLabel="Available From, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -2019,7 +2019,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                     ]
                   }
                 >
-                  Available from
+                  Available From
                 </Text>
               </View>
               <View
@@ -2062,7 +2062,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -2078,7 +2078,7 @@ exports[`DiscussionEdit renders new form 1`] = `
             </View>
           </TouchableHighlight>
           <TouchableHighlight
-            accessibilityLabel="Available until, --"
+            accessibilityLabel="Available Until, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -2154,7 +2154,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                     ]
                   }
                 >
-                  Available until
+                  Available Until
                 </Text>
               </View>
               <View
@@ -2197,7 +2197,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3066,7 +3066,7 @@ exports[`DiscussionEdit updates from props 1`] = `
             Availability
           </Text>
           <TouchableHighlight
-            accessibilityLabel="Available from, --"
+            accessibilityLabel="Available From, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -3142,7 +3142,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                     ]
                   }
                 >
-                  Available from
+                  Available From
                 </Text>
               </View>
               <View
@@ -3185,7 +3185,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3201,7 +3201,7 @@ exports[`DiscussionEdit updates from props 1`] = `
             </View>
           </TouchableHighlight>
           <TouchableHighlight
-            accessibilityLabel="Available until, --"
+            accessibilityLabel="Available Until, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -3277,7 +3277,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                     ]
                   }
                 >
-                  Available until
+                  Available Until
                 </Text>
               </View>
               <View
@@ -3320,7 +3320,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -4189,7 +4189,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
             Availability
           </Text>
           <TouchableHighlight
-            accessibilityLabel="Available from, --"
+            accessibilityLabel="Available From, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -4265,7 +4265,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                     ]
                   }
                 >
-                  Available from
+                  Available From
                 </Text>
               </View>
               <View
@@ -4308,7 +4308,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -4324,7 +4324,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
             </View>
           </TouchableHighlight>
           <TouchableHighlight
-            accessibilityLabel="Available until, --"
+            accessibilityLabel="Available Until, --"
             accessibilityTraits={
               Array [
                 "button",
@@ -4400,7 +4400,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                     ]
                   }
                 >
-                  Available until
+                  Available Until
                 </Text>
               </View>
               <View
@@ -4443,7 +4443,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },

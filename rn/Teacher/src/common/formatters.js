@@ -4,7 +4,7 @@ import i18n from 'format-message'
 import moment from 'moment'
 import { isDateValid } from '../utils/dateUtils'
 
-const noDueDateString = i18n('No due date')
+const noDueDateString = i18n('No Due Date')
 
 export function formattedDueDate (date: ?Date): string {
   if (!date) return noDueDateString

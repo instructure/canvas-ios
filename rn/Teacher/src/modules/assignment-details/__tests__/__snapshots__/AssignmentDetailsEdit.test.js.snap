@@ -24,7 +24,7 @@ exports[`error occurs when done pressed 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -179,7 +179,7 @@ exports[`error occurs when done pressed 1`] = `
           }
           testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
-          Invalid field
+          
         </Text>
       </View>
     </View>
@@ -310,12 +310,9 @@ exports[`error occurs when done pressed 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -490,103 +487,134 @@ exports[`error occurs when done pressed 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="20"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="20"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -707,7 +735,7 @@ exports[`error occurs when done pressed 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -877,6 +905,7 @@ exports[`error occurs when done pressed 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],
@@ -917,7 +946,7 @@ exports[`modal saving is shown on assignment update 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -1072,7 +1101,7 @@ exports[`modal saving is shown on assignment update 1`] = `
           }
           testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
-          Invalid field
+          
         </Text>
       </View>
     </View>
@@ -1203,12 +1232,9 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -1383,103 +1409,134 @@ exports[`modal saving is shown on assignment update 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="20"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="20"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -1600,7 +1657,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -1770,6 +1827,7 @@ exports[`modal saving is shown on assignment update 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],
@@ -1810,7 +1868,7 @@ exports[`renders 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -1965,7 +2023,7 @@ exports[`renders 1`] = `
           }
           testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
-          Invalid field
+          
         </Text>
       </View>
     </View>
@@ -2096,12 +2154,9 @@ exports[`renders 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -2276,103 +2331,134 @@ exports[`renders 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="20"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="20"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -2493,7 +2579,7 @@ exports[`renders 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -2663,6 +2749,7 @@ exports[`renders 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],
@@ -2703,7 +2790,7 @@ exports[`saving invalid dates displays banner 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -2858,7 +2945,7 @@ exports[`saving invalid dates displays banner 1`] = `
           }
           testID="assignmentDetailsEdit.unmet-requirement-banner"
         >
-          Invalid field
+          
         </Text>
       </View>
     </View>
@@ -2989,12 +3076,9 @@ exports[`saving invalid dates displays banner 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -3169,103 +3253,134 @@ exports[`saving invalid dates displays banner 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="20"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="20"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -3386,7 +3501,7 @@ exports[`saving invalid dates displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -3560,6 +3675,7 @@ exports[`saving invalid dates displays banner 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],
@@ -3600,7 +3716,7 @@ exports[`saving invalid name displays banner 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -3925,12 +4041,9 @@ exports[`saving invalid name displays banner 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -4105,103 +4218,134 @@ exports[`saving invalid name displays banner 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="20"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="20"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -4322,7 +4466,7 @@ exports[`saving invalid name displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -4492,6 +4636,7 @@ exports[`saving invalid name displays banner 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],
@@ -4532,7 +4677,7 @@ exports[`saving invalid points possible displays banner 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -4821,12 +4966,9 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -5001,103 +5143,134 @@ exports[`saving invalid points possible displays banner 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="D"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="D"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -5218,7 +5391,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -5392,7 +5565,7 @@ exports[`saving invalid points possible displays banner 1`] = `
             }
             testID={undefined}
           >
-            The value of possible points must be zero or greater
+            Points possible must be a number
           </Text>
         </View>
         <AssignmentDatesEditor
@@ -5424,6 +5597,7 @@ exports[`saving invalid points possible displays banner 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],
@@ -5464,7 +5638,7 @@ exports[`saving negative points possible displays banner 1`] = `
       },
     ]
   }
-  title="Edit Assignment Details"
+  title="Edit Assignment"
 >
   <View
     style={
@@ -5753,12 +5927,9 @@ exports[`saving negative points possible displays banner 1`] = `
                 "height": 50,
                 "justifyContent": "flex-start",
               },
-              Array [
-                undefined,
-                Object {
-                  "marginTop": 0,
-                },
-              ],
+              Object {
+                "marginTop": 0,
+              },
             ]
           }
         >
@@ -5933,103 +6104,134 @@ exports[`saving negative points possible displays banner 1`] = `
             Details
           </Text>
         </View>
-        <View
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
           style={
             Array [
               Object {
-                "backgroundColor": "white",
-                "paddingBottom": 8,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 8,
+                "height": 54,
               },
+              undefined,
               Object {
-                "alignItems": "center",
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
-                "flex": 1,
-                "flexDirection": "row",
-                "height": 54,
-                "justifyContent": "space-between",
-              },
-              Object {
-                "borderTopColor": "#C7CDD1",
-                "borderTopWidth": 0.5,
               },
             ]
           }
+          testID={undefined}
         >
           <View
-            accessibilityLabel="Points"
-            accessible={true}
-            style={
-              Object {
-                "flex": 0,
-                "height": 50,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Array [
-                    Object {
-                      "flex": 1,
-                      "fontWeight": "600",
-                    },
-                    Object {
-                      "flex": 0,
-                    },
-                  ],
-                  Object {
-                    "fontFamily": ".SFUIDisplay-semibold",
-                  },
-                ]
-              }
-            >
-              Points
-            </Text>
-          </View>
-          <TextInput
-            blurOnSubmit={true}
-            keyboardType="numeric"
-            onChangeText={[Function]}
-            onFocus={[Function]}
-            placeholder="Points"
-            returnKeyType="done"
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "paddingBottom": 12.8,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12.8,
                 },
                 Object {
-                  "fontSize": 17,
-                },
-                Object {
-                  "textAlign": "right",
-                  "width": 50,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "backgroundColor": "white",
                 },
               ]
             }
-            testID="pointsInput"
-            value="-1"
-          />
-        </View>
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Points
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 50,
+                      "width": 200,
+                    }
+                  }
+                >
+                  <TextInput
+                    defaultValue="-1"
+                    keyboardType="number-pad"
+                    onChangeText={[Function]}
+                    onFocus={[Function]}
+                    placeholder="--"
+                    style={
+                      Array [
+                        Object {
+                          "flex": 1,
+                        },
+                        Object {
+                          "textAlign": "right",
+                        },
+                      ]
+                    }
+                    testID="assignmentDetails.edit.points_possible.input"
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
         <TouchableHighlight
           accessibilityLabel="Display Grade As, Points"
           accessibilityTraits={
@@ -6150,7 +6352,7 @@ exports[`saving negative points possible displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -6356,6 +6558,7 @@ exports[`saving negative points possible displays banner 1`] = `
               "updated_at": "2017-03-17T19:15:25Z",
             }
           }
+          canEditAssignees={true}
           navigator={
             Object {
               "dismiss": [Function],

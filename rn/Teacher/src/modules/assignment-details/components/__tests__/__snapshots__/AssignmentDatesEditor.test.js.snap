@@ -571,7 +571,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={
@@ -1209,7 +1209,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={
@@ -1847,7 +1847,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={
@@ -2533,7 +2533,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={
@@ -3171,7 +3171,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={
@@ -3857,7 +3857,7 @@ exports[`snapshots! render with single due date 1`] = `
               ]
             }
           >
-            Available To
+            Available Until
           </Text>
           <View
             style={

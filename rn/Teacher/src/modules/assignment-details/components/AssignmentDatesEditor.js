@@ -29,6 +29,7 @@ import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Navigator from '../../../routing/Navigator'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import { formattedDate, extractDateFromString } from '../../../utils/dateUtils'
+import branding from '../../../common/branding'
 
 type Props = {
   assignment: Assignment,
@@ -437,8 +438,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     }
 
     Alert.alert(
-      i18n('Are you sure?'),
-      i18n('You cannot undo this action.'),
+      i18n('Remove Due Date'),
+      i18n('This will remove the due date and all of the associated assignees.'),
       [
         { text: i18n('Remove'), onPress: remove, style: 'destructive' },
         { text: i18n('Cancel'), style: 'cancel' },
@@ -466,7 +467,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
           </View>
   }
 
-  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType) => {
+  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType, dateTextColor?: string) => {
     if (type === 'none') return <View />
 
     const stringDate = date[type] ? formattedDueDate(new Date(date[type])) : '--'
@@ -477,7 +478,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
         title = i18n('Available From')
         break
       case 'lock_at':
-        title = i18n('Available To')
+        title = i18n('Available Until')
         break
     }
 
@@ -489,11 +490,13 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       this.removeDateType(date, type)
     }
 
+    let detailTextStyle = dateTextColor ? { color: dateTextColor } : styles.detailText
+
     return (<TouchableHighlight style={styles.row} onPress={modifyFunction}>
               <View style={styles.rowContainer}>
                 <Text style={styles.titleText}>{title}</Text>
                 <View style={styles.detailsRowContainer}>
-                  <Text style={styles.detailText}>{stringDate}</Text>
+                  <Text style={detailTextStyle}>{stringDate}</Text>
                   {date[type] && <Button onPress={removeDateTypeFunction} containerStyle={styles.deleteDateTypeButton}><Image source={Images.clear} /></Button>}
                 </View>
               </View>
@@ -503,8 +506,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   renderDate = (date: StagedAssignmentDate) => {
     let title = i18n('Assign To')
     let requiredAssigneesText = i18n('Assignees required')
-    let requiredDueDateText = i18n("'Due Date' must be between 'Available From' and 'Available To' dates")
-    let requiredFromToText = i18n("'Available From' must be before 'Available To'")
+    let requiredDueDateText = i18n("'Due Date' must be between 'Available From' and 'Available Until' dates")
+    let requiredFromToText = i18n("'Available From' must be before 'Available Until'")
 
     let removeButton = this.renderRemoveButton(date)
     let detailTextStyle = date.title ? styles.detailText : styles.detailTextMissing
@@ -527,11 +530,11 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
                     </View>
                   </View>
                 </TouchableHighlight>
-                { this.renderDateType(date, 'due_at') }
+                { date.modifyType === 'due_at' ? this.renderDateType(date, 'due_at', branding.primaryBrandColor) : this.renderDateType(date, 'due_at') }
                 { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
-                { this.renderDateType(date, 'unlock_at') }
+                { date.modifyType === 'unlock_at' ? this.renderDateType(date, 'unlock_at', branding.primaryBrandColor) : this.renderDateType(date, 'unlock_at') }
                 { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
-                { this.renderDateType(date, 'lock_at') }
+                { date.modifyType === 'lock_at' ? this.renderDateType(date, 'lock_at', branding.primaryBrandColor) : this.renderDateType(date, 'lock_at') }
                 { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
               </View>
               <RequiredFieldSubscript title={requiredAssigneesText} visible={!date.validAssignees} />
@@ -542,7 +545,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
   renderButton = () => {
     return (<TouchableHighlight style={styles.button} onPress={this.addAdditionalDueDate}>
-              <View style={styles.buttonInnerContainer}>
+             <View style={styles.buttonInnerContainer}>
                 <Image source={Images.add} style={styles.buttonImage} />
                 <Text style={styles.buttonText}>{i18n('Add Due Date')}</Text>
               </View>

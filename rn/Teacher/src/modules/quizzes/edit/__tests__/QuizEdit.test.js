@@ -336,6 +336,8 @@ describe('QuizEdit', () => {
     }, {
       defaultValue: 'i am a description',
       onChangeValue: expect.any(Function),
+      showToolbar: 'always',
+      placeholder: 'Description',
     })
   })
 

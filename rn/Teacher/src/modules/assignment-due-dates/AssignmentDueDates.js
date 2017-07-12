@@ -61,9 +61,9 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
     }
 
     if (date.lock_at) {
-      availableToAccessibiltyLabel = i18n('Available to: {date}', { date: availableTo })
+      availableToAccessibiltyLabel = i18n('Available until: {date}', { date: availableTo })
     } else {
-      availableToAccessibiltyLabel = i18n('No available to date set')
+      availableToAccessibiltyLabel = i18n('No available until date set')
     }
 
     return (<View style={styles.row} key={date.id || 'base'} >
@@ -74,12 +74,12 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
               </View>
               <View style={styles.divider} />
               <View accessible={true} accessibilityLabel={availableFromAccessibilityLabel}>
-                <Text style={styles.header}>{i18n('Available from')}</Text>
+                <Text style={styles.header}>{i18n('Available From')}</Text>
                 <Text style={styles.content}>{availableFrom}</Text>
               </View>
               <View style={styles.divider} />
               <View accessible={true} accessibilityLabel={availableToAccessibiltyLabel}>
-                <Text style={styles.header}>{i18n('Available to')}</Text>
+                <Text style={styles.header}>{i18n('Available Until')}</Text>
                 <Text style={styles.content}>{availableTo}</Text>
               </View>
               <View style={styles.divider} />

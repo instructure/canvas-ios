@@ -25,6 +25,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
+import branding from '../../../common/branding'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -89,6 +90,8 @@ export class CourseSettings extends Component<any, Props, any> {
   }
 
   render () {
+    let pickerDetailStyle = this.state.showingPicker ? { color: branding.primaryBrandColor } : {}
+
     return (
       <Screen
         title={i18n('Course Settings')}
@@ -145,7 +148,7 @@ export class CourseSettings extends Component<any, Props, any> {
                       {i18n(`Set 'Home' to...`)}
                     </Text>
                     <Text
-                      style={styles.actionableText}
+                      style={[styles.actionableText, pickerDetailStyle]}
                       testID='course-settings.home-page-lbl'>
                       { DISPLAY_NAMES.get(this.state.home) }
                     </Text>

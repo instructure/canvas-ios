@@ -190,6 +190,8 @@ test('edit description', () => {
   expect(navigator.show).toHaveBeenCalledWith('/rich-text-editor', { modal: false }, {
     defaultValue: 'i am a description',
     onChangeValue: expect.any(Function),
+    showToolbar: 'always',
+    placeholder: 'Description',
   })
 })
 
@@ -255,7 +257,7 @@ test('change title', () => {
 })
 
 test('change points', () => {
-  testInputField('pointsInput', 1, 'points_possible')
+  testInputField('assignmentDetails.edit.points_possible.input', 11, 'points_possible')
 })
 
 test('change published', () => {

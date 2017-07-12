@@ -616,7 +616,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -882,7 +882,9 @@ exports[`QuizEdit changes assignment group 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "color": "#374A59",
+                          },
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -1414,7 +1416,7 @@ exports[`QuizEdit changes assignment group 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -2889,7 +2891,9 @@ exports[`QuizEdit changes quiz type 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {
+                          "color": "#374A59",
+                        },
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -3177,7 +3181,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -3693,7 +3697,7 @@ exports[`QuizEdit changes quiz type 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -5168,7 +5172,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -5434,7 +5438,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -5950,7 +5954,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -6612,7 +6616,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -6763,7 +6767,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -7729,7 +7733,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -7995,7 +7999,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -8511,7 +8515,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -9173,7 +9177,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -9324,7 +9328,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -10293,7 +10297,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -10559,7 +10563,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -11075,7 +11079,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -12550,7 +12554,7 @@ exports[`QuizEdit renders 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -12816,7 +12820,7 @@ exports[`QuizEdit renders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -13332,7 +13336,7 @@ exports[`QuizEdit renders 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -14807,7 +14811,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -15073,7 +15077,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -15589,7 +15593,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -17103,7 +17107,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -17369,7 +17373,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -17885,7 +17889,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -19363,7 +19367,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -19629,7 +19633,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -20145,7 +20149,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -20807,7 +20811,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -20992,7 +20996,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -22031,7 +22035,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -22297,7 +22301,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -22813,7 +22817,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -24452,7 +24456,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -24718,7 +24722,9 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {
+                            "color": "#374A59",
+                          },
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -25244,7 +25250,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -26722,7 +26728,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -26988,7 +26994,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -27504,7 +27510,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -28979,7 +28985,9 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {
+                          "color": "#374A59",
+                        },
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -29267,7 +29275,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -29783,7 +29791,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -31258,7 +31266,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -31524,7 +31532,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -32040,7 +32048,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -33626,7 +33634,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -33892,7 +33900,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -34408,7 +34416,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -35994,7 +36002,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -36260,7 +36268,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -36776,7 +36784,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -38362,7 +38370,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -38628,7 +38636,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -39144,7 +39152,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -40619,7 +40627,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -40885,7 +40893,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -41401,7 +41409,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -43004,7 +43012,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -43270,7 +43278,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -43786,7 +43794,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -45261,7 +45269,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -45527,7 +45535,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -46043,7 +46051,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -46705,7 +46713,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -46856,7 +46864,9 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {
+                                  "color": "#374A59",
+                                },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -47861,7 +47871,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -48127,7 +48137,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -48643,7 +48653,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -49305,7 +49315,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -49456,7 +49466,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -50456,7 +50466,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -50722,7 +50732,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -51238,7 +51248,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -52713,7 +52723,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -52979,7 +52989,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -53495,7 +53505,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -55081,7 +55091,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -55347,7 +55357,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -55863,7 +55873,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -57338,7 +57348,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -57604,7 +57614,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -58120,7 +58130,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -59595,7 +59605,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -59861,7 +59871,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -60377,7 +60387,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -61039,7 +61049,9 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {
+                                  "color": "#374A59",
+                                },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -61229,7 +61241,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -62195,7 +62207,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -62461,7 +62473,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -62977,7 +62989,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -63639,7 +63651,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -63824,7 +63836,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -64790,7 +64802,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -65056,7 +65068,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -65572,7 +65584,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -67047,7 +67059,7 @@ exports[`QuizEdit toggles publish 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -67313,7 +67325,7 @@ exports[`QuizEdit toggles publish 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -67829,7 +67841,7 @@ exports[`QuizEdit toggles publish 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -69304,7 +69316,7 @@ exports[`QuizEdit toggles publish 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -69570,7 +69582,7 @@ exports[`QuizEdit toggles publish 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -70086,7 +70098,7 @@ exports[`QuizEdit toggles publish 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -71561,7 +71573,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -71827,7 +71839,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -72343,7 +72355,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -73818,7 +73830,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -74084,7 +74096,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -74600,7 +74612,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -76075,7 +76087,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -76341,7 +76353,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -76985,7 +76997,7 @@ exports[`QuizEdit toggles time limit 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -78460,7 +78472,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -78726,7 +78738,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -79242,7 +79254,7 @@ exports[`QuizEdit toggles time limit 2`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -80717,7 +80729,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -80983,7 +80995,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -81499,7 +81511,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -82161,7 +82173,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -82312,7 +82324,9 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {
+                                  "color": "#374A59",
+                                },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -83317,7 +83331,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                           "color": "#2D3B45",
                           "fontSize": 16,
                         },
-                        undefined,
+                        Object {},
                         Object {
                           "fontFamily": ".SFUIDisplay",
                         },
@@ -83583,7 +83597,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -84099,7 +84113,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                             "color": "#2D3B45",
                             "fontSize": 16,
                           },
-                          undefined,
+                          Object {},
                           Object {
                             "fontFamily": ".SFUIDisplay",
                           },
@@ -84761,7 +84775,9 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {
+                                  "color": "#374A59",
+                                },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },
@@ -84951,7 +84967,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                                   "color": "#2D3B45",
                                   "fontSize": 16,
                                 },
-                                undefined,
+                                Object {},
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
                                 },

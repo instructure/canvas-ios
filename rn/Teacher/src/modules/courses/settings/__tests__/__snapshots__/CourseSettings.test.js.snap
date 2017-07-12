@@ -347,13 +347,16 @@ exports[`CourseSettings dismisses modal activity upon save error 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {},
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },
@@ -739,13 +742,16 @@ exports[`CourseSettings renders 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {},
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },
@@ -1131,13 +1137,16 @@ exports[`CourseSettings renders a modal activity when saving 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {},
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },
@@ -1507,13 +1516,16 @@ exports[`CourseSettings renders with empty image url 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {},
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },
@@ -1899,13 +1911,16 @@ exports[`CourseSettings renders with image url 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {},
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },
@@ -2275,13 +2290,16 @@ exports[`CourseSettings renders without image url 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {},
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },
@@ -2667,13 +2685,18 @@ exports[`CourseSettings shows home view picker when home row tapped 1`] = `
                     "color": "#2D3B45",
                     "fontSize": 16,
                   },
-                  Object {
-                    "color": "#2D3B45",
-                    "flex": 3,
-                    "fontSize": 16,
-                    "lineHeight": 54,
-                    "textAlign": "right",
-                  },
+                  Array [
+                    Object {
+                      "color": "#2D3B45",
+                      "flex": 3,
+                      "fontSize": 16,
+                      "lineHeight": 54,
+                      "textAlign": "right",
+                    },
+                    Object {
+                      "color": "#374A59",
+                    },
+                  ],
                   Object {
                     "fontFamily": ".SFUIDisplay",
                   },

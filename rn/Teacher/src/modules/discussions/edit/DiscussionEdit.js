@@ -245,21 +245,17 @@ export class DiscussionEdit extends Component<any, Props, any> {
                 <RowWithTextInput
                   title={i18n('Points')}
                   border='bottom'
-                  placeholder='0'
+                  placeholder='--'
                   inputWidth={200}
                   onChangeText={this._valueChanged('points_possible')}
                   keyboardType='number-pad'
-                  defaultValue={this.state.points_possible && String(this.state.points_possible)}
+                  defaultValue={(this.state.points_possible && String(this.state.points_possible)) || '0'}
                   onFocus={this._scrollToInput}
                   identifier='discussions.edit.points_possible.input'
                 />
-                <RequiredFieldSubscript
-                  title={this.state.errors.points_possible}
-                  visible={Boolean(this.state.errors.points_possible)}
-                  testID='discussions.edit.points_possible.validation-error'
-                />
                 <RowWithDetail
                   title={i18n('Display Grade as...')}
+                  detailSelected={this.state.gradingTypePickerShown}
                   detail={GRADE_DISPLAY_OPTIONS.get(this.state.grading_type)}
                   disclosureIndicator={true}
                   border='bottom'
@@ -280,6 +276,11 @@ export class DiscussionEdit extends Component<any, Props, any> {
                     ))}
                   </PickerIOS>
                 }
+                <RequiredFieldSubscript
+                  title={this.state.errors.points_possible}
+                  visible={Boolean(this.state.errors.points_possible)}
+                  testID='discussions.edit.points_possible.validation-error'
+                />
               </View>
             }
 
@@ -295,7 +296,8 @@ export class DiscussionEdit extends Component<any, Props, any> {
               <View>
                 <Heading1 style={style.heading}>{i18n('Availability')}</Heading1>
                 <RowWithDetail
-                  title={i18n('Available from')}
+                  title={i18n('Available From')}
+                  detailSelected={this.state.showingDatePicker.delayed_post_at}
                   detail={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
                   border='bottom'
                   onPress={this._toggleDatePicker('delayed_post_at')}
@@ -331,7 +333,8 @@ export class DiscussionEdit extends Component<any, Props, any> {
                   />
                 }
                 <RowWithDetail
-                  title={i18n('Available until')}
+                  title={i18n('Available Until')}
+                  detailSelected={this.state.showingDatePicker.lock_at}
                   detail={this.state.lock_at ? moment(this.state.lock_at).format(`MMM D  h:mm A`) : '--'}
                   border='bottom'
                   onPress={this._toggleDatePicker('lock_at')}
@@ -452,9 +455,13 @@ export class DiscussionEdit extends Component<any, Props, any> {
       errors.message = i18n('A message is required')
     }
 
-    const pointsPossible = Number(this.state.points_possible)
-    if (isNaN(pointsPossible) || pointsPossible < 0) {
-      errors.points_possible = i18n('The value of possible points must be zero or greater')
+    if (this.state.assignment) {
+      const pointsPossible = String(this.state.points_possible)
+      if (isNaN(pointsPossible) || !pointsPossible) {
+        errors.points_possible = i18n('Points possible must be a number')
+      } else if (Number(pointsPossible) < 0) {
+        errors.points_possible = i18n('The value of possible points must be zero or greater')
+      }
     }
 
     this.setState({ errors })
@@ -465,7 +472,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
   updateAssignment () {
     if (this.state.assignment) {
       const updatedAssignment = this.datesEditor.updateAssignment({ ...this.state.assignment })
-      updatedAssignment.points_possible = this.state.points_possible
+      updatedAssignment.points_possible = this.state.points_possible || 0
       updatedAssignment.grading_type = this.state.grading_type
       this.props.updateAssignment(this.props.courseID, updatedAssignment, this.props.assignment)
     }

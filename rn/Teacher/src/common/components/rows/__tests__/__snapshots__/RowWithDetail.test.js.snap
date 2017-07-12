@@ -132,7 +132,7 @@ exports[`Render row with detail label 1`] = `
                   "color": "#2D3B45",
                   "fontSize": 16,
                 },
-                undefined,
+                Object {},
                 Object {
                   "fontFamily": ".SFUIDisplay",
                 },
