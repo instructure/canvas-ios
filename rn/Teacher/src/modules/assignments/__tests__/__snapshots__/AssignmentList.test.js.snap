@@ -2635,6 +2635,30 @@ exports[`renders correctly 1`] = `
 </View>
 `;
 
+exports[`renders correctly when pending 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
+</View>
+`;
+
 exports[`selecting clear filter will remove any applied filters 1`] = `
 <View
   style={

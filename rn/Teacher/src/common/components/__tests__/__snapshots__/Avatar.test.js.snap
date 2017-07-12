@@ -30,10 +30,11 @@ exports[`Avatar renders with border 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
+          "color": "#73818C",
           "fontWeight": "600",
         },
         Object {
-          "fontSize": 13,
+          "fontSize": 18,
         },
       ]
     }
@@ -110,10 +111,11 @@ exports[`Avatar renders without default canvas avatar 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
+          "color": "#73818C",
           "fontWeight": "600",
         },
         Object {
-          "fontSize": 13,
+          "fontSize": 18,
         },
       ]
     }
@@ -153,10 +155,11 @@ exports[`Avatar renders without image 1`] = `
       Array [
         Object {
           "backgroundColor": "transparent",
+          "color": "#73818C",
           "fontWeight": "600",
         },
         Object {
-          "fontSize": 13,
+          "fontSize": 18,
         },
       ]
     }

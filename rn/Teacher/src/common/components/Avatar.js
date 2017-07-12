@@ -53,7 +53,7 @@ export default class Avatar extends Component<any, Props, any> {
     const height = this.props.height || 40
     const width = height
     let borderRadius = Math.round(height / 2)
-    const fontSize = Math.round(height / 3)
+    const fontSize = Math.round(height / 2.25)
     const replacement = this.replacementImage()
     if (replacement) {
       source = replacement
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   altImageText: {
+    color: colors.secondaryButton,
     fontWeight: '600',
     backgroundColor: 'transparent',
   },

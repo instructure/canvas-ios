@@ -502,10 +502,11 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                           Array [
                             Object {
                               "backgroundColor": "transparent",
+                              "color": "#73818C",
                               "fontWeight": "600",
                             },
                             Object {
-                              "fontSize": 11,
+                              "fontSize": 14,
                             },
                           ]
                         }

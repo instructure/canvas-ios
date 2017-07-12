@@ -26,6 +26,7 @@ import { Heading1 } from '../../common/text'
 import Screen from '../../routing/Screen'
 import { type TraitCollection } from '../../routing/Navigator'
 import { isRegularDisplayMode } from '../../routing/utils'
+import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 
 type State = {
   currentFilter: {
@@ -173,6 +174,9 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
   }
 
   render () {
+    if (this.props.pending && !this.props.refreshing) {
+      return <ActivityIndicatorView />
+    }
     if (this.data.length === 0) {
       this.data = this.prepareListData()
       this.selectFirstListItemIfNecessary()
@@ -203,7 +207,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
             sections={this.data}
             renderItem={this.renderRow}
             renderSectionHeader={this.renderSectionHeader}
-            refreshing={Boolean(this.props.pending)}
+            refreshing={this.props.refreshing}
             onRefresh={this.props.refresh}
             keyExtractor={(item, index) => item.id}
           />

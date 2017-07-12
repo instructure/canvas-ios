@@ -52,10 +52,11 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
+              "color": "#73818C",
               "fontWeight": "600",
             },
             Object {
-              "fontSize": 8,
+              "fontSize": 11,
             },
           ]
         }
@@ -376,10 +377,11 @@ exports[`DiscussionReplies renders 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
+              "color": "#73818C",
               "fontWeight": "600",
             },
             Object {
-              "fontSize": 8,
+              "fontSize": 11,
             },
           ]
         }
@@ -700,10 +702,11 @@ exports[`DiscussionReplies renders deleted 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
+              "color": "#73818C",
               "fontWeight": "600",
             },
             Object {
-              "fontSize": 8,
+              "fontSize": 11,
             },
           ]
         }
@@ -935,10 +938,11 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
+              "color": "#73818C",
               "fontWeight": "600",
             },
             Object {
-              "fontSize": 8,
+              "fontSize": 11,
             },
           ]
         }
@@ -1259,10 +1263,11 @@ exports[`DiscussionReplies renders with no user 1`] = `
           Array [
             Object {
               "backgroundColor": "transparent",
+              "color": "#73818C",
               "fontWeight": "600",
             },
             Object {
-              "fontSize": 8,
+              "fontSize": 11,
             },
           ]
         }

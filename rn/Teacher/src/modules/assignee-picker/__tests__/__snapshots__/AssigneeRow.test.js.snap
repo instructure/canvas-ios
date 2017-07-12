@@ -243,10 +243,11 @@ exports[`render correctly without image url 1`] = `
             Array [
               Object {
                 "backgroundColor": "transparent",
+                "color": "#73818C",
                 "fontWeight": "600",
               },
               Object {
-                "fontSize": 13,
+                "fontSize": 18,
               },
             ]
           }

@@ -221,13 +221,13 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
                   style={[styles.headerTitle, {
                     fontSize: this.animatedValue.interpolate({
                       inputRange: [-235, -navbarHeight],
-                      outputRange: [24, 16],
+                      outputRange: [24, 17],
                       extrapolate: 'clamp',
                     }),
                     transform: [{
                       translateY: this.animatedValue.interpolate({
                         inputRange: [-235, -navbarHeight],
-                        outputRange: [0, bothCompact ? -6 : -5],
+                        outputRange: [0, bothCompact ? -8 : -7],
                         extrapolate: 'clamp',
                       }),
                     }],
@@ -255,6 +255,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
           <Animated.Text
             style={[styles.fakeTitle, {
               opacity: fadeOut,
+              top: bothCompact ? 24.5 : 33,
             }]}
             numberOfLines={1}
             ellipsizeMode='tail'
@@ -339,15 +340,13 @@ const styles = StyleSheet.create({
   },
   fakeTitle: {
     position: 'absolute',
-    top: 33,
     left: 0,
     right: 0,
     backgroundColor: 'transparent',
     color: '#fff',
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: '600',
     paddingHorizontal: 60,
-    letterSpacing: 0.6,
     textAlign: 'center',
   },
 })

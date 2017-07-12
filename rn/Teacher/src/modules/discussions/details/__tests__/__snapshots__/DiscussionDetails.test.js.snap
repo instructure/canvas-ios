@@ -957,10 +957,11 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 11,
+                          "fontSize": 14,
                         },
                       ]
                     }
@@ -1262,10 +1263,11 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 8,
+                          "fontSize": 11,
                         },
                       ]
                     }
@@ -2517,10 +2519,11 @@ exports[`DiscussionDetails renders no replies 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 11,
+                          "fontSize": 14,
                         },
                       ]
                     }
@@ -3873,10 +3876,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 11,
+                          "fontSize": 14,
                         },
                       ]
                     }
@@ -4213,10 +4217,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 8,
+                          "fontSize": 11,
                         },
                       ]
                     }
@@ -4568,10 +4573,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 8,
+                          "fontSize": 11,
                         },
                       ]
                     }
@@ -5883,10 +5889,11 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 11,
+                          "fontSize": 14,
                         },
                       ]
                     }
@@ -6188,10 +6195,11 @@ exports[`DiscussionDetails renders with replies 1`] = `
                       Array [
                         Object {
                           "backgroundColor": "transparent",
+                          "color": "#73818C",
                           "fontWeight": "600",
                         },
                         Object {
-                          "fontSize": 8,
+                          "fontSize": 11,
                         },
                       ]
                     }

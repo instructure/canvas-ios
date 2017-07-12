@@ -62,6 +62,13 @@ test('renders correctly', () => {
   })
 })
 
+test('renders correctly when pending', () => {
+  let tree = renderer.create(
+    <AssignmentList {...defaultProps} pending refreshing={false} />
+  )
+  expect(tree.toJSON()).toMatchSnapshot()
+})
+
 test('selected assignment', () => {
   const navigator = template.navigator({
     show: jest.fn(),
