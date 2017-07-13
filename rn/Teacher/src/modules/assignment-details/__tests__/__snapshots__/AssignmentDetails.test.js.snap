@@ -974,7 +974,7 @@ exports[`renders 1`] = `
             Object {
               "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "center",
+              "justifyContent": "flex-start",
             }
           }
         />
@@ -1985,7 +1985,7 @@ exports[`renders loading 1`] = `
             Object {
               "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "center",
+              "justifyContent": "flex-start",
             }
           }
         />
@@ -2996,7 +2996,7 @@ exports[`renders with no submission types 1`] = `
             Object {
               "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "center",
+              "justifyContent": "flex-start",
             }
           }
         />
@@ -4082,7 +4082,7 @@ exports[`renders without description 1`] = `
             Object {
               "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "center",
+              "justifyContent": "flex-start",
             }
           }
         />

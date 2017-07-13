@@ -8,7 +8,8 @@ exports[`render 0 submissions 1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
-        "justifyContent": "space-between",
+        "justifyContent": "flex-start",
+        "maxWidth": 400,
       },
       undefined,
     ]
@@ -268,7 +269,8 @@ exports[`render 1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
-        "justifyContent": "space-between",
+        "justifyContent": "flex-start",
+        "maxWidth": 400,
       },
       undefined,
     ]
@@ -547,7 +549,8 @@ exports[`render multiple data points  1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
-        "justifyContent": "space-between",
+        "justifyContent": "flex-start",
+        "maxWidth": 400,
       },
       undefined,
     ]
@@ -807,7 +810,8 @@ exports[`render on paper submission type 1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
-        "justifyContent": "space-between",
+        "justifyContent": "flex-start",
+        "maxWidth": 400,
       },
       undefined,
     ]
@@ -937,7 +941,8 @@ exports[`render on paper submission type 2`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
-        "justifyContent": "space-between",
+        "justifyContent": "flex-start",
+        "maxWidth": 400,
       },
       undefined,
     ]
@@ -997,7 +1002,8 @@ exports[`render undefined submission type 1`] = `
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
-        "justifyContent": "space-between",
+        "justifyContent": "flex-start",
+        "maxWidth": 400,
       },
       undefined,
     ]
