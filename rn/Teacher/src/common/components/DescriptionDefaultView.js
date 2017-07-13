@@ -29,11 +29,10 @@ DescriptionDefaultView.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    height: 56,
     marginTop: 4,
     paddingTop: 8,
     paddingHorizontal: 12,
-    paddingBottom: 12,
+    paddingBottom: 8,
     backgroundColor: '#F5F5F5',
     borderRadius: 3,
   },

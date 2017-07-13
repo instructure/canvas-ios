@@ -4186,9 +4186,8 @@ exports[`renders without description 1`] = `
             Object {
               "backgroundColor": "#F5F5F5",
               "borderRadius": 3,
-              "height": 56,
               "marginTop": 4,
-              "paddingBottom": 12,
+              "paddingBottom": 8,
               "paddingHorizontal": 12,
               "paddingTop": 8,
             },
