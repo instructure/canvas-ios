@@ -34,6 +34,15 @@ it('renders correctly with different data', () => {
   expect(tree).toMatchSnapshot()
 })
 
+it('renders correctly with a bunch of people in there', () => {
+  const conversation = template.conversation()
+  conversation.participants = Array(100).fill().map((e, i) => ({ id: i.toString(), name: i.toString() }))
+  const tree = renderer.create(
+    <ConversationRow conversation={conversation} drawsTopLine={true} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 it('handles on press', () => {
   const conversation = template.conversation()
   const callback = jest.fn()

@@ -42,8 +42,20 @@ export default class ConversationRow extends Component<any, ConversationRowProps
     const c = this.props.conversation
     const subject = c.subject || i18n('No Subject')
     const names = this._participantNames()
-    const title = names.join(', ')
-    const avatarUserName = names.length > 1 ? i18n('Group') : names[0]
+    const nameCount = names.length
+    let title = ''
+    if (nameCount > 6) {
+      const sample = names.slice(0, 5)
+      title = i18n(
+        '{names} + {count} more',
+        {
+          names: sample.join(', '),
+          count: nameCount - sample.length,
+        })
+    } else {
+      title = names.join(', ')
+    }
+    const avatarUserName = nameCount > 1 ? i18n('Group') : names[0]
     const containerStyles = [styles.container, styles.bottomHairline]
     if (this.props.drawsTopLine) {
       containerStyles.push(styles.topHairline)
