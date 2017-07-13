@@ -95,6 +95,11 @@ describe('SpeedGraderHeader', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('anonymizes the avatar and name', () => {
+    let tree = renderer.create(<Header {...subProps} anonymous={true} />)
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
   it('closes the modal', () => {
     let tree = renderer.create(
       <Header {...subProps} />

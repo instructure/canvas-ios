@@ -32,9 +32,14 @@ export class Header extends Component {
     let name = this.props.anonymous
       ? (sub.groupID ? i18n('Group') : i18n('Student'))
       : sub.name
+    let avatarURL = this.props.anonymous
+      ? ''
+      : sub.avatarURL
     return <View style={[this.props.style, styles.header]}>
       <View style={styles.profileContainer}>
-        <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={name} /></View>
+        <View style={styles.avatar}>
+          <Avatar key={sub.userID} avatarURL={avatarURL} userName={name} />
+        </View>
         <View style={styles.nameContainer}>
           <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
           <SubmissionStatus status={sub.status} />

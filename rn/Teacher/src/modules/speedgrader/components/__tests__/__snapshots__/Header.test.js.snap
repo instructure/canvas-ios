@@ -1,5 +1,204 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "backgroundColor": "white",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginTop": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
+        }
+      }
+    >
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderColor": "#C7CDD1",
+              "borderWidth": 0.5,
+              "justifyContent": "center",
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 20,
+              "height": 40,
+              "width": 40,
+            },
+          ]
+        }
+      >
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#73818C",
+                "fontWeight": "600",
+              },
+              Object {
+                "fontSize": 18,
+              },
+            ]
+          }
+        >
+          S
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "space-between",
+          "marginLeft": 12,
+        }
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Student
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        SUBMITTED
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableOpacity
+        accessibilityComponentType="button"
+        accessibilityTraits="button"
+        activeOpacity={0.2}
+        onLongPress={undefined}
+        onPress={[Function]}
+        onPressIn={undefined}
+        onPressOut={undefined}
+        style={undefined}
+        testID="header.navigation-done"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  </View>
+</View>
+`;
+
 exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
 <View
   style={
@@ -34,34 +233,41 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
         style={
           Array [
             Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "borderColor": "#C7CDD1",
+              "borderWidth": 0.5,
+              "justifyContent": "center",
               "overflow": "hidden",
             },
             Object {
+              "borderRadius": 20,
               "height": 40,
               "width": 40,
-            },
-            Object {
-              "borderRadius": 20,
-            },
-            Object {
-              "backgroundColor": "#F5F5F5",
             },
           ]
         }
       >
-        <Image
-          source={
-            Object {
-              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
-            }
-          }
+        <Text
+          accessible={false}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
           style={
-            Object {
-              "height": 40,
-              "width": 40,
-            }
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#73818C",
+                "fontWeight": "600",
+              },
+              Object {
+                "fontSize": 18,
+              },
+            ]
           }
-        />
+        >
+          S
+        </Text>
       </View>
     </View>
     <View
