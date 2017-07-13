@@ -20,10 +20,6 @@ import Foundation
 import PSPDFKit
 
 
-class CanvadocsCommentReplyAnnotation: PSPDFNoteAnnotation {
-    var inReplyTo: String?
-}
-
 typealias XFDFAnnotation = String
 
 class CanvadocsXFDFParser: NSObject {

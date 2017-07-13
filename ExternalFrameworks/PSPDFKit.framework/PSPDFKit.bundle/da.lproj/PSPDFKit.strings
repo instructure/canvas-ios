@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ugyldig signatur — efter indholdet af dette dokument blev signeret, er det blevet ændret, fusket med eller korrumperet.";
 "Unsigned Signature Field" = "Ikke signeret signaturfelt";
 "Do you really want to remove the signature from the document?" = "Vil du virkelig fjerne signaturen fra dokumentet?";
+"Could not retrieve the certificate from the signature." = "Kunne ikke hente certifikatet fra signaturen.";
+"Could not retrieve the signature contents." = "Kunne ikke hente signaturens indhold.";
+"Could not retrieve the public key from the signature." = "Kunne ikke hente signaturens offentlige nøgle.";
+"Could not retrieve the byte range of the signature." = "Kunne ikke hente signaturens byte-omfang.";
+"Could not understand the encryption padding." = "Kunne ikke forstå krypteringsindpakning.";
+"Could not compute the digest for the document." = "Kunne ikke opstille et resumé af dokumentet.";
+"General failure while trying to determine document integrity." = "Generel fejl i forsøg på at bestemme dokumentets integritet.";
+"The certificate has expired" = "Certifikatet er udløbet";
+"The certificate is not yet valid" = "Certifikatet er endnu ikke gyldigt";
+"Signature validation failed - invalid signature" = "Signaturvalidering mislykkedes - ugyldig signatur";
+"The certificate has been revoked" = "Certifikatet er blevet tilbagekaldt";
+"Certificate problem" = "Certifikatproblem";
+"Could not retrieve the signature contents" = "Kunne ikke hente signaturens indhold";
+"Certificate chain is invalid." = "Certifikatskæden er ugyldig.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Certifikatkæden kunne ikke kontrolleres, da ingen kendte nøgler blev leveret.";
+"Document integrity success, but certificate is self signed." = "Dokumentintegritet succes, men certifikatet er self signed.";
+"Document integrity check failed." = "Kontrol af dokumentets integritet mislykkedes.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekst-til-tale er ikke tilgængelig. Sørg for du har en aktiv internetforbindelse eller Google Text-to-speech engine installeret og slået til på din enhed.";
 
 // Settings
+"Page Layout" = "Sidelayout";
+"Scroll Direction" = "Rulle-retning";
+"Theme" = "Tema";
+"Keep screen on" = "Vis denne skærm";
 "Page Transition" = "Sideovergang";
 "Single" = "Enkelt";
 "Continuous" = "Fortsat";
@@ -611,7 +632,10 @@
 "Jump" = "Skift"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Ikke tilgængelig"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Denne app her ikke adgang til dine fotos.";
-"This app does not have access to your camera." = "Denne app her ikke adgang til dit kamera.";
-"You can enable access in Privacy Settings." = "Du kan tillade adgang i Anonymitetsindstillinger.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ har ikke adgang til dine fotos.";
+"%@ does not have access to your camera." = "%@ har ikke adgang til dit kamera.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Anonymitet";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Du kan slå adgang til i %@.";

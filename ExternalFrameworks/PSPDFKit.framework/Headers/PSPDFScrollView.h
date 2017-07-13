@@ -48,7 +48,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic) NSUInteger spreadIndex;
 
 /// Use `spreadIndex` instead, the value returned is the same.
-@property (nonatomic) NSUInteger pageIndex PSPDF_DEPRECATED(6.5, "Renamed to spreadIndex to be more clear about what this property represents.");
+@property (nonatomic) NSUInteger pageIndex PSPDF_DEPRECATED_IOS(6.5, "Renamed to spreadIndex to be more clear about what this property represents.");
 
 /// The configuration data source for this scroll view
 @property (nonatomic, weak, readonly) id<PSPDFPresentationContext> presentationContext;

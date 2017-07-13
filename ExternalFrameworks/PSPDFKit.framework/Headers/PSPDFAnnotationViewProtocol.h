@@ -22,7 +22,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFAnnotationViewProtocol<NSObject>
 @optional
 
 /// Represented annotation this object is presenting.
-@property (nonatomic) PSPDFAnnotation *annotation;
+@property (nonatomic, nullable) PSPDFAnnotation *annotation;
 
 /// Allows ordering of annotation views.
 @property (nonatomic) NSUInteger zIndex;

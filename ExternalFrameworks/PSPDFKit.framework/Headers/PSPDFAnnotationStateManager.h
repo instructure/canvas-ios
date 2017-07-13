@@ -231,7 +231,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Color management.
 - (void)setLastUsedColor:(nullable UIColor *)lastUsedDrawColor annotationString:(PSPDFAnnotationString)annotationString;
-- (UIColor *)lastUsedColorForAnnotationString:(PSPDFAnnotationString)annotationString;
+- (nullable UIColor *)lastUsedColorForAnnotationString:(PSPDFAnnotationString)annotationString;
 
 /// If we're in drawing state, this dictionary contains the `PSPDFDrawView` classes that are overlaid on the `PSPDFPageView`.
 /// The key is the current page.

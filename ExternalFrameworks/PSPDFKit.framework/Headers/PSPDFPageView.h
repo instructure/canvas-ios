@@ -151,7 +151,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @property (nonatomic, readonly, getter=isTrailingPage) BOOL trailingPage;
 
 /// Return YES if the pdfPage is displayed in a double page mode setup on the right side.
-@property (nonatomic, readonly, getter=isRightPage) BOOL rightPage PSPDF_DEPRECATED(6.5.1, "This is no longer accurate with the introduction of RTL support.");
+@property (nonatomic, readonly, getter=isRightPage) BOOL rightPage PSPDF_DEPRECATED_IOS(6.5.1, "This is no longer accurate with the introduction of RTL support.");
 
 @end
 

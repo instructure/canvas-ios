@@ -24,12 +24,6 @@ extension UIView {
     }
 }
 
-class NonHideableAnnotationToolbar: PSPDFAnnotationToolbar {
-    override var doneButton: UIButton? {
-        return nil
-    }
-}
-
 // swift should just provide these...
 private func == <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
     if case .none = lhs, case .none = rhs {
@@ -120,11 +114,10 @@ class CanvadocView: UIView {
         addSubview(toolbar)
         
         let manager = pdfViewController.annotationStateManager
-        let annotationToolbar = NonHideableAnnotationToolbar(annotationStateManager: manager)
+        let annotationToolbar = CanvadocsAnnotationToolbar(annotationStateManager: manager)
         annotationToolbar.supportedToolbarPositions = [.positionInTopBar]
-        annotationToolbar.barTintColor = self.tintColor
-        annotationToolbar.tintColor = .white
         annotationToolbar.isDragEnabled = false
+        annotationToolbar.showDoneButton = false
         
         flexibleToolbarContainer.flexibleToolbar = annotationToolbar
         flexibleToolbarContainer.overlaidBar = toolbar

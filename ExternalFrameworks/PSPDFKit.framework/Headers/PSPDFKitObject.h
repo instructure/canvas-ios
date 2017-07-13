@@ -26,9 +26,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// X-Callback URL, see http://x-callback-url.com
-/// @note This is used for the Chrome activity in `PSPDFWebViewController`.
-/// Example: `PSPDFKit.sharedInstance[PSPDFXCallbackURLStringKey] = @"pspdfcatalog://";`
+/**
+ X-Callback URL, see http://x-callback-url.com
+ @note This is used for the Chrome activity in `PSPDFWebViewController`.
+ Example: `PSPDFKit.sharedInstance[PSPDFXCallbackURLStringKey] = @"pspdfcatalog://";`
+ */
 PSPDF_EXPORT NSString *const PSPDFXCallbackURLStringKey;
 
 /// Custom PSPDFApplicationPolicy instance that can be configured with `setLicenseKey:options:`.
@@ -46,6 +48,13 @@ PSPDF_EXPORT NSString *const PSPDFCoordinatedFileManagerKey;
  Expects a boolean `NSNumber`. Defaults to `@YES`. Set to `@NO` to disable.
  */
 PSPDF_EXPORT NSString *const PSPDFFileCoordinationEnabledKey;
+
+/**
+ Specifies the indexing priority that the shared `PSPDFLibrary` instance must use.
+ Must be a valid `PSPDFLibraryIndexingPriority` value wrapped in a `NSNumber`.
+ `See `PSPDFLibraryIndexingPriority` for details.
+ */
+PSPDF_EXPORT NSString *const PSPDFLibraryIndexingPriorityKey;
 
 /// Set to `@YES` to disable the use of `WKWebView` when available.
 PSPDF_EXPORT NSString *const PSPDFWebKitLegacyModeKey;
@@ -115,20 +124,26 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFSettings<NSObject>
  */
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFKit : NSObject<PSPDFSettings>
 
-/// The shared PSPDFKit configuration instance.
-/// @note This is the default instance used in document and pdf controller instances.
+/**
+ The shared PSPDFKit configuration instance.
+ @note This is the default instance used in document and pdf controller instances.
+ */
 @property (atomic, class, readonly) PSPDFKit *sharedInstance;
 
 /// Activate PSPDFKit with your license key from https://customers.pspdfkit.com
 + (void)setLicenseKey:(NSString *)licenseKey;
 
-/// Activate PSPDFKit with your license key from https://customers.pspdfkit.com
-/// Variant that allows to set options.
-/// These can also later be changed via subscripting access.
+/**
+ Activate PSPDFKit with your license key from https://customers.pspdfkit.com
+ Variant that allows to set options.
+ These can also later be changed via subscripting access.
+ */
 + (void)setLicenseKey:(NSString *)licenseKey options:(nullable NSDictionary<NSString *, id> *)options;
 
-/// Returns the full PSPDFKit product version string
-/// (e.g. "PSPDFKit 6.0.0 for iOS (53000)")
+/**
+ Returns the full PSPDFKit product version string
+ (e.g. "PSPDFKit 6.0.0 for iOS (53000)")
+ */
 @property (atomic, class, readonly) NSString *versionString;
 
 /// Returns just the framework version. (e.g. 6.0.0)
@@ -164,19 +179,28 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFKit : NSObject<PSPD
 /// Controls various security-related aspects and allows to enable/disable features based on the security settings.
 @property (nonatomic, readonly) id<PSPDFApplicationPolicy> policy;
 
-/// The default library. You can override this property to use a custom `PSPDFLibrary` as the default
-/// library. It is recommended that you do this early in your application launch. Defaults to an
-/// unencrypted library by default or to `nil` if the FTS feature is not enabled in the license.
+/**
+ The default library. You can override this property to use a custom `PSPDFLibrary` as the default
+ library. It is recommended that you do this early in your application launch. Defaults to an
+ unencrypted library by default or to `nil` if the FTS feature is not enabled in the license.
+ 
+ If you want to change the indexing priority of the library, set the `PSPDFLibraryIndexingPriorityKey` in the
+ options dictionary passed into `+[PSPDFKit setLicenseKey:options:]`.
+ */
 @property (atomic, nullable) PSPDFLibrary *library;
 
-/// An encryption provider for databases. Defaults to `nil`. You must set this property
-/// before using any database encryption features. See `PSPDFDatabaseEncryptionProvider` for more
-/// information on how to implement this.
+/**
+ An encryption provider for databases. Defaults to `nil`. You must set this property
+ before using any database encryption features. See `PSPDFDatabaseEncryptionProvider` for more
+ information on how to implement this.
+ */
 @property (atomic, nullable) id<PSPDFDatabaseEncryptionProvider> databaseEncryptionProvider;
 
-/// Various PSPDFKit objects require dependencies.
-/// Use this helper to automatically connect them.
-/// Will only set known objects that are not already set.
+/**
+ Various PSPDFKit objects require dependencies.
+ Use this helper to automatically connect them.
+ Will only set known objects that are not already set.
+ */
 - (NSUInteger)injectDependentProperties:(id)object;
 
 @end

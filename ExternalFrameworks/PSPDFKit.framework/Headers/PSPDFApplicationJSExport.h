@@ -50,6 +50,8 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFApplicationJSExport<JSExport, NSObject>
 
 @property (nonatomic) NSUInteger pageNum;
 - (nullable PSPDFJavaScriptFormField *)getField:(NSString *)name;
+- (nullable NSString *)getNthFieldName:(NSUInteger)index;
+@property (nonatomic, readonly) NSUInteger numFields;
 - (void)print:(id)params;
 
 /// Saves the current PDF document and mails it as an attachment to all recipients, with or without user interaction.

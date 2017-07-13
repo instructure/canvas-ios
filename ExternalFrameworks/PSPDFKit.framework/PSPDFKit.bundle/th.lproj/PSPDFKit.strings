@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- ลายเซ็นเป็นโมฆะ — ตั้งแต่ที่เซ็นชื่อรับรองเนื้อหา เอกสารนี้ถูกเปลี่ยนแปลง สอดแทรก หรือทำลายเสียหาย";
 "Unsigned Signature Field" = "ช่องลายเซ็นที่ยังไม่ได้เซ็นชื่อ";
 "Do you really want to remove the signature from the document?" = "คุณต้องการลบลายเซ็นออกจากเอกสารจริง ๆ หรือ?";
+"Could not retrieve the certificate from the signature." = "ไม่สามารถกู้ใบรับรองจากลายเซ็นนี้ได้";
+"Could not retrieve the signature contents." = "ไม่สามารถกู้คอนเทนต์ของลายเซ็นนี้ได้";
+"Could not retrieve the public key from the signature." = "ไม่สามารถกูกุญแจสาธารณะจากลายเซ็นนี้ได้";
+"Could not retrieve the byte range of the signature." = "ไม่สามารถกู้ไบท์เรนจ์ของลายเซ็นนี้ได้";
+"Could not understand the encryption padding." = "ไม่สามารถเข้าใจการเติมการเข้ารหัสที่เพิ่มขึ้นมา";
+"Could not compute the digest for the document." = "ไม่สามารถคำนวนไดเจสต์สำหรับเอกสารนี้ได้";
+"General failure while trying to determine document integrity." = "เกิดข้อผิดพลาดทั่วไปขึ้นระหว่างการตรวจสอบความถูกต้องของเอกสาร";
+"The certificate has expired" = "ใบรับรองหมดอายุ";
+"The certificate is not yet valid" = "ใบรับรองนี้ใช้ไม่ได้แล้ว";
+"Signature validation failed - invalid signature" = "ดำเนินการยืนยันลายเซ็นไม่สำเร็จ ลายเซ็นไม่ถูกต้อง";
+"The certificate has been revoked" = "ใบรับรองถูกยกเลิกไปแล้ว";
+"Certificate problem" = "ปัญหาของใบรับรอง";
+"Could not retrieve the signature contents" = "ไม่สามารถกู้คอนเทนต์ของลายเซ็นนี้ได้";
+"Certificate chain is invalid." = "สายการรับรองไม่ถูกต้อง";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "ไม่สามารถตรวจสอบสายการรับรองเนื่องจากไม่มีกุญแจที่เชื่อถือได้";
+"Document integrity success, but certificate is self signed." = "ดำเนินการตรวจสอบความถูกต้องของเอกสารสำเร็จแต่ใบรับรองไม่มีลายเซ็น";
+"Document integrity check failed." = "ทำการตรวจสอบความถูกต้องของเอกสารไม่สำเร็จ";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "ยังไม่มีบริการอ่านออกเสียง ตรวจดูว่าคุณเชื่อมต่อเข้ากับอินเตอร์เน็ตอยู่หรือได้ติดตั้งและเปิดใช้งานบริการอ่านออกเสียงของ Google ในอุปกรณ์ของคุณ";
 
 // Settings
+"Page Layout" = "การกำหนดเลย์เอาท์";
+"Scroll Direction" = "ทิศทางการเลื่อนหน้า";
+"Theme" = "ธีม";
+"Keep screen on" = "ไม่ให้จอล็อกอัตโนมัติ";
 "Page Transition" = "การเปลี่ยนหน้า";
 "Single" = "เดี่ยว";
 "Continuous" = "ต่อเนื่อง";
@@ -611,7 +632,10 @@
 "Jump" = "กระโดด"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "ไม่สามารถใช้งานได้"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "แอพพลิเคชั่นนี้ไม่ได้รับสิทธิ์ให้เข้าถึงรูปภาพของคุณ";
-"This app does not have access to your camera." = "แอพพลิเคชั่นนี้ไม่ได้รับสิทธิ์ให้เข้าถึงกล้องของคุณ";
-"You can enable access in Privacy Settings." = "คุณสามารถมอบสิทธิ์ให้เข้าถึงที่ \"การตั้งค่าส่วนบุคคล\"";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ ไม่ได้รับสิทธิให้เข้าถึงรูปถ่ายของคุณ";
+"%@ does not have access to your camera." = "%@ ไม่ได้รับสิทธิให้เข้าถึงกล้องของคุณ";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "การตั้งค่าความเป็นส่วนตัว";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "คุณสามารถเข้าไปยัง %@ ได้";

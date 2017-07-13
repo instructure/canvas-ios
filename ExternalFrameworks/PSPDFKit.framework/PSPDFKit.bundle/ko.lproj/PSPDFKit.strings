@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 올바르지 않은 서명 - 서명 후 문서의 내용이 수정되었거나 손상되었습니다.";
 "Unsigned Signature Field" = "서명하지 않은 서명 필드";
 "Do you really want to remove the signature from the document?" = "이 문서에서 서명을 제거하시겠습니까?";
+"Could not retrieve the certificate from the signature." = "서명에서 인증서를 가져올 수 없습니다.";
+"Could not retrieve the signature contents." = "서명 콘텐츠를 가져올 수 없습니다.";
+"Could not retrieve the public key from the signature." = "서명에서 공개 키를 가져올 수 없습니다.";
+"Could not retrieve the byte range of the signature." = "서명에서 바이트 범위를 가져올 수 없습니다.";
+"Could not understand the encryption padding." = "암호화 패딩을 이해할 수 없습니다.";
+"Could not compute the digest for the document." = "문서의 요약문이 검출되지 않습니다.";
+"General failure while trying to determine document integrity." = "문서 완전성을 확인하는 도중 일반적인 오류가 발생했습니다.";
+"The certificate has expired" = "인증서가 만료됨";
+"The certificate is not yet valid" = "인증서가 유효하지 않음";
+"Signature validation failed - invalid signature" = "인증서 유효성 검사 실패 - 올바르지 않은 서명";
+"The certificate has been revoked" = "인증서가 거부됨";
+"Certificate problem" = "인증서 오류";
+"Could not retrieve the signature contents" = "서명 콘텐츠를 가져올 수 없음";
+"Certificate chain is invalid." = "인증서 체인이 올바르지 않습니다.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "신뢰할 수 있는 키가 제공되지 않아 인증서 체인에 대한 유효성을 확인할 수 없습니다.";
+"Document integrity success, but certificate is self signed." = "문서 완전성은 확인되었지만, 인증서가 자가 서명되어 있습니다.";
+"Document integrity check failed." = "문서 완전성 검사 실패.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "텍스트 음성변환 서비스를 사용할 수 없습니다. 인터넷에 연결되어 있는지 확인하시거나 Google의 텍스트-투-스피치 엔진이 기기에 설치되어 있는지, 활성화되어 있는지 확인하시기 바랍니다.";
 
 // Settings
+"Page Layout" = "페이지 레이아웃";
+"Scroll Direction" = "스크롤 방향";
+"Theme" = "테마";
+"Keep screen on" = "스크린을 켠 상태로 유지";
 "Page Transition" = "페이지 전환효과";
 "Single" = "단일";
 "Continuous" = "연속";
@@ -611,7 +632,10 @@
 "Jump" = "점프"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "사용할 수 없음"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "이 앱은 사용자의 사진에 접근할 수 없습니다.";
-"This app does not have access to your camera." = "이 앱은 카메라에 접근할 수 없습니다.";
-"You can enable access in Privacy Settings." = "개인 정보 보호 설정에서 접근을 활성화할 수 있습니다.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@가 사진에 접근할 수 없습니다.";
+"%@ does not have access to your camera." = "%@가 카메라에 접근할 수 없습니다.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "개인 정보 보호 설정";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "%@에서 접근을 활성화할 수 있습니다.";

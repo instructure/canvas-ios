@@ -862,7 +862,8 @@
 		6181F13D1DFF6FB300B94488 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13B1DFF6FB300B94488 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6181F13F1DFF705600B94488 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13E1DFF705600B94488 /* Reachability.framework */; };
 		6181F1401DFF705600B94488 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13E1DFF705600B94488 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6199FD451EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; };
+		6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6199E55E1F16D696007F77C0 /* SoAnnotated_PreSubmission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; };
 		6199FD461EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; };
 		61A6747D1DB58990008A27FD /* ModuleItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */; };
 		61A6747E1DB589A3008A27FD /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */; };
@@ -948,6 +949,7 @@
 				492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */,
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
 				2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */,
+				6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */,
 				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
 				2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */,
 				491A66091D9057530092CDE9 /* TBBModal.framework in Embed Frameworks */,
@@ -1799,7 +1801,7 @@
 		6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6181F13B1DFF6FB300B94488 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6181F13E1DFF705600B94488 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoAnnotated_PreSubmission.framework; path = "../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/SoAnnotated_PreSubmission.framework"; sourceTree = "<group>"; };
+		6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated_PreSubmission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61CF10A61DBFB6C200B68E45 /* MasteryPathAssignmentPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasteryPathAssignmentPreviewViewController.swift; sourceTree = "<group>"; };
 		61CF10AA1DBFF93A00B68E45 /* MasteryPathAssignmentInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasteryPathAssignmentInfoCell.xib; sourceTree = "<group>"; };
 		61CF10AC1DBFF98800B68E45 /* MasteryPathAssignmentInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasteryPathAssignmentInfoCell.swift; sourceTree = "<group>"; };
@@ -2080,7 +2082,6 @@
 				61F438E31DD4E60B00552D14 /* AVFoundation.framework in Frameworks */,
 				2C67B0CC1E01F06800DDD191 /* CoreMedia.framework in Frameworks */,
 				2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */,
-				6199FD451EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */,
 				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
@@ -2130,6 +2131,7 @@
 				492708861CF4C38100C631C6 /* MediaKit.framework in Frameworks */,
 				492708881CF4C38100C631C6 /* MyLittleViewController.framework in Frameworks */,
 				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
+				6199E55E1F16D696007F77C0 /* SoAnnotated_PreSubmission.framework in Frameworks */,
 				492708761CF4C38100C631C6 /* CalendarKit.framework in Frameworks */,
 				4972CBDB2B8CB711A3B56911 /* Pods_Canvas.framework in Frameworks */,
 			);

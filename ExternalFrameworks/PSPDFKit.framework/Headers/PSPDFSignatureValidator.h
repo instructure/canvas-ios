@@ -16,13 +16,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PSPDFSignatureFormElement, PSPDFSignatureStatus, PSPDFX509;
 
-/// Allows to validate digital signatures.
+/**
+ * This class validates digital signatures in a PDF document.
+ * Validation consists of two steps: Checking that the signature integrity is correct (that is, the document was not modified after it was signed), and
+ * ensuring that the chain of certificates contained in the signature is trusted.
+ */
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFSignatureValidator : NSObject
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/// Initialize with a signature form element.
-/// If `formElement` is nil, nil will be returned.
+/**
+ * Initializes a `PSPDFSignatureValidator` with a signature form element.
+ * If `formElement` is nil, nil will be returned.
+ */
 - (instancetype)initWithSignatureFormElement:(PSPDFSignatureFormElement *)formElement NS_DESIGNATED_INITIALIZER;
 
 /// The signature form element.
@@ -32,7 +38,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
  *  Starts the digital signature verification process.
  *  If `trustedCertificates` is nil, the default from the shared signature manager is used.
  *
- *  @return nil if OpenSSL is not found.
+ *  @return nil if signature not found.
  */
 - (nullable PSPDFSignatureStatus *)verifySignatureWithTrustedCertificates:(nullable NSArray<PSPDFX509 *> *)trustedCertificates error:(NSError **)error;
 

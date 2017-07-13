@@ -35,14 +35,16 @@ class CommentReplyView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        replyContainerView.layer.cornerRadius = 5.0
-        replyContainerView.layer.borderWidth = 1.0
+        replyContainerView.layer.cornerRadius = 33.0/2
+        replyContainerView.layer.borderWidth = 0.5
         replyContainerView.layer.borderColor = UIColor.lightGray.cgColor
         replyContainerView.clipsToBounds = true
         
         replyTextView.isScrollEnabled = false
+        replyTextView.placeholder = NSLocalizedString("Reply", comment: "")
+        replyTextView.placeholderColor = .lightGray
         
-        heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 63.0)
+        heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1.0, constant: 49.0)
         self.addConstraint(heightConstraint!)
     }
     
@@ -58,7 +60,7 @@ class CommentReplyView: UIView {
     func adjustHeight() {
         let fixedWidth = replyTextView.frame.size.width
         let newSize = replyTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        heightConstraint?.constant = min(newSize.height + 30, 148) // 148 is 6 rows of text
+        heightConstraint?.constant = min(newSize.height + 16, 148) // 148 is 6 rows of text
         UIView.animate(withDuration: 0.3, animations: {
             self.superview?.layoutIfNeeded()
         })
@@ -71,4 +73,6 @@ extension CommentReplyView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         adjustHeight()
     }
+    
+    
 }

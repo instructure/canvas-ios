@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 PSPDF_CLASS_AVAILABLE @interface PSPDFSearchResult : PSPDFModel
 
 /// Designated initializer.
-- (instancetype)initWithDocumentUID:(NSString *)documentUID pageIndex:(NSUInteger)pageIndex range:(NSRange)range previewText:(nullable NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDocumentUID:(NSString *)documentUID pageIndex:(NSUInteger)pageIndex range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithDocument:(PSPDFDocument *)document pageIndex:(NSUInteger)pageIndex range:(NSRange)range previewText:(nullable NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation;
+- (instancetype)initWithDocument:(PSPDFDocument *)document pageIndex:(NSUInteger)pageIndex range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(nullable PSPDFTextBlock *)selection annotation:(nullable PSPDFAnnotation *)annotation;
 
 /// Referenced page.
 @property (nonatomic, readonly) NSUInteger pageIndex;
@@ -39,7 +39,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFSearchResult : PSPDFModel
 
 /// Text coordinates. Usually the text block contains only one word, unless the search is split across two lines.
 /// @note This property is optional.
-@property (nonatomic, readonly) PSPDFTextBlock *selection;
+@property (nonatomic, nullable, readonly) PSPDFTextBlock *selection;
 
 /// If the search result references an annotation, the object is set.
 /// @note This property is only set if the search result points to an annotation.

@@ -10,6 +10,10 @@
 		2C1CBC6F1E58B97A00D3F15A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61A943461D55184300E0DEA5 /* Info.plist */; };
 		49C98DD51D921EE0006AF2FB /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A943631D5521F000E0DEA5 /* PSPDFKit.framework */; };
 		618878181EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */; };
+		6199E5461F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199E5451F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift */; };
+		6199E5481F16C789007F77C0 /* CanvadocsCommentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199E5471F16C789007F77C0 /* CanvadocsCommentAnnotation.swift */; };
+		6199E5871F17D715007F77C0 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6199E5861F17D715007F77C0 /* UITextView+Placeholder.m */; };
+		6199E58A1F17D858007F77C0 /* UITextView+Placeholder.h in Headers */ = {isa = PBXBuildFile; fileRef = 6199E5851F17D6CC007F77C0 /* UITextView+Placeholder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A943451D55184300E0DEA5 /* SoAnnotated.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A943441D55184300E0DEA5 /* SoAnnotated.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A9434C1D55184300E0DEA5 /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A943411D55184300E0DEA5 /* SoAnnotated.framework */; };
 		61A943511D55184300E0DEA5 /* SoAnnotatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943501D55184300E0DEA5 /* SoAnnotatedTests.swift */; };
@@ -58,6 +62,10 @@
 		618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFScrollView+Fixed.swift"; sourceTree = "<group>"; };
 		618D35611D64D7440067619F /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		618D35761D64EDE40067619F /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6199E5451F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationToolbar.swift; sourceTree = "<group>"; };
+		6199E5471F16C789007F77C0 /* CanvadocsCommentAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsCommentAnnotation.swift; sourceTree = "<group>"; };
+		6199E5851F17D6CC007F77C0 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		6199E5861F17D715007F77C0 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
 		61A943411D55184300E0DEA5 /* SoAnnotated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943441D55184300E0DEA5 /* SoAnnotated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoAnnotated.h; sourceTree = "<group>"; };
 		61A943461D55184300E0DEA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -240,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */,
+				6199E5451F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift */,
 				61A943741D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift */,
 				61A943751D55294500E0DEA5 /* CanvadocsAnnotationService.swift */,
 				61A943761D55294500E0DEA5 /* CanvadocsXFDFParser.swift */,
@@ -258,6 +267,9 @@
 				61A943801D55298400E0DEA5 /* CommentTableViewCell.xib */,
 				61A943811D55298400E0DEA5 /* CommentReplyView.swift */,
 				61A943821D55298400E0DEA5 /* CommentReplyView.xib */,
+				6199E5471F16C789007F77C0 /* CanvadocsCommentAnnotation.swift */,
+				6199E5851F17D6CC007F77C0 /* UITextView+Placeholder.h */,
+				6199E5861F17D715007F77C0 /* UITextView+Placeholder.m */,
 			);
 			path = Comments;
 			sourceTree = "<group>";
@@ -269,6 +281,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6199E58A1F17D858007F77C0 /* UITextView+Placeholder.h in Headers */,
 				61A9435F1D5518A000E0DEA5 /* GDataXMLNode.h in Headers */,
 				61A943451D55184300E0DEA5 /* SoAnnotated.h in Headers */,
 			);
@@ -401,8 +414,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6199E5481F16C789007F77C0 /* CanvadocsCommentAnnotation.swift in Sources */,
+				6199E5871F17D715007F77C0 /* UITextView+Placeholder.m in Sources */,
 				61A943831D55298400E0DEA5 /* CanvasCommentsViewController.swift in Sources */,
 				61A943861D55298400E0DEA5 /* CommentReplyView.swift in Sources */,
+				6199E5461F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift in Sources */,
 				61A9437B1D55294500E0DEA5 /* CanvadocsXFDFParser.swift in Sources */,
 				61A9437C1D55294500E0DEA5 /* CanvadocsConstants.swift in Sources */,
 				618878181EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift in Sources */,

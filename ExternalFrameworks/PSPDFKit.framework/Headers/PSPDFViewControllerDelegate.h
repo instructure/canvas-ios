@@ -68,7 +68,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFViewControllerDelegate<NSObject>
  @param pdfController The pdf view controller the page view belongs to.
  @param pageView      The page view that updated its image.
  */
-- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView PSPDF_DEPRECATED(6.7.1, "Use either pdfViewController:didFinishRenderTaskForPageView: or pdfViewController:didUpdateImageForPageView: depending on your needs.");
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView PSPDF_DEPRECATED_IOS(6.7.1, "Use either pdfViewController:didFinishRenderTaskForPageView: or pdfViewController:didUpdateImageForPageView: depending on your needs.");
 
 /**
  Called when a page view schedules a render task to update its content view.
@@ -151,7 +151,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFViewControllerDelegate<NSObject>
  Return a PSPDFDocument for a relative path.
  If this returns nil, we try to find the PDF ourselves with using the current document's `basePath`.
  */
-- (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
+- (nullable PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
 /**
  `didTapOnPageView:` will be called if a user taps on the page view.

@@ -57,7 +57,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFContainerViewController : PSPDFBaseViewCon
 
 /// @name Settings
 
-/// Set to YES if you want to animate controller changes. Defaults to NO.
+/// Set to YES if you want to animate controller changes. Defaults to YES.
 @property (nonatomic) BOOL shouldAnimateChanges;
 
 /// Visible view controller title will be stored in NSUserDefaults under this key.

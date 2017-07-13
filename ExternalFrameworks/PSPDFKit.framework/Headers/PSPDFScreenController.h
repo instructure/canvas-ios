@@ -50,7 +50,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFScreenController : NSObject
 /// Controls if the screen should dim after a certain time or if it should stay lighten up, when an external monitor is connected. Defaults to NO.
 @property (nonatomic) BOOL externalScreensDisableScreenDimming;
 
-/// Delegate that calls back when mirroring is stared/stopped.
+/// Delegate that calls back when mirroring is started or stopped.
 @property (nonatomic, weak) id<PSPDFScreenControllerDelegate> delegate;
 
 @end

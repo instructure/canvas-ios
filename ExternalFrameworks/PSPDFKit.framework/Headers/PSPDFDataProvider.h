@@ -78,6 +78,12 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFDataProvider<NSObject, NSSecureCoding>
 - (BOOL)replaceWithDataSink:(id<PSPDFDataSink>)replacementDataSink;
 
 /**
+ If implemented and `additionalOperationsSupported` contains `PSPDFDataProviderAdditionalOperationWrite`,
+ this specifies wheter a write can be attempted using `replaceWithDataSink:`.
+ */
+@property (nonatomic, readonly) BOOL canWrite;
+
+/**
  This method should delete any data that is referenced by this `PSPDFDataProvider`.
  PSPDFKit uses this method to delete temporary data, if necessary.
  Returns YES on successful deletion, NO otherwise.

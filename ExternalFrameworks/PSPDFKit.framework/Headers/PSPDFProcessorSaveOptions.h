@@ -103,12 +103,12 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFProcessorSaveOptions : NSObject
 /// Returns a `PSPDFProcessorSaveOptions` instance with owner and user password set.
 /// `keyLength` must be divisible by 8 and in the range of 40 to 128.
 /// @note This method requires the Document Editor component to be enabled for your license.
-+ (instancetype)optionsWithOwnerPassword:(NSString *)ownerPassword userPassword:(NSString *)userPassword keyLength:(NSUInteger)keyLength PSPDF_DEPRECATED("6.0", "Use the initializers instead.");
++ (instancetype)optionsWithOwnerPassword:(NSString *)ownerPassword userPassword:(NSString *)userPassword keyLength:(NSUInteger)keyLength PSPDF_DEPRECATED_IOS("6.0", "Use the initializers instead.");
 
 /// Returns a `PSPDFProcessorSaveOptions` instance with owner and user password set.
 /// `keyLength` must be divisible by 8 and in the range of 40 to 128.
 /// @note This method requires the Document Editor component to be enabled for your license.
-+ (instancetype)optionsWithOwnerPassword:(NSString *)ownerPassword userPassword:(NSString *)userPassword keyLength:(NSUInteger)keyLength permissions:(PSPDFDocumentPermissions)documentPermissions PSPDF_DEPRECATED("6.0", "Use the initializers instead.");
++ (instancetype)optionsWithOwnerPassword:(NSString *)ownerPassword userPassword:(NSString *)userPassword keyLength:(NSUInteger)keyLength permissions:(PSPDFDocumentPermissions)documentPermissions PSPDF_DEPRECATED_IOS("6.0", "Use the initializers instead.");
 
 @end
 

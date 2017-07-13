@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "簽名無效：此文件簽署後，曾被更改、篡改或遭破壞。";
 "Unsigned Signature Field" = "未簽署的簽署欄";
 "Do you really want to remove the signature from the document?" = "您確定要從文件中刪除簽名嗎？";
+"Could not retrieve the certificate from the signature." = "無法從簽名中擷取證書。";
+"Could not retrieve the signature contents." = "無法擷取簽名內容。";
+"Could not retrieve the public key from the signature." = "無法從簽名中擷取公鑰。";
+"Could not retrieve the byte range of the signature." = "無法擷取簽名的位元範圍。";
+"Could not understand the encryption padding." = "無法理解加密填充。";
+"Could not compute the digest for the document." = "無法計算文件摘要。";
+"General failure while trying to determine document integrity." = "試圖確認文件完整性時發生一般性失敗。";
+"The certificate has expired" = "證書已過期";
+"The certificate is not yet valid" = "此份證書尚未確認生效";
+"Signature validation failed - invalid signature" = "簽名驗證失敗 - 無效的簽名";
+"The certificate has been revoked" = "證書已被撤銷";
+"Certificate problem" = "證書問題";
+"Could not retrieve the signature contents" = "無法擷取簽名內容";
+"Certificate chain is invalid." = "證書鏈無效。";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "因未提供可信密鑰，無法驗證證書鏈。";
+"Document integrity success, but certificate is self signed." = "文件完整性成功，但證書是自簽的。";
+"Document integrity check failed." = "證書完整性檢查失敗。";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "現在不能使用文字轉語音功能。請檢查你的互聯網已連線，或你的裝置中已安裝 Google 的文字轉語音功能，並且它在開啟狀態。";
 
 // Settings
+"Page Layout" = "頁面排版";
+"Scroll Direction" = "捲動方向";
+"Theme" = "主題";
+"Keep screen on" = "避免螢幕進入待命狀態";
 "Page Transition" = "翻頁";
 "Single" = "單頁";
 "Continuous" = "連續";
@@ -611,7 +632,10 @@
 "Jump" = "跳換"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "禁用"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "這個應用程式沒有取用照片的權限。";
-"This app does not have access to your camera." = "這個應用程式沒有取用照相機的權限。";
-"You can enable access in Privacy Settings." = "您可以從隱私設定中允許取用。";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@無法取用您的照片。";
+"%@ does not have access to your camera." = "%@無法取用您的相機。";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "隱私設定";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "您可以從%@允許取用。";

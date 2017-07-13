@@ -22,6 +22,8 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /**
  Initializes a `PSPDFFileDataProvider` with the given `fileURL`.
+ 
+ @note If you are expecting to encounter symlinks or alias files, you need to resolve those using `NSURL` APIs before passing the URLs to `PSPDFFileDataProvider`. `PSPDFFileDataProvider` won't automatically resolve them for performance reasons.
 
  @param fileURL Needs to be a file URL pointing to a PDF file on the filesystem.
  @param baseURL This should mimic the PSPDFDocument value and is important for UID generation.

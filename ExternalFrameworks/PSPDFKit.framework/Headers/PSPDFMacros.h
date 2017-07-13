@@ -29,7 +29,14 @@
 #define PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED PSPDF_CLASS_AVAILABLE PSPDF_SUBCLASSING_RESTRICTED
 
 // Deprecation helper
-#define PSPDF_DEPRECATED(version, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #version ". " msg)))
+#if TARGET_OS_OSX
+#define PSPDF_DEPRECATED(iOSVersion, macOSVersion, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #macOSVersion " for macOS. " msg)))
+#define PSPDF_DEPRECATED_IOS(iOSVersion, msg) __attribute__((unavailable("Not available in PSPDFKit for macOS")))
+#else
+#define PSPDF_DEPRECATED(iOSVersion, macOSVersion, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #iOSVersion " for iOS. " msg)))
+#define PSPDF_DEPRECATED_IOS(iOSVersion, msg) PSPDF_DEPRECATED(iOSVersion, __MAC_NA, msg)
+
+#endif
 
 #import "PSPDFEnvironment.h"
 

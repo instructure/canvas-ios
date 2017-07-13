@@ -43,10 +43,12 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Delegate for signature status.
 PSPDF_AVAILABLE_DECL @protocol PSPDFUnsignedFormElementViewControllerDelegate<NSObject>
 
+/// Called when the form element requests to be signed using an ink signature.
 - (void)unsignedFormElementViewControllerRequestsInkSignature:(PSPDFUnsignedFormElementViewController *)controller;
 
 @optional
 
+/// Called when the form element signing process has finished.
 - (void)unsignedFormElementViewController:(PSPDFUnsignedFormElementViewController *)controller signedDocument:(PSPDFDocument *)document error:(NSError *)error;
 
 @end

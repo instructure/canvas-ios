@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неверная подпись – после подписания документ был изменен или данные повреждены.";
 "Unsigned Signature Field" = "Неподписанное поле подписи";
 "Do you really want to remove the signature from the document?" = "Вы действительно хотите удалить подпись из документа?";
+"Could not retrieve the certificate from the signature." = "Не удалось получить сертификат из подписи.";
+"Could not retrieve the signature contents." = "Не удалось получить содержимое подписи.";
+"Could not retrieve the public key from the signature." = "Не удалось получить открытый ключ из подписи.";
+"Could not retrieve the byte range of the signature." = "Не удалось получить диапазон байтов подписи.";
+"Could not understand the encryption padding." = "Не удалось распознать дополнение шифрования.";
+"Could not compute the digest for the document." = "Не удалось вычислить дайджест документа.";
+"General failure while trying to determine document integrity." = "При проверке документа на целостность произошла общая ошибка.";
+"The certificate has expired" = "Сертификат истек";
+"The certificate is not yet valid" = "Сертификат еще не вступил в силу";
+"Signature validation failed - invalid signature" = "Подпись не прошла проверку. Подпись недействительна";
+"The certificate has been revoked" = "Сертификат был отозван";
+"Certificate problem" = "Проблема с сертификатом";
+"Could not retrieve the signature contents" = "Не удалось получить содержимое подписи";
+"Certificate chain is invalid." = "Недействительная цепь сертификатов.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Не удалось верифицировать цепь сертификатов, поскольку не предоставлено ни одного доверенного ключа.";
+"Document integrity success, but certificate is self signed." = "Целостность документа не нарушена, но сертификат является самоподписанным.";
+"Document integrity check failed." = "Документ не прошел проверку на целостность.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,13 +613,17 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Служба преобразования текста в речь недоступна. Убедитесь, что ваше устройство подключено к интернету, или что на нем установлен и включен Синтезатор речи Google.";
 
 // Settings
+"Page Layout" = "Макет страницы";
+"Scroll Direction" = "Направление прокрутки";
+"Theme" = "Тема";
+"Keep screen on" = "Не выключать экран";
 "Page Transition" = "Переход";
 "Single" = "Одна страница";
 "Continuous" = "Непрерывно";
 "Curl" = "Загиб";
 "Scroll" = "Прокрутка";
-"Horizontal" = "Горизонтальная";
-"Vertical" = "Вертикальная";
+"Horizontal" = "Горизонтально";
+"Vertical" = "Вертикально";
 "Page Mode" = "Просмотр страниц";
 "Automatic" = "Авто";
 "Double" = "Две страницы";
@@ -611,7 +632,10 @@
 "Jump" = "По одной странице"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Недоступно"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "У приложения нет доступа к фото.";
-"This app does not have access to your camera." = "У приложения нет доступа к камере.";
-"You can enable access in Privacy Settings." = "Разрешить доступ можно в настройках конфиденциальности.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "У %@ нет доступа к фото.";
+"%@ does not have access to your camera." = "У %@ нет доступа к камере.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Настройки > Конфиденциальность";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Чтобы включить доступ, откройте %@.";

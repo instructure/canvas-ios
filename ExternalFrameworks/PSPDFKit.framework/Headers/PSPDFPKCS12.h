@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFRSAKey.h"
+#import "PSPDFPrivateKey.h"
 #import "PSPDFX509.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,7 +23,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 - (instancetype)initWithData:(NSData *)data NS_DESIGNATED_INITIALIZER;
 
 /// Unlocks the PKCS12 archive and retrieves the certificate and public key.
-- (void)unlockWithPassword:(NSString *)password done:(nullable void (^)(PSPDFX509 *_Nullable x509, PSPDFRSAKey *_Nullable pk, NSError *_Nullable error))done;
+- (void)unlockWithPassword:(NSString *)password done:(nullable void (^)(PSPDFX509 *_Nullable x509, PSPDFPrivateKey *_Nullable pk, NSError *_Nullable error))done;
 
 @end
 

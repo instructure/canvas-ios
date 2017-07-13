@@ -142,7 +142,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFFileManager<NSObject>
 @property (nullable, readonly, copy) id<NSObject, NSCopying, NSCoding> ubiquityIdentityToken;
 
 /// If the file manager is coordinated, this will temporarily disable coordination for more control.
-- (void)performBlockWithoutCoordination:(void (^)())block;
+- (void)performBlockWithoutCoordination:(void (^)(void))block;
 
 @end
 

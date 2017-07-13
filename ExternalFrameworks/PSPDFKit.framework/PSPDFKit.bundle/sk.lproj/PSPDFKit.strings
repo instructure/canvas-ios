@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Neplatný podpis — od podpísania obsahu v tomto dokumente bol obsah zmenený alebo inak poznamenaný.";
 "Unsigned Signature Field" = "Nepodpísané pole podpisu";
 "Do you really want to remove the signature from the document?" = "Naozaj chcete odstrániť podpis z dokumentu?";
+"Could not retrieve the certificate from the signature." = "Nie je možné načítať certifikát z podpisu.";
+"Could not retrieve the signature contents." = "Nie je možné načítať obsah podpisu.";
+"Could not retrieve the public key from the signature." = "Nie je možné načítať verejný kľúč z podpisu.";
+"Could not retrieve the byte range of the signature." = "Nie je možné načítat rozsah bajtov podpisu.";
+"Could not understand the encryption padding." = "Bol použitý nesprávny formát šifry.";
+"Could not compute the digest for the document." = "Nie je možné zašifrovať dokument.";
+"General failure while trying to determine document integrity." = "Všeobecné zlyhanie pri pokuse o určenie integrity dokumentu.";
+"The certificate has expired" = "Platnosť certifikátu vypršala";
+"The certificate is not yet valid" = "Certifikát už nie je platný";
+"Signature validation failed - invalid signature" = "Overenie podpisu sa nepodarilo - neplatný podpis";
+"The certificate has been revoked" = "Certifikát bol zrušený";
+"Certificate problem" = "Problém s certifikátom";
+"Could not retrieve the signature contents" = "Nie je možné načítať obsah podpisu";
+"Certificate chain is invalid." = "Reťazec certifikátov je neplatný.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Reťazec certifikátov nie je možné overiť, pretože neboli dodané žiadne dôveryhodné kľúče.";
+"Document integrity success, but certificate is self signed." = "Dokument je podpísaný, ale certifikát je vlastným podpisom.";
+"Document integrity check failed." = "Kontrola integrity dokumentu se nepodarila.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Služba text-to-speech je nedostupná. Uistite sa, že máte aktívne pripojenie k internetu alebo nainštalovaný Google text-to-speech, který je povolený v tomto zariadení.";
 
 // Settings
+"Page Layout" = "Rozvrhnutie stránky";
+"Scroll Direction" = "Smer skrolovania";
+"Theme" = "Téma";
+"Keep screen on" = "Nechať zapnutú obrazovku";
 "Page Transition" = "Prechod strán";
 "Single" = "Jedna strana";
 "Continuous" = "Súvisle";
@@ -611,7 +632,10 @@
 "Jump" = "Preskočiť"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Nie je dostupné"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Táto aplikácia nemá prístup k vašim fotografiám.";
-"This app does not have access to your camera." = "Táto aplikácia nemá prístup k vášmu fotoaparátu.";
-"You can enable access in Privacy Settings." = "Môžete povoliť prístup v nastaveniach ochrany osobných údajov.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ nemá prístup k vašim fotografiám.";
+"%@ does not have access to your camera." = "%@ nemá prístup k vášmu fotoaparátu.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Nastavenie ochrany osobných údajov";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Môžete povoliť prístup v %@.";

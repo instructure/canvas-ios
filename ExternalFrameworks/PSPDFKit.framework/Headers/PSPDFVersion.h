@@ -24,6 +24,13 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wreserved-id-macro"
 
+#if TARGET_OS_OSX
+
+#define __PSPDFKIT_MACOS__
+#define __PSPDFKIT_MACOS_1_0 10000
+
+#else
+
 #define __PSPDFKIT_IOS__
 #define __PSPDFKIT_3_0 30000
 #define __PSPDFKIT_3_1 30100
@@ -52,5 +59,8 @@
 #define __PSPDFKIT_6_5 60500
 #define __PSPDFKIT_6_6 60600
 #define __PSPDFKIT_6_7 60700
+#define __PSPDFKIT_6_8 60800
+
+#endif
 
 #pragma clang diagnostic pop

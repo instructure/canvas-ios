@@ -39,19 +39,19 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
     PSPDFRenderQueuePriorityUserInteractive = 400,
 
     /// Used to re-render annotation changes.
-    PSPDFRenderQueuePriorityVeryLow PSPDF_DEPRECATED("6.0", "Use PSPDFRenderQueuePriorityUnspecified instead.") = PSPDFRenderQueuePriorityUnspecified,
+    PSPDFRenderQueuePriorityVeryLow PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderQueuePriorityUnspecified instead.") = PSPDFRenderQueuePriorityUnspecified,
 
     /// Low and VeryLow are used from within `PSPDFCache`.
-    PSPDFRenderQueuePriorityLow PSPDF_DEPRECATED("6.0", "Use PSPDFRenderQueuePriorityBackground instead.") = PSPDFRenderQueuePriorityBackground,
+    PSPDFRenderQueuePriorityLow PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderQueuePriorityBackground instead.") = PSPDFRenderQueuePriorityBackground,
 
     /// Live page renderings.
-    PSPDFRenderQueuePriorityNormal PSPDF_DEPRECATED("6.0", "Use PSPDFRenderQueuePriorityUtility instead.") = PSPDFRenderQueuePriorityUtility,
+    PSPDFRenderQueuePriorityNormal PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderQueuePriorityUtility instead.") = PSPDFRenderQueuePriorityUtility,
 
     /// Zoomed renderings.
-    PSPDFRenderQueuePriorityHigh PSPDF_DEPRECATED("6.0", "Use PSPDFRenderQueuePriorityUserInitiated instead.") = PSPDFRenderQueuePriorityUserInitiated,
+    PSPDFRenderQueuePriorityHigh PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderQueuePriorityUserInitiated instead.") = PSPDFRenderQueuePriorityUserInitiated,
 
     /// Highest priority. Unused.
-    PSPDFRenderQueuePriorityVeryHigh PSPDF_DEPRECATED("6.0", "Use PSPDFRenderQueuePriorityUserInteractive instead.") = PSPDFRenderQueuePriorityUserInteractive,
+    PSPDFRenderQueuePriorityVeryHigh PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderQueuePriorityUserInteractive instead.") = PSPDFRenderQueuePriorityUserInteractive,
 } PSPDF_ENUM_AVAILABLE;
 
 /**
@@ -104,18 +104,18 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFRenderQueue : NSObj
 
  Defaults to a value that is best for the current device.
  */
-@property (atomic) NSUInteger concurrentRunningRenderRequests PSPDF_DEPRECATED(6.7, "The render queue manages this internally based on various factors.");
+@property (atomic) NSUInteger concurrentRunningRenderRequests PSPDF_DEPRECATED_IOS(6.7, "The render queue manages this internally based on various factors.");
 
 /**
  Cancel all queued and running jobs.
  */
-- (void)cancelAllJobs PSPDF_DEPRECATED(6.7, "Renamed to cancelAllTasks.");
+- (void)cancelAllJobs PSPDF_DEPRECATED_IOS(6.7, "Renamed to cancelAllTasks.");
 
 /**
  The minimum priority for tasks. Defaults to `PSPDFRenderQueuePriorityUnspecified`
  which makes it run all tasks.
  */
-@property (atomic) PSPDFRenderQueuePriority minimumProcessPriority PSPDF_DEPRECATED(6.6.1, "The render queue manages prioritization itself. You should not modify this value.");
+@property (atomic) PSPDFRenderQueuePriority minimumProcessPriority PSPDF_DEPRECATED_IOS(6.6.1, "The render queue manages prioritization itself. You should not modify this value.");
 #endif
 
 @end

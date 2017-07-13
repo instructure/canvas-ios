@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ongeldige handtekening — de inhoud van het document is gewijzigd of beschadigd of er is mee geknoeid na de ondertekening.";
 "Unsigned Signature Field" = "Niet-getekend handtekeningveld";
 "Do you really want to remove the signature from the document?" = "Weet je zeker dat je de handtekening wilt verwijderen uit het document?";
+"Could not retrieve the certificate from the signature." = "Het certificaat van de handtekening kon niet worden opgehaald.";
+"Could not retrieve the signature contents." = "De inhoud van de handtekening kon niet worden opgehaald.";
+"Could not retrieve the public key from the signature." = "De openbare sleutel van de handtekening kon niet worden opgehaald.";
+"Could not retrieve the byte range of the signature." = "Bereik in bytes voor de handtekening kon niet worden opgehaald.";
+"Could not understand the encryption padding." = "Encryptiepadding kon niet worden gecontroleerd.";
+"Could not compute the digest for the document." = "Samenvatting voor document kon niet worden gemaakt.";
+"General failure while trying to determine document integrity." = "Algemene fout tijdens bepaling van integriteit van document.";
+"The certificate has expired" = "Het certificaat is verlopen";
+"The certificate is not yet valid" = "Het certificaat is nog niet geldig";
+"Signature validation failed - invalid signature" = "Validatie van handtekening is mislukt - Ongeldige handtekening";
+"The certificate has been revoked" = "Het certificaat is ingetrokken";
+"Certificate problem" = "Probleem met certificaat";
+"Could not retrieve the signature contents" = "De inhoud van de handtekening kon niet worden opgehaald";
+"Certificate chain is invalid." = "Certificaatketen is ongeldig.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Certificaatketen kon niet worden gecontroleerd omdat geen vertrouwde sleutels zijn geleverd.";
+"Document integrity success, but certificate is self signed." = "Integriteit van document is in orde maar certificaat is zelfondertekend.";
+"Document integrity check failed." = "Integriteitscontrole van document is mislukt.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekst-naar-spraak is niet beschikbaar. Zorg ervoor dat je een actieve internetverbinding hebt of de tekst-naar-spraak-engine van Google hebt geïnstalleerd en ingeschakeld op het apparaat.";
 
 // Settings
+"Page Layout" = "Paginalay-out";
+"Scroll Direction" = "Scrolrichting";
+"Theme" = "Thema";
+"Keep screen on" = "Houd scherm ingeschakeld";
 "Page Transition" = "Pagina-overgang";
 "Single" = "Enkel";
 "Continuous" = "Doorlopend";
@@ -611,7 +632,10 @@
 "Jump" = "Springen"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Niet beschikbaar"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Deze app heeft geen toegang tot je foto’s.";
-"This app does not have access to your camera." = "Deze app heeft geen toegang tot je camera.";
-"You can enable access in Privacy Settings." = "Je kunt de toegang inschakelen in de privacy-instellingen.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ heeft geen toegang tot je foto’s.";
+"%@ does not have access to your camera." = "%@ heeft geen toegang tot je camera.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Privacy-instellingen";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Je kunt de toegang in %@ inschakelen.";

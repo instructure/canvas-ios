@@ -145,10 +145,10 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .line)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .strikeOut)
         styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: .freeText)
-        styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
-        styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: .square)
-        styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: .circle)
-        styleManager.setLastUsedValue(1.0, forProperty: "lineWidth", forKey: .line)
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .square)
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .circle)
+        styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .line)
     }
 
     open func getPDFViewController() -> UIViewController {
@@ -157,13 +157,6 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration)
         pdfViewController.delegate = self
         pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.searchButtonItem, pdfViewController.annotationButtonItem]
-
-        let highlightGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .highlight)])
-        let strikeoutGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .strikeOut)])
-        let freeTextGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .freeText)])
-        let commentGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .note)])
-        let inkGroup = PSPDFAnnotationGroup(items: [PSPDFAnnotationGroupItem(type: .ink, variant: .inkVariantPen, configurationBlock: PSPDFAnnotationGroupItem.inkConfigurationBlock())])
-        pdfViewController.annotationToolbarController?.annotationToolbar.configurations = [PSPDFAnnotationToolbarConfiguration(annotationGroups: [commentGroup, inkGroup, highlightGroup, freeTextGroup, strikeoutGroup])]
 
         return pdfViewController
     }
@@ -208,14 +201,6 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
 
                 for menuItem in menuItems {
                     if menuItem.identifier != PSPDFAnnotationMenuCopy && menuItem.identifier != PSPDFAnnotationMenuNote {
-                        realMenuItems.append(menuItem)
-                    }
-                }
-                return realMenuItems
-            } else if firstAnnotation.type == PSPDFAnnotationType.ink || firstAnnotation.type == PSPDFAnnotationType.circle || firstAnnotation.type == PSPDFAnnotationType.line || firstAnnotation.type == PSPDFAnnotationType.strikeOut {
-                var realMenuItems = [PSPDFMenuItem]()
-                for menuItem in menuItems {
-                    if menuItem.identifier != PSPDFAnnotationMenuNote {
                         realMenuItems.append(menuItem)
                     }
                 }

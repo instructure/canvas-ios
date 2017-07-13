@@ -87,34 +87,34 @@ typedef NS_OPTIONS(NSUInteger, PSPDFRenderFilter) {
 } PSPDF_ENUM_AVAILABLE;
 
 /// Multiplies a color used to color a page.
-PSPDF_EXPORT NSString *const PSPDFRenderPageColorKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionPageColorKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderPageColorKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionPageColorKey instead.");
 
 /// Inverts the rendering output. Defaults to `@(NO)`.
-PSPDF_EXPORT NSString *const PSPDFRenderInvertedKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionInvertedKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderInvertedKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionInvertedKey instead.");
 
 /// Filters to be applied. Defaults to 0. Filters will increase rendering time.
-PSPDF_EXPORT NSString *const PSPDFRenderFiltersKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionFiltersKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderFiltersKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionFiltersKey instead.");
 
 /// Set custom interpolation quality. Defaults to `kCGInterpolationHigh`.
-PSPDF_EXPORT NSString *const PSPDFRenderInterpolationQualityKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionInterpolationQualityKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderInterpolationQualityKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionInterpolationQualityKey instead.");
 
 /// Set to YES to NOT draw page content. (Use to just draw an annotation)
-PSPDF_EXPORT NSString *const PSPDFRenderSkipPageContentKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionSkipPageContentKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderSkipPageContentKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionSkipPageContentKey instead.");
 
 /// Set to YES to render annotations that have isOverlay = YES set.
-PSPDF_EXPORT NSString *const PSPDFRenderOverlayAnnotationsKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionOverlayAnnotationsKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderOverlayAnnotationsKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionOverlayAnnotationsKey instead.");
 
 /// Skip rendering of any annotations that are in this array.
-PSPDF_EXPORT NSString *const PSPDFRenderSkipAnnotationArrayKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionSkipAnnotationArrayKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderSkipAnnotationArrayKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionSkipAnnotationArrayKey instead.");
 
 /// If YES, will draw outside of page area.
-PSPDF_EXPORT NSString *const PSPDFRenderIgnorePageClipKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionIgnorePageClipKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderIgnorePageClipKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionIgnorePageClipKey instead.");
 
 /// Enabled/Disables antialiasing. Defaults to YES.
-PSPDF_EXPORT NSString *const PSPDFRenderAllowAntiAliasingKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionAllowAntiAliasingKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderAllowAntiAliasingKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionAllowAntiAliasingKey instead.");
 
 /// Allows custom render color. Default is white.
-PSPDF_EXPORT NSString *const PSPDFRenderBackgroundFillColorKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionBackgroundFillColorKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderBackgroundFillColorKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionBackgroundFillColorKey instead.");
 
 /// Sets the interactive fill color, which will override the fill color for all newly
 /// rendered form elements that are editable.
@@ -127,10 +127,10 @@ PSPDF_EXPORT NSString *const PSPDFRenderBackgroundFillColorKey PSPDF_DEPRECATED(
 /// specified in the PDF.
 ///
 /// Defaults to a non-nil, light blue color.
-PSPDF_EXPORT NSString *const PSPDFRenderInteractiveFormFillColorKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionInteractiveFormFillColorKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderInteractiveFormFillColorKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionInteractiveFormFillColorKey instead.");
 
 /// Allow custom content rendering after the PDF. `PSPDFRenderDrawBlock`.
-PSPDF_EXPORT NSString *const PSPDFRenderDrawBlockKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionDrawBlockKey instead.");
+PSPDF_EXPORT NSString *const PSPDFRenderDrawBlockKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionDrawBlockKey instead.");
 
 /// The PDF render manager coordinates the PDF renderer used.
 PSPDF_AVAILABLE_DECL @protocol PSPDFRenderManager<NSObject>

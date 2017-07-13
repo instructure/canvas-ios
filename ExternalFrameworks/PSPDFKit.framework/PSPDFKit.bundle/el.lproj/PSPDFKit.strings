@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Μη έγκυρη υπογραφή — από την υπογραφή του περιεχομένου αυτού του εγγράφου, αυτό έχει τροποποιηθεί, παραβιαστεί ή καταστραφεί.";
 "Unsigned Signature Field" = "Ανυπόγραφο πεδίο υπογραφής";
 "Do you really want to remove the signature from the document?" = "Θέλετε οπωσδήποτε να αφαιρέσετε την υπογραφή από το έγγραφο;";
+"Could not retrieve the certificate from the signature." = "Δεν ήταν δυνατή η ανάκτηση του πιστοποιητικού από την υπογραφή.";
+"Could not retrieve the signature contents." = "Δεν ήταν δυνατή η ανάκτηση των περιεχομένων υπογραφής.";
+"Could not retrieve the public key from the signature." = "Δεν ήταν δυνατή η ανάκτηση του δημόσιου κλειδιού από την υπογραφή.";
+"Could not retrieve the byte range of the signature." = "Δεν ήταν δυνατή η ανάκτηση του εύρους byte της υπογραφής.";
+"Could not understand the encryption padding." = "Δεν ήταν δυνατή η κατανόηση της αναπλήρωσης κρυπτογράφησης.";
+"Could not compute the digest for the document." = "Δεν ήταν δυνατός ο υπολογισμός της σύνοψης για το έγγραφο.";
+"General failure while trying to determine document integrity." = "Γενική αποτυχία κατά την απόπειρα καθορισμού της ακεραιότητας εγγράφου.";
+"The certificate has expired" = "Το πιστοποιητικό έληξε";
+"The certificate is not yet valid" = "Το πιστοποιητικό δεν είναι ακόμη έγκυρο";
+"Signature validation failed - invalid signature" = "Απέτυχε η επικύρωση υπογραφής - μη έγκυρη υπογραφή";
+"The certificate has been revoked" = "Το πιστοποιητικό έχει ανακληθεί";
+"Certificate problem" = "Πρόβλημα πιστοποιητικού";
+"Could not retrieve the signature contents" = "Δεν ήταν δυνατή η ανάκτηση των περιεχομένων υπογραφής";
+"Certificate chain is invalid." = "Η αλυσίδα πιστοποιητικού δεν είναι έγκυρη.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Δεν ήταν δυνατή η επαλήθευση της αλυσίδας πιστοποιητικού, επειδή δεν δόθηκε κανένα αξιόπιστο κλειδί.";
+"Document integrity success, but certificate is self signed." = "Επιτυχής ακεραιότητα εγγράφου, αλλά το πιστοποιητικό είναι αυτο-υπογεγραμμένο.";
+"Document integrity check failed." = "Απέτυχε ο έλεγχος ακεραιότητας εγγράφου.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -546,7 +563,7 @@
 "Document Name" = "Όνομα εγγράφου";
 "Documents" = "Έγγραφα"; // Name of directory
 "Use Document Folder" = "Χρήση φακέλου εγγράφου";
-"Folder" = "Φάκελος";
+"Folder" = "φακέλου";
 "Replace File?" = "Να γίνει αντικατάσταση αρχείου;";
 "A file named \"%@\" already exists at the selected destination. Do you want to replace it?" = "Ένα αρχείο με όνομα «%@» ήδη υπάρχει στον επιλεγμένο προορισμό. Θέλετε να το αντικαταστήσετε;";
 "Replace" = "Αντικατάσταση";
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Δεν είναι διαθέσιμη η υπηρεσία κειμένου σε ομιλία. Βεβαιωθείτε ότι έχετε ενεργή σύνδεση στο internet ή μηχανή Google κειμένου σε ομιλία εγκατεστημένη και ενεργοποιημένη στη συσκευή σας.";
 
 // Settings
+"Page Layout" = "Διάταξη σελίδας";
+"Scroll Direction" = "Κατεύθυνση κύλισης";
+"Theme" = "Θέμα";
+"Keep screen on" = "Διατήρηση οθόνης ενεργής";
 "Page Transition" = "Μετάβαση σελίδας";
 "Single" = "Μονή";
 "Continuous" = "Συνεχόμενα";
@@ -611,7 +632,10 @@
 "Jump" = "Μεταπήδηση"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Δεν διατίθεται"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Αυτή η εφαρμογή δεν έχει πρόσβαση στις φωτογραφίες σας.";
-"This app does not have access to your camera." = "Αυτή η εφαρμογή δεν έχει πρόσβαση στην κάμερά σας.";
-"You can enable access in Privacy Settings." = "Μπορείτε να ενεργοποιήσετε την πρόσβαση από τις Ρυθμίσεις απορρήτου.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "Η εφαρμογή %@ δεν έχει πρόσβαση στις φωτογραφίες σας.";
+"%@ does not have access to your camera." = "Η εφαρμογή %@ δεν έχει πρόσβαση στην κάμερά σας.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Ρυθμίσεις απορρήτου";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Μπορείτε να ενεργοποιήσετε την πρόσβαση στις %@.";

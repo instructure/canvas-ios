@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, PSPDFRenderRequestCachePolicy) {
     /// The request will check the cache for data and return nothing if the cache did not contain an image.
     PSPDFRenderRequestCachePolicyReturnCacheDataDontLoad,
 
-    PSPDFRenderRequestCachePolicyReloadIgnoreingCacheData PSPDF_DEPRECATED(6.7, "Renamed to PSPDFRenderRequestCachePolicyReloadIgnoringCacheData") = PSPDFRenderRequestCachePolicyReloadIgnoringCacheData,
+    PSPDFRenderRequestCachePolicyReloadIgnoreingCacheData PSPDF_DEPRECATED_IOS(6.7, "Renamed to PSPDFRenderRequestCachePolicyReloadIgnoringCacheData") = PSPDFRenderRequestCachePolicyReloadIgnoringCacheData,
 } PSPDF_ENUM_AVAILABLE;
 
 typedef void (^PSPDFRenderDrawBlock)(CGContextRef context, NSUInteger page, CGRect cropBox, NSUInteger rotation, NSDictionary<NSString *, id> *_Nullable options);

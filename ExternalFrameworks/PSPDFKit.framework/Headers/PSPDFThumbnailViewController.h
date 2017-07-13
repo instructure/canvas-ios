@@ -79,7 +79,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFThumbnailViewController : UICollectionView
 /// @see updateInsetsForTopOverlapHeight:
 /// @see collectionView:viewForSupplementaryElementOfKind:atIndexPath:
 /// @see backgroundStyle (PSPDFCollectionReusableFilterView)
-@property (nonatomic) BOOL stickyHeaderEnabled PSPDF_DEPRECATED(5.3.4, "Use `stickyHeaderEnabled` on the layout instead, if your layout supports it. The default layout does so.");
+@property (nonatomic) BOOL stickyHeaderEnabled PSPDF_DEPRECATED_IOS(5.3.4, "Use `stickyHeaderEnabled` on the layout instead, if your layout supports it. The default layout does so.");
 
 /// Defines the filter options. Set to nil or empty to hide the filter bar.
 /// Defaults to `PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterAnnotations, PSPDFThumbnailViewFilterBookmarks`.

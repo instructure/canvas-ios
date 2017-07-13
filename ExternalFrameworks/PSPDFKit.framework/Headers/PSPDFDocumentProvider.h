@@ -37,7 +37,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentPermissions) {
     PSPDFDocumentPermissionsExtractAccessibility = 1 << 5,
     /** (Security handlers of revision 3 or greater) Assemble the document (insert, rotate, or delete pages and create bookmarks or thumbnail images), even if bit 4 is clear. */
     PSPDFDocumentPermissionsAssemble = 1 << 6,
-    /** (Security handlers of revision 3 or greater) Print the document to a representation from which a faithful digital copy of the PDF content could be generated. When this bit is clear (and `PDFCDocumentPermissionsPrinting` is set), printing is limited to a low-level representation of the appearance, possibly of degraded quality. */
+    /** (Security handlers of revision 3 or greater) Print the document to a representation from which a faithful digital copy of the PDF content could be generated. When this bit is clear (and `PSPDFDocumentPermissionsPrinting` is set), printing is limited to a low-level representation of the appearance, possibly of degraded quality. */
     PSPDFDocumentPermissionsPrintHighQuality = 1 << 7,
 };
 

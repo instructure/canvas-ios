@@ -164,13 +164,13 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
  @note The cache directory is not backed up by iCloud and will be purged when memory is low.
  @warning Set this early during class initialization. Will clear the current cache before changing.
  */
-@property (nonatomic, copy) NSString *cacheDirectory PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (nonatomic, copy) NSString *cacheDirectory PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /**
  Defines the global disk cache strategy. Defaults to `PSPDFDiskCacheStrategyEverything`.
  If `PSPDFDocument` also defines a strategy, that one is prioritized.
  */
-@property (nonatomic) PSPDFDiskCacheStrategy diskCacheStrategy PSPDF_DEPRECATED("6.1", "Disk cache strategy is controlled automatically now. To disable the disk cache completely set its allowedDiskSpace to 0.");
+@property (nonatomic) PSPDFDiskCacheStrategy diskCacheStrategy PSPDF_DEPRECATED_IOS("6.1", "Disk cache strategy is controlled automatically now. To disable the disk cache completely set its allowedDiskSpace to 0.");
 
 /// @name Access internal caches
 
@@ -182,10 +182,10 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
  @note Set to 0 to disable the disk cache.
  */
-@property (nonatomic) unsigned long long allowedDiskSpace PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (nonatomic) unsigned long long allowedDiskSpace PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /// The disk space currently used by the cache (in bytes).
-@property (nonatomic, readonly) unsigned long long usedDiskSpace PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (nonatomic, readonly) unsigned long long usedDiskSpace PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /// @name Disk Cache Settings
 
@@ -193,14 +193,14 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
  JPG is almost always faster, and uses less memory (<50% of a PNG, usually). Defaults to YES.
  If you have very text-like pages, you might want to set this to NO.
  */
-@property (nonatomic) BOOL useJPGFormat PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (nonatomic) BOOL useJPGFormat PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /**
  Compression strength for JPG. (PNG is loss-less)
  The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
  This will load the pdf and remove any jpg artifacts.
  */
-@property (nonatomic) CGFloat JPGFormatCompression PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (nonatomic) CGFloat JPGFormatCompression PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /// @name Encryption/Decryption Handlers
 
@@ -208,13 +208,13 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
  Decrypt data from the path. Requires the `PSPDFFeatureMaskStrongEncryption` feature flag.
  If set to nil, the default implementation will be used.
  */
-@property (atomic, copy) NSData * (^decryptFromPathBlock)(PSPDFDocument *document, NSString *path)PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (atomic, copy) NSData * (^decryptFromPathBlock)(PSPDFDocument *document, NSString *path)PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /**
  Encrypt mutable data. Requires the `PSPDFFeatureMaskStrongEncryption` feature flag.
  If set to nil, the default implementation will be used.
  */
-@property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data) PSPDF_DEPRECATED("6.1", "Use the properties on PSPDFDiskCache instead.");
+@property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data) PSPDF_DEPRECATED_IOS("6.1", "Use the properties on PSPDFDiskCache instead.");
 
 /// @name Starting/Stopping
 
@@ -222,13 +222,13 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
  Will pause queued cache requests on the render queue.
  For `service` use the class object that requests the pause.
  */
-- (void)pauseCachingForService:(id)service PSPDF_DEPRECATED("6.6.1", "Pause caching is no longer supported. The cache handles this on its own.");
+- (void)pauseCachingForService:(id)service PSPDF_DEPRECATED_IOS("6.6.1", "Pause caching is no longer supported. The cache handles this on its own.");
 
 /**
  Will resume queued cache requests on the render queue.
  For `service` use the class object that requested the pause.
  */
-- (void)resumeCachingForService:(id)service PSPDF_DEPRECATED("6.6.1", "Pause caching is no longer supported. The cache handles this on its own.");
+- (void)resumeCachingForService:(id)service PSPDF_DEPRECATED_IOS("6.6.1", "Pause caching is no longer supported. The cache handles this on its own.");
 
 @end
 

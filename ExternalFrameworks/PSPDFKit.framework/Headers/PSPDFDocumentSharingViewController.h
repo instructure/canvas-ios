@@ -35,7 +35,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
     /// Share all pages that contain annotations.
     PSPDFDocumentSharingOptionAnnotatedPages = 1 << 4,
     /// All visible pages. (ignored if only one visible).
-    PSPDFDocumentSharingOptionVisiblePages PSPDF_DEPRECATED("5.3", "Use PSPDFDocumentSharingOptionPageRange instead.") = PSPDFDocumentSharingOptionPageRange,
+    PSPDFDocumentSharingOptionVisiblePages PSPDF_DEPRECATED_IOS("5.3", "Use PSPDFDocumentSharingOptionPageRange instead.") = PSPDFDocumentSharingOptionPageRange,
 
     /// Save annotations in the PDF.
     ///
@@ -138,7 +138,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentSharingViewController : PSPDFStati
 - (instancetype)initWithDocuments:(NSArray<PSPDFDocument *> *)documents visiblePageRange:(NSRange)visiblePageRange allowedSharingOptions:(PSPDFDocumentSharingOptions)sharingOptions NS_DESIGNATED_INITIALIZER;
 
 // Initialize with a document.
-- (instancetype)initWithDocument:(PSPDFDocument *)document visiblePageRange:(NSRange)visiblePageRange allowedSharingOptions:(PSPDFDocumentSharingOptions)sharingOptions PSPDF_DEPRECATED(6.2, "Use -initWithDocuments:visiblePageRange:allowedSharingOptions: instead.");
+- (instancetype)initWithDocument:(PSPDFDocument *)document visiblePageRange:(NSRange)visiblePageRange allowedSharingOptions:(PSPDFDocumentSharingOptions)sharingOptions PSPDF_DEPRECATED_IOS(6.2, "Use -initWithDocuments:visiblePageRange:allowedSharingOptions: instead.");
 
 /// Checks if the controller has options *at all* - and simply calls the delegate if not.
 /// This prevents showing the controller without any options and just a commit button.
@@ -150,7 +150,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentSharingViewController : PSPDFStati
 
 /// Current documents.
 @property (nonatomic, readonly) NSArray<PSPDFDocument *> *documents;
-@property (nonatomic, nullable, readonly) PSPDFDocument *document PSPDF_DEPRECATED(6.2, "Use `documents` instead.");
+@property (nonatomic, nullable, readonly) PSPDFDocument *document PSPDF_DEPRECATED_IOS(6.2, "Use `documents` instead.");
 
 /// The active sharing option combinations.
 /// @warning Modify before the view is loaded.

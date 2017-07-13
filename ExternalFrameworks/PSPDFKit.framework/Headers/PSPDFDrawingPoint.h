@@ -25,7 +25,7 @@ PSPDF_EXPORT const CGFloat PSPDFDefaultIntensity;
  @note The type encoding of this struct needs to remain consistent, because drawing point
  data can be serialized in NSValue objects.
  */
-typedef struct {
+typedef struct __attribute__((objc_boxable)) {
     /// The location as a regular CGPoint.
     CGPoint location;
     /// The relative thickness of the line at location. Range is 0-1.

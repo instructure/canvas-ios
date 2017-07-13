@@ -24,9 +24,9 @@ typedef NS_ENUM(NSInteger, PSPDFThumbnailFlowLayoutAttributesType) {
     PSPDFThumbnailFlowLayoutAttributesTypeTrailing,
 
     /// Marks attributes that relate to the left page in a two–page spread.
-    PSPDFThumbnailFlowLayoutAttributesTypeLeft PSPDF_DEPRECATED(6.5.1, "This is no longer accurate with the introduction of RTL support.") = PSPDFThumbnailFlowLayoutAttributesTypeLeading,
+    PSPDFThumbnailFlowLayoutAttributesTypeLeft PSPDF_DEPRECATED_IOS(6.5.1, "This is no longer accurate with the introduction of RTL support.") = PSPDFThumbnailFlowLayoutAttributesTypeLeading,
     /// Marks attributes that relate to the right page in a two–page spread.
-    PSPDFThumbnailFlowLayoutAttributesTypeRight PSPDF_DEPRECATED(6.5.1, "This is no longer accurate with the introduction of RTL support.") = PSPDFThumbnailFlowLayoutAttributesTypeTrailing,
+    PSPDFThumbnailFlowLayoutAttributesTypeRight PSPDF_DEPRECATED_IOS(6.5.1, "This is no longer accurate with the introduction of RTL support.") = PSPDFThumbnailFlowLayoutAttributesTypeTrailing,
 } PSPDF_ENUM_AVAILABLE;
 
 /// Define the alignment of the thumbnail collection view.

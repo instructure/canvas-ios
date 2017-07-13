@@ -99,7 +99,7 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFPresentationContext<PSPDFOverridable, PSPDFV
 
 /// Defines if the trailing page is in double page mode.
 - (BOOL)isTrailingPageInDoublePageMode:(NSUInteger)pageIndex;
-- (BOOL)isRightPageInDoublePageMode:(NSUInteger)pageIndex PSPDF_DEPRECATED(6.5.1, "This is no longer accurate with the introduction of RTL support.");
+- (BOOL)isRightPageInDoublePageMode:(NSUInteger)pageIndex PSPDF_DEPRECATED_IOS(6.5.1, "This is no longer accurate with the introduction of RTL support.");
 
 // Defines if pages should be shown in double page mode depending on the `viewSize`.
 - (BOOL)isDoublePageModeForViewSize:(CGSize)viewSize;
@@ -109,11 +109,11 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFPresentationContext<PSPDFOverridable, PSPDFV
 
 /// Returns the portait page spread for a given landscape page spread.
 - (NSUInteger)portraitPageSpreadForLandscapePageSpread:(NSUInteger)pageSpread;
-- (NSUInteger)portraitPageIndexForLandscapePageIndex:(NSUInteger)pageIndex PSPDF_DEPRECATED(6.5, "This has been renamed to portraitPageSpreadForLandscapePageSpread");
+- (NSUInteger)portraitPageIndexForLandscapePageIndex:(NSUInteger)pageIndex PSPDF_DEPRECATED_IOS(6.5, "This has been renamed to portraitPageSpreadForLandscapePageSpread");
 
 /// Returns the landscape page spread for a given portait page spread.
 - (NSUInteger)landscapePageSpreadForPortraitPageSpread:(NSUInteger)pageSpread;
-- (NSUInteger)landscapePageIndexForPortraitPageIndex:(NSUInteger)pageIndex PSPDF_DEPRECATED(6.5, "This has been renamed to landscapePageSpreadForPortraitPageSpread");
+- (NSUInteger)landscapePageIndexForPortraitPageIndex:(NSUInteger)pageIndex PSPDF_DEPRECATED_IOS(6.5, "This has been renamed to landscapePageSpreadForPortraitPageSpread");
 
 /// Scroll view used for scrolling through pages.
 @property (nonatomic, readonly, nullable) UIScrollView *pagingScrollView;

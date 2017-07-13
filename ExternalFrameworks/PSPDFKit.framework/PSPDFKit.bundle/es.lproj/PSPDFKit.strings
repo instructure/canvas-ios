@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Firma no válida — después de que se firmara el contenido de este documento, ha sido modificado, alterado o dañado.";
 "Unsigned Signature Field" = "Campo de firma sin rellenar";
 "Do you really want to remove the signature from the document?" = "¿Desea eliminar la firma del documento?";
+"Could not retrieve the certificate from the signature." = "No se ha podido obtener el certificado de la firma.";
+"Could not retrieve the signature contents." = "No se ha podido obtener el contenido de la firma.";
+"Could not retrieve the public key from the signature." = "No se ha podido obtener la clave pública de la firma.";
+"Could not retrieve the byte range of the signature." = "No se ha podido obtener el intervalo de bytes de la firma.";
+"Could not understand the encryption padding." = "No se ha podido interpretar el relleno del cifrado.";
+"Could not compute the digest for the document." = "No se ha podido procesar el resumen del documento.";
+"General failure while trying to determine document integrity." = "Error general a intentar comprobar la integridad del documento.";
+"The certificate has expired" = "El certificado ha caducado";
+"The certificate is not yet valid" = "El certificado aún no es válido";
+"Signature validation failed - invalid signature" = "La validación de firma ha fallado - firma no válida";
+"The certificate has been revoked" = "El certificado ha sido revocado";
+"Certificate problem" = "Problema con el certificado";
+"Could not retrieve the signature contents" = "No se ha podido obtener el contenido de la firma";
+"Certificate chain is invalid." = "La cadena de certificado no es válida.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "La cadena de certificado no se ha podido verificar porque no se han proporcionado claves de confianza.";
+"Document integrity success, but certificate is self signed." = "La verificación de integridad del documento es correcta, pero el certificado está autofirmado.";
+"Document integrity check failed." = "La verificación de integridad del documento ha fallado.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "El servicio de texto a voz no está disponible. Compruebe que tenga conexión a internet o que haya instalado el sistema de conversión de texto a voz de Google en su dispositivo y esté activado.";
 
 // Settings
+"Page Layout" = "Presentación de página";
+"Scroll Direction" = "Dirección de desplazamiento";
+"Theme" = "Tema";
+"Keep screen on" = "Mantener la pantalla encendida";
 "Page Transition" = "Transición de página";
 "Single" = "Individual";
 "Continuous" = "Continuo";
@@ -611,7 +632,10 @@
 "Jump" = "Salto"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "No disponible"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Esta aplicación no tiene acceso a sus fotos.";
-"This app does not have access to your camera." = "Esta aplicación no tiene acceso a la cámara.";
-"You can enable access in Privacy Settings." = "Puede conceder acceso en el apartado de privacidad de los ajustes.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ no tiene acceso a sus fotos.";
+"%@ does not have access to your camera." = "%@ no tiene acceso a la cámara.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Ajustes de privacidad";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Puede conceder acceso en %@.";

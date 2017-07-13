@@ -40,6 +40,11 @@ PSPDF_AVAILABLE_DECL @protocol PSPDFBookmarkProvider<NSObject>
  The receiver should decide if it wants to manage this bookmark. If it does, it
  shoud add the bookmark to its list and return `YES`. If it returns `NO` the next
  bookmark provider in the list is asked.
+ 
+ @note You will receive calls to `addBookmark:` with updated bookmarks that already
+       exist in a provider in an outdated version. You can determine if you are
+       already the owner of a bookmark by comparing its `identifier` property with
+       the ones from your list of bookmarks.
 
  @param bookmark The bookmark that should be added to the receiver.
 

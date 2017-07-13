@@ -20,12 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 PSPDF_AVAILABLE_DECL @protocol PSPDFDatabaseEncryptionProvider <NSObject>
 
 /// The encryption provider must perform the necessary steps to encrypt the given `db` with the given
-/// `keyData`. Most implementations will call `sqlite3_key(db, [keyData bytes], [keyData length])`.
+/// `keyData`. Most implementations will call `sqlite3_key(db, keyData.bytes, keyData.length)`.
 /// Return `YES` if no errors occurred, and `NO` otherwise.
 - (BOOL)encryptDatabase:(void *)db withKey:(NSData *)keyData; // db is of type sqlite3
 
 /// The encryption provider must perform the necessary steps to re-encrypt the given `db` with the
-/// given `keyData`. Most implementations will call `sqlite3_rekey(db, [keyData bytes], [keyData length])`.
+/// given `keyData`. Most implementations will call `sqlite3_rekey(db, keyData.bytes, keyData.length)`.
 /// Return `YES` if no errors occurred, and `NO` otherwise.
 - (BOOL)reEncryptDatabase:(void *)db withKey:(NSData *)keyData; // db is of type sqlite3
 

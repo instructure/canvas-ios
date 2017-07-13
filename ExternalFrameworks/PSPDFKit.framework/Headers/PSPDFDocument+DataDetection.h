@@ -47,10 +47,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PSPDFDocument (ObjectFinder)
+@interface PSPDFDocument (TextParser)
+
+/**
+ Filters out watermarks from text selection and extraction. Defaults to YES.
+ @note Toggling this will invalidate all current text parsers.
+ @note Not all watermarks are properly identified by the PDF file. Due to this, PSPDFKit has to try to identify possible
+ watermarks. This might accidentially filter out wanted text. If this is the case, please set `isWatermarkFilterEnabled`
+ to `NO` and send a support request (https://pspdfkit.com/support/request) with the misbehaving PDF file.
+ */
+@property (nonatomic, getter=isWatermarkFilterEnabled) BOOL watermarkFilterEnabled;
 
 /// Return a textParser for the specific document page. Thread safe.
 - (nullable PSPDFTextParser *)textParserForPageAtIndex:(NSUInteger)pageIndex;
+
+@end
+
+@interface PSPDFDocument (ObjectFinder)
 
 /// Find objects (glyphs, words, images, annotations) at the specified `pdfPoint`.
 /// If `options` is nil, we assume `PSPDFObjectsText` and `PSPDFObjectsWordsKey`.

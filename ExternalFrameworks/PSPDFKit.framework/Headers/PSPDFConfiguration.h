@@ -279,7 +279,7 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFConfiguration : PSP
  For Left-To-Right documents, this sets the page curl to go backwards. Defaults to NO.
  @note Doesn't re-order document pages. There's currently no real LTR support in PSPDFKit.
  */
-@property (nonatomic, getter=isPageCurlDirectionLeftToRight, readonly) BOOL pageCurlDirectionLeftToRight PSPDF_DEPRECATED(6.5.1, "This is now derived from the document directly and no longer has an effect. See -[PSPDFDocument pageBinding].");
+@property (nonatomic, getter=isPageCurlDirectionLeftToRight, readonly) BOOL pageCurlDirectionLeftToRight PSPDF_DEPRECATED_IOS(6.5.1, "This is now derived from the document directly and no longer has an effect. See -[PSPDFDocument pageBinding].");
 
 /**
  If `true` (`PSPDFAdaptiveConditionalYES`), pages are fit to screen width.
@@ -983,13 +983,13 @@ PSPDF_EXPORT NSString *const PSPDFActivityTypeOpenIn;
 @interface PSPDFConfiguration (Deprecated)
 
 /// Shows first document page alone. Not relevant in `PSPDFPageModeSingle`. Defaults to NO.
-@property (nonatomic, getter=isDoublePageModeOnFirstPage, readonly) BOOL doublePageModeOnFirstPage PSPDF_DEPRECATED("6.4", "Use firstPageAlwaysSingle instead");
+@property (nonatomic, getter=isDoublePageModeOnFirstPage, readonly) BOOL doublePageModeOnFirstPage PSPDF_DEPRECATED_IOS("6.4", "Use firstPageAlwaysSingle instead");
 
 @end
 
 @interface PSPDFConfigurationBuilder (Deprecated)
 
-@property (nonatomic, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage PSPDF_DEPRECATED("6.4", "Use firstPageAlwaysSingle instead");
+@property (nonatomic, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage PSPDF_DEPRECATED_IOS("6.4", "Use firstPageAlwaysSingle instead");
 
 @end
 

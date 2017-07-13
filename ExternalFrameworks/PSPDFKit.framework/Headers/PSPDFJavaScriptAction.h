@@ -56,7 +56,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFJavaScriptAction : PSPDFAction
 
 /// Tries to execute the JavaScript in the context of a document provider.
 /// Use the event params to override certain values for the event object in the executed script.
-- (NSDictionary<NSString *, id> *)executeScriptAppliedToDocumentProvider:(PSPDFDocumentProvider *)documentProvider application:(nullable id<PSPDFApplicationJSExport>)application eventDictionary:(nullable NSDictionary<NSString *, id> *)eventDictionary sender:(id)sender error:(NSError **)error;
+- (nullable NSDictionary<NSString *, id> *)executeScriptAppliedToDocumentProvider:(PSPDFDocumentProvider *)documentProvider application:(nullable id<PSPDFApplicationJSExport>)application eventDictionary:(nullable NSDictionary<NSString *, id> *)eventDictionary sender:(id)sender error:(NSError **)error;
 
 @end
 

@@ -128,7 +128,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFTabbedViewController : PSPDFMultiDocumentV
 /// Use of this property should be replaced with use of `closeMode`.
 /// `YES` corresponds to `PSPDFTabbedViewControllerCloseModeOnlySelectedTab`.
 /// `NO` corresponds to `PSPDFTabbedViewControllerCloseModeDisabled`.
-@property (nonatomic) BOOL allowsClosingDocuments PSPDF_DEPRECATED(6.1.1, "Use `closeMode` instead.");
+@property (nonatomic) BOOL allowsClosingDocuments PSPDF_DEPRECATED_IOS(6.1.1, "Use `closeMode` instead.");
 
 @end
 

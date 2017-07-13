@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Sets `filter` to `Adobe.PPKLite` and `subFilter` to `adbe.pkcs7.detached`.
+/// Concrete implementation of a `PSPDFSigner` where `filter` is `Adobe.PPKLite` and `subFilter` is `adbe.pkcs7.detached`.
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFPKCS12Signer : PSPDFSigner
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
@@ -24,7 +24,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// The certificate and private key should be contained in p12.
 - (instancetype)initWithDisplayName:(NSString *)displayName PKCS12:(PSPDFPKCS12 *)p12 NS_DESIGNATED_INITIALIZER;
 
-/// The signer display name.
+/// The signer display name. This name is shown on the signature UI.
 @property (nonatomic, copy, readonly) NSString *displayName;
 
 /// The PKCS12 container holding the private key and certificate.
@@ -32,7 +32,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// Private key from the certificate used to produce the signature by encrypting the message digest from the PDF file.
 /// (see details https://pspdfkit.com/guides/ios/current/features/digital-signatures/ )
-@property (nonatomic, nullable) PSPDFRSAKey *pkey;
+@property (nonatomic, nullable) PSPDFPrivateKey *privateKey;
 
 /// Signs the element using provided password to open the p12 container (to get the certificate and the private key).
 /// Use it only for non-interactive signing process.

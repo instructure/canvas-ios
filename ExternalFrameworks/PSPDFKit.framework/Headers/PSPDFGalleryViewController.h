@@ -65,7 +65,7 @@ PSPDF_DEFAULT_VIEWCONTROLLER_INIT_UNAVAILABLE
 
 /// Indicates if the view controller is currently transitioning between display modes, that
 /// is if the controller is moving from fullscreen to embedded or vice versa.
-@property (nonatomic, getter=isTransitioning) BOOL transitioning PSPDF_DEPRECATED(6.5, "Starting with PSPDFKit v6.5 the view controller is no longer transitioning when its content becomes fullscreen. Therefore this property will always return NO.");
+@property (nonatomic, getter=isTransitioning) BOOL transitioning PSPDF_DEPRECATED_IOS(6.5, "Starting with PSPDFKit v6.5 the view controller is no longer transitioning when its content becomes fullscreen. Therefore this property will always return NO.");
 
 /// Used to enter or exit the fullscreen mode with or without animation.
 /// The transition is only initiated, if all gallery items support fullscreen presentation.

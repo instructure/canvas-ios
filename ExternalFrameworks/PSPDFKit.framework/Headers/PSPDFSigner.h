@@ -18,21 +18,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSInteger, PSPDFSigningAlgorithm) {
-    PSPDFSigningAlgorithmRSASHA256 = 0,
-} PSPDF_ENUM_AVAILABLE;
-
 PSPDF_EXPORT NSString *const PSPDFSignerErrorDomain;
 
 typedef NS_ENUM(NSUInteger, PSPDFSignerError) {
+    /// No error during the signing process.
     PSPDFSignerErrorNone = noErr,
+    /// A signature form element was not found in the document.
     PSPDFSignerErrorNoFormElementSet = 0x1,
     PSPDFSignerErrorCannotNotCreatePKCS7 = 0x100,
     PSPDFSignerErrorCannotNotAddSignatureToPKCS7 = 0x101,
     PSPDFSignerErrorCannotNotInitPKCS7 = 0x102,
     PSPDFSignerErrorCannotGeneratePKCS7Signature = 0x103,
     PSPDFSignerErrorCannotWritePKCS7Signature = 0x104,
-    PSPDFSignerErrorOpenSSLCannotVerifySignature = 0x105,
+    /// The document was signed correctly but couldn't be verified afterwards.
+    PSPDFSignerErrorCannotVerifySignature = 0x105,
+    /// The signed document could not be created. Check that you have the necessary permissions for the destination folder.
+    PSPDFSignerErrorCannotSaveToDestination = 0x106,
+    /// The subfilter type specified to create the signature is not supported.
+    PSPDFSignerErrorUnsupportedSubfilterType = 0x107,
+    PSPDFSignerErrorCannotFindSignature = 0x108,
+    PSPDFSignerErrorCannotSignAttributes = 0x108
 } PSPDF_ENUM_AVAILABLE;
 
 /// `PSPDFSigner` is an abstract signer class. Override methods in subclasses as necessary.
@@ -51,10 +56,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFSigner : NSObject
 /// (Override) The name displayed in the UI.
 @property (nonatomic, readonly) NSString *displayName;
 
-/// (Optional) The algorithm to use for signing.
-/// Currently there is only one signing algorithm. Reserved for future use.
-@property (nonatomic, readonly) PSPDFSigningAlgorithm signingAlgorithm;
-
 /// (Override) This method requests the signing certificate on demand. If the
 /// certificate is for instance password protected or must be fetched over the
 /// network, you can push a custom `UIViewController` on the passed navigation
@@ -67,12 +68,6 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFSigner : NSObject
 /// (Optional) Signs the passed form element |elem| and writes the signed document
 /// to |path|.  Returns YES for |success|, NO otherwise and error |err| is set.
 - (void)signFormElement:(PSPDFSignatureFormElement *)element withCertificate:(PSPDFX509 *)x509 writeTo:(NSString *)path completionBlock:(nullable void (^)(BOOL success, PSPDFDocument *_Nullable document, NSError *_Nullable error))completionBlock NS_REQUIRES_SUPER;
-
-/// (Optional) Allows customization of the signing process, e.g. in cases where
-/// the private key is not present on the device and signing happens with
-/// external hardware. `hash` contains the raw, non-padded hash bytes for the
-/// used algorithm `algo`. When you are done signing return the signed bytes.
-- (nullable NSData *)signHash:(NSData *)hash algorithm:(PSPDFSigningAlgorithm)algorithm error:(NSError **)error;
 
 @end
 

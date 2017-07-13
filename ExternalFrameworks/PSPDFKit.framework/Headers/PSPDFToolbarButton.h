@@ -62,7 +62,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFToolbarButton : PSPDFButton
 
 /// Called whenever the tint color changes. Use to update tint color dependent
 /// content (like a tint color based custom drawn image or attributed text).
-@property (nonatomic, copy) void (^tintColorDidChangeBlock)(UIColor *tintColor);
+@property (nonatomic, copy, nullable) void (^tintColorDidChangeBlock)(UIColor *tintColor);
 
 @end
 

@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Virheellinen allekirjoitus – tämän dokumentin sisällön allekirjoittamisen jälkeen sitä on muokattu, sitä on peukaloitu tai se on korruptoitunut.";
 "Unsigned Signature Field" = "Allekirjoittamaton osuus";
 "Do you really want to remove the signature from the document?" = "Haluatko varmasti poistaa allekirjoituksen dokumentista?";
+"Could not retrieve the certificate from the signature." = "Varmennetta ei voitu hakea allekirjoituksesta.";
+"Could not retrieve the signature contents." = "Allekirjoituksen sisältöä ei voitu hakea.";
+"Could not retrieve the public key from the signature." = "Julkista avainta ei voitu hakea allekirjoituksesta.";
+"Could not retrieve the byte range of the signature." = "Allekirjoituksen bittiväliä ei voitu hakea.";
+"Could not understand the encryption padding." = "Salauksen täyttö ei ollut ymmärrettävä.";
+"Could not compute the digest for the document." = "Dokumentin yhteenvetoa ei voitu laskea.";
+"General failure while trying to determine document integrity." = "Varmenneketju ei ole oikeanlainen.";
+"The certificate has expired" = "Varmenteen voimassaolo on umpeutunut";
+"The certificate is not yet valid" = "Varmenne ei ole vielä voimassa";
+"Signature validation failed - invalid signature" = "Allekirjoituksen varmennus epäonnistui - väärä allekirjoitus";
+"The certificate has been revoked" = "Varmenne on peruttu";
+"Certificate problem" = "Varmenneongelma";
+"Could not retrieve the signature contents" = "Allekirjoituksen sisältöä ei voitu hakea";
+"Certificate chain is invalid." = "Varmenneketju ei ole oikeanlainen.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Varmenneketjua ei voitu tarkistaa, koska luotettuja avaimia ei annettu.";
+"Document integrity success, but certificate is self signed." = "Dokumentin eheys tarkistettu, mutta varmenne on itse allekirjoitettu.";
+"Document integrity check failed." = "Dokumentin eheyden tarkistus epäonnistui.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tekstistä puheeksi -palvelu ei ole saatavilla. Varmista internetyhteytesi toimivuus tai että Google Text-to-speech -palvelu on asennettu ja toiminnassa laitteellasi.";
 
 // Settings
+"Page Layout" = "Sivun asettelu";
+"Scroll Direction" = "Vierityssuunta";
+"Theme" = "Teema";
+"Keep screen on" = "Pidä näyttö aktiivisena";
 "Page Transition" = "Sivusiirros";
 "Single" = "Yksi sivu";
 "Continuous" = "Jatkuva";
@@ -611,7 +632,10 @@
 "Jump" = "Hyppy"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Ei käytettävissä"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Tällä ohjelmalla ei ole lupaa käyttää kuviasi.";
-"This app does not have access to your camera." = "Tällä ohjelmalla ei ole lupaa käyttää kameraasi.";
-"You can enable access in Privacy Settings." = "Voit sallia pääsyn yksityisyysasetuksista";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "Ohjelmalla %@ ei ole lupaa käyttää kuviasi.";
+"%@ does not have access to your camera." = "Ohjelmalla %@ ei ole lupaa käyttää kameraasi.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Yksityisyysasetukset";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Anna lupa asetusten kohdasta %@.";

@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- توقيع غير صالح - منذ التوقيع على محتوى هذا المستند، تم تعديل الممستند، أو التلاعب به، أو إتلافه.";
 "Unsigned Signature Field" = "خانة التوقيع بلا توقيع";
 "Do you really want to remove the signature from the document?" = "هل ترغب فعلاً في حذف التوقيع من المستند؟";
+"Could not retrieve the certificate from the signature." = "تعذر استرداد الشهادة من التوقيع.";
+"Could not retrieve the signature contents." = "تعذر استرداد محتويات التوقيع.";
+"Could not retrieve the public key from the signature." = "تعذر استرداد المفتاح العام من التوقيع.";
+"Could not retrieve the byte range of the signature." = "تعذر استرداد نطاق البايت الخاص بالتوقيع.";
+"Could not understand the encryption padding." = "تعذر فهم حشو التشفير.";
+"Could not compute the digest for the document." = "تعذر حساب ملخص المستند.";
+"General failure while trying to determine document integrity." = "خطأ عام أثناء محاولة تحديد سلامة المستند.";
+"The certificate has expired" = "انتهت صلاحية الشهادة";
+"The certificate is not yet valid" = "الشهادة ليست صالحة بعد";
+"Signature validation failed - invalid signature" = "فشل التحقق من صحة التوقيع - توقيع غير صالح";
+"The certificate has been revoked" = "تم إبطال الشهادة";
+"Certificate problem" = "مشكلة في الشهادة";
+"Could not retrieve the signature contents" = "تعذر استرداد محتويات التوقيع";
+"Certificate chain is invalid." = "سلسلة الشهادات غير صالحة.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "تعذر التحقق من سلسلة الشهادات، حيث لم يتم توفير مفاتيح موثوق بها.";
+"Document integrity success, but certificate is self signed." = "تم التحقق من سلامة المستند، ولكن الشهادة موقعة ذاتيًا.";
+"Document integrity check failed." = "فشل التحقق من سلامة المستند.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "خدمة تحويل النص إلى كلام غير متوفرة. تأكد من أنك متصل بالإنترنت، أو أن محرك تحويل النص إلى كلام من جوجل مثبت وممكّن على جهازك.";
 
 // Settings
+"Page Layout" = "تصميم الصفحة";
+"Scroll Direction" = "اتجاه التمرير";
+"Theme" = "السمة";
+"Keep screen on" = "دع الشاشة مفتوحة";
 "Page Transition" = "انتقال الصفحة";
 "Single" = "مفرد";
 "Continuous" = "مستمر";
@@ -611,7 +632,10 @@
 "Jump" = "قفز"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "غير متوفر"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "هذا التطبيق لا يمتلك صلاحيات الوصول إلى صورك.";
-"This app does not have access to your camera." = "هذا التطبيق لا يمتلك صلاحيات الوصول إلى كاميرا جهازك.";
-"You can enable access in Privacy Settings." = "يمكنك السماح بالوصول من إعدادات الخصوصية.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "لا يمتلك %@ صلاحيات الوصول إلى صورك.";
+"%@ does not have access to your camera." = "لا يمتلك %@ صلاحيات الوصول إلى كاميرا جهازك.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "إعدادات الخصوصية";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "يمكنك السماح بالوصول من %@.";

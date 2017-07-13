@@ -76,7 +76,11 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocument : NSObject<PSPDFDocumentProviderD
 /// Initialize empty `PSPDFDocument`.
 + (instancetype)document;
 
-/// Initialize `PSPDFDocument` with a single file.
+/** 
+ Initialize `PSPDFDocument` with a single file.
+ 
+ @note If you are expecting to encounter symlinks or alias files, you need to resolve those using NSURL APIs before passing the URLs to `PSPDFDocument`. `PSPDFDocument` won't automatically resolve them for performance reasons.
+ */
 + (instancetype)documentWithURL:(NSURL *)URL;
 
 /**
@@ -415,7 +419,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocument : NSObject<PSPDFDocumentProviderD
  Set this to `PSPDFDiskCacheStrategyNothing` for sensible/encrypted documents!
  @note If the PDF is protected by a password, `PSPDFDiskCacheStrategyNothing` will be used automatically.
  */
-@property (atomic) PSPDFDiskCacheStrategy diskCacheStrategy PSPDF_DEPRECATED("6.1", "Disk cache strategy is controlled automatically now. To disable the disk cache completely set its allowedDiskSpace to 0.");
+@property (atomic) PSPDFDiskCacheStrategy diskCacheStrategy PSPDF_DEPRECATED_IOS("6.1", "Disk cache strategy is controlled automatically now. To disable the disk cache completely set its allowedDiskSpace to 0.");
 
 @end
 
@@ -671,10 +675,10 @@ PSPDF_EXPORT NSString *const PSPDFAnnotationWriteOptionsGenerateAppearanceStream
  Special PDF rendering options for the methods in `PSPDFDocument`. For more options, see `PSPDFRenderManager.h`
  If added to options, this will change size to fit the aspect ratio.
  */
-PSPDF_EXPORT NSString *const PSPDFPreserveAspectRatioKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionPreserveAspectRatioKey instead.");
+PSPDF_EXPORT NSString *const PSPDFPreserveAspectRatioKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionPreserveAspectRatioKey instead.");
 
 /// Always draw pixels with a 1.0 scale.
-PSPDF_EXPORT NSString *const PSPDFIgnoreDisplaySettingsKey PSPDF_DEPRECATED("6.0", "Use PSPDFRenderOptionIgnoreDisplaySettingsKey instead.");
+PSPDF_EXPORT NSString *const PSPDFIgnoreDisplaySettingsKey PSPDF_DEPRECATED_IOS("6.0", "Use PSPDFRenderOptionIgnoreDisplaySettingsKey instead.");
 
 /**
  Renders the page or a part of it with default display settings into a new image.
@@ -781,7 +785,7 @@ PSPDF_EXPORT PSPDFMetadataName const PSPDFMetadataTrappedKey;
  A PDF might not have any metadata at all.
  See `PSPDFMetadataTitleKey` and the following defines for keys that might be set.
  */
-@property (readonly) NSDictionary<PSPDFMetadataName, id> *metadata PSPDF_DEPRECATED(6.6, "This property will go away in future versions of PSPDFKit. It has been replaced by the `PSPDFDocumentPDFMetadata` class");
+@property (readonly) NSDictionary<PSPDFMetadataName, id> *metadata PSPDF_DEPRECATED_IOS(6.6, "This property will go away in future versions of PSPDFKit. It has been replaced by the `PSPDFDocumentPDFMetadata` class");
 
 #if TARGET_OS_IOS
 /**
@@ -883,7 +887,7 @@ PSPDF_EXPORT PSPDFMetadataName const PSPDFMetadataTrappedKey;
 @interface PSPDFDocument (Deprecated)
 
 /// Returns a `NSURL` files array with the base path already added (if there is one).
-@property (nonatomic, readonly) NSArray<NSURL *> *filesWithBasePath PSPDF_DEPRECATED(6.6, "Use `fileURLs` instead.");
+@property (nonatomic, readonly) NSArray<NSURL *> *filesWithBasePath PSPDF_DEPRECATED_IOS(6.6, "Use `fileURLs` instead.");
 
 @end
 

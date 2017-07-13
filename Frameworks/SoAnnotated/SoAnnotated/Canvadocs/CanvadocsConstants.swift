@@ -68,60 +68,44 @@ enum CanvadocsHighlightColor: String {
     }
 }
 
+func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
+    builder.shouldAskForAnnotationUsername = false
+    builder.pageTransition = PSPDFPageTransition.scrollContinuous
+    builder.scrollDirection = PSPDFScrollDirection.vertical
+    builder.fitToWidthEnabled = .YES
+    builder.pagePadding = 5.0
+    builder.isRenderAnimationEnabled = true
+    builder.shouldHideNavigationBarWithHUD = false
+    builder.shouldHideStatusBarWithHUD = false
+    builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
+    builder.editableAnnotationTypes = [.note, .highlight, .freeText, .strikeOut, .ink, .square]
+    
+    builder.propertiesForAnnotations = [
+        .highlight: [["color"]],
+        PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
+        .square: [["color"]],
+        .circle: [["color"]],
+        .line: [["color"]],
+        .strikeOut: [[]],
+        .freeText: [["fontSize"]],
+    ]
+    
+    builder.overrideClass(PSPDFNoteAnnotation.self, with: CanvadocsCommentAnnotation.self)
+    builder.overrideClass(PSPDFNoteAnnotationView.self, with: CanvadocsCommentAnnotationView.self)
+    builder.overrideClass(PSPDFAnnotationToolbar.self, with: CanvadocsAnnotationToolbar.self)
+}
+
 public let canvasAppConfiguration: PSPDFConfiguration = {
     return PSPDFConfiguration { (builder) -> Void in
-        builder.shouldAskForAnnotationUsername = false
-        builder.pageTransition = PSPDFPageTransition.scrollContinuous
-        builder.scrollDirection = PSPDFScrollDirection.vertical
-        builder.fitToWidthEnabled = .YES
-        builder.pagePadding = 5.0
-        builder.isRenderAnimationEnabled = false
-        builder.shouldHideNavigationBarWithHUD = false
-        builder.shouldHideStatusBarWithHUD = false
-        builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
-        builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink, .square, .circle, .line]
-        builder.drawCreateMode = .separate
-        builder.naturalDrawingAnnotationEnabled = false
-        builder.propertiesForAnnotations = [
-            .highlight: [["color"]],
-            PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
-            .square: [["color"]],
-            .circle: [["color"]],
-            .line: [["color"]],
-            .strikeOut: [[]],
-            .freeText: [["fontSize"]],
-        ]
+        applySharedAppConfiguration(to: builder)
     }
 }()
 
 public func teacherAppConfiguration(bottomInset: CGFloat) -> PSPDFConfiguration {
     return PSPDFConfiguration { (builder) -> Void in
-        builder.shouldAskForAnnotationUsername = false
-        builder.pageTransition = PSPDFPageTransition.scrollContinuous
-        builder.scrollDirection = PSPDFScrollDirection.vertical
-        builder.fitToWidthEnabled = .YES
-        builder.pagePadding = 5.0
-        builder.isRenderAnimationEnabled = true
-        builder.shouldHideNavigationBarWithHUD = false
-        builder.shouldHideStatusBarWithHUD = false
-        builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
-        builder.editableAnnotationTypes = [.highlight, .strikeOut, .freeText, .note, .ink]
-        builder.drawCreateMode = .separate
-        builder.naturalDrawingAnnotationEnabled = false
-        builder.margin = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
-        
-        // This version of PSPDFKit is way buggy... so lets reenable all the options, while they work out the bugs.
-        // As of now (6/13/17), they say the fixes are on the way in 1-2 weeks.
-//        builder.propertiesForAnnotations = [
-//            .highlight: [["color"]],
-//            PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],
-//            .square: [["color"]],
-//            .circle: [["color"]],
-//            .line: [["color"]],
-//            .strikeOut: [[]],
-//            .freeText: [["fontSize"]],
-//        ]
-        
+        applySharedAppConfiguration(to: builder)
+        // 33 = height of toolbar... it's being weird
+        builder.margin = UIEdgeInsets(top: 33, left: 0, bottom: bottomInset, right: 0)
         builder.backgroundColor = UIColor(red: 165.0/255.0, green: 175.0/255.0, blue: 181.0/255.0, alpha: 1.0)
         builder.hudViewMode = .never
     }

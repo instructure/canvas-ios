@@ -24,7 +24,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFInkAnnotation : PSPDFAbstractShapeAnnotati
 - (instancetype)initWithLines:(NSArray<NSArray<NSValue *> *> *)lines;
 
 /// Array of arrays of boxed `PSPDFDrawingPoint`.
-/// Example: `annotation.lines = @[@[BOXED(PSPDFDrawingPointMake(CGPointMake(100,100) , 0.5f)), BOXED(PSPDFDrawingPointMake((CGPointMake(100,200), 0.5f)), BOXED(PSPDFDrawingPointMake(CGPointMake(150,300), 0.5f))]]`;
+/// Example: `annotation.lines = @[@[@(PSPDFDrawingPointMake(CGPointMake(100,100) , 0.5f)), @(PSPDFDrawingPointMake((CGPointMake(100,200), 0.5f)), @(PSPDFDrawingPointMake(CGPointMake(150,300), 0.5f))]]`;
 /// The intensity values determine the line thickness for natural drawing.
 /// @warning: After setting lines, `boundingBox` will be automatically recalculated.
 @property (null_resettable, nonatomic, copy) NSArray<NSArray<NSValue *> *> *lines;

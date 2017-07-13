@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// `NSInternalInconsistencyException` will be raised. To test if a given metadata dictionary is
 /// serializable, use `+validateLibraryMetadata:`. By default, the metadata is serialized into binary
 /// plist format.
-@property (atomic, copy) NSDictionary *libraryMetadata;
+/// While you cannot set a `nil` value, this property can return `nil` if it has not been set before.
+@property (null_unspecified, atomic, copy) NSDictionary *libraryMetadata;
 
 /// @name Serialization
 

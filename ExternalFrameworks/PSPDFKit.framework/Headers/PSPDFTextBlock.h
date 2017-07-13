@@ -22,16 +22,26 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFTextBlock : NSObjec
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/// Designated initializer.
-/// Use `CGRectNull` to indicate that the frame should be calculated automatically.
-- (instancetype)initWithGlyphs:(NSArray<PSPDFGlyph *> *)glyphs frame:(CGRect)frame pageRotation:(NSUInteger)pageRotation NS_DESIGNATED_INITIALIZER;
+/**
+ Designated initializer to create a text block.
+ The initializer will fail if there are no glyphs in the array.
 
-/// Convenience initializer.
-/// Calculates frame automatically by building the union of all glyph frames.
-- (instancetype)initWithGlyphs:(NSArray<PSPDFGlyph *> *)glyphs pageRotation:(NSUInteger)pageRotation;
+ @note Use `CGRectNull` to indicate that the frame should be calculated automatically.
+ */
+- (nullable instancetype)initWithGlyphs:(NSArray<PSPDFGlyph *> *)glyphs frame:(CGRect)frame pageRotation:(NSUInteger)pageRotation NS_DESIGNATED_INITIALIZER;
 
-/// Frame of the text block. Not rotated.
-/// @note Use `convertGlyphRectToViewRect:` when converting to view coordinates.
+/**
+ Designated initializer to create a text block.
+ The initializer will fail if there are no glyphs in the array.
+ 
+ Calculates frame automatically by building the union of all glyph frames.
+ */
+- (nullable instancetype)initWithGlyphs:(NSArray<PSPDFGlyph *> *)glyphs pageRotation:(NSUInteger)pageRotation;
+
+/**
+ Frame of the text block. Not rotated.
+ @note Use `convertGlyphRectToViewRect:` when converting to view coordinates.
+ */
 @property (nonatomic, readonly) CGRect frame;
 
 /// All glyphs of the current text block.

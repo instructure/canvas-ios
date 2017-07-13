@@ -47,7 +47,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 - (instancetype)initWithDocuments:(NSArray<PSPDFDocument *> *)documents NS_DESIGNATED_INITIALIZER;
 
 /// Initialize with a document.
-- (instancetype)initWithDocument:(PSPDFDocument *)document PSPDF_DEPRECATED(6.2, "Use -initWithDocuments: instead.");
+- (instancetype)initWithDocument:(PSPDFDocument *)document PSPDF_DEPRECATED_IOS(6.2, "Use -initWithDocuments: instead.");
 
 /// The documents this coordinator operates on.
 @property (nonatomic, copy, readonly) NSArray<PSPDFDocument *> *documents;

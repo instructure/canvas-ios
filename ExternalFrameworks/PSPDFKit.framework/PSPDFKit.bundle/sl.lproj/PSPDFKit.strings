@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Neveljaven podpis — dokument je bil spremenjen ali poškodovan odkar je bil podpisan.";
 "Unsigned Signature Field" = "Nepodpisano podpisno polje";
 "Do you really want to remove the signature from the document?" = "Ali zares želite odstraniti podpis iz tega dokumenta?";
+"Could not retrieve the certificate from the signature." = "Iz podpisa ni bilo mogoče pridobiti certifikata.";
+"Could not retrieve the signature contents." = "Vsebine podpisa ni bilo mogoče pridobiti.";
+"Could not retrieve the public key from the signature." = "Iz podpisa ni bilo mogoče pridobiti javnega ključa.";
+"Could not retrieve the byte range of the signature." = "Območje podpisa ni bilo mogoče pridobiti.";
+"Could not understand the encryption padding." = "Zapolnjevanje kriptografske šifre ni bilo razumljivo.";
+"Could not compute the digest for the document." = "Zgoščene vrednosti za dokument ni bilo mogoče pridobiti.";
+"General failure while trying to determine document integrity." = "Splošna napaka pri preverjanju pristnosti dokumenta.";
+"The certificate has expired" = "Certifikat ni več veljaven";
+"The certificate is not yet valid" = "Certifikat še ni veljaven";
+"Signature validation failed - invalid signature" = "Preverjanje pristnosti podpisa je spodletelo - neveljaven podpis";
+"The certificate has been revoked" = "Certifikat je bil preklican";
+"Certificate problem" = "Napaka certifikata";
+"Could not retrieve the signature contents" = "Vsebine podpisa ni bilo mogoče pridobiti";
+"Certificate chain is invalid." = "Veriga certifikatov ni veljavna.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Verige certifikatov ni bilo mogoče preveriti, saj ni bilo podanih zaupanja vrednih ključev.";
+"Document integrity success, but certificate is self signed." = "Preverjanje pristnosti dokumenta je uspelo, vendar certifikat je samo-podpisan.";
+"Document integrity check failed." = "Preverjanje pristnosti dokumenta je spodletelo.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Storitev za govor trenutno ni na voljo. Preverite internetno povezavo in namestitev Google TTS.";
 
 // Settings
+"Page Layout" = "Postavitev strani";
+"Scroll Direction" = "Smer listanja";
+"Theme" = "Tema";
+"Keep screen on" = "Zaslon vedno prižgan";
 "Page Transition" = "Menjava strani";
 "Single" = "Samostojno";
 "Continuous" = "Zvezno";
@@ -611,7 +632,10 @@
 "Jump" = "Samostojno"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Ni na voljo"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Aplikacija nima dostopa do vaših fotografij.";
-"This app does not have access to your camera." = "Aplikacija nima dostopa do vaše kamere.";
-"You can enable access in Privacy Settings." = "Dostop lahko omogočite v sistemskih nastavitvah zasebnosti.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ nima dostopa do vaših fotografij.";
+"%@ does not have access to your camera." = "%@ nima dostopa do vaše kamere.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "nastavitvah zasebnosti";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Dostop lahko omogočite v %@.";

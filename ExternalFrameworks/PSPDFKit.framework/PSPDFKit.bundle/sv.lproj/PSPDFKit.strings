@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ogiltig signatur – innehållet i dokumentet har ändrats, förvanskats eller skadats sedan det signerades.";
 "Unsigned Signature Field" = "Ej signerat signaturfält";
 "Do you really want to remove the signature from the document?" = "Vill du ta bort signaturen från dokumentet?";
+"Could not retrieve the certificate from the signature." = "Kunde inte hämta certifikatet från signaturen.";
+"Could not retrieve the signature contents." = "Kunde inte hämta innehållet i signaturen.";
+"Could not retrieve the public key from the signature." = "Kunde inte hämta den publika nyckeln från signaturen.";
+"Could not retrieve the byte range of the signature." = "Kunde inte hämta signaturens byte-block.";
+"Could not understand the encryption padding." = "Kunde inte tolka krypteringens padding.";
+"Could not compute the digest for the document." = "Kunde inte beräkna dokumentets kontrollsumma.";
+"General failure while trying to determine document integrity." = "Allmänt fel när dokumentintegriteten skulle bestämmas.";
+"The certificate has expired" = "Certifikatet har förfallit";
+"The certificate is not yet valid" = "Certifikatet är ännu inte giltigt";
+"Signature validation failed - invalid signature" = "Signaturvalideringen misslyckades - ogiltig signatur";
+"The certificate has been revoked" = "Certifikatet har återkallats";
+"Certificate problem" = "Certifikatproblem";
+"Could not retrieve the signature contents" = "Kunde inte hämta innehållet i signaturen";
+"Certificate chain is invalid." = "Certifikatskedjan är ogiltig.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Det gick inte att verifiera certifikatskedjan eftersom det inte angavs några nycklar att lita på.";
+"Document integrity success, but certificate is self signed." = "Dokumentintegriteten är giltig, men certifikatet är självsignerat.";
+"Document integrity check failed." = "Dokumentets integritetskontroll misslyckades.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Text-till-taltjänsten är inte tillgänglig. Kontrollera att internetanslutningen är aktiv eller att Googles text-till-talmotor är installerad och påslagen på din enhet.";
 
 // Settings
+"Page Layout" = "Sidlayout";
+"Scroll Direction" = "Rullningsriktning";
+"Theme" = "Tema";
+"Keep screen on" = "Behåll skärmen på";
 "Page Transition" = "Sidövergång";
 "Single" = "Enkel";
 "Continuous" = "Kontinuerlig";
@@ -611,7 +632,10 @@
 "Jump" = "Hoppa"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Ej tillgänglig"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Appen har inte åtkomst till dina bilder.";
-"This app does not have access to your camera." = "Appen har inte åtkomst till kameran.";
-"You can enable access in Privacy Settings." = "Aktivera åtkomst i integritetsinställningarna.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ har inte åtkomst till dina bilder.";
+"%@ does not have access to your camera." = "%@ har inte åtkomst till kameran.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Integritetsinställningar";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Du kan tillåta åtkomst i %@.";

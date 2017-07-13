@@ -38,16 +38,21 @@ PSPDF_EXPORT NSString *const PSPDFLibraryNotificationSuccessKey;
 /// The name of the exception thrown when an invalid operation occurs.
 PSPDF_EXPORT NSExceptionName const PSPDFLibraryInvalidOperationException;
 
+/// Represents the status of a document in the library.
 typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexStatus) {
-    /// Not in library
+    /// Not in library.
     PSPDFLibraryIndexStatusUnknown,
+    /// The document is queued for indexing.
     PSPDFLibraryIndexStatusQueued,
+    /// The document has been partially indexed.
     PSPDFLibraryIndexStatusPartial,
+    /// The document has been partially indexed, and is currently being indexed.
     PSPDFLibraryIndexStatusPartialAndIndexing,
+    /// The document is indexed.
     PSPDFLibraryIndexStatusFinished,
 } PSPDF_ENUM_AVAILABLE;
 
-/// Specifies the version of FTS the PSPDFLibrary should use
+/// Specifies the version of FTS the PSPDFLibrary should use.
 typedef NS_ENUM(NSUInteger, PSPDFLibraryFTSVersion) {
     /// The library will use the highest version of FTS available
     PSPDFLibraryFTSVersionHighestAvailable,
@@ -57,6 +62,17 @@ typedef NS_ENUM(NSUInteger, PSPDFLibraryFTSVersion) {
     PSPDFLibraryFTSVersion5
 } PSPDF_ENUM_AVAILABLE;
 
+/// Specifies the priority indexing takes in task scheduling.
+typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexingPriority) {
+    /// Specifies that the indexing must be done on a background priority queue.
+    PSPDFLibraryIndexingPriorityBackground,
+    /// Specifies that indexing must be done on a low priority queue.
+    PSPDFLibraryIndexingPriorityLow,
+    /// Specifies that indexing must be done on a high priority queue.
+    PSPDFLibraryIndexingPriorityHigh
+} PSPDF_ENUM_AVAILABLE;
+
+/// Specifies what data is to be indexed to Spotlight.
 typedef NS_ENUM(NSInteger, PSPDFLibrarySpotlightIndexingType) {
     /// Spotlight is completely disabled.
     PSPDFLibrarySpotlightIndexingDisabled = 0,
@@ -120,6 +136,20 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
  @return A library for the specified path.
  */
 + (nullable instancetype)libraryWithPath:(NSString *)path ftsVersion:(PSPDFLibraryFTSVersion)ftsVersion tokenizer:(nullable NSString *)tokenizer error:(NSError **)error;
+
+/**
+ If no library for the given path exists yet, this method will create and return one. All subsequent calls
+ will return the same instance. Hence there will only be one instance per path.
+ This method will return nil for invalid paths.
+
+ @param path The path for which the library is to be retrieved or created if it does not exist already.
+ @param priority The priority of the internal queue to be used for indexing.
+ @param ftsVersion The version of FTS this library is to use. If the specified version is unavailable, the library will not be created.
+ @param tokenizer See `PSPDFLibrary.tokenizer`
+ @param error A pointer to an error that will be set if the library could not be retrieved or created.
+ @return A library for the specified path.
+ */
++ (nullable instancetype)libraryWithPath:(NSString *)path indexingPriority:(PSPDFLibraryIndexingPriority)priority ftsVersion:(PSPDFLibraryFTSVersion)ftsVersion tokenizer:(nullable NSString *)tokenizer error:(NSError **)error;
 
 /// @name Properties
 
@@ -314,7 +344,7 @@ PSPDF_EXPORT NSString *const PSPDFLibraryPreviewRangeKey;
  @note Documents that are already queued or completely indexed will be forcefully reindexed
  @warning This is a potentially slow operation
  */
-- (void)enqueueDocuments:(NSArray<PSPDFDocument *> *)documents PSPDF_DEPRECATED("6.1", "Use -updateIndex instead");
+- (void)enqueueDocuments:(NSArray<PSPDFDocument *> *)documents PSPDF_DEPRECATED_IOS("6.1", "Use -updateIndex instead");
 
 /**
  Cancels all pending preview text operations.
@@ -383,6 +413,23 @@ PSPDF_EXPORT NSString *const PSPDFLibraryPreviewRangeKey;
  @warning This method will return `nil` if the given encryption key provider was invalid.
 */
 + (instancetype)encryptedLibraryWithPath:(NSString *)path encryptionKeyProvider:(nullable NSData * (^)(void))encryptionKeyProvider ftsVersion:(PSPDFLibraryFTSVersion)ftsVersion tokenizer:(nullable NSString *)tokenizer error:(NSError **)error;
+
+/**
+ Returns an encrypted library for this given path. The `encryptionKeyProvider` is used to access
+ the encryption key when necessary. This allows us to not keep the encryption key around in memory.
+ Your implementation of encryption key provider should therefore always load the key from secure storage,
+ e.g. Apple's keychain. An encryption key provider must also be side-effect free in the sense
+ that it always returns the same encryption key on every call.
+ This method will return `nil` for invalid paths.
+
+ You can also specify the FTS Version to use and a custom `tokenizer` -- see the `tokenizer` property.
+
+ @note In contrast to `libraryWithPath:`, this method will not return the same instance when calling
+ it with an already used path.
+
+ @warning This method will return `nil` if the given encryption key provider was invalid.
+ */
++ (instancetype)encryptedLibraryWithPath:(NSString *)path encryptionKeyProvider:(nullable NSData * (^)(void))encryptionKeyProvider indexingPriority:(PSPDFLibraryIndexingPriority)priority ftsVersion:(PSPDFLibraryFTSVersion)ftsVersion tokenizer:(nullable NSString *)tokenizer error:(NSError **)error;
 
 /// Indicates if the library instance uses encryption.
 @property (nonatomic, readonly, getter=isEncrypted) BOOL encrypted;

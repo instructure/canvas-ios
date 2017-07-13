@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Geçersiz imza — bu belgenin içeriği imzalandığından beri belge değiştirilmiş, içeriğiyle oynanmış veya zarar görmüş.";
 "Unsigned Signature Field" = "İmzalanmamış İmza Alanı";
 "Do you really want to remove the signature from the document?" = "Belgedeki imzayı kaldırmak istediğinizden emin misiniz?";
+"Could not retrieve the certificate from the signature." = "İmzadan sertifika elde edilemedi.";
+"Could not retrieve the signature contents." = "İmza içerikleri elde edilemedi.";
+"Could not retrieve the public key from the signature." = "İmzadan ortak anahtar elde edilemedi.";
+"Could not retrieve the byte range of the signature." = "İmzanın bit aralığı elde edilemedi.";
+"Could not understand the encryption padding." = "Şifreleme doldurmaları anlaşılamadı.";
+"Could not compute the digest for the document." = "Belge için özet çıkarılamadı.";
+"General failure while trying to determine document integrity." = "Belge bütünlüğünün belirlenişinde genel hata.";
+"The certificate has expired" = "Sertifikanın geçerlilik süresi dolmuş";
+"The certificate is not yet valid" = "Sertifika henüz geçerli değil";
+"Signature validation failed - invalid signature" = "İmza doğrulanamadı - geçersiz imza";
+"The certificate has been revoked" = "Sertifika iptal edilmiş";
+"Certificate problem" = "Sertifika sorunu";
+"Could not retrieve the signature contents" = "İmza içerikleri elde edilemedi";
+"Certificate chain is invalid." = "Sertifika zinciri geçersiz.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Sertifika zinciri doğrulanamıyor; güvenilir herhangi bir anahtar sağlanmamış.";
+"Document integrity success, but certificate is self signed." = "Belge bütünlüğü başarılı; ancak sertifika kullanıcı tarafından imzalanmış.";
+"Document integrity check failed." = "Belge bütünlük tespiti gerçekleştirilemedi.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -462,7 +479,7 @@
 "Signature is not valid." = "İmza geçerli değil.";
 "There is a format error in the notBefore field of the certificate." = "Sertifikanın notBefore alanında bir biçim hatası var."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Sertifikanın notAfter alanında bir biçim hatası var."; // notAfter should not be translated
-"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "İmzalar doğrulanamıyor çünkü sertifika zinciri yanlızca bir sertifka içeriyor; kendiliğinden imzalı değil ve sağlayıcıya güvenilemiyor.";
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "İmzalar doğrulanamıyor çünkü sertifika zinciri yanlızca bir sertifika içeriyor; kendiliğinden imzalı değil ve sağlayıcıya güvenilemiyor.";
 "A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA sertifikası geçerli değil çünkü o ya bir CA değil yada onun uzantıları amaçlanan hedefe uyuşmuyor."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA should be translated
 "The basicConstraints pathlength parameter was exceeded." = "basicConstraints pathlength parametresi aşıldı."; // basicContraints pathlength should not be translated
 "The root CA is not marked as trusted for its intended purpose." = "root CA, hedeflenen amacı için güvenli olarak işaretlenmemiş."; // root CA should be translated
@@ -474,7 +491,7 @@
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Geçen sertifika otomatik olarak imzalı ve aynı sertifika güvenilir sertifikalar listesinde bulunamıyor.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Sertifika zincirinde otomatik olarak imzalanmış bir imza var. Sertifika zincirinin güvenilmeyen sertifikalar kullanılarak oluşturulabilmesi mümkün ancak root CA yerel olarak bulunamıyor."; // root CA should be translated
 "Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "İmzalama hiyerarşisinde sertifika yetkililerinden (CA'lardan) birinin sertifikası bulunamıyor ve bu CA yerel uygulama tarafından güvenilir nitelikte değil."; // CAs should not be translated;
-"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Yerel olarak aranan bir sertifikanın sertifika sağlayıcısı bulunamıyor. Genellikle bu, güvenilen sertifka listesinin tamamlanmış olmadığı anlamına gelir.";
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Yerel olarak aranan bir sertifikanın sertifika sağlayıcısı bulunamıyor. Genellikle bu, güvenilen sertifika listesinin tamamlanmış olmadığı anlamına gelir.";
 "The certificate that was provided cannot be used for its intended purpose." = "Sağlanan sertifika amaçlanan hedef için kullanılamıyor.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Sertifika sağlayıcının anahtar kullanım uzantısı sertifikanın imzalanmasına izin vermiyor.";
 "The certificate has expired." = "Sertifikanın süresi doldu.";
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Metin okuma servisi kullanılamıyor. Etkin bir İnternet bağlantınız olduğundan veya Google metin okuma motorunun yüklü ve bunun aygıtınızda etkinleştirilmiş olduğundan emin olun.";
 
 // Settings
+"Page Layout" = "Sayfa Düzeni";
+"Scroll Direction" = "Kaydırma Yönü";
+"Theme" = "Tema";
+"Keep screen on" = "Ekranı açık tut";
 "Page Transition" = "Sayfa Geçişi";
 "Single" = "Tek";
 "Continuous" = "Sürekli";
@@ -611,7 +632,10 @@
 "Jump" = "Atlamalı"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Kullanılamıyor"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Bu uygulamanın fotoğraflarınıza erişim izni yok.";
-"This app does not have access to your camera." = "Bu uygulamanın kameranıza erişim izni yok.";
-"You can enable access in Privacy Settings." = "Erişime Gizlilik Ayarları’nda izin verebilirsiniz.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ uygulamasının fotoğraflarınıza erişim izni yok.";
+"%@ does not have access to your camera." = "%@ uygulamasının kameranıza erişim izni yok.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Gizlilik Ayarları";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "%@ içinde erişime izin verebilirsiniz.";

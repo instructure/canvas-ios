@@ -14,17 +14,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void *OPENSSL_EVP_PKEY;
-
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFRSAKey : NSObject
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/// Initializes from an OpenSSL EVP_PKEY object.
-- (instancetype)initWithKey:(OPENSSL_EVP_PKEY)key NS_DESIGNATED_INITIALIZER;
+/// The underlying public key scheme.
+@property (nonatomic, readonly) NSString *publicKeyScheme;
 
-/// Returns the OpenSSL private key.
-@property (nonatomic, readonly) OPENSSL_EVP_PKEY pKey;
+/// Returns the approximate length of the security parameter. For example, for RSA this is the size of the modulus.
+@property (nonatomic, readonly) NSInteger keyLength;
 
 @end
 

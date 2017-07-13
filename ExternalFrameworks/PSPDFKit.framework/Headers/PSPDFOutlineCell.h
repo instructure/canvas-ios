@@ -98,7 +98,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFOutlineCell : PSPDFTableViewCell
 @interface PSPDFOutlineCell (Deprecated)
 
 /// Dynamically calculates the height for a cell.
-+ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement documentProvider:(nullable PSPDFDocumentProvider *)documentProvider constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier showPageLabel:(BOOL)showPageLabel PSPDF_DEPRECATED(6.6, "PSPDFOutlineCell is now a self-sizing table view cell.");
++ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement documentProvider:(nullable PSPDFDocumentProvider *)documentProvider constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier showPageLabel:(BOOL)showPageLabel PSPDF_DEPRECATED_IOS(6.6, "PSPDFOutlineCell is now a self-sizing table view cell.");
 
 @end
 

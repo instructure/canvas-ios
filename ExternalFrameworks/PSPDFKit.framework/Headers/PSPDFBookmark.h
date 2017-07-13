@@ -131,7 +131,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFMutableBookmark : PSPDFBookmark
 
  @see displayName
  */
-@property (nonatomic, readonly) NSString *pageOrNameString PSPDF_DEPRECATED("6.0", "Use displayName instead.");
+@property (nonatomic, readonly) NSString *pageOrNameString PSPDF_DEPRECATED_IOS("6.0", "Use displayName instead.");
 
 @end
 

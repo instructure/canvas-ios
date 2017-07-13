@@ -68,7 +68,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
 /// The attached documents this class operates on.
 @property (nonatomic, nullable) NSArray<PSPDFDocument *> *documents;
-@property (nonatomic, nullable, readonly) PSPDFDocument *document PSPDF_DEPRECATED(6.2, "Use `documents` instead.");
+@property (nonatomic, nullable, readonly) PSPDFDocument *document PSPDF_DEPRECATED_IOS(6.2, "Use `documents` instead.");
 
 /**
  Checks if `action` can be called.

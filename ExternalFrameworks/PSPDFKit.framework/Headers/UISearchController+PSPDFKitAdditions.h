@@ -21,11 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) UITableView *pspdf_searchResultsTableView;
 
 /**
- Enables a workaround for rdar://352525.
- UISearchController: Status Bar on top of Search Bar after rotating
- http://openradar.appspot.com/radar?id=5542248011792384
+ Enables a workaround for rdar://352525 and rdar://32630657.
+
+ rdar://352525: UISearchController: Status Bar on top of Search Bar after rotating
+ http://www.openradar.me/352525
+ 
+ rdar://32630657: UISearchController logs about loading view during deallocation due to uninstalling back gesture recognizer
+ http://www.openradar.me/32630657
  */
-- (void)pspdf_install352525StatusBarWorkaroundOn:(UIViewController *)controller;
+- (void)pspdf_installWorkaroundsOn:(UIViewController *)controller;
 
 @end
 

@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ugyldig signatur. Siden signering har innholdet av dette dokumentet blitt redigert, påvirket eller ødelagt.";
 "Unsigned Signature Field" = "Usignert signaturfelt";
 "Do you really want to remove the signature from the document?" = "Vil du virkelig fjerne signaturen fra dokumentet?";
+"Could not retrieve the certificate from the signature." = "Kunne ikke hente sertifikatet fra signaturen.";
+"Could not retrieve the signature contents." = "Kunne ikke hente signaturinnholdet.";
+"Could not retrieve the public key from the signature." = "Kunne ikke hente offentlige nøkkelen fra signaturen.";
+"Could not retrieve the byte range of the signature." = "Kunne ikke hente byte-området av signaturen.";
+"Could not understand the encryption padding." = "Kunne ikke forstå krypteringstopping.";
+"Could not compute the digest for the document." = "Kunne ikke hente sammendraget for dokumentet.";
+"General failure while trying to determine document integrity." = "Det oppstod en feil under bestemmelse av dokumentintegritet.";
+"The certificate has expired" = "Sertifikatet har utløpt";
+"The certificate is not yet valid" = "Sertifikatet er ennå ikke gyldig";
+"Signature validation failed - invalid signature" = "Signaturvalidering mislyktes - ugyldig signatur";
+"The certificate has been revoked" = "Serfitikatet har blitt opphevd";
+"Certificate problem" = "Sertifikatproblem";
+"Could not retrieve the signature contents" = "Kunne ikke hente signaturinnholdet";
+"Certificate chain is invalid." = "Sertifikatkjeden er ugyldig.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Sertifikatkjeden kunne ikke verifiseres siden ingen godkjente nøkler ble oppgitt.";
+"Document integrity success, but certificate is self signed." = "Dokumentintegritet fullført, men sertifikatet er selvsignert.";
+"Document integrity check failed." = "Kontroll av dokumentintegritet mislyktes.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Tjenesten tekst-til-tale er utilgjengelig. Påse at du har en aktiv Internett-forbindelse eller Google Tekst-til-tale-motor installert og aktivert på din enhet.";
 
 // Settings
+"Page Layout" = "Sideoppsett";
+"Scroll Direction" = "Rulleretning";
+"Theme" = "Tema";
+"Keep screen on" = "Behold skjermen på";
 "Page Transition" = "Sideovergang";
 "Single" = "Enkelt";
 "Continuous" = "Sammenhengende";
@@ -611,7 +632,10 @@
 "Jump" = "Hopp"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Ikke tilgjengelig"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Denne applikasjonen har ikke tilgang til dine bilder.";
-"This app does not have access to your camera." = "Denne applikasjonen har ikke tilgang til ditt kamera.";
-"You can enable access in Privacy Settings." = "Du kan aktivere tilgang i Personvern-innstillinger.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ har ikke tilgang til dine bilder.";
+"%@ does not have access to your camera." = "%@ har ikke tilgang til ditt kamera.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Personvern-innstillinger";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Du kan aktivere tilgang i %@.";

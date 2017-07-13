@@ -28,3 +28,4 @@ FOUNDATION_EXPORT const unsigned char SoAnnotatedVersionString[];
 
 
 #import <SoAnnotated/GDataXMLNode.h>
+#import <SoAnnotated/UITextView+Placeholder.h>

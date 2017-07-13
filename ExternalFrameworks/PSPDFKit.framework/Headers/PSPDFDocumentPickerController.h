@@ -10,6 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
+#import "PSPDFEnvironment.h"
 #import "PSPDFOverridable.h"
 #import "PSPDFStatefulTableViewController.h"
 
@@ -46,13 +47,27 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFDocumentPickerController : PSPDFStatefulTa
 + (NSArray<PSPDFDocument *> *)documentsFromDirectory:(nullable NSString *)directoryName includeSubdirectories:(BOOL)includeSubdirectories;
 
 /**
- Designated initializer.
- `library` is optional but required if you want to use `fullTextSearchEnabled`.
- @note Providing nil or an empty string for directory parameter searches the root documents directory.
+ Initializes a document picker controller for the specified directory.
+
+ @param directory The directory from which documents are to be retrieved for selection.
+ @param library The library in which the documents are to be indexed. This is optional but required if you want to use `fullTextSearchEnabled`.
+ @return An instance of `PSPDFDocumentPickerController`.
+ 
+ @warning Specifying a directory and a library with a `dataSource` set may result in the library's indexes being in an inconsistent state with the data source if the documents do not match those provided by the `dataSource`.
+          This is highly discouraged. IF you wish to use the picker controller for documents not already specified by the library's `dataSource`, create a new library at a separate path and pass that here.
  */
 - (instancetype)initWithDirectory:(nullable NSString *)directory includeSubdirectories:(BOOL)includeSubdirectories library:(nullable PSPDFLibrary *)library;
 
-/// Initialize with a number of documents.
+/**
+ Initializes a document picker controller for the specified documents.
+
+ @param documents The documents available to be selected.
+ @param library The library in which the documents are to be indexed. This is optional but required if you want to use `fullTextSearchEnabled`.
+ @return An instance of `PSPDFDocumentPickerController`.
+ 
+ @warning Specifying documents and a library with a `dataSource` set may result in the library's indexes being in an inconsistent state with the data source if the documents do not match those provided by the `dataSource`.
+          This is highly discouraged. IF you wish to use the picker controller for documents not already specified by the library's `dataSource`, create a new library at a separate path and pass that here.
+ */
 - (instancetype)initWithDocuments:(NSArray<PSPDFDocument *> *)documents library:(nullable PSPDFLibrary *)library NS_DESIGNATED_INITIALIZER;
 
 /// Manually trigger library enqueueing. We automatically do that when the controller becomes visible.

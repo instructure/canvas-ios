@@ -40,7 +40,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// Rect of current page.
 @property (nonatomic, readonly) CGRect rect;
 
-/// Saved page rotation of current page. Value between 0 and 270.
+/// Saved page rotation of current page. Value between 0 and 270 in 90 degree steps.
 @property (nonatomic, readonly) NSUInteger rotation;
 
 /// Defines additional page actions.

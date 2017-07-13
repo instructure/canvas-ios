@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Tandatangan tidak sah — sejak menandatangani kandungan dokumen ini, ia telah diubah suai, diusik atau rosak.";
 "Unsigned Signature Field" = "Medan Tandatangan Tidak Ditandatangani";
 "Do you really want to remove the signature from the document?" = "Adakah anda benar-benar ingin mengalih keluar tandatangan daripada dokumen?";
+"Could not retrieve the certificate from the signature." = "Tidak dapat mengambil sijil daripada tandatangan.";
+"Could not retrieve the signature contents." = "Tidak dapat mengambil kandungan tandatangan.";
+"Could not retrieve the public key from the signature." = "Tidak dapat mengambil kunci awam daripada tandatangan.";
+"Could not retrieve the byte range of the signature." = "Tidak dapat mengambil julat bait tandatangan.";
+"Could not understand the encryption padding." = "Tidak dapat memahami pengisian penyulitan.";
+"Could not compute the digest for the document." = "Tidak dapat mengira ikhtisar bagi dokumen.";
+"General failure while trying to determine document integrity." = "Kegagalan umum semasa cuba menentukan integriti dokumen.";
+"The certificate has expired" = "Sijil telah tamat tempoh";
+"The certificate is not yet valid" = "Sijil masih belum sah lagi";
+"Signature validation failed - invalid signature" = "Pengesahan tandatangan gagal - tandatangan tidak sah";
+"The certificate has been revoked" = "Sijil telah dibatalkan";
+"Certificate problem" = "Masalah sijil";
+"Could not retrieve the signature contents" = "Tidak dapat mengambil kandungan tandatangan";
+"Certificate chain is invalid." = "Rantai sijil tidak sah.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Rantai sijil tidak dapat disahkan kerana tiada kunci dipercayai dibekalkan.";
+"Document integrity success, but certificate is self signed." = "Integriti dokumen berjaya, tetapi sijil ditandatangani sendiri.";
+"Document integrity check failed." = "Pemeriksaan integriti dokumen gagal.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Perkhidmatan teks ke pertuturan tidak tersedia. Pastikan anda mempunyai sambungan Internet yang aktif atau telah memasang enjin Teks ke pertuturan Google dan didayakan pada peranti anda.";
 
 // Settings
+"Page Layout" = "Tataletak Halaman";
+"Scroll Direction" = "Arah Skrol";
+"Theme" = "Tema";
+"Keep screen on" = "Pastikan skrin aktif";
 "Page Transition" = "Peralihan Halaman";
 "Single" = "Tunggal";
 "Continuous" = "Berterusan";
@@ -611,7 +632,10 @@
 "Jump" = "Lompat"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Tidak Tersedia"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Aplikasi ini tidak mempunyai akses kepada foto anda.";
-"This app does not have access to your camera." = "Aplikasi ini tidak mempunyai akses kepada kamera anda.";
-"You can enable access in Privacy Settings." = "Anda boleh mendayakan akses dalam Seting Privasi.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ tidak mempunyai akses kepada foto anda.";
+"%@ does not have access to your camera." = "%@ tidak mempunyai akses kepada kamera anda.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Seting Privasi";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Anda boleh mendayakan akses dalam %@.";

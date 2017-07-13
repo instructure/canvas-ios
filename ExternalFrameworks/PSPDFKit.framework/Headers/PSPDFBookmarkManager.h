@@ -111,7 +111,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 /// @name Modifying Bookmarks
 
 /**
- Adds a bookmark to the bookmark manager.
+ Adds a bookmark to the bookmark manager or updates an existing.
 
  @note To persist an update to the bookmarks you need to save the associated document.
 
@@ -164,7 +164,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
  @param block The block you want to perform.
  */
-- (void)performBlock:(void (^)())block;
+- (void)performBlock:(void (^)(void))block;
 
 /**
  Schedules a block for synchronous execution as a single serial operation on the
@@ -186,7 +186,7 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 
  @param block The block you want to perform.
  */
-- (void)performBlockAndWait:(void (^)())block;
+- (void)performBlockAndWait:(void (^)(void))block;
 
 /// @name Customizing Bookmark Providers
 

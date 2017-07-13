@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 无效签名 — 自本文稿内容签名后，它已被修改、 篡改或损坏。";
 "Unsigned Signature Field" = "未签名签名字段";
 "Do you really want to remove the signature from the document?" = "确实要将签名从文稿中移除？";
+"Could not retrieve the certificate from the signature." = "无法从签名检索证书。";
+"Could not retrieve the signature contents." = "无法检索签名内容。";
+"Could not retrieve the public key from the signature." = "无法从签名检索公共密钥。";
+"Could not retrieve the byte range of the signature." = "无法检索签名的字节范围。";
+"Could not understand the encryption padding." = "无法理解加密赘语。";
+"Could not compute the digest for the document." = "无法计算文稿的汇编。";
+"General failure while trying to determine document integrity." = "尝试确定文稿完整性时出现一般性问题";
+"The certificate has expired" = "证书已过期";
+"The certificate is not yet valid" = "证书还未生效";
+"Signature validation failed - invalid signature" = "签名验证失败 - 签名无效";
+"The certificate has been revoked" = "证书已被吊销";
+"Certificate problem" = "证书问题";
+"Could not retrieve the signature contents" = "无法检索签名内容";
+"Certificate chain is invalid." = "证书链无效。";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "无法验证证书链，因为没有提供可信的密钥。";
+"Document integrity success, but certificate is self signed." = "文稿完整性验证成功，但是证书是自签名。";
+"Document integrity check failed." = "文稿完整性检查失败。";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "文本到语音转换服务不可用。确保您的网络处于连接状态或者您的设备安装并启用了 Google 文本到语音转换引擎。";
 
 // Settings
+"Page Layout" = "页面布局";
+"Scroll Direction" = "滚动方向";
+"Theme" = "主题";
+"Keep screen on" = "禁止屏幕进入待命状态";
 "Page Transition" = "页面过渡";
 "Single" = "单页";
 "Continuous" = "连续";
@@ -611,7 +632,10 @@
 "Jump" = "跳转"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "不可用"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "此应用没有访问您的照片的权限。";
-"This app does not have access to your camera." = "此应用没有访问您的相机的权限。";
-"You can enable access in Privacy Settings." = "您可以在“隐私设置”中启用访问权限。";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ 没有访问您的照片的权限。";
+"%@ does not have access to your camera." = "%@ 没有访问您的相机的权限。";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "隐私设置";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "您可以在 %@ 中启用访问权限。";

@@ -468,7 +468,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotation : PSPDFModel<PSPDFUndoProtocol,
  If `indexOnPage` is set, it's a native PDF annotation.
  If this is -1, it's not yet saved in the PDF or saved externally.
  */
-@property (nonatomic, readonly) NSInteger indexOnPage PSPDF_DEPRECATED(6.0, "This property will go away in the near future. You should not rely on an annotation having a certain index on the page it belongs to.");
+@property (nonatomic, readonly) NSInteger indexOnPage PSPDF_DEPRECATED(6.0, 1.0, "This property will go away in the near future. You should not rely on an annotation having a certain index on the page it belongs to.");
 
 /**
  The PDF object number.

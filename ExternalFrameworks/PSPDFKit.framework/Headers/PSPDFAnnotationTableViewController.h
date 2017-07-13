@@ -44,8 +44,11 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationTableViewController : PSPDFState
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationTableViewControllerDelegate> delegate;
 
 /**
- Set to filter custom annotations. By default this is nil, which means it uses the `editableAnnotationTypes' value of this class.
+ Set to filter custom annotations.
+ By default this is nil, which means it uses the `editableAnnotationTypes' value of this class.
  This set takes strings like `PSPDFAnnotationStringHighlight`, `PSPDFAnnotationStringInk`, ...
+ 
+ @note If neither is set, all annotations will be visible except link annotations.
  */
 @property (nonatomic, copy, nullable) NSSet<PSPDFAnnotationString> *visibleAnnotationTypes;
 
@@ -82,7 +85,7 @@ PSPDF_CLASS_AVAILABLE @interface PSPDFAnnotationTableViewController : PSPDFState
 - (NSArray<__kindof PSPDFAnnotation *> *)annotationsForPageAtIndex:(NSUInteger)pageIndex;
 
 /// Queries the cache to get the annotation for `indexPath`.
-- (nullable PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath PSPDF_DEPRECATED(6.4, "Use annotationForIndexPath:inTableView: instead.");
+- (nullable PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath PSPDF_DEPRECATED_IOS(6.4, "Use annotationForIndexPath:inTableView: instead.");
 
 /**
  Queries the cache to get the annotation for `indexPath`.

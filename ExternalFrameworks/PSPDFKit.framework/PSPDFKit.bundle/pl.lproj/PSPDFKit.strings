@@ -452,6 +452,23 @@
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Nieprawidłowy podpis – od podpisania dokumentu wprowadzono zmiany w tym dokumencie, ewentualnie próbowano go naruszyć lub został uszkodzony.";
 "Unsigned Signature Field" = "Brak podpisu w polu podpisu";
 "Do you really want to remove the signature from the document?" = "Na pewno usunąć podpis z dokumentu?";
+"Could not retrieve the certificate from the signature." = "Nie można pobrać certyfikatu z podpisu.";
+"Could not retrieve the signature contents." = "Nie można pobrać zawartości podpisu.";
+"Could not retrieve the public key from the signature." = "Nie można pobrać klucza publicznego z podpisu.";
+"Could not retrieve the byte range of the signature." = "Nie można pobrać zakresu bajtów podpisu.";
+"Could not understand the encryption padding." = "Nie można zrozumieć dopełnienia szyfrowania.";
+"Could not compute the digest for the document." = "Nie można obliczyć skrótu dokumentu.";
+"General failure while trying to determine document integrity." = "Błąd ogólny podczas próby określenia integralności dokumentu.";
+"The certificate has expired" = "Certyfikat wygasł";
+"The certificate is not yet valid" = "Certyfikat nie jest jeszcze ważny";
+"Signature validation failed - invalid signature" = "Niepowodzenie weryfikacji podpisu — nieprawidłowy podpis";
+"The certificate has been revoked" = "Certyfikat został odwołany";
+"Certificate problem" = "Problem z certyfikatem";
+"Could not retrieve the signature contents" = "Nie można pobrać zawartości podpisu";
+"Certificate chain is invalid." = "Łańcuch certyfikatów jest nieprawidłowy.";
+"Certificate chain could not be verified, as no trusted keys were supplied." = "Nie można zweryfikować łańcucha certyfikatów, ponieważ nie określono zaufanych kluczy.";
+"Document integrity success, but certificate is self signed." = "Sprawdzanie integralności dokumentu powiodło się, ale certyfikat jest samopodpisany.";
+"Document integrity check failed." = "Sprawdzanie integralności dokumentu nie powiodło się.";
 
 
 // Signatures - PSPDFSignatureVerificationX509Error
@@ -596,6 +613,10 @@
 "Text-to-speech service unavailable. Make sure you have an active internet connection or Google Text-to-speech engine installed and enabled on your device." = "Usługa syntezy mowy jest niedostępna. Upewnij się, że masz aktywne połączenie internetowe lub że mechanizm syntezy mowy Google został zainstalowany i jest włączony na urządzeniu.";
 
 // Settings
+"Page Layout" = "Układ stron";
+"Scroll Direction" = "Kierunek przewijania";
+"Theme" = "Motyw";
+"Keep screen on" = "Nie wyłączaj ekranu";
 "Page Transition" = "Przejście strony";
 "Single" = "Pojedynczy";
 "Continuous" = "Ciągły";
@@ -611,7 +632,10 @@
 "Jump" = "Skocz"; // The name of the single page mode transition displayed in settings view
 "Not Available" = "Niedostępne"; // value displayed for disabled browsing option in settings view (disabled scroll direction and page mode)
 
-// Privacy Access
-"This app does not have access to your photos." = "Aplikacja nie ma dostępu do Twoich zdjęć.";
-"This app does not have access to your camera." = "Aplikacja nie ma dostępu do Twojej";
-"You can enable access in Privacy Settings." = "Dostęp możesz włączyć w ustawieniach prywatności.";
+// Privacy Access (%@ is replaced with the app name)
+"%@ does not have access to your photos." = "%@ nie ma dostępu do Twoich zdjęć.";
+"%@ does not have access to your camera." = "%@ nie ma dostępu do aparatu.";
+// This will be inserted and underlined in the string below.
+"Privacy Settings" = "Ustawieniach prywatności";
+// %@ is replaced with "Privacy Settings"
+"You can enable access in %@." = "Dostęp można uzyskać w %@.";

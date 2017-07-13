@@ -10,13 +10,13 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFMacros.h"
 #import "PSPDFRSAKey.h"
+
+#import "PSPDFMacros.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void *OPENSSL_X509;
-
+/// This class represents a X.509 certificate.
 PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFX509 : NSObject
 
 /// The Adobe certification authority.
@@ -27,22 +27,11 @@ PSPDF_CLASS_AVAILABLE_SUBCLASSING_RESTRICTED @interface PSPDFX509 : NSObject
 
 PSPDF_EMPTY_INIT_UNAVAILABLE
 
-/**
- Initializes the certificate with an OpenSSL X509 type.
-
- @param x509 The X509 certificate that this class encapsulates. Note that PSPDFX509 assumes ownership of this object and calls `X509_free()` on it when deallocated.
- @return An instance of `PSPDFX509`.
- */
-- (instancetype)initWithX509:(OPENSSL_X509)x509 NS_DESIGNATED_INITIALIZER;
-
-/// The underlying OpenSSL X509 object.
-@property (nonatomic, readonly) OPENSSL_X509 cert;
-
 /// The public key.
 @property (nonatomic, readonly) PSPDFRSAKey *publicKey;
 
 /// The CN entry.
-@property (nonatomic, copy, readonly) NSString *commonName;
+@property (nonatomic, copy, readonly, nullable) NSString *commonName;
 
 @end
 

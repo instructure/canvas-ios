@@ -55,19 +55,19 @@ PSPDF_EMPTY_INIT_UNAVAILABLE
 @interface PSPDFSignaturePropBuildEntry (Deprecated)
 
 /// (Optional; PDF 1.5) The software module revision number.
-@property (nonatomic, readonly) NSInteger R PSPDF_DEPRECATED(6.7.1, "Use revisionNumber instead.");
+@property (nonatomic, readonly) NSInteger R PSPDF_DEPRECATED_IOS(6.7.1, "Use revisionNumber instead.");
 
 /// (Optional; PDF 1.5) Indicates the operating system
-@property (nonatomic, copy, readonly, nullable) NSString *OS PSPDF_DEPRECATED(6.7.1, "Use operatingSystem instead.");
+@property (nonatomic, copy, readonly, nullable) NSString *OS PSPDF_DEPRECATED_IOS(6.7.1, "Use operatingSystem instead.");
 
 /// (Optional; PDF 1.5) If there is a Legal dictionary in the catalog of the PDF file, and the NonEmbeddedFonts attribute (which specifies the number of fonts not embedded) in that dictionary has a non-zero value, and the viewing application has a preference set to suppress the display of the warning about fonts not being embedded, then the value of this attribute will be set to true (meaning that no warning need be displayed)..
-@property (nonatomic, readonly) BOOL nonEFontNoWarn PSPDF_DEPRECATED(6.7.1, "Use nonEmbeddedFontNoWarning instead.");
+@property (nonatomic, readonly) BOOL nonEFontNoWarn PSPDF_DEPRECATED_IOS(6.7.1, "Use nonEmbeddedFontNoWarning instead.");
 
 /// (Optional; PDF 1.5; Deprecated for PDF 1.7) Indicates the minimum version number of the software required to process the signature.
-@property (nonatomic, readonly) NSInteger V PSPDF_DEPRECATED(6.7.1, "Use minimumVersion instead.");
+@property (nonatomic, readonly) NSInteger V PSPDF_DEPRECATED_IOS(6.7.1, "Use minimumVersion instead.");
 
 /// (Optional; PDF 1.6) A text string indicating the version of the application implementation, as described by the Name attribute in this dictionary.
-@property (nonatomic, copy, readonly, nullable) NSString *REx PSPDF_DEPRECATED(6.7.1, "Use textRevision instead.");
+@property (nonatomic, copy, readonly, nullable) NSString *REx PSPDF_DEPRECATED_IOS(6.7.1, "Use textRevision instead.");
 
 @end
 
