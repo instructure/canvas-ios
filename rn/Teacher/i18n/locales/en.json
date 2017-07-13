@@ -2,6 +2,9 @@
   "_4927a5f1": {
     "message": "?"
   },
+  "a_description_is_required_54b5f1f6": {
+    "message": "A description is required"
+  },
   "a_message_is_required_129e1814": {
     "message": "A message is required"
   },
@@ -98,9 +101,6 @@
   "archived_de543437": {
     "message": "Archived"
   },
-  "are_you_sure_26795d3c": {
-    "message": "Are you sure?"
-  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Are you sure you want to delete this discussion?"
   },
@@ -143,35 +143,26 @@
   "availability_e415e857": {
     "message": "Availability:"
   },
+  "available_from_3821bccc": {
+    "message": "Available From:"
+  },
   "available_from_587ce92f": {
     "message": "Available From"
   },
   "available_from_date_bb9d5115": {
     "message": "Available from: { date }"
   },
-  "available_from_f84e4611": {
-    "message": "Available from"
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "''Available From'' must be before ''Available Until''"
   },
-  "available_from_f9e093c8": {
-    "message": "Available from:"
+  "available_until_20c0cc5c": {
+    "message": "Available Until:"
   },
-  "available_from_must_be_before_available_to_88027dd9": {
-    "message": "''Available From'' must be before ''Available To''"
+  "available_until_date_37684818": {
+    "message": "Available until: { date }"
   },
-  "available_to_22b12aa0": {
-    "message": "Available To"
-  },
-  "available_to_434cb9f5": {
-    "message": "Available to:"
-  },
-  "available_to_b7350e02": {
-    "message": "Available to"
-  },
-  "available_to_date_d74ed927": {
-    "message": "Available to: { date }"
-  },
-  "available_until_3278ebe9": {
-    "message": "Available until"
+  "available_until_f3b9c4ed": {
+    "message": "Available Until"
   },
   "average_49c63f9b": {
     "message": "Average"
@@ -181,6 +172,9 @@
   },
   "back_to_replies_94f3c127": {
     "message": "Back to replies"
+  },
+  "bold_34b9d97e": {
+    "message": "Bold"
   },
   "cancel_caeb1e68": {
     "message": "Cancel"
@@ -193,6 +187,9 @@
   },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
     "message": "Change { discussionTitle } to different grouping"
+  },
+  "choose_1319ef6b": {
+    "message": "Choose"
   },
   "choose_color_11148181": {
     "message": "Choose { color }"
@@ -257,6 +254,9 @@
   "count_plural_one_question_other_questions_309aafa": {
     "message": "{ count, plural,\n    one {# Question}\n  other {# Questions}\n}"
   },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,\n    one {There is # assignee without a grade.}\n  other {There are # assignees without grades.}\n}"
+  },
   "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
     "message": "{ count, plural,\n   zero {# Replies}\n    one {# Reply}\n  other {# Replies}\n}"
   },
@@ -271,6 +271,9 @@
   },
   "course_modules_795cb95e": {
     "message": "Course Modules"
+  },
+  "course_sections_380358a5": {
+    "message": "Course Sections"
   },
   "course_settings_f6d0bbf8": {
     "message": "Course Settings"
@@ -332,14 +335,14 @@
   "due_date_822625d8": {
     "message": "Due Date"
   },
-  "due_date_must_be_between_available_from_and_availa_3a312b9d": {
-    "message": "''Due Date'' must be between ''Available From'' and ''Available To'' dates"
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "''Due Date'' must be between ''Available From'' and ''Available Until'' dates"
   },
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Due Dates, Double tap for details."
   },
-  "edit_assignment_details_a7c96fea": {
-    "message": "Edit Assignment Details"
+  "edit_assignment_ebf22a72": {
+    "message": "Edit Assignment"
   },
   "edit_c5fbea07": {
     "message": "Edit"
@@ -413,8 +416,17 @@
   "forward_d143f64": {
     "message": "Forward"
   },
+  "forwarded_message_3acb578c": {
+    "message": "Forwarded Message:"
+  },
   "full_screen_712e95f1": {
     "message": "Full screen"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "Fw: { subject }"
+  },
+  "gpa_71809a99": {
+    "message": "GPA"
   },
   "gpa_scale_a6d1cdea": {
     "message": "GPA Scale"
@@ -446,6 +458,9 @@
   "group_a8f5ed9c": {
     "message": "Group"
   },
+  "groups_6c90e26a": {
+    "message": "Groups"
+  },
   "half_screen_9cdd83ad": {
     "message": "Half screen"
   },
@@ -473,14 +488,23 @@
   "incomplete_da3c2ea2": {
     "message": "Incomplete"
   },
+  "insert_image_42d30344": {
+    "message": "Insert Image"
+  },
+  "insert_link_6dc23cae": {
+    "message": "Insert Link"
+  },
   "invalid_field_54480fae": {
     "message": "Invalid field"
+  },
+  "italic_ac45200a": {
+    "message": "Italic"
   },
   "last_post_lastreplydatestr_55fbe7ce": {
     "message": "Last post { lastReplyDateStr }"
   },
-  "late_2be42b88": {
-    "message": "Late"
+  "late_bd436902": {
+    "message": "LATE"
   },
   "latest_f604a75": {
     "message": "Latest"
@@ -499,6 +523,9 @@
   },
   "letter_grade_29ff1938": {
     "message": "Letter Grade"
+  },
+  "letter_grade_e83e363c": {
+    "message": "Letter grade"
   },
   "lock_questions_after_answering_e0f61d7c": {
     "message": "Lock Questions After Answering"
@@ -533,8 +560,8 @@
   "minutes_4aee5a41": {
     "message": "Minutes"
   },
-  "missing_1a256b3b": {
-    "message": "Missing"
+  "missing_eaddacbd": {
+    "message": "MISSING"
   },
   "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
     "message": "Moderated grading is not currently supported in mobile SpeedGrader."
@@ -554,6 +581,9 @@
   "new_13daf639": {
     "message": "New"
   },
+  "new_discussion_dae4fae3": {
+    "message": "New Discussion"
+  },
   "new_message_f9bbd1c0": {
     "message": "New Message"
   },
@@ -566,14 +596,14 @@
   "no_available_from_date_set_db356ac3": {
     "message": "No available from date set"
   },
-  "no_available_to_date_set_c799d15": {
-    "message": "No available to date set"
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "No available until date set"
   },
-  "no_available_to_date_set_d896475": {
-    "message": "No available to date set."
+  "no_available_until_date_set_df9e7434": {
+    "message": "No available until date set."
   },
-  "no_due_date_1d63d13b": {
-    "message": "No due date"
+  "no_due_date_44271c53": {
+    "message": "No Due Date"
   },
   "no_due_date_set_bb3a2bf7": {
     "message": "No due date set."
@@ -596,8 +626,8 @@
   "no_subject_2e2a413c": {
     "message": "(no subject)"
   },
-  "no_submission_b44e1990": {
-    "message": "No submission"
+  "no_subject_58b7941c": {
+    "message": "No Subject"
   },
   "no_time_limit_2147d9bf": {
     "message": "No Time Limit"
@@ -668,11 +698,20 @@
   "options_3ab0ea65": {
     "message": "Options"
   },
+  "ordered_list_5fb1ce41": {
+    "message": "Ordered List"
+  },
   "out_of_count_fc1cd44d": {
     "message": "Out of { count }"
   },
+  "out_of_points_c40a0475": {
+    "message": "Out of { points }"
+  },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page"
+  },
+  "percent_d7ddd35b": {
+    "message": "Percent (%)"
   },
   "percentage_34ab7c2c": {
     "message": "Percentage"
@@ -691,6 +730,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "Points possible must be a number"
   },
   "post_at_a9e0fecb": {
     "message": "Post at..."
@@ -737,8 +779,14 @@
   "recipient_recipient_394cf528": {
     "message": "Recipient: { recipient }"
   },
+  "redo_363c58b7": {
+    "message": "Redo"
+  },
   "remove_date_edf2f565": {
     "message": "Remove date"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "Remove Due Date"
   },
   "remove_f47dc62a": {
     "message": "Remove"
@@ -809,9 +857,6 @@
   "set_home_to_82ab5119": {
     "message": "Set ''Home'' to..."
   },
-  "set_this_for_the_default_color_of_the_course_this__d86d133": {
-    "message": "Set this for the default color of the course. This won’t override a personal color setting."
-  },
   "show_correct_answers_a4b957e4": {
     "message": "Show Correct Answers"
   },
@@ -836,6 +881,9 @@
   "student_5da6bfd1": {
     "message": "Student"
   },
+  "students_1b8cd07b": {
+    "message": "Students"
+  },
   "subject_114b2e98": {
     "message": "Subject"
   },
@@ -848,8 +896,8 @@
   "submissions_11e96106": {
     "message": "Submissions"
   },
-  "submitted_318fad53": {
-    "message": "Submitted"
+  "submitted_f7bc311f": {
+    "message": "SUBMITTED"
   },
   "submitted_late_3741af29": {
     "message": "Submitted late"
@@ -875,8 +923,14 @@
   "tap_the_to_create_a_new_conversation_80f77725": {
     "message": "Tap the \"+\" to create a new conversation"
   },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "Tap to view submissions list."
+  },
   "terms_of_use_6542769b": {
     "message": "Terms of Use"
+  },
+  "text_color_acf75eb6": {
+    "message": "Text Color"
   },
   "text_submission_935eeb5": {
     "message": "Text Submission"
@@ -926,6 +980,9 @@
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
     "message": "This group does not have a submission for this assignment."
   },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "This is your personal color setting. Only you will see this color for the course."
+  },
   "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
     "message": "This student does not have a submission for this assignment."
   },
@@ -934,6 +991,9 @@
   },
   "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
     "message": "This will anonymize each student and shuffle the submission list."
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "This will remove the due date and all of the associated assignees."
   },
   "time_limit_a6f1a51e": {
     "message": "Time Limit"
@@ -965,6 +1025,9 @@
   "un_starred_8fef021f": {
     "message": "Un-starred"
   },
+  "undo_a7be8fef": {
+    "message": "Undo"
+  },
   "unexpected_error_93991f40": {
     "message": "Unexpected Error"
   },
@@ -982,6 +1045,9 @@
   },
   "unlimited_ff19e96d": {
     "message": "Unlimited"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "Unordered List"
   },
   "unpin_a318452a": {
     "message": "Unpin"
@@ -1027,9 +1093,6 @@
   },
   "yes_dde87d5": {
     "message": "Yes"
-  },
-  "you_cannot_undo_this_action_a2dcb2ad": {
-    "message": "You cannot undo this action"
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
     "message": "You must enter an access code"
