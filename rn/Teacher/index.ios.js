@@ -8,6 +8,7 @@ import './src/common/global-style'
 import {
   NativeModules,
   NativeEventEmitter,
+  AppState,
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
@@ -15,6 +16,7 @@ import { setSession } from './src/api/session'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'
+import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
 
@@ -67,6 +69,7 @@ const loginHandler = async (info: {
       store.dispatch(hydrate())
     }
     Helm.initTabs()
+    loginVerify()
   }
 }
 
@@ -80,3 +83,9 @@ if (global.nativeCallSyncHook) {
 
 const emitter = new NativeEventEmitter(NativeLogin)
 emitter.addListener('Login', loginHandler)
+
+AppState.addEventListener('change', (nextAppState) => {
+  if (nextAppState === 'active') {
+    loginVerify()
+  }
+})

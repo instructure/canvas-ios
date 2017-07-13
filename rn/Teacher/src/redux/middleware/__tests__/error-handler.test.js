@@ -9,6 +9,16 @@ jest.mock('Alert', () => ({
   alert: jest.fn(),
 }))
 
+jest.mock('../../../common/login-verify.js', () => {
+  return () => {
+    return {
+      then: (resolve: Function) => {
+        resolve(false)
+      },
+    }
+  }
+})
+
 describe('error-handler-middleware', () => {
   beforeEach(() => {
     jest.resetAllMocks()
@@ -49,6 +59,55 @@ describe('error-handler-middleware', () => {
     })
 
     expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+  })
+
+  describe('401 errors', () => {
+    it('throws up an alert with a custom error message', () => {
+      let errorMessage = 'An error message'
+      let store = mockStore()
+      store.dispatch({
+        type: 'test',
+        error: true,
+        payload: {
+          error: {
+            response: {
+              data: {
+                errors: [{
+                  message: errorMessage,
+                }],
+              },
+              status: 401,
+            },
+          },
+        },
+      })
+
+      expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+    })
+
+    it('do nothing because the component handles the error', () => {
+      let errorMessage = 'An error message'
+      let store = mockStore()
+      store.dispatch({
+        type: 'test',
+        error: true,
+        payload: {
+          handlesError: true,
+          error: {
+            response: {
+              data: {
+                errors: [{
+                  message: errorMessage,
+                }],
+              },
+              status: 401,
+            },
+          },
+        },
+      })
+
+      expect(Alert.alert).not.toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+    })
   })
 
   it('doesnt show an alert for api errors when the user is offline', () => {

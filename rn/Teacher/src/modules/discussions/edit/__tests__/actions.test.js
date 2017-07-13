@@ -76,7 +76,7 @@ describe('updateDiscussion', () => {
   it('handles rejected', async () => {
     const params = template.updateDiscussionParams()
     const api = {
-      updateDiscussion: apiError({ message: 'Invalid token.' }),
+      updateDiscussion: apiError({ message: 'Invalid token.', status: 500 }),
     }
     const actions = Actions(api)
     const action = actions.updateDiscussion('21', params)
