@@ -137,7 +137,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 
   editAssignment = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/edit`, { modal: true })
   }
 
   viewDueDateDetails = () => {

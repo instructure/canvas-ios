@@ -22,7 +22,7 @@ export default class Navigator {
     this.screenInstanceID = this._uuid()
   }
 
-  show (url: string, options: Object = { modal: false, modalPresentationStyle: 'fullscreen' }, additionalProps: Object = {}): void {
+  show (url: string, options: Object = { modal: false, modalPresentationStyle: 'formsheet' }, additionalProps: Object = {}): void {
     let screenInstanceID = this.screenInstanceID
     const additionalPropsFRD = Object.assign(additionalProps, { screenInstanceID })
     const r = route(url, additionalPropsFRD)
@@ -32,9 +32,8 @@ export default class Navigator {
     if (r.config && r.config.canBecomeMaster) {
       canBecomeMaster = r.config.canBecomeMaster
     }
-
     if (options.modal) {
-      this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle, embedInNavigationController: true, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
+      this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController: true, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
     } else {
       this.push(r)
     }

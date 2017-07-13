@@ -114,7 +114,7 @@ it('navigates to compose when reply to first message button pressed', () => {
   replyButton.props.onPress()
   expect(navigator.show).toHaveBeenCalledWith(
     '/conversations/1/add_message',
-    { modal: true, modalPresentationStyle: 'fullscreen' },
+    { modal: true },
     {
       recipients: [
         { id: '2', name: 'hey there i am joe' },

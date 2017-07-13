@@ -37,7 +37,7 @@ export class CourseSelect extends PureComponent {
   props: CourseSelectProps
 
   goBack = () => {
-    this.props.navigator.dismiss()
+    this.props.navigator.pop()
   }
 
   onCourseSelect = (course: Course) => {

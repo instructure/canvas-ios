@@ -75,7 +75,7 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
 
   addAssignee = () => {
     const url = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/assignee-search`
-    this.props.navigator.show(url, { modal: true }, { onSelection: this.handleSelectedAssignee })
+    this.props.navigator.show(url, { modal: true, modalPresentationStyle: 'currentContext' }, { onSelection: this.handleSelectedAssignee })
   }
 
   handleSelectedAssignee = (assignee: Assignee) => {

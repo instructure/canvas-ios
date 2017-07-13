@@ -42,11 +42,10 @@ describe('Navigator', () => {
   test('present', () => {
     const navigator = new Navigator('present')
     navigator.show('/courses/1', { modal: true })
-    // ["/courses/:courseID", {"courseID": "1"}, {"embedInNavigationController": true, "modal": true, "modalPresentationStyle": undefined}]
     expect(NativeModules.Helm.present).toHaveBeenCalledWith(
       '/courses/:courseID',
       { courseID: '1', screenInstanceID: expect.any(String) },
-      { canBecomeMaster: true, embedInNavigationController: true, modal: true }
+      { canBecomeMaster: true, embedInNavigationController: true, modal: true, modalPresentationStyle: 'formsheet' }
     )
   })
 

@@ -122,7 +122,7 @@ test('opens course preferences', () => {
   kabob.props.onPress()
   expect(props.navigator.show).toHaveBeenCalledWith(
     '/courses/1/user_preferences',
-    { modal: true, modalPresentationStyle: 'formsheet' },
+    { modal: true },
   )
 })
 
@@ -171,7 +171,7 @@ test('calls navigator.show when the edit button is pressed', () => {
   tree.getInstance().showFavoritesList()
   expect(navigator.show).toHaveBeenCalledWith(
     '/course_favorites',
-    { modal: true, modalPresentationStyle: 'formsheet' }
+    { modal: true }
   )
 })
 

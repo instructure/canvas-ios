@@ -100,7 +100,7 @@ it('calls navigator.show when addMessage is called', () => {
   instance.addMessage()
   expect(defaultProps.navigator.show).toHaveBeenCalledWith(
     '/conversations/compose',
-    { modal: true, modalPresentationStyle: 'fullscreen' }
+    { modal: true }
   )
 })
 

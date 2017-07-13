@@ -94,13 +94,10 @@ export class Compose extends PureComponent {
   selectCourse = () => {
     this.props.navigator.show(
       '/conversations/course-select',
-      {
-        modal: true,
-        modalPresentationStyle: 'fullscreen',
-      },
+      undefined,
       {
         onSelect: (course: Course) => {
-          this.props.navigator.dismiss()
+          this.props.navigator.pop()
           const contextName = course.name
           const contextCode = `course_${course.id}`
           this.setStateAndUpdate({ contextName, contextCode, recipients: [] })

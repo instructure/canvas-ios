@@ -75,7 +75,7 @@ describe('CourseSelect', () => {
     courseRow.props.onPress()
     expect(defaultProps.onSelect).toHaveBeenCalled()
     component.getInstance().goBack()
-    expect(defaultProps.navigator.dismiss).toHaveBeenCalled()
+    expect(defaultProps.navigator.pop).toHaveBeenCalled()
   })
 
   it('mapStateToProps', () => {

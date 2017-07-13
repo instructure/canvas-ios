@@ -158,7 +158,6 @@ export class QuizEdit extends Component<any, Props, any> {
           {
             title: i18n('Cancel'),
             testID: 'quizzes.edit.cancelButton',
-            style: 'done',
             action: this._cancelPressed,
           },
         ]}

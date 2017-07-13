@@ -50,7 +50,7 @@ export class Inbox extends Component {
   }
 
   addMessage = () => {
-    this.props.navigator.show('/conversations/compose', { modal: true, modalPresentationStyle: 'fullscreen' })
+    this.props.navigator.show('/conversations/compose', { modal: true })
   }
 
   _renderItem = ({ item, index }) => {

@@ -103,7 +103,7 @@ describe('Compose', () => {
 
     component.getInstance().selectCourse()
     onSelect(course)
-    expect(navigator.dismiss).toHaveBeenCalled()
+    expect(navigator.pop).toHaveBeenCalled()
     expect(component.toJSON()).toMatchSnapshot()
   })
 

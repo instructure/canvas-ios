@@ -190,10 +190,7 @@ test('should navigate to submission settings', () => {
   )
   tree.getInstance().openSettings()
 
-  expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/submission_settings', {
-    modal: true,
-    modalPresentationStyle: 'fullscreen',
-  })
+  expect(navigator.show).toHaveBeenCalledWith('/courses/12/assignments/32/submission_settings', { modal: true })
 })
 
 test('should navigate to a submission', () => {
@@ -208,7 +205,7 @@ test('should navigate to a submission', () => {
 
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/1',
-    { modal: true },
+    { modal: true, modalPresentationStyle: 'fullscreen' },
     { selectedFilter: undefined }
   )
 })

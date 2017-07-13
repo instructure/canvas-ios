@@ -89,7 +89,7 @@ export class SubmissionList extends Component {
     const path = `/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submissions/${userID}`
     this.props.navigator.show(
       path,
-      { modal: true },
+      { modal: true, modalPresentationStyle: 'fullscreen' },
       { selectedFilter: this.selectedFilter }
     )
   }
@@ -123,7 +123,6 @@ export class SubmissionList extends Component {
   openSettings = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/assignments/${this.props.assignmentID}/submission_settings`, {
       modal: true,
-      modalPresentationStyle: 'fullscreen',
     })
   }
 

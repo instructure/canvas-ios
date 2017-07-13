@@ -42,7 +42,7 @@ export default class ConversationMessageRow extends Component<any, ConversationM
   }
 
   _replyButtonPressed = () => {
-    this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true, modalPresentationStyle: 'fullscreen' }, {
+    this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true }, {
       recipients: this.props.conversation.participants.filter(p => this.props.conversation.audience.includes(p.id)),
       contextName: this.props.conversation.context_name,
       contextCode: this.props.conversation.context_code,

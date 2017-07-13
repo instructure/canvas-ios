@@ -64,11 +64,11 @@ export class FavoritedCourseList extends Component {
   }
 
   showFavoritesList = () => {
-    this.props.navigator.show('/course_favorites', { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show('/course_favorites', { modal: true })
   }
 
   showUserCoursePreferences = (courseId: string) => {
-    this.props.navigator.show(`/courses/${courseId}/user_preferences`, { modal: true, modalPresentationStyle: 'formsheet' })
+    this.props.navigator.show(`/courses/${courseId}/user_preferences`, { modal: true })
   }
 
   selectCourse = (course: Course) => {
