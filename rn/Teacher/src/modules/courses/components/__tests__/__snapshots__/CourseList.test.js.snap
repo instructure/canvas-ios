@@ -16,14 +16,6 @@ exports[`render courses 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 8,
-        "left": 0,
-        "right": 0,
-        "top": 8,
-      }
-    }
     data={
       Array [
         Object {
@@ -93,6 +85,7 @@ exports[`render courses 1`] = `
       <View
         style={
           Object {
+            "marginTop": 8,
             "paddingHorizontal": 8,
           }
         }
@@ -115,12 +108,8 @@ exports[`render courses 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -137,12 +126,17 @@ exports[`render courses 1`] = `
             ]
           }
           testID="rn 101"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -311,14 +305,6 @@ exports[`render courses pending 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 8,
-        "left": 0,
-        "right": 0,
-        "top": 8,
-      }
-    }
     data={
       Array [
         Object {
@@ -388,6 +374,7 @@ exports[`render courses pending 1`] = `
       <View
         style={
           Object {
+            "marginTop": 8,
             "paddingHorizontal": 8,
           }
         }
@@ -410,12 +397,8 @@ exports[`render courses pending 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -432,12 +415,17 @@ exports[`render courses pending 1`] = `
             ]
           }
           testID="rn 101"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -606,14 +594,6 @@ exports[`render narrow width 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 8,
-        "left": 0,
-        "right": 0,
-        "top": 8,
-      }
-    }
     data={
       Array [
         Object {
@@ -683,6 +663,7 @@ exports[`render narrow width 1`] = `
       <View
         style={
           Object {
+            "marginTop": 8,
             "paddingHorizontal": 8,
           }
         }
@@ -705,12 +686,8 @@ exports[`render narrow width 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -727,12 +704,17 @@ exports[`render narrow width 1`] = `
             ]
           }
           testID="rn 101"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -901,14 +883,6 @@ exports[`render wide width 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 12,
-        "left": 0,
-        "right": 0,
-        "top": 12,
-      }
-    }
     data={
       Array [
         Object {
@@ -978,6 +952,7 @@ exports[`render wide width 1`] = `
       <View
         style={
           Object {
+            "marginTop": 12,
             "paddingHorizontal": 12,
           }
         }
@@ -1000,12 +975,8 @@ exports[`render wide width 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -1022,12 +993,17 @@ exports[`render wide width 1`] = `
             ]
           }
           testID="rn 101"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >

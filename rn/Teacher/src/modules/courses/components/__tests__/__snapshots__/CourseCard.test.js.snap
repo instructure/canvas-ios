@@ -8,12 +8,8 @@ exports[`renders 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#000",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
+        "backgroundColor": "#ffffff01",
         "height": 160,
-        "overflow": "hidden",
         "shadowColor": "#000",
         "shadowOffset": Object {
           "height": 1,
@@ -28,12 +24,17 @@ exports[`renders 1`] = `
     ]
   }
   testID="rn 101"
+  underlayColor="transparent"
 >
   <View
     style={
       Object {
         "backgroundColor": "white",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
         "flex": 1,
+        "overflow": "hidden",
       }
     }
   >
@@ -182,12 +183,8 @@ exports[`renders with empty image url 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#000",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
+        "backgroundColor": "#ffffff01",
         "height": 160,
-        "overflow": "hidden",
         "shadowColor": "#000",
         "shadowOffset": Object {
           "height": 1,
@@ -202,12 +199,17 @@ exports[`renders with empty image url 1`] = `
     ]
   }
   testID="rn 101"
+  underlayColor="transparent"
 >
   <View
     style={
       Object {
         "backgroundColor": "white",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
         "flex": 1,
+        "overflow": "hidden",
       }
     }
   >
@@ -344,12 +346,8 @@ exports[`renders with image url 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#000",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
+        "backgroundColor": "#ffffff01",
         "height": 160,
-        "overflow": "hidden",
         "shadowColor": "#000",
         "shadowOffset": Object {
           "height": 1,
@@ -364,12 +362,17 @@ exports[`renders with image url 1`] = `
     ]
   }
   testID="rn 101"
+  underlayColor="transparent"
 >
   <View
     style={
       Object {
         "backgroundColor": "white",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
         "flex": 1,
+        "overflow": "hidden",
       }
     }
   >
@@ -518,12 +521,8 @@ exports[`renders without image url 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#000",
-        "borderColor": "#e3e3e3",
-        "borderRadius": 4,
-        "borderWidth": 0.5,
+        "backgroundColor": "#ffffff01",
         "height": 160,
-        "overflow": "hidden",
         "shadowColor": "#000",
         "shadowOffset": Object {
           "height": 1,
@@ -538,12 +537,17 @@ exports[`renders without image url 1`] = `
     ]
   }
   testID="rn 101"
+  underlayColor="transparent"
 >
   <View
     style={
       Object {
         "backgroundColor": "white",
+        "borderColor": "#e3e3e3",
+        "borderRadius": 4,
+        "borderWidth": 0.5,
         "flex": 1,
+        "overflow": "hidden",
       }
     }
   >

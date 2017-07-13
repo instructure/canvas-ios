@@ -76,6 +76,7 @@ export default class CourseCard extends Component {
         testID={course.course_code}
         onPress={this.onPress}
         accessible={false}
+        underlayColor='transparent'
       >
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
@@ -111,8 +112,6 @@ export default class CourseCard extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    borderColor: '#e3e3e3',
-    borderWidth: StyleSheet.hairlineWidth,
     height: 160,
     shadowColor: '#000',
     shadowRadius: 1,
@@ -121,11 +120,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 1,
     },
-    borderRadius: 4,
-    overflow: 'hidden',
-    backgroundColor: '#000',
+    backgroundColor: '#ffffff01',
   },
   cardContainer: {
+    borderColor: '#e3e3e3',
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 4,
+    overflow: 'hidden',
     flex: 1,
     backgroundColor: 'white',
   },

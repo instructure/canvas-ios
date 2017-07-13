@@ -8,12 +8,11 @@ exports[`renders NoCourses correctly 1`] = `
       "flex": 1,
       "flexDirection": "column",
       "justifyContent": "center",
-      "padding": 20,
+      "paddingHorizontal": 40,
     }
   }
 >
   <Text
-    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     disabled={false}
@@ -25,10 +24,17 @@ exports[`renders NoCourses correctly 1`] = `
         },
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
+          "fontSize": 16,
         },
-        undefined,
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 30,
+          "lineHeight": 36,
+          "marginBottom": 8,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
     testID="no-courses.welcome-lbl"
@@ -46,13 +52,19 @@ exports[`renders NoCourses correctly 1`] = `
           "fontFamily": ".SFUIDisplay",
         },
         Object {
-          "color": "#7F91A7",
+          "color": "#2D3B45",
           "fontSize": 16,
-          "lineHeight": 23,
         },
         Object {
-          "padding": 15,
+          "color": "#8B969E",
+          "fontSize": 16,
+          "lineHeight": 19,
+          "marginBottom": 40,
+          "paddingHorizontal": 10,
           "textAlign": "center",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
         },
       ]
     }
@@ -79,7 +91,11 @@ exports[`renders NoCourses correctly 1`] = `
         Object {
           "backgroundColor": "#374A59",
         },
-        undefined,
+        Object {
+          "borderRadius": 4,
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        },
       ]
     }
     testID="no-courses.add-courses-btn"
@@ -105,7 +121,10 @@ exports[`renders NoCourses correctly 1`] = `
             Object {
               "color": "#374A59",
             },
-            undefined,
+            Object {
+              "fontSize": 16,
+              "lineHeight": 19,
+            },
           ],
           null,
         ]

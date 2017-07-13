@@ -16,14 +16,6 @@ exports[`AllCourseList render 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 12,
-        "left": 0,
-        "right": 0,
-        "top": 12,
-      }
-    }
     data={
       Array [
         Object {
@@ -137,6 +129,7 @@ exports[`AllCourseList render 1`] = `
       <View
         style={
           Object {
+            "marginTop": 12,
             "paddingHorizontal": 12,
           }
         }
@@ -159,12 +152,8 @@ exports[`AllCourseList render 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -181,12 +170,17 @@ exports[`AllCourseList render 1`] = `
             ]
           }
           testID="BIO 101"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -332,12 +326,8 @@ exports[`AllCourseList render 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -354,12 +344,17 @@ exports[`AllCourseList render 1`] = `
             ]
           }
           testID="LIT 401"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -505,12 +500,8 @@ exports[`AllCourseList render 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -527,12 +518,17 @@ exports[`AllCourseList render 1`] = `
             ]
           }
           testID="FOO 102"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >

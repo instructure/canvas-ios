@@ -57,7 +57,7 @@ export default class CourseList extends Component {
 
   renderHeader = () => {
     return (
-      <View style={{ paddingHorizontal: this.state.padding }}>
+      <View style={{ paddingHorizontal: this.state.padding, marginTop: this.state.padding }}>
         {this.props.header}
       </View>
     )
@@ -72,7 +72,6 @@ export default class CourseList extends Component {
     return (
       <GridView
         onLayout={this.onLayout}
-        contentInset={{ top: this.state.padding, left: 0, bottom: this.state.padding, right: 0 }}
         showsVerticalScrollIndicator={false}
         style={{ marginHorizontal: this.state.padding, overflow: 'visible' }}
         placeholderStyle={cardStyles}

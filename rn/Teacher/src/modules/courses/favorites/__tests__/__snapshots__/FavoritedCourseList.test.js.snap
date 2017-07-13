@@ -16,14 +16,6 @@ exports[`render 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 12,
-        "left": 0,
-        "right": 0,
-        "top": 12,
-      }
-    }
     data={
       Array [
         Object {
@@ -137,6 +129,7 @@ exports[`render 1`] = `
       <View
         style={
           Object {
+            "marginTop": 12,
             "paddingHorizontal": 12,
           }
         }
@@ -147,7 +140,7 @@ exports[`render 1`] = `
               "alignItems": "flex-end",
               "flexDirection": "row",
               "justifyContent": "space-between",
-              "marginTop": 8,
+              "paddingTop": 4,
             }
           }
         >
@@ -262,12 +255,8 @@ exports[`render 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -284,12 +273,17 @@ exports[`render 1`] = `
             ]
           }
           testID="BIO 101"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -435,12 +429,8 @@ exports[`render 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -457,12 +447,17 @@ exports[`render 1`] = `
             ]
           }
           testID="LIT 401"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -608,12 +603,8 @@ exports[`render 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#000",
-                "borderColor": "#e3e3e3",
-                "borderRadius": 4,
-                "borderWidth": 0.5,
+                "backgroundColor": "#ffffff01",
                 "height": 160,
-                "overflow": "hidden",
                 "shadowColor": "#000",
                 "shadowOffset": Object {
                   "height": 1,
@@ -630,12 +621,17 @@ exports[`render 1`] = `
             ]
           }
           testID="FOO 102"
+          underlayColor="transparent"
         >
           <View
             style={
               Object {
                 "backgroundColor": "white",
+                "borderColor": "#e3e3e3",
+                "borderRadius": 4,
+                "borderWidth": 0.5,
                 "flex": 1,
+                "overflow": "hidden",
               }
             }
           >
@@ -820,14 +816,6 @@ exports[`render without courses and *zero* total courses 1`] = `
   }
 >
   <RCTScrollView
-    contentInset={
-      Object {
-        "bottom": 12,
-        "left": 0,
-        "right": 0,
-        "top": 12,
-      }
-    }
     data={Array []}
     dataSource={
       ListViewDataSource {
@@ -872,6 +860,7 @@ exports[`render without courses and *zero* total courses 1`] = `
       <View
         style={
           Object {
+            "marginTop": 12,
             "paddingHorizontal": 12,
           }
         }
@@ -882,7 +871,7 @@ exports[`render without courses and *zero* total courses 1`] = `
               "alignItems": "flex-end",
               "flexDirection": "row",
               "justifyContent": "space-between",
-              "marginTop": 8,
+              "paddingTop": 4,
             }
           }
         >
@@ -992,12 +981,11 @@ exports[`render without favorite courses 1`] = `
       "flex": 1,
       "flexDirection": "column",
       "justifyContent": "center",
-      "padding": 20,
+      "paddingHorizontal": 40,
     }
   }
 >
   <Text
-    accessibilityTraits="header"
     accessible={true}
     allowFontScaling={true}
     disabled={false}
@@ -1009,10 +997,17 @@ exports[`render without favorite courses 1`] = `
         },
         Object {
           "color": "#2D3B45",
-          "fontFamily": ".SFUIDisplay-semibold",
-          "fontSize": 20,
+          "fontSize": 16,
         },
-        undefined,
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 30,
+          "lineHeight": 36,
+          "marginBottom": 8,
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
       ]
     }
     testID="no-courses.welcome-lbl"
@@ -1030,13 +1025,19 @@ exports[`render without favorite courses 1`] = `
           "fontFamily": ".SFUIDisplay",
         },
         Object {
-          "color": "#7F91A7",
+          "color": "#2D3B45",
           "fontSize": 16,
-          "lineHeight": 23,
         },
         Object {
-          "padding": 15,
+          "color": "#8B969E",
+          "fontSize": 16,
+          "lineHeight": 19,
+          "marginBottom": 40,
+          "paddingHorizontal": 10,
           "textAlign": "center",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay",
         },
       ]
     }
@@ -1063,7 +1064,11 @@ exports[`render without favorite courses 1`] = `
         Object {
           "backgroundColor": "#374A59",
         },
-        undefined,
+        Object {
+          "borderRadius": 4,
+          "paddingHorizontal": 24,
+          "paddingVertical": 16,
+        },
       ]
     }
     testID="no-courses.add-courses-btn"
@@ -1089,7 +1094,10 @@ exports[`render without favorite courses 1`] = `
             Object {
               "color": "#374A59",
             },
-            undefined,
+            Object {
+              "fontSize": 16,
+              "lineHeight": 19,
+            },
           ],
           null,
         ]
