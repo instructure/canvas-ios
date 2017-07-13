@@ -78,13 +78,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     paddingVertical: 6,
     paddingHorizontal: 8,
-    marginVertical: 4,
-    maxWidth: 304,
+    marginBottom: 4,
+    width: 304,
   },
   icon: {
-    tintColor: colors.primaryButtonColor,
+    tintColor: colors.primaryButton,
   },
   textContainer: {
+    flex: 1,
     marginHorizontal: 6,
   },
 })

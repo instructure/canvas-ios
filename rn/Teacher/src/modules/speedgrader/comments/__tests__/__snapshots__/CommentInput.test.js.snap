@@ -63,6 +63,7 @@ exports[`CommentInput renders 1`] = `
         autoFocus={false}
         maxHeight={76}
         multiline={true}
+        onBlur={[Function]}
         onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
@@ -80,35 +81,6 @@ exports[`CommentInput renders 1`] = `
         testID="comment-input.comment"
         value=""
       />
-      <Button
-        accessibilityLabel="Send"
-        containerStyle={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#374A59",
-            "borderRadius": 12,
-            "flex": 0,
-            "height": 24,
-            "justifyContent": "center",
-            "marginRight": 4,
-            "marginTop": 4,
-            "width": 24,
-          }
-        }
-        disabled={true}
-        onPress={[Function]}
-        testID="comment-input.send"
-      >
-        <Image
-          source={1}
-          style={
-            Object {
-              "marginBottom": 1,
-              "tintColor": "white",
-            }
-          }
-        />
-      </Button>
     </View>
   </View>
   <View
@@ -166,6 +138,7 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
         autoFocus={false}
         maxHeight={76}
         multiline={true}
+        onBlur={[Function]}
         onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
@@ -183,35 +156,6 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
         testID="comment-input.comment"
         value=""
       />
-      <Button
-        accessibilityLabel="Send"
-        containerStyle={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#374A59",
-            "borderRadius": 12,
-            "flex": 0,
-            "height": 24,
-            "justifyContent": "center",
-            "marginRight": 4,
-            "marginTop": 4,
-            "width": 24,
-          }
-        }
-        disabled={true}
-        onPress={[Function]}
-        testID="comment-input.send"
-      >
-        <Image
-          source={1}
-          style={
-            Object {
-              "marginBottom": 1,
-              "tintColor": "white",
-            }
-          }
-        />
-      </Button>
     </View>
   </View>
   <View
@@ -295,6 +239,7 @@ exports[`disables the send button with a prop 1`] = `
         autoFocus={false}
         maxHeight={76}
         multiline={true}
+        onBlur={[Function]}
         onChangeText={[Function]}
         placeholder="Comment"
         placeholderTextColor="#7F91A7"
@@ -312,35 +257,6 @@ exports[`disables the send button with a prop 1`] = `
         testID="comment-input.comment"
         value=""
       />
-      <Button
-        accessibilityLabel="Send"
-        containerStyle={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#374A59",
-            "borderRadius": 12,
-            "flex": 0,
-            "height": 24,
-            "justifyContent": "center",
-            "marginRight": 4,
-            "marginTop": 4,
-            "width": 24,
-          }
-        }
-        disabled={true}
-        onPress={[Function]}
-        testID="comment-input.send"
-      >
-        <Image
-          source={1}
-          style={
-            Object {
-              "marginBottom": 1,
-              "tintColor": "white",
-            }
-          }
-        />
-      </Button>
     </View>
   </View>
   <View

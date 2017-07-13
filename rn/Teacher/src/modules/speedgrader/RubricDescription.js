@@ -15,7 +15,7 @@ export class RubricDescription extends Component {
   }
 
   renderLongDescription () {
-    if (!this.props.description) {
+    if (!this.props.description || this.props.description.length === 0) {
       return (
         <View style={styles.emptyState}>
           <Text style={styles.emptyStateText}>There currently is no long description for this item.</Text>

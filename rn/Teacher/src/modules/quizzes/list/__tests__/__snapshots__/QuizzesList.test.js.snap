@@ -519,6 +519,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                               undefined,
                               Object {
                                 "alignSelf": "center",
+                                "color": "#8B969E",
                                 "fontSize": 10,
                               },
                             ],
@@ -870,6 +871,7 @@ exports[`QuizzesList renders in correct order 1`] = `
                               undefined,
                               Object {
                                 "alignSelf": "center",
+                                "color": "#8B969E",
                                 "fontSize": 10,
                               },
                             ],
@@ -1451,6 +1453,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                               undefined,
                               Object {
                                 "alignSelf": "center",
+                                "color": "#8B969E",
                                 "fontSize": 10,
                               },
                             ],
@@ -1802,6 +1805,7 @@ exports[`QuizzesList renders quizzes 1`] = `
                               undefined,
                               Object {
                                 "alignSelf": "center",
+                                "color": "#8B969E",
                                 "fontSize": 10,
                               },
                             ],

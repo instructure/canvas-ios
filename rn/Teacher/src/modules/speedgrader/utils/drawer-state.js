@@ -1,6 +1,6 @@
 // @flow
 
-import { Animated } from 'react-native'
+import { Animated, Keyboard } from 'react-native'
 
 export type DrawerPosition = 0 | 1 | 2
 export type DrawerObserver = {
@@ -53,6 +53,9 @@ export default class DrawerState {
 
   didSnapTo = (snap: DrawerPosition) => {
     this.snapTo(snap, false)
+    if (snap !== 2) {
+      Keyboard.dismiss()
+    }
   }
 
   snapTo = (snap: DrawerPosition, animated: boolean = true) => {

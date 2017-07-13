@@ -6,10 +6,12 @@ import {
   StyleSheet,
   ActivityIndicator,
   FlatList,
+  LayoutAnimation,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
+import colors from '../../common/colors'
 import RubricItem from './components/RubricItem'
 import { LinkButton } from '../../common/buttons'
 import SpeedGraderActions from './actions'
@@ -102,6 +104,13 @@ export class GradeTab extends Component {
     this.saveRubricAssessment(newRating)
   }
 
+  cancelRubricComment = () => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({
+      criterionCommentInput: null,
+    })
+  }
+
   deleteComment = (criterionID: string) => {
     let currentAssessment = this.props.rubricAssessment || {}
     let newRating = {
@@ -175,9 +184,11 @@ export class GradeTab extends Component {
       <CommentInput
         initialValue={rating.comments}
         makeComment={this.submitRubricComment}
+        onBlur={this.cancelRubricComment}
         allowMediaComments={false}
         autoCorrect={false}
         drawerState={this.props.drawerState}
+        autoFocus
       />
     )
   }
@@ -211,7 +222,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   pointsText: {
-    color: '#8B969E',
+    color: colors.grey4,
     fontSize: 14,
   },
 })
@@ -247,6 +258,7 @@ type RubricOwnProps = {
   drawerState: DrawerState,
   showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
   dismissToolTip?: () => void,
+  isModeratedGrading: boolean,
 }
 
 type RubricDataProps = {

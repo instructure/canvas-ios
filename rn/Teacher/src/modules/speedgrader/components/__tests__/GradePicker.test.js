@@ -28,6 +28,7 @@ let ownProps = {
   assignmentID: '2',
   courseID: '3',
   userID: '4',
+  isModeratedGrading: false,
 }
 
 let defaultProps = {
@@ -40,6 +41,7 @@ let defaultProps = {
   pointsPossible: 10,
   pending: false,
   gradingType: 'points',
+  isModeratedGrading: false,
 }
 
 describe('GradePicker', () => {

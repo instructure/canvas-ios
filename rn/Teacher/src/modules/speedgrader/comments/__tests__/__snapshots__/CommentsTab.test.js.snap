@@ -243,6 +243,7 @@ exports[`comments render properly 1`] = `
                 "flexDirection": "row",
                 "flexWrap": "wrap",
                 "justifyContent": "space-between",
+                "paddingTop": 4,
               }
             }
           >
@@ -459,6 +460,7 @@ exports[`comments render properly 1`] = `
                 "flexDirection": "row",
                 "flexWrap": "wrap",
                 "justifyContent": "space-between",
+                "paddingTop": 4,
               }
             }
           >
@@ -674,6 +676,7 @@ exports[`comments render properly 1`] = `
                 "flexDirection": "row",
                 "flexWrap": "wrap",
                 "justifyContent": "space-between",
+                "paddingTop": 4,
               }
             }
           >
@@ -824,6 +827,7 @@ exports[`comments render properly 1`] = `
                 "flexDirection": "row",
                 "flexWrap": "wrap",
                 "justifyContent": "space-between",
+                "paddingTop": 4,
               }
             }
           />
@@ -972,6 +976,7 @@ exports[`comments render properly 1`] = `
                 "flexDirection": "row",
                 "flexWrap": "wrap",
                 "justifyContent": "space-between",
+                "paddingTop": 4,
               }
             }
           />
@@ -1050,6 +1055,7 @@ exports[`comments render properly 1`] = `
           autoFocus={false}
           maxHeight={76}
           multiline={true}
+          onBlur={[Function]}
           onChangeText={[Function]}
           placeholder="Comment"
           placeholderTextColor="#7F91A7"
@@ -1067,49 +1073,6 @@ exports[`comments render properly 1`] = `
           testID="comment-input.comment"
           value=""
         />
-        <View
-          accessibilityComponentType="button"
-          accessibilityLabel={undefined}
-          accessibilityTraits="button"
-          accessible={true}
-          collapsable={undefined}
-          hitSlop={undefined}
-          isTVSelectable={true}
-          nativeID={undefined}
-          onLayout={undefined}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#374A59",
-              "borderRadius": 12,
-              "flex": 0,
-              "height": 24,
-              "justifyContent": "center",
-              "marginRight": 4,
-              "marginTop": 4,
-              "opacity": 1,
-              "width": 24,
-            }
-          }
-          testID="comment-input.send"
-          tvParallaxProperties={undefined}
-        >
-          <Image
-            source={1}
-            style={
-              Object {
-                "marginBottom": 1,
-                "tintColor": "white",
-              }
-            }
-          />
-        </View>
       </View>
     </View>
     <View

@@ -33,17 +33,16 @@ test('makeComment sends the comment', () => {
   const blur = jest.fn()
   component.getInstance()._textInput.blur = blur
 
-  const send = explore(tree)
-    .selectByID('comment-input.send') || {}
-
   const input = explore(tree)
     .selectByID('comment-input.comment') || {}
-
-  send.props.onPress()
-  expect(blur).not.toHaveBeenCalled()
-
   input.props.onChangeText('Hello!')
 
+  const noSend = explore(tree)
+    .selectByID('comment-input.send')
+  expect(noSend).toBeNull()
+
+  const send = explore(component.toJSON())
+    .selectByID('comment-input.send') || {}
   send.props.onPress()
 
   expect(makeComment).toHaveBeenCalledWith({ type: 'text', message: 'Hello!' })

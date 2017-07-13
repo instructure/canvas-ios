@@ -15,6 +15,7 @@ import { LinkButton } from '../../../common/buttons'
 import CircleToggle from '../../../common/components/CircleToggle'
 import Images from '../../../images'
 import ChatBubble from '../comments/ChatBubble'
+import colors from '../../../common/colors'
 
 const { NativeAccessibility } = NativeModules
 
@@ -141,18 +142,29 @@ export default class RubricItem extends Component {
           >
             { isCustomGrade
               ? this.state.selectedOption
-              : <Image source={Images.add} />
+              : <Image style={{ tintColor: colors.grey4 }} source={Images.add} />
             }
           </CircleToggle>
         </View>
         <View style={styles.buttons}>
           {!hasComment &&
-            <LinkButton style={styles.button} textStyle={styles.buttonText} onPress={this.openKeyboard} testID={`rubric-item.add-comment-${rubricItem.id}`}>
+            <LinkButton
+              textStyle={styles.buttonText}
+              onPress={this.openKeyboard}
+              testID={`rubric-item.add-comment-${rubricItem.id}`}
+            >
               {i18n('Add Comment')}
             </LinkButton>
           }
+          {!hasComment &&
+            <Text style={{
+              fontSize: 12,
+              alignSelf: 'center',
+              color: colors.grey4,
+              paddingHorizontal: 6,
+            }}>•</Text>
+          }
           <LinkButton
-            style={styles.button}
             textStyle={styles.buttonText}
             onPress={this.showDescription}
             testID='rubric-item.description'
@@ -180,7 +192,7 @@ export default class RubricItem extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 16,
-    paddingBottom: 8,
+    paddingBottom: 12,
     paddingHorizontal: 16,
   },
   description: {
@@ -190,24 +202,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 12,
-    marginBottom: 8,
+    marginBottom: 6,
   },
   circle: {
-    marginRight: 8,
-    marginBottom: 8,
+    marginRight: 4,
+    marginBottom: 4,
   },
   buttons: {
     flexDirection: 'row',
-  },
-  button: {
-    paddingRight: 16,
   },
   buttonText: {
     fontSize: 14,
     fontWeight: '500',
   },
   chatBubble: {
-    paddingTop: 16,
+    paddingTop: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

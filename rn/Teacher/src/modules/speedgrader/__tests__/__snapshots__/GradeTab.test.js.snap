@@ -82,6 +82,7 @@ exports[`Rubric has the correct score 1`] = `
               }
             }
             gradeSubmissionWithRubric={[Function]}
+            isModeratedGrading={false}
             navigator={
               Object {
                 "dismiss": [Function],
@@ -207,7 +208,7 @@ exports[`Rubric has the correct score 1`] = `
         <View
           style={
             Object {
-              "paddingBottom": 8,
+              "paddingBottom": 12,
               "paddingHorizontal": 16,
               "paddingTop": 16,
             }
@@ -243,7 +244,7 @@ exports[`Rubric has the correct score 1`] = `
               Object {
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "marginBottom": 8,
+                "marginBottom": 6,
                 "marginTop": 12,
               }
             }
@@ -262,8 +263,8 @@ exports[`Rubric has the correct score 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-3"
@@ -284,8 +285,8 @@ exports[`Rubric has the correct score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -307,7 +308,7 @@ exports[`Rubric has the correct score 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -331,8 +332,8 @@ exports[`Rubric has the correct score 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-2"
@@ -353,8 +354,8 @@ exports[`Rubric has the correct score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -376,7 +377,7 @@ exports[`Rubric has the correct score 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -400,8 +401,8 @@ exports[`Rubric has the correct score 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-1"
@@ -422,8 +423,8 @@ exports[`Rubric has the correct score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -445,7 +446,7 @@ exports[`Rubric has the correct score 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -468,8 +469,8 @@ exports[`Rubric has the correct score 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.customize-grade-2"
@@ -490,14 +491,19 @@ exports[`Rubric has the correct score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
               >
                 <Image
                   source={1}
+                  style={
+                    Object {
+                      "tintColor": "#8B969E",
+                    }
+                  }
                 />
               </View>
             </TouchableOpacity>
@@ -512,11 +518,6 @@ exports[`Rubric has the correct score 1`] = `
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.add-comment-2"
             >
               <View>
@@ -561,14 +562,37 @@ exports[`Rubric has the correct score 1`] = `
                 </Text>
               </View>
             </TouchableOpacity>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#8B969E",
+                    "fontSize": 12,
+                    "paddingHorizontal": 6,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.description"
             >
               <View>
@@ -703,6 +727,7 @@ exports[`Rubric renders a rubric 1`] = `
               }
             }
             gradeSubmissionWithRubric={[Function]}
+            isModeratedGrading={false}
             navigator={
               Object {
                 "dismiss": [Function],
@@ -828,7 +853,7 @@ exports[`Rubric renders a rubric 1`] = `
         <View
           style={
             Object {
-              "paddingBottom": 8,
+              "paddingBottom": 12,
               "paddingHorizontal": 16,
               "paddingTop": 16,
             }
@@ -864,7 +889,7 @@ exports[`Rubric renders a rubric 1`] = `
               Object {
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "marginBottom": 8,
+                "marginBottom": 6,
                 "marginTop": 12,
               }
             }
@@ -883,8 +908,8 @@ exports[`Rubric renders a rubric 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-3"
@@ -905,8 +930,8 @@ exports[`Rubric renders a rubric 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -928,7 +953,7 @@ exports[`Rubric renders a rubric 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -952,8 +977,8 @@ exports[`Rubric renders a rubric 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-2"
@@ -974,8 +999,8 @@ exports[`Rubric renders a rubric 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -997,7 +1022,7 @@ exports[`Rubric renders a rubric 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -1021,8 +1046,8 @@ exports[`Rubric renders a rubric 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-1"
@@ -1043,8 +1068,8 @@ exports[`Rubric renders a rubric 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -1066,7 +1091,7 @@ exports[`Rubric renders a rubric 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -1089,8 +1114,8 @@ exports[`Rubric renders a rubric 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.customize-grade-2"
@@ -1111,14 +1136,19 @@ exports[`Rubric renders a rubric 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
               >
                 <Image
                   source={1}
+                  style={
+                    Object {
+                      "tintColor": "#8B969E",
+                    }
+                  }
                 />
               </View>
             </TouchableOpacity>
@@ -1133,11 +1163,6 @@ exports[`Rubric renders a rubric 1`] = `
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.add-comment-2"
             >
               <View>
@@ -1182,14 +1207,37 @@ exports[`Rubric renders a rubric 1`] = `
                 </Text>
               </View>
             </TouchableOpacity>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#8B969E",
+                    "fontSize": 12,
+                    "paddingHorizontal": 6,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.description"
             >
               <View>
@@ -1324,6 +1372,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
             }
             gradeSubmissionWithRubric={[Function]}
+            isModeratedGrading={false}
             navigator={
               Object {
                 "dismiss": [Function],
@@ -1449,7 +1498,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
         <View
           style={
             Object {
-              "paddingBottom": 8,
+              "paddingBottom": 12,
               "paddingHorizontal": 16,
               "paddingTop": 16,
             }
@@ -1485,7 +1534,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               Object {
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "marginBottom": 8,
+                "marginBottom": 6,
                 "marginTop": 12,
               }
             }
@@ -1504,8 +1553,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-3"
@@ -1526,8 +1575,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -1549,7 +1598,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -1573,8 +1622,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-2"
@@ -1595,8 +1644,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -1618,7 +1667,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -1642,8 +1691,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-1"
@@ -1664,8 +1713,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -1687,7 +1736,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -1710,8 +1759,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               onPress={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.customize-grade-2"
@@ -1732,14 +1781,19 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
               >
                 <Image
                   source={1}
+                  style={
+                    Object {
+                      "tintColor": "#8B969E",
+                    }
+                  }
                 />
               </View>
             </TouchableOpacity>
@@ -1754,11 +1808,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.add-comment-2"
             >
               <View>
@@ -1803,14 +1852,37 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                 </Text>
               </View>
             </TouchableOpacity>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#8B969E",
+                    "fontSize": 12,
+                    "paddingHorizontal": 6,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.description"
             >
               <View>
@@ -1896,6 +1968,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           autoFocus={false}
           maxHeight={76}
           multiline={true}
+          onBlur={[Function]}
           onChangeText={[Function]}
           placeholder="Comment"
           placeholderTextColor="#7F91A7"
@@ -1913,35 +1986,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           testID="comment-input.comment"
           value=""
         />
-        <TouchableOpacity
-          accessibilityComponentType="button"
-          accessibilityTraits="button"
-          activeOpacity={1}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#374A59",
-              "borderRadius": 12,
-              "flex": 0,
-              "height": 24,
-              "justifyContent": "center",
-              "marginRight": 4,
-              "marginTop": 4,
-              "width": 24,
-            }
-          }
-          testID="comment-input.send"
-        >
-          <Image
-            source={1}
-            style={
-              Object {
-                "marginBottom": 1,
-                "tintColor": "white",
-              }
-            }
-          />
-        </TouchableOpacity>
       </View>
     </View>
     <View
@@ -2018,6 +2062,7 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
               }
             }
             gradeSubmissionWithRubric={[Function]}
+            isModeratedGrading={false}
             navigator={
               Object {
                 "dismiss": [Function],
@@ -2136,6 +2181,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             }
             gradeSubmissionWithRubric={[Function]}
+            isModeratedGrading={false}
             navigator={
               Object {
                 "dismiss": [Function],
@@ -2267,7 +2313,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
         <View
           style={
             Object {
-              "paddingBottom": 8,
+              "paddingBottom": 12,
               "paddingHorizontal": 16,
               "paddingTop": 16,
             }
@@ -2303,7 +2349,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               Object {
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "marginBottom": 8,
+                "marginBottom": 6,
                 "marginTop": 12,
               }
             }
@@ -2322,8 +2368,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-3"
@@ -2344,8 +2390,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -2367,7 +2413,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -2391,8 +2437,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-2"
@@ -2413,8 +2459,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -2436,7 +2482,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -2460,8 +2506,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-1"
@@ -2482,8 +2528,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -2505,7 +2551,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -2528,8 +2574,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               onPress={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.customize-grade-2"
@@ -2550,14 +2596,19 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
               >
                 <Image
                   source={1}
+                  style={
+                    Object {
+                      "tintColor": "#8B969E",
+                    }
+                  }
                 />
               </View>
             </TouchableOpacity>
@@ -2572,11 +2623,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.add-comment-2"
             >
               <View>
@@ -2621,14 +2667,37 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                 </Text>
               </View>
             </TouchableOpacity>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#8B969E",
+                    "fontSize": 12,
+                    "paddingHorizontal": 6,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.description"
             >
               <View>
@@ -2763,6 +2832,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               }
             }
             gradeSubmissionWithRubric={[Function]}
+            isModeratedGrading={false}
             navigator={
               Object {
                 "dismiss": [Function],
@@ -2935,7 +3005,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
         <View
           style={
             Object {
-              "paddingBottom": 8,
+              "paddingBottom": 12,
               "paddingHorizontal": 16,
               "paddingTop": 16,
             }
@@ -2971,7 +3041,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               Object {
                 "flexDirection": "row",
                 "flexWrap": "wrap",
-                "marginBottom": 8,
+                "marginBottom": 6,
                 "marginTop": 12,
               }
             }
@@ -2990,8 +3060,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-3"
@@ -3012,8 +3082,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -3035,7 +3105,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -3059,8 +3129,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-2"
@@ -3081,8 +3151,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
@@ -3104,7 +3174,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                         "fontSize": 20,
                       },
                       Object {
-                        "color": "black",
+                        "color": "#8B969E",
                         "fontWeight": "500",
                       },
                     ]
@@ -3128,8 +3198,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               onPressOut={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.points-1"
@@ -3150,11 +3220,12 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                     Object {
                       "backgroundColor": "#374A59",
+                      "borderWidth": undefined,
                     },
                   ]
                 }
@@ -3199,8 +3270,8 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               onPress={[Function]}
               style={
                 Object {
-                  "marginBottom": 8,
-                  "marginRight": 8,
+                  "marginBottom": 4,
+                  "marginRight": 4,
                 }
               }
               testID="rubric-item.customize-grade-2"
@@ -3221,14 +3292,19 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                       "paddingHorizontal": 8,
                     },
                     Object {
-                      "marginBottom": 8,
-                      "marginRight": 8,
+                      "marginBottom": 4,
+                      "marginRight": 4,
                     },
                   ]
                 }
               >
                 <Image
                   source={1}
+                  style={
+                    Object {
+                      "tintColor": "#8B969E",
+                    }
+                  }
                 />
               </View>
             </TouchableOpacity>
@@ -3243,11 +3319,6 @@ exports[`Rubric shows the save button when there is a change in the rubric score
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.add-comment-2"
             >
               <View>
@@ -3292,14 +3363,37 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                 </Text>
               </View>
             </TouchableOpacity>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontSize": 16,
+                  },
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#8B969E",
+                    "fontSize": 12,
+                    "paddingHorizontal": 6,
+                  },
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                ]
+              }
+            >
+              •
+            </Text>
             <TouchableOpacity
               accessibilityTraits="button"
               onPress={[Function]}
-              style={
-                Object {
-                  "paddingRight": 16,
-                }
-              }
               testID="rubric-item.description"
             >
               <View>

@@ -62,7 +62,14 @@ export function UnmetRequirementSubscriptText ({ style, ...props }: Object): Rea
 export function Separated (props: Object): ReactNative.Element<View> {
   const separator = (
     <Text
-      style={[props.style, { fontSize: props.separatorFontSize || 10, alignSelf: 'center' }]}
+      style={[
+        props.style,
+        {
+          fontSize: props.separatorFontSize || 10,
+          alignSelf: 'center',
+          color: colors.grey4,
+        },
+      ]}
     >
       {props.separator}
     </Text>

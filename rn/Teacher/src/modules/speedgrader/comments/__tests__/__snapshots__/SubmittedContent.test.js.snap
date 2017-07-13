@@ -9,11 +9,11 @@ exports[`my chat bubbles render correctly 1`] = `
       "borderRadius": 4,
       "borderWidth": 1,
       "flexDirection": "row",
-      "marginVertical": 4,
-      "maxWidth": 304,
+      "marginBottom": 4,
       "overflow": "hidden",
       "paddingHorizontal": 8,
       "paddingVertical": 6,
+      "width": 304,
     }
   }
   testID="submitted-content.item-1"
@@ -22,7 +22,7 @@ exports[`my chat bubbles render correctly 1`] = `
     source={1}
     style={
       Object {
-        "tintColor": "#374A59",
+        "tintColor": "#368BD8",
       }
     }
     testID="submitted-content.icon-1"
@@ -30,6 +30,7 @@ exports[`my chat bubbles render correctly 1`] = `
   <View
     style={
       Object {
+        "flex": 1,
         "marginHorizontal": 6,
       }
     }

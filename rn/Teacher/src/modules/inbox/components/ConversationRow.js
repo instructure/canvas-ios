@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   subject: {
-    color: '#2D3B45',
+    color: color.darkText,
     fontSize: 14,
   },
   message: {
-    color: '#8B969E',
+    color: color.grey4,
     fontSize: 14,
   },
   date: {

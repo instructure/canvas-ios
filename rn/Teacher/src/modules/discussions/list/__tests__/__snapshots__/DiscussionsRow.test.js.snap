@@ -312,6 +312,7 @@ exports[`DiscussionsRow renders 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],
@@ -739,6 +740,7 @@ exports[`DiscussionsRow renders published 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],
@@ -1166,6 +1168,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],
@@ -1548,6 +1551,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],
@@ -1975,6 +1979,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],
@@ -2390,6 +2395,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],
@@ -2783,6 +2789,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                           },
                           Object {
                             "alignSelf": "center",
+                            "color": "#8B969E",
                             "fontSize": 10,
                           },
                         ],

@@ -119,7 +119,7 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
     return (
       <View style={[styles.row, this.props.style]}>
         {this.renderHeader()}
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+        <View style={styles.contents}>
           {this.renderRetry()}
           {this.renderContents()}
         </View>
@@ -132,6 +132,13 @@ const styles = StyleSheet.create({
   row: {
     paddingHorizontal: global.style.defaultPadding,
     paddingVertical: 8,
+  },
+  contents: {
+    paddingTop: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   title: {
     fontSize: 16,

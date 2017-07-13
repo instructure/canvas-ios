@@ -25,6 +25,7 @@ let ownProps = {
   userID: '1',
   navigator: templates.navigator(),
   drawerState: new DrawerState(),
+  isModeratedGrading: false,
 }
 
 let defaultProps = {

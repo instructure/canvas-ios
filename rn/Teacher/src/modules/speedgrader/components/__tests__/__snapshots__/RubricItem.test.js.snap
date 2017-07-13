@@ -4,7 +4,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
 <View
   style={
     Object {
-      "paddingBottom": 8,
+      "paddingBottom": 12,
       "paddingHorizontal": 16,
       "paddingTop": 16,
     }
@@ -40,7 +40,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       Object {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginBottom": 8,
+        "marginBottom": 6,
         "marginTop": 12,
       }
     }
@@ -53,8 +53,8 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-3"
@@ -70,8 +70,8 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-2"
@@ -87,8 +87,8 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-1"
@@ -102,8 +102,8 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       onPress={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.customize-grade-2"
@@ -111,6 +111,11 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     >
       <Image
         source={1}
+        style={
+          Object {
+            "tintColor": "#8B969E",
+          }
+        }
       />
     </CircleToggle>
   </View>
@@ -124,11 +129,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.add-comment-2"
     >
       <View>
@@ -173,14 +173,37 @@ exports[`RubricItem changes the currently selected value when a circle is presse
         </Text>
       </View>
     </TouchableOpacity>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 12,
+            "paddingHorizontal": 6,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      •
+    </Text>
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.description"
     >
       <View>
@@ -233,7 +256,7 @@ exports[`RubricItem renders 1`] = `
 <View
   style={
     Object {
-      "paddingBottom": 8,
+      "paddingBottom": 12,
       "paddingHorizontal": 16,
       "paddingTop": 16,
     }
@@ -269,7 +292,7 @@ exports[`RubricItem renders 1`] = `
       Object {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginBottom": 8,
+        "marginBottom": 6,
         "marginTop": 12,
       }
     }
@@ -282,8 +305,8 @@ exports[`RubricItem renders 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-3"
@@ -299,8 +322,8 @@ exports[`RubricItem renders 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-2"
@@ -316,8 +339,8 @@ exports[`RubricItem renders 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-1"
@@ -331,8 +354,8 @@ exports[`RubricItem renders 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.customize-grade-2"
@@ -340,6 +363,11 @@ exports[`RubricItem renders 1`] = `
     >
       <Image
         source={1}
+        style={
+          Object {
+            "tintColor": "#8B969E",
+          }
+        }
       />
     </CircleToggle>
   </View>
@@ -353,11 +381,6 @@ exports[`RubricItem renders 1`] = `
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.add-comment-2"
     >
       <View>
@@ -402,14 +425,37 @@ exports[`RubricItem renders 1`] = `
         </Text>
       </View>
     </TouchableOpacity>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 12,
+            "paddingHorizontal": 6,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      •
+    </Text>
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.description"
     >
       <View>
@@ -462,7 +508,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
 <View
   style={
     Object {
-      "paddingBottom": 8,
+      "paddingBottom": 12,
       "paddingHorizontal": 16,
       "paddingTop": 16,
     }
@@ -498,7 +544,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       Object {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginBottom": 8,
+        "marginBottom": 6,
         "marginTop": 12,
       }
     }
@@ -511,8 +557,8 @@ exports[`RubricItem renders an already selected grade 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-3"
@@ -528,8 +574,8 @@ exports[`RubricItem renders an already selected grade 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-2"
@@ -545,8 +591,8 @@ exports[`RubricItem renders an already selected grade 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-1"
@@ -560,8 +606,8 @@ exports[`RubricItem renders an already selected grade 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.customize-grade-2"
@@ -569,6 +615,11 @@ exports[`RubricItem renders an already selected grade 1`] = `
     >
       <Image
         source={1}
+        style={
+          Object {
+            "tintColor": "#8B969E",
+          }
+        }
       />
     </CircleToggle>
   </View>
@@ -582,11 +633,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.add-comment-2"
     >
       <View>
@@ -631,14 +677,37 @@ exports[`RubricItem renders an already selected grade 1`] = `
         </Text>
       </View>
     </TouchableOpacity>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 12,
+            "paddingHorizontal": 6,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      •
+    </Text>
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.description"
     >
       <View>
@@ -691,7 +760,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
 <View
   style={
     Object {
-      "paddingBottom": 8,
+      "paddingBottom": 12,
       "paddingHorizontal": 16,
       "paddingTop": 16,
     }
@@ -727,7 +796,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       Object {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginBottom": 8,
+        "marginBottom": 6,
         "marginTop": 12,
       }
     }
@@ -740,8 +809,8 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-3"
@@ -757,8 +826,8 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-2"
@@ -774,8 +843,8 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-1"
@@ -789,8 +858,8 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       onPress={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.customize-grade-2"
@@ -809,11 +878,6 @@ exports[`RubricItem renders the selected custom grade 1`] = `
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.add-comment-2"
     >
       <View>
@@ -858,14 +922,37 @@ exports[`RubricItem renders the selected custom grade 1`] = `
         </Text>
       </View>
     </TouchableOpacity>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 12,
+            "paddingHorizontal": 6,
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+        ]
+      }
+    >
+      •
+    </Text>
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.description"
     >
       <View>
@@ -918,7 +1005,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
 <View
   style={
     Object {
-      "paddingBottom": 8,
+      "paddingBottom": 12,
       "paddingHorizontal": 16,
       "paddingTop": 16,
     }
@@ -954,7 +1041,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
       Object {
         "flexDirection": "row",
         "flexWrap": "wrap",
-        "marginBottom": 8,
+        "marginBottom": 6,
         "marginTop": 12,
       }
     }
@@ -967,8 +1054,8 @@ exports[`RubricItem will not show the add comment button and will show the comme
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-3"
@@ -984,8 +1071,8 @@ exports[`RubricItem will not show the add comment button and will show the comme
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-2"
@@ -1001,8 +1088,8 @@ exports[`RubricItem will not show the add comment button and will show the comme
       onPressOut={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.points-1"
@@ -1016,8 +1103,8 @@ exports[`RubricItem will not show the add comment button and will show the comme
       onPress={[Function]}
       style={
         Object {
-          "marginBottom": 8,
-          "marginRight": 8,
+          "marginBottom": 4,
+          "marginRight": 4,
         }
       }
       testID="rubric-item.customize-grade-2"
@@ -1025,6 +1112,11 @@ exports[`RubricItem will not show the add comment button and will show the comme
     >
       <Image
         source={1}
+        style={
+          Object {
+            "tintColor": "#8B969E",
+          }
+        }
       />
     </CircleToggle>
   </View>
@@ -1038,11 +1130,6 @@ exports[`RubricItem will not show the add comment button and will show the comme
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      style={
-        Object {
-          "paddingRight": 16,
-        }
-      }
       testID="rubric-item.description"
     >
       <View>
@@ -1094,7 +1181,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
         "alignItems": "center",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingTop": 16,
+        "paddingTop": 8,
       }
     }
   >

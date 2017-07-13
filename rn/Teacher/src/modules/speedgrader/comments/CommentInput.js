@@ -23,6 +23,8 @@ type CommentInputProps = {
   allowMediaComments: boolean,
   initialValue: ?string,
   disabled: boolean,
+  autoFocus?: boolean,
+  onBlur?: () => void,
 }
 
 type State = {
@@ -66,6 +68,10 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     this.setState({ textComment: text })
   }
 
+  onBlur = () => {
+    this.props.onBlur && this.props.onBlur()
+  }
+
   captureTextInput = (textInput: TextInput) => {
     this._textInput = textInput
   }
@@ -100,7 +106,11 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
           }
           <View style={styles.inputContainer}>
             <TextInput
-              autoFocus={ typeof (jest) === 'undefined' }
+              autoFocus={
+                (typeof (jest) === 'undefined') &&
+                this.props.autoFocus != null &&
+                this.props.autoFocus
+              }
               multiline
               testID='comment-input.comment'
               placeholder={placeholder}
@@ -110,16 +120,24 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
               onChangeText={this.textChanged}
               ref={this.captureTextInput}
               value={this.state.textComment}
+              onBlur={this.onBlur}
             />
-            <Button
-              containerStyle={styles.sendButton}
-              testID='comment-input.send'
-              onPress={this.makeComment}
-              accessibilityLabel={send}
-              disabled={disableSend}
-            >
-              <Image style={styles.sendButtonArrow} source={Images.upArrow} />
-            </Button>
+            {
+              this.state.textComment != null &&
+              this.state.textComment.length > 0 &&
+              <Button
+                containerStyle={styles.sendButton}
+                testID='comment-input.send'
+                onPress={this.makeComment}
+                accessibilityLabel={send}
+                disabled={disableSend}
+              >
+                <Image
+                  style={styles.sendButtonArrow}
+                  source={Images.upArrow}
+                />
+              </Button>
+            }
           </View>
         </View>
         <KeyboardSpacer onToggle={this.keyboardChanged} />
@@ -173,7 +191,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   sendButton: {
-    backgroundColor: colors.primaryButtonColor,
+    backgroundColor: colors.primaryButton,
     width: 24,
     height: 24,
     borderRadius: 12,

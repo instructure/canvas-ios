@@ -11,7 +11,7 @@ import {
   Animated,
 } from 'react-native'
 import i18n from 'format-message'
-import { Heading1 } from '../../../common/text'
+import { Heading1, Text } from '../../../common/text'
 import Button from 'react-native-button'
 import { connect } from 'react-redux'
 import SpeedGraderActions from '../actions'
@@ -142,22 +142,45 @@ export class GradePicker extends Component {
     }
   }
 
-  render () {
+  renderModeratedGradingUnsuported () {
+    return (
+      <View style={styles.gradeCell}>
+        <Text
+          style={{
+            fontSize: 14,
+          }}
+        >
+          {i18n('Moderated Grading Unsupported')}
+        </Text>
+      </View>
+    )
+  }
+
+  renderGradeCell () {
     let gradeButton = this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt
     return (
+      <View style={styles.gradeCell}>
+        <Heading1>{i18n('Grade')}</Heading1>
+        <Button
+          testID='grade-picker.button'
+          style={styles.gradeButton}
+          onPress={gradeButton}
+          accessibilityLabel={i18n('Customize Grade')}
+          disabled={this.props.pending || this.props.gradingType === 'not_graded'}
+        >
+          {this.renderField()}
+        </Button>
+      </View>
+    )
+  }
+
+  render () {
+    return (
       <View style={styles.gradePicker}>
-          <View style={styles.gradeCell}>
-          <Heading1>{i18n('Grade')}</Heading1>
-          <Button
-            testID='grade-picker.button'
-            style={styles.gradeButton}
-            onPress={gradeButton}
-            accessibilityLabel={i18n('Customize Grade')}
-            disabled={this.props.pending || this.props.gradingType === 'not_graded'}
-          >
-            {this.renderField()}
-          </Button>
-        </View>
+        {this.props.isModeratedGrading
+          ? this.renderModeratedGradingUnsuported()
+          : this.renderGradeCell()
+        }
         {this.props.gradingType === PASS_FAIL &&
           <Animated.View
             style={{ height: this.state.easeAnimation, overflow: 'hidden' }}
@@ -199,7 +222,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   gradeCell: {
-    paddingVertical: 9,
+    paddingVertical: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -247,6 +270,7 @@ type GradePickerOwnProps = {
   courseID: string,
   assignmentID: string,
   userID: string,
+  isModeratedGrading: boolean,
 }
 
 type GradePickerDataProps = {

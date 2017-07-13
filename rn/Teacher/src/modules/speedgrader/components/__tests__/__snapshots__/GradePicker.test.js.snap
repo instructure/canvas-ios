@@ -16,7 +16,7 @@ exports[`GradePicker disables the button and has correct text for not graded ass
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingVertical": 9,
+        "paddingVertical": 12,
       }
     }
   >
@@ -92,7 +92,7 @@ exports[`GradePicker renders points based grades 1`] = `
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingVertical": 9,
+        "paddingVertical": 12,
       }
     }
   >
@@ -173,7 +173,7 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingVertical": 9,
+        "paddingVertical": 12,
       }
     }
   >
@@ -233,7 +233,7 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingVertical": 9,
+        "paddingVertical": 12,
       }
     }
   >
@@ -330,7 +330,7 @@ exports[`GradePicker renders with excused 1`] = `
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingVertical": 9,
+        "paddingVertical": 12,
       }
     }
   >
@@ -410,7 +410,7 @@ exports[`GradePicker renders with no grade 1`] = `
         "borderBottomWidth": 0.5,
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "paddingVertical": 9,
+        "paddingVertical": 12,
       }
     }
   >

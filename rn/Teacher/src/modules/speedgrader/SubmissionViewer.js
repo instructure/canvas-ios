@@ -138,14 +138,6 @@ export default class SubmissionViewer extends Component {
   }
 
   render () {
-    if (this.props.isModeratedGrading) {
-      return (
-        <View style={styles.container}>
-          {this.renderCenteredText(i18n('Moderated grading is not currently supported in mobile SpeedGrader.'))}
-        </View>
-      )
-    }
-
     const submission = this.currentSubmission()
     if (submission && submission.attempt) {
       if (submission.attachments && submission.submission_type === 'online_upload') {
