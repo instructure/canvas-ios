@@ -418,6 +418,24 @@ final class HelmViewController: UIViewController, HelmScreen {
         subtitleLabel.textColor = subtitleColor
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.textAlignment = .center
+        
+        //  adjust width of subtitle 
+        var subtitleLabelFrame = subtitleLabel.frame
+        let subtitleLabelYOrigin = subtitleLabelFrame.origin.y
+        var percentageOfWidth:CGFloat = 1.45
+        let minWidthMultiplierWithMultipleBarButtonItems:CGFloat = 2.2
+        if let barButtonItems = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]], barButtonItems.count > 1 {
+            percentageOfWidth = minWidthMultiplierWithMultipleBarButtonItems
+        }
+        if let barButtonItems = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]], barButtonItems.count > 1 {
+            percentageOfWidth = minWidthMultiplierWithMultipleBarButtonItems
+        }
+        subtitleLabelFrame.size.width = view.bounds.size.width > 0 ? view.bounds.size.width / percentageOfWidth : 225
+        subtitleLabel.frame = subtitleLabelFrame
+        subtitleLabel.center = titleLabel.center
+        subtitleLabelFrame = subtitleLabel.frame
+        subtitleLabelFrame.origin.y = subtitleLabelYOrigin
+        subtitleLabel.frame = subtitleLabelFrame
     }
     
     func barButtonTapped(_ barButton: UIBarButtonItem) {
