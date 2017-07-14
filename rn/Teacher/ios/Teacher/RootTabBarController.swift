@@ -58,6 +58,7 @@ class RootTabBarController: UITabBarController {
         let inboxSplit = HelmSplitViewController()
         inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
         inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
+        inboxSplit.extendedLayoutIncludesOpaqueBars = true
         
         let empty = HelmNavigationController()
         if let brand = self.branding {
