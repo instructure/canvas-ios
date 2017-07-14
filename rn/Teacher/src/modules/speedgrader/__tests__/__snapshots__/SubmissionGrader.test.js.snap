@@ -13,7 +13,7 @@ exports[`SubmissionGrader can render the handle content 1`] = `
 >
   <SegmentedControlIOS
     onChange={[Function]}
-    selectedIndex={0}
+    selectedIndex={-1}
     testID="speedgrader.segment-control"
     values={
       Array [

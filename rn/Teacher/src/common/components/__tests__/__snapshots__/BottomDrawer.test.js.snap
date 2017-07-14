@@ -28,6 +28,7 @@ exports[`BottomDrawer renders any children 1`] = `
         "y": 0,
       }
     }
+    onDrag={[Function]}
     onSnap={[Function]}
     snapPoints={
       Array [

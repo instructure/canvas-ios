@@ -5,6 +5,7 @@ import { Animated, Keyboard } from 'react-native'
 export type DrawerPosition = 0 | 1 | 2
 export type DrawerObserver = {
   snapTo: (position: DrawerPosition) => void,
+  onDragBegan?: () => void,
 }
 
 export const HANDLE_PADDING_BOTTOM: number = 52
@@ -49,6 +50,10 @@ export default class DrawerState {
 
   unregisterDrawer (drawer: DrawerObserver) {
     this.drawers = this.drawers.filter(registered => registered !== drawer)
+  }
+
+  dragBegan = () => {
+    this.drawers.forEach(drawer => drawer.onDragBegan && drawer.onDragBegan())
   }
 
   didSnapTo = (snap: DrawerPosition) => {

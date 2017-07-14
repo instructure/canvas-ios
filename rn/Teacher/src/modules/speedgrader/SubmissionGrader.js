@@ -13,7 +13,7 @@ import SubmissionPicker from './components/SubmissionPicker'
 import GradeTab from './GradeTab'
 import FilesTab from './components/FilesTab'
 import CommentsTab from './comments/CommentsTab'
-import DrawerState from './utils/drawer-state'
+import DrawerState, { type DrawerPosition } from './utils/drawer-state'
 import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
@@ -58,7 +58,29 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     this.state = {
       width: width,
       height: height,
-      selectedTabIndex: 0,
+      selectedTabIndex: -1,
+    }
+
+    props.drawerState.registerDrawer(this)
+  }
+
+  componentWillUnmount () {
+    this.props.drawerState.unregisterDrawer(this)
+  }
+
+  onDragBegan = () => {
+    if (this.props.drawerState.currentSnap === 0) {
+      this.setState({
+        selectedTabIndex: 0,
+      })
+    }
+  }
+
+  snapTo = (position: DrawerPosition) => {
+    if (position === 0) {
+      this.setState({
+        selectedTabIndex: -1,
+      })
     }
   }
 
@@ -69,6 +91,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   changeTab = (e: any) => {
     this.setState({
       selectedTabIndex: e.nativeEvent.selectedSegmentIndex,
+    }, () => {
+      if (this.props.drawerState.currentSnap === 0) {
+        this.props.drawerState.snapTo(1)
+      }
     })
   }
 
@@ -81,14 +107,18 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
 
   renderTab (tab: ?number) {
     switch (tab) {
-      case 0:
-        const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined
-        const dismissToolTip = this.toolTip ? this.toolTip.dismissToolTip : undefined
-        return <GradeTab {...this.props} showToolTip={showToolTip} dismissToolTip={dismissToolTip} />
       case 1:
         return <CommentsTab {...this.props} />
       case 2:
         return <FilesTab {...this.props} />
+      default:
+        const showToolTip = this.toolTip ? this.toolTip.showToolTip : undefined
+        const dismissToolTip = this.toolTip ? this.toolTip.dismissToolTip : undefined
+        return <GradeTab
+          {...this.props}
+          showToolTip={showToolTip}
+          dismissToolTip={dismissToolTip}
+        />
     }
   }
 

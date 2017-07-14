@@ -98,6 +98,12 @@ export default class BottomDrawer extends Component<any, Props, State> {
     this.drawer.snapTo({ index })
   }
 
+  onDrag = ({ nativeEvent }: { nativeEvent: Object }) => {
+    if (nativeEvent.state === 'start') {
+      this.props.drawerState.dragBegan()
+    }
+  }
+
   onSnap = (e: any) => {
     this.props.drawerState.didSnapTo(e.nativeEvent.index)
   }
@@ -151,6 +157,7 @@ export default class BottomDrawer extends Component<any, Props, State> {
           initialPosition={this.getSnapPoints()[this.props.drawerState.currentSnap]}
           animatedValueY={this._deltaY}
           style={styles.handle}
+          onDrag={this.onDrag}
         />
         <Animated.View
           style={[styles.drawerContent, {
