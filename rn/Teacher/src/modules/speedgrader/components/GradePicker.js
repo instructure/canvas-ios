@@ -9,10 +9,10 @@ import {
   ActivityIndicator,
   PickerIOS,
   Animated,
+  TouchableOpacity,
 } from 'react-native'
 import i18n from 'format-message'
 import { Heading1, Text } from '../../../common/text'
-import Button from 'react-native-button'
 import { connect } from 'react-redux'
 import SpeedGraderActions from '../actions'
 import Images from '../../../images'
@@ -157,19 +157,21 @@ export class GradePicker extends Component {
   }
 
   renderGradeCell () {
-    let gradeButton = this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt
+    let disabled = (this.props.pending || this.props.gradingType === 'not_graded')
+    let gradeButtonAction = !disabled ? (this.props.gradingType === PASS_FAIL ? this.togglePicker : this.openPrompt) : null
     return (
       <View style={styles.gradeCell}>
         <Heading1>{i18n('Grade')}</Heading1>
-        <Button
-          testID='grade-picker.button'
-          style={styles.gradeButton}
-          onPress={gradeButton}
-          accessibilityLabel={i18n('Customize Grade')}
-          disabled={this.props.pending || this.props.gradingType === 'not_graded'}
-        >
-          {this.renderField()}
-        </Button>
+        <TouchableOpacity
+            testID='grade-picker.button'
+            style={styles.gradeButton}
+            onPress={gradeButtonAction}
+            accessibilityTraits='button'
+            accessibilityLabel={i18n('Customize Grade')}
+            activeOpacity={disabled ? 1 : 0.2}
+          >
+            {this.renderField()}
+          </TouchableOpacity>
       </View>
     )
   }

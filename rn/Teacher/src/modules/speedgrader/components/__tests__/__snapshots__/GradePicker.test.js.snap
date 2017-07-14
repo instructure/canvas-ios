@@ -43,10 +43,16 @@ exports[`GradePicker disables the button and has correct text for not graded ass
       Grade
     </Text>
     <TouchableOpacity
-      accessibilityComponentType="button"
+      accessibilityLabel="Customize Grade"
       accessibilityTraits="button"
       activeOpacity={1}
-      style={undefined}
+      onPress={null}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
       testID="grade-picker.button"
     >
       <Text
@@ -119,14 +125,16 @@ exports[`GradePicker renders points based grades 1`] = `
       Grade
     </Text>
     <TouchableOpacity
-      accessibilityComponentType="button"
+      accessibilityLabel="Customize Grade"
       accessibilityTraits="button"
       activeOpacity={0.2}
-      onLongPress={undefined}
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
       testID="grade-picker.button"
     >
       <Text
@@ -200,10 +208,16 @@ exports[`GradePicker renders the activity indicator when pending 1`] = `
       Grade
     </Text>
     <TouchableOpacity
-      accessibilityComponentType="button"
+      accessibilityLabel="Customize Grade"
       accessibilityTraits="button"
       activeOpacity={1}
-      style={undefined}
+      onPress={null}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
       testID="grade-picker.button"
     >
       <ActivityIndicator
@@ -260,14 +274,16 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
       Grade
     </Text>
     <TouchableOpacity
-      accessibilityComponentType="button"
+      accessibilityLabel="Customize Grade"
       accessibilityTraits="button"
       activeOpacity={0.2}
-      onLongPress={undefined}
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
       testID="grade-picker.button"
     >
       <Image
@@ -357,14 +373,16 @@ exports[`GradePicker renders with excused 1`] = `
       Grade
     </Text>
     <TouchableOpacity
-      accessibilityComponentType="button"
+      accessibilityLabel="Customize Grade"
       accessibilityTraits="button"
       activeOpacity={0.2}
-      onLongPress={undefined}
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
       testID="grade-picker.button"
     >
       <Text
@@ -437,14 +455,16 @@ exports[`GradePicker renders with no grade 1`] = `
       Grade
     </Text>
     <TouchableOpacity
-      accessibilityComponentType="button"
+      accessibilityLabel="Customize Grade"
       accessibilityTraits="button"
       activeOpacity={0.2}
-      onLongPress={undefined}
       onPress={[Function]}
-      onPressIn={undefined}
-      onPressOut={undefined}
-      style={undefined}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
       testID="grade-picker.button"
     >
       <Image
