@@ -26,6 +26,7 @@ import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../SubmissionsHeader'
 import Images from '../../../images'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
@@ -189,26 +190,29 @@ export class SubmissionList extends Component {
           },
         ]}
       >
-        <View style={styles.container}>
-          <SubmissionsHeader
-            filterOptions={this.filterOptions}
-            selectedFilter={this.selectedFilter}
-            onClearFilter={this.clearFilter}
-            onSelectFilter={this.updateFilter}
-            pointsPossible={this.props.pointsPossible}
-            anonymous={this.props.anonymous}
-            muted={this.props.muted}
-          />
-          { /* $FlowFixMe I seriously have no idea why this is complaining about flatlist not having some properties */ }
-          <FlatList
-            data={this.state.submissions}
-            keyExtractor={this.keyExtractor}
-            testID='submission-list'
-            renderItem={this.renderRow}
-            refreshing={this.props.pending}
-            onRefresh={this.props.refresh}
-            />
-        </View>
+        { this.props.pending && !this.props.refreshing
+          ? <ActivityIndicatorView />
+          : <View style={styles.container}>
+              <SubmissionsHeader
+                filterOptions={this.filterOptions}
+                selectedFilter={this.selectedFilter}
+                onClearFilter={this.clearFilter}
+                onSelectFilter={this.updateFilter}
+                pointsPossible={this.props.pointsPossible}
+                anonymous={this.props.anonymous}
+                muted={this.props.muted}
+              />
+              { /* $FlowFixMe I seriously have no idea why this is complaining about flatlist not having some properties */ }
+              <FlatList
+                data={this.state.submissions}
+                keyExtractor={this.keyExtractor}
+                testID='submission-list'
+                renderItem={this.renderRow}
+                refreshing={this.props.refreshing}
+                onRefresh={this.props.refresh}
+                />
+            </View>
+        }
       </Screen>
     )
   }
@@ -251,7 +255,7 @@ export function refreshSubmissionList (props: SubmissionListProps): void {
 }
 
 export function shouldRefresh (props: SubmissionListProps): boolean {
-  return props.shouldRefresh
+  return props.submissions.every(({ submission }) => !submission)
 }
 
 const Refreshed = refresh(

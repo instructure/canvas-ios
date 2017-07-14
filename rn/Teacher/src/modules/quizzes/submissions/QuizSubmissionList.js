@@ -18,6 +18,7 @@ import SubmissionRow, { type SubmissionRowDataProps } from '../../submissions/li
 import mapStateToProps from './map-state-to-props'
 import Images from '../../../images'
 import i18n from 'format-message'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 
 export type QuizSubmissionListNavProps = {
   courseID: string,
@@ -140,24 +141,27 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
         navBarStyle='dark'
         rightBarButtons={rightBarButtons}
       >
-        <View style={styles.container}>
-          <SubmissionsHeader
-            filterOptions={this.filterOptions}
-            selectedFilter={this.selectedFilter}
-            onClearFilter={this.clearFilter}
-            onSelectFilter={this.updateFilter}
-            pointsPossible={this.props.pointsPossible}
-            anonymous={this.props.anonymous}
-            muted={this.props.muted} />
-          <FlatList
-            data={this.state.rows}
-            keyExtractor={this.keyExtractor}
-            testID='quiz-submission-list'
-            renderItem={this.renderRow}
-            refreshing={Boolean(this.props.pending)}
-            onRefresh={this.props.refresh}
-            />
-        </View>
+        {this.props.pending && !this.props.refreshing
+          ? <ActivityIndicatorView />
+          : <View style={styles.container}>
+              <SubmissionsHeader
+                filterOptions={this.filterOptions}
+                selectedFilter={this.selectedFilter}
+                onClearFilter={this.clearFilter}
+                onSelectFilter={this.updateFilter}
+                pointsPossible={this.props.pointsPossible}
+                anonymous={this.props.anonymous}
+                muted={this.props.muted} />
+              <FlatList
+                data={this.state.rows}
+                keyExtractor={this.keyExtractor}
+                testID='quiz-submission-list'
+                renderItem={this.renderRow}
+                refreshing={this.props.refreshing}
+                onRefresh={this.props.refresh}
+                />
+            </View>
+        }
       </Screen>
     )
   }
@@ -195,7 +199,7 @@ export function refreshQuizSubmissionData (props: any): void {
 }
 
 let Refreshed = refresh(
-  props => refreshQuizSubmissionData(props),
+  refreshQuizSubmissionData,
   props => true,
   props => Boolean(props.pending)
 )(QuizSubmissionList)

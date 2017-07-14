@@ -25,6 +25,7 @@ let defaultProps = {}
 
 beforeEach(() => {
   defaultProps = {
+    assignmentID: '',
     courseID: course.id,
     quizID: quiz.id,
     refreshQuizSubmissions: jest.fn(),
@@ -48,12 +49,13 @@ test('render', () => {
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+
+  expect(defaultProps.refreshQuizSubmissions).toHaveBeenCalledWith(course.id, quiz.id, '')
+  expect(defaultProps.refreshEnrollments).toHaveBeenCalledWith(course.id)
 })
 
 test('render with an assignment id', () => {
   const assignment = template.assignment()
-  // Why doesn't this work
-  // $FlowFixMe
   defaultProps.assignmentID = assignment.id
   defaultProps.graded = 1
   defaultProps.ungraded = 1
@@ -64,6 +66,9 @@ test('render with an assignment id', () => {
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+
+  expect(defaultProps.refreshQuizSubmissions).toHaveBeenCalledWith(course.id, quiz.id, assignment.id)
+  expect(defaultProps.refreshSubmissionSummary).toHaveBeenCalledWith(course.id, assignment.id)
 })
 
 test('render 0 submissions', () => {

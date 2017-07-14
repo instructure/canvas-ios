@@ -38,7 +38,6 @@ export type SubmissionListDataProps
     courseColor: string,
     courseName: string,
     pointsPossible?: string,
-    shouldRefresh: boolean,
     anonymous: boolean,
     muted: boolean,
     assignmentName: string,

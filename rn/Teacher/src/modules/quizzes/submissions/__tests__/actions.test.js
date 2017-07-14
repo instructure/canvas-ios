@@ -30,3 +30,17 @@ test('should refresh submissions', async () => {
     },
   ])
 })
+
+test('refresh includes assignmentID if provided', () => {
+  const actions = QuizSubmissionActions({
+    getQuizSubmissions: () => {},
+  })
+  let result = actions.refreshQuizSubmissions('1', '2', '3')
+  expect(result).toMatchObject({
+    type: actions.refreshQuizSubmissions.toString(),
+    payload: {
+      quizID: '2',
+      assignmentID: '3',
+    },
+  })
+})

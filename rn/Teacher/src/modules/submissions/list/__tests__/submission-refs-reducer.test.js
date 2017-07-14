@@ -2,9 +2,11 @@
 
 import { submissions } from '../submission-refs-reducer'
 import Actions from '../actions'
+import QuizSubmissionActions from '../../../quizzes/submissions/actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
 const { refreshSubmissions } = Actions
+const { refreshQuizSubmissions } = QuizSubmissionActions
 const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 
 const templates = {
@@ -24,6 +26,35 @@ test('it captures submission ids', () => {
   const resolved = {
     type: refreshSubmissions.toString(),
     payload: { result: { data } },
+  }
+
+  const pendingState = submissions(undefined, pending)
+  expect(pendingState).toEqual({ refs: [], pending: 1 })
+  expect(submissions(pendingState, resolved)).toEqual({
+    pending: 0,
+    refs: ['1', '2'],
+  })
+})
+
+test('it captures quiz submission ids', () => {
+  let data = [
+    templates.submission({ id: '1' }),
+    templates.submission({ id: '2' }),
+  ]
+
+  const pending = {
+    type: refreshQuizSubmissions.toString(),
+    pending: true,
+  }
+  const resolved = {
+    type: refreshQuizSubmissions.toString(),
+    payload: {
+      result: {
+        data: {
+          submissions: data,
+        },
+      },
+    },
   }
 
   const pendingState = submissions(undefined, pending)

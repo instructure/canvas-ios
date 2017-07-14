@@ -54,6 +54,13 @@ test('SubmissionList loaded', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('SubmissionList shows loading indicator', () => {
+  const tree = renderer.create(
+    <SubmissionList {...props} navigator={template.navigator()} pending={true} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('SubmissionList loaded with nothing and it should not explode, and then props should be set and it should be great', () => {
   const tree = renderer.create(
     <SubmissionList {...props} navigator={template.navigator()} />
@@ -171,13 +178,7 @@ test('SubmissionList renders correctly with a passed in filter', () => {
 })
 
 test('should refresh', () => {
-  expect(shouldRefresh(props)).toBeFalsy()
-
-  const emptyProps = {
-    ...props,
-    shouldRefresh: true,
-  }
-  expect(shouldRefresh(emptyProps)).toBeTruthy()
+  expect(shouldRefresh(props)).toEqual(true)
 })
 
 test('should navigate to submission settings', () => {

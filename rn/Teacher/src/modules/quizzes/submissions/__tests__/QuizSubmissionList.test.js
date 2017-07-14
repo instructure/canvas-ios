@@ -44,6 +44,13 @@ describe('QuizSubmissionList', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  test('loads while pending', () => {
+    const tree = renderer.create(
+      <QuizSubmissionList {...props} navigator={template.navigator()} pending={true} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
   test('loads with nothing and it should not explode, and then props should be set and it should be great', () => {
     const tree = renderer.create(
       <QuizSubmissionList navigator={template.navigator()} />

@@ -43,7 +43,7 @@ export type QuizSubmissionBreakdownGraphSectionInitProps = {
 export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubmissionBreakdownGraphSectionProps, any> {
 
   componentDidMount () {
-    this.props.refreshQuizSubmissions(this.props.courseID, this.props.quizID)
+    this.props.refreshQuizSubmissions(this.props.courseID, this.props.quizID, this.props.assignmentID)
     if (this.props.assignmentID) {
       this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
     } else {

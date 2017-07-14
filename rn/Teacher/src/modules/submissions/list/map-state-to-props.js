@@ -36,7 +36,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
   } else {
     submissions = getSubmissionsProps(entities, courseID, assignmentID)
   }
-  const shouldRefresh = submissions.submissions.length === 0
 
   const courseContent = entities.courses[courseID]
   let courseColor = '#FFFFFF'
@@ -65,7 +64,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     groupAssignment,
     courseColor,
     courseName,
-    shouldRefresh,
     pointsPossible,
     pending: submissions.pending,
     submissions: anonymous ? shuffle(submissions.submissions.slice(), assignmentID) : submissions.submissions,
