@@ -21,8 +21,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
   <RCTScrollView
     contentOffset={
       Object {
-        "x": 0,
-        "y": 0,
+        "x": NaN,
       }
     }
     data={
@@ -42,6 +41,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     disableVirtualization={false}
     getItem={[Function]}
     getItemCount={[Function]}
+    getItemLayout={[Function]}
     horizontal={true}
     initialNumToRender={10}
     keyExtractor={[Function]}
@@ -73,7 +73,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
   >
     <View>
       <View
-        onLayout={[Function]}
+        onLayout={undefined}
       >
         <A11yGroup
           style={
@@ -180,8 +180,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
   <RCTScrollView
     contentOffset={
       Object {
-        "x": 0,
-        "y": 0,
+        "x": NaN,
       }
     }
     data={
@@ -211,6 +210,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
     disableVirtualization={false}
     getItem={[Function]}
     getItemCount={[Function]}
+    getItemLayout={[Function]}
     horizontal={true}
     initialNumToRender={10}
     keyExtractor={[Function]}
@@ -242,7 +242,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
   >
     <View>
       <View
-        onLayout={[Function]}
+        onLayout={undefined}
       >
         <A11yGroup
           style={
@@ -334,7 +334,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
         </A11yGroup>
       </View>
       <View
-        onLayout={[Function]}
+        onLayout={undefined}
       >
         <A11yGroup
           style={

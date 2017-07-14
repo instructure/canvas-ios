@@ -201,12 +201,12 @@ test('should navigate to a submission', () => {
   const tree = renderer.create(
     <SubmissionList {...props} navigator={navigator} />
   )
-  tree.getInstance().navigateToSubmission(submission.userID)
+  tree.getInstance().navigateToSubmission(1)(submission.userID)
 
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/1',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { selectedFilter: undefined }
+    { selectedFilter: undefined, studentIndex: 1 }
   )
 })
 
@@ -311,7 +311,7 @@ test('should prevent going to speed grader when offline', () => {
     <SubmissionList {...props} navigator={navigator} />
   )
   tree.getInstance().setState({ isConnected: false })
-  tree.getInstance().navigateToSubmission(submission.userID)
+  tree.getInstance().navigateToSubmission(1)(submission.userID)
 
   expect(AlertIOS.alert).toHaveBeenCalled()
   expect(navigator.show).not.toHaveBeenCalled()

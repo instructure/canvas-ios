@@ -95,7 +95,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   onLayout = (event: any) => {
     const { width, height } = event.nativeEvent.layout
-    if (height !== 0 && width !== this.state.width && height !== this.state.height) {
+    if (height !== 0 && width !== this.state.size.width && height !== this.state.size.height) {
       this.setState({ size: { width, height } })
     }
   }
@@ -146,6 +146,12 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     }
   }
 
+  getItemLayout = (data: ?any, index: number) => ({
+    length: this.state.size.width,
+    offset: this.state.size.width * index,
+    index,
+  })
+
   renderBody = () => {
     if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
@@ -154,8 +160,6 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     const items: Array<SubmissionItem> = this.props.submissions
       .filter(submission => this.state.filteredIDs && this.state.filteredIDs.includes(submission.userID))
       .map(submission => ({ key: submission.userID, submission }))
-    const studentIndex = Math.max(0, items.findIndex(sub => sub.submission.userID === this.state.currentStudentID))
-    const x = this.state.size.width * studentIndex
 
     return (
       <FlatList
@@ -166,9 +170,10 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         windowSize={5}
         horizontal
         pagingEnabled
+        getItemLayout={this.getItemLayout}
         showsHorizontalScrollIndicator={false}
-        contentOffset={{ x, y: 0 }}
         onMomentumScrollEnd={this.scrollEnded}
+        contentOffset={{ x: this.state.size.width * this.props.studentIndex }}
         style={{ marginLeft: -PAGE_GUTTER_HALF_WIDTH, marginRight: -PAGE_GUTTER_HALF_WIDTH }}
       />
     )
@@ -301,6 +306,7 @@ type RoutingProps = {
   assignmentID: string,
   userID: string,
   selectedFilter?: SelectedSubmissionFilter,
+  studentIndex: number,
 }
 type SpeedGraderActionProps = {
   refreshSubmissions: Function,

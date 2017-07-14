@@ -80,7 +80,7 @@ export class SubmissionList extends Component {
     return item.userID
   }
 
-  navigateToSubmission = (userID: string) => {
+  navigateToSubmission = (index: number) => (userID: string) => {
     if (!global.V04) { return } // such features
     if (!this.state.isConnected) {
       return AlertIOS.alert(i18n('No internet connection'), i18n('This action requires an internet connection.'))
@@ -90,12 +90,12 @@ export class SubmissionList extends Component {
     this.props.navigator.show(
       path,
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { selectedFilter: this.selectedFilter }
+      { selectedFilter: this.selectedFilter, studentIndex: index }
     )
   }
 
-  renderRow = ({ item }: { item: SubmissionProps }) => {
-    return <SubmissionRow {...item} onPress={this.navigateToSubmission} anonymous={this.props.anonymous} />
+  renderRow = ({ item, index }: { item: SubmissionProps, index: number }) => {
+    return <SubmissionRow {...item} onPress={this.navigateToSubmission(index)} anonymous={this.props.anonymous} />
   }
 
   updateFilter = (filter: SelectedSubmissionFilter) => {

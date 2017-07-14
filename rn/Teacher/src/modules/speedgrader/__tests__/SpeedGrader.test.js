@@ -113,6 +113,17 @@ describe('SpeedGrader', () => {
 
     expect(tree).toMatchSnapshot()
   })
+
+  it('supplies getItemLayout', () => {
+    let view = renderer.create(
+      <SpeedGrader {...defaultProps} />
+    )
+    expect(view.getInstance().getItemLayout(null, 2)).toEqual({
+      length: 770,
+      offset: 770 * 2,
+      index: 2,
+    })
+  })
 })
 
 describe('refresh functions', () => {
@@ -137,6 +148,7 @@ describe('refresh functions', () => {
     hasAssignment: true,
     hasRubric: false,
     groupAssignment: null,
+    studentIndex: 1,
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)
@@ -187,6 +199,7 @@ test('mapStateToProps shuffles when anonymous grading is on', () => {
     assignmentID: assignment.id,
     courseID: '2',
     userID: '3',
+    studentIndex: 1,
   })
   expect(shuffle).toHaveBeenCalled()
 })
