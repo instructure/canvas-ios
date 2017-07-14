@@ -103,16 +103,16 @@ final class HelmViewController: UIViewController, HelmScreen {
         if (_screenDidRender) { return }
         if let title = screenConfig[PropKeys.title] as? String {
             if let subtitle = screenConfig[PropKeys.subtitle] as? String, subtitle.characters.count > 0 {
-                let title = self.titleView(with: title, and: subtitle, given: screenConfig)
-                let titleView = title.titleView
+                let titleStuff = self.titleView(with: title, and: subtitle, given: screenConfig)
+                let titleView = titleStuff.titleView
                 titleView.isAccessibilityElement = true
                 titleView.accessibilityLabel = "\(title), \(subtitle)"
                 titleView.accessibilityTraits = UIAccessibilityTraitHeader
                 self.navigationItem.titleView = titleView
                 self.navigationItem.title = nil
                 
-                self.titleViewTitleLabel = title.titleLabel
-                self.titleViewSubtitleLabel = title.subtitleLabel
+                self.titleViewTitleLabel = titleStuff.titleLabel
+                self.titleViewSubtitleLabel = titleStuff.subtitleLabel
             }
             self.title = title
         }
