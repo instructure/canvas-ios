@@ -4,6 +4,8 @@
 
 import React, { Component } from 'react'
 import { View, WebView } from 'react-native'
+import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+import { isWebUri } from 'valid-url'
 
 const TEMPLATE = `
 <html>
@@ -60,6 +62,7 @@ type Props = {
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
 }
 export default class WebContainer extends Component<any, Props, any> {
+
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -72,6 +75,17 @@ export default class WebContainer extends Component<any, Props, any> {
     if (width > 0) {
       this.setState({ viewportWidth: Math.ceil(width) })
     }
+  }
+
+  onShouldStartLoadWithRequest = (event: any): boolean => {
+    if (event && event.url && isWebUri(event.url)) {
+      try {
+        RCTSFSafariViewController.open(event.url)
+      } catch (e) {}
+      return false
+    }
+
+    return true
   }
 
   render () {
@@ -91,6 +105,7 @@ export default class WebContainer extends Component<any, Props, any> {
                 onMessage={this._onMessage}
                 scrollEnabled={scrollEnabled}
                 contentInset={this.props.contentInset}
+                onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
             />
         }
       </View>

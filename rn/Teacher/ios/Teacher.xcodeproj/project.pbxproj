@@ -41,6 +41,7 @@
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
+		2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
 		2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */; };
@@ -313,6 +314,20 @@
 			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
 			remoteInfo = "double-conversion";
 		};
+		2CD62AE91F193A370051E36D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6524D40F1D2FAE0F0060C92E;
+			remoteInfo = RCTSFSafariViewController;
+		};
+		2CD62B001F193A370051E36D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6456441F1EB8DA9100672408;
+			remoteInfo = "RNFS-tvOS";
+		};
 		2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */;
@@ -389,13 +404,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
 			remoteInfo = RNFS;
-		};
-		61E6C5011F14263A00B7B6C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
-			remoteInfo = "RNBlur-tvOS";
 		};
 		61FCAF131E5FC0190042921A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -608,6 +616,7 @@
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewDisablerManager.h; sourceTree = "<group>"; };
 		2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
+		2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSFSafariViewController.xcodeproj; path = "../node_modules/react-native-sfsafariviewcontroller/RCTSFSafariViewController.xcodeproj"; sourceTree = "<group>"; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
 		2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPageTest.swift; sourceTree = "<group>"; };
@@ -772,6 +781,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */,
 				61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */,
 				496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */,
 				3BEF7C101E7C96940092C864 /* libART.a in Frameworks */,
@@ -980,6 +990,14 @@
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CD62AD71F193A370051E36D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		2CEC445D1E8AABBD00AF7344 /* Helpers */ = {
@@ -1273,6 +1291,7 @@
 			isa = PBXGroup;
 			children = (
 				61B7F5CD1ED619A200EC6865 /* libRNFS.a */,
+				2CD62B011F193A370051E36D /* libRNFS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1303,6 +1322,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */,
 				61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */,
 				3BEF7BF01E7C96860092C864 /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
@@ -1628,6 +1648,10 @@
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
 				{
+					ProductGroup = 2CD62AD71F193A370051E36D /* Products */;
+					ProjectRef = 2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */;
+				},
+				{
 					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
 					ProjectRef = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
 				},
@@ -1776,6 +1800,20 @@
 			remoteRef = 2C5F359F1EEB437E006A26F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTSFSafariViewController.a;
+			remoteRef = 2CD62AE91F193A370051E36D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2CD62B011F193A370051E36D /* libRNFS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFS.a;
+			remoteRef = 2CD62B001F193A370051E36D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		2CF5409B1EA6772800F79DB1 /* libInteractable.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1830,13 +1868,6 @@
 			fileType = archive.ar;
 			path = libRNFS.a;
 			remoteRef = 61B7F5CC1ED619A200EC6865 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61E6C5021F14263A00B7B6C1 /* libRNBlur.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNBlur.a;
-			remoteRef = 61E6C5011F14263A00B7B6C1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		61FCAF141E5FC0190042921A /* libRCTAnimation.a */ = {
