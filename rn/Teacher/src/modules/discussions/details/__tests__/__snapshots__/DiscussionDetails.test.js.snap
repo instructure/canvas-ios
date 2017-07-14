@@ -121,8 +121,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
-      onEndReachedThreshold={0}
+      onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
@@ -458,7 +457,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                 "fontSize": 16,
                               },
                               Object {
-                                "paddingTop": 2,
+                                "paddingTop": 4,
                               },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
@@ -532,7 +531,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                               "fontSize": 16,
                             },
                             Object {
-                              "paddingTop": 2,
+                              "paddingTop": 4,
                             },
                             Object {
                               "fontFamily": ".SFUIDisplay",
@@ -610,7 +609,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -688,7 +687,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -1661,8 +1660,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
-      onEndReachedThreshold={0}
+      onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
@@ -2020,7 +2018,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                 "fontSize": 16,
                               },
                               Object {
-                                "paddingTop": 2,
+                                "paddingTop": 4,
                               },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
@@ -2094,7 +2092,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                               "fontSize": 16,
                             },
                             Object {
-                              "paddingTop": 2,
+                              "paddingTop": 4,
                             },
                             Object {
                               "fontFamily": ".SFUIDisplay",
@@ -2172,7 +2170,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -2250,7 +2248,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -2911,8 +2909,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
-      onEndReachedThreshold={0}
+      onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
@@ -3377,7 +3374,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                 "fontSize": 16,
                               },
                               Object {
-                                "paddingTop": 2,
+                                "paddingTop": 4,
                               },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
@@ -3451,7 +3448,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                               "fontSize": 16,
                             },
                             Object {
-                              "paddingTop": 2,
+                              "paddingTop": 4,
                             },
                             Object {
                               "fontFamily": ".SFUIDisplay",
@@ -3529,7 +3526,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -3607,7 +3604,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -5001,8 +4998,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
-      onEndReachedThreshold={0}
+      onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}
@@ -5390,7 +5386,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                 "fontSize": 16,
                               },
                               Object {
-                                "paddingTop": 2,
+                                "paddingTop": 4,
                               },
                               Object {
                                 "fontFamily": ".SFUIDisplay",
@@ -5464,7 +5460,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                               "fontSize": 16,
                             },
                             Object {
-                              "paddingTop": 2,
+                              "paddingTop": 4,
                             },
                             Object {
                               "fontFamily": ".SFUIDisplay",
@@ -5542,7 +5538,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -5620,7 +5616,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                                   "fontSize": 16,
                                 },
                                 Object {
-                                  "paddingTop": 2,
+                                  "paddingTop": 4,
                                 },
                                 Object {
                                   "fontFamily": ".SFUIDisplay",
@@ -6515,8 +6511,7 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       keyExtractor={[Function]}
       maxToRenderPerBatch={10}
       onContentSizeChange={[Function]}
-      onEndReached={[Function]}
-      onEndReachedThreshold={0}
+      onEndReachedThreshold={2}
       onLayout={[Function]}
       onMomentumScrollEnd={[Function]}
       onRefresh={[Function]}

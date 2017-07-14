@@ -13,8 +13,6 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
-  LayoutAnimation,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -33,6 +31,7 @@ export type QuizSubmissionBreakdownGraphSectionProps = {
   graded: number,
   ungraded: number,
   notSubmitted: number,
+  pending: boolean,
 }
 
 export type QuizSubmissionBreakdownGraphSectionInitProps = {
@@ -52,17 +51,7 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
     }
   }
 
-  componentWillUpdate () {
-    LayoutAnimation.easeInEaseOut()
-  }
-
   render () {
-    if (this.props.pending) {
-      return (<View style={styles.loadingWrapper}>
-                <ActivityIndicator />
-             </View>)
-    }
-
     let gradedLabel = i18n('Graded')
 
     let ungradedLabel = i18n('Ungraded')
@@ -70,10 +59,6 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
     let notSubmittedLabel = i18n('Not Submitted')
 
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
-
-    if (this.props.pending) {
-      return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
-    }
 
     let { graded, ungraded, notSubmitted, submissionTotalCount } = this.props
     let data = [graded, ungraded, notSubmitted]
@@ -83,7 +68,7 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
                 <TouchableOpacity underlayColor='#eeeeee00' style={{ flex: 1 }} key={`quiz-submission_dial_highlight_${index}`}
                                     testID={`quiz-submission_dial_${index}`} onPress={() => this.onPress(index) }>
                   <View>
-                    <SubmissionGraph label={labels[index]} total={submissionTotalCount} current={data[index]} key={index}/>
+                    <SubmissionGraph label={labels[index]} total={submissionTotalCount} current={data[index]} key={index} pending={this.props.pending} />
                   </View>
                 </TouchableOpacity>
               )}
@@ -175,7 +160,7 @@ export function mapStateToProps (state: AppState, ownProps: QuizSubmissionBreakd
 
   return {
     submissionTotalCount,
-    pending,
+    pending: Boolean(pending),
     graded,
     ungraded,
     notSubmitted,

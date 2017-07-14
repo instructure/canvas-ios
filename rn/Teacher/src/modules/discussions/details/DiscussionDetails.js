@@ -315,16 +315,10 @@ export class DiscussionDetails extends Component<any, Props, any> {
             onViewableItemsChanged={this._markViewableAsRead}
             initialNumToRender={10}
             extraData={this.state.unread_entries}
-            onEndReached={this._onEndReached}
-            onEndReachedThreshold={0}
           />
         </View>
       </Screen>
     )
-  }
-
-  _onEndReached = () => {
-    this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
   }
 
   showEditActionSheet = () => {

@@ -10,8 +10,6 @@ import SubmissionActions from '../../submissions/list/actions'
 import {
   View,
   StyleSheet,
-  ActivityIndicator,
-  LayoutAnimation,
   TouchableOpacity,
   Text,
 } from 'react-native'
@@ -27,6 +25,7 @@ export type SubmissionBreakdownGraphSectionProps = {
   not_submitted: number,
   submissionTotalCount: number,
   refreshSubmissionSummary: Function,
+  pending: boolean,
   submissionTypes: string[],
 }
 
@@ -38,10 +37,6 @@ export type SubmissionBreakdownGraphSectionInitProps = {
 export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBreakdownGraphSectionProps, any> {
   componentDidMount () {
     refreshSubmissionList(this.props)
-  }
-
-  componentWillUpdate () {
-    LayoutAnimation.easeInEaseOut()
   }
 
   renderNoSubmissions () {
@@ -72,10 +67,6 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
 
     let ids = ['graded', 'ungraded', 'not-submitted']
-
-    if (this.props.pending) {
-      return <View style={style.loadingWrapper}><ActivityIndicator /></View>
-    }
 
     let totalStudents = this.props.submissionTotalCount
     let graded = this.props.graded
@@ -111,9 +102,10 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
               <SubmissionGraph
                 label={labels[index]}
                 total={totalStudents}
-                current={data[index]}
+                current={data[index] || 0}
                 key={index}
                 testID={`${ids[index]}`}
+                pending={this.props.pending}
               />
             </View>
           </TouchableOpacity>
@@ -181,13 +173,13 @@ export function refreshSubmissionList (props: SubmissionBreakdownGraphSectionPro
 
 export function mapStateToProps (state: AppState, ownProps: SubmissionBreakdownGraphSectionInitProps): any {
   const assignment = state.entities.assignments[ownProps.assignmentID]
-  let pending = 0
+  let pending = false
   let submissionTotalCount = 0
   let summary = { graded: 0, ungraded: 0, not_submitted: 0 }
   if (assignment && assignment.submissionSummary) {
     summary = assignment.submissionSummary.data
     submissionTotalCount = summary.graded + summary.ungraded + summary.not_submitted
-    pending = assignment.pending || assignment.submissionSummary.pending
+    pending = Boolean(assignment.pending || assignment.submissionSummary.pending)
   } else {
     pending = true
   }

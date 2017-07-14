@@ -61,7 +61,7 @@ exports[`render with multiple due dates 2`] = `
             "fontSize": 16,
           },
           Object {
-            "paddingTop": 2,
+            "paddingTop": 4,
           },
           Object {
             "fontFamily": ".SFUIDisplay",
@@ -135,7 +135,7 @@ exports[`render with multiple due dates 2`] = `
           "fontSize": 16,
         },
         Object {
-          "paddingTop": 2,
+          "paddingTop": 4,
         },
         Object {
           "fontFamily": ".SFUIDisplay",
@@ -209,7 +209,7 @@ exports[`render with multiple due dates 2`] = `
             "fontSize": 16,
           },
           Object {
-            "paddingTop": 2,
+            "paddingTop": 4,
           },
           Object {
             "fontFamily": ".SFUIDisplay",

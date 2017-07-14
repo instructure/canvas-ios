@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   textContainer: {
-    paddingTop: 2,
+    paddingTop: 4,
   },
   descriptionText: {
     fontWeight: '600',

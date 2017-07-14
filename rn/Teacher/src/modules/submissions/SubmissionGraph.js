@@ -9,43 +9,78 @@ import { Text, MEDIUM_FONT } from '../../common/text'
 import {
   View,
   StyleSheet,
+  ActivityIndicator,
 } from 'react-native'
+import Counter from 'react-native-counter'
 
 export type SubmissionGraphProps = {
   total: number,
   current: number,
   label: string,
   testID?: string,
+  pending: boolean,
 }
 
 export default class SubmissionGraph extends Component<any, SubmissionGraphProps, any> {
+  countInterval: number
+
+  constructor (props: SubmissionGraphProps) {
+    super(props)
+
+    this.state = {
+      progress: 0,
+      current: 0,
+    }
+  }
+
+  componentWillReceiveProps (nextProps: SubmissionGraphProps) {
+    if (!nextProps.pending) {
+      this.setState({
+        current: nextProps.current,
+        progress: nextProps.current / nextProps.total,
+      })
+    }
+  }
+
   render () {
     const testID = this.props.testID || 'submissions.submissionGraph.undefined'
-
-    let { current, label, total } = this.props
-    let formattedData = current
-    if (!current) {
-      current = 0.0001
-      formattedData = 0
-    }
 
     return (
       <View style={submissionsGraphStyle.container}>
         <View style={submissionsGraphStyle.circleContainer}>
           <Progress.Circle size={submissionCircles.size}
+                           animated={true}
                            thickness={submissionCircles.thickness}
-                           progress={ current / total }
+                           progress={this.state.progress}
                            borderWidth={0}
                            unfilledColor={submissionCircles.backgroundColor}
                            color={color.primaryBrandColor}
-                           showsText={true}
-                           textStyle={submissionsGraphStyle.innerText}
-                           formatText={progress => `${formattedData}`}
+                           borderColor={color.primaryBrandColor}
+                           showsText={false}
                            testID={`submissions.submission-graph.${testID}-progress-view`} />
         </View>
         <Text
           style={submissionsGraphStyle.label}
-          testID={`submissions.submission-graph.${testID}-title-lbl`}>{label}</Text>
+          testID={`submissions.submission-graph.${testID}-title-lbl`}
+        >
+          {this.props.label}
+        </Text>
+        { !this.props.pending &&
+          <View style={submissionsGraphStyle.center}>
+            <Counter
+              start={0}
+              end={this.state.current}
+              time={500}
+              easing='circInOut'
+              style={submissionsGraphStyle.innerText}
+            />
+          </View>
+        }
+        { this.props.pending &&
+          <View style={submissionsGraphStyle.center}>
+            <ActivityIndicator />
+          </View>
+        }
       </View>
     )
   }
@@ -55,13 +90,13 @@ const submissionCircles: { [key: string]: any } = {
   size: 70,
   thickness: 7,
   backgroundColor: '#F5F5F5',
+  borderWidth: 1,
 }
 
 const submissionsGraphStyle = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
   label: {
@@ -78,5 +113,10 @@ const submissionsGraphStyle = StyleSheet.create({
     color: color.darkText,
     fontFamily: MEDIUM_FONT,
     fontSize: 16,
+  },
+  center: {
+    flex: 1,
+    position: 'absolute',
+    top: 25.5,
   },
 })

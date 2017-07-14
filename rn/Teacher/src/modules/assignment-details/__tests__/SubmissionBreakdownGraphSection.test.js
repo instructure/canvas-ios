@@ -2,7 +2,7 @@
  * @flow
  */
 
-import { LayoutAnimation } from 'react-native'
+import 'react-native'
 import React from 'react'
 import { SubmissionBreakdownGraphSection, mapStateToProps } from '../components/SubmissionBreakdownGraphSection'
 import renderer from 'react-test-renderer'
@@ -14,14 +14,6 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
 }
-jest.mock('LayoutAnimation', () => ({
-  create: jest.fn(),
-  configureNext: jest.fn(),
-  easeInEaseOut: jest.fn(),
-  Types: { linear: null },
-  Properties: { opacity: null },
-  onPress: jest.fn(),
-}))
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
 let course: any = template.course()
@@ -181,7 +173,7 @@ test('mapStateToProps with an assignment id', () => {
     graded: 0,
     ungraded: 0,
     not_submitted: 1,
-    pending: 0,
+    pending: false,
   })
 })
 
@@ -208,9 +200,7 @@ test('misc functions', () => {
   ).getInstance()
 
   // Make sure this doesn't explode when there isn't an onPress handler
-  instance.onPress(null)
-
-  // Make sure animation is called
-  instance.componentWillUpdate()
-  expect(LayoutAnimation.easeInEaseOut).toHaveBeenCalled()
+  expect(() => {
+    instance.onPress(null)
+  }).not.toThrow()
 })

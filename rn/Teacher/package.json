@@ -29,6 +29,7 @@
     "react-native": "0.46.1",
     "react-native-blur": "^3.1.2",
     "react-native-button": "^1.8.2",
+    "react-native-counter": "^0.2.0",
     "react-native-device-info": "^0.10.1",
     "react-native-fs": "^2.3.2",
     "react-native-image-picker": "^0.26.3",

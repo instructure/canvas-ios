@@ -331,7 +331,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -405,7 +405,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -483,7 +483,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -561,7 +561,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -1751,7 +1751,7 @@ exports[`QuizDetails displays access code 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -1825,7 +1825,7 @@ exports[`QuizDetails displays access code 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -1903,7 +1903,7 @@ exports[`QuizDetails displays access code 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -1981,7 +1981,7 @@ exports[`QuizDetails displays access code 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -3171,7 +3171,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -3245,7 +3245,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -3323,7 +3323,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -3401,7 +3401,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -4471,7 +4471,7 @@ exports[`QuizDetails renders 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -4545,7 +4545,7 @@ exports[`QuizDetails renders 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -4623,7 +4623,7 @@ exports[`QuizDetails renders 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -4701,7 +4701,7 @@ exports[`QuizDetails renders 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -5831,7 +5831,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -5905,7 +5905,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -5983,7 +5983,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -6061,7 +6061,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -7251,7 +7251,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -7325,7 +7325,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -7403,7 +7403,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -7481,7 +7481,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -8611,7 +8611,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -8685,7 +8685,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -8763,7 +8763,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -8841,7 +8841,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -9971,7 +9971,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -10045,7 +10045,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -10123,7 +10123,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -10201,7 +10201,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -11331,7 +11331,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -11405,7 +11405,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -11483,7 +11483,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -11561,7 +11561,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -12691,7 +12691,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -12765,7 +12765,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -12843,7 +12843,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -12921,7 +12921,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -14051,7 +14051,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -14125,7 +14125,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -14203,7 +14203,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -14281,7 +14281,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -15351,7 +15351,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -15425,7 +15425,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -15503,7 +15503,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -15581,7 +15581,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -16711,7 +16711,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -16785,7 +16785,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -16863,7 +16863,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -16941,7 +16941,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -18071,7 +18071,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -18145,7 +18145,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -18223,7 +18223,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -18301,7 +18301,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -19463,7 +19463,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -19537,7 +19537,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -19615,7 +19615,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -19693,7 +19693,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -20883,7 +20883,7 @@ exports[`QuizDetails renders published state 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -20957,7 +20957,7 @@ exports[`QuizDetails renders published state 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -21035,7 +21035,7 @@ exports[`QuizDetails renders published state 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -21113,7 +21113,7 @@ exports[`QuizDetails renders published state 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -22243,7 +22243,7 @@ exports[`QuizDetails renders published state 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -22317,7 +22317,7 @@ exports[`QuizDetails renders published state 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -22395,7 +22395,7 @@ exports[`QuizDetails renders published state 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -22473,7 +22473,7 @@ exports[`QuizDetails renders published state 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -23603,7 +23603,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -23677,7 +23677,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -23755,7 +23755,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -23833,7 +23833,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -24963,7 +24963,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -25037,7 +25037,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -25115,7 +25115,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -25193,7 +25193,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -26323,7 +26323,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -26397,7 +26397,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -26475,7 +26475,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -26553,7 +26553,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -27683,7 +27683,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -27757,7 +27757,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -27835,7 +27835,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -27913,7 +27913,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -29043,7 +29043,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -29117,7 +29117,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -29195,7 +29195,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -29273,7 +29273,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -30403,7 +30403,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -30477,7 +30477,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -30555,7 +30555,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -30633,7 +30633,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -31763,7 +31763,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -31837,7 +31837,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -31915,7 +31915,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -31993,7 +31993,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -33123,7 +33123,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -33197,7 +33197,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -33275,7 +33275,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -33353,7 +33353,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -34483,7 +34483,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -34557,7 +34557,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -34635,7 +34635,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -34713,7 +34713,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -35843,7 +35843,7 @@ exports[`QuizDetails renders time limit 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -35917,7 +35917,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -35995,7 +35995,7 @@ exports[`QuizDetails renders time limit 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -36073,7 +36073,7 @@ exports[`QuizDetails renders time limit 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -37203,7 +37203,7 @@ exports[`QuizDetails renders time limit 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -37277,7 +37277,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -37355,7 +37355,7 @@ exports[`QuizDetails renders time limit 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -37433,7 +37433,7 @@ exports[`QuizDetails renders time limit 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -38563,7 +38563,7 @@ exports[`QuizDetails renders view responses 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -38637,7 +38637,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -38715,7 +38715,7 @@ exports[`QuizDetails renders view responses 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -38793,7 +38793,7 @@ exports[`QuizDetails renders view responses 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -39923,7 +39923,7 @@ exports[`QuizDetails renders view responses 2`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -39997,7 +39997,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -40075,7 +40075,7 @@ exports[`QuizDetails renders view responses 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -40153,7 +40153,7 @@ exports[`QuizDetails renders view responses 2`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -41223,7 +41223,7 @@ exports[`QuizDetails renders view responses 3`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -41297,7 +41297,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -41375,7 +41375,7 @@ exports[`QuizDetails renders view responses 3`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -41453,7 +41453,7 @@ exports[`QuizDetails renders view responses 3`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -42523,7 +42523,7 @@ exports[`QuizDetails renders without a description 1`] = `
                           "fontSize": 16,
                         },
                         Object {
-                          "paddingTop": 2,
+                          "paddingTop": 4,
                         },
                         Object {
                           "fontFamily": ".SFUIDisplay",
@@ -42597,7 +42597,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         "fontSize": 16,
                       },
                       Object {
-                        "paddingTop": 2,
+                        "paddingTop": 4,
                       },
                       Object {
                         "fontFamily": ".SFUIDisplay",
@@ -42675,7 +42675,7 @@ exports[`QuizDetails renders without a description 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",
@@ -42753,7 +42753,7 @@ exports[`QuizDetails renders without a description 1`] = `
                             "fontSize": 16,
                           },
                           Object {
-                            "paddingTop": 2,
+                            "paddingTop": 4,
                           },
                           Object {
                             "fontFamily": ".SFUIDisplay",

@@ -1578,6 +1578,10 @@ duplexer2@0.0.2:
   dependencies:
     readable-stream "~1.1.9"
 
+eases@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/eases/-/eases-1.0.8.tgz#f1f5069a6b6ed2ea510f9c6110398d63efe9aee6"
+
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -4202,6 +4206,12 @@ react-native-blur@^3.1.2:
 react-native-button@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/react-native-button/-/react-native-button-1.8.2.tgz#49e5cadd22ee443adea52a85539d288aa2117ade"
+
+react-native-counter@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-counter/-/react-native-counter-0.2.0.tgz#bbb83d4e21996f57c000cdb7c1bec133c27eceb4"
+  dependencies:
+    eases "^1.0.8"
 
 react-native-device-info@^0.10.1:
   version "0.10.2"

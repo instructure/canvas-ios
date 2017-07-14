@@ -2,7 +2,7 @@
  * @flow
  */
 
-import { LayoutAnimation } from 'react-native'
+import 'react-native'
 import React from 'react'
 import { QuizSubmissionBreakdownGraphSection, mapStateToProps } from '../QuizSubmissionBreakdownGraphSection'
 import renderer from 'react-test-renderer'
@@ -16,14 +16,6 @@ const template = {
   ...require('../../../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../../../redux/__templates__/app-state'),
 }
-jest.mock('LayoutAnimation', () => ({
-  create: jest.fn(),
-  configureNext: jest.fn(),
-  easeInEaseOut: jest.fn(),
-  Types: { linear: null },
-  Properties: { opacity: null },
-  onPress: jest.fn(),
-}))
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
 let course: any = template.course()
@@ -40,7 +32,7 @@ beforeEach(() => {
     refreshAssignment: jest.fn(),
     refreshGradeableStudents: jest.fn(),
     submissionTotalCount: 3,
-    pending: 0,
+    pending: false,
     refresh: jest.fn(),
     refreshing: false,
     onPress: jest.fn(),
@@ -97,7 +89,7 @@ test('render no graded', () => {
 })
 
 test('render loading with pending set', () => {
-  defaultProps.pending = 1
+  defaultProps.pending = true
   let tree = renderer.create(
     <QuizSubmissionBreakdownGraphSection {...defaultProps} />
   ).toJSON()
@@ -123,11 +115,9 @@ test('misc functions', () => {
   ).getInstance()
 
   // Make sure this doesn't explode when there isn't an onPress handler
-  instance.onPress(null)
-
-  // Make sure animation is called
-  instance.componentWillUpdate()
-  expect(LayoutAnimation.easeInEaseOut).toHaveBeenCalled()
+  expect(() => {
+    instance.onPress(null)
+  }).not.toThrow()
 })
 
 function testDialOnPress (expectedID: string, expectedValueParameter: string) {
@@ -184,7 +174,7 @@ test('mapStateToProps', () => {
     graded: 0,
     notSubmitted: 0,
     ungraded: 1,
-    pending: 0,
+    pending: false,
   })
 })
 
@@ -241,7 +231,7 @@ test('mapStateToProps with an assignment id', () => {
     graded: 0,
     ungraded: 0,
     notSubmitted: 1,
-    pending: 0,
+    pending: false,
   })
 })
 

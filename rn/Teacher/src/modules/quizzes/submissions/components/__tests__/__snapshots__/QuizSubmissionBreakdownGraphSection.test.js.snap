@@ -30,7 +30,6 @@ exports[`render 0 submissions 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -42,20 +41,14 @@ exports[`render 0 submissions 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={Infinity}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -90,6 +83,31 @@ exports[`render 0 submissions 1`] = `
         >
           Graded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -110,7 +128,6 @@ exports[`render 0 submissions 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -122,20 +139,14 @@ exports[`render 0 submissions 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={Infinity}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -170,6 +181,31 @@ exports[`render 0 submissions 1`] = `
         >
           Ungraded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -190,7 +226,6 @@ exports[`render 0 submissions 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -202,20 +237,14 @@ exports[`render 0 submissions 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={Infinity}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -250,6 +279,31 @@ exports[`render 0 submissions 1`] = `
         >
           Not Submitted
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -286,7 +340,6 @@ exports[`render 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -298,20 +351,14 @@ exports[`render 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.3333333333333333}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -346,6 +393,31 @@ exports[`render 1`] = `
         >
           Graded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -366,7 +438,6 @@ exports[`render 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -378,20 +449,14 @@ exports[`render 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.3333333333333333}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -426,6 +491,31 @@ exports[`render 1`] = `
         >
           Ungraded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -446,7 +536,6 @@ exports[`render 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -458,20 +547,14 @@ exports[`render 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.3333333333333333}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -506,6 +589,31 @@ exports[`render 1`] = `
         >
           Not Submitted
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -518,16 +626,280 @@ exports[`render loading with pending set 1`] = `
     Object {
       "alignItems": "center",
       "flex": 1,
-      "justifyContent": "center",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginRight": 40,
+      "marginTop": 8,
     }
   }
 >
-  <ActivityIndicator
-    animating={true}
-    color="#999999"
-    hidesWhenStopped={true}
-    size="small"
-  />
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_0"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Graded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_1"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Ungraded
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID="quiz-submission_dial_2"
+    underlayColor="#eeeeee00"
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          <Circle
+            animated={true}
+            borderColor="#374A59"
+            borderWidth={0}
+            color="#374A59"
+            progress={0}
+            showsText={false}
+            size={70}
+            testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
+            thickness={7}
+            unfilledColor="#F5F5F5"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Object {
+                "flex": 1,
+                "fontSize": 12,
+                "fontWeight": "500",
+                "marginTop": 8,
+                "textAlign": "center",
+              },
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+          testID="submissions.submission-graph.submissions.submissionGraph.undefined-title-lbl"
+        >
+          Not Submitted
+        </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <ActivityIndicator
+            animating={true}
+            color="#999999"
+            hidesWhenStopped={true}
+            size="small"
+          />
+        </View>
+      </View>
+    </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -561,7 +933,6 @@ exports[`render no graded 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -573,20 +944,14 @@ exports[`render no graded 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.00005}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -621,6 +986,31 @@ exports[`render no graded 1`] = `
         >
           Graded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -641,7 +1031,6 @@ exports[`render no graded 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -653,20 +1042,14 @@ exports[`render no graded 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.5}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -701,6 +1084,31 @@ exports[`render no graded 1`] = `
         >
           Ungraded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -721,7 +1129,6 @@ exports[`render no graded 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -733,20 +1140,14 @@ exports[`render no graded 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.5}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -781,6 +1182,31 @@ exports[`render no graded 1`] = `
         >
           Not Submitted
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -817,7 +1243,6 @@ exports[`render with an assignment id 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -829,20 +1254,14 @@ exports[`render with an assignment id 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.3333333333333333}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -877,6 +1296,31 @@ exports[`render with an assignment id 1`] = `
         >
           Graded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -897,7 +1341,6 @@ exports[`render with an assignment id 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -909,20 +1352,14 @@ exports[`render with an assignment id 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.3333333333333333}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -957,6 +1394,31 @@ exports[`render with an assignment id 1`] = `
         >
           Ungraded
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
@@ -977,7 +1439,6 @@ exports[`render with an assignment id 1`] = `
             "alignItems": "center",
             "flex": 1,
             "flexDirection": "column",
-            "justifyContent": "center",
           }
         }
       >
@@ -989,20 +1450,14 @@ exports[`render with an assignment id 1`] = `
           }
         >
           <Circle
+            animated={true}
+            borderColor="#374A59"
             borderWidth={0}
             color="#374A59"
-            formatText={[Function]}
-            progress={0.3333333333333333}
-            showsText={true}
+            progress={0}
+            showsText={false}
             size={70}
             testID="submissions.submission-graph.submissions.submissionGraph.undefined-progress-view"
-            textStyle={
-              Object {
-                "color": "#2D3B45",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 16,
-              }
-            }
             thickness={7}
             unfilledColor="#F5F5F5"
           />
@@ -1037,6 +1492,31 @@ exports[`render with an assignment id 1`] = `
         >
           Not Submitted
         </Text>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "position": "absolute",
+              "top": 25.5,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "#2D3B45",
+                "fontFamily": ".SFUIDisplay-medium",
+                "fontSize": 16,
+              }
+            }
+          >
+            0
+          </Text>
+        </View>
       </View>
     </View>
   </TouchableOpacity>
