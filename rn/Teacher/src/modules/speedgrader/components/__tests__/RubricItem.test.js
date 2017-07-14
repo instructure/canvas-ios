@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { AlertIOS, NativeModules, ActionSheetIOS } from 'react-native'
+import { AlertIOS, AccessibilityInfo, ActionSheetIOS } from 'react-native'
 import RubricItem from '../RubricItem'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
@@ -131,7 +131,7 @@ describe('RubricItem', () => {
     expect(AlertIOS.prompt).toHaveBeenCalled()
     AlertIOS.prompt.mock.calls[0][2][1].onPress('12')
     expect(defaultProps.changeRating).toHaveBeenCalledWith(defaultProps.rubricItem.id, 12)
-    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`rubric-item.customize-grade-${defaultProps.rubricItem.id}`)
+    expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
   })
 
   it('refocuses the customize button on cancel of the prompt', () => {
@@ -144,7 +144,7 @@ describe('RubricItem', () => {
 
     expect(AlertIOS.prompt).toHaveBeenCalled()
     AlertIOS.prompt.mock.calls[0][2][0].onPress()
-    expect(NativeModules.NativeAccessibility.focusElement).toHaveBeenCalledWith(`rubric-item.customize-grade-${defaultProps.rubricItem.id}`)
+    expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
   })
 
   it('will call prompt with a default value if there is an existing custom grade', () => {

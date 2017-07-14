@@ -62,11 +62,16 @@ export default class CircleToggle extends PureComponent {
       ? this.onLongPress
       : undefined
 
+    let traits = ['button']
+    if (this.props.on) {
+      traits.push('selected')
+    }
+
     return (
       <TouchableOpacity
         {...this.props}
         accessible
-        accessibilityTraits={['button']}
+        accessibilityTraits={traits}
         onPress={this.onPress}
         onLongPress={longPress}
       >

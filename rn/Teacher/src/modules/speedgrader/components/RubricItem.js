@@ -6,8 +6,9 @@ import {
   Image,
   StyleSheet,
   AlertIOS,
-  NativeModules,
   ActionSheetIOS,
+  AccessibilityInfo,
+  findNodeHandle,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text } from '../../../common/text'
@@ -17,14 +18,13 @@ import Images from '../../../images'
 import ChatBubble from '../comments/ChatBubble'
 import colors from '../../../common/colors'
 
-const { NativeAccessibility } = NativeModules
-
 const CANCEL = 2
 const DELETE = 1
 
 export default class RubricItem extends Component {
   props: RubricItemProps
   state: RubricItemState
+  customizeButton: any
 
   constructor (props: RubricItemProps) {
     super(props)
@@ -57,7 +57,8 @@ export default class RubricItem extends Component {
       [{
         text: i18n('Cancel'),
         style: 'cancel',
-        onPress: () => NativeAccessibility.focusElement(`rubric-item.customize-grade-${this.props.rubricItem.id}`),
+        onPress: () => AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton))
+,
       }, {
         text: i18n('Ok'),
         onPress: (value) => {
@@ -66,8 +67,8 @@ export default class RubricItem extends Component {
             this.promptCustom(i18n('Please enter a number'))
           }
 
-          NativeAccessibility.focusElement(`rubric-item.customize-grade-${this.props.rubricItem.id}`)
           this.changeSelected(numValue)
+          AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton))
         },
       }],
       'plain-text',
@@ -137,8 +138,12 @@ export default class RubricItem extends Component {
             on={isCustomGrade}
             value={isCustomGrade ? String(this.state.selectedOption) : ''}
             onPress={this.promptCustom}
-            accessibilityLabel={i18n('Customize Grade')}
+            accessibilityLabel={
+              isCustomGrade
+                ? i18n('Customize Grade {value}', { value: this.state.selectedOption })
+                : i18n('Customize Grade')}
             testID={`rubric-item.customize-grade-${rubricItem.id}`}
+            ref={r => { this.customizeButton = r }}
           >
             { isCustomGrade
               ? this.state.selectedOption

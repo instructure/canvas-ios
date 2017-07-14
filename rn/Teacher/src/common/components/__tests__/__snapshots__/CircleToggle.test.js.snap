@@ -66,6 +66,7 @@ exports[`renders circle toggle when on correctly 1`] = `
   accessibilityTraits={
     Array [
       "button",
+      "selected",
     ]
   }
   accessible={true}

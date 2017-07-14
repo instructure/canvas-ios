@@ -853,7 +853,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       0
     </CircleToggle>
     <CircleToggle
-      accessibilityLabel="Customize Grade"
+      accessibilityLabel="Customize Grade 12"
       on={true}
       onPress={[Function]}
       style={
