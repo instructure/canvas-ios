@@ -68,7 +68,7 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
                 <TouchableOpacity underlayColor='#eeeeee00' style={{ flex: 1 }} key={`quiz-submission_dial_highlight_${index}`}
                                     testID={`quiz-submission_dial_${index}`} onPress={() => this.onPress(index) }>
                   <View>
-                    <SubmissionGraph label={labels[index]} total={submissionTotalCount} current={data[index]} key={index} pending={this.props.pending} />
+                    <SubmissionGraph label={labels[index]} total={submissionTotalCount || 0} current={data[index] || 0} key={index} pending={this.props.pending} />
                   </View>
                 </TouchableOpacity>
               )}

@@ -37,7 +37,7 @@ export default class SubmissionGraph extends Component<any, SubmissionGraphProps
     if (!nextProps.pending) {
       this.setState({
         current: nextProps.current,
-        progress: nextProps.current / nextProps.total,
+        progress: nextProps.total && nextProps.total > 0 ? nextProps.current / nextProps.total : 0,
       })
     }
   }
