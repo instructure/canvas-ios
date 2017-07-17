@@ -60,7 +60,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
   render () {
     let gradedLabel = i18n('Graded')
 
-    let ungradedLabel = i18n('Ungraded')
+    let ungradedLabel = i18n('Needs Grading')
 
     let notSubmittedLabel = i18n('Not Submitted')
 

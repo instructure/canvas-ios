@@ -959,7 +959,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
           ]
         }
       >
-        UNGRADED
+        NEEDS GRADING
       </Text>
       <View
         style={

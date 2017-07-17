@@ -820,7 +820,7 @@ exports[`SubmissionList loaded 1`] = `
                   ]
                 }
               >
-                UNGRADED
+                NEEDS GRADING
               </Text>
               <View
                 style={

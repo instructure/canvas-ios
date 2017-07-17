@@ -48,7 +48,11 @@ export default class AssignmentListRow extends Component<any, Props, any> {
       return <View />
     }
 
-    const text = i18n('{count} ungraded', { count: assignment.needs_grading_count }).toUpperCase()
+    const text = i18n(`{
+      count, plural,
+        one {# Needs Grading}
+      other {# Need Grading}
+    }`, { count: assignment.needs_grading_count }).toUpperCase()
     return (
       <Text style={styles.ungradedText}>{text}</Text>
     )

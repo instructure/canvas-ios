@@ -64,7 +64,7 @@ const Grade = ({ grade }: {grade: ?GradeProp}): * => {
   }
 
   if (grade === 'ungraded') {
-    const ungraded = i18n('ungraded')
+    const ungraded = i18n('Needs Grading')
     return <Token style={{ alignSelf: 'center' }} color={ colors.primaryButton }>{ ungraded }</Token>
   }
 

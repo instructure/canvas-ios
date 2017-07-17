@@ -16,6 +16,7 @@ export const submission: Template<Submission> = template({
   submission_type: 'online_text_entry',
   body: 'This is my submission!',
   attempt: 1,
+  grade_matches_current_submission: true,
 })
 
 export function submissionHistory (submissionOverrides: Array<Object> = [submission()], commentOverrides: Array<Object> = []): SubmissionWithHistory {

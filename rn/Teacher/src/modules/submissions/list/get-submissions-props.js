@@ -51,7 +51,7 @@ export function gradeProp (submission: ?Submission): GradeProp {
     return 'excused'
   }
 
-  if (submission.grade) {
+  if (submission.grade && submission.grade_matches_current_submission) {
     return submission.grade
   }
 

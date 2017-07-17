@@ -1929,7 +1929,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
               ]
             }
           >
-            5 UNGRADED
+            5 NEED GRADING
           </Text>
         </View>
         <View

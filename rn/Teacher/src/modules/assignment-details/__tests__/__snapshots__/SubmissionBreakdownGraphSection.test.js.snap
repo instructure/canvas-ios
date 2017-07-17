@@ -184,7 +184,7 @@ exports[`render 0 submissions 1`] = `
           }
           testID="submissions.submission-graph.ungraded-title-lbl"
         >
-          Ungraded
+          Needs Grading
         </Text>
         <View
           style={
@@ -502,7 +502,7 @@ exports[`render 1`] = `
           }
           testID="submissions.submission-graph.ungraded-title-lbl"
         >
-          Ungraded
+          Needs Grading
         </Text>
         <View
           style={
@@ -810,7 +810,7 @@ exports[`render loading with pending set 1`] = `
           }
           testID="submissions.submission-graph.ungraded-title-lbl"
         >
-          Ungraded
+          Needs Grading
         </Text>
         <View
           style={
@@ -1108,7 +1108,7 @@ exports[`render multiple data points  1`] = `
           }
           testID="submissions.submission-graph.ungraded-title-lbl"
         >
-          Ungraded
+          Needs Grading
         </Text>
         <View
           style={
@@ -1637,7 +1637,7 @@ exports[`render undefined submission type 1`] = `
           }
           testID="submissions.submission-graph.ungraded-title-lbl"
         >
-          Ungraded
+          Needs Grading
         </Text>
         <View
           style={
