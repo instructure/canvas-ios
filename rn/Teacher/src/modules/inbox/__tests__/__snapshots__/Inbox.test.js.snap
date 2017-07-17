@@ -21,7 +21,7 @@ exports[`filters conversations based on course 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}
@@ -742,7 +742,7 @@ exports[`filters out conversations without a context_code 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}
@@ -1463,7 +1463,7 @@ exports[`refreshed component 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}
@@ -1987,7 +1987,7 @@ exports[`renders correctly 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}
@@ -2945,7 +2945,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}
@@ -3411,7 +3411,7 @@ exports[`renders the starred empty state 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}
@@ -3935,7 +3935,7 @@ exports[`renders with an empty state 1`] = `
       contentContainerStyle={
         Object {
           "alignItems": "center",
-          "flex": 1,
+          "flex": 0,
         }
       }
       horizontal={true}

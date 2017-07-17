@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
     contentContainerStyle={
       Object {
         "alignItems": "center",
-        "flex": 1,
+        "flex": 0,
       }
     }
     horizontal={true}

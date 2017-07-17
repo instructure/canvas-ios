@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     borderBottomColor: color.seperatorColor,
   },
   scrollView: {
-    flex: 1,
+    flex: 0,
     alignItems: 'center',
   },
   button: {
