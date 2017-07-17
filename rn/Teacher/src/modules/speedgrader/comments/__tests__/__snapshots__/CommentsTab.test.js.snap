@@ -1093,3 +1093,203 @@ exports[`comments render properly 1`] = `
   </View>
 </View>
 `;
+
+exports[`mapStateToProps returns comment and submission rows 1`] = `
+Object {
+  "anonymous": true,
+  "commentRows": Array [
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 7,
+        "items": Array [
+          Object {
+            "contentID": "attachment-media-comment",
+            "icon": 1,
+            "subtitle": "Audio",
+            "title": "Media Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-21T19:13:25.000Z,
+      "from": "them",
+      "key": "submission-8",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 6,
+        "items": Array [
+          Object {
+            "contentID": "attachment-lti-submission",
+            "icon": 1,
+            "subtitle": "",
+            "title": "External Tool Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-20T19:13:25.000Z,
+      "from": "them",
+      "key": "submission-7",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 5,
+        "items": Array [
+          Object {
+            "contentID": "attachment-quiz-submission",
+            "icon": 1,
+            "subtitle": "Attempt 6",
+            "title": "Quiz Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-19T19:13:25.000Z,
+      "from": "them",
+      "key": "submission-6",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 4,
+        "items": Array [
+          Object {
+            "contentID": "attachment-discussion-entry",
+            "icon": 1,
+            "subtitle": "You're wrong because I said.",
+            "title": "Discussion Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-18T19:13:25.000Z,
+      "from": "them",
+      "key": "submission-5",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://fillmurray.com/499/355",
+      "contents": Object {
+        "message": "a comment from harry",
+        "type": "text",
+      },
+      "date": 2017-03-17T19:17:25.000Z,
+      "from": "them",
+      "key": "comment-356",
+      "name": "Harry Potter",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://fillmurray.com/499/355",
+      "contents": Object {
+        "message": "a comment from Snape",
+        "type": "text",
+      },
+      "date": 2017-03-17T19:15:25.000Z,
+      "from": "me",
+      "key": "comment-356",
+      "name": "Severus Snape",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 3,
+        "items": Array [
+          Object {
+            "contentID": "text",
+            "icon": 1,
+            "subtitle": "This is my submission!",
+            "title": "Text Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-17T19:13:25.000Z,
+      "from": "them",
+      "key": "submission-4",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 2,
+        "items": Array [
+          Object {
+            "contentID": "url",
+            "icon": 1,
+            "subtitle": "https://google.com/homeworks",
+            "title": "URL Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-17T19:12:25.000Z,
+      "from": "them",
+      "key": "submission-3",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 1,
+        "items": Array [
+          Object {
+            "contentID": "attachment-111",
+            "icon": 1,
+            "subtitle": "476.77 KB",
+            "title": "Book Report",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-17T19:11:25.000Z,
+      "from": "them",
+      "key": "submission-2",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+    Object {
+      "avatarURL": "http://www.fillmurray.com/100/100",
+      "contents": Object {
+        "attemptIndex": 0,
+        "items": Array [
+          Object {
+            "contentID": "attachment-media-comment",
+            "icon": 1,
+            "subtitle": "Video",
+            "title": "Media Submission",
+          },
+        ],
+        "submissionID": "32",
+        "type": "submission",
+      },
+      "date": 2017-03-17T19:10:25.000Z,
+      "from": "them",
+      "key": "submission-1",
+      "name": "Donald Trump",
+      "pending": 0,
+    },
+  ],
+}
+`;

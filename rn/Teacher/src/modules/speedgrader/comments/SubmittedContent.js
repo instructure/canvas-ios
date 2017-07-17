@@ -45,7 +45,12 @@ export default class SubmittedContent extends Component<any, Props, any> {
       >
         <Image
           testID={`submitted-content.icon-${this.props.contentID}`}
-          style={styles.icon}
+          resizeMode='center'
+          style={{
+            tintColor: colors.primaryButtonColor,
+            width: 18,
+            height: 18,
+          }}
           source={this.props.icon}
         />
         <View style={styles.textContainer} >
@@ -79,10 +84,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 8,
     marginBottom: 4,
-    width: 304,
-  },
-  icon: {
-    tintColor: colors.primaryButton,
+    width: 265,
   },
   textContainer: {
     flex: 1,

@@ -21,6 +21,10 @@ export type SubmissionType
   | 'discussion_topic'
   | 'online_quiz'
 
+export type SubmissionDiscussionEntry = {
+  message: string,
+}
+
 export type Submission = {
   id: string,
   user: User,
@@ -42,6 +46,7 @@ export type Submission = {
   attachments?: Array<Attachment>,
   url?: string,
   media_comment?: MediaComment,
+  discussion_entries?: SubmissionDiscussionEntry[],
 }
 
 export type SubmissionHistory = {

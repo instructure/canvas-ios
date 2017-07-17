@@ -123,6 +123,35 @@ test('mapStateToProps returns comment and submission rows', () => {
     comment: 'a comment from harry',
   })
 
+  const audio = templates.submission({
+    attempt: 8,
+    submitted_at: '2017-03-21T19:13:25Z',
+    submission_type: 'media_recording',
+    media_comment: {
+      url: 'https://notorious.com/audio',
+      media_type: 'audio',
+    },
+  })
+
+  const lti = templates.submission({
+    attempt: 7,
+    submitted_at: '2017-03-20T19:13:25Z',
+    submission_type: 'external_tool',
+  })
+
+  const quiz = templates.submission({
+    attempt: 6,
+    submitted_at: '2017-03-19T19:13:25Z',
+    submission_type: 'online_quiz',
+  })
+
+  const discussion = templates.submission({
+    attempt: 5,
+    submitted_at: '2017-03-18T19:13:25Z',
+    submission_type: 'discussion_topic',
+    discussion_entries: [{ message: `<p>You're wrong because I said.</p>` }],
+  })
+
   const text = templates.submission({
     attempt: 4,
     submitted_at: '2017-03-17T19:13:25Z',
@@ -146,11 +175,14 @@ test('mapStateToProps returns comment and submission rows', () => {
     attempt: 1,
     submission_type: 'media_recording',
     submitted_at: '2017-03-17T19:10:25Z',
-    attachments: [templates.attachment()],
+    media_comment: {
+      url: 'https://notorius.com/2017/3/17/video',
+      media_type: 'video',
+    },
   })
 
   const submission = templates.submissionHistory(
-    [ text, url, files, media ],
+    [ text, url, files, media, lti, quiz, discussion, audio ],
     [ teacherComment, studentComment ],
   )
 
@@ -168,6 +200,9 @@ test('mapStateToProps returns comment and submission rows', () => {
       gradeableStudents: { refs: [], pending: 0 },
       pending: 0,
       groups: { refs: [], pending: 0 },
+      external_tool_tag_attributes: {
+        url: 'https://math-games-such-fun.edu/',
+      },
     },
   }
 
@@ -184,109 +219,6 @@ test('mapStateToProps returns comment and submission rows', () => {
   session.user.id = teacherComment.author_id
   setSession(session)
 
-  expect(mapStateToProps(appState, ownProps)).toEqual({
-    anonymous: true,
-    commentRows: [
-      {
-        key: 'comment-' + studentComment.id,
-        name: studentComment.author_name,
-        date: new Date(studentComment.created_at),
-        avatarURL: 'http://fillmurray.com/499/355',
-        from: 'them',
-        contents: { type: 'text', message: studentComment.comment },
-        pending: 0,
-      },
-      {
-        key: 'comment-' + teacherComment.id,
-        name: teacherComment.author_name,
-        date: new Date(teacherComment.created_at),
-        avatarURL: 'http://fillmurray.com/499/355',
-        from: 'me',
-        contents: { type: 'text', message: teacherComment.comment },
-        pending: 0,
-      },
-      {
-        avatarURL: 'http://www.fillmurray.com/100/100',
-        contents: {
-          attemptIndex: 3,
-          items: [{
-            contentID: 'text',
-            icon: 1,
-            subtitle: 'This is my submission!',
-            title: 'Text Submission',
-          }],
-          submissionID: '32',
-          type: 'submission',
-        },
-        date: new Date('2017-03-17T19:13:25.000Z'),
-        from: 'them',
-        key: 'submission-4',
-        name: 'Donald Trump',
-        pending: 0,
-      },
-      {
-        avatarURL: 'http://www.fillmurray.com/100/100',
-        contents: {
-          attemptIndex: 2,
-          items: [
-            {
-              contentID: 'url',
-              icon: 1,
-              subtitle: 'https://google.com/homeworks',
-              title: 'URL Submission',
-            },
-          ],
-          submissionID: '32',
-          type: 'submission',
-        },
-        date: new Date('2017-03-17T19:12:25.000Z'),
-        from: 'them',
-        key: 'submission-3',
-        name: 'Donald Trump',
-        pending: 0,
-      },
-      {
-        avatarURL: 'http://www.fillmurray.com/100/100',
-        contents: {
-          attemptIndex: 1,
-          items: [
-            {
-              contentID: 'attachment-111',
-              icon: 1,
-              subtitle: '476.77 KB',
-              title: 'Book Report',
-            },
-          ],
-          type: 'submission',
-          submissionID: '32',
-        },
-        date: new Date('2017-03-17T19:11:25.000Z'),
-        from: 'them',
-        key: 'submission-2',
-        name: 'Donald Trump',
-        pending: 0,
-      },
-      {
-        avatarURL: 'http://www.fillmurray.com/100/100',
-        contents: {
-          attemptIndex: 0,
-          items: [
-            {
-              contentID: 'attachment-111',
-              icon: 1,
-              subtitle: '476.77 KB',
-              title: 'Book Report',
-            },
-          ],
-          submissionID: '32',
-          type: 'submission',
-        },
-        date: new Date('2017-03-17T19:10:25.000Z'),
-        from: 'them',
-        key: 'submission-1',
-        name: 'Donald Trump',
-        pending: 0,
-      },
-    ],
-  })
+  expect(mapStateToProps(appState, ownProps))
+  .toMatchSnapshot()
 })

@@ -1,13 +1,5 @@
 // @flow
 
-type Images = {
-  course: {[name: string]: any},
-  tabbar: {[name: string]: any},
-  assignments: {[name: string]: any},
-  rce: {[name: string]: any},
-  [name: string]: any,
-}
-
 const images = {
   course: {
     announcements: require('./course/Announcements.png'),
@@ -57,6 +49,15 @@ const images = {
     warning: require('./Warning.png'),
     longPress: require('./speedgrader/Longpress.png'),
     swipe: require('./speedgrader/Swipe.png'),
+    submissions: {
+      lti: require('./speedgrader/submission-types/LTI.png'),
+      text: require('./speedgrader/submission-types/document.png'),
+      discussion: require('./speedgrader/submission-types/discussion.png'),
+      quiz: require('./speedgrader/submission-types/quiz.png'),
+      video: require('./speedgrader/submission-types/video.png'),
+      audio: require('./speedgrader/submission-types/audio.png'),
+      url: require('./speedgrader/submission-types/link.png'),
+    },
   },
   noTeacher: {
     parent: require('./Canvas-Parent.png'),
@@ -88,4 +89,4 @@ const images = {
   share: require('./share.png'),
 }
 
-export default (images: Images)
+export default (images: *)

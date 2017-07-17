@@ -13,16 +13,19 @@ exports[`my chat bubbles render correctly 1`] = `
       "overflow": "hidden",
       "paddingHorizontal": 8,
       "paddingVertical": 6,
-      "width": 304,
+      "width": 265,
     }
   }
   testID="submitted-content.item-1"
 >
   <Image
+    resizeMode="center"
     source={1}
     style={
       Object {
-        "tintColor": "#368BD8",
+        "height": 18,
+        "tintColor": "#374A59",
+        "width": 18,
       }
     }
     testID="submitted-content.icon-1"

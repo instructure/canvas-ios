@@ -19,10 +19,6 @@ import i18n from 'format-message'
 import filesize from 'filesize'
 import striptags from 'striptags'
 
-const textSubmission = i18n('Text Submission')
-
-const urlSubmission = i18n('URL Submission')
-
 export class CommentsTab extends Component<any, CommentsTabProps, any> {
   constructor (props: CommentsTabProps) {
     super(props)
@@ -146,24 +142,23 @@ function extractComments (submission: SubmissionComments): Array<CommentRowData>
     }))
 }
 
-function contentForAttempt (attempt: Submission): Array<SubmittedContentDataProps> {
+function contentForAttempt (attempt: Submission, assignment: Assignment): Array<SubmittedContentDataProps> {
   switch (attempt.submission_type) {
     case 'online_text_entry':
       return [{
         contentID: 'text',
         icon: Images.document,
-        title: textSubmission,
+        title: i18n('Text Submission'),
         subtitle: striptags(attempt.body || ''),
       }]
     case 'online_url':
       return [{
         contentID: 'url',
-        icon: Images.document,
-        title: urlSubmission,
+        icon: Images.speedGrader.submissions.url,
+        title: i18n('URL Submission'),
         subtitle: attempt.url || '',
       }]
     case 'online_upload':
-    case 'media_recording':
       const attachments = attempt.attachments || []
       return attachments.map(attachment => ({
         contentID: `attachment-${attachment.id}`,
@@ -171,15 +166,60 @@ function contentForAttempt (attempt: Submission): Array<SubmittedContentDataProp
         title: attachment.display_name,
         subtitle: filesize(attachment.size),
       }))
+    case 'media_recording':
+      if (!attempt.media_comment) {
+        return []
+      }
+      const mediaType = attempt.media_comment.media_type
+      const media = mediaType === 'audio'
+        ? { icon: Images.speedGrader.submissions.audio, subtitle: i18n('Audio') }
+        : { icon: Images.speedGrader.submissions.video, subtitle: i18n('Video') }
+      return [{
+        ...media,
+        contentID: 'attachment-media-comment',
+        title: i18n('Media Submission'),
+      }]
+    case 'discussion_topic':
+      if (attempt.discussion_entries == null ||
+        attempt.discussion_entries.length === 0 ||
+        attempt.discussion_entries[0].message == null) {
+        return []
+      }
+      const firstMessage = attempt.discussion_entries[0].message
+      return [{
+        contentID: 'attachment-discussion-entry',
+        icon: Images.speedGrader.submissions.discussion,
+        title: i18n('Discussion Submission'),
+        subtitle: striptags(firstMessage || ''),
+      }]
+    case 'online_quiz':
+      return [{
+        contentID: 'attachment-quiz-submission',
+        icon: Images.speedGrader.submissions.quiz,
+        title: i18n('Quiz Submission'),
+        subtitle: i18n('Attempt {number}', { number: attempt.attempt }),
+      }]
+    case 'external_tool':
+      let toolURL = ''
+      if (assignment.external_tool_tag_attributes &&
+        assignment.external_tool_tag_attributes.url) {
+        toolURL = assignment.external_tool_tag_attributes.url
+      }
+      return [{
+        contentID: 'attachment-lti-submission',
+        icon: Images.speedGrader.submissions.lti,
+        title: i18n('External Tool Submission'),
+        subtitle: toolURL,
+      }]
   }
   return []
 }
 
-function rowForSubmission (user: User, attempt: Submission): CommentRowData {
+function rowForSubmission (user: User, attempt: Submission, assignment: Assignment): CommentRowData {
   const attemptNumber = attempt.attempt || 0
   const submittedAt = attempt.submitted_at || ''
 
-  const items = contentForAttempt(attempt)
+  const items = contentForAttempt(attempt, assignment)
   return {
     key: `submission-${attemptNumber}`,
     name: user.name,
@@ -196,9 +236,9 @@ function rowForSubmission (user: User, attempt: Submission): CommentRowData {
   }
 }
 
-function extractAttempts (submission: SubmissionWithHistory): Array<CommentRowData> {
+function extractAttempts (submission: SubmissionWithHistory, assignment: Assignment): Array<CommentRowData> {
   return submission.submission_history
-    .map(attempt => rowForSubmission(submission.user, attempt))
+    .map(attempt => rowForSubmission(submission.user, attempt, assignment))
 }
 
 function extractPendingComments (assignments: ?AssignmentContentState, userID): Array<CommentRowData> {
@@ -232,7 +272,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
 
   const pendingComments = extractPendingComments(assignments, userID)
   const comments = submission ? extractComments(submission) : []
-  const attempts = submission ? extractAttempts(submission) : []
+  const attempts = submission ? extractAttempts(submission, assignments.data) : []
 
   const commentRows = [
     ...comments,
