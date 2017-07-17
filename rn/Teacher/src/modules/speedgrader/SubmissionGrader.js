@@ -41,6 +41,7 @@ type SubmissionGraderProps = {
   assignmentSubmissionTypes: Array<SubmissionType>,
   isModeratedGrading: boolean,
   drawerInset: number,
+  navigator: Navigator,
 }
 
 const DRAWER_WIDTH = 375
@@ -166,6 +167,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           submissionProps={this.props.submissionProps}
           submissionID={this.props.submissionID}
           assignmentID={this.props.assignmentID}
+          navigator={this.props.navigator}
         />
         <SubmissionPicker
           submissionProps={this.props.submissionProps}
@@ -196,6 +198,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           submissionProps={this.props.submissionProps}
           submissionID={this.props.submissionID}
           assignmentID={this.props.assignmentID}
+          navigator={this.props.navigator}
         />
         <View style={styles.splitView}>
           <A11yGroup style={styles.left}>

@@ -1,26 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SubmissionPicker closes the picker 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "borderBottomColor": "#D8D8D8",
+      "borderBottomWidth": 0.5,
+      "borderStyle": "solid",
+      "marginHorizontal": 16,
+      "marginTop": 16,
+      "paddingBottom": 4,
+    }
+  }
+>
   <TouchableHighlight
     accessibilityTraits="button"
     onPress={[Function]}
     testID="header.toggle-submission_history-picker"
-    underlayColor="#eee"
+    underlayColor="white"
   >
     <View
       style={
         Object {
-          "borderBottomColor": "#D8D8D8",
-          "borderBottomWidth": 0.5,
-          "borderStyle": "solid",
           "flex": 0,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 4,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 6,
         }
       }
     >
@@ -71,26 +75,30 @@ exports[`SubmissionPicker closes the picker 1`] = `
 `;
 
 exports[`SubmissionPicker opens the picker 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "borderBottomColor": "#D8D8D8",
+      "borderBottomWidth": 0.5,
+      "borderStyle": "solid",
+      "marginHorizontal": 16,
+      "marginTop": 16,
+      "paddingBottom": 4,
+    }
+  }
+>
   <TouchableHighlight
     accessibilityTraits="button"
     onPress={[Function]}
     testID="header.toggle-submission_history-picker"
-    underlayColor="#eee"
+    underlayColor="white"
   >
     <View
       style={
         Object {
-          "borderBottomColor": "#D8D8D8",
-          "borderBottomWidth": 0.5,
-          "borderStyle": "solid",
           "flex": 0,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 4,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 6,
         }
       }
     >
@@ -141,26 +149,30 @@ exports[`SubmissionPicker opens the picker 1`] = `
 `;
 
 exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "borderBottomColor": "#D8D8D8",
+      "borderBottomWidth": 0.5,
+      "borderStyle": "solid",
+      "marginHorizontal": 16,
+      "marginTop": 16,
+      "paddingBottom": 4,
+    }
+  }
+>
   <TouchableHighlight
     accessibilityTraits="button"
     onPress={[Function]}
     testID="header.toggle-submission_history-picker"
-    underlayColor="#eee"
+    underlayColor="white"
   >
     <View
       style={
         Object {
-          "borderBottomColor": "#D8D8D8",
-          "borderBottomWidth": 0.5,
-          "borderStyle": "solid",
           "flex": 0,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 4,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 6,
         }
       }
     >
@@ -185,7 +197,7 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
                 "fontWeight": "500",
               },
               Object {
-                "color": "#008EE2",
+                "color": "#374A59",
               },
             ],
             Object {
@@ -204,7 +216,6 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
               "alignSelf": "center",
             },
             Object {
-              "tintColor": "#008EE2",
               "transform": Array [
                 Object {
                   "rotate": "180deg",
@@ -234,26 +245,30 @@ exports[`SubmissionPicker renders the picker with a 0 index 1`] = `
 `;
 
 exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "borderBottomColor": "#D8D8D8",
+      "borderBottomWidth": 0.5,
+      "borderStyle": "solid",
+      "marginHorizontal": 16,
+      "marginTop": 16,
+      "paddingBottom": 4,
+    }
+  }
+>
   <TouchableHighlight
     accessibilityTraits="button"
     onPress={[Function]}
     testID="header.toggle-submission_history-picker"
-    underlayColor="#eee"
+    underlayColor="white"
   >
     <View
       style={
         Object {
-          "borderBottomColor": "#D8D8D8",
-          "borderBottomWidth": 0.5,
-          "borderStyle": "solid",
           "flex": 0,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 4,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 6,
         }
       }
     >
@@ -278,7 +293,7 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
                 "fontWeight": "500",
               },
               Object {
-                "color": "#008EE2",
+                "color": "#374A59",
               },
             ],
             Object {
@@ -297,7 +312,6 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
               "alignSelf": "center",
             },
             Object {
-              "tintColor": "#008EE2",
               "transform": Array [
                 Object {
                   "rotate": "180deg",
@@ -327,26 +341,30 @@ exports[`SubmissionPicker renders the picker with a non-zero index 1`] = `
 `;
 
 exports[`SubmissionPicker renders with a submission 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "borderBottomColor": "#D8D8D8",
+      "borderBottomWidth": 0.5,
+      "borderStyle": "solid",
+      "marginHorizontal": 16,
+      "marginTop": 16,
+      "paddingBottom": 4,
+    }
+  }
+>
   <TouchableHighlight
     accessibilityTraits="button"
     onPress={[Function]}
     testID="header.toggle-submission_history-picker"
-    underlayColor="#eee"
+    underlayColor="white"
   >
     <View
       style={
         Object {
-          "borderBottomColor": "#D8D8D8",
-          "borderBottomWidth": 0.5,
-          "borderStyle": "solid",
           "flex": 0,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 4,
-          "paddingLeft": 16,
-          "paddingRight": 16,
-          "paddingTop": 6,
         }
       }
     >
@@ -404,13 +422,9 @@ exports[`SubmissionPicker renders with no submission 1`] = `
         "borderBottomColor": "#D8D8D8",
         "borderBottomWidth": 0.5,
         "borderStyle": "solid",
-        "flex": 0,
-        "flexDirection": "row",
-        "justifyContent": "space-between",
+        "marginHorizontal": 16,
+        "marginTop": 16,
         "paddingBottom": 4,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 6,
       },
       Object {
         "paddingBottom": 21,
@@ -418,4 +432,57 @@ exports[`SubmissionPicker renders with no submission 1`] = `
     ]
   }
 />
+`;
+
+exports[`SubmissionPicker renders with only one submission history 1`] = `
+<View
+  style={
+    Object {
+      "borderBottomColor": "#D8D8D8",
+      "borderBottomWidth": 0.5,
+      "borderStyle": "solid",
+      "marginHorizontal": 16,
+      "marginTop": 16,
+      "paddingBottom": 4,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 0,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "color": "#8B969E",
+            "fontSize": 14,
+            "fontWeight": "500",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+          },
+        ]
+      }
+    >
+      Apr 26, 2017 at 11:46 AM
+    </Text>
+  </View>
+</View>
 `;

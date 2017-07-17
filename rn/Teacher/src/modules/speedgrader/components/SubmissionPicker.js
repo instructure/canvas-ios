@@ -17,6 +17,7 @@ import type {
 } from '../../submissions/list/submission-prop-types'
 import { formattedDueDate } from '../../../common/formatters'
 import SpeedGraderActions from '../actions'
+import brand from '../../../common/branding'
 
 var PickerItemIOS = PickerIOS.Item
 
@@ -52,7 +53,7 @@ export class SubmissionPicker extends Component {
 
   render () {
     const submission = this.props.submissionProps.submission
-    if (!this.hasSubmission()) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
+    if (!this.hasSubmission()) return <View style={[styles.container, styles.noSub]} />
 
     if (submission && submission.submission_history &&
       submission.submission_history.length > 1) {
@@ -63,15 +64,15 @@ export class SubmissionPicker extends Component {
       } else {
         index = submission.submission_history.length - 1
       }
-      return <View>
+      return <View style={styles.container}>
         <TouchableHighlight
-          underlayColor="#eee"
+          underlayColor='white'
           onPress={this._togglePicker}
           testID='header.toggle-submission_history-picker'
           accessibilityTraits='button'
         >
           <View style={styles.submissionHistoryContainer}>
-            <Text style={[styles.submissionDate, this.state.showingPicker && styles.selecting]}>
+            <Text style={[styles.submissionDate, this.state.showingPicker && { color: brand.primaryBrandColor }]}>
               {formattedDueDate(new Date(selected.submitted_at || ''))}
             </Text>
             <Image source={Images.pickerArrow} style={[{ alignSelf: 'center' }, this.state.showingPicker && styles.arrowSelecting]} />
@@ -95,27 +96,32 @@ export class SubmissionPicker extends Component {
       </View>
     } else {
       if (!submission) return <View style={[styles.submissionHistoryContainer, styles.noSub]} />
-      return <View style={styles.submissionHistoryContainer}>
-        <Text style={styles.submissionDate}>
-          {formattedDueDate(new Date(submission.submitted_at || ''))}
-        </Text>
-      </View>
+      return (
+        <View style={styles.container}>
+          <View style={styles.submissionHistoryContainer}>
+            <Text style={styles.submissionDate}>
+              {formattedDueDate(new Date(submission.submitted_at || ''))}
+            </Text>
+          </View>
+        </View>
+      )
     }
   }
 }
 
 const styles = StyleSheet.create({
-  noSub: {
-    paddingBottom: 21,
-  },
-  submissionHistoryContainer: {
-    paddingTop: 6,
-    paddingLeft: 16,
-    paddingRight: 16,
+  container: {
+    marginTop: 16,
+    marginHorizontal: 16,
     borderBottomColor: '#D8D8D8',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderStyle: 'solid',
     paddingBottom: 4,
+  },
+  noSub: {
+    paddingBottom: 21,
+  },
+  submissionHistoryContainer: {
     flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -125,11 +131,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
-  selecting: {
-    color: '#008EE2',
-  },
   arrowSelecting: {
-    tintColor: '#008EE2',
     transform: [
      { rotate: '180deg' },
     ],

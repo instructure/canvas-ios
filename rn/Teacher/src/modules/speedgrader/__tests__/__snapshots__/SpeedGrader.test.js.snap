@@ -101,6 +101,15 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             <Header
               assignmentID="1"
               closeModal={[Function]}
+              navigator={
+                Object {
+                  "dismiss": [Function],
+                  "dismissAllModals": [Function],
+                  "pop": [Function],
+                  "show": [Function],
+                  "traitCollection": [Function],
+                }
+              }
               submissionID={undefined}
               submissionProps={
                 Object {
@@ -270,6 +279,15 @@ exports[`SpeedGrader renders with a filter 1`] = `
             <Header
               assignmentID="1"
               closeModal={[Function]}
+              navigator={
+                Object {
+                  "dismiss": [Function],
+                  "dismissAllModals": [Function],
+                  "pop": [Function],
+                  "show": [Function],
+                  "traitCollection": [Function],
+                }
+              }
               submissionID={undefined}
               submissionProps={
                 Object {
@@ -362,6 +380,15 @@ exports[`SpeedGrader renders with a filter 1`] = `
             <Header
               assignmentID="1"
               closeModal={[Function]}
+              navigator={
+                Object {
+                  "dismiss": [Function],
+                  "dismissAllModals": [Function],
+                  "pop": [Function],
+                  "show": [Function],
+                  "traitCollection": [Function],
+                }
+              }
               submissionID={undefined}
               submissionProps={
                 Object {

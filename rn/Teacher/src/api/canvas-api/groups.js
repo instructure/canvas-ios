@@ -20,3 +20,11 @@ export function getGroupByID (groupID: string): Promise<ApiResponse<Array<Group>
   const url = `groups/${groupID}`
   return httpClient().get(url)
 }
+
+export function getUsersForGroupID (groupID: string): Promise<ApiResponse<Array<User>>> {
+  const url = `groups/${groupID}/users`
+  const options = {
+    params: { include: ['avatar_url'] },
+  }
+  return httpClient().get(url, options)
+}

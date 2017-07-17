@@ -34,51 +34,48 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderColor": "#C7CDD1",
-              "borderWidth": 0.5,
-              "justifyContent": "center",
               "overflow": "hidden",
             },
             Object {
-              "borderRadius": 20,
               "height": 40,
               "width": 40,
+            },
+            Object {
+              "borderRadius": 20,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
             },
           ]
         }
       >
-        <Text
-          accessible={false}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-                "color": "#73818C",
-                "fontWeight": "600",
-              },
-              Object {
-                "fontSize": 18,
-              },
-            ]
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
           }
-        >
-          S
-        </Text>
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
       </View>
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "space-between",
-          "marginLeft": 12,
-        }
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
       }
     >
       <Text
@@ -143,20 +140,15 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
     <View
       style={
         Object {
+          "backgroundColor": "white",
           "marginRight": 12,
         }
       }
     >
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onLongPress={undefined}
+      <TouchableHighlight
         onPress={[Function]}
-        onPressIn={undefined}
-        onPressOut={undefined}
-        style={undefined}
         testID="header.navigation-done"
+        underlayColor="white"
       >
         <View
           style={
@@ -193,7 +185,198 @@ exports[`SpeedGraderHeader anonymizes the avatar and name 1`] = `
             Done
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SpeedGraderHeader doesnt show the group name when anonymous 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "backgroundColor": "white",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginTop": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 40,
+          "marginLeft": 16,
+          "width": 40,
+        }
+      }
+    >
+      <View
+        accessibilityLabel=""
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "height": 40,
+              "width": 40,
+            },
+            Object {
+              "borderRadius": 20,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
+          }
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Group
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontSize": 14,
+                "paddingTop": 2,
+              },
+              Object {
+                "color": "#07AF1F",
+              },
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        SUBMITTED
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="header.navigation-done"
+        underlayColor="white"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 </View>
@@ -233,51 +416,48 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
         style={
           Array [
             Object {
-              "alignItems": "center",
-              "backgroundColor": "white",
-              "borderColor": "#C7CDD1",
-              "borderWidth": 0.5,
-              "justifyContent": "center",
               "overflow": "hidden",
             },
             Object {
-              "borderRadius": 20,
               "height": 40,
               "width": 40,
+            },
+            Object {
+              "borderRadius": 20,
+            },
+            Object {
+              "backgroundColor": "#F5F5F5",
             },
           ]
         }
       >
-        <Text
-          accessible={false}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "backgroundColor": "transparent",
-                "color": "#73818C",
-                "fontWeight": "600",
-              },
-              Object {
-                "fontSize": 18,
-              },
-            ]
+        <Image
+          source={
+            Object {
+              "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+            }
           }
-        >
-          S
-        </Text>
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        />
       </View>
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "space-between",
-          "marginLeft": 12,
-        }
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
       }
     >
       <Text
@@ -342,20 +522,15 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
     <View
       style={
         Object {
+          "backgroundColor": "white",
           "marginRight": 12,
         }
       }
     >
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onLongPress={undefined}
+      <TouchableHighlight
         onPress={[Function]}
-        onPressIn={undefined}
-        onPressOut={undefined}
-        style={undefined}
         testID="header.navigation-done"
+        underlayColor="white"
       >
         <View
           style={
@@ -392,7 +567,7 @@ exports[`SpeedGraderHeader doesnt show the student name when anonymous 1`] = `
             Done
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   </View>
 </View>
@@ -464,12 +639,16 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "space-between",
-          "marginLeft": 12,
-        }
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
       }
     >
       <Text
@@ -534,20 +713,15 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
     <View
       style={
         Object {
+          "backgroundColor": "white",
           "marginRight": 12,
         }
       }
     >
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onLongPress={undefined}
+      <TouchableHighlight
         onPress={[Function]}
-        onPressIn={undefined}
-        onPressOut={undefined}
-        style={undefined}
         testID="header.navigation-done"
+        underlayColor="white"
       >
         <View
           style={
@@ -584,7 +758,227 @@ exports[`SpeedGraderHeader renders with a grade-only submission 1`] = `
             Done
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`SpeedGraderHeader renders with a group submission 1`] = `
+<View
+  style={
+    Array [
+      undefined,
+      Object {
+        "backgroundColor": "white",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginTop": 16,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <TouchableHighlight
+          onPress={[Function]}
+          testID="header.groupList.button"
+          underlayColor="white"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "white",
+                "flexDirection": "row",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 40,
+                  "marginLeft": 16,
+                  "width": 40,
+                }
+              }
+            >
+              <View
+                accessibilityLabel=""
+                style={
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    Object {
+                      "borderRadius": 20,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "https://farm3.staticflickr.com/2926/14690771011_945f91045a.jpg",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "column",
+                  "justifyContent": "space-between",
+                  "marginLeft": 12,
+                }
+              }
+            >
+              <Text
+                accessibilityTraits="header"
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 16,
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Allura
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontSize": 14,
+                        "paddingTop": 2,
+                      },
+                      Object {
+                        "color": "#07AF1F",
+                      },
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                SUBMITTED
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "white",
+          "marginRight": 12,
+        }
+      }
+    >
+      <TouchableHighlight
+        onPress={[Function]}
+        testID="header.navigation-done"
+        underlayColor="white"
+      >
+        <View
+          style={
+            Object {
+              "paddingLeft": 20,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            Done
+          </Text>
+        </View>
+      </TouchableHighlight>
     </View>
   </View>
 </View>
@@ -656,12 +1050,16 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "space-between",
-          "marginLeft": 12,
-        }
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
       }
     >
       <Text
@@ -726,20 +1124,15 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
     <View
       style={
         Object {
+          "backgroundColor": "white",
           "marginRight": 12,
         }
       }
     >
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onLongPress={undefined}
+      <TouchableHighlight
         onPress={[Function]}
-        onPressIn={undefined}
-        onPressOut={undefined}
-        style={undefined}
         testID="header.navigation-done"
+        underlayColor="white"
       >
         <View
           style={
@@ -776,7 +1169,7 @@ exports[`SpeedGraderHeader renders with a submission 1`] = `
             Done
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   </View>
 </View>
@@ -848,12 +1241,16 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "space-between",
-          "marginLeft": 12,
-        }
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
       }
     >
       <Text
@@ -918,20 +1315,15 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
     <View
       style={
         Object {
+          "backgroundColor": "white",
           "marginRight": 12,
         }
       }
     >
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onLongPress={undefined}
+      <TouchableHighlight
         onPress={[Function]}
-        onPressIn={undefined}
-        onPressOut={undefined}
-        style={undefined}
         testID="header.navigation-done"
+        underlayColor="white"
       >
         <View
           style={
@@ -968,7 +1360,7 @@ exports[`SpeedGraderHeader renders with an over-due grade-only submission 1`] = 
             Done
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   </View>
 </View>
@@ -1040,12 +1432,16 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     </View>
     <View
       style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "space-between",
-          "marginLeft": 12,
-        }
+        Array [
+          Object {
+            "flexDirection": "column",
+            "justifyContent": "space-between",
+            "marginLeft": 12,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
       }
     >
       <Text
@@ -1110,20 +1506,15 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
     <View
       style={
         Object {
+          "backgroundColor": "white",
           "marginRight": 12,
         }
       }
     >
-      <TouchableOpacity
-        accessibilityComponentType="button"
-        accessibilityTraits="button"
-        activeOpacity={0.2}
-        onLongPress={undefined}
+      <TouchableHighlight
         onPress={[Function]}
-        onPressIn={undefined}
-        onPressOut={undefined}
-        style={undefined}
         testID="header.navigation-done"
+        underlayColor="white"
       >
         <View
           style={
@@ -1160,7 +1551,7 @@ exports[`SpeedGraderHeader renders with no submission 1`] = `
             Done
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   </View>
 </View>

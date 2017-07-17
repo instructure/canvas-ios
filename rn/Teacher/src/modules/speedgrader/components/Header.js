@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
+  TouchableHighlight,
 } from 'react-native'
 import { Text } from '../../../common/text'
-import Button from 'react-native-button'
 import i18n from 'format-message'
 import type {
   SubmissionDataProps,
@@ -27,34 +27,78 @@ export class Header extends Component {
     }
   }
 
-  render () {
-    const sub = this.props.submissionProps
-    let name = this.props.anonymous
-      ? (sub.groupID ? i18n('Group') : i18n('Student'))
-      : sub.name
-    let avatarURL = this.props.anonymous
-      ? ''
-      : sub.avatarURL
-    return <View style={[this.props.style, styles.header]}>
-      <View style={styles.profileContainer}>
-        <View style={styles.avatar}>
-          <Avatar key={sub.userID} avatarURL={avatarURL} userName={name} />
-        </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
-          <SubmissionStatus status={sub.status} />
-        </View>
-        <View style={styles.doneButton}>
-          <Button onPress={this.props.closeModal} testID='header.navigation-done'>
+  renderDoneButton () {
+    return (
+      <View style={styles.doneButton}>
+          <TouchableHighlight onPress={this.props.closeModal} underlayColor='white' testID='header.navigation-done'>
             <View style={{ paddingLeft: 20 }}>
               <Text style={{ color: '#008EE2', fontSize: 18, fontWeight: '600' }}>
                 {i18n('Done')}
               </Text>
             </View>
-          </Button>
+          </TouchableHighlight>
         </View>
+    )
+  }
+
+  renderGroupProfile () {
+    const sub = this.props.submissionProps
+    let name = this.props.anonymous
+      ? (sub.groupID ? i18n('Group') : i18n('Student'))
+      : sub.name
+
+    let avatarURL = this.props.anonymous
+      ? ''
+      : sub.avatarURL
+
+    if (sub.groupID && !this.props.anonymous) {
+      return (
+        <View style={styles.profileContainer}>
+          <View style={{ flex: 1 }}>
+            <View style={styles.innerRowContainer}>
+              <TouchableHighlight
+                onPress={this.showGroup}
+                underlayColor='white'
+                testID={'header.groupList.button'}>
+                  <View style={styles.innerRowContainer}>
+                    <View style={styles.avatar}>
+                      <Avatar key={sub.userID} avatarURL={avatarURL} userName={name} />
+                    </View>
+                    <View style={styles.nameContainer}>
+                      <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
+                      <SubmissionStatus status={sub.status} />
+                    </View>
+                  </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+          {this.renderDoneButton()}
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.profileContainer}>
+          <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={name} /></View>
+          <View style={[styles.nameContainer, { flex: 1 }]}>
+            <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
+            <SubmissionStatus status={sub.status} />
+          </View>
+          {this.renderDoneButton()}
+        </View>
+      )
+    }
+  }
+
+  render () {
+    return (
+      <View style={[this.props.style, styles.header]}>
+        {this.renderGroupProfile()}
       </View>
-    </View>
+    )
+  }
+
+  showGroup = () => {
+    this.props.navigator.show(`/groups/${this.props.submissionProps.groupID}/users`, { modal: true })
   }
 }
 
@@ -67,6 +111,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 16,
   },
+  innerRowContainer: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   navButtonImage: {
     resizeMode: 'contain',
     tintColor: '#008EE2',
@@ -77,7 +126,6 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   nameContainer: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginLeft: 12,
@@ -90,6 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   doneButton: {
+    backgroundColor: 'white',
     marginRight: 12,
   },
 })
@@ -122,4 +171,4 @@ type HeaderDataProps = {
   anonymous: boolean,
 }
 
-type HeaderProps = RouterProps & HeaderDataProps
+type HeaderProps = RouterProps & HeaderDataProps & { navigator: Navigator }

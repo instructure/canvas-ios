@@ -26,7 +26,7 @@ export type CourseContentState = {
   groups: AsyncRefs,
 }
 
-export type GroupState = {
+export type GroupState = AsyncState & {
   group: Group,
 }
 
@@ -144,7 +144,6 @@ export type Entities = {
   quizSubmissions: QuizSubmissionsState,
   discussions: DiscussionsState,
   courseDetailsTabSelectedRow: CourseDetailsTabSelectedRowState,
-  groups: GroupsState,
 }
 
 export type FavoriteCoursesState = AsyncState

@@ -13,6 +13,7 @@ jest
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../../redux/__templates__/app-state'),
+  ...require('../../../../__templates__/helm'),
 }
 
 let noSubProps = {
@@ -36,6 +37,7 @@ let noSubProps = {
   selectedIndex: null,
   selectedAttachmentIndex: null,
   anonymous: false,
+  navigator: templates.navigator(),
 }
 
 let subProps = {
@@ -55,6 +57,14 @@ let subProps = {
   },
 }
 
+let groupProps = {
+  ...subProps,
+  submissionProps: {
+    ...subProps.submissionProps,
+    groupID: '1',
+  },
+}
+
 describe('SpeedGraderHeader', () => {
   it('renders with no submission', () => {
     let tree = renderer.create(
@@ -67,6 +77,14 @@ describe('SpeedGraderHeader', () => {
   it('renders with a submission', () => {
     let tree = renderer.create(
       <Header {...subProps} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders with a group submission', () => {
+    let tree = renderer.create(
+      <Header {...groupProps} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -115,6 +133,26 @@ describe('SpeedGraderHeader', () => {
       <Header {...subProps} anonymous={true} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('doesnt show the group name when anonymous', () => {
+    let tree = renderer.create(
+      <Header {...groupProps} anonymous={true} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('opens student list when group is tapped', () => {
+    let tree = renderer.create(
+      <Header {...groupProps} />
+    ).toJSON()
+    const groupListButton = explore(tree).selectByID(`header.groupList.button`) || {}
+    groupListButton.props.onPress()
+
+    expect(groupProps.navigator.show).toHaveBeenCalledWith(
+      `/groups/1/users`,
+      { modal: true }
+    )
   })
 })
 

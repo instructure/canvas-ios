@@ -90,6 +90,23 @@ describe('SubmissionPicker', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('renders with only one submission history', () => {
+    let props = {
+      ...subProps,
+      submissionProps: {
+        ...subProps.submissionProps,
+        submission: templates.submissionHistory([
+      { id: '1', grade: null, submitted_at: '2017-04-26T17:46:00Z' },
+        ]),
+      },
+    }
+    let tree = renderer.create(
+      <SubmissionPicker {...props} />
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
+  })
+
   it('opens the picker', () => {
     let tree = renderer.create(
       <SubmissionPicker {...withIndex} />

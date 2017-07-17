@@ -5,8 +5,9 @@ import Actions from './actions'
 import AssigneeSearchActions from '../assignee-picker/actions'
 import { handleActions } from 'redux-actions'
 import handleAsync from '../../utils/handleAsync'
+import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
-const { refreshGroupsForCourse, refreshGroup } = Actions
+const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
 const { refreshGroupsForCategory } = AssigneeSearchActions
 
 const groupsEntitiyReducer = handleAsync({
@@ -34,6 +35,42 @@ export const groups: Reducer<GroupsState, any> = handleActions({
       const incoming = {
         [group.id]: {
           group: { ...state[group.id], ...group },
+        },
+      }
+      return { ...state, ...incoming }
+    },
+  }),
+  [listUsersForGroup.toString()]: handleAsync({
+    resolved: (state, { result, groupID }) => {
+      const incoming = {
+        [groupID]: {
+          ...state[groupID],
+          group: {
+            ...(state[groupID] && state[groupID].group),
+            users: result.data,
+          },
+          pending: 0,
+          error: null,
+        },
+      }
+      return { ...state, ...incoming }
+    },
+    pending: (state, { groupID }) => {
+      const incoming = {
+        [groupID]: {
+          ...state[groupID],
+          pending: 1,
+          error: null,
+        },
+      }
+      return { ...state, ...incoming }
+    },
+    rejected: (state, { groupID, error }) => {
+      const incoming = {
+        [groupID]: {
+          ...state[groupID],
+          pending: 0,
+          error: parseErrorMessage(error),
         },
       }
       return { ...state, ...incoming }

@@ -1,0 +1,138 @@
+// @flow
+
+import React, { Component } from 'react'
+import {
+  View,
+  FlatList,
+  StyleSheet,
+} from 'react-native'
+import { connect } from 'react-redux'
+import refresh from '../../utils/refresh'
+import Screen from '../../routing/Screen'
+import i18n from 'format-message'
+import Row from '../../common/components/rows/Row'
+import Avatar from '../../common/components/Avatar'
+import GroupActions from './actions'
+import ListEmptyComponent from '../../common/components/ListEmptyComponent'
+
+type StateProps = {
+  group: ?Group,
+  groupID: string,
+  pending: number,
+  error: ?string,
+}
+
+type RouterProps = {
+  groupID: string,
+}
+
+type GroupActionsProps = {
+  listUsersForGroup: Function,
+}
+
+type GroupListProps = RouterProps & GroupActionsProps & NavigationProps & StateProps & RefreshProps
+
+export class GroupList extends Component<any, GroupListProps, any> {
+
+  constructor (props: GroupListProps) {
+    super(props)
+
+    this.state = {
+      error: null,
+      pending: false,
+    }
+  }
+
+  _renderRow = ({ item, index }) => {
+    let border = index === 0 ? 'both' : 'bottom'
+
+    const avatar = (<View style={styles.avatar}>
+                      <Avatar avatarURL={item.avatar_url} userName={item.name}/>
+                    </View>)
+
+    return <Row title={item.name}
+                border={border}
+                renderImage={() => avatar}
+                testID={item.id}
+            />
+  }
+
+  _renderComponent = () => {
+    const empty = <ListEmptyComponent title={i18n('No results')} />
+    let data = this.props.group ? this.props.group.users : []
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          refreshing={this.props.refreshing}
+          onRefresh={this.props.refresh}
+          renderItem={this._renderRow}
+          ListEmptyComponent={this.state.pending ? null : empty}
+          refreshing={this.state.pending}
+        />
+      </View>)
+  }
+
+  render () {
+    const title = this.props.group ? this.props.group.name : ''
+    return (
+      <Screen
+        navBarColor='#fff'
+        navBarStyle='light'
+        drawUnderNavBar={false}
+        title={title}
+        rightBarButtons={[{
+          style: 'done',
+          title: i18n('Done'),
+          testID: 'group-list.done',
+          action: this._onDone,
+        }]}
+      >
+        {this._renderComponent()}
+      </Screen>
+    )
+  }
+
+  _onDone = () => {
+    this.props.navigator.dismiss()
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    marginRight: global.style.defaultPadding,
+  },
+})
+
+export function mapStateToProps (state: AppState, ownProps: RouterProps): StateProps {
+  let pending = 0
+  let error = null
+  let groupID = ownProps.groupID
+  let group = null
+
+  if (state.entities.groups && state.entities.groups[ownProps.groupID]) {
+    pending = state.entities.groups[ownProps.groupID].pending
+    error = state.entities.groups[ownProps.groupID].error
+    group = state.entities.groups[ownProps.groupID].group
+  }
+
+  return {
+    pending,
+    error,
+    groupID,
+    group,
+  }
+}
+
+export let Refreshed: any = refresh(
+  props => { props.listUsersForGroup(props.groupID) },
+  props => !props.group || !props.users,
+  props => Boolean(props.pending)
+)(GroupList)
+const Connected = connect(mapStateToProps, GroupActions)(Refreshed)
+export default (Connected: GroupList)
