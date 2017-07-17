@@ -79,10 +79,6 @@ export class FavoritedCourseList extends Component {
     this.props.navigator.show('/courses')
   }
 
-  presentBetaFeedback = () => {
-    this.props.navigator.show('/beta-feedback', { modal: true })
-  }
-
   renderHeader = () => {
     return (
       <View style={styles.header}>
@@ -132,14 +128,6 @@ export class FavoritedCourseList extends Component {
             testID: 'favorited-course-list.edit-btn',
             action: this.showFavoritesList,
             disabled: !this.props.totalCourseCount,
-          },
-        ]}
-        leftBarButtons={[
-          {
-            accessibilityLabel: i18n('Leave Feedback'),
-            testID: 'favorited-course-list.feedback-btn',
-            image: Images.feedback,
-            action: this.presentBetaFeedback,
           },
         ]}
         >

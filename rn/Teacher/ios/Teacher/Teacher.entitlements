@@ -6,8 +6,8 @@
 	<string>development</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.instructure.teacher.beta</string>
 		<string>$(AppIdentifierPrefix)com.instructure.shared-credentials</string>
+		<string>$(AppIdentifierPrefix)com.instructure.ios.teacher</string>
 	</array>
 </dict>
 </plist>

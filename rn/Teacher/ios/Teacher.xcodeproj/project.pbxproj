@@ -1151,6 +1151,7 @@
 				C7A08992613846128FD3E3D2 /* libRNBlur.a */,
 				9E745A09DE28474C8094A8FB /* libInteractable.a */,
 				2411260A6CA04D6D874912A2 /* libRNSearchBar.a */,
+				A173E7C1016F4F56BBFC43B7 /* libRNMail.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -2266,7 +2267,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2315,7 +2316,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.teacher.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Teacher/bridging-header.h";

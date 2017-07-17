@@ -63,10 +63,9 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
 
   # authorize simulator
   # https://github.com/wix/AppleSimulatorUtils
-  # MBL-7934 ".beta" needs to be removed from the bundle id when Teacher is released
   brew tap wix/brew
   brew install --HEAD applesimutils
-  applesimutils --simulator "iPhone 7 Plus" --bundle "com.instructure.teacher.beta" --setPermissions "notifications=NO"
+  applesimutils --simulator "iPhone 7 Plus" --bundle "com.instructure.ios.teacher" --setPermissions "notifications=NO"
 
   fastlane seed_teacher
 fi

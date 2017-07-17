@@ -174,22 +174,3 @@ test('calls navigator.show when the edit button is pressed', () => {
     { modal: true }
   )
 })
-
-test('press beta feedback button presents feedback modally', () => {
-  const props = {
-    ...defaultProps,
-    navigator: template.navigator({
-      show: jest.fn(),
-    }),
-  }
-
-  let tree = renderer.create(
-    <FavoritedCourseList {...props} />
-  )
-
-  tree.getInstance().presentBetaFeedback()
-  expect(props.navigator.show).toHaveBeenCalledWith(
-    '/beta-feedback',
-    { modal: true }
-  )
-})
