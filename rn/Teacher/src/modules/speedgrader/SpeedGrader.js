@@ -95,7 +95,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   onLayout = (event: any) => {
     const { width, height } = event.nativeEvent.layout
-    if (height !== 0 && width !== this.state.size.width && height !== this.state.size.height) {
+    if (height !== 0 && (width !== this.state.size.width || height !== this.state.size.height)) {
       this.setState({ size: { width, height } })
     }
   }
