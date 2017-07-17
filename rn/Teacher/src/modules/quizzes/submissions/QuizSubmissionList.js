@@ -53,7 +53,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
     }
   }
 
-  navigateToSubmission = (userID: string) => {
+  navigateToSubmission = (index: number) => (userID: string) => {
     if (!global.V04) { return }
     const { quiz, courseID } = this.props
     if (!quiz.data.assignment_id) return
@@ -62,7 +62,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
     this.props.navigator.show(
       path,
       { modal: true },
-      { selectedFilter: this.selectedFilter }
+      { selectedFilter: this.selectedFilter, studentIndex: index }
     )
   }
 
@@ -103,12 +103,17 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
     })
   }
 
-  renderRow = ({ item }: { item: SubmissionRowDataProps }) => {
+  renderRow = ({ item, index }: { item: SubmissionRowDataProps, index: number }) => {
     let disclosure = true
     if (this.props.quiz) {
       disclosure = !!this.props.quiz.data.assignment_id
     }
-    return <SubmissionRow {...item} onPress={this.navigateToSubmission} disclosure={disclosure} anonymous={this.props.anonymous} />
+    return <SubmissionRow
+      {...item}
+      onPress={this.navigateToSubmission(index)}
+      disclosure={disclosure}
+      anonymous={this.props.anonymous}
+    />
   }
 
   keyExtractor = (item: SubmissionRowDataProps) => {

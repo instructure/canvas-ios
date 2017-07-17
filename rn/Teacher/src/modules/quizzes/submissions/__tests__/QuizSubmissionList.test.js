@@ -91,7 +91,7 @@ describe('QuizSubmissionList', () => {
     const instance = renderer.create(
       <QuizSubmissionList {...props} navigator={navigator} filterType='whatisthis' />
     ).getInstance()
-    instance.navigateToSubmission('1')
+    instance.navigateToSubmission(33)('1')
     expect(navigator.show).not.toHaveBeenCalled()
   })
 
@@ -102,11 +102,11 @@ describe('QuizSubmissionList', () => {
     const instance = renderer.create(
       <QuizSubmissionList {...localProps} navigator={navigator} filterType='whatisthis' />
     ).getInstance()
-    instance.navigateToSubmission('1')
+    instance.navigateToSubmission(33)('1')
     expect(navigator.show).toHaveBeenCalledWith(
       '/courses/12/assignments/1/submissions/1',
       { modal: true },
-      { selectedFilter: undefined }
+      { selectedFilter: undefined, studentIndex: 33 }
     )
   })
 
