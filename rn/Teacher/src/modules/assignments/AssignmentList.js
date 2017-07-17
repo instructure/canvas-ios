@@ -180,6 +180,8 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     if (this.data.length === 0) {
       this.data = this.prepareListData()
       this.selectFirstListItemIfNecessary()
+    } else {
+      this.data = this.prepareListData()
     }
 
     return (
