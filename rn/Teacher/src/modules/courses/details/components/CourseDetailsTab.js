@@ -33,7 +33,6 @@ export default class CourseDetails extends React.Component<any, Props, any> {
                 onPress={this.onPress}
                 disclosureIndicator={true}
                 border={'bottom'}
-                height='auto'
                 testID={`courses-details.${tab.id}-cell`}
                 titleStyles={{ marginLeft: -4, fontWeight: '500' }}/>)
   }
