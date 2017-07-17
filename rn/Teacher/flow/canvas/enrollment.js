@@ -1,6 +1,9 @@
 // @flow
 export type EnrollmentType =
   'StudentEnrollment' |
+  // I believe `StudentViewEnrollment` is a legacy thing which
+  // teachers could use to view their course as a student.
+  'StudentViewEnrollment' |
   'TeacherEnrollment' |
   'TaEnrollment' |
   'DesignerEnrollment' |

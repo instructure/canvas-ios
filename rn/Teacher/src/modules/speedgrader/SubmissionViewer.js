@@ -58,8 +58,6 @@ export default class SubmissionViewer extends Component {
     let text = null
     if (type === 'on_paper') {
       text = i18n('This assignment only allows on-paper submissions.')
-    } else if (type === 'external_tool') {
-      text = i18n('This assignment links to an external tool for submissions.')
     } else if (type === 'none') {
       text = i18n('This assignment does not allow submissions.')
     }
@@ -110,6 +108,8 @@ export default class SubmissionViewer extends Component {
           break
         case 'online_quiz':
         case 'discussion_topic':
+        case 'basic_lti_launch':
+        case 'external_tool':
           body = <AuthenticatedWebView
             style={styles.webContainer}
             source={{ uri: submission.preview_url }}

@@ -16,7 +16,8 @@ export type SubmissionType
   | 'media_recording'
   | 'on_paper'
   | 'none'
-  | 'external_tool'
+  | 'basic_lti_launch' // seen in practice
+  | 'external_tool' // from api docs (should be treated the same)
   | 'discussion_topic'
   | 'online_quiz'
 

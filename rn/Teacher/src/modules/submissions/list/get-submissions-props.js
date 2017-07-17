@@ -107,10 +107,20 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
   const submissionsByUserID = getSubmissionsByUserID(assignmentContent, entities.submissions)
 
   const submissions = uniqueEnrollments(enrollments)
-    .filter(enrollment => {
-      return enrollment.type === 'StudentEnrollment'
+    .filter(enrollment =>
+      enrollment.type === 'StudentEnrollment' ||
+      enrollment.type === 'StudentViewEnrollment'
+    )
+    .sort((e1, e2) => {
+      if (e1.type !== e2.type) {
+        if (e1.type === 'StudentEnrollment') {
+          return -1
+        } else if (e2.type === 'StudentEnrollment') {
+          return 1
+        }
+      }
+      return localeSort(e1.user.sortable_name, e2.user.sortable_name)
     })
-    .sort((e1, e2) => localeSort(e1.user.sortable_name, e2.user.sortable_name))
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
       return submissionProps(enrollment.user, submission, due)

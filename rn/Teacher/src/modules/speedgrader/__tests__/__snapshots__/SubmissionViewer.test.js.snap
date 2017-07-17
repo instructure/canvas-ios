@@ -238,7 +238,7 @@ exports[`SubmissionViewer renders external tool submission 1`] = `
         ]
       }
     >
-      This assignment links to an external tool for submissions.
+      This student does not have a submission for this assignment.
     </Text>
   </View>
 </View>
@@ -290,7 +290,7 @@ exports[`SubmissionViewer renders external tool submission with a submission 1`]
         ]
       }
     >
-      This assignment links to an external tool for submissions.
+      This student does not have a submission for this assignment.
     </Text>
   </View>
 </View>

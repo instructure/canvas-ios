@@ -192,7 +192,8 @@ describe('SubmissionViewer', () => {
     let sub = {
       ...defaultSub,
       submission: {
-        submission_type: 'external_tool',
+        submission_type: 'basic_lti_launch',
+        preview_url: 'https://googs.com/',
       },
     }
 
