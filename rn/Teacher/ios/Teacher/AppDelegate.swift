@@ -11,7 +11,8 @@ import CanvasKeymaster
 import ReactiveSwift
 import UserNotifications
 import PSPDFKit
-
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         createMainWindow()
         initiateLoginProcess()
         setupForPushNotifications()
+        Fabric.with([Crashlytics.self, Answers.self])
         return true
     }   
     

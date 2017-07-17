@@ -42,6 +42,8 @@
 		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
 		2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */; };
+		2CDD85F61F1D6D3800FD1CF8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */; };
+		2CDD85F71F1D6D3800FD1CF8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
 		2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */; };
@@ -617,6 +619,8 @@
 		2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewDisablerManager.h; sourceTree = "<group>"; };
 		2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
 		2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSFSafariViewController.xcodeproj; path = "../node_modules/react-native-sfsafariviewcontroller/RCTSFSafariViewController.xcodeproj"; sourceTree = "<group>"; };
+		2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
+		2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
 		2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPageTest.swift; sourceTree = "<group>"; };
@@ -781,6 +785,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CDD85F61F1D6D3800FD1CF8 /* Crashlytics.framework in Frameworks */,
+				2CDD85F71F1D6D3800FD1CF8 /* Fabric.framework in Frameworks */,
 				2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */,
 				61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */,
 				496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */,
@@ -976,6 +982,8 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */,
+				2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */,
 				3BDF53A71EC507C100956C1B /* libSDWebImage iOS static.a */,
 				61B536A41E774B70000FEABB /* EarlGrey.framework */,
 				61B536A21E774B6A000FEABB /* SoGrey.framework */,
@@ -1516,6 +1524,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -2041,6 +2050,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Fabric;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/../../../ExternalFrameworks/Fabric.framework/run\" 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
 /* End PBXShellScriptBuildPhase section */
 
