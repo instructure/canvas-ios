@@ -446,6 +446,7 @@ exports[`filters conversations based on course 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ListEmptyComponent={[Function]}
     data={
       Array [
         Object {
@@ -1167,6 +1168,7 @@ exports[`filters out conversations without a context_code 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ListEmptyComponent={[Function]}
     data={
       Array [
         Object {
@@ -1889,80 +1891,124 @@ exports[`refreshed component 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-        "paddingHorizontal": 50,
-      }
+  <RCTScrollView
+    ListEmptyComponent={[Function]}
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
     }
+    refreshing={false}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
   >
-    <Image
-      source={1}
-      style={
-        Object {
-          "marginBottom": 36,
-        }
-      }
-    />
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontSize": 24,
-            "fontWeight": "600",
-            "marginBottom": 4,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-semibold",
-          },
-        ]
-      }
-    >
-      No Messages
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      Tap the "+" to create a new conversation
-    </Text>
-  </View>
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "height": 400,
+              "justifyContent": "center",
+              "paddingHorizontal": 50,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "marginBottom": 36,
+              }
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "marginBottom": 4,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            No Messages
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 16,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Tap the "+" to create a new conversation
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;
 
@@ -2414,6 +2460,7 @@ exports[`renders correctly 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ListEmptyComponent={[Function]}
     data={
       Array [
         Object {
@@ -3837,80 +3884,117 @@ exports[`renders the starred empty state 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-        "paddingHorizontal": 50,
-      }
-    }
+  <RCTScrollView
+    ListEmptyComponent={[Function]}
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={undefined}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshing={undefined}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
   >
-    <Image
-      source={1}
-      style={
-        Object {
-          "marginBottom": 36,
-        }
-      }
-    />
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontSize": 24,
-            "fontWeight": "600",
-            "marginBottom": 4,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-semibold",
-          },
-        ]
-      }
-    >
-      No Starred Messages
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      Star messages by tapping the star in the message.
-    </Text>
-  </View>
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "height": 400,
+              "justifyContent": "center",
+              "paddingHorizontal": 50,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "marginBottom": 36,
+              }
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "marginBottom": 4,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            No Starred Messages
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 16,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Star messages by tapping the star in the message.
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;
 
@@ -4361,79 +4445,116 @@ exports[`renders with an empty state 1`] = `
       </View>
     </View>
   </View>
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-        "paddingHorizontal": 50,
-      }
-    }
+  <RCTScrollView
+    ListEmptyComponent={[Function]}
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={undefined}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshing={undefined}
+    renderItem={[Function]}
+    renderScrollComponent={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
   >
-    <Image
-      source={1}
-      style={
-        Object {
-          "marginBottom": 36,
-        }
-      }
-    />
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "fontSize": 24,
-            "fontWeight": "600",
-            "marginBottom": 4,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay-semibold",
-          },
-        ]
-      }
-    >
-      No Messages
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "color": "#8B969E",
-            "fontSize": 16,
-            "textAlign": "center",
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      Tap the "+" to create a new conversation
-    </Text>
-  </View>
+    <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "height": 400,
+              "justifyContent": "center",
+              "paddingHorizontal": 50,
+            }
+          }
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "marginBottom": 36,
+              }
+            }
+          />
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "marginBottom": 4,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-semibold",
+                },
+              ]
+            }
+          >
+            No Messages
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontSize": 16,
+                },
+                Object {
+                  "color": "#8B969E",
+                  "fontSize": 16,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+              ]
+            }
+          >
+            Tap the "+" to create a new conversation
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
 </View>
 `;

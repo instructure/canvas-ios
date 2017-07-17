@@ -4,7 +4,6 @@ import {
   FlatList,
   StyleSheet,
   ActivityIndicator,
-  Text,
 } from 'react-native'
 import { connect } from 'react-redux'
 import refresh from '../../utils/refresh'
@@ -93,30 +92,6 @@ export class Inbox extends Component {
 
   _renderComponent = () => {
     const conversations = this._filteredConversations()
-    if (!global.V05) {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, color: 'gray' }}>{i18n('Coming Soon...')}</Text>
-        </View>
-      )
-    }
-
-    let emptyState
-    if (conversations.length === 0) {
-      if (this.props.scope === 'starred') {
-        emptyState = <EmptyInbox
-          image={Images.starLarge}
-          title={i18n('No Starred Messages')}
-          text={i18n('Star messages by tapping the star in the message.')}
-        />
-      } else {
-        emptyState = <EmptyInbox
-          image={Images.mail}
-          title={i18n('No Messages')}
-          text={i18n('Tap the "+" to create a new conversation')}
-        />
-      }
-    }
 
     return (
       <View style={styles.container}>
@@ -127,15 +102,32 @@ export class Inbox extends Component {
             onSelectFilter={this._updateCourseFilter} />
         { conversations.length === 0 && this.props.pending
             ? this._renderLoading()
-            : emptyState || <FlatList
+            : <FlatList
+                ListEmptyComponent={this._emptyComponent}
                 data={conversations}
                 renderItem={this._renderItem}
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}
                 keyExtractor={ (c) => c.id }
-                onEndReached={this.getNextPage} />
+                onEndReached={this.getNextPage}
+            />
         }
       </View>
+    )
+  }
+
+  _emptyComponent = () => {
+    const starred = this.props.scope === 'starred'
+    return (
+        <EmptyInbox
+          image={Images.mail}
+          title={starred ? i18n('No Starred Messages') : i18n('No Messages')}
+          text={
+            starred
+            ? i18n('Star messages by tapping the star in the message.')
+            : i18n('Tap the "+" to create a new conversation')
+          }
+        />
     )
   }
 

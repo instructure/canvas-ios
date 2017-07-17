@@ -6,6 +6,7 @@ exports[`EmptyInbox renders correctly 1`] = `
     Object {
       "alignItems": "center",
       "flex": 1,
+      "height": 400,
       "justifyContent": "center",
       "paddingHorizontal": 50,
     }
