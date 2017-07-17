@@ -94,6 +94,7 @@ test('external links', () => {
   expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
   webView.props.onShouldStartLoadWithRequest({
     url: 'http://www.google.com',
+    navigationType: 'click',
   })
   expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://www.google.com')
 })
@@ -126,11 +127,13 @@ test('external link, then reload of the content', () => {
   expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
   webView.props.onShouldStartLoadWithRequest({
     url: 'http://www.google.com',
+    navigationType: 'click',
   })
   expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://www.google.com')
   jest.resetAllMocks()
   webView.props.onShouldStartLoadWithRequest({
     url: 'about:blank',
+    navigationType: 'other',
   })
   expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
 })

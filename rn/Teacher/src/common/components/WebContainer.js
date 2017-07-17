@@ -78,13 +78,12 @@ export default class WebContainer extends Component<any, Props, any> {
   }
 
   onShouldStartLoadWithRequest = (event: any): boolean => {
-    if (event && event.url && isWebUri(event.url)) {
+    if (event && event.navigationType === 'click' && event.url && isWebUri(event.url)) {
       try {
         RCTSFSafariViewController.open(event.url)
       } catch (e) {}
       return false
     }
-
     return true
   }
 
