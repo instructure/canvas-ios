@@ -84,7 +84,7 @@ exports[`renders correctly 1`] = `
         ]
       }
     >
-      Default Term
+      rn 101
     </Text>
   </View>
 </View>

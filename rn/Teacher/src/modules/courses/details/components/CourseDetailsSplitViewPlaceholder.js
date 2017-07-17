@@ -15,7 +15,8 @@ export default class CourseDetailsSplitViewPlaceholder extends Component {
   render () {
     const courseColor = this.props.courseColor
     const course = this.props.course
-    const termName = (course.term || {}).name || ''
+    const courseCode = course.course_code || ''
+
     return (
       <Screen
         navBarColor={courseColor}
@@ -25,7 +26,7 @@ export default class CourseDetailsSplitViewPlaceholder extends Component {
           <View style={style.subContainer}>
           <Image source={Images.course.placeholder} style={style.icon} />
           <Text style={style.courseName}>{course.name}</Text>
-          <Text style={style.term}>{termName}</Text>
+          <Text style={style.term}>{courseCode}</Text>
           </View>
         </View>
       </Screen>
