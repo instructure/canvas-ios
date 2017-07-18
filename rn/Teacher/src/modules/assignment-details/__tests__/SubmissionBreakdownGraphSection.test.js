@@ -111,6 +111,24 @@ test('render multiple data points ', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('render 1 needs grading', () => {
+  defaultProps.ungraded = 1
+  defaultProps.submissionTotalCount = 2
+  const tree = renderer.create(
+    <SubmissionBreakdownGraphSection {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('render 2 need grading', () => {
+  defaultProps.ungraded = 2
+  defaultProps.submissionTotalCount = 2
+  const tree = renderer.create(
+    <SubmissionBreakdownGraphSection {...defaultProps} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('render loading with pending set', () => {
   defaultProps.pending = 1
   let tree = renderer.create(

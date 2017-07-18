@@ -52,16 +52,17 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
   }
 
   render () {
-    let gradedLabel = i18n('Graded')
-
-    let ungradedLabel = i18n('Needs Grading')
-
-    let notSubmittedLabel = i18n('Not Submitted')
-
-    let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
-
     let { graded, ungraded, notSubmitted, submissionTotalCount } = this.props
     let data = [graded, ungraded, notSubmitted]
+
+    let gradedLabel = i18n('Graded')
+    let ungradedLabel = i18n(`{
+      count, plural,
+        one {Needs Grading}
+      other {Need Grading}
+    }`, { count: ungraded })
+    let notSubmittedLabel = i18n('Not Submitted')
+    let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
 
     return (<View style={styles.container}>
               {data.map((item, index) =>

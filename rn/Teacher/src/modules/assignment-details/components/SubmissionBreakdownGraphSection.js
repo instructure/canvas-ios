@@ -58,21 +58,21 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
   }
 
   render () {
+    let { graded, ungraded } = this.props
+    let notSubmitted = this.props.not_submitted
+    let totalStudents = this.props.submissionTotalCount
+    let submissionTypes = this.props.submissionTypes || []
+
     let gradedLabel = i18n('Graded')
-
-    let ungradedLabel = i18n('Needs Grading')
-
+    let ungradedLabel = i18n(`{
+      count, plural,
+        one {Needs Grading}
+      other {Need Grading}
+    }`, { count: ungraded })
     let notSubmittedLabel = i18n('Not Submitted')
 
     let labels = [gradedLabel, ungradedLabel, notSubmittedLabel]
-
     let ids = ['graded', 'ungraded', 'not-submitted']
-
-    let totalStudents = this.props.submissionTotalCount
-    let graded = this.props.graded
-    let ungraded = this.props.ungraded
-    let notSubmitted = this.props.not_submitted
-    let submissionTypes = this.props.submissionTypes || []
 
     let noSubmissions = submissionTypes.includes('none')
     if (noSubmissions) { return this.renderNoSubmissions() }
