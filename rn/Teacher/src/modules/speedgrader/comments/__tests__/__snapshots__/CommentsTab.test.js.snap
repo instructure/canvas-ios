@@ -1001,9 +1001,13 @@ exports[`comments render properly 1`] = `
       }
     >
       <View
-        accessibilityComponentType="button"
-        accessibilityLabel={undefined}
-        accessibilityTraits="button"
+        accessibilityComponentType={undefined}
+        accessibilityLabel="Add Media"
+        accessibilityTraits={
+          Array [
+            "button",
+          ]
+        }
         accessible={true}
         collapsable={undefined}
         hitSlop={undefined}

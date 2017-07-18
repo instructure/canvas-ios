@@ -6,8 +6,8 @@ import {
   StyleSheet,
   Image,
   TextInput,
+  TouchableOpacity,
 } from 'react-native'
-import Button from 'react-native-button'
 import i18n from 'format-message'
 import Images from '../../../images'
 import colors from '../../../common/colors'
@@ -89,8 +89,8 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
       <View>
         <View style={styles.toolbar}>
           {this.props.allowMediaComments &&
-            <Button
-              containerStyle={styles.mediaButton}
+            <TouchableOpacity
+              style={styles.mediaButton}
               testID='comment-input.add-media'
               onPress={this.addMedia}
               accessible
@@ -102,7 +102,7 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
                 source={Images.add}
                 style={styles.plus}
               />
-            </Button>
+            </TouchableOpacity>
           }
           <View style={styles.inputContainer}>
             <TextInput
@@ -125,18 +125,19 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
             {
               this.state.textComment != null &&
               this.state.textComment.length > 0 &&
-              <Button
-                containerStyle={styles.sendButton}
+              <TouchableOpacity
+                style={styles.sendButton}
                 testID='comment-input.send'
-                onPress={this.makeComment}
+                onPress={!disableSend ? this.makeComment : null}
                 accessibilityLabel={send}
-                disabled={disableSend}
+                accessibilityTraits={['button']}
+                activeOpacity={disableSend ? 1 : 0.2}
               >
                 <Image
                   style={styles.sendButtonArrow}
                   source={Images.upArrow}
                 />
-              </Button>
+              </TouchableOpacity>
             }
           </View>
         </View>

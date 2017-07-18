@@ -17,7 +17,7 @@ exports[`CommentInput renders 1`] = `
       }
     }
   >
-    <Button
+    <TouchableOpacity
       accessibilityLabel="Add Media"
       accessibilityTraits={
         Array [
@@ -25,12 +25,12 @@ exports[`CommentInput renders 1`] = `
         ]
       }
       accessible={true}
-      containerStyle={
+      onPress={[Function]}
+      style={
         Object {
           "alignSelf": "center",
         }
       }
-      onPress={[Function]}
       testID="comment-input.add-media"
     >
       <Image
@@ -42,7 +42,7 @@ exports[`CommentInput renders 1`] = `
           }
         }
       />
-    </Button>
+    </TouchableOpacity>
     <View
       style={
         Object {
@@ -193,7 +193,7 @@ exports[`disables the send button with a prop 1`] = `
       }
     }
   >
-    <Button
+    <TouchableOpacity
       accessibilityLabel="Add Media"
       accessibilityTraits={
         Array [
@@ -201,12 +201,12 @@ exports[`disables the send button with a prop 1`] = `
         ]
       }
       accessible={true}
-      containerStyle={
+      onPress={[Function]}
+      style={
         Object {
           "alignSelf": "center",
         }
       }
-      onPress={[Function]}
       testID="comment-input.add-media"
     >
       <Image
@@ -218,7 +218,7 @@ exports[`disables the send button with a prop 1`] = `
           }
         }
       />
-    </Button>
+    </TouchableOpacity>
     <View
       style={
         Object {

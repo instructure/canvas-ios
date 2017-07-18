@@ -564,7 +564,7 @@ exports[`Rubric has the correct score 1`] = `
               </View>
             </TouchableOpacity>
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"
@@ -1210,7 +1210,7 @@ exports[`Rubric renders a rubric 1`] = `
               </View>
             </TouchableOpacity>
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"
@@ -1856,7 +1856,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               </View>
             </TouchableOpacity>
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"
@@ -2673,7 +2673,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               </View>
             </TouchableOpacity>
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"
@@ -3371,7 +3371,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
               </View>
             </TouchableOpacity>
             <Text
-              accessible={true}
+              accessible={false}
               allowFontScaling={true}
               disabled={false}
               ellipsizeMode="tail"

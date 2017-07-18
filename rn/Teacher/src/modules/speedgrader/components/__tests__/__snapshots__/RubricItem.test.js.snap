@@ -174,7 +174,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
       </View>
     </TouchableOpacity>
     <Text
-      accessible={true}
+      accessible={false}
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
@@ -426,7 +426,7 @@ exports[`RubricItem renders 1`] = `
       </View>
     </TouchableOpacity>
     <Text
-      accessible={true}
+      accessible={false}
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
@@ -678,7 +678,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
       </View>
     </TouchableOpacity>
     <Text
-      accessible={true}
+      accessible={false}
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
@@ -923,7 +923,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       </View>
     </TouchableOpacity>
     <Text
-      accessible={true}
+      accessible={false}
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"

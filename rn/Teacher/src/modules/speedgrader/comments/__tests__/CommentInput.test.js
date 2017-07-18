@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer'
 import CommentInput from '../CommentInput'
 import explore from '../../../../../test/helpers/explore'
 
-jest.mock('react-native-button', () => 'Button')
+jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 
 test('CommentInput renders', () => {
   const tree = renderer.create(

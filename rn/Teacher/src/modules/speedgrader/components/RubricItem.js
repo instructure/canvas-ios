@@ -162,7 +162,7 @@ export default class RubricItem extends Component {
             </LinkButton>
           }
           {!hasComment &&
-            <Text style={{
+            <Text accessible={false} style={{
               fontSize: 12,
               alignSelf: 'center',
               color: colors.grey4,
