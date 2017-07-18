@@ -116,6 +116,15 @@ final class HelmViewController: UIViewController, HelmScreen {
             }
             self.title = title
         }
+        
+        if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
+            let titleView: UIView? = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath)
+            titleView?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+            titleView?.contentMode = .scaleAspectFit
+            titleView?.autoresizingMask = navigationItem.titleView?.autoresizingMask ?? [.flexibleWidth, .flexibleHeight]
+            self.navigationItem.titleView = titleView
+        }
+        
         _screenDidRender = true
     }
     
@@ -245,14 +254,6 @@ final class HelmViewController: UIViewController, HelmScreen {
             if screenConfig[PropKeys.navBarStyle] as? String == "dark" {
                 navigationController?.navigationBar.tintColor = .white
             }
-        }
-        
-        if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
-            var titleView: UIView? = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath)
-            titleView?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-            titleView?.contentMode = .scaleAspectFit
-            titleView?.autoresizingMask = navigationItem.titleView?.autoresizingMask ?? [.flexibleWidth, .flexibleHeight]
-            navigationItem.titleView = titleView
         }
         
         if let c = screenConfig["navBarTitleColor"], let titleColor = RCTConvert.uiColor(c) {
