@@ -124,8 +124,12 @@ describe('Rubric', () => {
   })
 
   it('renders the comment input when openCommentKeyboard is called', () => {
+    let props = {
+      ...defaultProps,
+      rubricSettings: templates.rubricSettings({ free_form_criterion_comments: true }),
+    }
     let tree = renderer.create(
-      <GradeTab {...defaultProps} />
+      <GradeTab {...props} />
     )
 
     tree.getInstance().openCommentKeyboard('1')

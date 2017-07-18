@@ -129,81 +129,6 @@ exports[`RubricItem changes the currently selected value when a circle is presse
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      testID="rubric-item.add-comment-2"
-    >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                },
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
-        >
-          Add Comment
-        </Text>
-      </View>
-    </TouchableOpacity>
-    <Text
-      accessible={false}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "alignSelf": "center",
-            "color": "#8B969E",
-            "fontSize": 12,
-            "paddingHorizontal": 6,
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      •
-    </Text>
-    <TouchableOpacity
-      accessibilityTraits="button"
-      onPress={[Function]}
       testID="rubric-item.description"
     >
       <View>
@@ -378,81 +303,6 @@ exports[`RubricItem renders 1`] = `
       }
     }
   >
-    <TouchableOpacity
-      accessibilityTraits="button"
-      onPress={[Function]}
-      testID="rubric-item.add-comment-2"
-    >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                },
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
-        >
-          Add Comment
-        </Text>
-      </View>
-    </TouchableOpacity>
-    <Text
-      accessible={false}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "alignSelf": "center",
-            "color": "#8B969E",
-            "fontSize": 12,
-            "paddingHorizontal": 6,
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      •
-    </Text>
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
@@ -633,81 +483,6 @@ exports[`RubricItem renders an already selected grade 1`] = `
     <TouchableOpacity
       accessibilityTraits="button"
       onPress={[Function]}
-      testID="rubric-item.add-comment-2"
-    >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
-              },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-                Object {
-                  "fontSize": 14,
-                  "fontWeight": "500",
-                },
-              ],
-              Object {
-                "fontFamily": ".SFUIDisplay-medium",
-              },
-            ]
-          }
-        >
-          Add Comment
-        </Text>
-      </View>
-    </TouchableOpacity>
-    <Text
-      accessible={false}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-          Object {
-            "color": "#2D3B45",
-            "fontSize": 16,
-          },
-          Object {
-            "alignSelf": "center",
-            "color": "#8B969E",
-            "fontSize": 12,
-            "paddingHorizontal": 6,
-          },
-          Object {
-            "fontFamily": ".SFUIDisplay",
-          },
-        ]
-      }
-    >
-      •
-    </Text>
-    <TouchableOpacity
-      accessibilityTraits="button"
-      onPress={[Function]}
       testID="rubric-item.description"
     >
       <View>
@@ -866,6 +641,132 @@ exports[`RubricItem renders the selected custom grade 1`] = `
       value="12"
     >
       12
+    </CircleToggle>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <TouchableOpacity
+      accessibilityTraits="button"
+      onPress={[Function]}
+      testID="rubric-item.description"
+    >
+      <View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "fontFamily": ".SFUIDisplay",
+              },
+              Object {
+                "color": "#2D3B45",
+                "fontSize": 16,
+              },
+              Array [
+                Object {
+                  "color": "#374A59",
+                  "fontSize": 14,
+                },
+                Object {
+                  "fontFamily": ".SFUIDisplay-bold",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+                Object {},
+                Object {
+                  "fontSize": 14,
+                  "fontWeight": "500",
+                },
+              ],
+              Object {
+                "fontFamily": ".SFUIDisplay-medium",
+              },
+            ]
+          }
+        >
+          View long description
+        </Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
+exports[`RubricItem renders with free form 1`] = `
+<View
+  style={
+    Object {
+      "paddingBottom": 12,
+      "paddingHorizontal": 16,
+      "paddingTop": 16,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Object {
+          "fontWeight": "600",
+        },
+        Object {
+          "fontFamily": ".SFUIDisplay-semibold",
+        },
+      ]
+    }
+  >
+    A description
+  </Text>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "marginBottom": 6,
+        "marginTop": 12,
+      }
+    }
+  >
+    <CircleToggle
+      accessibilityLabel="Customize Grade"
+      on={false}
+      onPress={[Function]}
+      style={
+        Object {
+          "marginBottom": 4,
+          "marginRight": 4,
+        }
+      }
+      testID="rubric-item.customize-grade-2"
+      value=""
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "tintColor": "#8B969E",
+          }
+        }
+      />
     </CircleToggle>
   </View>
   <View

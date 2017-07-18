@@ -20,6 +20,7 @@ export type RubricSettings = {
   id: string,
   points_possible: number,
   title: string,
+  free_form_criterion_comments: boolean,
 }
 
 export type RubricAssessment = {

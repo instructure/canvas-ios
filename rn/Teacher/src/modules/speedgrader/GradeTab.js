@@ -25,7 +25,6 @@ export class GradeTab extends Component {
 
   constructor (props: GradeTabProps) {
     super(props)
-
     this.state = {
       ratings: props.rubricAssessment || {},
       hasChanges: false,
@@ -161,10 +160,12 @@ export class GradeTab extends Component {
   }
 
   renderRubricItem = ({ item }: { item: Rubric }) => {
+    let settings = this.props.rubricSettings
     return (
       <RubricItem
         key={item.id}
         rubricItem={item}
+        freeFormCriterionComments={settings.free_form_criterion_comments}
         showDescription={this.showDescriptionModal}
         changeRating={this.updateScore}
         grade={this.state.ratings[item.id]}

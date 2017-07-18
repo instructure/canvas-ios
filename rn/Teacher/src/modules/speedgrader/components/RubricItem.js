@@ -28,7 +28,6 @@ export default class RubricItem extends Component {
 
   constructor (props: RubricItemProps) {
     super(props)
-
     let grade = this.props.grade && this.props.grade.points
 
     this.state = {
@@ -110,14 +109,15 @@ export default class RubricItem extends Component {
   }
 
   render () {
-    let { rubricItem } = this.props
-    let isCustomGrade = this.isCustomGrade()
-    let hasComment = this.props.grade && !!this.props.grade.comments
+    const { rubricItem, freeFormCriterionComments } = this.props
+    const isCustomGrade = this.isCustomGrade()
+    const hasComment = this.props.grade && !!this.props.grade.comments
+    const showAddComment = !hasComment && freeFormCriterionComments
     return (
       <View style={styles.container}>
         <Text style={styles.description}>{rubricItem.description}</Text>
         <View style={styles.ratings}>
-          {rubricItem.ratings.slice().reverse().map(rating => (
+          {!freeFormCriterionComments && rubricItem.ratings.slice().reverse().map(rating => (
             <CircleToggle
               key={rating.id}
               style={styles.circle}
@@ -152,7 +152,7 @@ export default class RubricItem extends Component {
           </CircleToggle>
         </View>
         <View style={styles.buttons}>
-          {!hasComment &&
+          {showAddComment &&
             <LinkButton
               textStyle={styles.buttonText}
               onPress={this.openKeyboard}
@@ -161,7 +161,7 @@ export default class RubricItem extends Component {
               {i18n('Add Comment')}
             </LinkButton>
           }
-          {!hasComment &&
+          {showAddComment &&
             <Text accessible={false} style={{
               fontSize: 12,
               alignSelf: 'center',
@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
 
 type RubricItemProps = {
   rubricItem: Rubric,
+  freeFormCriterionComments: boolean,
   grade: RubricAssessment,
   showDescription: (string) => void,
   changeRating: (string, ?number) => void,

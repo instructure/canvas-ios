@@ -26,6 +26,7 @@ let defaultProps = {
   changeRating: jest.fn(),
   openCommentKeyboard: jest.fn(),
   deleteComment: jest.fn(),
+  freeFormCriterionComments: false,
 }
 
 describe('RubricItem', () => {
@@ -34,6 +35,17 @@ describe('RubricItem', () => {
   it('renders', () => {
     let tree = renderer.create(
       <RubricItem {...defaultProps} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders with free form', () => {
+    let props = {
+      ...defaultProps,
+      freeFormCriterionComments: true,
+    }
+    let tree = renderer.create(
+      <RubricItem {...props} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -166,8 +178,12 @@ describe('RubricItem', () => {
   })
 
   it('will call openCommentKeyboard when the add comment button is pressed', () => {
+    let props = {
+      ...defaultProps,
+      freeFormCriterionComments: true,
+    }
     let tree = renderer.create(
-      <RubricItem {...defaultProps} />
+      <RubricItem {...props} />
     ).toJSON()
 
     let button = explore(tree).selectByID(`rubric-item.add-comment-${defaultProps.rubricItem.id}`) || {}
