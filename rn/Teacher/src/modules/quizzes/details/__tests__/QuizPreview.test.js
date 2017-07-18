@@ -21,18 +21,77 @@ describe('QuizPreview', () => {
   }
 
   it('renders', () => {
-    testRender(props)
-  })
-
-  function testRender (props: any) {
-    expect(render(props).toJSON()).toMatchSnapshot()
-  }
-
-  function render (props: any) {
-    return renderer.create(
+    const tree = renderer.create(
       <QuizPreview {...props} />
     )
-  }
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders on error', () => {
+    const tree = renderer.create(
+      <QuizPreview {...props} />
+    )
+    const instance = tree.getInstance()
+    instance.onError()
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders on timeout', () => {
+    const tree = renderer.create(
+      <QuizPreview {...props} />
+    )
+    const instance = tree.getInstance()
+    instance.onTimeout()
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders on timeout without actually timing out', () => {
+    const tree = renderer.create(
+      <QuizPreview {...props} />
+    )
+    const instance = tree.getInstance()
+    instance.onMessage({
+      nativeEvent: { data: 'done' },
+    })
+    instance.onTimeout()
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders on finish', () => {
+    const tree = renderer.create(
+      <QuizPreview {...props} />
+    )
+    const instance = tree.getInstance()
+    instance.webView = {
+      injectJavaScript: jest.fn(),
+    }
+    instance.onLoadEnd()
+    expect(instance.webView.injectJavaScript).toHaveBeenCalled()
+    instance.onMessage({
+      nativeEvent: { data: 'done' },
+    })
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders error if needed', () => {
+    const tree = renderer.create(
+      <QuizPreview {...props} />
+    )
+    const instance = tree.getInstance()
+    instance.webView = {
+      injectJavaScript: jest.fn(),
+    }
+    instance.onLoadEnd()
+    expect(instance.webView.injectJavaScript).toHaveBeenCalled()
+    instance.onMessage({
+      nativeEvent: { data: '' },
+    })
+    expect(tree.toJSON()).toMatchSnapshot()
+    instance.onMessage({
+      nativeEvent: { data: 'error' },
+    })
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
 })
 
 describe('QuizPreview mapStateToProps', () => {

@@ -11,6 +11,7 @@ jest.unmock('../AuthenticatedWebView.js')
 jest.mock('WebView', () => 'WebView')
 
 test('AuthenticatedWebView renders', async () => {
+  jest.useFakeTimers()
   let tree = renderer.create(
     <AuthenticatedWebView source={{ uri: 'http://fillmurray.com/100/100' }}/>
   )
@@ -24,4 +25,16 @@ test('AuthenticatedWebView renders without uri', async () => {
     <AuthenticatedWebView source={{ html: 'html is the coolest' }}/>
   )
   expect(tree.toJSON()).toMatchSnapshot()
+})
+
+test('AuthenticatedWebView can inject javascript and not explode', () => {
+  let tree = renderer.create(
+    <AuthenticatedWebView source={{ uri: 'http://fillmurray.com/100/100' }}/>
+  )
+  const instance = tree.getInstance()
+  instance.webView = {
+    injectJavaScript: jest.fn(),
+  }
+  tree.getInstance().injectJavaScript(`console.log('hello')`)
+  expect(tree.getInstance().webView.injectJavaScript).toHaveBeenCalled()
 })

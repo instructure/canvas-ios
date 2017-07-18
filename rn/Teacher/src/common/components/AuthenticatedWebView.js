@@ -7,11 +7,21 @@ import canvas from '../../api/canvas-api'
 
 export default class AuthenticatedWebView extends React.Component<any, any, any> {
 
+  webView: WebView
+
   constructor (props: any) {
     super(props)
     this.state = {
       loading: true,
     }
+  }
+
+  injectJavaScript = (script: string) => {
+    this.webView.injectJavaScript(script)
+  }
+
+  captureRef = (c: WebView) => {
+    this.webView = c
   }
 
   componentDidMount () {
@@ -52,6 +62,6 @@ export default class AuthenticatedWebView extends React.Component<any, any, any>
       ...this.props,
       source: uri ? { uri } : this.props.source,
     }
-    return <WebView {...props} />
+    return <WebView {...props} ref={this.captureRef} />
   }
 }
