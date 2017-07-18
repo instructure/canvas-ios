@@ -1,300 +1,1103 @@
 {
+  "_4927a5f1": {
+    "message": "?"
+  },
+  "a_description_is_required_54b5f1f6": {
+    "message": "En beskrivelse er påkrævet"
+  },
+  "a_message_is_required_129e1814": {
+    "message": "En besked er påkrævet"
+  },
+  "a_title_is_required_71222850": {
+    "message": "En titel er påkrævet"
+  },
+  "access_code_74f4864f": {
+    "message": "Adgangskode"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "Tilføj nogle af dine foretrukne fag for at gøre siden mere personlig.",
-    "description": "Brødtekst, når du ikke har nogen fag på siden med liste over fag."
+    "message": "Tilføj nogle af dine foretrukne fag for at gøre siden mere personlig."
+  },
+  "add_assignee_24ee0b71": {
+    "message": "Tilføj assignatar"
+  },
+  "add_comment_3205529f": {
+    "message": "Tilføj kommentar"
   },
   "add_courses_fd45abf": {
-    "message": "Tilføj fag",
-    "description": "Knap-tekst for at handle og tilføje et fag."
+    "message": "Tilføj fag"
+  },
+  "add_description_required_e222e483": {
+    "message": "Tilføj beskrivelse (påkrævet)"
+  },
+  "add_due_date_65b08f6c": {
+    "message": "Tilføj afleveringsdato"
+  },
+  "add_media_cfa37b54": {
+    "message": "Tilføj medie"
+  },
+  "add_recipient_7de2dc74": {
+    "message": "Tilføj modtager"
+  },
+  "add_title_4f788d37": {
+    "message": "Tilføj titel"
+  },
+  "after_date_e5d9b0e1": {
+    "message": "Efter { date }"
+  },
+  "after_last_attempt_c9168da2": {
+    "message": "Efter sidste forsøg"
+  },
+  "all_4321c3a1": {
+    "message": "Alle"
   },
   "all_courses_a7dbb853": {
-    "message": "Alle fag",
-    "description": "Titlen på den skærm, der viser alle en lærers fag"
+    "message": "Alle fag"
   },
   "all_grading_periods_77974940": {
-    "message": "Alle bedømmelsesperioder",
-    "description": "Overskriften på opgavelisten"
+    "message": "Alle bedømmelsesperioder"
+  },
+  "all_in_e5ddaee0": {
+    "message": "Alle i"
+  },
+  "all_submissions_3eedfb97": {
+    "message": "Alle afleveringer"
+  },
+  "all_submissions_assignmentname_3f4f4a9e": {
+    "message": "Alle afleveringer - { assignmentName }"
+  },
+  "all_submissions_b8717440": {
+    "message": "Alle afleveringer"
+  },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "Tillad flere forsøg"
+  },
+  "allow_threaded_replies_43b2311e": {
+    "message": "Tillad trådede svar"
+  },
+  "allowed_attempts_4e229caa": {
+    "message": "Tilladte forsøg"
+  },
+  "always_3a59e701": {
+    "message": "Altid"
+  },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "Der opstod en fejl under hentning af ​​denne diskussion."
+  },
+  "an_error_occurred_a4e1cda4": {
+    "message": "En fejl opstod"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "Beskeddetaljer"
+  },
+  "announcements_a4b8ed4a": {
+    "message": "Bekendtgørelser"
+  },
+  "anonymous_grading_3083dc0": {
+    "message": "Anonym bedømmelse"
+  },
+  "anonymous_grading_ccb5045c": {
+    "message": "Anonym bedømmelse"
+  },
+  "archived_de543437": {
+    "message": "Arkieret"
+  },
+  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
+    "message": "Er du sikker på, at du vil slette denne diskussion?"
+  },
+  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
+    "message": "Er du sikker på, du vil slette dette svar?"
+  },
+  "assign_to_95404a83": {
+    "message": "Tildel til"
+  },
+  "assignees_314d5e55": {
+    "message": "Assignatarer"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "Assignatar påkrævet"
   },
   "assignment_details_bc488179": {
-    "message": "Opgaveoplysninger",
-    "description": "Titel på skærmen for opgavedetaljer"
+    "message": "Opgaveoplysninger"
+  },
+  "assignment_group_1a781505": {
+    "message": "Opgavegruppe"
   },
   "assignments_1e02582c": {
-    "message": "Opgaver",
-    "description": "Titel på opgaveskærmen for et fag"
+    "message": "Opgaver"
+  },
+  "assignments_list_fe3e54be": {
+    "message": "Opgaveliste"
+  },
+  "at_791460b3": {
+    "message": "ved"
+  },
+  "attachment_deffe5a9": {
+    "message": "Vedhæftede fil"
+  },
+  "availability_8942cde6": {
+    "message": "Tilgængelighed"
   },
   "availability_closed_429d1ba5": {
     "message": "Tilgængelighed: Lukket"
   },
   "availability_e415e857": {
-    "message": "Tilgængelighed:",
-    "description": "Opgave afleveringsdato, feltet \"Tilgængelig for:\""
+    "message": "Tilgængelighed:"
   },
-  "available_from_f84e4611": {
+  "available_from_3821bccc": {
+    "message": "Tilgængelig fra:"
+  },
+  "available_from_587ce92f": {
     "message": "Tilgængelig fra"
   },
-  "available_from_f9e093c8": {
-    "message": "Tilgængelig fra:",
-    "description": "Opgave afleveringsdato, feltet \"Tilgængelig fra:\""
+  "available_from_date_bb9d5115": {
+    "message": "Tilgængelig fra: { date }"
   },
-  "available_to_434cb9f5": {
-    "message": "Tilgængelig for:",
-    "description": "Opgave afleveringsdato, feltet \"Tilgængelig for:\""
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "Tilgængelig fra skal ligge før Tilgængelig indtil"
   },
-  "available_to_b7350e02": {
+  "available_until_20c0cc5c": {
+    "message": "Tilgængelig indtil:"
+  },
+  "available_until_date_37684818": {
+    "message": "Tilgængelig indtil: { date }"
+  },
+  "available_until_f3b9c4ed": {
     "message": "Tilgængelig indtil"
   },
-  "back_courses": {
-    "message": "Kurser",
-    "description": "Tilbageknappens titel for at gå fra alle fag til bare de foretrukne fag"
+  "average_49c63f9b": {
+    "message": "Gennemsnitlig"
+  },
+  "back_2900f52a": {
+    "message": "Tilbage"
+  },
+  "back_to_replies_94f3c127": {
+    "message": "Tilbage til svar"
+  },
+  "bold_34b9d97e": {
+    "message": "Fed"
   },
   "cancel_caeb1e68": {
     "message": "Annuller"
   },
+  "canvas_parent_app_f9236a3a": {
+    "message": "Canvas-app til forældre"
+  },
+  "canvas_student_app_329567f": {
+    "message": "Canvas-app til studerende"
+  },
+  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
+    "message": "Skift { discussionTitle } til anden gruppering"
+  },
+  "choose_1319ef6b": {
+    "message": "Vælg"
+  },
   "choose_color_11148181": {
-    "message": "Vælg { color }",
-    "description": "Tilgængelighedsmærke for at vælge en farve"
+    "message": "Vælg { color }"
   },
   "clear_filter_5b3a182d": {
     "message": "Nulstil filter"
   },
-  "closed_983a96fe": {
-    "message": "Lukket",
-    "description": "Opgave afleveringsdato, feltet \"Tilgængelig for:\""
+  "clear_filter_5c961d1b": {
+    "message": "Nulstil filter"
   },
-  "closed_datestring_at_timestring_fab7aa9d": {
-    "message": "Lukket • { dateString } kl. { timeString }"
+  "clear_filter_inbox_9465e74c": {
+    "message": "Slet indbakkefilter"
+  },
+  "clear_filter_submissions_7def30db": {
+    "message": "Nulstil filter-afleveringer"
+  },
+  "close_for_comments_ce0e5d00": {
+    "message": "Luk for kommentarer"
+  },
+  "closed_983a96fe": {
+    "message": "Lukket"
+  },
+  "closed_for_comments_e395b42f": {
+    "message": "Lukket for kommentarer"
   },
   "color_a363e1b0": {
-    "message": "Farve",
-    "description": "Titelmærke for fagets farvevælger"
+    "message": "Farve"
+  },
+  "coming_soon_b059a738": {
+    "message": "Kommer snart ..."
+  },
+  "comment_7ef1428e": {
+    "message": "Kommentar"
+  },
+  "comment_failed_acf11b54": {
+    "message": "Kommentar mislykkedes"
+  },
+  "comments_e07bcbe3": {
+    "message": "Kommentarer"
+  },
+  "complete_fd828dea": {
+    "message": "Fuldført"
+  },
+  "complete_incomplete_15b3a89c": {
+    "message": "Fuldstændig/ufuldstændig"
+  },
+  "compose_message_45002196": {
+    "message": "Skriv besked"
+  },
+  "conversation_options_8be926f3": {
+    "message": "Samtaleindstillinger"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Kunne ikke få en liste over opgaver"
   },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,\n     =0 {0 studerende}\n    one {# studerende}\n  other {# studerende}\n}"
+  },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,\n    one {# point}\n  other {# point}\n}"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,\n    one {# Spørgsmål}\n  other {# Spørgsmål}\n}"
+  },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,\n    one {Der er # assignater uden karakter.}\n  other {Der er # assignatarer uden karakterer.}\n}"
+  },
+  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
+    "message": "{ count, plural,\n   zero {# Svar}\n    one {# Svar}\n  other {# Svar}\n}"
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } studerende"
+  },
   "count_ungraded_bc673f29": {
     "message": "{ count } ikke bedømt"
   },
+  "course_activity_stream_40091c17": {
+    "message": "Fagaktivitet stream"
+  },
+  "course_modules_795cb95e": {
+    "message": "Fagmoduler"
+  },
+  "course_sections_380358a5": {
+    "message": "Fagsektioner"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "Fagindstillinger"
+  },
   "courses_43204aae": {
-    "message": "Kurser",
-    "description": "Overskriften for listen over favoritfag"
+    "message": "Kurser"
   },
   "customize_course_eefa9c21": {
-    "message": "Tilpas fag",
-    "description": "Titlen på skærmen med brugerens fagpræferencer"
+    "message": "Tilpas fag"
+  },
+  "customize_grade_c9d046d": {
+    "message": "Tilpas karakter"
   },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } ved { timeString }"
   },
-  "discussion_topic_a7bf935": {
-    "message": "diskussions emne",
-    "description": "opgave afleveringstype"
+  "delay_posting_f45eed7d": {
+    "message": "Forsink indlæg"
+  },
+  "delete_a6efa79d": {
+    "message": "Slet"
+  },
+  "delete_recipient_recipient_22a1e3dd": {
+    "message": "Slet modtager { recipient }"
+  },
+  "deleted_this_reply_8b5b0ddc": {
+    "message": "Slet dette svar."
+  },
+  "description_436c48d7": {
+    "message": "Beskrivelse"
+  },
+  "details_98a31b68": {
+    "message": "Detaljer"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "Diskussionsdetaljer"
+  },
+  "discussion_topic_dc85ad4c": {
+    "message": "Diskussionsemne"
+  },
+  "discussions_a5f96392": {
+    "message": "Diskussioner"
+  },
+  "display_grade_as_7b5376a6": {
+    "message": "Vis karakter som"
+  },
+  "display_grade_as_c165e9a6": {
+    "message": "Vis karakter som ..."
   },
   "done_54e3d4b6": {
-    "message": "Udført",
-    "description": "Tilbage-knappen for at gå til forrige skærm"
-  },
-  "done_beta_feedback": {
-    "message": "Udført",
-    "description": "Knap til at afvise feedback-formular."
-  },
-  "done_edit_assignment": {
-    "message": "Udført",
-    "description": "Knap til at lukke modal"
+    "message": "Udført"
   },
   "due_5d7267be": {
-    "message": "Forfald:",
-    "description": "Opgave afleveringsdato, feltet \"Forfalder:\" Ligner noget i denne her retning, når færdig: \"Forfalder: D. 13. marts, 2019\""
+    "message": "Forfald:"
   },
   "due_a73610f6": {
-    "message": "Forfalder",
-    "description": "Opgavedetaljesektion, titel for hvornår opgaven skal afleveres"
+    "message": "Forfalder"
   },
-  "due_datestring_at_timestring_9fac66bd": {
-    "message": "Forfalder d. { dateString } kl. { timeString }"
+  "due_date_822625d8": {
+    "message": "Forfaldsdato"
   },
-  "edit_assignment_details_a7c96fea": {
-    "message": "Rediger opgavedetaljer",
-    "description": "Titel på skærmen for REDIGERING af opgavedetaljer"
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "Afleveringsdato skal ligge mellem Tilgængelig fra- og Tilgængelig indtil-datoer"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "Afleveringsdatoer, dobbeltklik for detaljer."
+  },
+  "edit_assignment_ebf22a72": {
+    "message": "Rediger opgave"
   },
   "edit_c5fbea07": {
-    "message": "Rediger",
-    "description": "Vist øverst i appen for at gøre det muligt for brugeren at redigere"
+    "message": "Rediger"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "Rediger kommentar"
+  },
+  "edit_course_settings_9736fd1f": {
+    "message": "Rediger fagindstillinger"
   },
   "edit_courses_1f63340f": {
-    "message": "Rediger fag",
-    "description": "Titlen på skærmen gør det muligt for lærere at tilføje og fjerne favoritter for deres fag"
+    "message": "Rediger fag"
+  },
+  "edit_description_1206e0a8": {
+    "message": "Rediger beskrivelse"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "Rediger quizdetaljer"
+  },
+  "enter_code_c7ab5104": {
+    "message": "Indtast kode"
+  },
+  "error_sending_e_mail_275383b": {
+    "message": "Fejl ved afsendelse af e-mail"
   },
   "everyone_854554dd": {
     "message": "Alle"
   },
-  "external_tool_d6eaa5c1": {
-    "message": "eksternt værktøj",
-    "description": "opgave afleveringstype"
+  "everyone_else_cc5f6888": {
+    "message": "Alle andre"
+  },
+  "excuse_student_1b60e311": {
+    "message": "Fritag studerende"
+  },
+  "excused_cf8792eb": {
+    "message": "Undskyldt"
+  },
+  "external_tool_c5a6410a": {
+    "message": "Eksternt værktøj"
+  },
+  "failed_comment_options_aa19a936": {
+    "message": "Mislykkede kommentarindstillinger"
+  },
+  "favorite_courses_fbd356f0": {
+    "message": "Favoritfag"
+  },
+  "files_c300e900": {
+    "message": "Filer"
+  },
+  "files_numberoffiles_66240ab2": {
+    "message": "Filer ({ numberOfFiles })"
   },
   "filter_by_ffcbd05b": {
-    "message": "Filtrer efter:",
-    "description": "Angiver for brugeren, at de kan filtrere efter forskellige muligheder"
+    "message": "Filtrer efter:"
   },
   "filter_e3398407": {
     "message": "Filter"
+  },
+  "filter_inbox_dae0ff8f": {
+    "message": "Filtrér indbakke"
+  },
+  "filter_submissions_81bc50de": {
+    "message": "Filtrer afleveringer"
   },
   "for_974cbb84": {
     "message": "Til"
   },
   "for_e3490d05": {
-    "message": "Til:",
-    "description": "Opgave afleveringsdato, feltet \"For:\""
+    "message": "Til:"
+  },
+  "forward_d143f64": {
+    "message": "Videresend"
+  },
+  "forwarded_message_3acb578c": {
+    "message": "Videresendt besked:"
+  },
+  "full_screen_712e95f1": {
+    "message": "Fuld skærm"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "Vs.: { subject }"
+  },
+  "gpa_71809a99": {
+    "message": "GPA"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "GPA-scala"
+  },
+  "grade_9c6f076d": {
+    "message": "Karakter"
   },
   "graded_25cd3fcd": {
-    "message": "Bedømt",
-    "description": "Opgavedetaljer afleveringsgraf `givet karakter`"
+    "message": "Bedømt"
   },
-  "inbox_bb245a60": {
-    "message": "Indboks",
-    "description": "Mærke, der indikerer, at brugeren er på indbakke-fanen"
+  "graded_assignmentname_f530f81d": {
+    "message": "Har fået karakter - { assignmentName }"
   },
-  "instructions_2f88ee72": {
-    "message": "Instruktioner",
-    "description": "Opgavedetaljesektion, titel for opgaveinstruktioner"
+  "graded_quiz_7fabdf1f": {
+    "message": "Bedømt quiz"
   },
-  "late_2be42b88": {
-    "message": "Sen",
-    "description": "Opgaven blev afleveret for sent"
+  "graded_survey_c0f0c395": {
+    "message": "Bedømt spørgeundersøgelse"
+  },
+  "grades_a61eba0a": {
+    "message": "Karakterer"
+  },
+  "grades_muted_76c70047": {
+    "message": "Karakterer uden besked til de studerende"
+  },
+  "grades_muted_anonymous_grading_9291ea4b": {
+    "message": "Karakterer uden besked til de studerende, anonym klassificering"
+  },
+  "group_a8f5ed9c": {
+    "message": "Gruppe"
+  },
+  "groups_6c90e26a": {
+    "message": "Grupper"
+  },
+  "half_screen_9cdd83ad": {
+    "message": "Halv skærm"
+  },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "Er ikke blevet bedømt"
+  },
+  "haven_t_been_graded_assignmentname_eaafdd9f": {
+    "message": "Har ikke fået karakter - { assignmentName }"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "Er ikke blevet indsendt endnu"
+  },
+  "haven_t_submitted_yet_assignmentname_dd06c39f": {
+    "message": "Har ikke indsendt endnu - { assignmentName }"
+  },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "Skjul korrekte svar ved"
+  },
+  "hide_date_cannot_be_before_show_date_cfaa35f0": {
+    "message": "Skjul dato kan ikke ligge før Vis dato"
+  },
+  "highest_28ad71e6": {
+    "message": "Højeste"
+  },
+  "incomplete_da3c2ea2": {
+    "message": "Ufuldstændig"
+  },
+  "insert_image_42d30344": {
+    "message": "Indsæt billede"
+  },
+  "insert_link_6dc23cae": {
+    "message": "Indsæt link"
+  },
+  "invalid_field_54480fae": {
+    "message": "Ugyldigt felt"
+  },
+  "italic_ac45200a": {
+    "message": "Kursiv"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "Sidste post { lastReplyDateStr }"
+  },
+  "late_bd436902": {
+    "message": "SEN"
+  },
+  "latest_f604a75": {
+    "message": "Seneste"
   },
   "leave_feedback_df88476c": {
-    "message": "Giv feedback",
-    "description": "Vist øverst i appen for at gøre det muligt for brugeren at give feedback"
+    "message": "Giv feedback"
   },
-  "logout_a9312e35": {
-    "message": "Logud"
+  "length_in_minutes_eca69868": {
+    "message": "Længde i minutter"
   },
-  "media_recording_7df9606f": {
-    "message": "medieoptagelse",
-    "description": "opgave afleveringstype"
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "Lad de studerende se det korrekte svar"
   },
-  "missing_1a256b3b": {
-    "message": "Manglende",
-    "description": "Opgaven er ikke blevet afleveret"
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "Lad de studerende se deres svar på quiz"
+  },
+  "letter_grade_29ff1938": {
+    "message": "Bogstavkarakterer"
+  },
+  "letter_grade_e83e363c": {
+    "message": "Bogstavkarakter"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "Lås spørgsmål efter besvarelse"
+  },
+  "log_out_379ba28a": {
+    "message": "Log ud"
+  },
+  "long_description_7d89285c": {
+    "message": "Lang beskrivelse"
+  },
+  "mark_all_as_read_8f3bdf57": {
+    "message": "Markér alle som læst"
+  },
+  "me_bf110f4d": {
+    "message": "mig"
+  },
+  "media_recording_77cddc52": {
+    "message": "Medieoptagelse"
+  },
+  "message_5c38209d": {
+    "message": "Besked"
+  },
+  "message_details_342e931f": {
+    "message": "Beskeddetaljer"
+  },
+  "message_options_59805b8e": {
+    "message": "Beskedindstillinger"
+  },
+  "message_students_who_778ce759": {
+    "message": "Send besked til studerende, som"
+  },
+  "minutes_4aee5a41": {
+    "message": "Minutter"
+  },
+  "missing_eaddacbd": {
+    "message": "MANGLER"
+  },
+  "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
+    "message": "Ændret karaktergivning understøttes ikke i øjeblikket i mobil SpeedGrader."
   },
   "multiple_due_dates_283dd861": {
-    "message": "Flere forfaldsdatoer",
-    "description": "Information om opgavedetaljer mht. afleveringsdatoer, når der er mere end en afleveringsdato at vise"
+    "message": "Flere forfaldsdatoer"
+  },
+  "mute_grades_b85bece1": {
+    "message": "Giv ikke besked til de studerende om karakterer"
+  },
+  "name_1aed4a1b": {
+    "message": "Navn"
+  },
+  "name_count_others_6e5afa7c": {
+    "message": "{ name } + { count } andre"
+  },
+  "new_13daf639": {
+    "message": "Ny"
+  },
+  "new_discussion_dae4fae3": {
+    "message": "Ny diskussion"
+  },
+  "new_message_f9bbd1c0": {
+    "message": "Ny besked"
   },
   "nickname_1e6da3ad": {
-    "message": "Alias",
-    "description": "Tekst, der beskriver et fags kaldenavn"
+    "message": "Alias"
   },
-  "no_due_date_1d63d13b": {
+  "no_available_from_date_set_6f659d06": {
+    "message": "Ingen tilgængelige fra dato indstillet."
+  },
+  "no_available_from_date_set_db356ac3": {
+    "message": "Ingen tilgængelige fra dato indstillet"
+  },
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "Ikke tilgængelig, indtil dato er indstillet"
+  },
+  "no_available_until_date_set_df9e7434": {
+    "message": "Ikke tilgængelig, indtil dato er indstillet."
+  },
+  "no_due_date_44271c53": {
     "message": "Ingen forfaldsdato"
   },
-  "no_submission_yet_709d689d": {
-    "message": "Ingen aflevering endnu",
-    "description": "Ingen aflevering fra den studerende for den givne opgave"
+  "no_due_date_set_bb3a2bf7": {
+    "message": "Ingen afleveringsdato angivet."
   },
-  "none_9b6c9bec": {
-    "message": "ingen",
-    "description": "opgave afleveringstype"
+  "no_e16d9132": {
+    "message": "Nej"
+  },
+  "no_internet_connection_9df26cf8": {
+    "message": "Ingen internetforbindelse"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "Ingen beskeder"
+  },
+  "no_results_f36777ee": {
+    "message": "Ingen resultater"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "Ingen beskeder med stjerne"
+  },
+  "no_subject_2e2a413c": {
+    "message": "(intet emne)"
+  },
+  "no_subject_58b7941c": {
+    "message": "Intet emne"
+  },
+  "no_time_limit_2147d9bf": {
+    "message": "Ingen tidsbegrænsning"
+  },
+  "none_3b5e34d2": {
+    "message": "Ingen"
+  },
+  "not_a_teacher_b0d0fc55": {
+    "message": "Ikke en lærer?"
+  },
+  "not_graded_e027c866": {
+    "message": "Ikke bedømt"
   },
   "not_published_73f7079": {
     "message": "Ikke offentliggjort"
   },
   "not_submitted_7d05fdb4": {
-    "message": "Ikke indsendt",
-    "description": "Opgavedetaljer afleveringsgraf `givet karakter`"
+    "message": "Ikke indsendt"
   },
-  "on_paper_7e67f764": {
-    "message": "på papir",
-    "description": "opgave afleveringstype"
+  "number_plural_one_minute_other_minutes_648ec0e1": {
+    "message": "{ number, plural,\n    one {# Minut}\n  other {# Minutter}\n}"
   },
-  "online_quiz_7d450a0c": {
-    "message": "online quiz",
-    "description": "opgave afleveringstype"
+  "off_5385ef3f": {
+    "message": "Slået fra"
   },
-  "online_text_entry_a1e78de0": {
-    "message": "online tekstindtastning",
-    "description": "opgave afleveringstype"
+  "ok_c47544a2": {
+    "message": "OK"
   },
-  "online_upload_ed44db51": {
-    "message": "online upload",
-    "description": "opgave afleveringstype"
+  "ok_ff1b646a": {
+    "message": "Ok"
   },
-  "online_url_ee794b28": {
-    "message": "online url",
-    "description": "opgave afleveringstype"
+  "on_8f7190e5": {
+    "message": "Slået til"
   },
-  "open_user_course_preferences_32dd14a7": {
-    "message": "Åbn brugerens præferencer for fag",
-    "description": "Tilgængelighedsmærkat på ikonknappen til at åbne fagets brugerindstillinger"
+  "on_paper_46d0ba36": {
+    "message": "På papir"
   },
-  "profile_6bd2baed": {
-    "message": "Profil",
-    "description": "Mærke, der indikerer, at brugeren er i profilfanen"
+  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
+    "message": "En af vores andre apps kan være bedre egnet. Tryk på en for at besøge App Store."
+  },
+  "one_question_at_a_time_3161ceeb": {
+    "message": "Et spørgsmål ad gangen"
+  },
+  "online_quiz_5beb2ae5": {
+    "message": "Online Quiz"
+  },
+  "online_text_entry_1d893ce": {
+    "message": "Online tekstindtastning"
+  },
+  "online_upload_59969592": {
+    "message": "Online upload"
+  },
+  "online_url_37830a72": {
+    "message": "Online URL"
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "Kun en gang efter hvert forsøg"
+  },
+  "open_coursename_user_preferences_430b877e": {
+    "message": "Åbn brugerpræferencer for { courseName }"
+  },
+  "open_drawer_f3c8b11": {
+    "message": "Åbn skuffe"
+  },
+  "open_for_comments_1810648": {
+    "message": "Åben for kommentarer"
+  },
+  "options_3ab0ea65": {
+    "message": "Muligheder"
+  },
+  "ordered_list_5fb1ce41": {
+    "message": "Ordnet liste"
+  },
+  "out_of_count_fc1cd44d": {
+    "message": "Ud af { count }"
+  },
+  "out_of_points_c40a0475": {
+    "message": "Ud af { points }"
+  },
+  "pages_front_page_9ce5188": {
+    "message": "Sider forside"
+  },
+  "percent_d7ddd35b": {
+    "message": "Procentdel (%)"
+  },
+  "percentage_34ab7c2c": {
+    "message": "Procentdel"
+  },
+  "pin_cdbc9f8f": {
+    "message": "Fastgør"
+  },
+  "pinned_discussions_a55c0cea": {
+    "message": "Fastgjorte diskussioner"
+  },
+  "please_enter_a_number_49c4975d": {
+    "message": "Indtast venligst et tal"
+  },
+  "points_bb475533": {
+    "message": "Points"
+  },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } ud af { totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "Mulige point skal være et tal"
+  },
+  "post_at_a9e0fecb": {
+    "message": "Indlæg på ..."
+  },
+  "practice_quiz_19a8505d": {
+    "message": "Øvelsesquiz"
+  },
+  "preview_quiz_1ffbf684": {
+    "message": "Forhåndsvisning af quiz"
+  },
+  "preview_unavailable_aacd459a": {
+    "message": "Forhåndsvisning ikke tilgængelig"
+  },
+  "previewing_this_file_type_is_not_supported_7df9231": {
+    "message": "Forhåndsvisning af denne filtype understøttes ikke"
+  },
+  "profile_actions_cfcbb476": {
+    "message": "Profilhandlinger"
   },
   "pts_699bd9aa": {
-    "message": "point",
-    "description": "Opgavedetaljer, point for given opgave"
+    "message": "point"
+  },
+  "publish_5211dca3": {
+    "message": "Offentliggør"
   },
   "published_4bb5209e": {
-    "message": "Offentliggjort",
-    "description": "Offentliggjort tekst"
+    "message": "Offentliggjort"
+  },
+  "quiz_details_6c4473d3": {
+    "message": "Nærmere oplysninger om quizzen"
+  },
+  "quiz_preview_a7e75769": {
+    "message": "Forhåndsvisning af quiz"
+  },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "Quizresultat som skal noteres"
+  },
+  "quiz_type_be1633db": {
+    "message": "Quiztype"
+  },
+  "quizzes_7e598f57": {
+    "message": "Quizzer"
+  },
+  "recipient_recipient_394cf528": {
+    "message": "Modtager: { recipient }"
+  },
+  "redo_363c58b7": {
+    "message": "Annuller fortryd"
+  },
+  "remove_date_edf2f565": {
+    "message": "Fjern dato"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "Fjern afleveringsdato"
+  },
+  "remove_f47dc62a": {
+    "message": "Fjern"
+  },
+  "replies_4a8577c8": {
+    "message": "Svar"
+  },
+  "reply_389d6fb9": {
+    "message": "Svar"
+  },
+  "report_a_problem_4d48624a": {
+    "message": "Rapporter et problem"
+  },
+  "require_an_access_code_46a02601": {
+    "message": "Kræv en adgangskode"
+  },
+  "retry_ebd5f8ba": {
+    "message": "Prøv igen"
+  },
+  "rubric_fc39da76": {
+    "message": "Vurderingskriterie"
+  },
+  "save_11a80ec3": {
+    "message": "Gem"
   },
   "saving_2521e616": {
-    "message": "Gemmer",
-    "description": "Tekst, når der gives en anmodning om at opdatere en opgave, og brugeren venter"
+    "message": "Gemmer"
+  },
+  "score_more_than_score_assignmentname_a4fdc7fe": {
+    "message": "Resultat højere end { score } - { assignmentName }"
+  },
+  "score_to_keep_48ace09b": {
+    "message": "Resultat som skal noteres"
+  },
+  "scored_less_than_93cde0d2": {
+    "message": "Scorede mindre end ..."
+  },
+  "scored_less_than_score_assignmentname_1b20b789": {
+    "message": "Resultat lavere end { score } - { assignmentName }"
+  },
+  "scored_more_than_2185a818": {
+    "message": "Scorede mere end ..."
+  },
+  "search_280d00bd": {
+    "message": "Søg"
   },
   "see_all_ffa422ef": {
-    "message": "Se alle",
-    "description": "Knap til at skifte fra liste over foretrukne fag til liste over alle fag"
+    "message": "Se alle"
   },
-  "set_this_for_the_default_color_of_the_course_this__d86d133": {
-    "message": "Indstil denne til fagets standardfarve. Dette tilsidesætter ikke en personlig farveindstilling.",
-    "description": "Beskrivelse af farvevælgeren vist til brugeren"
+  "select_a_course_40bc3229": {
+    "message": "Vælg et fag"
+  },
+  "select_a_course_4710371f": {
+    "message": "Vælg et fag"
+  },
+  "send_e3bd0ed0": {
+    "message": "Send"
+  },
+  "send_individual_message_to_each_recipient_4fdfc1e5": {
+    "message": "Send individuel besked til hver modtager"
+  },
+  "sending_bf324366": {
+    "message": "Sender ..."
+  },
+  "sent_fe0a1eb4": {
+    "message": "Sendt"
+  },
+  "set_home_to_82ab5119": {
+    "message": "Indstil ''Hjem'' til ..."
+  },
+  "show_correct_answers_a4b957e4": {
+    "message": "Vis korrekte svar"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "Vis korrekte svar d."
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "Vis et spørgsmål ad gangen"
+  },
+  "show_to_hide_2c0b6d39": {
+    "message": "{ show } til { hide }"
+  },
+  "shuffle_answers_edb602b7": {
+    "message": "Bland svar"
+  },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "Giv stjerne til beskeder ved at trykke på stjernen i beskeden."
+  },
+  "starred_5a9efa8a": {
+    "message": "Markeret med stjerne"
+  },
+  "student_5da6bfd1": {
+    "message": "Studerende"
+  },
+  "students_1b8cd07b": {
+    "message": "Studerende"
+  },
+  "subject_114b2e98": {
+    "message": "Emne"
+  },
+  "submission_settings_f57b0cf8": {
+    "message": "Afleveringsindstillinger"
   },
   "submission_types_af57bf0": {
-    "message": "Afleveringstyper",
-    "description": "Titel på opgavedetaljesektion for indsendelsestyper, (dvs. online, tekst, upload, osv.)"
+    "message": "Afleveringstyper"
   },
   "submissions_11e96106": {
-    "message": "Afleveringer",
-    "description": "Opgavedetaljesektion, titel for indsendelser af opgaver"
+    "message": "Afleveringer"
   },
-  "submitted_318fad53": {
-    "message": "Indsendt",
-    "description": "Opgaven er blevet afleveret"
+  "submitted_f7bc311f": {
+    "message": "AFLEVERET"
+  },
+  "submitted_late_3741af29": {
+    "message": "Indsendt for sent"
+  },
+  "submitted_late_assignmentname_adf957b2": {
+    "message": "Indsendt sent - { assignmentName }"
+  },
+  "subscribe_4b301fb7": {
+    "message": "Abonner"
+  },
+  "survey_31a240e6": {
+    "message": "Spørgeundersøgelse"
+  },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "Stryg til venstre eller højre for at se andre indlæg fra de studerende"
+  },
+  "syllabus_f191f65b": {
+    "message": "Pensum"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "Tryk og hold et rubriknummer for at se dens beskrivelse"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "Tryk på \"+\" for at oprette en ny diskussion"
+  },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "Tryk for at se listen over afsendelser."
+  },
+  "terms_of_use_6542769b": {
+    "message": "Betingelser for brug"
+  },
+  "text_color_acf75eb6": {
+    "message": "Tekstfarve"
+  },
+  "text_submission_935eeb5": {
+    "message": "Tekst indsendelse"
+  },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "Værdien af ​​mulige point skal være nul eller større"
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "Der opstod en fejl under indlæsning af listen over tilmeldinger."
   },
-  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
-    "message": "Der opstod en uventet fejl. Luk denne bemærkning og prøv igen.",
-    "description": "Generel fejlmeddelelse"
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "Der opstod et problem ved indlæsning af diskussioner."
   },
-  "this_is_the_inbox_b957d042": {
-    "message": "Dette er indbakken"
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "Der opstod et problem ved indlæsning af beskederne."
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "Der opstod et problem ved indlæsning af opgave-afleveringer."
+  },
+  "there_was_a_problem_loading_the_groups_6945e624": {
+    "message": "Der opstod et problem ved indlæsning af grupperne."
+  },
+  "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
+    "message": "Der opstod et problem ved indlæsning af quiz-afleveringer."
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "Der opstod et problem ved indlæsning af quizzer."
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "Der opstod et problem ved indlæsning af dine meddelelser."
+  },
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "Der opstod en uventet fejl. Prøv venligst igen."
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "Denne handling kræver en internetforbindelse."
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "Denne opgave tillader ikke afleveringer."
+  },
+  "this_assignment_links_to_an_external_tool_for_subm_3ac1ae26": {
+    "message": "Denne opgave henviser til et eksternt værktøj til aflevering."
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "Denne opgave tillader kun aflevering på papir."
+  },
+  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
+    "message": "Denne gruppe har ikke nogen aflevering for denne opgave."
+  },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "Denne er din personlige farveindstilling. Du er den eneste, der ser denne farve sammen med faget."
+  },
+  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
+    "message": "Denne studerende har ingen aflevering til denne opgave"
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "Denne aflevering er en URL til en ekstern side. Vi har inkluderet et snapshot af, hvordan siden så ud, da den blev afleveret."
+  },
+  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
+    "message": "Dette anonymiserer hver studerende og blander afleveringslisten."
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "Dette fjerner afleveringsdatoen og alle af de tilknyttede assignatarer."
+  },
+  "time_limit_a6f1a51e": {
+    "message": "Tidsgrænse"
+  },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } Besked"
+  },
+  "title_discussion_4cff9841": {
+    "message": "{ title } Diskussion"
   },
   "title_ee03d132": {
-    "message": "Titel",
-    "description": "Opgavedetaljer rediger titeloverskrift"
+    "message": "Titel"
+  },
+  "to_51406be9": {
+    "message": "Til"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "til { count } andre"
+  },
+  "to_me_780716c7": {
+    "message": "til mig"
+  },
+  "to_name_bb3e415e": {
+    "message": "til { name }"
+  },
+  "try_logging_in_again_7a66111a": {
+    "message": "Prøv at logge ind igen"
+  },
+  "un_starred_8fef021f": {
+    "message": "Uden stjerne"
+  },
+  "undo_a7be8fef": {
+    "message": "Fortryd"
   },
   "unexpected_error_93991f40": {
-    "message": "Uforventet fejl",
-    "description": "Den generiske betegnelse for den generiske fejlmeddelelse"
+    "message": "Uforventet fejl"
   },
   "ungraded_147a0dce": {
-    "message": "ikke bedømt",
-    "description": "Mærkat for opgaveafleveringer uden karakter"
+    "message": "ikke bedømt"
   },
   "ungraded_ed0c6f98": {
-    "message": "ikke bedømt",
-    "description": "Opgavedetaljer afleveringsgraf `givet karakter`"
+    "message": "ikke bedømt"
+  },
+  "ungraded_survey_ad7de790": {
+    "message": "Ikke bedømt spørgeundersøgelse"
+  },
+  "unknown_author_40d64455": {
+    "message": "Ukendt forfatter"
+  },
+  "unlimited_ff19e96d": {
+    "message": "Ubegrænset"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "Ikke ordnet liste"
+  },
+  "unpin_a318452a": {
+    "message": "Frigør"
   },
   "unpublished_8b6107d6": {
-    "message": "Ikke offentliggjort",
-    "description": "Ikke-offentliggjort tekst"
+    "message": "Ikke offentliggjort"
+  },
+  "unread_e9c1b19c": {
+    "message": "Ikke læst"
+  },
+  "until_date_f3b9f367": {
+    "message": "Indtil { date }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL forhåndsvisningsbillede"
+  },
+  "url_submission_f76327e3": {
+    "message": "URL aflevering"
+  },
+  "users_must_post_before_seeing_replies_d1761968": {
+    "message": "Brugere skal lægge indlæg ud, inden de ser svar"
+  },
+  "version_version_a051e218": {
+    "message": "Version { version }"
+  },
+  "view_all_submissions_915a8b78": {
+    "message": "Se alle afleveringer"
+  },
+  "view_long_description_bafad8a4": {
+    "message": "Se lang beskrivelse"
+  },
+  "view_more_replies_9fef9983": {
+    "message": "Se flere svar"
+  },
+  "view_responses_d2874266": {
+    "message": "Vis svar"
+  },
+  "visit_the_canvas_guides_7328b93f": {
+    "message": "Besøg Canvas-vejledningerne"
   },
   "welcome_73d18b4d": {
-    "message": "Velkommen!",
-    "description": "Velkommen-headerteksten når bruger har ikke han nogen fag endnu."
+    "message": "Velkommen!"
+  },
+  "yes_dde87d5": {
+    "message": "Ja"
+  },
+  "you_must_enter_an_access_code_8c2c7ae0": {
+    "message": "Du skal indtaste en adgangskode"
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "Din afleveringskommentar blev ikke sendt."
   }
 }

@@ -1,299 +1,1103 @@
 {
+  "_4927a5f1": {
+    "message": "？"
+  },
+  "a_description_is_required_54b5f1f6": {
+    "message": "描述必填"
+  },
+  "a_message_is_required_129e1814": {
+    "message": "消息必填"
+  },
+  "a_title_is_required_71222850": {
+    "message": "标题必填"
+  },
+  "access_code_74f4864f": {
+    "message": "访问代码"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "添加您的一些收藏课程，使其成为您的首页。",
-    "description": "课程列表页上没有任何课程时的主体文本。"
+    "message": "添加您的一些收藏课程，使其成为您的首页。"
+  },
+  "add_assignee_24ee0b71": {
+    "message": "添加指定人员"
+  },
+  "add_comment_3205529f": {
+    "message": "添加评论"
   },
   "add_courses_fd45abf": {
-    "message": "添加课程",
-    "description": "用于执行操作和添加课程的按钮文本。"
+    "message": "添加课程"
+  },
+  "add_description_required_e222e483": {
+    "message": "添加说明（必填）"
+  },
+  "add_due_date_65b08f6c": {
+    "message": "添加截止日期"
+  },
+  "add_media_cfa37b54": {
+    "message": "添加媒体"
+  },
+  "add_recipient_7de2dc74": {
+    "message": "添加接收人"
+  },
+  "add_title_4f788d37": {
+    "message": "添加标题"
+  },
+  "after_date_e5d9b0e1": {
+    "message": "之后{ date }"
+  },
+  "after_last_attempt_c9168da2": {
+    "message": "在上次尝试后"
+  },
+  "all_4321c3a1": {
+    "message": "全部"
   },
   "all_courses_a7dbb853": {
-    "message": "所有课程",
-    "description": "显示教师全部课程的屏幕名称"
+    "message": "所有课程"
   },
   "all_grading_periods_77974940": {
-    "message": "所有评分周期",
-    "description": "作业列表上的标头"
+    "message": "所有评分周期"
+  },
+  "all_in_e5ddaee0": {
+    "message": "全部加入"
+  },
+  "all_submissions_3eedfb97": {
+    "message": "所有提交项"
+  },
+  "all_submissions_assignmentname_3f4f4a9e": {
+    "message": "所有提交项{ assignmentName }"
+  },
+  "all_submissions_b8717440": {
+    "message": "所有提交项"
+  },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "允许多次尝试"
+  },
+  "allow_threaded_replies_43b2311e": {
+    "message": "允许将回复信息按话题组织"
+  },
+  "allowed_attempts_4e229caa": {
+    "message": "允许的尝试"
+  },
+  "always_3a59e701": {
+    "message": "始终"
+  },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "提取此会话时出错。"
+  },
+  "an_error_occurred_a4e1cda4": {
+    "message": "发生错误"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "公告详细信息"
+  },
+  "announcements_a4b8ed4a": {
+    "message": "通告"
+  },
+  "anonymous_grading_3083dc0": {
+    "message": "匿名评分"
+  },
+  "anonymous_grading_ccb5045c": {
+    "message": "匿名评分"
+  },
+  "archived_de543437": {
+    "message": "存档"
+  },
+  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
+    "message": "是否确定要删除这个讨论?"
+  },
+  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
+    "message": "是否确定要删除此回复?"
+  },
+  "assign_to_95404a83": {
+    "message": "分配到"
+  },
+  "assignees_314d5e55": {
+    "message": "指定人员"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "指定人员必填"
   },
   "assignment_details_bc488179": {
-    "message": "作业详情",
-    "description": "作业详情屏幕名称"
+    "message": "作业详情"
+  },
+  "assignment_group_1a781505": {
+    "message": "作业小组"
   },
   "assignments_1e02582c": {
-    "message": "作业",
-    "description": "课程作业屏幕名称"
+    "message": "作业"
+  },
+  "assignments_list_fe3e54be": {
+    "message": "作业列表"
+  },
+  "at_791460b3": {
+    "message": "时间"
+  },
+  "attachment_deffe5a9": {
+    "message": "附件"
+  },
+  "availability_8942cde6": {
+    "message": "可用性"
   },
   "availability_closed_429d1ba5": {
     "message": "可用性：已关闭"
   },
   "availability_e415e857": {
-    "message": "可用性：",
-    "description": "作业截止日期 \"结束日期:\" 字段"
+    "message": "可用性："
   },
-  "available_from_f84e4611": {
-    "message": "开始时间"
+  "available_from_3821bccc": {
+    "message": "起始可用日期："
   },
-  "available_from_f9e093c8": {
-    "message": "开始日期：",
-    "description": "作业截止日期 \"开始日期：\" 字段"
+  "available_from_587ce92f": {
+    "message": "开始日期"
   },
-  "available_to_434cb9f5": {
-    "message": "结束日期：",
-    "description": "作业截止日期 \"结束日期:\" 字段"
+  "available_from_date_bb9d5115": {
+    "message": "开始日期：{ date }"
   },
-  "available_to_b7350e02": {
-    "message": "结束日期"
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "“起始可用日期”必须早于“截止可用日期”"
   },
-  "back_courses": {
-    "message": "课程",
-    "description": "从所有课程切换至仅收藏课程的后退按钮名称"
+  "available_until_20c0cc5c": {
+    "message": "截止可用日期："
+  },
+  "available_until_date_37684818": {
+    "message": "截止可用日期：{ date }"
+  },
+  "available_until_f3b9c4ed": {
+    "message": "有效直到"
+  },
+  "average_49c63f9b": {
+    "message": "平均"
+  },
+  "back_2900f52a": {
+    "message": "返回"
+  },
+  "back_to_replies_94f3c127": {
+    "message": "返回到回复"
+  },
+  "bold_34b9d97e": {
+    "message": "粗体"
   },
   "cancel_caeb1e68": {
     "message": "取消"
   },
+  "canvas_parent_app_f9236a3a": {
+    "message": "Canvas 家长应用"
+  },
+  "canvas_student_app_329567f": {
+    "message": "Canvas 学生应用"
+  },
+  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
+    "message": "将 { discussionTitle } 更改到不同分组"
+  },
+  "choose_1319ef6b": {
+    "message": "选择"
+  },
   "choose_color_11148181": {
-    "message": "选择{ color }",
-    "description": "用于选择颜色的辅助功能标签"
+    "message": "选择{ color }"
   },
   "clear_filter_5b3a182d": {
     "message": "清除筛选条件"
   },
-  "closed_983a96fe": {
-    "message": "已关闭",
-    "description": "作业截止日期 \"结束日期:\" 字段"
+  "clear_filter_5c961d1b": {
+    "message": "清除筛选器"
   },
-  "closed_datestring_at_timestring_fab7aa9d": {
-    "message": "已关闭 • { dateString }{ timeString }"
+  "clear_filter_inbox_9465e74c": {
+    "message": "清除筛选收件箱"
+  },
+  "clear_filter_submissions_7def30db": {
+    "message": "清除筛选器提交项"
+  },
+  "close_for_comments_ce0e5d00": {
+    "message": "关闭评论"
+  },
+  "closed_983a96fe": {
+    "message": "已关闭"
+  },
+  "closed_for_comments_e395b42f": {
+    "message": "关闭评论"
   },
   "color_a363e1b0": {
-    "message": "颜色",
-    "description": "课程颜色选择器名称标签"
+    "message": "颜色"
+  },
+  "coming_soon_b059a738": {
+    "message": "即将推出..."
+  },
+  "comment_7ef1428e": {
+    "message": "评论"
+  },
+  "comment_failed_acf11b54": {
+    "message": "评论失败"
+  },
+  "comments_e07bcbe3": {
+    "message": "评论"
+  },
+  "complete_fd828dea": {
+    "message": "完成"
+  },
+  "complete_incomplete_15b3a89c": {
+    "message": "完成/未完成"
+  },
+  "compose_message_45002196": {
+    "message": "撰写消息"
+  },
+  "conversation_options_8be926f3": {
+    "message": "对话选项"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "无法获取作业列表"
   },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,\n     =0 {0 位学生}\n    one {# 位学生}\n  other {# 位学生}\n}"
+  },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,\n    one {# 得分}\n  other {# 得分}\n}"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,\n    one {# 个问题}\n  other {# 个问题}\n}"
+  },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,\n    one {有 # 个指定人员没有评分。}\n  other {有 # 个指定人员没有评分。}\n}"
+  },
+  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
+    "message": "{ count, plural,\n   zero {# 回复 }\n    one {# 条回复，共 }\n  other {# 条回复}\n}"
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } 学生"
+  },
   "count_ungraded_bc673f29": {
     "message": "{ count } 未评分"
   },
+  "course_activity_stream_40091c17": {
+    "message": "课程活动流"
+  },
+  "course_modules_795cb95e": {
+    "message": "课程单元"
+  },
+  "course_sections_380358a5": {
+    "message": "课程班级"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "课程设置"
+  },
   "courses_43204aae": {
-    "message": "课程",
-    "description": "收藏课程列表标头"
+    "message": "课程"
   },
   "customize_course_eefa9c21": {
-    "message": "自定义课程",
-    "description": "用户课程首选项屏幕名称"
+    "message": "自定义课程"
+  },
+  "customize_grade_c9d046d": {
+    "message": "自定义评分"
   },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } 时间{ timeString }"
   },
-  "discussion_topic_a7bf935": {
-    "message": "讨论话题",
-    "description": "作业提交项类型"
+  "delay_posting_f45eed7d": {
+    "message": "延迟发布"
+  },
+  "delete_a6efa79d": {
+    "message": "删除"
+  },
+  "delete_recipient_recipient_22a1e3dd": {
+    "message": "删除接收人{ recipient }"
+  },
+  "deleted_this_reply_8b5b0ddc": {
+    "message": "删除此回复。"
+  },
+  "description_436c48d7": {
+    "message": "说明"
+  },
+  "details_98a31b68": {
+    "message": "细节"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "讨论详细信息"
+  },
+  "discussion_topic_dc85ad4c": {
+    "message": "讨论主题"
+  },
+  "discussions_a5f96392": {
+    "message": "讨论"
+  },
+  "display_grade_as_7b5376a6": {
+    "message": "将评分显示为"
+  },
+  "display_grade_as_c165e9a6": {
+    "message": "将评分显示为..."
   },
   "done_54e3d4b6": {
-    "message": "完成",
-    "description": "用于屏幕后退的后退按钮"
-  },
-  "done_beta_feedback": {
-    "message": "完成",
-    "description": "用于取消反馈表单的按钮。"
-  },
-  "done_edit_assignment": {
-    "message": "完成",
-    "description": "用于关闭模式的按钮"
+    "message": "完成"
   },
   "due_5d7267be": {
     "message": "截止："
   },
   "due_a73610f6": {
-    "message": "截止",
-    "description": "作业详情部分作业到期时的名称"
+    "message": "截止"
   },
-  "due_datestring_at_timestring_9fac66bd": {
-    "message": "截止 { dateString }{ timeString }"
+  "due_date_822625d8": {
+    "message": "截止日期"
   },
-  "edit_assignment_details_a7c96fea": {
-    "message": "编辑作业详情",
-    "description": "作业详情编辑屏幕名称"
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "“截止日期”必须在“起始可用日期”与“截止可用日期”之间"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "截止日期，双击可显示详情。"
+  },
+  "edit_assignment_ebf22a72": {
+    "message": "编辑作业"
   },
   "edit_c5fbea07": {
-    "message": "编辑",
-    "description": "在应用程序顶部显示以允许用户进行编辑"
+    "message": "编辑"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "编辑评论"
+  },
+  "edit_course_settings_9736fd1f": {
+    "message": "编辑课程设置"
   },
   "edit_courses_1f63340f": {
-    "message": "编辑课程",
-    "description": "允许教师收藏和取消收藏课程的屏幕名称"
+    "message": "编辑课程"
+  },
+  "edit_description_1206e0a8": {
+    "message": "编辑说明"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "编辑测验详情"
+  },
+  "enter_code_c7ab5104": {
+    "message": "输入代码"
+  },
+  "error_sending_e_mail_275383b": {
+    "message": "发送电子邮件时出错"
   },
   "everyone_854554dd": {
     "message": "所有人"
   },
-  "external_tool_d6eaa5c1": {
-    "message": "外部工具",
-    "description": "作业提交项类型"
+  "everyone_else_cc5f6888": {
+    "message": "其他所有人"
+  },
+  "excuse_student_1b60e311": {
+    "message": "免除学生"
+  },
+  "excused_cf8792eb": {
+    "message": "免除"
+  },
+  "external_tool_c5a6410a": {
+    "message": "外部工具"
+  },
+  "failed_comment_options_aa19a936": {
+    "message": "失败的评论选项"
+  },
+  "favorite_courses_fbd356f0": {
+    "message": "最喜欢的课程"
+  },
+  "files_c300e900": {
+    "message": "文件"
+  },
+  "files_numberoffiles_66240ab2": {
+    "message": "文件({ numberOfFiles })"
   },
   "filter_by_ffcbd05b": {
-    "message": "筛选条件：",
-    "description": "向用户指示他们可以按照一些选项进行筛选"
+    "message": "筛选条件："
   },
   "filter_e3398407": {
     "message": "筛选条件"
+  },
+  "filter_inbox_dae0ff8f": {
+    "message": "筛选收件箱"
+  },
+  "filter_submissions_81bc50de": {
+    "message": "筛选器提交项"
   },
   "for_974cbb84": {
     "message": "用于"
   },
   "for_e3490d05": {
-    "message": "用于：",
-    "description": "作业截止日期 \"用于:\" 字段"
+    "message": "用于："
+  },
+  "forward_d143f64": {
+    "message": "转发"
+  },
+  "forwarded_message_3acb578c": {
+    "message": "转发消息："
+  },
+  "full_screen_712e95f1": {
+    "message": "全屏"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "转发：{ subject }"
+  },
+  "gpa_71809a99": {
+    "message": "GPA"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "GPA 分数"
+  },
+  "grade_9c6f076d": {
+    "message": "评分"
   },
   "graded_25cd3fcd": {
-    "message": "已评分",
-    "description": "作业详情提交项图表`已评分`"
+    "message": "已评分"
   },
-  "inbox_bb245a60": {
-    "message": "收件箱",
-    "description": "指示用户在收件箱标签页上的标签"
+  "graded_assignmentname_f530f81d": {
+    "message": "已评分 -{ assignmentName }"
   },
-  "instructions_2f88ee72": {
-    "message": "说明",
-    "description": "作业详情部分作业说明名称"
+  "graded_quiz_7fabdf1f": {
+    "message": "评分测验"
   },
-  "late_2be42b88": {
-    "message": "迟到、迟交",
-    "description": "晚交作业"
+  "graded_survey_c0f0c395": {
+    "message": "评分调查"
+  },
+  "grades_a61eba0a": {
+    "message": "评分"
+  },
+  "grades_muted_76c70047": {
+    "message": "已屏蔽评分"
+  },
+  "grades_muted_anonymous_grading_9291ea4b": {
+    "message": "已屏蔽评分，匿名评分"
+  },
+  "group_a8f5ed9c": {
+    "message": "小组"
+  },
+  "groups_6c90e26a": {
+    "message": "组群"
+  },
+  "half_screen_9cdd83ad": {
+    "message": "半屏"
+  },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "尚未评分"
+  },
+  "haven_t_been_graded_assignmentname_eaafdd9f": {
+    "message": "暂未评分 -{ assignmentName }"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "尚未提交"
+  },
+  "haven_t_submitted_yet_assignmentname_dd06c39f": {
+    "message": "暂未提交 -{ assignmentName }"
+  },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "隐藏正确答案在"
+  },
+  "hide_date_cannot_be_before_show_date_cfaa35f0": {
+    "message": "“隐藏日期”不能早于“显示日期”"
+  },
+  "highest_28ad71e6": {
+    "message": "最高"
+  },
+  "incomplete_da3c2ea2": {
+    "message": "未完成"
+  },
+  "insert_image_42d30344": {
+    "message": "插入图片"
+  },
+  "insert_link_6dc23cae": {
+    "message": "插入链接"
+  },
+  "invalid_field_54480fae": {
+    "message": "无效的字段"
+  },
+  "italic_ac45200a": {
+    "message": "斜体"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "上一次发布{ lastReplyDateStr }"
+  },
+  "late_bd436902": {
+    "message": "延迟"
+  },
+  "latest_f604a75": {
+    "message": "最近"
   },
   "leave_feedback_df88476c": {
-    "message": "留下反馈信息",
-    "description": "在应用程序顶部显示以允许用户撰写反馈"
+    "message": "留下反馈信息"
   },
-  "logout_a9312e35": {
+  "length_in_minutes_eca69868": {
+    "message": "时长(分钟)"
+  },
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "让学生查看正确答案"
+  },
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "让学生们查看他们的测验回应"
+  },
+  "letter_grade_29ff1938": {
+    "message": "字母评分"
+  },
+  "letter_grade_e83e363c": {
+    "message": "字母评分"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "回答后锁定问题"
+  },
+  "log_out_379ba28a": {
     "message": "退出"
   },
-  "media_recording_7df9606f": {
-    "message": "媒体录制",
-    "description": "作业提交项类型"
+  "long_description_7d89285c": {
+    "message": "长说明"
   },
-  "missing_1a256b3b": {
-    "message": "丢失",
-    "description": "未上交作业"
+  "mark_all_as_read_8f3bdf57": {
+    "message": "全部标记为已读"
+  },
+  "me_bf110f4d": {
+    "message": "本人"
+  },
+  "media_recording_77cddc52": {
+    "message": "媒体录制"
+  },
+  "message_5c38209d": {
+    "message": "信息"
+  },
+  "message_details_342e931f": {
+    "message": "消息详细信息"
+  },
+  "message_options_59805b8e": {
+    "message": "消息选项"
+  },
+  "message_students_who_778ce759": {
+    "message": "给学生发送消息"
+  },
+  "minutes_4aee5a41": {
+    "message": "分钟"
+  },
+  "missing_eaddacbd": {
+    "message": "缺失"
+  },
+  "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
+    "message": "目前在移动 SpeedGrader 中不支持审核后的评分。"
   },
   "multiple_due_dates_283dd861": {
-    "message": "多个截止日期",
-    "description": "作业详情显示多个截止日期时，有关截止日期的信息"
+    "message": "多个截止日期"
+  },
+  "mute_grades_b85bece1": {
+    "message": "屏蔽评分"
+  },
+  "name_1aed4a1b": {
+    "message": "名称、名字"
+  },
+  "name_count_others_6e5afa7c": {
+    "message": "{ name } + 另外 { count } 个"
+  },
+  "new_13daf639": {
+    "message": "新建"
+  },
+  "new_discussion_dae4fae3": {
+    "message": "新讨论"
+  },
+  "new_message_f9bbd1c0": {
+    "message": "新消息"
   },
   "nickname_1e6da3ad": {
-    "message": "昵称",
-    "description": "描述为课程指定的昵称的文本"
+    "message": "昵称"
   },
-  "no_due_date_1d63d13b": {
-    "message": "没有截止日期"
+  "no_available_from_date_set_6f659d06": {
+    "message": "从设定日期开始无可用项。"
   },
-  "no_submission_yet_709d689d": {
-    "message": "暂无提交项",
-    "description": "学生未对给定作业进行提交"
+  "no_available_from_date_set_db356ac3": {
+    "message": "从设定日期开始无可用项"
   },
-  "none_9b6c9bec": {
-    "message": "无",
-    "description": "作业提交项类型"
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "在设定日期前不可用"
+  },
+  "no_available_until_date_set_df9e7434": {
+    "message": "在设定日期前不可用。"
+  },
+  "no_due_date_44271c53": {
+    "message": "无截止日期"
+  },
+  "no_due_date_set_bb3a2bf7": {
+    "message": "未设定截止日期"
+  },
+  "no_e16d9132": {
+    "message": "不、非"
+  },
+  "no_internet_connection_9df26cf8": {
+    "message": "无互联网连接"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "无消息"
+  },
+  "no_results_f36777ee": {
+    "message": "无结果"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "未对消息标记星号"
+  },
+  "no_subject_2e2a413c": {
+    "message": "（无主题）"
+  },
+  "no_subject_58b7941c": {
+    "message": "无主题"
+  },
+  "no_time_limit_2147d9bf": {
+    "message": "无时间限制"
+  },
+  "none_3b5e34d2": {
+    "message": "没有"
+  },
+  "not_a_teacher_b0d0fc55": {
+    "message": "不是教师？"
+  },
+  "not_graded_e027c866": {
+    "message": "未评分"
   },
   "not_published_73f7079": {
     "message": "未发布"
   },
   "not_submitted_7d05fdb4": {
-    "message": "未提交",
-    "description": "作业详情提交项图表“已评分”"
+    "message": "未提交"
   },
-  "on_paper_7e67f764": {
-    "message": "书面",
-    "description": "作业提交项类型"
+  "number_plural_one_minute_other_minutes_648ec0e1": {
+    "message": "{ number, plural,\n    one {# 分钟}\n  other {#分钟}\n}"
   },
-  "online_quiz_7d450a0c": {
-    "message": "在线测验",
-    "description": "作业提交项类型"
+  "off_5385ef3f": {
+    "message": "关"
   },
-  "online_text_entry_a1e78de0": {
-    "message": "在线文本输入",
-    "description": "作业提交项类型"
+  "ok_c47544a2": {
+    "message": "OK"
   },
-  "online_upload_ed44db51": {
-    "message": "在线上传",
-    "description": "作业提交项类型"
+  "ok_ff1b646a": {
+    "message": "Ok"
   },
-  "online_url_ee794b28": {
-    "message": "在线 URL",
-    "description": "作业提交项类型"
+  "on_8f7190e5": {
+    "message": "开"
   },
-  "open_user_course_preferences_32dd14a7": {
-    "message": "打开用户课程首选项",
-    "description": "用于打开课程用户首选项的图标按钮上的辅助功能标签"
+  "on_paper_46d0ba36": {
+    "message": "纸上"
   },
-  "profile_6bd2baed": {
-    "message": "档案",
-    "description": "指示用户在个人资料标签页上的标签"
+  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
+    "message": "我们的其他应用可能更合适。单击可访问应用商店。"
+  },
+  "one_question_at_a_time_3161ceeb": {
+    "message": "一次一个问题"
+  },
+  "online_quiz_5beb2ae5": {
+    "message": "在线测验"
+  },
+  "online_text_entry_1d893ce": {
+    "message": "在线文本输入"
+  },
+  "online_upload_59969592": {
+    "message": "在线上传"
+  },
+  "online_url_37830a72": {
+    "message": "在线 URL"
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "仅当每次尝试之后"
+  },
+  "open_coursename_user_preferences_430b877e": {
+    "message": "打开{ courseName }用户首选项"
+  },
+  "open_drawer_f3c8b11": {
+    "message": "打开抽屉"
+  },
+  "open_for_comments_1810648": {
+    "message": "开放评论"
+  },
+  "options_3ab0ea65": {
+    "message": "选项"
+  },
+  "ordered_list_5fb1ce41": {
+    "message": "有序列表"
+  },
+  "out_of_count_fc1cd44d": {
+    "message": "共{ count }"
+  },
+  "out_of_points_c40a0475": {
+    "message": "共{ points }"
+  },
+  "pages_front_page_9ce5188": {
+    "message": "页面首页"
+  },
+  "percent_d7ddd35b": {
+    "message": "百分比 (%)"
+  },
+  "percentage_34ab7c2c": {
+    "message": "百分数"
+  },
+  "pin_cdbc9f8f": {
+    "message": "固定"
+  },
+  "pinned_discussions_a55c0cea": {
+    "message": "既定讨论"
+  },
+  "please_enter_a_number_49c4975d": {
+    "message": "请输入一个数字"
+  },
+  "points_bb475533": {
+    "message": "点"
+  },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } 共{ totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "满分必须为数字"
+  },
+  "post_at_a9e0fecb": {
+    "message": "发布位置..."
+  },
+  "practice_quiz_19a8505d": {
+    "message": "练习测验"
+  },
+  "preview_quiz_1ffbf684": {
+    "message": "预览测验"
+  },
+  "preview_unavailable_aacd459a": {
+    "message": "预览不可用"
+  },
+  "previewing_this_file_type_is_not_supported_7df9231": {
+    "message": "此文件类型不支持预览"
+  },
+  "profile_actions_cfcbb476": {
+    "message": "个人资料操作"
   },
   "pts_699bd9aa": {
-    "message": "得分",
-    "description": "作业详情给定作业得分"
+    "message": "得分"
+  },
+  "publish_5211dca3": {
+    "message": "发布"
   },
   "published_4bb5209e": {
-    "message": "已发布",
-    "description": "已发布文本"
+    "message": "已发布"
+  },
+  "quiz_details_6c4473d3": {
+    "message": "测验详情"
+  },
+  "quiz_preview_a7e75769": {
+    "message": "测验预览"
+  },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "要保留的测验分数"
+  },
+  "quiz_type_be1633db": {
+    "message": "测验类型"
+  },
+  "quizzes_7e598f57": {
+    "message": "测验"
+  },
+  "recipient_recipient_394cf528": {
+    "message": "接收人：{ recipient }"
+  },
+  "redo_363c58b7": {
+    "message": "重新操作"
+  },
+  "remove_date_edf2f565": {
+    "message": "删除日期"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "删除截止日期"
+  },
+  "remove_f47dc62a": {
+    "message": "移除"
+  },
+  "replies_4a8577c8": {
+    "message": "回复"
+  },
+  "reply_389d6fb9": {
+    "message": "回复"
+  },
+  "report_a_problem_4d48624a": {
+    "message": "报告一个问题"
+  },
+  "require_an_access_code_46a02601": {
+    "message": "要求访问代码"
+  },
+  "retry_ebd5f8ba": {
+    "message": "重试"
+  },
+  "rubric_fc39da76": {
+    "message": "评分细则"
+  },
+  "save_11a80ec3": {
+    "message": "保存"
   },
   "saving_2521e616": {
-    "message": "保存",
-    "description": "已请求更新作业且用户正在等待时的文本"
+    "message": "保存"
+  },
+  "score_more_than_score_assignmentname_a4fdc7fe": {
+    "message": "分数高于 { score } -{ assignmentName }"
+  },
+  "score_to_keep_48ace09b": {
+    "message": "要保留的分数"
+  },
+  "scored_less_than_93cde0d2": {
+    "message": "分数低于..."
+  },
+  "scored_less_than_score_assignmentname_1b20b789": {
+    "message": "分数低于 { score } -{ assignmentName }"
+  },
+  "scored_more_than_2185a818": {
+    "message": "分数高于..."
+  },
+  "search_280d00bd": {
+    "message": "搜索"
   },
   "see_all_ffa422ef": {
-    "message": "查看全部",
-    "description": "用于从收藏课程列表切换到所有课程列表的按钮"
+    "message": "查看全部"
   },
-  "set_this_for_the_default_color_of_the_course_this__d86d133": {
-    "message": "为课程的默认颜色设置它。这不会覆盖个人颜色设置。",
-    "description": "向用户显示的颜色选择器描述"
+  "select_a_course_40bc3229": {
+    "message": "选择课程"
+  },
+  "select_a_course_4710371f": {
+    "message": "选择课程"
+  },
+  "send_e3bd0ed0": {
+    "message": "发送"
+  },
+  "send_individual_message_to_each_recipient_4fdfc1e5": {
+    "message": "给每位接收人单独发送消息"
+  },
+  "sending_bf324366": {
+    "message": "正在发送..."
+  },
+  "sent_fe0a1eb4": {
+    "message": "已发送"
+  },
+  "set_home_to_82ab5119": {
+    "message": "将“首页”设置为..."
+  },
+  "show_correct_answers_a4b957e4": {
+    "message": "显示正确答案"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "显示正确答案在"
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "一次显示一个问题"
+  },
+  "show_to_hide_2c0b6d39": {
+    "message": "{ show } 截止日期{ hide }"
+  },
+  "shuffle_answers_edb602b7": {
+    "message": "重组答案"
+  },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "单击消息中的星号可对消息标记星号。"
+  },
+  "starred_5a9efa8a": {
+    "message": "已标记"
+  },
+  "student_5da6bfd1": {
+    "message": "学生"
+  },
+  "students_1b8cd07b": {
+    "message": "学生"
+  },
+  "subject_114b2e98": {
+    "message": "主题"
+  },
+  "submission_settings_f57b0cf8": {
+    "message": "提交设置"
   },
   "submission_types_af57bf0": {
-    "message": "提交项类型",
-    "description": "作业详情部分提交项类型（指在线、文本、上传等）名称"
+    "message": "提交项类型"
   },
   "submissions_11e96106": {
-    "message": "提交项",
-    "description": "作业详情部分提交项信息名称"
+    "message": "提交项"
   },
-  "submitted_318fad53": {
-    "message": "提交",
-    "description": "已上交作业"
+  "submitted_f7bc311f": {
+    "message": "已提交"
+  },
+  "submitted_late_3741af29": {
+    "message": "迟交"
+  },
+  "submitted_late_assignmentname_adf957b2": {
+    "message": "迟交 -{ assignmentName }"
+  },
+  "subscribe_4b301fb7": {
+    "message": "订阅"
+  },
+  "survey_31a240e6": {
+    "message": "调查"
+  },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "向左或向右滑动可查看其他学生的提交项"
+  },
+  "syllabus_f191f65b": {
+    "message": "教学大纲"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "按住红色数字可查看说明"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "单击 \"+\" 可创建新对话 "
+  },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "单击以查看提交项列表。"
+  },
+  "terms_of_use_6542769b": {
+    "message": "使用条款"
+  },
+  "text_color_acf75eb6": {
+    "message": "文本颜色"
+  },
+  "text_submission_935eeb5": {
+    "message": "文体提交"
+  },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "可能的得分值必须等于或大于零。"
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "上传注册学员列表时出现错误"
   },
-  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
-    "message": "出现意外错误。请关闭此警告，然后重试。",
-    "description": "一般错误消息"
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "加载讨论时出现问题。"
   },
-  "this_is_the_inbox_b957d042": {
-    "message": "这是收件箱"
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "加载公告时出现问题。"
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "加载作业提交时出现问题。"
+  },
+  "there_was_a_problem_loading_the_groups_6945e624": {
+    "message": "加载组时出现问题。"
+  },
+  "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
+    "message": "加载测验提交时出现问题。"
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "加载测验时出现问题。"
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "加载您的消息时出现问题。"
+  },
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "出现意外错误。请重试。"
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "此操作需要互联网连接。"
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "此作业不允许提交。"
+  },
+  "this_assignment_links_to_an_external_tool_for_subm_3ac1ae26": {
+    "message": "此作业关联用于提交的外部工具。"
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "此作业仅允许纸上提交。"
+  },
+  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
+    "message": "此组没有此作业的提交项。"
+  },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "这是您的个人颜色设置。只有您自己可以看到此课程颜色。"
+  },
+  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
+    "message": "此学生未提交此作业。"
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "此提交项是一个外部页面的 URL。我们已包含被提交时的页面看起来像什么的快照。"
+  },
+  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
+    "message": "这将使每位学生匿名并随机排列提交项列表。"
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "这将删除截止日期和所有关联的指定人员。"
+  },
+  "time_limit_a6f1a51e": {
+    "message": "时限"
+  },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } 公告"
+  },
+  "title_discussion_4cff9841": {
+    "message": "{ title } 讨论"
   },
   "title_ee03d132": {
-    "message": "标题",
-    "description": "作业详情编辑名称标头"
+    "message": "标题"
+  },
+  "to_51406be9": {
+    "message": "接收人"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "至其他 { count } 个人"
+  },
+  "to_me_780716c7": {
+    "message": "至本人"
+  },
+  "to_name_bb3e415e": {
+    "message": "截止日期{ name }"
+  },
+  "try_logging_in_again_7a66111a": {
+    "message": "再次尝试登录"
+  },
+  "un_starred_8fef021f": {
+    "message": "未标记星号"
+  },
+  "undo_a7be8fef": {
+    "message": "后退"
   },
   "unexpected_error_93991f40": {
-    "message": "意外错误",
-    "description": "一般错误消息的一般名称"
+    "message": "意外错误"
   },
   "ungraded_147a0dce": {
-    "message": "未评分",
-    "description": "未评分作业提交项标签"
+    "message": "未评分"
   },
   "ungraded_ed0c6f98": {
-    "message": "未评分",
-    "description": "作业详情提交项图表`已评分`"
+    "message": "未评分"
+  },
+  "ungraded_survey_ad7de790": {
+    "message": "非评分调查"
+  },
+  "unknown_author_40d64455": {
+    "message": "未知作者"
+  },
+  "unlimited_ff19e96d": {
+    "message": "无限"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "无序的列表"
+  },
+  "unpin_a318452a": {
+    "message": "取消固定"
   },
   "unpublished_8b6107d6": {
-    "message": "未发布",
-    "description": "未发布文本"
+    "message": "未发布"
+  },
+  "unread_e9c1b19c": {
+    "message": "未读"
+  },
+  "until_date_f3b9f367": {
+    "message": "直至{ date }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL 预览图像"
+  },
+  "url_submission_f76327e3": {
+    "message": "URL 提交"
+  },
+  "users_must_post_before_seeing_replies_d1761968": {
+    "message": "用户必须先发布本人信息才能阅读他人回复"
+  },
+  "version_version_a051e218": {
+    "message": "版本{ version }"
+  },
+  "view_all_submissions_915a8b78": {
+    "message": "查看所有提交项"
+  },
+  "view_long_description_bafad8a4": {
+    "message": "查看长说明"
+  },
+  "view_more_replies_9fef9983": {
+    "message": "查看更多回复"
+  },
+  "view_responses_d2874266": {
+    "message": "查看答题结果"
+  },
+  "visit_the_canvas_guides_7328b93f": {
+    "message": "访问 Canvas 指南"
   },
   "welcome_73d18b4d": {
-    "message": "欢迎！",
-    "description": "用户没有课程时的欢迎标头文本"
+    "message": "欢迎！"
+  },
+  "yes_dde87d5": {
+    "message": "是"
+  },
+  "you_must_enter_an_access_code_8c2c7ae0": {
+    "message": "您必须输入访问代码"
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "您的提交评论发送失败。"
   }
 }

@@ -1,300 +1,1103 @@
 {
+  "_4927a5f1": {
+    "message": "?"
+  },
+  "a_description_is_required_54b5f1f6": {
+    "message": "Требуется описание"
+  },
+  "a_message_is_required_129e1814": {
+    "message": "Требуется сообщение"
+  },
+  "a_title_is_required_71222850": {
+    "message": "Требуется заголовок"
+  },
+  "access_code_74f4864f": {
+    "message": "Код доступа"
+  },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-    "message": "Добавьте несколько избранных курсов, чтобы сделать это место вашим домом.",
-    "description": "Основной текст в случае, когда на странице списка курсов отсутствуют курсы."
+    "message": "Добавьте несколько избранных курсов, чтобы сделать это место вашим домом."
+  },
+  "add_assignee_24ee0b71": {
+    "message": "Добавить получателя"
+  },
+  "add_comment_3205529f": {
+    "message": "Добавить комментарий"
   },
   "add_courses_fd45abf": {
-    "message": "Добавить курсы",
-    "description": "Текст кнопки для совершения действия и добавления курса."
+    "message": "Добавить курсы"
+  },
+  "add_description_required_e222e483": {
+    "message": "Добавить описание (обязательно)"
+  },
+  "add_due_date_65b08f6c": {
+    "message": "Добавить срок исполнения"
+  },
+  "add_media_cfa37b54": {
+    "message": "Добавить носитель"
+  },
+  "add_recipient_7de2dc74": {
+    "message": "Добавить получателя"
+  },
+  "add_title_4f788d37": {
+    "message": "Добавить заголовок"
+  },
+  "after_date_e5d9b0e1": {
+    "message": "После { date }"
+  },
+  "after_last_attempt_c9168da2": {
+    "message": "После последней попытки"
+  },
+  "all_4321c3a1": {
+    "message": "Все"
   },
   "all_courses_a7dbb853": {
-    "message": "Все курсы",
-    "description": "Заголовок экрана, отображающего все курсы преподавателя"
+    "message": "Все курсы"
   },
   "all_grading_periods_77974940": {
-    "message": "Все периоды оценивания",
-    "description": "Заголовок списка заданий"
+    "message": "Все периоды оценивания"
+  },
+  "all_in_e5ddaee0": {
+    "message": "Все в"
+  },
+  "all_submissions_3eedfb97": {
+    "message": "Все отправки"
+  },
+  "all_submissions_assignmentname_3f4f4a9e": {
+    "message": "Все отправки - { assignmentName }"
+  },
+  "all_submissions_b8717440": {
+    "message": "Все отправки"
+  },
+  "allow_multiple_attempts_e67a0a37": {
+    "message": "Разрешить несколько попыток"
+  },
+  "allow_threaded_replies_43b2311e": {
+    "message": "Разрешить цепочечные ответы"
+  },
+  "allowed_attempts_4e229caa": {
+    "message": "Разрешенные Попытки"
+  },
+  "always_3a59e701": {
+    "message": "Всегда"
+  },
+  "an_error_occured_while_fetching_this_conversation_453ca633": {
+    "message": "Произошла ошибка при загрузке этого диалога."
+  },
+  "an_error_occurred_a4e1cda4": {
+    "message": "Произошла ошибка"
+  },
+  "announcement_details_81b0bda2": {
+    "message": "Сведения об объявлении"
+  },
+  "announcements_a4b8ed4a": {
+    "message": "Объявления"
+  },
+  "anonymous_grading_3083dc0": {
+    "message": "Анонимное оценивание"
+  },
+  "anonymous_grading_ccb5045c": {
+    "message": "Анонимное Оценивание"
+  },
+  "archived_de543437": {
+    "message": "Архивировано"
+  },
+  "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
+    "message": "Вы уверены, что хотите удалить эту дискуссию?"
+  },
+  "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
+    "message": "Вы действительно хотите удалить этот ответ?"
+  },
+  "assign_to_95404a83": {
+    "message": "Назначить"
+  },
+  "assignees_314d5e55": {
+    "message": "Получатели"
+  },
+  "assignees_required_1b9218fb": {
+    "message": "Необходимы получатели"
   },
   "assignment_details_bc488179": {
-    "message": "Сведения о задании",
-    "description": "Заголовок экрана раздела Сведений о заданиях"
+    "message": "Сведения о задании"
+  },
+  "assignment_group_1a781505": {
+    "message": "Группа заданий"
   },
   "assignments_1e02582c": {
-    "message": "Задания",
-    "description": "Заголовок экрана заданий для курса"
+    "message": "Задания"
+  },
+  "assignments_list_fe3e54be": {
+    "message": "Список заданий"
+  },
+  "at_791460b3": {
+    "message": "в"
+  },
+  "attachment_deffe5a9": {
+    "message": "Вложение"
+  },
+  "availability_8942cde6": {
+    "message": "Доступность"
   },
   "availability_closed_429d1ba5": {
     "message": "Доступность: Закрыто"
   },
   "availability_e415e857": {
-    "message": "Доступность:",
-    "description": "Поле \"Доступно для:\" срока выполнения задания"
+    "message": "Доступность:"
   },
-  "available_from_f84e4611": {
+  "available_from_3821bccc": {
+    "message": "Доступно с:"
+  },
+  "available_from_587ce92f": {
     "message": "Доступно с"
   },
-  "available_from_f9e093c8": {
-    "message": "Доступно с:",
-    "description": "Поле \"Доступно с:\" срока выполнения задания"
+  "available_from_date_bb9d5115": {
+    "message": "Доступно с: { date }"
   },
-  "available_to_434cb9f5": {
-    "message": "Доступно для:",
-    "description": "Поле \"Доступно для:\" срока выполнения задания"
+  "available_from_must_be_before_available_until_38d313cc": {
+    "message": "«Доступно с» должно быть раньше «Доступно до»"
   },
-  "available_to_b7350e02": {
-    "message": "Доступно для"
+  "available_until_20c0cc5c": {
+    "message": "Доступно до:"
   },
-  "back_courses": {
-    "message": "Курсы",
-    "description": "Заголовок кнопки возврата для перехода от всех курсов только к избранным курсам"
+  "available_until_date_37684818": {
+    "message": "Доступно до: { date }"
+  },
+  "available_until_f3b9c4ed": {
+    "message": "Доступно до"
+  },
+  "average_49c63f9b": {
+    "message": "Среднее значение"
+  },
+  "back_2900f52a": {
+    "message": "Назад"
+  },
+  "back_to_replies_94f3c127": {
+    "message": "Назад к ответам"
+  },
+  "bold_34b9d97e": {
+    "message": "Жирный"
   },
   "cancel_caeb1e68": {
     "message": "Отменить"
   },
+  "canvas_parent_app_f9236a3a": {
+    "message": "Основное приложение Canvas"
+  },
+  "canvas_student_app_329567f": {
+    "message": "Приложение Canvas для студентов"
+  },
+  "change_discussiontitle_to_different_grouping_9f5ed8c1": {
+    "message": "Изменить { discussionTitle } на другое группирование"
+  },
+  "choose_1319ef6b": {
+    "message": "Выбрать"
+  },
   "choose_color_11148181": {
-    "message": "Выбрать { color }",
-    "description": "Ярлык версии для слабовидящих для выбора цвета"
+    "message": "Выбрать { color }"
   },
   "clear_filter_5b3a182d": {
     "message": "Очистить фильтр"
   },
-  "closed_983a96fe": {
-    "message": "Закрыто",
-    "description": "Поле \"Доступно для:\" срока выполнения задания"
+  "clear_filter_5c961d1b": {
+    "message": "Очистить фильтр"
   },
-  "closed_datestring_at_timestring_fab7aa9d": {
-    "message": "Закрыто • { dateString } в { timeString }"
+  "clear_filter_inbox_9465e74c": {
+    "message": "Очистить фильтр Входящие"
+  },
+  "clear_filter_submissions_7def30db": {
+    "message": "Очистить фильтр отправок"
+  },
+  "close_for_comments_ce0e5d00": {
+    "message": "Закрыто для комментариев"
+  },
+  "closed_983a96fe": {
+    "message": "Закрыто"
+  },
+  "closed_for_comments_e395b42f": {
+    "message": "Закрыто для комментариев"
   },
   "color_a363e1b0": {
-    "message": "Цвет",
-    "description": "Ярлык заголовка для палитры цветов курса"
+    "message": "Цвет"
+  },
+  "coming_soon_b059a738": {
+    "message": "Скоро выйдет..."
+  },
+  "comment_7ef1428e": {
+    "message": "Комментарий"
+  },
+  "comment_failed_acf11b54": {
+    "message": "Не удалось добавить комментарий"
+  },
+  "comments_e07bcbe3": {
+    "message": "Комментарии"
+  },
+  "complete_fd828dea": {
+    "message": "Завершить"
+  },
+  "complete_incomplete_15b3a89c": {
+    "message": "Завершено/не завершено"
+  },
+  "compose_message_45002196": {
+    "message": "Написать сообщение"
+  },
+  "conversation_options_8be926f3": {
+    "message": "Опции дискуссии"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Не удалось получить список заданий"
   },
+  "count_plural_0_0_students_one_student_other_studen_801f8933": {
+    "message": "{ count, plural,\n     =0 {0 студентов}\n    one {# студент}\n  other {# студенты}\n}"
+  },
+  "count_plural_one_pt_other_pts_c5a3bced": {
+    "message": "{ count, plural,\n    one {# бл}\n  other {# баллы}\n}"
+  },
+  "count_plural_one_question_other_questions_309aafa": {
+    "message": "{ count, plural,\n    one {# Вопрос}\n  other {# Вопросы}\n}"
+  },
+  "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
+    "message": "{ count, plural,\n    one {Имеется # получатель без оценки.}\n  other {Имеются # получатели без оценок.}\n}"
+  },
+  "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
+    "message": "{ count, plural,\n   zero {# Ответы}\n    one {# Ответ}\n  other {# Ответы}\n}"
+  },
+  "count_students_4ae780ca": {
+    "message": "{ count } студенты"
+  },
   "count_ungraded_bc673f29": {
     "message": "{ count } без выставления оценки"
   },
+  "course_activity_stream_40091c17": {
+    "message": "Лента активности курса"
+  },
+  "course_modules_795cb95e": {
+    "message": "Модули курса"
+  },
+  "course_sections_380358a5": {
+    "message": "Разделы курса"
+  },
+  "course_settings_f6d0bbf8": {
+    "message": "Настройки курса"
+  },
   "courses_43204aae": {
-    "message": "Курсы",
-    "description": "Заголовок списка избранных курсов"
+    "message": "Курсы"
   },
   "customize_course_eefa9c21": {
-    "message": "Настроить курс",
-    "description": "Заголовок экрана пользовательских предпочтений для курсов"
+    "message": "Настроить курс"
+  },
+  "customize_grade_c9d046d": {
+    "message": "Персонализировать оценку"
   },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } в { timeString }"
   },
-  "discussion_topic_a7bf935": {
-    "message": "тема обсуждения",
-    "description": "тип сдаваемой работы"
+  "delay_posting_f45eed7d": {
+    "message": "Задержка публикации"
+  },
+  "delete_a6efa79d": {
+    "message": "Удалить"
+  },
+  "delete_recipient_recipient_22a1e3dd": {
+    "message": "Удалить получателя { recipient }"
+  },
+  "deleted_this_reply_8b5b0ddc": {
+    "message": "Удалить этот ответ."
+  },
+  "description_436c48d7": {
+    "message": "Описание"
+  },
+  "details_98a31b68": {
+    "message": "Подробности"
+  },
+  "discussion_details_5728ea3d": {
+    "message": "Сведения об обсуждении"
+  },
+  "discussion_topic_dc85ad4c": {
+    "message": "Тема обсуждения"
+  },
+  "discussions_a5f96392": {
+    "message": "Дискуссии"
+  },
+  "display_grade_as_7b5376a6": {
+    "message": "Отображать оценку как"
+  },
+  "display_grade_as_c165e9a6": {
+    "message": "Отображать оценку как..."
   },
   "done_54e3d4b6": {
-    "message": "Готово",
-    "description": "Кнопка возвращения экрана"
-  },
-  "done_beta_feedback": {
-    "message": "Готово",
-    "description": "Кнопка отклонения формы обратной связи."
-  },
-  "done_edit_assignment": {
-    "message": "Готово",
-    "description": "Кнопка закрытия модального окна"
+    "message": "Готово"
   },
   "due_5d7267be": {
-    "message": "Срок:",
-    "description": "Поле \"Срок:\" срока выполнения задания. По завершении будет выглядеть примерно так: \"Срок: 13 марта 2019 г.\""
+    "message": "Срок:"
   },
   "due_a73610f6": {
-    "message": "Срок",
-    "description": "Заголовок раздела Сведений о заданиях в случае, когда наступил срок выполнения задания"
+    "message": "Срок"
   },
-  "due_datestring_at_timestring_9fac66bd": {
-    "message": "Срок выполнения наступает { dateString } в { timeString }"
+  "due_date_822625d8": {
+    "message": "Срок выполнения"
   },
-  "edit_assignment_details_a7c96fea": {
-    "message": "Редактировать сведения о заданиях",
-    "description": "Заголовок экрана редактирования раздела Сведений о заданиях"
+  "due_date_must_be_between_available_from_and_availa_bc4d7904": {
+    "message": "«Срок выполнения» должен находиться между датами «Доступно с» и «Доступно до»"
+  },
+  "due_dates_double_tap_for_details_36c5a7a4": {
+    "message": "Сроки исполнения, щелкнуть дважды для отображения деталей."
+  },
+  "edit_assignment_ebf22a72": {
+    "message": "Редактировать задание"
   },
   "edit_c5fbea07": {
-    "message": "Редактировать",
-    "description": "Отображается вверху окна приложения, чтобы дать возможность пользователю редактировать"
+    "message": "Редактировать"
+  },
+  "edit_comment_22b23c2f": {
+    "message": "Редактировать комментарий"
+  },
+  "edit_course_settings_9736fd1f": {
+    "message": "Редактировать настройки курса"
   },
   "edit_courses_1f63340f": {
-    "message": "Редактировать курсы",
-    "description": "Заголовок экрана, позволяющего преподавателям отмечать свои курсы как избранные и снимать эти отметки"
+    "message": "Редактировать курсы"
+  },
+  "edit_description_1206e0a8": {
+    "message": "Редактировать описание"
+  },
+  "edit_quiz_details_72cd055": {
+    "message": "Редактировать сведения о контрольной работе"
+  },
+  "enter_code_c7ab5104": {
+    "message": "Ввести код"
+  },
+  "error_sending_e_mail_275383b": {
+    "message": "Ошибка при отправке эл. сообщения"
   },
   "everyone_854554dd": {
     "message": "Все"
   },
-  "external_tool_d6eaa5c1": {
-    "message": "внешний инструмент",
-    "description": "тип сдаваемой работы"
+  "everyone_else_cc5f6888": {
+    "message": "Все остальные"
+  },
+  "excuse_student_1b60e311": {
+    "message": "Освободить студента"
+  },
+  "excused_cf8792eb": {
+    "message": "По уважительной причине"
+  },
+  "external_tool_c5a6410a": {
+    "message": "Внешний инструмент"
+  },
+  "failed_comment_options_aa19a936": {
+    "message": "Сбой опции комментирования"
+  },
+  "favorite_courses_fbd356f0": {
+    "message": "Избранные курсы"
+  },
+  "files_c300e900": {
+    "message": "Файлы"
+  },
+  "files_numberoffiles_66240ab2": {
+    "message": "Файлы ({ numberOfFiles })"
   },
   "filter_by_ffcbd05b": {
-    "message": "Фильтровать по:",
-    "description": "Указывает пользователю, что можно осуществлять фильтрацию по нескольким опциям"
+    "message": "Фильтровать по:"
   },
   "filter_e3398407": {
     "message": "Фильтр"
+  },
+  "filter_inbox_dae0ff8f": {
+    "message": "Фильтровать Входящие"
+  },
+  "filter_submissions_81bc50de": {
+    "message": "Фильтр отправок"
   },
   "for_974cbb84": {
     "message": "Для"
   },
   "for_e3490d05": {
-    "message": "Для:",
-    "description": "Поле \"Для:\" срока выполнения задания"
+    "message": "Для:"
+  },
+  "forward_d143f64": {
+    "message": "Переслать"
+  },
+  "forwarded_message_3acb578c": {
+    "message": "Перенаправленное сообщение:"
+  },
+  "full_screen_712e95f1": {
+    "message": "Полный экран"
+  },
+  "fw_subject_ebe04db7": {
+    "message": "Fw: { subject }"
+  },
+  "gpa_71809a99": {
+    "message": "Балл GPA"
+  },
+  "gpa_scale_a6d1cdea": {
+    "message": "Шкала GPA"
+  },
+  "grade_9c6f076d": {
+    "message": "Оценка"
   },
   "graded_25cd3fcd": {
-    "message": "С оценкой",
-    "description": "граф сданных работ `с выставлением оценки` в разделе Сведений о заданиях"
+    "message": "С оценкой"
   },
-  "inbox_bb245a60": {
-    "message": "Входящие",
-    "description": "Ярлык, показывающий, что пользователь находится на вкладке входящих сообщений"
+  "graded_assignmentname_f530f81d": {
+    "message": "С оценкой - { assignmentName }"
   },
-  "instructions_2f88ee72": {
-    "message": "Инструкции",
-    "description": "Заголовок раздела Сведений о заданиях для инструкций по выполнению заданий"
+  "graded_quiz_7fabdf1f": {
+    "message": "Оцененная контрольная работа"
   },
-  "late_2be42b88": {
-    "message": "Поздно",
-    "description": "Задание было возвращено с опозданием"
+  "graded_survey_c0f0c395": {
+    "message": "Оцененный опрос"
+  },
+  "grades_a61eba0a": {
+    "message": "Оценки"
+  },
+  "grades_muted_76c70047": {
+    "message": "Оценки скрыты"
+  },
+  "grades_muted_anonymous_grading_9291ea4b": {
+    "message": "Оценки скрыты, анонимное выставление оценок"
+  },
+  "group_a8f5ed9c": {
+    "message": "Группа"
+  },
+  "groups_6c90e26a": {
+    "message": "Группы"
+  },
+  "half_screen_9cdd83ad": {
+    "message": "Пол-экрана"
+  },
+  "haven_t_been_graded_1fbfda56": {
+    "message": "Оценка не поставлена"
+  },
+  "haven_t_been_graded_assignmentname_eaafdd9f": {
+    "message": "Оценка не поставлена - { assignmentName }"
+  },
+  "haven_t_submitted_yet_3a127a27": {
+    "message": "Не отправлено"
+  },
+  "haven_t_submitted_yet_assignmentname_dd06c39f": {
+    "message": "Еще не отправлено - { assignmentName }"
+  },
+  "hide_correct_answers_at_b1a59408": {
+    "message": "Скрыть правильные ответы в"
+  },
+  "hide_date_cannot_be_before_show_date_cfaa35f0": {
+    "message": "«Скрыть дату» не может быть до «Показать дату»"
+  },
+  "highest_28ad71e6": {
+    "message": "Самая высокая"
+  },
+  "incomplete_da3c2ea2": {
+    "message": "Не завершено"
+  },
+  "insert_image_42d30344": {
+    "message": "Вставить изображение"
+  },
+  "insert_link_6dc23cae": {
+    "message": "Вставить ссылку"
+  },
+  "invalid_field_54480fae": {
+    "message": "Недействительное поле"
+  },
+  "italic_ac45200a": {
+    "message": "Курсив"
+  },
+  "last_post_lastreplydatestr_55fbe7ce": {
+    "message": "Последний пост { lastReplyDateStr }"
+  },
+  "late_bd436902": {
+    "message": "ПОЗДНО"
+  },
+  "latest_f604a75": {
+    "message": "Последняя"
   },
   "leave_feedback_df88476c": {
-    "message": "Оставить отклик",
-    "description": "Отображается вверху окна приложения, чтобы дать возможность пользователю оставить отклик"
+    "message": "Оставить отклик"
   },
-  "logout_a9312e35": {
+  "length_in_minutes_eca69868": {
+    "message": "Продолжительность в минутах"
+  },
+  "let_students_see_the_correct_answer_a4da886e": {
+    "message": "Показать студентам правильный ответ"
+  },
+  "let_students_see_their_quiz_responses_fbc07d14": {
+    "message": "Разрешить студентам просматривать результаты контрольной работы"
+  },
+  "letter_grade_29ff1938": {
+    "message": "Успеваемость"
+  },
+  "letter_grade_e83e363c": {
+    "message": "Успеваемость"
+  },
+  "lock_questions_after_answering_e0f61d7c": {
+    "message": "Заблокировать вопросы после ответа на них"
+  },
+  "log_out_379ba28a": {
     "message": "Выйти"
   },
-  "media_recording_7df9606f": {
-    "message": "медийная запись",
-    "description": "тип сдаваемой работы"
+  "long_description_7d89285c": {
+    "message": "Длинное описание"
   },
-  "missing_1a256b3b": {
-    "message": "Отсутствует",
-    "description": "Задание не возвращено в"
+  "mark_all_as_read_8f3bdf57": {
+    "message": "Отметить все как прочитанное"
+  },
+  "me_bf110f4d": {
+    "message": "меня"
+  },
+  "media_recording_77cddc52": {
+    "message": "Запись на носитель"
+  },
+  "message_5c38209d": {
+    "message": "Сообщение"
+  },
+  "message_details_342e931f": {
+    "message": "Данные сообщения"
+  },
+  "message_options_59805b8e": {
+    "message": "Опции сообщения"
+  },
+  "message_students_who_778ce759": {
+    "message": "Отправить сообщение студентам, которые"
+  },
+  "minutes_4aee5a41": {
+    "message": "мин."
+  },
+  "missing_eaddacbd": {
+    "message": "ОТСУТСТВУЕТ"
+  },
+  "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
+    "message": "Модерированное выставление оценок в текущий момент не поддерживается в мобильном SpeedGrader."
   },
   "multiple_due_dates_283dd861": {
-    "message": "Множественные сроки выполнения",
-    "description": "Информация о сроках выполнения заданий в случае, когда имеется более одного срока выполнения для отображения"
+    "message": "Множественные сроки выполнения"
+  },
+  "mute_grades_b85bece1": {
+    "message": "Скрыть оценки"
+  },
+  "name_1aed4a1b": {
+    "message": "Имя"
+  },
+  "name_count_others_6e5afa7c": {
+    "message": "{ name } + { count } другие"
+  },
+  "new_13daf639": {
+    "message": "Новый"
+  },
+  "new_discussion_dae4fae3": {
+    "message": "Новая дискуссия"
+  },
+  "new_message_f9bbd1c0": {
+    "message": "Новое сообщение"
   },
   "nickname_1e6da3ad": {
-    "message": "Ник",
-    "description": "Текст с описанием присвоенного курсу ника"
+    "message": "Ник"
   },
-  "no_due_date_1d63d13b": {
+  "no_available_from_date_set_6f659d06": {
+    "message": "Недоступно с заданной даты."
+  },
+  "no_available_from_date_set_db356ac3": {
+    "message": "Недоступно с заданной даты"
+  },
+  "no_available_until_date_set_ad4b4bbb": {
+    "message": "Недоступно до заданной даты"
+  },
+  "no_available_until_date_set_df9e7434": {
+    "message": "Недоступно до заданной даты."
+  },
+  "no_due_date_44271c53": {
     "message": "Без срока выполнения"
   },
-  "no_submission_yet_709d689d": {
-    "message": "Сданных работ пока нет",
-    "description": "У учащегося отсутствуют сданные работы по данному заданию"
+  "no_due_date_set_bb3a2bf7": {
+    "message": "Не задан срок исполнения."
   },
-  "none_9b6c9bec": {
-    "message": "нет",
-    "description": "тип сдаваемой работы"
+  "no_e16d9132": {
+    "message": "Нет"
+  },
+  "no_internet_connection_9df26cf8": {
+    "message": "Нет интернет-соединения"
+  },
+  "no_messages_a2e67ad4": {
+    "message": "Нет сообщений"
+  },
+  "no_results_f36777ee": {
+    "message": "Без результата"
+  },
+  "no_starred_messages_e1b28bca": {
+    "message": "Нет сообщений, помеченных звездочкой"
+  },
+  "no_subject_2e2a413c": {
+    "message": "(нет субъекта)"
+  },
+  "no_subject_58b7941c": {
+    "message": "Нет темы"
+  },
+  "no_time_limit_2147d9bf": {
+    "message": "Нет ограничения времени"
+  },
+  "none_3b5e34d2": {
+    "message": "Ничего"
+  },
+  "not_a_teacher_b0d0fc55": {
+    "message": "Не преподаватель?"
+  },
+  "not_graded_e027c866": {
+    "message": "Оценка не выставлена"
   },
   "not_published_73f7079": {
     "message": "Не опубликовано"
   },
   "not_submitted_7d05fdb4": {
-    "message": "Не отправлено",
-    "description": "граф сданных работ `с выставлением оценки` в разделе Сведений о заданиях"
+    "message": "Не отправлено"
   },
-  "on_paper_7e67f764": {
-    "message": "на бумаге",
-    "description": "тип сдаваемой работы"
+  "number_plural_one_minute_other_minutes_648ec0e1": {
+    "message": "{ number, plural,\n    one {# Минута}\n  other {# Минуты}\n}"
   },
-  "online_quiz_7d450a0c": {
-    "message": "контрольная работа в режиме онлайн",
-    "description": "тип сдаваемой работы"
+  "off_5385ef3f": {
+    "message": "Выкл"
   },
-  "online_text_entry_a1e78de0": {
-    "message": "онлайновый ввод текста",
-    "description": "тип сдаваемой работы"
+  "ok_c47544a2": {
+    "message": "OK"
   },
-  "online_upload_ed44db51": {
-    "message": "отправка в режиме онлайн",
-    "description": "тип сдаваемой работы"
+  "ok_ff1b646a": {
+    "message": "Ok"
   },
-  "online_url_ee794b28": {
-    "message": "url онлайнового ресурса",
-    "description": "тип сдаваемой работы"
+  "on_8f7190e5": {
+    "message": "Вкл"
   },
-  "open_user_course_preferences_32dd14a7": {
-    "message": "Открыть пользовательские предпочтения для курсов",
-    "description": "Ярлык режима для слабовидящих на кнопке с пиктограммой для открытия пользовательских предпочтений для курсов"
+  "on_paper_46d0ba36": {
+    "message": "На бумаге"
   },
-  "profile_6bd2baed": {
-    "message": "Профиль",
-    "description": "Ярлык, показывающий, что пользователь находится на вкладке профиля"
+  "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
+    "message": "Одно из наших других приложений может подойти лучше. Прикоснитесь один раз для входа в App Store."
+  },
+  "one_question_at_a_time_3161ceeb": {
+    "message": "По одному вопросу за раз"
+  },
+  "online_quiz_5beb2ae5": {
+    "message": "Онлайн тест"
+  },
+  "online_text_entry_1d893ce": {
+    "message": "Онлайновый ввод текста"
+  },
+  "online_upload_59969592": {
+    "message": "Онлайновая отправка"
+  },
+  "online_url_37830a72": {
+    "message": "Онлайн URL"
+  },
+  "only_once_after_each_attempt_cc842738": {
+    "message": "Только один раз после каждой попытки"
+  },
+  "open_coursename_user_preferences_430b877e": {
+    "message": "Открыть { courseName } пользовательские предпочтения"
+  },
+  "open_drawer_f3c8b11": {
+    "message": "Открыть панель"
+  },
+  "open_for_comments_1810648": {
+    "message": "Открыть для комментариев"
+  },
+  "options_3ab0ea65": {
+    "message": "Опции"
+  },
+  "ordered_list_5fb1ce41": {
+    "message": "Упорядоченный список"
+  },
+  "out_of_count_fc1cd44d": {
+    "message": "Из { count }"
+  },
+  "out_of_points_c40a0475": {
+    "message": "Из { points }"
+  },
+  "pages_front_page_9ce5188": {
+    "message": "Страницы титульной страницы"
+  },
+  "percent_d7ddd35b": {
+    "message": "Процент (%)"
+  },
+  "percentage_34ab7c2c": {
+    "message": "Процент"
+  },
+  "pin_cdbc9f8f": {
+    "message": "Привязать"
+  },
+  "pinned_discussions_a55c0cea": {
+    "message": "Закрепленные Дискуссии"
+  },
+  "please_enter_a_number_49c4975d": {
+    "message": "Введите номер"
+  },
+  "points_bb475533": {
+    "message": "Баллы"
+  },
+  "points_number_out_of_totalpoints_number_291efb47": {
+    "message": "{ points, number } из { totalPoints, number }"
+  },
+  "points_possible_must_be_a_number_4a592dc6": {
+    "message": "Значение возможных баллов должно быть числом"
+  },
+  "post_at_a9e0fecb": {
+    "message": "Опубликовать в..."
+  },
+  "practice_quiz_19a8505d": {
+    "message": "Практическая контрольная работа"
+  },
+  "preview_quiz_1ffbf684": {
+    "message": "Просмотреть контрольную работу"
+  },
+  "preview_unavailable_aacd459a": {
+    "message": "Предпросмотр недоступен"
+  },
+  "previewing_this_file_type_is_not_supported_7df9231": {
+    "message": "Предпросмотр этого типа файлов не поддерживается"
+  },
+  "profile_actions_cfcbb476": {
+    "message": "Действия с профилем"
   },
   "pts_699bd9aa": {
-    "message": "баллы",
-    "description": "Баллы в разделе Сведений о заданиях для данного задания"
+    "message": "баллы"
+  },
+  "publish_5211dca3": {
+    "message": "Опубликовать"
   },
   "published_4bb5209e": {
-    "message": "Опубликовано",
-    "description": "Опубликованный текст"
+    "message": "Опубликовано"
+  },
+  "quiz_details_6c4473d3": {
+    "message": "Сведения о контрольной работе"
+  },
+  "quiz_preview_a7e75769": {
+    "message": "Просмотр контрольной работы"
+  },
+  "quiz_score_to_keep_d1f7c4b1": {
+    "message": "Оценка контрольной работы для сохранения"
+  },
+  "quiz_type_be1633db": {
+    "message": "Тип контрольной работы"
+  },
+  "quizzes_7e598f57": {
+    "message": "Тесты"
+  },
+  "recipient_recipient_394cf528": {
+    "message": "Получатель: { recipient }"
+  },
+  "redo_363c58b7": {
+    "message": "Повторить"
+  },
+  "remove_date_edf2f565": {
+    "message": "Удалить дату"
+  },
+  "remove_due_date_c1cc8f7": {
+    "message": "Удалить срок исполнения"
+  },
+  "remove_f47dc62a": {
+    "message": "Удалить"
+  },
+  "replies_4a8577c8": {
+    "message": "Ответы"
+  },
+  "reply_389d6fb9": {
+    "message": "Ответить"
+  },
+  "report_a_problem_4d48624a": {
+    "message": "Сообщить о проблеме"
+  },
+  "require_an_access_code_46a02601": {
+    "message": "Запросить код доступа"
+  },
+  "retry_ebd5f8ba": {
+    "message": "Повторить попытку"
+  },
+  "rubric_fc39da76": {
+    "message": "Рубрика"
+  },
+  "save_11a80ec3": {
+    "message": "Сохранить"
   },
   "saving_2521e616": {
-    "message": "Идет сохранение",
-    "description": "Текст в случае, когда направляется запрос на обновление задания и пользователь ожидает"
+    "message": "Идет сохранение"
+  },
+  "score_more_than_score_assignmentname_a4fdc7fe": {
+    "message": "Оценка выше { score } - { assignmentName }"
+  },
+  "score_to_keep_48ace09b": {
+    "message": "Оценка для сохранения"
+  },
+  "scored_less_than_93cde0d2": {
+    "message": "Оценка ниже…"
+  },
+  "scored_less_than_score_assignmentname_1b20b789": {
+    "message": "Оценка ниже { score } - { assignmentName }"
+  },
+  "scored_more_than_2185a818": {
+    "message": "Оценка выше…"
+  },
+  "search_280d00bd": {
+    "message": "Поиск"
   },
   "see_all_ffa422ef": {
-    "message": "Смотреть все",
-    "description": "Кнопка перехода от списка избранных курсов к списку всех курсов"
+    "message": "Смотреть все"
   },
-  "set_this_for_the_default_color_of_the_course_this__d86d133": {
-    "message": "Задайте этот цвет в качестве цвета курса по умолчанию. Персональная настройка цвета в любом случае будет иметь приоритет.",
-    "description": "Видное пользователю описание палитры цветов"
+  "select_a_course_40bc3229": {
+    "message": "Выбрать курс"
+  },
+  "select_a_course_4710371f": {
+    "message": "Выбрать курс"
+  },
+  "send_e3bd0ed0": {
+    "message": "Отправить"
+  },
+  "send_individual_message_to_each_recipient_4fdfc1e5": {
+    "message": "Отправить индивидуальное сообщение каждому получателю"
+  },
+  "sending_bf324366": {
+    "message": "Отправка..."
+  },
+  "sent_fe0a1eb4": {
+    "message": "Отправлено"
+  },
+  "set_home_to_82ab5119": {
+    "message": "Установить ''Домой'' на..."
+  },
+  "show_correct_answers_a4b957e4": {
+    "message": "Показать правильные ответы"
+  },
+  "show_correct_answers_at_a5475aa3": {
+    "message": "Показать правильные ответы в"
+  },
+  "show_one_question_at_a_time_52f5b1a0": {
+    "message": "Показывать по одному вопросу за раз"
+  },
+  "show_to_hide_2c0b6d39": {
+    "message": "{ show } к { hide }"
+  },
+  "shuffle_answers_edb602b7": {
+    "message": "Изменить порядок ответов"
+  },
+  "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
+    "message": "Отметьте сообщения звездочкой касанием к звездочке в сообщении."
+  },
+  "starred_5a9efa8a": {
+    "message": "Отмечено звездочкой"
+  },
+  "student_5da6bfd1": {
+    "message": "Студент"
+  },
+  "students_1b8cd07b": {
+    "message": "Студенты"
+  },
+  "subject_114b2e98": {
+    "message": "Тема"
+  },
+  "submission_settings_f57b0cf8": {
+    "message": "Настройки отправки"
   },
   "submission_types_af57bf0": {
-    "message": "Типы сдаваемых работ",
-    "description": "Заголовок раздела сведения о заданиях для разных типов сдаваемых работ (онлайновая, текстовая, отправляемая и проч.)"
+    "message": "Типы сдаваемых работ"
   },
   "submissions_11e96106": {
-    "message": "Отправки",
-    "description": "Заголовок раздела Сведений о заданиях для информации о заданиях"
+    "message": "Отправки"
   },
-  "submitted_318fad53": {
-    "message": "Отправлено",
-    "description": "Задание возвращено в"
+  "submitted_f7bc311f": {
+    "message": "ОТПРАВЛЕНО"
+  },
+  "submitted_late_3741af29": {
+    "message": "Отправлено поздно"
+  },
+  "submitted_late_assignmentname_adf957b2": {
+    "message": "Отправлено поздно - { assignmentName }"
+  },
+  "subscribe_4b301fb7": {
+    "message": "Подписаться"
+  },
+  "survey_31a240e6": {
+    "message": "Опрос"
+  },
+  "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
+    "message": "Смахните влево для просмотра других отправок студентам"
+  },
+  "syllabus_f191f65b": {
+    "message": "Учебный план"
+  },
+  "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
+    "message": "Прикоснитесь и удерживайте номер рубрики для просмотра ее описания"
+  },
+  "tap_the_to_create_a_new_conversation_80f77725": {
+    "message": "Прикоснитесь к \"+\" для создания нового диалога"
+  },
+  "tap_to_view_submissions_list_5bfe32f3": {
+    "message": "Прикоснитесь для просмотра списка отправок."
+  },
+  "terms_of_use_6542769b": {
+    "message": "Условия использования"
+  },
+  "text_color_acf75eb6": {
+    "message": "Цвет текста"
+  },
+  "text_submission_935eeb5": {
+    "message": "Текстовая отправка"
+  },
+  "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
+    "message": "Возможное значение в баллах должно быть ноль или выше"
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "При загрузке списка регистраций возникла ошибка"
   },
-  "there_was_an_unexpected_error_please_close_this_al_90914a6e": {
-    "message": "Возникла непредвиденная ошибка. Пожалуйста, закройте это предупреждение и повторите попытку.",
-    "description": "Универсальное сообщение об ошибке"
+  "there_was_a_problem_loading_discussions_ce5318af": {
+    "message": "Проблема при загрузке обсуждений."
   },
-  "this_is_the_inbox_b957d042": {
-    "message": "Это входящие сообщения"
+  "there_was_a_problem_loading_the_announcements_4871afc4": {
+    "message": "Проблема при загрузке объявлений."
+  },
+  "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
+    "message": "Проблема при загрузке отправок заданий."
+  },
+  "there_was_a_problem_loading_the_groups_6945e624": {
+    "message": "Проблема при загрузке групп."
+  },
+  "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
+    "message": "Проблема при загрузке отправок контрольных."
+  },
+  "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
+    "message": "Проблема при загрузке контрольных."
+  },
+  "there_was_an_problem_loading_your_messages_b80423ac": {
+    "message": "Проблема при загрузке ваших сообщений."
+  },
+  "there_was_an_unexpected_error_please_try_again_5e08774e": {
+    "message": "Возникла непредвиденная ошибка. Попробуйте еще раз."
+  },
+  "this_action_requires_an_internet_connection_81f6688a": {
+    "message": "Для выполнения этого действия необходимо интернет-соединение."
+  },
+  "this_assignment_does_not_allow_submissions_30af1caa": {
+    "message": "Это задание не может быть отправлено."
+  },
+  "this_assignment_links_to_an_external_tool_for_subm_3ac1ae26": {
+    "message": "Это задание содержит ссылку на внешний инструмент для отправки."
+  },
+  "this_assignment_only_allows_on_paper_submissions_f478408a": {
+    "message": "Это задание может быть отправлено только в печатном виде."
+  },
+  "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
+    "message": "Эта группа не имеет отправки для этого задания."
+  },
+  "this_is_your_personal_color_setting_only_you_will__e47dba70": {
+    "message": "Это ваша персональная настройка цвета. Только вы будет видеть этот цвет для курса."
+  },
+  "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
+    "message": "Этот студент не имеет отправки для этого задания."
+  },
+  "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
+    "message": "Эта отправка представляет собой URL к внешней странице. Мы включили скриншот того, как выглядела страница, когда она была представлена."
+  },
+  "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
+    "message": "Это удаляет персональные данные всех студентов и перемешивает список отправок."
+  },
+  "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
+    "message": "Это приведет к удалению даты исполнения и всех связанных получателей."
+  },
+  "time_limit_a6f1a51e": {
+    "message": "Лимит времени"
+  },
+  "title_announcement_c0cdaa10": {
+    "message": "{ title } Объявление"
+  },
+  "title_discussion_4cff9841": {
+    "message": "{ title } Обсуждение"
   },
   "title_ee03d132": {
-    "message": "Название",
-    "description": "Заголовок меню редактирования сведений о заданиях"
+    "message": "Название"
+  },
+  "to_51406be9": {
+    "message": "Кому"
+  },
+  "to_count_others_853f5dc8": {
+    "message": "{ count } другим"
+  },
+  "to_me_780716c7": {
+    "message": "мне"
+  },
+  "to_name_bb3e415e": {
+    "message": "к { name }"
+  },
+  "try_logging_in_again_7a66111a": {
+    "message": "Попробуйте войти еще раз"
+  },
+  "un_starred_8fef021f": {
+    "message": "Звездочка убрана"
+  },
+  "undo_a7be8fef": {
+    "message": "Аннулировать"
   },
   "unexpected_error_93991f40": {
-    "message": "Непредвиденная ошибка",
-    "description": "Универсальный заголовок универсального сообщения об ошибке"
+    "message": "Непредвиденная ошибка"
   },
   "ungraded_147a0dce": {
-    "message": "без выставления оценки",
-    "description": "Ярлык для сдачи работ без оценки"
+    "message": "без выставления оценки"
   },
   "ungraded_ed0c6f98": {
-    "message": "Без оценки",
-    "description": "граф сданных работ `с выставлением оценки` в разделе Сведений о заданиях"
+    "message": "Без оценки"
+  },
+  "ungraded_survey_ad7de790": {
+    "message": "Опрос без оценки"
+  },
+  "unknown_author_40d64455": {
+    "message": "Неизвестный автор"
+  },
+  "unlimited_ff19e96d": {
+    "message": "Неограничено"
+  },
+  "unordered_list_3c1650b3": {
+    "message": "Неупорядоченный список"
+  },
+  "unpin_a318452a": {
+    "message": "Отменить привязку"
   },
   "unpublished_8b6107d6": {
-    "message": "Не опубликовано",
-    "description": "Неопубликованный текст"
+    "message": "Не опубликовано"
+  },
+  "unread_e9c1b19c": {
+    "message": "Не прочитано"
+  },
+  "until_date_f3b9f367": {
+    "message": "До { date }"
+  },
+  "url_preview_image_a263a21e": {
+    "message": "URL изображения для предварительного просмотра"
+  },
+  "url_submission_f76327e3": {
+    "message": "Отправка на URL"
+  },
+  "users_must_post_before_seeing_replies_d1761968": {
+    "message": "Пользователи должны публиковать сообщения, прежде чем увидят ответы"
+  },
+  "version_version_a051e218": {
+    "message": "Версия { version }"
+  },
+  "view_all_submissions_915a8b78": {
+    "message": "Просмотреть все отправки"
+  },
+  "view_long_description_bafad8a4": {
+    "message": "Просмотреть длинное описание"
+  },
+  "view_more_replies_9fef9983": {
+    "message": "Просмотреть другие ответы"
+  },
+  "view_responses_d2874266": {
+    "message": "Просмотреть ответы"
+  },
+  "visit_the_canvas_guides_7328b93f": {
+    "message": "Просмотреть руководства Canvas"
   },
   "welcome_73d18b4d": {
-    "message": "Добро пожаловать!",
-    "description": "Текст приветственного заголовка в случае, когда у пользователя пока нет курсов."
+    "message": "Добро пожаловать!"
+  },
+  "yes_dde87d5": {
+    "message": "Да"
+  },
+  "you_must_enter_an_access_code_8c2c7ae0": {
+    "message": "Вы должны ввести код доступа"
+  },
+  "your_submission_comment_failed_to_send_5c8d2809": {
+    "message": "Не удалось отправить ваш комментарий к отправке."
   }
 }
