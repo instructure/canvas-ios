@@ -38,6 +38,11 @@ export default class ConversationRow extends Component<any, ConversationRowProps
     .map((p) => p.name)
   }
 
+  static extractDate = (c: Conversation): ?string => {
+    if (!c.properties || c.properties.includes('last_author')) return c.last_authored_message_at || c.last_message_at
+    return c.last_message_at || c.last_authored_message_at
+  }
+
   render () {
     const c = this.props.conversation
     const subject = c.subject || i18n('No Subject')
@@ -61,8 +66,9 @@ export default class ConversationRow extends Component<any, ConversationRowProps
       containerStyles.push(styles.topHairline)
     }
     const unread = c.workflow_state === 'unread'
-    const date = formattedDate(c.last_authored_message_at, 'l') || formattedDate(c.last_message_at, 'l')
-    const accessibilityDate = formattedDate(c.last_authored_message_at, 'LLLL') || formattedDate(c.last_message_at, 'LLLL')
+    const date = ConversationRow.extractDate(c)
+    const dateTitle = formattedDate(date, 'l')
+    const accessibilityDateTitle = formattedDate(date, 'LLLL')
     return (<TouchableHighlight onPress={this._onPress} testID={`inbox.conversation-${c.id}`}>
               <View style={containerStyles}>
                 { unread && <View style={styles.unreadDot} accessibilityLabel={i18n('Unread')} /> }
@@ -79,8 +85,8 @@ export default class ConversationRow extends Component<any, ConversationRowProps
                     }
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                       <Text style={styles.names} numberOfLines={1}>{title}</Text>
-                      <View accessible={true} accessibilityLabel={accessibilityDate}>
-                        <Text style={styles.date}>{date}</Text>
+                      <View accessible={true} accessibilityLabel={accessibilityDateTitle}>
+                        <Text style={styles.date}>{dateTitle}</Text>
                       </View>
                     </View>
                   </View>

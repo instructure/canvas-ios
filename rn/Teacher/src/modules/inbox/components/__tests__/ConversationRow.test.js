@@ -53,3 +53,20 @@ it('handles on press', () => {
   button.props.onPress()
   expect(callback).toHaveBeenCalledWith(conversation.id)
 })
+
+it('extract date', () => {
+  const conversation = template.conversation({
+    last_message_at: 'last_message_at',
+    last_authored_message_at: 'last_authored_message_at',
+  })
+  expect(ConversationRow.extractDate(conversation)).toEqual(conversation.last_authored_message_at)
+  conversation.last_authored_message_at = ''
+  expect(ConversationRow.extractDate(conversation)).toEqual(conversation.last_message_at)
+  conversation.last_authored_message_at = 'last_authored_message_at'
+  conversation.properties = ['last_author']
+  expect(ConversationRow.extractDate(conversation)).toEqual(conversation.last_authored_message_at)
+  conversation.properties = []
+  expect(ConversationRow.extractDate(conversation)).toEqual(conversation.last_message_at)
+  conversation.last_message_at = ''
+  expect(ConversationRow.extractDate(conversation)).toEqual(conversation.last_authored_message_at)
+})
