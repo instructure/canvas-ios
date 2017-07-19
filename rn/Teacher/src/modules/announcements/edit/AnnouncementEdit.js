@@ -7,24 +7,20 @@ import ReactNative, {
   StyleSheet,
   LayoutAnimation,
   DatePickerIOS,
-  Image,
   Alert,
   NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import moment from 'moment'
-import Button from 'react-native-button'
-
 import Screen from '../../../routing/Screen'
 import { Heading1 } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
-import RowWithDetail from '../../../common/components/rows/RowWithDetail'
+import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import colors from '../../../common/colors'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import { extractDateFromString } from '../../../utils/dateUtils'
-import Images from '../../../images'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
@@ -174,25 +170,17 @@ export class AnnouncementEdit extends Component<any, Props, any> {
             />
             { this.state.delayPosting &&
               <View>
-                <RowWithDetail
+                <RowWithDateInput
                   title={i18n('Post at...')}
-                  detailSelected={this.state.delayedPostAtPickerShown}
-                  detail={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
+                  date={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
+                  selected={this.state.delayedPostAtPickerShown}
+                  showRemoveButton={Boolean(this.state.delayed_post_at)}
                   border='bottom'
                   onPress={this._toggleDelayedPostAtPicker}
-                  testID='announcements.edit.delayed-post-at-row'
-                  detailTestID='announcements.edit.delayed-post-at-value-label'
-                  accessories={ Boolean(this.state.delayed_post_at) &&
-                    <View style={{ marginLeft: 8 }}>
-                      <Button
-                        testID={`announcements.edit.clear-delayed-post-at-button`}
-                        activeOpacity={1}
-                        onPress={this._clearDelayedPostAt}
-                      >
-                        <Image source={Images.clear} />
-                      </Button>
-                    </View>
-                  }
+                  onRemoveDatePress={this._clearDelayedPostAt}
+                  testID={'announcements.edit.delayed-post-at-row'}
+                  dateTestID={'announcements.edit.delayed-post-at-value-label'}
+                  removeButtonTestID={'announcements.edit.clear-delayed-post-at-button'}
                 />
                 { this.state.delayedPostAtPickerShown &&
                   <DatePickerIOS
@@ -209,8 +197,6 @@ export class AnnouncementEdit extends Component<any, Props, any> {
               value={this.state.require_initial_post}
               onValueChange={this._valueChanged('require_initial_post')}
             />
-
-            <Heading1 style={style.heading}> </Heading1>
           </KeyboardAwareScrollView>
         </View>
       </Screen>

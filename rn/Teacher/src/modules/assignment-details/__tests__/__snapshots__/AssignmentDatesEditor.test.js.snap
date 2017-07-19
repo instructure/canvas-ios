@@ -231,413 +231,542 @@ exports[`render correctly 1`] = `
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
+              "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "height": 54,
             },
-          ]
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <View
-          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
           }
+          testID={undefined}
+          tvParallaxProperties={undefined}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingLeft": 16,
                 },
                 Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "paddingRight": 0,
                 },
               ]
             }
           >
-            Due Date
-          </Text>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingRight": 32,
+                }
               }
             >
-              May 31, 2037 at 11:59 PM
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Due Date
+              </Text>
+            </View>
             <View
-              accessibilityComponentType="button"
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingTop": 8,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {},
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID={undefined}
+              >
+                May 31, 2037 at 11:59 PM
+              </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel="Remove date"
+            accessibilityTraits="button"
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
           </View>
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
+              "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "height": 54,
             },
-          ]
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <View
-          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
           }
+          testID={undefined}
+          tvParallaxProperties={undefined}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingLeft": 16,
                 },
                 Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "paddingRight": 0,
                 },
               ]
             }
           >
-            Available From
-          </Text>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingRight": 32,
+                }
               }
             >
-              Mar 17, 2017 at 12:00 AM
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Available From
+              </Text>
+            </View>
             <View
-              accessibilityComponentType="button"
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingTop": 8,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {},
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID={undefined}
+              >
+                Mar 17, 2017 at 12:00 AM
+              </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel="Remove date"
+            accessibilityTraits="button"
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
           </View>
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
+              "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "height": 54,
             },
-          ]
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <View
-          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
           }
+          testID={undefined}
+          tvParallaxProperties={undefined}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingLeft": 16,
                 },
                 Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "paddingRight": 0,
                 },
               ]
             }
           >
-            Available Until
-          </Text>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingRight": 32,
+                }
               }
             >
-              May 31, 2037 at 11:59 PM
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Available Until
+              </Text>
+            </View>
             <View
-              accessibilityComponentType="button"
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingTop": 8,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {},
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID={undefined}
+              >
+                May 31, 2037 at 11:59 PM
+              </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel="Remove date"
+            accessibilityTraits="button"
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
           </View>
         </View>
       </View>
@@ -985,413 +1114,542 @@ exports[`render correctly with overide 1`] = `
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
+              "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "height": 54,
             },
-          ]
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <View
-          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
           }
+          testID={undefined}
+          tvParallaxProperties={undefined}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingLeft": 16,
                 },
                 Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "paddingRight": 0,
                 },
               ]
             }
           >
-            Due Date
-          </Text>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingRight": 32,
+                }
               }
             >
-              May 31, 2037 at 11:59 PM
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Due Date
+              </Text>
+            </View>
             <View
-              accessibilityComponentType="button"
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingTop": 8,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {},
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID={undefined}
+              >
+                May 31, 2037 at 11:59 PM
+              </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel="Remove date"
+            accessibilityTraits="button"
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
           </View>
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
+              "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "height": 54,
             },
-          ]
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <View
-          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
           }
+          testID={undefined}
+          tvParallaxProperties={undefined}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingLeft": 16,
                 },
                 Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "paddingRight": 0,
                 },
               ]
             }
           >
-            Available From
-          </Text>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingRight": 32,
+                }
               }
             >
-              Mar 17, 2017 at 12:00 AM
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Available From
+              </Text>
+            </View>
             <View
-              accessibilityComponentType="button"
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingTop": 8,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {},
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID={undefined}
+              >
+                Mar 17, 2017 at 12:00 AM
+              </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel="Remove date"
+            accessibilityTraits="button"
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
           </View>
         </View>
       </View>
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel={undefined}
-        accessibilityTraits={undefined}
-        accessible={true}
-        hasTVPreferredFocus={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
-            },
-            Object {
+              "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
               "height": 54,
             },
-          ]
-        }
-        testID={undefined}
-        tvParallaxProperties={undefined}
-      >
-        <View
-          style={
             Object {
               "alignItems": "center",
-              "backgroundColor": "white",
-              "flex": 1,
               "flexDirection": "row",
-              "justifyContent": "space-between",
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
+              "justifyContent": "flex-end",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityComponentType={undefined}
+          accessibilityLabel={undefined}
+          accessibilityTraits={undefined}
+          accessible={true}
+          hasTVPreferredFocus={undefined}
+          hitSlop={undefined}
+          isTVSelectable={true}
+          nativeID={undefined}
+          onLayout={undefined}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "flex": 1,
+              },
+            ]
           }
+          testID={undefined}
+          tvParallaxProperties={undefined}
         >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
+          <View
             style={
               Array [
                 Object {
-                  "fontFamily": ".SFUIDisplay",
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingLeft": 16,
                 },
                 Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
+                  "paddingRight": 0,
                 },
               ]
             }
           >
-            Available Until
-          </Text>
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              }
-            }
-          >
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
+            <View
               style={
-                Array [
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                  Object {
-                    "color": "#2D3B45",
-                    "fontSize": 16,
-                  },
-                  Object {},
-                  Object {
-                    "fontFamily": ".SFUIDisplay",
-                  },
-                ]
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                  "paddingRight": 32,
+                }
               }
             >
-              May 31, 2037 at 11:59 PM
-            </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontWeight": "600",
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay-semibold",
+                    },
+                  ]
+                }
+              >
+                Available Until
+              </Text>
+            </View>
             <View
-              accessibilityComponentType="button"
-              accessibilityLabel={undefined}
-              accessibilityTraits="button"
-              accessible={true}
-              collapsable={undefined}
-              hitSlop={undefined}
-              isTVSelectable={true}
-              nativeID={undefined}
-              onLayout={undefined}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
               style={
                 Object {
                   "alignItems": "center",
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingTop": 8,
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
                 }
               }
-              testID={undefined}
-              tvParallaxProperties={undefined}
             >
-              <Image
-                source={1}
-              />
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {},
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID={undefined}
+              >
+                May 31, 2037 at 11:59 PM
+              </Text>
             </View>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "paddingBottom": 8,
+              "paddingLeft": 8,
+              "paddingRight": 16,
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            accessibilityComponentType={undefined}
+            accessibilityLabel="Remove date"
+            accessibilityTraits="button"
+            accessible={true}
+            hasTVPreferredFocus={undefined}
+            hitSlop={undefined}
+            isTVSelectable={true}
+            nativeID={undefined}
+            onLayout={undefined}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                undefined,
+              ]
+            }
+            testID={undefined}
+            tvParallaxProperties={undefined}
+          >
+            <Image
+              source={1}
+            />
           </View>
         </View>
       </View>

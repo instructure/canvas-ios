@@ -199,7 +199,7 @@ describe('AnnouncementEdit', () => {
     props.delayed_post_at = (new Date(0)).toISOString()
     const component = render(props)
     clearDelayPostAt(component)
-    expect(getDelayPostAtValueFromLabel(component)).toEqual('--')
+    expect(getDelayPostAtPicker(component)).toBeNull()
   })
 
   it('deletes pending new discussion on unmount', () => {
@@ -293,6 +293,11 @@ describe('AnnouncementEdit', () => {
   function tapDelayedPostAtRow (component: any) {
     const row: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-row')
     row.props.onPress()
+  }
+
+  function getDelayPostAtPicker (component: any): any {
+    const label: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-date-picker')
+    return label
   }
 
   function getDelayPostAtValueFromLabel (component: any): string {

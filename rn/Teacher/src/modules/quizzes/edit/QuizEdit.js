@@ -15,14 +15,13 @@ import {
   NativeModules,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import Button from 'react-native-button'
-
 import { Heading1 } from '../../../common/text'
 import colors from '../../../common/colors'
 import images from '../../../images'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import Row from '../../../common/components/rows/Row'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
+import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import formatter, { SCORING_POLICIES, QUIZ_TYPES } from '../formatter'
 import { extractDateFromString, formattedDate } from '../../../utils/dateUtils'
@@ -349,19 +348,21 @@ export class QuizEdit extends Component<any, Props, any> {
                   <View>
                     <View style={{ flexDirection: 'row' }}>
                       <View style={{ flex: 1 }}>
-                        <RowWithDetail
+                        <RowWithDateInput
                           title={i18n('Show Correct Answers At')}
-                          detailSelected={this.state.pickers.show_correct_answers_at}
-                          detail={readable.showCorrectAnswersAt || '--'}
+                          date={readable.showCorrectAnswersAt || '--'}
+                          selected={this.state.pickers.show_correct_answers_at}
+                          showRemoveButton={quiz.show_correct_answers_at}
                           border='bottom'
                           onPress={this._togglePicker('show_correct_answers_at', null, (shown) => {
                             const d = defaultDate.toISOString()
                             shown && !quiz.show_correct_answers_at && this._updateQuiz('show_correct_answers_at')(d)
                           })}
-                          testID='quizzes.edit.show-correct-answers-at-row'
-                        />
+                          onRemoveDatePress={this._pressedClearDate('show_correct_answers_at')}
+                          testID={'quizzes.edit.show-correct-answers-at-row'}
+                          removeButtonTestID={'quizzes.edit.clear_show_correct_answers_at_button'}
+                          />
                       </View>
-                      {Boolean(quiz.show_correct_answers_at) && this._clearDateButton('show_correct_answers_at')}
                     </View>
                     { this.state.pickers.show_correct_answers_at &&
                       <DatePickerIOS
@@ -372,19 +373,21 @@ export class QuizEdit extends Component<any, Props, any> {
                     }
                     <View style={{ flexDirection: 'row' }}>
                       <View style={{ flex: 1 }}>
-                        <RowWithDetail
+                        <RowWithDateInput
                           title={i18n('Hide Correct Answers At')}
-                          detailSelected={this.state.pickers.hide_correct_answers_at}
-                          detail={readable.hideCorrectAnswersAt || '--'}
+                          date={readable.hideCorrectAnswersAt || '--'}
+                          selected={this.state.pickers.hide_correct_answers_at}
+                          showRemoveButton={quiz.hide_correct_answers_at}
                           border='bottom'
                           onPress={this._togglePicker('hide_correct_answers_at', null, (shown) => {
                             const d = defaultDate.toISOString()
                             shown && !quiz.hide_correct_answers_at && this._updateQuiz('hide_correct_answers_at')(d)
                           })}
-                          testID='quizzes.edit.hide-correct-answers-at-row'
-                        />
+                          onRemoveDatePress={this._pressedClearDate('hide_correct_answers_at')}
+                          testID={'quizzes.edit.hide-correct-answers-at-row'}
+                          removeButtonTestID={'quizzes.edit.clear_hide_correct_answers_at_button'}
+                          />
                       </View>
-                      {Boolean(quiz.hide_correct_answers_at) && this._clearDateButton('hide_correct_answers_at')}
                     </View>
                     { this.state.pickers.hide_correct_answers_at &&
                       <DatePickerIOS
@@ -535,11 +538,16 @@ export class QuizEdit extends Component<any, Props, any> {
 
   _togglePicker (picker: string, show?: ?boolean, callback?: (shown: boolean) => void): Function {
     return () => {
+      let showPicker = picker === 'hide_correct_answers_at' ? false : this.state.pickers['show_correct_answers_at']
+      let hidePicker = picker === 'show_correct_answers_at' ? false : this.state.pickers['hide_correct_answers_at']
+
       const shown = show == null ? !this.state.pickers[picker] : show
       LayoutAnimation.easeInEaseOut()
       this.setState({
         pickers: {
           ...this.state.pickers,
+          show_correct_answers_at: showPicker,
+          hide_correct_answers_at: hidePicker,
           [picker]: shown,
         },
       })
@@ -548,25 +556,6 @@ export class QuizEdit extends Component<any, Props, any> {
         callback(shown)
       }
     }
-  }
-
-  _clearDateButton (identifier: string): Button {
-    return (
-      <View
-        style={style.clearDateButton}
-        accessible={true}
-        accessibilityLabel={i18n('Remove date')}
-        accessibilityTraits='button'
-      >
-        <Button
-          onPress={this._pressedClearDate(identifier)}
-          testID={`quizzes.edit.clear_${identifier}_button`}
-          activeOpacity={1}
-        >
-          <Image source={images.clear} />
-        </Button>
-      </View>
-    )
   }
 
   _pressedClearDate (identifier: string): Function {
@@ -652,17 +641,6 @@ const style = StyleSheet.create({
     marginRight: 8,
     height: 18,
     width: 18,
-  },
-  clearDateButton: {
-    flex: 0,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingRight: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.seperatorColor,
   },
 })
 

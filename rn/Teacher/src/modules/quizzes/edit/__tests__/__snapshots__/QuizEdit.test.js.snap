@@ -6493,141 +6493,122 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
             <View
@@ -6644,141 +6625,122 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
           </View>
@@ -9053,141 +9015,122 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
             <View
@@ -9204,141 +9147,122 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
           </View>
@@ -20682,175 +20606,157 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, Jun 1, 2017  1:59 AM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Jun 1, 2017  1:59 AM
-                          </Text>
-                        </View>
+                          Jun 1, 2017  1:59 AM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_show_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_show_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
             <View
@@ -20867,175 +20773,157 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, May 31, 2017  11:59 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            May 31, 2017  11:59 PM
-                          </Text>
-                        </View>
+                          May 31, 2017  11:59 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_hide_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_hide_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -46573,141 +46461,122 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
             <View
@@ -46724,177 +46593,159 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, Dec 31, 1969  5:00 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "color": "#374A59",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {
-                                  "color": "#374A59",
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Dec 31, 1969  5:00 PM
-                          </Text>
-                        </View>
+                          Dec 31, 1969  5:00 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_hide_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_hide_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
             <DatePickerIOS
@@ -49174,141 +49025,122 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
             <View
@@ -49325,175 +49157,157 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, Dec 31, 1969  5:00 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Dec 31, 1969  5:00 PM
-                          </Text>
-                        </View>
+                          Dec 31, 1969  5:00 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_hide_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_hide_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
@@ -60903,177 +60717,159 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, Dec 31, 1969  5:00 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "color": "#374A59",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {
-                                  "color": "#374A59",
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Dec 31, 1969  5:00 PM
-                          </Text>
-                        </View>
+                          Dec 31, 1969  5:00 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_show_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_show_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
             <DatePickerIOS
@@ -61095,141 +60891,122 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
           </View>
@@ -63504,175 +63281,157 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, Dec 31, 1969  5:00 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Dec 31, 1969  5:00 PM
-                          </Text>
-                        </View>
+                          Dec 31, 1969  5:00 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_show_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_show_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
             <View
@@ -63689,141 +63448,122 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
           </View>
@@ -82018,141 +81758,122 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
             <View
@@ -82169,177 +81890,159 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, Dec 31, 1969  5:00 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "color": "#374A59",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {
-                                  "color": "#374A59",
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Dec 31, 1969  5:00 PM
-                          </Text>
-                        </View>
+                          Dec 31, 1969  5:00 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_hide_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_hide_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
             <DatePickerIOS
@@ -84619,177 +84322,159 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Show Correct Answers At, Dec 31, 1969  5:00 PM"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.show-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.show-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Show Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 0,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Show Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "color": "#374A59",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {
-                                  "color": "#374A59",
-                                },
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            Dec 31, 1969  5:00 PM
-                          </Text>
-                        </View>
+                          Dec 31, 1969  5:00 PM
+                        </Text>
                       </View>
                     </View>
+                  </TouchableHighlight>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "justifyContent": "center",
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 16,
+                        "paddingTop": 8,
+                      }
+                    }
+                  >
+                    <TouchableHighlight
+                      accessibilityLabel="Remove date"
+                      accessibilityTraits="button"
+                      accessible={true}
+                      containerStyle={
+                        Object {
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "paddingBottom": 8,
+                          "paddingLeft": 8,
+                          "paddingRight": 16,
+                          "paddingTop": 8,
+                        }
+                      }
+                      onPress={[Function]}
+                      testID="quizzes.edit.clear_show_correct_answers_at_button"
+                      underlayColor="transparent"
+                    >
+                      <Image
+                        source={1}
+                      />
+                    </TouchableHighlight>
                   </View>
-                </TouchableHighlight>
-              </View>
-              <View
-                accessibilityLabel="Remove date"
-                accessibilityTraits="button"
-                accessible={true}
-                style={
-                  Object {
-                    "alignItems": "center",
-                    "backgroundColor": "white",
-                    "borderBottomColor": "#C7CDD1",
-                    "borderBottomWidth": 0.5,
-                    "flex": 0,
-                    "justifyContent": "center",
-                    "paddingBottom": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                  }
-                }
-              >
-                <TouchableOpacity
-                  accessibilityComponentType="button"
-                  accessibilityTraits="button"
-                  activeOpacity={1}
-                  onLongPress={undefined}
-                  onPress={[Function]}
-                  onPressIn={undefined}
-                  onPressOut={undefined}
-                  style={undefined}
-                  testID="quizzes.edit.clear_show_correct_answers_at_button"
-                >
-                  <Image
-                    source={1}
-                  />
-                </TouchableOpacity>
+                </View>
               </View>
             </View>
             <DatePickerIOS
@@ -84811,141 +84496,122 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                   }
                 }
               >
-                <TouchableHighlight
-                  accessibilityLabel="Hide Correct Answers At, --"
-                  accessibilityTraits={
-                    Array [
-                      "button",
-                    ]
-                  }
-                  onPress={[Function]}
+                <View
                   style={
                     Array [
                       Object {
-                        "height": 54,
-                      },
-                      undefined,
-                      Object {
+                        "backgroundColor": "white",
                         "borderBottomColor": "#C7CDD1",
                         "borderBottomWidth": 0.5,
+                        "height": 54,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "justifyContent": "flex-end",
                       },
                     ]
                   }
-                  testID="quizzes.edit.hide-correct-answers-at-row"
                 >
-                  <View
+                  <TouchableHighlight
+                    onPress={[Function]}
                     style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "white",
-                          "flex": 1,
-                          "flexDirection": "row",
-                          "paddingBottom": 12.8,
-                          "paddingLeft": 16,
-                          "paddingRight": 16,
-                          "paddingTop": 12.8,
-                        },
-                        Object {
-                          "backgroundColor": "white",
-                        },
-                      ]
+                      Object {
+                        "flex": 1,
+                      }
                     }
+                    testID="quizzes.edit.hide-correct-answers-at-row"
                   >
                     <View
                       style={
-                        Object {
-                          "flex": 1,
-                          "flexDirection": "column",
-                          "justifyContent": "center",
-                        }
-                      }
-                    >
-                      <Text
-                        accessible={true}
-                        allowFontScaling={true}
-                        disabled={false}
-                        ellipsizeMode="tail"
-                        numberOfLines={0}
-                        style={
-                          Array [
-                            Object {
-                              "fontFamily": ".SFUIDisplay",
-                            },
-                            Object {
-                              "color": "#2D3B45",
-                              "fontSize": 16,
-                            },
-                            Array [
-                              Object {
-                                "fontWeight": "600",
-                              },
-                              undefined,
-                            ],
-                            Object {
-                              "fontFamily": ".SFUIDisplay-semibold",
-                            },
-                          ]
-                        }
-                      >
-                        Hide Correct Answers At
-                      </Text>
-                    </View>
-                    <View
-                      style={
-                        Object {
-                          "flex": 0,
-                        }
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "white",
+                            "flex": 1,
+                            "flexDirection": "row",
+                            "justifyContent": "space-between",
+                            "paddingLeft": 16,
+                          },
+                          Object {
+                            "paddingRight": 16,
+                          },
+                        ]
                       }
                     >
                       <View
                         style={
                           Object {
-                            "alignItems": "center",
                             "flex": 1,
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "paddingRight": 32,
+                          }
+                        }
+                      >
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
+                          style={
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {
+                                "fontWeight": "600",
+                              },
+                              Object {
+                                "fontFamily": ".SFUIDisplay-semibold",
+                              },
+                            ]
+                          }
+                        >
+                          Hide Correct Answers At
+                        </Text>
+                      </View>
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
                             "flexDirection": "row",
                             "justifyContent": "flex-end",
                           }
                         }
                       >
-                        <View
+                        <Text
+                          accessible={true}
+                          allowFontScaling={true}
+                          disabled={false}
+                          ellipsizeMode="tail"
                           style={
-                            Object {
-                              "alignItems": "center",
-                              "flexDirection": "row",
-                            }
+                            Array [
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                              Object {
+                                "color": "#2D3B45",
+                                "fontSize": 16,
+                              },
+                              Object {},
+                              Object {
+                                "fontFamily": ".SFUIDisplay",
+                              },
+                            ]
                           }
+                          testID={undefined}
                         >
-                          <Text
-                            accessible={true}
-                            allowFontScaling={true}
-                            disabled={false}
-                            ellipsizeMode="tail"
-                            numberOfLines={1}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                                Object {
-                                  "color": "#2D3B45",
-                                  "fontSize": 16,
-                                },
-                                Object {},
-                                Object {
-                                  "fontFamily": ".SFUIDisplay",
-                                },
-                              ]
-                            }
-                            testID={undefined}
-                          >
-                            --
-                          </Text>
-                        </View>
+                          --
+                        </Text>
                       </View>
                     </View>
-                  </View>
-                </TouchableHighlight>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
           </View>

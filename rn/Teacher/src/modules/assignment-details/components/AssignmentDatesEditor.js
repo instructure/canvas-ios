@@ -23,13 +23,12 @@ import uuid from 'uuid/v1'
 import { cloneDeep } from 'lodash'
 import { Text } from '../../../common/text'
 import EditSectionHeader from './EditSectionHeader'
-import Button from 'react-native-button'
 import Images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Navigator from '../../../routing/Navigator'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 import { formattedDate, extractDateFromString } from '../../../utils/dateUtils'
-import branding from '../../../common/branding'
+import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 
 type Props = {
   assignment: Assignment,
@@ -467,7 +466,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
           </View>
   }
 
-  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType, dateTextColor?: string) => {
+  renderDateType = (date: StagedAssignmentDate, type: ModifyDateType, selected: boolean) => {
     if (type === 'none') return <View />
 
     const stringDate = date[type] ? formattedDueDate(new Date(date[type])) : '--'
@@ -490,17 +489,15 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
       this.removeDateType(date, type)
     }
 
-    let detailTextStyle = dateTextColor ? { color: dateTextColor } : styles.detailText
-
-    return (<TouchableHighlight style={styles.row} onPress={modifyFunction}>
-              <View style={styles.rowContainer}>
-                <Text style={styles.titleText}>{title}</Text>
-                <View style={styles.detailsRowContainer}>
-                  <Text style={detailTextStyle}>{stringDate}</Text>
-                  {date[type] && <Button onPress={removeDateTypeFunction} containerStyle={styles.deleteDateTypeButton}><Image source={Images.clear} /></Button>}
-                </View>
-              </View>
-            </TouchableHighlight>)
+    return (
+      <RowWithDateInput
+        title={title}
+        date={stringDate}
+        onPress={modifyFunction}
+        showRemoveButton={date[type]}
+        selected={selected}
+        onRemoveDatePress={removeDateTypeFunction}/>
+    )
   }
 
   renderDate = (date: StagedAssignmentDate) => {
@@ -530,11 +527,11 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
                     </View>
                   </View>
                 </TouchableHighlight>
-                { date.modifyType === 'due_at' ? this.renderDateType(date, 'due_at', branding.primaryBrandColor) : this.renderDateType(date, 'due_at') }
+                { this.renderDateType(date, 'due_at', date.modifyType === 'due_at')}
                 { date.modifyType === 'due_at' && this.renderDatePicker(date, 'due_at') }
-                { date.modifyType === 'unlock_at' ? this.renderDateType(date, 'unlock_at', branding.primaryBrandColor) : this.renderDateType(date, 'unlock_at') }
+                { this.renderDateType(date, 'unlock_at', date.modifyType === 'unlock_at')}
                 { date.modifyType === 'unlock_at' && this.renderDatePicker(date, 'unlock_at') }
-                { date.modifyType === 'lock_at' ? this.renderDateType(date, 'lock_at', branding.primaryBrandColor) : this.renderDateType(date, 'lock_at') }
+                { this.renderDateType(date, 'lock_at', date.modifyType === 'lock_at') }
                 { date.modifyType === 'lock_at' && this.renderDatePicker(date, 'lock_at') }
               </View>
               <RequiredFieldSubscript title={requiredAssigneesText} visible={!date.validAssignees} />
@@ -660,6 +657,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     paddingLeft: 8,
+    paddingRight: global.style.defaultPadding,
     alignItems: 'center',
     justifyContent: 'center',
   },

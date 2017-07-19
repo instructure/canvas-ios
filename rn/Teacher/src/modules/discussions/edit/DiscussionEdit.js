@@ -22,6 +22,7 @@ import { Heading1 } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDetail from '../../../common/components/rows/RowWithDetail'
+import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import colors from '../../../common/colors'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Images from '../../../images'
@@ -295,24 +296,16 @@ export class DiscussionEdit extends Component<any, Props, any> {
             { !this.isGraded() &&
               <View>
                 <Heading1 style={style.heading}>{i18n('Availability')}</Heading1>
-                <RowWithDetail
+                <RowWithDateInput
                   title={i18n('Available From')}
-                  detailSelected={this.state.showingDatePicker.delayed_post_at}
-                  detail={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
+                  date={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
+                  selected={this.state.showingDatePicker.delayed_post_at}
+                  showRemoveButton={Boolean(this.state.delayed_post_at)}
                   border='bottom'
                   onPress={this._toggleDatePicker('delayed_post_at')}
-                  testID='discussions.edit.delayed_post_at.row'
-                  accessories={ Boolean(this.state.delayed_post_at) &&
-                    <View style={{ marginLeft: 8 }}>
-                      <Button
-                        testID={`discussions.edit.clear-delayed-post-at.button`}
-                        activeOpacity={1}
-                        onPress={this._clearDate('delayed_post_at')}
-                      >
-                        <Image source={Images.clear} />
-                      </Button>
-                    </View>
-                  }
+                  onRemoveDatePress={this._clearDate('delayed_post_at')}
+                  testID={'discussions.edit.delayed_post_at.row'}
+                  removeButtonTestID={'discussions.edit.clear-delayed-post-at.button'}
                 />
                 { this.state.showingDatePicker.delayed_post_at &&
                   <DatePickerIOS
@@ -332,24 +325,16 @@ export class DiscussionEdit extends Component<any, Props, any> {
                     }
                   />
                 }
-                <RowWithDetail
+                <RowWithDateInput
                   title={i18n('Available Until')}
-                  detailSelected={this.state.showingDatePicker.lock_at}
-                  detail={this.state.lock_at ? moment(this.state.lock_at).format(`MMM D  h:mm A`) : '--'}
+                  date={this.state.lock_at ? moment(this.state.lock_at).format(`MMM D  h:mm A`) : '--'}
+                  selected={this.state.showingDatePicker.lock_at}
+                  showRemoveButton={Boolean(this.state.lock_at)}
                   border='bottom'
                   onPress={this._toggleDatePicker('lock_at')}
-                  testID='discussions.edit.lock_at.row'
-                  accessories={ Boolean(this.state.lock_at) &&
-                    <View style={{ marginLeft: 8 }}>
-                      <Button
-                        testID={`discussions.edit.clear-lock-at.button`}
-                        activeOpacity={1}
-                        onPress={this._clearDate('lock_at')}
-                      >
-                        <Image source={Images.clear} />
-                      </Button>
-                    </View>
-                  }
+                  onRemoveDatePress={this._clearDate('lock_at')}
+                  testID={'discussions.edit.lock_at.row'}
+                  removeButtonTestID={'discussions.edit.clear-lock-at.button'}
                 />
                 { this.state.showingDatePicker.lock_at &&
                   <DatePickerIOS
@@ -358,7 +343,6 @@ export class DiscussionEdit extends Component<any, Props, any> {
                     testID='discussions.edit.lock_at.picker'
                   />
                 }
-                <Heading1 style={style.heading}> </Heading1>
               </View>
             }
           </KeyboardAwareScrollView>
