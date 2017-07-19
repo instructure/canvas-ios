@@ -40,19 +40,25 @@ export default class RubricItem extends Component {
   }
 
   changeSelected = (value: ?number) => {
-    if (this.state.selectedOption === value) {
-      value = null
-    }
     this.setState({ selectedOption: value })
     this.props.changeRating(this.props.rubricItem.id, value)
   }
 
-  isCustomGrade = () => this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
+  clearSelected = () => {
+    this.setState({ selectedOption: null })
+    this.props.changeRating(this.props.rubricItem.id, null)
+  }
 
-  promptCustom = (customMessage: ?string) => {
+  isCustomGrade = () => {
+    if (this.props.freeFormCriterionComments) { return this.state.selectedOption != null }
+    return this.props.rubricItem.ratings.every(({ points }) => points !== this.state.selectedOption) && this.state.selectedOption != null
+  }
+
+  promptCustom = () => {
+    let message = i18n('Out of {score}', { score: this.props.rubricItem.points })
     AlertIOS.prompt(
       i18n('Customize Grade'),
-      customMessage,
+      message,
       [{
         text: i18n('Cancel'),
         style: 'cancel',
@@ -63,7 +69,9 @@ export default class RubricItem extends Component {
         onPress: (value) => {
           let numValue = +value
           if (isNaN(numValue)) {
-            this.promptCustom(i18n('Please enter a number'))
+            // This should be impossible because we are using a number pad
+            this.promptCustom()
+            return
           }
 
           this.changeSelected(numValue)
@@ -123,7 +131,7 @@ export default class RubricItem extends Component {
               style={styles.circle}
               on={this.state.selectedOption === rating.points}
               value={rating.points}
-              onPress={this.changeSelected}
+              onPress={(this.state.selectedOption === rating.points) ? this.clearSelected : this.changeSelected}
               onLongPress={this.showToolTip}
               onPressOut={this.dismissToolTip}
               accessibilityLabel={`${rating.points} — ${rating.description}`}
@@ -137,7 +145,7 @@ export default class RubricItem extends Component {
             style={styles.circle}
             on={isCustomGrade}
             value={isCustomGrade ? String(this.state.selectedOption) : ''}
-            onPress={this.promptCustom}
+            onPress={isCustomGrade ? this.clearSelected : this.promptCustom}
             accessibilityLabel={
               isCustomGrade
                 ? i18n('Customize Grade {value}', { value: this.state.selectedOption })

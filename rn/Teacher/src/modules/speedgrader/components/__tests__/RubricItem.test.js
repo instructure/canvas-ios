@@ -159,7 +159,7 @@ describe('RubricItem', () => {
     expect(AccessibilityInfo.setAccessibilityFocus).toHaveBeenCalled()
   })
 
-  it('will call prompt with a default value if there is an existing custom grade', () => {
+  it('will remove the selected value if it is already set', () => {
     let props = {
       ...defaultProps,
       grade: {
@@ -167,14 +167,13 @@ describe('RubricItem', () => {
         comments: '',
       },
     }
-    let tree = renderer.create(
+    let component = renderer.create(
       <RubricItem {...props} />
-    ).toJSON()
+    )
 
-    let button = explore(tree).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
+    let button = explore(component.toJSON()).selectByProp('testID', `rubric-item.customize-grade-${defaultProps.rubricItem.id}`).pop()
     button.props.onPress()
-
-    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('1234')
+    expect(component.getInstance().state.selectedOption).toEqual(null)
   })
 
   it('will call openCommentKeyboard when the add comment button is pressed', () => {

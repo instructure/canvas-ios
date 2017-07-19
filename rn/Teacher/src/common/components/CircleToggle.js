@@ -52,7 +52,7 @@ export default class CircleToggle extends PureComponent {
     if (this.props.on) {
       viewStyle.push({
         backgroundColor: branding.primaryBrandColor,
-        borderWidth: undefined,
+        borderWidth: 0,
       })
       textStyle.color = 'white'
     }

@@ -93,7 +93,7 @@ exports[`renders circle toggle when on correctly 1`] = `
         undefined,
         Object {
           "backgroundColor": "#374A59",
-          "borderWidth": undefined,
+          "borderWidth": 0,
         },
       ]
     }

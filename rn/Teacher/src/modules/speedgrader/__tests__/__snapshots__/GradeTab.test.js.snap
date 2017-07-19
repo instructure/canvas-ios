@@ -2801,7 +2801,7 @@ exports[`Rubric shows the save button when there is a change in the rubric score
                     },
                     Object {
                       "backgroundColor": "#374A59",
-                      "borderWidth": undefined,
+                      "borderWidth": 0,
                     },
                   ]
                 }
