@@ -10,9 +10,9 @@ exports[`render 0 submissions 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
-        "paddingLeft": 8,
       },
       undefined,
+      false,
     ]
   }
 >
@@ -331,6 +331,7 @@ exports[`render 1`] = `
         "maxWidth": 400,
       },
       undefined,
+      false,
     ]
   }
 >
@@ -649,6 +650,7 @@ exports[`render 1 needs grading 1`] = `
         "maxWidth": 400,
       },
       undefined,
+      false,
     ]
   }
 >
@@ -965,9 +967,9 @@ exports[`render 2 need grading 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
-        "paddingLeft": 8,
       },
       undefined,
+      false,
     ]
   }
 >
@@ -1284,9 +1286,9 @@ exports[`render loading with pending set 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
-        "paddingLeft": 8,
       },
       undefined,
+      false,
     ]
   }
 >
@@ -1573,9 +1575,9 @@ exports[`render multiple data points  1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
-        "paddingLeft": 8,
       },
       undefined,
+      false,
     ]
   }
 >
@@ -1892,9 +1894,11 @@ exports[`render on paper submission type 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
-        "paddingLeft": 8,
       },
       undefined,
+      Object {
+        "paddingLeft": 8,
+      },
     ]
   }
 >
@@ -2078,9 +2082,9 @@ exports[`render undefined submission type 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
-        "paddingLeft": 8,
       },
       undefined,
+      false,
     ]
   }
 >

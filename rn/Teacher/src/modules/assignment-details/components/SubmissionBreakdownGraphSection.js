@@ -89,7 +89,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     }
 
     return (
-      <View style={[style.container, this.props.style]}>
+      <View style={[style.container, this.props.style, paperOnly && { paddingLeft: global.style.defaultPadding / 2 }]}>
         {data.map((item, index) =>
           <TouchableOpacity underlayColor='#eeeeee00' style={!paperOnly && style.common} key={`submission_dial_highlight_${index}`}
                               testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
@@ -144,7 +144,6 @@ const style = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     maxWidth: 400,
-    paddingLeft: global.style.defaultPadding / 2,
   },
   loadingWrapper: {
     flex: 1,
