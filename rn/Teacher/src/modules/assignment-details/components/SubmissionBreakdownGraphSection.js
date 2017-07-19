@@ -6,12 +6,13 @@ import React, { Component } from 'react'
 import SubmissionGraph from '../../submissions/SubmissionGraph'
 import { connect } from 'react-redux'
 import SubmissionActions from '../../submissions/list/actions'
+import { Text, SubTitle } from '../../../common/text'
+import colors from '../../../common/colors'
 
 import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Text,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -42,18 +43,12 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
   renderNoSubmissions () {
     let noSubmissionsMessage = i18n('Tap to view submissions list.')
     return (
-        <View style={[style.container, this.props.style]} accessible={false}>
-          <View style={style.paperOnlyContainer} accessible={false} accessibilityLabel={noSubmissionsMessage}>
-            <View style={style.paperOnlyContainer}>
-              <TouchableOpacity underlayColor='#eeeeee00' style={style.common}
-                                key={`submission_dial_highlight_no_submissions`}
-                                testID={`assignment-details.submission-breakdown-graph-section.no-submissions`}
-                                onPress={() => this.props.onPress('') } accessible={false}>
-                <Text style={style.paperOnlyContainerLabel} accessible={false}>{noSubmissionsMessage}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+        <TouchableOpacity underlayColor='#eeeeee00' style={style.common}
+                          key={`submission_dial_highlight_no_submissions`}
+                          testID={`assignment-details.submission-breakdown-graph-section.no-submissions`}
+                          onPress={() => this.props.onPress('') } accessible={false}>
+          <Text accessible={false}>{noSubmissionsMessage}</Text>
+        </TouchableOpacity>
     )
   }
 
@@ -96,7 +91,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
     return (
       <View style={[style.container, this.props.style]}>
         {data.map((item, index) =>
-          <TouchableOpacity underlayColor='#eeeeee00' style={style.common} key={`submission_dial_highlight_${index}`}
+          <TouchableOpacity underlayColor='#eeeeee00' style={!paperOnly && style.common} key={`submission_dial_highlight_${index}`}
                               testID={`assignment-details.submission-breakdown-graph-section.${ids[index]}-dial`} onPress={() => this.onPress(index) } accessibilityTraits='button'>
             <View>
               <SubmissionGraph
@@ -113,9 +108,7 @@ export class SubmissionBreakdownGraphSection extends Component<any, SubmissionBr
 
         {paperOnly &&
           <View style={style.paperOnlyContainer} accessible={true} accessibilityLabel={paperOnlyMessage}>
-            <View style={style.paperOnlyContainer} >
-            <Text style={style.paperOnlyContainerLabel}>{paperOnlyMessage}</Text>
-            </View>
+            <SubTitle style={{ color: colors.darkText }}>{paperOnlyMessage}</SubTitle>
           </View>
         }
 
@@ -151,6 +144,7 @@ const style = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     maxWidth: 400,
+    paddingLeft: global.style.defaultPadding / 2,
   },
   loadingWrapper: {
     flex: 1,
@@ -162,8 +156,7 @@ const style = StyleSheet.create({
   },
   paperOnlyContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginLeft: 32,
   },
 })
 

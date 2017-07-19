@@ -10,6 +10,7 @@ exports[`render 0 submissions 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
+        "paddingLeft": 8,
       },
       undefined,
     ]
@@ -964,6 +965,7 @@ exports[`render 2 need grading 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
+        "paddingLeft": 8,
       },
       undefined,
     ]
@@ -1282,6 +1284,7 @@ exports[`render loading with pending set 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
+        "paddingLeft": 8,
       },
       undefined,
     ]
@@ -1570,6 +1573,7 @@ exports[`render multiple data points  1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
+        "paddingLeft": 8,
       },
       undefined,
     ]
@@ -1888,6 +1892,7 @@ exports[`render on paper submission type 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
+        "paddingLeft": 8,
       },
       undefined,
     ]
@@ -1896,11 +1901,7 @@ exports[`render on paper submission type 1`] = `
   <TouchableOpacity
     accessibilityTraits="button"
     onPress={[Function]}
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
+    style={false}
     testID="assignment-details.submission-breakdown-graph-section.graded-dial"
     underlayColor="#eeeeee00"
   >
@@ -1998,95 +1999,73 @@ exports[`render on paper submission type 1`] = `
     accessible={true}
     style={
       Object {
-        "alignItems": "center",
         "flex": 1,
-        "justifyContent": "center",
+        "marginLeft": 32,
       }
     }
   >
-    <View
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
       style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#7F91A7",
+            "fontSize": 14,
+          },
+          Object {
+            "color": "#2D3B45",
+          },
+        ]
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={undefined}
-      >
-        There are 2 assignees without grades.
-      </Text>
-    </View>
+      There are 2 assignees without grades.
+    </Text>
   </View>
 </View>
 `;
 
 exports[`render on paper submission type 2`] = `
-<View
+<TouchableOpacity
   accessible={false}
+  onPress={[Function]}
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "flexDirection": "row",
-        "justifyContent": "flex-start",
-        "maxWidth": 400,
-      },
-      undefined,
-    ]
+    Object {
+      "flex": 1,
+    }
   }
+  testID="assignment-details.submission-breakdown-graph-section.no-submissions"
+  underlayColor="#eeeeee00"
 >
-  <View
-    accessibilityLabel="Tap to view submissions list."
+  <Text
     accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
     style={
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
     }
   >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <TouchableOpacity
-        accessible={false}
-        onPress={[Function]}
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-        testID="assignment-details.submission-breakdown-graph-section.no-submissions"
-        underlayColor="#eeeeee00"
-      >
-        <Text
-          accessible={false}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={undefined}
-        >
-          Tap to view submissions list.
-        </Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</View>
+    Tap to view submissions list.
+  </Text>
+</TouchableOpacity>
 `;
 
 exports[`render undefined submission type 1`] = `
@@ -2099,6 +2078,7 @@ exports[`render undefined submission type 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "maxWidth": 400,
+        "paddingLeft": 8,
       },
       undefined,
     ]
