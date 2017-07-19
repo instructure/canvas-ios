@@ -22,11 +22,16 @@ import refresh from '../../utils/refresh'
 import AssignmentActions from '../assignments/actions'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
+import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+import { getSessionlessLaunchURL } from '../../api/canvas-api/external_tools'
+import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
 
 import {
   View,
   StyleSheet,
   TouchableOpacity,
+  TouchableHighlight,
+  Alert,
 } from 'react-native'
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
@@ -51,6 +56,8 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       accessibilityLabel: noSubmissionsMessage,
       accessible: noSubmissions,
     } : {}
+
+    const isExternalTool = submissionTypes.includes('external_tool')
 
     return (
       <Screen
@@ -91,7 +98,10 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
           <AssignmentSection
            title={sectionTitleSubmissionTypes}
-           testID='assignment-details.assignment-section.submission-type'>
+           testID='assignment-details.assignment-section.submission-type'
+           onPress={isExternalTool && this.launchExternalTool}
+           showDisclosureIndicator={isExternalTool}
+         >
             <SubmissionType data={assignment.submission_types} />
           </AssignmentSection>
 
@@ -126,6 +136,21 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
             {this.checkAssignmentDescription(assignment.description)}
           </View>
+
+          { isExternalTool &&
+            <TouchableHighlight
+              onPress={this.launchExternalTool}
+              style={style.launchExternalToolButton}
+              accessible={true}
+              accessibilityLabel={i18n('Launch External Tool')}
+              accessibilityTraits='button'
+              testID='assignment-details.launch-external-tool.button'
+            >
+              <View style={style.launchExternalToolButtonContainer}>
+                <Text style={style.launchExternalToolButtonTitle}>{i18n('Launch External Tool')}</Text>
+              </View>
+            </TouchableHighlight>
+          }
 
         </RefreshableScrollView>
       </Screen>
@@ -167,6 +192,17 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       return (<WebContainer style={{ flex: 1 }} html={description} testID='assignment-details.description-section-info-lbl' scrollEnabled={false}/>)
     } else {
       return (<DescriptionDefaultView testID='assignment-details.description-default-view'/>)
+    }
+  }
+
+  launchExternalTool = async () => {
+    try {
+      const url = await this.props.getSessionlessLaunchURL(this.props.courseID, {
+        assignment: this.props.assignmentDetails,
+      })
+      url && RCTSFSafariViewController.open(url)
+    } catch (e) {
+      Alert.alert(ERROR_TITLE, parseErrorMessage(e))
     }
   }
 }
@@ -223,6 +259,27 @@ const style = StyleSheet.create({
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.grey2,
   },
+  launchExternalToolButton: {
+    flex: 1,
+    backgroundColor: '#008EE2',
+    height: 51,
+    borderRadius: 4,
+    marginTop: global.style.defaultPadding,
+    marginBottom: global.style.defaultPadding,
+    marginLeft: global.style.defaultPadding,
+    marginRight: global.style.defaultPadding,
+  },
+  launchExternalToolButtonContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    backgroundColor: '#008EE2',
+  },
+  launchExternalToolButtonTitle: {
+    color: 'white',
+    fontWeight: '600',
+  },
 })
 
 const assignementDetailsShape = PropTypes.shape({
@@ -246,10 +303,17 @@ AssignmentDetails.propTypes = {
   error: PropTypes.string,
 }
 
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
+  getSessionlessLaunchURL,
+})
+
 let Refreshed = refresh(
   props => props.refreshAssignment(props.courseID, props.assignmentID),
   props => !props.assignmentDetails,
   props => Boolean(props.pending)
 )(AssignmentDetails)
-let Connected = connect(mapStateToProps, AssignmentActions)(Refreshed)
+let Connected = connect(mapStateToProps, AssignmentActions, mergeProps)(Refreshed)
 export default (Connected: Component<any, AssignmentDetailsProps, any>)

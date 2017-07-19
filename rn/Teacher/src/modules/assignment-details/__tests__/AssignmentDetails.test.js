@@ -2,15 +2,19 @@
  * @flow
  */
 
-import 'react-native'
+import { Alert } from 'react-native'
 import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
 import timezoneMock from 'timezone-mock'
+import explore from '../../../../test/helpers/explore'
+import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../__templates__/helm'),
+  ...require('../../../api/canvas-api/__templates__/externalTool'),
+  ...require('../../../api/canvas-api/__templates__/error'),
 }
 
 // Note: test renderer must be required after react-native.
@@ -19,6 +23,7 @@ import renderer from 'react-test-renderer'
 jest
   .mock('../../../routing')
   .mock('WebView', () => 'WebView')
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../components/SubmissionBreakdownGraphSection')
 
 let course: any = template.course()
@@ -34,6 +39,7 @@ let defaultProps = {
   stubSubmissionProgress: true,
   refresh: jest.fn(),
   refreshing: false,
+  getSessionlessLaunchURL: jest.fn(),
 }
 
 beforeEach(() => {
@@ -135,4 +141,55 @@ test('routes to the right place when submissions dial is tapped', () => {
     { modal: false },
     { filterType: 'graded' }
   )
+})
+
+describe('external tool', () => {
+  describe('happy path', () => {
+    beforeEach(() => {
+      RCTSFSafariViewController.open = jest.fn()
+    })
+    const url = 'https://canvas.instructure.com/external_tool'
+    const props = {
+      ...defaultProps,
+      getSessionlessLaunchURL: jest.fn(() => Promise.resolve(url)),
+      assignmentDetails: template.assignment({
+        submission_types: ['external_tool'],
+      }),
+    }
+    const tree = renderer.create(
+      <AssignmentDetails {...props} />
+    ).toJSON()
+
+    it('launches from submission types', async () => {
+      const submissionTypes: any = explore(tree).selectByID('assignment-details.assignment-section.submission-type')
+      await submissionTypes.props.onPress()
+      expect(RCTSFSafariViewController.open).toHaveBeenCalledWith(url)
+    })
+
+    it('launches from button', async () => {
+      const button: any = explore(tree).selectByID('assignment-details.launch-external-tool.button')
+      await button.props.onPress()
+      expect(RCTSFSafariViewController.open).toHaveBeenCalledWith(url)
+    })
+  })
+
+  describe('sad path', () => {
+    it('shows an alert', async () => {
+      // $FlowFixMe
+      Alert.alert = jest.fn()
+      const props = {
+        ...defaultProps,
+        assignmentDetails: template.assignment({
+          submission_types: ['external_tool'],
+        }),
+        getSessionlessLaunchURL: jest.fn(() => Promise.reject(template.error('Network error'))),
+      }
+      const tree = renderer.create(
+        <AssignmentDetails {...props} />
+      ).toJSON()
+      const button: any = explore(tree).selectByID('assignment-details.launch-external-tool.button')
+      await button.props.onPress()
+      expect(Alert.alert).toHaveBeenCalledWith('Unexpected Error', 'Network error')
+    })
+  })
 })

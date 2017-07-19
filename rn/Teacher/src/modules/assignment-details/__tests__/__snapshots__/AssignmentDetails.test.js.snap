@@ -18,32 +18,9 @@ exports[`renders 1`] = `
 >
   <RCTRefreshControl />
   <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    <TouchableHighlight
+      onPress={undefined}
       testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -222,33 +199,10 @@ exports[`renders 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={[Function]}
       testID="assignment-details.assignment-section.due"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -694,33 +648,10 @@ exports[`renders 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={false}
       testID="assignment-details.assignment-section.submission-type"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -917,7 +848,7 @@ exports[`renders 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -1104,32 +1035,9 @@ exports[`renders loading 1`] = `
 >
   <RCTRefreshControl />
   <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    <TouchableHighlight
+      onPress={undefined}
       testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1308,33 +1216,10 @@ exports[`renders loading 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={[Function]}
       testID="assignment-details.assignment-section.due"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1780,33 +1665,10 @@ exports[`renders loading 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={false}
       testID="assignment-details.assignment-section.submission-type"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -1925,7 +1787,7 @@ exports[`renders loading 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -2115,32 +1977,9 @@ exports[`renders with no submission types 1`] = `
 >
   <RCTRefreshControl />
   <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    <TouchableHighlight
+      onPress={undefined}
       testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2319,33 +2158,10 @@ exports[`renders with no submission types 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={[Function]}
       testID="assignment-details.assignment-section.due"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2791,33 +2607,10 @@ exports[`renders with no submission types 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={false}
       testID="assignment-details.assignment-section.submission-type"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -2936,7 +2729,7 @@ exports[`renders with no submission types 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </TouchableHighlight>
     <View
       style={
         Object {
@@ -3126,32 +2919,9 @@ exports[`renders without description 1`] = `
 >
   <RCTRefreshControl />
   <View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    <TouchableHighlight
+      onPress={undefined}
       testID={undefined}
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -3330,33 +3100,10 @@ exports[`renders without description 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={[Function]}
       testID="assignment-details.assignment-section.due"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -3802,33 +3549,10 @@ exports[`renders without description 1`] = `
           </View>
         </View>
       </View>
-    </View>
-    <View
-      accessibilityComponentType={undefined}
-      accessibilityLabel={undefined}
-      accessibilityTraits={undefined}
-      accessible={true}
-      hasTVPreferredFocus={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-          },
-          undefined,
-        ]
-      }
+    </TouchableHighlight>
+    <TouchableHighlight
+      onPress={false}
       testID="assignment-details.assignment-section.submission-type"
-      tvParallaxProperties={undefined}
     >
       <View
         style={
@@ -4025,7 +3749,7 @@ exports[`renders without description 1`] = `
           </View>
         </View>
       </View>
-    </View>
+    </TouchableHighlight>
     <View
       style={
         Object {

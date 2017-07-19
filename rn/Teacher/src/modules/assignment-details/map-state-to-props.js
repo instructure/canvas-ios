@@ -21,6 +21,7 @@ export type AssignmentDetailsProps = {
   updateAssignment: Function,
   refreshAssignment: (courseID: string, assignmentID: string) => Promise<Assignment>,
   cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
+  getSessionlessLaunchURL: Function,
 } & RefreshProps
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {

@@ -43,6 +43,7 @@ test('map state to props assignment', async () => {
     updateAssignment: jest.fn(),
     refreshAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
+    getSessionlessLaunchURL: jest.fn(),
   }
 
   const result = mapStateToProps(state, props)
@@ -85,6 +86,7 @@ test('map state to props without course', async () => {
     updateAssignment: jest.fn(),
     refreshAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
+    getSessionlessLaunchURL: jest.fn(),
   }
 
   const result = mapStateToProps(state, props)
@@ -124,6 +126,7 @@ test('map state to props update assignment', async () => {
     updateAssignment: jest.fn(),
     refreshAssignment: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
+    getSessionlessLaunchURL: jest.fn(),
   }
 
   const result = updateMapStateToProps(state, props)
