@@ -72,6 +72,7 @@ export class EditReply extends React.Component<any, Props, any> {
             showToolbar='always'
             scrollEnabled={true}
             placeholder={i18n('Message')}
+            focusOnLoad={true}
           />
         </View>
       </Screen>

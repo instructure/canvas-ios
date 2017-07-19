@@ -19,6 +19,7 @@ export type Props = {
   scrollEnabled?: boolean,
   contentHeight?: number,
   placeholder?: string,
+  focusOnLoad?: boolean,
 }
 
 export default class RichTextEditor extends Component<any, Props, any> {
@@ -80,6 +81,9 @@ export default class RichTextEditor extends Component<any, Props, any> {
     }
     if (this.props.placeholder) {
       this.editor.setPlaceholder(this.props.placeholder)
+    }
+    if (this.props.focusOnLoad) {
+      this.editor.focusEditor()
     }
   }
 

@@ -174,6 +174,19 @@ describe('RichTextEditor', () => {
     expect(mock).toHaveBeenCalledWith('This is a placeholder')
   })
 
+  it('shows keyboard on load with focus prop', () => {
+    let focusProps = {
+      ...props,
+      focusOnLoad: true,
+    }
+    const mock = jest.fn()
+    const component = render(focusProps)
+    const editor: any = explore(component.toJSON()).query(({ type }) => type === 'ZSSRichTextEditor')[0]
+    editor.props._setMock('focusEditor', mock)
+    editor.props.onLoad()
+    expect(mock).toHaveBeenCalled()
+  })
+
   function render (props): any {
     return renderer.create(<RichTextEditor {...props} />)
   }
