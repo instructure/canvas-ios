@@ -1,6 +1,6 @@
 // @flow
 
-import { getSubmissionsProps } from '../get-submissions-props'
+import { getSubmissionsProps, dueDate } from '../get-submissions-props'
 import type { SubmissionDataProps } from '../submission-prop-types'
 
 let t = {
@@ -156,4 +156,72 @@ test('submissions', () => {
     submissions: submissionProps,
     pending: false,
   })
+})
+
+test('due date with normal due date', () => {
+  const assignment = t.assignment({
+    due_at: 'normal',
+  })
+
+  const assignmentState: AssignmentDetailState = {
+    data: assignment,
+    pending: 0,
+    anonymousGradingOn: false,
+  }
+
+  expect(dueDate(assignmentState)).toEqual('normal')
+})
+
+test('due date with overrides', () => {
+  const user = t.user()
+  const assignment = t.assignment({
+    overrides: [{
+      student_ids: [user.id],
+      due_at: 'override',
+    }],
+  })
+
+  const assignmentState: AssignmentDetailState = {
+    data: assignment,
+    pending: 0,
+    anonymousGradingOn: false,
+  }
+
+  expect(dueDate(assignmentState, user)).toEqual('override')
+})
+
+test('due date with edge 1', () => {
+  const user = t.user()
+  const assignment = t.assignment({
+    overrides: [{
+      due_at: 'override',
+    }],
+    due_at: 'normal',
+  })
+
+  const assignmentState: AssignmentDetailState = {
+    data: assignment,
+    pending: 0,
+    anonymousGradingOn: false,
+  }
+
+  expect(dueDate(assignmentState, user)).toEqual('normal')
+})
+
+test('due date with edge 2', () => {
+  const assignment = t.assignment({
+    overrides: [{
+      due_at: 'override',
+      student_ids: ['1'],
+    }],
+    due_at: 'normal',
+  })
+
+  const assignmentState: AssignmentDetailState = {
+    data: assignment,
+    pending: 0,
+    anonymousGradingOn: false,
+  }
+
+  expect(dueDate(assignmentState)).toEqual('normal')
 })

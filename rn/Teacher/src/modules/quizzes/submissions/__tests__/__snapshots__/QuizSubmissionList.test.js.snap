@@ -336,7 +336,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                     ]
                   }
                 >
-                  SUBMITTED
+                  Submitted
                 </Text>
               </View>
               <Text
@@ -740,7 +740,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                     ]
                   }
                 >
-                  SUBMITTED
+                  Submitted
                 </Text>
               </View>
               <Text
@@ -1120,7 +1120,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                     ]
                   }
                 >
-                  SUBMITTED
+                  Submitted
                 </Text>
               </View>
               <Text

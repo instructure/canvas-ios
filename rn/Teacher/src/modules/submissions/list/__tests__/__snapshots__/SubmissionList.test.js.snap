@@ -775,7 +775,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  LATE
+                  Late
                 </Text>
               </View>
               <Text
@@ -1013,7 +1013,7 @@ exports[`SubmissionList loaded 1`] = `
                     ]
                   }
                 >
-                  SUBMITTED
+                  Submitted
                 </Text>
               </View>
               <Text
@@ -1411,7 +1411,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                     ]
                   }
                 >
-                  SUBMITTED
+                  Submitted
                 </Text>
               </View>
               <Text

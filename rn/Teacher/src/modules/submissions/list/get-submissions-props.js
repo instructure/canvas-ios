@@ -7,6 +7,7 @@ import type {
   AsyncSubmissionsDataProps,
 } from './submission-prop-types'
 import localeSort from '../../../utils/locale-sort'
+import find from 'lodash/find'
 
 function getEnrollments (courseContent?: CourseContentState, enrollments: EnrollmentsState): Array<Enrollment> {
   if (!courseContent) { return [] }
@@ -71,9 +72,21 @@ function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDat
   return { userID: id, avatarURL, name, status, grade, submissionID, submission, score }
 }
 
-function dueDate (state: ?AssignmentDetailState): ?string {
+export function dueDate (state: ?AssignmentDetailState, user: ?User): ?string {
   if (!state || !state.data) {
     return null
+  }
+
+  const overrides = state.data.overrides
+  if (overrides) {
+    const override = find(overrides, (override) => {
+      if (!override.student_ids) return false
+      if (!user) return false
+      return override.student_ids.includes(user.id)
+    })
+    if (override) {
+      return override.due_at
+    }
   }
   return state.data.due_at
 }
@@ -96,8 +109,6 @@ export function pendingProp (assignmentContent?: AssignmentContentState, courseC
 }
 
 export function getSubmissionsProps (entities: Entities, courseID: string, assignmentID: string): AsyncSubmissionsDataProps {
-  const due = dueDate(entities.assignments[assignmentID])
-
   // enrollments
   const courseContent = entities.courses[courseID]
   const enrollments = getEnrollments(courseContent, entities.enrollments)
@@ -123,7 +134,9 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     })
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
-      return submissionProps(enrollment.user, submission, due)
+      const user = enrollment.user
+      const due = dueDate(assignmentContent, user)
+      return submissionProps(user, submission, due)
     })
 
   const pending = pendingProp(assignmentContent, courseContent)

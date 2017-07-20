@@ -328,7 +328,7 @@ exports[`excused row renders correctly 1`] = `
             ]
           }
         >
-          MISSING
+          Missing
         </Text>
       </View>
       <Text
@@ -534,7 +534,7 @@ exports[`late graded row renders correctly 1`] = `
             ]
           }
         >
-          LATE
+          Late
         </Text>
       </View>
       <Text
@@ -740,7 +740,7 @@ exports[`missing ungraded row renders correctly 1`] = `
             ]
           }
         >
-          MISSING
+          Missing
         </Text>
       </View>
       <View
@@ -914,7 +914,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
             ]
           }
         >
-          SUBMITTED
+          Submitted
         </Text>
       </View>
       <Text

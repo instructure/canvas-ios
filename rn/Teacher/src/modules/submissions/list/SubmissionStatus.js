@@ -22,15 +22,15 @@ export default class SubmissionStatus extends Component<any, SubmissionStatusPro
     switch (this.props.status) {
       case 'late':
         color = '#FC5E13'
-        title = i18n('LATE')
+        title = i18n('Late')
         break
       case 'missing':
         color = '#EE0612'
-        title = i18n('MISSING')
+        title = i18n('Missing')
         break
       case 'submitted':
         color = '#07AF1F'
-        title = i18n('SUBMITTED')
+        title = i18n('Submitted')
         break
     }
 
