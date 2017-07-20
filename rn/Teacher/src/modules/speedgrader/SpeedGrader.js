@@ -91,6 +91,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   componentWillUnmount () {
     SpeedGrader.drawerState.unregisterDrawer(this)
     SpeedGrader.drawerState.snapTo(0, false)
+    this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, false)
   }
 
   onLayout = (event: any) => {
