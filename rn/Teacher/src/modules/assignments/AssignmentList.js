@@ -250,7 +250,7 @@ const Refreshed = refresh(
     props.refreshGradingPeriods(props.courseID)
   },
   props => props.assignmentGroups.length === 0 || props.gradingPeriods.length === 0,
-  props => Boolean(props.pending)
+  props => Boolean(props.pending),
 )(AssignmentList)
 const Connected = connect(mapStateToProps, { ...AssignmentListActions, ...CourseActions })(Refreshed)
 export default (Connected: Component<any, AssignmentListProps, State>)

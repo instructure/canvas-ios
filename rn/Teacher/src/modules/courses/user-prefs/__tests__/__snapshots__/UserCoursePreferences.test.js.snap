@@ -6650,10 +6650,10 @@ exports[`UserCoursePreferences renders the refreshed component 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
-          refreshing={false}
+          refreshing={true}
         />
       }
-      refreshing={false}
+      refreshing={true}
       style={
         Object {
           "flex": 1,

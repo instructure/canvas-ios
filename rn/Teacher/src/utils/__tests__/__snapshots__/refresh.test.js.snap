@@ -7,7 +7,7 @@ exports[`refresh can be refreshed 1`] = `
   disabled={false}
   ellipsizeMode="tail"
   refresh={[Function]}
-  refreshing={false}
+  refreshing={true}
 >
   Some moar text
 </Text>

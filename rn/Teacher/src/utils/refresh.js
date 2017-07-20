@@ -10,8 +10,11 @@ export type IsFetchingData = (*) => boolean
 export default function refresh (
     refreshFunction: RefreshFunction,
     shouldRefresh: ShouldRefresh,
-    isFetchingData: IsFetchingData
+    isFetchingData: IsFetchingData,
+    ttl: ?number = 1000 * 60 * 60 // 1 hour
   ): * {
+  let lastUpdate = null
+
   return function (TheirComponent) {
     class Refreshed extends Component {
       state: RefreshState
@@ -24,6 +27,7 @@ export default function refresh (
         super(props)
         this.state = { refreshing: false }
       }
+
       componentWillReceiveProps (nextProps) {
         this.setState({
           refreshing: this.state.refreshing
@@ -31,14 +35,19 @@ export default function refresh (
             : false,
         })
       }
+
       componentWillMount () {
         if (shouldRefresh(this.props)) {
+          lastUpdate = Date.now()
           refreshFunction(this.props)
+        } else if (!lastUpdate || Date.now() > lastUpdate + ttl) {
+          this.refresh()
         }
       }
 
       refresh = () => {
         this.setState({ refreshing: true }, () => {
+          lastUpdate = Date.now()
           refreshFunction(this.props)
         })
       }

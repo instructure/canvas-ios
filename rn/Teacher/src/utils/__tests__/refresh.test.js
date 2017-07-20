@@ -37,10 +37,21 @@ describe('refresh', () => {
   it('doesnt call the refresh function if should refresh return false', () => {
     let refreshFunction = jest.fn()
     let Refreshed = refresh(refreshFunction, () => false, () => false)(Text)
+    let tree = renderer.create(
+      <Refreshed>This is text</Refreshed>
+    )
+    jest.resetAllMocks()
+    tree.update(<Refreshed>This is text</Refreshed>)
+    expect(refreshFunction).not.toHaveBeenCalled()
+  })
+
+  it('refreshes if should refresh returns false but the ttl is expired', () => {
+    let refreshFunction = jest.fn()
+    let Refreshed = refresh(refreshFunction, () => false, () => false, 0)(Text)
     renderer.create(
       <Refreshed>This is text</Refreshed>
     )
-    expect(refreshFunction).not.toHaveBeenCalled()
+    expect(refreshFunction).toHaveBeenCalled()
   })
 
   it('passes in the refresh function as a prop to the underlying component', () => {
