@@ -105,7 +105,7 @@ export default class BottomDrawer extends Component<any, Props, State> {
   }
 
   onSnap = (e: any) => {
-    this.props.drawerState.didSnapTo(e.nativeEvent.index)
+    this.props.drawerState.drawerDidSnap(this, e.nativeEvent.index)
   }
 
   snapTo = (snap: Snap, animated: boolean = true) => {

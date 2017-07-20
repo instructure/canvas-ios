@@ -4230,7 +4230,7 @@ react-native-image-picker@^0.26.3:
 
 "react-native-interactable@https://github.com/derrh/react-native-interactable.git":
   version "0.0.9"
-  resolved "https://github.com/derrh/react-native-interactable.git#cc1bca18c6194afd4f3c3cb552f003a0884ab0a3"
+  resolved "https://github.com/derrh/react-native-interactable.git#8849e730650956a6c658f6314185f812753cd11d"
 
 react-native-keyboard-aware-scroll-view@^0.2.9:
   version "0.2.9"

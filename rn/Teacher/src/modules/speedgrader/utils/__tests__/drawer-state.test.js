@@ -35,10 +35,14 @@ describe('DrawerState', () => {
     state.snapTo(2, false)
     state.deltaY.setValue(120)
 
-    state.didSnapTo(0)
+    expect(drawer.snapTo).toHaveBeenCalledWith(2, false)
+    expect(drawer.snapTo.mock.calls.length).toEqual(2)
+
+    state.drawerDidSnap(drawer, 0)
     expect(state.currentSnap).toEqual(0)
     expect(mockValue.mock).toHaveBeenCalledWith(0)
-    expect(drawer.snapTo).toHaveBeenCalledWith(0, false)
+    expect(drawer.snapTo).toHaveBeenCalledWith(2, false)
+    expect(drawer.snapTo.mock.calls.length).toEqual(2)
   })
 
   it('unregisters drawers in componentWillUnmount', () => {

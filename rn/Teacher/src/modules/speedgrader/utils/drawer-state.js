@@ -56,17 +56,17 @@ export default class DrawerState {
     this.drawers.forEach(drawer => drawer.onDragBegan && drawer.onDragBegan())
   }
 
-  didSnapTo = (snap: DrawerPosition) => {
-    this.snapTo(snap, false)
+  drawerDidSnap = (drawer: DrawerObserver, snap: DrawerPosition) => {
+    this.snapTo(snap, false, drawer)
     if (snap !== 2) {
       Keyboard.dismiss()
     }
   }
 
-  snapTo = (snap: DrawerPosition, animated: boolean = true) => {
+  snapTo = (snap: DrawerPosition, animated: boolean = true, initiatingDrawer?: DrawerObserver) => {
     if (snap !== this.currentSnap) {
       this.currentSnap = snap
-      this.drawers.forEach(drawer => drawer.snapTo(snap, animated))
+      this.drawers.forEach(drawer => drawer !== initiatingDrawer && drawer.snapTo(snap, animated))
       if (!animated && snap === 0) {
         this.deltaY.setValue(0)
       }
