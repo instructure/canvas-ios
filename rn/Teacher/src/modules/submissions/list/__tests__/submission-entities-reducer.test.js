@@ -210,7 +210,7 @@ test('gradeSubmission creates the submission entity when there is no submissionI
 test('gradeSubmission updates the existing submission entity when there is a submissionID', () => {
   let state = {
     '1': {
-      submission: templates.submissionHistory([{ id: '1', excused: true }]),
+      submission: templates.submissionHistory([{ id: '1', excused: true, grade_matches_current_submission: false }]),
       pending: 1,
       error: null,
     },
@@ -232,6 +232,7 @@ test('gradeSubmission updates the existing submission entity when there is a sub
       grade: '1',
       score: 1,
       excused: false,
+      grade_matches_current_submission: true,
     },
     pending: 0,
   })
