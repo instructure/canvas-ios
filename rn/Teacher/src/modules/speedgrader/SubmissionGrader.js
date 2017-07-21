@@ -166,6 +166,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           ]}
           selectedIndex={this.state.selectedTabIndex}
           onChange={this.changeTab}
+          tintColor={colors.primaryButtonColor}
         />
       </View>
     )

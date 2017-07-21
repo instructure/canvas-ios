@@ -120,7 +120,7 @@ export class FavoritedCourseList extends Component {
         navBarHidden={false}
         navBarImage={branding.headerImage}
         navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarButtonColor}
+        navBarButtonColor={color.navBarTextColor}
         navBarStyle='dark'
         rightBarButtons={[
           {

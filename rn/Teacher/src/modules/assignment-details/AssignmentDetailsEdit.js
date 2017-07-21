@@ -177,8 +177,8 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             >
               <View style={[style.row, style.topRow, style.twoColumnRow]}>
                 <View style={style.buttonInnerContainer}>
-                  <Image source={images.edit} style={style.buttonImage} />
-                  <Text style={style.buttonText}>{i18n('Edit Description')}</Text>
+                  <Image source={images.edit} style={[style.buttonImage, { tintColor: color.primaryButtonColor }]} />
+                  <Text style={[style.buttonText, { color: color.primaryButtonColor }]}>{i18n('Edit Description')}</Text>
                 </View>
                 <DisclosureIndicator />
               </View>

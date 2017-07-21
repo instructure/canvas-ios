@@ -11,6 +11,7 @@ import Foundation
 struct Brand {
     var navBgColor = UIColor.red
     var navButtonColor = UIColor.red
+    var navTextColor = UIColor.red
     var primaryButtonColor = UIColor.red
     var primaryButtonTextColor = UIColor.red
     var primaryBrandColor = UIColor.red
@@ -21,6 +22,10 @@ struct Brand {
         if let payload = webPayload {
             if let hex = payload["ic-brand-global-nav-bgd"] as? String, let color = UIColor.colorFromHexString(hex) {
                 navBgColor = color
+            }
+            
+            if let hex = payload["ic-brand-global-nav-menu-item__text-color"] as? String, let color = UIColor.colorFromHexString(hex) {
+                navTextColor = color
             }
             
             if let hex = payload["ic-brand-global-nav-ic-icon-svg-fill"] as? String, let color = UIColor.colorFromHexString(hex) {

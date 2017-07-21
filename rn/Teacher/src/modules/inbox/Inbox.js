@@ -135,7 +135,7 @@ export class Inbox extends Component {
     return (
       <Screen
         navBarColor={color.navBarColor}
-        navBarButtonColor={color.navBarButtonColor}
+        navBarButtonColor={color.navBarTextColor}
         navBarStyle='dark'
         drawUnderNavBar={true}
         navBarImage={branding.headerImage}

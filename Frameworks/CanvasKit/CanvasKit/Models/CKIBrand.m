@@ -32,6 +32,7 @@
             @"secondaryButtonTextColor": @"ic-brand-button--secondary-text",
             @"navigationBackground": @"ic-brand-global-nav-bgd",
             @"navigationButtonColor": @"ic-brand-global-nav-ic-icon-svg-fill",
+            @"navigationTextColor": @"ic-brand-global-nav-menu-item__text-color",
             @"headerImageURL": @"ic-brand-header-image",
     };
     NSDictionary *superPaths = [super JSONKeyPathsByPropertyKey];

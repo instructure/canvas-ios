@@ -543,8 +543,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   renderButton = () => {
     return (<TouchableHighlight style={styles.button} onPress={this.addAdditionalDueDate}>
              <View style={styles.buttonInnerContainer}>
-                <Image source={Images.add} style={styles.buttonImage} />
-                <Text style={styles.buttonText}>{i18n('Add Due Date')}</Text>
+                <Image source={Images.add} style={[styles.buttonImage, { tintColor: colors.primaryButtonColor }]} />
+                <Text style={[styles.buttonText, { color: colors.primaryButtonColor }]}>{i18n('Add Due Date')}</Text>
               </View>
             </TouchableHighlight>)
   }
@@ -629,7 +629,6 @@ const styles = StyleSheet.create({
     color: '#008EE2',
   },
   buttonImage: {
-    tintColor: colors.primaryButton,
     marginRight: 8,
     height: 18,
     width: 18,

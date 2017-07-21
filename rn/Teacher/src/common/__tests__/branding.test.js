@@ -20,6 +20,7 @@ describe('setupBrandingFromNativeBrandingInfo', () => {
       fontColorDark: 'fontColorDark',
       headerImage: './src/images/canvas-logo.png',
       navBarButtonColor: 'navBarButtonColor',
+      navBarTextColor: 'navBarTextColor',
       primaryBrandColor: '#374A59',
     }
 
@@ -30,6 +31,7 @@ describe('setupBrandingFromNativeBrandingInfo', () => {
       'ic-brand-font-color-dark': 'fontColorDark',
       'ic-brand-header-image': './src/images/canvas-logo.png',
       'ic-brand-global-nav-ic-icon-svg-fill': 'navBarButtonColor',
+      'ic-brand-global-nav-menu-item__text-color': 'navBarTextColor',
     }
     setupBrandingFromNativeBrandingInfo(input)
 

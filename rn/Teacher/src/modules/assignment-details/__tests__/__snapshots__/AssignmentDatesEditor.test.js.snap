@@ -832,12 +832,16 @@ exports[`render correctly 1`] = `
         <Image
           source={1}
           style={
-            Object {
-              "height": 18,
-              "marginRight": 8,
-              "tintColor": "#368BD8",
-              "width": 18,
-            }
+            Array [
+              Object {
+                "height": 18,
+                "marginRight": 8,
+                "width": 18,
+              },
+              Object {
+                "tintColor": "#374A59",
+              },
+            ]
           }
         />
         <Text
@@ -854,11 +858,16 @@ exports[`render correctly 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#008EE2",
-                "fontSize": 16,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },
@@ -1715,12 +1724,16 @@ exports[`render correctly with overide 1`] = `
         <Image
           source={1}
           style={
-            Object {
-              "height": 18,
-              "marginRight": 8,
-              "tintColor": "#368BD8",
-              "width": 18,
-            }
+            Array [
+              Object {
+                "height": 18,
+                "marginRight": 8,
+                "width": 18,
+              },
+              Object {
+                "tintColor": "#374A59",
+              },
+            ]
           }
         />
         <Text
@@ -1737,11 +1750,16 @@ exports[`render correctly with overide 1`] = `
                 "color": "#2D3B45",
                 "fontSize": 16,
               },
-              Object {
-                "color": "#008EE2",
-                "fontSize": 16,
-                "fontWeight": "600",
-              },
+              Array [
+                Object {
+                  "color": "#008EE2",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                },
+                Object {
+                  "color": "#374A59",
+                },
+              ],
               Object {
                 "fontFamily": ".SFUIDisplay-semibold",
               },

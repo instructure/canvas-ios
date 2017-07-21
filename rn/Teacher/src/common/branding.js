@@ -7,6 +7,7 @@ import color from '../common/colors'
 export type BrandingConfiguration = {
   navBarColor: string,
   navBarButtonColor: string,
+  navBarTextColor: string,
   primaryButtonColor: string,
   primaryButtonTextColor: string,
   primaryBrandColor: string,
@@ -17,6 +18,7 @@ export type BrandingConfiguration = {
 export const branding: BrandingConfiguration = {
   navBarColor: color.navBarColor,
   navBarButtonColor: color.primaryButtonText,
+  navBarTextColor: color.primaryButtonText,
   primaryButtonTextColor: color.primaryButtonText,
   primaryButtonColor: color.primaryButton,
   fontColorDark: '#000',
@@ -30,12 +32,14 @@ export function setupBrandingFromNativeBrandingInfo (obj: Object): void {
   branding.primaryButtonColor = obj[`ic-brand-button--primary-bgd`] || branding.primaryButtonColor
   branding.fontColorDark = obj[`ic-brand-font-color-dark`] || branding.fontColorDark
   branding.navBarButtonColor = obj[`ic-brand-global-nav-ic-icon-svg-fill`] || branding.navBarButtonColor
+  branding.navBarTextColor = obj[`ic-brand-global-nav-menu-item__text-color`] || branding.navBarTextColor
   branding.primaryBrandColor = obj[`ic-brand-primary`] || branding.primaryBrandColor
   branding.headerImage = obj[`ic-brand-header-image`] || branding.headerImage
 
   //  now that we have branding data, set colors object as well
   color.navBarColor = branding.navBarColor
   color.navBarButtonColor = branding.navBarButtonColor
+  color.navBarTextColor = branding.navBarTextColor
   color.primaryButtonTextColor = branding.primaryButtonTextColor
   color.primaryButtonColor = branding.primaryButtonColor
   color.primaryBrandColor = branding.primaryBrandColor

@@ -73,7 +73,7 @@ export default class Profile extends Component {
       <Screen
         navBarHidden={false}
         navBarImage={branding.headerImage}
-        navBarButtonColor={color.navBarButtonColor}
+        navBarButtonColor={color.navBarTextColor}
         navBarColor={color.navBarColor}
         navBarStyle='dark'
         leftBarButtons={[

@@ -387,12 +387,17 @@ exports[`error occurs when done pressed 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -409,11 +414,16 @@ exports[`error occurs when done pressed 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },
@@ -1309,12 +1319,17 @@ exports[`modal saving is shown on assignment update 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -1331,11 +1346,16 @@ exports[`modal saving is shown on assignment update 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },
@@ -2231,12 +2251,17 @@ exports[`renders 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -2253,11 +2278,16 @@ exports[`renders 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },
@@ -3153,12 +3183,17 @@ exports[`saving invalid dates displays banner 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -3175,11 +3210,16 @@ exports[`saving invalid dates displays banner 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },
@@ -4118,12 +4158,17 @@ exports[`saving invalid name displays banner 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -4140,11 +4185,16 @@ exports[`saving invalid name displays banner 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },
@@ -5043,12 +5093,17 @@ exports[`saving invalid points possible displays banner 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -5065,11 +5120,16 @@ exports[`saving invalid points possible displays banner 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },
@@ -6004,12 +6064,17 @@ exports[`saving negative points possible displays banner 1`] = `
               <Image
                 source={1}
                 style={
-                  Object {
-                    "height": 18,
-                    "marginRight": 8,
-                    "tintColor": "#368BD8",
-                    "width": 18,
-                  }
+                  Array [
+                    Object {
+                      "height": 18,
+                      "marginRight": 8,
+                      "tintColor": "#368BD8",
+                      "width": 18,
+                    },
+                    Object {
+                      "tintColor": "#374A59",
+                    },
+                  ]
                 }
               />
               <Text
@@ -6026,11 +6091,16 @@ exports[`saving negative points possible displays banner 1`] = `
                       "color": "#2D3B45",
                       "fontSize": 16,
                     },
-                    Object {
-                      "color": "#008EE2",
-                      "fontSize": 16,
-                      "fontWeight": "600",
-                    },
+                    Array [
+                      Object {
+                        "color": "#008EE2",
+                        "fontSize": 16,
+                        "fontWeight": "600",
+                      },
+                      Object {
+                        "color": "#374A59",
+                      },
+                    ],
                     Object {
                       "fontFamily": ".SFUIDisplay-semibold",
                     },

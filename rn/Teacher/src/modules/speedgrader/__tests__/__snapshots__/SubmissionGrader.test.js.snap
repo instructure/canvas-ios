@@ -15,6 +15,7 @@ exports[`SubmissionGrader can render the handle content 1`] = `
     onChange={[Function]}
     selectedIndex={-1}
     testID="speedgrader.segment-control"
+    tintColor="#374A59"
     values={
       Array [
         "Grades",
