@@ -205,7 +205,7 @@ export class QuizDetails extends Component<any, Props, any> {
 
   checkAssignmentDescription (description: ?string) {
     if (description) {
-      return (<WebContainer style={{ flex: 1 }} html={description} scrollEnabled={false}/>)
+      return (<WebContainer style={{ flex: 1 }} html={description} scrollEnabled={false} navigator={this.props.navigator}/>)
     } else {
       return (<DescriptionDefaultView />)
     }

@@ -90,7 +90,7 @@ export default class Reply extends Component <any, Props, any> {
               </Text>
             }
             <Text style={style.date}>{formattedDate(reply.updated_at)}</Text>
-            <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={message}/>
+            <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={message} navigator={this.props.navigator}/>
 
             {reply.attachment &&
               <TouchableHighlight testID={`discussion-reply.${reply.id}.attachment`} onPress={this.showAttachment}>

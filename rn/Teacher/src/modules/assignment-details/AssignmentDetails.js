@@ -189,7 +189,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
   checkAssignmentDescription (description: ?string) {
     if (description) {
-      return (<WebContainer style={{ flex: 1 }} html={description} testID='assignment-details.description-section-info-lbl' scrollEnabled={false}/>)
+      return (<WebContainer style={{ flex: 1 }} html={description} testID='assignment-details.description-section-info-lbl' scrollEnabled={false} navigator={this.props.navigator}/>)
     } else {
       return (<DescriptionDefaultView testID='assignment-details.description-default-view'/>)
     }

@@ -76,20 +76,6 @@ import './../../src/common/global-style'
 
 jest.mock('../../src/common/components/AuthenticatedWebView.js', () => 'AuthenticatedWebView')
 
-jest.mock('../../src/api/canvas-api', () => ({
-  getAuthenticatedSessionURL: jest.fn((url) => {
-    return new Promise((resolve, reject) => {
-      process.nextTick(() => {
-        resolve({
-          data: {
-            session_url: url,
-          },
-        })
-      })
-    })
-  }),
-}))
-
 global.V02 = true
 global.V03 = true
 global.V04 = true

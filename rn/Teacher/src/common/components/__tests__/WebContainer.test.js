@@ -8,15 +8,28 @@ import WebContainer from '../WebContainer'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+import { setSession } from '../../../api/session'
 
 jest
   .unmock('ScrollView')
   .mock('WebView', () => 'WebView')
+  .mock('../../../routing/Screen')
   .mock('react-native-sfsafariviewcontroller', () => {
     return {
       open: jest.fn(),
     }
   })
+
+jest.mock('../../../api/canvas-api/login')
+
+const template = {
+  ...require('../../../api/canvas-api/__templates__/session'),
+  ...require('../../../__templates__/helm'),
+}
+
+beforeAll(() => {
+  setSession(template.session())
+})
 
 test('render', () => {
   let tree = renderer.create(
@@ -136,4 +149,25 @@ test('external link, then reload of the content', () => {
     navigationType: 'other',
   })
   expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+})
+
+test('internal link loads authenticated url', async () => {
+  jest.resetAllMocks()
+  let html = '<div>hello world</div>'
+  const navigator = template.navigator({
+    show: jest.fn(),
+  })
+  let tree = renderer.create(
+    <WebContainer html={html} navigator={navigator} />
+  )
+  var width = { nativeEvent: { layout: { width: 300 } } }
+  tree.getInstance().onLayout(width)
+  const webView: any = explore(tree.toJSON()).query(({ type }) => type === 'WebView')[0]
+  webView.props.onShouldStartLoadWithRequest()
+  expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+  await webView.props.onShouldStartLoadWithRequest({
+    url: 'http://mobiledev.instructure.com/courses/1/modules/1/items',
+    navigationType: 'click',
+  })
+  expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated')
 })

@@ -162,7 +162,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
           { (Boolean(discussion.message) || Boolean(discussion.attachments)) &&
              <View style={style.message}>
                 { Boolean(discussion.message) &&
-                   <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message}/>
+                   <WebContainer style={{ flex: 1, color: colors.darkText }} scrollEnabled={false} html={discussion.message} navigator={this.props.navigator}/>
                 }
                 { Boolean(discussion.attachments) && discussion.attachments && discussion.attachments.length === 1 &&
                 // should only ever have 1, blocked by UI, but API returns array of 1 :facepalm:

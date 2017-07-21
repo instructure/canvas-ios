@@ -6,6 +6,8 @@ import React, { Component } from 'react'
 import { View, WebView } from 'react-native'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { isWebUri } from 'valid-url'
+import { getSession } from '../../api/session'
+import canvas from '../../api/canvas-api'
 
 const TEMPLATE = `
 <html>
@@ -60,6 +62,7 @@ type Props = {
   style?: any,
   scrollEnabled: boolean,
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
+  navigator?: Navigator,
 }
 export default class WebContainer extends Component<any, Props, any> {
 
@@ -79,12 +82,30 @@ export default class WebContainer extends Component<any, Props, any> {
 
   onShouldStartLoadWithRequest = (event: any): boolean => {
     if (event && event.navigationType === 'click' && event.url && isWebUri(event.url)) {
+      const session = getSession()
+      if (session && session.baseURL && event.url.includes(session.baseURL)) {
+        this.loadAuthenticatedURL(event.url)
+        return false
+      }
+
       try {
         RCTSFSafariViewController.open(event.url)
       } catch (e) {}
       return false
     }
     return true
+  }
+
+  loadAuthenticatedURL = (url: string) => {
+    let authedURL = url
+    canvas.getAuthenticatedSessionURL(url).then(({ data }) => {
+      if (data.session_url) {
+        authedURL = data.session_url
+      }
+      RCTSFSafariViewController.open(authedURL)
+    }).catch((e) => {
+      RCTSFSafariViewController.open(authedURL)
+    })
   }
 
   render () {

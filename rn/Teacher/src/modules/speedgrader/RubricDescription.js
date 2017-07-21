@@ -25,7 +25,7 @@ export class RubricDescription extends Component {
     return (
       <View style={styles.container}>
         <ScrollView bounces={false}>
-          <WebContainer html={this.props.description} scrollEnabled={false}/>
+          <WebContainer html={this.props.description} scrollEnabled={false} navigator={this.props.navigator}/>
         </ScrollView>
       </View>
     )
