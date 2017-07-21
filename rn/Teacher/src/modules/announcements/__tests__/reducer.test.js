@@ -91,5 +91,23 @@ describe('refs', () => {
         refs: ['33'],
       })
     })
+
+    it('should not explode when refs are not there', () => {
+      const initialState = {
+        pending: 0,
+      }
+      const resolved = {
+        type: deleteDiscussion.toString(),
+        payload: {
+          discussionID: '3',
+        },
+      }
+      expect(
+        refs(initialState, resolved)
+      ).toEqual({
+        pending: 0,
+        refs: [],
+      })
+    })
   })
 })

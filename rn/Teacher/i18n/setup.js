@@ -21,7 +21,7 @@ export default function (locale: string): void {
   initMoment(sanitizedLocale)
 }
 
-function initMoment (locale: string): void {
+export function initMoment (locale: string): void {
   switch (locale) {
     case 'ar':
       require('moment/locale/ar')

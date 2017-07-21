@@ -16,7 +16,6 @@ import AddressBook from '../modules/address-book/AddressBook'
 import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import Profile from '../modules/profile/Profile'
-import BetaFeedback from '../modules/beta-feedback/BetaFeedback'
 import Staging from '../modules/staging/Staging'
 import SubmissionList from '../modules/submissions/list/SubmissionList'
 import SubmissionSettings from '../modules/submissions/list/SubmissionSettings'
@@ -85,7 +84,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/conversations/:conversationID', wrap(ConversationDetails), store)
   registerScreen('/address-book', wrap(AddressBook), store)
   registerScreen('/profile', wrap(Profile), store)
-  registerScreen('/beta-feedback', wrap(BetaFeedback), store)
   registerScreen('/staging', wrap(Staging), store)
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
   registerScreen('/attachment', wrap(AttachmentView), store)

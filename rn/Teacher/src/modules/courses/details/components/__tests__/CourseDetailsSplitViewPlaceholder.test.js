@@ -22,3 +22,14 @@ test('renders correctly', () => {
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })
+
+test('renders correctly', () => {
+  const props = {
+    ...defaultProps,
+    course: template.course({ course_code: null }),
+  }
+  let tree = renderer.create(
+    <CourseDetailsSplitViewPlaceholder {...props} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
