@@ -177,7 +177,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 {
     NSAssert(method < CKIAuthenticationMethodCount, @"Invalid authentication method");
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/login/oauth2/auth?client_id=%@&response_type=code&redirect_uri=urn:ietf:wg:oauth:2.0:oob&mobile=1&session_locale=%@",
+    NSString *urlString = [NSString stringWithFormat:@"%@/login/oauth2/auth?client_id=%@&response_type=code&redirect_uri=https://canvas/login&mobile=1&session_locale=%@",
                            self.baseURL.absoluteString,
                            self.clientID,
                            [self sessionLocale]];
