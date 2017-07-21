@@ -78,7 +78,7 @@ export class Header extends Component {
     } else {
       return (
         <View style={styles.profileContainer}>
-          <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={sub.avatarURL} userName={name} /></View>
+          <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={avatarURL} userName={name} /></View>
           <View style={[styles.nameContainer, { flex: 1 }]}>
             <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
             <SubmissionStatus status={sub.status} />
