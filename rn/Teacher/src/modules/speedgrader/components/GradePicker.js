@@ -38,6 +38,8 @@ export class GradePicker extends Component {
       passFailValue: '',
       pickerOpen: false,
       easeAnimation: new Animated.Value(0),
+      useCustomGrade: true,
+      originalRubricScore: this.props.rubricScore,
     }
 
     if (this.props.gradingType === PASS_FAIL) {
@@ -56,6 +58,7 @@ export class GradePicker extends Component {
             let hasPercentage = promptValue[-1] === '%'
             promptValue = hasPercentage ? promptValue : promptValue + '%'
           }
+          this.setState({ useCustomGrade: true, originalRubricScore: this.props.rubricScore })
           this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
         },
       },
@@ -114,7 +117,12 @@ export class GradePicker extends Component {
   }
 
   renderGrade = () => {
-    let points = `${this.props.score}/${this.props.pointsPossible}`
+    if (this.state.originalRubricScore !== this.props.rubricScore) {
+      this.setState({ useCustomGrade: false, originalRubricScore: this.props.rubricScore })
+    }
+
+    let score = this.props.useRubricForGrading && !this.state.useCustomGrade ? this.props.rubricScore : this.props.score
+    let points = `${score}/${this.props.pointsPossible}`
     let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(this.props.grade, 2)} `
     return <Heading1 style={this.getButtonStyles()}>{grade}{points}</Heading1>
   }
@@ -274,6 +282,8 @@ type GradePickerOwnProps = {
   assignmentID: string,
   userID: string,
   isModeratedGrading: boolean,
+  rubricScore: string,
+  useRubricForGrading: boolean,
 }
 
 type GradePickerDataProps = {
@@ -296,4 +306,6 @@ type GradePickerState = {
   passFailValue: string,
   pickerOpen: boolean,
   easeAnimation: Animated.Value,
+  useCustomGrade: boolean,
+  originalRubricScore: string,
 }

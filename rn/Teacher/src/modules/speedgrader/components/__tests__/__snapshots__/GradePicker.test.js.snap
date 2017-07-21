@@ -330,6 +330,89 @@ exports[`GradePicker renders the picker for pass fail assignments 1`] = `
 </View>
 `;
 
+exports[`GradePicker renders the rubric score when useRubricForGrading 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          undefined,
+        ]
+      }
+    >
+      Grade
+    </Text>
+    <TouchableOpacity
+      accessibilityLabel="Customize Grade"
+      accessibilityTraits="button"
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
+      testID="grade-picker.button"
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        
+        22/10
+      </Text>
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
 exports[`GradePicker renders with excused 1`] = `
 <View
   style={
@@ -475,6 +558,89 @@ exports[`GradePicker renders with no grade 1`] = `
           }
         }
       />
+    </TouchableOpacity>
+  </View>
+</View>
+`;
+
+exports[`GradePicker updates the visible rubric score when useRubricForGrading and rubrucScore changes 1`] = `
+<View
+  style={
+    Object {
+      "paddingHorizontal": 16,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderBottomColor": "lightgray",
+        "borderBottomWidth": 0.5,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <Text
+      accessibilityTraits="header"
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontFamily": ".SFUIDisplay-semibold",
+            "fontSize": 20,
+          },
+          undefined,
+        ]
+      }
+    >
+      Grade
+    </Text>
+    <TouchableOpacity
+      accessibilityLabel="Customize Grade"
+      accessibilityTraits="button"
+      activeOpacity={0.2}
+      onPress={[Function]}
+      style={
+        Object {
+          "minHeight": 20,
+          "paddingHorizontal": 20,
+        }
+      }
+      testID="grade-picker.button"
+    >
+      <Text
+        accessibilityTraits="header"
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontFamily": ".SFUIDisplay-semibold",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+      >
+        
+        22/10
+      </Text>
     </TouchableOpacity>
   </View>
 </View>

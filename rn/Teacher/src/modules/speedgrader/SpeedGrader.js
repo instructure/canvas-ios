@@ -100,10 +100,6 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     }
   }
 
-  dismiss = () => {
-    this.props.navigator.dismiss()
-  }
-
   renderItem = ({ item }: { item: SubmissionItem }) => {
     const submissionEntity = item.submission.submissionID != null
       ? this.props.submissionEntities[item.submission.submissionID]

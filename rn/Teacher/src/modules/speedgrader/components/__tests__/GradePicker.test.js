@@ -29,6 +29,8 @@ let ownProps = {
   courseID: '3',
   userID: '4',
   isModeratedGrading: false,
+  useRubricForGrading: false,
+  rubricScore: '',
 }
 
 let defaultProps = {
@@ -82,6 +84,26 @@ describe('GradePicker', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('renders the rubric score when useRubricForGrading', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} grade={'A'} useRubricForGrading={true} rubricScore={'22'} />
+    )
+
+    tree.getInstance().setState({ useCustomGrade: false })
+
+    expect(tree.toJSON()).toMatchSnapshot()
+  })
+
+  it('updates the visible rubric score when useRubricForGrading and rubrucScore changes', () => {
+    let tree = renderer.create(
+      <GradePicker {...defaultProps} grade={'B'} useRubricForGrading={true} rubricScore={'22'} />
+    )
+
+    tree.getInstance().setState({ useCustomGrade: false, originalRubricScore: '0' })
+
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
   it('calls AlertIOS.prompt when the grade picker button is pressed', () => {

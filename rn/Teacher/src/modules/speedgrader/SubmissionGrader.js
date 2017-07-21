@@ -25,6 +25,7 @@ type State = {
   width: number,
   height: number,
   selectedTabIndex: number,
+  hasChanges: boolean,
 }
 
 type SubmissionGraderProps = {
@@ -52,6 +53,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
   props: SubmissionGraderProps
   drawer: BottomDrawer
   toolTip: ?ToolTip
+  gradeTab: GradeTab
 
   constructor (props: SubmissionGraderProps) {
     super(props)
@@ -60,6 +62,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       width: width,
       height: height,
       selectedTabIndex: -1,
+      hasChanges: false,
     }
 
     props.drawerState.registerDrawer(this)
@@ -67,6 +70,12 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
 
   componentWillUnmount () {
     this.props.drawerState.unregisterDrawer(this)
+  }
+
+  componentWillReceiveProps (newProps: SubmissionGraderProps) {
+    if (this.props.isCurrentStudent && !newProps.isCurrentStudent && this.state.hasChanges) {
+      this.gradeTab.saveRubricPoints()
+    }
   }
 
   onDragBegan = () => {
@@ -87,6 +96,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
 
   captureToolTip = (toolTip: ToolTip) => {
     this.toolTip = toolTip
+  }
+
+  captureGradeTab = (gradeTab: GradeTab) => {
+    this.gradeTab = gradeTab && gradeTab.getWrappedInstance()
   }
 
   changeTab = (e: any) => {
@@ -119,6 +132,8 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           {...this.props}
           showToolTip={showToolTip}
           dismissToolTip={dismissToolTip}
+          checkForUnsavedChanges={this.checkForUnsavedChanges}
+          ref={this.captureGradeTab}
         />
     }
   }
@@ -155,6 +170,17 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     )
   }
 
+  checkForUnsavedChanges = (hasChanges: boolean) => {
+    this.setState({ hasChanges })
+  }
+
+  donePressed = () => {
+    if (this.state.hasChanges) {
+      this.gradeTab.saveRubricPoints()
+    }
+    this.props.closeModal()
+  }
+
   renderCompact (width: number, height: number) {
     return (
       <A11yGroup
@@ -163,7 +189,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       >
         <ToolTip ref={this.captureToolTip} />
         <Header
-          closeModal={this.props.closeModal}
+          closeModal={this.donePressed}
           submissionProps={this.props.submissionProps}
           submissionID={this.props.submissionID}
           assignmentID={this.props.assignmentID}
@@ -194,7 +220,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       >
         <Header
           style={styles.splitViewHeader}
-          closeModal={this.props.closeModal}
+          closeModal={this.donePressed}
           submissionProps={this.props.submissionProps}
           submissionID={this.props.submissionID}
           assignmentID={this.props.assignmentID}

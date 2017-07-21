@@ -26,6 +26,7 @@ let ownProps = {
   navigator: templates.navigator(),
   drawerState: new DrawerState(),
   isModeratedGrading: false,
+  checkForUnsavedChanges: jest.fn(),
 }
 
 let defaultProps = {
@@ -35,6 +36,7 @@ let defaultProps = {
   rubricAssessment: templates.rubricAssessment(),
   gradeSubmissionWithRubric: jest.fn(),
   rubricGradePending: false,
+  useRubricForGrading: false,
 }
 
 describe('Rubric', () => {
@@ -88,39 +90,6 @@ describe('Rubric', () => {
       <GradeTab {...defaultProps} rubricGradePending={true} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
-  })
-
-  it('shows the save button when there is a change in the rubric score', () => {
-    let tree = renderer.create(
-      <GradeTab {...defaultProps} />
-    )
-
-    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItems[0].ratings[0].id}`) || {}
-    button.props.onPress()
-
-    expect(tree.toJSON()).toMatchSnapshot()
-  })
-
-  it('calls gradeSubmissionWithRubric when the save button is pressed', () => {
-    let tree = renderer.create(
-      <GradeTab {...defaultProps} />
-    )
-
-    let circleButton = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItems[0].ratings[0].id}`) || {}
-    circleButton.props.onPress()
-
-    let saveButton = explore(tree.toJSON()).selectByID('rubric-details.save') || {}
-    saveButton.props.onPress()
-
-    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalledWith('1', '1', '1', '1', {
-      '1': {
-        comments: '',
-        points: 10,
-      },
-      '2': {
-        points: 0,
-      },
-    })
   })
 
   it('renders the comment input when openCommentKeyboard is called', () => {
@@ -191,6 +160,17 @@ describe('Rubric', () => {
     expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalledWith(
       '1', '1', '1', '1', { '1': { points: 10, comments: 'A message' } }
     )
+  })
+
+  it('checkForUnsavedChanges called when rubric changes', () => {
+    let tree = renderer.create(
+      <GradeTab {...defaultProps} />
+    )
+    let button = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItems[0].ratings[0].id}`) || {}
+    button.props.onPress()
+
+    expect(defaultProps.checkForUnsavedChanges).toHaveBeenCalledWith(true)
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 })
 

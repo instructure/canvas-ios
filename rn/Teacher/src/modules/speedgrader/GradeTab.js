@@ -13,7 +13,6 @@ import i18n from 'format-message'
 import { Heading1, Text } from '../../common/text'
 import colors from '../../common/colors'
 import RubricItem from './components/RubricItem'
-import { LinkButton } from '../../common/buttons'
 import SpeedGraderActions from './actions'
 import GradePicker from './components/GradePicker'
 import CommentInput from './comments/CommentInput'
@@ -55,6 +54,7 @@ export class GradeTab extends Component {
       },
       hasChanges: true,
     })
+    this.props.checkForUnsavedChanges(true)
   }
 
   getCurrentScore = () => {
@@ -78,6 +78,7 @@ export class GradeTab extends Component {
   saveRubricPoints = () => {
     this.setState({ hasChanges: false })
     this.saveRubricAssessment(this.state.ratings)
+    this.props.checkForUnsavedChanges(false)
   }
 
   openCommentKeyboard = (criterionID: string) => {
@@ -131,7 +132,7 @@ export class GradeTab extends Component {
     let settings = this.props.rubricSettings
     return (
       <View>
-        <GradePicker {...this.props} />
+        <GradePicker {...this.props} useRubricForGrading={this.props.useRubricForGrading} rubricScore={this.getCurrentScore()}/>
         {this.props.rubricItems &&
           <View style={styles.rubricHeader}>
             <View>
@@ -147,11 +148,6 @@ export class GradeTab extends Component {
             </View>
             {this.props.rubricGradePending &&
               <ActivityIndicator />
-            }
-            {this.state.hasChanges &&
-              <LinkButton testID='rubric-details.save' textStyle={styles.saveStyles} onPress={this.saveRubricPoints}>
-                {i18n('Save')}
-              </LinkButton>
             }
           </View>
         }
@@ -244,10 +240,11 @@ export function mapStateToProps (state: AppState, ownProps: RubricOwnProps): Rub
     rubricSettings: assignment.rubric_settings,
     rubricAssessment: assessments,
     rubricGradePending,
+    useRubricForGrading: assignment.use_rubric_for_grading,
   }
 }
 
-const Connected = connect(mapStateToProps, SpeedGraderActions)(GradeTab)
+const Connected = connect(mapStateToProps, SpeedGraderActions, null, { withRef: true })(GradeTab)
 export default (Connected: any)
 
 type RubricOwnProps = {
@@ -260,6 +257,7 @@ type RubricOwnProps = {
   showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
   dismissToolTip?: () => void,
   isModeratedGrading: boolean,
+  checkForUnsavedChanges?: () => boolean,
 }
 
 type RubricDataProps = {
@@ -267,6 +265,7 @@ type RubricDataProps = {
   rubricSettings: ?RubricSettings,
   rubricAssessment: ?{ [string]: RubricAssessment },
   rubricGradePending: boolean,
+  useRubricForGrading: boolean,
 }
 
 type RubricActionProps = {
