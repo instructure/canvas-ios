@@ -115,9 +115,9 @@ const refsChanges: Reducer<AsyncRefs, any> = handleActions({
         id: null,
       },
     }),
-    resolved: (state, { result: { data } }) => ({
+    resolved: (state, { result: { data }, params }) => ({
       ...state,
-      refs: [...state.refs, data.id],
+      refs: params.is_announcement ? [...state.refs] : [...state.refs, data.id],
       new: {
         ...state.new,
         pending: 0,

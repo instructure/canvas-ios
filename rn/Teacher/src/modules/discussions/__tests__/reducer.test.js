@@ -146,6 +146,27 @@ User not authorized` })
       })
     })
 
+    it('does not insert announcement refs', () => {
+      const initialState = refs(undefined, pending)
+      const resolved = {
+        type: createDiscussion.toString(),
+        payload: {
+          result: { data: discussion },
+          params: template.createDiscussionParams({ is_announcement: true }),
+          handlesError: true,
+        },
+      }
+      expect(refs(initialState, resolved)).toEqual({
+        refs: [],
+        pending: 0,
+        new: {
+          id: discussion.id,
+          pending: 0,
+          error: null,
+        },
+      })
+    })
+
     it('handles rejected', () => {
       const initialState = refs(undefined, pending)
       const rejected = {
@@ -745,19 +766,22 @@ describe('createDiscussion', () => {
     }
     const resolved = {
       type: createDiscussion.toString(),
-      payload: { result: { data: discussion } },
+      payload: {
+        result: { data: discussion },
+        params: template.createDiscussionParams(),
+      },
     }
 
     expect(
-        discussions(initialState, resolved)
-      ).toEqual({
-        ...initialState,
-        '2': {
-          data: discussion,
-          pending: 0,
-          error: null,
-        },
-      })
+      discussions(initialState, resolved)
+    ).toEqual({
+      ...initialState,
+      '2': {
+        data: discussion,
+        pending: 0,
+        error: null,
+      },
+    })
   })
 })
 
