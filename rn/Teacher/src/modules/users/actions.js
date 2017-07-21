@@ -15,6 +15,7 @@ export let UserProfileActions: (typeof canvas) => UserProfileActionProps = (api)
 
     return {
       promise: Promise.all(promises),
+      handlesError: true,
     }
   }),
 })
