@@ -28,13 +28,6 @@ console.disableYellowBox = true
 setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 registerScreens(store)
 
-global.V02 = true
-global.V03 = true
-global.V04 = true
-global.V05 = true
-global.V06 = true
-global.V07 = true
-
 const NativeLogin = NativeModules.NativeLogin
 const Helm = NativeModules.Helm
 

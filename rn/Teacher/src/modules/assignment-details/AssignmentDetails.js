@@ -105,32 +105,30 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             <SubmissionType data={assignment.submission_types} />
           </AssignmentSection>
 
-          { global.V02 &&
-            <View style={style.section}>
-              <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
-              <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
-                <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'row' }}>
-                  <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
-                </View>
-                <TouchableOpacity
-                  testID='assignment-details.assignment-section.submissions'
-                  accessibilityLabel={i18n('View all submissions')}
-                  accessibilityTraits='button'
-                  accessible={!noSubmissions}
-                  onPress={() => this.viewSubmissions()}
-                  style={{
-                    justifyContent: 'center',
-                    width: 44,
-                    alignItems: 'flex-end',
-                    marginTop: 8,
-                    marginBottom: 8,
-                  }}
-                >
-                  <DisclosureIndicator />
-                </TouchableOpacity>
+          <View style={style.section}>
+            <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
+            <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
+              <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'row' }}>
+                <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
               </View>
+              <TouchableOpacity
+                testID='assignment-details.assignment-section.submissions'
+                accessibilityLabel={i18n('View all submissions')}
+                accessibilityTraits='button'
+                accessible={!noSubmissions}
+                onPress={() => this.viewSubmissions()}
+                style={{
+                  justifyContent: 'center',
+                  width: 44,
+                  alignItems: 'flex-end',
+                  marginTop: 8,
+                  marginBottom: 8,
+                }}
+              >
+                <DisclosureIndicator />
+              </TouchableOpacity>
             </View>
-          }
+          </View>
 
           <View style={style.section}>
             <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
@@ -177,13 +175,11 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   }
 
   viewSubmissions = (filterType: ?string) => {
-    if (global.V02) {
-      const { courseID, assignmentDetails } = this.props
-      if (filterType) {
-        this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`, { modal: false }, { filterType })
-      } else {
-        this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
-      }
+    const { courseID, assignmentDetails } = this.props
+    if (filterType) {
+      this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`, { modal: false }, { filterType })
+    } else {
+      this.props.navigator.show(`/courses/${courseID}/assignments/${assignmentDetails.id}/submissions`)
     }
   }
 

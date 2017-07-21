@@ -14,14 +14,7 @@ export const tabs: Reducer<TabsState, any> = handleActions({
   [refreshTabs.toString()]: handleAsync({
     pending: (state) => ({ ...state, pending: state.pending + 1 }),
     resolved: (state, { result }) => {
-      const availableCourseTabs = ['assignments']
-      if (global.V03) {
-        availableCourseTabs.push('quizzes')
-      }
-      if (global.V05) {
-        availableCourseTabs.push('discussions')
-        availableCourseTabs.push('announcements')
-      }
+      const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements']
       const orderedTabs = result.data
         .filter((tab) => availableCourseTabs.includes(tab.id))
         .sort((t1, t2) => (t1.position - t2.position))

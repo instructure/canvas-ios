@@ -58,13 +58,11 @@ export class QuizDetails extends Component<any, Props, any> {
   }
 
   viewSubmissions = (filterType: ?string) => {
-    if (global.V02) {
-      const { courseID, quizID } = this.props
-      if (filterType) {
-        this.props.navigator.show(`/courses/${courseID}/quizzes/${quizID}/submissions`, { modal: false }, { filterType })
-      } else {
-        this.props.navigator.show(`/courses/${courseID}/quizzes/${quizID}/submissions`)
-      }
+    const { courseID, quizID } = this.props
+    if (filterType) {
+      this.props.navigator.show(`/courses/${courseID}/quizzes/${quizID}/submissions`, { modal: false }, { filterType })
+    } else {
+      this.props.navigator.show(`/courses/${courseID}/quizzes/${quizID}/submissions`)
     }
   }
 

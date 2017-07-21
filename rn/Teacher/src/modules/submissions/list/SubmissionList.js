@@ -82,7 +82,6 @@ export class SubmissionList extends Component {
   }
 
   navigateToSubmission = (index: number) => (userID: string) => {
-    if (!global.V04) { return } // such features
     if (!this.state.isConnected) {
       return AlertIOS.alert(i18n('No internet connection'), i18n('This action requires an internet connection.'))
     }
