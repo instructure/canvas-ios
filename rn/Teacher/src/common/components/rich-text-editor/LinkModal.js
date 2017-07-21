@@ -100,7 +100,11 @@ export default class LinkModal extends Component<any, Props, any> {
   }
 
   _onPressOK = () => {
-    this.props[this.props.url ? 'linkUpdated' : 'linkCreated'](this.state.url, this.state.title)
+    let url = this.state.url
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = `http://${url}`
+    }
+    this.props[this.props.url ? 'linkUpdated' : 'linkCreated'](url, this.state.title)
   }
 
   _onPressCancel = () => {

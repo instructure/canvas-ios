@@ -47,9 +47,6 @@ Array [
     "zss_editor.insertLink(\\"url\\", \\"title\\");",
   ],
   Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
-  Array [
     "zss_editor.focusEditor();",
   ],
 ]
@@ -129,9 +126,6 @@ Array [
   ],
   Array [
     "zss_editor.setCustomCSS('img { max-width: 100%; } ');",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
   ],
 ]
 `;
@@ -213,9 +207,6 @@ Array [
   Array [
     "zss_editor.setBold();",
   ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
 ]
 `;
 
@@ -232,9 +223,6 @@ Array [
   Array [
     "zss_editor.setItalic();",
   ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
 ]
 `;
 
@@ -242,9 +230,6 @@ exports[`ZSSRichTextEditor triggers ordered list 1`] = `
 Array [
   Array [
     "zss_editor.setOrderedList();",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
   ],
 ]
 `;
@@ -284,9 +269,6 @@ Array [
   Array [
     "zss_editor.setTextColor('white');",
   ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
 ]
 `;
 
@@ -303,9 +285,6 @@ Array [
   Array [
     "zss_editor.setUnorderedList();",
   ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
-  ],
 ]
 `;
 
@@ -313,9 +292,6 @@ exports[`ZSSRichTextEditor updates html if not provided initially 1`] = `
 Array [
   Array [
     "zss_editor.setHTML(\\"here it is\\");",
-  ],
-  Array [
-    "setTimeout(function() { zss_editor.postInput() }, 1);",
   ],
 ]
 `;

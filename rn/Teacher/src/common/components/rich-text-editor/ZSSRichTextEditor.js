@@ -157,7 +157,7 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   trigger = (js: string, inputChanged?: boolean) => {
     this.webView.injectJavaScript(js)
     if (inputChanged) {
-      this.getHTML()
+      setTimeout(this.getHTML, 100)
     }
   }
 
@@ -228,7 +228,7 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   }
 
   _updateLink = (url, title) => {
-    this.trigger(`zss_editor.updateLink("${url}", "${title}");`)
+    this.trigger(`zss_editor.updateLink("${url}", "${title}");`, true)
     this._hideLinkModal()
   }
 

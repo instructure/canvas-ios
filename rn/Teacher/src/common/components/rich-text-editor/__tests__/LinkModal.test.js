@@ -40,7 +40,7 @@ describe('LinkModal', () => {
     fill(component, 'title created', 'url created')
     pressOK(component)
 
-    expect(props.linkCreated).toHaveBeenCalledWith('url created', 'title created')
+    expect(props.linkCreated).toHaveBeenCalledWith('http://url created', 'title created')
   })
 
   it('triggers link updated', () => {

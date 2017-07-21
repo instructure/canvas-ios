@@ -99,7 +99,7 @@ zss_editor.init = function() {
 
             var link = {
                 title: e.target.text,
-                url: e.target.href
+                url: $(e.target).attr('href')
             };
 
             postMessage(JSON.stringify({type: 'LINK_TOUCHED', data: link}));
