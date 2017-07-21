@@ -3,10 +3,10 @@
  */
 
 import 'react-native'
-import { SUBMISSION_TYPES } from '../submissionTypes'
+import { submissionTypes } from '../submissionTypes'
 
 test('test submission types', () => {
-  expect(SUBMISSION_TYPES).toEqual(
+  expect(submissionTypes()).toEqual(
     {
       'discussion_topic': 'Discussion Topic',
       'external_tool': 'External Tool',

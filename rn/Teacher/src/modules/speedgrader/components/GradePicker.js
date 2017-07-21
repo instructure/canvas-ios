@@ -18,6 +18,7 @@ import SpeedGraderActions from '../actions'
 import Images from '../../../images'
 import colors from '../../../common/colors'
 import branding from '../../../common/branding'
+import { formatGradeText } from '../../../common/formatters'
 
 const PASS_FAIL = 'pass_fail'
 const POINTS = 'points'
@@ -49,7 +50,7 @@ export class GradePicker extends Component {
   openPrompt = () => {
     let buttons = [
       {
-        text: i18n('Ok'),
+        text: i18n('OK'),
         onPress: (promptValue) => {
           if (this.props.gradingType === 'percent') {
             let hasPercentage = promptValue[-1] === '%'
@@ -114,7 +115,7 @@ export class GradePicker extends Component {
 
   renderGrade = () => {
     let points = `${this.props.score}/${this.props.pointsPossible}`
-    let grade = this.props.gradingType === 'points' ? '' : `${this.props.grade} `
+    let grade = this.props.gradingType === 'points' ? '' : `${formatGradeText(this.props.grade, 2)} `
     return <Heading1 style={this.getButtonStyles()}>{grade}{points}</Heading1>
   }
 

@@ -25,8 +25,7 @@ const PushNotifications = NativeModules.PushNotifications
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
 // such as, when demoing
 console.disableYellowBox = true
-const Helm = NativeModules.Helm
-
+setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 registerScreens(store)
 
 global.V02 = true
@@ -37,8 +36,8 @@ global.V06 = true
 global.V07 = true
 
 const NativeLogin = NativeModules.NativeLogin
+const Helm = NativeModules.Helm
 
-setupI18n(NativeModules.SettingsManager.settings.AppleLocale)
 Helm.initLoadingStateIfRequired()
 
 const loginHandler = async (info: {

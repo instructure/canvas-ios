@@ -65,7 +65,7 @@ export default class RubricItem extends Component {
         onPress: () => AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton))
 ,
       }, {
-        text: i18n('Ok'),
+        text: i18n('OK'),
         onPress: (value) => {
           let numValue = +value
           if (isNaN(numValue)) {

@@ -36,10 +36,6 @@ type State = {
   filterApplied: boolean,
 }
 
-const DEFAULT_FILTER = {
-  title: i18n('All Grading Periods'),
-}
-
 const { NativeAccessibility } = NativeModules
 
 export class AssignmentList extends Component<any, AssignmentListProps, State> {
@@ -52,7 +48,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
     super(props)
 
     this.state = {
-      currentFilter: DEFAULT_FILTER,
+      currentFilter: { title: i18n('All Grading Periods') },
       filterApplied: false,
     }
   }
@@ -133,7 +129,7 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
 
   clearFilter = () => {
     this.setState({
-      currentFilter: DEFAULT_FILTER,
+      currentFilter: { title: i18n('All Grading Periods') },
       filterApplied: false,
     })
   }

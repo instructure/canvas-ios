@@ -134,6 +134,12 @@
   "attachment_deffe5a9": {
     "message": "Bijlage"
   },
+  "attempt_number_75028cfa": {
+    "message": "Attempt { number }"
+  },
+  "audio_dd489fcc": {
+    "message": "Audio"
+  },
   "availability_8942cde6": {
     "message": "Beschikbaarheid"
   },
@@ -218,9 +224,6 @@
   "color_a363e1b0": {
     "message": "Kleur"
   },
-  "coming_soon_b059a738": {
-    "message": "Binnenkort beschikbaar..."
-  },
   "comment_7ef1428e": {
     "message": "Opmerking"
   },
@@ -248,6 +251,12 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 cursisten}\n    one {# cursist}\n  other {# cursisten}\n}"
   },
+  "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
+    "message": "{ count, plural,\n    one {Needs Grading}\n  other {Need Grading}\n}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_7eba188e": {
+    "message": "{ count, plural,\n    one {# Needs Grading}\n  other {# Need Grading}\n}"
+  },
   "count_plural_one_pt_other_pts_c5a3bced": {
     "message": "{ count, plural,\n    one {# punt}\n  other {# punten}\n}"
   },
@@ -262,9 +271,6 @@
   },
   "count_students_4ae780ca": {
     "message": "{ count } cursisten"
-  },
-  "count_ungraded_bc673f29": {
-    "message": "{ count } onbeoordeeld"
   },
   "course_activity_stream_40091c17": {
     "message": "Activiteitenstroom van cursus"
@@ -286,6 +292,9 @@
   },
   "customize_grade_c9d046d": {
     "message": "Beoordeling aanpassen"
+  },
+  "customize_grade_value_964695a3": {
+    "message": "Customize Grade { value }"
   },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } om { timeString }"
@@ -310,6 +319,9 @@
   },
   "discussion_details_5728ea3d": {
     "message": "Details over discussie"
+  },
+  "discussion_submission_781d5d33": {
+    "message": "Discussion Submission"
   },
   "discussion_topic_dc85ad4c": {
     "message": "Discussieonderwerp"
@@ -382,6 +394,9 @@
   },
   "external_tool_c5a6410a": {
     "message": "Extern hulpmiddel"
+  },
+  "external_tool_submission_c7b1dfa4": {
+    "message": "External Tool Submission"
   },
   "failed_comment_options_aa19a936": {
     "message": "Opties voor mislukte opmerking"
@@ -503,14 +518,14 @@
   "last_post_lastreplydatestr_55fbe7ce": {
     "message": "Laatste bericht { lastReplyDateStr }"
   },
-  "late_bd436902": {
-    "message": "TE LAAT"
+  "late_2be42b88": {
+    "message": "Laat"
   },
   "latest_f604a75": {
     "message": "Laatste"
   },
-  "leave_feedback_df88476c": {
-    "message": "Feedback doorgeven"
+  "launch_external_tool_672c0409": {
+    "message": "Extern hulpmiddel lanceren"
   },
   "length_in_minutes_eca69868": {
     "message": "Duur in minuten"
@@ -545,6 +560,9 @@
   "media_recording_77cddc52": {
     "message": "Media opnames"
   },
+  "media_submission_464829f0": {
+    "message": "Media indiening"
+  },
   "message_5c38209d": {
     "message": "Bericht"
   },
@@ -560,11 +578,11 @@
   "minutes_4aee5a41": {
     "message": "Minuten"
   },
-  "missing_eaddacbd": {
-    "message": "ONTBREEKT"
+  "missing_1a256b3b": {
+    "message": "Ontbrekend"
   },
-  "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
-    "message": "Gemodereerd beoordelen wordt momenteel niet ondersteund in mobiele SpeedGrader."
+  "moderated_grading_unsupported_e3a2bba3": {
+    "message": "Moderated Grading Unsupported"
   },
   "multiple_due_dates_283dd861": {
     "message": "Verschillende inleverdatums"
@@ -577,6 +595,12 @@
   },
   "name_count_others_6e5afa7c": {
     "message": "{ name } + { count } anderen"
+  },
+  "names_count_more_643849d3": {
+    "message": "{ names } + { count } more"
+  },
+  "needs_grading_9143d47c": {
+    "message": "Needs Grading"
   },
   "new_13daf639": {
     "message": "Nieuw"
@@ -707,6 +731,9 @@
   "out_of_points_c40a0475": {
     "message": "Vanuit { points }"
   },
+  "out_of_score_c17b26bb": {
+    "message": "Out of { score }"
+  },
   "pages_front_page_9ce5188": {
     "message": "Voorpagina van pagina's"
   },
@@ -721,9 +748,6 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "Gepinde discussies"
-  },
-  "please_enter_a_number_49c4975d": {
-    "message": "Voer een nummer in"
   },
   "points_bb475533": {
     "message": "Punten"
@@ -769,6 +793,9 @@
   },
   "quiz_score_to_keep_d1f7c4b1": {
     "message": "Te behouden toetsscore"
+  },
+  "quiz_submission_dca0c013": {
+    "message": "Quiz Submission"
   },
   "quiz_type_be1633db": {
     "message": "Toetstype"
@@ -896,8 +923,8 @@
   "submissions_11e96106": {
     "message": "Inleveringen"
   },
-  "submitted_f7bc311f": {
-    "message": "INGEZONDEN"
+  "submitted_318fad53": {
+    "message": "Ingediend"
   },
   "submitted_late_3741af29": {
     "message": "Te laat ingezonden"
@@ -959,6 +986,9 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "Er is een probleem ontstaan bij het laden van de toetsen."
   },
+  "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
+    "message": "There was an error loading the quiz preview."
+  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "Er is een probleem met het laden van je berichten."
   },
@@ -970,9 +1000,6 @@
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "Voor deze opdracht zijn er geen inzendingen toegestaan."
-  },
-  "this_assignment_links_to_an_external_tool_for_subm_3ac1ae26": {
-    "message": "Deze opdracht heeft een link naar een externe tool voor inzendingen."
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "Voor deze opdracht zijn alleen schriftelijke inzendingen toegestaan."
@@ -1031,12 +1058,6 @@
   "unexpected_error_93991f40": {
     "message": "Onverwachte fout"
   },
-  "ungraded_147a0dce": {
-    "message": "onbeoordeeld"
-  },
-  "ungraded_ed0c6f98": {
-    "message": "Niet beoordeeld"
-  },
   "ungraded_survey_ad7de790": {
     "message": "Niet-beoordeelde enquête"
   },
@@ -1072,6 +1093,9 @@
   },
   "version_version_a051e218": {
     "message": "Versie { version }"
+  },
+  "video_b9f27375": {
+    "message": "Video"
   },
   "view_all_submissions_915a8b78": {
     "message": "Alle inzendingen bekijken"

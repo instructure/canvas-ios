@@ -134,6 +134,12 @@
   "attachment_deffe5a9": {
     "message": "附件"
   },
+  "attempt_number_75028cfa": {
+    "message": "Attempt { number }"
+  },
+  "audio_dd489fcc": {
+    "message": "音频"
+  },
   "availability_8942cde6": {
     "message": "可用性"
   },
@@ -218,9 +224,6 @@
   "color_a363e1b0": {
     "message": "颜色"
   },
-  "coming_soon_b059a738": {
-    "message": "即将推出..."
-  },
   "comment_7ef1428e": {
     "message": "评论"
   },
@@ -248,6 +251,12 @@
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 位学生}\n    one {# 位学生}\n  other {# 位学生}\n}"
   },
+  "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
+    "message": "{ count, plural,\n    one {Needs Grading}\n  other {Need Grading}\n}"
+  },
+  "count_plural_one_needs_grading_other_need_grading_7eba188e": {
+    "message": "{ count, plural,\n    one {# Needs Grading}\n  other {# Need Grading}\n}"
+  },
   "count_plural_one_pt_other_pts_c5a3bced": {
     "message": "{ count, plural,\n    one {# 得分}\n  other {# 得分}\n}"
   },
@@ -262,9 +271,6 @@
   },
   "count_students_4ae780ca": {
     "message": "{ count } 学生"
-  },
-  "count_ungraded_bc673f29": {
-    "message": "{ count } 未评分"
   },
   "course_activity_stream_40091c17": {
     "message": "课程活动流"
@@ -286,6 +292,9 @@
   },
   "customize_grade_c9d046d": {
     "message": "自定义评分"
+  },
+  "customize_grade_value_964695a3": {
+    "message": "Customize Grade { value }"
   },
   "datestring_at_timestring_183180ce": {
     "message": "{ dateString } 时间{ timeString }"
@@ -310,6 +319,9 @@
   },
   "discussion_details_5728ea3d": {
     "message": "讨论详细信息"
+  },
+  "discussion_submission_781d5d33": {
+    "message": "Discussion Submission"
   },
   "discussion_topic_dc85ad4c": {
     "message": "讨论主题"
@@ -382,6 +394,9 @@
   },
   "external_tool_c5a6410a": {
     "message": "外部工具"
+  },
+  "external_tool_submission_c7b1dfa4": {
+    "message": "External Tool Submission"
   },
   "failed_comment_options_aa19a936": {
     "message": "失败的评论选项"
@@ -503,14 +518,14 @@
   "last_post_lastreplydatestr_55fbe7ce": {
     "message": "上一次发布{ lastReplyDateStr }"
   },
-  "late_bd436902": {
-    "message": "延迟"
+  "late_2be42b88": {
+    "message": "迟到、迟交"
   },
   "latest_f604a75": {
     "message": "最近"
   },
-  "leave_feedback_df88476c": {
-    "message": "留下反馈信息"
+  "launch_external_tool_672c0409": {
+    "message": "启动外部工具"
   },
   "length_in_minutes_eca69868": {
     "message": "时长(分钟)"
@@ -545,6 +560,9 @@
   "media_recording_77cddc52": {
     "message": "媒体录制"
   },
+  "media_submission_464829f0": {
+    "message": "媒体提交"
+  },
   "message_5c38209d": {
     "message": "信息"
   },
@@ -560,11 +578,11 @@
   "minutes_4aee5a41": {
     "message": "分钟"
   },
-  "missing_eaddacbd": {
-    "message": "缺失"
+  "missing_1a256b3b": {
+    "message": "丢失"
   },
-  "moderated_grading_is_not_currently_supported_in_mo_f86a502c": {
-    "message": "目前在移动 SpeedGrader 中不支持审核后的评分。"
+  "moderated_grading_unsupported_e3a2bba3": {
+    "message": "Moderated Grading Unsupported"
   },
   "multiple_due_dates_283dd861": {
     "message": "多个截止日期"
@@ -577,6 +595,12 @@
   },
   "name_count_others_6e5afa7c": {
     "message": "{ name } + 另外 { count } 个"
+  },
+  "names_count_more_643849d3": {
+    "message": "{ names } + { count } more"
+  },
+  "needs_grading_9143d47c": {
+    "message": "Needs Grading"
   },
   "new_13daf639": {
     "message": "新建"
@@ -707,6 +731,9 @@
   "out_of_points_c40a0475": {
     "message": "共{ points }"
   },
+  "out_of_score_c17b26bb": {
+    "message": "Out of { score }"
+  },
   "pages_front_page_9ce5188": {
     "message": "页面首页"
   },
@@ -721,9 +748,6 @@
   },
   "pinned_discussions_a55c0cea": {
     "message": "既定讨论"
-  },
-  "please_enter_a_number_49c4975d": {
-    "message": "请输入一个数字"
   },
   "points_bb475533": {
     "message": "点"
@@ -769,6 +793,9 @@
   },
   "quiz_score_to_keep_d1f7c4b1": {
     "message": "要保留的测验分数"
+  },
+  "quiz_submission_dca0c013": {
+    "message": "Quiz Submission"
   },
   "quiz_type_be1633db": {
     "message": "测验类型"
@@ -896,8 +923,8 @@
   "submissions_11e96106": {
     "message": "提交项"
   },
-  "submitted_f7bc311f": {
-    "message": "已提交"
+  "submitted_318fad53": {
+    "message": "提交"
   },
   "submitted_late_3741af29": {
     "message": "迟交"
@@ -959,6 +986,9 @@
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
     "message": "加载测验时出现问题。"
   },
+  "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
+    "message": "There was an error loading the quiz preview."
+  },
   "there_was_an_problem_loading_your_messages_b80423ac": {
     "message": "加载您的消息时出现问题。"
   },
@@ -970,9 +1000,6 @@
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
     "message": "此作业不允许提交。"
-  },
-  "this_assignment_links_to_an_external_tool_for_subm_3ac1ae26": {
-    "message": "此作业关联用于提交的外部工具。"
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
     "message": "此作业仅允许纸上提交。"
@@ -1031,12 +1058,6 @@
   "unexpected_error_93991f40": {
     "message": "意外错误"
   },
-  "ungraded_147a0dce": {
-    "message": "未评分"
-  },
-  "ungraded_ed0c6f98": {
-    "message": "未评分"
-  },
   "ungraded_survey_ad7de790": {
     "message": "非评分调查"
   },
@@ -1072,6 +1093,9 @@
   },
   "version_version_a051e218": {
     "message": "版本{ version }"
+  },
+  "video_b9f27375": {
+    "message": "视频"
   },
   "view_all_submissions_915a8b78": {
     "message": "查看所有提交项"

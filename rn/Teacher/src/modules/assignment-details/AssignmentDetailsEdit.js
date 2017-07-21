@@ -43,20 +43,23 @@ type Validation = {
   points: string,
 }
 
-export const GRADE_DISPLAY_OPTIONS: Map<string, string> = new Map([
-  ['percent', i18n('Percentage')],
-  ['pass_fail', i18n('Complete/Incomplete')],
-  ['points', i18n('Points')],
-  ['letter_grade', i18n('Letter Grade')],
-  ['gpa_scale', i18n('GPA Scale')],
-  ['not_graded', i18n('Not Graded')],
-])
+export function gradeDisplayOptions (): Map<string, string> {
+  return new Map([
+    ['percent', i18n('Percentage')],
+    ['pass_fail', i18n('Complete/Incomplete')],
+    ['points', i18n('Points')],
+    ['letter_grade', i18n('Letter Grade')],
+    ['gpa_scale', i18n('GPA Scale')],
+    ['not_graded', i18n('Not Graded')],
+  ])
+}
 
 export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps, any> {
   props: AssignmentDetailsProps
   state: any = {}
   datesEditor: AssignmentDatesEditor
   currentPickerMap: ?Map<*, *> = null
+  static gradeDisplayOptions: Map<string, string>
 
   constructor (props: AssignmentDetailsProps) {
     super(props)
@@ -198,7 +201,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
             {/* Display Grade As */}
             <RowWithDetail title={displayGradeAs}
               detailSelected={this.state.showPicker}
-              detail={GRADE_DISPLAY_OPTIONS.get(this.state.assignment.grading_type)}
+              detail={i18n(gradeDisplayOptions().get(this.state.assignment.grading_type))}
               onPress={this.toggleDisplayGradeAsPicker}
               border={'bottom'}
               testID="assignment-details.toggle-display-grade-as-picker" />
@@ -248,7 +251,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   toggleDisplayGradeAsPicker = (identifier: string) => {
-    this.togglePicker('grading_type', GRADE_DISPLAY_OPTIONS)
+    this.togglePicker('grading_type', gradeDisplayOptions())
   }
 
   togglePicker = (selectedField: string, map: ?Map<*, *>) => {

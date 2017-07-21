@@ -29,7 +29,7 @@ import Images from '../../../images'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
-import { GRADE_DISPLAY_OPTIONS } from '../../assignment-details/AssignmentDetailsEdit'
+import { gradeDisplayOptions } from '../../assignment-details/AssignmentDetailsEdit'
 import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
 import { default as AssignmentsActions } from '../../assignments/actions'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
@@ -147,6 +147,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
   render () {
     const title = this.props.discussionID ? i18n('Edit') : i18n('New')
     const defaultDate = this.props.defaultDate || new Date()
+    const gradeDisplayOpts = gradeDisplayOptions()
 
     return (
       <Screen
@@ -257,7 +258,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
                 <RowWithDetail
                   title={i18n('Display Grade as...')}
                   detailSelected={this.state.gradingTypePickerShown}
-                  detail={GRADE_DISPLAY_OPTIONS.get(this.state.grading_type)}
+                  detail={gradeDisplayOpts.get(this.state.grading_type)}
                   disclosureIndicator={true}
                   border='bottom'
                   onPress={this._toggleGradingTypePicker}
@@ -268,11 +269,11 @@ export class DiscussionEdit extends Component<any, Props, any> {
                     selectedValue={this.state.grading_type}
                     onValueChange={this._valueChanged('grading_type', null, false)}
                     testID='discussions.edit.grading_type.picker'>
-                    {Array.from(GRADE_DISPLAY_OPTIONS.keys()).map((key) => (
+                    {Array.from(gradeDisplayOpts.keys()).map((key) => (
                       <PickerItem
                         key={key}
                         value={key}
-                        label={GRADE_DISPLAY_OPTIONS.get(key)}
+                        label={gradeDisplayOpts.get(key)}
                       />
                     ))}
                   </PickerIOS>

@@ -453,7 +453,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     return <View style={styles.removeButtonContainer}>
       <TouchableOpacity onPress={() => this.removeDate(date)}>
         <View>
-          <Text style={styles.removeButton}>Remove</Text>
+          <Text style={styles.removeButton}>{i18n('Remove')}</Text>
         </View>
       </TouchableOpacity>
     </View>
