@@ -1001,45 +1001,6 @@ exports[`comments render properly 1`] = `
       }
     >
       <View
-        accessibilityComponentType={undefined}
-        accessibilityLabel="Add Media"
-        accessibilityTraits={
-          Array [
-            "button",
-          ]
-        }
-        accessible={true}
-        collapsable={undefined}
-        hitSlop={undefined}
-        isTVSelectable={true}
-        nativeID={undefined}
-        onLayout={undefined}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignSelf": "center",
-            "opacity": 1,
-          }
-        }
-        testID="comment-input.add-media"
-        tvParallaxProperties={undefined}
-      >
-        <Image
-          resizeMode="center"
-          source={1}
-          style={
-            Object {
-              "tintColor": "#73818C",
-            }
-          }
-        />
-      </View>
-      <View
         style={
           Object {
             "alignItems": "flex-start",

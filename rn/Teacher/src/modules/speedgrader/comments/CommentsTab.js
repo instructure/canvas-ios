@@ -91,6 +91,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
           />
         }
         <CommentInput
+          allowMediaComments={false}
           makeComment={this.makeAComment}
           drawerState={this.props.drawerState}
           disabled={hasPending}
