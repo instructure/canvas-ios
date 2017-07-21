@@ -18,6 +18,7 @@ import SubmissionViewer from './SubmissionViewer'
 import ToolTip from '../../common/components/ToolTip'
 import A11yGroup from '../../common/components/A11yGroup'
 import colors from '../../common/colors'
+import SimilarityScore from './components/SimilarityScore'
 
 let { width, height } = Dimensions.get('window')
 
@@ -199,6 +200,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
           submissionProps={this.props.submissionProps}
           submissionID={this.props.submissionID}
         />
+        <SimilarityScore submissionID={this.props.submissionID} />
         <SubmissionViewer {...this.props} size={{ width, height }} />
         <BottomDrawer
           drawerState={this.props.drawerState}
@@ -232,6 +234,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
               submissionProps={this.props.submissionProps}
               submissionID={this.props.submissionID}
             />
+            <SimilarityScore submissionID={this.props.submissionID} />
             <SubmissionViewer
               {...this.props}
               size={{

@@ -15,6 +15,7 @@ jest
   .mock('../components/Header')
   .mock('../components/SubmissionPicker')
   .mock('../components/FilesTab')
+  .mock('../components/SimilarityScore')
   .mock('../comments/CommentsTab')
 
 let template = {

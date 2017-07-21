@@ -40,7 +40,7 @@
     "react-native-on-layout": "^2.0.2",
     "react-native-progress": "^3.3.0",
     "react-native-search-bar": "3.0.0",
-    "react-native-sfsafariviewcontroller": "0.2.4",
+    "react-native-sfsafariviewcontroller": "https://github.com/n8armstrong/react-native-sfsafariviewcontroller",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "redux-actions": "^1.2.2",

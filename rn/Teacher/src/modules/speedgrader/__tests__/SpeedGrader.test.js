@@ -15,6 +15,7 @@ jest.mock('../components/GradePicker')
 jest.mock('../components/Header')
 jest.mock('../components/SubmissionPicker.js')
 jest.mock('../components/FilesTab')
+jest.mock('../components/SimilarityScore')
 jest.mock('../../../common/components/BottomDrawer')
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
 

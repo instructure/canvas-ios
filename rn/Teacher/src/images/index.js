@@ -58,6 +58,10 @@ const images = {
       audio: require('./speedgrader/submission-types/audio.png'),
       url: require('./speedgrader/submission-types/link.png'),
     },
+    turnitin: {
+      error: require('./Warning.png'),
+      pending: require('./clock.png'),
+    },
   },
   noTeacher: {
     parent: require('./Canvas-Parent.png'),

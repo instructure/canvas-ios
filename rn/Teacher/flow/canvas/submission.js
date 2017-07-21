@@ -25,6 +25,14 @@ export type SubmissionDiscussionEntry = {
   message: string,
 }
 
+export type TurnItInData = {
+  status: 'pending' | 'scored' | 'error', // not sure about 'error'
+  similarity_score: number,
+  outcome_response?: {
+    outcomes_tool_placement_url: ?string,
+  },
+}
+
 export type Submission = {
   id: string,
   user: User,
@@ -47,6 +55,7 @@ export type Submission = {
   url?: string,
   media_comment?: MediaComment,
   discussion_entries?: SubmissionDiscussionEntry[],
+  turnitin_data?: { [string]: TurnItInData },
 }
 
 export type SubmissionHistory = {

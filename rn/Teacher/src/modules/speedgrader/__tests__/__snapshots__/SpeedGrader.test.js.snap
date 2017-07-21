@@ -121,6 +121,9 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                 }
               }
             />
+            <SimilarityScore
+              submissionID={undefined}
+            />
             <View
               style={
                 Object {
@@ -299,6 +302,9 @@ exports[`SpeedGrader renders with a filter 1`] = `
                 }
               }
             />
+            <SimilarityScore
+              submissionID={undefined}
+            />
             <View
               style={
                 Object {
@@ -399,6 +405,9 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "userID": "55",
                 }
               }
+            />
+            <SimilarityScore
+              submissionID={undefined}
             />
             <View
               style={
