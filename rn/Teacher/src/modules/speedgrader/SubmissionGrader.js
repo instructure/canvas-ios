@@ -26,7 +26,7 @@ type State = {
   width: number,
   height: number,
   selectedTabIndex: number,
-  hasChanges: boolean,
+  unsavedChanges: ?{ [string]: RubricAssessment },
 }
 
 type SubmissionGraderProps = {
@@ -44,6 +44,7 @@ type SubmissionGraderProps = {
   isModeratedGrading: boolean,
   drawerInset: number,
   navigator: Navigator,
+  gradeSubmissionWithRubric: Function,
 }
 
 const DRAWER_WIDTH = 375
@@ -63,7 +64,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       width: width,
       height: height,
       selectedTabIndex: -1,
-      hasChanges: false,
+      unsavedChanges: null,
     }
 
     props.drawerState.registerDrawer(this)
@@ -73,9 +74,22 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     this.props.drawerState.unregisterDrawer(this)
   }
 
+  saveUnsavedChanges = () => {
+    this.setState({
+      unsavedChanges: null,
+    })
+    this.props.gradeSubmissionWithRubric(
+      this.props.courseID,
+      this.props.assignmentID,
+      this.props.userID,
+      this.props.submissionID,
+      this.state.unsavedChanges,
+    )
+  }
+
   componentWillReceiveProps (newProps: SubmissionGraderProps) {
-    if (this.props.isCurrentStudent && !newProps.isCurrentStudent && this.state.hasChanges) {
-      this.gradeTab.saveRubricPoints()
+    if (this.props.isCurrentStudent && !newProps.isCurrentStudent && this.state.unsavedChanges) {
+      this.saveUnsavedChanges()
     }
   }
 
@@ -99,8 +113,8 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     this.toolTip = toolTip
   }
 
-  captureGradeTab = (gradeTab: GradeTab) => {
-    this.gradeTab = gradeTab && gradeTab.getWrappedInstance()
+  updateUnsavedChanges = (newRatings: ?{ [string]: RubricAssessment }) => {
+    this.setState({ unsavedChanges: newRatings })
   }
 
   changeTab = (e: any) => {
@@ -131,10 +145,10 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
         const dismissToolTip = this.toolTip ? this.toolTip.dismissToolTip : undefined
         return <GradeTab
           {...this.props}
+          unsavedChanges={this.state.unsavedChanges}
           showToolTip={showToolTip}
           dismissToolTip={dismissToolTip}
-          checkForUnsavedChanges={this.checkForUnsavedChanges}
-          ref={this.captureGradeTab}
+          updateUnsavedChanges={this.updateUnsavedChanges}
         />
     }
   }
@@ -172,13 +186,9 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
     )
   }
 
-  checkForUnsavedChanges = (hasChanges: boolean) => {
-    this.setState({ hasChanges })
-  }
-
   donePressed = () => {
-    if (this.state.hasChanges) {
-      this.gradeTab.saveRubricPoints()
+    if (this.state.unsavedChanges) {
+      this.saveUnsavedChanges()
     }
     this.props.closeModal()
   }

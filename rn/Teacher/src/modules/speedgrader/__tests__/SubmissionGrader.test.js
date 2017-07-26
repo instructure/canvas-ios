@@ -26,8 +26,8 @@ let defaultProps = {
   submissionID: '1',
   submissionProps: {},
   drawerState: new DrawerState(),
-  checkForUnsavedChanges: jest.fn(),
   closeModal: jest.fn(),
+  gradeSubmissionWithRubric: jest.fn(),
 }
 
 describe('SubmissionGrader', () => {
@@ -64,93 +64,42 @@ describe('SubmissionGrader', () => {
   })
 
   it('closes and saves rubric on done press with changes', () => {
-    const mock = jest.fn()
-    const options = { createNodeMock: ({ type }) => {
-      if (type === 'GradeTab') {
-        return {
-          getWrappedInstance: jest.fn(() => ({
-            saveRubricPoints: mock,
-          })),
-        }
-      }
-    },
-    }
-
-    let tree = renderer.create(<SubmissionGrader {...defaultProps} />, options)
+    let tree = renderer.create(<SubmissionGrader {...defaultProps} />)
     const gradeTab: any = explore(tree.toJSON()).selectByType('GradeTab')
-    gradeTab.props.checkForUnsavedChanges(true)
+    gradeTab.props.updateUnsavedChanges({ '1': 'yo' })
 
     tree.getInstance().donePressed()
 
-    expect(mock).toHaveBeenCalled()
+    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalled()
     expect(defaultProps.closeModal).toHaveBeenCalled()
   })
 
   it('closes but does not save rubric on done press without changes ', () => {
-    const mock = jest.fn()
-    const options = { createNodeMock: ({ type }) => {
-      if (type === 'GradeTab') {
-        return {
-          getWrappedInstance: jest.fn(() => ({
-            saveRubricPoints: mock,
-          })),
-        }
-      }
-    },
-    }
-
-    let tree = renderer.create(<SubmissionGrader {...defaultProps} />, options)
-    const gradeTab: any = explore(tree.toJSON()).selectByType('GradeTab')
-    gradeTab.props.checkForUnsavedChanges(false)
+    let tree = renderer.create(<SubmissionGrader {...defaultProps} />)
 
     tree.getInstance().donePressed()
 
-    expect(mock).not.toHaveBeenCalled()
+    expect(defaultProps.gradeSubmissionWithRubric).not.toHaveBeenCalled()
     expect(defaultProps.closeModal).toHaveBeenCalled()
   })
 
   it('saves changes to rubric on swipe (when current student changes)', () => {
-    const mock = jest.fn()
-    const options = { createNodeMock: ({ type }) => {
-      if (type === 'GradeTab') {
-        return {
-          getWrappedInstance: jest.fn(() => ({
-            saveRubricPoints: mock,
-          })),
-        }
-      }
-    },
-    }
+    let tree = renderer.create(<SubmissionGrader {...defaultProps} isCurrentStudent={true} />)
 
-    let tree = renderer.create(<SubmissionGrader {...defaultProps} isCurrentStudent={true} />, options)
     const gradeTab: any = explore(tree.toJSON()).selectByType('GradeTab')
-    gradeTab.props.checkForUnsavedChanges(true)
+    gradeTab.props.updateUnsavedChanges({ '1': 'yo' })
 
     tree.getInstance().componentWillReceiveProps({ ...defaultProps, isCurrentStudent: false })
 
-    expect(mock).toHaveBeenCalled()
+    expect(defaultProps.gradeSubmissionWithRubric).toHaveBeenCalled()
   })
 
   it('does not saves changes to rubric on swipe (when current student changes but rubric doesnt change)', () => {
-    const mock = jest.fn()
-    const options = { createNodeMock: ({ type }) => {
-      if (type === 'GradeTab') {
-        return {
-          getWrappedInstance: jest.fn(() => ({
-            saveRubricPoints: mock,
-          })),
-        }
-      }
-    },
-    }
-
-    let tree = renderer.create(<SubmissionGrader {...defaultProps} isCurrentStudent={true} />, options)
-    const gradeTab: any = explore(tree.toJSON()).selectByType('GradeTab')
-    gradeTab.props.checkForUnsavedChanges(false)
+    let tree = renderer.create(<SubmissionGrader {...defaultProps} isCurrentStudent={true} />)
 
     tree.getInstance().componentWillReceiveProps({ ...defaultProps, isCurrentStudent: false })
 
-    expect(mock).not.toHaveBeenCalled()
+    expect(defaultProps.gradeSubmissionWithRubric).not.toHaveBeenCalled()
   })
 
   it('returns a label with the correct number of files', () => {

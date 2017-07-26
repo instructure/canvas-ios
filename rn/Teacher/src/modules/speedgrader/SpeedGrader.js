@@ -15,6 +15,7 @@ import EnrollmentActions from '../enrollments/actions'
 import AssignmentActions from '../assignments/actions'
 import GroupActions from '../groups/actions'
 import SubmissionGrader from './SubmissionGrader'
+import SpeedGraderActions from './actions'
 import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
 import {
   getGroupSubmissionProps,
@@ -127,6 +128,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         isModeratedGrading={this.props.isModeratedGrading}
         navigator={this.props.navigator}
         drawerInset={this.state.drawerInset}
+        gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
       />
     </A11yGroup>
   }
@@ -289,6 +291,7 @@ const Connected = connect(mapStateToProps, {
   ...EnrollmentActions,
   ...AssignmentActions,
   ...GroupActions,
+  ...SpeedGraderActions,
 })(Refreshed)
 
 export default (Connected: any)
@@ -309,6 +312,7 @@ type SpeedGraderActionProps = {
   refreshEnrollments: Function,
   refreshAssignment: Function,
   refreshGroupsForCourse: Function,
+  gradeSubmissionWithRubric: Function,
 }
 type SpeedGraderDataProps = {
   submissionEntities: SubmissionsState,

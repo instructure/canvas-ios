@@ -1,584 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Rubric checkForUnsavedChanges called when rubric changes 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <RCTScrollView
-    ListHeaderComponent={[Function]}
-    data={
-      Array [
-        Object {
-          "description": "A description",
-          "id": "2",
-          "key": "2",
-          "long_description": "A long description",
-          "points": 10,
-          "ratings": Array [
-            Object {
-              "description": "No Credit",
-              "id": "1",
-              "points": 0,
-            },
-            Object {
-              "description": "Partial Credit",
-              "id": "2",
-              "points": 5,
-            },
-            Object {
-              "description": "Full Credit",
-              "id": "3",
-              "points": 10,
-            },
-          ],
-        },
-      ]
-    }
-    disableVirtualization={false}
-    getItem={[Function]}
-    getItemCount={[Function]}
-    horizontal={false}
-    initialNumToRender={2}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onContentSizeChange={[Function]}
-    onEndReachedThreshold={2}
-    onLayout={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollBeginDrag={[Function]}
-    onScrollEndDrag={[Function]}
-    onViewableItemsChanged={undefined}
-    renderItem={[Function]}
-    renderScrollComponent={[Function]}
-    scrollEventThrottle={50}
-    stickyHeaderIndices={Array []}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
-  >
-    <View>
-      <View
-        onLayout={[Function]}
-      >
-        <View>
-          <GradePicker
-            assignmentID="1"
-            checkForUnsavedChanges={[Function]}
-            courseID="1"
-            drawerState={
-              DrawerState {
-                "commentProgress": Object {},
-                "currentSnap": 0,
-                "deltaY": 0,
-                "dragBegan": [Function],
-                "drawerDidSnap": [Function],
-                "drawers": Array [],
-                "registerCommentProgress": [Function],
-                "snapTo": [Function],
-                "unregisterCommentProgress": [Function],
-              }
-            }
-            gradeSubmissionWithRubric={[Function]}
-            isModeratedGrading={false}
-            navigator={
-              Object {
-                "dismiss": [Function],
-                "dismissAllModals": [Function],
-                "pop": [Function],
-                "show": [Function],
-                "traitCollection": [Function],
-              }
-            }
-            rubricAssessment={
-              Object {
-                "1": Object {
-                  "comments": "",
-                  "points": 10,
-                },
-              }
-            }
-            rubricGradePending={false}
-            rubricItems={
-              Array [
-                Object {
-                  "description": "A description",
-                  "id": "2",
-                  "long_description": "A long description",
-                  "points": 10,
-                  "ratings": Array [
-                    Object {
-                      "description": "No Credit",
-                      "id": "1",
-                      "points": 0,
-                    },
-                    Object {
-                      "description": "Partial Credit",
-                      "id": "2",
-                      "points": 5,
-                    },
-                    Object {
-                      "description": "Full Credit",
-                      "id": "3",
-                      "points": 10,
-                    },
-                  ],
-                },
-              ]
-            }
-            rubricScore={10}
-            rubricSettings={
-              Object {
-                "id": "1",
-                "points_possible": 100,
-                "title": "A possible item",
-              }
-            }
-            submissionID="1"
-            useRubricForGrading={false}
-            userID="1"
-          />
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginTop": 16,
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <View>
-              <Text
-                accessibilityTraits="header"
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 20,
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                Rubric
-              </Text>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
-                      "color": "#8B969E",
-                      "fontSize": 14,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                  ]
-                }
-              >
-                10 out of 100
-              </Text>
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-      >
-        <View
-          style={
-            Object {
-              "paddingBottom": 12,
-              "paddingHorizontal": 16,
-              "paddingTop": 16,
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "fontFamily": ".SFUIDisplay",
-                },
-                Object {
-                  "color": "#2D3B45",
-                  "fontSize": 16,
-                },
-                Object {
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-semibold",
-                },
-              ]
-            }
-          >
-            A description
-          </Text>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-                "flexWrap": "wrap",
-                "marginBottom": 6,
-                "marginTop": 12,
-              }
-            }
-          >
-            <TouchableOpacity
-              accessibilityLabel="10 — Full Credit"
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              accessible={true}
-              on={false}
-              onLongPress={[Function]}
-              onPress={[Function]}
-              onPressOut={[Function]}
-              style={
-                Object {
-                  "marginBottom": 4,
-                  "marginRight": 4,
-                }
-              }
-              testID="rubric-item.points-3"
-              value={10}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderColor": "#C7CDD1",
-                      "borderRadius": 24,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "height": 48,
-                      "justifyContent": "center",
-                      "minWidth": 48,
-                      "paddingHorizontal": 8,
-                    },
-                    Object {
-                      "marginBottom": 4,
-                      "marginRight": 4,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  disabled={false}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  10
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              accessibilityLabel="5 — Partial Credit"
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              accessible={true}
-              on={false}
-              onLongPress={[Function]}
-              onPress={[Function]}
-              onPressOut={[Function]}
-              style={
-                Object {
-                  "marginBottom": 4,
-                  "marginRight": 4,
-                }
-              }
-              testID="rubric-item.points-2"
-              value={5}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderColor": "#C7CDD1",
-                      "borderRadius": 24,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "height": 48,
-                      "justifyContent": "center",
-                      "minWidth": 48,
-                      "paddingHorizontal": 8,
-                    },
-                    Object {
-                      "marginBottom": 4,
-                      "marginRight": 4,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  disabled={false}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#8B969E",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  5
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              accessibilityLabel="0 — No Credit"
-              accessibilityTraits={
-                Array [
-                  "button",
-                  "selected",
-                ]
-              }
-              accessible={true}
-              on={true}
-              onLongPress={[Function]}
-              onPress={[Function]}
-              onPressOut={[Function]}
-              style={
-                Object {
-                  "marginBottom": 4,
-                  "marginRight": 4,
-                }
-              }
-              testID="rubric-item.points-1"
-              value={0}
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderColor": "#C7CDD1",
-                      "borderRadius": 24,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "height": 48,
-                      "justifyContent": "center",
-                      "minWidth": 48,
-                      "paddingHorizontal": 8,
-                    },
-                    Object {
-                      "marginBottom": 4,
-                      "marginRight": 4,
-                    },
-                    Object {
-                      "backgroundColor": "#374A59",
-                      "borderWidth": 0,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  accessibilityTraits="header"
-                  accessible={false}
-                  allowFontScaling={true}
-                  disabled={false}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontFamily": ".SFUIDisplay-semibold",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "white",
-                        "fontWeight": "500",
-                      },
-                    ]
-                  }
-                >
-                  0
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              accessibilityLabel="Customize Grade"
-              accessibilityTraits={
-                Array [
-                  "button",
-                ]
-              }
-              accessible={true}
-              on={false}
-              onLongPress={undefined}
-              onPress={[Function]}
-              style={
-                Object {
-                  "marginBottom": 4,
-                  "marginRight": 4,
-                }
-              }
-              testID="rubric-item.customize-grade-2"
-              value=""
-            >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "borderColor": "#C7CDD1",
-                      "borderRadius": 24,
-                      "borderWidth": 0.5,
-                      "flex": 1,
-                      "height": 48,
-                      "justifyContent": "center",
-                      "minWidth": 48,
-                      "paddingHorizontal": 8,
-                    },
-                    Object {
-                      "marginBottom": 4,
-                      "marginRight": 4,
-                    },
-                  ]
-                }
-              >
-                <Image
-                  source={1}
-                  style={
-                    Object {
-                      "tintColor": "#8B969E",
-                    }
-                  }
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <TouchableOpacity
-              accessibilityTraits="button"
-              onPress={[Function]}
-              testID="rubric-item.description"
-            >
-              <View>
-                <Text
-                  accessible={true}
-                  allowFontScaling={true}
-                  disabled={false}
-                  ellipsizeMode="tail"
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": ".SFUIDisplay",
-                      },
-                      Object {
-                        "color": "#2D3B45",
-                        "fontSize": 16,
-                      },
-                      Array [
-                        Object {
-                          "color": "#374A59",
-                          "fontSize": 14,
-                        },
-                        Object {
-                          "fontFamily": ".SFUIDisplay-bold",
-                        },
-                        Object {
-                          "color": "#374A59",
-                        },
-                        Object {},
-                        Object {
-                          "fontSize": 14,
-                          "fontWeight": "500",
-                        },
-                      ],
-                      Object {
-                        "fontFamily": ".SFUIDisplay-medium",
-                      },
-                    ]
-                  }
-                >
-                  View long description
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-    </View>
-  </RCTScrollView>
-</View>
-`;
-
 exports[`Rubric has the correct score 1`] = `
 <View
   style={
@@ -618,6 +39,14 @@ exports[`Rubric has the correct score 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={
+      Object {
+        "criterionCommentInput": null,
+        "ratings": Object {
+          "2": 10,
+        },
+      }
+    }
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -647,7 +76,6 @@ exports[`Rubric has the correct score 1`] = `
         <View>
           <GradePicker
             assignmentID="1"
-            checkForUnsavedChanges={[Function]}
             courseID="1"
             drawerState={
               DrawerState {
@@ -718,6 +146,8 @@ exports[`Rubric has the correct score 1`] = `
               }
             }
             submissionID="1"
+            unsavedChanges={Object {}}
+            updateUnsavedChanges={[Function]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -1192,6 +622,17 @@ exports[`Rubric renders a rubric 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={
+      Object {
+        "criterionCommentInput": null,
+        "ratings": Object {
+          "1": Object {
+            "comments": "",
+            "points": 10,
+          },
+        },
+      }
+    }
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -1221,7 +662,6 @@ exports[`Rubric renders a rubric 1`] = `
         <View>
           <GradePicker
             assignmentID="1"
-            checkForUnsavedChanges={[Function]}
             courseID="1"
             drawerState={
               DrawerState {
@@ -1292,6 +732,8 @@ exports[`Rubric renders a rubric 1`] = `
               }
             }
             submissionID="1"
+            unsavedChanges={Object {}}
+            updateUnsavedChanges={[Function]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -1766,6 +1208,17 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
       ]
     }
     disableVirtualization={false}
+    extraData={
+      Object {
+        "criterionCommentInput": "1",
+        "ratings": Object {
+          "1": Object {
+            "comments": "",
+            "points": 10,
+          },
+        },
+      }
+    }
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -1795,7 +1248,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
         <View>
           <GradePicker
             assignmentID="1"
-            checkForUnsavedChanges={[Function]}
             courseID="1"
             drawerState={
               DrawerState {
@@ -1867,6 +1319,8 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
               }
             }
             submissionID="1"
+            unsavedChanges={Object {}}
+            updateUnsavedChanges={[Function]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -2254,6 +1708,17 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
     ListHeaderComponent={[Function]}
     data={Array []}
     disableVirtualization={false}
+    extraData={
+      Object {
+        "criterionCommentInput": null,
+        "ratings": Object {
+          "1": Object {
+            "comments": "",
+            "points": 10,
+          },
+        },
+      }
+    }
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -2283,7 +1748,6 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
         <View>
           <GradePicker
             assignmentID="1"
-            checkForUnsavedChanges={[Function]}
             courseID="1"
             drawerState={
               DrawerState {
@@ -2328,6 +1792,8 @@ exports[`Rubric renders the grade picker when there is no rubric 1`] = `
               }
             }
             submissionID="1"
+            unsavedChanges={Object {}}
+            updateUnsavedChanges={[Function]}
             useRubricForGrading={false}
             userID="1"
           />
@@ -2377,6 +1843,17 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={
+      Object {
+        "criterionCommentInput": null,
+        "ratings": Object {
+          "1": Object {
+            "comments": "",
+            "points": 10,
+          },
+        },
+      }
+    }
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -2406,7 +1883,6 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
         <View>
           <GradePicker
             assignmentID="1"
-            checkForUnsavedChanges={[Function]}
             courseID="1"
             drawerState={
               DrawerState {
@@ -2477,6 +1953,8 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
               }
             }
             submissionID="1"
+            unsavedChanges={Object {}}
+            updateUnsavedChanges={[Function]}
             useRubricForGrading={false}
             userID="1"
           />

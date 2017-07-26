@@ -35,6 +35,12 @@ export default class RubricItem extends Component {
     }
   }
 
+  componentWillReceiveProps (nextProps: RubricItemProps) {
+    this.setState({
+      selectedOption: nextProps.grade && nextProps.grade.points,
+    })
+  }
+
   showDescription = () => {
     this.props.showDescription(this.props.rubricItem.id)
   }

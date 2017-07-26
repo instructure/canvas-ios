@@ -59,6 +59,7 @@ let defaultProps = {
   submissionEntities: {},
   resetDrawer: jest.fn(),
   assignmentSubmissionTypes: ['none'],
+  gradeSubmissionWithRubric: jest.fn(),
 }
 
 describe('SpeedGrader', () => {
@@ -150,6 +151,7 @@ describe('refresh functions', () => {
     hasRubric: false,
     groupAssignment: null,
     studentIndex: 1,
+    gradeSubmissionWithRubric: jest.fn(),
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)

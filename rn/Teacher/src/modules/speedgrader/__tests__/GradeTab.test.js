@@ -26,7 +26,8 @@ let ownProps = {
   navigator: templates.navigator(),
   drawerState: new DrawerState(),
   isModeratedGrading: false,
-  checkForUnsavedChanges: jest.fn(),
+  updateUnsavedChanges: jest.fn(),
+  unsavedChanges: {},
 }
 
 let defaultProps = {
@@ -162,15 +163,14 @@ describe('Rubric', () => {
     )
   })
 
-  it('checkForUnsavedChanges called when rubric changes', () => {
+  it('updateUnsavedChanges called when rubric changes', () => {
     let tree = renderer.create(
       <GradeTab {...defaultProps} />
     )
     let button = explore(tree.toJSON()).selectByID(`rubric-item.points-${defaultProps.rubricItems[0].ratings[0].id}`) || {}
     button.props.onPress()
 
-    expect(defaultProps.checkForUnsavedChanges).toHaveBeenCalledWith(true)
-    expect(tree.toJSON()).toMatchSnapshot()
+    expect(defaultProps.updateUnsavedChanges).toHaveBeenCalledWith(tree.getInstance().state.ratings)
   })
 })
 

@@ -26,14 +26,16 @@ export class GradeTab extends Component {
     super(props)
     this.state = {
       ratings: props.rubricAssessment || {},
-      hasChanges: false,
       criterionCommentInput: null,
     }
   }
 
   componentWillReceiveProps (nextProps: GradeTabProps) {
     if (this.props.rubricGradePending && !nextProps.rubricGradePending) {
-      this.setState({ criterionCommentInput: null })
+      this.setState({
+        criterionCommentInput: null,
+        ratings: nextProps.rubricAssessment || {},
+      })
     }
   }
 
@@ -44,17 +46,20 @@ export class GradeTab extends Component {
   }
 
   updateScore = (id: string, value: ?number) => {
-    this.setState({
-      ratings: {
-        ...this.state.ratings,
-        [id]: {
-          ...this.state.ratings[id],
-          points: value,
+    this.setState((prevState) => {
+      let newRatings = {
+        ratings: {
+          ...this.state.ratings,
+          [id]: {
+            ...this.state.ratings[id],
+            points: value,
+          },
         },
-      },
-      hasChanges: true,
+      }
+
+      this.props.updateUnsavedChanges(newRatings.ratings)
+      return newRatings
     })
-    this.props.checkForUnsavedChanges(true)
   }
 
   getCurrentScore = () => {
@@ -73,12 +78,6 @@ export class GradeTab extends Component {
         ...newRating,
       }
     )
-  }
-
-  saveRubricPoints = () => {
-    this.setState({ hasChanges: false })
-    this.saveRubricAssessment(this.state.ratings)
-    this.props.checkForUnsavedChanges(false)
   }
 
   openCommentKeyboard = (criterionID: string) => {
@@ -199,6 +198,7 @@ export class GradeTab extends Component {
           data={items.map(item => ({ ...item, key: item.id }))}
           renderItem={this.renderRubricItem}
           initialNumToRender={2}
+          extraData={this.state}
         />
         {this.renderCommentInput()}
       </View>
@@ -231,7 +231,10 @@ export function mapStateToProps (state: AppState, ownProps: RubricOwnProps): Rub
   let rubricGradePending = false
 
   if (submission) {
-    assessments = submission.submission.rubric_assessment
+    assessments = {
+      ...submission.submission.rubric_assessment,
+      ...ownProps.unsavedChanges,
+    }
     rubricGradePending = submission.rubricGradePending
   }
 
@@ -244,7 +247,7 @@ export function mapStateToProps (state: AppState, ownProps: RubricOwnProps): Rub
   }
 }
 
-const Connected = connect(mapStateToProps, SpeedGraderActions, null, { withRef: true })(GradeTab)
+const Connected = connect(mapStateToProps, SpeedGraderActions)(GradeTab)
 export default (Connected: any)
 
 type RubricOwnProps = {
@@ -257,7 +260,8 @@ type RubricOwnProps = {
   showToolTip?: (sourcePoint: { x: number, y: number }, tip: string) => void,
   dismissToolTip?: () => void,
   isModeratedGrading: boolean,
-  checkForUnsavedChanges?: () => boolean,
+  updateUnsavedChanges: Function,
+  unsavedChanges: { [string]: RubricAssessment },
 }
 
 type RubricDataProps = {
@@ -275,6 +279,5 @@ type RubricActionProps = {
 type GradeTabProps = RubricOwnProps & RubricDataProps & RubricActionProps
 type GradeTabState = {
   ratings: { [string]: RubricAssessment },
-  hasChanges: boolean,
   criterionCommentInput: ?string,
 }
