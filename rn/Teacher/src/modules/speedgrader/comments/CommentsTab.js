@@ -126,11 +126,11 @@ type CommentRowData = {
   pending: number,
 }
 
-function extractComments (submission: SubmissionComments): Array<CommentRowData> {
+function extractComments (submissionComments: SubmissionComment[]): Array<CommentRowData> {
   const session = getSession()
   const myUserID = session ? session.user.id : '😲'
 
-  return submission.submission_comments
+  return submissionComments
     .filter(comment => !comment.media_comment) // TODO don't exclmedia comments
     .map(comment => ({
       key: 'comment-' + comment.id,
@@ -272,7 +272,7 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
   const assignments = entities.assignments[assignmentID]
 
   const pendingComments = extractPendingComments(assignments, userID)
-  const comments = submission ? extractComments(submission) : []
+  const comments = submission && submission.submission_comments ? extractComments(submission.submission_comments) : []
   const attempts = submission ? extractAttempts(submission, assignments.data) : []
 
   const commentRows = [
