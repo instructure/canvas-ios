@@ -60,7 +60,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
 
     this.props.navigator.show(
       path,
-      { modal: true },
+      { modal: true, modalPresentationStyle: 'fullscreen' },
       { selectedFilter: this.selectedFilter, studentIndex: index }
     )
   }
