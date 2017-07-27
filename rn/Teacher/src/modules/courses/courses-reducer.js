@@ -58,9 +58,12 @@ export function filterCourses (course: Course): boolean {
   const enrollments = course.enrollments
   if (!enrollments) return false
   return !!find(enrollments, (e) => {
-    return e.role === 'TeacherEnrollment' ||
-           e.role === 'TaEnrollment' ||
-           e.role === 'DesignerEnrollment'
+    return [
+      'teacher',
+      'teacherenrollment',
+      'designer',
+      'ta',
+    ].includes(e.type.toLowerCase())
   })
 }
 
