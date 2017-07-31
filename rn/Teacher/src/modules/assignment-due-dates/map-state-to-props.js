@@ -17,7 +17,7 @@ export type AssignmentDueDatesProps = {
   refreshUsers: Function,
   navigator: Navigator,
   courseColor: string,
-  onEditPressed: Function,
+  quizID?: ?string,
 }
 
 export type AssignmentDueDatesActionProps = {

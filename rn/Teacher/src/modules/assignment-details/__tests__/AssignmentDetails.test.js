@@ -111,7 +111,6 @@ test('routes to the right place when due dates details is requested', () => {
   expect(navigator.show).toHaveBeenCalledWith(
     `/courses/${defaultProps.courseID}/assignments/${defaultProps.assignmentDetails.id}/due_dates`,
     { modal: false },
-    { onEditPressed: expect.any(Function) }
   )
 })
 

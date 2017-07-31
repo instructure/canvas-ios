@@ -205,11 +205,12 @@ describe('QuizDetails', () => {
     // $FlowFixMe
     props.assignment = template.assignment({ id: '1' })
     props.navigator.show = jest.fn()
+    props.quiz.id = '3'
     const tree = render(props).toJSON()
     const dueDates: any = explore(tree).selectByID('quizzes.details.viewDueDatesButton')
     dueDates.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/1/due_dates', { modal: false }, {
-      onEditPressed: expect.any(Function),
+      quizID: '3',
     })
   })
 

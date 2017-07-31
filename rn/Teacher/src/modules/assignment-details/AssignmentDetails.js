@@ -165,9 +165,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
 
   viewDueDateDetails = () => {
     const route = `/courses/${this.props.courseID}/assignments/${this.props.assignmentDetails.id}/due_dates`
-    this.props.navigator.show(route, { modal: false }, {
-      onEditPressed: this.editAssignment,
-    })
+    this.props.navigator.show(route, { modal: false })
   }
 
   viewAllSubmissions = () => {

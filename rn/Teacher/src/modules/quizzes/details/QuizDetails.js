@@ -197,7 +197,7 @@ export class QuizDetails extends Component<any, Props, any> {
   _viewDueDates = () => {
     if (this.props.assignment) {
       const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
-      this.props.navigator.show(route, { modal: false }, { onEditPressed: this._editQuiz })
+      this.props.navigator.show(route, { modal: false }, { quizID: this.props.quiz.id })
     }
   }
 

@@ -20,7 +20,6 @@ test('renders', () => {
   const props = {
     assignment: template.assignment(),
     navigator: template.navigator(),
-    onEditPressed: jest.fn(),
   }
 
   let tree = renderer.create(
@@ -71,7 +70,6 @@ test('renders with overrides and specific student ids and sections', () => {
       [user.id]: user,
     },
     navigator: template.navigator(),
-    onEditPressed: jest.fn(),
   }
 
   let tree = renderer.create(
@@ -81,13 +79,31 @@ test('renders with overrides and specific student ids and sections', () => {
   expect(refreshUsers).toBeCalled()
 })
 
-test('calls onEditPressed when the edit button is pressed', () => {
-  const onEditPressed = jest.fn()
-  const assignment = template.assignment()
+test('routes to assignment edit', () => {
+  const props = {
+    courseID: '1',
+    assignment: template.assignment({ id: '1' }),
+    navigator: template.navigator({ show: jest.fn() }),
+  }
   let tree = renderer.create(
-    <AssignmentDueDates onEditPressed={onEditPressed} assignmentID={assignment.id} courseID='1' assignment={assignment} />
+    <AssignmentDueDates {...props} />
   ).toJSON()
   const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
   editButton.action()
-  expect(onEditPressed).toHaveBeenCalled()
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/assignments/1/edit', { modal: true })
+})
+
+test('routes to quiz edit', () => {
+  const props = {
+    courseID: '1',
+    quizID: '2',
+    assignment: template.assignment({ id: '1' }),
+    navigator: template.navigator({ show: jest.fn() }),
+  }
+  let tree = renderer.create(
+    <AssignmentDueDates {...props} />
+  ).toJSON()
+  const editButton: any = explore(tree).selectRightBarButton('assignment-due-dates.edit-btn')
+  editButton.action()
+  expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/2/edit', { modal: true })
 })
