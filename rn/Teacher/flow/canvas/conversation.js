@@ -44,12 +44,13 @@ export type CreateConversationParameters = {
   recipients: string[],
   body: string,
   subject?: string,
-  group_conversation?: boolean,
+  group_conversation?: boolean, // hard coded as `true`
   attachment_ids?: string[],
   media_comment_id?: string,
   media_comment_type?: string,
   user_note?: boolean,
   context_code?: string,
+  bulk_message?: number, // `undefined` for group, `1` for send individually
 }
 
 export type AddMessageParameters = {

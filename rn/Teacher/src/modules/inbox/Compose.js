@@ -112,8 +112,12 @@ export class Compose extends PureComponent {
       recipients: state.recipients.map((r) => r.id),
       body: state.body || '',
       subject: state.subject || '',
-      group_conversation: !state.sendToAll,
+      group_conversation: true,
       included_messages: this.props.includedMessages && this.props.includedMessages.map(({ id }) => id),
+    }
+
+    if (this.state.sendToAll) {
+      convo.bulk_message = 1
     }
 
     this.setState({ pending: true })

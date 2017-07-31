@@ -233,7 +233,8 @@ describe('Compose', () => {
       recipients: ['1'],
       body: 'new conversation',
       subject: 'new conversation subject',
-      group_conversation: false,
+      group_conversation: true,
+      bulk_message: 1,
       included_messages: ['1', '2'],
     })
   })
