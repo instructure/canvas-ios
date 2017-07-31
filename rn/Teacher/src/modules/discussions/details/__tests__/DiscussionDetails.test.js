@@ -519,6 +519,24 @@ describe('DiscussionDetails', () => {
     expect(props.navigator.pop).toHaveBeenCalled()
   })
 
+  it('displays delayed post at date', () => {
+    props.discussion = template.discussion({
+      delayed_post_at: '3019-10-28T14:16:00-07:00',
+      posted_at: '2017-10-27T14:16:00-07:00',
+    })
+    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
+    expect(label.children).toEqual(['October 28, 3019 3:16 PM'])
+  })
+
+  it('displays post date', () => {
+    props.discussion = template.discussion({
+      delayed_post_at: null,
+      posted_at: '2017-10-27T14:16:00-07:00',
+    })
+    const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
+    expect(label.children).toEqual(['October 27, 2017 3:16 PM'])
+  })
+
   function testRender (props: any) {
     expect(render(props).toJSON()).toMatchSnapshot()
   }

@@ -60,7 +60,7 @@ export class AnnouncementsList extends Component<any, Props, any> {
     return (
       <Row
         title={item.title}
-        subtitle={moment(item.posted_at).format(`MMM D [${i18n('at')}] h:mm A`)}
+        subtitle={moment(item.delayed_post_at || item.posted_at).format(`MMM D [${i18n('at')}] h:mm A`)}
         border='bottom'
         height='auto'
         disclosureIndicator={true}

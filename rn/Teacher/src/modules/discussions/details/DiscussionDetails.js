@@ -155,7 +155,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
               style={style.avatar}/> }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-                <Text style={style.authorDate}>{formattedDate(discussion.posted_at)}</Text>
+                <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{formattedDate(discussion.delayed_post_at || discussion.posted_at)}</Text>
             </View>
           </View>
 

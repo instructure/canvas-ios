@@ -1032,6 +1032,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                         },
                       ]
                     }
+                    testID="discussion.details.post-date-lbl"
                   >
                     November 10, 2016 9:03 PM
                   </Text>
@@ -2593,6 +2594,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                         },
                       ]
                     }
+                    testID="discussion.details.post-date-lbl"
                   >
                     November 10, 2016 9:03 PM
                   </Text>
@@ -3949,6 +3951,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                         },
                       ]
                     }
+                    testID="discussion.details.post-date-lbl"
                   >
                     November 10, 2016 9:03 PM
                   </Text>
@@ -5961,6 +5964,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                         },
                       ]
                     }
+                    testID="discussion.details.post-date-lbl"
                   >
                     November 10, 2016 9:03 PM
                   </Text>

@@ -69,6 +69,16 @@ describe('AnnouncementsList', () => {
     })
   })
 
+  it('displays delayed post at date for delayed announcements', () => {
+    const announcement = template.discussion({
+      delayed_post_at: '3019-10-28T14:16:00-07:00',
+      posted_at: '2017-10-27T14:16:00-07:00',
+    })
+    props.announcements = [announcement]
+    const subtitle: any = explore(render(props).toJSON()).selectByID('announcements.list.announcement.row-0-subtitle-lbl')
+    expect(subtitle.children).toEqual(['Oct 28 at 3:16 PM'])
+  })
+
   function testRender (props: any) {
     expect(render(props)).toMatchSnapshot()
   }
