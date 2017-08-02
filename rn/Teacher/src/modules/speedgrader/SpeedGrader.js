@@ -92,6 +92,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   componentWillUnmount () {
     SpeedGrader.drawerState.unregisterDrawer(this)
     SpeedGrader.drawerState.snapTo(0, false)
+    this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, false)
+    this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
   }
 
   onLayout = (event: any) => {
@@ -309,6 +311,7 @@ type RoutingProps = {
 }
 type SpeedGraderActionProps = {
   refreshSubmissions: Function,
+  refreshSubmissionSummary: Function,
   refreshEnrollments: Function,
   refreshAssignment: Function,
   refreshGroupsForCourse: Function,
