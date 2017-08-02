@@ -21,6 +21,18 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
       assignmentID,
     }
   }),
+  refreshAssignmentDetails: createAction('assignment.refreshDetails', (courseID: string, assignmentID: string) => {
+    return {
+      promise: Promise.all([
+        api.getAssignment(courseID, assignmentID),
+        api.refreshSubmissionSummary(courseID, assignmentID),
+      ]).then(([assignment, dials]) => {
+        return Promise.resolve([assignment, dials])
+      }),
+      courseID,
+      assignmentID,
+    }
+  }),
   updateAssignment: createAction('assignment.update', (courseID, updatedAssignment, originalAssignment) => {
     return {
       promise: api.updateAssignment(courseID, updatedAssignment),

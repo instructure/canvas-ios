@@ -305,7 +305,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
 })
 
 let Refreshed = refresh(
-  props => props.refreshAssignment(props.courseID, props.assignmentID),
+  props => props.refreshAssignmentDetails(props.courseID, props.assignmentID),
   props => !props.assignmentDetails,
   props => Boolean(props.pending)
 )(AssignmentDetails)

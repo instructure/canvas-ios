@@ -8,6 +8,7 @@ import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../../co
 const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../api/canvas-api/__templates__/submissions'),
 }
 
 test('refresh assignment list', async () => {
@@ -117,4 +118,30 @@ test('should dispatch anonymous grading', () => {
       anonymous: true,
     },
   })
+})
+
+test('refresh assignment details', async() => {
+  const course = template.course()
+  const assignment = template.assignment()
+  const summary = template.submissionSummary()
+  let actions = AssignmentListActions({ getAssignment: apiResponse(assignment), refreshSubmissionSummary: apiResponse(summary) })
+  const result = await testAsyncAction(actions.refreshAssignmentDetails(course.id, assignment.id), {})
+
+  expect(result).toMatchObject([{
+    type: actions.refreshAssignmentDetails.toString(),
+    pending: true,
+    payload: {
+      courseID: course.id,
+      assignmentID: assignment.id,
+    },
+  },
+  {
+    type: actions.refreshAssignmentDetails.toString(),
+    payload: {
+      result: [{ data: assignment }, { data: summary }],
+      courseID: course.id,
+      assignmentID: assignment.id,
+    },
+  },
+  ])
 })

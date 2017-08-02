@@ -19,6 +19,7 @@ export let defaultState: AssignmentGroupsState = {}
 const { refreshAssignmentList,
         updateAssignment,
         refreshAssignment,
+        refreshAssignmentDetails,
         cancelAssignmentUpdate,
         anonymousGrading } = Actions
 const { refreshQuiz } = QuizDetailsActions
@@ -77,6 +78,38 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
         ...state,
         ...{
           [assignmentID]: assignmentState,
+        },
+      }
+    },
+  }),
+  [refreshAssignmentDetails.toString()]: handleAsync({
+    resolved: (state, { result: [assignment, dials], courseID, assignmentID }) => {
+      const assignmentState = cloneDeep(state[assignmentID] || {})
+      assignmentState.data = assignment.data
+      return {
+        ...state,
+        [assignmentID]: {
+          ...assignmentState,
+          submissionSummary: { data: dials.data, pending: 0, error: null },
+        },
+      }
+    },
+    rejected: (state, { courseID, assignmentID, error }) => {
+      return {
+        ...state,
+        [assignmentID]: {
+          ...state[assignmentID],
+          submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 0, error: error },
+        },
+      }
+    },
+    pending: (state, { courseID, assignmentID }) => {
+      let summaryEntity = (state[assignmentID] || {}).submissionSummary || {}
+      return {
+        ...state,
+        [assignmentID]: {
+          ...state[assignmentID],
+          submissionSummary: { ...summaryEntity, pending: (summaryEntity.pending || 0) + 1, error: null },
         },
       }
     },

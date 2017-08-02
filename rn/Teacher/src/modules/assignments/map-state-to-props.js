@@ -16,6 +16,7 @@ export type AssignmentListDataProps = {
 export type AssignmentListActionProps = {
   +refreshAssignmentList: () => Promise<AssignmentGroup[]>,
   +refreshAssignment: () => Promise<Assignment>,
+  +refreshAssignmentDetails: () => Promise<[Assignment, Object]>,
   +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
   +cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
   +updateCourseDetailsSelectedTabSelectedRow: (rowID: string) => void,
