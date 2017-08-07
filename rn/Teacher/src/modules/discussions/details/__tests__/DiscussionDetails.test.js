@@ -503,8 +503,9 @@ describe('DiscussionDetails', () => {
     testRender(nonAssgProps)
   })
 
-  it('pops after delete', () => {
+  it('pops after delete without refresh', () => {
     props.navigator.pop = jest.fn()
+    props.refreshSingleDiscussion = jest.fn()
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => callback(2))
     // $FlowFixMe
@@ -517,6 +518,7 @@ describe('DiscussionDetails', () => {
     const kabob: any = explore(screen.toJSON()).selectRightBarButton('discussions.details.edit.button')
     kabob.action()
     expect(props.navigator.pop).toHaveBeenCalled()
+    expect(props.refreshSingleDiscussion).not.toHaveBeenCalled()
   })
 
   it('displays delayed post at date', () => {

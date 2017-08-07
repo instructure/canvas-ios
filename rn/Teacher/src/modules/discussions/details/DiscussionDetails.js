@@ -86,14 +86,13 @@ export class DiscussionDetails extends Component<any, Props, any> {
   }
 
   componentWillUpdate () {
-    if (this.state.deletePending) {
-      this.setState({ deletePending: false })
-    }
     LayoutAnimation.easeInEaseOut()
   }
 
   componentWillUnmount () {
-    this.props.refreshSingleDiscussion(this.props.courseID, this.props.discussionID)
+    if (this.props.discussion) {
+      this.props.refreshSingleDiscussion(this.props.courseID, this.props.discussionID)
+    }
   }
 
   componentWillReceiveProps (nextProps: Props) {
@@ -351,8 +350,9 @@ export class DiscussionDetails extends Component<any, Props, any> {
   }
 
   _confirmDeleteDiscussion = () => {
+    const alertTitle = this.props.isAnnouncement ? i18n('Are you sure you want to delete this announcement?') : i18n('Are you sure you want to delete this discussion?')
     AlertIOS.alert(
-      i18n('Are you sure you want to delete this discussion?'),
+      alertTitle,
       null,
       [
         { text: i18n('Cancel'), style: 'cancel' },
