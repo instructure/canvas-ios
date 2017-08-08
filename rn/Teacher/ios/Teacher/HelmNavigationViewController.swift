@@ -33,6 +33,7 @@ class HelmNavigationController: UINavigationController {
 
 class EmptyViewController: UIViewController {
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = UIColor.white
     }
 }
