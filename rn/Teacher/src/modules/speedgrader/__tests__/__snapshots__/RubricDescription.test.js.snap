@@ -10,6 +10,7 @@ exports[`RubricDescription renders 1`] = `
   }
 >
   <RCTScrollView
+    DEPRECATED_sendUpdatedChildFrames={false}
     alwaysBounceHorizontal={undefined}
     alwaysBounceVertical={true}
     bounces={false}

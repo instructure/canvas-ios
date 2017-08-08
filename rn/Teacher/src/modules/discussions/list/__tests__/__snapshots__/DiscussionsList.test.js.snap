@@ -47,7 +47,6 @@ exports[`DiscussionsList renders 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       renderSectionHeader={[Function]}
       scrollEventThrottle={50}
       sections={Array []}
@@ -270,7 +269,6 @@ exports[`DiscussionsList renders discussions 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       renderSectionHeader={[Function]}
       scrollEventThrottle={50}
       sections={
@@ -423,6 +421,7 @@ exports[`DiscussionsList renders discussions 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessibilityTraits="header"
@@ -474,6 +473,7 @@ exports[`DiscussionsList renders discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -903,6 +903,7 @@ exports[`DiscussionsList renders discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -1332,6 +1333,7 @@ exports[`DiscussionsList renders discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -1472,7 +1474,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       renderSectionHeader={[Function]}
       scrollEventThrottle={50}
       sections={
@@ -1575,6 +1576,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessibilityTraits="header"
@@ -1626,6 +1628,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -2021,6 +2024,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -2416,6 +2420,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -2608,7 +2613,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       renderSectionHeader={[Function]}
       scrollEventThrottle={50}
       sections={
@@ -2763,6 +2767,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessibilityTraits="header"
@@ -2814,6 +2819,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -3243,6 +3249,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -3672,6 +3679,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -3868,7 +3876,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       renderSectionHeader={[Function]}
       scrollEventThrottle={50}
       sections={
@@ -4028,6 +4035,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessibilityTraits="header"
@@ -4079,6 +4087,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -4508,9 +4517,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessibilityTraits="header"
@@ -4562,6 +4573,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessible={false}
@@ -4991,6 +5003,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>

@@ -98,7 +98,6 @@ exports[`CourseSelect renders 1`] = `
   onScrollEndDrag={[Function]}
   onViewableItemsChanged={undefined}
   renderItem={[Function]}
-  renderScrollComponent={[Function]}
   renderSectionHeader={[Function]}
   scrollEventThrottle={50}
   sections={
@@ -193,6 +192,7 @@ exports[`CourseSelect renders 1`] = `
   <View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <View
         accessibilityTraits="header"
@@ -244,6 +244,7 @@ exports[`CourseSelect renders 1`] = `
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <TouchableHighlight
         accessibilityLabel={undefined}
@@ -333,9 +334,11 @@ exports[`CourseSelect renders 1`] = `
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     />
     <View
       onLayout={[Function]}
+      style={null}
     >
       <View
         accessibilityTraits="header"
@@ -387,6 +390,7 @@ exports[`CourseSelect renders 1`] = `
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <TouchableHighlight
         accessibilityLabel={undefined}
@@ -476,6 +480,7 @@ exports[`CourseSelect renders 1`] = `
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <TouchableHighlight
         accessibilityLabel={undefined}
@@ -562,6 +567,7 @@ exports[`CourseSelect renders 1`] = `
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     />
   </View>
 </RCTScrollView>
@@ -665,7 +671,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
   onScrollEndDrag={[Function]}
   onViewableItemsChanged={undefined}
   renderItem={[Function]}
-  renderScrollComponent={[Function]}
   renderSectionHeader={[Function]}
   scrollEventThrottle={50}
   sections={
@@ -760,6 +765,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
   <View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <View
         accessibilityTraits="header"
@@ -811,6 +817,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <TouchableHighlight
         accessibilityLabel={undefined}
@@ -900,9 +907,11 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     />
     <View
       onLayout={[Function]}
+      style={null}
     >
       <View
         accessibilityTraits="header"
@@ -954,6 +963,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <TouchableHighlight
         accessibilityLabel={undefined}
@@ -1043,6 +1053,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     >
       <TouchableHighlight
         accessibilityLabel={undefined}
@@ -1129,6 +1140,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
     </View>
     <View
       onLayout={[Function]}
+      style={null}
     />
   </View>
 </RCTScrollView>

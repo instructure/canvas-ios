@@ -173,12 +173,12 @@ exports[`SubmissionList loaded 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     testID="submission-list"
@@ -189,6 +189,7 @@ exports[`SubmissionList loaded 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -383,6 +384,7 @@ exports[`SubmissionList loaded 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -609,6 +611,7 @@ exports[`SubmissionList loaded 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -847,6 +850,7 @@ exports[`SubmissionList loaded 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -1229,12 +1233,12 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     testID="submission-list"
@@ -1245,6 +1249,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={

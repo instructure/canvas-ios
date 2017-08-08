@@ -21,7 +21,7 @@ type Props = {
 
 export default class CircleToggle extends PureComponent {
   props: Props
-  buttonViewRef: View
+  buttonViewRef: any
 
   onPress = () => {
     this.props.onPress(this.props.value)
@@ -39,7 +39,7 @@ export default class CircleToggle extends PureComponent {
     })
   }
 
-  getRef = (ref: View) => {
+  getRef = (ref: any) => {
     this.buttonViewRef = ref
   }
 

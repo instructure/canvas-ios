@@ -51,12 +51,12 @@ exports[`GroupList renders empty list 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
@@ -66,6 +66,7 @@ exports[`GroupList renders empty list 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -168,12 +169,12 @@ exports[`GroupList renders properly 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
@@ -183,6 +184,7 @@ exports[`GroupList renders properly 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             accessibilityComponentType={undefined}
@@ -385,12 +387,12 @@ exports[`GroupList renders without a group 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       updateCellsBatchingPeriod={50}
@@ -400,6 +402,7 @@ exports[`GroupList renders without a group 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={

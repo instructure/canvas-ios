@@ -491,7 +491,6 @@ exports[`filters conversations based on course 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
@@ -500,6 +499,7 @@ exports[`filters conversations based on course 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <TouchableHighlight
           onPress={[Function]}
@@ -1213,7 +1213,6 @@ exports[`filters out conversations without a context_code 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
@@ -1222,6 +1221,7 @@ exports[`filters out conversations without a context_code 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <TouchableHighlight
           onPress={[Function]}
@@ -1915,12 +1915,12 @@ exports[`refreshed component 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
@@ -1930,6 +1930,7 @@ exports[`refreshed component 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -2525,7 +2526,6 @@ exports[`renders correctly 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
@@ -2534,6 +2534,7 @@ exports[`renders correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <TouchableHighlight
           onPress={[Function]}
@@ -2753,6 +2754,7 @@ exports[`renders correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <TouchableHighlight
           onPress={[Function]}
@@ -3907,7 +3909,6 @@ exports[`renders the starred empty state 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
@@ -3916,6 +3917,7 @@ exports[`renders the starred empty state 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -4468,7 +4470,6 @@ exports[`renders with an empty state 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     updateCellsBatchingPeriod={50}
@@ -4477,6 +4478,7 @@ exports[`renders with an empty state 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={

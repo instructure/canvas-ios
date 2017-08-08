@@ -30,7 +30,6 @@ exports[`QuizzesList renders 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={Array []}
@@ -136,7 +135,6 @@ exports[`QuizzesList renders in correct order 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -214,6 +212,7 @@ exports[`QuizzesList renders in correct order 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -269,6 +268,7 @@ exports[`QuizzesList renders in correct order 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -621,6 +621,7 @@ exports[`QuizzesList renders in correct order 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -973,6 +974,7 @@ exports[`QuizzesList renders in correct order 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>
@@ -1070,7 +1072,6 @@ exports[`QuizzesList renders quizzes 1`] = `
     onViewableItemsChanged={undefined}
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -1148,6 +1149,7 @@ exports[`QuizzesList renders quizzes 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -1203,6 +1205,7 @@ exports[`QuizzesList renders quizzes 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -1555,6 +1558,7 @@ exports[`QuizzesList renders quizzes 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -1907,6 +1911,7 @@ exports[`QuizzesList renders quizzes 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>

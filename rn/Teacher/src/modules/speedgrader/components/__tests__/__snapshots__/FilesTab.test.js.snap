@@ -36,7 +36,6 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
@@ -46,6 +45,7 @@ exports[`SpeedGraderFilesTab ignores attachments for URL Submissions 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -176,7 +176,6 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
@@ -186,6 +185,7 @@ exports[`SpeedGraderFilesTab renders a selected 0 index item 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -352,7 +352,6 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
@@ -362,6 +361,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -452,6 +452,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -557,6 +558,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -647,6 +649,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -737,6 +740,7 @@ exports[`SpeedGraderFilesTab renders a selected non-zero index item 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -867,7 +871,6 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
@@ -877,6 +880,7 @@ exports[`SpeedGraderFilesTab renders with a submission 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -1007,7 +1011,6 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
       onScrollEndDrag={[Function]}
       onViewableItemsChanged={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="speedgrader.files.list"
@@ -1017,6 +1020,7 @@ exports[`SpeedGraderFilesTab renders without a submission 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight

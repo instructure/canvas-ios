@@ -59,7 +59,7 @@ export function UnmetRequirementSubscriptText ({ style, ...props }: Object): Rea
   return <ReactNative.Text style={[styles.font, styles.unmetRequirementSubscriptText, style]} {...props} />
 }
 
-export function Separated (props: Object): ReactNative.Element<View> {
+export function Separated (props: Object): ReactNative.Element<typeof View> {
   const separator = (
     <Text
       style={[

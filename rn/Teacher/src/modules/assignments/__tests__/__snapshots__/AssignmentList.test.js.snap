@@ -196,12 +196,12 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -292,6 +292,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -347,6 +348,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -571,6 +573,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>
@@ -765,12 +768,12 @@ exports[`applyFilter will apply a new filter 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -853,6 +856,7 @@ exports[`applyFilter will apply a new filter 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -908,6 +912,7 @@ exports[`applyFilter will apply a new filter 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -1132,6 +1137,7 @@ exports[`applyFilter will apply a new filter 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>
@@ -1286,12 +1292,12 @@ exports[`filter button only shows when there are grading periods 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -1382,6 +1388,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -1437,6 +1444,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -1661,6 +1669,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>
@@ -1855,12 +1864,12 @@ exports[`renders correctly 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -1943,6 +1952,7 @@ exports[`renders correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -1998,6 +2008,7 @@ exports[`renders correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -2222,6 +2233,7 @@ exports[`renders correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>
@@ -2448,12 +2460,12 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -2544,6 +2556,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -2599,6 +2612,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View>
           <View
@@ -2823,6 +2837,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
       <View
         style={

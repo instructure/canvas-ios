@@ -132,12 +132,12 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       sections={
         Array [
@@ -237,9 +237,11 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -1196,12 +1198,15 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -1538,6 +1543,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -1672,12 +1678,12 @@ exports[`DiscussionDetails renders no replies 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       sections={
         Array [
@@ -1772,9 +1778,11 @@ exports[`DiscussionDetails renders no replies 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -2675,12 +2683,15 @@ exports[`DiscussionDetails renders no replies 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -2922,12 +2933,12 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       sections={
         Array [
@@ -3129,9 +3140,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -4150,12 +4163,15 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -4492,6 +4508,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -4848,6 +4865,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -5012,12 +5030,12 @@ exports[`DiscussionDetails renders with replies 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       sections={
         Array [
@@ -5142,9 +5160,11 @@ exports[`DiscussionDetails renders with replies 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View>
             <TouchableHighlight
@@ -6128,12 +6148,15 @@ exports[`DiscussionDetails renders with replies 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         />
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -6470,6 +6493,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         />
       </View>
     </RCTScrollView>
@@ -6526,12 +6550,12 @@ exports[`DiscussionDetails renders without a discussion 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       sections={Array []}
       stickyHeaderIndices={Array []}

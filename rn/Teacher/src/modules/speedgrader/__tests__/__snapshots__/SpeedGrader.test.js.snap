@@ -58,7 +58,6 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     onViewableItemsChanged={undefined}
     pagingEnabled={true}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     showsHorizontalScrollIndicator={false}
     stickyHeaderIndices={Array []}
@@ -74,6 +73,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
     <View>
       <View
         onLayout={undefined}
+        style={null}
       >
         <A11yGroup
           style={
@@ -239,7 +239,6 @@ exports[`SpeedGrader renders with a filter 1`] = `
     onViewableItemsChanged={undefined}
     pagingEnabled={true}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     showsHorizontalScrollIndicator={false}
     stickyHeaderIndices={Array []}
@@ -255,6 +254,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
     <View>
       <View
         onLayout={undefined}
+        style={null}
       >
         <A11yGroup
           style={
@@ -359,6 +359,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
       </View>
       <View
         onLayout={undefined}
+        style={null}
       >
         <A11yGroup
           style={

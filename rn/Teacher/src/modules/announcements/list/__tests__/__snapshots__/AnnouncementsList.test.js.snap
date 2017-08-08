@@ -176,12 +176,12 @@ exports[`AnnouncementsList renders 1`] = `
       refreshControl={
         <RefreshControlMock
           onRefresh={[Function]}
+          progressViewOffset={undefined}
           refreshing={false}
         />
       }
       refreshing={false}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       testID="announcements.list.list"
@@ -192,6 +192,7 @@ exports[`AnnouncementsList renders 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <TouchableHighlight
             accessibilityLabel={undefined}
@@ -344,6 +345,7 @@ exports[`AnnouncementsList renders 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <TouchableHighlight
             accessibilityLabel={undefined}

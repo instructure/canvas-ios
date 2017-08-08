@@ -91,7 +91,6 @@ exports[`render correctly 1`] = `
     onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -162,6 +161,7 @@ exports[`render correctly 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <SearchBar
           onCancelButtonPress={[Function]}
@@ -172,9 +172,11 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityComponentType={undefined}
@@ -314,9 +316,11 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -368,6 +372,7 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityComponentType={undefined}
@@ -534,9 +539,11 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -588,6 +595,7 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityComponentType={undefined}
@@ -754,9 +762,11 @@ exports[`render correctly 1`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -885,7 +895,6 @@ exports[`render correctly 2`] = `
     onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
     sections={
@@ -930,6 +939,7 @@ exports[`render correctly 2`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <SearchBar
           onCancelButtonPress={[Function]}
@@ -940,6 +950,7 @@ exports[`render correctly 2`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -991,6 +1002,7 @@ exports[`render correctly 2`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityComponentType={undefined}
@@ -1157,9 +1169,11 @@ exports[`render correctly 2`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityTraits="header"
@@ -1211,6 +1225,7 @@ exports[`render correctly 2`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           accessibilityComponentType={undefined}
@@ -1377,6 +1392,7 @@ exports[`render correctly 2`] = `
       </View>
       <View
         onLayout={[Function]}
+        style={null}
       />
     </View>
   </RCTScrollView>

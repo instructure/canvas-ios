@@ -154,12 +154,12 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     testID="quiz-submission-list"
@@ -170,6 +170,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -558,12 +559,12 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     testID="quiz-submission-list"
@@ -574,6 +575,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={
@@ -938,12 +940,12 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
     refreshControl={
       <RefreshControlMock
         onRefresh={[Function]}
+        progressViewOffset={undefined}
         refreshing={false}
       />
     }
     refreshing={false}
     renderItem={[Function]}
-    renderScrollComponent={[Function]}
     scrollEventThrottle={50}
     stickyHeaderIndices={Array []}
     testID="quiz-submission-list"
@@ -954,6 +956,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
     <View>
       <View
         onLayout={[Function]}
+        style={null}
       >
         <View
           style={

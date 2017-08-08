@@ -100,7 +100,6 @@ exports[`ConversationDetails renders correctly 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       style={
@@ -114,6 +113,7 @@ exports[`ConversationDetails renders correctly 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -323,7 +323,6 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       onViewableItemsChanged={undefined}
       refreshing={undefined}
       renderItem={[Function]}
-      renderScrollComponent={[Function]}
       scrollEventThrottle={50}
       stickyHeaderIndices={Array []}
       style={
@@ -337,6 +336,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
       <View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             style={
@@ -427,6 +427,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
         </View>
         <View
           onLayout={[Function]}
+          style={null}
         >
           <View
             testID="inbox.conversation-message-123456789"
