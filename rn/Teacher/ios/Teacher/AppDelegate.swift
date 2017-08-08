@@ -13,6 +13,7 @@ import UserNotifications
 import PSPDFKit
 import Fabric
 import Crashlytics
+import StoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -64,6 +65,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert,.sound])
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        let key = "InstLaunchCount"
+        var count = UserDefaults.standard.integer(forKey: key)
+        count += 1
+        if (count > 10) {
+            if #available(iOS 10.3, *) {
+                SKStoreReviewController.requestReview()
+            }
+        }
+        
+        UserDefaults.standard.set(count, forKey: key)
     }
 }
 
