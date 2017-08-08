@@ -73,7 +73,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         count += 1
         if (count > 10) {
             if #available(iOS 10.3, *) {
+                #if RELEASE
                 SKStoreReviewController.requestReview()
+                #endif
             }
         }
         

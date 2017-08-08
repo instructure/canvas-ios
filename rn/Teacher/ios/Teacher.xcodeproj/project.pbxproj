@@ -2601,6 +2601,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE_SPECIFIER = "";
