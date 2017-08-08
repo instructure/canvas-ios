@@ -9,7 +9,17 @@ export default function localeSort (first: any, second: any, locale?: string): n
     locale = NativeModules.SettingsManager ? NativeModules.SettingsManager.settings.AppleLocale.replace('_', '-') : 'en'
   }
 
-  let collator = new Intl.Collator(locale)
+  // Found a weird case where we were getting a locale back that looked like this en-AF@calendar=gregorian
+  if (locale.indexOf('@') !== -1) {
+    const index = locale.indexOf('@')
+    locale = locale.substr(0, index)
+  }
+  let collator
+  try {
+    collator = new Intl.Collator(locale)
+  } catch (e) {
+    collator = new Intl.Collator('en')
+  }
   return collator.compare(first, second)
 }
 
