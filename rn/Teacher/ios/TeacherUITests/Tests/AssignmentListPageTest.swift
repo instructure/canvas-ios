@@ -16,11 +16,11 @@
 
 class AssignmentListPageTest: TeacherTest {
 
-    //TestRail ID = C3109578
-    func testAssignmentListPage_displaysPageObjects() {
-        let course = openAssignmentListPage(self)
-        assignmentListPage.assertPageObjects(course)
-    }
+//    //TestRail ID = C3109578
+//    func testAssignmentListPage_displaysPageObjects() {
+//        let course = openAssignmentListPage(self)
+//        assignmentListPage.assertPageObjects(course)
+//    }
 
 /*
     //TestRail ID = C3134487
