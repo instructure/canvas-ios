@@ -28,6 +28,7 @@ import RichTextEditor from '../../../common/components/rich-text-editor/RichText
 import Images from '../../../images'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
+import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
 import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
 import { gradeDisplayOptions } from '../../assignment-details/AssignmentDetailsEdit'
 import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
@@ -45,6 +46,8 @@ const {
   subscribeDiscussion,
 } = EditDiscussionActions
 
+const { refreshDiscussionEntries } = DiscussionDetailsActions
+
 const { updateAssignment } = AssignmentsActions
 
 const Actions = {
@@ -52,6 +55,7 @@ const Actions = {
   updateDiscussion,
   deletePendingNewDiscussion,
   subscribeDiscussion,
+  refreshDiscussionEntries,
   updateAssignment,
 }
 
@@ -112,6 +116,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
 
   componentWillUnmount () {
     this.props.deletePendingNewDiscussion(this.props.courseID)
+    this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
   }
 
   componentWillReceiveProps (props: Props) {

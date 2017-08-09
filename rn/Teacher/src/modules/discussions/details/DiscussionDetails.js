@@ -251,8 +251,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
   rootRepliesData = () => {
     const { discussion } = this.props
-    if (!discussion) return []
-    let replies = discussion.replies || []
+    let replies = discussion && discussion.replies || []
 
     if (this.state.rootNodePath.length === 0) return this.flattenRepliesData([], 0, replies, [])
 
@@ -285,11 +284,12 @@ export class DiscussionDetails extends Component<any, Props, any> {
     const { discussion } = this.props
     let data = []
     if (discussion) {
-      data = [
-        { data: [discussion], title: '', renderItem: this.renderDetails },
-        { data: this.rootRepliesData() || [], title: '', renderItem: this.renderReply(discussion) },
-      ]
+      data.push({ data: [discussion], title: '', renderItem: this.renderDetails })
+      if (discussion.replies) {
+        data.push({ data: this.rootRepliesData() || [], title: '', renderItem: this.renderReply(discussion) })
+      }
     }
+
     return (
       <Screen
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}

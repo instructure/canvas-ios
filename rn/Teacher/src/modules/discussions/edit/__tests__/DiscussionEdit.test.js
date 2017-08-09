@@ -73,6 +73,7 @@ describe('DiscussionEdit', () => {
       deletePendingNewDiscussion: jest.fn(),
       subscribeDiscussion: jest.fn(),
       updateAssignment: jest.fn(),
+      refreshDiscussionEntries: jest.fn(),
       assignment: null,
       defaultDate: new Date(0),
       can_unpublish: true,
@@ -164,6 +165,12 @@ describe('DiscussionEdit', () => {
     props.deletePendingNewDiscussion = jest.fn()
     render(props).getInstance().componentWillUnmount()
     expect(props.deletePendingNewDiscussion).toHaveBeenCalledWith(props.courseID)
+  })
+
+  it('refreshes discussion on unmount', () => {
+    props.refreshDiscussionEntries = jest.fn()
+    render(props).getInstance().componentWillUnmount()
+    expect(props.refreshDiscussionEntries).toHaveBeenCalled()
   })
 
   it('calls dismiss on cancel', () => {

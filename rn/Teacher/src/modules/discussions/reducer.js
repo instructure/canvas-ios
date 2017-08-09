@@ -33,6 +33,7 @@ const list: Reducer<AsyncRefs, any> = asyncRefsReducer(
 export function replyFromLocalIndexPath (localIndexPath: number[], replies: DiscussionReply[], createNewCopyOfReply: boolean = true): ?DiscussionReply {
   let r = replies
   let reply
+  if (!r.length) return reply
   for (let i = 0; i < localIndexPath.length; i++) {
     let index = localIndexPath[i]
     if (i === localIndexPath.length - 1) {

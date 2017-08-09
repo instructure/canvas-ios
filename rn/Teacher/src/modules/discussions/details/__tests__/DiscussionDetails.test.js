@@ -61,6 +61,14 @@ describe('DiscussionDetails', () => {
     }
   })
 
+  it('renders with no discussion', () => {
+    let newProps = {
+      ...props,
+      discussion: {},
+    }
+    testRender(newProps)
+  })
+
   it('renders with replies', () => {
     testRender(props)
   })
@@ -352,6 +360,16 @@ describe('DiscussionDetails', () => {
     props.refreshSingleDiscussion = jest.fn()
     render(props).getInstance().componentWillUnmount()
     expect(props.refreshSingleDiscussion).toHaveBeenCalledWith(props.courseID, props.discussionID)
+  })
+
+  it('does not call refreshSingleDiscussion on unmount if no discussion (was deleted)', () => {
+    let newProps = {
+      ...props,
+      discussion: null,
+    }
+    newProps.refreshSingleDiscussion = jest.fn()
+    render(newProps).getInstance().componentWillUnmount()
+    expect(newProps.refreshSingleDiscussion).not.toHaveBeenCalledWith()
   })
 
   it('_onPopReplyRootPath pops to correct set of replies', () => {
