@@ -15,43 +15,43 @@
 //
 
 class EditCoursesPageTest: TeacherTest {
-
-    func testEditCoursesPage_displaysPageObjects() {
-        logIn(self)
-        coursesListPage.openCourseFavoritesEditPage(false)
-        editCoursesListPage.assertPageObjects()
-        editCoursesListPage.dismissToFavoriteCoursesPage()
-    }
-
-    func testEditCoursesPage_displaysCourseList() {
-        logIn(self)
-        let courses = Data.getAllCourses(self)
-        coursesListPage.openCourseFavoritesEditPage(false)
-        editCoursesListPage.assertHasCourses(courses)
-        editCoursesListPage.dismissToFavoriteCoursesPage()
-    }
-
-    func testEditCoursesPage_favoriteCourse() {
-        logIn(self)
-        let favoritedCourse = Data.getNextFavoriteCourse(self)
-        let course = Data.getNextCourse(self)
-        coursesListPage.assertCourseExists(favoritedCourse)
-        coursesListPage.assertCourseDoesNotExist(course)
-        coursesListPage.openCourseFavoritesEditPage(false)
-        editCoursesListPage.toggleNotFavoritedCourse(course)
-        editCoursesListPage.assertCourseIsFavorited(course)
-        editCoursesListPage.dismissToFavoriteCoursesPage()
-        coursesListPage.assertCourseExists(course)
-    }
-
-    func testEditCoursesPage_unfavoriteCourse() {
-        logIn(self)
-        let favoritedCourse = Data.getNextFavoriteCourse(self)
-        coursesListPage.assertCourseExists(favoritedCourse)
-        coursesListPage.openCourseFavoritesEditPage(false)
-        editCoursesListPage.toggleFavoritedCourse(favoritedCourse)
-        editCoursesListPage.assertCourseIsNotfavorited(favoritedCourse)
-        editCoursesListPage.dismissToFavoriteCoursesPage()
-        coursesListPage.assertCourseDoesNotExist(favoritedCourse)
-    }
+//
+//    func testEditCoursesPage_displaysPageObjects() {
+//        logIn(self)
+//        coursesListPage.openCourseFavoritesEditPage(false)
+//        editCoursesListPage.assertPageObjects()
+//        editCoursesListPage.dismissToFavoriteCoursesPage()
+//    }
+//
+//    func testEditCoursesPage_displaysCourseList() {
+//        logIn(self)
+//        let courses = Data.getAllCourses(self)
+//        coursesListPage.openCourseFavoritesEditPage(false)
+//        editCoursesListPage.assertHasCourses(courses)
+//        editCoursesListPage.dismissToFavoriteCoursesPage()
+//    }
+//
+//    func testEditCoursesPage_favoriteCourse() {
+//        logIn(self)
+//        let favoritedCourse = Data.getNextFavoriteCourse(self)
+//        let course = Data.getNextCourse(self)
+//        coursesListPage.assertCourseExists(favoritedCourse)
+//        coursesListPage.assertCourseDoesNotExist(course)
+//        coursesListPage.openCourseFavoritesEditPage(false)
+//        editCoursesListPage.toggleNotFavoritedCourse(course)
+//        editCoursesListPage.assertCourseIsFavorited(course)
+//        editCoursesListPage.dismissToFavoriteCoursesPage()
+//        coursesListPage.assertCourseExists(course)
+//    }
+//
+//    func testEditCoursesPage_unfavoriteCourse() {
+//        logIn(self)
+//        let favoritedCourse = Data.getNextFavoriteCourse(self)
+//        coursesListPage.assertCourseExists(favoritedCourse)
+//        coursesListPage.openCourseFavoritesEditPage(false)
+//        editCoursesListPage.toggleFavoritedCourse(favoritedCourse)
+//        editCoursesListPage.assertCourseIsNotfavorited(favoritedCourse)
+//        editCoursesListPage.dismissToFavoriteCoursesPage()
+//        coursesListPage.assertCourseDoesNotExist(favoritedCourse)
+//    }
 }

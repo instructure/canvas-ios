@@ -35,7 +35,7 @@ public func grey_setConfiguration() throws {
     throw DocumentError.FailedToCreateDirectory
   }
 
-  GREYConfiguration.sharedInstance().setValue(screenshotDir, forConfigKey: kGREYConfigKeyScreenshotDirLocation)
+  GREYConfiguration.sharedInstance().setValue(screenshotDir, forConfigKey: kGREYConfigKeyArtifactsDirLocation)
 }
 
 // Don't set line number in EarlGreyUtils.

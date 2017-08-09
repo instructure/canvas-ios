@@ -15,10 +15,10 @@
 //
 
 class DomainPickerTests: TeacherTest {
-    
-    func testDomainPicker_domainFieldAllowsInput() {
-        let domain = "mobiledev"
-        domainPickerPage.enterDomain(domain)
-        domainPickerPage.assertDomainField(contains: domain)
-    }
+//    
+//    func testDomainPicker_domainFieldAllowsInput() {
+//        let domain = "mobiledev"
+//        domainPickerPage.enterDomain(domain)
+//        domainPickerPage.assertDomainField(contains: domain)
+//    }
 }
