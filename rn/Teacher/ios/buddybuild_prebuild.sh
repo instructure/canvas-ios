@@ -66,7 +66,9 @@ retry_command yarn run flow
 mkdir -p "$BUDDYBUILD_WORKSPACE/buddybuild_artifacts/Jest"
 retry_command yarn run test -- --coverage --outputFile="$BUDDYBUILD_WORKSPACE/buddybuild_artifacts/Jest/jest.json" --json
 
-if [ "$BUDDYBUILD_BASE_BRANCH" != "" ]; then
+TEACHER_APP_ID=58b0b2116096900100863eb8
+
+if [ "$BUDDYBUILD_BASE_BRANCH" != "" ] && [ "$BUDDYBUILD_APP_ID" = "$TEACHER_APP_ID" ]; then
     aws s3 cp s3://inseng-code-coverage/ios-teacher/coverage/coverage-summary.json ./coverage-summary-develop.json
     export DANGER_FAKE_CI="YEP"
     export DANGER_TEST_REPO="$BUDDYBUILD_REPO_SLUG"
