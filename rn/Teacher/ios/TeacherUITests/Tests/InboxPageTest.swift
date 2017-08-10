@@ -15,10 +15,10 @@
 //
 
 class InboxPageTest: TeacherTest {
-//
-//    func testInboxPage_displaysPageObjects() {
-//        logIn(self)
-//        tabBarController.openInboxPage()
-//        inboxPage.assertPageObjects()
-//    }
+
+    func testInboxPage_displaysPageObjects() {
+        logIn(self)
+        tabBarController.openInboxPage()
+        inboxPage.assertPageObjects()
+    }
 }

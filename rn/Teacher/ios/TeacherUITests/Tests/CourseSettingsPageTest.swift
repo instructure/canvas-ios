@@ -15,13 +15,13 @@
 //
 
 class CourseSettingsPageTest: TeacherTest {
-//
-//    func testSettingsPage_displaysPageObjects() {
-//        logIn(self)
-//        let course = Data.getNextCourse(self)
-//        coursesListPage.openCourseDetailsPage(course)
-//        courseBrowserPage.openCourseSettingsPage()
-//        courseSettingsPage.assertPageObjects()
-//        courseSettingsPage.dismissToCourseBrowserPage()
-//    }
+
+    func testSettingsPage_displaysPageObjects() {
+        logIn(self)
+        let course = Data.getNextCourse(self)
+        coursesListPage.openCourseDetailsPage(course)
+        courseBrowserPage.openCourseSettingsPage()
+        courseSettingsPage.assertPageObjects()
+        courseSettingsPage.dismissToCourseBrowserPage()
+    }
 }

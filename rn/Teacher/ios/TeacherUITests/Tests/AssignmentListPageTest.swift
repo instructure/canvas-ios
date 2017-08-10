@@ -15,32 +15,32 @@
 //
 
 class AssignmentListPageTest: TeacherTest {
-//
-////    //TestRail ID = C3109578
-////    func testAssignmentListPage_displaysPageObjects() {
-////        let course = openAssignmentListPage(self)
-////        assignmentListPage.assertPageObjects(course)
-////    }
-//
-///*
-//    //TestRail ID = C3134487
-//    func testAssignmentListPage_displaysNoAssignmentsView() {
-//        // not implemented on iOS yet.
-//    }
-// */
-//
+
 //    //TestRail ID = C3109578
-//    func testAssignmentListPage_displaysAssignment() {
-//        openAssignmentListPage(self)
-//        let assignment = Data.getNextAssignment(self)
-//        assignmentListPage.assertHasAssignment(assignment)
+//    func testAssignmentListPage_displaysPageObjects() {
+//        let course = openAssignmentListPage(self)
+//        assignmentListPage.assertPageObjects(course)
 //    }
-//
-//    //TestRail ID = C3134488
-//    func testAssignmentListPage_displaysGradingPeriods() {
-//        openAssignmentListPage(self)
-//        let assignment = Data.getNextAssignment(self)
-//        assignmentListPage.assertHasGradingPeriods(assignment)
-//        
-//    }
+
+/*
+    //TestRail ID = C3134487
+    func testAssignmentListPage_displaysNoAssignmentsView() {
+        // not implemented on iOS yet.
+    }
+ */
+
+    //TestRail ID = C3109578
+    func testAssignmentListPage_displaysAssignment() {
+        openAssignmentListPage(self)
+        let assignment = Data.getNextAssignment(self)
+        assignmentListPage.assertHasAssignment(assignment)
+    }
+
+    //TestRail ID = C3134488
+    func testAssignmentListPage_displaysGradingPeriods() {
+        openAssignmentListPage(self)
+        let assignment = Data.getNextAssignment(self)
+        assignmentListPage.assertHasGradingPeriods(assignment)
+        
+    }
 }

@@ -15,14 +15,14 @@
 //
 
 class AllCoursesListPageTest: TeacherTest {
-//
-//    //TestRail ID = C3108901
-//    func testAllCoursesListPage_displaysPageObjects() {
-//        logIn(self)
-//        coursesListPage.openAllCoursesPage()
-//        allCoursesListPage.assertPageObjects()
-//    }
-//
+
+    //TestRail ID = C3108901
+    func testAllCoursesListPage_displaysPageObjects() {
+        logIn(self)
+        coursesListPage.openAllCoursesPage()
+        allCoursesListPage.assertPageObjects()
+    }
+
 //    //TestRail ID = C3108901
 //    func testAllCoursesListPage_displaysCourseList() {
 //        logIn(self)
