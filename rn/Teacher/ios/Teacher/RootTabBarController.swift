@@ -56,10 +56,6 @@ class RootTabBarController: UITabBarController {
         let inboxNav = HelmNavigationController(rootViewController: inboxVC)
         
         let inboxSplit = HelmSplitViewController()
-        inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
-        inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
-        inboxSplit.extendedLayoutIncludesOpaqueBars = true
-        
         let empty = HelmNavigationController()
         if let brand = self.branding {
             empty.navigationBar.barTintColor = brand.navBgColor
@@ -67,6 +63,9 @@ class RootTabBarController: UITabBarController {
             empty.navigationBar.isTranslucent = false
         }
         inboxSplit.viewControllers = [inboxNav, empty]
+        inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
+        inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
+        inboxSplit.extendedLayoutIncludesOpaqueBars = true
         return inboxSplit
     }
     

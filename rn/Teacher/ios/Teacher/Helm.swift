@@ -170,8 +170,8 @@ open class HelmManager: NSObject {
             // TODO: making some possibly incorredct assumptions here that every time we want both master and detail in a nav controller. Works now, but may need to change
             let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
 
-            split.preferredDisplayMode = .allVisible
             split.viewControllers = [HelmNavigationController(rootViewController: master), emptyNav]
+            split.preferredDisplayMode = .allVisible
             
             if (options["modalPresentationStyle"] as? String) == "currentContext" {
                 let wrapper = HelmSplitViewControllerWrapper()
