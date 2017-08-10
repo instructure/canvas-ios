@@ -5,7 +5,6 @@ import 'react-native'
 import renderer from 'react-test-renderer'
 import { SimilarityScore, type Props, mapStateToProps } from '../SimilarityScore'
 import explore from '../../../../../test/helpers/explore'
-import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 jest
   .mock('Button', () => 'Button')
@@ -56,14 +55,6 @@ describe('SimilarityScore', () => {
   it('renders null without a status', () => {
     props.status = null
     expect(render(props).toJSON()).toBeNull()
-  })
-
-  it('opens url when tapped', () => {
-    RCTSFSafariViewController.open = jest.fn()
-    props.url = 'some url'
-    const container: any = explore(render(props).toJSON()).selectByID('speedgrader.similarity-score.container')
-    container.props.onPress()
-    expect(RCTSFSafariViewController.open).toHaveBeenCalledWith('some url')
   })
 
   it('renders pending status', () => {

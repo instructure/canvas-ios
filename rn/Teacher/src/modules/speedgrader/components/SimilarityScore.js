@@ -6,7 +6,6 @@ import i18n from 'format-message'
 import colors from '../../../common/colors'
 import images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
-import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 import {
   Text,
@@ -45,7 +44,6 @@ export class SimilarityScore extends Component<any, Props, any> {
 
     return (
       <TouchableHighlight
-        onPress={this.props.url && this.showURL}
         underlayColor='white'
         testID='speedgrader.similarity-score.container'
       >
@@ -124,10 +122,6 @@ export class SimilarityScore extends Component<any, Props, any> {
         />
       </View>
     )
-  }
-
-  showURL = () => {
-    RCTSFSafariViewController.open(this.props.url)
   }
 }
 
