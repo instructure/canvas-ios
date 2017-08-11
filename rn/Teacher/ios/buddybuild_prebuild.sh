@@ -69,7 +69,7 @@ retry_command yarn run test -- --coverage --outputFile="$BUDDYBUILD_WORKSPACE/bu
 TEACHER_APP_ID=58b0b2116096900100863eb8
 
 if [ "$BUDDYBUILD_BASE_BRANCH" != "" ] && [ "$BUDDYBUILD_APP_ID" = "$TEACHER_APP_ID" ]; then
-    aws s3 cp s3://inseng-code-coverage/ios-teacher/coverage/coverage-summary.json ./coverage-summary-develop.json
+    aws s3 cp --quiet s3://inseng-code-coverage/ios-teacher/coverage/coverage-summary.json ./coverage-summary-develop.json
     export DANGER_FAKE_CI="YEP"
     export DANGER_TEST_REPO="$BUDDYBUILD_REPO_SLUG"
     export DANGER_TEST_PR="$BUDDYBUILD_PULL_REQUEST"

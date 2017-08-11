@@ -15,6 +15,8 @@ import Fabric
 import Crashlytics
 import StoreKit
 
+public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
@@ -71,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let key = "InstLaunchCount"
         var count = UserDefaults.standard.integer(forKey: key)
         count += 1
-        if (count > 10) {
+        if (count > 10 && !EarlGreyExists) {
             if #available(iOS 10.3, *) {
                 #if RELEASE
                 SKStoreReviewController.requestReview()
