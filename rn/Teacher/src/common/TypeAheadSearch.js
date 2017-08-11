@@ -7,7 +7,7 @@ import axios, { CancelToken } from 'axios'
 import { parseNext } from '../api/utils/pagination'
 import i18n from 'format-message'
 
-type TypeAheadSearchResults = () => { results: ?any[], error: ?string }
+export type TypeAheadSearchResults = () => { results: ?any[], error: ?string }
 
 export type Props = {
   endpoint: string,

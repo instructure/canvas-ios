@@ -49,7 +49,7 @@ export class AddressBook extends Component<any, Props, any> {
     })
   }
 
-  _requestFinished = (results: ?AddressBookResults[], error: ?string) => {
+  _requestFinished = (results: ?AddressBookResult[], error: ?string) => {
     this.setState({
       searchResults: results || [],
       pending: false,
@@ -57,7 +57,7 @@ export class AddressBook extends Component<any, Props, any> {
     })
   }
 
-  _nextRequestFinished = (results: ?AddressBookResults[], error: ?string) => {
+  _nextRequestFinished = (results: ?AddressBookResult[], error: ?string) => {
     this.setState({
       searchResults: this.state.searchResults.concat(results),
       pending: false,

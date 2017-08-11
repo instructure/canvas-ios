@@ -39,6 +39,7 @@ import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
 import NoATeacher from '../modules/courses/components/NotATeacher'
 import GroupList from '../modules/groups/GroupList'
+import PeopleList from '../modules/people/PeopleList'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -75,6 +76,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/reply', wrap(EditReply), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/edit', wrap(DiscussionEdit), store)
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store)
+  registerScreen('/courses/:courseID/users', wrap(PeopleList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
   registerScreen('/groups/:groupID/users', wrap(GroupList), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
