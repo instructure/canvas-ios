@@ -2192,7 +2192,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\n./bundle-release.sh\nelse\n../node_modules/react-native/packager/react-native-xcode.sh\nfi";
+			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\n./bundle-release.sh\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
 		};
 		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
