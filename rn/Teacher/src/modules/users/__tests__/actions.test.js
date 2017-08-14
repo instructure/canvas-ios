@@ -17,6 +17,9 @@ test('should refresh user profiles based on a single userID passed in', async ()
     {
       type: actions.refreshUsers.toString(),
       pending: true,
+      payload: {
+        userIDs: [user.id],
+      },
     },
     {
       type: actions.refreshUsers.toString(),
@@ -34,6 +37,9 @@ test('should refresh user profiles based on the userIDs passed in', async () => 
     {
       type: actions.refreshUsers.toString(),
       pending: true,
+      payload: {
+        userIDs: [user.id, user.id],
+      },
     },
     {
       type: actions.refreshUsers.toString(),

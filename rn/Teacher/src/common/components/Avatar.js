@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Text,
+  TouchableHighlight,
   StyleSheet,
 } from 'react-native'
 import colors from '../colors'
@@ -75,8 +76,10 @@ export default class Avatar extends Component<any, Props, any> {
       containerStyles.push({ backgroundColor: '#F5F5F5' })
     }
 
+    let comp
+
     if (url) {
-      return (
+      comp = (
         <View style={containerStyles} accessibilityLabel=''>
           <Image
             source={source}
@@ -94,12 +97,19 @@ export default class Avatar extends Component<any, Props, any> {
           .substring(0, 3)
           .toUpperCase()
         : ''
-      return (
+      comp = (
         <View style={[styles.altImage, { height, width, borderRadius }]} accessibilityLabel=''>
           <Text style={[styles.altImageText, { fontSize }]} accessible={false}>{altText}</Text>
         </View>
       )
     }
+
+    if (!this.props.onPress) return comp
+    return (
+      <TouchableHighlight underlayColor='transparent' onPress={this.props.onPress}>
+        {comp}
+      </TouchableHighlight>
+    )
   }
 }
 

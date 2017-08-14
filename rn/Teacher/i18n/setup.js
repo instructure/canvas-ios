@@ -17,6 +17,11 @@ export default function (locale: string): void {
     locale: sanitizedLocale,
     generateId,
     translations,
+    formats: {
+      date: {
+        'MMMM d': { month: 'long', day: 'numeric' },
+      },
+    },
   })
   initMoment(sanitizedLocale)
 }

@@ -33,7 +33,7 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentDueDatesPr
   dates.studentIDs().forEach((id) => {
     const user = state.entities.users[id]
     if (user) {
-      users[id] = user
+      users[id] = user.data
     }
   })
 

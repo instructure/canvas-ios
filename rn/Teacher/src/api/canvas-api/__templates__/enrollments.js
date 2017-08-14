@@ -9,4 +9,5 @@ export const enrollment: Template<Enrollment> = template({
   user: user(),
   type: 'StudentEnrollment',
   enrollment_state: 'active',
+  last_activity_at: (new Date()).toISOString(),
 })

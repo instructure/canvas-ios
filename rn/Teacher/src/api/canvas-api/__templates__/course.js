@@ -1,6 +1,7 @@
 /* @flow */
 
 import template, { type Template } from '../../../utils/template'
+import { section } from './section'
 
 export const course: Template<Course> = template({
   id: '1',
@@ -19,6 +20,13 @@ export const course: Template<Course> = template({
     user_id: '1',
   }],
 })
+
+export const courseWithSection: Template<Course> = function (defaults) {
+  return course({
+    ...defaults,
+    sections: [section()],
+  })
+}
 
 export const customColors: Template<CustomColors> = template({
   custom_colors: {

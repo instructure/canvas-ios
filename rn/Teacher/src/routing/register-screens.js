@@ -39,6 +39,7 @@ import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
 import NoATeacher from '../modules/courses/components/NotATeacher'
 import GroupList from '../modules/groups/GroupList'
+import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
 
 import { Store } from 'redux'
@@ -94,4 +95,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/notATeacher', wrap(NoATeacher), store)
+  registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)
 }

@@ -21,6 +21,7 @@ export type Course = {
   default_view: CourseHome,
   term: Term,
   enrollments?: ?CourseEnrollment[],
+  sections?: Section[],
 }
 
 export type CustomColors = {

@@ -98,7 +98,8 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
           <Avatar
             key={userID}
             avatarURL={avatarURL}
-            userName={name} />
+            userName={name}
+          />
         </View>
         <View style={styles.textContainer}>
           <Text

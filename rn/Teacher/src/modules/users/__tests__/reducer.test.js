@@ -10,7 +10,24 @@ let template = {
 }
 
 describe('user-profiles reducer', () => {
-  it('should fill our the user profile entities from response', async () => {
+  it('should mark a user as pending', () => {
+    let action = {
+      type: UserProfileActions().refreshUsers.toString(),
+      pending: true,
+      payload: {
+        userIDs: ['1'],
+      },
+    }
+
+    let state = users({}, action)
+    expect(state).toMatchObject({
+      '1': {
+        pending: true,
+      },
+    })
+  })
+
+  it('should fill out the user profile entities from response', async () => {
     const user = template.user()
 
     let action = UserProfileActions({
@@ -18,6 +35,28 @@ describe('user-profiles reducer', () => {
     }).refreshUsers([user.id])
 
     let state = await testAsyncReducer(users, action)
-    expect(state).toMatchObject([{}, { [user.id]: user }])
+    expect(state).toMatchObject([{}, {
+      [user.id]: {
+        data: user,
+        pending: false,
+      },
+    }])
+  })
+
+  it('should put pending false on failure', () => {
+    let action = {
+      type: UserProfileActions().refreshUsers.toString(),
+      error: true,
+      payload: {
+        userIDs: ['1'],
+      },
+    }
+
+    let state = users({}, action)
+    expect(state).toMatchObject({
+      '1': {
+        pending: false,
+      },
+    })
   })
 })

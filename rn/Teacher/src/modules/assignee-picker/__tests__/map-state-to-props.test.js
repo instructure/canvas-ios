@@ -131,7 +131,9 @@ test('correct output from pickerMapStateToProps', () => {
         [section.id]: section,
       },
       users: {
-        [enrollment.user_id]: enrollment.user,
+        [enrollment.user_id]: {
+          data: enrollment.user,
+        },
       },
       groups: {
         [group.id]: {

@@ -90,8 +90,8 @@ export function pickerMapStateToProps (state: AppState, ownProps: AssigneePicker
       case 'student':
         const user = state.entities.users[assignee.dataId]
         if (user) {
-          newAssignee.name = user.name
-          newAssignee.imageURL = user.avatar_url
+          newAssignee.name = user.data.name
+          newAssignee.imageURL = user.data.avatar_url
         }
         break
       case 'section':

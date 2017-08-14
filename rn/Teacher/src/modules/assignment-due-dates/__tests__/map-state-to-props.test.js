@@ -30,7 +30,9 @@ test('map state to props should work', async () => {
         [assignment.id]: { data: assignment },
       },
       users: {
-        [user.id]: user,
+        [user.id]: {
+          data: user,
+        },
       },
       courses: {
         [course.id]: course,

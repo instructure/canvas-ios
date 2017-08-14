@@ -11,7 +11,35 @@ import { processConfig, checkDefaults } from './utils'
 
 const Helm = NativeModules.Helm
 
-class Screen extends React.Component<any, any, any> {
+type ScreenProps = {
+  title?: string,
+  subtitle?: string,
+  statusBarStyle?: any,
+  statusBarHidden?: boolean,
+  statusBarUpdateAnimation?: any,
+  automaticallyAdjustsScrollViewInsets?: boolean,
+  supportedOrientations?: any,
+  noRotationInVerticallyCompact?: boolean,
+
+  // Nav bar stuff
+  navBarStyle?: 'light' | 'dark',
+  navBarButtonColor?: string,
+  navBarColor?: string,
+  navBarHidden?: boolean,
+  navBarTranslucent?: boolean,
+  navBarImage?: string,
+  hideNavBarShadowImage?: boolean,
+  navBarTransparent?: boolean,
+  drawUnderNavBar?: boolean,
+  drawUnderTabBar?: boolean,
+  leftBarButtons?: any,
+  rightBarButtons?: any,
+  backButtonTitle?: string,
+
+  children: any,
+}
+
+class Screen extends React.Component<any, ScreenProps, any> {
   deviceEventEmitterSubscriptions: Object = {}
 
   constructor (props: Object, context: Screen.contextTypes) {

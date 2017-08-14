@@ -5,12 +5,13 @@ export type CustomColorsResponse = {
 }
 
 export type User = {
-  +id: string,
-  +name: string,
-  +short_name: string,
-  +sortable_name: string,
-  +bio?: string,
-  +avatar_url: string,
+  id: string,
+  name: string,
+  short_name: string,
+  sortable_name: string,
+  bio?: string,
+  avatar_url: string,
+  primary_email: string,
 }
 
 export type UserDisplay = {

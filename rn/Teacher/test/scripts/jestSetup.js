@@ -1,4 +1,7 @@
 /* @flow */
+import setupI18n from '../../i18n/setup'
+setupI18n('en')
+
 const { NativeModules } = require('react-native')
 
 require.requireActual('View').displayName = 'View'

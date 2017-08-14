@@ -353,6 +353,9 @@
   "due_dates_double_tap_for_details_36c5a7a4": {
     "message": "Due Dates, Double tap for details."
   },
+  "due_datestring_be4410c7": {
+    "message": "Due { dateString }"
+  },
   "edit_assignment_ebf22a72": {
     "message": "Edit Assignment"
   },
@@ -397,6 +400,9 @@
   },
   "external_tool_submission_c7b1dfa4": {
     "message": "External Tool Submission"
+  },
+  "fail_c2e91f54": {
+    "message": "Fail"
   },
   "failed_comment_options_aa19a936": {
     "message": "Failed comment options"
@@ -514,6 +520,9 @@
   },
   "italic_ac45200a": {
     "message": "Italic"
+  },
+  "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
+    "message": "Last activity on { lastActivity, date, 'MMMM d' } at { lastActivity, time, short }"
   },
   "last_post_lastreplydatestr_55fbe7ce": {
     "message": "Last post { lastReplyDateStr }"
@@ -680,9 +689,6 @@
   "ok_c47544a2": {
     "message": "OK"
   },
-  "ok_ff1b646a": {
-    "message": "Ok"
-  },
   "on_8f7190e5": {
     "message": "On"
   },
@@ -736,6 +742,9 @@
   },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page"
+  },
+  "pass_8abee039": {
+    "message": "Pass"
   },
   "percent_d7ddd35b": {
     "message": "Percent (%)"
@@ -836,9 +845,6 @@
   "rubric_fc39da76": {
     "message": "Rubric"
   },
-  "save_11a80ec3": {
-    "message": "Save"
-  },
   "saving_2521e616": {
     "message": "Saving"
   },
@@ -859,6 +865,9 @@
   },
   "search_280d00bd": {
     "message": "Search"
+  },
+  "section_sectionname_a455be11": {
+    "message": "Section: { sectionName }"
   },
   "see_all_ffa422ef": {
     "message": "See All"
@@ -898,6 +907,9 @@
   },
   "shuffle_answers_edb602b7": {
     "message": "Shuffle Answers"
+  },
+  "similarity_score_f4b5c343": {
+    "message": "Similarity Score"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
     "message": "Star messages by tapping the star in the message."
@@ -964,6 +976,9 @@
   },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
     "message": "The value of possible points must be zero or greater"
+  },
+  "there_currently_is_no_long_description_for_this_it_ea943d61": {
+    "message": "There currently is no long description for this item."
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
     "message": "There was a error loading the list of enrollments"
