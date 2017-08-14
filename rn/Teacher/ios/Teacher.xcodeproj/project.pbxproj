@@ -43,6 +43,8 @@
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C65E0C11F214822008C6C95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C65E0C31F214822008C6C95 /* InfoPlist.strings */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
+		2C841F601F3DF983009BF851 /* main.jsbundle.meta in Resources */ = {isa = PBXBuildFile; fileRef = 2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */; };
+		2C841F611F3DF9BF009BF851 /* main.jsbundle.map in Resources */ = {isa = PBXBuildFile; fileRef = 2C841F5E1F3DF983009BF851 /* main.jsbundle.map */; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
 		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
@@ -720,6 +722,8 @@
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C65E0C21F214822008C6C95 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
+		2C841F5E1F3DF983009BF851 /* main.jsbundle.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = main.jsbundle.map; sourceTree = "<group>"; };
+		2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle.meta; sourceTree = "<group>"; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476A1F21472D0000BB79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476B1F2147300000BB79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1064,6 +1068,8 @@
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				2C841F5E1F3DF983009BF851 /* main.jsbundle.map */,
+				2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
 				2C3DE5091F21494D00AE1D59 /* Info.plist */,
@@ -2150,6 +2156,8 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
 				9F59C09C1E980384003BF661 /* main.jsbundle in Resources */,
+				2C841F611F3DF9BF009BF851 /* main.jsbundle.map in Resources */,
+				2C841F601F3DF983009BF851 /* main.jsbundle.meta in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2184,7 +2192,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\n./bundle-release.sh\nelse\n../node_modules/react-native/packager/react-native-xcode.sh\nfi";
 		};
 		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
