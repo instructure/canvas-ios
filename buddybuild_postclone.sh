@@ -21,11 +21,5 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
   # install fastlane
   gem install fastlane --no-document
 
-  # authorize simulator
-  # https://github.com/wix/AppleSimulatorUtils
-  brew tap wix/brew
-  brew install --HEAD applesimutils
-  applesimutils --simulator "iPhone 7 Plus" --bundle "com.instructure.ios.teacher" --setPermissions "notifications=NO"
-
   fastlane seed_teacher
 fi

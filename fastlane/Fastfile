@@ -44,12 +44,6 @@ FRAMEWORKS_SCHEME  = 'EverythingBagel'
 FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
-  before_all do
-    if ENV['BUDDYBUILD_APP_ID']
-      install_native_deps
-    end
-  end
-
   def install_native_deps
     retry_cmd('carthage', 10) { _execute(command: 'carthage checkout --no-use-binaries') }
     retry_cmd('cocoapods', 10) { cocoapods }
