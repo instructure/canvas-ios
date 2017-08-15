@@ -28,7 +28,6 @@
 #import "DiscussionEntryCell.h"
 #import "ShortPressGestureRecognizer.h"
 #import "WebBrowserViewController.h"
-#import "ProfileViewController.h"
 #import "ContentLockViewController.h"
 #import "UITableView+in_updateInBlocks.h"
 #import "Router.h"

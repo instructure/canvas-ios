@@ -29,7 +29,6 @@
 #import "ConversationUpdater.h"
 #import "WebBrowserViewController.h"
 #import "AttachmentsTableViewController.h"
-#import "ProfileViewController.h"
 
 #import "UIWebView+SafeAPIURL.h"
 #import "CBIURLParser.h"

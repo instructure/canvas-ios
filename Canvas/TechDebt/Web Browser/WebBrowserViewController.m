@@ -182,9 +182,12 @@
 
 - (void)setUrl:(NSURL *)url {
     _url = url;
-    self.request = [NSURLRequest requestWithURL:url];
     
-    [self.request loadRequestInWebView:self.webView];
+    if (url) {
+        self.request = [NSURLRequest requestWithURL:url];
+    
+        [self.request loadRequestInWebView:self.webView];
+    }
 }
 
 - (void)setContentHTML:(NSString *)html baseURL:(NSURL *)baseURL {

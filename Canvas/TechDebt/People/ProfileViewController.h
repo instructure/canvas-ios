@@ -29,3 +29,21 @@
 @property (nonatomic, copy) UIViewController *(^settingsViewControllerFactory)();
 
 @end
+
+@interface ProfileContentViewController: UITableViewController
+
+@property (nonatomic, readwrite) BOOL showGauge;
+
+@property (nonatomic, weak) IBOutlet UITableViewCell *filesCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *gaugeCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *settingsCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *helpCell;
+@property (nonatomic, weak) IBOutlet UITableViewCell *logoutCell;
+
+@property (nonatomic, copy) void (^filesAction)();
+@property (nonatomic, copy) void (^gaugeAction)();
+@property (nonatomic, copy) void (^settingsAction)();
+@property (nonatomic, copy) void (^helpAction)();
+@property (nonatomic, copy) void (^logoutAction)();
+
+@end

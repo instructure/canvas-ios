@@ -52,4 +52,23 @@ extension Enrollment {
                     .first ?? ""
             }
     }
+    
+    public static func getGaugeLTILaunchURL(_ session: Session) throws -> SignalProducer<URL?, NSError> {
+        let path = "/api/v1/accounts/self/lti_apps/launch_definitions"
+        let request = try session.GET(path, parameters: ["placements[]": "global_navigation"])
+        return session.paginatedJSONSignalProducer(request).map { launchDefinitionsJSON in
+            return launchDefinitionsJSON
+                .filter { json in
+                    guard let domain: String = (try? json <| "domain") else { return false }
+                    return domain == "gauge.instructure.com"
+                }
+            
+                .flatMap { json in
+                    guard let url: String = (try? json <| "placements.global_navigation.url") else { return nil }
+                    return URL(string: url)
+                }
+            
+                .first
+        }
+    }
 }

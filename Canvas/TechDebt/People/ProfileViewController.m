@@ -37,11 +37,13 @@
 #import "CKIUser+SwiftCompatibility.h"
 #import "CKCanvasAPI+CurrentAPI.h"
 #import "Analytics.h"
+#import "LTIViewController.h"
 
 @import SoPretty;
 @import CanvasKit;
 @import CanvasKeymaster;
 @import Peeps;
+@import EnrollmentKit;
 #import "CBILog.h"
 
 #ifdef __APPLE__
@@ -49,7 +51,7 @@
 #endif
 #import "UIImage+TechDebt.h"
 
-@interface ProfileViewController () <UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
+@interface ProfileViewController () <UIGestureRecognizerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *simulatorMasqueradeButton;
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
@@ -62,19 +64,15 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameLabelVerticalConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *filesButton;
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
-@property (weak, nonatomic) IBOutlet UIButton *sendMessageButton;
-@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
-@property (strong, nonatomic) IBOutlet UIButton *settingsButton;
-@property (strong, nonatomic) IBOutlet UIButton *helpButton;
+@property (weak, nonatomic) ProfileContentViewController *content;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
-@property (nonatomic) BOOL isHelpActionSheet;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHeightContraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerCenterXConstraint;
 @property (nonatomic, retain) NSLayoutConstraint *minHeaderHeight;
 @property (strong, nonatomic) NSArray *headerMaxHeightConstraints;
+
+@property (strong, nonatomic, nullable) NSURL *gaugeLTIURL;
 
 @end
 
@@ -152,6 +150,14 @@ CGFloat square(CGFloat x){return x*x;}
         self.user = self.canvasAPI.user;
     }
     
+    [TheKeymaster.currentClient.authSession.enrollmentsDataSource getGaugeLTILaunchURLInSession:TheKeymaster.currentClient.authSession completion:^( NSURL * _Nullable url) {
+        if (url != nil) {
+            self.content.showGauge = YES;
+            self.gaugeLTIURL = url;
+            [self.content.tableView reloadData];
+        }
+    }];
+    
     BOOL masquerading = [CKIClient currentClient].actAsUserID != nil;
     if (masquerading) {
         UIBarButtonItem *masq = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Stop Masquerading", @"Button title for stopping masquerading; when a privileged user becomes another user in the system") style:UIBarButtonItemStylePlain target:self action:@selector(stopMasquerade)];
@@ -176,14 +182,6 @@ CGFloat square(CGFloat x){return x*x;}
     [self.emailLabel setText:self.user.primaryEmail];
     [self.nameLabel setAlpha:0.0f];
     [self.emailLabel setAlpha:0.0f];
-    [self.filesButton setTitle:NSLocalizedString(@"My Files", @"files button") forState:UIControlStateNormal];
-    [self.logoutButton setTitle:NSLocalizedString(@"Logout", @"Title for a button to logout a user") forState:UIControlStateNormal];
-    [self.settingsButton setTitle:NSLocalizedString(@"Settings", @"Title for Settings") forState:UIControlStateNormal];
-    [self.helpButton setTitle:NSLocalizedString(@"Help", @"help button") forState:UIControlStateNormal];
-
-    [@[self.filesButton, self.logoutButton, self.settingsButton, self.helpButton] enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL * _Nonnull stop) {
-    button.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, 3);
-    }];
     
     [self.avatarButton setAdjustsImageWhenHighlighted:NO];
     [self.avatarButton setContentMode:UIViewContentModeCenter];
@@ -230,18 +228,6 @@ CGFloat square(CGFloat x){return x*x;}
     [super viewWillAppear:animated];
 
     [self.view layoutIfNeeded];
-    [self.buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
-        [button.layer setBorderWidth:2.0f];
-        [button.layer setBorderColor:[Brand.current.tintColor CGColor]];
-        [button setTintColor:Brand.current.tintColor];
-        [button.layer setCornerRadius:button.bounds.size.height/2];
-    }];
-    
-    [self.logoutButton.layer setBorderWidth:2.0f];
-    [self.logoutButton.layer setBorderColor:[Brand.current.tintColor CGColor]];
-    [self.logoutButton setTintColor:Brand.current.tintColor];
-    [self.logoutButton.layer setCornerRadius:self.logoutButton.bounds.size.height/2];
-    [self.logoutButton setBackgroundColor:[UIColor prettyOffWhite]];
 
     [self.avatarButton.layer setCornerRadius:self.avatarButton.frame.size.height/2];
 
@@ -264,6 +250,34 @@ CGFloat square(CGFloat x){return x*x;}
         [self.emailLabel setAlpha:1.0f];
         [self.view layoutIfNeeded];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"embedTable"]) {
+        ProfileContentViewController *content = (ProfileContentViewController *)segue.destinationViewController;
+        self.content = content;
+        @weakify(self);
+        content.filesAction = ^{
+            @strongify(self);
+            [self fileButtonPressed];
+        };
+        content.gaugeAction = ^{
+            @strongify(self);
+            [self gaugeButtonPressed];
+        };
+        content.settingsAction = ^{
+            @strongify(self);
+            [self settingsButtonPressed];
+        };
+        content.helpAction = ^{
+            @strongify(self);
+            [self helpButtonPressed];
+        };
+        content.logoutAction = ^{
+            @strongify(self);
+            [self logoutButtonPressed];
+        };
+    }
 }
 
 -(void)setImage:(UIImage *)image {
@@ -334,12 +348,7 @@ CGFloat square(CGFloat x){return x*x;}
     self.title = NSLocalizedString(@"Profile", @"Title for profile screen");
     BOOL isPersonalProfile = [self isPersonalProfile];
     self.avatarButton.enabled = isPersonalProfile;
-    
-    for (UIButton *button in self.buttons) {
-        button.hidden = !isPersonalProfile;
-    }
-    
-    self.sendMessageButton.hidden = isPersonalProfile;
+    self.content.tableView.hidden = !isPersonalProfile;
 }
 
 - (BOOL)isPersonalProfile {
@@ -354,76 +363,6 @@ CGFloat square(CGFloat x){return x*x;}
     [self.emailLabel isFirstResponder];
 }
 
-#pragma mark - Settings Actions
-
-- (IBAction)fileButtonPressed:(id)sender
-{
-    DDLogVerbose(@"fileButtonPressed");
-    FolderViewController *folderController = [[FolderViewController alloc] initWithInterfaceStyle:FolderInterfaceStyleLight];
-    folderController.canvasAPI = self.canvasAPI;
-    folderController.title = NSLocalizedString(@"Files", @"Title for the files screen");
-    CKContextInfo *context = [CKContextInfo contextInfoFromUser:self.user];
-    [folderController loadRootFolderForContext:context];
-    [self.navigationController pushViewController:folderController animated:YES];
-}
-
-#pragma mark - About Actions
-- (IBAction)settingsButtonPressed:(id)sender {
-    UIViewController *settings = self.settingsViewControllerFactory();
-    [self.navigationController pushViewController:settings animated:YES];
-}
-
-#pragma mark - Logout
-
-- (IBAction)logoutButtonPressed:(UIButton *)sender
-{
-    self.isHelpActionSheet = NO;
-    DDLogVerbose(@"logoutButtonPressed");
-    UIActionSheet *actionSheet;
-    NSString *localizedTitle = NSLocalizedString(@"Are you ready to logout?", @"Action sheet title verifying that a user wants to logout.");
-    NSString *localizedCancelButtonTitle = NSLocalizedString(@"Stay Logged In", @"button title for cancelling a logout.");
-    NSString *localizedLogoutButtonTitle = NSLocalizedString(@"Logout", @"Title for a button to logout a user");
-    
-    actionSheet = [[UIActionSheet alloc] initWithTitle:localizedTitle delegate:self cancelButtonTitle:localizedCancelButtonTitle destructiveButtonTitle:localizedLogoutButtonTitle otherButtonTitles:NSLocalizedString(@"Change User", nil), nil];
-
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [actionSheet showFromRect:sender.bounds inView:sender animated:YES];
-    } else {
-        [actionSheet showFromTabBar:self.tabBarController.tabBar];
-    }
-    
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    
-    if (self.isHelpActionSheet) {
-        switch (buttonIndex) {
-            case 0: // Report a Problem
-                [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeProblem];
-                break;
-            case 1: // Request a mobile feature
-                [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeFeatureRequest];
-                break;
-            default:
-                break;
-        }
-    } else {
-        // TODO: Unregister for remote notifications
-        if (buttonIndex == actionSheet.destructiveButtonIndex) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                [TheKeymaster logout];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }];
-        } else if (buttonIndex != actionSheet.cancelButtonIndex) {
-            [self dismissViewControllerAnimated:YES completion:^{
-                [TheKeymaster switchUser];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }];
-        }
-    }
-}
-
 #pragma mark - Profile image setting
 
 - (IBAction)pickAvatar:(id)sender
@@ -436,7 +375,7 @@ CGFloat square(CGFloat x){return x*x;}
     [actionSheet addButtonWithTitle:NSLocalizedString(@"Build Avatar", @"Link to building panda avatar") handler:^{
         PandatarBuilderViewController *pandatarBuilderViewController = [[PandatarBuilderViewController alloc] init];
         __weak PandatarBuilderViewController *pandatarBuilder = pandatarBuilderViewController;
-        pandatarBuilderViewController.doneBuilding = ^(UIImage *tehPandatar) {
+      pandatarBuilderViewController.doneBuilding = ^(UIImage *tehPandatar) {
             [self imagePicker:nil pickedImage:tehPandatar];
             [pandatarBuilder dismissViewControllerAnimated:YES completion:nil];
         };
@@ -592,6 +531,79 @@ CGFloat square(CGFloat x){return x*x;}
     return fileURL;
 }
 
+#pragma mark - Actions
+
+- (void)fileButtonPressed {
+    FolderViewController *folderController = [[FolderViewController alloc] initWithInterfaceStyle:FolderInterfaceStyleLight];
+    folderController.canvasAPI = self.canvasAPI;
+    folderController.title = NSLocalizedString(@"Files", @"Title for the files screen");
+    CKContextInfo *context = [CKContextInfo contextInfoFromUser:self.user];
+    [folderController loadRootFolderForContext:context];
+    [self.navigationController pushViewController:folderController animated:YES];
+}
+
+- (void)gaugeButtonPressed {
+    CKIExternalTool *tool = [[CKIExternalTool alloc] init];
+    tool.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/v1/accounts/self/external_tools/sessionless_launch?url=%@", TheKeymaster.currentClient.baseURL.absoluteString, self.gaugeLTIURL]];
+    // Don't need to localize this: this is a proper noun, our product name
+    tool.name = @"Gauge";
+    
+    LTIViewController *ltiVC = [[LTIViewController alloc] init];
+    ltiVC.externalTool = tool;
+    [self.navigationController pushViewController:ltiVC animated:YES];
+}
+
+- (void)settingsButtonPressed {
+    UIViewController *settings = self.settingsViewControllerFactory();
+    [self.navigationController pushViewController:settings animated:YES];
+}
+
+- (void)helpButtonPressed {
+    [Analytics logScreenView: @"View Help Options"];
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *reportProblem = [UIAlertAction actionWithTitle:NSLocalizedString(@"Report a problem", "option to report a problem") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeProblem];
+    }];
+    [alert addAction:reportProblem];
+    
+    UIAlertAction *requestFeature = [UIAlertAction actionWithTitle:NSLocalizedString(@"Request a feature", "option to request a feature") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SupportTicketViewController presentFromViewController: self supportTicketType: SupportTicketTypeFeatureRequest];
+    }];
+    [alert addAction:requestFeature];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", "Cancel button title") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)logoutButtonPressed {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Are you ready to logout?", @"Action sheet title verifying that a user wants to logout.") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *changeUser = [UIAlertAction actionWithTitle:NSLocalizedString(@"Change User", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [TheKeymaster switchUser];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    [alert addAction:changeUser];
+    
+    UIAlertAction *logout = [UIAlertAction actionWithTitle:NSLocalizedString(@"Logout", @"Title for a button to logout a user") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [TheKeymaster logout];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    [alert addAction:logout];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Stay Logged In", @"button title for cancelling a logout.") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 #pragma mark - Masquerade
 
 - (void)masqueradeAsUser
@@ -661,73 +673,51 @@ CGFloat square(CGFloat x){return x*x;}
     [TheKeymaster stopMasquerading];
 }
 
-- (IBAction)helpButtonTouched:(UIButton *)sender
-{
-    self.isHelpActionSheet = YES;
-    DDLogVerbose(@"helpButtonTouched");
-    [Analytics logScreenView: @"View Help Options"];
-    
-    UIActionSheet *helpSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Report a problem", "option to report a problem"), NSLocalizedString(@"Request a feature", "option to request a feature"), nil];
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [helpSheet showFromRect:sender.bounds inView:sender animated:YES];
-    } else {
-        [helpSheet showFromTabBar:self.tabBarController.tabBar];
-    }    
-}
-
 - (IBAction)masqueradeButtonClicked:(id)sender
 {
     DDLogVerbose(@"masqueradeButtonPressed");
     [self masqueradeAsUser];
 }
 
-- (void)addMotionEffectToView:(UIView *)view
-{
-    // Set vertical effect
-    UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    verticalMotionEffect.minimumRelativeValue = @(-6);
-    verticalMotionEffect.maximumRelativeValue = @(6);
+
+@end
+
+
+@implementation ProfileContentViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    // Set horizontal effect
-    UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    horizontalMotionEffect.minimumRelativeValue = @(-6);
-    horizontalMotionEffect.maximumRelativeValue = @(6);
-    
-    // Create group to combine both
-    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
-    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
-    
-    // Add both effects to your view
-    [view addMotionEffect:group];
+    self.filesCell.textLabel.text = NSLocalizedString(@"My Files", @"files button");
+    self.logoutCell.textLabel.text = NSLocalizedString(@"Logout", @"Title for a button to logout a user");
+    self.settingsCell.textLabel.text = NSLocalizedString(@"Settings", @"Title for Settings");
+    self.helpCell.textLabel.text = NSLocalizedString(@"Help", @"help button");
 }
 
-- (void)addBackMotionEffectToView:(UIView *)view
-{
-    // Set vertical effect
-    UIInterpolatingMotionEffect *verticalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-    verticalMotionEffect.minimumRelativeValue = @(20);
-    verticalMotionEffect.maximumRelativeValue = @(-20);
-    
-    // Set horizontal effect
-    UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-    horizontalMotionEffect.minimumRelativeValue = @(20);
-    horizontalMotionEffect.maximumRelativeValue = @(-20);
-    
-    // Create group to combine both
-    UIMotionEffectGroup *group = [UIMotionEffectGroup new];
-    group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
-    
-    // Add both effects to your view
-    [view addMotionEffect:group];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell == self.filesCell) {
+        self.filesAction();
+    } else if (cell == self.gaugeCell) {
+        self.gaugeAction();
+    } else if (cell == self.settingsCell) {
+        self.settingsAction();
+    } else if (cell == self.helpCell) {
+        self.helpAction();
+    } else if (cell == self.logoutCell) {
+        self.logoutAction();
+    }
 }
 
-- (IBAction)sendMessageButtonPressed:(id)sender {
-    DDLogVerbose(@"sendMessageButtonPressed");
-    CKConversationRecipient *recipient = [[CKConversationRecipient alloc] initWithInfo:@{@"id": @(self.user.ident), @"name": self.user.name}];
-    [[CBIConversationStarter sharedConversationStarter] startAConversationWithRecipients:@[recipient]];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    if (cell == self.gaugeCell && !self.showGauge) {
+        return 0;
+    }
+    
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
-
 
 @end
 

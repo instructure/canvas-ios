@@ -72,6 +72,12 @@ open class EnrollmentsDataSource: NSObject {
         return enrollment?.arcLTIToolID
     }
     
+    @objc open func getGaugeLTILaunchURL(inSession session: Session, completion: @escaping (URL?)->Void) {
+        let _ = try? Enrollment.getGaugeLTILaunchURL(session).observe(on: UIScheduler()).on(value: { url in
+            completion(url)
+        }).start()
+    }
+    
     // MARK: Changing things 
     open func setColor(_ color: UIColor, inSession session: Session, forContextID contextID: ContextID) -> SignalProducer<(), NSError> {
         
