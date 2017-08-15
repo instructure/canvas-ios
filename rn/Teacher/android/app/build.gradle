@@ -133,6 +133,7 @@ android {
 }
 
 dependencies {
+    compile project(':bugsnag-react-native')
     compile project(':react-native-mail')
     compile project(':react-native-fs')
     compile project(':react-native-navigation')

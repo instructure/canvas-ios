@@ -163,6 +163,7 @@
 		87F264330A355494AE61743A /* AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48A877FC5DFDFB58133F13B /* AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift */; };
 		88F5E8BF43D0785FAE27C7F6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A92B769017B28C51D2EFE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
+		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A14A839A5EB460283B1F75B /* libRNImagePicker.a */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
 		974B8DF683AD12FE51E4AF8A /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC3AF0DC3303E15679EB88 /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift */; };
@@ -177,6 +178,7 @@
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
 		A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A08992613846128FD3E3D2 /* libRNBlur.a */; };
 		A94ACBBB553790F98F7C9EE5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */; };
+		AB03B0349E454DCEA2ADC585 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */; };
 		ACE0FB9C60C46429FCB245BE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */; };
 		ADA15143C8D5C6E6E3DB3076 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
@@ -283,6 +285,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		2C26CA271F41EBD2000E15A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8AD256131D6DE5F600C7D842;
+			remoteInfo = BugsnagReactNative;
 		};
 		2C588EAA1F13F0F3006CB2C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -609,6 +618,7 @@
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Teacher/Images.xcassets; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
 		22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		2411260A6CA04D6D874912A2 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
 		2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
@@ -864,6 +874,7 @@
 		B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; sourceTree = "<group>"; };
 		B70862A515621F745F8148C6 /* DiscussionEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiscussionEntry.swift; path = models/DiscussionEntry.swift; sourceTree = "<group>"; };
 		BB28BA928334A7C4FFA230C7 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = models/Attachment.swift; sourceTree = "<group>"; };
+		BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBugsnagReactNative.a; sourceTree = "<group>"; };
 		C3B77F1C0B62FA8B31FF0A08 /* EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; sourceTree = "<group>"; };
 		C48A877FC5DFDFB58133F13B /* AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift; sourceTree = "<group>"; };
 		C7A08992613846128FD3E3D2 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
@@ -871,6 +882,7 @@
 		CAC8D0646677276C36E70E17 /* GroupMembership.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupMembership.swift; path = models/GroupMembership.swift; sourceTree = "<group>"; };
 		CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enrollment.swift; path = models/Enrollment.swift; sourceTree = "<group>"; };
 		CEE442A069DF0F82B2A6AE25 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift; sourceTree = "<group>"; };
+		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubmissionComment.swift; path = models/SubmissionComment.swift; sourceTree = "<group>"; };
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
 		D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; sourceTree = "<group>"; };
@@ -947,6 +959,8 @@
 				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
 				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
 				685999502ED04B3D8C1FF049 /* libRNMail.a in Frameworks */,
+				AB03B0349E454DCEA2ADC585 /* libBugsnagReactNative.a in Frameworks */,
+				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1099,6 +1113,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2C26CA221F41EBD1000E15A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C26CA281F41EBD2000E15A2 /* libBugsnagReactNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1116,6 +1138,7 @@
 				2C50EDFE1E735CB10096592C /* CoreText.framework */,
 				2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */,
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
+				D063D27A1B3640208ABF74D4 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1483,6 +1506,7 @@
 				7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */,
 				5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */,
 				A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */,
+				1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1659,6 +1683,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
 				B1C60D611F1D82E800F7902C /* Strip PSPDFKit */,
+				2C26CA501F41F41B000E15A2 /* Upload Source Map */,
 			);
 			buildRules = (
 			);
@@ -1719,7 +1744,7 @@
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = B6333T4PXQ;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -1760,6 +1785,10 @@
 				{
 					ProductGroup = 3BEF7BF11E7C96860092C864 /* Products */;
 					ProjectRef = 3BEF7BF01E7C96860092C864 /* ART.xcodeproj */;
+				},
+				{
+					ProductGroup = 2C26CA221F41EBD1000E15A2 /* Products */;
+					ProjectRef = 1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */;
 				},
 				{
 					ProductGroup = 2CF540961EA6772800F79DB1 /* Products */;
@@ -1902,6 +1931,13 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2C26CA281F41EBD2000E15A2 /* libBugsnagReactNative.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBugsnagReactNative.a;
+			remoteRef = 2C26CA271F41EBD2000E15A2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2C588EAB1F13F0F3006CB2C4 /* libthird-party.a */ = {
@@ -2192,7 +2228,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\n./bundle-release.sh\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\n./bundle-release.sh\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+		};
+		2C26CA501F41F41B000E15A2 /* Upload Source Map */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Source Map";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\nversion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\necho \"Uploading source maps for version ${version}\"\nnode ../node_modules/bugsnag-sourcemaps/cli.js upload --api-key 671fc47c3812aa323469568f33244e2c --app-version ${version} --minified-file main.jsbundle --source-map main.jsbundle.map --minified-url main.jsbundle --upload-sources\nfi";
 		};
 		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2565,12 +2615,14 @@
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
 					"$(SRCROOT)/../node_modules/react-native-mail/RNMail",
+					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);
@@ -2615,12 +2667,14 @@
 					"$(SRCROOT)/../node_modules/react-native-interactable/ios/Interactable/**",
 					"$(SRCROOT)/../node_modules/react-native-search-bar",
 					"$(SRCROOT)/../node_modules/react-native-mail/RNMail",
+					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 				);

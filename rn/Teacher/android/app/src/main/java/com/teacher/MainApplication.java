@@ -3,6 +3,7 @@ package com.teacher;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.bugsnag.BugsnagReactNative;
 import com.chirag.RNMail.RNMail;
 import com.rnfs.RNFSPackage;
 import com.reactnativenavigation.NavigationReactPackage;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            BugsnagReactNative.getPackage(),
             new RNMail(),
             new RNFSPackage(),
             new NavigationReactPackage(),

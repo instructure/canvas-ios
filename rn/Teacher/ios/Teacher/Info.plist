@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>BugsnagAPIKey</key>
+	<string>671fc47c3812aa323469568f33244e2c</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

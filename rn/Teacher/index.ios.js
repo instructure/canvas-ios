@@ -19,6 +19,8 @@ import logout from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
+import { Client } from 'bugsnag-react-native'
+global.crashReporter = new Client()
 
 const PushNotifications = NativeModules.PushNotifications
 
