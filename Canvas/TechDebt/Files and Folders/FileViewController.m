@@ -201,6 +201,8 @@
     
     [RatingsController appLoadedOnViewController:self];
     
+    [pdfDocPresenter savePDFAnnotations];
+    
     if (_progressToolbar.cancelBlock && [self.presentedViewController isBeingPresented] == NO) {
         _progressToolbar.cancelBlock();
         [_progressToolbar cancel];

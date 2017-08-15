@@ -88,6 +88,11 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
 
         return pdfViewController
     }
+    
+    public func savePDFAnnotations() {
+        try? pdfDocument.save()
+    }
+    
 }
 
 extension PreSubmissionPDFDocumentPresenter: PSPDFViewControllerDelegate {
