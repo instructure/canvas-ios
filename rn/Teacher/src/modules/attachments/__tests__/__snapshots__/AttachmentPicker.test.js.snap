@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttachmentPicker renders 1`] = `
+<AudioRecorder
+  onCancel={[Function]}
+  onFinishedRecording={[Function]}
+  visible={false}
+/>
+`;

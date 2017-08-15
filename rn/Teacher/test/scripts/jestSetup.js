@@ -34,6 +34,11 @@ NativeModules.RNFSManager = {
   RNFSFileTypeDirectory: 'directory',
 }
 
+NativeModules.AudioRecorderManager = {
+  checkAuthorizationStatus: jest.fn(),
+  prepareRecordingAtPath: jest.fn(),
+}
+
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),
   isConnected: {

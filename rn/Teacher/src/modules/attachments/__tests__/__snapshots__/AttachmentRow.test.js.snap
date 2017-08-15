@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AttachmentRow renders 1`] = `
+<TouchableHighlight
+  accessibilityLabel={undefined}
+  accessibilityTraits={
+    Array [
+      "button",
+    ]
+  }
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "height": 54,
+      },
+      undefined,
+      undefined,
+    ]
+  }
+  testID="attachment-row.0"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "white",
+          "flex": 1,
+          "flexDirection": "row",
+          "paddingBottom": 12.8,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 12.8,
+        },
+        Object {
+          "backgroundColor": "white",
+        },
+      ]
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Array [
+          Object {
+            "marginRight": 16,
+            "resizeMode": "contain",
+          },
+          Object {
+            "height": 20,
+            "tintColor": "#374A59",
+            "width": 20,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        numberOfLines={0}
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Array [
+              Object {
+                "fontWeight": "600",
+              },
+              undefined,
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay-semibold",
+            },
+          ]
+        }
+      >
+        Attachment 1
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
+            Object {
+              "color": "#8B969E",
+              "fontSize": 14,
+              "marginTop": 2,
+            },
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+        testID="attachment-row.0-subtitle-lbl"
+      >
+        Uploading...
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
+        }
+      >
+        <TouchableHighlight
+          hitSlop={
+            Object {
+              "bottom": 8,
+              "left": 8,
+              "right": 8,
+              "top": 8,
+            }
+          }
+          onPress={[Function]}
+          underlayColor="white"
+        >
+          <Image
+            source={1}
+            style={
+              Object {
+                "height": 14,
+                "tintColor": "black",
+                "width": 14,
+              }
+            }
+          />
+        </TouchableHighlight>
+      </View>
+    </View>
+  </View>
+</TouchableHighlight>
+`;

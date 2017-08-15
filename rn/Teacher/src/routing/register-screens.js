@@ -39,6 +39,7 @@ import EditReply from '../modules/discussions/details/EditReply'
 import AttachmentView from '../common/components/AttachmentView'
 import NoATeacher from '../modules/courses/components/NotATeacher'
 import GroupList from '../modules/groups/GroupList'
+import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
 
@@ -90,6 +91,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/staging', wrap(Staging), store)
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
   registerScreen('/attachment', wrap(AttachmentView), store)
+  registerScreen('/attachments', wrap(Attachments), store)
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)
   registerScreen('/courses/:courseID/announcements', wrap(AnnouncementsList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/announcements/new', wrap(AnnouncementEdit), store)

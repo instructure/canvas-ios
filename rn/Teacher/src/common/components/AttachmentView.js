@@ -38,7 +38,11 @@ export default class AttachmentView extends Component<any, Props, any> {
   }
 
   componentDidMount () {
-    const path = `${CachesDirectoryPath}/${this.props.attachment.display_name}`
+    if (this.props.attachment.uri) {
+      this.setState({ filePath: this.props.attachment.uri })
+      return
+    }
+    const path = `${CachesDirectoryPath}/${this.props.attachment.filename || this.props.attachment.display_name}`
     let { jobId, promise } = downloadFile({
       fromUrl: this.props.attachment.url,
       toFile: path,
@@ -79,7 +83,6 @@ export default class AttachmentView extends Component<any, Props, any> {
   }
 
   renderBody () {
-    console.log(this.state.size)
     let body = <View></View>
     switch (this.props.attachment.mime_class) {
       case 'image':
@@ -87,13 +90,9 @@ export default class AttachmentView extends Component<any, Props, any> {
           <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} />
         </View>
         break
+      case 'audio':
       case 'video':
-        body = <View style={styles.centeredContainer} onLayout={this.handleLayout}>
-          <Video
-            source={{ uri: this.state.filePath }}
-            style={{ width: this.state.size.width, height: Math.ceil(this.state.size.width * 9.0 / 16.0) }}
-          />
-        </View>
+        body = this.renderAudioVisual()
         break
       case 'zip':
       case 'flash':
@@ -102,10 +101,24 @@ export default class AttachmentView extends Component<any, Props, any> {
         </View>
         break
       default:
-        body = <WebView source={{ uri: this.state.filePath }} style={styles.document} />
-        break
+        if (this.props.attachment['content-type'] && this.props.attachment['content-type'].indexOf('audio') !== -1) {
+          body = this.renderAudioVisual()
+        } else {
+          body = <WebView source={{ uri: this.state.filePath }} style={styles.document} />
+        }
     }
     return body
+  }
+
+  renderAudioVisual () {
+    return (
+      <View style={styles.centeredContainer} onLayout={this.handleLayout}>
+        <Video
+          source={{ uri: this.state.filePath }}
+          style={{ width: this.state.size.width, height: Math.ceil(this.state.size.width * 9.0 / 16.0) }}
+        />
+      </View>
+    )
   }
 
   render () {

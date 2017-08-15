@@ -26,6 +26,7 @@ const {
 
 const template = {
   ...require('../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../api/canvas-api/__templates__/file'),
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/error'),
   ...require('../../../api/canvas-api/__templates__/users'),

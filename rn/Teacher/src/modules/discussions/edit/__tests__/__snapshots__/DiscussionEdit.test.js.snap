@@ -20,6 +20,13 @@ exports[`DiscussionEdit renders 1`] = `
         "testID": "discussions.edit.doneButton",
         "title": "Done",
       },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": null,
+        "image": 1,
+        "testID": "discussions.edit.attachment-btn",
+      },
     ]
   }
   title="Edit Discussion"
@@ -1077,6 +1084,13 @@ exports[`DiscussionEdit renders new form 1`] = `
         "style": "done",
         "testID": "discussions.edit.doneButton",
         "title": "Done",
+      },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": undefined,
+        "image": 1,
+        "testID": "discussions.edit.attachment-btn",
       },
     ]
   }
@@ -2136,6 +2150,13 @@ exports[`DiscussionEdit updates from props 1`] = `
         "testID": "discussions.edit.doneButton",
         "title": "Done",
       },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": undefined,
+        "image": 1,
+        "testID": "discussions.edit.attachment-btn",
+      },
     ]
   }
   title="New Discussion"
@@ -3193,6 +3214,13 @@ exports[`DiscussionEdit updates with new props 1`] = `
         "style": "done",
         "testID": "discussions.edit.doneButton",
         "title": "Done",
+      },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": null,
+        "image": 1,
+        "testID": "discussions.edit.attachment-btn",
       },
     ]
   }

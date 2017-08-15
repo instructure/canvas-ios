@@ -22,7 +22,7 @@ const colors: { [name: string]: string } = {
   navBarColor: '#374A59',
   navBarButtonColor: '#374A59',
   navBarTextColor: '#374A59',
-  primaryButtonTextColor: '#374A59',
+  primaryButtonTextColor: 'white',
   primaryButtonColor: '#374A59',
   primaryBrandColor: '#374A59',
 }

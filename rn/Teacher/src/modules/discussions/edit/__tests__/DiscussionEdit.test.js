@@ -39,6 +39,7 @@ jest
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../api/canvas-api/__templates__/attachment'),
   ...require('../../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../../api/canvas-api/__templates__/error'),
   ...require('../../../../__templates__/helm'),
@@ -59,6 +60,7 @@ describe('DiscussionEdit', () => {
       require_initial_post: false,
       lock_at: null,
       delayed_post_at: null,
+      attachment: null,
     }
 
     props = {
@@ -77,6 +79,7 @@ describe('DiscussionEdit', () => {
       assignment: null,
       defaultDate: new Date(0),
       can_unpublish: true,
+      attachment: null,
     }
   })
 
@@ -241,6 +244,7 @@ describe('DiscussionEdit', () => {
       lock_at: null,
       delayed_post_at: null,
       id: '1',
+      attachment: null,
     })
   })
 
@@ -261,6 +265,7 @@ describe('DiscussionEdit', () => {
       lock_at: null,
       delayed_post_at: null,
       id: '1',
+      attachment: null,
     })
   })
 
@@ -409,6 +414,26 @@ describe('DiscussionEdit', () => {
 
     props.can_unpublish = true
     expect(getPublishToggle(render(props))).not.toBeNull()
+  })
+
+  it('shows attachments', () => {
+    const spy = jest.fn()
+    props.navigator.show = spy
+    props.attachment = template.attachment()
+    const btn: any = explore(render(props).toJSON()).selectRightBarButton('discussions.edit.attachment-btn')
+    btn.action()
+    expect(spy).toHaveBeenCalledWith(
+      '/attachments',
+      { modal: true },
+      {
+        attachments: [props.attachment],
+        maxAllowed: 1,
+        storageOptions: {
+          upload: false,
+        },
+        onComplete: expect.any(Function),
+      },
+    )
   })
 
   function testRender (props: Props, options: Object = {}) {

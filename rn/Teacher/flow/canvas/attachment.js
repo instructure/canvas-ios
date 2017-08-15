@@ -1,4 +1,6 @@
 // @flow
 
-// for our purposes... they're the same
-export type Attachment = File
+export type Attachment = File & {
+  filename?: string,
+  uri?: string, // local only
+}

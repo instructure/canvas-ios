@@ -11,6 +11,7 @@ import ReactNative, {
   DatePickerIOS,
   Image,
   NativeModules,
+  processColor,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -77,6 +78,7 @@ type State = {
   lock_at: ?string,
   can_unpublish: ?boolean,
   assignment: ?Assignment,
+  attachment: ?Attachment,
 }
 
 export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Actions & {
@@ -111,6 +113,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
         lock_at: false,
       },
       errors: {},
+      attachment: props.attachment,
     }
   }
 
@@ -145,6 +148,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
         delayed_post_at: props.delayed_post_at,
         assignment: props.assignment,
         can_unpublish: props.can_unpublish == null || props.can_unpublish,
+        attachment: props.attachment,
       })
     }
   }
@@ -163,6 +167,17 @@ export class DiscussionEdit extends Component<any, Props, any> {
             testID: 'discussions.edit.doneButton',
             style: 'done',
             action: this._donePressed,
+          },
+          {
+            image: Images.attachmentLarge,
+            testID: 'discussions.edit.attachment-btn',
+            action: this.addAttachment,
+            accessibilityLabel: i18n('Add attachment'),
+            badge: this.state.attachment && {
+              text: '1',
+              backgroundColor: processColor(colors.primaryButtonColor),
+              textColor: processColor(colors.primaryBrandColor),
+            },
           },
         ]}
         leftBarButtons={[
@@ -478,10 +493,15 @@ export class DiscussionEdit extends Component<any, Props, any> {
       require_initial_post: this.state.require_initial_post || false,
       lock_at: this.state.lock_at,
       delayed_post_at: this.state.delayed_post_at,
+      attachment: this.state.attachment,
     }
     if (this.props.discussionID) {
       // $FlowFixMe
       params.id = this.props.discussionID
+    }
+    if (this.props.attachment && !this.state.attachment) {
+      // $FlowFixMe
+      params.remove_attachment = true
     }
     this.props.discussionID
       ? this.props.updateDiscussion(this.props.courseID, params)
@@ -489,6 +509,17 @@ export class DiscussionEdit extends Component<any, Props, any> {
   }
 
   isGraded = () => Boolean(this.state.assignment)
+
+  addAttachment = () => {
+    this.props.navigator.show('/attachments', { modal: true }, {
+      attachments: this.state.attachment ? [this.state.attachment] : [],
+      maxAllowed: 1,
+      storageOptions: {
+        upload: false,
+      },
+      onComplete: this._valueChanged('attachment', (as) => as[0]),
+    })
+  }
 }
 
 const style = StyleSheet.create({
@@ -520,6 +551,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
   let error = null
   let pending = 0
   let assignment = null
+  let attachment = null
 
   if (!discussionID &&
     entities.courses &&
@@ -538,6 +570,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     entities.discussions[discussionID].data) {
     const entity = entities.discussions[discussionID]
     discussion = entity.data
+    attachment = discussion.attachments && discussion.attachments.length && discussion.attachments[0]
     pending = pending + (entity.pending || 0)
     error = error || entity.error
   }
@@ -577,6 +610,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
     assignment,
     pending,
     error,
+    attachment,
   }
 }
 

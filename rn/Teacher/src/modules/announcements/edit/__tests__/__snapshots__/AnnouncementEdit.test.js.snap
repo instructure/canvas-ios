@@ -5,6 +5,7 @@ Array [
   Array [
     "1",
     Object {
+      "attachment": null,
       "delayed_post_at": null,
       "is_announcement": true,
       "message": "required",
@@ -34,6 +35,13 @@ exports[`AnnouncementEdit renders 1`] = `
         "style": "done",
         "testID": "announcements.edit.doneButton",
         "title": "Done",
+      },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": null,
+        "image": 1,
+        "testID": "announcements.edit.attachment-btn",
       },
     ]
   }
@@ -609,6 +617,13 @@ exports[`AnnouncementEdit updates with new props 1`] = `
         "style": "done",
         "testID": "announcements.edit.doneButton",
         "title": "Done",
+      },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": null,
+        "image": 1,
+        "testID": "announcements.edit.attachment-btn",
       },
     ]
   }

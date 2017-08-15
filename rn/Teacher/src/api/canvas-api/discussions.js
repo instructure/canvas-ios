@@ -21,6 +21,8 @@ export type CreateDiscussionParameters = {
   published?: boolean,
   discussion_type?: DiscussionType,
   subscribed?: boolean,
+  attachment?: ?Attachment,
+  remove_attachment?: boolean,
 }
 
 export type UpdateDiscussionParameters = CreateDiscussionParameters & {
@@ -59,7 +61,8 @@ export function getDiscussion (courseID: string, discussionID: string): Promise<
 
 export function createDiscussion (courseID: string, parameters: CreateDiscussionParameters): Promise<ApiResponse<Discussion>> {
   const url = `courses/${courseID}/discussion_topics`
-  return httpClient().post(url, parameters)
+  const formdata = discussionFormData(parameters)
+  return httpClient().post(url, formdata)
 }
 
 export function createEntry (courseID: string, discussionID: string, entryID: string = '', parameters: CreateEntryParameters): Promise<ApiResponse<Discussion>> {
@@ -74,7 +77,8 @@ export function editEntry (courseID: string, discussionID: string, entryID: stri
 
 export function updateDiscussion (courseID: string, parameters: UpdateDiscussionParameters): Promise<ApiResponse<Discussion>> {
   const url = `courses/${courseID}/discussion_topics/${parameters.id}`
-  return httpClient().put(url, parameters)
+  const formdata = discussionFormData(parameters)
+  return httpClient().put(url, formdata)
 }
 
 export function deleteDiscussionEntry (courseID: string, discussionID: string, entryID: string): Promise<ApiResponse<Discussion>> {
@@ -100,4 +104,18 @@ export function markEntryAsRead (courseID: string, discussionID: string, entryID
 export function markAllAsRead (courseID: string, discussionID: string): Promise<ApiResponse<>> {
   const url = `courses/${courseID}/discussion_topics/${discussionID}/read_all`
   return httpClient().put(url)
+}
+
+function discussionFormData (parameters: CreateDiscussionParameters | UpdateDiscussionParameters): FormData {
+  const formdata = new FormData()
+  Object.keys(parameters)
+    .filter(k => k !== 'attachment')
+    // $FlowFixMe
+    .forEach(key => formdata.append(key, parameters[key]))
+  if (parameters.attachment && parameters.attachment.uri) {
+    const { uri, display_name } = parameters.attachment
+    // $FlowFixMe
+    formdata.append('attachment', { uri, name: display_name, type: 'multipart/form-data' })
+  }
+  return formdata
 }

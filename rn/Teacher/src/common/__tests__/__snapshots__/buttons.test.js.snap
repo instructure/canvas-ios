@@ -19,10 +19,10 @@ exports[`renders button correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#374A59",
+        "color": "white",
       },
       Object {
-        "color": "#374A59",
+        "color": "white",
       },
       undefined,
     ]

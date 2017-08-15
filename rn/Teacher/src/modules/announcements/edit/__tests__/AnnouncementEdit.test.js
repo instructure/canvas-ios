@@ -38,6 +38,7 @@ jest
 
 const template = {
   ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../api/canvas-api/__templates__/attachment'),
   ...require('../../../../api/canvas-api/__templates__/error'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
@@ -53,6 +54,7 @@ describe('AnnouncementEdit', () => {
       message: 'Gather tribute or face my curse.',
       require_initial_post: false,
       delayed_post_at: null,
+      attachment: null,
     }
 
     props = {
@@ -250,6 +252,26 @@ describe('AnnouncementEdit', () => {
     )
   })
 
+  it('shows attachments', () => {
+    const spy = jest.fn()
+    props.navigator.show = spy
+    props.attachment = template.attachment()
+    const btn: any = explore(render(props).toJSON()).selectRightBarButton('announcements.edit.attachment-btn')
+    btn.action()
+    expect(spy).toHaveBeenCalledWith(
+      '/attachments',
+      { modal: true },
+      {
+        attachments: [props.attachment],
+        maxAllowed: 1,
+        storageOptions: {
+          upload: false,
+        },
+        onComplete: expect.any(Function),
+      },
+    )
+  })
+
   function testRender (props: Props) {
     expect(render(props)).toMatchSnapshot()
   }
@@ -410,5 +432,28 @@ describe('map state to props', () => {
       pending: 45,
       error: 'YOUR CORE IS UNDER ATTACK',
     })
+  })
+
+  it('maps attachment state to props', () => {
+    const attachment = template.attachment()
+    const announcement = template.discussion({
+      id: '1',
+      attachments: [attachment],
+    })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        discussions: {
+          '1': {
+            pending: 0,
+            error: null,
+            data: announcement,
+          },
+        },
+      },
+    })
+    expect(
+      mapStateToProps(state, { courseID: '1', announcementID: '1' })
+    ).toMatchObject({ attachment })
   })
 })

@@ -280,9 +280,42 @@ final class HelmViewController: UIViewController, HelmScreen {
                     if let action = buttonConfig["action"] as? NSString {
                         button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
                     }
+
                     barButtonItem = UIBarButtonItem(customView: button)
-                }
-                else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
+                } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig), let badgeConfig = buttonConfig["badge"] as? [String: Any] {
+                    let frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+                    let button =  UIButton(type: .custom)
+                    button.frame = frame
+                    button.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
+                    button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
+                    if let action = buttonConfig["action"] as? NSString {
+                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                    }
+                    let badged = UIView(frame: frame)
+                    let badgeLabel = UILabel()
+                    if let backgroundColor = badgeConfig["backgroundColor"] {
+                        badgeLabel.backgroundColor = RCTConvert.uiColor(backgroundColor)
+                    }
+                    if let textColor = badgeConfig["textColor"] {
+                        badgeLabel.textColor = RCTConvert.uiColor(textColor)
+                    }
+                    if let text = badgeConfig["text"] as? String {
+                        badgeLabel.text = text
+                    }
+                    badgeLabel.font = UIFont.systemFont(ofSize: 10)
+                    badgeLabel.sizeToFit()
+                    let size = max(badgeLabel.frame.size.width, badgeLabel.frame.size.height)
+
+                    // put the badge in the top right corner
+                    badgeLabel.frame = CGRect(x: image.size.width - size, y: -2, width: size, height: size)
+
+                    badgeLabel.layer.masksToBounds = true
+                    badgeLabel.layer.cornerRadius = size / 2
+                    badgeLabel.textAlignment = .center
+                    badged.addSubview(button)
+                    badged.addSubview(badgeLabel)
+                    barButtonItem = UIBarButtonItem(customView: badged)
+                } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig) {
                     barButtonItem = UIBarButtonItem(image: image, style: style, target: self, action: #selector(barButtonTapped(_:)))
                 } else if let title = buttonConfig["title"] as? String {
                     barButtonItem = UIBarButtonItem(title: title, style: style, target: self, action: #selector(barButtonTapped(_:)))

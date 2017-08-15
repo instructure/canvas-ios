@@ -9,6 +9,7 @@ import ReactNative, {
   DatePickerIOS,
   Alert,
   NativeModules,
+  processColor,
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -19,6 +20,7 @@ import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import colors from '../../../common/colors'
+import images from '../../../images'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
@@ -51,6 +53,7 @@ type State = {
   message: ?string,
   require_initial_post: ?boolean,
   delayed_post_at: ?string,
+  attachment: ?Attachment,
 }
 
 export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Actions & {
@@ -70,6 +73,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
       delayed_post_at: props.delayed_post_at,
       delayPosting: Boolean(props.delayed_post_at),
       delayedPostAtPickerShown: false,
+      attachment: props.attachment,
       isValid: true,
     }
   }
@@ -99,6 +103,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
         require_initial_post: props.require_initial_post,
         delayed_post_at: props.delayed_post_at,
         delayPosting: Boolean(props.delayed_post_at),
+        attachment: props.attachment,
       })
     }
   }
@@ -114,6 +119,17 @@ export class AnnouncementEdit extends Component<any, Props, any> {
             testID: 'announcements.edit.doneButton',
             style: 'done',
             action: this._donePressed,
+          },
+          {
+            image: images.attachmentLarge,
+            testID: 'announcements.edit.attachment-btn',
+            action: this.addAttachment,
+            accessibilityLabel: i18n('Add attachment'),
+            badge: this.state.attachment && {
+              text: '1',
+              backgroundColor: processColor(colors.primaryButtonColor),
+              textColor: processColor(colors.primaryBrandColor),
+            },
           },
         ]}
         leftBarButtons={[
@@ -256,10 +272,15 @@ export class AnnouncementEdit extends Component<any, Props, any> {
       require_initial_post: this.state.require_initial_post || false,
       delayed_post_at: this.state.delayed_post_at,
       is_announcement: true,
+      attachment: this.state.attachment,
     }
     if (this.props.announcementID) {
       // $FlowFixMe
       params.id = this.props.announcementID
+    }
+    if (this.props.attachment && !this.state.attachment) {
+      // $FlowFixMe
+      params.remove_attachment = true
     }
     this.setState({ pending: true, isValid: true })
     this.props.announcementID
@@ -280,6 +301,17 @@ export class AnnouncementEdit extends Component<any, Props, any> {
     setTimeout(() => {
       Alert.alert(ERROR_TITLE, error)
     }, 1000)
+  }
+
+  addAttachment = () => {
+    this.props.navigator.show('/attachments', { modal: true }, {
+      attachments: this.state.attachment ? [this.state.attachment] : [],
+      maxAllowed: 1,
+      storageOptions: {
+        upload: false,
+      },
+      onComplete: this._valueChanged('attachment', (as) => as[0]),
+    })
   }
 
 }
@@ -312,6 +344,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, announcemen
   let announcement = {}
   let error = null
   let pending = 0
+  let attachment = null
 
   if (!announcementID &&
     entities.courses &&
@@ -330,6 +363,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, announcemen
     entities.discussions[announcementID].data) {
     const entity = entities.discussions[announcementID]
     announcement = entity.data
+    attachment = announcement.attachments && announcement.attachments.length && announcement.attachments[0]
     pending = entity.pending || 0
     error = entity.error
   }
@@ -346,6 +380,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, announcemen
     delayed_post_at,
     pending,
     error,
+    attachment,
   }
 }
 
