@@ -176,6 +176,16 @@ describe('DiscussionEdit', () => {
     expect(props.refreshDiscussionEntries).toHaveBeenCalled()
   })
 
+  it('does not refresh discussion when creating new', () => {
+    props.refreshDiscussionEntries = jest.fn()
+    const newProps = {
+      ...props,
+      discussionID: null,
+    }
+    render(newProps).getInstance().componentWillUnmount()
+    expect(newProps.refreshDiscussionEntries).not.toHaveBeenCalled()
+  })
+
   it('calls dismiss on cancel', () => {
     props.navigator.dismiss = jest.fn()
     tapCancel(render(props))

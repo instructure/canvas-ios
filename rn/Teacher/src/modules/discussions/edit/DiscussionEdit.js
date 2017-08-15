@@ -119,7 +119,9 @@ export class DiscussionEdit extends Component<any, Props, any> {
 
   componentWillUnmount () {
     this.props.deletePendingNewDiscussion(this.props.courseID)
-    this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
+    if (this.props.discussionID) {
+      this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
+    }
   }
 
   componentWillReceiveProps (props: Props) {
