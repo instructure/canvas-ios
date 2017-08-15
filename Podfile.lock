@@ -25,7 +25,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   FirebaseAnalytics: 3f5358d9104adf159cc8d99b7b501e50099a39ad
   FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
-  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  Google: cd92fab98f800f509da88c1e0c570275713bc9d5
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
   GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7

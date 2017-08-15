@@ -55,6 +55,7 @@ class QuizSubmissionTimerController: NSObject {
         self.submission = submission
         
         syncStartingTime()
+        syncTimeWithServer()
         NotificationCenter.default.addObserver(self, selector: #selector(QuizSubmissionTimerController.applicationBecameActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
         
         startTimers()

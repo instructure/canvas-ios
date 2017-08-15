@@ -78,20 +78,30 @@ class QuizTakeabilityController {
                 }
                 
                 if lastSubmission.workflowState == .Untaken && !quiz.lockedForUser {
-                    let now = Date()
-                    if (lastSubmission.endAt != nil && now < lastSubmission.endAt! as Date && lastSubmission.dateFinished == nil) || lastSubmission.endAt == nil  {
-                        takeability = .resume
-                        unfinishedSubmission = lastSubmission
-                        return
-                    } else if lastSubmission.endAt != nil && now > lastSubmission.endAt! as Date {
-                        // This is the horrible hack where because the API never updated the workflow state, we have to manually complete the quiz before
-                        // we can start another one
-                        takeability = .notTakeable(reason: .undecided)
-                        service.completeSubmission(lastSubmission) { [weak self] result in
-                            if result.error != nil {
-                                self?.takeability = .retake
+                    if(quiz.timed) {
+                        let timedQuizSubmissionService = self.service.serviceForTimedQuizSubmission(lastSubmission)
+                        timedQuizSubmissionService.getTimeRemaining { [weak self] result in
+                            if let secondsLeft = result.value {
+                                if (secondsLeft > 0 && lastSubmission.dateFinished == nil) {
+                                    self?.takeability = .resume
+                                    self?.unfinishedSubmission = lastSubmission
+                                    return
+                                } else {
+                                    // This is the horrible hack where because the API never updated the workflow state, we have to manually complete the quiz before
+                                    // we can start another one
+                                    self?.takeability = .notTakeable(reason: .undecided)
+                                    self?.service.completeSubmission(lastSubmission) { [weak self] result in
+                                        if result.error != nil {
+                                            self?.takeability = .retake
+                                        }
+                                    }
+                                    return
+                                }
                             }
                         }
+                    }else if lastSubmission.endAt == nil  {
+                        takeability = .resume
+                        unfinishedSubmission = lastSubmission
                         return
                     }
                 }
