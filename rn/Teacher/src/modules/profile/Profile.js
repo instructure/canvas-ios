@@ -8,6 +8,7 @@ import {
   ActionSheetIOS,
   Linking,
   AlertIOS,
+  TouchableWithoutFeedback,
 } from 'react-native'
 import i18n from 'format-message'
 import { Text, Heading1, Paragraph } from '../../common/text'
@@ -24,8 +25,21 @@ import { getSession } from '../../api/session'
 
 export default class Profile extends Component {
 
+  constructor (props: any) {
+    super(props)
+    this.secretTapCount = 0
+  }
+
   logout = () => {
     NativeModules.NativeLogin.logout()
+  }
+
+  secretTap = () => {
+    this.secretTapCount++
+    if (this.secretTapCount > 10) {
+      this.secretTapCount = 0
+      this.props.navigator.show('/staging', { modal: true })
+    }
   }
 
   settings = () => {
@@ -108,7 +122,9 @@ export default class Profile extends Component {
             <Paragraph>{user.primary_email}</Paragraph>
           </View>
           <View style={styles.versionContainer}>
-            <Text style={styles.versionText}>{i18n('Version {version}', { version: device.getReadableVersion() })}</Text>
+            <TouchableWithoutFeedback onPress={this.secretTap}>
+              <Text style={styles.versionText}>{i18n('Version {version}', { version: device.getReadableVersion() })}</Text>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </Screen>

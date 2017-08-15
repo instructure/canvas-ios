@@ -12,7 +12,6 @@ export function sanitizeLocale (locale: string): string {
 
 export default function (locale: string): void {
   const sanitizedLocale = sanitizeLocale(locale)
-  console.log('Starting up the app with the following locale: ' + locale)
   i18n.setup({
     locale: sanitizedLocale,
     generateId,

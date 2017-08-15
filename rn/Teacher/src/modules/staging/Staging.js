@@ -11,6 +11,7 @@ import {
 import { Button } from '../../common/buttons'
 import { route, type RouteOptions } from '../../routing'
 import Navigator from '../../routing/Navigator'
+import Screen from '../../routing/Screen'
 
 const stagingKey = 'teacher.staging.path'
 
@@ -45,6 +46,11 @@ export default class Staging extends Component<any, StagingProps, any> {
     AsyncStorage.clear()
   }
 
+  forceCrash = () => {
+    // $FlowFixMe
+    this.fakeFunction()
+  }
+
   go = () => {
     this.navigate(route => this.props.navigator.show(route.screen, {}, route.passProps))
   }
@@ -53,47 +59,65 @@ export default class Staging extends Component<any, StagingProps, any> {
     this.navigate(route => this.props.navigator.show(route.screen, { modal: true }, route.passProps))
   }
 
+  close = () => {
+    this.props.navigator.dismiss()
+  }
+
   render () {
     const path = this.state && this.state.path || ''
     return (
-      <View style={styles.mainContainer} >
-        <TextInput
-          value={ path }
-          autoFocus={ typeof (jest) === 'undefined' }
-          placeholder='Path'
-          ref='url'
-          keyboardType='url'
-          returnKeyLabel='Go!'
-          returnKeyType='go'
-          onChangeText={(path) => {
-            this.setState({ path })
-          }}
-          onSubmitEditing={ this.go }
-          style={styles.urlInput} />
-        <View style={ styles.buttonRow }>
-          <Button
-            testID='staging.modal-button'
-            onPress={ this.modal }
-            style={ styles.buttonText }>
-            Modal!
-            </Button>
-          <View style={{ paddingLeft: 8 }}>
+      <Screen
+        title='Dev Menu'
+        leftBarButtons={[
+          {
+            action: this.close,
+            title: 'Close',
+          },
+        ]}>
+        <View style={styles.mainContainer} >
+          <TextInput
+            value={ path }
+            autoFocus={ typeof (jest) === 'undefined' }
+            placeholder='Path'
+            ref='url'
+            keyboardType='url'
+            returnKeyLabel='Go!'
+            returnKeyType='go'
+            onChangeText={(path) => {
+              this.setState({ path })
+            }}
+            onSubmitEditing={ this.go }
+            style={styles.urlInput} />
+          <View style={ styles.buttonRow }>
             <Button
-              testID='staging.go-button'
-              onPress={ this.go }
+              testID='staging.modal-button'
+              onPress={ this.modal }
               style={ styles.buttonText }>
-              Push!
+              Modal!
+              </Button>
+            <View style={{ paddingLeft: 8 }}>
+              <Button
+                testID='staging.go-button'
+                onPress={ this.go }
+                style={ styles.buttonText }>
+                Push!
+              </Button>
+            </View>
+          </View>
+          <View style={styles.purge}>
+            <Button
+              onPress={ this.purgeStorage }
+            >
+              Purge AsyncStorage
+            </Button>
+          </View>
+          <View style={styles.purge}>
+            <Button onPress={ this.forceCrash }>
+              Force Crash
             </Button>
           </View>
         </View>
-        <View style={styles.purge}>
-          <Button
-            onPress={ this.purgeStorage }
-          >
-            Purge AsyncStorage
-          </Button>
-        </View>
-      </View>
+      </Screen>
     )
   }
 }

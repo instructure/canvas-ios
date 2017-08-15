@@ -137,10 +137,22 @@ exports[`Profile Tests renders correctly 1`] = `
     }
   >
     <Text
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
       accessible={true}
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      hitSlop={undefined}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Array [
           Object {
@@ -159,6 +171,7 @@ exports[`Profile Tests renders correctly 1`] = `
           },
         ]
       }
+      testID={undefined}
     >
       Version 0.1.1992
     </Text>
