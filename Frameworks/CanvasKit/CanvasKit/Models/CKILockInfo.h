@@ -76,5 +76,12 @@
  */
 @property (nonatomic, copy) NSString *modulePrerequisites;
 
+/**
+ Locked but user can still view content
+
+ @note Optional
+ */
+@property (nonatomic, copy) NSNumber *canView;
+
 
 @end

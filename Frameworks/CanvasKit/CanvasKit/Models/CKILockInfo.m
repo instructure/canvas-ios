@@ -28,7 +28,8 @@
         @"endAt": @"context_module.end_at",
         @"moduleID": @"context_module.id",
         @"moduleName": @"context_module.name",
-        @"moduleCourseID": @"context_module.context_id"
+        @"moduleCourseID": @"context_module.context_id",
+        @"canView": @"can_view"
     };
 }
 

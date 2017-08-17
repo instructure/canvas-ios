@@ -340,7 +340,7 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
 }
 
 - (void)displayContentLockIfNecessary {
-    if (self.viewModel.model.lockInfo == nil) {
+    if (self.viewModel.model.lockInfo == nil || [self.viewModel.model.lockInfo.canView boolValue]) {
         return;
     }
     
