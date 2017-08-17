@@ -6,8 +6,6 @@ import {
   FlatList,
   StyleSheet,
   ActionSheetIOS,
-  DeviceEventEmitter,
-  LayoutAnimation,
 } from 'react-native'
 import { connect } from 'react-redux'
 import Screen from '../../routing/Screen'
@@ -75,8 +73,6 @@ function localizedRoles (): { [string]: string } {
 export class PeopleList extends Component<any, Props, any> {
 
   typeAhead: TypeAheadSearch
-  keyboardDidShowListener: any
-  keyboardWillHideListener: any
 
   constructor (props: Props) {
     super(props)
@@ -91,29 +87,6 @@ export class PeopleList extends Component<any, Props, any> {
       showFilter: this.props.showFilter === undefined ? true : this.props.showFilter,
       marginBottom: global.tabBarHeight,
     }
-  }
-
-  componentWillMount () {
-    this.keyboardDidShowListener = DeviceEventEmitter.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
-    this.keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', this.keyboardWillHide.bind(this))
-  }
-
-  componentWillUnmount () {
-    this.keyboardDidShowListener.remove()
-    this.keyboardWillHideListener.remove()
-  }
-
-  keyboardDidShow = (e: any) => {
-    this.setState({
-      marginBottom: e.endCoordinates.height,
-    })
-  }
-
-  keyboardWillHide = () => {
-    LayoutAnimation.easeInEaseOut()
-    this.setState({
-      marginBottom: global.tabBarHeight,
-    })
   }
 
   componentDidMount () {
@@ -185,7 +158,7 @@ export class PeopleList extends Component<any, Props, any> {
       this.showItem(item)
       return
     }
-    this.props.onSelect([item])
+    this.props.navigator.show(`/courses/${this.props.course.id}/users/${item.id}`, undefined, undefined)
   }
 
   _mapCourseMembership = (item) => {
@@ -303,10 +276,9 @@ export class PeopleList extends Component<any, Props, any> {
   }
 
   _renderComponent = () => {
-    const keyboardPresentProps = { marginBottom: this.state.marginBottom || global.tabBarHeight }
     const searchBar = this._renderSearchBar()
     const empty = <ListEmptyComponent title={i18n('No results')} />
-    return (<View style={[styles.container, keyboardPresentProps]}>
+    return (<View style={styles.container}>
               <FlatList
                 keyboardDismissMode='on-drag'
                 data={this.state.searchResults}

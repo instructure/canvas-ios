@@ -91,7 +91,7 @@ describe('People List', () => {
   })
 
   it('selects item', () => {
-    props.onSelect = jest.fn()
+    props.navigator.show = jest.fn()
     const item = template.addressBookResult({
       id: '1',
       name: 'E.T.C',
@@ -101,7 +101,7 @@ describe('People List', () => {
     typeahead.props.onRequestFinished([item], null)
     const row: any = explore(screen.toJSON()).selectByID('1')
     row.props.onPress()
-    expect(props.onSelect).toHaveBeenCalledWith([item])
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/users/1', undefined, undefined)
   })
 
   it('calls next on end reached', () => {
@@ -200,7 +200,7 @@ describe('People List', () => {
     expect(screen.state.filters.length).toBe(1)
   })
 
-  it('test update filter foobar', () => {
+  it('test update filter', () => {
     let someResults = [{
       'id': '4634548',
       'name': 'nlambson',

@@ -17,6 +17,7 @@ import ActivityIndicatorView from '../../common/components/ActivityIndicatorView
 import Avatar from '../../common/components/Avatar'
 import colors from '../../common/colors'
 import i18n from 'format-message'
+import Images from '../../images'
 
 type ContextCardOwnProps = {
   courseID: string,
@@ -51,7 +52,7 @@ export class ContextCard extends Component {
   }
 
   renderHeader () {
-    let sectionName = this.props.course.sections.find(({ id }) => id === this.props.enrollment.course_section_id).name
+    let sectionName = this.props.enrollment ? this.props.course.sections.find(({ id }) => id === this.props.enrollment.course_section_id).name : ''
     return (
       <View style={styles.header}>
         <View style={styles.headerSection}>
@@ -70,7 +71,7 @@ export class ContextCard extends Component {
             <Heading1>{this.props.course.name}</Heading1>
             <Text testID='context-card.section-name' style={{ fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text>
             <SubTitle testID='context-card.last-activity'>
-              {i18n(`Last activity on {lastActivity, date, 'MMMM d'} at {lastActivity, time, short}`, {
+              {this.props.enrollment && i18n(`Last activity on {lastActivity, date, 'MMMM d'} at {lastActivity, time, short}`, {
                 lastActivity: new Date(this.props.enrollment.last_activity_at),
               })}
             </SubTitle>
@@ -81,8 +82,29 @@ export class ContextCard extends Component {
   }
 
   render () {
-    if ((this.props.pending && !this.props.refreshing) || !this.props.user) {
+    const { course, user } = this.props
+    if ((this.props.pending && !this.props.refreshing) || !user) {
       return <ActivityIndicatorView />
+    }
+
+    let leftBarButtons = []
+    if (this.props.modal) {
+      leftBarButtons = [{
+        testID: 'context-card.done-btn',
+        title: i18n('Done'),
+        style: 'done',
+        action: this.donePressed,
+      }]
+    }
+
+    let rightBarButtons = []
+    if (course) {
+      rightBarButtons = [{
+        action: this._emailContact,
+        image: Images.smallMail,
+        testID: 'context-card.email-contact',
+        accessibilityLabel: i18n('Email Contact'),
+      }]
     }
 
     return (
@@ -91,12 +113,8 @@ export class ContextCard extends Component {
         subtitle={this.props.course.name}
         navBarStyle='dark'
         navBarColor={this.props.courseColor}
-        leftBarButtons={[{
-          testID: 'context-card.done-btn',
-          title: i18n('Done'),
-          style: 'done',
-          action: this.donePressed,
-        }]}
+        leftBarButtons={leftBarButtons}
+        rightBarButtons={rightBarButtons}
       >
         <FlatList
           ListHeaderComponent={this.renderHeader()}
@@ -107,6 +125,16 @@ export class ContextCard extends Component {
         />
       </Screen>
     )
+  }
+
+  _emailContact = () => {
+    const { course, user } = this.props
+    if (course && user) {
+      let recipients = [user]
+      const contextName = course.name
+      const contextCode = `course_${course.id}`
+      this.props.navigator.show('/conversations/compose', { modal: true }, { contextName, contextCode, recipients })
+    }
   }
 }
 
