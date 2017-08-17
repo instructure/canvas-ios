@@ -30,7 +30,8 @@ open class RegionPicker: NSObject {
         URL(string: "https://airwolf-dub-prod.instructure.com")!,
         URL(string: "https://airwolf-syd-prod.instructure.com")!,
         URL(string: "https://airwolf-sin-prod.instructure.com")!,
-        URL(string: "https://airwolf-fra-prod.instructure.com")!
+        URL(string: "https://airwolf-fra-prod.instructure.com")!,
+        URL(string: "https://airwolf-yul-prod.instructure.com")!
     ]
     
     open var defaultURL: URL {
