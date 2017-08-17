@@ -46,47 +46,11 @@ exports[`anonymous grading doesnt show users names 1`] = `
           }
         }
       >
-        <View
-          accessibilityLabel=""
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "white",
-                "borderColor": "#C7CDD1",
-                "borderWidth": 0.5,
-                "justifyContent": "center",
-                "overflow": "hidden",
-              },
-              Object {
-                "borderRadius": 20,
-                "height": 40,
-                "width": 40,
-              },
-            ]
-          }
-        >
-          <Text
-            accessible={false}
-            allowFontScaling={true}
-            disabled={false}
-            ellipsizeMode="tail"
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "color": "#73818C",
-                  "fontWeight": "600",
-                },
-                Object {
-                  "fontSize": 18,
-                },
-              ]
-            }
-          >
-            S
-          </Text>
-        </View>
+        <Avatar
+          avatarURL={null}
+          onPress={undefined}
+          userName="Student"
+        />
       </View>
       <View
         style={
@@ -227,40 +191,11 @@ exports[`excused row renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessibilityLabel=""
-          style={
-            Array [
-              Object {
-                "overflow": "hidden",
-              },
-              Object {
-                "height": 40,
-                "width": 40,
-              },
-              Object {
-                "borderRadius": 20,
-              },
-              Object {
-                "backgroundColor": "#F5F5F5",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              Object {
-                "uri": "https://cats.pajamas/",
-              }
-            }
-            style={
-              Object {
-                "height": 40,
-                "width": 40,
-              }
-            }
-          />
-        </View>
+        <Avatar
+          avatarURL="https://cats.pajamas/"
+          onPress={undefined}
+          userName="Green Latern"
+        />
       </View>
       <View
         style={
@@ -433,40 +368,11 @@ exports[`late graded row renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessibilityLabel=""
-          style={
-            Array [
-              Object {
-                "overflow": "hidden",
-              },
-              Object {
-                "height": 40,
-                "width": 40,
-              },
-              Object {
-                "borderRadius": 20,
-              },
-              Object {
-                "backgroundColor": "#F5F5F5",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              Object {
-                "uri": "https://cats.pajamas/",
-              }
-            }
-            style={
-              Object {
-                "height": 40,
-                "width": 40,
-              }
-            }
-          />
-        </View>
+        <Avatar
+          avatarURL="https://cats.pajamas/"
+          onPress={undefined}
+          userName="Green Latern"
+        />
       </View>
       <View
         style={
@@ -639,40 +545,11 @@ exports[`missing ungraded row renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessibilityLabel=""
-          style={
-            Array [
-              Object {
-                "overflow": "hidden",
-              },
-              Object {
-                "height": 40,
-                "width": 40,
-              },
-              Object {
-                "borderRadius": 20,
-              },
-              Object {
-                "backgroundColor": "#F5F5F5",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              Object {
-                "uri": "https://cats.pajamas/",
-              }
-            }
-            style={
-              Object {
-                "height": 40,
-                "width": 40,
-              }
-            }
-          />
-        </View>
+        <Avatar
+          avatarURL="https://cats.pajamas/"
+          onPress={undefined}
+          userName="Green Latern"
+        />
       </View>
       <View
         style={
@@ -813,40 +690,11 @@ exports[`submitted ungraded row renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessibilityLabel=""
-          style={
-            Array [
-              Object {
-                "overflow": "hidden",
-              },
-              Object {
-                "height": 40,
-                "width": 40,
-              },
-              Object {
-                "borderRadius": 20,
-              },
-              Object {
-                "backgroundColor": "#F5F5F5",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              Object {
-                "uri": "https://cats.pajamas/",
-              }
-            }
-            style={
-              Object {
-                "height": 40,
-                "width": 40,
-              }
-            }
-          />
-        </View>
+        <Avatar
+          avatarURL="https://cats.pajamas/"
+          onPress={undefined}
+          userName="Green Latern"
+        />
       </View>
       <View
         style={
@@ -1031,40 +879,11 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessibilityLabel=""
-          style={
-            Array [
-              Object {
-                "overflow": "hidden",
-              },
-              Object {
-                "height": 40,
-                "width": 40,
-              },
-              Object {
-                "borderRadius": 20,
-              },
-              Object {
-                "backgroundColor": "#F5F5F5",
-              },
-            ]
-          }
-        >
-          <Image
-            source={
-              Object {
-                "uri": "https://cats.pajamas/",
-              }
-            }
-            style={
-              Object {
-                "height": 40,
-                "width": 40,
-              }
-            }
-          />
-        </View>
+        <Avatar
+          avatarURL="https://cats.pajamas/"
+          onPress={undefined}
+          userName="Green Latern"
+        />
       </View>
       <View
         style={

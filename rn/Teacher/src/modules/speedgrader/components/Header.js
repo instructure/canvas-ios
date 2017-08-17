@@ -27,6 +27,13 @@ export class Header extends Component {
     }
   }
 
+  navigateToContextCard = () => {
+    this.props.navigator.show(
+      `/courses/${this.props.courseID}/users/${this.props.userID}`,
+      { modal: true, modalPresentationStyle: 'currentContext' }
+    )
+  }
+
   renderDoneButton () {
     return (
       <View style={styles.doneButton}>
@@ -62,7 +69,11 @@ export class Header extends Component {
                 testID={'header.groupList.button'}>
                   <View style={styles.innerRowContainer}>
                     <View style={styles.avatar}>
-                      <Avatar key={sub.userID} avatarURL={avatarURL} userName={name} />
+                      <Avatar
+                        key={sub.userID}
+                        avatarURL={avatarURL}
+                        userName={name}
+                      />
                     </View>
                     <View style={styles.nameContainer}>
                       <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
@@ -78,7 +89,14 @@ export class Header extends Component {
     } else {
       return (
         <View style={styles.profileContainer}>
-          <View style={styles.avatar}><Avatar key={sub.userID} avatarURL={avatarURL} userName={name} /></View>
+          <View style={styles.avatar}>
+            <Avatar
+              key={sub.userID}
+              avatarURL={avatarURL}
+              userName={name}
+              onPress={this.navigateToContextCard}
+            />
+          </View>
           <View style={[styles.nameContainer, { flex: 1 }]}>
             <Text style={styles.name} accessibilityTraits='header'>{name}</Text>
             <SubmissionStatus status={sub.status} />
@@ -98,7 +116,11 @@ export class Header extends Component {
   }
 
   showGroup = () => {
-    this.props.navigator.show(`/groups/${this.props.submissionProps.groupID}/users`, { modal: true })
+    this.props.navigator.show(
+      `/groups/${this.props.submissionProps.groupID}/users`,
+      { modal: true },
+      { courseID: this.props.courseID }
+    )
   }
 }
 

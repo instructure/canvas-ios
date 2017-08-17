@@ -16,6 +16,7 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('WebView', () => 'WebView')
+  .mock('../../../../common/components/Avatar', () => 'Avatar')
   .mock('../../../../routing')
   .mock('../../../../routing/Screen')
   .mock('../../../assignment-details/components/SubmissionBreakdownGraphSection')
@@ -555,6 +556,15 @@ describe('DiscussionDetails', () => {
     })
     const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
     expect(label.children).toEqual(['October 27, 2017 3:16 PM'])
+  })
+
+  it('navigates to context card when pressing the avatar', () => {
+    let avatar = explore(render(props).toJSON()).selectByID('discussion.details.avatar') || {}
+    avatar.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      `/courses/1/users/1`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
   })
 
   function testRender (props: any) {

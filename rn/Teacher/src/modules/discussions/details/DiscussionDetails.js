@@ -14,8 +14,8 @@ import {
   NativeModules,
 } from 'react-native'
 import i18n from 'format-message'
-import { default as DetailActions } from './actions'
-import { default as EditActions } from '../edit/actions'
+import DetailActions from './actions'
+import EditActions from '../edit/actions'
 import AssignmentSection from '../../assignment-details/components/AssignmentSection'
 import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import WebContainer from '../../../common/components/WebContainer'
@@ -114,6 +114,15 @@ export class DiscussionDetails extends Component<any, Props, any> {
     })
   }
 
+  navigateToContextCard = () => {
+    if (this.props.discussion) {
+      this.props.navigator.show(
+        `/courses/${this.props.courseID}/users/${this.props.discussion.author.id}`,
+        { modal: true, modalPresentationStyle: 'currentContext' },
+      )
+    }
+  }
+
   renderDetails = ({ item, index }: { item: Discussion, index: number }) => {
     const discussion = item
     const showReplies = discussion.replies && discussion.replies.length > 0
@@ -150,8 +159,17 @@ export class DiscussionDetails extends Component<any, Props, any> {
 
         <View style={style.section} >
           <View style={style.authorContainer}>
-            {user && user.display_name && <Avatar height={32} key={user.id} avatarURL={user.avatar_image_url} userName={user.display_name}
-              style={style.avatar}/> }
+            {user && user.display_name &&
+              <Avatar
+                testID='discussion.details.avatar'
+                height={32}
+                key={user.id}
+                avatarURL={user.avatar_image_url}
+                userName={user.display_name}
+                style={style.avatar}
+                onPress={this.navigateToContextCard}
+              />
+            }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
                 <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{formattedDate(discussion.delayed_post_at || discussion.posted_at)}</Text>
@@ -623,10 +641,21 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
   }
 }
 
+export function shouldRefresh (props: Props): boolean {
+  return !props.discussion ||
+         !props.discussion.replies ||
+         (props.discussion.assignment_id && !props.assignment) ||
+         (!props.unreadEntries && props.discussion.unread_count > 0)
+}
+
+export function refreshData (props: Props): void {
+  props.refreshDiscussionEntries(props.courseID, props.discussionID, true)
+}
+
 let Refreshed = refresh(
   //  TODO - add deep link ability to refreshDiscussion without entry from discussion list
-  props => props.refreshDiscussionEntries(props.courseID, props.discussionID, true),
-  props => !props.discussion || !props.discussion.replies || (props.discussion.assignment_id && !props.assignment) || (!props.unreadEntries && props.discussion.unread_count > 0),
+  refreshData,
+  shouldRefresh,
   props => Boolean(props.pending)
 )(DiscussionDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)

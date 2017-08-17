@@ -52,6 +52,14 @@ export default class ConversationMessageRow extends Component<any, ConversationM
     })
   }
 
+  onAvatarPress = () => {
+    let courseID = this.props.conversation.context_code.split('_')[1]
+    this.props.navigator.show(
+      `/courses/${courseID}/users/${this.props.message.author_id}`,
+      { modal: true, modalPresentationStyle: 'currentContext' }
+    )
+  }
+
   _showAttachment = (attachment: Attachment) => {
     this.props.navigator.show('/attachment', { modal: true }, { attachment })
   }
@@ -116,7 +124,12 @@ export default class ConversationMessageRow extends Component<any, ConversationM
     return (<View style={styles.header}>
               <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>
                 <View style={styles.avatar}>
-                    <Avatar height={32} avatarURL={author.avatar_url} userName={author.name}/>
+                    <Avatar
+                      height={32}
+                      avatarURL={author.avatar_url}
+                      userName={author.name}
+                      onPress={this.props.conversation.context_code && this.onAvatarPress}
+                    />
                   </View>
                 <View>
                   <Text>

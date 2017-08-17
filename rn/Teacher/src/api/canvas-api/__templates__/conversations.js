@@ -20,7 +20,7 @@ export const conversation: Template<Conversation> = template({
   ],
   avatar_url: 'http://www.fillmurray.com/200/300',
   context_name: 'Test Class',
-  context_code: 'course_123456789',
+  context_code: 'course_1',
 })
 
 export const conversationMessage: Template<ConversationMessage> = template({

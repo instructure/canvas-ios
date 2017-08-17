@@ -23,47 +23,22 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
     }
   >
     <View />
-    <View
-      accessibilityLabel=""
+    <Avatar
+      avatarURL={undefined}
+      height={24}
+      onPress={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#C7CDD1",
-            "borderWidth": 0.5,
-            "justifyContent": "center",
-            "overflow": "hidden",
-          },
-          Object {
-            "borderRadius": 12,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#73818C",
-              "fontWeight": "600",
-            },
-            Object {
-              "fontSize": 11,
-            },
-          ]
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "borderRadius": 12,
+          "height": 24,
+          "marginTop": 12.8,
+          "width": 24,
         }
-      >
-        TD
-      </Text>
-    </View>
+      }
+      testID="reply.avatar"
+      userName="The Donald"
+    />
     <View
       style={
         Object {
@@ -348,47 +323,22 @@ exports[`DiscussionReplies renders 1`] = `
     }
   >
     <View />
-    <View
-      accessibilityLabel=""
+    <Avatar
+      avatarURL={undefined}
+      height={24}
+      onPress={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#C7CDD1",
-            "borderWidth": 0.5,
-            "justifyContent": "center",
-            "overflow": "hidden",
-          },
-          Object {
-            "borderRadius": 12,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#73818C",
-              "fontWeight": "600",
-            },
-            Object {
-              "fontSize": 11,
-            },
-          ]
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "borderRadius": 12,
+          "height": 24,
+          "marginTop": 12.8,
+          "width": 24,
         }
-      >
-        TD
-      </Text>
-    </View>
+      }
+      testID="reply.avatar"
+      userName="The Donald"
+    />
     <View
       style={
         Object {
@@ -673,47 +623,22 @@ exports[`DiscussionReplies renders deleted 1`] = `
     }
   >
     <View />
-    <View
-      accessibilityLabel=""
+    <Avatar
+      avatarURL={undefined}
+      height={24}
+      onPress={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#C7CDD1",
-            "borderWidth": 0.5,
-            "justifyContent": "center",
-            "overflow": "hidden",
-          },
-          Object {
-            "borderRadius": 12,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#73818C",
-              "fontWeight": "600",
-            },
-            Object {
-              "fontSize": 11,
-            },
-          ]
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "borderRadius": 12,
+          "height": 24,
+          "marginTop": 12.8,
+          "width": 24,
         }
-      >
-        TD
-      </Text>
-    </View>
+      }
+      testID="reply.avatar"
+      userName="The Donald"
+    />
     <View
       style={
         Object {
@@ -909,47 +834,22 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
     }
   >
     <View />
-    <View
-      accessibilityLabel=""
+    <Avatar
+      avatarURL={undefined}
+      height={24}
+      onPress={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#C7CDD1",
-            "borderWidth": 0.5,
-            "justifyContent": "center",
-            "overflow": "hidden",
-          },
-          Object {
-            "borderRadius": 12,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#73818C",
-              "fontWeight": "600",
-            },
-            Object {
-              "fontSize": 11,
-            },
-          ]
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "borderRadius": 12,
+          "height": 24,
+          "marginTop": 12.8,
+          "width": 24,
         }
-      >
-        TD
-      </Text>
-    </View>
+      }
+      testID="reply.avatar"
+      userName="The Donald"
+    />
     <View
       style={
         Object {
@@ -1234,47 +1134,22 @@ exports[`DiscussionReplies renders with no user 1`] = `
     }
   >
     <View />
-    <View
-      accessibilityLabel=""
+    <Avatar
+      avatarURL=""
+      height={24}
+      onPress={[Function]}
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "white",
-            "borderColor": "#C7CDD1",
-            "borderWidth": 0.5,
-            "justifyContent": "center",
-            "overflow": "hidden",
-          },
-          Object {
-            "borderRadius": 12,
-            "height": 24,
-            "width": 24,
-          },
-        ]
-      }
-    >
-      <Text
-        accessible={false}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#73818C",
-              "fontWeight": "600",
-            },
-            Object {
-              "fontSize": 11,
-            },
-          ]
+        Object {
+          "backgroundColor": "#f5f5f5",
+          "borderRadius": 12,
+          "height": 24,
+          "marginTop": 12.8,
+          "width": 24,
         }
-      >
-        ?
-      </Text>
-    </View>
+      }
+      testID="reply.avatar"
+      userName="?"
+    />
     <View
       style={
         Object {

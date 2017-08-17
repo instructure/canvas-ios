@@ -35,6 +35,10 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
     })
   }
 
+  onAvatarPress = () => {
+    this.props.onAvatarPress(this.props.userID)
+  }
+
   renderHeader = () => {
     let usOrThem = styles.theirHeader
     let textAlignment = styles.theirText
@@ -65,6 +69,7 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
         key="0"
         avatarURL={avatarURL}
         userName={name}
+        onPress={this.onAvatarPress}
       />
 
     const headerContent = [avatar, nameAndDate]
@@ -182,6 +187,7 @@ export type CommentRowProps = {
   error?: string,
   style?: Object,
   key: string,
+  userID: string,
   name: string,
   date: Date,
   avatarURL: string,
@@ -192,4 +198,5 @@ export type CommentRowProps = {
   deletePendingComment: (string) => void,
   retryPendingComment: (CommentContent) => void,
   switchFile: (string, number, number) => void,
+  onAvatarPress: Function,
 }

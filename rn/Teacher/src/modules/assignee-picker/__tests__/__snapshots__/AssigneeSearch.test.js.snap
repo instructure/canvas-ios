@@ -63,7 +63,7 @@ exports[`render correctly 1`] = `
         Object {
           "data": Array [
             Object {
-              "dataId": 1,
+              "dataId": "1",
               "id": "student-1",
               "imageURL": "http://www.fillmurray.com/100/100",
               "info": undefined,
@@ -133,7 +133,7 @@ exports[`render correctly 1`] = `
         Object {
           "data": Array [
             Object {
-              "dataId": 1,
+              "dataId": "1",
               "id": "student-1",
               "imageURL": "http://www.fillmurray.com/100/100",
               "info": undefined,

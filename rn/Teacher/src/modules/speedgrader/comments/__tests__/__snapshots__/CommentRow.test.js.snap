@@ -93,40 +93,11 @@ exports[`My message rows render correctly 1`] = `
         Mar 17, 2017 at 1:15 PM
       </Text>
     </View>
-    <View
-      accessibilityLabel=""
-      style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "height": 40,
-            "width": 40,
-          },
-          Object {
-            "borderRadius": 20,
-          },
-          Object {
-            "backgroundColor": "#F5F5F5",
-          },
-        ]
-      }
-    >
-      <Image
-        source={
-          Object {
-            "uri": "http://fillmurray.com/200/300",
-          }
-        }
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
-        }
-      />
-    </View>
+    <Avatar
+      avatarURL="http://fillmurray.com/200/300"
+      onPress={[Function]}
+      userName="Higgs Boson"
+    />
   </View>
   <View
     style={
@@ -236,40 +207,11 @@ exports[`Their message rows render correctly 1`] = `
       ]
     }
   >
-    <View
-      accessibilityLabel=""
-      style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "height": 40,
-            "width": 40,
-          },
-          Object {
-            "borderRadius": 20,
-          },
-          Object {
-            "backgroundColor": "#F5F5F5",
-          },
-        ]
-      }
-    >
-      <Image
-        source={
-          Object {
-            "uri": "http://fillmurray.com/200/300",
-          }
-        }
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
-        }
-      />
-    </View>
+    <Avatar
+      avatarURL="http://fillmurray.com/200/300"
+      onPress={[Function]}
+      userName="Higgs Boson"
+    />
     <View
       style={
         Object {
@@ -512,40 +454,11 @@ exports[`my media comments render correclty 1`] = `
         Mar 17, 2017 at 1:15 PM
       </Text>
     </View>
-    <View
-      accessibilityLabel=""
-      style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "height": 40,
-            "width": 40,
-          },
-          Object {
-            "borderRadius": 20,
-          },
-          Object {
-            "backgroundColor": "#F5F5F5",
-          },
-        ]
-      }
-    >
-      <Image
-        source={
-          Object {
-            "uri": "http://fillmurray.com/200/300",
-          }
-        }
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
-        }
-      />
-    </View>
+    <Avatar
+      avatarURL="http://fillmurray.com/200/300"
+      onPress={[Function]}
+      userName="Higgs Boson"
+    />
   </View>
   <View
     style={
@@ -589,40 +502,11 @@ exports[`their media comments render correctly 1`] = `
       ]
     }
   >
-    <View
-      accessibilityLabel=""
-      style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "height": 40,
-            "width": 40,
-          },
-          Object {
-            "borderRadius": 20,
-          },
-          Object {
-            "backgroundColor": "#F5F5F5",
-          },
-        ]
-      }
-    >
-      <Image
-        source={
-          Object {
-            "uri": "http://fillmurray.com/200/300",
-          }
-        }
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
-        }
-      />
-    </View>
+    <Avatar
+      avatarURL="http://fillmurray.com/200/300"
+      onPress={[Function]}
+      userName="Higgs Boson"
+    />
     <View
       style={
         Object {
@@ -731,40 +615,11 @@ exports[`their submissions render correctly 1`] = `
       ]
     }
   >
-    <View
-      accessibilityLabel=""
-      style={
-        Array [
-          Object {
-            "overflow": "hidden",
-          },
-          Object {
-            "height": 40,
-            "width": 40,
-          },
-          Object {
-            "borderRadius": 20,
-          },
-          Object {
-            "backgroundColor": "#F5F5F5",
-          },
-        ]
-      }
-    >
-      <Image
-        source={
-          Object {
-            "uri": "http://fillmurray.com/200/300",
-          }
-        }
-        style={
-          Object {
-            "height": 40,
-            "width": 40,
-          }
-        }
-      />
-    </View>
+    <Avatar
+      avatarURL="http://fillmurray.com/200/300"
+      onPress={[Function]}
+      userName="Higgs Boson"
+    />
     <View
       style={
         Object {

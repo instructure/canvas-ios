@@ -87,6 +87,7 @@ test('mapStateToProps returns no comments for no submissionID', () => {
     submissionID: undefined,
     drawerState: new DrawerState(),
     gradeIndividually: true,
+    navigator: {},
   }
 
   let state = templates.appState()
@@ -213,6 +214,7 @@ test('mapStateToProps returns comment and submission rows', () => {
     submissionID: submission.id,
     drawerState: new DrawerState(),
     gradeIndividually: true,
+    navigator: {},
   }
 
   const session = templates.session()

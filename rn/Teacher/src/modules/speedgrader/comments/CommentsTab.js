@@ -54,6 +54,13 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
     this.props.selectFile(submissionID, attachmentIndex)
   }
 
+  navigateToContextCard = (userID: string) => {
+    this.props.navigator.show(
+      `/courses/${this.props.courseID}/users/${userID}`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
+  }
+
   renderComment = ({ item }: { item: CommentRowProps }) =>
     <CommentRow
       {...item}
@@ -62,6 +69,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
       style={{ transform: [{ rotate: '180deg' }] }}
       retryPendingComment={this.makeAComment}
       deletePendingComment={this.deletePendingComment}
+      onAvatarPress={this.navigateToContextCard}
       switchFile={this.switchFile}
       localID={item.key}
     />
@@ -71,7 +79,6 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
   }
 
   render () {
-    // $FlowFixMe
     const rows = this.props.commentRows
     let hasPending = this.props.commentRows.some(c => c.pending)
     return (
@@ -110,6 +117,7 @@ type RoutingProps = {
   submissionID: ?string,
   gradeIndividually: boolean,
   drawerState: DrawerState,
+  navigator: Navigator,
 }
 
 type CommentsTabProps = CommentRows & RoutingProps & CommentActions & SpeedGraderActionsType
@@ -135,6 +143,7 @@ function extractComments (submissionComments: SubmissionComment[]): Array<Commen
     .map(comment => ({
       key: 'comment-' + comment.id,
       name: comment.author_name,
+      userID: comment.author.id,
       date: new Date(comment.created_at),
       avatarURL: comment.author.avatar_image_url,
       from: comment.author.id === myUserID ? 'me' : 'them',
@@ -225,6 +234,7 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
     key: `submission-${attemptNumber}`,
     name: user.name,
     avatarURL: user.avatar_url,
+    userID: user.id,
     from: 'them',
     date: new Date(submittedAt),
     contents: {
@@ -254,6 +264,7 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     key: pending.localID,
     from: 'me',
     name: session.user.name,
+    userId: session.user.id,
     avatarURL: session.user.avatar_url,
     contents: pending.comment,
     pending: pending.pending,

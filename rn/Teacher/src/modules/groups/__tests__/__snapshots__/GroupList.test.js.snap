@@ -142,7 +142,7 @@ exports[`GroupList renders properly 1`] = `
           Object {
             "avatar_url": "http://www.fillmurray.com/100/100",
             "bio": "my bio is yuuuuuuuge",
-            "id": 1,
+            "id": "1",
             "name": "Donald Trump",
             "short_name": "The Donald",
             "sortable_name": "Mr. President",
@@ -222,7 +222,7 @@ exports[`GroupList renders properly 1`] = `
                 ],
               ]
             }
-            testID={1}
+            testID="1"
             tvParallaxProperties={undefined}
           >
             <View
@@ -254,38 +254,66 @@ exports[`GroupList renders properly 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel=""
+                  accessibilityComponentType={undefined}
+                  accessibilityLabel={undefined}
+                  accessibilityTraits={undefined}
+                  accessible={true}
+                  hasTVPreferredFocus={undefined}
+                  hitSlop={undefined}
+                  isTVSelectable={true}
+                  nativeID={undefined}
+                  onLayout={undefined}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
                   style={
                     Array [
                       Object {
-                        "overflow": "hidden",
+                        "backgroundColor": "transparent",
                       },
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      },
-                      Object {
-                        "borderRadius": 20,
-                      },
-                      Object {
-                        "backgroundColor": "#F5F5F5",
-                      },
+                      undefined,
                     ]
                   }
+                  testID={undefined}
+                  tvParallaxProperties={undefined}
                 >
-                  <Image
-                    source={
-                      Object {
-                        "uri": "http://www.fillmurray.com/100/100",
-                      }
-                    }
+                  <View
+                    accessibilityLabel=""
                     style={
-                      Object {
-                        "height": 40,
-                        "width": 40,
-                      }
+                      Array [
+                        Object {
+                          "overflow": "hidden",
+                        },
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        },
+                        Object {
+                          "borderRadius": 20,
+                        },
+                        Object {
+                          "backgroundColor": "#F5F5F5",
+                        },
+                      ]
                     }
-                  />
+                  >
+                    <Image
+                      source={
+                        Object {
+                          "uri": "http://www.fillmurray.com/100/100",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 40,
+                          "width": 40,
+                        }
+                      }
+                    />
+                  </View>
                 </View>
               </View>
               <View

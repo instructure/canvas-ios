@@ -15,6 +15,7 @@ const template = {
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('../../../common/components/Avatar', () => 'Avatar')
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -126,5 +127,26 @@ it('navigates to compose when reply to first message button pressed', () => {
       canSelectCourse: false,
       canEditSubject: false,
     },
+  )
+})
+
+it('navigates to context card when the avatar is pressed', () => {
+  const session = template.session()
+  setSession(session)
+  const convo = template.conversation({
+    id: '1',
+  })
+  const message = template.conversationMessage()
+  const navigator = template.navigator()
+
+  let view = renderer.create(
+    <ConversationMessage navigator={navigator} conversation={convo} message={message} />
+  ).toJSON()
+  let avatar = explore(view).selectByType('Avatar')
+  avatar.props.onPress()
+
+  expect(navigator.show).toHaveBeenCalledWith(
+    `/courses/1/users/1234`,
+    { modal: true, modalPresentationStyle: 'currentContext' },
   )
 })

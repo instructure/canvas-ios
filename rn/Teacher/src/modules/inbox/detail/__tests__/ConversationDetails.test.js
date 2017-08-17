@@ -11,6 +11,7 @@ import setProps from '../../../../../test/helpers/setProps'
 const template = {
   ...require('../../../../api/canvas-api/__templates__/conversations'),
   ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../api/canvas-api/__templates__/session'),
@@ -55,11 +56,13 @@ describe('ConversationDetails', () => {
       conversationID: '1',
       messages: [],
       refreshConversationDetails: jest.fn(),
+      refreshEnrollments: jest.fn(),
       starConversation: jest.fn(),
       unstarConversation: jest.fn(),
       deleteConversation: jest.fn(),
       markAsRead: jest.fn(),
       navigator: template.navigator(),
+      enrollments: [template.enrollment()],
     }
   })
 
@@ -173,6 +176,18 @@ it('mapStateToProps', () => {
     id: '1',
   })
   const appState = template.appState({
+    entities: {
+      courses: {
+        '1': {
+          enrollments: {
+            refs: ['1'],
+          },
+        },
+      },
+      enrollments: {
+        '1': template.enrollment(),
+      },
+    },
     inbox: {
       conversations: {
         '1': { data: c1 },

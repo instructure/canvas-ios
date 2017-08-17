@@ -101,6 +101,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             <Header
               assignmentID="1"
               closeModal={[Function]}
+              courseID="1"
               navigator={
                 Object {
                   "dismiss": [Function],
@@ -120,6 +121,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "userID": "55",
                 }
               }
+              userID="55"
             />
             <SimilarityScore
               submissionID={undefined}
@@ -282,6 +284,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             <Header
               assignmentID="1"
               closeModal={[Function]}
+              courseID="1"
               navigator={
                 Object {
                   "dismiss": [Function],
@@ -301,6 +304,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "userID": "55",
                 }
               }
+              userID="55"
             />
             <SimilarityScore
               submissionID={undefined}
@@ -387,6 +391,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             <Header
               assignmentID="1"
               closeModal={[Function]}
+              courseID="1"
               navigator={
                 Object {
                   "dismiss": [Function],
@@ -406,6 +411,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "userID": "55",
                 }
               }
+              userID="55"
             />
             <SimilarityScore
               submissionID={undefined}

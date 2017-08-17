@@ -40,6 +40,7 @@ export type SubmissionRowDataProps = {
 
 export type SubmissionRowProps = {
   onPress: () => void,
+  onAvatarPress?: Function,
 } & SubmissionRowDataProps
 
 class Row extends Component<any, RowProps, any> {
@@ -83,6 +84,12 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
     this.props.onPress(this.props.userID)
   }
 
+  onAvatarPress = () => {
+    if (this.props.onAvatarPress) {
+      this.props.onAvatarPress(this.props.userID)
+    }
+  }
+
   render () {
     let { userID, avatarURL, name, status, grade, disclosure } = this.props
     if (disclosure === undefined) {
@@ -99,6 +106,7 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
             key={userID}
             avatarURL={avatarURL}
             userName={name}
+            onPress={this.props.onAvatarPress && this.onAvatarPress}
           />
         </View>
         <View style={styles.textContainer}>

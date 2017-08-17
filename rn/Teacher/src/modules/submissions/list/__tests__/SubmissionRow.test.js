@@ -11,7 +11,9 @@ import type {
 import explore from '../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
-jest.mock('TouchableHighlight', () => 'TouchableHighlight')
+jest
+  .mock('TouchableHighlight', () => 'TouchableHighlight')
+  .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const mockSubmission = (status: SubmissionStatusProp = 'none', grade: ?GradeProp = null): SubmissionDataProps => {
   return {
@@ -83,4 +85,15 @@ test('anonymous grading doesnt show users names', () => {
     <SubmissionRow {...submission} anonymous />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('pressing the avatar calls onAvatarPress', () => {
+  const submission = mockSubmission()
+  const onAvatarPress = jest.fn()
+  let tree = renderer.create(
+    <SubmissionRow {...submission} onAvatarPress={onAvatarPress} />
+  ).toJSON()
+  let avatar = explore(tree).selectByType('Avatar')
+  avatar.props.onPress()
+  expect(onAvatarPress).toHaveBeenCalledWith('1')
 })

@@ -9,6 +9,7 @@ import explore from '../../../../../test/helpers/explore'
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
+  .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const templates = {
   ...require('../../../../api/canvas-api/__templates__/submissions'),
@@ -66,6 +67,8 @@ let groupProps = {
 }
 
 describe('SpeedGraderHeader', () => {
+  beforeEach(() => jest.resetAllMocks())
+
   it('renders with no submission', () => {
     let tree = renderer.create(
       <Header {...noSubProps} />
@@ -135,6 +138,19 @@ describe('SpeedGraderHeader', () => {
     expect(tree).toMatchSnapshot()
   })
 
+  it('navigates to the context card when the avatar is pressed', () => {
+    let tree = renderer.create(
+      <Header {...subProps} />
+    ).toJSON()
+
+    let avatar = explore(tree).selectByType('Avatar')
+    avatar.props.onPress()
+    expect(subProps.navigator.show).toHaveBeenCalledWith(
+      `/courses/3/users/4`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
+  })
+
   it('doesnt show the group name when anonymous', () => {
     let tree = renderer.create(
       <Header {...groupProps} anonymous={true} />
@@ -151,7 +167,8 @@ describe('SpeedGraderHeader', () => {
 
     expect(groupProps.navigator.show).toHaveBeenCalledWith(
       `/groups/1/users`,
-      { modal: true }
+      { modal: true },
+      { courseID: '3' },
     )
   })
 })

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { GroupList, mapStateToProps } from '../GroupList'
-import renderer from 'react-test-renderer'
+import renderer from 'react-native-test-utils'
 import explore from '../../../../test/helpers/explore'
 
 const template = {
@@ -14,6 +14,7 @@ const template = {
 let defaultProps = {
   group: template.group(),
   groupID: template.group().id,
+  courseID: '1',
   navigator: template.navigator({
     dismiss: jest.fn(),
   }),
@@ -30,7 +31,7 @@ describe('GroupList', () => {
   beforeEach(() => jest.resetAllMocks())
 
   it('renders properly', () => {
-    let tree = renderer.create(
+    let tree = renderer(
       <GroupList {...defaultProps} />
     ).toJSON()
     expect(tree).toMatchSnapshot()
@@ -41,14 +42,14 @@ describe('GroupList', () => {
       ...defaultProps,
       group: null,
     }
-    let tree = renderer.create(
+    let tree = renderer(
       <GroupList {...noGroupProps}/>
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it('calls navigator.dismiss when done is pressed', () => {
-    let component = renderer.create(
+    let component = renderer(
       <GroupList {...defaultProps} />
     )
     const doneButton: any = explore(component.toJSON()).selectRightBarButton('group-list.done')
@@ -64,10 +65,22 @@ describe('GroupList', () => {
         users: null,
       },
     }
-    let tree = renderer.create(
+    let tree = renderer(
       <GroupList {...noUserProps}/>
     ).toJSON()
     expect(tree).toMatchSnapshot()
+  })
+
+  it('navigates to the context card when an avatar is pressed', () => {
+    let view = renderer(
+      <GroupList {...defaultProps} />
+    )
+    let avatar = view.query('Avatar')
+    avatar.simulate('press')
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(
+      `/courses/1/users/1`,
+      { modal: true, modalPresentationStyle: 'currentContext' }
+    )
   })
 })
 
@@ -77,6 +90,7 @@ describe('mapStateToProps', () => {
 
     let ownProps = {
       groupID: group.id,
+      courseID: '1',
     }
 
     const state = template.appState({
@@ -108,6 +122,7 @@ describe('mapStateToProps', () => {
 
     let ownProps = {
       groupID: group.id,
+      courseID: '1',
     }
 
     const state = template.appState({

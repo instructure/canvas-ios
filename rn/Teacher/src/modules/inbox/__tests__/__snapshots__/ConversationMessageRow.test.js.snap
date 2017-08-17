@@ -46,47 +46,12 @@ exports[`renders correctly 1`] = `
             }
           }
         >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                },
-                Object {
-                  "borderRadius": 16,
-                  "height": 32,
-                  "width": 32,
-                },
-              ]
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "color": "#73818C",
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontSize": 14,
-                  },
-                ]
-              }
-            >
-              AOT
-            </Text>
-          </View>
+          <Avatar
+            avatarURL={undefined}
+            height={32}
+            onPress={[Function]}
+            userName="artorias of the abyss"
+          />
         </View>
         <View>
           <Text
@@ -376,47 +341,12 @@ exports[`renders correctly with author being the logged in user 1`] = `
             }
           }
         >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                },
-                Object {
-                  "borderRadius": 16,
-                  "height": 32,
-                  "width": 32,
-                },
-              ]
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "color": "#73818C",
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontSize": 14,
-                  },
-                ]
-              }
-            >
-              HTI
-            </Text>
-          </View>
+          <Avatar
+            avatarURL={undefined}
+            height={32}
+            onPress={[Function]}
+            userName="hey there i am bob"
+          />
         </View>
         <View>
           <Text
@@ -706,47 +636,12 @@ exports[`renders correctly with author lots of participants 1`] = `
             }
           }
         >
-          <View
-            accessibilityLabel=""
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "white",
-                  "borderColor": "#C7CDD1",
-                  "borderWidth": 0.5,
-                  "justifyContent": "center",
-                  "overflow": "hidden",
-                },
-                Object {
-                  "borderRadius": 16,
-                  "height": 32,
-                  "width": 32,
-                },
-              ]
-            }
-          >
-            <Text
-              accessible={false}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "color": "#73818C",
-                    "fontWeight": "600",
-                  },
-                  Object {
-                    "fontSize": 14,
-                  },
-                ]
-              }
-            >
-              HTI
-            </Text>
-          </View>
+          <Avatar
+            avatarURL={undefined}
+            height={32}
+            onPress={[Function]}
+            userName="hey there i am bob"
+          />
         </View>
         <View>
           <Text

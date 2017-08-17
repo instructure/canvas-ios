@@ -3,6 +3,7 @@
 import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
+import explore from '../../../../../test/helpers/explore'
 
 import Reply, { type Props } from '../Reply'
 
@@ -17,6 +18,7 @@ jest.mock('WebView', () => 'WebView')
   .mock('ActionSheetIOS', () => ({
     showActionSheetWithOptions: jest.fn(),
   }))
+  .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 describe('DiscussionReplies', () => {
   let props
@@ -54,6 +56,15 @@ describe('DiscussionReplies', () => {
     props.reply.user_id = ''
     props.reply.editor_id = ''
     testRender(props)
+  })
+
+  it('navigates to the context card when an avatar is pressed', () => {
+    let avatar = explore(render(props).toJSON()).selectByID('reply.avatar') || {}
+    avatar.props.onPress()
+    expect(props.navigator.show).toHaveBeenCalledWith(
+      `/courses/1/users/1`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
   })
 
   it('renders more button with some deleted replies', () => {

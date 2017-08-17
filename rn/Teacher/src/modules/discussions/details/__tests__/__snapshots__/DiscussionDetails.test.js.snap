@@ -39,7 +39,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -72,7 +72,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "require_initial_post": false,
@@ -104,7 +104,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
             ],
             "renderItem": [Function],
@@ -150,7 +150,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -183,7 +183,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "require_initial_post": false,
@@ -215,7 +215,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
             ],
             "renderItem": [Function],
@@ -929,47 +929,18 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   }
                 }
               >
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL={undefined}
+                  height={32}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 16,
-                        "height": 32,
-                        "width": 32,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 14,
-                        },
-                      ]
+                    Object {
+                      "marginTop": 16,
                     }
-                  >
-                    TD
-                  </Text>
-                </View>
+                  }
+                  testID="discussion.details.avatar"
+                  userName="The Donald"
+                />
                 <View
                   style={
                     Array [
@@ -1239,47 +1210,22 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                 }
               >
                 <View />
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL=""
+                  height={24}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 12,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 11,
-                        },
-                      ]
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
                     }
-                  >
-                    ?
-                  </Text>
-                </View>
+                  }
+                  testID="reply.avatar"
+                  userName="?"
+                />
                 <View
                   style={
                     Object {
@@ -1615,7 +1561,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -1716,7 +1662,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -2486,47 +2432,18 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   }
                 }
               >
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL={undefined}
+                  height={32}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 16,
-                        "height": 32,
-                        "width": 32,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 14,
-                        },
-                      ]
+                    Object {
+                      "marginTop": 16,
                     }
-                  >
-                    TD
-                  </Text>
-                </View>
+                  }
+                  testID="discussion.details.avatar"
+                  userName="The Donald"
+                />
                 <View
                   style={
                     Array [
@@ -2744,7 +2661,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -2809,23 +2726,23 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                     "rating_sum": null,
                                     "replies": Array [],
                                     "updated_at": "2017-05-23T17:12:04Z",
-                                    "user_id": 1,
+                                    "user_id": "1",
                                   },
                                 ],
                                 "updated_at": "2017-05-23T17:12:04Z",
-                                "user_id": 1,
+                                "user_id": "1",
                               },
                             ],
                             "updated_at": "2017-05-23T17:12:04Z",
-                            "user_id": 1,
+                            "user_id": "1",
                           },
                         ],
                         "updated_at": "2017-05-23T17:12:04Z",
-                        "user_id": 1,
+                        "user_id": "1",
                       },
                     ],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "require_initial_post": false,
@@ -2865,11 +2782,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
@@ -2886,7 +2803,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
             ],
             "renderItem": [Function],
@@ -2957,7 +2874,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -3022,23 +2939,23 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                                     "rating_sum": null,
                                     "replies": Array [],
                                     "updated_at": "2017-05-23T17:12:04Z",
-                                    "user_id": 1,
+                                    "user_id": "1",
                                   },
                                 ],
                                 "updated_at": "2017-05-23T17:12:04Z",
-                                "user_id": 1,
+                                "user_id": "1",
                               },
                             ],
                             "updated_at": "2017-05-23T17:12:04Z",
-                            "user_id": 1,
+                            "user_id": "1",
                           },
                         ],
                         "updated_at": "2017-05-23T17:12:04Z",
-                        "user_id": 1,
+                        "user_id": "1",
                       },
                     ],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "require_initial_post": false,
@@ -3078,11 +2995,11 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
               Object {
                 "created_at": "2017-05-23T17:12:04Z",
@@ -3099,7 +3016,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
             ],
             "renderItem": [Function],
@@ -3840,47 +3757,18 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   }
                 }
               >
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL={undefined}
+                  height={32}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 16,
-                        "height": 32,
-                        "width": 32,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 14,
-                        },
-                      ]
+                    Object {
+                      "marginTop": 16,
                     }
-                  >
-                    TD
-                  </Text>
-                </View>
+                  }
+                  testID="discussion.details.avatar"
+                  userName="The Donald"
+                />
                 <View
                   style={
                     Array [
@@ -4185,47 +4073,22 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 }
               >
                 <View />
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL=""
+                  height={24}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 12,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 11,
-                        },
-                      ]
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
                     }
-                  >
-                    ?
-                  </Text>
-                </View>
+                  }
+                  testID="reply.avatar"
+                  userName="?"
+                />
                 <View
                   style={
                     Object {
@@ -4542,47 +4405,22 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 }
               >
                 <View />
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL=""
+                  height={24}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 12,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 11,
-                        },
-                      ]
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
                     }
-                  >
-                    ?
-                  </Text>
-                </View>
+                  }
+                  testID="reply.avatar"
+                  userName="?"
+                />
                 <View
                   style={
                     Object {
@@ -5806,7 +5644,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -5839,7 +5677,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "require_initial_post": false,
@@ -5871,7 +5709,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
             ],
             "renderItem": [Function],
@@ -5942,7 +5780,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -5975,7 +5813,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                     "rating_sum": null,
                     "replies": Array [],
                     "updated_at": "2017-05-23T17:12:04Z",
-                    "user_id": 1,
+                    "user_id": "1",
                   },
                 ],
                 "require_initial_post": false,
@@ -6007,7 +5845,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "readState": "read",
                 "replies": Array [],
                 "updated_at": "2017-05-23T17:12:04Z",
-                "user_id": 1,
+                "user_id": "1",
               },
             ],
             "renderItem": [Function],
@@ -6748,47 +6586,18 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   }
                 }
               >
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL={undefined}
+                  height={32}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 16,
-                        "height": 32,
-                        "width": 32,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 14,
-                        },
-                      ]
+                    Object {
+                      "marginTop": 16,
                     }
-                  >
-                    TD
-                  </Text>
-                </View>
+                  }
+                  testID="discussion.details.avatar"
+                  userName="The Donald"
+                />
                 <View
                   style={
                     Array [
@@ -7058,47 +6867,22 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 }
               >
                 <View />
-                <View
-                  accessibilityLabel=""
+                <Avatar
+                  avatarURL=""
+                  height={24}
+                  onPress={[Function]}
                   style={
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "white",
-                        "borderColor": "#C7CDD1",
-                        "borderWidth": 0.5,
-                        "justifyContent": "center",
-                        "overflow": "hidden",
-                      },
-                      Object {
-                        "borderRadius": 12,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                >
-                  <Text
-                    accessible={false}
-                    allowFontScaling={true}
-                    disabled={false}
-                    ellipsizeMode="tail"
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "color": "#73818C",
-                          "fontWeight": "600",
-                        },
-                        Object {
-                          "fontSize": 11,
-                        },
-                      ]
+                    Object {
+                      "backgroundColor": "#f5f5f5",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "marginTop": 12.8,
+                      "width": 24,
                     }
-                  >
-                    ?
-                  </Text>
-                </View>
+                  }
+                  testID="reply.avatar"
+                  userName="?"
+                />
                 <View
                   style={
                     Object {

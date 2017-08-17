@@ -16,6 +16,7 @@ type Props = {
   userName: string,
   height?: number, // Width will always be equal to the height
   border?: boolean,
+  onPress?: Function,
 }
 
 export default class Avatar extends Component<any, Props, any> {

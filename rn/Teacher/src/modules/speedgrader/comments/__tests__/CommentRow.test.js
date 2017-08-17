@@ -4,6 +4,9 @@ import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import CommentRow, { type CommentRowProps } from '../CommentRow'
+import explore from '../../../../../test/helpers/explore'
+
+jest.mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const testComment: CommentRowProps = {
   key: 'comment-33',
@@ -17,6 +20,8 @@ const testComment: CommentRowProps = {
   deletePendingComment: jest.fn(),
   retryPendingComment: jest.fn(),
   switchFile: jest.fn(),
+  onAvatarPress: jest.fn(),
+  userID: '1',
 }
 
 test('Their message rows render correctly', () => {
@@ -70,4 +75,13 @@ test('their submissions render correctly', () => {
     <CommentRow {...comment} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
+})
+
+test('calls onAvatarPress when the avatar is pressed', () => {
+  let view = renderer.create(
+    <CommentRow {...testComment} />
+  ).toJSON()
+  let avatar = explore(view).selectByType('Avatar')
+  avatar.props.onPress()
+  expect(testComment.onAvatarPress).toHaveBeenCalledWith('1')
 })

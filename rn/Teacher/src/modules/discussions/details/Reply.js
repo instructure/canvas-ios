@@ -62,6 +62,14 @@ export default class Reply extends Component <any, Props, any> {
     return user
   }
 
+  navigateToContextCard = () => {
+    let user = this._userFromParticipants(this.props.reply, this.props.participants)
+    this.props.navigator.show(
+      `/courses/${this.props.courseID}/users/${user.id}`,
+      { modal: true, modalPresentationStyle: 'currentContext' }
+    )
+  }
+
   render () {
     let { reply, depth, participants, maxReplyNodeDepth, readState } = this.props
     participants = participants || {}
@@ -75,7 +83,15 @@ export default class Reply extends Component <any, Props, any> {
         <View style={style.colA}>
           { unreadDot }
           {user &&
-          <Avatar height={AVATAR_SIZE} key={user.id} avatarURL={user.avatar_image_url} userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}/> }
+            <Avatar
+              testID='reply.avatar'
+              height={AVATAR_SIZE}
+              key={user.id}
+              avatarURL={user.avatar_image_url}
+              userName={user.id === '0' ? i18n('?') : user.display_name} style={style.avatar}
+              onPress={this.navigateToContextCard}
+            />
+          }
           <View style={style.threadLine}/>
         </View>
 

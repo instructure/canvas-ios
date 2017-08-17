@@ -202,38 +202,66 @@ exports[`comments render properly 1`] = `
               </Text>
             </View>
             <View
-              accessibilityLabel=""
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Array [
                   Object {
-                    "overflow": "hidden",
+                    "backgroundColor": "transparent",
                   },
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  },
-                  Object {
-                    "borderRadius": 20,
-                  },
-                  Object {
-                    "backgroundColor": "#F5F5F5",
-                  },
+                  undefined,
                 ]
               }
+              testID={undefined}
+              tvParallaxProperties={undefined}
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://fillmurray.com/332/555",
-                  }
-                }
+              <View
+                accessibilityLabel=""
                 style={
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  }
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    Object {
+                      "borderRadius": 20,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://fillmurray.com/332/555",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
             </View>
           </View>
           <View
@@ -353,38 +381,66 @@ exports[`comments render properly 1`] = `
             }
           >
             <View
-              accessibilityLabel=""
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Array [
                   Object {
-                    "overflow": "hidden",
+                    "backgroundColor": "transparent",
                   },
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  },
-                  Object {
-                    "borderRadius": 20,
-                  },
-                  Object {
-                    "backgroundColor": "#F5F5F5",
-                  },
+                  undefined,
                 ]
               }
+              testID={undefined}
+              tvParallaxProperties={undefined}
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://fillmurray.com/220/400",
-                  }
-                }
+              <View
+                accessibilityLabel=""
                 style={
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  }
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    Object {
+                      "borderRadius": 20,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://fillmurray.com/220/400",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
             </View>
             <View
               style={
@@ -637,38 +693,66 @@ exports[`comments render properly 1`] = `
               </Text>
             </View>
             <View
-              accessibilityLabel=""
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Array [
                   Object {
-                    "overflow": "hidden",
+                    "backgroundColor": "transparent",
                   },
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  },
-                  Object {
-                    "borderRadius": 20,
-                  },
-                  Object {
-                    "backgroundColor": "#F5F5F5",
-                  },
+                  undefined,
                 ]
               }
+              testID={undefined}
+              tvParallaxProperties={undefined}
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://fillmurray.com/332/555",
-                  }
-                }
+              <View
+                accessibilityLabel=""
                 style={
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  }
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    Object {
+                      "borderRadius": 20,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://fillmurray.com/332/555",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
             </View>
           </View>
           <View
@@ -722,38 +806,66 @@ exports[`comments render properly 1`] = `
             }
           >
             <View
-              accessibilityLabel=""
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Array [
                   Object {
-                    "overflow": "hidden",
+                    "backgroundColor": "transparent",
                   },
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  },
-                  Object {
-                    "borderRadius": 20,
-                  },
-                  Object {
-                    "backgroundColor": "#F5F5F5",
-                  },
+                  undefined,
                 ]
               }
+              testID={undefined}
+              tvParallaxProperties={undefined}
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://fillmurray.com/220/400",
-                  }
-                }
+              <View
+                accessibilityLabel=""
                 style={
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  }
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    Object {
+                      "borderRadius": 20,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://fillmurray.com/220/400",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
             </View>
             <View
               style={
@@ -872,38 +984,66 @@ exports[`comments render properly 1`] = `
             }
           >
             <View
-              accessibilityLabel=""
+              accessibilityComponentType={undefined}
+              accessibilityLabel={undefined}
+              accessibilityTraits={undefined}
+              accessible={true}
+              hasTVPreferredFocus={undefined}
+              hitSlop={undefined}
+              isTVSelectable={true}
+              nativeID={undefined}
+              onLayout={undefined}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
                 Array [
                   Object {
-                    "overflow": "hidden",
+                    "backgroundColor": "transparent",
                   },
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  },
-                  Object {
-                    "borderRadius": 20,
-                  },
-                  Object {
-                    "backgroundColor": "#F5F5F5",
-                  },
+                  undefined,
                 ]
               }
+              testID={undefined}
+              tvParallaxProperties={undefined}
             >
-              <Image
-                source={
-                  Object {
-                    "uri": "http://fillmurray.com/220/400",
-                  }
-                }
+              <View
+                accessibilityLabel=""
                 style={
-                  Object {
-                    "height": 40,
-                    "width": 40,
-                  }
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    },
+                    Object {
+                      "borderRadius": 20,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://fillmurray.com/220/400",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                />
+              </View>
             </View>
             <View
               style={
@@ -1087,6 +1227,7 @@ Object {
       "key": "submission-8",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1108,6 +1249,7 @@ Object {
       "key": "submission-7",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1129,6 +1271,7 @@ Object {
       "key": "submission-6",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1150,6 +1293,7 @@ Object {
       "key": "submission-5",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://fillmurray.com/499/355",
@@ -1162,6 +1306,7 @@ Object {
       "key": "comment-356",
       "name": "Harry Potter",
       "pending": 0,
+      "userID": "6682",
     },
     Object {
       "avatarURL": "http://fillmurray.com/499/355",
@@ -1174,6 +1319,7 @@ Object {
       "key": "comment-356",
       "name": "Severus Snape",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1195,6 +1341,7 @@ Object {
       "key": "submission-4",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1216,6 +1363,7 @@ Object {
       "key": "submission-3",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1237,6 +1385,7 @@ Object {
       "key": "submission-2",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
     Object {
       "avatarURL": "http://www.fillmurray.com/100/100",
@@ -1258,6 +1407,7 @@ Object {
       "key": "submission-1",
       "name": "Donald Trump",
       "pending": 0,
+      "userID": "55",
     },
   ],
 }

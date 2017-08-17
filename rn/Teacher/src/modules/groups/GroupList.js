@@ -24,6 +24,7 @@ type StateProps = {
 
 type RouterProps = {
   groupID: string,
+  courseID: string,
 }
 
 type GroupActionsProps = {
@@ -43,12 +44,25 @@ export class GroupList extends Component<any, GroupListProps, any> {
     }
   }
 
+  navigateToContextCard = (userID: string) => {
+    this.props.navigator.show(
+      `/courses/${this.props.courseID}/users/${userID}`,
+      { modal: true, modalPresentationStyle: 'currentContext' }
+    )
+  }
+
   _renderRow = ({ item, index }) => {
     let border = index === 0 ? 'both' : 'bottom'
 
-    const avatar = (<View style={styles.avatar}>
-                      <Avatar avatarURL={item.avatar_url} userName={item.name}/>
-                    </View>)
+    const avatar = (
+      <View style={styles.avatar}>
+        <Avatar
+          avatarURL={item.avatar_url}
+          userName={item.name}
+          onPress={() => this.navigateToContextCard(item.id)}
+        />
+      </View>
+    )
 
     return <Row title={item.name}
                 border={border}

@@ -94,8 +94,22 @@ export class SubmissionList extends Component {
     )
   }
 
+  navigateToContextCard = (userID: string) => {
+    this.props.navigator.show(
+      `/courses/${this.props.courseID}/users/${userID}`,
+      { modal: true, modalPresentationStyle: 'currentContext' },
+    )
+  }
+
   renderRow = ({ item, index }: { item: SubmissionProps, index: number }) => {
-    return <SubmissionRow {...item} onPress={this.navigateToSubmission(index)} anonymous={this.props.anonymous} />
+    return (
+      <SubmissionRow
+        {...item}
+        onAvatarPress={!this.props.groupAssignment && this.navigateToContextCard}
+        onPress={this.navigateToSubmission(index)}
+        anonymous={this.props.anonymous}
+      />
+    )
   }
 
   updateFilter = (filter: SelectedSubmissionFilter) => {

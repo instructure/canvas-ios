@@ -150,7 +150,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -214,7 +214,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -307,7 +307,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -371,7 +371,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -1380,7 +1380,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -1419,7 +1419,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -1487,7 +1487,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -1526,7 +1526,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -2492,7 +2492,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -2557,7 +2557,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -2651,7 +2651,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -2716,7 +2716,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -3751,7 +3751,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -3820,7 +3820,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -3914,7 +3914,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,
@@ -3983,7 +3983,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
-                  "id": 1,
+                  "id": "1",
                   "short_name": "The Donald",
                 },
                 "can_unpublish": true,

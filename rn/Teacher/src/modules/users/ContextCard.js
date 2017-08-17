@@ -47,7 +47,7 @@ type ContextCardProps = ContextCardOwnProps & ContextCardDataProps & ContextCard
 export class ContextCard extends Component {
   props: ContextCardProps
 
-  donePressed () {
+  donePressed = () => {
     this.props.navigator.dismiss()
   }
 
