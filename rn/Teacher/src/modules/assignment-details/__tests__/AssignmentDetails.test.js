@@ -13,7 +13,7 @@ const template = {
   ...require('../../../api/canvas-api/__templates__/assignments'),
   ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../__templates__/helm'),
-  ...require('../../../api/canvas-api/__templates__/externalTool'),
+  ...require('../../../api/canvas-api/__templates__/external-tool'),
   ...require('../../../api/canvas-api/__templates__/error'),
 }
 

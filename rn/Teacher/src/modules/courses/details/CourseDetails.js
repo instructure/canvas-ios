@@ -11,12 +11,14 @@ import {
   StyleSheet,
   Animated,
   RefreshControl,
+  processColor,
 } from 'react-native'
 
 import Images from '../../../images'
 import CourseDetailsActions from '../tabs/actions'
 import CourseActions from '../actions'
 import CourseDetailsTab from './components/CourseDetailsTab'
+import LTIActions from '../../external-tools/actions'
 import mapStateToProps, { type CourseDetailsProps } from './map-state-to-props'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
@@ -41,7 +43,16 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   }
 
   selectTab = (tab: Tab) => {
-    this.props.navigator.show(tab.html_url)
+    if (tab.id === this.props.attendanceTabID && tab.url) {
+      this.props.navigator.show('/attendance', {}, {
+        launchURL: tab.url,
+        courseName: this.props.course.name,
+        courseID: this.props.courseID,
+        courseColor: processColor(this.props.color),
+      })
+    } else {
+      this.props.navigator.show(tab.html_url)
+    }
   }
 
   back = () => {
@@ -74,7 +85,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
   }
 
   renderTab = (tab: Tab) => {
-    return <CourseDetailsTab key={tab.id} tab={tab} courseColor={this.props.color} onPress={this.selectTab} />
+    return <CourseDetailsTab key={tab.id} tab={tab} courseColor={this.props.color} onPress={this.selectTab} attendanceTabID={this.props.attendanceTabID} />
   }
 
   render () {
@@ -124,15 +135,6 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
         navBarStyle='dark'
         onTraitCollectionChange={this.onTraitCollectionChange.bind(this)}
         {...screenProps}
-        // TODO: do a real back button
-        leftBarButtons={[
-          {
-            image: Images.backIcon,
-            simulateBackButton: true,
-            testID: 'course-details.navigation-back-btn',
-            action: this.props.navigator.dismiss.bind(this),
-          },
-        ]}
         rightBarButtons={[
           {
             image: Images.course.settings,
@@ -366,11 +368,12 @@ CourseDetails.propTypes = {
 
 export let Refreshed: any = refresh(
   props => {
+    props.refreshLTITools(props.courseID)
     props.refreshCourses()
     props.refreshTabs(props.courseID)
   },
   props => !props.course || props.tabs.length === 0,
   props => Boolean(props.pending)
 )(CourseDetails)
-let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions })(Refreshed)
+let Connected = connect(mapStateToProps, { ...CourseDetailsActions, ...CourseActions, ...LTIActions })(Refreshed)
 export default (Connected: Component<any, CourseDetailsProps, any>)

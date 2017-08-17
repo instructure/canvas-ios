@@ -2,8 +2,8 @@
 
 const images = {
   course: {
-    announcements: require('./course/Announcements.png'),
-    assignments: require('./course/Assignments.png'),
+    announcements: require('./course/Announcement.png'),
+    assignments: require('./course/Assignment.png'),
     discussions: require('./course/Discussions.png'),
     pages: require('./course/Pages.png'),
     people: require('./course/People.png'),
@@ -12,6 +12,7 @@ const images = {
     files: require('./course/Files.png'),
     settings: require('./course/Settings.png'),
     placeholder: require('./course/Placeholder.png'),
+    attendance: require('./course/attendance-icon.png'),
   },
   tabbar: {
     courses: require('./tabbar/courses.png'),

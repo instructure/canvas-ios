@@ -10,4 +10,5 @@ export type Tab = {
   visibility: TabVisibility,
   position: number,
   html_url: string,
+  url?: string, // for LTI tools
 }

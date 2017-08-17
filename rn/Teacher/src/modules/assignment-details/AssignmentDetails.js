@@ -23,7 +23,7 @@ import AssignmentActions from '../assignments/actions'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import { getSessionlessLaunchURL } from '../../api/canvas-api/external_tools'
+import { getSessionlessLaunchURL } from '../../api/canvas-api/external-tools'
 import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
 
 import {

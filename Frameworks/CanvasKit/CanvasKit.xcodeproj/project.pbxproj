@@ -10,6 +10,8 @@
 		3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2940141E7209AA00F2E49C /* CKIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2940151E7209AA00F2E49C /* CKIBrand.m */; };
 		49369ECB1DF60265006C644F /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369ECA1DF60178006C644F /* ReactiveObjC.framework */; };
+		496FC3B11F3A592900054359 /* CKIClient+CKIEnrollment.h in Headers */ = {isa = PBXBuildFile; fileRef = 496FC3AF1F3A592900054359 /* CKIClient+CKIEnrollment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		496FC3B21F3A592900054359 /* CKIClient+CKIEnrollment.m in Sources */ = {isa = PBXBuildFile; fileRef = 496FC3B01F3A592900054359 /* CKIClient+CKIEnrollment.m */; };
 		499D188B1C8643E6005A86D2 /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D188A1C8643E6005A86D2 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		499D18921C8643E6005A86D2 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499D18871C8643E6005A86D2 /* CanvasKit.framework */; };
 		499D19821C8644A3005A86D2 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D18A11C8644A3005A86D2 /* Constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -415,6 +417,8 @@
 		3B2940141E7209AA00F2E49C /* CKIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIBrand.h; sourceTree = "<group>"; };
 		3B2940151E7209AA00F2E49C /* CKIBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKIBrand.m; sourceTree = "<group>"; };
 		49369ECA1DF60178006C644F /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		496FC3AF1F3A592900054359 /* CKIClient+CKIEnrollment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CKIEnrollment.h"; sourceTree = "<group>"; };
+		496FC3B01F3A592900054359 /* CKIClient+CKIEnrollment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CKIEnrollment.m"; sourceTree = "<group>"; };
 		499D18871C8643E6005A86D2 /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499D188A1C8643E6005A86D2 /* CanvasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
 		499D188C1C8643E6005A86D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1154,6 +1158,8 @@
 				499D19781C8644A3005A86D2 /* CKIMediaServer.h */,
 				499D19791C8644A3005A86D2 /* CKIMediaServer.m */,
 				499D197A1C8644A3005A86D2 /* Live Assessments */,
+				496FC3AF1F3A592900054359 /* CKIClient+CKIEnrollment.h */,
+				496FC3B01F3A592900054359 /* CKIClient+CKIEnrollment.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1507,6 +1513,7 @@
 				499D19FE1C8644A3005A86D2 /* CKIUser.h in Headers */,
 				499D19A51C8644A3005A86D2 /* CKIAssignmentGroup.h in Headers */,
 				499D19AB1C8644A3005A86D2 /* CKIContext.h in Headers */,
+				496FC3B11F3A592900054359 /* CKIClient+CKIEnrollment.h in Headers */,
 				499D19B61C8644A3005A86D2 /* CKIDiscussionTopic.h in Headers */,
 				499D1A1E1C8644A3005A86D2 /* CKIClient+CKIFavorite.h in Headers */,
 				B1CF2FC51C90B8780035612B /* CKISO8601DateFormatter.h in Headers */,
@@ -1735,6 +1742,7 @@
 				499D19841C8644A3005A86D2 /* CKIMediaFileUploadTokenParser.m in Sources */,
 				499D1A231C8644A3005A86D2 /* CKIClient+CKIFolder.m in Sources */,
 				499D1A1F1C8644A3005A86D2 /* CKIClient+CKIFavorite.m in Sources */,
+				496FC3B21F3A592900054359 /* CKIClient+CKIEnrollment.m in Sources */,
 				499D199C1C8644A3005A86D2 /* CKIActivityStreamItem.m in Sources */,
 				499D1A3B1C8644A3005A86D2 /* CKIClient+CKIPollSession.m in Sources */,
 				499D1A511C8644A3005A86D2 /* CKIClient.m in Sources */,

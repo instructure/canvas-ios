@@ -514,7 +514,6 @@ export class DiscussionDetails extends Component<any, Props, any> {
 const style = StyleSheet.create({
   sectionListContainer: {
     flex: 1,
-    marginBottom: global.tabBarHeight,
   },
   authorContainer: {
     flexDirection: 'row',

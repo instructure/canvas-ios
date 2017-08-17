@@ -32,6 +32,9 @@ describe('courses refresher', () => {
         pending: 0,
         refs: [],
       },
+      attendanceTool: {
+        pending: 0,
+      },
       enrollments: {
         pending: 0,
         refs: [],

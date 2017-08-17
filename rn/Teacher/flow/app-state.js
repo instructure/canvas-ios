@@ -15,6 +15,7 @@ export type CourseState = AsyncState & {
 }
 
 export type TabsState = AsyncState & { tabs: Array<Tab> }
+export type AttendanceToolState = { tabID?: ?string } & AsyncState
 
 export type CourseContentState = {
   tabs: TabsState,
@@ -24,6 +25,7 @@ export type CourseContentState = {
   discussions: AsyncRefs & PendingNewDiscussionState,
   announcements: AsyncRefs,
   groups: AsyncRefs,
+  attendanceTool: AttendanceToolState,
 }
 
 export type GroupState = AsyncState & {

@@ -12,14 +12,17 @@ class HelmNavigationController: UINavigationController {
     init() {
         let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
         super.init(rootViewController: emptyViewController)
+        view.backgroundColor = .white
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        view.backgroundColor = .white
     }
     
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
+        view.backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {

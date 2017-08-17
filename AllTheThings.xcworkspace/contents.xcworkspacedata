@@ -5,16 +5,6 @@
       location = "group:Tinker.playground">
    </FileRef>
    <Group
-      location = "container:Teacher"
-      name = "Teacher">
-      <FileRef
-         location = "group:Teacher.playground">
-      </FileRef>
-      <FileRef
-         location = "group:Teacher.xcodeproj">
-      </FileRef>
-   </Group>
-   <Group
       location = "group:Carthage"
       name = "Carthage">
       <FileRef
@@ -233,6 +223,9 @@
       </FileRef>
       <FileRef
          location = "group:WhizzyWig/WhizzyWig.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Attendance/Attendance.xcodeproj">
       </FileRef>
    </Group>
    <FileRef

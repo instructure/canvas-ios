@@ -26,11 +26,12 @@ extension UIView {
 
 // swift should just provide these...
 private func == <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
-    if case .none = lhs, case .none = rhs {
-        return true
+    switch (lhs, rhs) {
+    case (.none, .none):            return true
+    case (.none, _), (_, .none):    return false
+    case let (.some(l), .some(r)):  return l == r
+    default:                        return false
     }
-    
-    return lhs.map { left in rhs.map { right in left == right } ?? false } ?? false
 }
 
 private func != <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {

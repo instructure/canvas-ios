@@ -13,6 +13,7 @@ export type Term = {
 
 export type Course = {
   id: string,
+  account_id: string,
   name: string,
   course_code: string,
   short_name?: string,

@@ -95,6 +95,11 @@
 		45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */; };
 		451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
+		491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; };
+		491EF3121F2BCF19002B6C76 /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		491EF3141F2BD1D2002B6C76 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF3131F2BD1C5002B6C76 /* Marshal.framework */; };
+		491EF3151F2BD1D2002B6C76 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF3131F2BD1C5002B6C76 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		491EF3181F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */; };
 		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
 		4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
@@ -123,6 +128,7 @@
 		54F1E2CE1143A2D662FFEEFA /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B527DFA5898B0D5DD57EDD1 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6098E7BDB694A6ACEF131151 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70862A515621F745F8148C6 /* DiscussionEntry.swift */; };
+		61032ABA1F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */; };
 		611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */; };
 		6118BE291F0561F000E14869 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */; };
 		6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */; };
@@ -584,6 +590,7 @@
 				3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */,
 				3B8B240E1EB2AAA400B61EF8 /* ReactiveSwift.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
+				491EF3121F2BCF19002B6C76 /* AttendanceLE.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
 				4943ECC01E5CEFBD001DC5B5 /* Mantle.framework in Embed Frameworks */,
 				4943ECC21E5CEFBD001DC5B5 /* Reachability.framework in Embed Frameworks */,
@@ -591,6 +598,7 @@
 				4943ECBA1E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Embed Frameworks */,
 				4943ECBC1E5CEFBD001DC5B5 /* CWNotification.framework in Embed Frameworks */,
 				4943ECBE1E5CEFBD001DC5B5 /* FXKeychain.framework in Embed Frameworks */,
+				491EF3151F2BD1D2002B6C76 /* Marshal.framework in Embed Frameworks */,
 				619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */,
 				4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */,
 			);
@@ -800,6 +808,9 @@
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		42A161BC86548CE0BB3E1AC7 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; sourceTree = "<group>"; };
 		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
+		491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491EF3131F2BD1C5002B6C76 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAttendanceViewController.swift; sourceTree = "<group>"; };
 		491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; sourceTree = "<group>"; };
 		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -818,6 +829,7 @@
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
 		611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
 		6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
@@ -954,7 +966,9 @@
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
+				491EF3141F2BD1D2002B6C76 /* Marshal.framework in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
+				491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */,
 				3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */,
 				4943ECBB1E5CEFBD001DC5B5 /* CWNotification.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
@@ -1093,6 +1107,8 @@
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
+				61032A8F1F3CF35500EB1924 /* Enrollments */,
+				491EF3161F2BD2D9002B6C76 /* Attendance */,
 				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
 				49D86BAE1F059E42008951CE /* A11y */,
 				4994B2A91ED4E9230054D333 /* Video */,
@@ -1310,6 +1326,14 @@
 			name = AssignmentDetailsPageTest;
 			sourceTree = "<group>";
 		};
+		491EF3161F2BD2D9002B6C76 /* Attendance */ = {
+			isa = PBXGroup;
+			children = (
+				491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */,
+			);
+			path = Attendance;
+			sourceTree = "<group>";
+		};
 		4924260C1EAEB37C0046ED43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1358,8 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				491EF3131F2BD1C5002B6C76 /* Marshal.framework */,
+				491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */,
 				619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */,
 				61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */,
 				3BF720FF1EC4054100234D25 /* PocketSVG.framework */,
@@ -1400,6 +1426,14 @@
 				61FCAF141E5FC0190042921A /* libRCTAnimation.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		61032A8F1F3CF35500EB1924 /* Enrollments */ = {
+			isa = PBXGroup;
+			children = (
+				61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */,
+			);
+			path = Enrollments;
 			sourceTree = "<group>";
 		};
 		61B536591E7749F5000FEABB /* TeacherUITests */ = {
@@ -2369,9 +2403,11 @@
 				3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */,
 				3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
 				3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */,
+				491EF3181F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift in Sources */,
 				61B7F5C31ED5EB3300EC6865 /* PSPDFViewManager.m in Sources */,
 				3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */,
 				4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */,
+				61032ABA1F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
 				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
 				49D86BD21F059E6B008951CE /* A11yGroupManager.m in Sources */,

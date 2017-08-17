@@ -28,6 +28,8 @@
 		2C73C9BA1E031ECD0064A19D /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9B91E031ECD0064A19D /* CWNotification.framework */; };
 		2C73C9BB1E031ECD0064A19D /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9B91E031ECD0064A19D /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CA548321DCB8C1000A05E0F /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
+		47F5B1391F293D9000B03DAC /* AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */; };
+		47F5B13A1F293D9000B03DAC /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4902E1261CF4C8890069E043 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4902E1241CF4C8890069E043 /* Analytics.m */; };
 		490687941D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */; };
@@ -965,6 +967,7 @@
 				492708851CF4C38100C631C6 /* Marshal.framework in Embed Frameworks */,
 				4985D3C11CFE35BE00BA3685 /* Mantle.framework in Embed Frameworks */,
 				6181F1351DFF548400B94488 /* SuchActivity.framework in Embed Frameworks */,
+				47F5B13A1F293D9000B03DAC /* AttendanceLE.framework in Embed Frameworks */,
 				4927087B1CF4C38100C631C6 /* CocoaLumberjack.framework in Embed Frameworks */,
 				496FFEAC1E00B35D00F1742E /* ReactiveObjC.framework in Embed Frameworks */,
 				61681E9C1D58E5130011E75D /* SoAnnotated.framework in Embed Frameworks */,
@@ -1030,6 +1033,7 @@
 		2C73C9B91E031ECD0064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
+		47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4902E1231CF4C8890069E043 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		4902E1241CF4C8890069E043 /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
 		490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationPreauthorizationCell.swift; sourceTree = "<group>"; };
@@ -2093,6 +2097,7 @@
 				6181F13F1DFF705600B94488 /* Reachability.framework in Frameworks */,
 				61F8ED861D999F0500DFAC6E /* SoIconic.framework in Frameworks */,
 				4985D3C01CFE35BE00BA3685 /* Mantle.framework in Frameworks */,
+				47F5B1391F293D9000B03DAC /* AttendanceLE.framework in Frameworks */,
 				49A04E591CF64CCF0051E1E7 /* NotificationKit.framework in Frameworks */,
 				4927088A1CF4C38100C631C6 /* Peeps.framework in Frameworks */,
 				492708981CF4C38100C631C6 /* SoProgressive.framework in Frameworks */,
@@ -2995,6 +3000,7 @@
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */,
 				6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */,
 				2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */,
 				2C73C9B91E031ECD0064A19D /* CWNotification.framework */,
@@ -5372,7 +5378,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -5416,7 +5422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -5440,7 +5446,7 @@
 					Dependencies,
 				);
 				INFOPLIST_FILE = Canvas/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5466,7 +5472,7 @@
 					Dependencies,
 				);
 				INFOPLIST_FILE = Canvas/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5494,7 +5500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = TechDebt/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TechDebt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5523,7 +5529,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = TechDebt/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TechDebt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5547,7 +5553,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = CanvasKit1/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5576,7 +5582,7 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = CanvasKit1/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5598,7 +5604,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = CanvasTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5614,7 +5620,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				INFOPLIST_FILE = CanvasTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

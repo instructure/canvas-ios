@@ -98,4 +98,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/announcements/:announcementID/edit', wrap(AnnouncementEdit), store)
   registerScreen('/notATeacher', wrap(NoATeacher), store)
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)
+  registerScreen('/attendance')
 }

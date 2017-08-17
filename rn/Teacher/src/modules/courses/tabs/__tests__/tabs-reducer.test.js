@@ -35,11 +35,11 @@ describe('refresh tabs', () => {
 
     expect(states).toEqual([
       { pending: 1, tabs: [] },
-      { pending: 0, tabs: [] },
+      { pending: 0, tabs: [tab] },
     ])
   })
 
-  it('sorts tabs by position', async () => {
+  it('tabs appear in the order they are received – sorting happens in map-state-to-props', async () => {
     const one = template.tab({ id: 'assignments', position: 0 })
     const two = template.tab({ id: 'assignments', position: 1 })
     const three = template.tab({ id: 'assignments', position: 2 })
@@ -49,7 +49,7 @@ describe('refresh tabs', () => {
 
     expect(states).toEqual([
       { pending: 1, tabs: [] },
-      { pending: 0, tabs: [one, two, three] },
+      { pending: 0, tabs: [three, one, two] },
     ])
   })
 

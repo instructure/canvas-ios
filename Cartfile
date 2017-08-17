@@ -2,7 +2,7 @@
 # Frameworks
 github "robb/Cartography" ~> 1.0
 github "antitypical/Result" ~> 3.0
-github "ReactiveCocoa/ReactiveCocoa" "5.0.0-rc.1"
+github "ReactiveCocoa/ReactiveCocoa" ~> 5.0
 github "onevcat/Kingfisher" ~> 3.2
 github "utahiosmac/Marshal" == 1.1
 github "n8armstrong/DVR" "swift3"
@@ -25,10 +25,11 @@ github "thebestbits/TBBModal" "master"
 
 # Legacy CanvasKit & CanvasKeymaster
 github "Mantle/Mantle" == 1.5.5
-github "ReactiveCocoa/ReactiveObjC" ~> 2.1.1
-github "ReactiveCocoa/ReactiveObjCBridge" "master"
+github "ReactiveCocoa/ReactiveObjC" ~> 3.0
+github "ReactiveCocoa/ReactiveObjCBridge" ~> 1.1
 github "AFNetworking/AFNetworking" ~> 3.0.0
 
 # Teacher
 github "rs/SDWebImage" "master"
 github "pocketsvg/PocketSVG"
+github "scalessec/Toast-Swift"

@@ -33,7 +33,7 @@ public extension String {
         str = str.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
         str = str.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        for (escaped, char) in map {
+        for (escaped, char) in completeMap {
             str = str.replacingOccurrences(of: escaped, with: String([char]), options: .caseInsensitive, range: nil)
         }
         return str
@@ -370,4 +370,4 @@ private let unicodeEscapeMap: [(String, Character)] = [
 ]
 
 
-private let map = asciiEscapeMap + unicodeEscapeMap
+private let completeMap = asciiEscapeMap + unicodeEscapeMap

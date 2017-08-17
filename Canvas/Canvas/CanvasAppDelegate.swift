@@ -28,12 +28,12 @@ import CanvasKeymaster
 import Fabric
 import Crashlytics
 import Secrets
+import AttendanceLE
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
             return true
@@ -137,7 +137,6 @@ extension AppDelegate {
     }
     
     func didLogin(_ session: Session) {
-
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
         self.setupCrashlyitcsDebugInformation()

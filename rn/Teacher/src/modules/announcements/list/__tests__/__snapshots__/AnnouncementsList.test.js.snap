@@ -19,7 +19,6 @@ exports[`AnnouncementsList renders 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >

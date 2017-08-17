@@ -11,6 +11,7 @@ import * as discussionsApi from './discussions'
 import * as conversationApi from './conversations'
 import * as groupsApi from './groups'
 import * as loginApi from './login'
+import * as externalTools from './external-tools'
 
 type CombinedApi = $Supertype<typeof coursesApi
   & typeof usersApi
@@ -22,7 +23,8 @@ type CombinedApi = $Supertype<typeof coursesApi
   & typeof quizzesApi
   & typeof discussionsApi
   & typeof conversationApi
-  & typeof loginApi>
+  & typeof loginApi
+  & typeof externalTools>
 
 export default ({
   ...coursesApi,
@@ -36,4 +38,5 @@ export default ({
   ...discussionsApi,
   ...conversationApi,
   ...loginApi,
+  ...externalTools,
 }: CombinedApi)

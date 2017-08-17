@@ -20,7 +20,6 @@ class RootTabBarController: UITabBarController {
             UITabBar.appearance().tintColor = branding.primaryBrandColor
             UITabBar.appearance().barTintColor = UIColor.white
             UITabBar.appearance().unselectedItemTintColor = UIColor(red: 115/255.0, green: 129/255.0, blue: 140/255.0, alpha: 1)
-            UITabBar.appearance().isTranslucent = false
         }
         
         self.delegate = self

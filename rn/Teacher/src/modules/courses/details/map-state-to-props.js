@@ -13,6 +13,7 @@ export type CourseDetailsDataProps = {
   +tabs: Array<Tab>,
   +course: Course,
   +color: string,
+  +attendanceTabID: ?string,
 }
 
 export type CourseDetailsProps = CourseDetailsDataProps
@@ -30,8 +31,15 @@ export default function mapStateToProps (state: AppState, { courseID }: RoutingP
   } = courseState
 
   const pending = state.favoriteCourses.pending +
-    courseState.tabs.pending
+    courseState.tabs.pending +
+    courseState.attendanceTool.pending
+
+  const attendanceTabID = courseState.attendanceTool.tabID
+
+  const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people']
   const tabs = courseState.tabs.tabs
+    .filter((tab) => availableCourseTabs.includes(tab.id) || (attendanceTabID && tab.id === attendanceTabID))
+    .sort((t1, t2) => (t1.position - t2.position))
   const error = state.favoriteCourses.error ||
     courseState.tabs.error
 
@@ -41,5 +49,6 @@ export default function mapStateToProps (state: AppState, { courseID }: RoutingP
     tabs,
     pending,
     error,
+    attendanceTabID,
   }
 }

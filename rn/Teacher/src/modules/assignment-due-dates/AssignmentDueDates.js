@@ -121,7 +121,6 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: global.tabBarHeight,
   },
   scrollContainer: {
     flex: 1,

@@ -24,9 +24,16 @@ export function screenID (path: string): string {
   return '(/api/v1)' + path
 }
 
-export function registerScreen (path: string, componentGenerator: () => any, store: Store, options: RouteConfig = { canBecomeMaster: false }): void {
-  const generator = wrapComponentInReduxProvider(path, wrapScreenWithContext(path, componentGenerator), store)
-  AppRegistry.registerComponent(path, generator)
+export function registerScreen (
+  path: string,
+  componentGenerator?: () => any,
+  store?: Store,
+  options: RouteConfig = { canBecomeMaster: false }
+): void {
+  if (componentGenerator && store) {
+    const generator = wrapComponentInReduxProvider(path, wrapScreenWithContext(path, componentGenerator), store)
+    AppRegistry.registerComponent(path, generator)
+  }
   const route = new Route(screenID(path))
   routes.set(route, options)
 }

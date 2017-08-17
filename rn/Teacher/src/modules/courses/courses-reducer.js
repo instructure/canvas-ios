@@ -14,6 +14,7 @@ import { enrollments } from '../enrollments/enrollments-refs-reducer'
 import { refs as quizzes } from '../quizzes/reducer'
 import { refs as discussions } from '../discussions/reducer'
 import { refs as announcements } from '../announcements/reducer'
+import attendanceTool from '../external-tools/attendance-tool-reducer'
 import find from 'lodash/find'
 import groups from '../groups/group-refs-reducer'
 
@@ -36,6 +37,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   discussions,
   announcements,
   groups,
+  attendanceTool,
 })
 
 const { refreshCourses, updateCourseColor } = CourseListActions
@@ -51,6 +53,7 @@ const emptyCourseState: CourseContentState = {
   discussions: { pending: 0, refs: [] },
   announcements: { pending: 0, refs: [] },
   groups: { pending: 0, refs: [] },
+  attendanceTool: { pending: 0 },
 }
 
 // Filters out courses that are not teachers or tas or designers

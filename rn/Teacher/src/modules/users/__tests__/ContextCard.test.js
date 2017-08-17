@@ -156,6 +156,7 @@ describe('mapStateToProps', () => {
         discussions: asyncState,
         assignmentGroups: asyncState,
         announcements: asyncState,
+        attendanceTool: { pending: 0 },
       },
     },
     users: {

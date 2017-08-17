@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import AttendanceLE
+import CanvasKeymaster
 
 public typealias ModuleName = String
 
@@ -24,6 +25,7 @@ open class HelmManager: NSObject {
     private var viewControllers = NSMapTable<NSString, HelmViewController>(keyOptions: .strongMemory, valueOptions: .weakMemory)
     private(set) var defaultScreenConfiguration: [ModuleName: [String: Any]] = [:]
     fileprivate(set) var masterModules = Set<ModuleName>()
+    private var nativeViewControllerFactories: [ModuleName: (factory: ([String: Any])->UIViewController?, customPresentation: ((_ current: UIViewController, _ new: UIViewController)->())?)] = [:]
     
     fileprivate var pushTransitioningDelegate = PushTransitioningDelegate()
 
@@ -43,6 +45,10 @@ open class HelmManager: NSObject {
     }
 
     //  MARK: - Screen Configuration
+    
+    open func registerNativeViewController(for moduleName: ModuleName, factory: @escaping ([String: Any]) -> UIViewController?, withCustomPresentation presentation: ((_ current: UIViewController, _ new: UIViewController)->())? = nil) {
+        nativeViewControllerFactories[moduleName] = (factory, presentation)
+    }
 
     func register<T: HelmViewController>(screen: T) where T: HelmScreen {
         viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
@@ -68,24 +74,41 @@ open class HelmManager: NSObject {
     
     public func pushFrom(_ sourceModule: ModuleName, destinationModule: ModuleName, withProps props: [String: Any], options: [String: Any]) {
         guard let topViewController = topMostViewController() else { return }
-
-        let viewController = HelmViewController(moduleName: destinationModule, props: props)
-        viewController.edgesForExtendedLayout = [.left, .right]
         
-        func push(helmViewController: HelmViewController, onto nav: UINavigationController) {
-            helmViewController.loadViewIfNeeded()
-            helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
-                nav?.pushViewController(helmViewController, animated: options["animated"] as? Bool ?? true)
+        let viewController: UIViewController
+        let pushOntoNav: (UINavigationController) -> Void
+        let replaceInNav: (UINavigationController) -> Void
+        
+        if let factory = nativeViewControllerFactories[destinationModule]?.factory {
+            guard let vc = factory(props) else { return }
+            viewController = vc
+            
+            pushOntoNav = { nav in
+                nav.pushViewController(viewController, animated: true)
+            }
+            replaceInNav = { nav in
+                nav.viewControllers = [viewController]
+            }
+        } else {
+            let helmViewController = HelmViewController(moduleName: destinationModule, props: props)
+            viewController = helmViewController
+            viewController.edgesForExtendedLayout = [.left, .right]
+            
+            pushOntoNav = { nav in
+                helmViewController.loadViewIfNeeded()
+                helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
+                    nav?.pushViewController(helmViewController, animated: options["animated"] as? Bool ?? true)
+                }
+            }
+            
+            replaceInNav = { nav in
+                helmViewController.loadViewIfNeeded()
+                helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
+                    nav?.setViewControllers([helmViewController], animated: false)
+                }
             }
         }
         
-        func replace(helmViewController: HelmViewController, in nav: UINavigationController) {
-            helmViewController.loadViewIfNeeded()
-            helmViewController.onReadyToPresent = { [weak nav, helmViewController] in
-                nav?.setViewControllers([helmViewController], animated: false)
-            }
-        }
-
         if let splitViewController = topViewController as? UISplitViewController {
             let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue ?? false
             if canBecomeMaster {
@@ -99,13 +122,13 @@ open class HelmManager: NSObject {
                 if (resetDetailNavStackIfClickedFromMaster && !canBecomeMaster && splitViewController.viewControllers.count > 1) {
                     viewController.navigationItem.leftBarButtonItem = splitViewController.prettyDisplayModeButtonItem
                     viewController.navigationItem.leftItemsSupplementBackButton = true
-                    replace(helmViewController: viewController, in: nav)
+                    replaceInNav(nav)
                 } else {
-                    push(helmViewController: viewController, onto: nav)
+                    pushOntoNav(nav)
                 }
             }
         } else if let navigationController = topViewController.navigationController {
-            push(helmViewController: viewController, onto: navigationController)
+            pushOntoNav(navigationController)
         } else {
             assertionFailure("\(#function) invalid controller: \(topViewController)")
             return
@@ -153,39 +176,31 @@ open class HelmManager: NSObject {
                 case "flip": viewController.modalTransitionStyle = .flipHorizontal
                 case "fade": viewController.modalTransitionStyle = .crossDissolve
                 case "curl": viewController.modalTransitionStyle = .partialCurl
-                case "push":
-                    viewController.transitioningDelegate = pushTransitioningDelegate
                 default: viewController.modalTransitionStyle = .coverVertical
                 }
             }
         }
         
-        var toPresent: UIViewController
-        var helmVC: HelmViewController
-        if let canBecomeMaster = (options["canBecomeMaster"] as? NSNumber)?.boolValue, canBecomeMaster {
-            let split = HelmSplitViewController()
-            let master = HelmViewController(moduleName: module, props: props)
-            helmVC = master
+        if let stuff = nativeViewControllerFactories[module] {
+            let factory = stuff.factory
+            guard let viewController = factory(props) else { return }
             
-            // TODO: making some possibly incorredct assumptions here that every time we want both master and detail in a nav controller. Works now, but may need to change
-            let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
-
-            split.viewControllers = [HelmNavigationController(rootViewController: master), emptyNav]
-            split.preferredDisplayMode = .allVisible
+            var toPresent: UIViewController = viewController
+            if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController, stuff.customPresentation == nil {
+                toPresent = UINavigationController(rootViewController: viewController)
+            }
             
-            if (options["modalPresentationStyle"] as? String) == "currentContext" {
-                let wrapper = HelmSplitViewControllerWrapper()
-                wrapper.addChildViewController(split)
-                wrapper.view.addSubview(split.view)
-                split.didMove(toParentViewController: wrapper)
-                configureModalProps(for: wrapper)
-                toPresent = wrapper
-                wrapper.modalPresentationCapturesStatusBarAppearance = true
+            configureModalProps(for: toPresent)
+            
+            if let customPresentation = stuff.customPresentation {
+                customPresentation(current, viewController)
             } else {
-                configureModalProps(for: split)
-                toPresent = split
+                current.present(viewController, animated: options["animated"] as? Bool ?? true, completion: nil)
             }
         } else {
+            var toPresent: UIViewController
+            var helmVC: HelmViewController
+            
             let vc = HelmViewController(moduleName: module, props: props)
             toPresent = vc
             helmVC = vc
@@ -194,11 +209,11 @@ open class HelmManager: NSObject {
             }
             
             configureModalProps(for: toPresent)
-        }
-
-        helmVC.loadViewIfNeeded()
-        helmVC.onReadyToPresent = { [weak current, toPresent] in
-            current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: nil)
+            
+            helmVC.loadViewIfNeeded()
+            helmVC.onReadyToPresent = { [weak current, toPresent] in
+                current?.present(toPresent, animated: options["animated"] as? Bool ?? true, completion: nil)
+            }
         }
     }
 

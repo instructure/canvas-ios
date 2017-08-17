@@ -41,12 +41,14 @@ test('renders correctly', () => {
 test('refresh function first test', () => {
   const refreshCourses = jest.fn()
   const refreshTabs = jest.fn()
+  const refreshLTITools = jest.fn()
   let refreshProps = {
     navigator: template.navigator(),
     courseID: course.id,
     tabs: [],
     refreshCourses,
     refreshTabs,
+    refreshLTITools,
   }
 
   let refreshed = renderer.create(
@@ -60,6 +62,7 @@ test('refresh function first test', () => {
 test('refresh function second test', () => {
   const refreshCourses = jest.fn()
   const refreshTabs = jest.fn()
+  const refreshLTITools = jest.fn()
   let refreshProps = {
     navigator: template.navigator(),
     courseID: course.id,
@@ -67,6 +70,7 @@ test('refresh function second test', () => {
     tabs: [],
     refreshCourses,
     refreshTabs,
+    refreshLTITools,
   }
 
   let refreshed = renderer.create(

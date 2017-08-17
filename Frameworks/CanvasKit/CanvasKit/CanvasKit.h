@@ -97,6 +97,7 @@ FOUNDATION_EXPORT const unsigned char CanvasKitVersionString[];
 #pragma mark - Networking
 
 #import <CanvasKit/CKIClient.h>
+#import <CanvasKit/CKIClient+CKIEnrollment.h>
 #import <CanvasKit/CKIClient+CKIAccountDomain.h>
 #import <CanvasKit/CKIClient+CKIActivityStreamItem.h>
 #import <CanvasKit/CKIClient+CKIAssignment.h>

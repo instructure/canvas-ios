@@ -14,6 +14,7 @@ type Props = {
   tab: Tab,
   courseColor: string,
   onPress: Function,
+  attendanceTabID: ?string,
 }
 
 export default class CourseDetails extends React.Component<any, Props, any> {
@@ -27,7 +28,7 @@ export default class CourseDetails extends React.Component<any, Props, any> {
     const tab = this.props.tab
     return (<Row
                 title={tab.label}
-                image={Images.course[tab.id]}
+                image={tab.id === this.props.attendanceTabID ? Images.course.attendance : Images.course[tab.id]}
                 imageTint={this.props.courseColor}
                 imageSize={{ height: 24, width: 24 }}
                 onPress={this.onPress}

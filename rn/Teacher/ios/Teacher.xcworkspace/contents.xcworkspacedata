@@ -8,6 +8,12 @@
       location = "container:"
       name = "Dependencies">
       <FileRef
+         location = "group:../../../Carthage/Checkouts/Marshal/Marshal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:../../../Frameworks/Attendance/Attendance.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:../../../Frameworks/SoAnnotated/SoAnnotated.xcodeproj">
       </FileRef>
       <FileRef

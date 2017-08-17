@@ -25,14 +25,15 @@ extension MasteryPathAssignment {
         let context = try session.soEdventurousManagedObjectContext()
         return try ManagedObjectObserver<MasteryPathAssignment>(predicate: predicate, inContext: context)
     }
+}
 
-    open class DetailViewController: SoPersistent.TableViewController {
-        fileprivate (set) open var observer: ManagedObjectObserver<MasteryPathAssignment>!
-
-        open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<MasteryPathAssignment>, detailsFactory: @escaping (MasteryPathAssignment)->[DVM]) where DVM: Equatable {
-            self.observer = observer
-            let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
-            dataSource = CollectionTableViewDataSource(collection: details)
-        }
+open class MasteryPathAssignmentDetailViewController: SoPersistent.TableViewController {
+    fileprivate (set) open var observer: ManagedObjectObserver<MasteryPathAssignment>!
+    
+    open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<MasteryPathAssignment>, detailsFactory: @escaping (MasteryPathAssignment)->[DVM]) where DVM: Equatable {
+        self.observer = observer
+        let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
+        dataSource = CollectionTableViewDataSource(collection: details)
     }
 }
+

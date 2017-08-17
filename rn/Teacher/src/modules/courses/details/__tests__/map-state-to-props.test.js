@@ -11,13 +11,15 @@ const template = {
 test('mapStateToProps returns the correct props', () => {
   const course = template.course({ id: 1 })
   const tabs = { tabs: [template.tab()], pending: 0 }
+  const attendanceTool = { pending: 0 }
   const state = template.appState({
     entities: {
       courses: {
         '1': {
-          course: course,
+          course,
           color: '#fff',
-          tabs: tabs,
+          tabs,
+          attendanceTool,
         },
       },
     },

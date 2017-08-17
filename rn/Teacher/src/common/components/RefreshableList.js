@@ -37,7 +37,6 @@ export class RefreshableScrollView extends ScrollView {
     return (
       <ScrollView
         {...this.props}
-        contentInset={{ bottom: global.tabBarHeight }}
         refreshControl={
           <RefreshControl
             refreshing={this.props.refreshing}

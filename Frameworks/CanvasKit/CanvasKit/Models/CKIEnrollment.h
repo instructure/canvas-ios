@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, CKIEnrollmentType) {
 @property (nonatomic, strong) NSString *currentGradingPeriodID;
 @property (nonatomic, strong) NSNumber *currentGradingPeriodScore;
 @property (nonatomic, strong) NSString *currentGradingPeriodGrade;
+@property (nonatomic, strong) NSNumber *limitPrivilegesToCourseSection;
 @property (nonatomic) BOOL multipleGradingPeriodsEnabled;
 @property (nonatomic, strong) NSString *sectionID;
 @property (nonatomic, readonly) BOOL isStudent;

@@ -96,7 +96,7 @@ private func ==(lhs: AssignmentPreviewViewModel, rhs: AssignmentPreviewViewModel
 }
 
 
-class MasteryPathAssignmentPreviewViewController: MasteryPathAssignment.DetailViewController {
+class MasteryPathAssignmentPreviewViewController: MasteryPathAssignmentDetailViewController {
 
     let session: Session
     let assignment: MasteryPathAssignment

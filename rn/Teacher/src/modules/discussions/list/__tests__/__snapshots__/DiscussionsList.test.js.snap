@@ -22,7 +22,6 @@ exports[`DiscussionsList renders 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
@@ -108,7 +107,6 @@ exports[`DiscussionsList renders discussions 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
@@ -1363,7 +1361,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
@@ -2450,7 +2447,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
@@ -3709,7 +3705,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
