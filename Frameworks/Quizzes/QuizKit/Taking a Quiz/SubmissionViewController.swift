@@ -1077,6 +1077,8 @@ extension SubmissionViewController {
 
                     if question.question.kind == .Numerical {
                         cell.textField.keyboardType = .numbersAndPunctuation
+                    } else {
+                        cell.textField.keyboardType = .default
                     }
                 }
             case .FileUpload:
