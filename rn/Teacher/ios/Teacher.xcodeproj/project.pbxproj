@@ -1757,7 +1757,6 @@
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
 				B1C60D611F1D82E800F7902C /* Strip PSPDFKit */,
-				2C26CA501F41F41B000E15A2 /* Upload Source Map */,
 			);
 			buildRules = (
 			);
@@ -2328,20 +2327,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output ./ios/main.jsbundle --sourcemap-output ./ios/main.jsbundle.map --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
-		};
-		2C26CA501F41F41B000E15A2 /* Upload Source Map */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Source Map";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${SHOULD_UPLOAD_JS_SOURCE_MAPS}\" = \"YES\" ]\nthen\nversion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\necho \"Uploading source maps for version ${version}\"\nnode ../node_modules/bugsnag-sourcemaps/cli.js upload --api-key 671fc47c3812aa323469568f33244e2c --app-version ${version} --minified-file main.jsbundle --source-map main.jsbundle.map --minified-url main.jsbundle --upload-sources\nfi";
 		};
 		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
