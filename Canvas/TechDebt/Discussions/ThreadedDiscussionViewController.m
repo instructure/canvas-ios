@@ -1040,7 +1040,7 @@ CKDiscussionEntry *asEntry(id entryOrTopic) {
             if(!self.topic.allowRating && (indexPath.row > 0 || self.showGoBackRow)) {
                 num = @([num floatValue] - 40.0);
             }
-            return [num floatValue];
+            return [num floatValue] > 0 ? [num floatValue] : 0;
         }
         else {
             return tableView.rowHeight;
