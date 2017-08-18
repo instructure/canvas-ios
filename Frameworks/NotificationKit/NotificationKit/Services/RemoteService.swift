@@ -51,16 +51,16 @@ open class RemoteService {
     }
     
     open func updateNotificationPreferencesSetup(_ completion: @escaping (Result<Bool, NSError>) -> ()) {
-        requestForGetNotificationPreferencesSetup()
+        requestForUpdateNotificationPreferencesSetup()
             .flatMap(.concat, transform: session.emptyResponseSignalProducer)
-            .on(value: { completion(Result(value: true)) })
+            .on(completed: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
     fileprivate func requestForUpdateNotificationPreferencesSetup() -> SignalProducer<URLRequest, NSError> {
         let path = pathForKeyValueStore()
         let parameters: [String : Any] = [RemoteService.namespaceKey: RemoteService.namespaceValue, RemoteService.customDataKey: "true"]
-        return attemptProducer { try session.POST(path, parameters: parameters) }
+        return attemptProducer { try session.PUT(path, parameters: parameters) }
     }
     
     // DON'T CHANGE THESE! THE FATE OF THE WORLD DEPENDS ON IT!
@@ -80,7 +80,7 @@ open class RemoteService {
     open func registerPushNotificationTokenWithPushService(_ pushToken: String, completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForPushNotificationRegistration(pushToken)
             .flatMap(.concat, transform: session.emptyResponseSignalProducer)
-            .on(starting: { completion(Result(value: true)) })
+            .on(completed: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     
@@ -132,7 +132,7 @@ open class RemoteService {
     open func setNotificationPreferences(_ channelID: String, preferences: [NotificationPreference], completion: @escaping (Result<Bool, NSError>) -> ()) {
         requestForSetNotificationPreferences(channelID, preferences: preferences)
             .flatMap(.merge, transform: session.emptyResponseSignalProducer)
-            .on(value: { completion(Result(value: true)) })
+            .on(completed: { completion(Result(value: true)) })
             .startWithFailed { err in completion(Result(error: err)) }
     }
     

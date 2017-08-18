@@ -168,7 +168,10 @@ open class NotificationKitController {
 
     // MARK: Pre-authorization for Push Notifications
     open static func registerForPushNotificationsIfAppropriate(_ controller: UIViewController) {
-        if PushPreAuthStatus.currentPushPreAuthStatus() == .neverShown && !UIApplication.shared.isRegisteredForRemoteNotifications {
+        if UIApplication.shared.isRegisteredForRemoteNotifications {
+            return
+        }
+        if PushPreAuthStatus.currentPushPreAuthStatus() == .neverShown {
             showPreauthorizationAlert(controller)
         } else if PushPreAuthStatus.currentPushPreAuthStatus() != .shownAndDeclined {
             registerForRemoteNotifications()
