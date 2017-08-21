@@ -21,12 +21,3 @@ target 'TechDebt' do
     pod 'Google/Analytics'
 end
 
-target 'SpeedGrader' do
-    project 'SpeedGrader/SpeedGrader.xcodeproj'
-
-    use_frameworks!
-    inhibit_all_warnings!
-
-    pod 'Google/Analytics'
-end
-
