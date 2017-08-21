@@ -80,13 +80,16 @@ class SubmissionController {
                     case .noDueDate:
                         break
                     }
-                    
-                    // auto submit when approaching the lock date
+
+                    // the server automatically completes quiz submissions when the lock date is reached
+                    // let's just tell the user their time is almost up
                     if let lockDate = self?.quiz.lockAt {
-                        let autoSubmitDate = (lockDate as Date) - 30.secondsComponents // 10 seconds was to little - maybe do something else? This will depend on the user's connection
-                        delay(autoSubmitDate.timeIntervalSinceNow) { [weak self] in
-                            if self?.submission?.dateFinished == nil { // if it's now 30 seconds prior to the lock date and they haven't submitted yet
-                                self?.lockQuiz()
+                        let warnDate = (lockDate as Date) - 1.minutesComponents // 1 minute to give them ample time to read the warning and make a decision
+                        if warnDate >= Date() { // moderated quizzes may have already passed the lock date, in which case no warning is needed
+                            delay(warnDate.timeIntervalSinceNow) { [weak self] in
+                                if self?.submission?.dateFinished == nil { // if it's now 1 minute prior to the due date and they haven't submitted yet
+                                    self?.almostDue()
+                                }
                             }
                         }
                     }

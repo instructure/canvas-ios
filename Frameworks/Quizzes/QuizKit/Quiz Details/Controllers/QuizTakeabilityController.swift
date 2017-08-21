@@ -53,7 +53,7 @@ class QuizTakeabilityController {
     }
     
     fileprivate func updateTakeability(_ submissions: [Submission]) {
-        if quiz.lockAt != nil && Date() >= quiz.lockAt! as Date {
+        if quiz.lockedForUser {
             takeability = .notTakeable(reason: .locked)
             return
         }
