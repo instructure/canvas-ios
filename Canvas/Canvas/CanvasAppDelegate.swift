@@ -139,7 +139,6 @@ extension AppDelegate {
     func didLogin(_ session: Session) {
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
-        self.setupCrashlyitcsDebugInformation()
         ConversationUpdater.shared().updateUnreadConversationCount()
         CKCanvasAPI.updateCurrentAPI() // set's currenAPI from CKIClient.currentClient()
         
@@ -220,17 +219,6 @@ extension AppDelegate {
         }
         
         Fabric.with([Crashlytics.self])
-    }
-    
-    func setupCrashlyitcsDebugInformation() {
-        let client = CKIClient.current()
-        let baseURLString = client?.baseURL?.absoluteString
-        guard Secrets.featureEnabled(.protectedUserInformation, domain: baseURLString) == true else { return }
-        guard let user = client?.currentUser else { return }
-        
-        Crashlytics.sharedInstance().setObjectValue(client?.actAsUserID, forKey: "MASQUERADE_AS_USER_ID")
-        Crashlytics.sharedInstance().setObjectValue(baseURLString, forKey: "DOMAIN")
-        Crashlytics.sharedInstance().setUserIdentifier(user.id)
     }
 }
 

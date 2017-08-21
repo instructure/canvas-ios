@@ -126,8 +126,6 @@
 		492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */; };
 		492705A61CF4B73200C631C6 /* CKIClient+CBIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */; };
-		492705AA1CF4B73200C631C6 /* Crashlytics+CrashContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705661CF4B73200C631C6 /* Crashlytics+CrashContext.h */; };
-		492705AB1CF4B73200C631C6 /* Crashlytics+CrashContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705671CF4B73200C631C6 /* Crashlytics+CrashContext.m */; };
 		492705AC1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */; };
 		492705AD1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705691CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m */; };
 		492705B21CF4B73200C631C6 /* NSURL+RemoveFragment.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */; };
@@ -1128,8 +1126,6 @@
 		4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIUser+SwiftCompatibility.m"; sourceTree = "<group>"; };
 		492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKIClient+CBIClient.h"; sourceTree = "<group>"; };
 		492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKIClient+CBIClient.m"; sourceTree = "<group>"; };
-		492705661CF4B73200C631C6 /* Crashlytics+CrashContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crashlytics+CrashContext.h"; sourceTree = "<group>"; };
-		492705671CF4B73200C631C6 /* Crashlytics+CrashContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crashlytics+CrashContext.m"; sourceTree = "<group>"; };
 		492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKNumberBadgeView+CanvasStyle.h"; sourceTree = "<group>"; };
 		492705691CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKNumberBadgeView+CanvasStyle.m"; sourceTree = "<group>"; };
 		492705701CF4B73200C631C6 /* NSURL+RemoveFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+RemoveFragment.h"; sourceTree = "<group>"; };
@@ -2485,7 +2481,6 @@
 				4927055C1CF4B73200C631C6 /* CanvasKit */,
 				492705611CF4B73200C631C6 /* CKIClient+CBIClient.h */,
 				492705621CF4B73200C631C6 /* CKIClient+CBIClient.m */,
-				492705631CF4B73200C631C6 /* Crashlytics */,
 				492705681CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.h */,
 				492705691CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m */,
 				4927056A1CF4B73200C631C6 /* MLVC */,
@@ -2537,15 +2532,6 @@
 				4927055E1CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m */,
 			);
 			path = CanvasKit;
-			sourceTree = "<group>";
-		};
-		492705631CF4B73200C631C6 /* Crashlytics */ = {
-			isa = PBXGroup;
-			children = (
-				492705661CF4B73200C631C6 /* Crashlytics+CrashContext.h */,
-				492705671CF4B73200C631C6 /* Crashlytics+CrashContext.m */,
-			);
-			path = Crashlytics;
 			sourceTree = "<group>";
 		};
 		4927056A1CF4B73200C631C6 /* MLVC */ = {
@@ -3989,7 +3975,6 @@
 				49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */,
 				492705D21CF4B73300C631C6 /* UIView+FloatingView.h in Headers */,
 				492704BF1CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.h in Headers */,
-				492705AA1CF4B73200C631C6 /* Crashlytics+CrashContext.h in Headers */,
 				492706401CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.h in Headers */,
 				49AA2D251CF4DC540055862D /* AboutViewController.h in Headers */,
 				4927084C1CF4BC3200C631C6 /* CBIURLParser.h in Headers */,
@@ -4784,7 +4769,6 @@
 				492707C41CF4BBBA00C631C6 /* PagedItemsViewController.m in Sources */,
 				492707381CF4BACB00C631C6 /* AttachmentsTableViewController.m in Sources */,
 				4927072A1CF4BACB00C631C6 /* CBIMessagesListViewController.m in Sources */,
-				492705AB1CF4B73200C631C6 /* Crashlytics+CrashContext.m in Sources */,
 				49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */,
 				492706561CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m in Sources */,
 				4927052D1CF4B70600C631C6 /* CBISubmissionCell.m in Sources */,
