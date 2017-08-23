@@ -173,15 +173,17 @@ extension AppDelegate {
     func alertUser(of error: NSError, from presentingViewController: UIViewController?) {
         guard let presentFrom = presentingViewController else { return }
         
-        let alertDetails = error.alertDetails(reportAction: {
-            let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
-            support?.reportedError = error
-        })
-        
-        if let deets = alertDetails {
-            let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
-            deets.actions.forEach(alert.addAction)
-            presentFrom.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alertDetails = error.alertDetails(reportAction: {
+                let support = SupportTicketViewController.present(from: presentingViewController, supportTicketType: SupportTicketTypeProblem)
+                support?.reportedError = error
+            })
+            
+            if let deets = alertDetails {
+                let alert = UIAlertController(title: deets.title, message: deets.description, preferredStyle: .alert)
+                deets.actions.forEach(alert.addAction)
+                presentFrom.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
