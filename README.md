@@ -4,7 +4,6 @@
 - Canvas
 - Parent
 - Teacher
-- Speedgrader
 - Polling
 - Magic Marker
 

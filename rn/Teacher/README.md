@@ -1,4 +1,4 @@
-#Teacher App
+# Teacher App
 
 ### Getting started
 
