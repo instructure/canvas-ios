@@ -371,3 +371,4 @@ private let unicodeEscapeMap: [(String, Character)] = [
 
 
 private let completeMap = asciiEscapeMap + unicodeEscapeMap
+

@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="JlY-0B-Rw7">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="JlY-0B-Rw7">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment version="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,18 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="e7h-SX-osL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wxE-RB-zQJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJA-dj-s4s">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="delegate" destination="ULg-fp-dht" id="4y3-7t-Sv7"/>
-                                </connections>
-                            </webView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-tI-Q6S">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nEt-tI-Q6S">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem image="icon_arrow_left" style="plain" id="YZG-X5-GLB">
                                         <connections>
@@ -46,15 +43,10 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="RJA-dj-s4s" firstAttribute="bottom" secondItem="nEt-tI-Q6S" secondAttribute="bottom" id="3lL-ek-XuH"/>
                             <constraint firstItem="nEt-tI-Q6S" firstAttribute="trailing" secondItem="wxE-RB-zQJ" secondAttribute="trailing" id="9he-dG-yYu"/>
-                            <constraint firstItem="e7h-SX-osL" firstAttribute="top" secondItem="RJA-dj-s4s" secondAttribute="bottom" id="9sK-hZ-crn"/>
                             <constraint firstItem="nEt-tI-Q6S" firstAttribute="leading" secondItem="wxE-RB-zQJ" secondAttribute="leading" id="EZw-CE-dgr"/>
-                            <constraint firstItem="RJA-dj-s4s" firstAttribute="leading" secondItem="wxE-RB-zQJ" secondAttribute="leading" id="Lwc-fn-naQ"/>
-                            <constraint firstItem="RJA-dj-s4s" firstAttribute="top" secondItem="opq-y2-RZG" secondAttribute="bottom" id="tEr-iI-Wf4"/>
-                            <constraint firstItem="RJA-dj-s4s" firstAttribute="trailing" secondItem="wxE-RB-zQJ" secondAttribute="trailing" id="zFW-il-nC5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g72-Wn-2g3"/>
@@ -64,8 +56,6 @@
                         <outlet property="forwardButton" destination="bcj-4i-aPU" id="SUh-Bg-Iwg"/>
                         <outlet property="refreshButton" destination="5Mh-rf-mUO" id="GR9-aQ-hRG"/>
                         <outlet property="toolbar" destination="nEt-tI-Q6S" id="f7a-iK-NOj"/>
-                        <outlet property="webView" destination="RJA-dj-s4s" id="pCn-0C-fwv"/>
-                        <outlet property="webViewBottomInsetContstant" destination="9sK-hZ-crn" id="XuB-Bc-Uik"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2cF-te-ypm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -96,4 +86,9 @@
         <image name="icon_arrow_right" width="34" height="34"/>
         <image name="icon_reload" width="34" height="34"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

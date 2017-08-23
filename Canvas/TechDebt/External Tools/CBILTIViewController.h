@@ -25,7 +25,6 @@
 @property (nonatomic) CBIExternalToolViewModel *viewModel;
 
 
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomInsetConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *webViewBottomInsetContstant;
 

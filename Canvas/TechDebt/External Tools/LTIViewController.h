@@ -17,9 +17,11 @@
     
 
 #import <UIKit/UIKit.h>
+@import WebKit;
 
 @class CKIExternalTool;
 @interface LTIViewController : UIViewController
 @property (nonatomic) CKIExternalTool *externalTool;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) WKWebView *webView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @end
