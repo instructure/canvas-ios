@@ -268,7 +268,7 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
 
   defaultValueForInput (key: string): string {
     const value = this.state.assignment[key]
-    if (!value && key !== 'points_possible') { return '' }
+    if (value == null || !value.toString) return ''
     return value.toString()
   }
 

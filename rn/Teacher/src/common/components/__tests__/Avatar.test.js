@@ -26,6 +26,15 @@ test('Avatar renders without image', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('Avatar renders without image but it has a funky name', () => {
+  let tree = renderer(
+    <Avatar
+      userName="   "
+    />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('Avatar renders without default canvas avatar', () => {
   let tree = renderer(
     <Avatar

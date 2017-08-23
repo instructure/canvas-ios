@@ -94,7 +94,7 @@ export default class Avatar extends Component<any, Props, any> {
           .split(' ')
           .map((word) => word[0])
           .filter((c) => c)
-          .reduce((m, c) => m + c)
+          .reduce((m, c) => m + c, '')
           .substring(0, 3)
           .toUpperCase()
         : ''

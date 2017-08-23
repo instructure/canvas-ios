@@ -248,6 +248,7 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
 }
 
 function extractAttempts (submission: SubmissionWithHistory, assignment: Assignment): Array<CommentRowData> {
+  if (!submission.submission_history) return []
   return submission.submission_history
     .map(attempt => rowForSubmission(submission.user, attempt, assignment))
 }

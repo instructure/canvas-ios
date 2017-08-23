@@ -168,3 +168,47 @@ exports[`Avatar renders without image 1`] = `
   </Text>
 </View>
 `;
+
+exports[`Avatar renders without image but it has a funky name 1`] = `
+<View
+  accessibilityLabel=""
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "white",
+        "borderColor": "#C7CDD1",
+        "borderWidth": 0.5,
+        "justifyContent": "center",
+        "overflow": "hidden",
+      },
+      Object {
+        "borderRadius": 20,
+        "height": 40,
+        "width": 40,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={false}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "color": "#73818C",
+          "fontWeight": "600",
+        },
+        Object {
+          "fontSize": 18,
+        },
+      ]
+    }
+  >
+    
+  </Text>
+</View>
+`;
