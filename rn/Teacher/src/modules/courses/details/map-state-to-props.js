@@ -38,7 +38,7 @@ export default function mapStateToProps (state: AppState, { courseID }: RoutingP
 
   const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people']
   const tabs = courseState.tabs.tabs
-    .filter((tab) => availableCourseTabs.includes(tab.id) || (attendanceTabID && tab.id === attendanceTabID))
+    .filter((tab) => availableCourseTabs.includes(tab.id) || (attendanceTabID && tab.id === attendanceTabID && global.v12))
     .sort((t1, t2) => (t1.position - t2.position))
   const error = state.favoriteCourses.error ||
     courseState.tabs.error

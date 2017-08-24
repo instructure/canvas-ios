@@ -25,6 +25,8 @@ const configuration = new Configuration()
 configuration.notifyReleaseStages = ['testflight', 'production']
 global.crashReporter = new Client(configuration)
 
+global.v12 = false
+
 const PushNotifications = NativeModules.PushNotifications
 
 // Useful for demos when you don't want that annoying yellow box showing up all over the place
