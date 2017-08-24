@@ -133,7 +133,7 @@ export class ContextCard extends Component {
       let recipients = [user]
       const contextName = course.name
       const contextCode = `course_${course.id}`
-      this.props.navigator.show('/conversations/compose', { modal: true }, { contextName, contextCode, recipients })
+      this.props.navigator.show('/conversations/compose', { modal: true }, { contextName, contextCode, recipients, canSelectCourse: false })
     }
   }
 }
