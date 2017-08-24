@@ -147,7 +147,7 @@ describe('SpeedGraderHeader', () => {
     avatar.props.onPress()
     expect(subProps.navigator.show).toHaveBeenCalledWith(
       `/courses/3/users/4`,
-      { modal: true, modalPresentationStyle: 'currentContext' },
+      { modal: true },
     )
   })
 

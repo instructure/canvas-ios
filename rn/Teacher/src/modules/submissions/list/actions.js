@@ -13,7 +13,9 @@ export let Actions: (typeof canvas) => any = (api) => ({
     promise: api.getSubmissions(courseID, assignmentID, grouped),
     assignmentID,
   })),
-
+  getUserSubmissions: createAction('submissions.user', (courseID: string, userID: string) => ({
+    promise: api.getSubmissionsForUsers(courseID, [userID]),
+  })),
 })
 
 export default (Actions(canvas): any)

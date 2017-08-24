@@ -57,7 +57,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
   navigateToContextCard = (userID: string) => {
     this.props.navigator.show(
       `/courses/${this.props.courseID}/users/${userID}`,
-      { modal: true, modalPresentationStyle: 'currentContext' },
+      { modal: true },
     )
   }
 

@@ -3808,7 +3808,7 @@ micromatch@^2.1.5, micromatch@^2.3.11:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
-"mime-db@>= 1.29.0 < 2", mime-db@~1.29.0:
+"mime-db@>= 1.29.0 < 2":
   version "1.29.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.29.0.tgz#48d26d235589651704ac5916ca06001914266878"
 
@@ -3816,13 +3816,17 @@ mime-db@~1.23.0:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.23.0.tgz#a31b4070adaea27d732ea333740a64d0ec9a6659"
 
-mime-types@2.1.11:
+mime-db@~1.27.0:
+  version "1.27.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
+
+mime-types@2.1.11, mime-types@~2.1.7:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.11.tgz#c259c471bda808a85d6cd193b430a5fae4473b3c"
   dependencies:
     mime-db "~1.23.0"
 
-mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.6, mime-types@~2.1.7, mime-types@~2.1.9:
+mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.15, mime-types@~2.1.6, mime-types@~2.1.9:
   version "2.1.15"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.15.tgz#a4ebf5064094569237b8cf70046776d09fc92aed"
   dependencies:
@@ -4450,6 +4454,12 @@ react-native-kill-packager@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-kill-packager/-/react-native-kill-packager-1.0.0.tgz#8d5dc706429805800298acabca45598d0d39b391"
 
+react-native-linear-gradient@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.2.0.tgz#7d9ff9fc3e413079cf3c7354873eaf923145364d"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-mail@^3.0.3:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-native-mail/-/react-native-mail-3.0.4.tgz#764c5db699c36351fea455f02a746c5082f0301a"
@@ -4472,7 +4482,7 @@ react-native-search-bar@3.0.0:
   version "0.2.4"
   resolved "https://github.com/n8armstrong/react-native-sfsafariviewcontroller#0dc0abe798ce7f4d3ef0b140932052b6fe63df41"
 
-react-native-test-utils@^1.0.5:
+react-native-test-utils@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/react-native-test-utils/-/react-native-test-utils-1.0.6.tgz#b719dd081f39f823e15fc86d221bf038b9805c4a"
   dependencies:

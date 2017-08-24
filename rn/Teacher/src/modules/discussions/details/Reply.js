@@ -66,7 +66,7 @@ export default class Reply extends Component <any, Props, any> {
     let user = this._userFromParticipants(this.props.reply, this.props.participants)
     this.props.navigator.show(
       `/courses/${this.props.courseID}/users/${user.id}`,
-      { modal: true, modalPresentationStyle: 'currentContext' }
+      { modal: true }
     )
   }
 

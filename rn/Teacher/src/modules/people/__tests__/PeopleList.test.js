@@ -101,7 +101,7 @@ describe('People List', () => {
     typeahead.props.onRequestFinished([item], null)
     const row: any = explore(screen.toJSON()).selectByID('1')
     row.props.onPress()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/users/1', undefined, undefined)
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/users/1', undefined, { modal: false })
   })
 
   it('calls next on end reached', () => {

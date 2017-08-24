@@ -72,12 +72,12 @@ function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDat
   return { userID: id, avatarURL, name, status, grade, submissionID, submission, score }
 }
 
-export function dueDate (state: ?AssignmentDetailState, user: ?User): ?string {
-  if (!state || !state.data) {
+export function dueDate (assignment: Assignment, user: ?User): ?string {
+  if (!assignment) {
     return null
   }
 
-  const overrides = state.data.overrides
+  const overrides = assignment.overrides
   if (overrides) {
     const override = find(overrides, (override) => {
       if (!override.student_ids) return false
@@ -88,7 +88,7 @@ export function dueDate (state: ?AssignmentDetailState, user: ?User): ?string {
       return override.due_at
     }
   }
-  return state.data.due_at
+  return assignment.due_at
 }
 
 function uniqueEnrollments (enrollments: Array<Enrollment>): Array<Enrollment> {
@@ -135,7 +135,7 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
       const user = enrollment.user
-      const due = dueDate(assignmentContent, user)
+      const due = dueDate(assignmentContent.data, user)
       return submissionProps(user, submission, due)
     })
 

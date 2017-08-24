@@ -118,7 +118,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     if (this.props.discussion) {
       this.props.navigator.show(
         `/courses/${this.props.courseID}/users/${this.props.discussion.author.id}`,
-        { modal: true, modalPresentationStyle: 'currentContext' },
+        { modal: true },
       )
     }
   }

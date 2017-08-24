@@ -33,4 +33,11 @@ describe('SubmissionStatus', () => {
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
+
+  it('status `excused` renders properly', () => {
+    let tree = renderer.create(
+      <SubmissionStatus status='excused' />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

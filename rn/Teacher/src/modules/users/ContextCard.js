@@ -13,16 +13,22 @@ import Screen from '../../routing/Screen'
 import UserActions from './actions'
 import CourseActions from '../courses/actions'
 import EnrollmentActions from '../enrollments/actions'
+import SubmissionActions from '../submissions/list/actions'
+import AssignmentActions from '../assignments/actions'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
 import Avatar from '../../common/components/Avatar'
 import colors from '../../common/colors'
 import i18n from 'format-message'
 import Images from '../../images'
+import type { SubmissionStatusProp } from '../submissions/list/submission-prop-types'
+import { statusProp, dueDate } from '../submissions/list/get-submissions-props'
+import UserSubmissionRow from './UserSubmissionRow'
 
 type ContextCardOwnProps = {
   courseID: string,
   userID: string,
   navigator: Navigator,
+  modal: boolean,
 }
 
 type ContextCardActionProps = {
@@ -35,8 +41,12 @@ type ContextCardDataProps = {
   user: ?User,
   course: ?Course,
   enrollment: ?Enrollment,
+  assignments: Assignment[],
   courseColor: string,
   pending: boolean,
+  numLate: number,
+  numMissing: number,
+  totalPoints: number,
 }
 
 type ContextCardProps = ContextCardOwnProps & ContextCardDataProps & ContextCardActionProps & {
@@ -44,8 +54,15 @@ type ContextCardProps = ContextCardOwnProps & ContextCardDataProps & ContextCard
   refresh: Function,
 }
 
-export class ContextCard extends Component {
-  props: ContextCardProps
+export class ContextCard extends Component<any, ContextCardProps, any> {
+  componentDidMount () {
+    this.props.getUserSubmissions(this.props.courseID, this.props.userID)
+  }
+
+  refresh = () => {
+    this.props.getUserSubmissions(this.props.courseID, this.props.userID)
+    this.props.refresh()
+  }
 
   donePressed = () => {
     this.props.navigator.dismiss()
@@ -53,6 +70,7 @@ export class ContextCard extends Component {
 
   renderHeader () {
     let sectionName = this.props.enrollment ? this.props.course.sections.find(({ id }) => id === this.props.enrollment.course_section_id).name : ''
+    let grade = this.props.enrollment.grades.current_grade
     return (
       <View style={styles.header}>
         <View style={styles.headerSection}>
@@ -69,7 +87,7 @@ export class ContextCard extends Component {
           </View>
           <View>
             <Heading1>{this.props.course.name}</Heading1>
-            <Text testID='context-card.section-name' style={{ fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text>
+            <Text testID='context-card.section-name' style={{ marginVertical: 4, fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text>
             <SubTitle testID='context-card.last-activity'>
               {this.props.enrollment && i18n(`Last activity on {lastActivity, date, 'MMMM d'} at {lastActivity, time, short}`, {
                 lastActivity: new Date(this.props.enrollment.last_activity_at),
@@ -77,17 +95,47 @@ export class ContextCard extends Component {
             </SubTitle>
           </View>
         </View>
+        <View style={styles.headerSection}>
+          <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
+          <View style={styles.line}>
+            <Text testID='context-card.grade' style={styles.largeText}>{grade || this.props.enrollment.grades.current_score || 0}</Text>
+            <Text style={styles.largeText}>{this.props.numLate}</Text>
+            <Text style={styles.largeText}>{this.props.numMissing}</Text>
+          </View>
+          {!grade &&
+            <View style={styles.line}>
+              <Text style={styles.outOf}>{i18n('out of {total, number}', { total: this.props.totalPoints })}</Text>
+            </View>
+          }
+          <View style={styles.line}>
+            <Text style={styles.label}>{i18n('Grade')}</Text>
+            <Text style={styles.label}>{i18n('Late')}</Text>
+            <Text style={styles.label}>{i18n('Missing')}</Text>
+          </View>
+        </View>
       </View>
     )
   }
 
+  renderItem = ({ item: assignment }: { item: Assignment }) => {
+    let submission = this.props.submissions.find(submission => assignment.id === submission.assignment_id)
+    return (
+      <UserSubmissionRow
+        tintColor='#00BCD5'
+        assignment={assignment}
+        submission={submission}
+        user={this.props.user}
+      />
+    )
+  }
+
   render () {
-    const { course, user } = this.props
-    if ((this.props.pending && !this.props.refreshing) || !user) {
+    const { course, user, enrollment, submissions, assignments } = this.props
+    if ((this.props.pending && !this.props.refreshing) || !user || !enrollment || submissions.length === 0 || assignments.length === 0) {
       return <ActivityIndicatorView />
     }
 
-    let leftBarButtons = []
+    let leftBarButtons = null
     if (this.props.modal) {
       leftBarButtons = [{
         testID: 'context-card.done-btn',
@@ -118,10 +166,10 @@ export class ContextCard extends Component {
       >
         <FlatList
           ListHeaderComponent={this.renderHeader()}
-          onRefresh={this.props.refresh}
+          onRefresh={this.refresh}
           refreshing={this.props.refreshing}
-          data={[]}
-          renderItem={() => {}}
+          data={this.props.assignments}
+          renderItem={this.renderItem}
         />
       </Screen>
     )
@@ -138,9 +186,13 @@ export class ContextCard extends Component {
   }
 }
 
+ContextCard.defaultProps = {
+  modal: true,
+}
+
 const styles = StyleSheet.create({
   header: {
-    paddingVertical: 8,
+    paddingTop: 8,
   },
   headerSection: {
     padding: 16,
@@ -160,16 +212,41 @@ const styles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 34,
   },
+  line: {
+    flexDirection: 'row',
+  },
+  largeText: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: colors.darkText,
+    flex: 1,
+  },
+  largeTextTitle: {
+    fontWeight: '500',
+  },
+  textWrapper: {
+    flex: 1,
+  },
+  label: {
+    flex: 1,
+  },
+  outOf: {
+    fontSize: 12,
+    color: colors.lightText,
+    top: -3,
+    fontWeight: '600',
+  },
 })
 
 export function shouldRefresh (props: ContextCardProps): boolean {
-  return !props.user || !props.course || !props.enrollment
+  return !props.user || !props.course || !props.enrollment || !props.totalPoints
 }
 
 export function fetchData (props: ContextCardProps): void {
   props.refreshUsers([props.userID])
   props.refreshCourses()
   props.refreshEnrollments(props.courseID)
+  props.refreshAssignmentList(props.courseID)
 }
 
 export function isRefreshing (props: ContextCardProps): boolean {
@@ -194,14 +271,87 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
     enrollments = {}
   }
 
+  let submissions = Object.keys(state.entities.submissions)
+    .map(submissionID => state.entities.submissions[submissionID].submission)
+    .filter(submission => submission.user_id === ownProps.userID)
+    .filter(submission => {
+      let assignmentID = submission.assignment_id
+      return state.entities.assignments[assignmentID].data.course_id === ownProps.courseID
+    })
+
+  let assignments = Object.keys(state.entities.assignments)
+    .map(assignmentID => state.entities.assignments[assignmentID].data)
+    .filter(assignment => assignment.course_id === ownProps.courseID)
+    .sort((a, b) => {
+      let submissionA = submissions.find(submission => submission.assignment_id === a.id)
+      let submissionB = submissions.find(submission => submission.assignment_id === b.id)
+
+      if (!submissionA) return 1
+      if (!submissionB) return -1
+      let aSubmit = new Date(submissionA.submitted_at)
+      let bSubmit = new Date(submissionB.submitted_at)
+      if (aSubmit < bSubmit) return 1
+      else return -1
+    })
+
   return {
     user: user.data,
     pending: user.pending || enrollments.pending || false,
     courseColor: color,
     course,
     enrollment,
+    submissions,
+    assignments,
+    totalPoints: calculateTotalPoints(state, ownProps),
+    numLate: calculateStatus(state, ownProps, 'late'),
+    numMissing: calculateStatus(state, ownProps, 'missing'),
   }
 }
 
-const Connected = connect(mapStateToProps, { ...UserActions, ...CourseActions, ...EnrollmentActions })(Refreshed)
+const Connected = connect(mapStateToProps, {
+  ...UserActions,
+  ...CourseActions,
+  ...EnrollmentActions,
+  ...AssignmentActions,
+  ...SubmissionActions,
+})(Refreshed)
 export default (Connected: any)
+
+export function calculateTotalPoints (state: AppState, ownProps: ContextCardOwnProps): number {
+  let assignments = state.entities.assignments
+
+  return Object.keys(assignments)
+    .map(assignmentID => state.entities.assignments[assignmentID].data)
+    .filter(assignment => assignment.course_id === ownProps.courseID)
+    .filter(assignment => {
+      return assignment.overrides.length === 0 || assignment.overrides.find(override => override.student_ids && override.student_ids.includes(ownProps.userID))
+    })
+    .map(assignment => assignment.points_possible)
+    .reduce((sum, points) => {
+      sum += points
+      return sum
+    }, 0)
+}
+
+export function calculateStatus (state: AppState, ownProps: ContextCardOwnProps, status: SubmissionStatusProp): number {
+  let courseAssignments = Object.keys(state.entities.assignments)
+    .map(assignmentID => state.entities.assignments[assignmentID].data)
+    .filter(assignment => assignment.course_id === ownProps.courseID)
+
+  let userSubmissions = Object.keys(state.entities.submissions)
+    .map(submissionID => state.entities.submissions[submissionID].submission)
+    .filter(submission => submission.user_id === ownProps.userID)
+    .filter(submission => {
+      let assignmentID = submission.assignment_id
+      return state.entities.assignments[assignmentID].data.course_id === ownProps.courseID
+    })
+
+  return courseAssignments
+    .map(assignment => {
+      let submission = userSubmissions.find(submission => submission.assignment_id === assignment.id)
+      let due = dueDate(assignment, submission && submission.user)
+      return statusProp(submission, due)
+    })
+    .filter(submissionStatus => submissionStatus === status)
+    .length
+}

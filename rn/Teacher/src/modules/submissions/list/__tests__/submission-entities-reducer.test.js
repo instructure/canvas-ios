@@ -4,7 +4,7 @@ import { submissions } from '../submission-entities-reducer'
 import Actions from '../actions'
 import SpeedGraderActions from '../../../speedgrader/actions'
 
-const { refreshSubmissions } = Actions
+const { refreshSubmissions, getUserSubmissions } = Actions
 const { excuseAssignment, gradeSubmission,
   selectSubmissionFromHistory, gradeSubmissionWithRubric, selectFile } = SpeedGraderActions
 const templates = {
@@ -19,6 +19,33 @@ test('it captures entities', () => {
 
   const action = {
     type: refreshSubmissions.toString(),
+    payload: { result: { data } },
+  }
+
+  expect(submissions({}, action)).toEqual({
+    '1': {
+      submission: data[0],
+      pending: 0,
+      error: null,
+      selectedAttachmentIndex: 0,
+    },
+    '2': {
+      submission: data[1],
+      pending: 0,
+      error: null,
+      selectedAttachmentIndex: 0,
+    },
+  })
+})
+
+test('it captures entities from getUserSubmissions', () => {
+  let data = [
+    { id: '1' },
+    { id: '2' },
+  ].map(override => templates.submissionHistory([override]))
+
+  const action = {
+    type: getUserSubmissions.toString(),
     payload: { result: { data } },
   }
 

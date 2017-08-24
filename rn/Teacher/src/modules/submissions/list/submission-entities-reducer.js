@@ -6,7 +6,7 @@ import { handleActions } from 'redux-actions'
 import handleAsync from '../../../utils/handleAsync'
 import SpeedGraderActions from '../../speedgrader/actions'
 
-const { refreshSubmissions } = Actions
+const { refreshSubmissions, getUserSubmissions } = Actions
 const { excuseAssignment, selectSubmissionFromHistory,
   gradeSubmission, gradeSubmissionWithRubric, selectFile } = SpeedGraderActions
 
@@ -171,6 +171,21 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
           rubricGradePending: false,
         },
       }
+    },
+  }),
+  [getUserSubmissions.toString()]: handleAsync({
+    resolved: (state, { result }) => {
+      const incoming = result.data
+      .reduce((incoming, submission) => ({
+        ...incoming,
+        [submission.id]: {
+          submission,
+          pending: 0,
+          error: null,
+          selectedAttachmentIndex: 0,
+        },
+      }), {})
+      return { ...state, ...incoming }
     },
   }),
 }, {})

@@ -63,7 +63,7 @@ describe('DiscussionReplies', () => {
     avatar.props.onPress()
     expect(props.navigator.show).toHaveBeenCalledWith(
       `/courses/1/users/1`,
-      { modal: true, modalPresentationStyle: 'currentContext' },
+      { modal: true },
     )
   })
 

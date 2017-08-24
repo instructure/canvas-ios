@@ -373,6 +373,7 @@ exports[`SubmissionList loaded 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#8B969E",
                         },
@@ -596,6 +597,7 @@ exports[`SubmissionList loaded 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#8B969E",
                         },
@@ -851,6 +853,7 @@ exports[`SubmissionList loaded 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#FC5E13",
                         },
@@ -1118,6 +1121,7 @@ exports[`SubmissionList loaded 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#07AF1F",
                         },
@@ -1544,6 +1548,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#07AF1F",
                         },

@@ -30,7 +30,7 @@ export class Header extends Component {
   navigateToContextCard = () => {
     this.props.navigator.show(
       `/courses/${this.props.courseID}/users/${this.props.userID}`,
-      { modal: true, modalPresentationStyle: 'currentContext' }
+      { modal: true }
     )
   }
 

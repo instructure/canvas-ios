@@ -56,6 +56,7 @@ export type Submission = {
   media_comment?: MediaComment,
   discussion_entries?: SubmissionDiscussionEntry[],
   turnitin_data?: { [string]: TurnItInData },
+  grade_matches_current_submission: boolean,
 }
 
 export type SubmissionHistory = {

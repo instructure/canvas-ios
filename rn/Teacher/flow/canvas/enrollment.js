@@ -20,4 +20,5 @@ export type Enrollment = {
   course_id: string,
   last_activity_at: string,
   course_section_id: string,
+  computed_current_grade: string,
 }

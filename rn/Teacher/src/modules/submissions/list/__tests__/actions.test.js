@@ -65,3 +65,31 @@ test('should refresh submission summary', async () => {
     },
   ])
 })
+
+test('it should refresh user submissions', async () => {
+  let submissions = [
+    template.submissionHistory([{ id: '1' }], []),
+    template.submissionHistory([{ id: '2' }], []),
+
+  ]
+  let actions = Actions({
+    getSubmissionsForUsers: apiResponse(submissions),
+  })
+
+  let result = await testAsyncAction(actions.getUserSubmissions('1', '2'))
+
+  expect(result).toMatchObject([
+    {
+      type: actions.getUserSubmissions.toString(),
+      pending: true,
+    },
+    {
+      type: actions.getUserSubmissions.toString(),
+      payload: {
+        result: {
+          data: submissions,
+        },
+      },
+    },
+  ])
+})

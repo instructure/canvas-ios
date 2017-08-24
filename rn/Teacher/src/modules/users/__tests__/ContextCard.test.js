@@ -9,12 +9,14 @@ import {
   mapStateToProps,
 } from '../ContextCard'
 
-import renderer from 'react-native-test-utils'
+import renderer from 'react-test-renderer'
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/course'),
   ...require('../../../api/canvas-api/__templates__/enrollments'),
   ...require('../../../api/canvas-api/__templates__/users'),
+  ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../api/canvas-api/__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
 }
 const defaultProps = {
@@ -22,48 +24,41 @@ const defaultProps = {
   userID: '1',
   user: templates.user({ id: '1' }),
   course: templates.courseWithSection({ id: '1' }),
-  enrollment: templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32' }),
+  enrollment: templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32', grades: { current_grade: 'A', current_score: 50 } }),
+  assignments: [templates.assignment({ id: '1', possible_points: 100 })],
+  submissions: [templates.submissionHistory([{ id: '1', assignment_id: '1', grade: 50 }])],
   courseColor: '#fff',
   pending: false,
   refreshUsers: jest.fn(),
   refreshCourses: jest.fn(),
   refreshEnrollments: jest.fn(),
+  refreshAssignmentList: jest.fn(),
   navigator: { dismiss: jest.fn() },
   refresh: jest.fn(),
   refreshing: false,
+  getUserSubmissions: jest.fn(),
+  numLate: 10,
+  numMissing: 20,
+  totalPoints: 100,
+  modal: false,
 }
 
 beforeEach(() => jest.resetAllMocks())
 
 describe('ContextCard', () => {
+  it('renders', () => {
+    let view = renderer.create(
+      <ContextCard {...defaultProps} />
+    )
+    expect(view.toJSON()).toMatchSnapshot()
+  })
+
   it('shows the activity indicator when pending', () => {
-    let view = renderer(
+    let view = renderer.create(
       <ContextCard {...defaultProps} pending={true} />
     )
 
-    expect(view.query('ActivityIndicator')).not.toBeUndefined()
-  })
-
-  it('uses the right info in the navbar', () => {
-    let view = renderer(
-      <ContextCard {...defaultProps} />
-    )
-    let navbar = view.query('Screen')
-    expect(navbar.props.title).toEqual(defaultProps.user.name)
-    expect(navbar.props.subtitle).toEqual(defaultProps.course.name)
-    expect(navbar.props.navBarColor).toEqual(defaultProps.courseColor)
-  })
-
-  it('shows the proper section name', () => {
-    let view = renderer(
-      <ContextCard {...defaultProps} />
-    )
-
-    let text = view.query('#context-card.section-name').text()
-    let section = defaultProps.course.sections && defaultProps.course.sections[0]
-    if (section) {
-      expect(text).toContain(section.name)
-    }
+    expect(view.toJSON()).toMatchSnapshot()
   })
 
   it('formats the last_activity_at properly', () => {
@@ -72,14 +67,35 @@ describe('ContextCard', () => {
       course_id: '1',
       user_id: '1',
       course_section_id: '32',
-      last_activity_at: (new Date(0)).toISOString(),
+      last_activity_at: '2017-04-05T15:12:45Z',
+      grades: {
+        current_grade: '100',
+      },
     })
-    let view = renderer(
+    let view = renderer.create(
       <ContextCard {...defaultProps} enrollment={enrollment} />
     )
 
-    let lastActivity = view.query('#context-card.last-activity')
-    expect(lastActivity.text()).toContain('December 31 at 5:00 PM')
+    expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('shows points values when there is no grade', () => {
+    let enrollment = templates.enrollment({
+      id: '1',
+      course_id: '1',
+      user_id: '1',
+      course_section_id: '32',
+      last_activity_at: '2017-04-05T15:12:45Z',
+      grades: {
+        current_score: 100,
+      },
+    })
+
+    let view = renderer.create(
+      <ContextCard {...defaultProps} enrollment={enrollment} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
   })
 })
 
@@ -105,6 +121,13 @@ describe('refresh', () => {
     }
     expect(shouldRefresh(props)).toEqual(true)
   })
+  it('should refresh if the totalPoints are not there', () => {
+    let props = {
+      ...defaultProps,
+      totalPoints: undefined,
+    }
+    expect(shouldRefresh(props)).toEqual(true)
+  })
   it('should not refresh if the user and course is there', () => {
     expect(shouldRefresh(defaultProps)).toEqual(false)
   })
@@ -113,7 +136,8 @@ describe('refresh', () => {
     fetchData(defaultProps)
     expect(defaultProps.refreshUsers).toHaveBeenCalledWith(['1'])
     expect(defaultProps.refreshCourses).toHaveBeenCalled()
-    expect(defaultProps.refreshEnrollments).toHaveBeenCalled()
+    expect(defaultProps.refreshEnrollments).toHaveBeenCalledWith('1')
+    expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith('1')
   })
 
   it('isRefreshing when pending', () => {
@@ -132,6 +156,25 @@ describe('mapStateToProps', () => {
   let user = templates.user({ id: '1' })
   let course = templates.courseWithSection({ id: '1' })
   let enrollment = templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '1' })
+  let assignment = templates.assignment({ id: '1', course_id: '1' })
+  let assignmentContentState = {
+    anonymousGradingOn: false,
+    pending: 0,
+    pendingComments: {},
+    submissions: {
+      pending: 0,
+      refs: [],
+    },
+    submissionSummary: {
+      data: { graded: 0, ungraded: 0, not_submitted: 0 },
+      pending: 0,
+      error: null,
+    },
+    gradeableStudents: {
+      pending: 0,
+      refs: [],
+    },
+  }
   let asyncState = {
     pending: 0,
     error: null,
@@ -168,12 +211,19 @@ describe('mapStateToProps', () => {
     enrollments: {
       '1': enrollment,
     },
+    assignments: {
+      '1': {
+        data: assignment,
+        ...assignmentContentState,
+      },
+    },
   }
 
   const ownProps = {
     userID: '1',
     courseID: '1',
     navigator: { dismiss: jest.fn() },
+    modal: false,
   }
   it('returns the user if it is there', () => {
     let props = mapStateToProps(state, ownProps)
@@ -209,6 +259,72 @@ describe('mapStateToProps', () => {
   it('returns when there is no enrollment', () => {
     let props = mapStateToProps(templates.appState(), ownProps)
     expect(props.enrollment).toBeUndefined()
+  })
+
+  it('returns the course assignments', () => {
+    let props = mapStateToProps(state, ownProps)
+    expect(props.assignments[0]).toEqual(assignment)
+  })
+
+  it('returns when there are no assignments', () => {
+    let props = mapStateToProps(templates.appState(), ownProps)
+    expect(props.assignments.length).toEqual(0)
+  })
+
+  it('calculates total points', () => {
+    let appState = {
+      ...state,
+      entities: {
+        ...state.entities,
+        assignments: {
+          '1': { data: templates.assignment({ id: '1', course_id: '1', points_possible: 10 }), ...assignmentContentState },
+          '2': { data: templates.assignment({ id: '2', course_id: '1', points_possible: 10, overrides: [{ student_ids: ['1'] }] }), ...assignmentContentState },
+          '3': { data: templates.assignment({ id: '3', course_id: '1', points_possible: 10, overrides: [{ student_ids: ['2'] }] }), ...assignmentContentState },
+        },
+      },
+    }
+    let props = mapStateToProps(appState, ownProps)
+    expect(props.totalPoints).toEqual(20)
+  })
+
+  it('calculates numLate', () => {
+    let appState = {
+      ...state,
+      entities: {
+        ...state.entities,
+        submissions: {
+          '1': {
+            submission: templates.submission({ id: '1', assignment_id: '1', user_id: '1', late: true }),
+            selectedIndex: 0,
+            selectedAttachmentIndex: 0,
+            pending: 0,
+            rubricGradePending: false,
+          },
+        },
+      },
+    }
+
+    let props = mapStateToProps(appState, ownProps)
+    expect(props.numLate).toEqual(1)
+  })
+
+  it('calculates numMissing', () => {
+    let appState = {
+      ...state,
+      entities: {
+        ...state.entities,
+        assignments: {
+          '1': {
+            data: templates.assignment({ id: '1', course_id: '1', due_at: '1990-06-01T05:59:00Z' }),
+            ...assignmentContentState,
+          },
+        },
+        submissions: {},
+      },
+    }
+
+    let props = mapStateToProps(appState, ownProps)
+    expect(props.numMissing).toEqual(1)
   })
 
   it('returns pending based off of user pending and enrollment pending', () => {

@@ -24,7 +24,7 @@ const { refreshAssignmentList,
         anonymousGrading } = Actions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
-const { refreshSubmissionSummary } = SubmissionActions
+const { refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
 
 const assignment = assignment => assignment || {}
 const pending = pending => pending || 0
@@ -229,7 +229,28 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
   },
 }, defaultState)
 
-export function assignments (state: AssignmentsState = {}, action: any): AssignmentDetailState {
+const submissionsData: Reducer<AssignmentsState, any> = handleActions({
+  [getUserSubmissions.toString()]: (state, action) => {
+    if (action.pending || action.error) return state
+
+    let newState = { ...state }
+    let result = action.payload.result.data
+    result.forEach(submission => {
+      let assignmentID = submission.assignment_id
+      newState[assignmentID] = assignmentContent(newState[assignmentID], action)
+      newState[assignmentID] = {
+        ...newState[assignmentID],
+        submissions: {
+          ...newState[assignmentID].submissions,
+          refs: [...new Set([...newState[assignmentID].submissions.refs, submission.id])],
+        },
+      }
+    })
+    return newState
+  },
+}, defaultState)
+
+export function assignments (state: AssignmentsState = {}, action: any): AssignmentsState {
   let newState = state
   if (action.payload && action.payload.assignmentID) {
     const assignmentID = action.payload.assignmentID
@@ -240,5 +261,7 @@ export function assignments (state: AssignmentsState = {}, action: any): Assignm
       [assignmentID]: assignmentState,
     }
   }
+  newState = submissionsData(newState, action)
+
   return assignmentsData(newState, action)
 }

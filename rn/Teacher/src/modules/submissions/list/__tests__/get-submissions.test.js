@@ -163,13 +163,7 @@ test('due date with normal due date', () => {
     due_at: 'normal',
   })
 
-  const assignmentState: AssignmentDetailState = {
-    data: assignment,
-    pending: 0,
-    anonymousGradingOn: false,
-  }
-
-  expect(dueDate(assignmentState)).toEqual('normal')
+  expect(dueDate(assignment)).toEqual('normal')
 })
 
 test('due date with overrides', () => {
@@ -181,13 +175,7 @@ test('due date with overrides', () => {
     }],
   })
 
-  const assignmentState: AssignmentDetailState = {
-    data: assignment,
-    pending: 0,
-    anonymousGradingOn: false,
-  }
-
-  expect(dueDate(assignmentState, user)).toEqual('override')
+  expect(dueDate(assignment, user)).toEqual('override')
 })
 
 test('due date with edge 1', () => {
@@ -199,13 +187,7 @@ test('due date with edge 1', () => {
     due_at: 'normal',
   })
 
-  const assignmentState: AssignmentDetailState = {
-    data: assignment,
-    pending: 0,
-    anonymousGradingOn: false,
-  }
-
-  expect(dueDate(assignmentState, user)).toEqual('normal')
+  expect(dueDate(assignment, user)).toEqual('normal')
 })
 
 test('due date with edge 2', () => {
@@ -217,11 +199,5 @@ test('due date with edge 2', () => {
     due_at: 'normal',
   })
 
-  const assignmentState: AssignmentDetailState = {
-    data: assignment,
-    pending: 0,
-    anonymousGradingOn: false,
-  }
-
-  expect(dueDate(assignmentState)).toEqual('normal')
+  expect(dueDate(assignment)).toEqual('normal')
 })

@@ -17,8 +17,14 @@
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
     "message": "Add a few of your favorite courses to make this place your home."
   },
+  "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
+    "message": "Add an attachment by tapping the plus at the top right."
+  },
   "add_assignee_24ee0b71": {
     "message": "Add Assignee"
+  },
+  "add_attachment_dcdb8bf8": {
+    "message": "Add attachment"
   },
   "add_comment_3205529f": {
     "message": "Add Comment"
@@ -58,6 +64,9 @@
   },
   "all_in_e5ddaee0": {
     "message": "All in"
+  },
+  "all_people_16d90b41": {
+    "message": "All People"
   },
   "all_submissions_3eedfb97": {
     "message": "All submissions"
@@ -101,6 +110,9 @@
   "archived_de543437": {
     "message": "Archived"
   },
+  "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
+    "message": "Are you sure you want to delete this announcement?"
+  },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
     "message": "Are you sure you want to delete this discussion?"
   },
@@ -133,6 +145,9 @@
   },
   "attachment_deffe5a9": {
     "message": "Attachment"
+  },
+  "attachments_694cf227": {
+    "message": "Attachments"
   },
   "attempt_number_75028cfa": {
     "message": "Attempt { number }"
@@ -200,6 +215,9 @@
   "choose_color_11148181": {
     "message": "Choose { color }"
   },
+  "choose_from_library_1b9caf95": {
+    "message": "Choose From Library"
+  },
   "clear_filter_5b3a182d": {
     "message": "Clear filter"
   },
@@ -247,6 +265,9 @@
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
     "message": "Could not get list of assignments"
+  },
+  "could_not_start_recording_8f31c2e4": {
+    "message": "Could not start recording"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
     "message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
@@ -314,6 +335,9 @@
   "description_436c48d7": {
     "message": "Description"
   },
+  "designer_c458392": {
+    "message": "Designer"
+  },
   "details_98a31b68": {
     "message": "Details"
   },
@@ -377,6 +401,9 @@
   "edit_quiz_details_72cd055": {
     "message": "Edit Quiz Details"
   },
+  "email_contact_e095f380": {
+    "message": "Email Contact"
+  },
   "enter_code_c7ab5104": {
     "message": "Enter code"
   },
@@ -424,6 +451,9 @@
   },
   "filter_inbox_dae0ff8f": {
     "message": "Filter Inbox"
+  },
+  "filter_people_b34b567b": {
+    "message": "Filter People"
   },
   "filter_submissions_81bc50de": {
     "message": "Filter Submissions"
@@ -566,6 +596,9 @@
   "me_bf110f4d": {
     "message": "me"
   },
+  "media_attachment_e412aab8": {
+    "message": "Media Attachment"
+  },
   "media_recording_77cddc52": {
     "message": "Media Recording"
   },
@@ -622,6 +655,9 @@
   },
   "nickname_1e6da3ad": {
     "message": "Nickname"
+  },
+  "no_attachments_e875f6d5": {
+    "message": "No Attachments"
   },
   "no_available_from_date_set_6f659d06": {
     "message": "No available from date set."
@@ -683,6 +719,9 @@
   "number_plural_one_minute_other_minutes_648ec0e1": {
     "message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
   },
+  "observer_248a192e": {
+    "message": "Observer"
+  },
   "off_5385ef3f": {
     "message": "Off"
   },
@@ -740,11 +779,17 @@
   "out_of_score_c17b26bb": {
     "message": "Out of { score }"
   },
+  "out_of_total_number_188f9a69": {
+    "message": "out of { total, number }"
+  },
   "pages_front_page_9ce5188": {
     "message": "Pages Front Page"
   },
   "pass_8abee039": {
     "message": "Pass"
+  },
+  "people_b4ebb13c": {
+    "message": "People"
   },
   "percent_d7ddd35b": {
     "message": "Percent (%)"
@@ -763,6 +808,9 @@
   },
   "points_number_out_of_totalpoints_number_291efb47": {
     "message": "{ points, number } out of { totalPoints, number }"
+  },
+  "points_possible_b18e4e80": {
+    "message": "{ points }/{ possible }"
   },
   "points_possible_must_be_a_number_4a592dc6": {
     "message": "Points possible must be a number"
@@ -814,6 +862,12 @@
   },
   "recipient_recipient_394cf528": {
     "message": "Recipient: { recipient }"
+  },
+  "record_audio_14666880": {
+    "message": "Record Audio"
+  },
+  "recording_failed_2e1861b": {
+    "message": "Recording failed"
   },
   "redo_363c58b7": {
     "message": "Redo"
@@ -956,14 +1010,23 @@
   "syllabus_f191f65b": {
     "message": "Syllabus"
   },
+  "ta_8d966626": {
+    "message": "TA"
+  },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
     "message": "Tap and hold a rubric number to see its description"
   },
   "tap_the_to_create_a_new_conversation_80f77725": {
     "message": "Tap the \"+\" to create a new conversation"
   },
+  "tap_to_record_9d84c163": {
+    "message": "Tap to record"
+  },
   "tap_to_view_submissions_list_5bfe32f3": {
     "message": "Tap to view submissions list."
+  },
+  "teacher_5a73b637": {
+    "message": "Teacher"
   },
   "terms_of_use_6542769b": {
     "message": "Terms of Use"
@@ -1097,11 +1160,20 @@
   "until_date_f3b9f367": {
     "message": "Until { date }"
   },
+  "upload_error_38012123": {
+    "message": "Upload error"
+  },
+  "upload_file_fd2361b8": {
+    "message": "Upload File"
+  },
   "url_preview_image_a263a21e": {
     "message": "URL Preview Image"
   },
   "url_submission_f76327e3": {
     "message": "URL Submission"
+  },
+  "use_camera_47a0387b": {
+    "message": "Use Camera"
   },
   "users_must_post_before_seeing_replies_d1761968": {
     "message": "Users must post before seeing replies"

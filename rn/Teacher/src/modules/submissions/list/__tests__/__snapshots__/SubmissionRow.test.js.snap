@@ -108,6 +108,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
                   "fontSize": 14,
                   "paddingTop": 2,
                 },
+                undefined,
                 Object {
                   "color": "#8B969E",
                 },
@@ -253,6 +254,7 @@ exports[`excused row renders correctly 1`] = `
                   "fontSize": 14,
                   "paddingTop": 2,
                 },
+                undefined,
                 Object {
                   "color": "#EE0612",
                 },
@@ -430,6 +432,7 @@ exports[`late graded row renders correctly 1`] = `
                   "fontSize": 14,
                   "paddingTop": 2,
                 },
+                undefined,
                 Object {
                   "color": "#FC5E13",
                 },
@@ -607,6 +610,7 @@ exports[`missing ungraded row renders correctly 1`] = `
                   "fontSize": 14,
                   "paddingTop": 2,
                 },
+                undefined,
                 Object {
                   "color": "#EE0612",
                 },
@@ -752,6 +756,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
                   "fontSize": 14,
                   "paddingTop": 2,
                 },
+                undefined,
                 Object {
                   "color": "#07AF1F",
                 },
@@ -941,6 +946,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
                   "fontSize": 14,
                   "paddingTop": 2,
                 },
+                undefined,
                 Object {
                   "color": "#8B969E",
                 },

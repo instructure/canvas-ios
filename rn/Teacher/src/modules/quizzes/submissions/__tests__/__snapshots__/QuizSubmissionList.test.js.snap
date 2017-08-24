@@ -326,6 +326,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#07AF1F",
                         },
@@ -730,6 +731,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#07AF1F",
                         },
@@ -1110,6 +1112,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
                           "fontSize": 14,
                           "paddingTop": 2,
                         },
+                        undefined,
                         Object {
                           "color": "#07AF1F",
                         },

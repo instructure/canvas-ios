@@ -8,7 +8,7 @@ import SubmissionActions from '../../submissions/list/actions'
 import { default as QuizDetailsActions } from '../../quizzes/details/actions'
 import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
 
-const { refreshSubmissions, refreshSubmissionSummary } = SubmissionActions
+const { refreshSubmissions, refreshSubmissionSummary, getUserSubmissions } = SubmissionActions
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
 const template = {
@@ -339,4 +339,43 @@ test('refreshSubmissionSummary pending', async () => {
       submissionSummary: { data: { graded: 0, ungraded: 0, not_submitted: 0 }, pending: 1, error: null },
     },
   })
+})
+
+test('getUserSubmissions adds a submission ref to the assignment', () => {
+  let assignmentOne = template.assignment({ id: '1' })
+  let submissionOne = template.submission({ id: '1', assignment_id: '1' })
+  let assignmentTwo = template.assignment({ id: '2' })
+  let submissionTwo = template.submission({ id: '2', assignment_id: '2' })
+
+  let action = {
+    type: getUserSubmissions.toString(),
+    payload: { result: { data: [submissionOne, submissionTwo] } },
+  }
+
+  let initialState = {
+    '1': {
+      data: assignmentOne,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+      error: null,
+    },
+    '2': {
+      data: assignmentTwo,
+      pending: 0,
+      submissions: { refs: [], pending: 0 },
+      submissionSummary: { data: {}, pending: 0, error: null },
+      gradeableStudents: { refs: [], pending: 0 },
+      pendingComments: {},
+      anonymousGradingOn: false,
+      error: null,
+    },
+  }
+
+  let newState = assignments(initialState, action)
+  expect(newState['1'].submissions.refs[0]).toEqual('1')
+  expect(newState['2'].submissions.refs[0]).toEqual('2')
 })

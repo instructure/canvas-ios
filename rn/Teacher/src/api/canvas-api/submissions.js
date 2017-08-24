@@ -57,3 +57,21 @@ export function refreshSubmissionSummary (courseID: string, assignmentID: string
   return httpClient().get(`/courses/${courseID}/assignments/${assignmentID}/submission_summary`)
 }
 
+export function getSubmissionsForUsers (courseID: string, userIDs: string[]): Promise<ApiResponse<Submission[]>> {
+  const submissions = paginate(`/courses/${courseID}/students/submissions`, {
+    params: {
+      student_ids: userIDs,
+      include: [
+        'submission_history',
+        'submission_comments',
+        'rubric_assessment',
+        'total_scores',
+        'user',
+        'group',
+      ],
+    },
+  })
+
+  return exhaust(submissions)
+}
+

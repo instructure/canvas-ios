@@ -11,6 +11,7 @@ import { Text } from '../../../common/text'
 
 type SubmissionStatusProps = {
   status: SubmissionStatusProp,
+  style: any,
 }
 
 export default class SubmissionStatus extends Component<any, SubmissionStatusProps, any> {
@@ -32,9 +33,12 @@ export default class SubmissionStatus extends Component<any, SubmissionStatusPro
         color = '#07AF1F'
         title = i18n('Submitted')
         break
+      case 'excused':
+        title = i18n('Excused')
+        break
     }
 
-    return <Text style={[styles.statusText, { color }]}>{title}</Text>
+    return <Text style={[styles.statusText, this.props.style, { color }]}>{title}</Text>
   }
 }
 

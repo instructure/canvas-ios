@@ -158,7 +158,11 @@ export class PeopleList extends Component<any, Props, any> {
       this.showItem(item)
       return
     }
-    this.props.navigator.show(`/courses/${this.props.course.id}/users/${item.id}`, undefined, undefined)
+    this.props.navigator.show(
+      `/courses/${this.props.course.id}/users/${item.id}`,
+      undefined,
+      { modal: false }
+    )
   }
 
   _mapCourseMembership = (item) => {
