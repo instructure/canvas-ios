@@ -146,6 +146,20 @@
         return YES;
     }
     
+    NSArray<NSString *> *components = request.URL.pathComponents;
+    if (components.lastObject != nil && request.URL.fragment != nil && components.count > 0) {
+        NSString *selfReferencingFragment = [NSString stringWithFormat:@"%@#%@", TheKeymaster.currentClient.baseURL.absoluteString, request.URL.fragment];
+        NSString *jsScrollToAnchor = [NSString stringWithFormat:@"window.location.href=\'#%@\';", request.URL.fragment];
+        
+        if ([request.URL.absoluteString isEqualToString:selfReferencingFragment]) {
+            [webView stringByEvaluatingJavaScriptFromString:jsScrollToAnchor];
+            return NO;
+        }
+    } else if (request.URL.fragment != nil && request.URL.pathComponents.count == 0 && [request.URL.scheme isEqualToString: @"applewebdata"]) {
+        [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.href=\'#%@\';", request.URL.fragment]];
+        return NO;
+    }
+    
     [[Router sharedRouter] routeFromController:self.parentViewController toURL:request.URL];
 
     return NO;
