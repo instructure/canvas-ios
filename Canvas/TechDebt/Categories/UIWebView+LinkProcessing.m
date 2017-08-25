@@ -28,10 +28,14 @@
     if ([htmlString rangeOfString:@"www.google.com/calendar/embed"].location == NSNotFound) {
         NSString *jsReplaceLinkCode =
         @"var body = document.body;"
+        @"var replacer = function(match) {"
+        @"if (match.includes(\"inline_disabled\")) {"
+        @"return match;"
+        @"}"
+        @"return '<iframe webkit-playsinline playsinline width=\"356\" height=\"200\" src=\"https://www.youtube.com/embed/'+match+'?playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>'"
+        @"};"
         @"body.innerHTML = body.innerHTML.replace("
-        @"/(?:<a.+)?(?:https?:\\/\\/)?(?:www\\.)?(?:youtube\\.com|youtu\\.be)\\/(?:watch\\?v=)?([\\w\\-]{10,12})(?:&feature=related)?(?:[\\w\\-]{0})?(?:.+(<\\/a>))?/g, "
-        @"'<iframe webkit-playsinline width=\"356\" height=\"200\" src=\"https://www.youtube.com/embed/$1?playsinline=1\" frameborder=\"0\" allowfullscreen></iframe>'"
-        @");";
+        @"/(?:<a.+)?(?:https?:\\/\\/)?(?:www\\.)?(?:youtube\\.com|youtu\\.be)\\/(?:watch\\?v=)?([\\w\\-]{10,12})(?:&feature=related)?(?:[\\w\\-]{0})?(?:.+(<\\/a>))?/g, replacer);";
         
         [self stringByEvaluatingJavaScriptFromString:jsReplaceLinkCode];
     }

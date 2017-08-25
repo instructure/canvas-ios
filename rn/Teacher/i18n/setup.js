@@ -7,6 +7,10 @@ import moment from 'moment'
 require('moment/locale/de')
 
 export function sanitizeLocale (locale: string): string {
+  if (locale.indexOf('@') !== -1) {
+    const index = locale.indexOf('@')
+    locale = locale.substr(0, index)
+  }
   return locale.replace('_', '-')
 }
 
