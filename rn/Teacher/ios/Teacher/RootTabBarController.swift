@@ -77,7 +77,7 @@ class RootTabBarController: UITabBarController {
     
     func stagingTab() -> UIViewController {
         let stagingVC = HelmViewController(moduleName: "/staging", props: [:])
-        stagingVC.tabBarItem = UITabBarItem(title: "Staging", image: UIImage(named: "link-solid"), selectedImage: nil)
+        stagingVC.tabBarItem = UITabBarItem(title: "Staging", image: UIImage(named: "link"), selectedImage: nil)
         stagingVC.tabBarItem.accessibilityIdentifier = "tab-bar.staging-btn"
         return HelmNavigationController(rootViewController: stagingVC)
     }

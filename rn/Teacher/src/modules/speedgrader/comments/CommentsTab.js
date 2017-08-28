@@ -157,7 +157,7 @@ function contentForAttempt (attempt: Submission, assignment: Assignment): Array<
     case 'online_text_entry':
       return [{
         contentID: 'text',
-        icon: Images.document,
+        icon: Images.speedGrader.submissions.text,
         title: i18n('Text Submission'),
         subtitle: striptags(attempt.body || ''),
       }]
@@ -172,7 +172,7 @@ function contentForAttempt (attempt: Submission, assignment: Assignment): Array<
       const attachments = attempt.attachments || []
       return attachments.map(attachment => ({
         contentID: `attachment-${attachment.id}`,
-        icon: Images.document,
+        icon: Images.speedGrader.submissions.document,
         title: attachment.display_name,
         subtitle: filesize(attachment.size),
       }))

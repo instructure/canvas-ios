@@ -19,7 +19,6 @@ const images = {
     inbox: require('./tabbar/inbox.png'),
     profile: require('./tabbar/profile.png'),
     staging: require('./tabbar/link.png'),
-    stagingFilled: require('./tabbar/link-solid.png'),
   },
   assignments: {
     calendar: require('./assignments/Calendar.png'),
@@ -53,6 +52,7 @@ const images = {
     submissions: {
       lti: require('./speedgrader/submission-types/LTI.png'),
       text: require('./speedgrader/submission-types/document.png'),
+      document: require('./speedgrader/submission-types/document.png'),
       discussion: require('./speedgrader/submission-types/discussion.png'),
       quiz: require('./speedgrader/submission-types/quiz.png'),
       video: require('./speedgrader/submission-types/video.png'),
@@ -79,7 +79,6 @@ const images = {
   check: require('./check-white.png'),
   starFilled: require('./star-filled.png'),
   starLined: require('./star-lined.png'),
-  starLarge: require('./StarLarge.png'),
   add: require('./Add.png'),
   x: require('./x-icon.png'),
   clear: require('./Clear.png'),
