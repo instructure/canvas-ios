@@ -66,7 +66,6 @@ public final class Tab: NSManagedObject {
 
     public var shortcutIcon: UIImage {
         guard ShortcutTabIDs.contains(id) else { ❨╯°□°❩╯⌢"Not a valid shortcut!" }
-        let bundle = Bundle(for: Tab.self)
         // don't add new shortcuts without telling me
         assert(ShortcutTabIDs.count == 4)
         let shortcut: Icon

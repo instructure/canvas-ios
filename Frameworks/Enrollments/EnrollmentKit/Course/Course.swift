@@ -211,5 +211,23 @@ extension Course: SynchronizedModel {
             }
         }
         self.roles = roles
+        
+        if let tabs: [JSONObject] = (try json <| "tabs") {
+            let contextID = ContextID.course(withID: id)
+            let request = NSFetchRequest<Tab>(entityName: "Tab")
+            request.predicate = NSPredicate(format: "%K == %@", "rawContextID", contextID.canvasContextID)
+            var currentTabs = try context.fetch(request)
+            
+            for tabJSON in tabs {
+                let tabID: String = try tabJSON.stringID("id")
+                let tab = currentTabs.filter({ $0.id == tabID }).first ?? Tab(inContext: context)
+                try tab.updateValues(tabJSON, inContext: context)
+                if let index = currentTabs.index(of: tab) {
+                    currentTabs.remove(at: index)
+                }
+            }
+            
+            currentTabs.forEach { $0.delete(inContext: context) }
+        }
     }
 }

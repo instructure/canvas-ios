@@ -22,7 +22,7 @@ import Marshal
 
 extension Course {
     public static var getCoursesParameters: [String: Any] {
-        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores", "favorites"]]
+        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores", "favorites", "tabs"]]
     }
     
     public static var getCourseParameters: [String: Any] {

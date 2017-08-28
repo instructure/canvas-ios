@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CC7F10E1F546956009CDA09 /* refresh-all-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD501DDFAFE2000B5D22 /* refresh-all-courses.json */; };
+		2CC7F10F1F546A5A009CDA09 /* CoursesWithPendingEnrollments.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4A1DDFAFE2000B5D22 /* CoursesWithPendingEnrollments.json */; };
 		493F18C81DF8883D00A3F7DF /* SoEdventurous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493F18C71DF87FE400A3F7DF /* SoEdventurous.framework */; };
 		49BC090A1DEF812A007F6AE3 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC09091DEF811E007F6AE3 /* EnrollmentKit.framework */; };
 		49BC090B1DEF812A007F6AE3 /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49BC09081DEF8116007F6AE3 /* AssignmentKit.framework */; };
 		61106D371DDF7785006ED1A4 /* SuchActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61106D361DDF7785006ED1A4 /* SuchActivity.framework */; };
-		619A61321E4E7B0700EF4F30 /* refresh-all-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD501DDFAFE2000B5D22 /* refresh-all-courses.json */; };
 		61A2ACE31DE366CA003B8B9D /* RefreshUserActivities.json in Resources */ = {isa = PBXBuildFile; fileRef = 61A2ACE21DE366CA003B8B9D /* RefreshUserActivities.json */; };
 		61C866871D539B2A00100D00 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C866861D539B2A00100D00 /* Result.framework */; };
 		B110A23F1DDFB6960008CF37 /* ModuleItems.json in Resources */ = {isa = PBXBuildFile; fileRef = B110A23D1DDFB6960008CF37 /* ModuleItems.json */; };
@@ -63,7 +64,6 @@
 		B1C4DD8F1DDFAFE2000B5D22 /* CourseMarkAsFavoriteAddsFavorite.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD471DDFAFE2000B5D22 /* CourseMarkAsFavoriteAddsFavorite.json */; };
 		B1C4DD901DDFAFE2000B5D22 /* CourseMarkAsFavoriteRemovesFavorite.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD481DDFAFE2000B5D22 /* CourseMarkAsFavoriteRemovesFavorite.json */; };
 		B1C4DD911DDFAFE2000B5D22 /* CourseMarkAsFavoriteSendsErrors.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD491DDFAFE2000B5D22 /* CourseMarkAsFavoriteSendsErrors.json */; };
-		B1C4DD921DDFAFE2000B5D22 /* CoursesWithPendingEnrollments.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4A1DDFAFE2000B5D22 /* CoursesWithPendingEnrollments.json */; };
 		B1C4DD931DDFAFE2000B5D22 /* get-all-groups.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4B1DDFAFE2000B5D22 /* get-all-groups.json */; };
 		B1C4DD941DDFAFE2000B5D22 /* grades-list.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4C1DDFAFE2000B5D22 /* grades-list.json */; };
 		B1C4DD951DDFAFE2000B5D22 /* grading-period-courses.json in Resources */ = {isa = PBXBuildFile; fileRef = B1C4DD4D1DDFAFE2000B5D22 /* grading-period-courses.json */; };
@@ -702,12 +702,12 @@
 				B1C4DDB21DDFAFE2000B5D22 /* upload-text-submission.json in Resources */,
 				B1AC14261E04687D006ECAF3 /* upload-file.json in Resources */,
 				B1C4DDAC1DDFAFE2000B5D22 /* page.json in Resources */,
-				B1C4DD921DDFAFE2000B5D22 /* CoursesWithPendingEnrollments.json in Resources */,
 				B1C4DDA21DDFAFE2000B5D22 /* get-root-folder.json in Resources */,
 				B1C4DDA61DDFAFE2000B5D22 /* ModuleItemMarkDoneFailure.json in Resources */,
 				B1C4DD871DDFAFE2000B5D22 /* observee_calendar_events_list.json in Resources */,
 				B1C4DDAB1DDFAFE2000B5D22 /* front-page.json in Resources */,
 				B1C4DD811DDFAFE2000B5D22 /* get-assignment.json in Resources */,
+				2CC7F10F1F546A5A009CDA09 /* CoursesWithPendingEnrollments.json in Resources */,
 				B1C4DDA51DDFAFE2000B5D22 /* ModuleItemMarkDone.json in Resources */,
 				B1C4DD801DDFAFE2000B5D22 /* assignment.json in Resources */,
 				B1C4DDB91DDFAFE2000B5D22 /* get-paginated.json in Resources */,
@@ -739,7 +739,7 @@
 				B1C4DD7C1DDFAFE2000B5D22 /* assignment-grades-mgp.json in Resources */,
 				B1C4DD841DDFAFE2000B5D22 /* calendar_event_assignment.json in Resources */,
 				B1C4DD9D1DDFAFE2000B5D22 /* add-folder.json in Resources */,
-				619A61321E4E7B0700EF4F30 /* refresh-all-courses.json in Resources */,
+				2CC7F10E1F546956009CDA09 /* refresh-all-courses.json in Resources */,
 				B1C4DD861DDFAFE2000B5D22 /* calendar_events_list.json in Resources */,
 				B1C4DD831DDFAFE2000B5D22 /* calendar_event.json in Resources */,
 				B1C4DDAF1DDFAFE2000B5D22 /* people.json in Resources */,

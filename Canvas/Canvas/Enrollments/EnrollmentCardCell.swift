@@ -53,15 +53,6 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
     var disposable: CompositeDisposable?
     var toolbarButtons: [UIBarButtonItem]?
     
-    var refresher: Refresher? {
-        didSet {
-            refresher?.refreshingCompleted.observeValues { [weak self] error in
-                guard let e = error else { return }
-                self?.handleError(e)
-            }
-            refresher?.refresh(false)
-        }
-    }
     fileprivate var shortcutsDisposable: Disposable?
     var shortcutsCollection: FetchedCollection<Tab>? {
         didSet {
@@ -109,7 +100,6 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
         didSet {
             disposable?.dispose()
             disposable = CompositeDisposable()
-            refresher = nil
             shortcutsCollection = nil
             customize = {}
             showGrades = {}
@@ -138,7 +128,6 @@ class EnrollmentCardCell: EnrollmentCollectionViewCell {
                 
                 do {
                     if let contextID = vm.enrollment.value?.contextID, case .course = contextID.context {
-                        refresher = try Tab.refresher(vm.session, contextID: contextID)
                         shortcutsCollection = try Tab.shortcuts(vm.session, contextID: contextID)
                     }
                 } catch let e as NSError {

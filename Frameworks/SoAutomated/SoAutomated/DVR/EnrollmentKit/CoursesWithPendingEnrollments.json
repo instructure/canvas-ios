@@ -1,8 +1,35 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1479407965.242061,
       "response" : {
+        "status" : 200,
+        "headers" : {
+          "X-Request-Processor" : "0c652b317166d190f",
+          "X-Request-Context-Id" : "57b38b22-f2e8-4ee7-821c-bcd214f9abaa",
+          "X-XSS-Protection" : "1; mode=block",
+          "Vary" : "Accept-Encoding",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Session-Id" : "c2946aeb4b955bd36423f4c36f782b18",
+          "Status" : "200 OK",
+          "Set-Cookie" : "_csrf_token=v%2BT77UjrH7ENUciXbIrIjch2NOZhGqfFFKhlnSaUOCnLnZyDO7Fe8GBn%2F9Ad56XOnTcHnCN47Zwn7BSyb8xpZg%3D%3D; path=\/; secure, log_session_id=c2946aeb4b955bd36423f4c36f782b18; path=\/, canvas_session=g2HwPri_OE2AziJ1g3njFg.KbY_CY4s-Fz26e9Ktfylh5uHmExL7km_e8FwfMRcc9zy8UKnTpsmzGxEoo5-KbqfuBC4izva-bCiUVpiMcQjyrH7Oy1pCMD_wTe2cKDPNAN2Rkzkv7ZeZrsYiptDXyXN.qSP50AwGR4qgd_O0olhdT63zunQ.WaQytw; path=\/; secure; HttpOnly",
+          "X-Rate-Limit-Remaining" : "700.0",
+          "Connection" : "keep-alive",
+          "X-Content-Type-Options" : "nosniff",
+          "X-UA-Compatible" : "IE=Edge,chrome=1",
+          "Server" : "Apache",
+          "Content-Encoding" : "gzip",
+          "X-Runtime" : "0.416587",
+          "Content-Length" : "1021",
+          "Etag" : "W\/\"7820ba8165ca58700508d8c1ba763890-gzip\"",
+          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&include%5B%5D=tabs&page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&include%5B%5D=tabs&page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&include%5B%5D=tabs&page=1&per_page=99>; rel=\"last\"",
+          "X-Canvas-Meta" : "q=987;at=10000000613473;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1e;o=courses;n=index;x=5.0;p=f;f=2017-08-28T15:11:51.27Z;b=1374012;m=1374012;u=0.24;y=0.01;d=0.10;",
+          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
+          "X-Request-Cost" : "0.33617586900000906",
+          "X-Canvas-User-Id" : "10000007087360",
+          "Date" : "Mon, 28 Aug 2017 15:11:51 GMT",
+          "Cache-Control" : "max-age=0, private, must-revalidate"
+        },
         "body" : [
           {
             "public_syllabus_to_auth" : false,
@@ -16,8 +43,9 @@
             },
             "enrollments" : [
               {
-                "computed_final_score" : 0,
+                "computed_final_score" : 42.55,
                 "computed_current_grade" : null,
+                "has_grading_periods" : false,
                 "totals_for_all_grading_periods_option" : false,
                 "current_grading_period_title" : null,
                 "current_period_computed_current_score" : null,
@@ -31,16 +59,129 @@
                 "computed_final_grade" : null,
                 "current_grading_period_id" : null,
                 "role_id" : 2441,
-                "computed_current_score" : null,
-                "enrollment_state" : "invited"
+                "computed_current_score" : 100,
+                "enrollment_state" : "active"
               }
             ],
             "end_at" : null,
             "public_syllabus" : false,
             "enrollment_term_id" : 3142,
             "is_favorite" : false,
+            "has_grading_periods" : false,
             "multiple_grading_periods_enabled" : false,
+            "uuid" : "tfiB6ixdWXL9FDIEOXaMwckRnNHhVA136XEDgx2y",
             "root_account_id" : 99298,
+            "tabs" : [
+              {
+                "position" : 1,
+                "id" : "home",
+                "html_url" : "\/courses\/1867097",
+                "label" : "Home",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 2,
+                "id" : "assignments",
+                "html_url" : "\/courses\/1867097\/assignments",
+                "label" : "Assignments",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 3,
+                "id" : "discussions",
+                "html_url" : "\/courses\/1867097\/discussion_topics",
+                "label" : "Discussions",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/discussion_topics",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 4,
+                "id" : "grades",
+                "html_url" : "\/courses\/1867097\/grades",
+                "label" : "Grades",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/grades",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 5,
+                "id" : "people",
+                "html_url" : "\/courses\/1867097\/users",
+                "label" : "People",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/users",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 6,
+                "id" : "pages",
+                "html_url" : "\/courses\/1867097\/wiki",
+                "label" : "Pages",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/wiki",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 7,
+                "id" : "files",
+                "html_url" : "\/courses\/1867097\/files",
+                "label" : "Files",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/files",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 8,
+                "id" : "syllabus",
+                "html_url" : "\/courses\/1867097\/assignments\/syllabus",
+                "label" : "Syllabus",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/assignments\/syllabus",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 9,
+                "id" : "quizzes",
+                "html_url" : "\/courses\/1867097\/quizzes",
+                "label" : "Quizzes",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/quizzes",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 10,
+                "id" : "modules",
+                "html_url" : "\/courses\/1867097\/modules",
+                "label" : "Modules",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/modules",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 11,
+                "id" : "conferences",
+                "html_url" : "\/courses\/1867097\/conferences",
+                "label" : "Conferences",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/conferences",
+                "type" : "internal",
+                "visibility" : "public"
+              },
+              {
+                "position" : 12,
+                "id" : "collaborations",
+                "html_url" : "\/courses\/1867097\/lti_collaborations",
+                "label" : "Collaborations",
+                "full_url" : "https:\/\/mobiledev.instructure.com\/courses\/1867097\/lti_collaborations",
+                "type" : "internal",
+                "visibility" : "public"
+              }
+            ],
+            "has_weighted_grading_periods" : false,
             "name" : "Unit Tests",
             "course_code" : "Unit",
             "term" : {
@@ -63,45 +204,18 @@
             "default_view" : "feed"
           }
         ],
-        "status" : 200,
-        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&per_page=99",
-        "headers" : {
-          "Content-Encoding" : "gzip",
-          "X-Runtime" : "0.156609",
-          "Set-Cookie" : "_csrf_token=DzmWh88wUG9qqmwNVM0yVD%2F7XN3S9nN39EpepOGANKFmW9nrnF82LBP5BX1m%2BH0WDaktjpC6OACxLRnok9h9kg%3D%3D; path=\/; secure, log_session_id=9428795ae97832ce5a4ef1855f5a23d2; path=\/, canvas_session=ksRvn87ln1yWeInyDsILAQ.qcnz9ZJI4HSrrGCVff4ejmIFF3ZixOFwq7QfJedvxrqmlqvqUk8fQzas7ApGpcebokLNVIq7mr0LwgXqdHyKhMlU_2QGU_pPCI2k_9aXUEKkbstJzjqcaXbN3tJyEpTm.OkD1pNyZBm2yKiQZYfNTrmJOP4U.WC35XQ; path=\/; secure; HttpOnly",
-          "P3P" : "CP=\"None, see http:\/\/www.instructure.com\/privacy-policy\"",
-          "Server" : "Apache",
-          "Link" : "<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"current\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"first\",<https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&page=1&per_page=99>; rel=\"last\"",
-          "X-Session-Id" : "9428795ae97832ce5a4ef1855f5a23d2",
-          "Cache-Control" : "max-age=0, private, must-revalidate",
-          "X-Request-Processor" : "a01cf37",
-          "Status" : "200 OK",
-          "X-Request-Context-Id" : "3b4eb30f-75f1-4f3b-bbbe-fc693b74b5c5",
-          "X-Rate-Limit-Remaining" : "700.0",
-          "X-Request-Cost" : "0.12011138000002274",
-          "Content-Length" : "652",
-          "Vary" : "Accept-Encoding",
-          "X-XSS-Protection" : "1; mode=block",
-          "Date" : "Thu, 17 Nov 2016 18:39:25 GMT",
-          "Connection" : "keep-alive",
-          "X-Canvas-Meta" : "q=893;at=10000000613473;dk=170000000000016;a=99298;g=yrbwnHLrrwZewG7DO8ZwNN2jMGa12ZHtVDE4Hz8Y;s=1;c=cluster1;z=us-east-1b;o=courses;n=index;b=1395416;m=1395416;u=0.10;y=0.00;d=0.02;",
-          "X-Frame-Options" : "SAMEORIGIN",
-          "Content-Type" : "application\/json; charset=utf-8",
-          "X-Canvas-User-Id" : "10000007087360",
-          "Etag" : "W\/\"3ebd719f78e556293e84ef3e80f67171\"",
-          "X-Content-Type-Options" : "nosniff",
-          "X-UA-Compatible" : "IE=Edge,chrome=1"
-        }
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&include%5B%5D=tabs&per_page=99"
       },
+      "recorded_at" : 1503933106.636234,
       "request" : {
-        "method" : "GET",
-        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&per_page=99",
         "headers" : {
-          "Accept-Encoding" : "gzip;q=1.0,compress;q=0.5",
           "Accept-Language" : "en;q=1.0",
-          "User-Agent" : "Enrollments\/com.instructure.Enrollments (1; OS Version 10.1 (Build 14B72))",
-          "Authorization" : "Bearer 1~Re7oAox3PlWgeVksgEirLFTQ8QOcRIK6gybqUpZAMjH9M9aDikXXcqnkr0jyp9Rm"
-        }
+          "Authorization" : "Bearer 1~Re7oAox3PlWgeVksgEirLFTQ8QOcRIK6gybqUpZAMjH9M9aDikXXcqnkr0jyp9Rm",
+          "User-Agent" : "Enrollments\/1.0 (com.instructure.Enrollments; build:1; iOS 10.3.1) TooLegit\/1.0",
+          "Accept-Encoding" : "gzip;q=1.0, compress;q=0.5"
+        },
+        "method" : "GET",
+        "url" : "https:\/\/mobiledev.instructure.com\/api\/v1\/courses?include%5B%5D=needs_grading_count&include%5B%5D=syllabus_body&include%5B%5D=total_scores&include%5B%5D=term&include%5B%5D=permissions&include%5B%5D=current_grading_period_scores&include%5B%5D=favorites&include%5B%5D=tabs&per_page=99"
       }
     }
   ],

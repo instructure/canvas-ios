@@ -53,18 +53,8 @@ extension Course {
     public static func refresher(_ session: Session) throws -> Refresher {
         let remote = try Course.getAllCourses(session)
         let context = try session.enrollmentManagedObjectContext()
-        let sync = Course.syncSignalProducer(inContext: context, fetchRemote: remote)
-            .on(completed: {
-                var courses = session.enrollmentsDataSource.enrollmentsObserver.collection.makeIterator()
-                while let course = courses.next() {
-                    let contextID = ContextID(id: course.id, context: .course)
-                    try? session.enrollmentsDataSource.fetchArcLTIToolID(for: contextID, inSession: session).start()
-                }
-            })
-            .map({_ in })
-        
+        let sync = Course.syncSignalProducer(inContext: context, fetchRemote: remote).map({_ in })
         let colors = Enrollment.syncFavoriteColors(session, inContext: context)
-        
         let key = cacheKey(context)
         
         return SignalProducerRefresher(refreshSignalProducer: sync.concat(colors), scope: session.refreshScope, cacheKey: key)

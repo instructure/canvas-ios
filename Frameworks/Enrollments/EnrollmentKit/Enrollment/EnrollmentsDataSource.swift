@@ -26,7 +26,7 @@ import Result
 import SoPretty
 
 open class EnrollmentsDataSource: NSObject {
-    let enrollmentsObserver: ManagedObjectsObserver<Enrollment, ContextID>
+    public let enrollmentsObserver: ManagedObjectsObserver<Enrollment, ContextID>
     
     init(context: NSManagedObjectContext) throws {
         let fetch = NSFetchRequest<Enrollment>(entityName: "Enrollment")

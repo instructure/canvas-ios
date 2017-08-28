@@ -342,7 +342,7 @@ class CourseSpec: QuickSpec {
                         }
                     }
                     expect(courses).toNot(beNil())
-                    expect(courses).to(beEmpty())
+                    expect(courses).to(haveCount(1))
                 }
             }
         }
