@@ -125,6 +125,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
         assignment={assignment}
         submission={submission}
         user={this.props.user}
+        onPress={this._navigateToSpeedGrader}
       />
     )
   }
@@ -183,6 +184,19 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
       const contextCode = `course_${course.id}`
       this.props.navigator.show('/conversations/compose', { modal: true }, { contextName, contextCode, recipients, canSelectCourse: false })
     }
+  }
+
+  _navigateToSpeedGrader = (assignment: Assignment) => {
+    let userID = this.props.user.id
+    let filter = {
+      filterFunc: (submissions: any) => submissions.filter((s) => s.userID === userID),
+    }
+
+    let url = `${assignment.html_url}/submissions/${userID}`
+    this.props.navigator.show(url, { modal: true }, {
+      studentIndex: 0,
+      selectedFilter: { filter },
+    })
   }
 }
 

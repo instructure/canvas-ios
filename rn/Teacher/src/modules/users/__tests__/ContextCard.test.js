@@ -10,6 +10,11 @@ import {
 } from '../ContextCard'
 
 import renderer from 'react-test-renderer'
+import explore from '../../../../test/helpers/explore'
+
+jest.mock('../../../routing/Screen')
+    .mock('TouchableHighlight', () => 'TouchableHighlight')
+    .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const templates = {
   ...require('../../../api/canvas-api/__templates__/course'),
@@ -33,7 +38,7 @@ const defaultProps = {
   refreshCourses: jest.fn(),
   refreshEnrollments: jest.fn(),
   refreshAssignmentList: jest.fn(),
-  navigator: { dismiss: jest.fn() },
+  navigator: { dismiss: jest.fn(), show: jest.fn() },
   refresh: jest.fn(),
   refreshing: false,
   getUserSubmissions: jest.fn(),
@@ -96,6 +101,31 @@ describe('ContextCard', () => {
     )
 
     expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('navigate to speedgrader', () => {
+    let view = renderer.create(
+      <ContextCard {...defaultProps} />
+    )
+    let assignmentID = defaultProps.assignments[0].id
+    let row = explore(view.toJSON()).selectByID(`user-submission-row.cell-${assignmentID}`)
+    expect(row).not.toBeNull()
+    row && row.props.onPress()
+
+    expect(defaultProps.navigator.show).toHaveBeenCalled()
+  })
+
+  it('navigates to composer', () => {
+    defaultProps.navigator.show = jest.fn()
+    let view = renderer.create(
+      <ContextCard {...defaultProps} />
+    )
+    const tree = view.toJSON()
+    const mailButton: any = explore(tree).selectRightBarButton('context-card.email-contact')
+    expect(mailButton).not.toBeNull()
+    mailButton.action()
+    let expectedProps = { 'canSelectCourse': false, 'contextCode': `course_${defaultProps.course.id}`, 'contextName': `${defaultProps.course.name}`, 'recipients': [templates.user()] }
+    expect(defaultProps.navigator.show).toHaveBeenCalledWith(`/conversations/compose`, { 'modal': true }, expectedProps)
   })
 })
 
