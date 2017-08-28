@@ -21,7 +21,7 @@ import Airwolf
 
 extension AppDelegate {
     static func resetRegionForTesting() {
-      RegionPicker.defaultPicker.beta.value = true
+      RegionPicker.shared.isBeta.value = true
     }
 
     static func logout() {

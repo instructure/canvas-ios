@@ -30,13 +30,11 @@ extension NSError {
             ErrorSubdomainKey: subdomain,
             ]
         
-        let dataString = data.map { String(data: $0, encoding: .utf8) }
-
         if let t = title            { userInfo[ErrorTitleKey] = t }
         if let s = sessionID        { userInfo[ErrorSessionIDKey] = s }
         if let f = failureReason    { userInfo[NSLocalizedFailureReasonErrorKey] = f }
         if let a = apiURL           { userInfo[ErrorURLKey] = a }
-        if let d = dataString       { userInfo[ErrorDataKey] = d }
+        if let d = data             { userInfo[ErrorDataKey] = d }
 
         self.init(domain: "com.instructure." + subdomain, code: code, userInfo: userInfo)
     }

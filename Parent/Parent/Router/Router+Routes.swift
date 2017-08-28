@@ -28,6 +28,7 @@ import Airwolf
 import SoLazy
 import SoPersistent
 import SoSupportive
+import Marshal
 
 let LoggedInNotificationContentsSession = "LoggedInNotificationContentsSession"
 
@@ -267,37 +268,57 @@ extension Router {
                 }
                 let producer = try! Student.checkDomain(session, parentID: session.user.id, domain: domain)
                 producer.observe(on: UIScheduler()).startWithSignal({ signal, disposable in
-                                        signal.observe { event in
-                                            switch event {
-                                            case .failed(let e):
-                                                print("Error adding Student Domain: \(e)")
-                                                let createAccountTitle = NSLocalizedString("Unable to Add Student", comment: "Title for alert when failing to add student domain")
-                                                var createAccountMessage = e.localizedDescription
-                                                if e.code == 401 {
-                                                    createAccountMessage = NSLocalizedString("Invalid student domain.\nPlease double-check the domain and try again.", comment: "Alert Message for invalid domain")
-                                                } else if e.code == 403 {
-                                                    createAccountMessage = NSLocalizedString("This institution has not enabled access to the Canvas Parent mobile app.", comment: "Alert Message for institution not authorized")
-                                                }
-                                                let alert = UIAlertController(title: createAccountTitle, message: createAccountMessage, preferredStyle: .alert)
-                                                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
-                                                selectDomainViewController?.present(alert, animated: true, completion: nil)
-                                            case .completed:
-                                                do {
-                                                    let addVC = try AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
-                                                        let _ = selectDomainViewController?.navigationController?.popToRootViewController(animated: true)
-                                                    }
-                                                    addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
-                                                    selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
-                                                } catch let e as NSError {
-                                                    if let selectDomainViewController = selectDomainViewController {
-                                                        ErrorReporter.reportError(e, from: selectDomainViewController)
-                                                    }
-                                                }
-                                            default:
-                                                break
-                                            }
+                    signal.observe { event in
+                        switch event {
+                        case .failed(let e):
+                            print("Error adding Student Domain: \(e)")
+                            var createAccountTitle = NSLocalizedString("Unable to Add Student", comment: "Title for alert when failing to add student domain")
+                            var createAccountMessage = e.localizedDescription
+                            if e.code == 401 {
+                                createAccountMessage = NSLocalizedString("Invalid student domain.\nPlease double-check the domain and try again.", comment: "Alert Message for invalid domain")
+                            } else if e.code == 403 {
+                                createAccountMessage = NSLocalizedString("This institution has not enabled access to the Canvas Parent mobile app.", comment: "Alert Message for institution not authorized")
+                            } else if e.code == 451 {
+                                // just in case the server doesn't give us region info as expected
+                                var region = NSLocalizedString("Unknown", comment: "Unknown region for student account")
+                                do {
+                                    if let data = e.data {
+                                        let json = try JSONParser.JSONObjectWithData(data)
+                                        let airwolfStudentRegion: String = try json <| "studentRegion"
+                                        if let regionName = Region
+                                            .region(forAirwolfRegionID: airwolfStudentRegion)?
+                                            .name {
+                                            region = regionName
                                         }
-                                    })
+                                    }
+                                } catch let e {
+                                    print("JSON Parsing error for Parent <-> Student mismatch. \(e.localizedDescription)")
+                                }
+                                
+                                createAccountTitle = NSLocalizedString("Unauthorized Region", comment: "")
+                                createAccountMessage = NSLocalizedString("This institution is located outside of your selected region. To add a student at this institution, please use the “Region Picker” option on the login page to select the region of \(region), and create a new account.", comment: "")
+
+                            }
+                            let alert = UIAlertController(title: createAccountTitle, message: createAccountMessage, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
+                            selectDomainViewController?.present(alert, animated: true, completion: nil)
+                        case .completed:
+                            do {
+                                let addVC = try AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
+                                    let _ = selectDomainViewController?.navigationController?.popToRootViewController(animated: true)
+                                }
+                                addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
+                                selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
+                            } catch let e as NSError {
+                                if let selectDomainViewController = selectDomainViewController {
+                                    ErrorReporter.reportError(e, from: selectDomainViewController)
+                                }
+                            }
+                        default:
+                            break
+                        }
+                    }
+                })
             }
             selectDomainViewController.useKeymasterLogin = false
             selectDomainViewController.allowMultipleUsers = false

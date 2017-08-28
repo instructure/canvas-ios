@@ -38,6 +38,7 @@ class AirwolfLoginViewController: UIViewController {
     @IBOutlet var primaryButton: UIButton!
     @IBOutlet var createAccountButton: UIButton!
     @IBOutlet var forgotPasswordButton: UIButton!
+    @IBOutlet weak var selectRegionButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var canvasLoginButton: UIButton!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
@@ -250,12 +251,7 @@ class AirwolfLoginViewController: UIViewController {
 
         viewDidLoadFinished = true
         
-        betaButton.rac_hidden <~ RegionPicker.defaultPicker.beta.producer.map { !$0 }
-        RegionPicker.defaultPicker.beta.signal
-            .observe(on: UIScheduler())
-            .observeValues { beta in
-                AirwolfAPI.baseURL = beta ? RegionPicker.betaURL : (RegionPicker.defaultPicker.pickedRegionURL ?? RegionPicker.defaultPicker.defaultURL)
-            }
+        betaButton.rac_hidden <~ RegionPicker.shared.isBeta.producer.map { !$0 }
         let turnOnBeta = UITapGestureRecognizer(target: self, action: #selector(toggleBetaRegion(_:)))
         turnOnBeta.numberOfTapsRequired = 3
         turnOnBeta.numberOfTouchesRequired = 2
@@ -263,16 +259,15 @@ class AirwolfLoginViewController: UIViewController {
     }
     
     @IBAction func toggleBetaRegion(_ sender: Any) {
-        RegionPicker.defaultPicker.beta.value = !RegionPicker.defaultPicker.beta.value
-        print("url: \(AirwolfAPI.baseURL)")
+        RegionPicker.shared.isBeta.value = !RegionPicker.shared.isBeta.value
+        print("url: \(String(describing: RegionPicker.shared.pickedRegion))")
     }
     
     fileprivate func checkRegion() {
-        if RegionPicker.defaultPicker.pickedRegionURL == nil {
+        if RegionPicker.shared.pickedRegion == nil {
             state.value = .doingSomethingImportant
-            RegionPicker.defaultPicker.pickBestRegion { url in
-                if let url = url {
-                    AirwolfAPI.baseURL = url
+            RegionPicker.shared.pickBestRegion { url in
+                if url != nil {
                     self.state.value = .login
                 } else {
                     self.state.value = .disabled
@@ -316,6 +311,22 @@ class AirwolfLoginViewController: UIViewController {
         state.value = .forgotPassword
         clearFields()
     }
+    
+    @IBAction func selectRegionButtonTapped(_ button: UIButton) {
+        let title = NSLocalizedString("Select Region", comment: "")
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        
+        Region.productionRegions
+            .map { region in
+                return UIAlertAction(title: region.name, style: .default) { _ in
+                    RegionPicker.shared.pickedRegion = region
+                }
+            }
+            .forEach(alert.addAction(_:))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
+        
+        present(alert, animated: true, completion: nil)
+    }
 
     @IBAction func cancelButtonTapped(_ button: UIButton) {
         state.value = .login
@@ -333,6 +344,7 @@ class AirwolfLoginViewController: UIViewController {
                     return
                 }
                 let login = CanvasObserverLoginViewController(domain: host) { [weak me] session in
+                    RegionPicker.shared.pickRegion(for: session.baseURL)
                     me?.completeLogin(session)
                 }
                 
@@ -390,7 +402,7 @@ class AirwolfLoginViewController: UIViewController {
                         self.state.value = .login
 
                         print("Error authenticating: \(e)")
-                        let alert = UIAlertController(title: NSLocalizedString("Invalid Credentials", comment: "Alert title when logging in with invalid credentials"), message: NSLocalizedString("The email and password combination were invalid", comment: "Alert message when logging in with invalid credentials"), preferredStyle: .alert)
+                        let alert = UIAlertController(title: NSLocalizedString("Invalid Credentials", comment: "Alert title when logging in with invalid credentials"), message: NSLocalizedString("The email and password combination were invalid", comment: "Alert message when logging in with invalid credentials. Please check your region and try again."), preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     case .interrupted:
@@ -398,9 +410,13 @@ class AirwolfLoginViewController: UIViewController {
                         print("Authentication interrupted")
                     default:
                         guard let value = event.value else { return }
-                        if let token: String = try? value <| "token", let parentID: String = try? value <| "parent_id" {
+                        if
+                            let token: String = try? value <| "token",
+                            let parentID: String = try? value <| "parent_id",
+                            let region = RegionPicker.shared.pickedRegion
+                        {
                             let user = SessionUser(id: parentID, name: "", email: email)
-                            let session = Session(baseURL: AirwolfAPI.baseURL, user: user, token: token)
+                            let session = Session(baseURL: region.url, user: user, token: token)
                             self.completeLogin(session)
                         }
                     }
@@ -455,9 +471,13 @@ class AirwolfLoginViewController: UIViewController {
                         print("Create account interrupted")
                     default:
                         guard let value = event.value else { return }
-                        if let token: String = try? value <| "token", let parentID: String = try? value <| "parent_id" {
+                        if
+                            let token: String = try? value <| "token",
+                            let parentID: String = try? value <| "parent_id",
+                            let region = RegionPicker.shared.pickedRegion
+                        {
                             let user = SessionUser(id: parentID, name: "")
-                            let session = Session(baseURL: AirwolfAPI.baseURL, user: user, token: token)
+                            let session = Session(baseURL: region.url, user: user, token: token)
                             self.loggedInHandler?(session)
                         }
                     }
@@ -483,7 +503,7 @@ class AirwolfLoginViewController: UIViewController {
                     switch event {
                     case .failed(let e):
                         if e.code == 404 {
-                            let alert = UIAlertController(title: NSLocalizedString("Email Not Found", comment: "Title for alert shown when the server couldn't find an email to reset the password for"), message: NSLocalizedString("We couldn't find an account associated with that email. Double check that you entered it correctly and try again.", comment: "Body for alert shown when the server couldn't find an email to reset the password for"), preferredStyle: .alert)
+                            let alert = UIAlertController(title: NSLocalizedString("Email Not Found", comment: "Title for alert shown when the server couldn't find an email to reset the password for"), message: NSLocalizedString("We couldn't find an account associated with that email. Double check that you entered it correctly, check your region, and try again.", comment: "Body for alert shown when the server couldn't find an email to reset the password for"), preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                         } else {

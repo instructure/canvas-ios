@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,6 +26,7 @@
                 <outlet property="passwordField" destination="RIt-Gd-vf8" id="N5S-ka-zuH"/>
                 <outlet property="passwordFieldTopCollapsedConstraint" destination="c9D-2g-euE" id="Q0o-AB-1fn"/>
                 <outlet property="primaryButton" destination="dbH-uS-X2F" id="dn8-bE-wyk"/>
+                <outlet property="selectRegionButton" destination="lrh-s1-05r" id="qgr-Fi-Jnt"/>
                 <outlet property="triangleBackgroundGradientView" destination="B3t-q5-Vry" id="GI7-ea-PhQ"/>
                 <outlet property="view" destination="tyS-0b-jkQ" id="Sbe-f1-YCG"/>
                 <outletCollection property="fields" destination="lHP-23-IvG" collectionClass="NSMutableArray" id="EGP-H1-Da8"/>
@@ -65,6 +67,10 @@
                 <outletCollection property="loginStateItems" destination="Zjh-td-3qY" collectionClass="NSMutableArray" id="bgs-R4-SFm"/>
                 <outletCollection property="forgotPasswordStateItems" destination="y1y-qJ-k36" collectionClass="NSMutableArray" id="L0l-Fq-rqg"/>
                 <outletCollection property="forgotPasswordStateItems" destination="g5q-Iz-QjI" collectionClass="NSMutableArray" id="8mB-GJ-Fi2"/>
+                <outletCollection property="allItems" destination="NBN-Ir-Nor" collectionClass="NSMutableArray" id="eo4-Uo-Gau"/>
+                <outletCollection property="allItems" destination="lrh-s1-05r" collectionClass="NSMutableArray" id="Vbh-EM-nLd"/>
+                <outletCollection property="loginStateItems" destination="NBN-Ir-Nor" collectionClass="NSMutableArray" id="nAj-kD-xht"/>
+                <outletCollection property="loginStateItems" destination="lrh-s1-05r" collectionClass="NSMutableArray" id="9QV-MI-8fZ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -80,7 +86,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCb-gI-z2L">
-                            <rect key="frame" x="20" y="52" width="335" height="556"/>
+                            <rect key="frame" x="20" y="52" width="335" height="590"/>
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="parent_logo" translatesAutoresizingMaskIntoConstraints="NO" id="mD1-mU-LCt">
                                     <rect key="frame" x="55.5" y="39" width="224" height="58"/>
@@ -341,6 +347,31 @@
                                         <action selector="toggleBetaRegion:" destination="-1" eventType="touchUpInside" id="Phn-af-7yx"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrh-s1-05r">
+                                    <rect key="frame" x="97" y="544" width="142" height="34"/>
+                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="forgot_password_button"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="0hy-bK-9vH"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="142" id="77B-5N-ybV"/>
+                                        <constraint firstAttribute="width" constant="142" id="vIf-ub-0FP"/>
+                                    </constraints>
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Region Picker"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="vIf-ub-0FP"/>
+                                        </mask>
+                                    </variation>
+                                    <connections>
+                                        <action selector="selectRegionButtonTapped:" destination="-1" eventType="touchUpInside" id="jrX-wC-UK3"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
@@ -348,13 +379,14 @@
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="centerX" secondItem="ghx-JN-SS0" secondAttribute="centerX" id="9Op-TV-Pr1"/>
                                 <constraint firstItem="g5q-Iz-QjI" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="ANy-xP-P7E"/>
                                 <constraint firstItem="ghx-JN-SS0" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="Dky-gJ-03w"/>
-                                <constraint firstAttribute="bottom" secondItem="NBN-Ir-Nor" secondAttribute="bottom" constant="20" id="JGE-uv-Dh1"/>
                                 <constraint firstItem="cBu-44-Ntj" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="LzG-ZN-goF"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="leading" secondItem="dbH-uS-X2F" secondAttribute="leading" id="Mgn-2c-Lq8"/>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="Plf-SD-LsX"/>
                                 <constraint firstItem="cBu-44-Ntj" firstAttribute="top" secondItem="dbH-uS-X2F" secondAttribute="bottom" constant="10" id="QM5-up-dJi"/>
                                 <constraint firstItem="Zjh-td-3qY" firstAttribute="top" secondItem="cBu-44-Ntj" secondAttribute="bottom" constant="5" id="SlJ-TZ-4fp"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="top" secondItem="mD1-mU-LCt" secondAttribute="bottom" constant="42" id="Smb-oS-ane"/>
+                                <constraint firstItem="lrh-s1-05r" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="TLR-Jf-SuS"/>
+                                <constraint firstItem="lrh-s1-05r" firstAttribute="top" secondItem="NBN-Ir-Nor" secondAttribute="bottom" constant="8" id="X0a-eR-5Qt"/>
                                 <constraint firstItem="Aye-kE-zWM" firstAttribute="trailing" secondItem="mD1-mU-LCt" secondAttribute="trailing" id="bAQ-YY-tSA"/>
                                 <constraint firstItem="i9A-lG-qDQ" firstAttribute="trailing" secondItem="dbH-uS-X2F" secondAttribute="trailing" id="cMr-cm-IBc"/>
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="centerY" secondItem="ghx-JN-SS0" secondAttribute="centerY" id="caN-E9-t4h"/>
@@ -364,6 +396,7 @@
                                 <constraint firstItem="dbH-uS-X2F" firstAttribute="top" secondItem="i9A-lG-qDQ" secondAttribute="bottom" constant="16" id="tnN-ds-nrh"/>
                                 <constraint firstItem="NBN-Ir-Nor" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" constant="-12" id="veB-OE-ih9"/>
                                 <constraint firstItem="Zjh-td-3qY" firstAttribute="centerX" secondItem="bCb-gI-z2L" secondAttribute="centerX" id="xYp-lH-BTE"/>
+                                <constraint firstAttribute="bottom" secondItem="lrh-s1-05r" secondAttribute="bottom" constant="12" id="yHL-Hu-6Gd"/>
                                 <constraint firstItem="NBN-Ir-Nor" firstAttribute="top" secondItem="Zjh-td-3qY" secondAttribute="bottom" constant="8" id="zkm-sI-zmv"/>
                             </constraints>
                         </view>
@@ -400,7 +433,7 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="pjR-4x-HEl" appends="YES" id="VcC-LS-AJu"/>
             </connections>
-            <point key="canvasLocation" x="-426" y="27"/>
+            <point key="canvasLocation" x="-426.5" y="26.5"/>
         </view>
         <tapGestureRecognizer id="pjR-4x-HEl">
             <connections>

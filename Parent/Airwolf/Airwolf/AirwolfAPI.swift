@@ -20,15 +20,15 @@ import Foundation
 import TooLegit
 
 open class AirwolfAPI {
-    open static var baseURL = RegionPicker.defaultPicker.defaultURL
-
     // MARK: Parent calls
     open class func authenticateRequest(email: String, password: String) throws -> URLRequest {
-        return try URLRequest(method: .POST, URL: AirwolfAPI.baseURL.appendingPathComponent("authenticate"), parameters: ["username": email, "password": password], encoding: .json)
+        let url = RegionPicker.shared.apiURL
+            .appendingPathComponent("authenticate")
+        return try URLRequest(method: .POST, URL: url, parameters: ["username": email, "password": password], encoding: .json)
     }
     
     open class func authenticateAsCanvasObserver(_ domain: String) -> URLRequest {
-        let url = AirwolfAPI.baseURL
+        let url = RegionPicker.shared.apiURL
             .appendingPathComponent("canvas")
             .appendingPathComponent("authenticate")
         
@@ -36,16 +36,21 @@ open class AirwolfAPI {
     }
 
     open class func createAccountRequest(email: String, password: String, firstName: String, lastName: String) throws -> URLRequest {
-        return try URLRequest(method: .PUT, URL: AirwolfAPI.baseURL.appendingPathComponent("newparent"), parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .json)
+        let url = RegionPicker.shared.apiURL
+            .appendingPathComponent("newparent")
+        return try URLRequest(method: .PUT, URL: url, parameters: ["parent": ["username": email, "password": password, "first_name": firstName, "last_name": lastName]], encoding: .json)
     }
 
     open class func sendPasswordResetEmailRequest(email: String) throws -> URLRequest {
-        let path = "/send_password_reset/\(email)"
-        return try URLRequest(method: .POST, URL: AirwolfAPI.baseURL.appendingPathComponent(path), parameters: [:], encoding: .urlEncodedInURL)
+        let url = RegionPicker.shared.apiURL
+            .appendingPathComponent("send_password_reset/\(email)")
+        return try URLRequest(method: .POST, URL: url, parameters: [:], encoding: .urlEncodedInURL)
     }
 
     open class func resetPasswordRequest(email: String, password: String, token: String) throws -> URLRequest {
-        var request = try URLRequest(method: .POST, URL: AirwolfAPI.baseURL.appendingPathComponent("reset_password"), parameters: ["username": email, "password": password], encoding: .json)
+        let url = RegionPicker.shared.apiURL
+            .appendingPathComponent("reset_password")
+        var request = try URLRequest(method: .POST, URL: url, parameters: ["username": email, "password": password], encoding: .json)
         request.setValue(token, forHTTPHeaderField: "Authorization")
         return request
     }

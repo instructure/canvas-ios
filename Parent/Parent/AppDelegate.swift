@@ -50,18 +50,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(notificationSettings)
 
-        if let url = RegionPicker.defaultPicker.pickedRegionURL {
-            AirwolfAPI.baseURL = url
-        } else {
+        if RegionPicker.shared.pickedRegion == nil {
             if let _ = Keymaster.sharedInstance.mostRecentSession() { // Currently already signed in, without a region. They are already in the original default region
-                RegionPicker.defaultPicker.setRegionToDefault()
-                AirwolfAPI.baseURL = RegionPicker.defaultPicker.pickedRegionURL!
+                RegionPicker.shared.pickedRegion = .default
             } else {
-                RegionPicker.defaultPicker.pickBestRegion { url in
-                    if let url = url {
-                        AirwolfAPI.baseURL = url
-                    }
-                }
+                RegionPicker.shared.pickBestRegion()
             }
         }
 

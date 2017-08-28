@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4944636D1F4BC63300F3827B /* RegionPinger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944636C1F4BC63300F3827B /* RegionPinger.swift */; };
+		4944636F1F4BC63D00F3827B /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4944636E1F4BC63D00F3827B /* Region.swift */; };
 		6133D9161CEDFF76004B241B /* Assignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6133D9151CEDFF76004B241B /* Assignments.swift */; };
 		6133D9181CEDFFA8004B241B /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6133D9171CEDFF9E004B241B /* AssignmentKit.framework */; };
 		614BAAB91CEA156600BAF7D6 /* AirwolfAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614BAAB81CEA156600BAF7D6 /* AirwolfAPI.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4944636C1F4BC63300F3827B /* RegionPinger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPinger.swift; sourceTree = "<group>"; };
+		4944636E1F4BC63D00F3827B /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		49F0888C1DF0CEB7008BB8DA /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6133D9151CEDFF76004B241B /* Assignments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignments.swift; sourceTree = "<group>"; };
 		6133D9171CEDFF9E004B241B /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +97,8 @@
 				615AE6F71D5B7D3300EBAE12 /* SimplePing.h */,
 				615AE6F81D5B7D3300EBAE12 /* SimplePing.m */,
 				615AE6FB1D5B7D4800EBAE12 /* RegionPicker.swift */,
+				4944636C1F4BC63300F3827B /* RegionPinger.swift */,
+				4944636E1F4BC63D00F3827B /* Region.swift */,
 			);
 			path = "Region Picker";
 			sourceTree = "<group>";
@@ -260,11 +266,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				617A67781CE3760A0065E487 /* Airwolf.swift in Sources */,
+				4944636F1F4BC63D00F3827B /* Region.swift in Sources */,
 				61A47BC51CEBBBA400861155 /* Student+Edits.swift in Sources */,
 				618405C11CEA6C76005FB49D /* Student+Details.swift in Sources */,
 				615AE6FC1D5B7D4800EBAE12 /* RegionPicker.swift in Sources */,
 				6133D9161CEDFF76004B241B /* Assignments.swift in Sources */,
 				618405BA1CEA578A005FB49D /* Student+Collections.swift in Sources */,
+				4944636D1F4BC63300F3827B /* RegionPinger.swift in Sources */,
 				615AE6FA1D5B7D3300EBAE12 /* SimplePing.m in Sources */,
 				614BAAB91CEA156600BAF7D6 /* AirwolfAPI.swift in Sources */,
 				61E1A7331CEE4EF000728D95 /* Discussions.swift in Sources */,

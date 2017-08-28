@@ -26,6 +26,7 @@ import WebKit
 public struct Airwolf {
     public static func authenticate(email: String, password: String) throws -> SignalProducer<JSONObject, NSError> {
         let request = try AirwolfAPI.authenticateRequest(email: email, password: password)
+        print("authenticating: \(request.url?.absoluteString ?? "wut!?")")
         return Session.unauthenticated.JSONSignalProducer(request)
     }
 
