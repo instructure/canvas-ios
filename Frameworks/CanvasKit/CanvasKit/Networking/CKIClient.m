@@ -107,6 +107,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     dup.accessToken = self.accessToken;
     dup.currentUser = [self.currentUser copy];
     dup.actAsUserID = self.actAsUserID;
+    dup.ignoreUnauthorizedErrors = self.ignoreUnauthorizedErrors;
     @weakify(dup);
     [dup setSessionDidBecomeInvalidBlock:^(NSURLSession *session, NSError *error) {
         @strongify(dup);
@@ -326,7 +327,9 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             // don't try this if we are attempting to masquerade!
-            if ([self isUnauthorizedError:error] && [self actAsUserID].length == 0) {
+            if ([self isUnauthorizedError:error] &&
+                [self actAsUserID].length == 0 &&
+                !self.ignoreUnauthorizedErrors) {
                 // if the user gets a 401 that might be a server issue, lets
                 // do one more check to see if our access token has expired
                 // or been revoked

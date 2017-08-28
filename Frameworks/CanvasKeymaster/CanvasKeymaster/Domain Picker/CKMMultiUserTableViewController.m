@@ -84,6 +84,7 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
         if (failingResponse.statusCode == 401) {
             __strong CKIClient *client = weakClient;
             [FXKeychain.sharedCanvasKeychain removeClient:client];
+            [self reloadClients];
         }
     }];
     
@@ -141,6 +142,9 @@ static NSString *const DELETE_EXTRA_CLIENTS_USER_PREFS_KEY = @"delete_extra_clie
     self.clients = [[[FXKeychain sharedCanvasKeychain] clients] sortedArrayUsingComparator:^NSComparisonResult(CKIClient *obj1, CKIClient *obj2) {
         return [obj1.currentUser.name compare:obj2.currentUser.name];
     }];
+    for (CKIClient *client in self.clients) {
+        client.ignoreUnauthorizedErrors = YES;
+    }
     [self.tableView reloadData];
 }
 

@@ -64,6 +64,14 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
 @property (nonatomic) NSString *actAsUserID;
 
 /**
+ By default, instances of CKIClient will send notifications logout users if api calls return unauthorized errors
+ This behavior is good if there is only one CKIClient
+ However, there are instances when many CKIClients exist. (Such as the login screen)
+ Set this property to NO to ignore those errors
+ */
+@property (nonatomic) BOOL ignoreUnauthorizedErrors;
+
+/**
  Instantiates a canvas client with the given information.
 
  @param baseURL the base URL to be used by the client
