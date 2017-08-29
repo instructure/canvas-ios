@@ -51,6 +51,8 @@
 		2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */; };
 		2CDD85F61F1D6D3800FD1CF8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */; };
 		2CDD85F71F1D6D3800FD1CF8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */; };
+		2CE78AAD1F55B7CC00AB3726 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */; };
+		2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
 		2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */; };
@@ -596,6 +598,7 @@
 				6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */,
 				3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */,
 				3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */,
+				2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */,
 				3B8B240E1EB2AAA400B61EF8 /* ReactiveSwift.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
 				491EF3121F2BCF19002B6C76 /* AttendanceLE.framework in Embed Frameworks */,
@@ -776,6 +779,7 @@
 		2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSFSafariViewController.xcodeproj; path = "../node_modules/react-native-sfsafariviewcontroller/RCTSFSafariViewController.xcodeproj"; sourceTree = "<group>"; };
 		2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
+		2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
 		2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPageTest.swift; sourceTree = "<group>"; };
@@ -999,6 +1003,7 @@
 				4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */,
 				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
 				9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */,
+				2CE78AAD1F55B7CC00AB3726 /* Secrets.framework in Frameworks */,
 				A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */,
 				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
 				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
@@ -1362,6 +1367,10 @@
 				9E745A09DE28474C8094A8FB /* libInteractable.a */,
 				2411260A6CA04D6D874912A2 /* libRNSearchBar.a */,
 				A173E7C1016F4F56BBFC43B7 /* libRNMail.a */,
+				D7BF161C7C894A7B942A2CD3 /* libRNDocumentPicker.a */,
+				F9A9E2238589494EAD158883 /* libRNAudio.a */,
+				BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */,
+				4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1369,6 +1378,7 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */,
 				491EF3131F2BD1C5002B6C76 /* Marshal.framework */,
 				491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */,
 				619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */,

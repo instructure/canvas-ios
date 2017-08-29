@@ -10,6 +10,10 @@ OptionParser.new do |opts|
   opts.on('-s', '--skip-copy', 'Skips copying over all of the files.') do |v|
     options[:skip_copy] = v
   end
+
+  opts.on('-g', '--skip-git-clean', 'Skips doing a git clean before export.') do |v|
+    options[:skip_clean] = v
+  end
 end.parse!
 
 workspace_name = 'AllTheThings.xcworkspace'
@@ -17,32 +21,38 @@ workspace_name = 'AllTheThings.xcworkspace'
 # Quick check to make sure this script is run in the right place
 raise "This script must be run from the same directory that contains #{workspace_name}" unless File.exist?(workspace_name)
 
-# Export from develop. Remove files not tracked in git.
-['git checkout develop', 'git clean -dfx', 'git reset --hard'].each do |command|
-  raise "command failed: #{command}" unless system(command)
+unless options[:skip_clean]
+  puts "Warning: this will remove any uncommitted code. Press any key to continue."
+  gets
+
+  # Export from develop. Remove files not tracked in git.
+  ['git checkout develop', 'git clean -dfx', 'git reset --hard'].each do |command|
+    raise "command failed: #{command}" unless system(command)
+  end
 end
 
 targets = [workspace_name,
            'Canvas',
            'Parent',
+           'rn',
            'Cartfile',
            'Cartfile.resolved',
            'Frameworks',
            'Podfile',
            'Podfile.lock',
            'ExternalFrameworks',
-           'SpeedGrader',
            'secrets.plist',
            '.gitignore',
            'fastlane',
-           'Tinker.playground']
+           'Tinker.playground'
+           'setup.sh']
 
 destination          = 'ios-open-source'
 frameworks_path      = File.join(destination, 'Frameworks')
 workspace_path       = File.join(destination, workspace_name)
 
 # The groups in the workspace that shouldn't be included
-groups_to_remove     = %w[Teacher]
+groups_to_remove     = %w[]
 
 # Frameworks that should be removed as well
 frameworks_to_remove = %w[DoNotShipThis SoAutomated EverythingBagel]
@@ -89,7 +99,7 @@ def remove_fabric_from_project(project_path)
 end
 
 remove_fabric_from_project File.join(destination, 'Canvas', 'Canvas.xcodeproj')
-remove_fabric_from_project File.join(destination, 'SpeedGrader', 'SpeedGrader.xcodeproj')
+remove_fabric_from_project File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher.xcodeproj')
 
 # Remove stuff from the Info.plist files
 def remove_fabric_from_plist(plist_path)
@@ -111,7 +121,7 @@ def purge_plist(plist_path)
 end
 
 remove_fabric_from_plist File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
-remove_fabric_from_plist File.join(destination, 'SpeedGrader', 'SpeedGrader', 'SpeedGrader-Info.plist')
+remove_fabric_from_plist File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher', 'Info.plist')
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
@@ -136,6 +146,10 @@ purge_plist google_services_path
 # Remove Matchfile
 FileUtils.rm File.join(destination, 'fastlane', 'Matchfile')
 FileUtils.rm File.join(destination, 'fastlane', 'Appfile')
+
+# Remove buddybuild scripts
+FileUtils.rm File.join(destination, 'rn', 'Teacher', 'ios', 'buddybuild_postbuild.sh')
+FileUtils.rm File.join(destination, 'rn', 'Teacher', 'ios', 'buddybuild_prebuild.sh')
 
 # Remove folders from frameworks that shouldn't be there
 frameworks_to_remove.each do |folder|

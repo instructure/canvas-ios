@@ -30,6 +30,7 @@ import SoLazy
     case parentAppStoreID
     case parentKeychainService
     case parentKeychainAccessGroup
+    case teacherPSPDFKit
     
     func toString() -> String {
         switch self {
@@ -49,6 +50,8 @@ import SoLazy
             return "ParentKeychainService"
         case .parentKeychainAccessGroup:
             return "ParentKeychainAccessGroup"
+        case .teacherPSPDFKit:
+            return "TeacherPSPDFKitLicenseKey"
         }
     }
 }
