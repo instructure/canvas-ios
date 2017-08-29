@@ -103,6 +103,40 @@ describe('ContextCard', () => {
     expect(view.toJSON()).toMatchSnapshot()
   })
 
+  it('asks for submission when the user is a student', () => {
+    let enrollment = templates.enrollment({
+      id: '1',
+      course_id: '1',
+      user_id: '1',
+      course_section_id: '32',
+      type: 'StudentEnrollment',
+      grades: { current_grade: 'A' },
+    })
+
+    renderer.create(
+      <ContextCard {...defaultProps} enrollment={enrollment} />
+    )
+
+    expect(defaultProps.getUserSubmissions).toHaveBeenCalled()
+  })
+
+  it('renders for a non student', () => {
+    let enrollment = templates.enrollment({
+      id: '1',
+      course_id: '1',
+      user_id: '1',
+      course_section_id: '32',
+      type: 'TeacherEnrollment',
+    })
+
+    let view = renderer.create(
+      <ContextCard {...defaultProps} enrollment={enrollment} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
+    expect(defaultProps.getUserSubmissions).not.toHaveBeenCalled()
+  })
+
   it('navigate to speedgrader', () => {
     let view = renderer.create(
       <ContextCard {...defaultProps} />

@@ -54,13 +54,36 @@ type ContextCardProps = ContextCardOwnProps & ContextCardDataProps & ContextCard
   refresh: Function,
 }
 
+type ContextCardState = {
+  hasGottenSubmissions: boolean,
+}
+
 export class ContextCard extends Component<any, ContextCardProps, any> {
+  state: ContextCardState
+
+  constructor (props: ContextCardProps) {
+    super(props)
+    this.state = { hasGottenSubmissions: false }
+  }
+
   componentDidMount () {
-    this.props.getUserSubmissions(this.props.courseID, this.props.userID)
+    this.refreshSubmissions(this.props)
+  }
+  componentWillReceiveProps (nextProps: ContextCardProps) {
+    this.refreshSubmissions(nextProps)
+  }
+
+  refreshSubmissions (props: ContextCardProps) {
+    if (!this.state.hasGottenSubmissions && props.enrollment && props.enrollment.type === 'StudentEnrollment') {
+      this.props.getUserSubmissions(this.props.courseID, this.props.userID)
+      this.setState({ hasGottenSubmissions: true })
+    }
   }
 
   refresh = () => {
-    this.props.getUserSubmissions(this.props.courseID, this.props.userID)
+    if (this.props.enrollment.type === 'StudentEnrollment') {
+      this.props.getUserSubmissions(this.props.courseID, this.props.userID)
+    }
     this.props.refresh()
   }
 
@@ -70,7 +93,8 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
 
   renderHeader () {
     let sectionName = this.props.enrollment ? this.props.course.sections.find(({ id }) => id === this.props.enrollment.course_section_id).name : ''
-    let grade = this.props.enrollment.grades.current_grade
+    let grade = this.props.enrollment.grades && this.props.enrollment.grades.current_grade
+    let isStudent = this.props.enrollment.type === 'StudentEnrollment'
     return (
       <View style={styles.header}>
         <View style={styles.headerSection}>
@@ -95,24 +119,26 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
             </SubTitle>
           </View>
         </View>
-        <View style={styles.headerSection}>
-          <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
-          <View style={styles.line}>
-            <Text testID='context-card.grade' style={styles.largeText}>{grade || this.props.enrollment.grades.current_score || 0}</Text>
-            <Text style={styles.largeText}>{this.props.numLate}</Text>
-            <Text style={styles.largeText}>{this.props.numMissing}</Text>
-          </View>
-          {!grade &&
+        {isStudent &&
+          <View style={styles.headerSection}>
+            <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
             <View style={styles.line}>
-              <Text style={styles.outOf}>{i18n('out of {total, number}', { total: this.props.totalPoints })}</Text>
+              <Text testID='context-card.grade' style={styles.largeText}>{grade || this.props.enrollment.grades.current_score || 0}</Text>
+              <Text style={styles.largeText}>{this.props.numLate}</Text>
+              <Text style={styles.largeText}>{this.props.numMissing}</Text>
             </View>
-          }
-          <View style={styles.line}>
-            <Text style={styles.label}>{i18n('Grade')}</Text>
-            <Text style={styles.label}>{i18n('Late')}</Text>
-            <Text style={styles.label}>{i18n('Missing')}</Text>
+            {!grade &&
+              <View style={styles.line}>
+                <Text style={styles.outOf}>{i18n('out of {total, number}', { total: this.props.totalPoints })}</Text>
+              </View>
+            }
+            <View style={styles.line}>
+              <Text style={styles.label}>{i18n('Grade')}</Text>
+              <Text style={styles.label}>{i18n('Late')}</Text>
+              <Text style={styles.label}>{i18n('Missing')}</Text>
+            </View>
           </View>
-        </View>
+        }
       </View>
     )
   }
@@ -132,8 +158,13 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
 
   render () {
     const { course, user, enrollment, submissions, assignments } = this.props
-    if ((this.props.pending && !this.props.refreshing) || !user || !enrollment || submissions.length === 0 || assignments.length === 0) {
-      return <ActivityIndicatorView />
+    if ((this.props.pending && !this.props.refreshing) || !user || !enrollment || assignments.length === 0) {
+      return <Screen><ActivityIndicatorView /></Screen>
+    }
+
+    let isStudent = enrollment.type === 'StudentEnrollment'
+    if (isStudent && submissions.length === 0) {
+      return <Screen><ActivityIndicatorView /></Screen>
     }
 
     let leftBarButtons = null
@@ -169,7 +200,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
           ListHeaderComponent={this.renderHeader()}
           onRefresh={this.refresh}
           refreshing={this.props.refreshing}
-          data={this.props.assignments}
+          data={isStudent ? this.props.assignments : []}
           renderItem={this.renderItem}
         />
       </Screen>
