@@ -191,7 +191,7 @@ export class PeopleList extends Component<any, Props, any> {
                       <Avatar avatarURL={item.avatar_url} userName={avatarName}/>
                     </View>)
 
-    return <Row title={item.name}
+    return <Row title={item.full_name}
                 subtitle={membership}
                 border={border}
                 renderImage={() => avatar}
@@ -321,7 +321,6 @@ export class PeopleList extends Component<any, Props, any> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: global.tabBarHeight,
   },
   avatar: {
     width: 40,

@@ -12,7 +12,6 @@ exports[`People List renders 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
@@ -261,7 +260,6 @@ exports[`People List test update filter 1`] = `
     style={
       Object {
         "flex": 1,
-        "marginBottom": 49,
       }
     }
   >
@@ -323,8 +321,8 @@ exports[`People List test update filter 1`] = `
               ],
             },
             "common_groups": Object {},
+            "full_name": "nlambson",
             "id": "4634548",
-            "name": "nlambson",
           },
           Object {
             "avatar_url": "https://mobiledev.instructure.com/images/thumbnails/106457231/qHO3rtlZoJGhmUZROqY8BgXx0gBL5JWlbqWMHPSv",
@@ -334,8 +332,8 @@ exports[`People List test update filter 1`] = `
               ],
             },
             "common_groups": Object {},
+            "full_name": "Lance",
             "id": "8253362",
-            "name": "Lance",
           },
           Object {
             "avatar_url": "https://mobiledev.instructure.com/images/thumbnails/170000000004831/5UA86Fg8SxqHjdnZ0EpLbGJCHd43mFP7UO66CexD",
@@ -345,8 +343,8 @@ exports[`People List test update filter 1`] = `
               ],
             },
             "common_groups": Object {},
+            "full_name": "Brady Larson",
             "id": "170000003356518",
-            "name": "Brady Larson",
           },
         ]
       }

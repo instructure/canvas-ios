@@ -203,7 +203,7 @@ describe('People List', () => {
   it('test update filter', () => {
     let someResults = [{
       'id': '4634548',
-      'name': 'nlambson',
+      'full_name': 'nlambson',
       'common_courses': {
         '24219': ['TeacherEnrollment'],
       },
@@ -211,7 +211,7 @@ describe('People List', () => {
       'avatar_url': 'https://training.instructure.com/images/thumbnails/39010913/U1SNohq7Gn6r1PQVxylQnaHZzR5edu9os1FfEGz9',
     }, {
       'id': '8253362',
-      'name': 'Lance',
+      'full_name': 'Lance',
       'common_courses': {
         '24219': ['StudentEnrollment'],
       },
@@ -219,7 +219,7 @@ describe('People List', () => {
       'avatar_url': 'https://mobiledev.instructure.com/images/thumbnails/106457231/qHO3rtlZoJGhmUZROqY8BgXx0gBL5JWlbqWMHPSv',
     }, {
       'id': '170000003356518',
-      'name': 'Brady Larson',
+      'full_name': 'Brady Larson',
       'common_courses': {
         '24219': ['TeacherEnrollment'],
       },
