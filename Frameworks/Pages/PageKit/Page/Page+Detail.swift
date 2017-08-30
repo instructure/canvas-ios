@@ -114,9 +114,10 @@ extension Page {
         // MARK: - Initializers
 
         public init(session: Session, contextID: ContextID, url: String, route: @escaping (UIViewController, URL) -> Void) throws {
-            self.refresher = try Page.refresher(session, contextID: contextID, url: url)
-            self.observer = try Page.observer(session, contextID: contextID, url: url)
-            self.url = url
+            let urlFRD = url.removingPercentEncoding ?? ""
+            self.refresher = try Page.refresher(session, contextID: contextID, url: urlFRD)
+            self.observer = try Page.observer(session, contextID: contextID, url: urlFRD)
+            self.url = urlFRD
             self.contextID = contextID
             self.session = session
             self.route = route
