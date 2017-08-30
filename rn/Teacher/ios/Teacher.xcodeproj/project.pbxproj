@@ -62,6 +62,8 @@
 		3B157F535719FD93105E8EC9 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A161BC86548CE0BB3E1AC7 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift */; };
 		3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
 		3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
+		3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; };
+		3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
 		3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5812EA1EC4F18500173C37 /* HelmTests.swift */; };
 		3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
@@ -595,6 +597,7 @@
 			files = (
 				61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */,
 				6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */,
+				3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */,
 				6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */,
 				3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */,
 				3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */,
@@ -793,6 +796,7 @@
 		3A14A839A5EB460283B1F75B /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		3B2C7FBF1EB7DBF000A99D44 /* Helm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helm.m; path = Teacher/Helm.m; sourceTree = "<group>"; };
 		3B2C7FC01EB7DBF000A99D44 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helm.swift; path = Teacher/Helm.swift; sourceTree = "<group>"; };
+		3B2D872A1F571471001E3252 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISplitViewControllerExtensions.swift; path = Teacher/UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3B527DFA5898B0D5DD57EDD1 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift; sourceTree = "<group>"; };
 		3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -981,6 +985,7 @@
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				491EF3141F2BD1D2002B6C76 /* Marshal.framework in Frameworks */,
+				3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */,
 				3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */,
@@ -1378,6 +1383,7 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				3B2D872A1F571471001E3252 /* SoLazy.framework */,
 				2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */,
 				491EF3131F2BD1C5002B6C76 /* Marshal.framework */,
 				491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */,
