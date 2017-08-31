@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react'
 import SearchBar from 'react-native-search-bar'
-import httpClient from '../api/canvas-api/httpClient'
+import { httpClient } from 'canvas-api'
+import { parseNext } from 'canvas-api/utils/pagination'
 import axios, { CancelToken } from 'axios'
-import { parseNext } from '../api/utils/pagination'
 import i18n from 'format-message'
 
 export type TypeAheadSearchResults = () => { results: ?any[], error: ?string }
@@ -29,7 +29,7 @@ export default class TypeAheadSearch extends Component<any, Props, any> {
     this.fetch(this.props.endpoint, this.props.parameters(query), this.props.onRequestFinished)
   }
 
-  fetch (url: string, params: { [string]: any } = {}, callback: TypeAheadSearchResults) {
+  async fetch (url: string, params: { [string]: any } = {}, callback: TypeAheadSearchResults) {
     this.cancel && this.cancel()
     const cancelToken = new CancelToken((c) => { this.cancel = c })
     const options = {
@@ -38,14 +38,15 @@ export default class TypeAheadSearch extends Component<any, Props, any> {
     }
 
     this.props.onRequestStarted && this.props.onRequestStarted()
-    httpClient().get(url, options).then((response) => {
+    try {
+      let response = await httpClient().get(url, options)
       this.nextURL = parseNext(response)
       callback(response.data, null)
-    }).catch((thrown) => {
+    } catch (thrown) {
       if (!axios.isCancel(thrown)) {
         callback(null, thrown.message)
       }
-    })
+    }
   }
 
   next () {

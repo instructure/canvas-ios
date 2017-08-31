@@ -10,7 +10,7 @@ const { refreshQuizSubmissions } = QuizSubmissionActions
 const { excuseAssignment, gradeSubmission } = SpeedGraderActions
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
 }
 
 test('it captures submission ids', () => {

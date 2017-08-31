@@ -7,7 +7,7 @@ import explore from '../../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../../__templates__/helm'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/assignments'),
 }
 
 let defaultProps = {

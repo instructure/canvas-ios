@@ -18,8 +18,8 @@ jest
   }))
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

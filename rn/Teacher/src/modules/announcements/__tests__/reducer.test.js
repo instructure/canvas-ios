@@ -8,8 +8,8 @@ const { refreshAnnouncements } = ListActions
 const { createDiscussion, deleteDiscussion } = EditActions
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/discussion'),
-  ...require('../../../api/canvas-api/__templates__/error'),
+  ...require('../../../__templates__/discussion'),
+  ...require('../../../__templates__/error'),
 }
 
 describe('refs', () => {

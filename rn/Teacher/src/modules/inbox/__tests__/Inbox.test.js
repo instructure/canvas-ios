@@ -9,8 +9,8 @@ import renderer from 'react-test-renderer'
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/conversations'),
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/conversations'),
+  ...require('../../../__templates__/course'),
   ...require('../../../__templates__/helm'),
 }
 

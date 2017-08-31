@@ -6,7 +6,7 @@ import AssignmentDates from '../AssignmentDates'
 import moment from 'moment'
 
 const template = {
-  ...require('../../api/canvas-api/__templates__/assignments'),
+  ...require('../../__templates__/assignments'),
 }
 
 test('assignment dates should have a single due date', () => {

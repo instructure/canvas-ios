@@ -8,10 +8,10 @@ import { SubmissionBreakdownGraphSection, mapStateToProps } from '../components/
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/users'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/users'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
 }
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')

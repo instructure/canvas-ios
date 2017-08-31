@@ -37,9 +37,9 @@ jest
   .mock('Switch', () => 'Switch')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/discussion'),
-  ...require('../../../../api/canvas-api/__templates__/attachment'),
-  ...require('../../../../api/canvas-api/__templates__/error'),
+  ...require('../../../../__templates__/discussion'),
+  ...require('../../../../__templates__/attachment'),
+  ...require('../../../../__templates__/error'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
 }

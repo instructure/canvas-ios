@@ -4,7 +4,7 @@ import template, { type Template } from '../../../../utils/template'
 import type { SubmissionDataProps } from '../submission-prop-types'
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
 }
 
 const submissionWithHistory = templates.submissionHistory()

@@ -12,7 +12,7 @@ jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

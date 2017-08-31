@@ -13,7 +13,7 @@ jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 jest.mock('../../../../routing')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/course'),
+  ...require('../../../../__templates__/course'),
   ...require('../../../../__templates__/helm'),
 }
 

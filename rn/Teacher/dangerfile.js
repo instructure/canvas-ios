@@ -59,7 +59,7 @@ export function untestedFiles (): void {
   })
 
   const sourcePaths = danger.git.created_files.filter((path: string) => {
-    const exclude = ['__tests__/', '__snapshots__/', '__mocks__/', 'src/api/', '__templates__/', 'flow/']
+    const exclude = ['__tests__/', '__snapshots__/', '__mocks__/', '__templates__/', 'flow/']
     return path.includes('src/') &&
       path.includes('js') &&
       exclude.reduce((accl, e) => accl && !path.includes(e), true)

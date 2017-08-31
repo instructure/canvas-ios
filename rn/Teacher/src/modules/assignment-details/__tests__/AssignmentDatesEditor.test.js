@@ -12,7 +12,7 @@ jest.mock('LayoutAnimation', () => ({
 }))
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../__templates__/assignments'),
 }
 
 test('render correctly', () => {

@@ -3,11 +3,11 @@
 import 'react-native'
 import React from 'react'
 import CourseList from '../CourseList.js'
-import groupCustomColors from '../../../../api/utils/group-custom-colors'
+import groupCustomColors from '../../../../utils/group-custom-colors'
 import explore from '../../../../../test/helpers/explore'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/course'),
+  ...require('../../../../__templates__/course'),
 }
 
 // Note: test renderer must be required after react-native.

@@ -12,7 +12,7 @@ exports[`AnnouncementsList renders 1`] = `
       },
     ]
   }
-  subtitle={undefined}
+  subtitle="Im a course"
   title="Announcements"
 >
   <View

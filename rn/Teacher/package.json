@@ -18,6 +18,7 @@
     "axios": "^0.16.2",
     "bugsnag-react-native": "^2.3.1",
     "bugsnag-sourcemaps": "^1.0.1",
+    "canvas-api": "file:../modules/canvas-api",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
@@ -85,7 +86,7 @@
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
-      "node_modules/(?!react-native|my-project|react-native-button)"
+      "node_modules/(?!react-native|my-project|react-native-button|canvas-api)"
     ],
     "setupFiles": [
       "<rootDir>/test/scripts/jestSetup.js"
@@ -99,7 +100,6 @@
       "/node_modules/",
       ".android.js",
       "flow/*.js",
-      "/src/api/canvas-api/",
       "/src/modules/staging",
       "dangerfile.js"
     ],

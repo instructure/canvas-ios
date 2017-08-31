@@ -5,7 +5,7 @@ import React from 'react'
 import CourseDetailsSplitViewPlaceholder from '../CourseDetailsSplitViewPlaceholder'
 
 const template = {
-  ...require('../../../../../api/canvas-api/__templates__/course'),
+  ...require('../../../../../__templates__/course'),
 }
 
 // Note: test renderer must be required after react-native.

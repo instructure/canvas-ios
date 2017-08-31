@@ -5,8 +5,8 @@ import { testAsyncAction } from '../../../../test/helpers/async'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 
 let template = {
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/grading-periods'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/grading-periods'),
 }
 
 let defaultState = {}

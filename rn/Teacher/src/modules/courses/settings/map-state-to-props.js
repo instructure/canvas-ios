@@ -4,10 +4,6 @@ type RoutingParams = {
   courseID: string,
 }
 
-export type CourseSettingsActionProps = {
-  +updateCourse: () => Promise<Course>,
-}
-
 export type CourseSettingsProps = CourseState
 
 export function mapStateToProps (state: AppState, ownProps: RoutingParams): CourseSettingsProps {

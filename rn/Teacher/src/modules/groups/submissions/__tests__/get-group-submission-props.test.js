@@ -3,12 +3,12 @@
 import { getGroupSubmissionProps } from '../get-group-submission-props'
 
 const t = {
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../api/canvas-api/__templates__/group'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/group'),
+  ...require('../../../../__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
 }
 
 test('getGroupSubmissionProps', () => {

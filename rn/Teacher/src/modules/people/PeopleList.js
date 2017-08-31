@@ -16,7 +16,7 @@ import { default as TypeAheadSearch, type TypeAheadSearchResults } from '../../c
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import { Heading1 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
-import httpClient from '../../api/canvas-api/httpClient'
+import { httpClient } from 'canvas-api'
 import axios from 'axios'
 
 export type Props = NavigationProps & {
@@ -47,17 +47,19 @@ export function handleSyntheticContext (params: {[string]: any}): {[string]: any
   return mutableParams
 }
 
-export function fetch (url: string, params: { [string]: any } = {}, callback: TypeAheadSearchResults): void {
+export async function fetch (url: string, params: { [string]: any } = {}, callback: TypeAheadSearchResults): Promise<void> {
   const options:{[string]: any} = {
     params: handleSyntheticContext(params),
   }
-  httpClient().get(url, options).then((response) => {
+
+  try {
+    let response = await httpClient().get(url, options)
     callback(response.data, null)
-  }).catch((thrown) => {
+  } catch (thrown) {
     if (!axios.isCancel(thrown)) {
       callback(null, thrown.message)
     }
-  })
+  }
 }
 
 function localizedRoles (): { [string]: string } {

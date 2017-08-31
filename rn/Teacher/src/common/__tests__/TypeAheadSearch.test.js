@@ -4,25 +4,23 @@ import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
 import TypeAheadSearch, { type Props } from '../TypeAheadSearch'
-import httpClient from '../../api/canvas-api/httpClient'
+import { httpClient } from 'canvas-api'
 import explore from '../../../test/helpers/explore'
 
 jest
   .mock('react-native-search-bar', () => 'SearchBar')
-  .mock('../../api/canvas-api/httpClient')
+  .mock('canvas-api')
 
 describe('TypeAheadSearch', () => {
-  let props: Props
+  let props: Props = {
+    endpoint: '/',
+    parameters: jest.fn(() => {}),
+    onRequestFinished: jest.fn(),
+    onRequestStarted: jest.fn(),
+    onNextRequestFinished: jest.fn(),
+  }
   beforeEach(() => {
     jest.resetAllMocks()
-    const mock = jest.fn(() => Promise.resolve({ data: [] }))
-    httpClient().get = mock
-
-    props = {
-      endpoint: '/',
-      parameters: jest.fn(() => {}),
-      onRequestFinished: jest.fn(),
-    }
   })
 
   it('renders a search bar', () => {
@@ -49,23 +47,20 @@ describe('TypeAheadSearch', () => {
     expect(props.onChangeText).toHaveBeenCalledWith('gather tribute')
   })
 
-  it('sends request results', () => {
-    props.onRequestFinished = jest.fn()
+  it('sends request results', async () => {
     const data = [{ id: '1' }]
-    httpClient().get = jest.fn(() => ({
-      then: (callback) => {
-        callback({ data, headers: {} })
-        return { catch: jest.fn() }
-      },
-    }))
+    let p = Promise.resolve({ data, headers: {} })
+    httpClient().get.mockReturnValueOnce(p)
+
     const screen = render(props)
     const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
     searchBar.props.onChangeText('uther')
+
+    await p
     expect(props.onRequestFinished).toHaveBeenCalledWith(data, null)
   })
 
-  it('sends next request results', () => {
-    props.onNextRequestFinished = jest.fn()
+  it('sends next request results', async () => {
     const data = [{ id: '1' }]
     const headers = {
       link: '<https://example.com/items?page=1&per_page=1>; rel="current",\
@@ -73,34 +68,38 @@ describe('TypeAheadSearch', () => {
              <https://example.com/items?page=1&per_page=1>; rel="first",\
              <https://example.com/items?page=4&per_page=1>; rel="last"',
     }
-    httpClient().get = jest.fn(() => ({
-      then: (callback) => {
-        callback({ data, headers })
-        return { catch: jest.fn() }
-      },
-    }))
+    let p1 = Promise.resolve({ data, headers })
+    httpClient().get.mockReturnValueOnce(p1)
+
     const screen = render(props)
     const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
     searchBar.props.onChangeText('uther')
+    await p1
+    expect(props.onRequestFinished).toHaveBeenCalled()
+
+    let p2 = Promise.resolve({ data, headers: {} })
+    httpClient().get.mockReturnValueOnce(p2)
     screen.getInstance().next()
+
+    await p2
     expect(props.onNextRequestFinished).toHaveBeenCalledWith(data, null)
   })
 
   it('sends request errors', () => {
-    props.onRequestFinished = jest.fn()
-    httpClient().get = jest.fn(() => ({
-      then: jest.fn(() => ({
-        catch: (callback) => { callback({ message: 'uh oh' }) },
-      })),
-    }))
+    let rejectedPromise = Promise.reject({ message: 'uh oh' })
+    httpClient().get.mockReturnValueOnce(rejectedPromise)
+
     const screen = render(props)
     const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
     searchBar.props.onChangeText('uther')
-    expect(props.onRequestFinished).toHaveBeenCalledWith(null, 'uh oh')
+
+    rejectedPromise.catch(() => {
+      expect(props.onRequestFinished).toHaveBeenCalledWith(null, 'uh oh')
+    })
   })
 
   it('should notify when request starts', () => {
-    props.onRequestStarted = jest.fn()
+    httpClient().get.mockReturnValueOnce(Promise.resolve())
     const screen = render(props)
     const searchBar: any = explore(screen.toJSON()).selectByType('SearchBar')
     searchBar.props.onChangeText('gather tribute')

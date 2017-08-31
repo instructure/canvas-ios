@@ -6,7 +6,7 @@ import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
 let template = {
-  ...require('../../../api/canvas-api/__templates__/users'),
+  ...require('../../../__templates__/users'),
 }
 
 describe('user-profiles reducer', () => {

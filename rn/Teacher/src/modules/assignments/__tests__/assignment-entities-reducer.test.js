@@ -12,9 +12,9 @@ const { refreshSubmissions, refreshSubmissionSummary, getUserSubmissions } = Sub
 const { refreshQuiz } = QuizDetailsActions
 const { refreshDiscussionEntries } = DiscussionDetailsActions
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../api/canvas-api/__templates__/error'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/submissions'),
+  ...require('../../../__templates__/error'),
 }
 
 test('refresh assignments', async () => {
@@ -169,6 +169,7 @@ test('refreshQuiz', () => {
   })
 
   test('anonymousGrading', () => {
+    let actions = AssignmentListActions()
     let state = {
       '1': {
         anonymousGradingOn: false,
@@ -181,7 +182,7 @@ test('refreshQuiz', () => {
       },
     }
     let action = {
-      type: AssignmentListActions.anonymousGrading,
+      type: actions.anonymousGrading,
       payload: {
         courseID: '1',
         assignmentID: '1',

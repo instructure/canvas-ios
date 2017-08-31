@@ -4,14 +4,14 @@ import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
-import { setSession } from '../../../../api/session'
+import { setSession } from 'canvas-api'
 import DrawerState from '../../utils/drawer-state'
 
 const templates = {
   ...require('../../../../redux/__templates__/app-state'),
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../../api/canvas-api/__templates__/session'),
-  ...require('../../../../api/canvas-api/__templates__/attachment'),
+  ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/session'),
+  ...require('../../../../__templates__/attachment'),
 }
 
 const comments = [

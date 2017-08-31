@@ -5,10 +5,10 @@ import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/section'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/group'),
+  ...require('../../../__templates__/section'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/group'),
 }
 
 test('refresh course sections', async () => {

@@ -2,6 +2,7 @@
 
 import localeSort from '../../utils/locale-sort'
 import Navigator from '../../routing/Navigator'
+import AssignmentListActions from './actions'
 
 export type AssignmentListDataProps = {
   +pending: number,
@@ -13,19 +14,9 @@ export type AssignmentListDataProps = {
   +selectedRowID: string,
 }
 
-export type AssignmentListActionProps = {
-  +refreshAssignmentList: () => Promise<AssignmentGroup[]>,
-  +refreshAssignment: () => Promise<Assignment>,
-  +refreshAssignmentDetails: () => Promise<[Assignment, Object]>,
-  +updateAssignment: (courseID: string, updatedAssignment: Assignment, originalAssignment: Assignment) => Promise<Assignment>,
-  +cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
-  +updateCourseDetailsSelectedTabSelectedRow: (rowID: string) => void,
-  +anonymousGrading: (string, string, boolean) => void,
-}
-
 export type AssignmentListProps = AssignmentListDataProps
   & RoutingProps
-  & AssignmentListActionProps
+  & typeof AssignmentListActions
   & { navigator: Navigator }
   & RefreshProps
 

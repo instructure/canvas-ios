@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { CourseSettings } from '../CourseSettings.js'
-import * as courseTemplates from '../../../../api/canvas-api/__templates__/course'
+import * as courseTemplates from '../../../../__templates__/course'
 import * as navigatorTemplates from '../../../../__templates__/helm'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'

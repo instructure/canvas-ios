@@ -1,10 +1,9 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import type { CourseSettingsActionProps } from './map-state-to-props'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export let CourseSettingsActions = (api: typeof canvas): CourseSettingsActionProps => ({
+export let CourseSettingsActions = (api: CanvasApi): * => ({
   updateCourse: createAction('courses.settings.update', (course: Course, oldCourse: Course) => ({
     course,
     oldCourse,
@@ -14,4 +13,4 @@ export let CourseSettingsActions = (api: typeof canvas): CourseSettingsActionPro
   })),
 })
 
-export default (CourseSettingsActions(canvas): CourseSettingsActionProps)
+export default (CourseSettingsActions(canvas): *)

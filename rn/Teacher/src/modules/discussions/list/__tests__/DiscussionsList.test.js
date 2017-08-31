@@ -19,7 +19,7 @@ jest
 
 const template = {
   ...require('../../../../__templates__/helm'),
-  ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../__templates__/discussion'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

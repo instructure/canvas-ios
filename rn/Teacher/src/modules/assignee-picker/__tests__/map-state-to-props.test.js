@@ -7,11 +7,11 @@ import { searchMapStateToProps, pickerMapStateToProps, type AssigneeSearchProps,
 
 const template = {
   ...require('../__template__/Assignee.js'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/enrollments'),
-  ...require('../../../api/canvas-api/__templates__/section'),
-  ...require('../../../api/canvas-api/__templates__/group'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/enrollments'),
+  ...require('../../../__templates__/section'),
+  ...require('../../../__templates__/group'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }

@@ -7,7 +7,7 @@ import explore from '../../../../test/helpers/explore'
 
 const template = {
   ...require('../../../__templates__/helm'),
-  ...require('../../../api/canvas-api/__templates__/group'),
+  ...require('../../../__templates__/group'),
   ...require('../../../redux/__templates__/app-state'),
 }
 

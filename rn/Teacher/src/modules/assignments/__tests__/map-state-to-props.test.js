@@ -3,9 +3,9 @@
 import { mapStateToProps, type AssignmentListProps } from '../map-state-to-props'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/grading-periods'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/grading-periods'),
   ...require('../../../__templates__/helm'),
   ...require('../../../redux/__templates__/app-state'),
 }
@@ -62,6 +62,7 @@ test('map state to props should work', async () => {
     refresh: jest.fn(),
     cancelAssignmentUpdate: jest.fn(),
     updateCourseDetailsSelectedTabSelectedRow: jest.fn(),
+    refreshGradeableStudents: jest.fn(),
     refreshing: false,
     pending: 0,
     navigator: template.navigator(),

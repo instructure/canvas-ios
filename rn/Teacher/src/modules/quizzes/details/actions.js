@@ -1,9 +1,9 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export let Actions: (typeof canvas) => any = (api) => ({
+export let Actions = (api: CanvasApi): * => ({
   refreshQuiz: createAction('quizDetails.refresh', (courseID: string, quizID: string) => {
     return {
       promise: Promise.all([
@@ -25,4 +25,4 @@ export let Actions: (typeof canvas) => any = (api) => ({
   }),
 })
 
-export default (Actions(canvas): any)
+export default (Actions(canvas): *)

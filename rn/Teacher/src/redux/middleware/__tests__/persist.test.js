@@ -3,6 +3,7 @@
 import { AsyncStorage } from 'react-native'
 import mockStore from '../../../../test/helpers/mockStore'
 import { hydrateStoreFromPersistedState } from '../persist'
+import { setSession } from 'canvas-api'
 
 jest.mock('AsyncStorage', () => ({
   getItem: jest.fn(),
@@ -11,12 +12,17 @@ jest.mock('AsyncStorage', () => ({
   getAllKeys: jest.fn(),
   multiRemove: jest.fn(),
 }))
-jest.mock('../../../api/session')
+
+let templates = {
+  ...require('../../../__templates__/session'),
+}
 
 let wait = () => new Promise(resolve => setTimeout(resolve, 1))
 
 describe('persistMiddleware', () => {
   let store
+  setSession(templates.session())
+
   beforeEach(() => {
     jest.resetAllMocks()
     store = mockStore()

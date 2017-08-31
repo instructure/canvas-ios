@@ -16,7 +16,7 @@ jest.mock('ActionSheetIOS', () => ({
 }))
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/rubric'),
+  ...require('../../../../__templates__/rubric'),
 }
 
 let defaultProps = {

@@ -2,7 +2,7 @@
 
 import mapStateToProps from '../map-state-to-props'
 import { normalizeCourse } from '../../courses-reducer'
-import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
+import * as courseTemplate from '../../../../__templates__/course'
 import { appState } from '../../../../redux/__templates__/app-state'
 import fromPairs from 'lodash/fromPairs'
 

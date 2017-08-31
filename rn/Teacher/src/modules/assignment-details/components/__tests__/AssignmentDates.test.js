@@ -9,7 +9,7 @@ import renderer from 'react-test-renderer'
 import moment from 'moment'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/assignments'),
 }
 
 test('render with multiple due dates', () => {

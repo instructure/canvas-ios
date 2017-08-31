@@ -16,7 +16,7 @@ import {
 } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import color from '../../../common/colors'
-import { getSession } from '../../../api/session'
+import { getSession } from 'canvas-api'
 import i18n from 'format-message'
 import find from 'lodash/find'
 import { formattedDate } from '../../../utils/dateUtils'

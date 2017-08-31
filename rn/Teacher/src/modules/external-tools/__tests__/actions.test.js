@@ -5,7 +5,7 @@ import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/external-tool'),
+  ...require('../../../__templates__/external-tool'),
 }
 
 test('fetch LTI launch definitions', async () => {

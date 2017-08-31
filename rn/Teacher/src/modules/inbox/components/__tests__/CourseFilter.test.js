@@ -8,7 +8,7 @@ import explore from '../../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/course'),
+  ...require('../../../../__templates__/course'),
 }
 
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')

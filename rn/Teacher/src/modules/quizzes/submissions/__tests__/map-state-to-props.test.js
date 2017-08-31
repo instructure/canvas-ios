@@ -7,13 +7,13 @@ import shuffle from 'knuth-shuffle-seeded'
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
-  ...require('../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../api/canvas-api/__templates__/enrollments'),
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../../api/canvas-api/__templates__/quizSubmission'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/quiz'),
+  ...require('../../../../__templates__/users'),
+  ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/enrollments'),
+  ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/quizSubmission'),
+  ...require('../../../../__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

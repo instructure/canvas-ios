@@ -29,7 +29,6 @@ function isPromise (val: any): boolean {
 let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middleware<S, A> => {
   return (next: Dispatch<A>) => (action: A) => {
     let promise = action.payload && action.payload.promise
-
     if (isFSA(action) && isPromise(promise) && !action.error) {
       promise.then(
         result => {
@@ -42,7 +41,6 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
           return dispatch({ ...action, payload, error: true })
         }
       )
-
       next({
         ...action,
         pending: true,

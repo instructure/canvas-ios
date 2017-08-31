@@ -18,13 +18,14 @@ import Images from '../../../images'
 
 type State = AsyncState & {
   announcements: Discussion[],
+  courseName: string,
 }
 
 type OwnProps = {
   courseID: string,
 }
 
-export type Props = OwnProps & State & Actions & RefreshProps & NavigationProps
+export type Props = OwnProps & State & typeof Actions & RefreshProps & NavigationProps
 
 export class AnnouncementsList extends Component<any, Props, any> {
 

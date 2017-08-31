@@ -15,7 +15,7 @@ import cloneDeep from 'lodash/cloneDeep'
 const template = {
   ...require('../../../../__templates__/helm'),
   ...require('../__templates__/submission-props'),
-  ...require('../../../../api/canvas-api/__templates__/course'),
+  ...require('../../../../__templates__/course'),
 }
 
 jest

@@ -8,7 +8,7 @@ import WebContainer from '../WebContainer'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import { setSession } from '../../../api/session'
+import api, { setSession } from 'canvas-api'
 
 jest
   .unmock('ScrollView')
@@ -19,11 +19,10 @@ jest
       open: jest.fn(),
     }
   })
-
-jest.mock('../../../api/canvas-api/login')
+  .mock('canvas-api')
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/session'),
+  ...require('../../../__templates__/session'),
   ...require('../../../__templates__/helm'),
 }
 
@@ -165,6 +164,9 @@ test('internal link loads authenticated url', async () => {
   const webView: any = explore(tree.toJSON()).query(({ type }) => type === 'WebView')[0]
   webView.props.onShouldStartLoadWithRequest()
   expect(RCTSFSafariViewController.open).not.toHaveBeenCalled()
+
+  api.getAuthenticatedSessionURL.mockReturnValueOnce(Promise.resolve({ data: { session_url: 'http://mobiledev.instructure.com/courses/1/modules/1/items-authenticated' } }))
+
   await webView.props.onShouldStartLoadWithRequest({
     url: 'http://mobiledev.instructure.com/courses/1/modules/1/items',
     navigationType: 'click',

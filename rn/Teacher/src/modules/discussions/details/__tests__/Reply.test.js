@@ -10,8 +10,8 @@ import Reply, { type Props } from '../Reply'
 jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableHighlight').mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/discussion'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../__templates__/discussion'),
+  ...require('../../../../__templates__/users'),
   ...require('../../../../__templates__/helm'),
 }
 jest.mock('WebView', () => 'WebView')

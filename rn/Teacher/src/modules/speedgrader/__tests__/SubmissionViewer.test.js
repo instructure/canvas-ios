@@ -7,7 +7,7 @@ import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
 
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../__templates__/submissions'),
 }
 
 jest

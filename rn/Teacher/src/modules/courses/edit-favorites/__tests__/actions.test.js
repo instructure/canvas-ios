@@ -3,7 +3,7 @@
 import { FavoritesActions } from '../actions'
 import { testAsyncAction } from '../../../../../test/helpers/async'
 import { apiResponse, apiError } from '../../../../../test/helpers/apiMock'
-import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
+import * as courseTemplate from '../../../../__templates__/course'
 
 test('toggleFavorite workflow', async () => {
   const course = courseTemplate.course({ is_favorite: false })

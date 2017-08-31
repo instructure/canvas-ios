@@ -1,6 +1,6 @@
 // @flow
 
-import type { CourseListActionProps } from '../course-prop-types'
+import CourseActions from '../actions'
 import Navigator from '../../../routing/Navigator'
 
 type RoutingParams = {
@@ -17,7 +17,7 @@ export type CourseDetailsDataProps = {
 }
 
 export type CourseDetailsProps = CourseDetailsDataProps
-  & CourseListActionProps
+  & typeof CourseActions
   & RoutingParams
   & RefreshProps
   & { navigator: Navigator }

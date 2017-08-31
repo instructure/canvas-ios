@@ -5,8 +5,8 @@ import { apiResponse } from '../../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/quiz'),
+  ...require('../../../../__templates__/assignments'),
 }
 
 describe('refreshQuiz', () => {

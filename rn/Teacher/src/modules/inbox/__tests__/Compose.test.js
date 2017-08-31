@@ -4,14 +4,14 @@ import React from 'react'
 import { Compose, mapStateToProps } from '../Compose'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
-// $FlowFixMe
-import { createConversationMock, addMessageMock } from '../../../api/canvas-api/conversations'
+import api from 'canvas-api'
+import { apiResponse } from 'canvas-api/utils/testHelpers'
 
 let template = {
   ...require('../../../__templates__/helm'),
-  ...require('../../../api/canvas-api/__templates__/addressBook'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/conversations'),
+  ...require('../../../__templates__/addressBook'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/conversations'),
 }
 
 let defaultProps = {
@@ -34,7 +34,7 @@ jest
     },
   }))
   .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('../../../api/canvas-api/conversations')
+  .mock('canvas-api')
   .mock('../../../routing/Screen')
 
 describe('Compose', () => {
@@ -195,6 +195,10 @@ describe('Compose', () => {
       subject: 'new conversation subject',
       onlySendIndividualMessages: false,
     }
+
+    let response = apiResponse(template.conversation())
+    api.createConversation.mockReturnValueOnce(response())
+
     const screen = renderer.create(
       <Compose {...props} />
     )
@@ -202,7 +206,7 @@ describe('Compose', () => {
     body.props.onChangeText('new conversation')
     const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
     sendButton.action()
-    expect(createConversationMock).toHaveBeenCalledWith({
+    expect(api.createConversation).toHaveBeenCalledWith({
       recipients: ['1'],
       body: 'new conversation',
       subject: 'new conversation subject',
@@ -222,6 +226,10 @@ describe('Compose', () => {
       conversationID: '1',
       includedMessages: [template.conversationMessage({ id: '1' }), template.conversationMessage({ id: '2' })],
     }
+
+    let response = apiResponse(template.conversation(props.includedMessages[0]))
+    api.addMessage.mockReturnValueOnce(response())
+
     const screen = renderer.create(
       <Compose {...props} />
     )
@@ -229,7 +237,7 @@ describe('Compose', () => {
     body.props.onChangeText('new conversation')
     const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
     sendButton.action()
-    expect(addMessageMock).toHaveBeenCalledWith('1', {
+    expect(api.addMessage).toHaveBeenCalledWith('1', {
       recipients: ['1'],
       body: 'new conversation',
       subject: 'new conversation subject',

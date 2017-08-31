@@ -6,7 +6,7 @@ import { testAsyncReducer } from '../../../../../test/helpers/async'
 import { apiResponse, apiError, DEFAULT_ERROR_MESSAGE } from '../../../../../test/helpers/apiMock'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/tab'),
+  ...require('../../../../__templates__/tab'),
 }
 
 describe('refresh tabs', () => {

@@ -15,7 +15,7 @@ jest
   .mock('../AttachmentPicker', () => 'AttachmentPicker')
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/attachment'),
+  ...require('../../../__templates__/attachment'),
   ...require('../../../__templates__/helm'),
 }
 

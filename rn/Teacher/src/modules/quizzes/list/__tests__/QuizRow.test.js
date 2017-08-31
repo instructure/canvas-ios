@@ -13,7 +13,7 @@ jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../__templates__/quiz'),
 }
 
 describe('QuizRow', () => {

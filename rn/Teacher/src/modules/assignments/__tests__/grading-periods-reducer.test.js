@@ -7,8 +7,8 @@ import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/grading-periods'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/grading-periods'),
 }
 
 test('refresh grading periods', async () => {

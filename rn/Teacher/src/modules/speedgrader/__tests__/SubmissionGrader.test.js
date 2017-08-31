@@ -19,7 +19,7 @@ jest
   .mock('../comments/CommentsTab')
 
 let template = {
-  ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../__templates__/submissions'),
 }
 
 let defaultProps = {

@@ -8,7 +8,7 @@ import { AnnouncementsList, type Props, mapStateToProps } from '../Announcements
 import explore from '../../../../../test/helpers/explore'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../__templates__/discussion'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
 }
@@ -41,6 +41,8 @@ describe('AnnouncementsList', () => {
           posted_at: '2013-10-28T14:16:00-07:00',
         }),
       ],
+      refreshAnnouncements: jest.fn(),
+      courseName: 'Im a course',
     }
   })
 

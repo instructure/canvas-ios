@@ -31,9 +31,9 @@ jest
   .mock('../../../../routing/Screen')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../api/canvas-api/__templates__/error'),
+  ...require('../../../../__templates__/quiz'),
+  ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/error'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
 }

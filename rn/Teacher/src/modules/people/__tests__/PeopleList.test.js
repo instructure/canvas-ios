@@ -7,8 +7,8 @@ import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/addressBook'),
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/addressBook'),
+  ...require('../../../__templates__/course'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }

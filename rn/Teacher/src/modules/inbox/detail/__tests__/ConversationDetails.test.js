@@ -4,17 +4,17 @@ import {
 } from 'react-native'
 import React from 'react'
 import { ConversationDetails, mapStateToProps, handleRefresh, shouldRefresh, type ConversationDetailsProps } from '../ConversationDetails.js'
-import { setSession } from '../../../../api/session'
+import { setSession } from 'canvas-api'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/conversations'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
-  ...require('../../../../api/canvas-api/__templates__/enrollments'),
+  ...require('../../../../__templates__/conversations'),
+  ...require('../../../../__templates__/users'),
+  ...require('../../../../__templates__/enrollments'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../../redux/__templates__/app-state'),
-  ...require('../../../../api/canvas-api/__templates__/session'),
+  ...require('../../../../__templates__/session'),
 }
 
 jest

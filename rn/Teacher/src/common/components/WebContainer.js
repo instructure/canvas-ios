@@ -6,8 +6,7 @@ import React, { Component } from 'react'
 import { View, WebView } from 'react-native'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { isWebUri } from 'valid-url'
-import { getSession } from '../../api/session'
-import canvas from '../../api/canvas-api'
+import canvas, { getSession } from 'canvas-api'
 
 const TEMPLATE = `
 <html>

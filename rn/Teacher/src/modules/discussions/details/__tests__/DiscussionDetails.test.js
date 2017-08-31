@@ -26,10 +26,10 @@ jest
   }))
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/discussion'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../__templates__/discussion'),
+  ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../__templates__/helm'),
 }

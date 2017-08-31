@@ -6,10 +6,10 @@ import explore from '../../../../test/helpers/explore'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
-import { setSession } from '../../../api/session'
+import { setSession } from 'canvas-api'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/session'),
+  ...require('../../../__templates__/session'),
   ...require('../../../__templates__/helm.js'),
 }
 

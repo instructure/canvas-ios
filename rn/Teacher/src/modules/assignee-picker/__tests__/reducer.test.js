@@ -7,7 +7,7 @@ import Actions from '../actions'
 
 const { refreshSections } = Actions
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/section'),
+  ...require('../../../__templates__/section'),
 }
 
 test('captures entities mapped by id', () => {

@@ -3,8 +3,8 @@
 import mapStateToProps from '../map-state-to-props'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../api/canvas-api/__templates__/tab'),
+  ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/tab'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

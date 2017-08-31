@@ -1,17 +1,9 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from '../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export type SpeedGraderActionsType = {
-  excuseAssignment: (courseID: string, assignmentID: string, userID: string, submissionID: ?string) => any,
-  selectSubmissionFromHistory: (submissionID: string, index: number) => any,
-  selectFile: (submissionID: string, index: number) => any,
-  gradeSubmission: (courseID: string, assignmentID: string, userID: string, submissionID: ?string, grade: string) => any,
-  gradeSubmissionWithRubric: (courseID: string, assignmentID: string, userID: string, submissionID: ?string, rubricParams: { [string]: RubricAssessment }) => any,
-}
-
-export const SpeedGraderActions = (api: typeof canvas): SpeedGraderActionsType => ({
+export const SpeedGraderActions = (api: CanvasApi): * => ({
   excuseAssignment: createAction('submission.excuse', (courseID: string, assignmentID: string, userID: string, submissionID: ?string) => ({
     promise: api.gradeSubmission(courseID, assignmentID, userID, {
       excuse: true,
@@ -42,4 +34,4 @@ export const SpeedGraderActions = (api: typeof canvas): SpeedGraderActionsType =
   })),
 })
 
-export default (SpeedGraderActions(canvas): SpeedGraderActionsType)
+export default (SpeedGraderActions(canvas): *)

@@ -5,7 +5,7 @@ import { CourseSettingsActions } from '../settings/actions'
 import { courses as coursesReducer } from '../courses-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
-import * as courseTemplate from '../../../api/canvas-api/__templates__/course'
+import * as courseTemplate from '../../../__templates__/course'
 
 describe('courses refresher', () => {
   it('should capture courses from response', async () => {

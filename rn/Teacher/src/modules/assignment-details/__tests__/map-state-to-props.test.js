@@ -3,8 +3,8 @@
 import { mapStateToProps, updateMapStateToProps, type AssignmentDetailsProps } from '../map-state-to-props'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/course'),
   ...require('../../../__templates__/helm'),
   ...require('../../../redux/__templates__/app-state'),
 }

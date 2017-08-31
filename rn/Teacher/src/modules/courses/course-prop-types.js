@@ -1,5 +1,7 @@
 // @flow
 
+import CourseActions from './actions'
+
 type ColorProps = {
   +color: string,
 }
@@ -10,10 +12,4 @@ export type CourseListDataProps = AsyncState & {
   +courses: Array<CourseProps>,
 }
 
-export type CourseListActionProps = {
-  +refreshCourses: () => Promise<Course[]>,
-  +updateCourseColor: () => Promise<*>,
-  +refreshGradingPeriods: () => Promise<*>,
-}
-
-export type CourseListProps = CourseListDataProps & CourseListActionProps
+export type CourseListProps = CourseListDataProps & typeof CourseActions

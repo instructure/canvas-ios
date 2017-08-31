@@ -1,9 +1,9 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export let Actions: (typeof canvas) => any = (api) => ({
+export let Actions = (api: CanvasApi): * => ({
   refreshAnnouncements: createAction('announcements.list.refresh', (courseID: string) => {
     return {
       promise: api.getDiscussions(courseID, { only_announcements: true }),
@@ -12,4 +12,4 @@ export let Actions: (typeof canvas) => any = (api) => ({
   }),
 })
 
-export default (Actions(canvas): any)
+export default (Actions(canvas): *)

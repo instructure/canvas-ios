@@ -15,8 +15,8 @@ registerScreens({})
 
 const template = {
   ...require('../__template__/Assignee.js'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/assignments'),
   ...require('../../../__templates__/helm'),
 }
 

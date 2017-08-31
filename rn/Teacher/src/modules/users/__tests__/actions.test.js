@@ -5,7 +5,7 @@ import { testAsyncAction } from '../../../../test/helpers/async'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 
 let template = {
-  ...require('../../../api/canvas-api/__templates__/users'),
+  ...require('../../../__templates__/users'),
 }
 
 test('should refresh user profiles based on a single userID passed in', async () => {

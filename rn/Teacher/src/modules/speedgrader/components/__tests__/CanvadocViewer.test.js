@@ -6,7 +6,7 @@ import CanvadocViewer from '../CanvadocViewer'
 import renderer from 'react-test-renderer'
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/attachment'),
+  ...require('../../../../__templates__/attachment'),
 }
 
 test('Canvadoc viewer renders', () => {

@@ -6,7 +6,7 @@ import Actions from '../actions'
 const { refreshGroupsForCourse } = Actions
 
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/group'),
+  ...require('../../../__templates__/group'),
 }
 
 test('it captures group ids', () => {

@@ -5,7 +5,7 @@ import ImageSubmissionViewer from '../ImageSubmissionViewer'
 import renderer from 'react-test-renderer'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/attachment'),
+  ...require('../../../../__templates__/attachment'),
 }
 
 Image.getSize = jest.fn()

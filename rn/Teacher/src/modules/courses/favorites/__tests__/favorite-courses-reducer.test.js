@@ -7,7 +7,7 @@ import { apiResponse, apiError } from '../../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/course'),
+  ...require('../../../../__templates__/course'),
 }
 
 describe('toggleFavorite', () => {

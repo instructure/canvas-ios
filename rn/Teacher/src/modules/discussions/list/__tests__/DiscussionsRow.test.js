@@ -10,7 +10,7 @@ import explore from '../../../../../test/helpers/explore'
 jest.mock('Button', () => 'Button').mock('TouchableHighlight', () => 'TouchableHighlight').mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/discussion'),
+  ...require('../../../../__templates__/discussion'),
 }
 
 describe('DiscussionsRow', () => {

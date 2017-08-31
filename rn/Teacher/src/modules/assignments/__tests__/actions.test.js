@@ -6,9 +6,9 @@ import { testAsyncAction } from '../../../../test/helpers/async'
 import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../../courses/actions'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/submissions'),
 }
 
 test('refresh assignment list', async () => {

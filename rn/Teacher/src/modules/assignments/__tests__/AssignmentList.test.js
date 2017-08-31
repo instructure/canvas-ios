@@ -7,10 +7,10 @@ import explore from '../../../../test/helpers/explore'
 import timezoneMock from 'timezone-mock'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/course'),
   ...require('../../../__templates__/helm'),
-  ...require('../../../api/canvas-api/__templates__/grading-periods'),
+  ...require('../../../__templates__/grading-periods'),
 }
 
 // Note: test renderer must be required after react-native.

@@ -6,8 +6,8 @@ import { groups } from '../group-entities-reducer'
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/group'),
-  ...require('../../../api/canvas-api/__templates__/error'),
+  ...require('../../../__templates__/group'),
+  ...require('../../../__templates__/error'),
 }
 
 test('igornes pending', () => {

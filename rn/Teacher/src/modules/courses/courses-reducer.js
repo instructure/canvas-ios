@@ -6,7 +6,7 @@ import CourseListActions, { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTI
 import CourseSettingsActions from './settings/actions'
 import handleAsync from '../../utils/handleAsync'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
-import groupCustomColors from '../../api/utils/group-custom-colors'
+import groupCustomColors from '../../utils/group-custom-colors'
 import fromPairs from 'lodash/fromPairs'
 import { tabs } from './tabs/tabs-reducer'
 import { assignmentGroups } from '../assignments/assignment-group-refs-reducer'

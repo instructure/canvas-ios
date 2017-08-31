@@ -7,7 +7,7 @@ import explore from '../../../../../test/helpers/explore'
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/conversations'),
+  ...require('../../../../__templates__/conversations'),
 }
 
 // Note: test renderer must be required after react-native.

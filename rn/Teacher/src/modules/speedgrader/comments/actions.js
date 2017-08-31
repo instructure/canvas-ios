@@ -1,22 +1,10 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 import uuid from 'uuid/v1'
 
-export type CommentActions = {
-  makeAComment: (
-    courseID: string,
-    assignmentID: string,
-    userID: string,
-    comment: SubmissionCommentParams) => void,
-  deletePendingComment: (
-    userID: string,
-    localID: string
-  ) => void,
-}
-
-export const SubmissionCommentActions = (api: typeof canvas): CommentActions => ({
+export const SubmissionCommentActions = (api: CanvasApi): * => ({
   makeAComment: createAction('submissions.comments.send', (courseID: string, assignmentID: string, userID: string, comment: SubmissionCommentParams) => ({
     comment,
     assignmentID,
@@ -34,4 +22,4 @@ export const SubmissionCommentActions = (api: typeof canvas): CommentActions => 
   })),
 })
 
-export default (SubmissionCommentActions(canvas): CommentActions)
+export default (SubmissionCommentActions(canvas): *)

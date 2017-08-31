@@ -17,11 +17,11 @@ jest.mock('../../../routing/Screen')
     .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/course'),
-  ...require('../../../api/canvas-api/__templates__/enrollments'),
-  ...require('../../../api/canvas-api/__templates__/users'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../__templates__/course'),
+  ...require('../../../__templates__/enrollments'),
+  ...require('../../../__templates__/users'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/submissions'),
   ...require('../../../redux/__templates__/app-state'),
 }
 const defaultProps = {

@@ -8,7 +8,7 @@ const { refreshSubmissions, getUserSubmissions } = Actions
 const { excuseAssignment, gradeSubmission,
   selectSubmissionFromHistory, gradeSubmissionWithRubric, selectFile } = SpeedGraderActions
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
 }
 
 test('it captures entities', () => {

@@ -7,7 +7,7 @@ import Actions from '../Actions'
 
 const { refreshEnrollments } = Actions
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/enrollments'),
+  ...require('../../../__templates__/enrollments'),
 }
 
 const defaultRefs = { pending: 0, refs: [] }

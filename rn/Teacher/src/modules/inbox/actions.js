@@ -1,7 +1,7 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from '../../api/canvas-api'
+import canvas from 'canvas-api'
 
 export function createInboxAction (api: any, scope: InboxScope, next?: Function): any {
   return {
@@ -10,7 +10,7 @@ export function createInboxAction (api: any, scope: InboxScope, next?: Function)
   }
 }
 
-export let InboxActions: (typeof canvas) => any = (api) => ({
+export let InboxActions = (api: CanvasApi): * => ({
   refreshInboxAll: createAction('inbox.refresh-all', (useNext?: Function) => {
     return createInboxAction(api, 'all', useNext)
   }),
@@ -61,4 +61,4 @@ export let InboxActions: (typeof canvas) => any = (api) => ({
   }),
 })
 
-export default (InboxActions(canvas): any)
+export default (InboxActions(canvas): *)

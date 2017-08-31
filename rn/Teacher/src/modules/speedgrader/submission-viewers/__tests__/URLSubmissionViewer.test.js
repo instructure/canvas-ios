@@ -8,8 +8,8 @@ import setProps from '../../../../../test/helpers/setProps'
 import explore from '../../../../../test/helpers/explore'
 
 const t = {
-  ...require('../../../../api/canvas-api/__templates__/submissions.js'),
-  ...require('../../../../api/canvas-api/__templates__/attachment.js'),
+  ...require('../../../../__templates__/submissions.js'),
+  ...require('../../../../__templates__/attachment.js'),
 }
 
 Image.getSize = jest.fn()

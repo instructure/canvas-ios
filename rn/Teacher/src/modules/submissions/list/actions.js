@@ -1,9 +1,9 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export let Actions: (typeof canvas) => any = (api) => ({
+export let Actions = (api: CanvasApi): * => ({
   refreshSubmissionSummary: createAction('submissions.summary', (courseID: string, assignmentID: string) => ({
     promise: api.refreshSubmissionSummary(courseID, assignmentID),
     courseID,

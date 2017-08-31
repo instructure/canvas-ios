@@ -2,7 +2,7 @@
 
 import 'react-native'
 import React from 'react'
-import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
+import * as courseTemplate from '../../../../__templates__/course'
 import * as navigationTemplate from '../../../../__templates__/helm'
 import { FavoritesList } from '../EditFavorites'
 import setProps from '../../../../../test/helpers/setProps'

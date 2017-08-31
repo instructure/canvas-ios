@@ -8,7 +8,7 @@ import cloneDeep from 'lodash/cloneDeep'
 
 const template = {
   ...require('../../../../__templates__/helm'),
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../__templates__/quiz'),
 }
 
 jest.mock('../../../../routing')

@@ -9,8 +9,8 @@ jest.unmock('ScrollView')
 const templates = {
   ...require('../../../__templates__/helm'),
   ...require('../../../redux/__templates__/app-state'),
-  ...require('../../../api/canvas-api/__templates__/rubric'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../__templates__/rubric'),
+  ...require('../../../__templates__/assignments'),
 }
 
 let ownProps = {

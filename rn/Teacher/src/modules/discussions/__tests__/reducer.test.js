@@ -25,11 +25,11 @@ const {
 } = EditActions
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/discussion'),
-  ...require('../../../api/canvas-api/__templates__/file'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/error'),
-  ...require('../../../api/canvas-api/__templates__/users'),
+  ...require('../../../__templates__/discussion'),
+  ...require('../../../__templates__/file'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/error'),
+  ...require('../../../__templates__/users'),
 }
 
 describe('refs', () => {

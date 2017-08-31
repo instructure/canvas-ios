@@ -1,6 +1,6 @@
 // @flow
 
-import type { EnrollmentsActionProps } from '../../enrollments/enrollments-prop-types'
+import SubmissionActions from './actions'
 
 export type SubmissionStatusProp =
   'none' |
@@ -61,6 +61,6 @@ export type SubmissionListNavigationParameters = {
 export type SubmissionListProps
   = SubmissionListDataProps
   & SubmissionListActionProps
-  & EnrollmentsActionProps
+  & typeof SubmissionActions
   & GroupSubmissionListActionProps
   & SubmissionListNavigationParameters

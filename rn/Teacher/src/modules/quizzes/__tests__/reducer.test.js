@@ -10,8 +10,8 @@ const { refreshQuiz } = DetailsActions
 const { updateQuiz } = EditActions
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/quiz'),
-  ...require('../../../api/canvas-api/__templates__/error'),
+  ...require('../../../__templates__/quiz'),
+  ...require('../../../__templates__/error'),
 }
 
 describe('refs', () => {

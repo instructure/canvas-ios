@@ -1,10 +1,10 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../../courses/actions'
 
-export let Actions: (typeof canvas) => any = (api) => ({
+export let Actions = (api: CanvasApi): * => ({
   refreshQuizzes: createAction('quizzesList.refresh', (courseID: string) => {
     return {
       promise: api.getQuizzes(courseID),
@@ -16,4 +16,4 @@ export let Actions: (typeof canvas) => any = (api) => ({
   }),
 })
 
-export default (Actions(canvas): any)
+export default (Actions(canvas): *)

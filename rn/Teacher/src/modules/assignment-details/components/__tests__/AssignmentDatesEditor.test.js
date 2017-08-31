@@ -17,7 +17,7 @@ jest.mock('Alert', () => {
 })
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/assignments'),
   ...require('../../../../__templates__/helm'),
   ...require('../../../assignee-picker/__template__/Assignee'),
   ...require('../__template__/StagedAssignmentDate'),

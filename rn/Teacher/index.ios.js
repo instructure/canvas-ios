@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 import store from './src/redux/store'
 import setupI18n from './i18n/setup'
-import { setSession } from './src/api/session'
+import { setSession } from 'canvas-api'
 import { registerScreens } from './src/routing/register-screens'
 import { setupBrandingFromNativeBrandingInfo } from './src/common/branding'
 import logout from './src/redux/logout-action'

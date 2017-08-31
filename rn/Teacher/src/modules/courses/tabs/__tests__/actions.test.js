@@ -6,7 +6,7 @@ import { apiResponse } from '../../../../../test/helpers/apiMock'
 import { testAsyncAction } from '../../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/tab'),
+  ...require('../../../../__templates__/tab'),
 }
 
 test('refresh tabs', async () => {

@@ -1,10 +1,9 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
-import { type CreateDiscussionParameters, type UpdateDiscussionParameters } from '../../../api/canvas-api/discussions'
+import canvas from 'canvas-api'
 
-export let Actions: (typeof canvas) => any = (api) => ({
+export let Actions = (api: CanvasApi): * => ({
   createDiscussion: createAction('discussions.edit.create', (courseID: string, params: CreateDiscussionParameters) => {
     return {
       promise: api.createDiscussion(courseID, params),
@@ -41,4 +40,4 @@ export let Actions: (typeof canvas) => any = (api) => ({
   })),
 })
 
-export default (Actions(canvas): any)
+export default (Actions(canvas): *)

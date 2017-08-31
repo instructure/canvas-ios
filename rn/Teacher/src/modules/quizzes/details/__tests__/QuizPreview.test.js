@@ -10,7 +10,7 @@ jest.mock('WebView', () => 'WebView')
 
 const template = {
   ...require('../../../../__templates__/helm'),
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../__templates__/quiz'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

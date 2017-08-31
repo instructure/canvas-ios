@@ -1,9 +1,9 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from '../../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export const QuizSubmissionActions = (api: typeof canvas): any => ({
+export const QuizSubmissionActions = (api: CanvasApi): * => ({
   refreshQuizSubmissions: createAction('quiz-submissions.update', (courseID: string, quizID: string, assignmentID: string) => ({
     promise: api.getQuizSubmissions(courseID, quizID),
     quizID,
@@ -11,4 +11,4 @@ export const QuizSubmissionActions = (api: typeof canvas): any => ({
   })),
 })
 
-export default (QuizSubmissionActions(canvas): any)
+export default (QuizSubmissionActions(canvas): *)

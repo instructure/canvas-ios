@@ -9,8 +9,8 @@ import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/course'),
   ...require('../../../__templates__/helm'),
 }
 

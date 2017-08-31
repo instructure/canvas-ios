@@ -7,7 +7,7 @@ import { apiResponse } from '../../../../test/helpers/apiMock'
 const { refreshGroupsForCourse, refreshGroup, listUsersForGroup } = Actions
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/group'),
+  ...require('../../../__templates__/group'),
 }
 
 test('should refresh groups', async () => {

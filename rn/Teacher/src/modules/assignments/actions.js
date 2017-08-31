@@ -1,11 +1,10 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from './../../api/canvas-api'
-import type { AssignmentListActionProps } from './map-state-to-props'
+import canvas from 'canvas-api'
 import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../courses/actions'
 
-export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps = (api) => ({
+export let AssignmentListActions = (api: CanvasApi): * => ({
   refreshAssignmentList: createAction('assignmentList.refresh', (courseID: string, gradingPeriodID?: string) => {
     const include = ['assignments', 'all_dates', 'overrides', 'discussion_topic']
     return {
@@ -60,4 +59,4 @@ export let AssignmentListActions: (typeof canvas) => AssignmentListActionProps =
   })),
 })
 
-export default (AssignmentListActions(canvas): AssignmentListActionProps)
+export default (AssignmentListActions(canvas): *)

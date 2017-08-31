@@ -1,15 +1,9 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from '../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export type GroupActionsType = {
-  refreshGroupsForCourse: (groupCategoryID: string) => any,
-  refreshGroup: (groupID: string) => any,
-  listUsersForGroup: (groupID: string) => any,
-}
-
-export const GroupActions = (api: typeof canvas): GroupActionsType => ({
+export const GroupActions = (api: CanvasApi): * => ({
   refreshGroupsForCourse: createAction('groups-for-course.refresh', (courseID: string) => ({
     promise: api.getGroupsForCourse(courseID),
     courseID,
@@ -23,4 +17,4 @@ export const GroupActions = (api: typeof canvas): GroupActionsType => ({
   })),
 })
 
-export default (GroupActions(canvas): GroupActionsType)
+export default (GroupActions(canvas): *)

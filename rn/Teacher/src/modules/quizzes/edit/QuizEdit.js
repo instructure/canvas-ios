@@ -63,7 +63,7 @@ type State = {
   assignment: ?Assignment,
 }
 
-type Props = State & OwnProps & Actions & AsyncState & {
+type Props = State & OwnProps & typeof Actions & AsyncState & {
   navigator: Navigator,
   defaultDate?: Date,
 }

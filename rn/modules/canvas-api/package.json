@@ -1,0 +1,20 @@
+{
+  "name": "canvas-api",
+  "version": "1.0.0",
+  "description": "API module to interact with canvas",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "flow": "flow check --show-all-errors"
+  },
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "^3.0.1",
+    "flow-bin": "^0.40.0",
+    "jest": "^20.0.4"
+  }
+}

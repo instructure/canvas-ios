@@ -7,11 +7,11 @@ import shuffle from 'knuth-shuffle-seeded'
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 let t = {
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../../api/canvas-api/__templates__/enrollments'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/enrollments'),
+  ...require('../../../../__templates__/users'),
+  ...require('../../../../__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../__templates__/submission-props'),
 }

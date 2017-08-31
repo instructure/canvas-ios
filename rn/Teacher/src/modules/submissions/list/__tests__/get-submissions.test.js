@@ -4,10 +4,10 @@ import { getSubmissionsProps, dueDate } from '../get-submissions-props'
 import type { SubmissionDataProps } from '../submission-prop-types'
 
 let t = {
-  ...require('../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../../api/canvas-api/__templates__/enrollments'),
-  ...require('../../../../api/canvas-api/__templates__/users'),
+  ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/enrollments'),
+  ...require('../../../../__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../__templates__/submission-props'),
 }

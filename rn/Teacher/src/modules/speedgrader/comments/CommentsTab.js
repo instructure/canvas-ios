@@ -6,12 +6,12 @@ import {
   View,
   FlatList,
 } from 'react-native'
-import { getSession } from '../../../api/session'
+import { getSession } from 'canvas-api'
 import CommentRow, { type CommentRowProps, type CommentContent } from './CommentRow'
 import CommentInput, { type Comment } from './CommentInput'
 import DrawerState from '../utils/drawer-state'
-import SubmissionCommentActions, { type CommentActions } from './actions'
-import SpeedGraderActions, { type SpeedGraderActionsType } from '../actions'
+import SubmissionCommentActions from './actions'
+import SpeedGraderActions from '../actions'
 import { type SubmittedContentDataProps } from './SubmittedContent'
 import CommentStatus from './CommentStatus'
 import Images from '../../../images'
@@ -120,7 +120,7 @@ type RoutingProps = {
   navigator: Navigator,
 }
 
-type CommentsTabProps = CommentRows & RoutingProps & CommentActions & SpeedGraderActionsType
+type CommentsTabProps = CommentRows & RoutingProps & typeof SubmissionCommentActions & typeof SpeedGraderActions
 
 type CommentRowData = {
   error?: string,

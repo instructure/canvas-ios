@@ -2,7 +2,7 @@
 
 import 'react-native'
 import React from 'react'
-import * as courseTemplate from '../../../../api/canvas-api/__templates__/course'
+import * as courseTemplate from '../../../../__templates__/course'
 import explore from '../../../../../test/helpers/explore'
 import CourseCard from '../CourseCard'
 import renderer from 'react-test-renderer'

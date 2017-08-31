@@ -6,7 +6,7 @@ import SubmissionActions from '../../../submissions/list/actions'
 
 const { PushNotifications } = NativeModules
 const t = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
 }
 
 const { makeAComment, deletePendingComment } = PendingActions

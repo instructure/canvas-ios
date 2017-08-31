@@ -5,8 +5,8 @@ import { quizSubmissions, quizAssignmentSubmissions } from '../reducer'
 
 const { refreshQuizSubmissions } = Actions
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quizSubmission'),
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/quizSubmission'),
+  ...require('../../../../__templates__/submissions'),
 }
 describe('QuizSubmissionList reducer', () => {
   test('it captures entities for quiz submissions', () => {

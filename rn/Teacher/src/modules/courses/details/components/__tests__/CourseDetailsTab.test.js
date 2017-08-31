@@ -5,7 +5,7 @@ import React from 'react'
 import CourseDetailsTab from '../CourseDetailsTab.js'
 
 const template = {
-  ...require('../../../../../api/canvas-api/__templates__/tab'),
+  ...require('../../../../../__templates__/tab'),
 }
 
 // Note: test renderer must be required after react-native.

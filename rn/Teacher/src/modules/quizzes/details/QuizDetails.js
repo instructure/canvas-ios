@@ -37,9 +37,10 @@ type State = {
   quiz: ?Quiz,
   assignmentGroup: ?AssignmentGroup,
   assignment: ?Assignment,
+  courseName: string,
 }
 
-export type Props = State & OwnProps & RefreshProps & Actions & {
+export type Props = State & OwnProps & RefreshProps & typeof Actions & {
   navigator: Navigator,
 }
 
@@ -69,9 +70,7 @@ export class QuizDetails extends Component<any, Props, any> {
   render () {
     const quiz = this.props.quiz
     let content
-    if (!quiz) {
-      content = <View />
-    } else {
+    if (quiz) {
       content = (
         <RefreshableScrollView
           refreshing={this.props.refreshing}
@@ -79,7 +78,7 @@ export class QuizDetails extends Component<any, Props, any> {
           <AssignmentSection isFirstRow={true} style={style.topContainer}>
             <Heading1>{quiz.title}</Heading1>
             <View style={style.pointsContainer}>
-              { Boolean(quiz.points_possible) &&
+              { quiz.points_possible &&
                 <Text style={style.points}>{`${quiz.points_possible} ${i18n('pts')}`}</Text>
               }
               <PublishedIcon published={quiz.published} />
@@ -129,6 +128,8 @@ export class QuizDetails extends Component<any, Props, any> {
           </TouchableHighlight>
         </RefreshableScrollView>
       )
+    } else {
+      content = <View />
     }
 
     return (
@@ -191,11 +192,13 @@ export class QuizDetails extends Component<any, Props, any> {
   }
 
   _editQuiz = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quiz.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    if (this.props.quiz) {
+      this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quiz.id}/edit`, { modal: true, modalPresentationStyle: 'formsheet' })
+    }
   }
 
   _viewDueDates = () => {
-    if (this.props.assignment) {
+    if (this.props.assignment && this.props.quiz) {
       const route = `/courses/${this.props.courseID}/assignments/${this.props.assignment.id}/due_dates`
       this.props.navigator.show(route, { modal: false }, { quizID: this.props.quiz.id })
     }

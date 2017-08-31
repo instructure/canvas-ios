@@ -7,8 +7,8 @@ import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/quiz'),
 }
 
 const { refreshQuiz } = QuizDetailsActions

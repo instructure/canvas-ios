@@ -5,7 +5,7 @@ import { testAsyncAction } from '../../../../test/helpers/async'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/conversations'),
+  ...require('../../../__templates__/conversations'),
 }
 
 test('should refresh conversations', async () => {

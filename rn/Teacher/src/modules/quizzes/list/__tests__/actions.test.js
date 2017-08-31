@@ -6,7 +6,7 @@ import { testAsyncAction } from '../../../../../test/helpers/async'
 import { UPDATE_COURSE_DETAILS_SELECTED_TAB_SELECTED_ROW_ACTION } from '../../../courses/actions'
 
 const template = {
-  ...require('../../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../../__templates__/quiz'),
 }
 
 describe('refreshQuizzes', () => {

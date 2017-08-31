@@ -14,7 +14,7 @@ import i18n from 'format-message'
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 let template = {
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/course'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }

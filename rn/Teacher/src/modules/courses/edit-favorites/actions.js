@@ -1,17 +1,9 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import * as coursesApi from './../../../api/canvas-api/courses'
+import canvas from 'canvas-api'
 
-type FavoritesActionsType = {
-  toggleFavorite: (courseID: string, markAsFavorite: boolean) => {
-    promise: Promise<any>,
-    courseID: string,
-    markAsFavorite: boolean,
-  },
-}
-
-export let FavoritesActions: (CoursesApi: any) => any = (api) => ({
+export let FavoritesActions = (api: CanvasApi): * => ({
   toggleFavorite: createAction('courses.toggleFavorite', (courseID: string, markAsFavorite: boolean) => {
     return {
       promise: markAsFavorite ? api.favoriteCourse(courseID) : api.unfavoriteCourse(courseID),
@@ -21,4 +13,4 @@ export let FavoritesActions: (CoursesApi: any) => any = (api) => ({
   }),
 })
 
-export default (FavoritesActions(coursesApi): FavoritesActionsType)
+export default (FavoritesActions(canvas): *)

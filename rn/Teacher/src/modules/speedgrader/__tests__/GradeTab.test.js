@@ -13,7 +13,7 @@ jest.mock('TouchableOpacity', () => 'TouchableOpacity')
 jest.mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/rubric'),
+  ...require('../../../__templates__/rubric'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
 }

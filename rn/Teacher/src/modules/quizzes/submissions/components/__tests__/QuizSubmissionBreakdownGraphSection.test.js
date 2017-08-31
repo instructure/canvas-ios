@@ -8,12 +8,12 @@ import { QuizSubmissionBreakdownGraphSection, mapStateToProps } from '../QuizSub
 import renderer from 'react-test-renderer'
 import explore from '../../../../../../test/helpers/explore'
 const template = {
-  ...require('../../../../../api/canvas-api/__templates__/quiz'),
-  ...require('../../../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../../../api/canvas-api/__templates__/course'),
-  ...require('../../../../../api/canvas-api/__templates__/quizSubmission'),
-  ...require('../../../../../api/canvas-api/__templates__/users'),
-  ...require('../../../../../api/canvas-api/__templates__/enrollments'),
+  ...require('../../../../../__templates__/quiz'),
+  ...require('../../../../../__templates__/assignments'),
+  ...require('../../../../../__templates__/course'),
+  ...require('../../../../../__templates__/quizSubmission'),
+  ...require('../../../../../__templates__/users'),
+  ...require('../../../../../__templates__/enrollments'),
   ...require('../../../../../redux/__templates__/app-state'),
 }
 jest.mock('TouchableOpacity', () => 'TouchableOpacity')

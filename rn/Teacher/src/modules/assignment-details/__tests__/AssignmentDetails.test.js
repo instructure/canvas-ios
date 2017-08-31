@@ -10,11 +10,11 @@ import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/course'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/course'),
   ...require('../../../__templates__/helm'),
-  ...require('../../../api/canvas-api/__templates__/external-tool'),
-  ...require('../../../api/canvas-api/__templates__/error'),
+  ...require('../../../__templates__/external-tool'),
+  ...require('../../../__templates__/error'),
 }
 
 // Note: test renderer must be required after react-native.

@@ -8,8 +8,8 @@ import Actions from '../actions'
 
 const { refreshEnrollments } = Actions
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/enrollments'),
-  ...require('../../../api/canvas-api/__templates__/users'),
+  ...require('../../../__templates__/enrollments'),
+  ...require('../../../__templates__/users'),
 }
 
 test('captures entities mapped by id', () => {

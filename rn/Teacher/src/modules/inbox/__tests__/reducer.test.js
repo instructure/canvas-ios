@@ -7,7 +7,7 @@ import { testAsyncReducer } from '../../../../test/helpers/async'
 
 const { refreshInboxAll, updateInboxSelectedScope, markAsRead } = InboxActions()
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/conversations'),
+  ...require('../../../__templates__/conversations'),
 }
 
 test('it handles the data', () => {

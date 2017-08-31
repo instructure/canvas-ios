@@ -1,14 +1,9 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from './../../api/canvas-api'
+import canvas from 'canvas-api'
 
-export type AssigneeActionsProps = {
-  refreshSections: () => Promise<Section[]>,
-  refreshGroupsForCategory: () => Promise<Group[]>,
-}
-
-export let AssigneeSearchActions: (typeof canvas) => AssigneeActionsProps = (api) => ({
+export let AssigneeSearchActions = (api: CanvasApi): * => ({
   refreshSections: createAction('course-sections.refresh', (courseID: string) => {
     return {
       promise: api.getCourseSections(courseID),
@@ -22,4 +17,4 @@ export let AssigneeSearchActions: (typeof canvas) => AssigneeActionsProps = (api
   }),
 })
 
-export default (AssigneeSearchActions(canvas): AssigneeActionsProps)
+export default (AssigneeSearchActions(canvas): *)

@@ -12,7 +12,7 @@ jest
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../__templates__/helm'),
 }

@@ -5,7 +5,7 @@ import { testAsyncAction } from '../../../../../test/helpers/async'
 import { apiResponse } from '../../../../../test/helpers/apiMock'
 
 let template = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../../__templates__/submissions'),
 }
 
 test('should refresh submissions', async () => {

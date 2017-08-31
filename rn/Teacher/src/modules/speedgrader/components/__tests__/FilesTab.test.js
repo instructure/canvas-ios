@@ -9,8 +9,8 @@ jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
 
 const templates = {
-  ...require('../../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../../api/canvas-api/__templates__/attachment'),
+  ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/attachment'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 

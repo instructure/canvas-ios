@@ -6,7 +6,7 @@ import AssignmentListRow from '../components/AssignmentListRow'
 import moment from 'moment'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../__templates__/assignments'),
 }
 
 // Note: test renderer must be required after react-native.

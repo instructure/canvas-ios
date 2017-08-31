@@ -6,8 +6,8 @@ import UserSubmissionRow from '../UserSubmissionRow'
 import renderer from 'react-test-renderer'
 
 let templates = {
-  ...require('../../../api/canvas-api/__templates__/assignments'),
-  ...require('../../../api/canvas-api/__templates__/submissions'),
+  ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/submissions'),
 }
 
 let defaultProps = {

@@ -20,8 +20,8 @@ jest.mock('../../../common/components/BottomDrawer')
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 const templates = {
-  ...require('../../../api/canvas-api/__templates__/submissions'),
-  ...require('../../../api/canvas-api/__templates__/assignments'),
+  ...require('../../../__templates__/submissions'),
+  ...require('../../../__templates__/assignments'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
   ...require('../../submissions/list/__templates__/submission-props'),

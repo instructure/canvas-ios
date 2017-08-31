@@ -3,7 +3,7 @@
 import formatter from '../formatter'
 
 const template = {
-  ...require('../../../api/canvas-api/__templates__/quiz'),
+  ...require('../../../__templates__/quiz'),
 }
 
 let quiz: Quiz
