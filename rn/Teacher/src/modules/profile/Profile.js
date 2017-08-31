@@ -122,7 +122,7 @@ export default class Profile extends Component {
             <Paragraph>{user.primary_email}</Paragraph>
           </View>
           <View style={styles.versionContainer}>
-            <TouchableWithoutFeedback onPress={this.secretTap}>
+            <TouchableWithoutFeedback onPress={this.secretTap} testID='profile-btn-secret-tap'>
               <Text style={styles.versionText}>{i18n('Version {version}', { version: device.getReadableVersion() })}</Text>
             </TouchableWithoutFeedback>
           </View>

@@ -79,6 +79,11 @@ describe('ConversationDetails', () => {
     Screen(props).testRender()
   })
 
+  it('renders with alternate data', () => {
+    props.conversation = template.conversation({ id: '1', starred: true, subject: null })
+    Screen(props).testRender()
+  })
+
   it('shows options action sheet', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn()
@@ -100,6 +105,41 @@ describe('ConversationDetails', () => {
     props.conversationID = '1'
     Screen(props).tapOptionsButton()
     expect(props.deleteConversation).toHaveBeenCalledWith('1')
+  })
+
+  it('should toggle starred', () => {
+    const conversation = template.conversation({
+      starred: false,
+    })
+    const unstarConversation = jest.fn(() => {
+      conversation.starred = false
+    })
+    const starConversation = jest.fn(() => {
+      conversation.starred = true
+    })
+
+    const props = {
+      conversation: undefined,
+      unstarConversation,
+      starConversation,
+      markAsRead: jest.fn(),
+    }
+
+    let tree = renderer.create(
+      <ConversationDetails {...props} />
+    )
+    let instance = tree.getInstance()
+    instance._toggleStarred()
+
+    props.conversation = conversation
+    tree = renderer.create(
+      <ConversationDetails {...props} />
+    )
+    instance = tree.getInstance()
+    instance._toggleStarred()
+    expect(starConversation).toHaveBeenCalled()
+    instance._toggleStarred()
+    expect(unstarConversation).toHaveBeenCalled()
   })
 
   it('it passess all messages as included messages when forwarding the conversation', () => {
