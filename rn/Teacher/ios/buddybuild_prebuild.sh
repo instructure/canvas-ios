@@ -28,17 +28,10 @@ retry_command() {
 # buddybuild app settings are *not respected* in custom scripts.
 # we have to manually install / retry / etc. all build commands
 
-# update carthage. will error if we're already on the latest
 set +e
 brew update &> /dev/null
-brew upgrade carthage &> /dev/null
 brew upgrade yarn &> /dev/null
 set -e
-
-# react native teacher dependencies
-pushd ../../../
-retry_command carthage checkout --no-use-binaries
-popd
 
 # https://github.com/tj/n
 n 7.9.0
