@@ -44,7 +44,7 @@ targets = [workspace_name,
            'secrets.plist',
            '.gitignore',
            'fastlane',
-           'Tinker.playground'
+           'Tinker.playground',
            'setup.sh']
 
 destination          = 'ios-open-source'
