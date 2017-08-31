@@ -1,4 +1,4 @@
-# Goes through each .h, .m and .swift file and replaces the license banner with the correct version
+# Goes through each .h, .m, .swift and .js file and replaces the license banner with the correct version
 
 require 'optparse'
 
@@ -9,17 +9,21 @@ OptionParser.new do |opts|
   opts.on('-s', '--skip-write', 'Skips actually writing the files to disk') do |v|
     options[:skip_write] = v
   end
+
+  opts.on('-p', '--print', 'Print all of the files that will be modified') do |v|
+    options[:print] = v
+  end
 end.parse!
 
 # The folders which to recursively check for source files
-folders = %w[Frameworks Canvas Parent Teacher SpeedGrader]
+folders = %w[Frameworks Canvas Parent Teacher SpeedGrader rn]
 files = []
 
 # Returns the correct banner based on the file
 def appropriate_banner(file)
     gpl_header = %q(//
 // Copyright (C) 2016-present Instructure, Inc.
-//   
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, version 3 of the License.
@@ -51,12 +55,14 @@ def appropriate_banner(file)
 
     return apache_header if file.start_with? "Frameworks"
     return apache_header if file.include? "Tests"
+    return apache_header if file.include? 'test'
+    return apache_header if file.include? '__tests__'
     gpl_header
 end
 
-# A list of exceptions that shouldn't be included in the search of files to replace the banners
+# If this test passes the file shouldn't be included in the search of files
 def file_test(file)
-    exceptions = ['.framework/Headers/', '.framework/Versions/', 'CanvasKit1/External Sources/']
+    exceptions = ['.framework/Headers/', '.framework/Versions/', 'CanvasKit1/External Sources/', 'node_modules', 'jquery']
     return false if exceptions.any? { |exception| file.include? exception}
     true
 end
@@ -76,7 +82,7 @@ license_banner_regex = /(^|\r\n|\n|\r)(?:\/\/[^\n\r]*(?:\r\n|\n|\r))*\/\/[^\n\r]
 instructure_regex = /(^|\r\n|\n|\r)*Instructure/i
 
 folders.each do |folder|
-    Dir.glob("#{folder}/**/*.{swift,h,m}") do |file|
+    Dir.glob("#{folder}/**/*.{swift,h,m,js}") do |file|
         files.push(file) if file_test(file)
     end
 end
@@ -120,12 +126,18 @@ end
 
 if options[:skip_write] 
     puts "Files to be modified: #{files_replaced.count}"
+    if options[:print]
+        puts files_replaced.sort
+    end
     puts "Files to be skipped: #{files_skipped.count}"
     puts files_skipped.sort
     puts "\n\nFiles with incompatible liceneses: #{files_with_incompatible_license.count}"
     puts files_with_incompatible_license
 else
     puts "Files modified: #{files_replaced.count}"
+    if options[:print]
+        puts files_replaced.sort
+    end
     puts "Files skipped: #{files_skipped.count}"
     puts files_skipped.sort
     puts "\n\nFiles with incompatible liceneses that were not replaced: #{files_with_incompatible_license.count}"
