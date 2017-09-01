@@ -16,6 +16,7 @@ exports[`People List renders 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       ListEmptyComponent={
         <ListEmptyComponent
           title="No results"
@@ -264,6 +265,7 @@ exports[`People List test update filter 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       ListEmptyComponent={
         <ListEmptyComponent
           title="No results"
@@ -502,6 +504,17 @@ exports[`People List test update filter 1`] = `
             testID="4634548"
             title="nlambson"
           />
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#C7CDD1",
+                  "height": 0.5,
+                },
+                undefined,
+              ]
+            }
+          />
         </View>
         <View
           onLayout={[Function]}
@@ -515,6 +528,17 @@ exports[`People List test update filter 1`] = `
             subtitle="Student"
             testID="8253362"
             title="Lance"
+          />
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#C7CDD1",
+                  "height": 0.5,
+                },
+                undefined,
+              ]
+            }
           />
         </View>
         <View

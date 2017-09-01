@@ -13,6 +13,7 @@ exports[`SubmissionList loaded 1`] = `
       Object {
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
+        "height": "auto",
         "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
@@ -46,6 +47,7 @@ exports[`SubmissionList loaded 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -74,6 +76,7 @@ exports[`SubmissionList loaded 1`] = `
           Object {
             "marginBottom": 1,
             "opacity": 1,
+            "width": "auto",
           }
         }
         testID="submission-list.filter"
@@ -120,6 +123,7 @@ exports[`SubmissionList loaded 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={
       Array [
         Object {
@@ -409,6 +413,17 @@ exports[`SubmissionList loaded 1`] = `
             </View>
           </View>
         </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
+        />
       </View>
       <View
         onLayout={[Function]}
@@ -665,6 +680,17 @@ exports[`SubmissionList loaded 1`] = `
             </View>
           </View>
         </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
+        />
       </View>
       <View
         onLayout={[Function]}
@@ -901,6 +927,7 @@ exports[`SubmissionList loaded 1`] = `
                       },
                       Object {
                         "alignSelf": "center",
+                        "flex": 0.5,
                       },
                     ],
                     Object {
@@ -933,6 +960,17 @@ exports[`SubmissionList loaded 1`] = `
             </View>
           </View>
         </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
+        />
       </View>
       <View
         onLayout={[Function]}
@@ -1208,6 +1246,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
       Object {
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
+        "height": "auto",
         "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
@@ -1241,6 +1280,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -1269,6 +1309,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
           Object {
             "marginBottom": 1,
             "opacity": 1,
+            "width": "auto",
           }
         }
         testID="submission-list.filter"
@@ -1315,6 +1356,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={
       Array [
         Object {

@@ -11,9 +11,6 @@ exports[`RowWithTextInput renders 1`] = `
   onPress={[Function]}
   style={
     Array [
-      Object {
-        "height": 54,
-      },
       undefined,
       undefined,
     ]
@@ -23,6 +20,9 @@ exports[`RowWithTextInput renders 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",
@@ -80,9 +80,6 @@ exports[`RowWithTextInput renders with a title 1`] = `
   onPress={[Function]}
   style={
     Array [
-      Object {
-        "height": 54,
-      },
       undefined,
       undefined,
     ]
@@ -92,6 +89,9 @@ exports[`RowWithTextInput renders with a title 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",

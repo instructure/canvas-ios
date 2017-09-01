@@ -446,6 +446,7 @@ exports[`filters conversations based on course 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListEmptyComponent={[Function]}
     data={
       Array [
@@ -1168,6 +1169,7 @@ exports[`filters out conversations without a context_code 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListEmptyComponent={[Function]}
     data={
       Array [
@@ -1892,6 +1894,7 @@ exports[`refreshed component 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListEmptyComponent={[Function]}
     data={Array []}
     disableVirtualization={false}
@@ -2461,6 +2464,7 @@ exports[`renders correctly 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListEmptyComponent={[Function]}
     data={
       Array [
@@ -2751,6 +2755,17 @@ exports[`renders correctly 1`] = `
             </View>
           </View>
         </TouchableHighlight>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
+        />
       </View>
       <View
         onLayout={[Function]}
@@ -3887,6 +3902,7 @@ exports[`renders the starred empty state 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListEmptyComponent={[Function]}
     data={Array []}
     disableVirtualization={false}
@@ -4448,6 +4464,7 @@ exports[`renders with an empty state 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListEmptyComponent={[Function]}
     data={Array []}
     disableVirtualization={false}

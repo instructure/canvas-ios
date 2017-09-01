@@ -24,6 +24,7 @@ exports[`AddressBook renders 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       ListEmptyComponent={
         <ListEmptyComponent
           title="No results"

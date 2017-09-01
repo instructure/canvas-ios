@@ -23,9 +23,6 @@ exports[`DiscussionsRow renders 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -38,6 +35,9 @@ exports[`DiscussionsRow renders 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",
@@ -451,9 +451,6 @@ exports[`DiscussionsRow renders published 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -466,6 +463,9 @@ exports[`DiscussionsRow renders published 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",
@@ -879,9 +879,6 @@ exports[`DiscussionsRow renders unpublished 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -894,6 +891,9 @@ exports[`DiscussionsRow renders unpublished 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",
@@ -1296,9 +1296,6 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -1311,6 +1308,9 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",
@@ -1690,9 +1690,6 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -1705,6 +1702,9 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",
@@ -2106,9 +2106,6 @@ exports[`DiscussionsRow renders with points possible 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -2121,6 +2118,9 @@ exports[`DiscussionsRow renders with points possible 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",
@@ -2534,9 +2534,6 @@ exports[`DiscussionsRow renders without points possible 1`] = `
       onPress={[Function]}
       style={
         Array [
-          Object {
-            "height": undefined,
-          },
           undefined,
           Object {
             "borderBottomColor": "#C7CDD1",
@@ -2549,6 +2546,9 @@ exports[`DiscussionsRow renders without points possible 1`] = `
       <View
         style={
           Array [
+            Object {
+              "minHeight": 54,
+            },
             Object {
               "alignItems": "center",
               "backgroundColor": "white",

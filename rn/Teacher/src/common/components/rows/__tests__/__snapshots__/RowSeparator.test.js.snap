@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render the separator 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#C7CDD1",
+        "height": 0.5,
+      },
+      undefined,
+    ]
+  }
+/>
+`;

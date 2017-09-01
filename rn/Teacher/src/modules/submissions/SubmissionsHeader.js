@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingBottom: 8,
     paddingHorizontal: 16,
+    height: 'auto',
   },
   header: {
     flexDirection: 'row',
@@ -222,6 +223,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: '#2d3b44',
+    flex: 1,
   },
   subtitle: {
     color: colors.grey4,
@@ -230,5 +232,6 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     marginBottom: 1,
+    width: 'auto',
   },
 })

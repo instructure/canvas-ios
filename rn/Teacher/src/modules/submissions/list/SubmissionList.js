@@ -43,6 +43,7 @@ import Navigator from '../../../routing/Navigator'
 import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../SubmissionsHeader'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import RowSeparator from '../../../common/components/rows/RowSeparator'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
@@ -239,6 +240,7 @@ export class SubmissionList extends Component {
                 renderItem={this.renderRow}
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}
+                ItemSeparatorComponent={RowSeparator}
                 />
             </View>
         }

@@ -339,9 +339,6 @@ exports[`renders correctly 1`] = `
             onPress={[Function]}
             style={
               Array [
-                Object {
-                  "height": 54,
-                },
                 undefined,
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -354,6 +351,9 @@ exports[`renders correctly 1`] = `
             <View
               style={
                 Array [
+                  Object {
+                    "minHeight": 54,
+                  },
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "white",
@@ -921,9 +921,6 @@ exports[`renders with empty image url 1`] = `
             onPress={[Function]}
             style={
               Array [
-                Object {
-                  "height": 54,
-                },
                 undefined,
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -936,6 +933,9 @@ exports[`renders with empty image url 1`] = `
             <View
               style={
                 Array [
+                  Object {
+                    "minHeight": 54,
+                  },
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "white",
@@ -1265,9 +1265,6 @@ exports[`renders with image url 1`] = `
             onPress={[Function]}
             style={
               Array [
-                Object {
-                  "height": 54,
-                },
                 undefined,
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -1280,6 +1277,9 @@ exports[`renders with image url 1`] = `
             <View
               style={
                 Array [
+                  Object {
+                    "minHeight": 54,
+                  },
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "white",
@@ -1626,9 +1626,6 @@ exports[`renders without image url 1`] = `
             onPress={[Function]}
             style={
               Array [
-                Object {
-                  "height": 54,
-                },
                 undefined,
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -1641,6 +1638,9 @@ exports[`renders without image url 1`] = `
             <View
               style={
                 Array [
+                  Object {
+                    "minHeight": 54,
+                  },
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "white",

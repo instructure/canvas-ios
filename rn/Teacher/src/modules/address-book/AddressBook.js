@@ -27,6 +27,7 @@ import Row from '../../common/components/rows/Row'
 import Avatar from '../../common/components/Avatar'
 import TypeAheadSearch from '../../common/TypeAheadSearch'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 export type Props = NavigationProps & {
   onSelect: (selected: AddressBookResult[]) => void,
@@ -150,6 +151,7 @@ export class AddressBook extends Component<any, Props, any> {
                 ListEmptyComponent={this.state.pending ? null : empty}
                 refreshing={this.state.pending}
                 onEndReached={() => this.typeAhead.next()}
+                ItemSeparatorComponent={RowSeparator}
               />
             </View>)
   }

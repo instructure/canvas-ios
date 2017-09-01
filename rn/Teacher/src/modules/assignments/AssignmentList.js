@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     color: '#2d3b44',
+    flex: 1,
   },
   filterButton: {
     marginBottom: 1,

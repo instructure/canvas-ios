@@ -49,11 +49,12 @@ export default class SectionHeader extends React.PureComponent<any, Props, any> 
 const styles = StyleSheet.create({
   section: {
     flex: 1,
-    height: 24,
+    height: 'auto',
     backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     paddingLeft: 16,
     paddingRight: 8,
+    paddingVertical: global.style.defaultPadding / 4,
   },
   title: {
     fontSize: 14,

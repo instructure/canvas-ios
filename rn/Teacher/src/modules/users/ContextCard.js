@@ -39,6 +39,7 @@ import Images from '../../images'
 import type { SubmissionStatusProp } from '../submissions/list/submission-prop-types'
 import { statusProp, dueDate } from '../submissions/list/get-submissions-props'
 import UserSubmissionRow from './UserSubmissionRow'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 type ContextCardOwnProps = {
   courseID: string,
@@ -218,6 +219,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
           refreshing={this.props.refreshing}
           data={isStudent ? this.props.assignments : []}
           renderItem={this.renderItem}
+          ItemSeparatorComponent={RowSeparator}
         />
       </Screen>
     )

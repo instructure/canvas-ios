@@ -19,6 +19,7 @@
 import React, { PureComponent } from 'react'
 import {
   View,
+  StyleSheet,
 } from 'react-native'
 import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
@@ -86,23 +87,25 @@ export class SubmissionSettings extends PureComponent {
           action: this.dismiss,
         }]}
       >
-        <View>
+        <View style={style.container1}>
+          <View style={style.row}>
           <RowWithSwitch
             border='bottom'
-            height={60}
             title={i18n('Mute Grades')}
             value={this.props.muted}
             onValueChange={this.toggleMutedGrading}
             identifier='submission-settings.muted'
           />
+          </View>
+          <View style={style.row}>
           <RowWithSwitch
             border='bottom'
-            height={60}
             title={i18n('Anonymous Grading')}
             value={this.props.anonymous}
             onValueChange={this.toggleAnonymousGrading}
             identifier='submission-settings.anonymous'
           />
+          </View>
           <SubTitle style={{ paddingHorizontal: 12, paddingVertical: 4 }}>
             {i18n('This will anonymize each student and shuffle the submission list.')}
           </SubTitle>
@@ -121,3 +124,13 @@ export function mapStateToProps (state: AppState, ownProps: SubmissionSettingsOw
 const Connect = connect(mapStateToProps, AssignmentActions)(SubmissionSettings)
 export default (Connect: any)
 
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  row: {
+    minHeight: 54,
+    height: 'auto',
+  },
+})

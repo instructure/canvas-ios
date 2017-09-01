@@ -11,9 +11,6 @@ exports[`AttachmentRow renders 1`] = `
   onPress={[Function]}
   style={
     Array [
-      Object {
-        "height": 54,
-      },
       undefined,
       undefined,
     ]
@@ -23,6 +20,9 @@ exports[`AttachmentRow renders 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",

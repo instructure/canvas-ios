@@ -201,10 +201,11 @@ exports[`CourseSelect renders 1`] = `
             Object {
               "backgroundColor": "#F5F5F5",
               "flex": 1,
-              "height": 24,
+              "height": "auto",
               "justifyContent": "center",
               "paddingLeft": 16,
               "paddingRight": 8,
+              "paddingVertical": 4,
             },
             Object {
               "borderBottomColor": "#C7CDD1",
@@ -257,9 +258,6 @@ exports[`CourseSelect renders 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
-            },
-            Object {
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
             },
@@ -274,6 +272,9 @@ exports[`CourseSelect renders 1`] = `
         <View
           style={
             Array [
+              Object {
+                "minHeight": 54,
+              },
               Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
@@ -347,10 +348,11 @@ exports[`CourseSelect renders 1`] = `
             Object {
               "backgroundColor": "#F5F5F5",
               "flex": 1,
-              "height": 24,
+              "height": "auto",
               "justifyContent": "center",
               "paddingLeft": 16,
               "paddingRight": 8,
+              "paddingVertical": 4,
             },
             Object {
               "borderBottomColor": "#C7CDD1",
@@ -403,9 +405,6 @@ exports[`CourseSelect renders 1`] = `
         style={
           Array [
             Object {
-              "height": 54,
-            },
-            Object {
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
             },
@@ -420,6 +419,9 @@ exports[`CourseSelect renders 1`] = `
         <View
           style={
             Array [
+              Object {
+                "minHeight": 54,
+              },
               Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
@@ -492,9 +494,6 @@ exports[`CourseSelect renders 1`] = `
         onPress={[Function]}
         style={
           Array [
-            Object {
-              "height": 54,
-            },
             undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
@@ -507,6 +506,9 @@ exports[`CourseSelect renders 1`] = `
         <View
           style={
             Array [
+              Object {
+                "minHeight": 54,
+              },
               Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
@@ -774,10 +776,11 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             Object {
               "backgroundColor": "#F5F5F5",
               "flex": 1,
-              "height": 24,
+              "height": "auto",
               "justifyContent": "center",
               "paddingLeft": 16,
               "paddingRight": 8,
+              "paddingVertical": 4,
             },
             Object {
               "borderBottomColor": "#C7CDD1",
@@ -830,9 +833,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         style={
           Array [
             Object {
-              "height": 54,
-            },
-            Object {
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
             },
@@ -847,6 +847,9 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         <View
           style={
             Array [
+              Object {
+                "minHeight": 54,
+              },
               Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
@@ -920,10 +923,11 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             Object {
               "backgroundColor": "#F5F5F5",
               "flex": 1,
-              "height": 24,
+              "height": "auto",
               "justifyContent": "center",
               "paddingLeft": 16,
               "paddingRight": 8,
+              "paddingVertical": 4,
             },
             Object {
               "borderBottomColor": "#C7CDD1",
@@ -976,9 +980,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         style={
           Array [
             Object {
-              "height": 54,
-            },
-            Object {
               "borderTopColor": "#C7CDD1",
               "borderTopWidth": 0.5,
             },
@@ -993,6 +994,9 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         <View
           style={
             Array [
+              Object {
+                "minHeight": 54,
+              },
               Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
@@ -1065,9 +1069,6 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         onPress={[Function]}
         style={
           Array [
-            Object {
-              "height": 54,
-            },
             undefined,
             Object {
               "borderBottomColor": "#C7CDD1",
@@ -1080,6 +1081,9 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
         <View
           style={
             Array [
+              Object {
+                "minHeight": 54,
+              },
               Object {
                 "alignItems": "center",
                 "backgroundColor": "white",

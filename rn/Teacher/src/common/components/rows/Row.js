@@ -35,7 +35,6 @@ export type RowProps = {
   imageTint?: string,
   imageSize?: { height: number, width: number }, // Defaults to 20 x 20 if not supplied
   disclosureIndicator?: boolean,
-  height?: number | string, // number or 'auto' which will not set the height. Default is 54
   border?: 'top' | 'bottom' | 'both',
   onPress?: Function,
   testID?: string,
@@ -59,12 +58,6 @@ export default class Row extends Component<any, RowProps, any> {
   }
 
   render () {
-    let height = this.props.height
-    if (typeof height === 'string' && height === 'auto') {
-      height = undefined
-    } else {
-      height = height || 54
-    }
     const imageSize = this.props.imageSize || { height: 20, width: 20 }
     const title = this.props.title
     const testID = this.props.testID || 'row.undefined-cell'
@@ -101,8 +94,8 @@ export default class Row extends Component<any, RowProps, any> {
       backgroundColor = color.grey1
     }
 
-    return (<TouchableHighlight style={[{ height }, topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps} >
-              <View style={[style.container, { backgroundColor }]}>
+    return (<TouchableHighlight style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps} >
+              <View style={[{ minHeight: 54 }, style.container, { backgroundColor }]}>
                 { this.props.renderImage && this.props.renderImage() }
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
                 <View style={style.titlesContainer}>

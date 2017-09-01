@@ -28,9 +28,6 @@ exports[`Render the base row 1`] = `
       },
       Array [
         Object {
-          "height": 44,
-        },
-        Object {
           "borderTopColor": "#C7CDD1",
           "borderTopWidth": 0.5,
         },
@@ -47,6 +44,9 @@ exports[`Render the base row 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",

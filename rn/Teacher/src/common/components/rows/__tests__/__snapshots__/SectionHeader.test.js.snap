@@ -8,10 +8,11 @@ exports[`render 1`] = `
       Object {
         "backgroundColor": "#F5F5F5",
         "flex": 1,
-        "height": 24,
+        "height": "auto",
         "justifyContent": "center",
         "paddingLeft": 16,
         "paddingRight": 8,
+        "paddingVertical": 4,
       },
       Object {
         "borderBottomColor": "#C7CDD1",
@@ -58,10 +59,11 @@ exports[`render without key 1`] = `
       Object {
         "backgroundColor": "#F5F5F5",
         "flex": 1,
-        "height": 24,
+        "height": "auto",
         "justifyContent": "center",
         "paddingLeft": 16,
         "paddingRight": 8,
+        "paddingVertical": 4,
       },
       Object {
         "borderBottomColor": "#C7CDD1",

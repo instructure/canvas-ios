@@ -88,7 +88,7 @@ export default class AssigneeRow extends Component<any, Props, any> {
 const styles = StyleSheet.create({
   touchable: {
     flex: 1,
-    height: 54,
+    height: 'auto',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.seperatorColor,
   },
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
+    paddingVertical: global.style.defaultPadding / 2,
   },
   textContainer: {
     flexDirection: 'column',

@@ -215,7 +215,7 @@ exports[`error occurs when done pressed 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -255,10 +255,9 @@ exports[`error occurs when done pressed 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -307,7 +306,7 @@ exports[`error occurs when done pressed 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -353,10 +352,9 @@ exports[`error occurs when done pressed 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -368,8 +366,9 @@ exports[`error occurs when done pressed 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -462,7 +461,7 @@ exports[`error occurs when done pressed 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -507,9 +506,6 @@ exports[`error occurs when done pressed 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -522,6 +518,9 @@ exports[`error occurs when done pressed 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -635,9 +634,6 @@ exports[`error occurs when done pressed 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -650,6 +646,9 @@ exports[`error occurs when done pressed 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -771,9 +770,6 @@ exports[`error occurs when done pressed 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -786,6 +782,9 @@ exports[`error occurs when done pressed 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1147,7 +1146,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -1187,10 +1186,9 @@ exports[`modal saving is shown on assignment update 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -1239,7 +1237,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -1285,10 +1283,9 @@ exports[`modal saving is shown on assignment update 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -1300,8 +1297,9 @@ exports[`modal saving is shown on assignment update 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -1394,7 +1392,7 @@ exports[`modal saving is shown on assignment update 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -1439,9 +1437,6 @@ exports[`modal saving is shown on assignment update 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1454,6 +1449,9 @@ exports[`modal saving is shown on assignment update 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1567,9 +1565,6 @@ exports[`modal saving is shown on assignment update 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1582,6 +1577,9 @@ exports[`modal saving is shown on assignment update 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1703,9 +1701,6 @@ exports[`modal saving is shown on assignment update 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1718,6 +1713,9 @@ exports[`modal saving is shown on assignment update 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2079,7 +2077,7 @@ exports[`renders 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -2119,10 +2117,9 @@ exports[`renders 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -2171,7 +2168,7 @@ exports[`renders 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -2217,10 +2214,9 @@ exports[`renders 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -2232,8 +2228,9 @@ exports[`renders 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -2326,7 +2323,7 @@ exports[`renders 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -2371,9 +2368,6 @@ exports[`renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2386,6 +2380,9 @@ exports[`renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2499,9 +2496,6 @@ exports[`renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2514,6 +2508,9 @@ exports[`renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2635,9 +2632,6 @@ exports[`renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2650,6 +2644,9 @@ exports[`renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3011,7 +3008,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -3051,10 +3048,9 @@ exports[`saving invalid dates displays banner 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -3103,7 +3099,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -3149,10 +3145,9 @@ exports[`saving invalid dates displays banner 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -3164,8 +3159,9 @@ exports[`saving invalid dates displays banner 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -3258,7 +3254,7 @@ exports[`saving invalid dates displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -3303,9 +3299,6 @@ exports[`saving invalid dates displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -3318,6 +3311,9 @@ exports[`saving invalid dates displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3431,9 +3427,6 @@ exports[`saving invalid dates displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -3446,6 +3439,9 @@ exports[`saving invalid dates displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3567,9 +3563,6 @@ exports[`saving invalid dates displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -3582,6 +3575,9 @@ exports[`saving invalid dates displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3950,7 +3946,7 @@ exports[`saving invalid name displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -3990,10 +3986,9 @@ exports[`saving invalid name displays banner 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -4078,7 +4073,7 @@ exports[`saving invalid name displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -4124,10 +4119,9 @@ exports[`saving invalid name displays banner 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -4139,8 +4133,9 @@ exports[`saving invalid name displays banner 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -4233,7 +4228,7 @@ exports[`saving invalid name displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -4278,9 +4273,6 @@ exports[`saving invalid name displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -4293,6 +4285,9 @@ exports[`saving invalid name displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -4406,9 +4401,6 @@ exports[`saving invalid name displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -4421,6 +4413,9 @@ exports[`saving invalid name displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -4542,9 +4537,6 @@ exports[`saving invalid name displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -4557,6 +4549,9 @@ exports[`saving invalid name displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -4921,7 +4916,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -4961,10 +4956,9 @@ exports[`saving invalid points possible displays banner 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -5013,7 +5007,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -5059,10 +5053,9 @@ exports[`saving invalid points possible displays banner 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -5074,8 +5067,9 @@ exports[`saving invalid points possible displays banner 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -5168,7 +5162,7 @@ exports[`saving invalid points possible displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -5213,9 +5207,6 @@ exports[`saving invalid points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -5228,6 +5219,9 @@ exports[`saving invalid points possible displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -5341,9 +5335,6 @@ exports[`saving invalid points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -5356,6 +5347,9 @@ exports[`saving invalid points possible displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -5477,9 +5471,6 @@ exports[`saving invalid points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -5492,6 +5483,9 @@ exports[`saving invalid points possible displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -5892,7 +5886,7 @@ exports[`saving negative points possible displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -5932,10 +5926,9 @@ exports[`saving negative points possible displays banner 1`] = `
             Array [
               Object {
                 "backgroundColor": "white",
-                "paddingBottom": 8,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 8,
+                "paddingVertical": 8,
               },
               Object {
                 "borderTopColor": "#C7CDD1",
@@ -5984,7 +5977,7 @@ exports[`saving negative points possible displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               Object {
@@ -6030,10 +6023,9 @@ exports[`saving negative points possible displays banner 1`] = `
               Array [
                 Object {
                   "backgroundColor": "white",
-                  "paddingBottom": 8,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 8,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "borderTopColor": "#C7CDD1",
@@ -6045,8 +6037,9 @@ exports[`saving negative points possible displays banner 1`] = `
                   "borderBottomWidth": 0.5,
                   "flex": 1,
                   "flexDirection": "row",
-                  "height": 54,
+                  "height": "auto",
                   "justifyContent": "space-between",
+                  "minHeight": 54,
                 },
               ]
             }
@@ -6139,7 +6132,7 @@ exports[`saving negative points possible displays banner 1`] = `
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
                 "flexDirection": "row",
-                "height": 50,
+                "height": "auto",
                 "justifyContent": "flex-start",
               },
               undefined,
@@ -6184,9 +6177,6 @@ exports[`saving negative points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -6199,6 +6189,9 @@ exports[`saving negative points possible displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -6312,9 +6305,6 @@ exports[`saving negative points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -6327,6 +6317,9 @@ exports[`saving negative points possible displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -6448,9 +6441,6 @@ exports[`saving negative points possible displays banner 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -6463,6 +6453,9 @@ exports[`saving negative points possible displays banner 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",

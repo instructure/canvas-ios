@@ -26,7 +26,7 @@ exports[`render correctly 1`] = `
         "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "flex": 1,
-        "height": 54,
+        "height": "auto",
       },
     ]
   }
@@ -42,6 +42,7 @@ exports[`render correctly 1`] = `
         "flexDirection": "row",
         "paddingLeft": 16,
         "paddingRight": 16,
+        "paddingVertical": 8,
       }
     }
   >
@@ -184,7 +185,7 @@ exports[`render correctly without image url 1`] = `
         "borderBottomColor": "#C7CDD1",
         "borderBottomWidth": 0.5,
         "flex": 1,
-        "height": 54,
+        "height": "auto",
       },
     ]
   }
@@ -200,6 +201,7 @@ exports[`render correctly without image url 1`] = `
         "flexDirection": "row",
         "paddingLeft": 16,
         "paddingRight": 16,
+        "paddingVertical": 8,
       }
     }
   >

@@ -35,6 +35,7 @@ import ConversationMessageRow from '../components/ConversationMessageRow'
 import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
 import Images from '../../../images'
+import RowSeparator from '../../../common/components/rows/RowSeparator'
 
 export type ConversationOwnProps = {
   conversation: ?Conversation,
@@ -120,6 +121,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
           ListHeaderComponent={header}
           refreshing={this.props.refreshing}
           onRefresh={this.props.refresh}
+          ItemSeparatorComponent={RowSeparator}
         />
       </View>
     )

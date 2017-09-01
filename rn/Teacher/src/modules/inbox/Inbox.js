@@ -33,6 +33,7 @@ import EmptyInbox from './components/EmptyInbox'
 import Images from '../../images'
 import i18n from 'format-message'
 import color from '../../common/colors'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 export type InboxProps = {
   conversations: Conversation[],
@@ -126,6 +127,7 @@ export class Inbox extends Component {
                 onRefresh={this.props.refresh}
                 keyExtractor={ (c) => c.id }
                 onEndReached={this.getNextPage}
+                ItemSeparatorComponent={RowSeparator}
             />
         }
       </View>

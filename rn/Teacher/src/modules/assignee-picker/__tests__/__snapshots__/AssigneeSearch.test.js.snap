@@ -203,7 +203,7 @@ exports[`render correctly 1`] = `
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
                 "flex": 1,
-                "height": 54,
+                "height": "auto",
               },
             ]
           }
@@ -219,6 +219,7 @@ exports[`render correctly 1`] = `
                 "flexDirection": "row",
                 "paddingLeft": 16,
                 "paddingRight": 16,
+                "paddingVertical": 8,
               }
             }
           >
@@ -329,10 +330,11 @@ exports[`render correctly 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -399,7 +401,7 @@ exports[`render correctly 1`] = `
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
                 "flex": 1,
-                "height": 54,
+                "height": "auto",
               },
             ]
           }
@@ -415,6 +417,7 @@ exports[`render correctly 1`] = `
                 "flexDirection": "row",
                 "paddingLeft": 16,
                 "paddingRight": 16,
+                "paddingVertical": 8,
               }
             }
           >
@@ -552,10 +555,11 @@ exports[`render correctly 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -622,7 +626,7 @@ exports[`render correctly 1`] = `
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
                 "flex": 1,
-                "height": 54,
+                "height": "auto",
               },
             ]
           }
@@ -638,6 +642,7 @@ exports[`render correctly 1`] = `
                 "flexDirection": "row",
                 "paddingLeft": 16,
                 "paddingRight": 16,
+                "paddingVertical": 8,
               }
             }
           >
@@ -775,10 +780,11 @@ exports[`render correctly 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -959,10 +965,11 @@ exports[`render correctly 2`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1029,7 +1036,7 @@ exports[`render correctly 2`] = `
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
                 "flex": 1,
-                "height": 54,
+                "height": "auto",
               },
             ]
           }
@@ -1045,6 +1052,7 @@ exports[`render correctly 2`] = `
                 "flexDirection": "row",
                 "paddingLeft": 16,
                 "paddingRight": 16,
+                "paddingVertical": 8,
               }
             }
           >
@@ -1182,10 +1190,11 @@ exports[`render correctly 2`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1252,7 +1261,7 @@ exports[`render correctly 2`] = `
                 "borderBottomColor": "#C7CDD1",
                 "borderBottomWidth": 0.5,
                 "flex": 1,
-                "height": 54,
+                "height": "auto",
               },
             ]
           }
@@ -1268,6 +1277,7 @@ exports[`render correctly 2`] = `
                 "flexDirection": "row",
                 "paddingLeft": 16,
                 "paddingRight": 16,
+                "paddingVertical": 8,
               }
             }
           >

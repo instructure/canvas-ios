@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.seperatorColor,
   },
   button: {
-    height: 54,
+    height: 'auto',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.seperatorColor,
   },
@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
+    paddingVertical: global.style.defaultPadding / 2,
   },
   buttonText: {
     color: colors.primaryButton,
@@ -197,6 +198,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingRight: global.style.defaultPadding,
+    paddingVertical: global.style.defaultPadding / 2,
   },
 })
 

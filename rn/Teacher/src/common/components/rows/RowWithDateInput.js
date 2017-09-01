@@ -79,10 +79,11 @@ export default class RowWithDateInput extends Component<any, DateRowProps, any> 
 const styles = StyleSheet.create({
 
   row: {
-    height: 54,
+    paddingVertical: global.style.defaultPadding / 2,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.seperatorColor,
     backgroundColor: 'white',
+    minHeight: 54,
   },
   rowContainer: {
     flex: 1,
@@ -96,9 +97,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 0.5,
+    minWidth: 90,
   },
   titlesContainer: {
-    flex: 1,
+    flex: 0.5,
     flexDirection: 'column',
     justifyContent: 'center',
     paddingRight: 32,

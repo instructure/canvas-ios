@@ -43,7 +43,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    height: 50,
+    height: 'auto',
     backgroundColor: '#F5F5F5',
   },
   header: {

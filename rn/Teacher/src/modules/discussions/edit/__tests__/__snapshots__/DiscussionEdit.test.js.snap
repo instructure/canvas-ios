@@ -211,9 +211,6 @@ exports[`DiscussionEdit renders 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -228,6 +225,9 @@ exports[`DiscussionEdit renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -364,9 +364,6 @@ exports[`DiscussionEdit renders 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -381,6 +378,9 @@ exports[`DiscussionEdit renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -476,9 +476,6 @@ exports[`DiscussionEdit renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -491,6 +488,9 @@ exports[`DiscussionEdit renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -587,9 +587,6 @@ exports[`DiscussionEdit renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -602,6 +599,9 @@ exports[`DiscussionEdit renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -698,9 +698,6 @@ exports[`DiscussionEdit renders 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -713,6 +710,9 @@ exports[`DiscussionEdit renders 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -833,12 +833,15 @@ exports[`DiscussionEdit renders 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -872,7 +875,7 @@ exports[`DiscussionEdit renders 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -909,8 +912,10 @@ exports[`DiscussionEdit renders 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -949,12 +954,15 @@ exports[`DiscussionEdit renders 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -988,7 +996,7 @@ exports[`DiscussionEdit renders 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -1025,8 +1033,10 @@ exports[`DiscussionEdit renders 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -1276,9 +1286,6 @@ exports[`DiscussionEdit renders new form 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -1293,6 +1300,9 @@ exports[`DiscussionEdit renders new form 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1429,9 +1439,6 @@ exports[`DiscussionEdit renders new form 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -1446,6 +1453,9 @@ exports[`DiscussionEdit renders new form 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1541,9 +1551,6 @@ exports[`DiscussionEdit renders new form 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1556,6 +1563,9 @@ exports[`DiscussionEdit renders new form 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1652,9 +1662,6 @@ exports[`DiscussionEdit renders new form 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1667,6 +1674,9 @@ exports[`DiscussionEdit renders new form 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1763,9 +1773,6 @@ exports[`DiscussionEdit renders new form 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1778,6 +1785,9 @@ exports[`DiscussionEdit renders new form 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -1898,12 +1908,15 @@ exports[`DiscussionEdit renders new form 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -1937,7 +1950,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -1974,8 +1987,10 @@ exports[`DiscussionEdit renders new form 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -2014,12 +2029,15 @@ exports[`DiscussionEdit renders new form 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -2053,7 +2071,7 @@ exports[`DiscussionEdit renders new form 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -2090,8 +2108,10 @@ exports[`DiscussionEdit renders new form 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -2341,9 +2361,6 @@ exports[`DiscussionEdit updates from props 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -2358,6 +2375,9 @@ exports[`DiscussionEdit updates from props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2494,9 +2514,6 @@ exports[`DiscussionEdit updates from props 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -2511,6 +2528,9 @@ exports[`DiscussionEdit updates from props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2606,9 +2626,6 @@ exports[`DiscussionEdit updates from props 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2621,6 +2638,9 @@ exports[`DiscussionEdit updates from props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2717,9 +2737,6 @@ exports[`DiscussionEdit updates from props 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2732,6 +2749,9 @@ exports[`DiscussionEdit updates from props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2828,9 +2848,6 @@ exports[`DiscussionEdit updates from props 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2843,6 +2860,9 @@ exports[`DiscussionEdit updates from props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -2963,12 +2983,15 @@ exports[`DiscussionEdit updates from props 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -3002,7 +3025,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -3039,8 +3062,10 @@ exports[`DiscussionEdit updates from props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -3079,12 +3104,15 @@ exports[`DiscussionEdit updates from props 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -3118,7 +3146,7 @@ exports[`DiscussionEdit updates from props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -3155,8 +3183,10 @@ exports[`DiscussionEdit updates from props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -3406,9 +3436,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -3423,6 +3450,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3559,9 +3589,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
           style={
             Array [
               Object {
-                "height": 54,
-              },
-              Object {
                 "borderTopColor": "#C7CDD1",
                 "borderTopWidth": 0.5,
               },
@@ -3576,6 +3603,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3671,9 +3701,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -3686,6 +3713,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3782,9 +3812,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -3797,6 +3824,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -3893,9 +3923,6 @@ exports[`DiscussionEdit updates with new props 1`] = `
           onPress={[Function]}
           style={
             Array [
-              Object {
-                "height": 54,
-              },
               undefined,
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -3908,6 +3935,9 @@ exports[`DiscussionEdit updates with new props 1`] = `
           <View
             style={
               Array [
+                Object {
+                  "minHeight": 54,
+                },
                 Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
@@ -4028,12 +4058,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -4067,7 +4100,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -4104,8 +4137,10 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >
@@ -4144,12 +4179,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   "backgroundColor": "white",
                   "borderBottomColor": "#C7CDD1",
                   "borderBottomWidth": 0.5,
-                  "height": 54,
+                  "minHeight": 54,
+                  "paddingVertical": 8,
                 },
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 },
               ]
             }
@@ -4183,7 +4221,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
                 <View
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.5,
                       "flexDirection": "column",
                       "justifyContent": "center",
                       "paddingRight": 32,
@@ -4220,8 +4258,10 @@ exports[`DiscussionEdit updates with new props 1`] = `
                   style={
                     Object {
                       "alignItems": "center",
+                      "flex": 0.5,
                       "flexDirection": "row",
                       "justifyContent": "flex-end",
+                      "minWidth": 90,
                     }
                   }
                 >

@@ -34,6 +34,7 @@ import { Heading1 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
 import { httpClient } from 'canvas-api'
 import axios from 'axios'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 export type Props = NavigationProps & {
   onSelect: (selected: AddressBookResult[]) => void,
@@ -309,6 +310,7 @@ export class PeopleList extends Component<any, Props, any> {
                 ListEmptyComponent={this.state.pending ? null : empty}
                 refreshing={this.state.pending}
                 onEndReached={() => this.typeAhead.next()}
+                ItemSeparatorComponent={RowSeparator}
               />
             </View>)
   }

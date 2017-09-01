@@ -23,6 +23,7 @@ exports[`AnnouncementsList renders 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       data={
         Array [
           Object {
@@ -203,9 +204,6 @@ exports[`AnnouncementsList renders 1`] = `
             onPress={[Function]}
             style={
               Array [
-                Object {
-                  "height": undefined,
-                },
                 undefined,
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -218,6 +216,9 @@ exports[`AnnouncementsList renders 1`] = `
             <View
               style={
                 Array [
+                  Object {
+                    "minHeight": 54,
+                  },
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "white",
@@ -341,6 +342,17 @@ exports[`AnnouncementsList renders 1`] = `
               </View>
             </View>
           </TouchableHighlight>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#C7CDD1",
+                  "height": 0.5,
+                },
+                undefined,
+              ]
+            }
+          />
         </View>
         <View
           onLayout={[Function]}
@@ -356,9 +368,6 @@ exports[`AnnouncementsList renders 1`] = `
             onPress={[Function]}
             style={
               Array [
-                Object {
-                  "height": undefined,
-                },
                 undefined,
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -371,6 +380,9 @@ exports[`AnnouncementsList renders 1`] = `
             <View
               style={
                 Array [
+                  Object {
+                    "minHeight": 54,
+                  },
                   Object {
                     "alignItems": "center",
                     "backgroundColor": "white",

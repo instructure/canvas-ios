@@ -26,6 +26,7 @@ exports[`ConversationDetails renders correctly 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       ListHeaderComponent={
         <View
           style={
@@ -234,6 +235,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       ListHeaderComponent={
         <View
           style={
@@ -893,6 +895,7 @@ exports[`ConversationDetails renders with alternate data 1`] = `
     }
   >
     <RCTScrollView
+      ItemSeparatorComponent={[Function]}
       ListHeaderComponent={
         <View
           style={

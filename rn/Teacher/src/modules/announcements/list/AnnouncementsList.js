@@ -31,6 +31,7 @@ import refresh from '../../../utils/refresh'
 import Row from '../../../common/components/rows/Row'
 import Actions from './actions'
 import Images from '../../../images'
+import RowSeparator from '../../../common/components/rows/RowSeparator'
 
 type State = AsyncState & {
   announcements: Discussion[],
@@ -67,6 +68,7 @@ export class AnnouncementsList extends Component<any, Props, any> {
             testID='announcements.list.list'
             refreshing={Boolean(this.props.pending)}
             onRefresh={this.props.refresh}
+            ItemSeparatorComponent={RowSeparator}
           />
         </View>
       </Screen>

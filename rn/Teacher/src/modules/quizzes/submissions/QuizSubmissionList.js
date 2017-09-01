@@ -35,6 +35,7 @@ import mapStateToProps from './map-state-to-props'
 import Images from '../../../images'
 import i18n from 'format-message'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import RowSeparator from '../../../common/components/rows/RowSeparator'
 
 export type QuizSubmissionListNavProps = {
   courseID: string,
@@ -179,6 +180,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
                 renderItem={this.renderRow}
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}
+                ItemSeparatorComponent={RowSeparator}
                 />
             </View>
         }

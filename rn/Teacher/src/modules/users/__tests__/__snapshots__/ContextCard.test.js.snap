@@ -19,6 +19,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
   title="Donald Trump"
 >
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListHeaderComponent={
       <View
         style={
@@ -682,9 +683,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -697,6 +695,9 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
@@ -971,6 +972,7 @@ exports[`ContextCard renders 1`] = `
   title="Donald Trump"
 >
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListHeaderComponent={
       <View
         style={
@@ -1634,9 +1636,6 @@ exports[`ContextCard renders 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -1649,6 +1648,9 @@ exports[`ContextCard renders 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
@@ -1923,6 +1925,7 @@ exports[`ContextCard renders for a non student 1`] = `
   title="Donald Trump"
 >
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListHeaderComponent={
       <View
         style={
@@ -2249,6 +2252,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
   title="Donald Trump"
 >
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     ListHeaderComponent={
       <View
         style={
@@ -2968,9 +2972,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -2983,6 +2984,9 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",

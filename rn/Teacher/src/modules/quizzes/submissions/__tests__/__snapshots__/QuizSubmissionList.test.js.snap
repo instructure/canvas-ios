@@ -13,6 +13,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
       Object {
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
+        "height": "auto",
         "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
@@ -46,6 +47,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -74,6 +76,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
           Object {
             "marginBottom": 1,
             "opacity": 1,
+            "width": "auto",
           }
         }
         testID="submission-list.filter"
@@ -120,6 +123,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={
       Array [
         Object {
@@ -418,6 +422,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       Object {
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
+        "height": "auto",
         "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
@@ -451,6 +456,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -479,6 +485,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
           Object {
             "marginBottom": 1,
             "opacity": 1,
+            "width": "auto",
           }
         }
         testID="submission-list.filter"
@@ -525,6 +532,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={
       Array [
         Object {
@@ -799,6 +807,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
       Object {
         "borderBottomColor": "lightgrey",
         "borderBottomWidth": 0.5,
+        "height": "auto",
         "paddingBottom": 8,
         "paddingHorizontal": 16,
         "paddingTop": 16,
@@ -832,6 +841,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -860,6 +870,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
           Object {
             "marginBottom": 1,
             "opacity": 1,
+            "width": "auto",
           }
         }
         testID="submission-list.filter"
@@ -906,6 +917,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
     </View>
   </View>
   <RCTScrollView
+    ItemSeparatorComponent={[Function]}
     data={
       Array [
         Object {

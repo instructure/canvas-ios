@@ -30,6 +30,7 @@ import Row from '../../common/components/rows/Row'
 import Avatar from '../../common/components/Avatar'
 import GroupActions from './actions'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 type StateProps = {
   group: ?Group,
@@ -99,6 +100,7 @@ export class GroupList extends Component<any, GroupListProps, any> {
           renderItem={this._renderRow}
           ListEmptyComponent={this.state.pending ? null : empty}
           refreshing={this.state.pending}
+          ItemSeparatorComponent={RowSeparator}
         />
       </View>)
   }

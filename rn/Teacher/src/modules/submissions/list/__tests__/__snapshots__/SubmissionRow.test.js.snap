@@ -804,6 +804,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
               },
               Object {
                 "alignSelf": "center",
+                "flex": 0.5,
               },
             ],
             Object {

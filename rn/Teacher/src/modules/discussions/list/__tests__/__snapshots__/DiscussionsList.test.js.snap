@@ -428,10 +428,11 @@ exports[`DiscussionsList renders discussions 1`] = `
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "flex": 1,
-                  "height": 24,
+                  "height": "auto",
                   "justifyContent": "center",
                   "paddingLeft": 16,
                   "paddingRight": 8,
+                  "paddingVertical": 4,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -495,9 +496,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -510,6 +508,9 @@ exports[`DiscussionsList renders discussions 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -925,9 +926,6 @@ exports[`DiscussionsList renders discussions 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -940,6 +938,9 @@ exports[`DiscussionsList renders discussions 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -1582,10 +1583,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "flex": 1,
-                  "height": 24,
+                  "height": "auto",
                   "justifyContent": "center",
                   "paddingLeft": 16,
                   "paddingRight": 8,
+                  "paddingVertical": 4,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -1649,9 +1651,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -1664,6 +1663,9 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -2045,9 +2047,6 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -2060,6 +2059,9 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -2772,10 +2774,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "flex": 1,
-                  "height": 24,
+                  "height": "auto",
                   "justifyContent": "center",
                   "paddingLeft": 16,
                   "paddingRight": 8,
+                  "paddingVertical": 4,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -2839,9 +2842,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -2854,6 +2854,9 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -3269,9 +3272,6 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -3284,6 +3284,9 @@ exports[`DiscussionsList renders in correct order 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -4039,10 +4042,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "flex": 1,
-                  "height": 24,
+                  "height": "auto",
                   "justifyContent": "center",
                   "paddingLeft": 16,
                   "paddingRight": 8,
+                  "paddingVertical": 4,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -4106,9 +4110,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -4121,6 +4122,9 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",
@@ -4525,10 +4529,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 Object {
                   "backgroundColor": "#F5F5F5",
                   "flex": 1,
-                  "height": 24,
+                  "height": "auto",
                   "justifyContent": "center",
                   "paddingLeft": 16,
                   "paddingRight": 8,
+                  "paddingVertical": 4,
                 },
                 Object {
                   "borderBottomColor": "#C7CDD1",
@@ -4592,9 +4597,6 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 onPress={[Function]}
                 style={
                   Array [
-                    Object {
-                      "height": undefined,
-                    },
                     undefined,
                     Object {
                       "borderBottomColor": "#C7CDD1",
@@ -4607,6 +4609,9 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                 <View
                   style={
                     Array [
+                      Object {
+                        "minHeight": 54,
+                      },
                       Object {
                         "alignItems": "center",
                         "backgroundColor": "white",

@@ -589,7 +589,8 @@ const styles = StyleSheet.create({
   dateContainer: {
   },
   row: {
-    height: 54,
+    minHeight: 54,
+    height: 'auto',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.seperatorColor,
   },
@@ -625,7 +626,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   button: {
-    height: 54,
+    minHeight: 54,
+    height: 'auto',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.seperatorColor,
     borderTopWidth: StyleSheet.hairlineWidth,

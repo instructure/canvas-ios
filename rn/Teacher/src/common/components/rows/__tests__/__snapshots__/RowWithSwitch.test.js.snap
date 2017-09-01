@@ -27,9 +27,6 @@ exports[`Render row with switch 1`] = `
         "backgroundColor": "transparent",
       },
       Array [
-        Object {
-          "height": 54,
-        },
         undefined,
         undefined,
       ],
@@ -41,6 +38,9 @@ exports[`Render row with switch 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",

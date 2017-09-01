@@ -28,6 +28,7 @@ import images from '../../images'
 import AttachmentRow from './AttachmentRow'
 import AttachmentPicker from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 type StorageOptions = {
   /* Determines if the attachment should be uploaded or not.
@@ -116,6 +117,7 @@ export default class Attachments extends Component<any, Props, any> {
             renderItem={this.renderRow}
             keyExtractor={(item, index) => item.data.id}
             testID='attachments.list.list'
+            ItemSeparatorComponent={RowSeparator}
           />
         </View>
       </Screen>

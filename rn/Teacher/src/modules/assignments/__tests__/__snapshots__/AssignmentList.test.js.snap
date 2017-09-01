@@ -42,6 +42,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
           },
           Object {
             "color": "#2d3b44",
+            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -300,10 +301,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -367,9 +369,6 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -382,6 +381,9 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
@@ -621,6 +623,7 @@ exports[`applyFilter will apply a new filter 1`] = `
           },
           Object {
             "color": "#2d3b44",
+            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -863,10 +866,11 @@ exports[`applyFilter will apply a new filter 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -930,9 +934,6 @@ exports[`applyFilter will apply a new filter 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -945,6 +946,9 @@ exports[`applyFilter will apply a new filter 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
@@ -1184,6 +1188,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
           },
           Object {
             "color": "#2d3b44",
+            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -1394,10 +1399,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -1461,9 +1467,6 @@ exports[`filter button only shows when there are grading periods 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -1476,6 +1479,9 @@ exports[`filter button only shows when there are grading periods 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
@@ -1715,6 +1721,7 @@ exports[`renders correctly 1`] = `
           },
           Object {
             "color": "#2d3b44",
+            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -1957,10 +1964,11 @@ exports[`renders correctly 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2024,9 +2032,6 @@ exports[`renders correctly 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -2039,6 +2044,9 @@ exports[`renders correctly 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
@@ -2302,6 +2310,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
           },
           Object {
             "color": "#2d3b44",
+            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -2560,10 +2569,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               Object {
                 "backgroundColor": "#F5F5F5",
                 "flex": 1,
-                "height": 24,
+                "height": "auto",
                 "justifyContent": "center",
                 "paddingLeft": 16,
                 "paddingRight": 8,
+                "paddingVertical": 4,
               },
               Object {
                 "borderBottomColor": "#C7CDD1",
@@ -2627,9 +2637,6 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               onPress={[Function]}
               style={
                 Array [
-                  Object {
-                    "height": undefined,
-                  },
                   undefined,
                   Object {
                     "borderBottomColor": "#C7CDD1",
@@ -2642,6 +2649,9 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
               <View
                 style={
                   Array [
+                    Object {
+                      "minHeight": 54,
+                    },
                     Object {
                       "alignItems": "center",
                       "backgroundColor": "white",

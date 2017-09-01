@@ -21,7 +21,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 50,
+              "height": "auto",
               "justifyContent": "flex-start",
             },
             Object {
@@ -151,7 +151,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "height": "auto",
+              "minHeight": 54,
             },
           ]
         }
@@ -237,12 +238,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -296,7 +300,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -333,8 +337,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -417,12 +423,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -476,7 +485,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -513,8 +522,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -597,12 +608,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -656,7 +670,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -693,8 +707,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -788,7 +804,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 50,
+              "height": "auto",
               "justifyContent": "flex-start",
             },
             Object {
@@ -918,7 +934,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "height": "auto",
+              "minHeight": 54,
             },
           ]
         }
@@ -1004,12 +1021,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -1063,7 +1083,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -1100,8 +1120,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -1184,12 +1206,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -1243,7 +1268,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -1280,8 +1305,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -1364,12 +1391,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -1423,7 +1453,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -1460,8 +1490,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -1555,7 +1587,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 50,
+              "height": "auto",
               "justifyContent": "flex-start",
             },
             Object {
@@ -1685,7 +1717,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "height": "auto",
+              "minHeight": 54,
             },
           ]
         }
@@ -1771,12 +1804,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -1830,7 +1866,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -1867,8 +1903,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -1951,12 +1989,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -2010,7 +2051,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -2047,8 +2088,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -2131,12 +2174,15 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -2190,7 +2236,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -2227,8 +2273,10 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -2344,7 +2392,8 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
-            "height": 54,
+            "height": "auto",
+            "minHeight": 54,
           },
         ]
       }
@@ -2445,7 +2494,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 50,
+              "height": "auto",
               "justifyContent": "flex-start",
             },
             Object {
@@ -2509,7 +2558,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "height": "auto",
+              "minHeight": 54,
             },
           ]
         }
@@ -2595,12 +2645,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -2654,7 +2707,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -2691,8 +2744,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -2775,12 +2830,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -2834,7 +2892,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -2871,8 +2929,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -2955,12 +3015,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -3014,7 +3077,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -3051,8 +3114,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -3146,7 +3211,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 50,
+              "height": "auto",
               "justifyContent": "flex-start",
             },
             Object {
@@ -3276,7 +3341,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "height": "auto",
+              "minHeight": 54,
             },
           ]
         }
@@ -3362,12 +3428,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -3421,7 +3490,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -3458,8 +3527,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -3542,12 +3613,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -3601,7 +3675,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -3638,8 +3712,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -3722,12 +3798,15 @@ exports[`snapshots! render with multiple due dates 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -3781,7 +3860,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -3818,8 +3897,10 @@ exports[`snapshots! render with multiple due dates 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -3935,7 +4016,8 @@ exports[`snapshots! render with multiple due dates 1`] = `
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
-            "height": 54,
+            "height": "auto",
+            "minHeight": 54,
           },
         ]
       }
@@ -4036,7 +4118,7 @@ exports[`snapshots! render with single due date 1`] = `
               "backgroundColor": "#F5F5F5",
               "flex": 1,
               "flexDirection": "row",
-              "height": 50,
+              "height": "auto",
               "justifyContent": "flex-start",
             },
             Object {
@@ -4100,7 +4182,8 @@ exports[`snapshots! render with single due date 1`] = `
             Object {
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "height": "auto",
+              "minHeight": 54,
             },
           ]
         }
@@ -4186,12 +4269,15 @@ exports[`snapshots! render with single due date 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -4245,7 +4331,7 @@ exports[`snapshots! render with single due date 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -4282,8 +4368,10 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -4366,12 +4454,15 @@ exports[`snapshots! render with single due date 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -4425,7 +4516,7 @@ exports[`snapshots! render with single due date 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -4462,8 +4553,10 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -4546,12 +4639,15 @@ exports[`snapshots! render with single due date 1`] = `
               "backgroundColor": "white",
               "borderBottomColor": "#C7CDD1",
               "borderBottomWidth": 0.5,
-              "height": 54,
+              "minHeight": 54,
+              "paddingVertical": 8,
             },
             Object {
               "alignItems": "center",
+              "flex": 0.5,
               "flexDirection": "row",
               "justifyContent": "flex-end",
+              "minWidth": 90,
             },
           ]
         }
@@ -4605,7 +4701,7 @@ exports[`snapshots! render with single due date 1`] = `
             <View
               style={
                 Object {
-                  "flex": 1,
+                  "flex": 0.5,
                   "flexDirection": "column",
                   "justifyContent": "center",
                   "paddingRight": 32,
@@ -4642,8 +4738,10 @@ exports[`snapshots! render with single due date 1`] = `
               style={
                 Object {
                   "alignItems": "center",
+                  "flex": 0.5,
                   "flexDirection": "row",
                   "justifyContent": "flex-end",
+                  "minWidth": 90,
                 }
               }
             >
@@ -4759,7 +4857,8 @@ exports[`snapshots! render with single due date 1`] = `
             "borderBottomWidth": 0.5,
             "borderTopColor": "#C7CDD1",
             "borderTopWidth": 0.5,
-            "height": 54,
+            "height": "auto",
+            "minHeight": 54,
           },
         ]
       }

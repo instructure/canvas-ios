@@ -27,9 +27,6 @@ exports[`default icon 1`] = `
         "backgroundColor": "transparent",
       },
       Array [
-        Object {
-          "height": 54,
-        },
         undefined,
         Object {
           "borderBottomColor": "#C7CDD1",
@@ -44,6 +41,9 @@ exports[`default icon 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",
@@ -171,9 +171,6 @@ exports[`renders correctly 1`] = `
         "backgroundColor": "transparent",
       },
       Array [
-        Object {
-          "height": 54,
-        },
         undefined,
         Object {
           "borderBottomColor": "#C7CDD1",
@@ -188,6 +185,9 @@ exports[`renders correctly 1`] = `
   <View
     style={
       Array [
+        Object {
+          "minHeight": 54,
+        },
         Object {
           "alignItems": "center",
           "backgroundColor": "white",
