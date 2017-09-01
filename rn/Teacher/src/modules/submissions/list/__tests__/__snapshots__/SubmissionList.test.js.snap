@@ -124,6 +124,7 @@ exports[`SubmissionList loaded 1`] = `
   </View>
   <RCTScrollView
     ItemSeparatorComponent={[Function]}
+    ListFooterComponent={[Function]}
     data={
       Array [
         Object {
@@ -194,14 +195,7 @@ exports[`SubmissionList loaded 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "lightgrey",
-              "borderBottomWidth": 0.5,
-            }
-          }
-        >
+        <View>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -429,14 +423,7 @@ exports[`SubmissionList loaded 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "lightgrey",
-              "borderBottomWidth": 0.5,
-            }
-          }
-        >
+        <View>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -696,14 +683,7 @@ exports[`SubmissionList loaded 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "lightgrey",
-              "borderBottomWidth": 0.5,
-            }
-          }
-        >
+        <View>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -976,14 +956,7 @@ exports[`SubmissionList loaded 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "lightgrey",
-              "borderBottomWidth": 0.5,
-            }
-          }
-        >
+        <View>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -1228,6 +1201,22 @@ exports[`SubmissionList loaded 1`] = `
           </View>
         </View>
       </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
     </View>
   </RCTScrollView>
 </View>
@@ -1357,6 +1346,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
   </View>
   <RCTScrollView
     ItemSeparatorComponent={[Function]}
+    ListFooterComponent={[Function]}
     data={
       Array [
         Object {
@@ -1407,14 +1397,7 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View
-          style={
-            Object {
-              "borderBottomColor": "lightgrey",
-              "borderBottomWidth": 0.5,
-            }
-          }
-        >
+        <View>
           <View
             accessibilityComponentType={undefined}
             accessibilityLabel={undefined}
@@ -1658,6 +1641,22 @@ exports[`SubmissionList renders correctly with a passed in filter 1`] = `
             </View>
           </View>
         </View>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
+        />
       </View>
     </View>
   </RCTScrollView>

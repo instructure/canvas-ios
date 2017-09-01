@@ -18,12 +18,13 @@
 
 import React, { PureComponent } from 'react'
 import {
-  View,
+  ScrollView,
   StyleSheet,
 } from 'react-native'
 import Screen from '../../../routing/Screen'
 import i18n from 'format-message'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
+import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { connect } from 'react-redux'
 import AssignmentActions from '../../assignments/actions'
 import branding from '../../../common/branding'
@@ -87,29 +88,26 @@ export class SubmissionSettings extends PureComponent {
           action: this.dismiss,
         }]}
       >
-        <View style={style.container1}>
-          <View style={style.row}>
+        <ScrollView style={style.container1}>
+          <RowSeparator />
           <RowWithSwitch
-            border='bottom'
             title={i18n('Mute Grades')}
             value={this.props.muted}
             onValueChange={this.toggleMutedGrading}
             identifier='submission-settings.muted'
           />
-          </View>
-          <View style={style.row}>
+          <RowSeparator />
           <RowWithSwitch
-            border='bottom'
             title={i18n('Anonymous Grading')}
             value={this.props.anonymous}
             onValueChange={this.toggleAnonymousGrading}
             identifier='submission-settings.anonymous'
           />
-          </View>
+          <RowSeparator />
           <SubTitle style={{ paddingHorizontal: 12, paddingVertical: 4 }}>
             {i18n('This will anonymize each student and shuffle the submission list.')}
           </SubTitle>
-        </View>
+        </ScrollView>
       </Screen>
     )
   }
@@ -127,10 +125,5 @@ export default (Connect: any)
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-  },
-  row: {
-    minHeight: 54,
-    height: 'auto',
   },
 })

@@ -32,17 +32,15 @@ exports[`QuizRow renders 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -383,17 +381,15 @@ exports[`QuizRow renders multiple question count 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -734,17 +730,15 @@ exports[`QuizRow renders published 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1086,17 +1080,15 @@ exports[`QuizRow renders selected 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "#f5f5f5",
@@ -1437,17 +1429,15 @@ exports[`QuizRow renders single question count 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1788,17 +1778,15 @@ exports[`QuizRow renders unpublished 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -2128,17 +2116,15 @@ exports[`QuizRow renders without points possible 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",

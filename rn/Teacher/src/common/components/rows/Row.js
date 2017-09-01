@@ -95,7 +95,7 @@ export default class Row extends Component<any, RowProps, any> {
     }
 
     return (<TouchableHighlight style={[topBorder, bottomBorder]} { ...traits } onPress={this.onPress} testID={this.props.testID} {...underlayProps} >
-              <View style={[{ minHeight: 54 }, style.container, { backgroundColor }]}>
+              <View style={[style.container, { backgroundColor }]}>
                 { this.props.renderImage && this.props.renderImage() }
                 { this.props.image && <Image style={[style.image, { tintColor: this.props.imageTint, height: imageSize.height, width: imageSize.width }]} source={this.props.image} /> }
                 <View style={style.titlesContainer}>
@@ -128,9 +128,10 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    minHeight: 54,
     alignItems: 'center',
-    paddingTop: global.style.defaultPadding / 1.25,
-    paddingBottom: global.style.defaultPadding / 1.25,
+    paddingTop: Math.floor(global.style.defaultPadding / 1.25),
+    paddingBottom: Math.floor(global.style.defaultPadding / 1.25),
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
     backgroundColor: 'white',

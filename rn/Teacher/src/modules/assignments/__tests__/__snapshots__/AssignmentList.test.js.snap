@@ -382,17 +382,15 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",
@@ -947,17 +945,15 @@ exports[`applyFilter will apply a new filter 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",
@@ -1480,17 +1476,15 @@ exports[`filter button only shows when there are grading periods 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",
@@ -2045,17 +2039,15 @@ exports[`renders correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",
@@ -2650,17 +2642,15 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",

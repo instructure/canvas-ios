@@ -50,17 +50,15 @@ exports[`renders correctly 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -291,17 +289,15 @@ exports[`renders correctly assignment icon 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -532,17 +528,15 @@ exports[`renders correctly discussion icon 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -773,17 +767,15 @@ exports[`renders correctly not published icon 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1014,17 +1006,15 @@ exports[`renders correctly published icon 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1266,17 +1256,15 @@ exports[`renders correctly quiz icon 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1507,17 +1495,15 @@ exports[`renders correctly with closed due dates 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1748,17 +1734,15 @@ exports[`renders correctly with needs_grading_count 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -2027,17 +2011,15 @@ exports[`renders correctly with open due dates 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -2268,17 +2250,15 @@ exports[`renders correctly with selected props 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",

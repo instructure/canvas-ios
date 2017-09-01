@@ -1,14 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`anonymous grading doesnt show users names 1`] = `
-<View
-  style={
-    Object {
-      "borderBottomColor": "lightgrey",
-      "borderBottomWidth": 0.5,
-    }
-  }
->
+<View>
   <TouchableHighlight
     accessibilityTraits={
       Array [
@@ -147,14 +140,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
 `;
 
 exports[`excused row renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "borderBottomColor": "lightgrey",
-      "borderBottomWidth": 0.5,
-    }
-  }
->
+<View>
   <TouchableHighlight
     accessibilityTraits={
       Array [
@@ -325,14 +311,7 @@ exports[`excused row renders correctly 1`] = `
 `;
 
 exports[`late graded row renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "borderBottomColor": "lightgrey",
-      "borderBottomWidth": 0.5,
-    }
-  }
->
+<View>
   <TouchableHighlight
     accessibilityTraits={
       Array [
@@ -503,14 +482,7 @@ exports[`late graded row renders correctly 1`] = `
 `;
 
 exports[`missing ungraded row renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "borderBottomColor": "lightgrey",
-      "borderBottomWidth": 0.5,
-    }
-  }
->
+<View>
   <TouchableHighlight
     accessibilityTraits={
       Array [
@@ -649,14 +621,7 @@ exports[`missing ungraded row renders correctly 1`] = `
 `;
 
 exports[`submitted ungraded row renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "borderBottomColor": "lightgrey",
-      "borderBottomWidth": 0.5,
-    }
-  }
->
+<View>
   <TouchableHighlight
     accessibilityTraits={
       Array [
@@ -840,14 +805,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
 `;
 
 exports[`unsubmitted ungraded row renders correctly 1`] = `
-<View
-  style={
-    Object {
-      "borderBottomColor": "lightgrey",
-      "borderBottomWidth": 0.5,
-    }
-  }
->
+<View>
   <TouchableHighlight
     accessibilityTraits={
       Array [

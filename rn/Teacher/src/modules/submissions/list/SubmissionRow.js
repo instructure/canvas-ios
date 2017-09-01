@@ -63,7 +63,7 @@ class Row extends Component<any, RowProps, any> {
   render () {
     const { onPress, testID, children, disclosure } = this.props
     return (
-      <View style={styles.row}>
+      <View>
         <TouchableHighlight style={styles.touchableHighlight} onPress={onPress} testID={testID} accessibilityTraits={['button']}>
           <View style={styles.container}>
             {children}
@@ -141,10 +141,6 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
 export default SubmissionRow
 
 const styles = StyleSheet.create({
-  row: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'lightgrey',
-  },
   touchableHighlight: {
     flex: 1,
   },

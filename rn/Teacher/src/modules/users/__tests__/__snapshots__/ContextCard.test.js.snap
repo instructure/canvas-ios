@@ -696,17 +696,15 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",
@@ -1649,17 +1647,15 @@ exports[`ContextCard renders 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",
@@ -2985,17 +2981,15 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 style={
                   Array [
                     Object {
-                      "minHeight": 54,
-                    },
-                    Object {
                       "alignItems": "center",
                       "backgroundColor": "white",
                       "flex": 1,
                       "flexDirection": "row",
-                      "paddingBottom": 12.8,
+                      "minHeight": 54,
+                      "paddingBottom": 12,
                       "paddingLeft": 16,
                       "paddingRight": 16,
-                      "paddingTop": 12.8,
+                      "paddingTop": 12,
                     },
                     Object {
                       "backgroundColor": "white",

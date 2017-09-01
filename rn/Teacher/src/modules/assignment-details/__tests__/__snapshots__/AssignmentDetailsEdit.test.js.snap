@@ -519,17 +519,15 @@ exports[`error occurs when done pressed 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -647,17 +645,15 @@ exports[`error occurs when done pressed 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -783,17 +779,15 @@ exports[`error occurs when done pressed 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1450,17 +1444,15 @@ exports[`modal saving is shown on assignment update 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1578,17 +1570,15 @@ exports[`modal saving is shown on assignment update 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1714,17 +1704,15 @@ exports[`modal saving is shown on assignment update 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2381,17 +2369,15 @@ exports[`renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2509,17 +2495,15 @@ exports[`renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2645,17 +2629,15 @@ exports[`renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3312,17 +3294,15 @@ exports[`saving invalid dates displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3440,17 +3420,15 @@ exports[`saving invalid dates displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3576,17 +3554,15 @@ exports[`saving invalid dates displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -4286,17 +4262,15 @@ exports[`saving invalid name displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -4414,17 +4388,15 @@ exports[`saving invalid name displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -4550,17 +4522,15 @@ exports[`saving invalid name displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -5220,17 +5190,15 @@ exports[`saving invalid points possible displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -5348,17 +5316,15 @@ exports[`saving invalid points possible displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -5484,17 +5450,15 @@ exports[`saving invalid points possible displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -6190,17 +6154,15 @@ exports[`saving negative points possible displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -6318,17 +6280,15 @@ exports[`saving negative points possible displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -6454,17 +6414,15 @@ exports[`saving negative points possible displays banner 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",

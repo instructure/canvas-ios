@@ -396,7 +396,7 @@ const style = StyleSheet.create({
     backgroundColor: '#F5F5F5',
   },
   row: {
-    paddingVertical: global.style.defaultPadding / 2,
+    paddingVertical: Math.floor(global.style.defaultPadding / 2),
     paddingLeft: global.style.defaultPadding,
     paddingRight: global.style.defaultPadding,
     backgroundColor: 'white',

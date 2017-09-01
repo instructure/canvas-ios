@@ -226,17 +226,15 @@ exports[`DiscussionEdit renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -379,17 +377,15 @@ exports[`DiscussionEdit renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -489,17 +485,15 @@ exports[`DiscussionEdit renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -600,17 +594,15 @@ exports[`DiscussionEdit renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -711,17 +703,15 @@ exports[`DiscussionEdit renders 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1301,17 +1291,15 @@ exports[`DiscussionEdit renders new form 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1454,17 +1442,15 @@ exports[`DiscussionEdit renders new form 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1564,17 +1550,15 @@ exports[`DiscussionEdit renders new form 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1675,17 +1659,15 @@ exports[`DiscussionEdit renders new form 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -1786,17 +1768,15 @@ exports[`DiscussionEdit renders new form 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2376,17 +2356,15 @@ exports[`DiscussionEdit updates from props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2529,17 +2507,15 @@ exports[`DiscussionEdit updates from props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2639,17 +2615,15 @@ exports[`DiscussionEdit updates from props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2750,17 +2724,15 @@ exports[`DiscussionEdit updates from props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -2861,17 +2833,15 @@ exports[`DiscussionEdit updates from props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3451,17 +3421,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3604,17 +3572,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3714,17 +3680,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3825,17 +3789,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",
@@ -3936,17 +3898,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
             style={
               Array [
                 Object {
-                  "minHeight": 54,
-                },
-                Object {
                   "alignItems": "center",
                   "backgroundColor": "white",
                   "flex": 1,
                   "flexDirection": "row",
-                  "paddingBottom": 12.8,
+                  "minHeight": 54,
+                  "paddingBottom": 12,
                   "paddingLeft": 16,
                   "paddingRight": 16,
-                  "paddingTop": 12.8,
+                  "paddingTop": 12,
                 },
                 Object {
                   "backgroundColor": "white",

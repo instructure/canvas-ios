@@ -36,17 +36,15 @@ exports[`DiscussionsRow renders 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -464,17 +462,15 @@ exports[`DiscussionsRow renders published 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -892,17 +888,15 @@ exports[`DiscussionsRow renders unpublished 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1309,17 +1303,15 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -1703,17 +1695,15 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -2119,17 +2109,15 @@ exports[`DiscussionsRow renders with points possible 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -2547,17 +2535,15 @@ exports[`DiscussionsRow renders without points possible 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",

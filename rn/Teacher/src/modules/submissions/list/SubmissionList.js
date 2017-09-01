@@ -241,6 +241,7 @@ export class SubmissionList extends Component {
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}
                 ItemSeparatorComponent={RowSeparator}
+                ListFooterComponent={RowSeparator}
                 />
             </View>
         }

@@ -273,17 +273,15 @@ exports[`CourseSelect renders 1`] = `
           style={
             Array [
               Object {
-                "minHeight": 54,
-              },
-              Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 12.8,
+                "minHeight": 54,
+                "paddingBottom": 12,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 12.8,
+                "paddingTop": 12,
               },
               Object {
                 "backgroundColor": "white",
@@ -420,17 +418,15 @@ exports[`CourseSelect renders 1`] = `
           style={
             Array [
               Object {
-                "minHeight": 54,
-              },
-              Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 12.8,
+                "minHeight": 54,
+                "paddingBottom": 12,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 12.8,
+                "paddingTop": 12,
               },
               Object {
                 "backgroundColor": "white",
@@ -507,17 +503,15 @@ exports[`CourseSelect renders 1`] = `
           style={
             Array [
               Object {
-                "minHeight": 54,
-              },
-              Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 12.8,
+                "minHeight": 54,
+                "paddingBottom": 12,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 12.8,
+                "paddingTop": 12,
               },
               Object {
                 "backgroundColor": "white",
@@ -848,17 +842,15 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           style={
             Array [
               Object {
-                "minHeight": 54,
-              },
-              Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 12.8,
+                "minHeight": 54,
+                "paddingBottom": 12,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 12.8,
+                "paddingTop": 12,
               },
               Object {
                 "backgroundColor": "white",
@@ -995,17 +987,15 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           style={
             Array [
               Object {
-                "minHeight": 54,
-              },
-              Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 12.8,
+                "minHeight": 54,
+                "paddingBottom": 12,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 12.8,
+                "paddingTop": 12,
               },
               Object {
                 "backgroundColor": "white",
@@ -1082,17 +1072,15 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
           style={
             Array [
               Object {
-                "minHeight": 54,
-              },
-              Object {
                 "alignItems": "center",
                 "backgroundColor": "white",
                 "flex": 1,
                 "flexDirection": "row",
-                "paddingBottom": 12.8,
+                "minHeight": 54,
+                "paddingBottom": 12,
                 "paddingLeft": 16,
                 "paddingRight": 16,
-                "paddingTop": 12.8,
+                "paddingTop": 12,
               },
               Object {
                 "backgroundColor": "white",

@@ -1,17 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SubmissionSettings renders properly 1`] = `
-<View
+<RCTScrollView
   style={undefined}
 >
-  <View
-    style={
-      Object {
-        "height": "auto",
-        "minHeight": 54,
+  <View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          },
+          undefined,
+        ]
       }
-    }
-  >
+    />
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel="Mute Grades, Off"
@@ -39,10 +43,7 @@ exports[`SubmissionSettings renders properly 1`] = `
           },
           Array [
             undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
+            undefined,
           ],
         ]
       }
@@ -53,17 +54,15 @@ exports[`SubmissionSettings renders properly 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -128,7 +127,6 @@ exports[`SubmissionSettings renders properly 1`] = `
             }
           >
             <RCTSwitch
-              border="bottom"
               disabled={false}
               identifier="submission-settings.muted"
               onChange={[Function]}
@@ -154,15 +152,17 @@ exports[`SubmissionSettings renders properly 1`] = `
         </View>
       </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "height": "auto",
-        "minHeight": 54,
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          },
+          undefined,
+        ]
       }
-    }
-  >
+    />
     <View
       accessibilityComponentType={undefined}
       accessibilityLabel="Anonymous Grading, Off"
@@ -190,10 +190,7 @@ exports[`SubmissionSettings renders properly 1`] = `
           },
           Array [
             undefined,
-            Object {
-              "borderBottomColor": "#C7CDD1",
-              "borderBottomWidth": 0.5,
-            },
+            undefined,
           ],
         ]
       }
@@ -204,17 +201,15 @@ exports[`SubmissionSettings renders properly 1`] = `
         style={
           Array [
             Object {
-              "minHeight": 54,
-            },
-            Object {
               "alignItems": "center",
               "backgroundColor": "white",
               "flex": 1,
               "flexDirection": "row",
-              "paddingBottom": 12.8,
+              "minHeight": 54,
+              "paddingBottom": 12,
               "paddingLeft": 16,
               "paddingRight": 16,
-              "paddingTop": 12.8,
+              "paddingTop": 12,
             },
             Object {
               "backgroundColor": "white",
@@ -279,7 +274,6 @@ exports[`SubmissionSettings renders properly 1`] = `
             }
           >
             <RCTSwitch
-              border="bottom"
               disabled={false}
               identifier="submission-settings.anonymous"
               onChange={[Function]}
@@ -305,29 +299,40 @@ exports[`SubmissionSettings renders properly 1`] = `
         </View>
       </View>
     </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#C7CDD1",
+            "height": 0.5,
+          },
+          undefined,
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#7F91A7",
+            "fontSize": 14,
+          },
+          Object {
+            "paddingHorizontal": 12,
+            "paddingVertical": 4,
+          },
+        ]
+      }
+    >
+      This will anonymize each student and shuffle the submission list.
+    </Text>
   </View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#7F91A7",
-          "fontSize": 14,
-        },
-        Object {
-          "paddingHorizontal": 12,
-          "paddingVertical": 4,
-        },
-      ]
-    }
-  >
-    This will anonymize each student and shuffle the submission list.
-  </Text>
-</View>
+</RCTScrollView>
 `;
