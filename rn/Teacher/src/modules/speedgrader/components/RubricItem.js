@@ -84,8 +84,7 @@ export default class RubricItem extends Component {
       [{
         text: i18n('Cancel'),
         style: 'cancel',
-        onPress: () => AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton))
-,
+        onPress: () => AccessibilityInfo.setAccessibilityFocus(findNodeHandle(this.customizeButton)),
       }, {
         text: i18n('OK'),
         onPress: (value) => {

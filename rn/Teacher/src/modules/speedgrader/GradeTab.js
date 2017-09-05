@@ -62,14 +62,21 @@ export class GradeTab extends Component {
   }
 
   updateScore = (id: string, value: ?number) => {
+    this.updateAssessment(id, { points: value })
+  }
+
+  // Merges new values in 'assessment' with what's currently stored
+  // This allows score and comments to be updated independently
+  // When merged, overwrites new values with old ones
+  // Also manages updating the state for whatever change there was to the assessment
+  updateAssessment = (id: string, assessment: RubricAssessment) => {
     this.setState((prevState) => {
-      let newRatings = {
+      const current = this.state.ratings[id] || {}
+      const updated = { ...current, ...assessment }
+      const newRatings = {
         ratings: {
           ...this.state.ratings,
-          [id]: {
-            ...this.state.ratings[id],
-            points: value,
-          },
+          [id]: updated,
         },
       }
 
@@ -83,40 +90,14 @@ export class GradeTab extends Component {
       .reduce((sum, key) => sum + (this.state.ratings[key].points || 0), 0)
   }
 
-  saveRubricAssessment = (newRating: { [string]: RubricAssessment }) => {
-    this.props.gradeSubmissionWithRubric(
-      this.props.courseID,
-      this.props.assignmentID,
-      this.props.userID,
-      this.props.submissionID,
-      {
-        ...this.props.rubricAssessment,
-        ...newRating,
-      }
-    )
-  }
-
   openCommentKeyboard = (criterionID: string) => {
     this.setState({ criterionCommentInput: criterionID })
   }
 
   submitRubricComment = ({ message }: { message: string }) => {
     if (!this.state.criterionCommentInput) return
-    let id = this.state.criterionCommentInput
-    let currentAssessment = this.props.rubricAssessment || {}
-    let newRating = {
-      [id]: {
-        ...currentAssessment[id],
-        comments: message,
-      },
-    }
-    this.setState({
-      ratings: {
-        ...this.state.ratings,
-        ...newRating,
-      },
-    })
-    this.saveRubricAssessment(newRating)
+    const id = this.state.criterionCommentInput
+    this.updateAssessment(id, { comments: message })
   }
 
   cancelRubricComment = () => {
@@ -127,20 +108,7 @@ export class GradeTab extends Component {
   }
 
   deleteComment = (criterionID: string) => {
-    let currentAssessment = this.props.rubricAssessment || {}
-    let newRating = {
-      [criterionID]: {
-        ...currentAssessment[criterionID],
-        comments: '',
-      },
-    }
-    this.setState({
-      ratings: {
-        ...this.props.rubricAssessment,
-        ...newRating,
-      },
-    })
-    this.saveRubricAssessment(newRating)
+    this.updateAssessment(criterionID, { comments: '' })
   }
 
   renderHeader = () => {
