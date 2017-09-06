@@ -1,5 +1,10 @@
 #!/usr/bin/env bash -e
 
+if [ "$BUDDYBUILD_SCHEME" != "Teacher - BB - Jest" ]; then
+  echo "Only running prebuild on 'Teacher - BB - Jest' scheme"
+  exit 0
+fi
+
 timestamp() {
   stamp=$( date +%T )
   echo "$stamp: $@"
