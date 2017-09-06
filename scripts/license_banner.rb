@@ -57,6 +57,7 @@ def appropriate_banner(file)
     return apache_header if file.include? "Tests"
     return apache_header if file.include? 'test'
     return apache_header if file.include? '__tests__'
+    return apache_header if file.include? 'modules/canvas-api'
     gpl_header
 end
 
