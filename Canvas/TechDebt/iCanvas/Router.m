@@ -248,8 +248,6 @@
 # pragma marks - Parsing
 
 - (BOOL)matchURL:(NSURL *)url matchHandler:(void(^)(NSDictionary *params, id classOrBlock))matchHandler {
-    NSString *currentHost = [CKIClient currentClient].baseURL.host;
-    
     NSString *path = url.path;
     path = [path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
     path = [path stringByReplacingOccurrencesOfString:@"api/v1/" withString:@""];
@@ -259,61 +257,57 @@
     __block NSMutableDictionary *params;
     __block BOOL matchFound = NO;
     
-    BOOL requestIsInternal = [url host].description.length > 0 ? [[url host] isEqualToString:currentHost] : YES;
-    
-    if (requestIsInternal) {
-        [self.routes.allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
-            NSURL *routeURL = [NSURL URLWithString:key];
-            NSArray *routeComponents = [routeURL.pathComponents subarrayWithRange:NSMakeRange(1, routeURL.pathComponents.count -1)];
-            params = [NSMutableDictionary new];
-            params[@"url"] = url;
-            
-            if (urlComponents.count != routeComponents.count) {
-                return; // can't possibly match
-            }
-            
-            for (NSUInteger i = 0; i < routeComponents.count; i++) {
-                if ([routeComponents[i] hasPrefix:@":"]) { // save params in case this is a match
-                    NSString *paramKey = [routeComponents[i] substringFromIndex:1];
-                    NSString *param = urlComponents[i];
-                    NSNumber *number = [self.numberFormatter numberFromString:param];
-                    if (number) {
-                        params[paramKey] = number;
-                    }
-                    else {
-                        params[paramKey] = param;
-                    }
+    [self.routes.allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        NSURL *routeURL = [NSURL URLWithString:key];
+        NSArray *routeComponents = [routeURL.pathComponents subarrayWithRange:NSMakeRange(1, routeURL.pathComponents.count -1)];
+        params = [NSMutableDictionary new];
+        params[@"url"] = url;
+        
+        if (urlComponents.count != routeComponents.count) {
+            return; // can't possibly match
+        }
+        
+        for (NSUInteger i = 0; i < routeComponents.count; i++) {
+            if ([routeComponents[i] hasPrefix:@":"]) { // save params in case this is a match
+                NSString *paramKey = [routeComponents[i] substringFromIndex:1];
+                NSString *param = urlComponents[i];
+                NSNumber *number = [self.numberFormatter numberFromString:param];
+                if (number) {
+                    params[paramKey] = number;
                 }
-                else if (![urlComponents[i] isEqualToString:routeComponents[i]]) {
-                    return; // not a match, continue to next key
+                else {
+                    params[paramKey] = param;
                 }
             }
-            
-            matchFound = YES;
-            if (CKCanvasAPI.currentAPI) {
-                params[@"canvasAPI"] = CKCanvasAPI.currentAPI;
+            else if (![urlComponents[i] isEqualToString:routeComponents[i]]) {
+                return; // not a match, continue to next key
             }
-            if (params[@"courseIdent"]) {
-                uint64_t ident = [params[@"courseIdent"] unsignedLongLongValue];
-                params[@"contextInfo"] = [CKContextInfo contextInfoFromCourseIdent:ident];
-            }
-            else if (params[@"groupIdent"]) {
-                uint64_t ident = [params[@"groupIdent"] unsignedLongLongValue];
-                params[@"contextInfo"] = [CKContextInfo contextInfoFromGroupIdent:ident];
-            }
-            else if (params[@"userIdent"]) {
-                uint64_t ident = [params[@"userIdent"] unsignedLongLongValue];
-                params[@"contextInfo"] = [CKContextInfo contextInfoFromUserIdent:ident];
-            }
-            
-            if ([self isDownloadURL:originalURL]) {
-                params[@"downloadURL"] = originalURL;
-            }
-            
-            matchHandler(params, self.routes[key]);
-            *stop = matchFound;
-        }];
-    }
+        }
+        
+        matchFound = YES;
+        if (CKCanvasAPI.currentAPI) {
+            params[@"canvasAPI"] = CKCanvasAPI.currentAPI;
+        }
+        if (params[@"courseIdent"]) {
+            uint64_t ident = [params[@"courseIdent"] unsignedLongLongValue];
+            params[@"contextInfo"] = [CKContextInfo contextInfoFromCourseIdent:ident];
+        }
+        else if (params[@"groupIdent"]) {
+            uint64_t ident = [params[@"groupIdent"] unsignedLongLongValue];
+            params[@"contextInfo"] = [CKContextInfo contextInfoFromGroupIdent:ident];
+        }
+        else if (params[@"userIdent"]) {
+            uint64_t ident = [params[@"userIdent"] unsignedLongLongValue];
+            params[@"contextInfo"] = [CKContextInfo contextInfoFromUserIdent:ident];
+        }
+        
+        if ([self isDownloadURL:originalURL]) {
+            params[@"downloadURL"] = originalURL;
+        }
+        
+        matchHandler(params, self.routes[key]);
+        *stop = matchFound;
+    }];
 
     if(!matchFound){
         NSLog(@"no registered route for URL %@", url);
