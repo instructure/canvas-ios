@@ -71,7 +71,7 @@ timestamp "Yarn flow"
 retry_command yarn run flow
 mkdir -p "$BUDDYBUILD_WORKSPACE/buddybuild_artifacts/Jest"
 timestamp "Yarn test"
-retry_command yarn run test -- --coverage --outputFile="$BUDDYBUILD_WORKSPACE/buddybuild_artifacts/Jest/jest.json" --json
+retry_command yarn run test -- --silent --coverage --outputFile="$BUDDYBUILD_WORKSPACE/buddybuild_artifacts/Jest/jest.json" --json
 
 TEACHER_APP_ID=58b0b2116096900100863eb8
 
