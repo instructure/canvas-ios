@@ -86,7 +86,7 @@
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
-      "node_modules/(?!react-native|my-project|react-native-button|canvas-api)"
+      "node_modules/(?!react-native|my-project|react-native-button|instructure-canvas-api)"
     ],
     "setupFiles": [
       "<rootDir>/test/scripts/jestSetup.js"
