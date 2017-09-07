@@ -69,3 +69,7 @@ At this point you should see the packager start and under the list of watched di
 
     yarn flow
     yarn test
+
+### Publishing
+
+Publish to npm with `gulp publish` after updating the version in `package.json`

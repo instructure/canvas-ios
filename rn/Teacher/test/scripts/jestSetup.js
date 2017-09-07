@@ -27,7 +27,7 @@ require.requireActual('TextInput').displayName = 'TextInput'
 require.requireActual('ActivityIndicator').displayName = 'ActivityIndicator'
 require.requireActual('TouchableOpacity').displayName = 'TouchableOpacity'
 
-jest.mock('canvas-api')
+jest.mock('instructure-canvas-api')
 
 NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),

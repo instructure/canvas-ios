@@ -22,7 +22,7 @@ import {
   View,
   FlatList,
 } from 'react-native'
-import { getSession } from 'canvas-api'
+import { getSession } from 'instructure-canvas-api'
 import CommentRow, { type CommentRowProps, type CommentContent } from './CommentRow'
 import CommentInput, { type Comment } from './CommentInput'
 import DrawerState from '../utils/drawer-state'

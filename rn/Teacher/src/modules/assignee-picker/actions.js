@@ -17,7 +17,7 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from 'canvas-api'
+import canvas from 'instructure-canvas-api'
 
 export let AssigneeSearchActions = (api: CanvasApi): * => ({
   refreshSections: createAction('course-sections.refresh', (courseID: string) => {

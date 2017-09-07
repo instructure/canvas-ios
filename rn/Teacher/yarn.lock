@@ -1161,12 +1161,6 @@ camelcase@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-3.0.0.tgz#32fc4b9fcdaf845fcdf7e73bb97cac2261f0ab0a"
 
-"canvas-api@file:../modules/canvas-api":
-  version "1.0.0"
-  dependencies:
-    axios "^0.16.2"
-    lodash "^4.17.4"
-
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -2665,6 +2659,13 @@ inquirer@^3.0.6:
     string-width "^2.1.0"
     strip-ansi "^4.0.0"
     through "^2.3.6"
+
+instructure-canvas-api@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/instructure-canvas-api/-/instructure-canvas-api-1.0.4.tgz#f59803ffb8ae5138bd22be58a0e8ebfb5c0c4c6b"
+  dependencies:
+    axios "^0.16.2"
+    lodash "^4.17.4"
 
 interpret@^1.0.0:
   version "1.0.3"

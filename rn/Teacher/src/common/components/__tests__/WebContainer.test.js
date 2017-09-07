@@ -24,7 +24,7 @@ import WebContainer from '../WebContainer'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import api, { setSession } from 'canvas-api'
+import api, { setSession } from 'instructure-canvas-api'
 
 jest
   .unmock('ScrollView')
@@ -35,7 +35,7 @@ jest
       open: jest.fn(),
     }
   })
-  .mock('canvas-api')
+  .mock('instructure-canvas-api')
 
 const template = {
   ...require('../../../__templates__/session'),

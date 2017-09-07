@@ -53,3 +53,8 @@ Parent/ParentEarlGreyTests/data/
 rn/Teacher/ios/TeacherUITests/data/
 fastlane/1
 bluepill/
+
+# rn
+rn/modules/instructure-canvas-api/build/
+package-lock.json
+yarn-error.log

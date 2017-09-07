@@ -17,7 +17,7 @@
 // @flow
 
 import { NativeModules } from 'react-native'
-import canvas from 'canvas-api'
+import canvas from 'instructure-canvas-api'
 
 // if the user has an invalid login, the promise will send `true`. Otherwise it will send `false`
 export default async function loginVerify (): Promise<boolean> {

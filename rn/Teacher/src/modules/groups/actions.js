@@ -17,7 +17,7 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from 'canvas-api'
+import canvas from 'instructure-canvas-api'
 
 export const GroupActions = (api: CanvasApi): * => ({
   refreshGroupsForCourse: createAction('groups-for-course.refresh', (courseID: string) => ({

@@ -18,7 +18,7 @@
 import 'react-native'
 import React from 'react'
 import ConversationMessage from '../ConversationMessageRow'
-import { setSession } from 'canvas-api'
+import { setSession } from 'instructure-canvas-api'
 import explore from '../../../../../test/helpers/explore'
 
 const template = {

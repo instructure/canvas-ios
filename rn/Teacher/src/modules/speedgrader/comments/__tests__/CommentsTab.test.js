@@ -20,7 +20,7 @@ import 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
-import { setSession } from 'canvas-api'
+import { setSession } from 'instructure-canvas-api'
 import DrawerState from '../../utils/drawer-state'
 
 const templates = {

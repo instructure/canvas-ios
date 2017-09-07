@@ -40,7 +40,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import AutoGrowingTextInput from '../../common/components/AutoGrowingTextInput'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import AddressBookToken from './components/AddressBookToken'
-import { createConversation, addMessage } from 'canvas-api'
+import { createConversation, addMessage } from 'instructure-canvas-api'
 import axios from 'axios'
 import { Text } from '../../common/text'
 const ScrollViewDisabler = requireNativeComponent('ScrollViewDisabler')

@@ -16,7 +16,7 @@
 
 // @flow
 import { AsyncStorage } from 'react-native'
-import { getSession } from 'canvas-api'
+import { getSession } from 'instructure-canvas-api'
 import type { MiddlewareAPI } from 'redux'
 import hydrate from '../hydrate-action'
 

@@ -19,7 +19,7 @@
 import { AsyncStorage } from 'react-native'
 import mockStore from '../../../../test/helpers/mockStore'
 import { hydrateStoreFromPersistedState } from '../persist'
-import { setSession } from 'canvas-api'
+import { setSession } from 'instructure-canvas-api'
 
 jest.mock('AsyncStorage', () => ({
   getItem: jest.fn(),

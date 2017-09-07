@@ -17,7 +17,7 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from 'canvas-api'
+import canvas from 'instructure-canvas-api'
 
 export const EnrollmentsActions = (api: CanvasApi): * => ({
   refreshEnrollments: createAction('enrollments.update', (courseID: string) => ({

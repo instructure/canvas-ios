@@ -17,7 +17,7 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from 'canvas-api'
+import canvas from 'instructure-canvas-api'
 
 export let Actions = (api: CanvasApi): * => ({
   createDiscussion: createAction('discussions.edit.create', (courseID: string, params: CreateDiscussionParameters) => {

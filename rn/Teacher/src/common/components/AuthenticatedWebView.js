@@ -19,7 +19,7 @@
 import React from 'react'
 import { WebView } from 'react-native'
 import ActivityIndicatorView from './ActivityIndicatorView'
-import canvas from 'canvas-api'
+import canvas from 'instructure-canvas-api'
 
 export default class AuthenticatedWebView extends React.Component<any, any, any> {
 

@@ -1,6 +1,6 @@
 {
-  "name": "canvas-api",
-  "version": "1.0.0",
+  "name": "instructure-canvas-api",
+  "version": "1.0.4",
   "description": "API module to interact with canvas",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,11 @@
   "devDependencies": {
     "babel-preset-react-native": "^3.0.1",
     "flow-bin": "^0.40.0",
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "merge-stream": "^1.0.1",
+    "del": "^3.0.0"
   },
   "license": "Apache-2.0"
 }
