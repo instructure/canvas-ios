@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "flow": "flow check --show-all-errors"
+    "flow": "flow check --show-all-errors",
+    "prepush": "yarn test && yarn flow"
   },
   "dependencies": {
     "axios": "^0.16.2",

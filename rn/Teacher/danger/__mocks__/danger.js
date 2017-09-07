@@ -15,7 +15,6 @@
 //
 
 /* @flow */
-
 const danger = require.requireActual('danger')
 
 function __setGit (git: any): void {

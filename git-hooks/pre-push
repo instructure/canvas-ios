@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+current="$(pwd)"
+diff="$(git --no-pager diff --name-only develop)"
+
+find . -path '*/node_modules' -prune -o  -name 'package.json' -print0 | while IFS= read -r -d $'\0' line; do
+  path="$(dirname ${line:2})"
+
+  echo $diff | grep $path > /dev/null
+  exit_status=$?
+
+  if [[ $exit_status = 0 ]]; then
+    cd $path
+    yarn prepush
+    cd $current
+  fi
+done
+
+
+

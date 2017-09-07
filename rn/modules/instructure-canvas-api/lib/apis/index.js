@@ -42,4 +42,4 @@ export default ({
   ...conversationApi,
   ...loginApi,
   ...externalTools,
-}: CanvasApi)
+}: *)
