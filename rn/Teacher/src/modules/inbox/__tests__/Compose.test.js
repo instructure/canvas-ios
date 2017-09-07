@@ -21,7 +21,7 @@ import { Compose, mapStateToProps } from '../Compose'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
 import api from 'instructure-canvas-api'
-import { apiResponse } from 'instructure-canvas-api/utils/testHelpers'
+import { apiResponse } from 'instructure-canvas-api/lib/utils/testHelpers'
 
 let template = {
   ...require('../../../__templates__/helm'),

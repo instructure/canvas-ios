@@ -2660,9 +2660,9 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-instructure-canvas-api@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/instructure-canvas-api/-/instructure-canvas-api-1.0.4.tgz#f59803ffb8ae5138bd22be58a0e8ebfb5c0c4c6b"
+instructure-canvas-api@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/instructure-canvas-api/-/instructure-canvas-api-2.0.0.tgz#ff7256d5b918b51128b5010992c4dccd4f6cd74d"
   dependencies:
     axios "^0.16.2"
     lodash "^4.17.4"

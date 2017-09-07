@@ -19,7 +19,7 @@
     "axios": "^0.16.2",
     "bugsnag-react-native": "^2.3.1",
     "bugsnag-sourcemaps": "^1.0.1",
-    "instructure-canvas-api": "^1.0.4",
+    "instructure-canvas-api": "^2.0.0",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",

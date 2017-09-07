@@ -15,15 +15,12 @@ gulp.task('prepublish', function () {
         .pipe(babel({
             presets: ['react-native']
         }))
-        .pipe(gulp.dest(output));
+        .pipe(gulp.dest(output + 'lib/'));
 
     const readme = gulp.src(['README.md'])
         .pipe(gulp.dest(output));
 
     const packageJson = gulp.src(['package.json'])
-        .pipe(jsonEditor({
-            'main': 'index.js'
-        }))
         .pipe(gulp.dest(output));
 
     return merge(src, readme, packageJson);

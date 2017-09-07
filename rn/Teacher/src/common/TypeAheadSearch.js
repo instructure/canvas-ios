@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import SearchBar from 'react-native-search-bar'
 import { httpClient } from 'instructure-canvas-api'
-import { parseNext } from 'instructure-canvas-api/utils/pagination'
+import { parseNext } from 'instructure-canvas-api/lib/utils/pagination'
 import axios, { CancelToken } from 'axios'
 import i18n from 'format-message'
 

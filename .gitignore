@@ -58,3 +58,5 @@ bluepill/
 rn/modules/instructure-canvas-api/build/
 package-lock.json
 yarn-error.log
+/rn/modules/instructure-canvas-api/package/
+*.tgz
