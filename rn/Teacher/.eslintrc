@@ -13,7 +13,8 @@
   ],
   "globals": {
     "fetch": true,
-    "fail": true
+    "fail": true,
+    "FormData": true
   },
   "rules": {
     "react/jsx-uses-vars": [2],

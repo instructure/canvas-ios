@@ -57,13 +57,13 @@ const pendingComments: Reducer<PendingCommentsState, any> = handleActions({
     resolved: (state, { result, localID, userID }) => {
       const comments = state[userID] || []
       const { submission_comments } = result.data
-      const commentID = submission_comments[submission_comments.length - 1].id
+      const { id, media_comment } = submission_comments[submission_comments.length - 1]
       return {
         ...state,
         [userID]: comments.map(
           comment => comment.localID !== localID
             ? comment
-            : { ...comment, pending: 0, error: undefined, commentID }
+            : { ...comment, pending: 0, error: undefined, commentID: id, mediaComment: media_comment }
         ),
       }
     },

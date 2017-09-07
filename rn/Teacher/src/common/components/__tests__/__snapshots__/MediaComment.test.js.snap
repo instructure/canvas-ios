@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaComment renders defaults 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <AudioRecorder
+    doneButtonText="Send"
+    onCancel={[Function]}
+    onFinishedRecording={[Function]}
+  />
+</View>
+`;

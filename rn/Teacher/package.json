@@ -19,6 +19,7 @@
     "axios": "^0.16.2",
     "bugsnag-react-native": "^2.3.1",
     "bugsnag-sourcemaps": "^1.0.1",
+    "bytes": "https://github.com/n8armstrong/bytes.js",
     "instructure-canvas-api": "^2.0.0",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
@@ -34,6 +35,7 @@
     "react-native-audio": "^3.2.2",
     "react-native-blur": "^3.1.2",
     "react-native-button": "^1.8.2",
+    "react-native-camera": "^0.10.0",
     "react-native-counter": "^0.2.0",
     "react-native-device-info": "^0.10.1",
     "react-native-document-picker": "^2.0.0",
@@ -48,6 +50,7 @@
     "react-native-progress": "^3.3.0",
     "react-native-search-bar": "3.0.0",
     "react-native-sfsafariviewcontroller": "https://github.com/n8armstrong/react-native-sfsafariviewcontroller",
+    "react-native-sound": "^0.10.4",
     "react-native-test-utils": "^1.0.6",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
@@ -56,7 +59,8 @@
     "striptags": "^3.0.1",
     "url-parse": "^1.1.9",
     "uuid": "^3.1.0",
-    "valid-url": "1.0.9"
+    "valid-url": "1.0.9",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

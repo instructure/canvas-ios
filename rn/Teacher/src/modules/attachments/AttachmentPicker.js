@@ -18,19 +18,29 @@
 
 import React, { Component } from 'react'
 import {
+  View,
   ActionSheetIOS,
   AlertIOS,
+  StyleSheet,
+  Modal,
+  Linking,
 } from 'react-native'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
 import ImagePicker from 'react-native-image-picker'
 import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
 
-type Callback = (Attachment) => void
+type Callback = (Attachment) => *
+
 type Options = {
   imagePicker: any, // options passed to react-native-image-picker
 }
 type Props = {}
+
+const IMAGE_PICKER_PERMISSION_ERRORS = [
+  'Camera permissions not granted',
+  'Photo library permissions not granted',
+]
 
 export const DEFAULT_OPTIONS: Options = {
   imagePicker: {
@@ -89,11 +99,21 @@ export default class AttachmentPicker extends Component<any, Props, any> {
 
   render () {
     return (
-      <AudioRecorder
+      <Modal
         visible={this.state.audioRecorderVisible}
-        onFinishedRecording={this._handleAudioRecorderResponse}
-        onCancel={this._onAudioRecorderCancel}
-      />
+        transparent={true}
+        style={style.modal}
+        animationType='fade'
+      >
+        <View style={style.audioRecorderContainer}>
+          <View style={{ height: 250 }}>
+            <AudioRecorder
+              onFinishedRecording={this._handleAudioRecorderResponse}
+              onCancel={this._onAudioRecorderCancel}
+            />
+          </View>
+        </View>
+      </Modal>
     )
   }
 
@@ -112,6 +132,31 @@ export default class AttachmentPicker extends Component<any, Props, any> {
 
   _handleImagePickerResponse (callback: Callback) {
     return (response: any) => {
+      if (response.error) {
+        if (IMAGE_PICKER_PERMISSION_ERRORS.includes(response.error)) {
+          AlertIOS.alert(
+            i18n('Permission Needed'),
+            response.error,
+            [
+              { text: i18n('Cancel'), onPress: null, style: 'cancel' },
+              {
+                text: i18n('Settings'),
+                onPress: () => {
+                  const url = 'app-settings:'
+                  Linking.canOpenURL(url).then(supported => Linking.openURL(url))
+                },
+                style: 'default',
+              },
+            ],
+          )
+        } else {
+          AlertIOS.alert(
+            i18n('Error'),
+            response.error,
+            [{ text: i18n('OK'), onPress: null, style: 'cancel' }],
+          )
+        }
+      }
       if (response.didCancel || !response.uri) {
         return
       }
@@ -159,3 +204,12 @@ export default class AttachmentPicker extends Component<any, Props, any> {
     }
   }
 }
+
+const style = StyleSheet.create({
+  audioRecorderContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.8)',
+  },
+})

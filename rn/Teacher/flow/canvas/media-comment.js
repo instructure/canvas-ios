@@ -19,4 +19,6 @@
 export type MediaComment = {
   url: string,
   media_type: 'video' | 'audio',
+  media_id: string,
+  display_name: ?string,
 }

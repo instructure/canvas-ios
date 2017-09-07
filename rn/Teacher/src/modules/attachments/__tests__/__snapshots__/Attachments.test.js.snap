@@ -39,7 +39,6 @@ exports[`Attachments renders attachments 1`] = `
       data={
         Array [
           Object {
-            "cancelled": false,
             "data": Object {
               "display_name": "Book Report",
               "filename": "Attachment 1.jpg",
@@ -52,10 +51,12 @@ exports[`Attachments renders attachments 1`] = `
               "url": "http://canvaslms.com/bookreport",
             },
             "error": null,
-            "progress": 1,
+            "progress": Object {
+              "loaded": 0,
+              "total": 0,
+            },
           },
           Object {
-            "cancelled": false,
             "data": Object {
               "display_name": "Book Report",
               "filename": "Attachment 1.jpg",
@@ -68,7 +69,10 @@ exports[`Attachments renders attachments 1`] = `
               "url": "http://canvaslms.com/bookreport",
             },
             "error": null,
-            "progress": 1,
+            "progress": Object {
+              "loaded": 0,
+              "total": 0,
+            },
           },
         ]
       }
@@ -100,13 +104,135 @@ exports[`Attachments renders attachments 1`] = `
           onLayout={[Function]}
           style={null}
         >
-          <AttachmentRow
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             onPress={[Function]}
-            onRemovePressed={[Function]}
-            progress={1}
+            style={
+              Array [
+                undefined,
+                undefined,
+              ]
+            }
             testID="attachments.attachment-row.0"
-            title="Book Report"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "marginRight": 16,
+                  }
+                }
+                testID="attachments.attachment-row.0.icon.complete"
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Book Report
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <TouchableHighlight
+                    hitSlop={
+                      Object {
+                        "bottom": 8,
+                        "left": 8,
+                        "right": 8,
+                        "top": 8,
+                      }
+                    }
+                    onPress={[Function]}
+                    testID="attachments.attachment-row.0.remove.btn"
+                    underlayColor="white"
+                  >
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 14,
+                          "tintColor": "black",
+                          "width": 14,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
           <View
             style={
               Array [
@@ -123,13 +249,135 @@ exports[`Attachments renders attachments 1`] = `
           onLayout={[Function]}
           style={null}
         >
-          <AttachmentRow
+          <TouchableHighlight
+            accessibilityLabel={undefined}
+            accessibilityTraits={
+              Array [
+                "button",
+              ]
+            }
             onPress={[Function]}
-            onRemovePressed={[Function]}
-            progress={1}
+            style={
+              Array [
+                undefined,
+                undefined,
+              ]
+            }
             testID="attachments.attachment-row.1"
-            title="Book Report"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "white",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "minHeight": 54,
+                    "paddingBottom": 12,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                    "paddingTop": 12,
+                  },
+                  Object {
+                    "backgroundColor": "white",
+                  },
+                ]
+              }
+            >
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "marginRight": 16,
+                  }
+                }
+                testID="attachments.attachment-row.1.icon.complete"
+              />
+              <View
+                style={
+                  Object {
+                    "flex": 1,
+                    "flexDirection": "column",
+                    "justifyContent": "center",
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Array [
+                        Object {
+                          "fontWeight": "600",
+                        },
+                        undefined,
+                      ],
+                      Object {
+                        "fontFamily": ".SFUIDisplay-semibold",
+                      },
+                    ]
+                  }
+                >
+                  Book Report
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "flex": 0,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "justifyContent": "flex-end",
+                    }
+                  }
+                >
+                  <TouchableHighlight
+                    hitSlop={
+                      Object {
+                        "bottom": 8,
+                        "left": 8,
+                        "right": 8,
+                        "top": 8,
+                      }
+                    }
+                    onPress={[Function]}
+                    testID="attachments.attachment-row.1.remove.btn"
+                    underlayColor="white"
+                  >
+                    <Image
+                      source={1}
+                      style={
+                        Object {
+                          "height": 14,
+                          "tintColor": "black",
+                          "width": 14,
+                        }
+                      }
+                    />
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </View>
+          </TouchableHighlight>
         </View>
       </View>
     </RCTScrollView>

@@ -193,8 +193,8 @@ export class DiscussionEdit extends Component<any, Props, any> {
             accessibilityLabel: i18n('Add attachment'),
             badge: this.state.attachment && {
               text: '1',
-              backgroundColor: processColor(colors.primaryButtonColor),
-              textColor: processColor(colors.primaryBrandColor),
+              backgroundColor: processColor('#008EE2'),
+              textColor: processColor('white'),
             },
           },
         ]}

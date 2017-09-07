@@ -17,21 +17,25 @@
 /* @flow */
 
 import React from 'react'
-import 'react-native'
+import {
+  ActionSheetIOS,
+  AlertIOS,
+} from 'react-native'
 import renderer from 'react-test-renderer'
-import Attachments from '../Attachments'
+import { Attachments } from '../Attachments'
 import explore from '../../../../test/helpers/explore'
+import { Cancel } from 'axios'
 
 jest
   .mock('Button', () => 'Button')
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('../../../routing/Screen')
-  .mock('../AttachmentRow', () => 'AttachmentRow')
   .mock('../AttachmentPicker', () => 'AttachmentPicker')
 
 const template = {
   ...require('../../../__templates__/attachment'),
+  ...require('../../../__templates__/file'),
   ...require('../../../__templates__/helm'),
 }
 
@@ -43,6 +47,8 @@ describe('Attachments', () => {
       navigator: template.navigator(),
       onComplete: jest.fn(),
       maxAllowed: undefined,
+      storageOptions: {},
+      uploadAttachment: jest.fn(),
     }
   })
 
@@ -81,19 +87,21 @@ describe('Attachments', () => {
     }
     props.attachments = []
     const view = render(props, { createNodeMock })
-    expect(explore(view.toJSON()).query(({ type }) => type === 'AttachmentRow')).toHaveLength(0)
+    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).toBeNull()
     const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
     add.action()
-    expect(explore(view.toJSON()).query(({ type }) => type === 'AttachmentRow')).toHaveLength(1)
+    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).not.toBeNull()
   })
 
   it('removes attachments', () => {
+    // $FlowFixMe
+    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
     props.attachments = [template.attachment()]
     const view = render(props)
-    expect(explore(view.toJSON()).query(({ type }) => type === 'AttachmentRow')).toHaveLength(1)
-    const row: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0')
-    row.props.onRemovePressed()
-    expect(explore(view.toJSON()).query(({ type }) => type === 'AttachmentRow')).toHaveLength(0)
+    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).not.toBeNull()
+    const remove: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.remove.btn')
+    remove.props.onPress()
+    expect(explore(view.toJSON()).selectByID('attachments.attachment-row.0')).toBeNull()
   })
 
   it('shows attachment', () => {
@@ -123,6 +131,120 @@ describe('Attachments', () => {
     const done: any = explore(render(props).toJSON()).selectLeftBarButton('attachments.dismiss-btn')
     done.action()
     expect(props.onComplete).toHaveBeenCalledWith(props.attachments)
+  })
+
+  it('renders uploading state', () => {
+    const createNodeMock = ({ type }) => {
+      if (type === 'AttachmentPicker') {
+        return {
+          show: jest.fn((options, callback) => callback(template.attachment())),
+        }
+      }
+    }
+    let resolvePromise = jest.fn()
+    props.uploadAttachment = jest.fn((attachment, options) => {
+      options.onProgress({ loaded: 90, total: 1024 })
+      return new Promise((resolve, reject) => { resolvePromise = resolve })
+    })
+    props.storageOptions = {
+      uploadPath: '/my files/conversation attachments',
+    }
+    props.attachments = []
+    const view = render(props, { createNodeMock })
+    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
+    add.action()
+    const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.progress')
+    const subtitle: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0-subtitle-lbl')
+    expect(icon).not.toBeNull()
+    expect(subtitle.children[0]).toEqual('Uploading 90 B of 1 KB')
+    resolvePromise(template.file())
+  })
+
+  it('renders error state', async () => {
+    const createNodeMock = ({ type }) => {
+      if (type === 'AttachmentPicker') {
+        return {
+          show: jest.fn((options, callback) => callback(template.attachment())),
+        }
+      }
+    }
+    props.uploadAttachment = jest.fn((attachment, options) => {
+      return Promise.reject('Whoa, file big')
+    })
+    props.storageOptions = {
+      uploadPath: '/my files/conversation attachments',
+    }
+    props.attachments = []
+    const view = render(props, { createNodeMock })
+    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
+    await add.action()
+    const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.error')
+    expect(icon).not.toBeNull()
+  })
+
+  it('cancels uploads on cancel', () => {
+    props.navigator = template.navigator({ dismiss: jest.fn() })
+    const createNodeMock = ({ type }) => {
+      if (type === 'AttachmentPicker') {
+        return {
+          show: jest.fn((options, callback) => callback(template.attachment())),
+        }
+      }
+    }
+    props.uploadAttachment = jest.fn((attachment, options) => {
+      return new Promise((resolve, reject) => {
+        options.cancelUpload(() => {
+          reject(new Cancel())
+        })
+      })
+    })
+    props.storageOptions = {
+      uploadPath: '/my files/conversation attachments',
+    }
+    props.attachments = []
+    const view = render(props, { createNodeMock })
+    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
+    add.action()
+    const cancel: any = explore(view.toJSON()).selectLeftBarButton('attachments.dismiss-btn')
+    cancel.action()
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.error')
+        icon && resolve()
+      }, 10)
+    })
+  })
+
+  it('retries attachment', async () => {
+    let retry = false
+    let actions = jest.fn()
+    // $FlowFixMe
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((options, callback) => { actions = callback })
+    const createNodeMock = ({ type }) => {
+      if (type === 'AttachmentPicker') {
+        return {
+          show: jest.fn((options, callback) => callback(template.attachment())),
+        }
+      }
+    }
+    props.uploadAttachment = jest.fn((attachment, options) => {
+      if (!retry) return Promise.reject('Whoa, file big')
+      options.onProgress({ loaded: 1024, total: 1024 })
+      return Promise.resolve(template.file())
+    })
+    props.storageOptions = {
+      uploadPath: '/my files/conversation attachments',
+    }
+    props.attachments = []
+    const view = render(props, { createNodeMock })
+    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
+    await add.action()
+    retry = true
+    const errorIcon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.error')
+    errorIcon.props.onPress()
+    await actions(0)
+    const successIcon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.complete')
+    expect(successIcon).not.toBeNull()
   })
 
   function render (props, options = {}) {

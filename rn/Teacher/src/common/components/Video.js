@@ -29,10 +29,13 @@ export default class Video extends Component<any, Props, any> {
   _container: ?typeof VideoContainer
 
   pause = () => {
-    if (this._container) {
-      // $FlowFixMe
-      this._container.setNativeProps({ paused: true })
-    }
+    // $FlowFixMe
+    this._container && this._container.setNativeProps({ paused: true })
+  }
+
+  play = () => {
+    // $FlowFixMe
+    this._container && this._container.setNativeProps({ playing: true })
   }
 
   captureContainer = (container: typeof VideoContainer) => {
@@ -55,5 +58,6 @@ Video.propTypes = {
 const VideoContainer = requireNativeComponent('VideoContainer', Video, {
   nativeOnly: {
     paused: true,
+    playing: true,
   },
 })

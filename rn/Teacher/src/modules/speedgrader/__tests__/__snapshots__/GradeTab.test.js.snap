@@ -1635,7 +1635,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
           "flexDirection": "row",
           "justifyContent": "space-between",
           "overflow": "hidden",
-          "paddingHorizontal": 16,
+          "paddingRight": 16,
           "paddingVertical": 8,
         }
       }
@@ -1651,7 +1651,6 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
             "flex": 1,
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "marginLeft": 4,
             "overflow": "hidden",
           }
         }

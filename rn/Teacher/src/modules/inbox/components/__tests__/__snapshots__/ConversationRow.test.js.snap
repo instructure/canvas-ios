@@ -462,7 +462,7 @@ exports[`renders correctly with different data 1`] = `
       accessibilityLabel="Unread"
       style={
         Object {
-          "backgroundColor": "blue",
+          "backgroundColor": "#008EE2",
           "borderRadius": 3,
           "height": 6,
           "left": 8,

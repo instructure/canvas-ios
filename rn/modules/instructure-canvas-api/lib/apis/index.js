@@ -28,6 +28,8 @@ import * as conversationApi from './conversations'
 import * as groupsApi from './groups'
 import * as loginApi from './login'
 import * as externalTools from './external-tools'
+import * as mediaComments from './media-comments'
+import * as fileUploads from './file-uploads'
 
 export default ({
   ...coursesApi,
@@ -42,4 +44,6 @@ export default ({
   ...conversationApi,
   ...loginApi,
   ...externalTools,
+  ...mediaComments,
+  ...fileUploads,
 }: *)

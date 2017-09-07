@@ -18,7 +18,6 @@
 
 import React, { Component } from 'react'
 import {
-  Modal,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -33,9 +32,9 @@ import images from '../../images'
 import colors from '../colors'
 
 type Props = {
-  visible: boolean,
-  onFinishedRecording: ({ fileName: string, filePath: string }) => void,
+  onFinishedRecording: (Recording) => void,
   onCancel: () => void,
+  doneButtonText?: string,
 }
 
 export default class AudioRecorder extends Component<any, Props, any> {
@@ -53,9 +52,13 @@ export default class AudioRecorder extends Component<any, Props, any> {
   }
 
   componentDidMount () {
-    this._prepareRecording()
+    this.prepareRecording()
 
     RNAudioRecorder.onFinished = (data) => {
+      if (this.state.cancelled) {
+        this.prepareRecording()
+        return
+      }
       if (!this.state.cancelled) {
         this._finishRecording(data.status === 'OK', data.audioFileURL)
       }
@@ -73,47 +76,40 @@ export default class AudioRecorder extends Component<any, Props, any> {
     const currentTime = `${pad(minutes)}:${pad(seconds)}`
 
     return (
-      <Modal
-        visible={this.props.visible}
-        transparent={true}
-        style={style.modal}
-        animationType='fade'
-      >
-        <View style={style.container}>
-          <View style={style.recorder}>
-            <View style={style.header}>
-              <View style={style.headerButton}>
-                { this.state.stoppedRecording &&
-                  <TouchableHighlight
-                    hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                    onPress={this._remove}
-                    testID='audio-recorder.reset-btn'
-                  >
-                    <Image source={images.trash} style={style.headerButtonImage} />
-                  </TouchableHighlight>
-                }
-              </View>
-              <Text style={style.title}>
-                {this.state.recording || this.state.filePath ? currentTime : i18n('Tap to record')}
-              </Text>
-              <View style={[style.headerButton, style.cancel]}>
-                <TouchableHighlight
-                  onPress={this._cancel}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                  testID='audio-recorder.cancel-btn'
-                >
-                  <Image source={images.x} style={style.headerButtonImage} />
-                </TouchableHighlight>
-              </View>
-            </View>
-            <View style={style.buttonContainer}>
-              { !this.state.recording && !this.state.stoppedRecording && this._renderRecordButton() }
-              { this.state.recording && this._renderStopButton() }
-              { Boolean(this.state.filePath) && this._renderSendButton() }
-            </View>
+      <View style={style.recorder}>
+        <View style={style.header}>
+          <View style={{ width: 24 }}>
+            { this.state.stoppedRecording &&
+              <TouchableHighlight
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                onPress={this._remove}
+                testID='audio-recorder.reset-btn'
+                underlayColor='transparent'
+              >
+                <Image source={images.mediaComments.trash} style={style.headerButtonImage} />
+              </TouchableHighlight>
+            }
+          </View>
+          <Text style={style.title}>
+            {this.state.recording || this.state.filePath ? currentTime : i18n('Tap to record')}
+          </Text>
+          <View style={[style.headerButton, style.cancel]}>
+            <TouchableHighlight
+              onPress={this._cancel}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              testID='audio-recorder.cancel-btn'
+              underlayColor='transparent'
+            >
+              <Image source={images.mediaComments.x} style={style.headerButtonImage} />
+            </TouchableHighlight>
           </View>
         </View>
-      </Modal>
+        <View style={style.buttonContainer}>
+          { !this.state.recording && !this.state.stoppedRecording && this._renderRecordButton() }
+          { this.state.recording && this._renderStopButton() }
+          { Boolean(this.state.filePath) && this._renderSendButton() }
+        </View>
+      </View>
     )
   }
 
@@ -135,12 +131,12 @@ export default class AudioRecorder extends Component<any, Props, any> {
     try {
       await RNAudioRecorder.stopRecording()
     } catch (error) {
-      this._prepareRecording()
+      this.prepareRecording()
       AlertIOS.alert(i18n('Recording failed'))
     }
   }
 
-  _prepareRecording () {
+  prepareRecording () {
     this.setState({
       filePath: null,
       cancelled: false,
@@ -148,7 +144,7 @@ export default class AudioRecorder extends Component<any, Props, any> {
       currentTime: 0,
     })
 
-    const timestamp = moment().format('MMM d YYYY h.mm.ss')
+    const timestamp = moment().format('MMM-d-YYYY-h.mm.ss')
     const fileName = `${timestamp}.m4a`
     const audioPath = `${AudioUtils.CachesDirectoryPath}/${fileName}`
 
@@ -166,7 +162,7 @@ export default class AudioRecorder extends Component<any, Props, any> {
     if (success) {
       this.setState({ stoppedRecording: true, filePath })
     } else {
-      this._prepareRecording()
+      this.prepareRecording()
       AlertIOS.alert(i18n('Recording failed'))
     }
   }
@@ -180,13 +176,18 @@ export default class AudioRecorder extends Component<any, Props, any> {
   }
 
   _cancel = async () => {
-    this.setState({ cancelled: true })
-    await this.stopRecording()
+    if (this.state.stoppedRecording) {
+      this.prepareRecording()
+    } else {
+      // We are still recording so we have to stop without sending result.
+      this.setState({ cancelled: true })
+      await this.stopRecording()
+    }
     this.props.onCancel()
   }
 
   _remove = () => {
-    this._prepareRecording()
+    this.prepareRecording()
   }
 
   _renderRecordButton () {
@@ -220,29 +221,23 @@ export default class AudioRecorder extends Component<any, Props, any> {
   _renderSendButton () {
     return (
       <TouchableHighlight
-        style={style.sendButton}
+        style={[style.sendButton, { backgroundColor: colors.primaryButtonColor }]}
         onPress={this._sendRecording}
         testID='audio-recorder.done-btn'
       >
         <View>
-          <Text style={style.sendButtonText}>{i18n('Done')}</Text>
+          <Text style={[style.sendButtonText, { color: colors.primaryButtonTextColor }]}>
+            {this.props.doneButtonText || i18n('Upload')}
+          </Text>
         </View>
       </TouchableHighlight>
     )
   }
 }
 
-const BUTTON_SIZE = 70
-
 const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.8)',
-  },
   recorder: {
-    height: 250,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#F5F5F5',
@@ -256,12 +251,16 @@ const style = StyleSheet.create({
   title: {
     flex: 1,
     textAlign: 'center',
+    fontSize: 20,
+    marginHorizontal: 4,
   },
   headerButton: {
-    width: 20,
+    width: 24,
   },
   headerButtonImage: {
     tintColor: '#9FA9AF',
+    width: 24,
+    height: 24,
   },
   cancel: {
     flexDirection: 'row',
@@ -273,34 +272,34 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   buttonOuter: {
-    height: BUTTON_SIZE,
-    width: BUTTON_SIZE,
-    backgroundColor: '#EBEDEE',
-    borderRadius: BUTTON_SIZE * 0.5,
+    height: 80,
+    width: 80,
+    borderColor: '#d9ddde',
+    borderWidth: 4,
+    borderRadius: 80 * 0.5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   recordButton: {
-    height: BUTTON_SIZE - 6,
-    width: BUTTON_SIZE - 6,
-    borderRadius: (BUTTON_SIZE - 6) * 0.5,
-    backgroundColor: 'red',
+    height: 64,
+    width: 64,
+    borderRadius: 64 * 0.5,
+    backgroundColor: 'rgba(235,15,33,1)',
   },
   stopButton: {
-    height: BUTTON_SIZE * 0.5,
-    width: BUTTON_SIZE * 0.5,
+    height: 32,
+    width: 32,
     backgroundColor: 'red',
   },
   sendButton: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    backgroundColor: colors.primaryButtonColor,
+    paddingVertical: 12,
+    paddingHorizontal: 38,
     borderRadius: 6,
   },
   sendButtonText: {
-    color: colors.primaryButtonTextColor,
     fontSize: 16,
+    fontWeight: '700',
   },
 })

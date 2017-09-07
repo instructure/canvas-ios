@@ -23,6 +23,13 @@ exports[`Compose renders 1`] = `
         "testID": "compose-message.send",
         "title": "Send",
       },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": false,
+        "image": 1,
+        "testID": "compose-message.attach",
+      },
     ]
   }
   title="New Message"
@@ -493,6 +500,13 @@ exports[`Compose renders after picking a course 1`] = `
         "style": "done",
         "testID": "compose-message.send",
         "title": "Send",
+      },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": false,
+        "image": 1,
+        "testID": "compose-message.attach",
       },
     ]
   }
@@ -1058,6 +1072,13 @@ exports[`Compose renders reply 1`] = `
         "testID": "compose-message.send",
         "title": "Send",
       },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": false,
+        "image": 1,
+        "testID": "compose-message.attach",
+      },
     ]
   }
   title="New Message"
@@ -1602,6 +1623,13 @@ exports[`Compose renders with passed in recipients 1`] = `
         "style": "done",
         "testID": "compose-message.send",
         "title": "Send",
+      },
+      Object {
+        "accessibilityLabel": "Add attachment",
+        "action": [Function],
+        "badge": false,
+        "image": 1,
+        "testID": "compose-message.attach",
       },
     ]
   }

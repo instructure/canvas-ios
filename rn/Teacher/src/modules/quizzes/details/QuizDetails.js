@@ -94,7 +94,7 @@ export class QuizDetails extends Component<any, Props, any> {
           <AssignmentSection isFirstRow={true} style={style.topContainer}>
             <Heading1>{quiz.title}</Heading1>
             <View style={style.pointsContainer}>
-              { quiz.points_possible &&
+              { Boolean(quiz.points_possible) &&
                 <Text style={style.points}>{`${quiz.points_possible} ${i18n('pts')}`}</Text>
               }
               <PublishedIcon published={quiz.published} />

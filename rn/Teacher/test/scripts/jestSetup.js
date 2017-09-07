@@ -57,6 +57,11 @@ NativeModules.AudioRecorderManager = {
   prepareRecordingAtPath: jest.fn(),
 }
 
+NativeModules.RNSound = {
+  isAudio: jest.fn(),
+  isWindows: jest.fn(),
+}
+
 jest.mock('NetInfo', () => ({
   addEventListener: jest.fn(),
   isConnected: {
@@ -95,6 +100,43 @@ jest.mock('PickerIOS', () => {
 jest.mock('AccessibilityInfo', () => ({
   setAccessibilityFocus: jest.fn(),
 }))
+
+jest.mock('LayoutAnimation', () => {
+  const ActualLayoutAnimation = require.requireActual('LayoutAnimation')
+  return {
+    ...ActualLayoutAnimation,
+    easeInEaseOut: jest.fn(),
+    configureNext: jest.fn(),
+  }
+})
+
+NativeModules.CameraManager = {
+  Aspect: {
+    fill: 'fill',
+  },
+  Type: {
+    back: 'back',
+  },
+  Orientation: {
+    auto: 'auto',
+  },
+  CaptureMode: {
+    still: 'still',
+  },
+  CaptureTarget: {
+    cameraRoll: 'cameraRoll',
+  },
+  CaptureQuality: {
+    high: 'high',
+  },
+  FlashMode: {
+    off: 'off',
+  },
+  TorchMode: {
+    off: 'off',
+  },
+  BarCodeType: [],
+}
 
 // Fixes network calls in tests env.
 global.XMLHttpRequest = require('xhr2').XMLHttpRequest

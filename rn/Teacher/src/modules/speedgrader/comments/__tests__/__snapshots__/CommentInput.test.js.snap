@@ -12,37 +12,11 @@ exports[`CommentInput renders 1`] = `
         "flexDirection": "row",
         "justifyContent": "space-between",
         "overflow": "hidden",
-        "paddingHorizontal": 16,
+        "paddingRight": 16,
         "paddingVertical": 8,
       }
     }
   >
-    <TouchableOpacity
-      accessibilityLabel="Add Media"
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
-      style={
-        Object {
-          "alignSelf": "center",
-        }
-      }
-      testID="comment-input.add-media"
-    >
-      <Image
-        resizeMode="center"
-        source={1}
-        style={
-          Object {
-            "tintColor": "#73818C",
-          }
-        }
-      />
-    </TouchableOpacity>
     <View
       style={
         Object {
@@ -54,7 +28,6 @@ exports[`CommentInput renders 1`] = `
           "flex": 1,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginLeft": 4,
           "overflow": "hidden",
         }
       }
@@ -113,7 +86,7 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
         "flexDirection": "row",
         "justifyContent": "space-between",
         "overflow": "hidden",
-        "paddingHorizontal": 16,
+        "paddingRight": 16,
         "paddingVertical": 8,
       }
     }
@@ -129,7 +102,6 @@ exports[`Wont render the media buttons when allowMediaInputs is set to false 1`]
           "flex": 1,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginLeft": 4,
           "overflow": "hidden",
         }
       }
@@ -188,37 +160,11 @@ exports[`disables the send button with a prop 1`] = `
         "flexDirection": "row",
         "justifyContent": "space-between",
         "overflow": "hidden",
-        "paddingHorizontal": 16,
+        "paddingRight": 16,
         "paddingVertical": 8,
       }
     }
   >
-    <TouchableOpacity
-      accessibilityLabel="Add Media"
-      accessibilityTraits={
-        Array [
-          "button",
-        ]
-      }
-      accessible={true}
-      onPress={[Function]}
-      style={
-        Object {
-          "alignSelf": "center",
-        }
-      }
-      testID="comment-input.add-media"
-    >
-      <Image
-        resizeMode="center"
-        source={1}
-        style={
-          Object {
-            "tintColor": "#73818C",
-          }
-        }
-      />
-    </TouchableOpacity>
     <View
       style={
         Object {
@@ -230,7 +176,6 @@ exports[`disables the send button with a prop 1`] = `
           "flex": 1,
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginLeft": 4,
           "overflow": "hidden",
         }
       }

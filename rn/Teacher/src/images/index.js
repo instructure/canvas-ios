@@ -88,6 +88,11 @@ const images = {
     complete: require('./attachments/complete-icon.png'),
     error: require('./attachments/warning-icon.png'),
   },
+  mediaComments: {
+    x: require('./media-comments/Close.png'),
+    trash: require('./media-comments/Trash.png'),
+    send: require('./media-comments/Send.png'),
+  },
   canvasLogo: require('./canvas-logo.png'),
   feedback: require('./feedback.png'),
   kabob: require('./kabob.png'),

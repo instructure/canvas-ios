@@ -27,6 +27,7 @@ import ReactNative, {
   LayoutAnimation,
   requireNativeComponent,
   Alert,
+  processColor,
 } from 'react-native'
 import { connect } from 'react-redux'
 import i18n from 'format-message'
@@ -73,6 +74,7 @@ type ComposeState = {
   body: ?string,
   subject: ?string,
   pending: boolean,
+  attachments: Attachment[],
 }
 
 export class Compose extends PureComponent {
@@ -100,6 +102,7 @@ export class Compose extends PureComponent {
       body: null,
       subject: props.subject || null,
       pending: false,
+      attachments: [],
     }
   }
 
@@ -130,6 +133,7 @@ export class Compose extends PureComponent {
       subject: state.subject || '',
       group_conversation: true,
       included_messages: this.props.includedMessages && this.props.includedMessages.map(({ id }) => id),
+      attachment_ids: this.state.attachments.map(a => a.id),
     }
 
     if (this.state.sendToAll) {
@@ -207,6 +211,21 @@ export class Compose extends PureComponent {
     })
   }
 
+  editAttachments = () => {
+    this.props.navigator.show('/attachments', { modal: true }, {
+      attachments: this.state.attachments,
+      storageOptions: {
+        uploadPath: '/users/self/files',
+        targetFolderPath: 'my files/conversation attachments',
+      },
+      onComplete: this.setAttachments,
+    })
+  }
+
+  setAttachments = (attachments: Attachment[]) => {
+    this.setState({ attachments })
+  }
+
   componentWillUnmount () {
     this.props.conversationID && this.props.refreshConversationDetails(this.props.conversationID)
   }
@@ -223,13 +242,26 @@ export class Compose extends PureComponent {
           testID: 'compose-message.cancel',
           action: this.cancelCompose,
         }]}
-        rightBarButtons={[{
-          disabled: this.state.sendDisabled,
-          title: i18n('Send'),
-          testID: 'compose-message.send',
-          action: this.sendMessage,
-          style: 'done',
-        }]}
+        rightBarButtons={[
+          {
+            disabled: this.state.sendDisabled,
+            title: i18n('Send'),
+            testID: 'compose-message.send',
+            action: this.sendMessage,
+            style: 'done',
+          },
+          {
+            image: Images.attachmentLarge,
+            testID: 'compose-message.attach',
+            action: this.editAttachments,
+            accessibilityLabel: i18n('Add attachment'),
+            badge: this.state.attachments.length > 0 && {
+              text: String(this.state.attachments.length),
+              backgroundColor: processColor('#008EE2'),
+              textColor: processColor('white'),
+            },
+          },
+        ]}
       >
         <View style={{ flex: 1 }}>
           <ModalActivityIndicator text={i18n('Sending...')} visible={this.state.pending}/>

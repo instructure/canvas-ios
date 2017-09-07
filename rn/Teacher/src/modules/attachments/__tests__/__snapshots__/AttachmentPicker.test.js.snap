@@ -1,9 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AttachmentPicker renders 1`] = `
-<AudioRecorder
-  onCancel={[Function]}
-  onFinishedRecording={[Function]}
+<Modal
+  animationType="fade"
+  hardwareAccelerated={false}
+  style={undefined}
+  transparent={true}
   visible={false}
-/>
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "rgba(0,0,0,0.8)",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 250,
+        }
+      }
+    >
+      <AudioRecorder
+        onCancel={[Function]}
+        onFinishedRecording={[Function]}
+      />
+    </View>
+  </View>
+</Modal>
 `;

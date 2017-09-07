@@ -40,18 +40,11 @@ exports[`AttachmentRow renders 1`] = `
     <Image
       source={1}
       style={
-        Array [
-          Object {
-            "marginRight": 16,
-            "resizeMode": "contain",
-          },
-          Object {
-            "height": 20,
-            "tintColor": "#374A59",
-            "width": 20,
-          },
-        ]
+        Object {
+          "marginRight": 16,
+        }
       }
+      testID="attachment-row.0.icon.complete"
     />
     <View
       style={
@@ -91,34 +84,6 @@ exports[`AttachmentRow renders 1`] = `
       >
         Attachment 1
       </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-            Object {
-              "color": "#2D3B45",
-              "fontSize": 16,
-            },
-            Object {
-              "color": "#8B969E",
-              "fontSize": 14,
-              "marginTop": 2,
-            },
-            Object {
-              "fontFamily": ".SFUIDisplay",
-            },
-          ]
-        }
-        testID="attachment-row.0-subtitle-lbl"
-      >
-        Uploading...
-      </Text>
     </View>
     <View
       style={
@@ -147,6 +112,7 @@ exports[`AttachmentRow renders 1`] = `
             }
           }
           onPress={[Function]}
+          testID="attachment-row.0.remove.btn"
           underlayColor="white"
         >
           <Image

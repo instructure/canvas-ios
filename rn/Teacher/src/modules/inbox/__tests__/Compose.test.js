@@ -28,6 +28,7 @@ let template = {
   ...require('../../../__templates__/addressBook'),
   ...require('../../../__templates__/course'),
   ...require('../../../__templates__/conversations'),
+  ...require('../../../__templates__/attachment'),
 }
 
 let defaultProps = {
@@ -227,6 +228,7 @@ describe('Compose', () => {
       body: 'new conversation',
       subject: 'new conversation subject',
       group_conversation: true,
+      attachment_ids: [],
     })
   })
 
@@ -260,6 +262,42 @@ describe('Compose', () => {
       group_conversation: true,
       bulk_message: 1,
       included_messages: ['1', '2'],
+      attachment_ids: [],
+    })
+  })
+
+  it('adds message with attachments on send', () => {
+    const u1 = template.addressBookResult({
+      id: '1',
+    })
+    const props = {
+      ...defaultProps,
+      recipients: [u1],
+      subject: 'new conversation subject',
+      onlySendIndividualMessages: false,
+      navigator: template.navigator({
+        show: jest.fn((route, options, props) => {
+          props.onComplete([template.attachment({ id: '234' })])
+        }),
+      }),
+    }
+
+    let response = apiResponse(template.conversation())
+    api.createConversation.mockReturnValueOnce(response())
+
+    const screen = renderer.create(
+      <Compose {...props} />
+    )
+    const attachButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.attach')
+    attachButton.action()
+    const sendButton: any = explore(screen.toJSON()).selectRightBarButton('compose-message.send')
+    sendButton.action()
+    expect(api.createConversation).toHaveBeenCalledWith({
+      recipients: ['1'],
+      body: '',
+      subject: 'new conversation subject',
+      group_conversation: true,
+      attachment_ids: ['234'],
     })
   })
 

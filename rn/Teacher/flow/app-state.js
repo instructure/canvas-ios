@@ -68,6 +68,7 @@ export type PendingCommentState = AsyncState & {
   localID: string, // a uuid assigned for a new comment
   commentID?: string,
   comment: SubmissionCommentParams,
+  mediaComment?: MediaComment,
 }
 
 export type PendingCommentsState = {

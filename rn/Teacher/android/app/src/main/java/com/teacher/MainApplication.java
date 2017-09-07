@@ -3,6 +3,8 @@ package com.teacher;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import com.zmxv.RNSound.RNSoundPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
@@ -36,6 +38,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RCTCameraPackage(),
+            new RNSoundPackage(),
             new LinearGradientPackage(),
             new ReactNativeAudioPackage(),
             new ReactNativeDocumentPicker(),

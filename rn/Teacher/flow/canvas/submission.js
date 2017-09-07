@@ -110,8 +110,13 @@ export type SubmissionComment = {
   media_comment: ?MediaComment,
 }
 
-export type SubmissionCommentParams
-  = { type: 'text', message: string, groupComment: boolean }
+export type SubmissionCommentParams = {
+  type: 'text' | 'media',
+  mediaType?: 'audio' | 'video',
+  mediaID?: string,
+  message?: string,
+  groupComment: boolean,
+}
 
 export type SubmissionSummary = {
   graded: number,

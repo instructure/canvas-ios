@@ -1,6 +1,6 @@
 {
   "name": "instructure-canvas-api",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "API module to interact with canvas",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "babel-preset-react-native": "^3.0.1",

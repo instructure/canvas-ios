@@ -36,7 +36,7 @@ export type Comment
 type CommentInputProps = {
   makeComment(comment: Comment): void,
   drawerState: DrawerState,
-  allowMediaComments: boolean,
+  addMedia?: () => void,
   initialValue: ?string,
   disabled: boolean,
   autoFocus?: boolean,
@@ -104,14 +104,15 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
     return (
       <View>
         <View style={styles.toolbar}>
-          {this.props.allowMediaComments &&
+          { Boolean(this.props.addMedia) &&
             <TouchableOpacity
               style={styles.mediaButton}
               testID='comment-input.add-media'
-              onPress={this.addMedia}
+              onPress={this.props.addMedia}
               accessible
               accessibilityLabel={addMedia}
               accessibilityTraits={['button']}
+              hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
             >
               <Image
                 resizeMode="center"
@@ -164,13 +165,13 @@ export default class CommentInput extends Component<any, CommentInputProps, any>
 }
 
 CommentInput.defaultProps = {
-  allowMediaComments: true,
   disabled: false,
 }
 
 const styles = StyleSheet.create({
   mediaButton: {
     alignSelf: 'center',
+    paddingHorizontal: 4,
   },
   plus: {
     tintColor: colors.secondaryButton,
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     paddingVertical: 8,
-    paddingHorizontal: global.style.defaultPadding,
+    paddingRight: global.style.defaultPadding,
   },
   inputContainer: {
     flex: 1,
@@ -193,7 +194,6 @@ const styles = StyleSheet.create({
     borderColor: colors.seperatorColor,
     overflow: 'hidden',
     backgroundColor: 'white',
-    marginLeft: 4,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',

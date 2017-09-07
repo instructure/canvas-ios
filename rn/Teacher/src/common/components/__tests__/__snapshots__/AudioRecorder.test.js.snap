@@ -1,20 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AudioRecorder renders default state 1`] = `
-<Modal
-  animationType="fade"
-  hardwareAccelerated={false}
-  style={undefined}
-  transparent={true}
-  visible={true}
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5F5F5",
+      "flex": 1,
+      "justifyContent": "space-around",
+    }
+  }
 >
   <View
     style={
       Object {
-        "backgroundColor": "rgba(0,0,0,0.8)",
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginHorizontal": 8,
+        "marginTop": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": 24,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+          "fontSize": 20,
+          "marginHorizontal": 4,
+          "textAlign": "center",
+        }
+      }
+    >
+      Tap to record
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "width": 24,
+          },
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          },
+        ]
+      }
+    >
+      <TouchableHighlight
+        hitSlop={
+          Object {
+            "bottom": 8,
+            "left": 8,
+            "right": 8,
+            "top": 8,
+          }
+        }
+        onPress={[Function]}
+        testID="audio-recorder.cancel-btn"
+        underlayColor="transparent"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 24,
+              "tintColor": "#9FA9AF",
+              "width": 24,
+            }
+          }
+        />
+      </TouchableHighlight>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "flex-end",
+        "justifyContent": "center",
       }
     }
   >
@@ -22,136 +96,123 @@ exports[`AudioRecorder renders default state 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F5F5F5",
-          "height": 250,
-          "justifyContent": "space-around",
+          "borderColor": "#d9ddde",
+          "borderRadius": 40,
+          "borderWidth": 4,
+          "height": 80,
+          "justifyContent": "center",
+          "width": 80,
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "marginHorizontal": 8,
-            "marginTop": 10,
+            "backgroundColor": "rgba(235,15,33,1)",
+            "borderRadius": 32,
+            "height": 64,
+            "width": 64,
           }
         }
+        testID="audio-recorder.record-btn"
       >
-        <View
-          style={
-            Object {
-              "width": 20,
-            }
-          }
-        />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "flex": 1,
-              "textAlign": "center",
-            }
-          }
-        >
-          Tap to record
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "width": 20,
-              },
-              Object {
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              },
-            ]
-          }
-        >
-          <TouchableHighlight
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="audio-recorder.cancel-btn"
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "tintColor": "#9FA9AF",
-                }
-              }
-            />
-          </TouchableHighlight>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#EBEDEE",
-              "borderRadius": 35,
-              "height": 70,
-              "justifyContent": "center",
-              "width": 70,
-            }
-          }
-        >
-          <TouchableHighlight
-            onPress={[Function]}
-            style={
-              Object {
-                "backgroundColor": "red",
-                "borderRadius": 32,
-                "height": 64,
-                "width": 64,
-              }
-            }
-            testID="audio-recorder.record-btn"
-          >
-            <View />
-          </TouchableHighlight>
-        </View>
-      </View>
+        <View />
+      </TouchableHighlight>
     </View>
   </View>
-</Modal>
+</View>
 `;
 
 exports[`AudioRecorder renders recording state 1`] = `
-<Modal
-  animationType="fade"
-  hardwareAccelerated={false}
-  style={undefined}
-  transparent={true}
-  visible={true}
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5F5F5",
+      "flex": 1,
+      "justifyContent": "space-around",
+    }
+  }
 >
   <View
     style={
       Object {
-        "backgroundColor": "rgba(0,0,0,0.8)",
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginHorizontal": 8,
+        "marginTop": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": 24,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+          "fontSize": 20,
+          "marginHorizontal": 4,
+          "textAlign": "center",
+        }
+      }
+    >
+      00:00
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "width": 24,
+          },
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          },
+        ]
+      }
+    >
+      <TouchableHighlight
+        hitSlop={
+          Object {
+            "bottom": 8,
+            "left": 8,
+            "right": 8,
+            "top": 8,
+          }
+        }
+        onPress={[Function]}
+        testID="audio-recorder.cancel-btn"
+        underlayColor="transparent"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 24,
+              "tintColor": "#9FA9AF",
+              "width": 24,
+            }
+          }
+        />
+      </TouchableHighlight>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "flex-end",
+        "justifyContent": "center",
       }
     }
   >
@@ -159,272 +220,122 @@ exports[`AudioRecorder renders recording state 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F5F5F5",
-          "height": 250,
-          "justifyContent": "space-around",
+          "borderColor": "#d9ddde",
+          "borderRadius": 40,
+          "borderWidth": 4,
+          "height": 80,
+          "justifyContent": "center",
+          "width": 80,
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "marginHorizontal": 8,
-            "marginTop": 10,
+            "backgroundColor": "red",
+            "height": 32,
+            "width": 32,
           }
         }
+        testID="audio-recorder.stop-btn"
       >
-        <View
-          style={
-            Object {
-              "width": 20,
-            }
-          }
-        />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "flex": 1,
-              "textAlign": "center",
-            }
-          }
-        >
-          00:00
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "width": 20,
-              },
-              Object {
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              },
-            ]
-          }
-        >
-          <TouchableHighlight
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="audio-recorder.cancel-btn"
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "tintColor": "#9FA9AF",
-                }
-              }
-            />
-          </TouchableHighlight>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#EBEDEE",
-              "borderRadius": 35,
-              "height": 70,
-              "justifyContent": "center",
-              "width": 70,
-            }
-          }
-        >
-          <TouchableHighlight
-            onPress={[Function]}
-            style={
-              Object {
-                "backgroundColor": "red",
-                "height": 35,
-                "width": 35,
-              }
-            }
-            testID="audio-recorder.stop-btn"
-          >
-            <View />
-          </TouchableHighlight>
-        </View>
-      </View>
+        <View />
+      </TouchableHighlight>
     </View>
   </View>
-</Modal>
+</View>
 `;
 
 exports[`AudioRecorder renders reset state 1`] = `
-<Modal
-  animationType="fade"
-  hardwareAccelerated={false}
-  style={undefined}
-  transparent={true}
-  visible={true}
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5F5F5",
+      "flex": 1,
+      "justifyContent": "space-around",
+    }
+  }
 >
   <View
     style={
       Object {
-        "backgroundColor": "rgba(0,0,0,0.8)",
-        "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "flex-end",
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginHorizontal": 8,
+        "marginTop": 10,
       }
     }
   >
     <View
       style={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#F5F5F5",
-          "height": 250,
-          "justifyContent": "space-around",
+          "width": 24,
+        }
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+          "fontSize": 20,
+          "marginHorizontal": 4,
+          "textAlign": "center",
         }
       }
     >
-      <View
-        style={
+      Tap to record
+    </Text>
+    <View
+      style={
+        Array [
           Object {
-            "alignItems": "center",
+            "width": 24,
+          },
+          Object {
             "flexDirection": "row",
-            "marginHorizontal": 8,
-            "marginTop": 10,
+            "justifyContent": "flex-end",
+          },
+        ]
+      }
+    >
+      <TouchableHighlight
+        hitSlop={
+          Object {
+            "bottom": 8,
+            "left": 8,
+            "right": 8,
+            "top": 8,
           }
         }
+        onPress={[Function]}
+        testID="audio-recorder.cancel-btn"
+        underlayColor="transparent"
       >
-        <View
+        <Image
+          source={1}
           style={
             Object {
-              "width": 20,
+              "height": 24,
+              "tintColor": "#9FA9AF",
+              "width": 24,
             }
           }
         />
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Object {
-              "flex": 1,
-              "textAlign": "center",
-            }
-          }
-        >
-          Tap to record
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "width": 20,
-              },
-              Object {
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
-              },
-            ]
-          }
-        >
-          <TouchableHighlight
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="audio-recorder.cancel-btn"
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "tintColor": "#9FA9AF",
-                }
-              }
-            />
-          </TouchableHighlight>
-        </View>
-      </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#EBEDEE",
-              "borderRadius": 35,
-              "height": 70,
-              "justifyContent": "center",
-              "width": 70,
-            }
-          }
-        >
-          <TouchableHighlight
-            onPress={[Function]}
-            style={
-              Object {
-                "backgroundColor": "red",
-                "borderRadius": 32,
-                "height": 64,
-                "width": 64,
-              }
-            }
-            testID="audio-recorder.record-btn"
-          >
-            <View />
-          </TouchableHighlight>
-        </View>
-      </View>
+      </TouchableHighlight>
     </View>
   </View>
-</Modal>
-`;
-
-exports[`AudioRecorder renders stopped state 1`] = `
-<Modal
-  animationType="fade"
-  hardwareAccelerated={false}
-  style={undefined}
-  transparent={true}
-  visible={true}
->
   <View
     style={
       Object {
-        "backgroundColor": "rgba(0,0,0,0.8)",
+        "alignItems": "center",
         "flex": 1,
-        "flexDirection": "column",
-        "justifyContent": "flex-end",
+        "justifyContent": "center",
       }
     }
   >
@@ -432,143 +343,191 @@ exports[`AudioRecorder renders stopped state 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#F5F5F5",
-          "height": 250,
-          "justifyContent": "space-around",
+          "borderColor": "#d9ddde",
+          "borderRadius": 40,
+          "borderWidth": 4,
+          "height": 80,
+          "justifyContent": "center",
+          "width": 80,
         }
       }
     >
-      <View
+      <TouchableHighlight
+        onPress={[Function]}
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "marginHorizontal": 8,
-            "marginTop": 10,
+            "backgroundColor": "rgba(235,15,33,1)",
+            "borderRadius": 32,
+            "height": 64,
+            "width": 64,
           }
         }
+        testID="audio-recorder.record-btn"
       >
-        <View
+        <View />
+      </TouchableHighlight>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`AudioRecorder renders stopped state 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5F5F5",
+      "flex": 1,
+      "justifyContent": "space-around",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "marginHorizontal": 8,
+        "marginTop": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": 24,
+        }
+      }
+    >
+      <TouchableHighlight
+        hitSlop={
+          Object {
+            "bottom": 8,
+            "left": 8,
+            "right": 8,
+            "top": 8,
+          }
+        }
+        onPress={[Function]}
+        testID="audio-recorder.reset-btn"
+        underlayColor="transparent"
+      >
+        <Image
+          source={1}
           style={
             Object {
-              "width": 20,
+              "height": 24,
+              "tintColor": "#9FA9AF",
+              "width": 24,
             }
           }
-        >
-          <TouchableHighlight
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
+        />
+      </TouchableHighlight>
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+          "fontSize": 20,
+          "marginHorizontal": 4,
+          "textAlign": "center",
+        }
+      }
+    >
+      00:00
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "width": 24,
+          },
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          },
+        ]
+      }
+    >
+      <TouchableHighlight
+        hitSlop={
+          Object {
+            "bottom": 8,
+            "left": 8,
+            "right": 8,
+            "top": 8,
+          }
+        }
+        onPress={[Function]}
+        testID="audio-recorder.cancel-btn"
+        underlayColor="transparent"
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "height": 24,
+              "tintColor": "#9FA9AF",
+              "width": 24,
             }
-            onPress={[Function]}
-            testID="audio-recorder.reset-btn"
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "tintColor": "#9FA9AF",
-                }
-              }
-            />
-          </TouchableHighlight>
-        </View>
+          }
+        />
+      </TouchableHighlight>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <TouchableHighlight
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "borderRadius": 6,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "paddingHorizontal": 38,
+            "paddingVertical": 12,
+          },
+          Object {
+            "backgroundColor": "#374A59",
+          },
+        ]
+      }
+      testID="audio-recorder.done-btn"
+    >
+      <View>
         <Text
           accessible={true}
           allowFontScaling={true}
           disabled={false}
           ellipsizeMode="tail"
           style={
-            Object {
-              "flex": 1,
-              "textAlign": "center",
-            }
-          }
-        >
-          00:00
-        </Text>
-        <View
-          style={
             Array [
               Object {
-                "width": 20,
+                "fontSize": 16,
+                "fontWeight": "700",
               },
               Object {
-                "flexDirection": "row",
-                "justifyContent": "flex-end",
+                "color": "white",
               },
             ]
           }
         >
-          <TouchableHighlight
-            hitSlop={
-              Object {
-                "bottom": 8,
-                "left": 8,
-                "right": 8,
-                "top": 8,
-              }
-            }
-            onPress={[Function]}
-            testID="audio-recorder.cancel-btn"
-          >
-            <Image
-              source={1}
-              style={
-                Object {
-                  "tintColor": "#9FA9AF",
-                }
-              }
-            />
-          </TouchableHighlight>
-        </View>
+          Upload
+        </Text>
       </View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
-          }
-        }
-      >
-        <TouchableHighlight
-          onPress={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#374A59",
-              "borderRadius": 6,
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "paddingHorizontal": 14,
-              "paddingVertical": 8,
-            }
-          }
-          testID="audio-recorder.done-btn"
-        >
-          <View>
-            <Text
-              accessible={true}
-              allowFontScaling={true}
-              disabled={false}
-              ellipsizeMode="tail"
-              style={
-                Object {
-                  "color": "white",
-                  "fontSize": 16,
-                }
-              }
-            >
-              Done
-            </Text>
-          </View>
-        </TouchableHighlight>
-      </View>
-    </View>
+    </TouchableHighlight>
   </View>
-</Modal>
+</View>
 `;

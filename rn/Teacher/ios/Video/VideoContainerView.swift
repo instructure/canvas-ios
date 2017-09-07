@@ -45,15 +45,23 @@ class VideoContainerView: UIView {
             setNeedsLayout()
         }
     }
-    
+
     var paused = false {
         didSet {
-            if (paused) {
+            if paused {
                 player?.player?.pause()
             }
         }
     }
-    
+
+    var playing = false {
+        didSet {
+            if playing {
+                player?.player?.play()
+            }
+        }
+    }
+
     var itemURL: URL? {
         let uri = source["uri"] as? String
         return uri.flatMap(URL.init)

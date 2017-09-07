@@ -194,7 +194,9 @@
 		ADA15143C8D5C6E6E3DB3076 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
+		B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B170B0651F58756E00B92700 /* SoLazy.framework */; };
 		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
+		B8A7C38963894269A892A2BC /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55069B727E0D4A34B80CED9D /* libRNSound.a */; };
 		BD604147FC4E46ECABACB114 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
@@ -205,6 +207,7 @@
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
 		CB206CA59F21CDA6CF21EB0D /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0679F6C1793F7855CCF998AE /* Submission.swift */; };
 		CDA436B8FCAEB0E0B3CAD077 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F13453A04E64C495109D4 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift */; };
+		D1506F166CC24444A103B9CD /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */; };
 		D2AEEB32E46E3C2C3D904AC5 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0146025D5E27613B19DA93 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift */; };
 		D6924E8C8F31F0D47E297377 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */; };
 		D8032C018889FDF18F2E28C7 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E9A4A25A91690500722D2 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift */; };
@@ -544,12 +547,33 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = BVLinearGradient;
 		};
+		B14018E41F5746E1000B4955 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
+			remoteInfo = RCTCamera;
+		};
 		B1C9418B1F32343100E64303 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A12D0172B35E403093B42C62 /* RNDocumentPicker.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E01DD9DB1D2311A600C39062;
 			remoteInfo = RNDocumentPicker;
+		};
+		B1D0FE901F5A0BC00061925A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 64AA15081EF7F30100718508;
+			remoteInfo = "BVLinearGradient-tvOS";
+		};
+		B1D0FEBC1F5A0BC00061925A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
 		};
 		B1E67EEA1F3A100200C9622B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -647,6 +671,7 @@
 		0679F6C1793F7855CCF998AE /* Submission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Submission.swift; path = models/Submission.swift; sourceTree = "<group>"; };
 		06F44325652F4B30CB471123 /* QuizQuestionAnswer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizQuestionAnswer.swift; path = models/QuizQuestionAnswer.swift; sourceTree = "<group>"; };
 		0AF4CD2A2F10EABBB6B24B6E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift; sourceTree = "<group>"; };
+		0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		0E9FFEF21ECA9728122AA39D /* Group.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Group.swift; path = models/Group.swift; sourceTree = "<group>"; };
 		105261256A70B5DFD1139104 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Quiz.swift; path = models/Quiz.swift; sourceTree = "<group>"; };
 		1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
@@ -658,6 +683,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
 		22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
+		2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
 		2411260A6CA04D6D874912A2 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
 		2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Teacher/Info.plist; sourceTree = "<group>"; };
@@ -845,6 +871,7 @@
 		49D86BD11F059E6B008951CE /* A11yGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
 		4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
+		55069B727E0D4A34B80CED9D /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
@@ -914,6 +941,7 @@
 		AE0146025D5E27613B19DA93 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysPageObjects.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
 		B092C7F1FFB519DC8F91E3B7 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; sourceTree = "<group>"; };
+		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewHacker.h; path = Teacher/WebViewHacker.h; sourceTree = "<group>"; };
 		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewHacker.m; path = Teacher/WebViewHacker.m; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
@@ -922,6 +950,7 @@
 		B70862A515621F745F8148C6 /* DiscussionEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiscussionEntry.swift; path = models/DiscussionEntry.swift; sourceTree = "<group>"; };
 		BB28BA928334A7C4FFA230C7 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = models/Attachment.swift; sourceTree = "<group>"; };
 		BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBugsnagReactNative.a; sourceTree = "<group>"; };
+		C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		C3B77F1C0B62FA8B31FF0A08 /* EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; sourceTree = "<group>"; };
 		C48A877FC5DFDFB58133F13B /* AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift; sourceTree = "<group>"; };
 		C7A08992613846128FD3E3D2 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
@@ -973,6 +1002,7 @@
 				61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
 				3B8B23ED1EB2AA0D00B61EF8 /* Result.framework in Frameworks */,
+				B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
 				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
 				2C50EE031E735CBB0096592C /* AVFoundation.framework in Frameworks */,
@@ -1017,7 +1047,9 @@
 				5031AD3F5ACC4AB890DB0437 /* libRNAudio.a in Frameworks */,
 				AB03B0349E454DCEA2ADC585 /* libBugsnagReactNative.a in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
+				B8A7C38963894269A892A2BC /* libRNSound.a in Frameworks */,
 				BD604147FC4E46ECABACB114 /* libBVLinearGradient.a in Frameworks */,
+				D1506F166CC24444A103B9CD /* libRCTCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1376,6 +1408,9 @@
 				F9A9E2238589494EAD158883 /* libRNAudio.a */,
 				BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */,
 				4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */,
+				B170B0651F58756E00B92700 /* SoLazy.framework */,
+				55069B727E0D4A34B80CED9D /* libRNSound.a */,
+				C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1592,7 +1627,9 @@
 				A12D0172B35E403093B42C62 /* RNDocumentPicker.xcodeproj */,
 				EDFE7D14C67645C5AA3B3E11 /* RNAudio.xcodeproj */,
 				1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */,
+				0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */,
 				37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */,
+				2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1655,6 +1692,7 @@
 			isa = PBXGroup;
 			children = (
 				9F36E7571F4E173700835E76 /* libBVLinearGradient.a */,
+				B1D0FE911F5A0BC00061925A /* libBVLinearGradient.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1699,10 +1737,26 @@
 			name = models;
 			sourceTree = "<group>";
 		};
+		B14018E11F5746E1000B4955 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B14018E51F5746E1000B4955 /* libRCTCamera.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B1C941651F32343100E64303 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				B1C9418C1F32343100E64303 /* libRNDocumentPicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B1D0FE891F5A0BC00061925A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B1D0FEBD1F5A0BC00061925A /* libRNSound.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1919,6 +1973,10 @@
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
 				},
 				{
+					ProductGroup = B14018E11F5746E1000B4955 /* Products */;
+					ProjectRef = 2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
@@ -1989,6 +2047,10 @@
 				{
 					ProductGroup = 4924260C1EAEB37C0046ED43 /* Products */;
 					ProjectRef = 5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */;
+				},
+				{
+					ProductGroup = B1D0FE891F5A0BC00061925A /* Products */;
+					ProjectRef = 0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2281,11 +2343,32 @@
 			remoteRef = 9F36E7561F4E173700835E76 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		B14018E51F5746E1000B4955 /* libRCTCamera.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCamera.a;
+			remoteRef = B14018E41F5746E1000B4955 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B1C9418C1F32343100E64303 /* libRNDocumentPicker.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNDocumentPicker.a;
 			remoteRef = B1C9418B1F32343100E64303 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1D0FE911F5A0BC00061925A /* libBVLinearGradient.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBVLinearGradient.a;
+			remoteRef = B1D0FE901F5A0BC00061925A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B1D0FEBD1F5A0BC00061925A /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = B1D0FEBC1F5A0BC00061925A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B1E67EEB1F3A100200C9622B /* libRNAudio.a */ = {
@@ -2751,13 +2834,16 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
@@ -2808,13 +2894,16 @@
 					"$(SRCROOT)/../node_modules/react-native-document-picker/ios/RNDocumentPicker",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
 					"$(SRCROOT)/../node_modules/bugsnag-react-native/cocoa/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = Teacher/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",
 					"\"$(SRCROOT)/Teacher\"",

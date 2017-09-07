@@ -184,7 +184,7 @@ describe('AttachmentPicker', () => {
 
   it('shows audio recorder', () => {
     const view = renderer.create(<AttachmentPicker />)
-    const audioRecorder = () => explore(view.toJSON()).selectByType('AudioRecorder')
+    const audioRecorder = () => explore(view.toJSON()).selectByType('Modal')
     expect(audioRecorder().props.visible).toBeFalsy()
     view.getInstance().recordAudio(null, jest.fn())
     expect(audioRecorder().props.visible).toBeTruthy()
@@ -192,11 +192,12 @@ describe('AttachmentPicker', () => {
 
   it('hides audio recorder when it cancels', () => {
     const view = renderer.create(<AttachmentPicker />)
-    const audioRecorder = () => explore(view.toJSON()).selectByType('AudioRecorder')
+    const modal = () => explore(view.toJSON()).selectByType('Modal')
+    const audioRecorder = explore(view.toJSON()).selectByType('AudioRecorder')
     view.getInstance().recordAudio(null, jest.fn())
-    expect(audioRecorder().props.visible).toBeTruthy()
-    audioRecorder().props.onCancel()
-    expect(audioRecorder().props.visible).toBeFalsy()
+    expect(modal().props.visible).toBeTruthy()
+    audioRecorder.props.onCancel()
+    expect(modal().props.visible).toBeFalsy()
   })
 
   it('returns attachment from audio recorder', () => {
@@ -222,5 +223,27 @@ describe('AttachmentPicker', () => {
     expect(() => {
       picker.show(null, jest.fn())
     }).not.toThrow()
+  })
+
+  it('alerts if image picker lacks permissions', () => {
+    const spy = jest.fn()
+    AlertIOS.alert = spy
+    const response = {
+      error: 'Camera permissions not granted',
+    }
+    ImagePicker.launchImageLibrary = jest.fn((options, callback) => callback(response))
+    picker.useLibrary(null, jest.fn())
+    expect(spy).toHaveBeenCalledWith('Permission Needed', response.error, expect.any(Array))
+  })
+
+  it('alerts image picker errors', () => {
+    const spy = jest.fn()
+    AlertIOS.alert = spy
+    const response = {
+      error: 'FAIL',
+    }
+    ImagePicker.launchImageLibrary = jest.fn((options, callback) => callback(response))
+    picker.useLibrary(null, jest.fn())
+    expect(spy).toHaveBeenCalledWith('Error', 'FAIL', expect.any(Array))
   })
 })

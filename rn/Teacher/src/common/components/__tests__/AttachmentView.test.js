@@ -37,6 +37,8 @@ jest.mock('react-native-fs', () => ({
   })),
 }))
 
+jest.mock('WebView', () => 'WebView')
+
 let defaultProps = {
   navigator: templates.navigator(),
   attachment: {
@@ -97,6 +99,41 @@ describe('AttachmentView', () => {
         display_name: 'Something.mp4',
         url: '',
         mime_class: 'video',
+      },
+    }
+
+    let tree = renderer.create(
+      <AttachmentView {...props} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders audio', () => {
+    let props = {
+      navigator: templates.navigator(),
+      attachment: {
+        id: '1',
+        display_name: 'Something.mp3',
+        url: '',
+        mime_class: 'audio',
+      },
+    }
+
+    let tree = renderer.create(
+      <AttachmentView {...props} />
+    ).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it('renders audio with unknown mime class', () => {
+    let props = {
+      navigator: templates.navigator(),
+      attachment: {
+        id: '1',
+        display_name: 'Something.mp3',
+        url: '',
+        mime_class: 'apple-audio',
+        'content-type': 'audio/mp3',
       },
     }
 

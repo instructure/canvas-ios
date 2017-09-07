@@ -60,6 +60,10 @@ export function commentOnSubmission (courseID: string, assignmentID: string, use
     case 'text':
       data.comment.text_comment = comment.message
       break
+    case 'media':
+      data.comment.media_comment_type = comment.mediaType
+      data.comment.media_comment_id = comment.mediaID
+      break
   }
 
   if (comment.groupComment) {

@@ -17,9 +17,10 @@
 /* @flow */
 
 import React from 'react'
-import 'react-native'
+import { AlertIOS } from 'react-native'
 import renderer from 'react-test-renderer'
-import AttachmentRow from '../AttachmentRow'
+import AttachmentRow, { type Props } from '../AttachmentRow'
+import explore from '../../../../test/helpers/explore'
 
 jest
   .mock('Button', () => 'Button')
@@ -27,17 +28,51 @@ jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
 
 describe('AttachmentRow', () => {
-  it('renders', () => {
-    expect(
-      renderer.create(
-        <AttachmentRow
-          title='Attachment 1'
-          subtitle='Uploading...'
-          onPress={jest.fn()}
-          testID='attachment-row.0'
-          onRemovePressed={jest.fn()}
-        />
-      )
-    ).toMatchSnapshot()
+  let props
+  beforeEach(() => {
+    props = {
+      title: 'Attachment 1',
+      subtitle: 'Uploading...',
+      onPress: jest.fn(),
+      testID: 'attachment-row.0',
+      onRemovePressed: jest.fn(),
+      progress: { loaded: 0, total: 0 },
+    }
   })
+
+  it('renders', () => {
+    expect(render(props).toJSON()).toMatchSnapshot()
+  })
+
+  it('prompts to remove', () => {
+    props.testID = 'attachment-row'
+    const spy = jest.fn()
+    // $FlowFixMe
+    AlertIOS.alert = spy
+    const removeBtn: any = explore(render(props).toJSON()).selectByID('attachment-row.remove.btn')
+    removeBtn.props.onPress()
+    expect(spy).toHaveBeenCalledWith(
+      'Remove this attachment?',
+      'This action can not be undone.',
+      [
+        { text: 'Cancel', onPress: null, style: 'cancel' },
+        { text: 'Remove', onPress: expect.any(Function), style: 'destructive' },
+      ],
+    )
+  })
+
+  it('calls onRemovePressed when alert confirms', () => {
+    const spy = jest.fn()
+    props.onRemovePressed = spy
+    props.testID = 'attachment-row'
+    // $FlowFixMe
+    AlertIOS.alert = jest.fn((title, message, buttons) => buttons[1].onPress())
+    const removeBtn: any = explore(render(props).toJSON()).selectByID('attachment-row.remove.btn')
+    removeBtn.props.onPress()
+    expect(spy).toHaveBeenCalled()
+  })
+
+  function render (props: Props): any {
+    return renderer.create(<AttachmentRow {...props} />)
+  }
 })

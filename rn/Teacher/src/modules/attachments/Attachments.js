@@ -22,35 +22,32 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native'
+import { connect } from 'react-redux'
 import Screen from '../../routing/Screen'
 import i18n from 'format-message'
 import images from '../../images'
 import AttachmentRow from './AttachmentRow'
 import AttachmentPicker from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
+import uuid from 'uuid/v1'
+import { uploadAttachment, type Progress } from 'instructure-canvas-api'
+import axios from 'axios'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 
 type StorageOptions = {
-  /* Determines if the attachment should be uploaded or not.
-   *
-   * If true the attachments will be uploaded to s3.
-   * If false the attachments will be persisted and
-   * contain the uri to the location on disk.
-   *
-   * Default: true
-   */
-  upload: boolean,
+  uploadPath?: string, // if not provided the attachments will not be uploaded
+  targetFolderPath?: ?string,
 }
 
 type AttachmentState = {
-  progress: number,
+  progress: Progress,
   error: null,
-  cancelled: boolean,
+  cancel?: ?(() => void),
   data: Attachment,
 }
 
 type State = {
-  attachments: Array<AttachmentState>,
+  attachments: { [string]: ?AttachmentState },
 }
 
 export type Props = NavigationProps & {
@@ -58,29 +55,29 @@ export type Props = NavigationProps & {
   attachments: Array<Attachment>,
   maxAllowed?: number,
   onComplete: (Array<Attachment>) => void,
+  uploadAttachment: typeof uploadAttachment,
 }
 
-export default class Attachments extends Component<any, Props, any> {
+export class Attachments extends Component<any, Props, any> {
   state: State
   attachmentPicker: AttachmentPicker
 
   static defaultProps = {
-    attachments: [],
-    storageOptions: {
-      upload: true,
-    },
+    storageOptions: {},
   }
 
   constructor (props: Props) {
     super(props)
 
     this.state = {
-      attachments: props.attachments.map(a => ({
-        progress: 1,
-        error: null,
-        cancelled: false,
-        data: a,
-      })),
+      attachments: props.attachments.reduce((current, attachment) => ({
+        ...current,
+        [attachment.id]: {
+          progress: { loaded: 0, total: 0 },
+          error: null,
+          data: attachment,
+        },
+      }), {}),
     }
   }
 
@@ -89,10 +86,16 @@ export default class Attachments extends Component<any, Props, any> {
   }
 
   render () {
+    const anyInProgress = Object.values(this.state.attachments).reduce((current, attachment) => {
+      // $FlowFixMe
+      return current || (attachment && !attachment.error && attachment.progress.loaded < attachment.progress.total)
+    }, false)
+    // $FlowFixMe
+    const canAdd = this.props.maxAllowed == null || Object.values(this.state.attachments).filter(a => a).length < this.props.maxAllowed
     return (
       <Screen
         title={i18n('Attachments')}
-        rightBarButtons={this.props.maxAllowed == null || this.state.attachments.length < this.props.maxAllowed ? [
+        rightBarButtons={canAdd ? [
           {
             image: images.add,
             testID: 'attachments.add-btn',
@@ -102,10 +105,10 @@ export default class Attachments extends Component<any, Props, any> {
         ] : []}
         leftBarButtons={[
           {
-            title: i18n('Done'),
+            title: anyInProgress ? i18n('Cancel') : i18n('Done'),
             testID: 'attachments.dismiss-btn',
-            style: 'done',
-            action: this.dismiss,
+            style: anyInProgress ? 'cancel' : 'done',
+            action: anyInProgress ? this.cancel : this.dismiss,
           },
         ]}
       >
@@ -113,7 +116,7 @@ export default class Attachments extends Component<any, Props, any> {
           <AttachmentPicker ref={this.captureAttachmentPicker} />
           <FlatList
             ListEmptyComponent={this.renderEmptyComponent}
-            data={this.state.attachments}
+            data={Object.values(this.state.attachments).filter(a => a)}
             renderItem={this.renderRow}
             keyExtractor={(item, index) => item.data.id}
             testID='attachments.list.list'
@@ -128,12 +131,39 @@ export default class Attachments extends Component<any, Props, any> {
     return (
       <AttachmentRow
         title={item.data.display_name}
+        error={item.error}
         progress={item.progress}
         onRemovePressed={this.removeAttachment(item.data)}
         onPress={this.showAttachment(item.data)}
         testID={`attachments.attachment-row.${index}`}
+        onCancel={this.cancelAttachment(item.data)}
+        onRetry={this.retryAttachment(item.data)}
       />
     )
+  }
+
+  cancelAttachment (attachment: Attachment) {
+    return () => {
+      this.state.attachments[attachment.id] &&
+        this.state.attachments[attachment.id].cancel &&
+        this.state.attachments[attachment.id].cancel()
+    }
+  }
+
+  retryAttachment (attachment: Attachment) {
+    return async () => {
+      this.setState({
+        attachments: {
+          ...this.state.attachments,
+          [attachment.id]: {
+            ...this.state.attachments[attachment.id],
+            error: null,
+            progress: { loaded: 0.1, total: 1 },
+          },
+        },
+      })
+      this.props.storageOptions.uploadPath && await this.uploadAttachment(attachment, this.props.storageOptions.uploadPath)
+    }
   }
 
   renderEmptyComponent = () => {
@@ -147,26 +177,42 @@ export default class Attachments extends Component<any, Props, any> {
   }
 
   dismiss = () => {
-    this.props.onComplete(this.state.attachments.map(a => a.data))
+    // $FlowFixMe
+    this.props.onComplete(Object.values(this.state.attachments).filter(a => a).map(a => a.data))
     this.props.navigator.dismiss()
   }
 
-  addAttachment = (attachment: Attachment) => {
+  cancel = () => {
+    Object.values(this.state.attachments).forEach(attachment => {
+      // $FlowFixMe
+      attachment && attachment.cancel && this.cancelAttachment(attachment.data)()
+    })
+    this.props.navigator.dismiss()
+  }
+
+  addAttachment = async (attachment: Attachment) => {
+    attachment.id = uuid()
+    const shouldUpload = this.props.storageOptions.uploadPath != null
     this.setState({
-      attachments: [
+      attachments: {
         ...this.state.attachments,
-        {
-          progress: 1,
+        [attachment.id]: {
+          progress: shouldUpload ? { loaded: 0.1, total: 1 } : { loaded: 0, total: 0 },
           error: null,
           data: attachment,
         },
-      ],
+      },
     })
+
+    this.props.storageOptions.uploadPath && await this.uploadAttachment(attachment, this.props.storageOptions.uploadPath)
   }
 
   removeAttachment = (attachment: Attachment) => () => {
     this.setState({
-      attachments: this.state.attachments.filter(a => a.data.id !== attachment.id),
+      attachments: {
+        ...this.state.attachments,
+        [attachment.id]: null,
+      },
     })
   }
 
@@ -174,6 +220,69 @@ export default class Attachments extends Component<any, Props, any> {
     return () => {
       this.props.navigator.show('/attachment', { modal: true }, {
         attachment,
+      })
+    }
+  }
+
+  captureCancel (attachment: Attachment): Function {
+    return (cancel) => {
+      this.setState({
+        attachments: {
+          ...this.state.attachments,
+          [attachment.id]: {
+            ...this.state.attachments[attachment.id],
+            cancel,
+          },
+        },
+      })
+    }
+  }
+
+  async uploadAttachment (attachment: Attachment, path: string) {
+    try {
+      const file = await this.props.uploadAttachment(attachment, {
+        path,
+        cancelUpload: this.captureCancel(attachment),
+        parentFolderPath: this.props.storageOptions.targetFolderPath,
+        onProgress: this.updateProgress(attachment.id),
+      })
+      this.setState({
+        attachments: {
+          ...this.state.attachments,
+          [attachment.id]: null,
+          [file.id]: {
+            ...this.state.attachments[attachment.id],
+            error: null,
+            cancel: null,
+            data: file,
+          },
+        },
+      })
+    } catch (e) {
+      const error = axios.isCancel(e) ? i18n('Upload cancelled by user') : e.message || i18n('Failed to upload attachment')
+      this.setState({
+        attachments: {
+          ...this.state.attachments,
+          [attachment.id]: {
+            ...this.state.attachments[attachment.id],
+            error,
+            cancel: null,
+          },
+        },
+      })
+    }
+  }
+
+  updateProgress (id: string) {
+    return (progress: Progress) => {
+      this.setState({
+        attachments: {
+          ...this.state.attachments,
+          [id]: {
+            ...this.state.attachments[id],
+            progress,
+          },
+        },
       })
     }
   }
@@ -185,3 +294,18 @@ const styles = StyleSheet.create({
     marginBottom: global.tabBarHeight,
   },
 })
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
+  uploadAttachment,
+})
+
+const Connected = connect(
+  null,
+  null,
+  mergeProps,
+)(Attachments)
+
+export default (Connected: any)

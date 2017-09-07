@@ -21,6 +21,10 @@ import { connect } from 'react-redux'
 import {
   View,
   FlatList,
+  LayoutAnimation,
+  ActionSheetIOS,
+  AlertIOS,
+  Linking,
 } from 'react-native'
 import { getSession } from 'instructure-canvas-api'
 import CommentRow, { type CommentRowProps, type CommentContent } from './CommentRow'
@@ -31,15 +35,36 @@ import SpeedGraderActions from '../actions'
 import { type SubmittedContentDataProps } from './SubmittedContent'
 import CommentStatus from './CommentStatus'
 import Images from '../../../images'
+import MediaComment from '../../../common/components/MediaComment'
 import i18n from 'format-message'
 import filesize from 'filesize'
 import striptags from 'striptags'
+import Camera from 'react-native-camera'
+
+const Actions = {
+  ...SubmissionCommentActions,
+  ...SpeedGraderActions,
+}
+
+const {
+  checkDeviceAuthorizationStatus,
+  checkAudioAuthorizationStatus,
+} = Camera
 
 export class CommentsTab extends Component<any, CommentsTabProps, any> {
   constructor (props: CommentsTabProps) {
     super(props)
 
-    this.state = { shouldShowStatus: this.props.commentRows.some(c => c.pending) }
+    this.state = {
+      shouldShowStatus: this.props.commentRows.some(c => c.pending),
+      showingNewMediaComment: null,
+    }
+  }
+
+  componentWillReceiveProps (newProps: CommentsTabProps) {
+    if (this.props.isCurrentStudent && !newProps.isCurrentStudent) {
+      this.setState({ showingNewMediaComment: null })
+    }
   }
 
   makeAComment = (comment: Comment) => {
@@ -54,6 +79,81 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
       assignmentID,
       userID,
       { ...comment, groupComment: !this.props.gradeIndividually },
+    )
+  }
+
+  addMedia = () => {
+    ActionSheetIOS.showActionSheetWithOptions({
+      options: [
+        i18n('Record Audio'),
+        i18n('Record Video'),
+        i18n('Cancel'),
+      ],
+      cancelButtonIndex: 2,
+    }, (i) => [this.addAudio, this.addVideo, () => {}][i]())
+  }
+
+  addAudio = async () => {
+    const permitted = await this.props.checkAudioAuthorizationStatus()
+    if (permitted) {
+      LayoutAnimation.easeInEaseOut()
+      this.setState({ showingNewMediaComment: 'audio' })
+    } else {
+      const message = i18n('You must enable Microphone permissions in Settings to record audio')
+      this.showPermissionsAlert(message)
+    }
+  }
+
+  addVideo = async () => {
+    const permitted = await this.props.checkDeviceAuthorizationStatus()
+    if (permitted) {
+      LayoutAnimation.easeInEaseOut()
+      this.setState({ showingNewMediaComment: 'video' })
+    } else {
+      const message = i18n('You must enable Camera and Microphone permissions in Settings to record video')
+      this.showPermissionsAlert(message)
+    }
+  }
+
+  showPermissionsAlert (message: string) {
+    AlertIOS.alert(
+      i18n('Permission Needed'),
+      message,
+      [
+        { text: i18n('Cancel'), onPress: null, style: 'cancel' },
+        {
+          text: i18n('Settings'),
+          onPress: () => {
+            const url = 'app-settings:'
+            Linking.canOpenURL(url).then(supported => Linking.openURL(url))
+          },
+          style: 'default',
+        },
+      ],
+    )
+  }
+
+  makeAMediaComment = ({ mediaID, mediaType }: { mediaID: string, mediaType: 'audio' | 'video' }) => {
+    const {
+      courseID,
+      assignmentID,
+      userID,
+    } = this.props
+    LayoutAnimation.easeInEaseOut()
+    this.setState({
+      shouldShowStatus: true,
+      showingNewMediaComment: null,
+    })
+    this.props.makeAComment(
+      courseID,
+      assignmentID,
+      userID,
+      {
+        type: 'media',
+        mediaID,
+        mediaType,
+        groupComment: !this.props.gradeIndividually,
+      },
     )
   }
 
@@ -85,7 +185,6 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
       style={{ transform: [{ rotate: '180deg' }] }}
       retryPendingComment={this.makeAComment}
       deletePendingComment={this.deletePendingComment}
-      onAvatarPress={this.navigateToContextCard}
       switchFile={this.switchFile}
       localID={item.key}
     />
@@ -95,6 +194,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
   }
 
   render () {
+    // $FlowFixMe
     const rows = this.props.commentRows
     let hasPending = this.props.commentRows.some(c => c.pending)
     return (
@@ -113,14 +213,48 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
             userID={this.props.userID}
           />
         }
-        <CommentInput
-          allowMediaComments={false}
-          makeComment={this.makeAComment}
-          drawerState={this.props.drawerState}
-          disabled={hasPending}
-        />
+        { this.state.showingNewMediaComment == null &&
+          <CommentInput
+            makeComment={this.makeAComment}
+            drawerState={this.props.drawerState}
+            disabled={hasPending}
+            addMedia={this.addMedia}
+          />
+        }
+        <View
+          style={{ height: this.state.showingNewMediaComment === 'audio' ? 240 : 0, overflow: 'hidden' }}
+          testID='speedgrader.comments.comments-tab.audio-recorder.container'
+        >
+          { this.state.showingNewMediaComment === 'audio' &&
+            <MediaComment
+              onFinishedUploading={this.makeAMediaComment}
+              onCancel={this.onMediaCommentCancel}
+              mediaType='audio'
+            />
+          }
+        </View>
+
+        <View
+          style={{ height: this.state.showingNewMediaComment === 'video' ? 235 : 0, overflow: 'hidden' }}
+          testID='speedgrader.comments.comments-tab.camera.container'
+        >
+          { this.state.showingNewMediaComment === 'video' &&
+            <View style={{ flex: 1 }}>
+              <MediaComment
+                onFinishedUploading={this.makeAMediaComment}
+                onCancel={this.onMediaCommentCancel}
+                mediaType='video'
+              />
+            </View>
+          }
+        </View>
       </View>
     )
+  }
+
+  onMediaCommentCancel = () => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ showingNewMediaComment: null })
   }
 }
 
@@ -133,10 +267,12 @@ type RoutingProps = {
   submissionID: ?string,
   gradeIndividually: boolean,
   drawerState: DrawerState,
-  navigator: Navigator,
 }
 
-type CommentsTabProps = CommentRows & RoutingProps & typeof SubmissionCommentActions & typeof SpeedGraderActions
+type CommentsTabProps = CommentRows & RoutingProps & typeof SubmissionCommentActions & typeof SpeedGraderActions & NavigationProps & {
+  checkDeviceAuthorizationStatus: () => Promise<boolean>,
+  checkAudioAuthorizationStatus: () => Promise<boolean>,
+}
 
 type CommentRowData = {
   error?: string,
@@ -155,17 +291,25 @@ function extractComments (submissionComments: SubmissionComment[]): Array<Commen
   const myUserID = session ? session.user.id : '😲'
 
   return submissionComments
-    .filter(comment => !comment.media_comment) // TODO don't exclmedia comments
     .map(comment => ({
       key: 'comment-' + comment.id,
       name: comment.author_name,
-      userID: comment.author.id,
       date: new Date(comment.created_at),
       avatarURL: comment.author.avatar_image_url,
       from: comment.author.id === myUserID ? 'me' : 'them',
-      contents: { type: 'text', message: comment.comment },
+      contents: comment.media_comment ? contentForMediaComment(comment.media_comment) : { type: 'text', message: comment.comment },
       pending: 0,
     }))
+}
+
+function contentForMediaComment (mediaComment: MediaComment): CommentContent {
+  return {
+    type: 'media',
+    mediaID: mediaComment.media_id,
+    mediaType: mediaComment.media_type,
+    url: mediaComment.url,
+    displayName: mediaComment.display_name,
+  }
 }
 
 function contentForAttempt (attempt: Submission, assignment: Assignment): Array<SubmittedContentDataProps> {
@@ -250,7 +394,6 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
     key: `submission-${attemptNumber}`,
     name: user.name,
     avatarURL: user.avatar_url,
-    userID: user.id,
     from: 'them',
     date: new Date(submittedAt),
     contents: {
@@ -266,6 +409,7 @@ function rowForSubmission (user: User, attempt: Submission, assignment: Assignme
 function extractAttempts (submission: SubmissionWithHistory, assignment: Assignment): Array<CommentRowData> {
   if (!submission.submission_history) return []
   return submission.submission_history
+    .filter(attempt => attempt.attempt != null)
     .map(attempt => rowForSubmission(submission.user, attempt, assignment))
 }
 
@@ -281,9 +425,8 @@ function extractPendingComments (assignments: ?AssignmentContentState, userID): 
     key: pending.localID,
     from: 'me',
     name: session.user.name,
-    userId: session.user.id,
     avatarURL: session.user.avatar_url,
-    contents: pending.comment,
+    contents: pending.mediaComment ? { ...pending.comment, url: pending.mediaComment.url } : pending.comment,
     pending: pending.pending,
     error: pending.error || undefined, // this fixes flow even though error could already be undefined...
   }))
@@ -315,9 +458,13 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
   }
 }
 
-const Connected = connect(
-  mapStateToProps,
-  { ...SubmissionCommentActions, ...SpeedGraderActions }
-)(CommentsTab)
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
+  checkAudioAuthorizationStatus,
+  checkDeviceAuthorizationStatus,
+})
 
+const Connected = connect(mapStateToProps, Actions, mergeProps)(CommentsTab)
 export default (Connected: any)

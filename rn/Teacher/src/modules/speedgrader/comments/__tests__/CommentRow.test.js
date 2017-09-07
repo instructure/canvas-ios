@@ -22,7 +22,10 @@ import renderer from 'react-test-renderer'
 import CommentRow, { type CommentRowProps } from '../CommentRow'
 import explore from '../../../../../test/helpers/explore'
 
-jest.mock('../../../../common/components/Avatar', () => 'Avatar')
+jest
+  .mock('../../../../common/components/Avatar', () => 'Avatar')
+  .mock('../../../../common/components/Video', () => 'Video')
+  .mock('../AudioComment', () => 'AudioComment')
 
 const testComment: CommentRowProps = {
   key: 'comment-33',
@@ -59,27 +62,40 @@ test('My message rows render correctly', () => {
   expect(tree).toMatchSnapshot()
 })
 
-test('my media comments render correclty', () => {
+test('audio comments render correctly', () => {
   const comment = {
     ...testComment,
     from: 'me',
-    contents: { type: 'media_comment' },
+    contents: {
+      type: 'media',
+      mediaType: 'audio',
+      url: 'https://notorious.com/audio',
+    },
   }
-  let tree = renderer.create(
+  let view = renderer.create(
     <CommentRow {...comment} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  )
+  const audioComment: any = explore(view.toJSON()).selectByType('AudioComment')
+  expect(audioComment).not.toBeNull()
+  expect(audioComment.props.url).toEqual('https://notorious.com/audio')
+  expect(audioComment.props.from).toEqual('me')
 })
 
-test('their media comments render correctly', () => {
+test('video comments render correctly', () => {
   const comment = {
     ...testComment,
-    contents: { type: 'media_comment' },
+    contents: {
+      type: 'media',
+      mediaType: 'video',
+      url: 'https://notorious.com/video',
+    },
   }
-  let tree = renderer.create(
+  let view = renderer.create(
     <CommentRow {...comment} />
-  ).toJSON()
-  expect(tree).toMatchSnapshot()
+  )
+  const videoComment: any = explore(view.toJSON()).selectByType('Video')
+  expect(videoComment).not.toBeNull()
+  expect(videoComment.props.source.uri).toEqual('https://notorious.com/video')
 })
 
 test('their submissions render correctly', () => {

@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   unreadDot: {
     height: 6,
     width: 6,
-    backgroundColor: 'blue',
+    backgroundColor: '#008EE2',
     borderRadius: 3,
     position: 'absolute',
     top: 8,
