@@ -20,7 +20,7 @@
     "bugsnag-react-native": "^2.3.1",
     "bugsnag-sourcemaps": "^1.0.1",
     "bytes": "https://github.com/n8armstrong/bytes.js",
-    "instructure-canvas-api": "^2.0.0",
+    "instructure-canvas-api": "^2.0.1",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",
