@@ -263,7 +263,7 @@ static uint16_t in_cksum(const void *buffer, size_t bufferLen) {
             assert(NO);
         } break;
     }
-    assert(packet != nil);
+    if (!packet) { return; }
 
     // Send the packet.
     
