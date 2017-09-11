@@ -25,7 +25,7 @@
     "format-message": "^5.1.1",
     "global": "^4.3.2",
     "hoist-non-react-statics": "^1.2.0",
-    "instructure-canvas-api": "^2.0.1",
+    "instructure-canvas-api": "^2.0.5",
     "knuth-shuffle-seeded": "^1.0.6",
     "prop-types": "^15.5.10",
     "querystring": "^0.2.0",

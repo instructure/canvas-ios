@@ -10,7 +10,7 @@ const output = 'build/';
 gulp.task('prepublish', function () {
     del.sync([output]);
 
-    const src = gulp.src(['lib/**'])
+    const src = gulp.src(['lib/**', '!lib/flow/*'])
         .pipe(babel({
             presets: ['react-native']
         }))
@@ -19,7 +19,10 @@ gulp.task('prepublish', function () {
     const files = gulp.src(['README.md', 'package.json'])
         .pipe(gulp.dest(output));
 
-    return merge(src, files);
+    const flow = gulp.src(['lib/flow/*'])
+        .pipe(gulp.dest(output + 'lib/flow/'));
+
+    return merge(src, files, flow);
 });
 
 function runCommand(command, cb) {

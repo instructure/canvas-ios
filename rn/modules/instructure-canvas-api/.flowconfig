@@ -21,5 +21,8 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 unsafe.enable_getters_and_setters=true
 
+[ignore]
+.*/node_modules/config-chain/test/broken.json
+
 [version]
 ^0.40.0
