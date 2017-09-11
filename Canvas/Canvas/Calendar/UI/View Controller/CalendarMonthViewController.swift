@@ -46,6 +46,7 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     // Data Variables
     fileprivate var session: Session!
 
+    var allCoursesCollection: FetchedCollection<Course>!
     var favCoursesCollection: FetchedCollection<Course>!
     var eventsCollection: FetchedCollection<CalendarEvent>!
 
@@ -137,6 +138,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
                 self?.updateCalendarEvents()
             }
 
+        allCoursesCollection = try! Course.allCoursesCollection(session)
+        
         updateCalendarEvents()
     }
 
@@ -287,10 +290,11 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
     }
 
     open func selectedContextCodes() -> [String] {
+        guard let collection = (!favCoursesCollection.isEmpty ? favCoursesCollection : allCoursesCollection) else { return [] }
         var contextCodes: [String] = []
-        for i in 0..<favCoursesCollection.numberOfItemsInSection(0) {
+        for i in 0..<collection.numberOfItemsInSection(0) {
             let indexPath = IndexPath(row: i, section: 0)
-            contextCodes.append(favCoursesCollection[indexPath].contextID.canvasContextID)
+            contextCodes.append(collection[indexPath].contextID.canvasContextID)
         }
 
         return contextCodes

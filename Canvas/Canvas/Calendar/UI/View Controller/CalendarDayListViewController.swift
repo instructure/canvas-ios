@@ -46,7 +46,8 @@ open class CalendarDayListViewController: UITableViewController {
     // Private
     var eventsCollection: FetchedCollection<CalendarEvent>!
     var favCoursesCollection: FetchedCollection<Course>!
-
+    var allCoursesCollection: FetchedCollection<Course>!
+    
     var refresher: Refresher? {
         didSet {
             oldValue?.refreshControl.endRefreshing()
@@ -123,7 +124,9 @@ open class CalendarDayListViewController: UITableViewController {
             .observeValues { [weak self] _ in
                 self?.updateCalendarEvents()
             }.map(ScopedDisposable.init)
-
+        
+        allCoursesCollection = try! Course.allCoursesCollection(session)
+        
         updateCalendarEvents()
 
         dateFormatter.dateStyle = .medium
@@ -251,10 +254,11 @@ open class CalendarDayListViewController: UITableViewController {
     }
 
     open func selectedContextCodes() -> [String] {
+        guard let collection = !favCoursesCollection.isEmpty ? favCoursesCollection : allCoursesCollection else { return [] }
         var contextCodes: [String] = []
-        for i in 0..<favCoursesCollection.numberOfItemsInSection(0) {
+        for i in 0..<collection.numberOfItemsInSection(0) {
             let indexPath = IndexPath(row: i, section: 0)
-            contextCodes.append(favCoursesCollection[indexPath].contextID.canvasContextID)
+            contextCodes.append(collection[indexPath].contextID.canvasContextID)
         }
 
         return contextCodes
