@@ -4,6 +4,7 @@
   "description": "API module to interact with canvas",
   "main": "lib/index.js",
   "scripts": {
+    "prepublishOnly": "gulp prepublish",
     "test": "jest",
     "flow": "flow check --show-all-errors",
     "prepush": "yarn test && yarn flow"
@@ -20,8 +21,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
     "jest": "^20.0.4",
-    "merge-stream": "^1.0.1",
-    "gulp-json-editor": "^2.2.1"
+    "merge-stream": "^1.0.1"
   },
   "license": "Apache-2.0"
 }

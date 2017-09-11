@@ -6,7 +6,6 @@ const del = require('del');
 const exec = require('child_process').exec;
 const merge = require('merge-stream');
 const output = 'build/';
-const jsonEditor = require('gulp-json-editor');
 
 gulp.task('prepublish', function () {
     del.sync([output]);
@@ -17,28 +16,27 @@ gulp.task('prepublish', function () {
         }))
         .pipe(gulp.dest(output + 'lib/'));
 
-    const readme = gulp.src(['README.md'])
+    const files = gulp.src(['README.md', 'package.json'])
         .pipe(gulp.dest(output));
 
-    const packageJson = gulp.src(['package.json'])
-        .pipe(gulp.dest(output));
-
-    return merge(src, readme, packageJson);
+    return merge(src, files);
 });
+
+function runCommand(command, cb) {
+    console.log("$ " + command);
+    exec(command, function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+}
 
 // Used for debugging changes to the prepublish pipeline
 gulp.task('pack', ['prepublish'], function (cb) {
-    exec('npm pack ' + output, function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+    runCommand('npm pack ' + output, cb);
 });
 
-gulp.task('publish', ['prepublish'], function (cb) {
-    exec('npm publish ' + output, function (err, stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
-        cb(err);
-    });
+// npm publish runs scripts: { "prepublishOnly": "gulp prepublish" }
+gulp.task('publish', function (cb) {
+    runCommand('npm publish ' + output, cb);
 });
