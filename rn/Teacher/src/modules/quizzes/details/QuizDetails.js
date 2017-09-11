@@ -63,7 +63,7 @@ export type Props = State & OwnProps & RefreshProps & typeof Actions & {
 export class QuizDetails extends Component<any, Props, any> {
 
   previewQuiz = () => {
-    this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true })
+    this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true, modalPresentationStyle: 'fullscreen' })
   }
 
   viewAllSubmissions = () => {

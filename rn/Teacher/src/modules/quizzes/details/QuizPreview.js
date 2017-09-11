@@ -56,7 +56,7 @@ export class QuizPreview extends Component<any, LocalProps, any> {
   }
 
   onMessage = (event: any) => {
-    const message = event.nativeEvent.data
+    const message = event.body
     if (!message) return
     switch (message) {
       case 'done':
@@ -77,11 +77,11 @@ export class QuizPreview extends Component<any, LocalProps, any> {
       if (button) {
         button.click()
       } else if (login) {
-        window.postMessage('login')
+        window.webkit.messageHandlers.reactNative.postMessage('login')
       } else if (instructions) {
-        window.postMessage('done')
+        window.webkit.messageHandlers.reactNative.postMessage('done')
       } else {
-        window.postMessage('error')
+        window.webkit.messageHandlers.reactNative.postMessage('error')
       }
     `
     this.webView.injectJavaScript(js)

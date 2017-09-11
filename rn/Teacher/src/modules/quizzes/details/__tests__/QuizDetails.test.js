@@ -261,7 +261,7 @@ describe('QuizDetails', () => {
     const tree = render(props).toJSON()
     const btn: any = explore(tree).selectByID('quizzes.details.previewQuiz.btn')
     btn.props.onPress()
-    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/1/preview', { modal: true })
+    expect(props.navigator.show).toHaveBeenCalledWith('/courses/1/quizzes/1/preview', { modal: true, modalPresentationStyle: 'fullscreen' })
   })
 
   function testRender (props: any) {

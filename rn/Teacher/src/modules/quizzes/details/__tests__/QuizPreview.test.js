@@ -22,7 +22,7 @@ import renderer from 'react-test-renderer'
 
 import { QuizPreview, mapStateToProps } from '../QuizPreview'
 
-jest.mock('WebView', () => 'WebView')
+jest.mock('react-native-wkwebview-reborn', () => 'WKWebView')
 
 const template = {
   ...require('../../../../__templates__/helm'),
@@ -67,7 +67,7 @@ describe('QuizPreview', () => {
     )
     const instance = tree.getInstance()
     instance.onMessage({
-      nativeEvent: { data: 'done' },
+      body: 'done',
     })
     instance.onTimeout()
     expect(tree.toJSON()).toMatchSnapshot()
@@ -84,7 +84,7 @@ describe('QuizPreview', () => {
     instance.onLoadEnd()
     expect(instance.webView.injectJavaScript).toHaveBeenCalled()
     instance.onMessage({
-      nativeEvent: { data: 'done' },
+      body: 'done',
     })
     expect(tree.toJSON()).toMatchSnapshot()
   })
@@ -100,11 +100,11 @@ describe('QuizPreview', () => {
     instance.onLoadEnd()
     expect(instance.webView.injectJavaScript).toHaveBeenCalled()
     instance.onMessage({
-      nativeEvent: { data: '' },
+      body: '',
     })
     expect(tree.toJSON()).toMatchSnapshot()
     instance.onMessage({
-      nativeEvent: { data: 'error' },
+      body: 'error',
     })
     expect(tree.toJSON()).toMatchSnapshot()
   })

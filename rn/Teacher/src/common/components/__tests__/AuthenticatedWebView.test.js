@@ -24,7 +24,7 @@ import AuthenticatedWebView from '../AuthenticatedWebView'
 import renderer from 'react-test-renderer'
 
 jest.unmock('../AuthenticatedWebView.js')
-jest.mock('WebView', () => 'WebView')
+jest.mock('react-native-wkwebview-reborn', () => 'WKWebView')
 
 test('AuthenticatedWebView renders', async () => {
   jest.useFakeTimers()
@@ -49,8 +49,8 @@ test('AuthenticatedWebView can inject javascript and not explode', () => {
   )
   const instance = tree.getInstance()
   instance.webView = {
-    injectJavaScript: jest.fn(),
+    evaluateJavaScript: jest.fn(),
   }
   tree.getInstance().injectJavaScript(`console.log('hello')`)
-  expect(tree.getInstance().webView.injectJavaScript).toHaveBeenCalled()
+  expect(tree.getInstance().webView.evaluateJavaScript).toHaveBeenCalled()
 })
