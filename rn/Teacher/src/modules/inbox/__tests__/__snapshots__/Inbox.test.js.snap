@@ -627,7 +627,7 @@ exports[`filters conversations based on course 1`] = `
                     artorias of the abyss, solaire of astora
                   </Text>
                   <View
-                    accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+                    accessibilityLabel="May 31, 2037"
                     accessible={true}
                   >
                     <Text
@@ -1350,7 +1350,7 @@ exports[`filters out conversations without a context_code 1`] = `
                     artorias of the abyss, solaire of astora
                   </Text>
                   <View
-                    accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+                    accessibilityLabel="May 31, 2037"
                     accessible={true}
                   >
                     <Text
@@ -2665,7 +2665,7 @@ exports[`renders correctly 1`] = `
                     artorias of the abyss, solaire of astora
                   </Text>
                   <View
-                    accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+                    accessibilityLabel="May 31, 2037"
                     accessible={true}
                   >
                     <Text
@@ -2892,7 +2892,7 @@ exports[`renders correctly 1`] = `
                     artorias of the abyss, solaire of astora
                   </Text>
                   <View
-                    accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+                    accessibilityLabel="May 31, 2037"
                     accessible={true}
                   >
                     <Text

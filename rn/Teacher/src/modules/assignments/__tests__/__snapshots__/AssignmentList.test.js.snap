@@ -522,7 +522,7 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
                     }
                     testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
-                    Due May 31, 2037 at 10:59 PM
+                    Due May 31, 2037 at 11:59 PM
                   </Text>
                   <View />
                 </View>
@@ -1085,7 +1085,7 @@ exports[`applyFilter will apply a new filter 1`] = `
                     }
                     testID="assignment-list.assignment-list-row.cell-1-subtitle-lbl"
                   >
-                    Due May 31, 2037 at 10:59 PM
+                    Due May 31, 2037 at 11:59 PM
                   </Text>
                   <View />
                 </View>
@@ -1616,7 +1616,7 @@ exports[`filter button only shows when there are grading periods 1`] = `
                     }
                     testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
-                    Due May 31, 2037 at 10:59 PM
+                    Due May 31, 2037 at 11:59 PM
                   </Text>
                   <View />
                 </View>
@@ -2179,7 +2179,7 @@ exports[`renders correctly 1`] = `
                     }
                     testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
-                    Due May 31, 2037 at 10:59 PM
+                    Due May 31, 2037 at 11:59 PM
                   </Text>
                   <View />
                 </View>
@@ -2782,7 +2782,7 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
                     }
                     testID="assignment-list.assignment-list-row.cell-123456789-subtitle-lbl"
                   >
-                    Due May 31, 2037 at 10:59 PM
+                    Due May 31, 2037 at 11:59 PM
                   </Text>
                   <View />
                 </View>

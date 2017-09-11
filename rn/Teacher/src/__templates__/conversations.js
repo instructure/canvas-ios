@@ -43,6 +43,7 @@ export const conversationMessage: Template<ConversationMessage> = template({
   id: '123456789',
   body: 'this is neat',
   author_id: '1234',
+  created_at: '2037-06-01T05:59:00Z',
   attachments: [
     {
       id: '1',

@@ -32,7 +32,6 @@ import {
 } from 'react-native'
 import i18n from 'format-message'
 import colors from '../../../common/colors'
-import { formattedDueDate } from '../../../common/formatters'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { type Assignee } from '../../assignee-picker/map-state-to-props'
 import uuid from 'uuid/v1'
@@ -43,7 +42,7 @@ import Images from '../../../images'
 import DisclosureIndicator from '../../../common/components/DisclosureIndicator'
 import Navigator from '../../../routing/Navigator'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
-import { formattedDate, extractDateFromString } from '../../../utils/dateUtils'
+import { extractDateFromString } from '../../../utils/dateUtils'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 
 type Props = {
@@ -127,9 +126,9 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   }
 
   checkDueDate (date: StagedAssignmentDate) {
-    let dueDate = extractDateFromString(formattedDate(date.due_at))
-    let lockDate = extractDateFromString(formattedDate(date.lock_at))
-    let unlockDate = extractDateFromString(formattedDate(date.unlock_at))
+    let dueDate = extractDateFromString(date.due_at)
+    let lockDate = extractDateFromString(date.lock_at)
+    let unlockDate = extractDateFromString(date.unlock_at)
     if (!dueDate) {
       return true
     }
@@ -139,8 +138,8 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   }
 
   checkLockDates (date: StagedAssignmentDate) {
-    let lockDate = extractDateFromString(formattedDate(date.lock_at))
-    let unlockDate = extractDateFromString(formattedDate(date.unlock_at))
+    let lockDate = extractDateFromString(date.lock_at)
+    let unlockDate = extractDateFromString(date.unlock_at)
     if (!lockDate || !unlockDate) {
       return true
     }
@@ -485,8 +484,6 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
   renderDateType = (date: StagedAssignmentDate, type: ModifyDateType, selected: boolean) => {
     if (type === 'none') return <View />
 
-    const stringDate = date[type] ? formattedDueDate(new Date(date[type])) : '--'
-
     let title = i18n('Due Date')
     switch (type) {
       case 'unlock_at':
@@ -508,7 +505,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     return (
       <RowWithDateInput
         title={title}
-        date={stringDate}
+        date={date[type]}
         onPress={modifyFunction}
         showRemoveButton={date[type]}
         selected={selected}

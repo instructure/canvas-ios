@@ -32,7 +32,6 @@ import ReactNative, {
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Button from 'react-native-button'
-import moment from 'moment'
 
 import Screen from '../../../routing/Screen'
 import { Heading1 } from '../../../common/text'
@@ -337,7 +336,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
                 <Heading1 style={style.heading}>{i18n('Availability')}</Heading1>
                 <RowWithDateInput
                   title={i18n('Available From')}
-                  date={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
+                  date={this.state.delayed_post_at}
                   selected={this.state.showingDatePicker.delayed_post_at}
                   showRemoveButton={Boolean(this.state.delayed_post_at)}
                   border='bottom'
@@ -366,7 +365,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
                 }
                 <RowWithDateInput
                   title={i18n('Available Until')}
-                  date={this.state.lock_at ? moment(this.state.lock_at).format(`MMM D  h:mm A`) : '--'}
+                  date={this.state.lock_at}
                   selected={this.state.showingDatePicker.lock_at}
                   showRemoveButton={Boolean(this.state.lock_at)}
                   border='bottom'

@@ -22,7 +22,6 @@ import 'react-native'
 import React from 'react'
 import AssignmentDates from '../AssignmentDates'
 import renderer from 'react-test-renderer'
-import moment from 'moment'
 
 const template = {
   ...require('../../../../__templates__/assignments'),
@@ -41,7 +40,7 @@ test('render with multiple due dates', () => {
 
 test('render with multiple due dates', () => {
   const assignment = template.assignment({
-    lock_at: moment().subtract('1', 'days'),
+    lock_at: (new Date(0).toISOString()),
   })
   let tree = renderer.create(
     <AssignmentDates assignment={assignment} />

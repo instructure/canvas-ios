@@ -29,7 +29,6 @@ import { LinkButton, Button } from '../../../common/buttons'
 import colors from '../../../common/colors'
 import Images from '../../../images'
 import Avatar from '../../../common/components/Avatar'
-import { formattedDate } from '../../../utils/dateUtils'
 import WebContainer from '../../../common/components/WebContainer'
 import i18n from 'format-message'
 import Navigator from '../../../routing/Navigator'
@@ -121,7 +120,7 @@ export default class Reply extends Component <any, Props, any> {
                 {user.display_name}
               </Text>
             }
-            <Text style={style.date}>{formattedDate(reply.updated_at)}</Text>
+            <Text style={style.date}>{i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(reply.updated_at) })}</Text>
             <WebContainer scrollEnabled={false} style={{ flex: 1 }} html={message} navigator={this.props.navigator}/>
 
             {reply.attachment &&

@@ -38,6 +38,7 @@ import {
 import i18n from 'format-message'
 import AssignmentDates from '../../../common/AssignmentDates'
 import { formattedDueDate } from '../../../common/formatters'
+import { extractDateFromString } from '../../../utils/dateUtils'
 import { Text } from '../../../common/text'
 
 type Props = {
@@ -109,7 +110,7 @@ export default class DueDates extends React.Component<any, Props, any> {
 
     const forTitle = i18n('For:')
 
-    const dueAtValue = dates.bestDueAt() ? formattedDueDate(dates.bestDueAt()) : '--'
+    const dueAtValue = dates.bestDueAt() ? formattedDueDate(extractDateFromString(dates.bestDueAt())) : '--'
     const availability = this.renderAvailability(dates)
     let dueAtAccessibilityLabel
 

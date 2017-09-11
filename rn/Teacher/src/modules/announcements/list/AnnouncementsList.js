@@ -24,7 +24,6 @@ import {
   FlatList,
 } from 'react-native'
 import i18n from 'format-message'
-import moment from 'moment'
 
 import Screen from '../../../routing/Screen'
 import refresh from '../../../utils/refresh'
@@ -79,7 +78,7 @@ export class AnnouncementsList extends Component<any, Props, any> {
     return (
       <Row
         title={item.title}
-        subtitle={moment(item.delayed_post_at || item.posted_at).format(`MMM D [${i18n('at')}] h:mm A`)}
+        subtitle={i18n("{ date, date, 'MMM d'} at { date, time, short }", { date: new Date(item.delayed_post_at || item.posted_at) })}
         border='bottom'
         height='auto'
         disclosureIndicator={true}

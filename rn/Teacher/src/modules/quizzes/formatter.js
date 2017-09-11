@@ -19,8 +19,6 @@
 import i18n from 'format-message'
 import {
   formattedDueDate,
-  extractDateString,
-  extractTimeString,
 } from '../../common/formatters'
 import { extractDateFromString } from '../../utils/dateUtils'
 
@@ -89,18 +87,6 @@ export default function formatter (quiz: Quiz): HumanReadableQuiz {
 
       return quiz.hide_results ? null : i18n('No')
     })(),
-    showCorrectAnswersAt: quiz.show_correct_answers_at ? [
-      // $FlowFixMe
-      extractDateString(extractDateFromString(quiz.show_correct_answers_at)),
-      // $FlowFixMe
-      extractTimeString(extractDateFromString(quiz.show_correct_answers_at)),
-    ].filter(d => d).join('  ') : null,
-    hideCorrectAnswersAt: quiz.hide_correct_answers_at ? [
-      // $FlowFixMe
-      extractDateString(extractDateFromString(quiz.hide_correct_answers_at)),
-      // $FlowFixMe
-      extractTimeString(extractDateFromString(quiz.hide_correct_answers_at)),
-    ].filter(d => d).join('  ') : null,
     oneQuestionAtATime: quiz.one_question_at_a_time ? i18n('Yes') : i18n('No'),
     scoringPolicy: SCORING_POLICIES[quiz.scoring_policy],
     cantGoBack: quiz.cant_go_back ? i18n('Yes') : i18n('No'),

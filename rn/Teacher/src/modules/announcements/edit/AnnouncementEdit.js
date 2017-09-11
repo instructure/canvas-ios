@@ -29,7 +29,6 @@ import ReactNative, {
 } from 'react-native'
 import i18n from 'format-message'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import moment from 'moment'
 import Screen from '../../../routing/Screen'
 import { Heading1 } from '../../../common/text'
 import RowWithTextInput from '../../../common/components/rows/RowWithTextInput'
@@ -204,7 +203,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
               <View>
                 <RowWithDateInput
                   title={i18n('Post at...')}
-                  date={this.state.delayed_post_at ? moment(this.state.delayed_post_at).format(`MMM D  h:mm A`) : '--'}
+                  date={this.state.delayed_post_at}
                   selected={this.state.delayedPostAtPickerShown}
                   showRemoveButton={Boolean(this.state.delayed_post_at)}
                   border='bottom'

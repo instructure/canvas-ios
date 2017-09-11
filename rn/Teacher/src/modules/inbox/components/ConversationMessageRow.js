@@ -35,7 +35,6 @@ import color from '../../../common/colors'
 import { getSession } from 'instructure-canvas-api'
 import i18n from 'format-message'
 import find from 'lodash/find'
-import { formattedDate } from '../../../utils/dateUtils'
 import Images from '../../../images'
 import { LinkButton } from '../../../common/buttons'
 
@@ -135,7 +134,7 @@ export default class ConversationMessageRow extends Component<any, ConversationM
       }
       recipientName = i18n('to me')
     }
-    const date = formattedDate(message.created_at)
+    const date = i18n("{ date, date, 'MMM d' } at { date, time, short }", { date: new Date(message.created_at) })
 
     return (<View style={styles.header}>
               <View style={{ flexDirection: 'row' }} accessible={true} accessibilityLabel={`${authorName} ${recipientName} ${date}`}>

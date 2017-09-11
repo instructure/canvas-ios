@@ -28,6 +28,7 @@ import i18n from 'format-message'
 import colors from '../../colors'
 import Images from '../../../images'
 import branding from '../../branding'
+import { extractDateFromString } from '../../../utils/dateUtils'
 
 type DateRowProps = {
   title: string,
@@ -46,6 +47,9 @@ export default class RowWithDateInput extends Component<any, DateRowProps, any> 
   render () {
     let detailTextStyle = this.props.selected ? { color: branding.primaryBrandColor } : styles.detailText
     let paddingRightWhenEmpty = this.props.showRemoveButton ? 0 : global.style.defaultPadding
+
+    let date = extractDateFromString(this.props.date)
+    date = date ? i18n("{ date, date, 'MMM d' } { date, time, short }", { date }) : i18n('--')
     return (
         <View style={[ styles.row, styles.detailsRowContainer ]} >
             <TouchableHighlight style={{ flex: 1 }} onPress={this.props.onPress} testID={this.props.testID}>
@@ -54,7 +58,7 @@ export default class RowWithDateInput extends Component<any, DateRowProps, any> 
                     <Text style={styles.titleText}>{this.props.title}</Text>
                 </View>
                 <View style={styles.detailsRowContainer}>
-                  <Text style={detailTextStyle} testID={this.props.dateTestID}>{this.props.date}</Text>
+                  <Text style={detailTextStyle} testID={this.props.dateTestID}>{date}</Text>
                 </View>
               </View>
               </TouchableHighlight>

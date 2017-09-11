@@ -21,7 +21,6 @@
 import { Alert } from 'react-native'
 import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
-import timezoneMock from 'timezone-mock'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 
@@ -57,14 +56,6 @@ let defaultProps = {
   refreshing: false,
   getSessionlessLaunchURL: jest.fn(),
 }
-
-beforeEach(() => {
-  timezoneMock.register('US/Pacific')
-})
-
-afterEach(() => {
-  timezoneMock.unregister()
-})
 
 test('renders', () => {
   let tree = renderer.create(
@@ -190,7 +181,6 @@ describe('external tool', () => {
 
   describe('sad path', () => {
     it('shows an alert', async () => {
-      // $FlowFixMe
       Alert.alert = jest.fn()
       const props = {
         ...defaultProps,

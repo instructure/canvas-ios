@@ -122,7 +122,7 @@ exports[`renders correctly 1`] = `
             artorias of the abyss, solaire of astora
           </Text>
           <View
-            accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+            accessibilityLabel="May 31, 2037"
             accessible={true}
           >
             <Text
@@ -340,7 +340,7 @@ exports[`renders correctly with a bunch of people in there 1`] = `
             0, 1, 2, 3, 4 + 95 more
           </Text>
           <View
-            accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+            accessibilityLabel="May 31, 2037"
             accessible={true}
           >
             <Text
@@ -585,7 +585,7 @@ exports[`renders correctly with different data 1`] = `
             
           </Text>
           <View
-            accessibilityLabel="Sunday, May 31, 2037 11:59 PM"
+            accessibilityLabel="May 31, 2037"
             accessible={true}
           >
             <Text

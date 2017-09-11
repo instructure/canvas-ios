@@ -19,15 +19,12 @@
 import {
   formattedDueDateWithStatus,
   formattedDueDate,
-  extractTimeString,
-  extractDateString,
   formatGradeText,
 } from '../formatters'
 
 import { extractDateFromString } from '../../utils/dateUtils'
 
 import i18n from 'format-message'
-import moment from 'moment'
 
 describe('assignment due date with status', () => {
   test('due date in future', () => {
@@ -72,34 +69,6 @@ describe('due date with status', () => {
   test('test assignment due date that is garbage', () => {
     const garbage = formattedDueDate(new Date('klaljsdflkjs'))
     expect(garbage).toEqual('No Due Date')
-  })
-})
-
-describe('util functions', () => {
-  test('extractTimeString', () => {
-    const date = new Date('2117-03-28T15:07:56.312Z')
-    const formattedTime = extractTimeString(date)
-    const timeString = moment(date).format('LT')
-    expect(formattedTime).toEqual(timeString)
-  })
-
-  test('extractTimeString with garbage', () => {
-    const date = new Date('jlakjsdflkjasldkfkjalsd')
-    const formattedTime = extractTimeString(date)
-    expect(formattedTime).toEqual(null)
-  })
-
-  test('extractDateString', () => {
-    const date = new Date('2117-03-28T15:07:56.312Z')
-    const formattedDate = extractDateString(date)
-    const dateString = moment(date).format('ll')
-    expect(formattedDate).toEqual(dateString)
-  })
-
-  test('extractDateString with garbage', () => {
-    const date = new Date('jlakjsdflkjasldkfkjalsd')
-    const formattedTime = extractTimeString(date)
-    expect(formattedTime).toEqual(null)
   })
 })
 

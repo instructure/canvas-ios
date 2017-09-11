@@ -26,7 +26,6 @@ import {
   AlertIOS,
 } from 'react-native'
 import i18n from 'format-message'
-import moment from 'moment'
 import { AudioRecorder as RNAudioRecorder, AudioUtils } from 'react-native-audio'
 import images from '../../images'
 import colors from '../colors'
@@ -144,7 +143,7 @@ export default class AudioRecorder extends Component<any, Props, any> {
       currentTime: 0,
     })
 
-    const timestamp = moment().format('MMM-d-YYYY-h.mm.ss')
+    const timestamp = (new Date()).toISOString()
     const fileName = `${timestamp}.m4a`
     const audioPath = `${AudioUtils.CachesDirectoryPath}/${fileName}`
 

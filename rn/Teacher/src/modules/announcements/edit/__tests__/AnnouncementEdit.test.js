@@ -166,7 +166,7 @@ describe('AnnouncementEdit', () => {
     tapDelayedPostAtRow(component)
     const datePicker: any = explore(component.toJSON()).selectByID('announcements.edit.delayed-post-at-date-picker')
     datePicker.props.onDateChange(new Date(0))
-    expect(getDelayPostAtValueFromLabel(component)).toEqual('Dec 31  5:00 PM')
+    expect(getDelayPostAtValueFromLabel(component)).toEqual('Dec 31 5:00 PM')
   })
 
   it('shows modal when saving', () => {

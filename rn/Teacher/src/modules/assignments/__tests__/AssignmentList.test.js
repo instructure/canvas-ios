@@ -20,7 +20,6 @@ import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import { AssignmentList } from '../AssignmentList'
 import explore from '../../../../test/helpers/explore'
-import timezoneMock from 'timezone-mock'
 
 const template = {
   ...require('../../../__templates__/assignments'),
@@ -47,8 +46,6 @@ let course = template.course()
 let defaultProps = {}
 
 beforeEach(() => {
-  timezoneMock.register('US/Pacific')
-  jest.resetAllMocks()
   defaultProps = {
     course,
     courseID: course.id,
@@ -62,10 +59,6 @@ beforeEach(() => {
     courseColor: '#fff',
     selectedRowID: template.assignment().id,
   }
-})
-
-afterEach(() => {
-  timezoneMock.unregister()
 })
 
 test('renders correctly', () => {

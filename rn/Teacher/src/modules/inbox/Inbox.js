@@ -97,14 +97,11 @@ export class Inbox extends Component {
   }
 
   _filteredConversations () {
-    if (this.state.selectedCourse === 'all') {
-      return this.props.conversations
-    } else {
-      return this.props.conversations.filter((convo) => {
-        if (!convo.context_code) return false
-        return convo.context_code.replace('course_', '') === this.state.selectedCourse
-      })
-    }
+    return this.props.conversations.filter((convo) => {
+      if (!convo.context_code) return false
+      if (this.state.selectedCourse === 'all') return true
+      return convo.context_code.replace('course_', '') === this.state.selectedCourse
+    })
   }
 
   _renderComponent = () => {

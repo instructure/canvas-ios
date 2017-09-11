@@ -116,7 +116,7 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
           ]
         }
       >
-        May 23, 2017 11:12 AM
+        May 23 at 11:12 AM
       </Text>
       <View
         onLayout={[Function]}
@@ -416,7 +416,7 @@ exports[`DiscussionReplies renders 1`] = `
           ]
         }
       >
-        May 23, 2017 11:12 AM
+        May 23 at 11:12 AM
       </Text>
       <View
         onLayout={[Function]}
@@ -716,7 +716,7 @@ exports[`DiscussionReplies renders deleted 1`] = `
           ]
         }
       >
-        May 23, 2017 11:12 AM
+        May 23 at 11:12 AM
       </Text>
       <View
         onLayout={[Function]}
@@ -927,7 +927,7 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
           ]
         }
       >
-        May 23, 2017 11:12 AM
+        May 23 at 11:12 AM
       </Text>
       <View
         onLayout={[Function]}
@@ -1227,7 +1227,7 @@ exports[`DiscussionReplies renders with no user 1`] = `
           ]
         }
       >
-        May 23, 2017 11:12 AM
+        May 23 at 11:12 AM
       </Text>
       <View
         onLayout={[Function]}

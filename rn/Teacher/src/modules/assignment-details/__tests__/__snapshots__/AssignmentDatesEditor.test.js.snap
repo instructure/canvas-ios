@@ -366,7 +366,7 @@ exports[`render correctly 1`] = `
                 }
                 testID={undefined}
               >
-                May 31, 2037 at 11:59 PM
+                May 31 11:59 PM
               </Text>
             </View>
           </View>
@@ -551,7 +551,7 @@ exports[`render correctly 1`] = `
                 }
                 testID={undefined}
               >
-                Mar 17, 2017 at 12:00 AM
+                Mar 17 12:00 AM
               </Text>
             </View>
           </View>
@@ -736,7 +736,7 @@ exports[`render correctly 1`] = `
                 }
                 testID={undefined}
               >
-                May 31, 2037 at 11:59 PM
+                May 31 11:59 PM
               </Text>
             </View>
           </View>
@@ -1275,7 +1275,7 @@ exports[`render correctly with overide 1`] = `
                 }
                 testID={undefined}
               >
-                May 31, 2037 at 11:59 PM
+                May 31 11:59 PM
               </Text>
             </View>
           </View>
@@ -1460,7 +1460,7 @@ exports[`render correctly with overide 1`] = `
                 }
                 testID={undefined}
               >
-                Mar 17, 2017 at 12:00 AM
+                Mar 17 12:00 AM
               </Text>
             </View>
           </View>
@@ -1645,7 +1645,7 @@ exports[`render correctly with overide 1`] = `
                 }
                 testID={undefined}
               >
-                May 31, 2037 at 11:59 PM
+                May 31 11:59 PM
               </Text>
             </View>
           </View>

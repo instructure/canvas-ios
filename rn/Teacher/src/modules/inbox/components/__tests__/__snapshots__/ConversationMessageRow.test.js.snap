@@ -29,7 +29,7 @@ exports[`renders correctly 1`] = `
       }
     >
       <View
-        accessibilityLabel="artorias of the abyss + 1 others to me "
+        accessibilityLabel="artorias of the abyss + 1 others to me May 31 at 11:59 PM"
         accessible={true}
         style={
           Object {
@@ -153,7 +153,7 @@ exports[`renders correctly 1`] = `
               ]
             }
           >
-            
+            May 31 at 11:59 PM
           </Text>
         </View>
       </View>
@@ -324,7 +324,7 @@ exports[`renders correctly with author being the logged in user 1`] = `
       }
     >
       <View
-        accessibilityLabel="me to hey there i am jane "
+        accessibilityLabel="me to hey there i am jane May 31 at 11:59 PM"
         accessible={true}
         style={
           Object {
@@ -448,7 +448,7 @@ exports[`renders correctly with author being the logged in user 1`] = `
               ]
             }
           >
-            
+            May 31 at 11:59 PM
           </Text>
         </View>
       </View>
@@ -619,7 +619,7 @@ exports[`renders correctly with author lots of participants 1`] = `
       }
     >
       <View
-        accessibilityLabel="me to 3 others "
+        accessibilityLabel="me to 3 others May 31 at 11:59 PM"
         accessible={true}
         style={
           Object {
@@ -743,7 +743,7 @@ exports[`renders correctly with author lots of participants 1`] = `
               ]
             }
           >
-            
+            May 31 at 11:59 PM
           </Text>
         </View>
       </View>

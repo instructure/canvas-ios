@@ -19,11 +19,13 @@
 import 'react-native'
 import React from 'react'
 import AssignmentListRow from '../components/AssignmentListRow'
-import moment from 'moment'
 
 const template = {
   ...require('../../../__templates__/assignments'),
 }
+
+const PAST_DATE = new Date(0)
+const FUTURE_DATE = new Date(Date.now() + 10000000)
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -47,9 +49,9 @@ test('renders correctly with needs_grading_count', () => {
 })
 
 test('renders correctly with closed due dates', () => {
-  const one = moment().subtract(1, 'day').format()
-  const two = moment().subtract(2, 'day').format()
-  const three = moment().subtract(3, 'day').format()
+  const one = PAST_DATE.toISOString()
+  const two = PAST_DATE.toISOString()
+  const three = PAST_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: one }), template.assignmentDueDate({ lock_at: two }), template.assignmentDueDate({ lock_at: three })],
@@ -62,9 +64,9 @@ test('renders correctly with closed due dates', () => {
 })
 
 test('renders correctly with open due dates', () => {
-  const one = moment().add(1, 'day').format()
-  const two = moment().add(2, 'day').format()
-  const three = moment().add(3, 'day').format()
+  const one = FUTURE_DATE.toISOString()
+  const two = FUTURE_DATE.toISOString()
+  const three = FUTURE_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: one }), template.assignmentDueDate({ lock_at: two }), template.assignmentDueDate({ lock_at: three })],

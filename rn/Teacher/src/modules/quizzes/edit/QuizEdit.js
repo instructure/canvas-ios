@@ -40,7 +40,7 @@ import RowWithDetail from '../../../common/components/rows/RowWithDetail'
 import RowWithDateInput from '../../../common/components/rows/RowWithDateInput'
 import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import formatter, { SCORING_POLICIES, QUIZ_TYPES } from '../formatter'
-import { extractDateFromString, formattedDate } from '../../../utils/dateUtils'
+import { extractDateFromString } from '../../../utils/dateUtils'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as QuizEditActions } from './actions'
 import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
@@ -366,7 +366,7 @@ export class QuizEdit extends Component<any, Props, any> {
                       <View style={{ flex: 1 }}>
                         <RowWithDateInput
                           title={i18n('Show Correct Answers At')}
-                          date={readable.showCorrectAnswersAt || '--'}
+                          date={quiz.show_correct_answers_at}
                           selected={this.state.pickers.show_correct_answers_at}
                           showRemoveButton={quiz.show_correct_answers_at}
                           border='bottom'
@@ -391,7 +391,7 @@ export class QuizEdit extends Component<any, Props, any> {
                       <View style={{ flex: 1 }}>
                         <RowWithDateInput
                           title={i18n('Hide Correct Answers At')}
-                          date={readable.hideCorrectAnswersAt || '--'}
+                          date={quiz.hide_correct_answers_at}
                           selected={this.state.pickers.hide_correct_answers_at}
                           showRemoveButton={quiz.hide_correct_answers_at}
                           border='bottom'
@@ -493,8 +493,8 @@ export class QuizEdit extends Component<any, Props, any> {
     }
 
     if (quiz.show_correct_answers && quiz.show_correct_answers_at && quiz.hide_correct_answers_at) {
-      let show = extractDateFromString(formattedDate(quiz.show_correct_answers_at))
-      let hide = extractDateFromString(formattedDate(quiz.hide_correct_answers_at))
+      let show = extractDateFromString(quiz.show_correct_answers_at)
+      let hide = extractDateFromString(quiz.hide_correct_answers_at)
       if (show && hide && hide < show) {
         validator = {
           ...validator,

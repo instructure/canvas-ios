@@ -20475,7 +20475,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                           }
                           testID={undefined}
                         >
-                          Jun 1, 2017  1:59 AM
+                          Jun 1 1:59 AM
                         </Text>
                       </View>
                     </View>
@@ -20647,7 +20647,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
                           }
                           testID={undefined}
                         >
-                          May 31, 2017  11:59 PM
+                          May 31 11:59 PM
                         </Text>
                       </View>
                     </View>
@@ -46139,7 +46139,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
                           }
                           testID={undefined}
                         >
-                          Dec 31, 1969  5:00 PM
+                          Dec 31 5:00 PM
                         </Text>
                       </View>
                     </View>
@@ -48681,7 +48681,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
                           }
                           testID={undefined}
                         >
-                          Dec 31, 1969  5:00 PM
+                          Dec 31 5:00 PM
                         </Text>
                       </View>
                     </View>
@@ -60096,7 +60096,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
                           }
                           testID={undefined}
                         >
-                          Dec 31, 1969  5:00 PM
+                          Dec 31 5:00 PM
                         </Text>
                       </View>
                     </View>
@@ -62638,7 +62638,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
                           }
                           testID={undefined}
                         >
-                          Dec 31, 1969  5:00 PM
+                          Dec 31 5:00 PM
                         </Text>
                       </View>
                     </View>
@@ -81022,7 +81022,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
                           }
                           testID={undefined}
                         >
-                          Dec 31, 1969  5:00 PM
+                          Dec 31 5:00 PM
                         </Text>
                       </View>
                     </View>
@@ -83429,7 +83429,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
                           }
                           testID={undefined}
                         >
-                          Dec 31, 1969  5:00 PM
+                          Dec 31 5:00 PM
                         </Text>
                       </View>
                     </View>

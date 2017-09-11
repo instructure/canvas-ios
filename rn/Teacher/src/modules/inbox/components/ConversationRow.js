@@ -31,7 +31,6 @@ import { getSession } from 'instructure-canvas-api'
 import i18n from 'format-message'
 import Images from '../../../images'
 import branding from '../../../common/branding'
-import { formattedDate } from '../../../utils/dateUtils'
 
 export type ConversationRowProps = {
   conversation: Conversation,
@@ -82,9 +81,9 @@ export default class ConversationRow extends Component<any, ConversationRowProps
       containerStyles.push(styles.topHairline)
     }
     const unread = c.workflow_state === 'unread'
-    const date = ConversationRow.extractDate(c)
-    const dateTitle = formattedDate(date, 'l')
-    const accessibilityDateTitle = formattedDate(date, 'LLLL')
+    const date = new Date(ConversationRow.extractDate(c))
+    const dateTitle = i18n.date(date, 'M/d/yyyy')
+    const accessibilityDateTitle = i18n.date(date, 'long')
     return (<TouchableHighlight onPress={this._onPress} testID={`inbox.conversation-${c.id}`}>
               <View style={containerStyles}>
                 { unread && <View style={styles.unreadDot} accessibilityLabel={i18n('Unread')} /> }

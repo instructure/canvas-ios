@@ -19,7 +19,9 @@
  */
 
 import AssignmentDates from '../AssignmentDates'
-import moment from 'moment'
+
+const FUTURE_DATE = new Date('2037-06-01T05:59:00Z')
+const PAST_DATE = new Date(0)
 
 const template = {
   ...require('../../__templates__/assignments'),
@@ -77,7 +79,7 @@ describe('assignment date titles', () => {
 })
 
 it('availabilityClosed should return false if the lock_at date is in the future on the outer assignment object', () => {
-  const lockAt = moment().add(1, 'day').format()
+  const lockAt = FUTURE_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: lockAt,
     all_dates: [template.assignmentDueDate({ lock_at: lockAt })],
@@ -88,7 +90,7 @@ it('availabilityClosed should return false if the lock_at date is in the future 
 })
 
 it('availabilityClosed should return false if the lock_at date is in the future in all_dates', () => {
-  const lockAt = moment().add(1, 'day').format()
+  const lockAt = FUTURE_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: lockAt })],
@@ -99,7 +101,7 @@ it('availabilityClosed should return false if the lock_at date is in the future 
 })
 
 it('availabilityClosed should return true if the lock_at date is in the past in the outer assignment object', () => {
-  const lockAt = moment().subtract(1, 'day').format()
+  const lockAt = PAST_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: lockAt,
     all_dates: [template.assignmentDueDate({ lock_at: lockAt })],
@@ -110,10 +112,10 @@ it('availabilityClosed should return true if the lock_at date is in the past in 
 })
 
 it('availabilityClosed should return true if the lock_at date is in the past in the outer assignment object', () => {
-  const lockAt = moment().subtract(1, 'day').format()
+  const lockAt = PAST_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: lockAt,
-    all_dates: [template.assignmentDueDate({ lock_at: lockAt }), template.assignmentDueDate({ lock_at: moment().add(1, 'day').format() })],
+    all_dates: [template.assignmentDueDate({ lock_at: lockAt }), template.assignmentDueDate({ lock_at: FUTURE_DATE.toISOString() })],
   })
 
   const dates = new AssignmentDates(assignment)
@@ -121,7 +123,7 @@ it('availabilityClosed should return true if the lock_at date is in the past in 
 })
 
 it('availabilityClosed should return true if the lock_at date is in the past in all_dates', () => {
-  const lockAt = moment().subtract(1, 'day').format()
+  const lockAt = PAST_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: lockAt })],
@@ -132,9 +134,9 @@ it('availabilityClosed should return true if the lock_at date is in the past in 
 })
 
 it('availabilityClosed should return true all dates are passed', () => {
-  const one = moment().subtract(1, 'day').format()
-  const two = moment().subtract(2, 'day').format()
-  const three = moment().subtract(3, 'day').format()
+  const one = PAST_DATE.toISOString()
+  const two = PAST_DATE.toISOString()
+  const three = PAST_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: one }), template.assignmentDueDate({ lock_at: two }), template.assignmentDueDate({ lock_at: three })],
@@ -145,9 +147,9 @@ it('availabilityClosed should return true all dates are passed', () => {
 })
 
 it('availabilityClosed should return false if not all dates have passed', () => {
-  const one = moment().subtract(1, 'day').format()
-  const two = moment().subtract(2, 'day').format()
-  const three = moment().add(3, 'day').format()
+  const one = PAST_DATE.toISOString()
+  const two = PAST_DATE.toISOString()
+  const three = FUTURE_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     all_dates: [template.assignmentDueDate({ lock_at: one }), template.assignmentDueDate({ lock_at: two }), template.assignmentDueDate({ lock_at: three })],
@@ -158,8 +160,8 @@ it('availabilityClosed should return false if not all dates have passed', () => 
 })
 
 it('If "available to" date is there, and in the past, assignment should be marked closed.', () => {
-  const one = moment().subtract(1, 'day').format()
-  const two = moment().subtract(2, 'day').format()
+  const one = PAST_DATE.toISOString()
+  const two = PAST_DATE.toISOString()
   const assignment = template.assignment({
     lock_at: null,
     due_at: null,
@@ -192,19 +194,19 @@ it('If "available to" date is there, and in the past, assignment should be marke
 */
 it('crazy due date and lock at stuff', () => {
   const dueDate1 = template.assignmentDueDate({
-    due_at: moment().subtract(3, 'day').format(),
-    lock_at: moment().subtract(2, 'day').format(),
-    unlock_at: moment().subtract(4, 'day').format(),
+    due_at: PAST_DATE.toISOString(),
+    lock_at: PAST_DATE.toISOString(),
+    unlock_at: PAST_DATE.toISOString(),
   })
 
   const dueDate2 = template.assignmentDueDate({
     due_at: null,
-    lock_at: moment().add(1, 'day').format(),
-    unlock_at: moment().add(4, 'day').format(),
+    lock_at: FUTURE_DATE.toISOString(),
+    unlock_at: FUTURE_DATE.toISOString(),
   })
 
   const dueDate3 = template.assignmentDueDate({
-    due_at: moment().add(3, 'day').format(),
+    due_at: FUTURE_DATE.toISOString(),
     lock_at: null,
     unlock_at: null,
   })
@@ -221,20 +223,20 @@ it('crazy due date and lock at stuff', () => {
 
 it('availability should be passed when all lock_at dates are past', () => {
   const dueDate1 = template.assignmentDueDate({
-    due_at: moment().subtract(3, 'day').format(),
-    lock_at: moment().subtract(2, 'day').format(),
-    unlock_at: moment().subtract(4, 'day').format(),
+    due_at: PAST_DATE.toISOString(),
+    lock_at: PAST_DATE.toISOString(),
+    unlock_at: PAST_DATE.toISOString(),
   })
 
   const dueDate2 = template.assignmentDueDate({
     due_at: null,
-    lock_at: moment().subtract(1, 'day').format(),
-    unlock_at: moment().subtract(4, 'day').format(),
+    lock_at: PAST_DATE.toISOString(),
+    unlock_at: PAST_DATE.toISOString(),
   })
 
   const dueDate3 = template.assignmentDueDate({
-    due_at: moment().subtract(3, 'day').format(),
-    lock_at: moment().subtract(3, 'day').format(),
+    due_at: PAST_DATE.toISOString(),
+    lock_at: PAST_DATE.toISOString(),
     unlock_at: null,
   })
 

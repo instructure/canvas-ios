@@ -136,7 +136,7 @@ exports[`Render row with date 1`] = `
           }
           testID={undefined}
         >
-          this should be a date
+          --
         </Text>
       </View>
     </View>
@@ -280,7 +280,7 @@ exports[`Render row with date and the clear button 1`] = `
           }
           testID={undefined}
         >
-          this should be a date
+          --
         </Text>
       </View>
     </View>

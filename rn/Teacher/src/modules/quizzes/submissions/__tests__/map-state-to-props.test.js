@@ -17,7 +17,6 @@
 // @flow
 
 import mapStateToProps from '../map-state-to-props'
-import moment from 'moment'
 import shuffle from 'knuth-shuffle-seeded'
 
 jest.mock('knuth-shuffle-seeded', () => jest.fn())
@@ -98,7 +97,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
       quiz_id: quiz.id,
       user_id: u4.id,
       kept_score: null,
-      end_at: moment().subtract(1, 'days').format(),
+      end_at: (new Date(0)).toISOString(),
     })
 
     const appState = template.appState({

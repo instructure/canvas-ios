@@ -81,7 +81,7 @@ describe('DiscussionDetails', () => {
   it('renders with no discussion', () => {
     let newProps = {
       ...props,
-      discussion: {},
+      discussion: undefined,
     }
     testRender(newProps)
   })
@@ -562,7 +562,7 @@ describe('DiscussionDetails', () => {
       posted_at: '2017-10-27T14:16:00-07:00',
     })
     const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
-    expect(label.children).toEqual(['October 28, 3019 3:16 PM'])
+    expect(label.children).toEqual(['Oct 28 at 3:16 PM'])
   })
 
   it('displays post date', () => {
@@ -571,7 +571,7 @@ describe('DiscussionDetails', () => {
       posted_at: '2017-10-27T14:16:00-07:00',
     })
     const label: any = explore(render(props).toJSON()).selectByID('discussion.details.post-date-lbl')
-    expect(label.children).toEqual(['October 27, 2017 3:16 PM'])
+    expect(label.children).toEqual(['Oct 27 at 3:16 PM'])
   })
 
   it('navigates to context card when pressing the avatar', () => {

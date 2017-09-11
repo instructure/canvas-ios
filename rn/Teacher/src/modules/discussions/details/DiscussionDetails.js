@@ -36,7 +36,6 @@ import AssignmentSection from '../../assignment-details/components/AssignmentSec
 import AssignmentDates from '../../assignment-details/components/AssignmentDates'
 import WebContainer from '../../../common/components/WebContainer'
 import Avatar from '../../../common/components/Avatar'
-import { formattedDate } from '../../../utils/dateUtils'
 import PublishedIcon from '../../assignment-details/components/PublishedIcon'
 import SubmissionBreakdownGraphSection from '../../assignment-details/components/SubmissionBreakdownGraphSection'
 import Images from '../../../images'
@@ -145,6 +144,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     const points = this._points(discussion)
     let user = discussion.author
     const assignmentID = this.props.assignment ? this.props.assignment.id : null
+    const date = new Date(discussion.delayed_post_at || discussion.posted_at)
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
@@ -188,7 +188,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
             }
             <View style={[style.authorInfoContainer, { marginLeft: (user && user.display_name) ? global.style.defaultPadding : 0 }]}>
               { user && user.display_name && <Text style={style.authorName}>{user.display_name}</Text> }
-                <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{formattedDate(discussion.delayed_post_at || discussion.posted_at)}</Text>
+                <Text style={style.authorDate} testID='discussion.details.post-date-lbl'>{i18n("{ date, date, 'MMM d'} at { date, time, short }", { date })}</Text>
             </View>
           </View>
 

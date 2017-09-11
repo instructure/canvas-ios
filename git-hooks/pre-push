@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 current="$(pwd)"
 diff="$(git --no-pager diff --name-only develop)"
 
@@ -13,9 +11,12 @@ find . -path '*/node_modules' -prune -o  -name 'package.json' -print0 | while IF
   if [[ $exit_status = 0 ]]; then
     cd $path
     yarn prepush
+    exit_status=$?
+
+    if [[ $exit_status = 1 ]]; then
+      exit 1
+    fi
+
     cd $current
   fi
 done
-
-
-

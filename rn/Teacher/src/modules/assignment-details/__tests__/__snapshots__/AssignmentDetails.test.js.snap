@@ -372,7 +372,7 @@ exports[`renders 1`] = `
                       ]
                     }
                   >
-                     May 31, 2037 at 10:59 PM
+                     May 31, 2037 at 11:59 PM
                   </Text>
                 </Text>
               </View>
@@ -524,7 +524,7 @@ exports[`renders 1`] = `
                         ]
                       }
                     >
-                       Mar 16, 2017 at 11:00 PM
+                       Mar 17, 2017 at 12:00 AM
                     </Text>
                   </Text>
                 </View>
@@ -602,7 +602,7 @@ exports[`renders 1`] = `
                         ]
                       }
                     >
-                       May 31, 2037 at 10:59 PM
+                       May 31, 2037 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -1384,7 +1384,7 @@ exports[`renders loading 1`] = `
                       ]
                     }
                   >
-                     May 31, 2037 at 10:59 PM
+                     May 31, 2037 at 11:59 PM
                   </Text>
                 </Text>
               </View>
@@ -1536,7 +1536,7 @@ exports[`renders loading 1`] = `
                         ]
                       }
                     >
-                       Mar 16, 2017 at 11:00 PM
+                       Mar 17, 2017 at 12:00 AM
                     </Text>
                   </Text>
                 </View>
@@ -1614,7 +1614,7 @@ exports[`renders loading 1`] = `
                         ]
                       }
                     >
-                       May 31, 2037 at 10:59 PM
+                       May 31, 2037 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -2321,7 +2321,7 @@ exports[`renders with no submission types 1`] = `
                       ]
                     }
                   >
-                     May 31, 2037 at 10:59 PM
+                     May 31, 2037 at 11:59 PM
                   </Text>
                 </Text>
               </View>
@@ -2473,7 +2473,7 @@ exports[`renders with no submission types 1`] = `
                         ]
                       }
                     >
-                       Mar 16, 2017 at 11:00 PM
+                       Mar 17, 2017 at 12:00 AM
                     </Text>
                   </Text>
                 </View>
@@ -2551,7 +2551,7 @@ exports[`renders with no submission types 1`] = `
                         ]
                       }
                     >
-                       May 31, 2037 at 10:59 PM
+                       May 31, 2037 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -3258,7 +3258,7 @@ exports[`renders without description 1`] = `
                       ]
                     }
                   >
-                     May 31, 2037 at 10:59 PM
+                     May 31, 2037 at 11:59 PM
                   </Text>
                 </Text>
               </View>
@@ -3410,7 +3410,7 @@ exports[`renders without description 1`] = `
                         ]
                       }
                     >
-                       Mar 16, 2017 at 11:00 PM
+                       Mar 17, 2017 at 12:00 AM
                     </Text>
                   </Text>
                 </View>
@@ -3488,7 +3488,7 @@ exports[`renders without description 1`] = `
                         ]
                       }
                     >
-                       May 31, 2037 at 10:59 PM
+                       May 31, 2037 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
