@@ -900,6 +900,7 @@ exports[`SubmissionList loaded 1`] = `
                         "paddingLeft": 6,
                         "paddingRight": 6,
                         "paddingTop": 3,
+                        "textAlign": "center",
                       },
                       Object {
                         "borderColor": "#368BD8",
@@ -907,7 +908,6 @@ exports[`SubmissionList loaded 1`] = `
                       },
                       Object {
                         "alignSelf": "center",
-                        "flex": 0.5,
                       },
                     ],
                     Object {

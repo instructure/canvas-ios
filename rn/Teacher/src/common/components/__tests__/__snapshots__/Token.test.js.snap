@@ -28,6 +28,7 @@ exports[`Token renders correctly 1`] = `
           "paddingLeft": 6,
           "paddingRight": 6,
           "paddingTop": 3,
+          "textAlign": "center",
         },
         Object {
           "borderColor": "#0077FF",

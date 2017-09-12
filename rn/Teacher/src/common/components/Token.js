@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     paddingLeft: 6,
     paddingRight: 6,
     overflow: 'hidden',
+    textAlign: 'center',
   },
 })
 
