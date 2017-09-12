@@ -19,7 +19,7 @@
 import mapStateToProps from '../map-state-to-props'
 import shuffle from 'knuth-shuffle-seeded'
 
-jest.mock('knuth-shuffle-seeded', () => jest.fn())
+jest.mock('knuth-shuffle-seeded', () => jest.fn((input, seed) => input))
 
 const template = {
   ...require('../../../../__templates__/quiz'),
@@ -91,6 +91,11 @@ describe('QuizSubmissionList mapStateToProps', () => {
       user_id: u4.id,
       user: u4,
     })
+    const e4Dup = template.enrollment({
+      id: '5',
+      user_id: u4.id,
+      user: u4,
+    })
 
     const qs4 = template.quizSubmission({
       id: '4',
@@ -103,7 +108,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
     const appState = template.appState({
       entities: {
         courses: {
-          [course.id]: { enrollments: { refs: [e1.id, e2.id, e3.id, e4.id] } },
+          [course.id]: { enrollments: { refs: [e1.id, e2.id, e3.id, e4.id, e4Dup.id] } },
         },
         assignments: {
           '1': {
@@ -116,6 +121,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
           [e2.id]: e2,
           [e3.id]: e3,
           [e4.id]: e4,
+          [e4Dup.id]: e4Dup,
         },
         quizzes: {
           [quiz.id]: {
@@ -134,29 +140,6 @@ describe('QuizSubmissionList mapStateToProps', () => {
         },
       },
     })
-
-    shuffle.mockReturnValueOnce([
-      {
-        userID: '1',
-        grade: 'ungraded',
-        status: 'submitted',
-      },
-      {
-        userID: '2',
-        grade: 'B-',
-        status: 'submitted',
-      },
-      {
-        userID: '3',
-        grade: 'not_submitted',
-        status: 'none',
-      },
-      {
-        userID: '4',
-        grade: 'not_submitted',
-        status: 'late',
-      },
-    ])
 
     const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
     expect(result).toMatchObject({

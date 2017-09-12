@@ -98,7 +98,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     .filter((s) => s)
     .forEach((s) => { submissions[s.submission.user_id] = s })
 
-    if (quiz.data.assignment_id) {
+    if (quiz.data.assignment_id && entities.assignments && entities.assignments[quiz.data.assignment_id]) {
       anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
       muted = entities.assignments[quiz.data.assignment_id].data.muted
     }
@@ -111,6 +111,12 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     })
     .filter((r) => r)
     .filter((r) => r.type === 'StudentEnrollment')
+    .reduce((accum, current) => {
+      if (accum.findIndex(e => e.user_id === current.user_id) >= 0) {
+        return accum
+      }
+      return [...accum, current]
+    }, [])
 
     if (course.color) {
       courseColor = course.color
