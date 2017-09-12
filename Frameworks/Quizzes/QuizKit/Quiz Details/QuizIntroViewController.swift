@@ -41,6 +41,7 @@ open class QuizIntroViewController: UIViewController {
             }
         }
     }
+    var takeabilityTimer: Timer?
     
     fileprivate var pages: [UIViewController] = []
     fileprivate let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -67,12 +68,27 @@ open class QuizIntroViewController: UIViewController {
             
             self?.quizUpdated()
         }
+        
+        NotificationCenter.default.addObserver(forName: .UIApplicationDidBecomeActive, object: nil, queue: nil) { [weak self] _ in
+            self?.takeabilityController?.refreshTakeability()
+        }
+        
+        if #available(iOS 10.0, *) {
+            self.takeabilityTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { [weak self] _ in
+                self?.takeabilityController?.refreshTakeability()
+            }
+        }
     }
     
     required public init?(coder aDecoder: NSCoder) {
         ❨╯°□°❩╯⌢"init(coder:) has not been implemented"
     }
 
+    deinit {
+        self.takeabilityTimer?.invalidate()
+        self.takeabilityTimer = nil
+    }
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
 
