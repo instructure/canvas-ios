@@ -21,8 +21,8 @@ import UserNotifications
 import PSPDFKit
 import Fabric
 import Crashlytics
-import StoreKit
 import Secrets
+import SoLazy
 
 public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 
@@ -139,18 +139,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        let key = "InstLaunchCount"
-        var count = UserDefaults.standard.integer(forKey: key)
-        count += 1
-        if (count > 10 && !EarlGreyExists) {
-            if #available(iOS 10.3, *) {
-                #if RELEASE
-                SKStoreReviewController.requestReview()
-                #endif
-            }
+        if (!EarlGreyExists) {
+            AppStoreReview.requestReview()
         }
-        
-        UserDefaults.standard.set(count, forKey: key)
     }
 }
 

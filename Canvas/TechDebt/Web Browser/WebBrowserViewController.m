@@ -19,14 +19,12 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import "UIViewController+AnalyticsTracking.h"
 #import <CanvasKit1/CKActionSheetWithBlocks.h>
-
 #import "WebBrowserViewController.h"
-
 #import "UIWebView+SafeAPIURL.h"
-#import "RatingsController.h"
-@import SoPretty;
 #import "iCanvasConstants.h"
 #import "Analytics.h"
+
+@import SoPretty;
 @import CanvasKit;
 
 @interface WebBrowserViewController() <UIWebViewDelegate, UIDocumentInteractionControllerDelegate, UITextFieldDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate> {
@@ -202,7 +200,6 @@
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:^{
         // Blank the webview by loading empty HTML
         [_webView loadHTMLString:@"" baseURL:nil];
-        [RatingsController appLoadedOnViewController:self];
     }];
     if (self.browserWillDismissBlock) {
         self.browserWillDismissBlock();

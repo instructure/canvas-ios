@@ -29,7 +29,6 @@
 #import "ContentLockViewController.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "CBIModuleProgressNotifications.h"
-#import "RatingsController.h"
 #import "Analytics.h"
 #import "CBILog.h"
 #import "CKIClient+CBIClient.h"
@@ -80,12 +79,6 @@
     _url = url;
     NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
     [(UIWebView *)self.view loadRequest:request];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [RatingsController appLoadedOnViewController:self];
 }
 
 #pragma mark - UIWebViewDelegate
@@ -198,9 +191,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
-    [RatingsController appLoadedOnViewController:self];
-    
     [pdfDocPresenter savePDFAnnotations];
     
     if (_progressToolbar.cancelBlock && [self.presentedViewController isBeingPresented] == NO) {

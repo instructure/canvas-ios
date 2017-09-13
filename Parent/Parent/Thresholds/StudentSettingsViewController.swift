@@ -27,7 +27,6 @@ import TooLegit
 import SoPersistent
 import Result
 import SoLazy
-import Armchair
 
 private enum SupportTicketCellTag: String {
     case Email, Subject, Impact, Comment
@@ -304,7 +303,6 @@ open class StudentSettingsViewController : FormViewController {
             DispatchQueue.main.async {
                 self.removeActivityIndicator.stopAnimating()
                 self.toolbarItems = self.removeToolbarItems
-                Armchair.userDidSignificantEvent(true)
             }
         }
     }

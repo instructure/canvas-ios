@@ -21,7 +21,7 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import "EXTScope.h"
 #import "CBIMessageParticipantsViewModel.h"
-#import "RatingsController.h"
+
 @import CanvasKeymaster;
 
 @interface CBIMessageContentViewController ()
@@ -40,12 +40,6 @@
     RACSignal *participantsAdded = self.viewModel.participantsViewModel.recipientsAddedSignal;
     RACSignal *messageCount = [RACObserve(self, viewModel.model.messageCount) distinctUntilChanged];
     [self rac_liftSelector:@selector(refreshConversationIgnoringValue:) withSignals:[RACSignal merge:@[messageCount, participantsAdded]], nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [RatingsController appLoadedOnViewController:self];
 }
 
 - (void)refreshConversationIgnoringValue:(id)ignored

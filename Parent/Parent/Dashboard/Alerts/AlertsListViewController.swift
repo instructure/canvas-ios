@@ -23,7 +23,6 @@ import CoreData
 import SoPersistent
 import SoLazy
 import ReactiveSwift
-import Armchair
 
 class AlertsListViewController: FetchedTableViewController<Alert> {
     let session: Session
@@ -77,7 +76,6 @@ class AlertsListViewController: FetchedTableViewController<Alert> {
 
         let alert = self.collection[indexPath]
         alert.markAsRead(session)
-        Armchair.userDidSignificantEvent(true)
         self.tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
 
         if let routeURL = Router.sharedInstance.alertRoute(studentID: observeeID, alertAssetPath: alert.assetPath) {

@@ -22,7 +22,6 @@
 #import <CanvasKit1/NSArray+CKAdditions.h>
 #import <CanvasKit1/CKUploadProgressToolbar.h>
 #import <CanvasKit1/CKAlertViewWithBlocks.h>
-
 #import "ThreadedDiscussionViewController.h"
 #import "ThreadedDiscussionViewControllerProtected.h"
 #import "DiscussionEntryCell.h"
@@ -32,19 +31,16 @@
 #import "UITableView+in_updateInBlocks.h"
 #import "Router.h"
 #import "DiscussionEntryHeightCalculationQueue.h"
-
 #import "CBIModuleProgressNotifications.h"
-#import "RatingsController.h"
 #import "CKIClient+CBIClient.h"
 #import "CKRichTextInputView.h"
 #import "Analytics.h"
 #import "iCanvasErrorHandler.h"
-
-@import CanvasKeymaster;
-@import SoPretty;
 #import "CBILog.h"
 #import "UIImage+TechDebt.h"
 
+@import CanvasKeymaster;
+@import SoPretty;
 
 #define PADDING_BOTTOM 10
 typedef void (^FetchAll)(NSArray *allObjects);
@@ -182,15 +178,6 @@ enum {
     [self updateReplyButtonImage];
     
     RAC(self.replyBarButtonItem, enabled, @NO) = RACObserve(self, isLoaded);
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    if (self.isMovingFromParentViewController) {
-        [RatingsController appLoadedOnViewController:self];
-    }
 }
 
 - (void)updateReplyButtonImage {

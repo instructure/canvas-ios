@@ -32,14 +32,14 @@
 #import "CBIStudentSubmissionViewController.h"
 #import "CBITeacherSubmissionViewModel.h"
 #import "CBILocalNotificationHandler.h"
-#import "RatingsController.h"
 #import <StoreKit/StoreKit.h>
-@import Masonry;
 #import "EXTScope.h"
 #import "CKCanvasAPI+CurrentAPI.h"
-@import CanvasKeymaster;
 #import "CBILog.h"
 #import "UIImage+TechDebt.h"
+
+@import CanvasKeymaster;
+@import Masonry;
 
 static NSUInteger const CBIAssignmentDetailNumMinutesInHour = 60;
 static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
@@ -330,10 +330,6 @@ static NSUInteger const CBIAssignmentDetailNumMinutesInDay = 60 * 24;
                 [view.layer removeAllAnimations];
             }
         }
-    }
-    
-    if (self.previousSelectedTab == GRADE_TAB_INDEX) {
-        [RatingsController appLoadedOnViewController:self];
     }
     
     [self setTab:self.segmentedControl.selectedSegmentIndex];

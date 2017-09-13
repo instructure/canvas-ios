@@ -17,8 +17,6 @@
     
 
 #import "CBIFileViewController.h"
-
-#import "RatingsController.h"
 #import <CanvasKit1/CanvasKit1.h>
 #import "CKCanvasAPI+CurrentAPI.h"
 
@@ -47,12 +45,6 @@
         self.canvasAPI = CKCanvasAPI.currentAPI;
     }
     return self;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [RatingsController appLoadedOnViewController:self];
 }
 
 @end

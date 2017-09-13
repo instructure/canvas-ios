@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C3FB9241DA692880039201B /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FB9231DA692880039201B /* ErrorReporter.swift */; };
 		2C3FB9261DA696240039201B /* NSBundle+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */; };
+		2C7BFC771F66F4CD0015ED64 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BFC761F66F4CD0015ED64 /* AppStoreReview.swift */; };
 		4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */; };
 		49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */; };
 		49A960841BC315C600592D94 /* SoLazy.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A960831BC315C600592D94 /* SoLazy.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		2C3FB9231DA692880039201B /* ErrorReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoLazy.swift"; sourceTree = "<group>"; };
+		2C7BFC761F66F4CD0015ED64 /* AppStoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
 		4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+PureEvil.swift"; sourceTree = "<group>"; };
 		49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+SoLazy.swift"; sourceTree = "<group>"; };
 		49A9607E1BC315C600592D94 /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +249,7 @@
 				2C3FB9231DA692880039201B /* ErrorReporter.swift */,
 				2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */,
 				B119EECF1E3A80EE00343D1B /* Tuple+SoLazy.swift */,
+				2C7BFC761F66F4CD0015ED64 /* AppStoreReview.swift */,
 			);
 			path = SoLazy;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				49A960A31BC315E000592D94 /* GCD+SoLazy.swift in Sources */,
 				B18799B51CD90906008F712A /* Environment.swift in Sources */,
 				B1EB809B1E298003006225AF /* IgnoreValues.swift in Sources */,
+				2C7BFC771F66F4CD0015ED64 /* AppStoreReview.swift in Sources */,
 				B135FEB91CB8632F0093DE0B /* NSURLSession+SoLazy.swift in Sources */,
 				5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */,
 				B1EB809F1E2B7644006225AF /* Concat.swift in Sources */,
@@ -723,6 +727,7 @@
 				INFOPLIST_FILE = SoLazy/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -745,6 +750,7 @@
 				INFOPLIST_FILE = SoLazy/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DRELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -91,6 +91,9 @@ extension AppDelegate {
         app(application, didReceiveRemoteNotification: userInfo)
     }
     
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        AppStoreReview.requestReview()
+    }
 }
 
 // MARK: Local notifications

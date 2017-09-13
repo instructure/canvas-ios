@@ -224,8 +224,6 @@
 		492706611CF4B7A800C631C6 /* WTFInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927063D1CF4B7A800C631C6 /* WTFInsets.m */; };
 		492706651CF4B7CF00C631C6 /* CBIDropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706631CF4B7CF00C631C6 /* CBIDropbox.h */; };
 		492706661CF4B7CF00C631C6 /* CBIDropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706641CF4B7CF00C631C6 /* CBIDropbox.m */; };
-		492706691CF4B7DA00C631C6 /* EasyAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706671CF4B7DA00C631C6 /* EasyAlertView.h */; };
-		4927066A1CF4B7DA00C631C6 /* EasyAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706681CF4B7DA00C631C6 /* EasyAlertView.m */; };
 		492706731CF4B87C00C631C6 /* CBIExternalToolViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927066C1CF4B87C00C631C6 /* CBIExternalToolViewModel.h */; };
 		492706741CF4B87C00C631C6 /* CBIExternalToolViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927066D1CF4B87C00C631C6 /* CBIExternalToolViewModel.m */; };
 		492706751CF4B87C00C631C6 /* CBILTIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927066E1CF4B87C00C631C6 /* CBILTIViewController.h */; };
@@ -333,8 +331,6 @@
 		492707561CF4BACB00C631C6 /* ConversationSubmissionEntry.html in Resources */ = {isa = PBXBuildFile; fileRef = 4927071E1CF4BACA00C631C6 /* ConversationSubmissionEntry.html */; };
 		492707571CF4BACB00C631C6 /* SubtitleAndRightDetailCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927071F1CF4BACA00C631C6 /* SubtitleAndRightDetailCell.h */; };
 		492707581CF4BACB00C631C6 /* SubtitleAndRightDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707201CF4BACA00C631C6 /* SubtitleAndRightDetailCell.m */; };
-		4927075B1CF4BAF900C631C6 /* ModalPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707591CF4BAF900C631C6 /* ModalPresenter.h */; };
-		4927075C1CF4BAF900C631C6 /* ModalPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927075A1CF4BAF900C631C6 /* ModalPresenter.m */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */; };
 		492707C31CF4BBBA00C631C6 /* PagedItemsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707BE1CF4BBBA00C631C6 /* PagedItemsViewController.h */; };
@@ -342,8 +338,6 @@
 		492707C51CF4BBBA00C631C6 /* PagedTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707C01CF4BBBA00C631C6 /* PagedTableViewController.h */; };
 		492707C61CF4BBBA00C631C6 /* PagedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707C11CF4BBBA00C631C6 /* PagedTableViewController.m */; };
 		492707C71CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707C21CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h */; };
-		492707F41CF4BC1000C631C6 /* RatingsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707D41CF4BC1000C631C6 /* RatingsController.h */; };
-		492707F51CF4BC1000C631C6 /* RatingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707D51CF4BC1000C631C6 /* RatingsController.m */; };
 		492707F61CF4BC1000C631C6 /* RubricViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707D71CF4BC1000C631C6 /* RubricViewController.h */; };
 		492707F71CF4BC1000C631C6 /* RubricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707D81CF4BC1000C631C6 /* RubricViewController.m */; };
 		492707FA1CF4BC1000C631C6 /* UnsupportedView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */; };
@@ -1224,8 +1218,6 @@
 		4927063D1CF4B7A800C631C6 /* WTFInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTFInsets.m; sourceTree = "<group>"; };
 		492706631CF4B7CF00C631C6 /* CBIDropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIDropbox.h; sourceTree = "<group>"; };
 		492706641CF4B7CF00C631C6 /* CBIDropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIDropbox.m; sourceTree = "<group>"; };
-		492706671CF4B7DA00C631C6 /* EasyAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyAlertView.h; sourceTree = "<group>"; };
-		492706681CF4B7DA00C631C6 /* EasyAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyAlertView.m; sourceTree = "<group>"; };
 		4927066C1CF4B87C00C631C6 /* CBIExternalToolViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIExternalToolViewModel.h; sourceTree = "<group>"; };
 		4927066D1CF4B87C00C631C6 /* CBIExternalToolViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIExternalToolViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		4927066E1CF4B87C00C631C6 /* CBILTIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBILTIViewController.h; sourceTree = "<group>"; };
@@ -1333,8 +1325,6 @@
 		4927071E1CF4BACA00C631C6 /* ConversationSubmissionEntry.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ConversationSubmissionEntry.html; sourceTree = "<group>"; };
 		4927071F1CF4BACA00C631C6 /* SubtitleAndRightDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleAndRightDetailCell.h; sourceTree = "<group>"; };
 		492707201CF4BACA00C631C6 /* SubtitleAndRightDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleAndRightDetailCell.m; sourceTree = "<group>"; };
-		492707591CF4BAF900C631C6 /* ModalPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalPresenter.h; sourceTree = "<group>"; };
-		4927075A1CF4BAF900C631C6 /* ModalPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalPresenter.m; sourceTree = "<group>"; };
 		492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIModuleProgressNotifications.h; sourceTree = "<group>"; };
 		4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIModuleProgressNotifications.m; sourceTree = "<group>"; };
 		492707BE1CF4BBBA00C631C6 /* PagedItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedItemsViewController.h; sourceTree = "<group>"; };
@@ -1342,8 +1332,6 @@
 		492707C01CF4BBBA00C631C6 /* PagedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedTableViewController.h; sourceTree = "<group>"; };
 		492707C11CF4BBBA00C631C6 /* PagedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedTableViewController.m; sourceTree = "<group>"; };
 		492707C21CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedTableViewControllerInternal.h; sourceTree = "<group>"; };
-		492707D41CF4BC1000C631C6 /* RatingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsController.h; sourceTree = "<group>"; };
-		492707D51CF4BC1000C631C6 /* RatingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsController.m; sourceTree = "<group>"; };
 		492707D71CF4BC1000C631C6 /* RubricViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RubricViewController.h; sourceTree = "<group>"; };
 		492707D81CF4BC1000C631C6 /* RubricViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RubricViewController.m; sourceTree = "<group>"; };
 		492707DC1CF4BC1000C631C6 /* UnsupportedView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UnsupportedView.storyboard; sourceTree = "<group>"; };
@@ -2314,13 +2302,7 @@
 				4902E1241CF4C8890069E043 /* Analytics.m */,
 				492705E21CF4B73900C631C6 /* CBIViewModel.h */,
 				492705E31CF4B73900C631C6 /* CBIViewModel.m */,
-				492706671CF4B7DA00C631C6 /* EasyAlertView.h */,
-				492706681CF4B7DA00C631C6 /* EasyAlertView.m */,
 				492704AF1CF4B6D700C631C6 /* Info.plist */,
-				492707591CF4BAF900C631C6 /* ModalPresenter.h */,
-				4927075A1CF4BAF900C631C6 /* ModalPresenter.m */,
-				492707D41CF4BC1000C631C6 /* RatingsController.h */,
-				492707D51CF4BC1000C631C6 /* RatingsController.m */,
 				492704AD1CF4B6D700C631C6 /* TechDebt.h */,
 				49F9FA461CF7B6F600654758 /* TechDebt.xcassets */,
 				492704B81CF4B6F100C631C6 /* Announcements */,
@@ -3880,7 +3862,6 @@
 				492706451CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
 				492708591CF4C19B00C631C6 /* MKNumberBadgeView.h in Headers */,
-				492707F41CF4BC1000C631C6 /* RatingsController.h in Headers */,
 				4927065F1CF4B7A800C631C6 /* ThreadedDiscussionViewControllerProtected.h in Headers */,
 				492706951CF4B88600C631C6 /* FolderViewController.h in Headers */,
 				492706581CF4B7A800C631C6 /* DiscussionTemplateRenderer.h in Headers */,
@@ -3945,7 +3926,6 @@
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
 				492708411CF4BC3200C631C6 /* CBISyllabusViewModel.h in Headers */,
-				492706691CF4B7DA00C631C6 /* EasyAlertView.h in Headers */,
 				4927068A1CF4B88600C631C6 /* CBIFilesTabViewModel.h in Headers */,
 				492706D11CF4BA7B00C631C6 /* CBILockableViewModel.h in Headers */,
 				492706571CF4B7A800C631C6 /* DiscussionPresentationStrategy.h in Headers */,
@@ -3964,7 +3944,6 @@
 				492707481CF4BACB00C631C6 /* CBIResizableTextView.h in Headers */,
 				492706E41CF4BAB500C631C6 /* VideoRecorderController.h in Headers */,
 				49AA2D271CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h in Headers */,
-				4927075B1CF4BAF900C631C6 /* ModalPresenter.h in Headers */,
 				492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */,
 				492707391CF4BACB00C631C6 /* CBIMessageComposeMessageCell.h in Headers */,
 				4927052C1CF4B70600C631C6 /* CBISubmissionCell.h in Headers */,
@@ -4776,7 +4755,6 @@
 				4927051B1CF4B70600C631C6 /* CKAttachmentManager.m in Sources */,
 				492705181CF4B70600C631C6 /* CBIGradeDetailView.m in Sources */,
 				492705DF1CF4B73300C631C6 /* UIWebView+RemoveShadow.m in Sources */,
-				492707F51CF4BC1000C631C6 /* RatingsController.m in Sources */,
 				61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */,
 				492707241CF4BACA00C631C6 /* CBIMessageCell.m in Sources */,
 				4927083E1CF4BC3200C631C6 /* CBISyllabusDetailViewController.m in Sources */,
@@ -4798,7 +4776,6 @@
 				492707221CF4BACA00C631C6 /* CBIConversationStarter.m in Sources */,
 				4927053D1CF4B70600C631C6 /* CBISubmissionInputViewController.m in Sources */,
 				492705111CF4B70600C631C6 /* AssignmentDetailsViewController.m in Sources */,
-				4927075C1CF4BAF900C631C6 /* ModalPresenter.m in Sources */,
 				492705401CF4B70600C631C6 /* CBISubmissionViewModel.m in Sources */,
 				492704C41CF4B6F100C631C6 /* CBIAnnouncementViewModel.m in Sources */,
 				4927060C1CF4B79B00C631C6 /* IconCell.m in Sources */,
@@ -4843,7 +4820,6 @@
 				492705211CF4B70600C631C6 /* CBIAddSubmissionCommentCell.m in Sources */,
 				4927084D1CF4BC3200C631C6 /* CBIURLParser.m in Sources */,
 				492706B21CF4B99700C631C6 /* Router.m in Sources */,
-				4927066A1CF4B7DA00C631C6 /* EasyAlertView.m in Sources */,
 				492707411CF4BACB00C631C6 /* CBIMessageDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

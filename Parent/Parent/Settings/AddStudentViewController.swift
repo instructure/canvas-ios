@@ -22,7 +22,6 @@ import SoLazy
 import TooLegit
 import Airwolf
 import SoPersistent
-import Armchair
 import SoPretty
 
 class WebLoginViewController: UIViewController {
@@ -182,7 +181,6 @@ extension AddStudentViewController: UIWebViewDelegate {
             
             if url.absoluteString.contains("/oauthSuccess") {
                 // Clear the cookies so you're not automatically logged into a session on the next browser launch
-                Armchair.userDidSignificantEvent(true)
                 clearExistingCookies()
                 refresher.refreshingCompleted.observeValues { [weak self] _ in
                     self?.completionHandler?(.success(true))

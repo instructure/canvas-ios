@@ -20,14 +20,11 @@
 #import "CBIMessageComposeMessageCell.h"
 #import "EXTScope.h"
 #import "AttachmentsTableViewController.h"
-
 #import "CBIMessageParticipantsViewModel.h"
-#import "RatingsController.h"
-@import CanvasKeymaster;
 #import "CKCanvasAPI+CurrentAPI.h"
 
 @import MyLittleViewController;
-
+@import CanvasKeymaster;
 @import SoPretty;
 
 @interface CBIMessageComposeMessageViewModel ()
@@ -89,7 +86,6 @@
             [toastManager statusBarToastSuccess:NSLocalizedString(@"Message Sent.", @"notification that a message has been sent succesfully")];
 
             [self.attachmentManager clearAttachments];
-            [RatingsController appLoadedOnViewController:self.tableViewController];
         }
     };
     

@@ -22,7 +22,6 @@ import TooLegit
 import SoLazy
 import CalendarKit
 import SoPretty
-import Armchair
 
 typealias EventWeekPageSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
 
@@ -174,7 +173,6 @@ class CalendarEventWeekPageViewController: UIViewController {
         let numDays = Calendar.current.numberOfDaysInWeek
         let startDate = viewController.startDate + numDays.daysComponents
         let initialViewController = eventListController(startDate)
-        Armchair.userDidSignificantEvent(true)
         pageViewController.setViewControllers([initialViewController], direction: .forward, animated: true, completion: { [unowned self] finished in
             if (finished) {
                 self.updateHeaderTitle()
@@ -190,7 +188,6 @@ class CalendarEventWeekPageViewController: UIViewController {
         let numDays = Calendar.current.numberOfDaysInWeek
         let startDate = viewController.startDate - numDays.daysComponents
         let initialViewController = eventListController(startDate)
-        Armchair.userDidSignificantEvent(true)
         pageViewController.setViewControllers([initialViewController], direction: .reverse, animated: true, completion: { [unowned self] finished in
             if finished {
                 self.updateHeaderTitle()
@@ -199,7 +196,6 @@ class CalendarEventWeekPageViewController: UIViewController {
     }
 
     func close(_ sender: UIBarButtonItem) {
-        Armchair.userDidSignificantEvent(true)
         self.dismiss(animated: true, completion: nil)
     }
 

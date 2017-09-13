@@ -24,9 +24,7 @@
 #import <CanvasKit1/NSArray+CKAdditions.h>
 #import <CanvasKit1/CKByteCountFormatter.h>
 #import "UIViewController+AnalyticsTracking.h"
-
 #import "FolderViewController.h"
-#import "RatingsController.h"
 #import "FileViewController.h"
 #import "ProgressTableViewCell.h"
 #import <Reachability/Reachability.h>
@@ -251,14 +249,12 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
         NSString *cancelButton = NSLocalizedString(@"Don't delete", @"Button to cancel deleting folders");
         [alert addButtonWithTitle:confirmButton handler:^{
             [self deleteFolderItems:items];
-            [RatingsController appLoadedOnViewController:self];
         }];
         [alert addCancelButtonWithTitle:cancelButton];
         [alert show];
     }
     else {
         [self deleteFolderItems:items];
-        [RatingsController appLoadedOnViewController:self];
     }
 }
 
@@ -732,7 +728,6 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
          else if (isFinalValue) {
              self.folder.foldersCount += 1;
              [self insertFolder:object];
-             [RatingsController appLoadedOnViewController:self];
          }
      }];
 }
@@ -795,7 +790,6 @@ static NSIndexSet *indexSetFromIndexPathRows(NSArray *paths) {
                     deleteFiles(urls);
                 }
                 [application endBackgroundTask:backgroundTask];
-                [RatingsController appLoadedOnViewController:self];
             }];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
