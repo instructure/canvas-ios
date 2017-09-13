@@ -364,7 +364,11 @@ open class SelectDomainViewController: UIViewController {
     }
 
     func backButtonPressed(_ sender: UIButton) {
-        let _ = self.navigationController?.popViewController(animated: true)
+        if let presentor = self.presentingViewController {
+            presentor.dismiss(animated: true)
+        } else {
+            let _ = self.navigationController?.popViewController(animated: true)
+        }
     }
 
     // ---------------------------------------------

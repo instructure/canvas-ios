@@ -251,7 +251,7 @@ extension Router {
             }
             dashboardVC.addStudentAction = { [weak dashboardVC] in
                 guard let dashboardVC = dashboardVC else { return }
-                self.route(dashboardVC, toURL: self.addStudentRoute())
+                self.route(dashboardVC, toURL: self.addStudentRoute(), modal: true)
             }
             
             return dashboardVC
@@ -304,8 +304,12 @@ extension Router {
                             selectDomainViewController?.present(alert, animated: true, completion: nil)
                         case .completed:
                             do {
-                                let addVC = try AddStudentViewController(session: session, domain: domain, useBackButton: true) { result in
-                                    let _ = selectDomainViewController?.navigationController?.popToRootViewController(animated: true)
+                                let addVC = try AddStudentViewController(session: session, domain: domain) { result in
+                                    if let presentor = selectDomainViewController?.presentingViewController {
+                                        presentor.dismiss(animated: true)
+                                    } else {
+                                        let _ = selectDomainViewController?.navigationController?.popToRootViewController(animated: true)
+                                    }
                                 }
                                 addVC.prompt = NSLocalizedString("Enter student's login information", comment: "Prompt for logging in as student")
                                 selectDomainViewController?.navigationController?.pushViewController(addVC, animated: true)
@@ -324,7 +328,7 @@ extension Router {
             selectDomainViewController.allowMultipleUsers = false
             selectDomainViewController.useMobileVerify = false
             selectDomainViewController.prompt = NSLocalizedString("Find your student's school or district", comment: "Domain Picker Search Placeholder")
-            return selectDomainViewController
+            return UINavigationController(rootViewController: selectDomainViewController)
         }
     }
 
@@ -372,7 +376,7 @@ extension Router {
 
             settingsVC.addObserveeAction = { [weak settingsVC] session in
                 guard let settingsVC = settingsVC else { return }
-                self.route(settingsVC, toURL: self.addStudentRoute())
+                self.route(settingsVC, toURL: self.addStudentRoute(), modal: true)
             }
 
             settingsVC.requestFeatureAction = { [weak settingsVC] session in

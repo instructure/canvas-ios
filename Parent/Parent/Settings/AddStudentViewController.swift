@@ -27,7 +27,6 @@ import SoPretty
 class WebLoginViewController: UIViewController {
     
     let request: URLRequest?
-    let useBackButton: Bool
     let loginFailureMessage: String
     var prompt: String? = nil
     
@@ -35,9 +34,8 @@ class WebLoginViewController: UIViewController {
     fileprivate let backButton = UIButton(type: .custom)
     fileprivate let statusBarNotification = ToastManager()
     
-    init(request: URLRequest?, useBackButton: Bool, loginFailureMessage: String) {
+    init(request: URLRequest?, loginFailureMessage: String) {
         self.request = request
-        self.useBackButton = useBackButton
         self.loginFailureMessage = loginFailureMessage
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,12 +46,9 @@ class WebLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = NSLocalizedString("Log In", comment: "")
         clearExistingCookies()
-        
         setupWebView()
-        setupBackButton()
-        
         startLoginRequest()
     }
     
@@ -63,12 +58,15 @@ class WebLoginViewController: UIViewController {
         if let prompt = prompt {
             statusBarNotification.statusBarToastInfo(prompt)
         }
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         statusBarNotification.dismissNotification()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
@@ -85,38 +83,12 @@ class WebLoginViewController: UIViewController {
         UserDefaults.standard.synchronize()
     }
     
-    func setupBackButton() {
-        if let navController = self.navigationController, !navController.isNavigationBarHidden {
-            return
-        }
-        let backImage = UIImage.RTLImage("icon_back", renderingMode: .alwaysTemplate)
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.setBackgroundImage(backImage, for: .normal)
-        backButton.setBackgroundImage(backImage, for: .selected)
-        backButton.tintColor = UIColor.white
-        
-        self.view.addSubview(backButton)
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[subview]", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backButton]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[subview]", options: NSLayoutFormatOptions(), metrics: nil, views: ["subview": backButton]))
-        
-        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40.0))
-        backButton.addConstraint(NSLayoutConstraint(item: backButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 40.0))
-        
-        backButton.addTarget(self, action: #selector(backButtonPressed(_:)), for: .touchUpInside)
-        backButton.isHidden = !useBackButton
-    }
-    
     func setupWebView() {
-        self.automaticallyAdjustsScrollViewInsets = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.backgroundColor = UIColor.black
         self.view.addSubview(webView)
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webview]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["webview": webView]))
-    }
-    
-    func backButtonPressed(_ sender: UIButton) {
-        _ = self.navigationController?.popViewController(animated: true)
     }
     
     func startLoginRequest() {
@@ -153,10 +125,10 @@ class AddStudentViewController: WebLoginViewController {
     var completionHandler: ((Result<Bool, NSError>)->Void)?
     let refresher: Refresher
 
-    init(session: Session, domain: URL, useBackButton: Bool = false, completionHandler: @escaping (Result<Bool, NSError>)->Void) throws {
+    init(session: Session, domain: URL, completionHandler: @escaping (Result<Bool, NSError>)->Void) throws {
         self.refresher = try Student.observedStudentsRefresher(session)
         
-        super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain), useBackButton: useBackButton, loginFailureMessage: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"))
+        super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain), loginFailureMessage: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"))
         
         webView.delegate = self
         self.completionHandler = completionHandler

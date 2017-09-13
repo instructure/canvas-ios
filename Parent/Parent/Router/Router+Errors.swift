@@ -84,7 +84,7 @@ extension Router {
         }))
 
         alert.addAction(UIAlertAction(title: NSLocalizedString("Repair Access", comment: "re-authenticate user when token fails"), style: .default, handler: { _ in
-            self.route(viewController, toURL: self.addStudentRoute())
+            self.route(viewController, toURL: self.addStudentRoute(), modal: true)
         }))
 
         viewController.present(alert, animated: true, completion: nil)
