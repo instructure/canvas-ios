@@ -65,6 +65,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
     const s2 = template.submission({
       id: '2',
       user_id: e2.user.id,
+      workflow_state: 'graded',
     })
     const qs2 = template.quizSubmission({
       id: '2',
@@ -103,6 +104,8 @@ describe('QuizSubmissionList mapStateToProps', () => {
       user_id: u4.id,
       kept_score: null,
       end_at: (new Date(0)).toISOString(),
+      overdue_and_needs_submission: true,
+      workflow_state: 'untaken',
     })
 
     const appState = template.appState({

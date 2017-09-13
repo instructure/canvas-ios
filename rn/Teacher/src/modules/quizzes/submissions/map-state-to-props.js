@@ -53,6 +53,9 @@ export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string
 
       if (data.workflow_state === 'untaken') {
         grade = 'not_submitted'
+        if (data.overdue_and_needs_submission) {
+          status = 'late'
+        }
       }
 
       if (data.workflow_state === 'pending_review') {

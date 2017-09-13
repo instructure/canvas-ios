@@ -3105,6 +3105,7 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                         "paddingLeft": 6,
                         "paddingRight": 6,
                         "paddingTop": 3,
+                        "textAlign": "center",
                       },
                       Object {
                         "borderColor": "#368BD8",
@@ -3112,7 +3113,6 @@ exports[`SubmissionList renders correctly with not_submitted filter 1`] = `
                       },
                       Object {
                         "alignSelf": "center",
-                        "flex": 0.5,
                       },
                     ],
                     Object {
@@ -4563,6 +4563,7 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                         "paddingLeft": 6,
                         "paddingRight": 6,
                         "paddingTop": 3,
+                        "textAlign": "center",
                       },
                       Object {
                         "borderColor": "#368BD8",
@@ -4570,7 +4571,6 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                       },
                       Object {
                         "alignSelf": "center",
-                        "flex": 0.5,
                       },
                     ],
                     Object {
