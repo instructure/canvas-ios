@@ -31,30 +31,33 @@ export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string
     let score
     let dueAt
 
-    if (quizSubmission && quizSubmission.data) {
-      score = quizSubmission.data.kept_score
-      dueAt = quizSubmission.data.end_at
-    }
-
-    // If there is an actual submission object
     if (submissionState && submissionState.submission) {
+      // use assignment submission data for graded quiz submissions
       const submission = submissionState.submission
       grade = gradeProp(submission)
       status = statusProp(submission, dueAt)
+      score = submission.score // same as quiz submission keptScore
     } else if (quizSubmission && quizSubmission.data) {
-      status = 'submitted'
+      // only use quiz submission data for ungraded quizzes
+      // note: ungraded quiz submissions always have a null data.end_at
       const data = quizSubmission.data
       const keptScore = data.kept_score
       if (keptScore !== null && keptScore !== undefined) {
+        score = keptScore
         grade = String(keptScore)
       }
 
-      if (data.workflow_state === 'pending_review') {
-        grade = 'ungraded'
+      if (data.workflow_state === 'complete') {
+        status = 'submitted'
       }
 
-      if (Date.parse(data.end_at) < Date.now()) {
-        status = 'late'
+      if (data.workflow_state === 'untaken') {
+        grade = 'not_submitted'
+      }
+
+      if (data.workflow_state === 'pending_review') {
+        status = 'submitted'
+        grade = 'ungraded'
       }
     }
 

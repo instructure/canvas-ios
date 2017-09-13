@@ -59,6 +59,7 @@ test('getGroupSubmissionProps', () => {
 
   let submission = t.submissionHistory([{
     group: red,
+    workflow_state: 'graded',
   }])
 
   let state = t.appState({

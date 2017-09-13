@@ -110,7 +110,7 @@ function createHappyPathTestState () {
         user_id: '4',
         grade: 'A-',
         submitted_at: '2017-04-05T15:12:45Z',
-        workflow_state: 'submitted',
+        workflow_state: 'graded',
         excused: false,
         late: false,
       }]),

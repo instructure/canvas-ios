@@ -181,7 +181,7 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
       {
         type: 'graded',
         title: i18n('Graded'),
-        filterFunc: (submissions: any) => submissions.filter((s) => s.score !== null && s.score !== undefined),
+        filterFunc: (submissions: any) => submissions.filter((s) => s.grade === 'excused' || (s.grade !== 'not_submitted' && s.grade !== 'ungraded')),
       },
       {
         type: 'lessthan',

@@ -173,12 +173,12 @@ test('SubmissionList select filter function', () => {
   expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
 })
 
-test('SubmissionList renders correctly with a passed in filter', () => {
+test('SubmissionList renders correctly with graded filter', () => {
   const expandedProps = cloneDeep(props)
   expandedProps.submissions = expandedProps.submissions.concat([
     template.submissionProps({
       name: 'S5',
-      status: 'submitted',
+      status: 'graded',
       grade: '60',
       score: 60,
       userID: '5',
@@ -186,6 +186,46 @@ test('SubmissionList renders correctly with a passed in filter', () => {
   ])
 
   expandedProps.filterType = 'graded'
+
+  const tree = renderer.create(
+    <SubmissionList {...expandedProps} navigator={template.navigator()} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('SubmissionList renders correctly with ungraded filter', () => {
+  const expandedProps = cloneDeep(props)
+  expandedProps.submissions = expandedProps.submissions.concat([
+    template.submissionProps({
+      name: 'S6',
+      status: 'submitted',
+      grade: '70',
+      score: 70,
+      userID: '6',
+    }),
+  ])
+
+  expandedProps.filterType = 'ungraded'
+
+  const tree = renderer.create(
+    <SubmissionList {...expandedProps} navigator={template.navigator()} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('SubmissionList renders correctly with not_submitted filter', () => {
+  const expandedProps = cloneDeep(props)
+  expandedProps.submissions = expandedProps.submissions.concat([
+    template.submissionProps({
+      name: 'S7',
+      status: 'none',
+      grade: null,
+      score: null,
+      userID: '7',
+    }),
+  ])
+
+  expandedProps.filterType = 'not_submitted'
 
   const tree = renderer.create(
     <SubmissionList {...expandedProps} navigator={template.navigator()} />

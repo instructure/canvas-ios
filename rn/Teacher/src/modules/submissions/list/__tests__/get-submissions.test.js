@@ -50,7 +50,7 @@ export const submissionProps: Array<SubmissionDataProps> = [
   t.submissionProps({
     name: 'S4',
     status: 'submitted',
-    grade: 'A-',
+    grade: 'ungraded',
     userID: '4',
   }),
   t.submissionProps({
