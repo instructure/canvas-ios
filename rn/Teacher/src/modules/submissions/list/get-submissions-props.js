@@ -139,10 +139,12 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
   const submissionsByUserID = getSubmissionsByUserID(assignmentContent, entities.submissions)
 
   const submissions = uniqueEnrollments(enrollments)
-    .filter(enrollment =>
-      enrollment.type === 'StudentEnrollment' ||
-      enrollment.type === 'StudentViewEnrollment'
-    )
+    .filter(e => {
+      return (e.type === 'StudentEnrollment' ||
+              e.type === 'StudentViewEnrollment') &&
+              (e.enrollment_state === 'active' ||
+              e.enrollment_state === 'invited')
+    })
     .sort((e1, e2) => {
       if (e1.type !== e2.type) {
         if (e1.type === 'StudentEnrollment') {

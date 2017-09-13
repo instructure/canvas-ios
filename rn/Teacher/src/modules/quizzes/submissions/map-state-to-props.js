@@ -112,8 +112,13 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     enrollments = course.enrollments.refs.map((r) => {
       return entities.enrollments[r]
     })
-    .filter((r) => r)
-    .filter((r) => r.type === 'StudentEnrollment')
+    .filter((e) => {
+      if (!e) return false
+      return (e.type === 'StudentEnrollment' ||
+              e.type === 'StudentViewEnrollment') &&
+              (e.enrollment_state === 'active' ||
+              e.enrollment_state === 'invited')
+    })
     .reduce((accum, current) => {
       if (accum.findIndex(e => e.user_id === current.user_id) >= 0) {
         return accum
