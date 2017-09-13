@@ -40,6 +40,22 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         super.viewDidLoad()
         prompt = NSLocalizedString("Enter your Canvas Observer credentials", comment: "prompt for canvas observer login page")
         webView.delegate = self
+        self.title = NSLocalizedString("Log In", comment: "")
+        self.automaticallyAdjustsScrollViewInsets = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func setupBackButton() {
+        // no longer needs a back button
     }
     
     var jsonBodyData: Data? {
