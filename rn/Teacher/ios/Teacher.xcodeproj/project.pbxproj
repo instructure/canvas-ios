@@ -64,6 +64,7 @@
 		3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; };
 		3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
+		3B51311F1F6AFAD1003C534F /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5812EA1EC4F18500173C37 /* HelmTests.swift */; };
 		3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
 		3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
@@ -600,6 +601,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3B51311F1F6AFAD1003C534F /* AttendanceLE.framework in Embed Frameworks */,
 				61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */,
 				3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */,
 				2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */,
