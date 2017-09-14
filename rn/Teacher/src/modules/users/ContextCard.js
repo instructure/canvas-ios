@@ -140,9 +140,9 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
           <View style={styles.headerSection}>
             <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
             <View style={styles.line}>
-              <Text testID='context-card.grade' style={styles.largeText}>{grade || this.props.enrollment.grades.current_score || 0}</Text>
-              <Text style={styles.largeText}>{this.props.numLate}</Text>
-              <Text style={styles.largeText}>{this.props.numMissing}</Text>
+              <Text testID='context-card.grade' style={styles.largeText}>{grade || i18n.number(this.props.enrollment.grades.current_score) || 0}</Text>
+              <Text style={styles.largeText}>{i18n.number(this.props.numLate)}</Text>
+              <Text style={styles.largeText}>{i18n.number(this.props.numMissing)}</Text>
             </View>
             {!grade &&
               <View style={styles.line}>

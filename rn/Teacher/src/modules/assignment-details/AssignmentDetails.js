@@ -56,8 +56,6 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
   render () {
     const assignment = this.props.assignmentDetails
 
-    let assignmentPoints = i18n('pts')
-
     let sectionTitleDue = i18n('Due')
 
     let sectionTitleSubmissionTypes = i18n('Submission Types')
@@ -97,7 +95,9 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
           <AssignmentSection isFirstRow={true} style={style.topContainer}>
             <Heading1 testID='assignment-details.assignment-name-lbl'>{assignment.name}</Heading1>
             <View style={style.pointsContainer}>
-              <Text style={style.points} testID='assignment-details.points-possible-lbl'>{assignment.points_possible} {assignmentPoints}</Text>
+              <Text style={style.points} testID='assignment-details.points-possible-lbl'>
+                {i18n('{ pointsPossible, number } pts', { pointsPossible: assignment.points_possible })}
+              </Text>
               <PublishedIcon published={assignment.published} style={style.publishedIcon} />
             </View>
           </AssignmentSection>

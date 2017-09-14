@@ -24,7 +24,6 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import i18n from 'format-message'
 import Icon from '../../common/components/PublishedIcon'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
@@ -34,6 +33,7 @@ import SubmissionStatus from '../submissions/list/SubmissionStatus'
 import LinearGradient from 'react-native-linear-gradient'
 import Token from '../../common/components/Token'
 import colors from '../../common/colors'
+import { formatGradeText } from '../../common/formatters'
 
 type Props = {
   assignment: Assignment,
@@ -61,14 +61,7 @@ export default class UserSubmissionRow extends Component<any, Props, any> {
   }
 
   grade = () => {
-    let grade = this.props.submission.grade
-    if (this.props.assignment.grading_type === 'points') {
-      grade = i18n('{points}/{possible}', { points: this.props.submission.score, possible: this.props.assignment.points_possible })
-    } else if (this.props.submission.grade === 'complete') {
-      grade = i18n('Complete')
-    } else if (this.props.submission.grade === 'incomplete') {
-      grade = i18n('Incomplete')
-    }
+    let grade = formatGradeText(this.props.submission.grade, this.props.assignment.grade_type)
 
     return (
       <View style={styles.gradeWrapper}>

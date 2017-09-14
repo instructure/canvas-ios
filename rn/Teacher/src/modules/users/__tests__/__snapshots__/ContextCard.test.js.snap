@@ -936,7 +936,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                         ]
                       }
                     >
-                      undefined/20
+                      50
                     </Text>
                   </View>
                 </View>
@@ -1887,7 +1887,7 @@ exports[`ContextCard renders 1`] = `
                         ]
                       }
                     >
-                      undefined/20
+                      50
                     </Text>
                   </View>
                 </View>
@@ -3221,7 +3221,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                         ]
                       }
                     >
-                      undefined/20
+                      50
                     </Text>
                   </View>
                 </View>

@@ -55,6 +55,8 @@ export type AssignmentGroup = {
   rules?: any,
 }
 
+export type GradingType = 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points'
+
 export type Assignment = {
   id: string,
   name: string,
@@ -76,7 +78,7 @@ export type Assignment = {
   submission_types: string[],
   html_url: string,
   position: number,
-  grading_type: 'pass_fail' | 'percent' | 'letter_grade' | 'gpa_scale' | 'points',
+  grading_type: GradingType,
   rubric: ?Array<Rubric>,
   rubric_settings: ?RubricSettings,
   rubric_assessment: {

@@ -181,7 +181,7 @@ export default class SubmissionGrader extends Component<any, SubmissionGraderPro
       if (!submission.submission_history[selectedIndex].attachments) return defaultLabel
       numberOfFiles = submission.submission_history[selectedIndex].attachments.length
     }
-    return i18n('Files ({numberOfFiles})', { numberOfFiles })
+    return i18n('Files ({ numberOfFiles, number })', { numberOfFiles })
   }
 
   renderHandleContent = () => {

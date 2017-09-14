@@ -34,8 +34,8 @@ export function formattedDueDateWithStatus (dueAt: ?Date, lockAt: ?Date): string
   return [i18n('Due {dateString}', { dateString })]
 }
 
-export function formatGradeText (grade: string, decimals: number): string {
-  if (isNaN(grade)) {
+export function formatGradeText (grade: string, gradingType: GradingType): string {
+  if (!['points', 'percent'].includes(gradingType)) {
     switch (grade) {
       case 'pass':
         return i18n('Pass')
@@ -49,7 +49,12 @@ export function formatGradeText (grade: string, decimals: number): string {
 
     return grade
   }
-  let gradeText = grade
-  gradeText = Math.round(Number(grade) * Math.pow(10, decimals)) / Math.pow(10, decimals)
-  return String(gradeText)
+
+  if (gradingType === 'percent') {
+    grade = +grade.split('%')[0]
+    return i18n.number(grade / 100, 'percent')
+  } else {
+    grade = Math.round(Number(grade) * Math.pow(10, 2)) / Math.pow(10, 2)
+    return i18n.number(grade)
+  }
 }

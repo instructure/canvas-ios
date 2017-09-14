@@ -68,8 +68,10 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
   let muted = !!assignmentContent && assignmentContent.data.muted
 
   let assignmentName = ''
+  let gradingType = 'points'
   if (assignmentContent && assignmentContent.data) {
     assignmentName = assignmentContent.data.name
+    gradingType = assignmentContent.data.grading_type
   }
   let course = null
   if (courseContent && courseContent.course) {
@@ -87,5 +89,6 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     muted,
     assignmentName,
     course,
+    gradingType,
   }
 }

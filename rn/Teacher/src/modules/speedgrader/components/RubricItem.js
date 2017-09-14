@@ -158,7 +158,7 @@ export default class RubricItem extends Component {
               accessibilityLabel={`${rating.points} — ${rating.description}`}
               testID={`rubric-item.points-${rating.id}`}
             >
-              {rating.points}
+              {i18n.number(rating.points)}
             </CircleToggle>
           ))}
           <CircleToggle
@@ -175,7 +175,7 @@ export default class RubricItem extends Component {
             ref={r => { this.customizeButton = r }}
           >
             { isCustomGrade
-              ? this.state.selectedOption
+              ? i18n.number(this.state.selectedOption)
               : <Image style={{ tintColor: colors.grey4 }} source={Images.add} />
             }
           </CircleToggle>

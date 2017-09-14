@@ -125,6 +125,7 @@ export class SubmissionList extends Component {
         onAvatarPress={!this.props.groupAssignment && this.navigateToContextCard}
         onPress={this.navigateToSubmission(index)}
         anonymous={this.props.anonymous}
+        gradingType={this.props.gradingType}
       />
     )
   }

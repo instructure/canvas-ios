@@ -49,6 +49,7 @@ export type SubmissionRowDataProps = {
   name: string,
   status: SubmissionStatusProp,
   grade: GradeProp,
+  gradingType: GradingType,
   score: ?number,
   disclosure?: boolean,
   anonymous: boolean,
@@ -75,21 +76,20 @@ class Row extends Component<any, RowProps, any> {
   }
 }
 
-const Grade = ({ grade }: {grade: ?GradeProp}): * => {
+const Grade = ({ grade, gradingType }: {grade: ?GradeProp, gradingType: GradingType}): * => {
   if (!grade || grade === 'not_submitted') {
     return null
   }
 
   if (grade === 'ungraded') {
-    const ungraded = i18n('Needs Grading')
-    return <Token style={{ alignSelf: 'center' }} color={ colors.primaryButton }>{ ungraded }</Token>
+    return <Token style={{ alignSelf: 'center' }} color={ colors.primaryButton }>{i18n('Needs Grading')}</Token>
   }
 
   let gradeText = grade
   if (grade === 'excused') {
     gradeText = i18n('Excused')
   } else {
-    gradeText = formatGradeText(grade, 2)
+    gradeText = formatGradeText(grade, gradingType)
   }
 
   return <Text style={[ styles.gradeText, { alignSelf: 'center' } ]}>{ gradeText }</Text>
@@ -132,7 +132,7 @@ class SubmissionRow extends Component<any, SubmissionRowProps, any> {
             numberOfLines={2}>{name}</Text>
           <SubmissionStatus status={status} />
         </View>
-        <Grade grade={grade} />
+        <Grade grade={grade} gradingType={this.props.gradingType} />
       </Row>
     )
   }

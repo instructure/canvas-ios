@@ -124,9 +124,7 @@ exports[`renders 1`] = `
                 }
                 testID="assignment-details.points-possible-lbl"
               >
-                20
-                 
-                pts
+                20 pts
               </Text>
               <View
                 style={
@@ -1136,9 +1134,7 @@ exports[`renders loading 1`] = `
                 }
                 testID="assignment-details.points-possible-lbl"
               >
-                20
-                 
-                pts
+                20 pts
               </Text>
               <View
                 style={
@@ -2073,9 +2069,7 @@ exports[`renders with no submission types 1`] = `
                 }
                 testID="assignment-details.points-possible-lbl"
               >
-                20
-                 
-                pts
+                20 pts
               </Text>
               <View
                 style={
@@ -3010,9 +3004,7 @@ exports[`renders without description 1`] = `
                 }
                 testID="assignment-details.points-possible-lbl"
               >
-                20
-                 
-                pts
+                20 pts
               </Text>
               <View
                 style={

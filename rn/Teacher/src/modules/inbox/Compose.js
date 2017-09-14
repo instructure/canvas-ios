@@ -256,7 +256,7 @@ export class Compose extends PureComponent {
             action: this.editAttachments,
             accessibilityLabel: i18n('Add attachment'),
             badge: this.state.attachments.length > 0 && {
-              text: String(this.state.attachments.length),
+              text: i18n.number(this.state.attachments.length),
               backgroundColor: processColor('#008EE2'),
               textColor: processColor('white'),
             },

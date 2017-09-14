@@ -35,6 +35,18 @@ export default function (locale: string): void {
     generateId,
     translations,
     formats: {
+      number: {
+        default: {
+          style: 'decimal',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2,
+        },
+        percent: {
+          style: 'percent',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2,
+        },
+      },
       date: {
         'MMMM d': { month: 'long', day: 'numeric' },
         'MMM d': { month: 'short', day: 'numeric' },
