@@ -10,7 +10,6 @@
 		491167181DAF467C00D18837 /* UserEnrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491167171DAF467C00D18837 /* UserEnrollment.swift */; };
 		4911671A1DAF4B1000D18837 /* UserEnrollment+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491167191DAF4B1000D18837 /* UserEnrollment+Collections.swift */; };
 		4911671C1DAFE49600D18837 /* Bundle+Peeps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4911671B1DAFE49600D18837 /* Bundle+Peeps.swift */; };
-		4928EBDE1C84DEE500799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBDD1C84DEE500799E04 /* Marshal.framework */; };
 		49850A491E49A36700885F71 /* UserEnrollment+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49850A481E49A36700885F71 /* UserEnrollment+Network.swift */; };
 		49A04E301CF50BE20051E1E7 /* BackdropCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E2A1CF50BE20051E1E7 /* BackdropCell.swift */; };
 		49A04E311CF50BE20051E1E7 /* BackdropFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E2B1CF50BE20051E1E7 /* BackdropFile.swift */; };
@@ -29,18 +28,20 @@
 		5E55601C1C8ECAAE00933E08 /* User+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E55601B1C8ECAAE00933E08 /* User+Collections.swift */; };
 		5E55601E1C8ECAE600933E08 /* Session+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E55601D1C8ECAE600933E08 /* Session+User.swift */; };
 		5EEB54D21C48181300953B20 /* PeepKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEB54D11C48181300953B20 /* PeepKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5EEB54F71C48182D00953B20 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54F01C48182D00953B20 /* Result.framework */; };
 		5EEB54F81C48182D00953B20 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54F11C48182D00953B20 /* SoLazy.framework */; };
 		5EEB54F91C48182D00953B20 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54F21C48182D00953B20 /* SoPretty.framework */; };
 		5EEB54FA1C48182D00953B20 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54F31C48182D00953B20 /* TooLegit.framework */; };
 		5EEB54FB1C48182D00953B20 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EEB54F41C48182D00953B20 /* SoPersistent.framework */; };
 		5EEB55031C48185000953B20 /* Peeps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EEB54FE1C48185000953B20 /* Peeps.xcdatamodeld */; };
+		692DDFC18312602C79B11602 /* Pods_defaults_Peeps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B325C29B1C3518BCBC0C133F /* Pods_defaults_Peeps.framework */; };
 		AC2A4E811D2EC7E000D6EDAB /* PandaImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2A4E801D2EC7E000D6EDAB /* PandaImages.xcassets */; };
 		B16B5E281E255B5800DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E2A1E255B5800DED47B /* InfoPlist.strings */; };
 		B526E35F1D8CAAB7008DA358 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B526E35C1D8CAAB7008DA358 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0361B25B4D879C615BD50E04 /* Pods_Peeps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Peeps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		156153D132DA59084DCA0BA5 /* Pods-Peeps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peeps.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Peeps/Pods-Peeps.release.xcconfig"; sourceTree = "<group>"; };
 		490D34B11DEF4FB8009A280D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		491167171DAF467C00D18837 /* UserEnrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEnrollment.swift; sourceTree = "<group>"; };
 		491167191DAF4B1000D18837 /* UserEnrollment+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEnrollment+Collections.swift"; sourceTree = "<group>"; };
@@ -57,6 +58,8 @@
 		49A04E441CF6149A0051E1E7 /* PandatarBuilderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PandatarBuilderViewController.swift; sourceTree = "<group>"; };
 		49A04E451CF6149A0051E1E7 /* PandatarBuilderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PandatarBuilderViewController.xib; sourceTree = "<group>"; };
 		49A04E491CF614DC0051E1E7 /* ProfileBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBarButtonItem.swift; sourceTree = "<group>"; };
+		4EB1EBFC32EB4744AAE4D96D /* Pods-defaults-Peeps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Peeps.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Peeps/Pods-defaults-Peeps.debug.xcconfig"; sourceTree = "<group>"; };
+		5674F0C5457268F5BB3B83EA /* Pods-Peeps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Peeps.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Peeps/Pods-Peeps.debug.xcconfig"; sourceTree = "<group>"; };
 		5E5560131C8EC90200933E08 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5E5560151C8EC92300933E08 /* UserAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		5E5560171C8ECA2400933E08 /* User+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "User+Network.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -92,6 +95,7 @@
 		B16B5E3A1E255C2A00DED47B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5E3B1E255C3300DED47B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5E3C1E255C3C00DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B325C29B1C3518BCBC0C133F /* Pods_defaults_Peeps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Peeps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B526E35D1D8CAAB7008DA358 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B526E35E1D8CAAB7008DA358 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B526E3601D8CAABC008DA358 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 		B526E36F1D8CAAE6008DA358 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B526E3701D8CAAEC008DA358 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B526E3711D8CAAEC008DA358 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BBC768128D61998F5ADEC742 /* Pods-defaults-Peeps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Peeps.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Peeps/Pods-defaults-Peeps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,12 +124,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EEB54F71C48182D00953B20 /* Result.framework in Frameworks */,
 				5EEB54F81C48182D00953B20 /* SoLazy.framework in Frameworks */,
 				5EEB54F91C48182D00953B20 /* SoPretty.framework in Frameworks */,
 				5EEB54FA1C48182D00953B20 /* TooLegit.framework in Frameworks */,
-				4928EBDE1C84DEE500799E04 /* Marshal.framework in Frameworks */,
 				5EEB54FB1C48182D00953B20 /* SoPersistent.framework in Frameworks */,
+				692DDFC18312602C79B11602 /* Pods_defaults_Peeps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +193,8 @@
 				5EEB54ED1C48182000953B20 /* Dependencies */,
 				5EEB54D01C48181300953B20 /* Peeps */,
 				5EEB549A1C48149800953B20 /* Products */,
+				A518D20987AF128D08BE4DAE /* Pods */,
+				6EAC1C15C8EFBEC10DDF761A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,6 +249,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6EAC1C15C8EFBEC10DDF761A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0361B25B4D879C615BD50E04 /* Pods_Peeps.framework */,
+				B325C29B1C3518BCBC0C133F /* Pods_defaults_Peeps.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A518D20987AF128D08BE4DAE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5674F0C5457268F5BB3B83EA /* Pods-Peeps.debug.xcconfig */,
+				156153D132DA59084DCA0BA5 /* Pods-Peeps.release.xcconfig */,
+				4EB1EBFC32EB4744AAE4D96D /* Pods-defaults-Peeps.debug.xcconfig */,
+				BBC768128D61998F5ADEC742 /* Pods-defaults-Peeps.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -261,10 +287,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EEB54EA1C48181400953B20 /* Build configuration list for PBXNativeTarget "Peeps" */;
 			buildPhases = (
+				D1DA921308876FD3421D40DA /* [CP] Check Pods Manifest.lock */,
 				5EEB54CA1C48181300953B20 /* Sources */,
 				5EEB54CB1C48181300953B20 /* Frameworks */,
 				5EEB54CC1C48181300953B20 /* Headers */,
 				5EEB54CD1C48181300953B20 /* Resources */,
+				3E159D9FA9B6EDB354CBAF47 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -342,6 +370,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E159D9FA9B6EDB354CBAF47 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-Peeps/Pods-defaults-Peeps-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1DA921308876FD3421D40DA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-Peeps-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5EEB54CA1C48181300953B20 /* Sources */ = {
@@ -522,6 +586,7 @@
 		};
 		5EEB54E61C48181400953B20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EB1EBFC32EB4744AAE4D96D /* Pods-defaults-Peeps.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -532,7 +597,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Peeps/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Peeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,6 +610,7 @@
 		};
 		5EEB54E71C48181400953B20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBC768128D61998F5ADEC742 /* Pods-defaults-Peeps.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
@@ -555,7 +621,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Peeps/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Peeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";

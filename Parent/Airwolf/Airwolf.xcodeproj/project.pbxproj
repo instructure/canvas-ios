@@ -18,8 +18,6 @@
 		617A675D1CE3757F0065E487 /* Airwolf.h in Headers */ = {isa = PBXBuildFile; fileRef = 617A675C1CE3757F0065E487 /* Airwolf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		617A67761CE375F40065E487 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A67741CE375EA0065E487 /* TooLegit.framework */; };
 		617A67781CE3760A0065E487 /* Airwolf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617A67771CE3760A0065E487 /* Airwolf.swift */; };
-		617A677D1CE382430065E487 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A677C1CE382330065E487 /* ReactiveCocoa.framework */; };
-		617A677F1CE383580065E487 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A677E1CE382A50065E487 /* Marshal.framework */; };
 		618405B21CEA5464005FB49D /* Airwolf.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 618405B01CEA5464005FB49D /* Airwolf.xcdatamodeld */; };
 		618405B41CEA54C3005FB49D /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618405B31CEA54C3005FB49D /* Student.swift */; };
 		618405B71CEA5741005FB49D /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 618405B51CEA5711005FB49D /* SoPersistent.framework */; };
@@ -35,9 +33,12 @@
 		61E1A7331CEE4EF000728D95 /* Discussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E1A7321CEE4EF000728D95 /* Discussions.swift */; };
 		61E1A7F51CEFA1E300728D95 /* CalendarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E1A7F41CEFA1DB00728D95 /* CalendarKit.framework */; };
 		61EB8D561CF36D5800E794A4 /* DiscussionKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61EB8D551CF36D5800E794A4 /* DiscussionKit.framework */; };
+		BC7D9E851A5FE97F60BBDB47 /* Pods_defaults_Airwolf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC7774451AA7E626FB90B79 /* Pods_defaults_Airwolf.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20D4DBAE4E49FEDC726035EB /* Pods-Airwolf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airwolf.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Airwolf/Pods-Airwolf.debug.xcconfig"; sourceTree = "<group>"; };
+		3A1D41CB5545CF3395D48895 /* Pods-Airwolf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Airwolf.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Airwolf/Pods-Airwolf.release.xcconfig"; sourceTree = "<group>"; };
 		4944636C1F4BC63300F3827B /* RegionPinger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegionPinger.swift; sourceTree = "<group>"; };
 		4944636E1F4BC63D00F3827B /* Region.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		49F0888C1DF0CEB7008BB8DA /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +70,10 @@
 		61E1A7321CEE4EF000728D95 /* Discussions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Discussions.swift; sourceTree = "<group>"; };
 		61E1A7F41CEFA1DB00728D95 /* CalendarKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CalendarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61EB8D551CF36D5800E794A4 /* DiscussionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DiscussionKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F99527D99B01B0D95D8F08 /* Pods-defaults-Airwolf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Airwolf.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Airwolf/Pods-defaults-Airwolf.debug.xcconfig"; sourceTree = "<group>"; };
+		B26438415CDCC325336D9392 /* Pods_Airwolf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Airwolf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD609B472818E074037B9ED6 /* Pods-defaults-Airwolf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Airwolf.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Airwolf/Pods-defaults-Airwolf.release.xcconfig"; sourceTree = "<group>"; };
+		DDC7774451AA7E626FB90B79 /* Pods_defaults_Airwolf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Airwolf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,19 +83,27 @@
 			files = (
 				61A47BD01CECF7DF00861155 /* EnrollmentKit.framework in Frameworks */,
 				617A67761CE375F40065E487 /* TooLegit.framework in Frameworks */,
-				617A677D1CE382430065E487 /* ReactiveCocoa.framework in Frameworks */,
 				61E1A7F51CEFA1E300728D95 /* CalendarKit.framework in Frameworks */,
 				6133D9181CEDFFA8004B241B /* AssignmentKit.framework in Frameworks */,
-				617A677F1CE383580065E487 /* Marshal.framework in Frameworks */,
 				618405B71CEA5741005FB49D /* SoPersistent.framework in Frameworks */,
 				618405B81CEA5744005FB49D /* SoLazy.framework in Frameworks */,
 				61EB8D561CF36D5800E794A4 /* DiscussionKit.framework in Frameworks */,
+				BC7D9E851A5FE97F60BBDB47 /* Pods_defaults_Airwolf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3362E35A5CEED80FA5410F8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B26438415CDCC325336D9392 /* Pods_Airwolf.framework */,
+				DDC7774451AA7E626FB90B79 /* Pods_defaults_Airwolf.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		615AE6F61D5B7D1900EBAE12 /* Region Picker */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +122,8 @@
 				617A675B1CE3757F0065E487 /* Airwolf */,
 				617A67731CE375AD0065E487 /* Dependencies */,
 				617A675A1CE3757F0065E487 /* Products */,
+				715FECA0EB5F05DE80D8137A /* Pods */,
+				3362E35A5CEED80FA5410F8A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +199,17 @@
 			path = Canvas;
 			sourceTree = "<group>";
 		};
+		715FECA0EB5F05DE80D8137A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20D4DBAE4E49FEDC726035EB /* Pods-Airwolf.debug.xcconfig */,
+				3A1D41CB5545CF3395D48895 /* Pods-Airwolf.release.xcconfig */,
+				A2F99527D99B01B0D95D8F08 /* Pods-defaults-Airwolf.debug.xcconfig */,
+				CD609B472818E074037B9ED6 /* Pods-defaults-Airwolf.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -203,10 +229,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 617A676D1CE3757F0065E487 /* Build configuration list for PBXNativeTarget "Airwolf" */;
 			buildPhases = (
+				06E8BC623741CB2598E2C3FB /* [CP] Check Pods Manifest.lock */,
 				617A67541CE3757F0065E487 /* Sources */,
 				617A67551CE3757F0065E487 /* Frameworks */,
 				617A67561CE3757F0065E487 /* Headers */,
 				617A67571CE3757F0065E487 /* Resources */,
+				AB85B9812C69F5B707B4D3DA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +287,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06E8BC623741CB2598E2C3FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-Airwolf-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB85B9812C69F5B707B4D3DA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-Airwolf/Pods-defaults-Airwolf-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		617A67541CE3757F0065E487 /* Sources */ = {
@@ -386,6 +450,7 @@
 		};
 		617A676E1CE3757F0065E487 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2F99527D99B01B0D95D8F08 /* Pods-defaults-Airwolf.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -393,10 +458,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Airwolf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Airwolf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -408,6 +473,7 @@
 		};
 		617A676F1CE3757F0065E487 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD609B472818E074037B9ED6 /* Pods-defaults-Airwolf.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -415,10 +481,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Airwolf/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Airwolf;
 				PRODUCT_NAME = "$(TARGET_NAME)";

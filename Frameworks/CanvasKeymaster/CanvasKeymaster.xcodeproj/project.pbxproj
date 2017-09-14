@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C73C9C91E0333830064A19D /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9C81E0333830064A19D /* CWNotification.framework */; };
-		2C73C9CA1E0333830064A19D /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9C81E0333830064A19D /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4917EDAF1D947CAF009D58B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */; };
-		4917EDB01D947CAF009D58B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		499F7FDD1C9B6812005CCD00 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499F7FDC1C9B6812005CCD00 /* Reachability.framework */; };
+		0427ED71F9517BC9C905670E /* Pods_defaults_CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */; };
+		3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
 		49C0FB30190B167900572CA1 /* LaunchImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C0FB2F190B167900572CA1 /* LaunchImage.xcassets */; };
 		49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E9586B190967B000A1BFB7 /* Foundation.framework */; };
 		49E545A41909B4AC001AD3BC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E545A31909B4AC001AD3BC /* CoreGraphics.framework */; };
@@ -26,11 +23,9 @@
 		6181F12D1DFF365900B94488 /* CKMDomainPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958981909979B00A1BFB7 /* CKMDomainPickerViewController.m */; };
 		B10E9F751E2FDB87000F5D01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10E9F771E2FDB87000F5D01 /* Localizable.strings */; };
 		B10E9F7B1E2FDB88000F5D01 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B10E9F7D1E2FDB88000F5D01 /* InfoPlist.strings */; };
-		B16702051E32817D00C901E9 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B16702041E32817D00C901E9 /* CWNotification.framework */; };
 		B181D2A41DFB20C600114ACE /* CKMDomainPickerPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A61DFB20C600114ACE /* CKMDomainPickerPhone.storyboard */; };
 		B181D2A71DFB210000114ACE /* CKMDomainPickerPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2A91DFB210000114ACE /* CKMDomainPickerPad.storyboard */; };
 		B181D2AA1DFB211500114ACE /* SupportTicket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B181D2AC1DFB211500114ACE /* SupportTicket.storyboard */; };
-		B1ECFC8E1C999EEF007C8852 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8D1C999EEF007C8852 /* Mantle.framework */; };
 		B1FC3AF61C98B4E500A8001F /* CanvasKeymaster.h in Headers */ = {isa = PBXBuildFile; fileRef = B1FC3AF51C98B4E500A8001F /* CanvasKeymaster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B001C98B5AE00A8001F /* CanvasKeymaster.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E958921909768F00A1BFB7 /* CanvasKeymaster.m */; };
 		B1FC3B011C98B60E00A8001F /* icon_forward_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B58A48EE1A894A21002445A3 /* icon_forward_arrow@3x.png */; };
@@ -77,19 +72,8 @@
 		B1FC3B301C98B66800A8001F /* SupportTicketViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1FC3B311C98B66800A8001F /* SupportTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */; };
 		B1FC3B361C98B6B700A8001F /* CKMDomainPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E958971909979B00A1BFB7 /* CKMDomainPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1FC3B381C98BD7600A8001F /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */; };
-		B1FC3B391C98BD7D00A8001F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
-		B1FC3B3B1C98BD8B00A8001F /* FXKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */; };
-		B5FF83331D6E3FE3005DFE19 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8D1C999EEF007C8852 /* Mantle.framework */; };
-		B5FF83341D6E3FE3005DFE19 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ECFC8D1C999EEF007C8852 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5FF83351D6E3FE3005DFE19 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */; };
-		B5FF83361D6E3FE3005DFE19 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC7001C90FA5800E85895 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5FF83371D6E3FE3005DFE19 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; };
 		B5FF83381D6E3FE3005DFE19 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FE1C90F9EA00E85895 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5FF833B1D6E3FE3005DFE19 /* FXKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */; };
-		B5FF833C1D6E3FE3005DFE19 /* FXKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1ADC6FA1C90F94F00E85895 /* FXKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5FF833E1D6E3FE6005DFE19 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499F7FDC1C9B6812005CCD00 /* Reachability.framework */; };
-		B5FF833F1D6E3FE6005DFE19 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 499F7FDC1C9B6812005CCD00 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5FF83401D6E4041005DFE19 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */; };
 		B5FF83411D6E4041005DFE19 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1FC3AF31C98B4E500A8001F /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BD94CF0E19A3D87B000423DE /* icon_help.png in Resources */ = {isa = PBXBuildFile; fileRef = BD94CF0C19A3D87B000423DE /* icon_help.png */; };
@@ -113,14 +97,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B5FF83361D6E3FE3005DFE19 /* CocoaLumberjack.framework in Embed Frameworks */,
-				B5FF83341D6E3FE3005DFE19 /* Mantle.framework in Embed Frameworks */,
-				2C73C9CA1E0333830064A19D /* CWNotification.framework in Embed Frameworks */,
 				B5FF83381D6E3FE3005DFE19 /* CanvasKit.framework in Embed Frameworks */,
-				B5FF833C1D6E3FE3005DFE19 /* FXKeychain.framework in Embed Frameworks */,
 				B5FF83411D6E4041005DFE19 /* CanvasKeymaster.framework in Embed Frameworks */,
-				4917EDB01D947CAF009D58B5 /* AFNetworking.framework in Embed Frameworks */,
-				B5FF833F1D6E3FE6005DFE19 /* Reachability.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,6 +106,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C73C9C81E0333830064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4917EDAE1D947C9D009D58B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499F7FDC1C9B6812005CCD00 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +143,7 @@
 		49E9589E1909979C00A1BFB7 /* CKMDomainSuggestionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMDomainSuggestionTableViewController.m; sourceTree = "<group>"; };
 		49E958A31909A66B00A1BFB7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		49E958A51909A67500A1BFB7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		5E274A401914434100E04789 /* icon_cancel_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cancel_light.png; sourceTree = "<group>"; };
 		5E274A411914434100E04789 /* icon_cancel_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cancel_light@2x.png"; sourceTree = "<group>"; };
 		5E274A421914434100E04789 /* icon_profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_profile@2x.png"; sourceTree = "<group>"; };
@@ -193,6 +173,7 @@
 		5EEEB1761B56C9A7001438C3 /* SupportTicketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketManager.m; sourceTree = "<group>"; };
 		5EEEB1771B56C9A7001438C3 /* SupportTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportTicketViewController.h; sourceTree = "<group>"; };
 		5EEEB1781B56C9A7001438C3 /* SupportTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportTicketViewController.m; sourceTree = "<group>"; };
+		A2C655512AEE7F55037ED04C /* Pods-CanvasKeymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKeymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKeymaster/Pods-CanvasKeymaster.release.xcconfig"; sourceTree = "<group>"; };
 		B10E9F701E2FDB84000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CKMDomainPickerPad.strings; sourceTree = "<group>"; };
 		B10E9F711E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/SupportTicket.strings; sourceTree = "<group>"; };
 		B10E9F721E2FDB85000F5D01 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
@@ -352,6 +333,9 @@
 		B58A48F31A894A4B002445A3 /* icon_x_delete@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_x_delete@1x.png"; sourceTree = "<group>"; };
 		BD94CF0C19A3D87B000423DE /* icon_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_help.png; sourceTree = "<group>"; };
 		BD94CF0D19A3D87B000423DE /* icon_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_help@2x.png"; sourceTree = "<group>"; };
+		DDFE3E845A72769CE0B91EB1 /* Pods-defaults-CanvasKeymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKeymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster.debug.xcconfig"; sourceTree = "<group>"; };
+		E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E74302FEF23A791C861D1A84 /* Pods-CanvasKeymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKeymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKeymaster/Pods-CanvasKeymaster.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,15 +344,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5FF83371D6E3FE3005DFE19 /* CanvasKit.framework in Frameworks */,
-				4917EDAF1D947CAF009D58B5 /* AFNetworking.framework in Frameworks */,
 				49E545A41909B4AC001AD3BC /* CoreGraphics.framework in Frameworks */,
-				B5FF83331D6E3FE3005DFE19 /* Mantle.framework in Frameworks */,
 				49E545A51909B4AC001AD3BC /* UIKit.framework in Frameworks */,
 				49E545A21909B4AC001AD3BC /* Foundation.framework in Frameworks */,
-				B5FF83351D6E3FE3005DFE19 /* CocoaLumberjack.framework in Frameworks */,
-				B5FF833E1D6E3FE6005DFE19 /* Reachability.framework in Frameworks */,
-				2C73C9C91E0333830064A19D /* CWNotification.framework in Frameworks */,
-				B5FF833B1D6E3FE3005DFE19 /* FXKeychain.framework in Frameworks */,
 				B5FF83401D6E4041005DFE19 /* CanvasKeymaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,12 +355,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1FC3B381C98BD7600A8001F /* CocoaLumberjack.framework in Frameworks */,
-				B1ECFC8E1C999EEF007C8852 /* Mantle.framework in Frameworks */,
-				B1FC3B391C98BD7D00A8001F /* CanvasKit.framework in Frameworks */,
-				B16702051E32817D00C901E9 /* CWNotification.framework in Frameworks */,
-				B1FC3B3B1C98BD8B00A8001F /* FXKeychain.framework in Frameworks */,
-				499F7FDD1C9B6812005CCD00 /* Reachability.framework in Frameworks */,
+				3BCAF3CC1F63B12200EEF0A7 /* CanvasKit.framework in Frameworks */,
+				0427ED71F9517BC9C905670E /* Pods_defaults_CanvasKeymaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +417,7 @@
 				B1FC3AF41C98B4E500A8001F /* CanvasKeymaster */,
 				49E9586A190967B000A1BFB7 /* Frameworks */,
 				49E95869190967B000A1BFB7 /* Products */,
+				5DB5AE2751F714EC58C27CDD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -467,6 +442,8 @@
 				49E95879190967B000A1BFB7 /* XCTest.framework */,
 				49E9587C190967B000A1BFB7 /* UIKit.framework */,
 				49E545A31909B4AC001AD3BC /* CoreGraphics.framework */,
+				0BA1F2BA47D5098035222EA1 /* Pods_CanvasKeymaster.framework */,
+				E66D20238B73967062C6B28D /* Pods_defaults_CanvasKeymaster.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -500,6 +477,17 @@
 				5E93CC3B199C1B45004FC97F /* CKMDomainHelpViewController.storyboard */,
 			);
 			path = "Domain Picker";
+			sourceTree = "<group>";
+		};
+		5DB5AE2751F714EC58C27CDD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E74302FEF23A791C861D1A84 /* Pods-CanvasKeymaster.debug.xcconfig */,
+				A2C655512AEE7F55037ED04C /* Pods-CanvasKeymaster.release.xcconfig */,
+				DDFE3E845A72769CE0B91EB1 /* Pods-defaults-CanvasKeymaster.debug.xcconfig */,
+				5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		5E274A3F1914434100E04789 /* Resources */ = {
@@ -640,10 +628,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1FC3AFC1C98B4E500A8001F /* Build configuration list for PBXNativeTarget "CanvasKeymaster" */;
 			buildPhases = (
+				5A4E88743693D5C9C8E6F2AB /* [CP] Check Pods Manifest.lock */,
 				B1FC3AEE1C98B4E500A8001F /* Sources */,
 				B1FC3AEF1C98B4E500A8001F /* Frameworks */,
 				B1FC3AF01C98B4E500A8001F /* Headers */,
 				B1FC3AF11C98B4E500A8001F /* Resources */,
+				8225C263888B2306263080A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -731,6 +721,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A4E88743693D5C9C8E6F2AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-CanvasKeymaster-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8225C263888B2306263080A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-CanvasKeymaster/Pods-defaults-CanvasKeymaster-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49E5459D1909B4AC001AD3BC /* Sources */ = {
@@ -997,7 +1023,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "CanvasKeytester/CanvasKeytester-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1023,7 +1049,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CanvasKeytester/CanvasKeytester-Prefix.pch";
 				INFOPLIST_FILE = "CanvasKeytester/CanvasKeytester-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1116,6 +1142,7 @@
 		};
 		B1FC3AFD1C98B4E500A8001F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDFE3E845A72769CE0B91EB1 /* Pods-defaults-CanvasKeymaster.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1132,7 +1159,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = CanvasKeymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKeymaster;
@@ -1147,6 +1174,7 @@
 		};
 		B1FC3AFE1C98B4E500A8001F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B63522A40D7F33C56E0E141 /* Pods-defaults-CanvasKeymaster.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1163,7 +1191,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = CanvasKeymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKeymaster;

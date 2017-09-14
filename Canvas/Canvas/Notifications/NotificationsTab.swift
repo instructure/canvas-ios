@@ -20,7 +20,6 @@ import UIKit
 import Foundation
 import TechDebt
 import SoIconic
-import SuchActivity
 import TooLegit
 import SoPretty
 

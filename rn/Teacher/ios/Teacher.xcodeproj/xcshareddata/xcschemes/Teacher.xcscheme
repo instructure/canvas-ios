@@ -62,6 +62,76 @@
                ReferencedContainer = "container:Teacher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1D5130C638B1A5FD4A4D877666C9AC52"
+               BuildableName = "Pods_defaults_AttendanceLE.framework"
+               BlueprintName = "Pods-defaults-AttendanceLE"
+               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A6BAC0F18F429AA406681BECC4686D6F"
+               BuildableName = "Pods_defaults_CanvasKeymaster.framework"
+               BlueprintName = "Pods-defaults-CanvasKeymaster"
+               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "958761548E3D84A3DA0ABE9B4225D391"
+               BuildableName = "Pods_defaults_CanvasKit.framework"
+               BlueprintName = "Pods-defaults-CanvasKit"
+               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5C68737759C6B537AA6FF56D14212C56"
+               BuildableName = "Pods_defaults_SoLazy.framework"
+               BlueprintName = "Pods-defaults-SoLazy"
+               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66C64F27F748D5A1AA50BFE1E22A206A"
+               BuildableName = "Mantle.framework"
+               BlueprintName = "Mantle"
+               ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

@@ -12,18 +12,11 @@
 		2CCDE2DE1DA845BA00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E01DA845BA00B46D87 /* InfoPlist.strings */; };
 		2CCDE2E31DA845BB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E51DA845BB00B46D87 /* InfoPlist.strings */; };
 		2CCDE3531DABDC1300B46D87 /* NSBundle+Keymaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDE3521DABDC1300B46D87 /* NSBundle+Keymaster.swift */; };
-		4928EBD61C84DEA200799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD51C84DEA200799E04 /* Marshal.framework */; };
 		4928EBD71C84DEAA00799E04 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD51C84DEA200799E04 /* Marshal.framework */; };
-		4928EBD81C84DEAA00799E04 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4928EBD51C84DEA200799E04 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		493EBDA91D9638B200DCDDA2 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA61D96383C00DCDDA2 /* Cartography.framework */; };
-		493EBDAA1D9638B200DCDDA2 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA61D96383C00DCDDA2 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		493EBDAD1D9638B200DCDDA2 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */; };
-		493EBDAE1D9638B200DCDDA2 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4980F9B11DE3ACA600D71093 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4980F9B01DE3AC9900D71093 /* ReactiveSwift.framework */; };
-		4980F9B21DE3ACA600D71093 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4980F9B01DE3AC9900D71093 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4980F9B31DE3ACA800D71093 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4980F9B01DE3AC9900D71093 /* ReactiveSwift.framework */; };
 		49998E361E1D734A00C98AC2 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E351E1D733A00C98AC2 /* CWNotification.framework */; };
-		49998E371E1D734A00C98AC2 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E351E1D733A00C98AC2 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E1B50F41C8F44230019D764 /* AccountDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B50F31C8F44230019D764 /* AccountDomain.swift */; };
 		5E1B50F91C8F44290019D764 /* MobileVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B50F61C8F44290019D764 /* MobileVerifier.swift */; };
 		5E1B50FA1C8F44290019D764 /* MobileVerifyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1B50F71C8F44290019D764 /* MobileVerifyResponse.swift */; };
@@ -59,7 +52,6 @@
 		5EB86AE11C4ECCAC00C920A2 /* SelectSessionListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB86ACA1C4ECCAC00C920A2 /* SelectSessionListViewController.storyboard */; };
 		5EB86AE21C4ECCAC00C920A2 /* SelectSessionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB86ACB1C4ECCAC00C920A2 /* SelectSessionListViewController.swift */; };
 		5EB86AEF1C4ECE8000C920A2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE61C4ECDFC00C920A2 /* Result.framework */; };
-		5EB86AF01C4ECE8000C920A2 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE61C4ECDFC00C920A2 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EB86AF11C4ECE8000C920A2 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE71C4ECDFC00C920A2 /* SoLazy.framework */; };
 		5EB86AF21C4ECE8000C920A2 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE71C4ECDFC00C920A2 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EB86AF31C4ECE8000C920A2 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE81C4ECDFC00C920A2 /* SoPersistent.framework */; };
@@ -68,11 +60,11 @@
 		5EB86AF61C4ECE8000C920A2 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE91C4ECDFC00C920A2 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5EB86AF71C4ECE8000C920A2 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AEA1C4ECDFC00C920A2 /* TooLegit.framework */; };
 		5EB86AF81C4ECE8000C920A2 /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AEA1C4ECDFC00C920A2 /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5EB86AFB1C4ECE8400C920A2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE61C4ECDFC00C920A2 /* Result.framework */; };
 		5EB86AFC1C4ECE8400C920A2 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE71C4ECDFC00C920A2 /* SoLazy.framework */; };
 		5EB86AFD1C4ECE8400C920A2 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE81C4ECDFC00C920A2 /* SoPersistent.framework */; };
 		5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AE91C4ECDFC00C920A2 /* SoPretty.framework */; };
 		5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB86AEA1C4ECDFC00C920A2 /* TooLegit.framework */; };
+		A5D7243BAF0E14D56CF13ED9 /* Pods_defaults_Keymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E23328A02D29C70AD5400D /* Pods_defaults_Keymaster.framework */; };
 		B16B5C6D1E253C8800DED47B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C6F1E253C8800DED47B /* Localizable.strings */; };
 		B16B5C721E253C8900DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C741E253C8900DED47B /* InfoPlist.strings */; };
 		B16B5C771E253C8A00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5C791E253C8A00DED47B /* InfoPlist.strings */; };
@@ -127,13 +119,7 @@
 				5EB86AF21C4ECE8000C920A2 /* SoLazy.framework in Embed Frameworks */,
 				5EB86AF41C4ECE8000C920A2 /* SoPersistent.framework in Embed Frameworks */,
 				5EB86AF81C4ECE8000C920A2 /* TooLegit.framework in Embed Frameworks */,
-				493EBDAA1D9638B200DCDDA2 /* Cartography.framework in Embed Frameworks */,
-				49998E371E1D734A00C98AC2 /* CWNotification.framework in Embed Frameworks */,
-				4928EBD81C84DEAA00799E04 /* Marshal.framework in Embed Frameworks */,
 				5EB86AA61C4ECC6E00C920A2 /* Keymaster.framework in Embed Frameworks */,
-				4980F9B21DE3ACA600D71093 /* ReactiveSwift.framework in Embed Frameworks */,
-				493EBDAE1D9638B200DCDDA2 /* Kingfisher.framework in Embed Frameworks */,
-				5EB86AF01C4ECE8000C920A2 /* Result.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +127,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F134D2C62A9857F37B60C8B /* Pods-Keymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Keymaster/Pods-Keymaster.debug.xcconfig"; sourceTree = "<group>"; };
 		2C50EE1B1E7371BD0096592C /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/Secrets.framework"; sourceTree = "<group>"; };
 		2CCDE2D01DA845B800B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2DF1DA845BA00B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -200,6 +187,7 @@
 		2CCDE3501DABD7B700B46D87 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE3511DABD7B700B46D87 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE3521DABDC1300B46D87 /* NSBundle+Keymaster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+Keymaster.swift"; sourceTree = "<group>"; };
+		2F688CAF429F6E7A19F4D80E /* Pods-defaults-Keymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Keymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Keymaster/Pods-defaults-Keymaster.debug.xcconfig"; sourceTree = "<group>"; };
 		4928EBD51C84DEA200799E04 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		493EBDA61D96383C00DCDDA2 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		493EBDA81D96383C00DCDDA2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +239,9 @@
 		5EB86AE81C4ECDFC00C920A2 /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB86AE91C4ECDFC00C920A2 /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB86AEA1C4ECDFC00C920A2 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62C69148FAB3046E8D993D04 /* Pods_Keytester.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keytester.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85800324DC6CBACEC3AC03E8 /* Pods-defaults-Keymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Keymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Keymaster/Pods-defaults-Keymaster.release.xcconfig"; sourceTree = "<group>"; };
+		A251F2C48DF69DCFCA9041C7 /* Pods-Keymaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keymaster.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Keymaster/Pods-Keymaster.release.xcconfig"; sourceTree = "<group>"; };
 		B16B5C6E1E253C8800DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B16B5C731E253C8900DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5C781E253C8A00DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -308,6 +299,8 @@
 		B16B5CAD1E25474100DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B16B5CAE1E25474200DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5CAF1E25474300DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2E23328A02D29C70AD5400D /* Pods_defaults_Keymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Keymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED53A19FAAAECB055B4FA8E2 /* Pods_Keymaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Keymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,14 +340,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB86AFB1C4ECE8400C920A2 /* Result.framework in Frameworks */,
-				4980F9B31DE3ACA800D71093 /* ReactiveSwift.framework in Frameworks */,
 				5EB86AFC1C4ECE8400C920A2 /* SoLazy.framework in Frameworks */,
 				5EB86AFD1C4ECE8400C920A2 /* SoPersistent.framework in Frameworks */,
 				5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */,
-				4928EBD61C84DEA200799E04 /* Marshal.framework in Frameworks */,
 				5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */,
 				2C50EE1C1E7371BD0096592C /* Secrets.framework in Frameworks */,
+				A5D7243BAF0E14D56CF13ED9 /* Pods_defaults_Keymaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +364,9 @@
 			isa = PBXGroup;
 			children = (
 				2C50EE1B1E7371BD0096592C /* Secrets.framework */,
+				62C69148FAB3046E8D993D04 /* Pods_Keytester.framework */,
+				ED53A19FAAAECB055B4FA8E2 /* Pods_Keymaster.framework */,
+				D2E23328A02D29C70AD5400D /* Pods_defaults_Keymaster.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -408,6 +402,7 @@
 				5EB86A9F1C4ECC6E00C920A2 /* KeymasterTests */,
 				5EB86A5B1C4ECC5400C920A2 /* Products */,
 				2C50EE1A1E7371BC0096592C /* Frameworks */,
+				D32A966CB6725EF2DC50760E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -562,6 +557,17 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
+		D32A966CB6725EF2DC50760E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F134D2C62A9857F37B60C8B /* Pods-Keymaster.debug.xcconfig */,
+				A251F2C48DF69DCFCA9041C7 /* Pods-Keymaster.release.xcconfig */,
+				2F688CAF429F6E7A19F4D80E /* Pods-defaults-Keymaster.debug.xcconfig */,
+				85800324DC6CBACEC3AC03E8 /* Pods-defaults-Keymaster.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -636,10 +642,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EB86AAB1C4ECC6E00C920A2 /* Build configuration list for PBXNativeTarget "Keymaster" */;
 			buildPhases = (
+				1A3A798A33A2B2F0B5447E30 /* [CP] Check Pods Manifest.lock */,
 				5EB86A8B1C4ECC6E00C920A2 /* Sources */,
 				5EB86A8C1C4ECC6E00C920A2 /* Frameworks */,
 				5EB86A8D1C4ECC6E00C920A2 /* Headers */,
 				5EB86A8E1C4ECC6E00C920A2 /* Resources */,
+				A9611B63A6BEDFE4E226F695 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -796,6 +804,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A3A798A33A2B2F0B5447E30 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-Keymaster-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9611B63A6BEDFE4E226F695 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-Keymaster/Pods-defaults-Keymaster-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5EB86A561C4ECC5400C920A2 /* Sources */ = {
@@ -1220,6 +1264,7 @@
 		};
 		5EB86AA71C4ECC6E00C920A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F688CAF429F6E7A19F4D80E /* Pods-defaults-Keymaster.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1231,7 +1276,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Keymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keymaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1245,6 +1290,7 @@
 		};
 		5EB86AA81C4ECC6E00C920A2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85800324DC6CBACEC3AC03E8 /* Pods-defaults-Keymaster.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1256,7 +1302,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Keymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keymaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";

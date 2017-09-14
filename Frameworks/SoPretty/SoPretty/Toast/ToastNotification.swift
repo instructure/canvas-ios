@@ -17,7 +17,7 @@
 
 
 import Foundation
-import CWNotification
+import CWStatusBarNotification
 
 public class ToastManager : NSObject {
     

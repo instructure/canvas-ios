@@ -20,7 +20,7 @@
 #import "SupportTicketManager.h"
 #import "CanvasKeymaster.h"
 
-@import CWNotification;
+@import CWStatusBarNotification;
 
 static float DefaultToastDuration = 1.65f;
 

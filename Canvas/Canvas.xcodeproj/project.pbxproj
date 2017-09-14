@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03DAE3A2A1041407B354AC7C /* Pods_defaults_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */; };
+		1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */; };
 		2C0CAD651DEF6C2F008D90FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD671DEF6C2F008D90FA /* Localizable.strings */; };
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
@@ -25,27 +27,19 @@
 		2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
 		2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; };
-		2C73C9BA1E031ECD0064A19D /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9B91E031ECD0064A19D /* CWNotification.framework */; };
-		2C73C9BB1E031ECD0064A19D /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C73C9B91E031ECD0064A19D /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CA548321DCB8C1000A05E0F /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
-		47F5B1391F293D9000B03DAC /* AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */; };
-		47F5B13A1F293D9000B03DAC /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B9155051F610B2500C790F3 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; };
+		3B9155061F610B2500C790F3 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B94AFDB1F6105940093F403 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94AFDA1F6105940093F403 /* FileKit.framework */; };
+		3B94AFDC1F6105940093F403 /* FileKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94AFDA1F6105940093F403 /* FileKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B94AFE01F6108240093F403 /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3BBBD38B1F62F890002ACA58 /* SuchActivity.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1321DFF547400B94488 /* SuchActivity.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4902E1261CF4C8890069E043 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 4902E1241CF4C8890069E043 /* Analytics.m */; };
 		490687941D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687901D02151E0072DBEA /* PushNotificationPreauthorizationCell.swift */; };
 		490687951D02151E0072DBEA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687911D02151E0072DBEA /* SettingsViewController.swift */; };
 		490687961D02151E0072DBEA /* SystemSettingsLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */; };
 		490687981D0215330072DBEA /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490687971D0215330072DBEA /* LandingPageViewController.swift */; };
-		4907DF981DF62C17000D745D /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4907DF971DF62C07000D745D /* ReactiveObjCBridge.framework */; };
-		491A66041D9057530092CDE9 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66011D9057410092CDE9 /* Masonry.framework */; };
-		491A66051D9057530092CDE9 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66011D9057410092CDE9 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		491A66061D9057530092CDE9 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66021D9057410092CDE9 /* SVProgressHUD.framework */; };
-		491A66071D9057530092CDE9 /* SVProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66021D9057410092CDE9 /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		491A66081D9057530092CDE9 /* TBBModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66031D9057410092CDE9 /* TBBModal.framework */; };
-		491A66091D9057530092CDE9 /* TBBModal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66031D9057410092CDE9 /* TBBModal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		491A660A1D9057570092CDE9 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66011D9057410092CDE9 /* Masonry.framework */; };
-		491A660B1D9057570092CDE9 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66021D9057410092CDE9 /* SVProgressHUD.framework */; };
-		491A660C1D9057570092CDE9 /* TBBModal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491A66031D9057410092CDE9 /* TBBModal.framework */; };
 		492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */; };
 		492704AE1CF4B6D700C631C6 /* TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 492704AD1CF4B6D700C631C6 /* TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492704AB1CF4B6D700C631C6 /* TechDebt.framework */; };
@@ -382,18 +376,8 @@
 		492708751CF4C38100C631C6 /* AssignmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927085E1CF4C37100C631C6 /* AssignmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492708761CF4C38100C631C6 /* CalendarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927085F1CF4C37100C631C6 /* CalendarKit.framework */; };
 		492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927085F1CF4C37100C631C6 /* CalendarKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492708781CF4C38100C631C6 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708601CF4C37100C631C6 /* Cartography.framework */; };
-		492708791CF4C38100C631C6 /* Cartography.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708601CF4C37100C631C6 /* Cartography.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4927087A1CF4C38100C631C6 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708611CF4C37100C631C6 /* CocoaLumberjack.framework */; };
-		4927087B1CF4C38100C631C6 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708611CF4C37100C631C6 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4927087E1CF4C38100C631C6 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708631CF4C37100C631C6 /* EnrollmentKit.framework */; };
 		4927087F1CF4C38100C631C6 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708631CF4C37100C631C6 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492708801CF4C38100C631C6 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; };
-		492708811CF4C38100C631C6 /* FileKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492708821CF4C38100C631C6 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708651CF4C37100C631C6 /* Kingfisher.framework */; };
-		492708831CF4C38100C631C6 /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708651CF4C37100C631C6 /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492708841CF4C38100C631C6 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708661CF4C37100C631C6 /* Marshal.framework */; };
-		492708851CF4C38100C631C6 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708661CF4C37100C631C6 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492708861CF4C38100C631C6 /* MediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708671CF4C37100C631C6 /* MediaKit.framework */; };
 		492708871CF4C38100C631C6 /* MediaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708671CF4C37100C631C6 /* MediaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492708881CF4C38100C631C6 /* MyLittleViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708681CF4C37100C631C6 /* MyLittleViewController.framework */; };
@@ -402,12 +386,6 @@
 		4927088B1CF4C38100C631C6 /* Peeps.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708691CF4C37100C631C6 /* Peeps.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4927088C1CF4C38100C631C6 /* QuizKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086A1CF4C37100C631C6 /* QuizKit.framework */; };
 		4927088D1CF4C38100C631C6 /* QuizKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086A1CF4C37100C631C6 /* QuizKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4927088E1CF4C38100C631C6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */; };
-		4927088F1CF4C38100C631C6 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492708901CF4C38100C631C6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086C1CF4C37100C631C6 /* Result.framework */; };
-		492708911CF4C38100C631C6 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086C1CF4C37100C631C6 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		492708921CF4C38100C631C6 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; };
-		492708931CF4C38100C631C6 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492708941CF4C38100C631C6 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086E1CF4C37100C631C6 /* SoPersistent.framework */; };
 		492708951CF4C38100C631C6 /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086E1CF4C37100C631C6 /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492708961CF4C38100C631C6 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086F1CF4C37100C631C6 /* SoPretty.framework */; };
@@ -421,18 +399,11 @@
 		4927089E1CF4C38100C631C6 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708731CF4C37100C631C6 /* WhizzyWig.framework */; };
 		4927089F1CF4C38100C631C6 /* WhizzyWig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708731CF4C37100C631C6 /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492708A11CF4C38500C631C6 /* CalendarKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927085F1CF4C37100C631C6 /* CalendarKit.framework */; };
-		492708A21CF4C38500C631C6 /* Cartography.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708601CF4C37100C631C6 /* Cartography.framework */; };
-		492708A31CF4C38500C631C6 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708611CF4C37100C631C6 /* CocoaLumberjack.framework */; };
 		492708A51CF4C38500C631C6 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708631CF4C37100C631C6 /* EnrollmentKit.framework */; };
 		492708A61CF4C38500C631C6 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; };
-		492708A71CF4C38500C631C6 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708651CF4C37100C631C6 /* Kingfisher.framework */; };
-		492708A81CF4C38500C631C6 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708661CF4C37100C631C6 /* Marshal.framework */; };
 		492708A91CF4C38500C631C6 /* MediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708671CF4C37100C631C6 /* MediaKit.framework */; };
 		492708AA1CF4C38500C631C6 /* MyLittleViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708681CF4C37100C631C6 /* MyLittleViewController.framework */; };
-		492708AB1CF4C38500C631C6 /* Peeps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708691CF4C37100C631C6 /* Peeps.framework */; };
 		492708AC1CF4C38500C631C6 /* QuizKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086A1CF4C37100C631C6 /* QuizKit.framework */; };
-		492708AD1CF4C38500C631C6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */; };
-		492708AE1CF4C38500C631C6 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086C1CF4C37100C631C6 /* Result.framework */; };
 		492708AF1CF4C38500C631C6 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; };
 		492708B01CF4C38500C631C6 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086E1CF4C37100C631C6 /* SoPersistent.framework */; };
 		492708B11CF4C38500C631C6 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086F1CF4C37100C631C6 /* SoPretty.framework */; };
@@ -469,15 +440,6 @@
 		496D31241CF7529A00A3B11E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 496D31231CF7529A00A3B11E /* GoogleService-Info.plist */; };
 		496D31261CF752C600A3B11E /* LegacyModuleProgressShim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */; };
 		496D312A1CF7550A00A3B11E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D31291CF7550A00A3B11E /* NetworkMonitor.swift */; };
-		496FFEAC1E00B35D00F1742E /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 496FFEA91E00B34C00F1742E /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		496FFEAE1E00B35D00F1742E /* ReactiveObjCBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 496FFEAA1E00B34C00F1742E /* ReactiveObjCBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4972CBDB2B8CB711A3B56911 /* Pods_Canvas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */; };
-		4985D3BD1CFE357D00BA3685 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; };
-		4985D3BE1CFE357D00BA3685 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4985D3C01CFE35BE00BA3685 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BF1CFE35A500BA3685 /* Mantle.framework */; };
-		4985D3C11CFE35BE00BA3685 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BF1CFE35A500BA3685 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4985D3C31CFE35E100BA3685 /* FXKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3C21CFE35D600BA3685 /* FXKeychain.framework */; };
-		4985D3C41CFE35E100BA3685 /* FXKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3C21CFE35D600BA3685 /* FXKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49A04A711CF4F5B00051E1E7 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A047261CF4F5AD0051E1E7 /* JSON.h */; };
 		49A04A721CF4F5B00051E1E7 /* NSObject+SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A047271CF4F5AD0051E1E7 /* NSObject+SBJSON.h */; };
 		49A04A731CF4F5B00051E1E7 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A047281CF4F5AD0051E1E7 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -544,10 +506,6 @@
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
 		49A04E811CF654AB0051E1E7 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E7F1CF654AB0051E1E7 /* LoginConfiguration.swift */; };
 		49A04E821CF654AB0051E1E7 /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E801CF654AB0051E1E7 /* Session+Login.swift */; };
-		49AA290E1CF4CD320055862D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA290C1CF4CD320055862D /* Crashlytics.framework */; };
-		49AA290F1CF4CD320055862D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA290D1CF4CD320055862D /* Fabric.framework */; };
-		49AA29101CF4CD360055862D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA290C1CF4CD320055862D /* Crashlytics.framework */; };
-		49AA29111CF4CD360055862D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA290D1CF4CD320055862D /* Fabric.framework */; };
 		49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA29191CF4D1880055862D /* CanvasKit1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -798,7 +756,7 @@
 		49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */ = {isa = PBXBuildFile; fileRef = 49F9FA581CF8CDC400654758 /* UIImage+TechDebt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA591CF8CDC400654758 /* UIImage+TechDebt.m */; };
 		49F9FA6F1CF8FC8500654758 /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9FA6E1CF8FC8500654758 /* AppDelegate+Push.swift */; };
-		5E2159051D4BEA540005D2DF /* (null) in Resources */ = {isa = PBXBuildFile; };
+		5E29BC1558CFA979AE7A08CF /* Pods_defaults_common_tests_CanvasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */; };
 		5E95954A1D36CA2D00C86F93 /* CalendarEvent+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9595491D36CA2D00C86F93 /* CalendarEvent+Display.swift */; };
 		5EB46DE51D21A75C00C859A4 /* NSDate+DayConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DBE1D21A75C00C859A4 /* NSDate+DayConvenience.swift */; };
 		5EB46DE61D21A75C00C859A4 /* NSDate+ReferenceDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB46DBF1D21A75C00C859A4 /* NSDate+ReferenceDate.swift */; };
@@ -847,15 +805,6 @@
 		61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F12E1DFF41AD00B94488 /* ToDoTab.swift */; };
 		6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */; };
-		6181F1331DFF547400B94488 /* SuchActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1321DFF547400B94488 /* SuchActivity.framework */; };
-		6181F1351DFF548400B94488 /* SuchActivity.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1321DFF547400B94488 /* SuchActivity.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6181F1371DFF6D1600B94488 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */; };
-		6181F1381DFF6D2800B94488 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */; };
-		6181F13A1DFF6D4D00B94488 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */; };
-		6181F13C1DFF6FB300B94488 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13B1DFF6FB300B94488 /* ReactiveSwift.framework */; };
-		6181F13D1DFF6FB300B94488 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13B1DFF6FB300B94488 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6181F13F1DFF705600B94488 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13E1DFF705600B94488 /* Reachability.framework */; };
-		6181F1401DFF705600B94488 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F13E1DFF705600B94488 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6199E55E1F16D696007F77C0 /* SoAnnotated_PreSubmission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; };
 		6199FD461EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; };
@@ -873,6 +822,7 @@
 		61F8ED841D999EB500DFAC6E /* SoEdventurous.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61F8ED821D999EA800DFAC6E /* SoEdventurous.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		61F8ED861D999F0500DFAC6E /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61F8ED851D999EFD00DFAC6E /* SoIconic.framework */; };
 		61F8ED871D999F0500DFAC6E /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61F8ED851D999EFD00DFAC6E /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */; };
 		ACC968801D245768006AEAB1 /* Page+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */; };
 		B10713A61D748A1A0061E84A /* CourseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10713A51D748A1A0061E84A /* CourseSpec.swift */; };
 		B141390B1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141390A1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift */; };
@@ -903,7 +853,6 @@
 		B5E212CB1D888529009D8C07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212CD1D888529009D8C07 /* InfoPlist.strings */; };
 		B5E212D31D88856B009D8C07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212D51D88856B009D8C07 /* Localizable.strings */; };
 		B5F122C91D8C4D6C0045063A /* Canvas.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 49642BCA1CF4C66200238B3F /* Canvas.entitlements */; };
-		C8D39A611751A5F521221CFA /* Pods_TechDebt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -937,7 +886,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				492708931CF4C38100C631C6 /* SoLazy.framework in Embed Frameworks */,
+				3B9155061F610B2500C790F3 /* SoLazy.framework in Embed Frameworks */,
+				3BBBD38B1F62F890002ACA58 /* SuchActivity.framework in Embed Frameworks */,
+				3B94AFE01F6108240093F403 /* AttendanceLE.framework in Embed Frameworks */,
 				61F8ED841D999EB500DFAC6E /* SoEdventurous.framework in Embed Frameworks */,
 				4927088D1CF4C38100C631C6 /* QuizKit.framework in Embed Frameworks */,
 				492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */,
@@ -946,43 +897,24 @@
 				6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */,
 				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
 				2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */,
-				491A66091D9057530092CDE9 /* TBBModal.framework in Embed Frameworks */,
-				491A66071D9057530092CDE9 /* SVProgressHUD.framework in Embed Frameworks */,
+				3B94AFDC1F6105940093F403 /* FileKit.framework in Embed Frameworks */,
 				4927088B1CF4C38100C631C6 /* Peeps.framework in Embed Frameworks */,
-				491A66051D9057530092CDE9 /* Masonry.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
-				4927088F1CF4C38100C631C6 /* ReactiveCocoa.framework in Embed Frameworks */,
-				4985D3BE1CFE357D00BA3685 /* AFNetworking.framework in Embed Frameworks */,
-				6181F1401DFF705600B94488 /* Reachability.framework in Embed Frameworks */,
 				4927089F1CF4C38100C631C6 /* WhizzyWig.framework in Embed Frameworks */,
-				492708791CF4C38100C631C6 /* Cartography.framework in Embed Frameworks */,
-				492708851CF4C38100C631C6 /* Marshal.framework in Embed Frameworks */,
-				4985D3C11CFE35BE00BA3685 /* Mantle.framework in Embed Frameworks */,
-				6181F1351DFF548400B94488 /* SuchActivity.framework in Embed Frameworks */,
-				47F5B13A1F293D9000B03DAC /* AttendanceLE.framework in Embed Frameworks */,
-				4927087B1CF4C38100C631C6 /* CocoaLumberjack.framework in Embed Frameworks */,
-				496FFEAC1E00B35D00F1742E /* ReactiveObjC.framework in Embed Frameworks */,
 				61681E9C1D58E5130011E75D /* SoAnnotated.framework in Embed Frameworks */,
 				61F8ED871D999F0500DFAC6E /* SoIconic.framework in Embed Frameworks */,
-				492708831CF4C38100C631C6 /* Kingfisher.framework in Embed Frameworks */,
-				496FFEAE1E00B35D00F1742E /* ReactiveObjCBridge.framework in Embed Frameworks */,
 				492708871CF4C38100C631C6 /* MediaKit.framework in Embed Frameworks */,
 				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				49E80A291CFF8E42002AF45E /* PageKit.framework in Embed Frameworks */,
 				492708751CF4C38100C631C6 /* AssignmentKit.framework in Embed Frameworks */,
 				492708971CF4C38100C631C6 /* SoPretty.framework in Embed Frameworks */,
-				4985D3C41CFE35E100BA3685 /* FXKeychain.framework in Embed Frameworks */,
-				492708911CF4C38100C631C6 /* Result.framework in Embed Frameworks */,
-				492708811CF4C38100C631C6 /* FileKit.framework in Embed Frameworks */,
 				49A04E5A1CF64CCF0051E1E7 /* NotificationKit.framework in Embed Frameworks */,
 				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
 				492708951CF4C38100C631C6 /* SoPersistent.framework in Embed Frameworks */,
 				4927089B1CF4C38100C631C6 /* TodoKit.framework in Embed Frameworks */,
-				2C73C9BB1E031ECD0064A19D /* CWNotification.framework in Embed Frameworks */,
 				492708891CF4C38100C631C6 /* MyLittleViewController.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
 				492708991CF4C38100C631C6 /* SoProgressive.framework in Embed Frameworks */,
-				6181F13D1DFF6FB300B94488 /* ReactiveSwift.framework in Embed Frameworks */,
 				4927087F1CF4C38100C631C6 /* EnrollmentKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -991,7 +923,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00A2F765EB4E7EB599C4B4D3 /* Pods_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0140CE78FC9C4BBA05DC4CEE /* Pods-CanvasKit1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit1.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasKit1/Pods-CanvasKit1.debug.xcconfig"; sourceTree = "<group>"; };
 		04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09C21F6FBFA63D9B02B28CA3 /* Pods-defaults-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.release.xcconfig"; sourceTree = "<group>"; };
+		0DA5C940444CD8D6EE575C91 /* Pods-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasKit1/Pods-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
+		1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C0CAD661DEF6C2F008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C0CAD6B1DEF6C30008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C0CAD701DEF6C31008D90FA /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1023,7 +961,11 @@
 		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C73C9B91E031ECD0064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
+		35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B94AFDA1F6105940093F403 /* FileKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B94AFDD1F6105CD0093F403 /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4902E1231CF4C8890069E043 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
@@ -1783,6 +1725,7 @@
 		61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61681E9A1D58E5000011E75D /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61681E9D1D58E5380011E75D /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
+		6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6181F12E1DFF41AD00B94488 /* ToDoTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTab.swift; sourceTree = "<group>"; };
 		6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ActivityStreamTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6181F1321DFF547400B94488 /* SuchActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SuchActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1800,8 +1743,13 @@
 		61F438E51DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLVCCollectionController+CBIRefresh.m"; sourceTree = "<group>"; };
 		61F8ED821D999EA800DFAC6E /* SoEdventurous.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoEdventurous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61F8ED851D999EFD00DFAC6E /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		677E77AB5FD06818BC7C618D /* Pods-defaults-CanvasKit1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.debug.xcconfig"; sourceTree = "<group>"; };
 		84BE025DDD28359B14D38BA4 /* Pods-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
+		873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
+		99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
+		A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_CanvasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
 		ACC9687F1D245768006AEAB1 /* Page+ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+ViewModel.swift"; sourceTree = "<group>"; };
 		B10713A51D748A1A0061E84A /* CourseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSpec.swift; sourceTree = "<group>"; };
 		B141390A1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShimSpec.swift; sourceTree = "<group>"; };
@@ -2055,7 +2003,13 @@
 		B5F122CE1D8C4D7B0045063A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5F122CF1D8C4D7B0045063A /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5F122D01D8C4E050045063A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasTests/Pods-defaults-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit1.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1.release.xcconfig"; sourceTree = "<group>"; };
+		E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.release.xcconfig"; sourceTree = "<group>"; };
 		F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.debug.xcconfig"; sourceTree = "<group>"; };
+		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
+		FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TechDebt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2063,6 +2017,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B94AFDB1F6105940093F403 /* FileKit.framework in Frameworks */,
 				2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */,
 				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
 				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
@@ -2073,56 +2028,34 @@
 				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
-				492708821CF4C38100C631C6 /* Kingfisher.framework in Frameworks */,
 				2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */,
 				4927089A1CF4C38100C631C6 /* TodoKit.framework in Frameworks */,
 				492708741CF4C38100C631C6 /* AssignmentKit.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
-				6181F13F1DFF705600B94488 /* Reachability.framework in Frameworks */,
 				61F8ED861D999F0500DFAC6E /* SoIconic.framework in Frameworks */,
-				4985D3C01CFE35BE00BA3685 /* Mantle.framework in Frameworks */,
-				47F5B1391F293D9000B03DAC /* AttendanceLE.framework in Frameworks */,
 				49A04E591CF64CCF0051E1E7 /* NotificationKit.framework in Frameworks */,
 				4927088A1CF4C38100C631C6 /* Peeps.framework in Frameworks */,
 				492708981CF4C38100C631C6 /* SoProgressive.framework in Frameworks */,
-				4985D3C31CFE35E100BA3685 /* FXKeychain.framework in Frameworks */,
-				49AA290F1CF4CD320055862D /* Fabric.framework in Frameworks */,
-				6181F1331DFF547400B94488 /* SuchActivity.framework in Frameworks */,
-				6181F13C1DFF6FB300B94488 /* ReactiveSwift.framework in Frameworks */,
-				491A66081D9057530092CDE9 /* TBBModal.framework in Frameworks */,
 				61F8ED831D999EB500DFAC6E /* SoEdventurous.framework in Frameworks */,
-				492708921CF4C38100C631C6 /* SoLazy.framework in Frameworks */,
 				4927089C1CF4C38100C631C6 /* TooLegit.framework in Frameworks */,
-				6181F1381DFF6D2800B94488 /* ReactiveObjC.framework in Frameworks */,
-				491A66041D9057530092CDE9 /* Masonry.framework in Frameworks */,
 				4927087E1CF4C38100C631C6 /* EnrollmentKit.framework in Frameworks */,
-				4985D3BD1CFE357D00BA3685 /* AFNetworking.framework in Frameworks */,
 				492708941CF4C38100C631C6 /* SoPersistent.framework in Frameworks */,
-				492708781CF4C38100C631C6 /* Cartography.framework in Frameworks */,
-				492708901CF4C38100C631C6 /* Result.framework in Frameworks */,
-				492708801CF4C38100C631C6 /* FileKit.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
-				492708841CF4C38100C631C6 /* Marshal.framework in Frameworks */,
 				2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */,
-				4907DF981DF62C17000D745D /* ReactiveObjCBridge.framework in Frameworks */,
-				4927087A1CF4C38100C631C6 /* CocoaLumberjack.framework in Frameworks */,
-				2C73C9BA1E031ECD0064A19D /* CWNotification.framework in Frameworks */,
 				61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */,
-				4927088E1CF4C38100C631C6 /* ReactiveCocoa.framework in Frameworks */,
 				49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */,
-				49AA290E1CF4CD320055862D /* Crashlytics.framework in Frameworks */,
 				61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */,
 				4927088C1CF4C38100C631C6 /* QuizKit.framework in Frameworks */,
 				49642BC41CF4C4DC00238B3F /* CanvasKeymaster.framework in Frameworks */,
 				4927089E1CF4C38100C631C6 /* WhizzyWig.framework in Frameworks */,
-				491A66061D9057530092CDE9 /* SVProgressHUD.framework in Frameworks */,
 				492708961CF4C38100C631C6 /* SoPretty.framework in Frameworks */,
 				492708861CF4C38100C631C6 /* MediaKit.framework in Frameworks */,
+				3B9155051F610B2500C790F3 /* SoLazy.framework in Frameworks */,
 				492708881CF4C38100C631C6 /* MyLittleViewController.framework in Frameworks */,
 				49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */,
 				6199E55E1F16D696007F77C0 /* SoAnnotated_PreSubmission.framework in Frameworks */,
 				492708761CF4C38100C631C6 /* CalendarKit.framework in Frameworks */,
-				4972CBDB2B8CB711A3B56911 /* Pods_Canvas.framework in Frameworks */,
+				03DAE3A2A1041407B354AC7C /* Pods_defaults_Canvas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2131,43 +2064,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				61D4A2241EE36CAC008D2528 /* AssignmentKit.framework in Frameworks */,
-				491A660B1D9057570092CDE9 /* SVProgressHUD.framework in Frameworks */,
 				6122B9B61D58E6B6001282BF /* SoAnnotated.framework in Frameworks */,
 				492708AF1CF4C38500C631C6 /* SoLazy.framework in Frameworks */,
 				492708AC1CF4C38500C631C6 /* QuizKit.framework in Frameworks */,
-				49AA29101CF4CD360055862D /* Crashlytics.framework in Frameworks */,
 				492708A11CF4C38500C631C6 /* CalendarKit.framework in Frameworks */,
 				492708B41CF4C38500C631C6 /* TooLegit.framework in Frameworks */,
-				49AA29111CF4CD360055862D /* Fabric.framework in Frameworks */,
-				492708AB1CF4C38500C631C6 /* Peeps.framework in Frameworks */,
 				49642BC81CF4C4DF00238B3F /* CanvasKeymaster.framework in Frameworks */,
-				492708AD1CF4C38500C631C6 /* ReactiveCocoa.framework in Frameworks */,
 				492708B51CF4C38500C631C6 /* WhizzyWig.framework in Frameworks */,
-				492708A21CF4C38500C631C6 /* Cartography.framework in Frameworks */,
-				492708A81CF4C38500C631C6 /* Marshal.framework in Frameworks */,
-				492708A31CF4C38500C631C6 /* CocoaLumberjack.framework in Frameworks */,
-				492708A71CF4C38500C631C6 /* Kingfisher.framework in Frameworks */,
 				492708A91CF4C38500C631C6 /* MediaKit.framework in Frameworks */,
 				49AA2D111CF4DBC90055862D /* DBChooser.framework in Frameworks */,
 				49642BC91CF4C4DF00238B3F /* CanvasKit.framework in Frameworks */,
 				49E80A2A1CFF8E67002AF45E /* PageKit.framework in Frameworks */,
 				492708B11CF4C38500C631C6 /* SoPretty.framework in Frameworks */,
-				492708AE1CF4C38500C631C6 /* Result.framework in Frameworks */,
-				491A660A1D9057570092CDE9 /* Masonry.framework in Frameworks */,
 				492708A61CF4C38500C631C6 /* FileKit.framework in Frameworks */,
 				492708B01CF4C38500C631C6 /* SoPersistent.framework in Frameworks */,
 				492708B31CF4C38500C631C6 /* TodoKit.framework in Frameworks */,
 				2C47623D1DD1184B0003BEAE /* SoThankful.framework in Frameworks */,
 				492708AA1CF4C38500C631C6 /* MyLittleViewController.framework in Frameworks */,
 				492708B21CF4C38500C631C6 /* SoProgressive.framework in Frameworks */,
-				491A660C1D9057570092CDE9 /* TBBModal.framework in Frameworks */,
 				492708A51CF4C38500C631C6 /* EnrollmentKit.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
 				6199FD461EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */,
 				6122B9B71D58E6DA001282BF /* PSPDFKit.framework in Frameworks */,
 				2CA548321DCB8C1000A05E0F /* Secrets.framework in Frameworks */,
-				C8D39A611751A5F521221CFA /* Pods_TechDebt.framework in Frameworks */,
-				6181F1371DFF6D1600B94488 /* ReactiveObjC.framework in Frameworks */,
+				1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2177,7 +2097,7 @@
 			files = (
 				49A04DAD1CF4F65D0051E1E7 /* libxml2.tbd in Frameworks */,
 				2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */,
-				6181F13A1DFF6D4D00B94488 /* ReactiveObjC.framework in Frameworks */,
+				9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2188,6 +2108,7 @@
 				B1BFE4491D492BCB00ED3887 /* SoAutomated.framework in Frameworks */,
 				B1BFE4461D492B1700ED3887 /* Quick.framework in Frameworks */,
 				B1BFE4451D492B1200ED3887 /* Nimble.framework in Frameworks */,
+				5E29BC1558CFA979AE7A08CF /* Pods_defaults_common_tests_CanvasTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2201,6 +2122,20 @@
 				962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */,
 				F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */,
 				3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */,
+				0140CE78FC9C4BBA05DC4CEE /* Pods-CanvasKit1.debug.xcconfig */,
+				0DA5C940444CD8D6EE575C91 /* Pods-CanvasKit1.release.xcconfig */,
+				1C250EDA2321EF6AAC5611D3 /* Pods-CanvasTests.debug.xcconfig */,
+				873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */,
+				A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */,
+				09C21F6FBFA63D9B02B28CA3 /* Pods-defaults-Canvas.release.xcconfig */,
+				677E77AB5FD06818BC7C618D /* Pods-defaults-CanvasKit1.debug.xcconfig */,
+				D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */,
+				B75B05C5859701C8F14179C5 /* Pods-defaults-CanvasTests.debug.xcconfig */,
+				99747510483FA8853301B9F5 /* Pods-defaults-CanvasTests.release.xcconfig */,
+				3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */,
+				E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */,
+				6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */,
+				F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2220,6 +2155,8 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
+				3B94AFDD1F6105CD0093F403 /* SoLazy.framework */,
+				3B94AFDA1F6105940093F403 /* FileKit.framework */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				4927048A1CF4AF7100C631C6 /* CanvasTests */,
@@ -3667,6 +3604,12 @@
 				04620E9714197D5A7E2A2FBF /* Pods_TechDebt.framework */,
 				396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */,
 				55719F36E10A651448BD4F1C /* Pods_CanvasTests.framework */,
+				00A2F765EB4E7EB599C4B4D3 /* Pods_CanvasKit1.framework */,
+				35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */,
+				C2AB6A9FA96CE49682022ACB /* Pods_defaults_CanvasKit1.framework */,
+				1624D39115A77E2B728908FB /* Pods_defaults_CanvasTests.framework */,
+				FB53AA8A26564C052A94E885 /* Pods_defaults_TechDebt.framework */,
+				A025F6634B44F7120D41717E /* Pods_defaults_common_tests_CanvasTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4122,10 +4065,10 @@
 				492704701CF4AF7100C631C6 /* Frameworks */,
 				492704711CF4AF7100C631C6 /* Resources */,
 				492704B71CF4B6D700C631C6 /* Embed Frameworks */,
-				4902E1271CF4CBA00069E043 /* Fabric */,
 				49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */,
 				B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */,
 				F4B1928409941E7F0687120C /* [CP] Copy Pods Resources */,
+				4902E1271CF4CBA00069E043 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -4162,10 +4105,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49AA29201CF4D1880055862D /* Build configuration list for PBXNativeTarget "CanvasKit1" */;
 			buildPhases = (
+				7546FDB34CBC28C21C7EB9D5 /* [CP] Check Pods Manifest.lock */,
 				49AA29121CF4D1880055862D /* Sources */,
 				49AA29131CF4D1880055862D /* Frameworks */,
 				49AA29141CF4D1880055862D /* Headers */,
 				49AA29151CF4D1880055862D /* Resources */,
+				A7E72CE57D38A4A139557C9B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4180,9 +4125,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1BFE4401D492ABD00ED3887 /* Build configuration list for PBXNativeTarget "CanvasTests" */;
 			buildPhases = (
+				41BC1DC7B6D441F7D32E17AA /* [CP] Check Pods Manifest.lock */,
 				B1BFE4351D492ABD00ED3887 /* Sources */,
 				B1BFE4361D492ABD00ED3887 /* Frameworks */,
 				B1BFE4371D492ABD00ED3887 /* Resources */,
+				3BE4A95F0A9677D535C73A18 /* [CP] Embed Pods Frameworks */,
+				8EAD17539D1E5720193158E3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4388,7 +4336,6 @@
 				4927065A1CF4B7A800C631C6 /* ThreadedDiscussion.css in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 				4950686C1D414DC00030A9D5 /* avatar-default-50.png in Resources */,
-				5E2159051D4BEA540005D2DF /* (null) in Resources */,
 				492707511CF4BACB00C631C6 /* Conversation.css in Resources */,
 				492705341CF4B70600C631C6 /* CBISubmissionCommentCell-TheirVideo.xib in Resources */,
 				4927052F1CF4B70600C631C6 /* CBISubmissionCommentCell-Mine.xib in Resources */,
@@ -4489,19 +4436,104 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3BE4A95F0A9677D535C73A18 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/DVR/DVR.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41BC1DC7B6D441F7D32E17AA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-common_tests-CanvasTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-Canvas-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4902E1271CF4CBA00069E043 /* Fabric */ = {
@@ -4516,7 +4548,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../ExternalFrameworks/Fabric.framework/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
+			shellScript = "${PODS_ROOT}/Fabric/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
 		49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4538,13 +4570,64 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-TechDebt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7546FDB34CBC28C21C7EB9D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-CanvasKit1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8EAD17539D1E5720193158E3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7E72CE57D38A4A139557C9B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-CanvasKit1/Pods-defaults-CanvasKit1-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */ = {
@@ -4553,13 +4636,58 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Canvas/Pods-Canvas-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B4C030EDFE4231090C601125 /* [CP] Copy Pods Resources */ = {
@@ -4574,7 +4702,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-TechDebt/Pods-TechDebt-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F4B1928409941E7F0687120C /* [CP] Copy Pods Resources */ = {
@@ -4589,7 +4717,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Canvas/Pods-Canvas-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -5393,7 +5521,7 @@
 		};
 		4927049C1CF4AF7200C631C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7E3E8394F9CF33081E5BAFC /* Pods-Canvas.debug.xcconfig */;
+			baseConfigurationReference = A65BB020C68267C1318E51E7 /* Pods-defaults-Canvas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -5419,12 +5547,13 @@
 		};
 		4927049D1CF4AF7200C631C6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */;
+			baseConfigurationReference = 09C21F6FBFA63D9B02B28CA3 /* Pods-defaults-Canvas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Canvas/Canvas.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5444,7 +5573,7 @@
 		};
 		492704B51CF4B6D700C631C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84BE025DDD28359B14D38BA4 /* Pods-TechDebt.debug.xcconfig */;
+			baseConfigurationReference = 3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1981;
@@ -5473,7 +5602,7 @@
 		};
 		492704B61CF4B6D700C631C6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 962C895A87C658B3F80897FF /* Pods-TechDebt.release.xcconfig */;
+			baseConfigurationReference = E95379D1460BDF2C6A9F2EEE /* Pods-defaults-TechDebt.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1981;
@@ -5502,6 +5631,7 @@
 		};
 		49AA29211CF4D1880055862D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 677E77AB5FD06818BC7C618D /* Pods-defaults-CanvasKit1.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -5510,7 +5640,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1993;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = CanvasKit1/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -5531,6 +5664,7 @@
 		};
 		49AA29221CF4D1880055862D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8523687029A98FE14374D90 /* Pods-defaults-CanvasKit1.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -5539,7 +5673,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1993;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = CanvasKit1/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -5560,6 +5697,7 @@
 		};
 		B1BFE4411D492ABD00ED3887 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
@@ -5575,6 +5713,7 @@
 		};
 		B1BFE4421D492ABD00ED3887 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";

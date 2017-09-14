@@ -10,6 +10,7 @@
 		2C3FB9241DA692880039201B /* ErrorReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FB9231DA692880039201B /* ErrorReporter.swift */; };
 		2C3FB9261DA696240039201B /* NSBundle+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */; };
 		2C7BFC771F66F4CD0015ED64 /* AppStoreReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BFC761F66F4CD0015ED64 /* AppStoreReview.swift */; };
+		382EB50F96A24E050DE68A9B /* Pods_defaults_SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD55CF189C01D271B920D6C /* Pods_defaults_SoLazy.framework */; };
 		4962EEDB1C7FA07F000DDCAF /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4962EEDA1C7FA07F000DDCAF /* NSObject+PureEvil.swift */; };
 		49895F251C4EA8EB002A16EC /* NSData+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49895F241C4EA8EB002A16EC /* NSData+SoLazy.swift */; };
 		49A960841BC315C600592D94 /* SoLazy.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A960831BC315C600592D94 /* SoLazy.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -22,9 +23,6 @@
 		49A960A81BC315E000592D94 /* UIFont+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A960A01BC315E000592D94 /* UIFont+SoLazy.swift */; };
 		49A960A91BC315E000592D94 /* UIImage+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A960A11BC315E000592D94 /* UIImage+SoLazy.swift */; };
 		49B997151C3FF4D20068337C /* NSError+SoLazy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B997141C3FF4D20068337C /* NSError+SoLazy.swift */; };
-		49C12D551DDE197600AEBA60 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C12D531DDE197600AEBA60 /* ReactiveSwift.framework */; };
-		49C12D561DDE197600AEBA60 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C12D541DDE197600AEBA60 /* Result.framework */; };
-		49C12D581DDE1CB000AEBA60 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C12D571DDE1CAB00AEBA60 /* Marshal.framework */; };
 		49E1E3431E6F61D900F73959 /* NSError+Categorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E1E3421E6F61D900F73959 /* NSError+Categorization.swift */; };
 		5E75B6141C4D5DAE00A44160 /* UIDevice+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */; };
 		617BE7A71CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */; };
@@ -63,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3F05048B0BF4C0DA2D6923 /* Pods-defaults-SoLazy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoLazy.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoLazy/Pods-defaults-SoLazy.debug.xcconfig"; sourceTree = "<group>"; };
 		2C3FB9231DA692880039201B /* ErrorReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorReporter.swift; sourceTree = "<group>"; };
 		2C3FB9251DA696240039201B /* NSBundle+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+SoLazy.swift"; sourceTree = "<group>"; };
 		2C7BFC761F66F4CD0015ED64 /* AppStoreReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		5E75B6131C4D5DAE00A44160 /* UIDevice+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Model.swift"; sourceTree = "<group>"; };
 		617BE7A61CA43E60008A6908 /* ❨╯°□°❩╯⌢.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "❨╯°□°❩╯⌢.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61D6A8321C8F6A3000370117 /* Marshal+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Marshal+SoLazy.swift"; sourceTree = "<group>"; };
+		7CD55CF189C01D271B920D6C /* Pods_defaults_SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B119EECF1E3A80EE00343D1B /* Tuple+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tuple+SoLazy.swift"; sourceTree = "<group>"; };
 		B122CDDB1E03941200F63868 /* RACHelpersSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACHelpersSpec.swift; sourceTree = "<group>"; };
 		B135FEB81CB8632F0093DE0B /* NSURLSession+SoLazy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+SoLazy.swift"; sourceTree = "<group>"; };
@@ -168,6 +168,7 @@
 		B5D3D9311D8CAB6400C70CE3 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5D3D9321D8CAB6900C70CE3 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B5D3D9331D8CAB6900C70CE3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BABBA32067601B11191086A0 /* Pods-defaults-SoLazy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoLazy.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoLazy/Pods-defaults-SoLazy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,9 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49C12D581DDE1CB000AEBA60 /* Marshal.framework in Frameworks */,
-				49C12D551DDE197600AEBA60 /* ReactiveSwift.framework in Frameworks */,
-				49C12D561DDE197600AEBA60 /* Result.framework in Frameworks */,
+				382EB50F96A24E050DE68A9B /* Pods_defaults_SoLazy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +194,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B18BB7F9AA3C406AEAEF15B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CD55CF189C01D271B920D6C /* Pods_defaults_SoLazy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4962EED91C7FA07F000DDCAF /* Pure Evil */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +218,8 @@
 				49A9607F1BC315C600592D94 /* Products */,
 				49A960801BC315C600592D94 /* SoLazy */,
 				49A9608D1BC315C600592D94 /* SoLazyTests */,
-				49C12D501DDE16EF00AEBA60 /* Frameworks */,
+				B7A95228AFA870603E5D67E1 /* Pods */,
+				1B18BB7F9AA3C406AEAEF15B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -286,13 +294,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		49C12D501DDE16EF00AEBA60 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		49FEDC351C40605100757F55 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +346,15 @@
 			path = ../../Assignments/AssignmentKit/LocalNotifications;
 			sourceTree = "<group>";
 		};
+		B7A95228AFA870603E5D67E1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1E3F05048B0BF4C0DA2D6923 /* Pods-defaults-SoLazy.debug.xcconfig */,
+				BABBA32067601B11191086A0 /* Pods-defaults-SoLazy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -363,10 +373,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49A960941BC315C600592D94 /* Build configuration list for PBXNativeTarget "SoLazy" */;
 			buildPhases = (
+				1F0307815A88227023F5C31A /* [CP] Check Pods Manifest.lock */,
 				49A960791BC315C600592D94 /* Sources */,
 				49A9607A1BC315C600592D94 /* Frameworks */,
 				49A9607B1BC315C600592D94 /* Headers */,
 				49A9607C1BC315C600592D94 /* Resources */,
+				61F96D4A91AA9A558940829D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -473,6 +485,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F0307815A88227023F5C31A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-SoLazy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61F96D4A91AA9A558940829D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-SoLazy/Pods-defaults-SoLazy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49A960791BC315C600592D94 /* Sources */ = {
@@ -715,6 +763,7 @@
 		};
 		49A960951BC315C600592D94 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E3F05048B0BF4C0DA2D6923 /* Pods-defaults-SoLazy.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -726,8 +775,9 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = SoLazy/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -738,6 +788,7 @@
 		};
 		49A960961BC315C600592D94 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BABBA32067601B11191086A0 /* Pods-defaults-SoLazy.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -749,8 +800,9 @@
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = SoLazy/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DRELEASE";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.icanvas.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

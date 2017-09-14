@@ -11,7 +11,6 @@
 		493479791CB2DE6A008D14DD /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493479761CB2DE6A008D14DD /* SoLazy.framework */; };
 		4934797A1CB2DE6A008D14DD /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493479771CB2DE6A008D14DD /* TooLegit.framework */; };
 		4934797C1CB2DE8A008D14DD /* Session+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934797B1CB2DE8A008D14DD /* Session+Progress.swift */; };
-		4934797E1CB3066A008D14DD /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4934797D1CB3066A008D14DD /* Result.framework */; };
 		4934798C1CB44510008D14DD /* SoProgressiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934798B1CB44510008D14DD /* SoProgressiveTests.swift */; };
 		4934798E1CB44510008D14DD /* SoProgressive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493479691CB2DE0A008D14DD /* SoProgressive.framework */; };
 		493479951CB44558008D14DD /* ProgressDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493479941CB44558008D14DD /* ProgressDispatcher.swift */; };
@@ -19,7 +18,7 @@
 		4934799B1CB445E1008D14DD /* ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799A1CB445E1008D14DD /* ProgressSpec.swift */; };
 		4934799D1CB4488F008D14DD /* ProgressDispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */; };
 		493479A11CB457AF008D14DD /* Session+ProgressSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */; };
-		4980F9AF1DE3AB0400D71093 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4980F9AE1DE3AAF400D71093 /* ReactiveSwift.framework */; };
+		80E713506431EA9913BF8EB2 /* Pods_defaults_SoProgressive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8E71673B5ABADB7871177E1 /* Pods_defaults_SoProgressive.framework */; };
 		B1ABA82D1DC2BF750021021C /* DispatcherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */; };
 		B1ABA8321DC2C05D0021021C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA82F1DC2C05D0021021C /* Nimble.framework */; };
 		B1ABA8331DC2C05D0021021C /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1ABA8301DC2C05D0021021C /* Quick.framework */; };
@@ -39,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4435917F578D527ECFD92FC4 /* Pods-SoProgressive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoProgressive.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-SoProgressive/Pods-SoProgressive.release.xcconfig"; sourceTree = "<group>"; };
+		48F9AAF1E0F5256A16B1B273 /* Pods-defaults-SoProgressive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoProgressive.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoProgressive/Pods-defaults-SoProgressive.release.xcconfig"; sourceTree = "<group>"; };
 		493479691CB2DE0A008D14DD /* SoProgressive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4934796C1CB2DE0A008D14DD /* SoProgressive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoProgressive.h; sourceTree = "<group>"; };
 		4934796E1CB2DE0A008D14DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,12 +56,16 @@
 		4934799C1CB4488F008D14DD /* ProgressDispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressDispatcherSpec.swift; sourceTree = "<group>"; };
 		493479A01CB457AF008D14DD /* Session+ProgressSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+ProgressSpec.swift"; sourceTree = "<group>"; };
 		4980F9AE1DE3AAF400D71093 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8836A7453496CB2E1E3C4EDB /* Pods-SoProgressive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoProgressive.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-SoProgressive/Pods-SoProgressive.debug.xcconfig"; sourceTree = "<group>"; };
 		B1ABA82C1DC2BF750021021C /* DispatcherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatcherSpec.swift; sourceTree = "<group>"; };
 		B1ABA82F1DC2C05D0021021C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		B1ABA8301DC2C05D0021021C /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/Quick.framework"; sourceTree = "<group>"; };
 		B1ABA8311DC2C05D0021021C /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoAutomated.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-bfbrqncyiycsvlbivmvakhrbtxmo/Build/Products/Debug-iphoneos/SoAutomated.framework"; sourceTree = "<group>"; };
 		B1ABA8351DC2C1A50021021C /* Dispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		B5B4DC251D6255DB0051C04C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B8E71673B5ABADB7871177E1 /* Pods_defaults_SoProgressive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBE04A41F2B20E8DBBDA0CF4 /* Pods-defaults-SoProgressive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoProgressive.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoProgressive/Pods-defaults-SoProgressive.debug.xcconfig"; sourceTree = "<group>"; };
+		E9A1F359222A2793AD63C860 /* Pods_SoProgressive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +75,7 @@
 			files = (
 				493479791CB2DE6A008D14DD /* SoLazy.framework in Frameworks */,
 				4934797A1CB2DE6A008D14DD /* TooLegit.framework in Frameworks */,
-				4934797E1CB3066A008D14DD /* Result.framework in Frameworks */,
-				4980F9AF1DE3AB0400D71093 /* ReactiveSwift.framework in Frameworks */,
+				80E713506431EA9913BF8EB2 /* Pods_defaults_SoProgressive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +100,8 @@
 				4934796B1CB2DE0A008D14DD /* SoProgressive */,
 				4934798A1CB44510008D14DD /* SoProgressiveTests */,
 				4934796A1CB2DE0A008D14DD /* Products */,
+				75DDE53A9800EA0EC9CA9950 /* Pods */,
+				D609FACFD137A61BE97BBD3A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +154,17 @@
 			path = SoProgressiveTests;
 			sourceTree = "<group>";
 		};
+		75DDE53A9800EA0EC9CA9950 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8836A7453496CB2E1E3C4EDB /* Pods-SoProgressive.debug.xcconfig */,
+				4435917F578D527ECFD92FC4 /* Pods-SoProgressive.release.xcconfig */,
+				BBE04A41F2B20E8DBBDA0CF4 /* Pods-defaults-SoProgressive.debug.xcconfig */,
+				48F9AAF1E0F5256A16B1B273 /* Pods-defaults-SoProgressive.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B1ABA82E1DC2BF830021021C /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +173,15 @@
 				B1ABA8311DC2C05D0021021C /* SoAutomated.framework */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		D609FACFD137A61BE97BBD3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9A1F359222A2793AD63C860 /* Pods_SoProgressive.framework */,
+				B8E71673B5ABADB7871177E1 /* Pods_defaults_SoProgressive.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,10 +202,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 493479711CB2DE0A008D14DD /* Build configuration list for PBXNativeTarget "SoProgressive" */;
 			buildPhases = (
+				D5BAE59228EA5E423E80A4AB /* [CP] Check Pods Manifest.lock */,
 				493479641CB2DE0A008D14DD /* Sources */,
 				493479651CB2DE0A008D14DD /* Frameworks */,
 				493479661CB2DE0A008D14DD /* Headers */,
 				493479671CB2DE0A008D14DD /* Resources */,
+				CFC9B9C5811B0E36710FDB10 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,6 +291,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CFC9B9C5811B0E36710FDB10 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-SoProgressive/Pods-defaults-SoProgressive-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5BAE59228EA5E423E80A4AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-SoProgressive-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		493479641CB2DE0A008D14DD /* Sources */ = {
@@ -408,6 +472,7 @@
 		};
 		493479721CB2DE0A008D14DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBE04A41F2B20E8DBBDA0CF4 /* Pods-defaults-SoProgressive.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -419,7 +484,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SoProgressive/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoProgressive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -431,6 +496,7 @@
 		};
 		493479731CB2DE0A008D14DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48F9AAF1E0F5256A16B1B273 /* Pods-defaults-SoProgressive.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
@@ -442,7 +508,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = SoProgressive/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.SoProgressive;
 				PRODUCT_NAME = "$(TARGET_NAME)";

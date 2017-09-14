@@ -50,8 +50,6 @@
 		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
 		2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */; };
-		2CDD85F61F1D6D3800FD1CF8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */; };
-		2CDD85F71F1D6D3800FD1CF8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */; };
 		2CE78AAD1F55B7CC00AB3726 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */; };
 		2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
@@ -80,11 +78,6 @@
 		3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */; };
 		3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */; };
 		3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
-		3B8B23ED1EB2AA0D00B61EF8 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */; };
-		3B8B240E1EB2AAA400B61EF8 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3B8B24111EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */; };
-		3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */; };
 		3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
 		3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
@@ -94,35 +87,16 @@
 		3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
 		3BEF7C101E7C96940092C864 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEF7BF51E7C96860092C864 /* libART.a */; };
 		3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* Brand.swift */; };
-		3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; };
-		3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; };
 		3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */; };
 		45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */; };
 		451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; };
-		491EF3121F2BCF19002B6C76 /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		491EF3141F2BD1D2002B6C76 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF3131F2BD1C5002B6C76 /* Marshal.framework */; };
-		491EF3151F2BD1D2002B6C76 /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF3131F2BD1C5002B6C76 /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		491EF3181F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */; };
-		4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; };
-		4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
 		4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECB91E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAD1E5CEFAC001DC5B5 /* CocoaLumberjack.framework */; };
-		4943ECBA1E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAD1E5CEFAC001DC5B5 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECBB1E5CEFBD001DC5B5 /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAE1E5CEFAC001DC5B5 /* CWNotification.framework */; };
-		4943ECBC1E5CEFBD001DC5B5 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAE1E5CEFAC001DC5B5 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECBD1E5CEFBD001DC5B5 /* FXKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAF1E5CEFAC001DC5B5 /* FXKeychain.framework */; };
-		4943ECBE1E5CEFBD001DC5B5 /* FXKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAF1E5CEFAC001DC5B5 /* FXKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECBF1E5CEFBD001DC5B5 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */; };
-		4943ECC01E5CEFBD001DC5B5 /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECC11E5CEFBD001DC5B5 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */; };
-		4943ECC21E5CEFBD001DC5B5 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; };
-		4943ECC41E5CEFBD001DC5B5 /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C81ED4E9390054D333 /* VideoContainerManager.m */; };
 		4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C91ED4E9390054D333 /* VideoContainerView.swift */; };
@@ -138,8 +112,6 @@
 		6118BE291F0561F000E14869 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */; };
 		6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */; };
 		618D511E4EB75555E78C7A6B /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092C7F1FFB519DC8F91E3B7 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */; };
-		6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720FF1EC4054100234D25 /* PocketSVG.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF720DF1EC266EB00234D25 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */; };
 		6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */; };
 		619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619C94291ED8A25100AC7D7B /* CanvadocView.swift */; };
@@ -241,6 +213,7 @@
 		F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		F9D224691EB7C51000BB0990 /* EditCoursesPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */; };
+		F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */; };
 		FBD9009A45B87D7B6929CA7C /* QuizSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0EEB8EFFD2C55D1AA39353 /* QuizSubmission.swift */; };
 		FE4948A645404B267D1C81A5 /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */; };
 		FEB42F5234E5E2D95571ABC6 /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922B8388DD687B870A89727F /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift */; };
@@ -628,25 +601,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */,
-				6190DDE31EC4C66A00D3C1A9 /* PocketSVG.framework in Embed Frameworks */,
 				3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */,
-				6190DDE41EC4C66B00D3C1A9 /* SDWebImage.framework in Embed Frameworks */,
-				3B8B24121EB2AB9600B61EF8 /* ReactiveObjCBridge.framework in Embed Frameworks */,
-				3B8B240F1EB2AAAC00B61EF8 /* Result.framework in Embed Frameworks */,
 				2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */,
-				3B8B240E1EB2AAA400B61EF8 /* ReactiveSwift.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
-				491EF3121F2BCF19002B6C76 /* AttendanceLE.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
-				4943ECC01E5CEFBD001DC5B5 /* Mantle.framework in Embed Frameworks */,
-				4943ECC21E5CEFBD001DC5B5 /* Reachability.framework in Embed Frameworks */,
-				4943ECC41E5CEFBD001DC5B5 /* ReactiveObjC.framework in Embed Frameworks */,
-				4943ECBA1E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Embed Frameworks */,
-				4943ECBC1E5CEFBD001DC5B5 /* CWNotification.framework in Embed Frameworks */,
-				4943ECBE1E5CEFBD001DC5B5 /* FXKeychain.framework in Embed Frameworks */,
-				491EF3151F2BD1D2002B6C76 /* Marshal.framework in Embed Frameworks */,
 				619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */,
-				4943ECB41E5CEFBD001DC5B5 /* AFNetworking.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -916,6 +875,7 @@
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
 		715FA7B506E025841189821D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift; sourceTree = "<group>"; };
 		73DCB88DA3ECC3A55C5772A6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift; sourceTree = "<group>"; };
+		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		74FC7DEC9C71D3A13687458B /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InboxPageTest_testInboxPage_displaysNewMessagePage.swift; path = data/InboxPageTest/InboxPageTest_testInboxPage_displaysNewMessagePage.swift; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A0EEB8EFFD2C55D1AA39353 /* QuizSubmission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizSubmission.swift; path = models/QuizSubmission.swift; sourceTree = "<group>"; };
@@ -926,6 +886,7 @@
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
 		88A75DDE30E7DF0E48B12475 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; path = data/CourseSettingsPageTest/CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
+		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupCategory.swift; path = models/GroupCategory.swift; sourceTree = "<group>"; };
 		922B8388DD687B870A89727F /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift; sourceTree = "<group>"; };
@@ -979,6 +940,7 @@
 		E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift; sourceTree = "<group>"; };
 		E8A5D28EB09C19518A6BA81F /* CourseModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseModule.swift; path = models/CourseModule.swift; sourceTree = "<group>"; };
 		EDFE7D14C67645C5AA3B3E11 /* RNAudio.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAudio.xcodeproj; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; };
+		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift; sourceTree = "<group>"; };
 		F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentOverride.swift; path = models/AssignmentOverride.swift; sourceTree = "<group>"; };
 		F5BC3AF0DC3303E15679EB88 /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift; sourceTree = "<group>"; };
@@ -1002,8 +964,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CDD85F61F1D6D3800FD1CF8 /* Crashlytics.framework in Frameworks */,
-				2CDD85F71F1D6D3800FD1CF8 /* Fabric.framework in Frameworks */,
 				2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */,
 				61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */,
 				496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */,
@@ -1011,7 +971,6 @@
 				2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */,
 				61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
-				3B8B23ED1EB2AA0D00B61EF8 /* Result.framework in Frameworks */,
 				B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */,
 				2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */,
 				2C50EE051E735CC00096592C /* CoreVideo.framework in Frameworks */,
@@ -1020,32 +979,21 @@
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
-				4943ECC31E5CEFBD001DC5B5 /* ReactiveObjC.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
-				491EF3141F2BD1D2002B6C76 /* Marshal.framework in Frameworks */,
 				3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */,
-				3BF720E01EC266EB00234D25 /* SDWebImage.framework in Frameworks */,
-				4943ECBB1E5CEFBD001DC5B5 /* CWNotification.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
-				3BF721001EC4054100234D25 /* PocketSVG.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				4943ECBD1E5CEFBD001DC5B5 /* FXKeychain.framework in Frameworks */,
 				619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				4943ECC11E5CEFBD001DC5B5 /* Reachability.framework in Frameworks */,
-				4943ECBF1E5CEFBD001DC5B5 /* Mantle.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				3B8B24111EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework in Frameworks */,
-				4943ECB91E5CEFBD001DC5B5 /* CocoaLumberjack.framework in Frameworks */,
-				4943ECB31E5CEFBD001DC5B5 /* AFNetworking.framework in Frameworks */,
 				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
 				9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */,
 				2CE78AAD1F55B7CC00AB3726 /* Secrets.framework in Frameworks */,
@@ -1061,6 +1009,7 @@
 				BD604147FC4E46ECABACB114 /* libBVLinearGradient.a in Frameworks */,
 				D1506F166CC24444A103B9CD /* libRCTCamera.a in Frameworks */,
 				10A81D2926DD4E5FACC5B7AE /* libRCTWKWebView.a in Frameworks */,
+				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1249,6 +1198,7 @@
 				2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */,
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
 				D063D27A1B3640208ABF74D4 /* libz.tbd */,
+				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1430,6 +1380,7 @@
 				B170B0651F58756E00B92700 /* SoLazy.framework */,
 				55069B727E0D4A34B80CED9D /* libRNSound.a */,
 				C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */,
+				4A7ECEE839604B9CBB1F3DFE /* libRCTWKWebView.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1675,6 +1626,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2C50EDDF1E735CA50096592C /* Frameworks */,
 				493EC8621F016CB800A1ED1E /* Recovered References */,
+				E3598DCFB2D0E7A9019957B2 /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -1836,6 +1788,15 @@
 			name = AssignmentsListPageTest;
 			sourceTree = "<group>";
 		};
+		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */,
+				9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E4B8EC9F1F0D7D220038C5F5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1860,13 +1821,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Teacher" */;
 			buildPhases = (
+				B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
-				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
 				B1C60D611F1D82E800F7902C /* Strip PSPDFKit */,
+				B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */,
+				0E294238A76D6C78A20DE9E1 /* [CP] Copy Pods Resources */,
+				2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */,
 			);
 			buildRules = (
 			);
@@ -2489,6 +2453,21 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output ./ios/main.jsbundle --sourcemap-output ./ios/main.jsbundle.map --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
 		};
+		0E294238A76D6C78A20DE9E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2501,7 +2480,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/../../../ExternalFrameworks/Fabric.framework/run\" 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
+			shellScript = "${PODS_ROOT}/Fabric/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
 		B1C60D611F1D82E800F7902C /* Strip PSPDFKit */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2516,6 +2495,86 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name 'PSPDFKit.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
+		};
+		B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-Teacher-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B714E89FBF87F7C6C1A4CBF2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
+				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
+				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2840,8 +2899,8 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
@@ -2851,6 +2910,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(SRCROOT)/../../../ExternalFrameworks",
 					"$(PROJECT_DIR)",
 				);
@@ -2888,7 +2948,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE = "";
@@ -2903,8 +2963,8 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
@@ -2913,6 +2973,7 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(SRCROOT)/../../../ExternalFrameworks",
 					"$(PROJECT_DIR)",
 				);
@@ -2950,7 +3011,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				OTHER_SWIFT_FLAGS = "-DRELEASE";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ios.teacher;
 				PRODUCT_NAME = Teacher;
 				PROVISIONING_PROFILE_SPECIFIER = "";

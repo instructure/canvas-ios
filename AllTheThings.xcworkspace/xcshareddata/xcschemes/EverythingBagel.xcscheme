@@ -82,6 +82,11 @@
                BlueprintName = "FileKitTests"
                ReferencedContainer = "container:Frameworks/FileKit/FileKit.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "FileUploadSpec">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
@@ -111,16 +116,6 @@
                BuildableName = "DiscussionKitTests.xctest"
                BlueprintName = "DiscussionKitTests"
                ReferencedContainer = "container:Frameworks/Discussions/Discussions.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B14E11621C63C60F00007938"
-               BuildableName = "TodoKitTests.xctest"
-               BlueprintName = "TodoKitTests"
-               ReferencedContainer = "container:Frameworks/Todo/Todo.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -161,6 +156,16 @@
                BuildableName = "PersistentCrashingTests.xctest"
                BlueprintName = "PersistentCrashingTests"
                ReferencedContainer = "container:Frameworks/SoPersistent/SoPersistent.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B14E11621C63C60F00007938"
+               BuildableName = "TodoKitTests.xctest"
+               BlueprintName = "TodoKitTests"
+               ReferencedContainer = "container:Frameworks/Todo/Todo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

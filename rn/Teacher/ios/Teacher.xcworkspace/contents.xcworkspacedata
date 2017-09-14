@@ -4,6 +4,9 @@
    <FileRef
       location = "group:Teacher.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:../../../Pods/Pods.xcodeproj">
+   </FileRef>
    <Group
       location = "container:"
       name = "Dependencies">
@@ -14,55 +17,16 @@
          location = "group:../../../Frameworks/Secrets/Secrets.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:../../../Carthage/Checkouts/Marshal/Marshal.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:../../../Frameworks/Attendance/Attendance.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:../../../Frameworks/SoAnnotated/SoAnnotated.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:../../../Carthage/Checkouts/SDWebImage/SDWebImage.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/PocketSVG/PocketSVG.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/Result/Result.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/ReactiveObjCBridge/ReactiveObjCBridge.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:../../../Carthage/Checkouts/EarlGrey/EarlGrey.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:../../../Frameworks/SoGrey/SoGrey.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/Reachability/Framework/Framework.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/FXKeychain/FXKeychain.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/CocoaLumberjack/Lumberjack.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/CWStatusBarNotification/CWNotificationDemo.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/Mantle/Mantle.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/AFNetworking/AFNetworking.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:../../../Carthage/Checkouts/ReactiveObjC/ReactiveObjC.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:../../../Frameworks/CanvasKit/CanvasKit.xcodeproj">

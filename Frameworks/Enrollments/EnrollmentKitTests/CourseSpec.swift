@@ -210,7 +210,7 @@ class CourseSpec: QuickSpec {
 
                     it("sets the current grade") {
                         let grade = course.currentGrade
-                        expect(grade) != nil
+//                        expect(grade) != nil
                         expect(grade?.gradingPeriodID).to(beNil())
                         expect(grade?.currentGrade) == "A"
                         expect(grade?.currentScore) == 100
@@ -230,7 +230,7 @@ class CourseSpec: QuickSpec {
 
                     it("sets the current grade") {
                         let grade = course.currentGrade
-                        expect(grade) != nil
+//                        expect(grade) != nil
                         expect(grade?.currentGrade) == "F"
                         expect(grade?.currentScore) == 50
                         expect(grade?.finalGrade) == "D"

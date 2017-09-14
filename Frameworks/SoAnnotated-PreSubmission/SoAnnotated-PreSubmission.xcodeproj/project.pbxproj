@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2891B585CCBD3D16CE609D66 /* Pods_defaults_SoAnnotated_PreSubmission.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D975F27F4C0356D3139E4C09 /* Pods_defaults_SoAnnotated_PreSubmission.framework */; };
 		6199FD131EE377C700240D4E /* SoAnnotated-PreSubmission.h in Headers */ = {isa = PBXBuildFile; fileRef = 6199FD111EE377C700240D4E /* SoAnnotated-PreSubmission.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6199FD231EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD1F1EE3792400240D4E /* PreSubmissionPDFDocumentPresenter.swift */; };
 		6199FD241EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6199FD201EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard */; };
@@ -14,12 +15,6 @@
 		6199FD261EE3792400240D4E /* SubmitAssignmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD221EE3792400240D4E /* SubmitAssignmentActivity.swift */; };
 		6199FD291EE3795600240D4E /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD281EE3795600240D4E /* PSPDFKit.framework */; };
 		6199FD2B1EE3799200240D4E /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2A1EE3799200240D4E /* AssignmentKit.framework */; };
-		6199FD381EE37A1800240D4E /* CWNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2C1EE37A1800240D4E /* CWNotification.framework */; };
-		6199FD391EE37A1800240D4E /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2D1EE37A1800240D4E /* Kingfisher.framework */; };
-		6199FD3A1EE37A1800240D4E /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2E1EE37A1800240D4E /* Marshal.framework */; };
-		6199FD3B1EE37A1800240D4E /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2F1EE37A1800240D4E /* ReactiveCocoa.framework */; };
-		6199FD3C1EE37A1800240D4E /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD301EE37A1800240D4E /* ReactiveSwift.framework */; };
-		6199FD3D1EE37A1800240D4E /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD311EE37A1800240D4E /* Result.framework */; };
 		6199FD3E1EE37A1800240D4E /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD321EE37A1800240D4E /* SoIconic.framework */; };
 		6199FD3F1EE37A1800240D4E /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD331EE37A1800240D4E /* SoLazy.framework */; };
 		6199FD401EE37A1800240D4E /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD341EE37A1800240D4E /* SoPretty.framework */; };
@@ -29,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180D4745AD85D7D929A42A6F /* Pods-defaults-SoAnnotated_PreSubmission.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoAnnotated_PreSubmission.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoAnnotated_PreSubmission/Pods-defaults-SoAnnotated_PreSubmission.release.xcconfig"; sourceTree = "<group>"; };
+		3D506AF264E182E70C7F78B6 /* Pods_SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoAnnotated_PreSubmission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6199FD0E1EE377C700240D4E /* SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoAnnotated_PreSubmission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6199FD111EE377C700240D4E /* SoAnnotated-PreSubmission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoAnnotated-PreSubmission.h"; sourceTree = "<group>"; };
 		6199FD121EE377C700240D4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +47,10 @@
 		6199FD351EE37A1800240D4E /* SoProgressive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoProgressive.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/SoProgressive.framework"; sourceTree = "<group>"; };
 		6199FD361EE37A1800240D4E /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TooLegit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/TooLegit.framework"; sourceTree = "<group>"; };
 		6199FD371EE37A1800240D4E /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WhizzyWig.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/WhizzyWig.framework"; sourceTree = "<group>"; };
+		8D910949BE62C3CDE5D9E2DB /* Pods-defaults-SoAnnotated_PreSubmission.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoAnnotated_PreSubmission.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoAnnotated_PreSubmission/Pods-defaults-SoAnnotated_PreSubmission.debug.xcconfig"; sourceTree = "<group>"; };
+		ADE83E701B1DC1588A078B44 /* Pods-SoAnnotated_PreSubmission.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoAnnotated_PreSubmission.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-SoAnnotated_PreSubmission/Pods-SoAnnotated_PreSubmission.debug.xcconfig"; sourceTree = "<group>"; };
+		C8D8A103318C67F3AF9C2533 /* Pods-SoAnnotated_PreSubmission.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoAnnotated_PreSubmission.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-SoAnnotated_PreSubmission/Pods-SoAnnotated_PreSubmission.release.xcconfig"; sourceTree = "<group>"; };
+		D975F27F4C0356D3139E4C09 /* Pods_defaults_SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoAnnotated_PreSubmission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,32 +58,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6199FD381EE37A1800240D4E /* CWNotification.framework in Frameworks */,
 				6199FD401EE37A1800240D4E /* SoPretty.framework in Frameworks */,
-				6199FD3C1EE37A1800240D4E /* ReactiveSwift.framework in Frameworks */,
 				6199FD3F1EE37A1800240D4E /* SoLazy.framework in Frameworks */,
-				6199FD3B1EE37A1800240D4E /* ReactiveCocoa.framework in Frameworks */,
-				6199FD3D1EE37A1800240D4E /* Result.framework in Frameworks */,
 				6199FD411EE37A1800240D4E /* SoProgressive.framework in Frameworks */,
 				6199FD2B1EE3799200240D4E /* AssignmentKit.framework in Frameworks */,
 				6199FD421EE37A1800240D4E /* TooLegit.framework in Frameworks */,
 				6199FD431EE37A1800240D4E /* WhizzyWig.framework in Frameworks */,
-				6199FD391EE37A1800240D4E /* Kingfisher.framework in Frameworks */,
 				6199FD3E1EE37A1800240D4E /* SoIconic.framework in Frameworks */,
-				6199FD3A1EE37A1800240D4E /* Marshal.framework in Frameworks */,
 				6199FD291EE3795600240D4E /* PSPDFKit.framework in Frameworks */,
+				2891B585CCBD3D16CE609D66 /* Pods_defaults_SoAnnotated_PreSubmission.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1185790358E3262403AEA871 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D506AF264E182E70C7F78B6 /* Pods_SoAnnotated_PreSubmission.framework */,
+				D975F27F4C0356D3139E4C09 /* Pods_defaults_SoAnnotated_PreSubmission.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6199FD041EE377C700240D4E = {
 			isa = PBXGroup;
 			children = (
 				6199FD271EE3793900240D4E /* Dependencies */,
 				6199FD101EE377C700240D4E /* SoAnnotated-PreSubmission */,
 				6199FD0F1EE377C700240D4E /* Products */,
+				8830C6C1441E9FAC5B301CBE /* Pods */,
+				1185790358E3262403AEA871 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +135,17 @@
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
+		8830C6C1441E9FAC5B301CBE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADE83E701B1DC1588A078B44 /* Pods-SoAnnotated_PreSubmission.debug.xcconfig */,
+				C8D8A103318C67F3AF9C2533 /* Pods-SoAnnotated_PreSubmission.release.xcconfig */,
+				8D910949BE62C3CDE5D9E2DB /* Pods-defaults-SoAnnotated_PreSubmission.debug.xcconfig */,
+				180D4745AD85D7D929A42A6F /* Pods-defaults-SoAnnotated_PreSubmission.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -146,10 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6199FD161EE377C700240D4E /* Build configuration list for PBXNativeTarget "SoAnnotated_PreSubmission" */;
 			buildPhases = (
+				7FAEA0FE0AB5E6A762F54289 /* [CP] Check Pods Manifest.lock */,
 				6199FD091EE377C700240D4E /* Sources */,
 				6199FD0A1EE377C700240D4E /* Frameworks */,
 				6199FD0B1EE377C700240D4E /* Headers */,
 				6199FD0C1EE377C700240D4E /* Resources */,
+				974FC0BE9C48A1DDA15D91EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -203,6 +223,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7FAEA0FE0AB5E6A762F54289 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-SoAnnotated_PreSubmission-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		974FC0BE9C48A1DDA15D91EF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-SoAnnotated_PreSubmission/Pods-defaults-SoAnnotated_PreSubmission-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6199FD091EE377C700240D4E /* Sources */ = {
@@ -321,6 +377,7 @@
 		};
 		6199FD171EE377C700240D4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D910949BE62C3CDE5D9E2DB /* Pods-defaults-SoAnnotated_PreSubmission.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -330,10 +387,13 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../ExternalFrameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = "SoAnnotated-PreSubmission/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.SoAnnotated-PreSubmission";
 				PRODUCT_NAME = SoAnnotated_PreSubmission;
@@ -346,6 +406,7 @@
 		};
 		6199FD181EE377C700240D4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 180D4745AD85D7D929A42A6F /* Pods-defaults-SoAnnotated_PreSubmission.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -355,10 +416,13 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../ExternalFrameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = "SoAnnotated-PreSubmission/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.SoAnnotated-PreSubmission";
 				PRODUCT_NAME = SoAnnotated_PreSubmission;

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B2940161E7209AA00F2E49C /* CKIBrand.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B2940141E7209AA00F2E49C /* CKIBrand.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B2940171E7209AA00F2E49C /* CKIBrand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2940151E7209AA00F2E49C /* CKIBrand.m */; };
-		49369ECB1DF60265006C644F /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49369ECA1DF60178006C644F /* ReactiveObjC.framework */; };
 		496FC3B11F3A592900054359 /* CKIClient+CKIEnrollment.h in Headers */ = {isa = PBXBuildFile; fileRef = 496FC3AF1F3A592900054359 /* CKIClient+CKIEnrollment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		496FC3B21F3A592900054359 /* CKIClient+CKIEnrollment.m in Sources */ = {isa = PBXBuildFile; fileRef = 496FC3B01F3A592900054359 /* CKIClient+CKIEnrollment.m */; };
 		499D188B1C8643E6005A86D2 /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D188A1C8643E6005A86D2 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -393,12 +392,11 @@
 		499D1BA71C864564005A86D2 /* CKITodoItemNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499D1B041C864564005A86D2 /* CKITodoItemNetworkingTests.swift */; };
 		499D1BA81C864564005A86D2 /* CKIUserNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499D1B051C864564005A86D2 /* CKIUserNetworkingTests.swift */; };
 		499D1BA91C864564005A86D2 /* MockCKIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499D1B061C864564005A86D2 /* MockCKIClient.swift */; };
-		499D1BAF1C8646B4005A86D2 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499D1BAB1C8646B4005A86D2 /* AFNetworking.framework */; };
 		499D1BB01C8646B4005A86D2 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499D1BAB1C8646B4005A86D2 /* AFNetworking.framework */; };
-		499D1BB11C8646B4005A86D2 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499D1BAC1C8646B4005A86D2 /* Mantle.framework */; };
 		499D1BB21C8646B4005A86D2 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499D1BAC1C8646B4005A86D2 /* Mantle.framework */; };
 		499D1BBA1C864835005A86D2 /* EXTScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D1BB81C864835005A86D2 /* EXTScope.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		499D1BBB1C864835005A86D2 /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 499D1BB91C864835005A86D2 /* metamacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AAB2E0F233951223AF3F6CFC /* Pods_defaults_CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */; };
 		B1CF2FC51C90B8780035612B /* CKISO8601DateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = B1CF2FC31C90B8780035612B /* CKISO8601DateFormatter.h */; };
 		B1CF2FC61C90B8780035612B /* CKISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CF2FC41C90B8780035612B /* CKISO8601DateFormatter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
@@ -414,6 +412,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
+		25D4C8ECA1605DDE28318957 /* Pods-CanvasKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.debug.xcconfig"; sourceTree = "<group>"; };
+		3A2D00B0E16C49DC751FD964 /* Pods_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B2940141E7209AA00F2E49C /* CKIBrand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKIBrand.h; sourceTree = "<group>"; };
 		3B2940151E7209AA00F2E49C /* CKIBrand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKIBrand.m; sourceTree = "<group>"; };
 		49369ECA1DF60178006C644F /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -812,8 +813,11 @@
 		499D1BAC1C8646B4005A86D2 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499D1BB81C864835005A86D2 /* EXTScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EXTScope.h; sourceTree = "<group>"; };
 		499D1BB91C864835005A86D2 /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89D0BBE2474CFAFFCAB82936 /* Pods-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-CanvasKit/Pods-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 		B1CF2FC31C90B8780035612B /* CKISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKISO8601DateFormatter.h; sourceTree = "<group>"; };
 		B1CF2FC41C90B8780035612B /* CKISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKISO8601DateFormatter.m; sourceTree = "<group>"; };
+		DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -821,9 +825,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499D1BAF1C8646B4005A86D2 /* AFNetworking.framework in Frameworks */,
-				49369ECB1DF60265006C644F /* ReactiveObjC.framework in Frameworks */,
-				499D1BB11C8646B4005A86D2 /* Mantle.framework in Frameworks */,
+				AAB2E0F233951223AF3F6CFC /* Pods_defaults_CanvasKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +842,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04F64EF1EF492E679648A16B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				25D4C8ECA1605DDE28318957 /* Pods-CanvasKit.debug.xcconfig */,
+				89D0BBE2474CFAFFCAB82936 /* Pods-CanvasKit.release.xcconfig */,
+				04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */,
+				DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		499D187D1C8643E6005A86D2 = {
 			isa = PBXGroup;
 			children = (
@@ -847,6 +860,8 @@
 				499D18891C8643E6005A86D2 /* CanvasKit */,
 				499D18951C8643E6005A86D2 /* CanvasKitTests */,
 				499D18881C8643E6005A86D2 /* Products */,
+				04F64EF1EF492E679648A16B /* Pods */,
+				B6AEC89685AD381FE7396715 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1406,6 +1421,15 @@
 			path = ISO8601DateFormatter;
 			sourceTree = "<group>";
 		};
+		B6AEC89685AD381FE7396715 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A2D00B0E16C49DC751FD964 /* Pods_CanvasKit.framework */,
+				73FDCB1E035EF6A93E758F42 /* Pods_defaults_CanvasKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1536,10 +1560,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 499D189B1C8643E6005A86D2 /* Build configuration list for PBXNativeTarget "CanvasKit" */;
 			buildPhases = (
+				DA202A6C54EC6F980433C5CC /* [CP] Check Pods Manifest.lock */,
 				499D18821C8643E6005A86D2 /* Sources */,
 				499D18831C8643E6005A86D2 /* Frameworks */,
 				499D18841C8643E6005A86D2 /* Headers */,
 				499D18851C8643E6005A86D2 /* Resources */,
+				A4299CE07112A9460D200051 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1680,6 +1706,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A4299CE07112A9460D200051 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-CanvasKit/Pods-defaults-CanvasKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA202A6C54EC6F980433C5CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-CanvasKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		499D18821C8643E6005A86D2 /* Sources */ = {
@@ -2013,6 +2075,7 @@
 		};
 		499D189C1C8643E6005A86D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04B7BBDCB828F414AA45D2B6 /* Pods-defaults-CanvasKit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEFINES_MODULE = YES;
@@ -2020,11 +2083,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CanvasKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2035,6 +2098,7 @@
 		};
 		499D189D1C8643E6005A86D2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFC0045B1D1838536E5DC07E /* Pods-defaults-CanvasKit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEFINES_MODULE = YES;
@@ -2042,11 +2106,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "";
-				HEADER_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = CanvasKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CanvasKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

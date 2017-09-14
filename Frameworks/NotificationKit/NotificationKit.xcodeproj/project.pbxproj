@@ -23,6 +23,7 @@
 		49EB0C021BC48426008F938C /* SimpleAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0C001BC48426008F938C /* SimpleAlertExtension.swift */; };
 		49EB0C031BC48426008F938C /* SimpleErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB0C011BC48426008F938C /* SimpleErrorExtension.swift */; };
 		5EBD45741BE26DFA003B667A /* PushState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBD45731BE26DFA003B667A /* PushState.swift */; };
+		9B4C7CB7E8B6B5013EBD97F1 /* Pods_defaults_NotificationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD35BB4B8865F9E26A274F39 /* Pods_defaults_NotificationKit.framework */; };
 		B16B5D621E254CF900DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5D641E254CF900DED47B /* InfoPlist.strings */; };
 		B16B5D671E254CFB00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5D691E254CFB00DED47B /* InfoPlist.strings */; };
 		B5A260371D8CB4C400E5C95E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A260331D8CB4C400E5C95E /* Localizable.strings */; };
@@ -57,7 +58,10 @@
 		49EB0BFA1BC48379008F938C /* NotificationKitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationKitController.swift; sourceTree = "<group>"; };
 		49EB0C001BC48426008F938C /* SimpleAlertExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlertExtension.swift; sourceTree = "<group>"; };
 		49EB0C011BC48426008F938C /* SimpleErrorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleErrorExtension.swift; sourceTree = "<group>"; };
+		4DA387A24F9B6CA619DC5013 /* Pods-NotificationKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-NotificationKit/Pods-NotificationKit.release.xcconfig"; sourceTree = "<group>"; };
+		54DB7366F4A8074E9BC90B27 /* Pods-defaults-NotificationKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-NotificationKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-NotificationKit/Pods-defaults-NotificationKit.debug.xcconfig"; sourceTree = "<group>"; };
 		5EBD45731BE26DFA003B667A /* PushState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushState.swift; sourceTree = "<group>"; };
+		76F23A56B3ADC4E510ABFC66 /* Pods-defaults-NotificationKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-NotificationKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-NotificationKit/Pods-defaults-NotificationKit.release.xcconfig"; sourceTree = "<group>"; };
 		B16B5D631E254CF900DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5D681E254CFB00DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5D6A1E254D0A00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -116,6 +120,9 @@
 		B5FD3A1D1D8CB4E6005A4E13 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "NotificationKit/en-AU.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B5FD3A1E1D8CB4E6005A4E13 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "NotificationKit/en-GB.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		B5FD3A1F1D8CB4E6005A4E13 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = NotificationKit/en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		CD35BB4B8865F9E26A274F39 /* Pods_defaults_NotificationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_NotificationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3E88B12021E48BAF75083AF /* Pods-NotificationKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-NotificationKit/Pods-NotificationKit.debug.xcconfig"; sourceTree = "<group>"; };
+		FD87FFD5DB314635E70BC41A /* Pods_NotificationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NotificationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A9C3DB1BCEFFC8002E3A62 /* TooLegit.framework in Frameworks */,
+				9B4C7CB7E8B6B5013EBD97F1 /* Pods_defaults_NotificationKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +146,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044FED70708A77023EEC248D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3E88B12021E48BAF75083AF /* Pods-NotificationKit.debug.xcconfig */,
+				4DA387A24F9B6CA619DC5013 /* Pods-NotificationKit.release.xcconfig */,
+				54DB7366F4A8074E9BC90B27 /* Pods-defaults-NotificationKit.debug.xcconfig */,
+				76F23A56B3ADC4E510ABFC66 /* Pods-defaults-NotificationKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		49A04E3C1CF607DB0051E1E7 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +171,8 @@
 				49EB0BCC1BC47B39008F938C /* NotificationKit */,
 				49EB0BD91BC47B39008F938C /* NotificationKitTests */,
 				49EB0BCB1BC47B39008F938C /* Products */,
+				044FED70708A77023EEC248D /* Pods */,
+				5A4742AEC8D1AE720AF05301 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -263,6 +284,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5A4742AEC8D1AE720AF05301 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD87FFD5DB314635E70BC41A /* Pods_NotificationKit.framework */,
+				CD35BB4B8865F9E26A274F39 /* Pods_defaults_NotificationKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -281,10 +311,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49EB0BE01BC47B39008F938C /* Build configuration list for PBXNativeTarget "NotificationKit" */;
 			buildPhases = (
+				99FD3F65BF5529CEC2FFE758 /* [CP] Check Pods Manifest.lock */,
 				49EB0BC51BC47B39008F938C /* Sources */,
 				49EB0BC61BC47B39008F938C /* Frameworks */,
 				49EB0BC71BC47B39008F938C /* Headers */,
 				49EB0BC81BC47B39008F938C /* Resources */,
+				E9015ECC645F68374C1D0FF8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -390,6 +422,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99FD3F65BF5529CEC2FFE758 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-NotificationKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9015ECC645F68374C1D0FF8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-NotificationKit/Pods-defaults-NotificationKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		49EB0BC51BC47B39008F938C /* Sources */ = {
@@ -611,6 +679,7 @@
 		};
 		49EB0BE11BC47B39008F938C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54DB7366F4A8074E9BC90B27 /* Pods-defaults-NotificationKit.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -620,6 +689,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = NotificationKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -630,6 +700,7 @@
 		};
 		49EB0BE21BC47B39008F938C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76F23A56B3ADC4E510ABFC66 /* Pods-defaults-NotificationKit.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -639,6 +710,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = NotificationKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.instructure.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

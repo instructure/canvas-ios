@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032F09778097AC3DBE7F00B1 /* Pods_defaults_ObserverAlertKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A3C8E68D3F195675C551FAF /* Pods_defaults_ObserverAlertKit.framework */; };
 		5E09E1CD1CEA66740006A46D /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E09E1CC1CEA66740006A46D /* SoAutomated.framework */; };
 		5E09E1D11CEA7A410006A46D /* AlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E09E1D01CEA7A410006A46D /* AlertTests.swift */; };
 		5E4E20601C929CD200E7D709 /* AlertThresholds+Edits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4E205F1C929CD200E7D709 /* AlertThresholds+Edits.swift */; };
@@ -31,7 +32,6 @@
 		5EF8A4D91CF774DB007072BF /* valid_alert.json in Resources */ = {isa = PBXBuildFile; fileRef = 5EF8A4D81CF774DB007072BF /* valid_alert.json */; };
 		5EF8A4DC1CF7834F007072BF /* Alert+NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF8A4DB1CF7834F007072BF /* Alert+NetworkTests.swift */; };
 		5EF8A4DE1CF7835C007072BF /* Alert+CollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF8A4DD1CF7835C007072BF /* Alert+CollectionTests.swift */; };
-		5EFD025D1C861C0F0071C8F5 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFD025B1C861BFF0071C8F5 /* Marshal.framework */; };
 		610AABAD1C7CA66A0078A235 /* AlertCountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610AABAC1C7CA66A0078A235 /* AlertCountCoordinator.swift */; };
 		61A47BC71CEBCCCD00861155 /* Airwolf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A47BC61CEBCCBF00861155 /* Airwolf.framework */; };
 		61D6A8371C8F79F500370117 /* Alert+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D6A8361C8F79F500370117 /* Alert+Network.swift */; };
@@ -63,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A3C8E68D3F195675C551FAF /* Pods_defaults_ObserverAlertKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_ObserverAlertKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		371B97560DBDC0918232FCB1 /* Pods-ObserverAlertKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObserverAlertKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-ObserverAlertKit/Pods-ObserverAlertKit.release.xcconfig"; sourceTree = "<group>"; };
 		5E09E1CC1CEA66740006A46D /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoAutomated.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Parent-fuimhnzxgmmvcgcrntfxmrqlexbi/Build/Products/Debug-iphoneos/SoAutomated.framework"; sourceTree = "<group>"; };
 		5E09E1D01CEA7A410006A46D /* AlertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTests.swift; sourceTree = "<group>"; };
 		5E4E205F1C929CD200E7D709 /* AlertThresholds+Edits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AlertThresholds+Edits.swift"; sourceTree = "<group>"; };
@@ -109,6 +111,10 @@
 		61E4E7991C6BCD370043D3B2 /* ObserverAlertKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObserverAlertKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61E4E7A01C6BCD370043D3B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61E4E7AD1C6BCE050043D3B2 /* ObserverAlertKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ObserverAlertKit.xcdatamodel; sourceTree = "<group>"; };
+		A0EC58E5703A0EEB1B26C2DC /* Pods_ObserverAlertKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ObserverAlertKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACC713AFF73B9EDF00D063DD /* Pods-defaults-ObserverAlertKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ObserverAlertKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-ObserverAlertKit/Pods-defaults-ObserverAlertKit.debug.xcconfig"; sourceTree = "<group>"; };
+		C549BF6F4B390CE564E6D748 /* Pods-defaults-ObserverAlertKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ObserverAlertKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-ObserverAlertKit/Pods-defaults-ObserverAlertKit.release.xcconfig"; sourceTree = "<group>"; };
+		D3C4E065FEA3EF2189D695B8 /* Pods-ObserverAlertKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObserverAlertKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-ObserverAlertKit/Pods-ObserverAlertKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,10 +123,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				61A47BC71CEBCCCD00861155 /* Airwolf.framework in Frameworks */,
-				5EFD025D1C861C0F0071C8F5 /* Marshal.framework in Frameworks */,
 				61DC2B7E1C6BD00400AE0CE9 /* SoPersistent.framework in Frameworks */,
 				61DC2B851C6BD0BB00AE0CE9 /* SoLazy.framework in Frameworks */,
 				61DC2B831C6BD09100AE0CE9 /* TooLegit.framework in Frameworks */,
+				032F09778097AC3DBE7F00B1 /* Pods_defaults_ObserverAlertKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +239,8 @@
 				61DC2B841C6BD0BA00AE0CE9 /* SoLazy.framework */,
 				61DC2B821C6BD09100AE0CE9 /* TooLegit.framework */,
 				61DC2B7D1C6BD00400AE0CE9 /* SoPersistent.framework */,
+				A0EC58E5703A0EEB1B26C2DC /* Pods_ObserverAlertKit.framework */,
+				1A3C8E68D3F195675C551FAF /* Pods_defaults_ObserverAlertKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 				61E4E79D1C6BCD370043D3B2 /* ObserverAlertKitTests */,
 				61E4E7901C6BCD370043D3B2 /* Products */,
 				61DC2B7F1C6BD01200AE0CE9 /* Frameworks */,
+				72AC75951287B38648E68829 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -293,6 +302,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		72AC75951287B38648E68829 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3C4E065FEA3EF2189D695B8 /* Pods-ObserverAlertKit.debug.xcconfig */,
+				371B97560DBDC0918232FCB1 /* Pods-ObserverAlertKit.release.xcconfig */,
+				ACC713AFF73B9EDF00D063DD /* Pods-defaults-ObserverAlertKit.debug.xcconfig */,
+				C549BF6F4B390CE564E6D748 /* Pods-defaults-ObserverAlertKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -311,10 +331,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61E4E7A31C6BCD370043D3B2 /* Build configuration list for PBXNativeTarget "ObserverAlertKit" */;
 			buildPhases = (
+				443E6380B913CC9F455C7D49 /* [CP] Check Pods Manifest.lock */,
 				61E4E78A1C6BCD370043D3B2 /* Sources */,
 				61E4E78B1C6BCD370043D3B2 /* Frameworks */,
 				61E4E78C1C6BCD370043D3B2 /* Headers */,
 				61E4E78D1C6BCD370043D3B2 /* Resources */,
+				BF3B363694EB9C441A6BA946 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -409,6 +431,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		443E6380B913CC9F455C7D49 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-ObserverAlertKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF3B363694EB9C441A6BA946 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-ObserverAlertKit/Pods-defaults-ObserverAlertKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		61E4E78A1C6BCD370043D3B2 /* Sources */ = {
@@ -555,6 +613,7 @@
 		};
 		61E4E7A41C6BCD370043D3B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACC713AFF73B9EDF00D063DD /* Pods-defaults-ObserverAlertKit.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -568,7 +627,7 @@
 				);
 				INFOPLIST_FILE = ObserverAlertKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ObserverAlertKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -580,6 +639,7 @@
 		};
 		61E4E7A51C6BCD370043D3B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C549BF6F4B390CE564E6D748 /* Pods-defaults-ObserverAlertKit.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -593,7 +653,7 @@
 				);
 				INFOPLIST_FILE = ObserverAlertKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ObserverAlertKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

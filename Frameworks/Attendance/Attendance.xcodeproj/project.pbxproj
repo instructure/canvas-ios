@@ -7,25 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3ED223E3E05529C858DCA1B0 /* Pods_defaults_AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35841906211662B5DFB78D64 /* Pods_defaults_AttendanceLE.framework */; };
 		4759D5B71F2A9E7D00B28F02 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4759D5B61F2A9E7D00B28F02 /* Toast.swift */; };
 		490F5F151F26792A007FF07D /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F5F141F26792A007FF07D /* StudentViewController.swift */; };
 		490F5F1B1F2680E0007FF07D /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F181F2680D4007FF07D /* CanvasKit.framework */; };
 		490F5F1C1F2680E0007FF07D /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F181F2680D4007FF07D /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		490F5F201F268215007FF07D /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1D1F268206007FF07D /* AFNetworking.framework */; };
 		490F5F211F268215007FF07D /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1D1F268206007FF07D /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		490F5F221F268215007FF07D /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1E1F268206007FF07D /* Mantle.framework */; };
 		490F5F231F268215007FF07D /* Mantle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1E1F268206007FF07D /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		490F5F241F268215007FF07D /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1F1F268206007FF07D /* ReactiveObjC.framework */; };
 		490F5F251F268215007FF07D /* ReactiveObjC.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1F1F268206007FF07D /* ReactiveObjC.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		490F5F261F26821A007FF07D /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1D1F268206007FF07D /* AFNetworking.framework */; };
-		490F5F271F26821A007FF07D /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1E1F268206007FF07D /* Mantle.framework */; };
-		490F5F281F26821A007FF07D /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F1F1F268206007FF07D /* ReactiveObjC.framework */; };
 		490F5F291F26821A007FF07D /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F181F2680D4007FF07D /* CanvasKit.framework */; };
 		490F5F2B1F269226007FF07D /* RollCallSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F5F2A1F269226007FF07D /* RollCallSession.swift */; };
 		490F5F2D1F26ABA7007FF07D /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F5F2C1F26ABA7007FF07D /* Status.swift */; };
-		490F5F2F1F26ABC3007FF07D /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F2E1F26ABB5007FF07D /* Marshal.framework */; };
 		490F5F301F26ABC3007FF07D /* Marshal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F2E1F26ABB5007FF07D /* Marshal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		490F5F311F26ABC7007FF07D /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490F5F2E1F26ABB5007FF07D /* Marshal.framework */; };
 		490F5F331F27B4B1007FF07D /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F5F321F27B4B1007FF07D /* AttendanceViewController.swift */; };
 		4969DBC21F2818B300C1AA39 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969DBC11F2818B300C1AA39 /* StatusCell.swift */; };
 		4969DBC41F281BF000C1AA39 /* StagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969DBC31F281BF000C1AA39 /* StagingViewController.swift */; };
@@ -73,7 +66,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		17E27454AB3D8CD3F3D274EE /* Pods-defaults-AttendanceLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-AttendanceLE.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-AttendanceLE/Pods-defaults-AttendanceLE.debug.xcconfig"; sourceTree = "<group>"; };
+		35841906211662B5DFB78D64 /* Pods_defaults_AttendanceLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4759D5B61F2A9E7D00B28F02 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		485BCE7660CE88047AA7FAFC /* Pods_AttendanceLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490F5F141F26792A007FF07D /* StudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
 		490F5F181F2680D4007FF07D /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490F5F1D1F268206007FF07D /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +97,9 @@
 		49E760121F3A207600AC70A7 /* CKIClient+AuthorizedSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKIClient+AuthorizedSections.swift"; sourceTree = "<group>"; };
 		610185491F3506AA003B5AAC /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		6101854B1F3513A7003B5AAC /* DatePickerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionView.swift; sourceTree = "<group>"; };
+		64BCD045B2AA9ECE3111F7E4 /* Pods-defaults-AttendanceLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-AttendanceLE.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-AttendanceLE/Pods-defaults-AttendanceLE.release.xcconfig"; sourceTree = "<group>"; };
+		7C47098CEEE6B0C8AADC156C /* Pods-AttendanceLE.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttendanceLE.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-AttendanceLE/Pods-AttendanceLE.debug.xcconfig"; sourceTree = "<group>"; };
+		9C3A83D7D3EB077BDA823093 /* Pods-AttendanceLE.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AttendanceLE.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-AttendanceLE/Pods-AttendanceLE.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490F5F261F26821A007FF07D /* AFNetworking.framework in Frameworks */,
-				490F5F281F26821A007FF07D /* ReactiveObjC.framework in Frameworks */,
-				490F5F271F26821A007FF07D /* Mantle.framework in Frameworks */,
-				490F5F311F26ABC7007FF07D /* Marshal.framework in Frameworks */,
 				490F5F291F26821A007FF07D /* CanvasKit.framework in Frameworks */,
+				3ED223E3E05529C858DCA1B0 /* Pods_defaults_AttendanceLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,10 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				490F5F1B1F2680E0007FF07D /* CanvasKit.framework in Frameworks */,
-				490F5F221F268215007FF07D /* Mantle.framework in Frameworks */,
-				490F5F241F268215007FF07D /* ReactiveObjC.framework in Frameworks */,
-				490F5F2F1F26ABC3007FF07D /* Marshal.framework in Frameworks */,
-				490F5F201F268215007FF07D /* AFNetworking.framework in Frameworks */,
 				49BC5D451F266E9F00623FB2 /* AttendanceLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +124,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		159DFA1AFF0FAEB3345CBFBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				485BCE7660CE88047AA7FAFC /* Pods_AttendanceLE.framework */,
+				35841906211662B5DFB78D64 /* Pods_defaults_AttendanceLE.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40B97ACFD78C998F3C984D69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C47098CEEE6B0C8AADC156C /* Pods-AttendanceLE.debug.xcconfig */,
+				9C3A83D7D3EB077BDA823093 /* Pods-AttendanceLE.release.xcconfig */,
+				17E27454AB3D8CD3F3D274EE /* Pods-defaults-AttendanceLE.debug.xcconfig */,
+				64BCD045B2AA9ECE3111F7E4 /* Pods-defaults-AttendanceLE.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		473E8DF41F27E40400D342BF /* BTLEConnectors */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +192,8 @@
 				49C0D4FD1F266DBA0056D9B1 /* Attendance */,
 				49BC5D3F1F266E9F00623FB2 /* AttendanceLE */,
 				49C0D4FC1F266DBA0056D9B1 /* Products */,
+				40B97ACFD78C998F3C984D69 /* Pods */,
+				159DFA1AFF0FAEB3345CBFBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -224,10 +238,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49BC5D491F266E9F00623FB2 /* Build configuration list for PBXNativeTarget "AttendanceLE" */;
 			buildPhases = (
+				3E2D2A5BB803E523368459EA /* [CP] Check Pods Manifest.lock */,
 				49BC5D391F266E9F00623FB2 /* Sources */,
 				49BC5D3A1F266E9F00623FB2 /* Frameworks */,
 				49BC5D3B1F266E9F00623FB2 /* Headers */,
 				49BC5D3C1F266E9F00623FB2 /* Resources */,
+				DE67CE226A62EA67CADB6635 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -325,6 +341,42 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3E2D2A5BB803E523368459EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-AttendanceLE-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE67CE226A62EA67CADB6635 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-AttendanceLE/Pods-defaults-AttendanceLE-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		49BC5D391F266E9F00623FB2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -384,6 +436,7 @@
 /* Begin XCBuildConfiguration section */
 		49BC5D471F266E9F00623FB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17E27454AB3D8CD3F3D274EE /* Pods-defaults-AttendanceLE.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -409,6 +462,7 @@
 		};
 		49BC5D481F266E9F00623FB2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64BCD045B2AA9ECE3111F7E4 /* Pods-defaults-AttendanceLE.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
