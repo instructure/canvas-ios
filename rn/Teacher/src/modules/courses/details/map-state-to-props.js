@@ -53,8 +53,16 @@ export default function mapStateToProps (state: AppState, { courseID }: RoutingP
   const attendanceTabID = courseState.attendanceTool.tabID
 
   const availableCourseTabs = ['assignments', 'quizzes', 'discussions', 'announcements', 'people']
+
+  if (global.v12) {
+    availableCourseTabs.push(attendanceTabID)
+  }
+
   const tabs = courseState.tabs.tabs
-    .filter((tab) => availableCourseTabs.includes(tab.id) || (attendanceTabID && tab.id === attendanceTabID && global.v12))
+    .filter((tab) => {
+      if (tab.id === attendanceTabID && tab.hidden) return false
+      return availableCourseTabs.includes(tab.id)
+    })
     .sort((t1, t2) => (t1.position - t2.position))
   const error = state.favoriteCourses.error ||
     courseState.tabs.error

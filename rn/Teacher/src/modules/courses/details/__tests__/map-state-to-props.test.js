@@ -68,3 +68,37 @@ test('mapStateToProps throws without course', () => {
     mapStateToProps(state, { courseID: '1' })
   }).toThrow()
 })
+
+test('mapStateToProps hides attendance tab if it is hidden', () => {
+  const course = template.course({ id: '1' })
+  const tabs = { tabs: [template.tab({ id: '1' })], pending: 0 }
+  const attendanceTool = { tabID: '1', pending: 0 }
+  const state = template.appState({
+    entities: {
+      courses: {
+        '1': {
+          course,
+          color: '#fff',
+          tabs,
+          attendanceTool,
+        },
+      },
+    },
+    favoriteCourses: {
+      pending: 0,
+      courseRefs: ['1'],
+    },
+  })
+  const expected = {
+    course,
+    tabs: [],
+    color: '#fff',
+    pending: 0,
+    error: undefined,
+    attendanceTabID: '1',
+  }
+
+  const props = mapStateToProps(state, { courseID: '1' })
+
+  expect(props).toEqual(expected)
+})
