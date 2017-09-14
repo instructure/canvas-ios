@@ -5,7 +5,6 @@ import { AlertIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 import { MediaComment, type Props } from '../MediaComment'
 import explore from '../../../../test/helpers/explore'
-import RNFS from 'react-native-fs'
 
 jest
   .mock('Button', () => 'Button')
@@ -37,7 +36,6 @@ describe('MediaComment', () => {
   })
 
   it('notifies when finished uploading', async () => {
-    RNFS.unlink = jest.fn(() => Promise.resolve())
     const spy = jest.fn()
     props.onFinishedUploading = spy
     props.uploadMedia = jest.fn(() => Promise.resolve('1'))
@@ -59,6 +57,11 @@ describe('MediaComment', () => {
     const recorder = explore(render(props).toJSON()).selectByType('AudioRecorder')
     await recorder.props.onFinishedRecording({ fileName: 'foo.mp4', filePath: '/foo.mp4' })
     expect(spy).toHaveBeenCalledWith('Failed to upload media comment')
+  })
+
+  it('renders videos', () => {
+    props.mediaType = 'video'
+    expect(render(props).toJSON()).toMatchSnapshot()
   })
 
   function render (props: Props): any {

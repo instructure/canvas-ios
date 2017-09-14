@@ -98,6 +98,38 @@ test('video comments render correctly', () => {
   expect(videoComment.props.source.uri).toEqual('https://notorious.com/video')
 })
 
+test('local video comments render correctly', () => {
+  const comment = {
+    ...testComment,
+    contents: {
+      type: 'media',
+      mediaType: 'video',
+      url: '/var/local/file.mov',
+    },
+  }
+  let view = renderer.create(
+    <CommentRow {...comment} />
+  )
+  const videoComment: any = explore(view.toJSON()).selectByType('Video')
+  expect(videoComment).not.toBeNull()
+  expect(videoComment.props.source.uri).toEqual('file:///var/local/file.mov')
+})
+
+test('video comments without url render correctly', () => {
+  const comment = {
+    ...testComment,
+    contents: {
+      type: 'media',
+      mediaType: 'video',
+      url: null,
+    },
+  }
+  let view = renderer.create(
+    <CommentRow {...comment} />
+  )
+  expect(view.toJSON()).toMatchSnapshot()
+})
+
 test('their submissions render correctly', () => {
   const comment = {
     ...testComment,

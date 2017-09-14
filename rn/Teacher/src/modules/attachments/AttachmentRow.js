@@ -54,6 +54,7 @@ export default class AttachmentRow extends Component<any, Props, any> {
         accessories={this.removeButton()}
         onPress={this.props.onPress}
         testID={this.props.testID}
+        accessible={false}
       />
     )
   }
@@ -87,6 +88,8 @@ export default class AttachmentRow extends Component<any, Props, any> {
           onPress={this.onPressError}
           style={style.image}
           hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+          accessibilityLabel={i18n('Upload error')}
+          accessibilityTraits='button'
         >
           <Image
             source={images.attachments.error}
@@ -98,11 +101,16 @@ export default class AttachmentRow extends Component<any, Props, any> {
 
     if (this.props.progress.loaded >= this.props.progress.total) {
       return (
-        <Image
-          source={images.attachments.complete}
+        <View
           style={style.image}
-          testID={`${this.props.testID}.icon.complete`}
-        />
+          accessibilityLabel={i18n('Upload complete')}
+          accessible={true}
+        >
+          <Image
+            source={images.attachments.complete}
+            testID={`${this.props.testID}.icon.complete`}
+          />
+        </View>
       )
     }
 
@@ -113,6 +121,8 @@ export default class AttachmentRow extends Component<any, Props, any> {
         onPress={this.props.onCancel}
         style={style.image}
         hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+        accessibilityLabel={i18n('Upload in progress')}
+        accessibilityTraits='button'
       >
         <View style={{ flex: 1, justifyContent: 'center' }}>
           <View style={style.cancel}>
@@ -142,6 +152,8 @@ export default class AttachmentRow extends Component<any, Props, any> {
         underlayColor='white'
         hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
         testID={`${this.props.testID}.remove.btn`}
+        accessibilityLabel={i18n('Remove attachment')}
+        accessibilityTraits='button'
       >
         <Image source={images.x} style={style.remove} />
       </TouchableHighlight>

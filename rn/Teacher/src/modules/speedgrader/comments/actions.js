@@ -21,7 +21,7 @@ import canvas from 'instructure-canvas-api'
 import uuid from 'uuid/v1'
 
 export const SubmissionCommentActions = (api: CanvasApi): * => ({
-  makeAComment: createAction('submissions.comments.send', (courseID: string, assignmentID: string, userID: string, comment: SubmissionCommentParams) => ({
+  makeAComment: createAction('submissions.comments.send', (courseID: string, assignmentID: string, userID: string, comment: SubmissionCommentParams, mediaFilePath?: string) => ({
     comment,
     assignmentID,
     userID,
@@ -31,6 +31,7 @@ export const SubmissionCommentActions = (api: CanvasApi): * => ({
       courseID, assignmentID, userID, comment
     ),
     handlesError: true,
+    mediaFilePath,
   })),
 
   deletePendingComment: createAction('submission.comments.delete-pending', (assignmentID: string, userID: string, localID: string) => ({

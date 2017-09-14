@@ -24,7 +24,7 @@ exports[`Compose renders 1`] = `
         "title": "Send",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
         "image": 1,
@@ -502,7 +502,7 @@ exports[`Compose renders after picking a course 1`] = `
         "title": "Send",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
         "image": 1,
@@ -1073,7 +1073,7 @@ exports[`Compose renders reply 1`] = `
         "title": "Send",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
         "image": 1,
@@ -1625,7 +1625,7 @@ exports[`Compose renders with passed in recipients 1`] = `
         "title": "Send",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachments (0)",
         "action": [Function],
         "badge": false,
         "image": 1,

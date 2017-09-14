@@ -189,7 +189,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
             image: Images.attachmentLarge,
             testID: 'discussions.edit.attachment-btn',
             action: this.addAttachment,
-            accessibilityLabel: i18n('Add attachment'),
+            accessibilityLabel: i18n('Edit attachment ({count})', { count: this.state.attachment ? '1' : i18n('none') }),
             badge: this.state.attachment && {
               text: '1',
               backgroundColor: processColor('#008EE2'),

@@ -91,6 +91,8 @@ exports[`AudioComment moves the scrubber with the current time 1`] = `
         </View>
       </View>
       <TouchableHighlight
+        accessibilityLabel="Stop playing audio"
+        accessibilityTraits="button"
         onPress={[Function]}
         testID="audio-comment.stop-btn"
       >
@@ -139,6 +141,8 @@ exports[`AudioComment renders default 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityLabel="Audio Comment"
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {
@@ -220,6 +224,8 @@ exports[`AudioComment renders from them 1`] = `
   }
 >
   <TouchableHighlight
+    accessibilityLabel="Audio Comment"
+    accessibilityTraits="button"
     onPress={[Function]}
     style={
       Object {

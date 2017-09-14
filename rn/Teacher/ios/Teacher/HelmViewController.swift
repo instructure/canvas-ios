@@ -300,6 +300,8 @@ final class HelmViewController: UIViewController, HelmScreen {
                         button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
                     }
                     let badged = UIView(frame: frame)
+                    badged.isAccessibilityElement = true
+                    badged.accessibilityLabel = buttonConfig["accessibilityLabel"] as? String
                     let badgeLabel = UILabel()
                     if let backgroundColor = badgeConfig["backgroundColor"] {
                         badgeLabel.backgroundColor = RCTConvert.uiColor(backgroundColor)

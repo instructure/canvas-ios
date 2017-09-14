@@ -32,7 +32,6 @@ exports[`Attachments renders attachments 1`] = `
       }
     }
   >
-    <AttachmentPicker />
     <RCTScrollView
       ItemSeparatorComponent={[Function]}
       ListEmptyComponent={[Function]}
@@ -111,6 +110,7 @@ exports[`Attachments renders attachments 1`] = `
                 "button",
               ]
             }
+            accessible={false}
             onPress={[Function]}
             style={
               Array [
@@ -140,15 +140,20 @@ exports[`Attachments renders attachments 1`] = `
                 ]
               }
             >
-              <Image
-                source={1}
+              <View
+                accessibilityLabel="Upload complete"
+                accessible={true}
                 style={
                   Object {
                     "marginRight": 16,
                   }
                 }
-                testID="attachments.attachment-row.0.icon.complete"
-              />
+              >
+                <Image
+                  source={1}
+                  testID="attachments.attachment-row.0.icon.complete"
+                />
+              </View>
               <View
                 style={
                   Object {
@@ -206,6 +211,8 @@ exports[`Attachments renders attachments 1`] = `
                   }
                 >
                   <TouchableHighlight
+                    accessibilityLabel="Remove attachment"
+                    accessibilityTraits="button"
                     hitSlop={
                       Object {
                         "bottom": 8,
@@ -256,6 +263,7 @@ exports[`Attachments renders attachments 1`] = `
                 "button",
               ]
             }
+            accessible={false}
             onPress={[Function]}
             style={
               Array [
@@ -285,15 +293,20 @@ exports[`Attachments renders attachments 1`] = `
                 ]
               }
             >
-              <Image
-                source={1}
+              <View
+                accessibilityLabel="Upload complete"
+                accessible={true}
                 style={
                   Object {
                     "marginRight": 16,
                   }
                 }
-                testID="attachments.attachment-row.1.icon.complete"
-              />
+              >
+                <Image
+                  source={1}
+                  testID="attachments.attachment-row.1.icon.complete"
+                />
+              </View>
               <View
                 style={
                   Object {
@@ -351,6 +364,8 @@ exports[`Attachments renders attachments 1`] = `
                   }
                 >
                   <TouchableHighlight
+                    accessibilityLabel="Remove attachment"
+                    accessibilityTraits="button"
                     hitSlop={
                       Object {
                         "bottom": 8,
@@ -381,6 +396,17 @@ exports[`Attachments renders attachments 1`] = `
         </View>
       </View>
     </RCTScrollView>
+    <AttachmentPicker
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
   </View>
 </Screen>
 `;
@@ -417,7 +443,6 @@ exports[`Attachments renders empty state 1`] = `
       }
     }
   >
-    <AttachmentPicker />
     <RCTScrollView
       ItemSeparatorComponent={[Function]}
       ListEmptyComponent={[Function]}
@@ -528,6 +553,17 @@ exports[`Attachments renders empty state 1`] = `
         </View>
       </View>
     </RCTScrollView>
+    <AttachmentPicker
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
   </View>
 </Screen>
 `;

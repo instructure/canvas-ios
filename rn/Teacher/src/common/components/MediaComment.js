@@ -12,10 +12,16 @@ import AudioRecorder from './AudioRecorder'
 import VideoRecorder from './VideoRecorder'
 import { uploadMedia } from 'instructure-canvas-api'
 import i18n from 'format-message'
-import RNFS from 'react-native-fs'
+
+export type Media = {
+  fileName: string,
+  filePath: string,
+  mediaID: string,
+  mediaType: string,
+}
 
 type OwnProps = {
-  onFinishedUploading: ({ fileName: string, filePath: string, mediaID: string, mediaType: string }) => void,
+  onFinishedUploading: (media: Media) => void,
   onCancel: () => void,
   mediaType: 'audio' | 'video',
 }
@@ -43,9 +49,6 @@ export class MediaComment extends Component<any, Props, any> {
     try {
       const mediaID = await this.props.uploadMedia(filePath, mediaType)
       this.setState({ uploading: false })
-      this.audioRecorder && this.audioRecorder.prepareRecording()
-      this.videoRecorder && this.videoRecorder.reset()
-      await RNFS.unlink(filePath)
       this.props.onFinishedUploading({ fileName, filePath, mediaID, mediaType })
     } catch (e) {
       this.setState({ uploading: false })

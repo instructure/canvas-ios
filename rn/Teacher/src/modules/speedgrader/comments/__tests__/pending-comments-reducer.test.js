@@ -23,6 +23,7 @@ import SubmissionActions from '../../../submissions/list/actions'
 const { PushNotifications } = NativeModules
 const t = {
   ...require('../../../../__templates__/submissions'),
+  ...require('../../../../__templates__/mediaComment'),
 }
 
 const { makeAComment, deletePendingComment } = PendingActions
@@ -42,6 +43,7 @@ const completed: PendingCommentState = {
   timestamp: '2017-05-17T05:59:00Z',
   comment: { type: 'text', message: 'Hello!' },
   error: undefined,
+  mediaComment: null,
 }
 
 const failed: PendingCommentState = {
@@ -89,6 +91,34 @@ test('reduces completed comments', () => {
     action
   )).toEqual(
     { '99': [completed] },
+  )
+})
+
+test('reduces media comments', () => {
+  const submission = t.submissionHistory([t.submission()], [t.submissionComment({
+    id: completed.commentID,
+    media_comment: t.mediaComment(),
+  })])
+
+  const action = {
+    type: makeAComment.toString(),
+    payload: {
+      userID: '99',
+      localID: pending.localID,
+      mediaFilePath: '/var/local/file.mov',
+      result: { data: submission },
+    },
+  }
+
+  const expected = {
+    ...completed,
+    mediaComment: t.mediaComment({ url: '/var/local/file.mov' }),
+  }
+  expect(pendingComments(
+    { '99': [pending] },
+    action
+  )).toEqual(
+    { '99': [expected] },
   )
 })
 

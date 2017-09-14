@@ -77,6 +77,8 @@ export class AudioComment extends Component<any, Props, any> {
             testID='audio-comment.label'
             onPress={this.props.url && this.startPlaying}
             style={style.startPlayingButton}
+            accessibilityTraits='button'
+            accessibilityLabel={i18n('Audio Comment')}
           >
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Image
@@ -106,7 +108,12 @@ export class AudioComment extends Component<any, Props, any> {
                   </View>
                 )}
               </OnLayout>
-              <TouchableHighlight onPress={this.stopPlaying} testID='audio-comment.stop-btn'>
+              <TouchableHighlight
+                onPress={this.stopPlaying}
+                testID='audio-comment.stop-btn'
+                accessibilityLabel={i18n('Stop playing audio')}
+                accessibilityTraits='button'
+              >
                 <View style={style.stopContainer}>
                   <View style={style.stop}>
                   </View>

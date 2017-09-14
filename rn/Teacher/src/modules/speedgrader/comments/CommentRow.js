@@ -121,10 +121,15 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
           case 'audio':
             return <AudioComment url={contents.url} from={from} />
           case 'video':
+            if (!contents.url) return null
+            let uri = contents.url
+            if (uri.startsWith('/')) {
+              uri = `file://${uri}`
+            }
             return (
               <View style={{ flex: 1, height: 160 }}>
                 <Video
-                  source={{ uri: contents.url }}
+                  source={{ uri }}
                   style={{ flex: 1 }}
                 />
               </View>

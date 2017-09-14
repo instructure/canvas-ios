@@ -113,7 +113,6 @@ export class Attachments extends Component<any, Props, any> {
         ]}
       >
         <View style={styles.container}>
-          <AttachmentPicker ref={this.captureAttachmentPicker} />
           <FlatList
             ListEmptyComponent={this.renderEmptyComponent}
             data={Object.values(this.state.attachments).filter(a => a)}
@@ -121,6 +120,10 @@ export class Attachments extends Component<any, Props, any> {
             keyExtractor={(item, index) => item.data.id}
             testID='attachments.list.list'
             ItemSeparatorComponent={RowSeparator}
+          />
+          <AttachmentPicker
+            style={styles.attachmentPicker}
+            ref={this.captureAttachmentPicker}
           />
         </View>
       </Screen>
@@ -292,6 +295,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: global.tabBarHeight,
+  },
+  attachmentPicker: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
   },
 })
 

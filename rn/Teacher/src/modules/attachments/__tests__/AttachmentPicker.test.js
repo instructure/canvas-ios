@@ -26,6 +26,7 @@ import AttachmentPicker from '../AttachmentPicker'
 import ImagePicker from 'react-native-image-picker'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
 import explore from '../../../../test/helpers/explore'
+import Permissions from '../../../common/permissions'
 
 jest
   .mock('Button', () => 'Button')
@@ -42,6 +43,7 @@ jest
     },
     DocumentPickerUtil: {},
   }))
+  .mock('../../../common/permissions')
 
 describe('AttachmentPicker', () => {
   it('renders', () => {
@@ -98,7 +100,7 @@ describe('AttachmentPicker', () => {
     picker.useCamera(null, spy)
     expect(spy).toHaveBeenCalledWith({
       uri: response.uri,
-      display_name: 'Media Attachment.jpg',
+      display_name: expect.stringMatching(/.jpg$/),
       size: undefined,
       mime_class: 'image',
     })
@@ -113,7 +115,7 @@ describe('AttachmentPicker', () => {
     picker.useLibrary(null, spy)
     expect(spy).toHaveBeenCalledWith({
       uri: response.uri,
-      display_name: 'Media Attachment.MOV',
+      display_name: expect.stringMatching(/.MOV$/),
       size: undefined,
       mime_class: 'video',
     })
@@ -147,11 +149,15 @@ describe('AttachmentPicker', () => {
   })
 
   it('launches document picker', () => {
+    const picker = renderer.create(<AttachmentPicker />).getInstance()
+    picker.onLayout({ nativeEvent: { layout: { width: 100, height: 200 } } })
     DocumentPicker.show = jest.fn()
     DocumentPickerUtil.allFiles = jest.fn()
     picker.pickDocument(null, jest.fn())
     expect(DocumentPicker.show).toHaveBeenCalledWith({
       filetype: expect.any(Array),
+      top: 12,
+      left: 70,
     }, expect.any(Function))
     expect(DocumentPickerUtil.allFiles).toHaveBeenCalled()
   })
@@ -182,32 +188,32 @@ describe('AttachmentPicker', () => {
     })
   })
 
-  it('shows audio recorder', () => {
+  it('shows audio recorder', async () => {
     const view = renderer.create(<AttachmentPicker />)
     const audioRecorder = () => explore(view.toJSON()).selectByType('Modal')
     expect(audioRecorder().props.visible).toBeFalsy()
-    view.getInstance().recordAudio(null, jest.fn())
+    await view.getInstance().recordAudio(null, jest.fn())
     expect(audioRecorder().props.visible).toBeTruthy()
   })
 
-  it('hides audio recorder when it cancels', () => {
+  it('hides audio recorder when it cancels', async () => {
     const view = renderer.create(<AttachmentPicker />)
     const modal = () => explore(view.toJSON()).selectByType('Modal')
     const audioRecorder = explore(view.toJSON()).selectByType('AudioRecorder')
-    view.getInstance().recordAudio(null, jest.fn())
+    await view.getInstance().recordAudio(null, jest.fn())
     expect(modal().props.visible).toBeTruthy()
     audioRecorder.props.onCancel()
     expect(modal().props.visible).toBeFalsy()
   })
 
-  it('returns attachment from audio recorder', () => {
+  it('returns attachment from audio recorder', async () => {
     const recording = {
       filePath: 'file://somewhere/on/disk.m4a',
       fileName: 'disk.m4a',
     }
     const view = renderer.create(<AttachmentPicker />)
     const spy = jest.fn()
-    view.getInstance().recordAudio(null, spy)
+    await view.getInstance().recordAudio(null, spy)
     const audioRecorder: any = explore(view.toJSON()).selectByType('AudioRecorder')
     audioRecorder.props.onFinishedRecording(recording)
     expect(spy).toHaveBeenCalledWith({
@@ -233,7 +239,7 @@ describe('AttachmentPicker', () => {
     }
     ImagePicker.launchImageLibrary = jest.fn((options, callback) => callback(response))
     picker.useLibrary(null, jest.fn())
-    expect(spy).toHaveBeenCalledWith('Permission Needed', response.error, expect.any(Array))
+    expect(spy).toHaveBeenCalledWith('Permission Needed', Permissions.errorMessages().camera, expect.any(Array))
   })
 
   it('alerts image picker errors', () => {

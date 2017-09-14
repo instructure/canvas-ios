@@ -16,7 +16,7 @@
 
 // @flow
 
-import { ActionSheetIOS, AlertIOS } from 'react-native'
+import { ActionSheetIOS, AlertIOS, AppState } from 'react-native'
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { CommentsTab, mapStateToProps } from '../CommentsTab'
@@ -24,6 +24,7 @@ import { setSession } from 'instructure-canvas-api'
 import DrawerState from '../../utils/drawer-state'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
+import Permissions from '../../../../common/permissions'
 
 const templates = {
   ...require('../../../../redux/__templates__/app-state'),
@@ -37,6 +38,7 @@ jest
   .mock('../AudioComment')
   .mock('../CommentInput', () => 'CommentInput')
   .mock('../../../../common/components/MediaComment', () => 'MediaComment')
+  .mock('../../../../common/permissions')
 
 const comments = [
   {
@@ -99,6 +101,8 @@ let mediaCommentActionSheet
 beforeEach(() => {
   // $FlowFixMe
   ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => { mediaCommentActionSheet = callback })
+  Permissions.checkMicrophone = jest.fn(() => Promise.resolve(true))
+  Permissions.checkCamera = jest.fn(() => Promise.resolve(true))
 })
 
 test('comments render properly', () => {
@@ -128,7 +132,7 @@ test('adding media shows action sheet', () => {
   // $FlowFixMe
   ActionSheetIOS.showActionSheetWithOptions = spy
   const view = renderer.create(
-    <CommentsTab commentRows={comments} drawerState={new DrawerState()} checkAudioAuthorizationStatus={jest.fn(() => Promise.resolve(true))} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )
   const input: any = explore(view.toJSON()).selectByType('CommentInput')
   input.props.addMedia()
@@ -140,7 +144,7 @@ test('adding media shows action sheet', () => {
 
 test('adding audio shows audio recorder', async () => {
   const view = renderer.create(
-    <CommentsTab commentRows={comments} drawerState={new DrawerState()} checkAudioAuthorizationStatus={jest.fn(() => Promise.resolve(true))} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )
   let recorder: any = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
   expect(recorder.props.style.height).toEqual(0)
@@ -153,7 +157,7 @@ test('adding audio shows audio recorder', async () => {
 
 test('audio cancel hides audio recorder', async () => {
   const view = renderer.create(
-    <CommentsTab commentRows={comments} drawerState={new DrawerState()} checkAudioAuthorizationStatus={jest.fn(() => Promise.resolve(true))} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )
   const input: any = explore(view.toJSON()).selectByType('CommentInput')
   input.props.addMedia()
@@ -166,7 +170,7 @@ test('audio cancel hides audio recorder', async () => {
 
 test('hides new media comment when current student changes', async () => {
   const view = renderer.create(
-    <CommentsTab commentRows={comments} drawerState={new DrawerState()} checkAudioAuthorizationStatus={jest.fn(() => Promise.resolve(true))} isCurrentStudent={true} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} isCurrentStudent={true} />
   )
   const input: any = explore(view.toJSON()).selectByType('CommentInput')
   input.props.addMedia()
@@ -174,6 +178,38 @@ test('hides new media comment when current student changes', async () => {
   let container: any = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
   expect(container.props.style.height).toBeGreaterThan(0)
   setProps(view, { isCurrentStudent: false })
+  container = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
+  expect(container.props.style.height).toEqual(0)
+})
+
+test('hides new media comment when app enters background', async () => {
+  let mock
+  AppState.addEventListener = jest.fn((state, handler) => { mock = handler })
+  const view = renderer.create(
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} isCurrentStudent={true} />
+  )
+  const input: any = explore(view.toJSON()).selectByType('CommentInput')
+  input.props.addMedia()
+  await mediaCommentActionSheet(0)
+  let container: any = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
+  expect(container.props.style.height).toBeGreaterThan(0)
+  mock('background')
+  container = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
+  expect(container.props.style.height).toEqual(0)
+})
+
+test('hides new media comment when app goes inactive', async () => {
+  let mock
+  AppState.addEventListener = jest.fn((state, handler) => { mock = handler })
+  const view = renderer.create(
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} isCurrentStudent={true} />
+  )
+  const input: any = explore(view.toJSON()).selectByType('CommentInput')
+  input.props.addMedia()
+  await mediaCommentActionSheet(0)
+  let container: any = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
+  expect(container.props.style.height).toBeGreaterThan(0)
+  mock('inactive')
   container = explore(view.toJSON()).selectByID('speedgrader.comments.comments-tab.audio-recorder.container')
   expect(container.props.style.height).toEqual(0)
 })
@@ -188,7 +224,6 @@ it('makes an audio media comment', async () => {
     assignmentID: '2',
     userID: '3',
     gradeIndividually: false,
-    checkAudioAuthorizationStatus: jest.fn(() => Promise.resolve(true)),
   }
   const view = renderer.create(
     <CommentsTab {...props} />
@@ -197,20 +232,21 @@ it('makes an audio media comment', async () => {
   input.props.addMedia()
   await mediaCommentActionSheet(0)
   const recorder: any = explore(view.toJSON()).selectByType('MediaComment')
-  recorder.props.onFinishedUploading({ mediaID: '4', mediaType: 'audio' })
+  recorder.props.onFinishedUploading({ mediaID: '4', mediaType: 'audio', filePath: '/file.mov' })
   expect(spy).toHaveBeenCalledWith('1', '2', '3', {
     type: 'media',
     mediaID: '4',
     mediaType: 'audio',
     groupComment: true,
-  })
+  }, '/file.mov')
 })
 
 it('alerts without audio permissions', async () => {
+  Permissions.checkMicrophone = jest.fn(() => Promise.resolve(false))
   const spy = jest.fn()
   AlertIOS.alert = spy
   const view = renderer.create(
-    <CommentsTab commentRows={comments} drawerState={new DrawerState()} checkAudioAuthorizationStatus={jest.fn(() => Promise.resolve(false))} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )
   const input: any = explore(view.toJSON()).selectByType('CommentInput')
   input.props.addMedia()
@@ -219,10 +255,11 @@ it('alerts without audio permissions', async () => {
 })
 
 it('alerts without video permissions', async () => {
+  Permissions.checkCamera = jest.fn(() => Promise.resolve(false))
   const spy = jest.fn()
   AlertIOS.alert = spy
   const view = renderer.create(
-    <CommentsTab commentRows={comments} drawerState={new DrawerState()} checkDeviceAuthorizationStatus={jest.fn(() => Promise.resolve(false))} />
+    <CommentsTab commentRows={comments} drawerState={new DrawerState()} />
   )
   const input: any = explore(view.toJSON()).selectByType('CommentInput')
   input.props.addMedia()

@@ -23,12 +23,12 @@ import {
   AlertIOS,
   StyleSheet,
   Modal,
-  Linking,
 } from 'react-native'
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker'
 import ImagePicker from 'react-native-image-picker'
 import AudioRecorder from '../../common/components/AudioRecorder'
 import i18n from 'format-message'
+import Permissions from '../../common/permissions'
 
 type Callback = (Attachment) => *
 
@@ -37,10 +37,10 @@ type Options = {
 }
 type Props = {}
 
-const IMAGE_PICKER_PERMISSION_ERRORS = [
-  'Camera permissions not granted',
-  'Photo library permissions not granted',
-]
+const IMAGE_PICKER_PERMISSION_ERRORS = {
+  'Camera permissions not granted': 'camera',
+  'Photo library permissions not granted': 'photos',
+}
 
 export const DEFAULT_OPTIONS: Options = {
   imagePicker: {
@@ -54,6 +54,8 @@ export default class AttachmentPicker extends Component<any, Props, any> {
     this.state = {
       audioRecorderVisible: false,
       recordAudioCallback: null,
+      width: 0,
+      height: 0,
     }
   }
 
@@ -79,11 +81,16 @@ export default class AttachmentPicker extends Component<any, Props, any> {
     ImagePicker.launchCamera(opts, this._handleImagePickerResponse(callback))
   }
 
-  recordAudio (options: ?Options, callback: Callback) {
-    this.setState({
-      audioRecorderVisible: true,
-      recordAudioCallback: callback,
-    })
+  async recordAudio (options: ?Options, callback: Callback) {
+    const permitted = await Permissions.checkMicrophone()
+    if (permitted) {
+      this.setState({
+        audioRecorderVisible: true,
+        recordAudioCallback: callback,
+      })
+    } else {
+      Permissions.alert('microphone')
+    }
   }
 
   useLibrary (options: ?Options, callback: Callback) {
@@ -94,26 +101,40 @@ export default class AttachmentPicker extends Component<any, Props, any> {
   pickDocument (options: ?Options, callback: Callback) {
     DocumentPicker.show({
       filetype: [DocumentPickerUtil.allFiles()],
+      top: 12,
+      left: this.state.width - 30,
     }, this._handleDocumentPickerResponse(callback))
+  }
+
+  onLayout = ({ nativeEvent }: { nativeEvent: any }) => {
+    const { width, height } = nativeEvent.layout
+    this.setState({ width, height })
   }
 
   render () {
     return (
-      <Modal
-        visible={this.state.audioRecorderVisible}
-        transparent={true}
-        style={style.modal}
-        animationType='fade'
+      <View
+        onLayout={this.onLayout}
+        style={{ flex: 1, backgroundColor: 'transparent' }}
+        testID='attachment-picker.container'
       >
-        <View style={style.audioRecorderContainer}>
-          <View style={{ height: 250 }}>
-            <AudioRecorder
-              onFinishedRecording={this._handleAudioRecorderResponse}
-              onCancel={this._onAudioRecorderCancel}
-            />
+        <Modal
+          visible={this.state.audioRecorderVisible}
+          transparent={true}
+          style={style.modal}
+          animationType='fade'
+          onLayout={this.onLayout}
+        >
+          <View style={style.audioRecorderContainer}>
+            <View style={{ height: 250 }}>
+              <AudioRecorder
+                onFinishedRecording={this._handleAudioRecorderResponse}
+                onCancel={this._onAudioRecorderCancel}
+              />
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </View>
     )
   }
 
@@ -133,22 +154,8 @@ export default class AttachmentPicker extends Component<any, Props, any> {
   _handleImagePickerResponse (callback: Callback) {
     return (response: any) => {
       if (response.error) {
-        if (IMAGE_PICKER_PERMISSION_ERRORS.includes(response.error)) {
-          AlertIOS.alert(
-            i18n('Permission Needed'),
-            response.error,
-            [
-              { text: i18n('Cancel'), onPress: null, style: 'cancel' },
-              {
-                text: i18n('Settings'),
-                onPress: () => {
-                  const url = 'app-settings:'
-                  Linking.canOpenURL(url).then(supported => Linking.openURL(url))
-                },
-                style: 'default',
-              },
-            ],
-          )
+        if (IMAGE_PICKER_PERMISSION_ERRORS[response.error]) {
+          Permissions.alert(IMAGE_PICKER_PERMISSION_ERRORS[response.error])
         } else {
           AlertIOS.alert(
             i18n('Error'),
@@ -162,7 +169,8 @@ export default class AttachmentPicker extends Component<any, Props, any> {
       }
       const { uri, fileSize, fileName } = response
       const extension = uri.substring(uri.lastIndexOf('.'))
-      let name = fileName || `${i18n('Media Attachment')}${extension}`
+      const timestamp = (new Date()).toISOString()
+      let name = fileName || `${timestamp}${extension}`
       const attachment = {
         uri,
         size: fileSize,

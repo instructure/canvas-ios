@@ -110,6 +110,17 @@ jest.mock('LayoutAnimation', () => {
   }
 })
 
+jest.mock('Linking', () => ({
+  canOpenURL: jest.fn(() => Promise.resolve(true)),
+  openURL: jest.fn(),
+}))
+
+jest.mock('AppState', () => ({
+  currentState: 'active',
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+}))
+
 NativeModules.CameraManager = {
   Aspect: {
     fill: 'fill',

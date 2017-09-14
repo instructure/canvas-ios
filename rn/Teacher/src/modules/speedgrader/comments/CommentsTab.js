@@ -23,8 +23,7 @@ import {
   FlatList,
   LayoutAnimation,
   ActionSheetIOS,
-  AlertIOS,
-  Linking,
+  AppState,
 } from 'react-native'
 import { getSession } from 'instructure-canvas-api'
 import CommentRow, { type CommentRowProps, type CommentContent } from './CommentRow'
@@ -35,21 +34,16 @@ import SpeedGraderActions from '../actions'
 import { type SubmittedContentDataProps } from './SubmittedContent'
 import CommentStatus from './CommentStatus'
 import Images from '../../../images'
-import MediaComment from '../../../common/components/MediaComment'
+import MediaComment, { type Media } from '../../../common/components/MediaComment'
+import Permissions from '../../../common/permissions'
 import i18n from 'format-message'
 import filesize from 'filesize'
 import striptags from 'striptags'
-import Camera from 'react-native-camera'
 
 const Actions = {
   ...SubmissionCommentActions,
   ...SpeedGraderActions,
 }
-
-const {
-  checkDeviceAuthorizationStatus,
-  checkAudioAuthorizationStatus,
-} = Camera
 
 export class CommentsTab extends Component<any, CommentsTabProps, any> {
   constructor (props: CommentsTabProps) {
@@ -58,7 +52,16 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
     this.state = {
       shouldShowStatus: this.props.commentRows.some(c => c.pending),
       showingNewMediaComment: null,
+      appState: AppState.currentState,
     }
+  }
+
+  componentDidMount () {
+    AppState.addEventListener('change', this._handleAppStateChange)
+  }
+
+  componentWillUnmount () {
+    AppState.removeEventListener('change', this._handleAppStateChange)
   }
 
   componentWillReceiveProps (newProps: CommentsTabProps) {
@@ -94,46 +97,27 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
   }
 
   addAudio = async () => {
-    const permitted = await this.props.checkAudioAuthorizationStatus()
+    const permitted = await Permissions.checkMicrophone()
     if (permitted) {
       LayoutAnimation.easeInEaseOut()
       this.setState({ showingNewMediaComment: 'audio' })
     } else {
-      const message = i18n('You must enable Microphone permissions in Settings to record audio')
-      this.showPermissionsAlert(message)
+      Permissions.alert('microphone')
     }
   }
 
   addVideo = async () => {
-    const permitted = await this.props.checkDeviceAuthorizationStatus()
+    const permitted = await Permissions.checkCamera()
     if (permitted) {
       LayoutAnimation.easeInEaseOut()
       this.setState({ showingNewMediaComment: 'video' })
     } else {
-      const message = i18n('You must enable Camera and Microphone permissions in Settings to record video')
-      this.showPermissionsAlert(message)
+      Permissions.alert('camera')
     }
   }
 
-  showPermissionsAlert (message: string) {
-    AlertIOS.alert(
-      i18n('Permission Needed'),
-      message,
-      [
-        { text: i18n('Cancel'), onPress: null, style: 'cancel' },
-        {
-          text: i18n('Settings'),
-          onPress: () => {
-            const url = 'app-settings:'
-            Linking.canOpenURL(url).then(supported => Linking.openURL(url))
-          },
-          style: 'default',
-        },
-      ],
-    )
-  }
-
-  makeAMediaComment = ({ mediaID, mediaType }: { mediaID: string, mediaType: 'audio' | 'video' }) => {
+  makeAMediaComment = (media: Media) => {
+    const { mediaID, mediaType, filePath } = media
     const {
       courseID,
       assignmentID,
@@ -154,6 +138,7 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
         mediaType,
         groupComment: !this.props.gradeIndividually,
       },
+      filePath,
     )
   }
 
@@ -256,6 +241,13 @@ export class CommentsTab extends Component<any, CommentsTabProps, any> {
     LayoutAnimation.easeInEaseOut()
     this.setState({ showingNewMediaComment: null })
   }
+
+  _handleAppStateChange = (nextAppState) => {
+    if (nextAppState.match(/inactive|background/) && this.state.appState === 'active') {
+      this.setState({ showingNewMediaComment: null })
+    }
+    this.setState({ appState: nextAppState })
+  }
 }
 
 type CommentRows = { commentRows: CommentRowData[], anonymous: boolean }
@@ -269,10 +261,7 @@ type RoutingProps = {
   drawerState: DrawerState,
 }
 
-type CommentsTabProps = CommentRows & RoutingProps & typeof SubmissionCommentActions & typeof SpeedGraderActions & NavigationProps & {
-  checkDeviceAuthorizationStatus: () => Promise<boolean>,
-  checkAudioAuthorizationStatus: () => Promise<boolean>,
-}
+type CommentsTabProps = CommentRows & RoutingProps & typeof SubmissionCommentActions & typeof SpeedGraderActions & NavigationProps
 
 type CommentRowData = {
   error?: string,
@@ -458,13 +447,5 @@ export function mapStateToProps ({ entities }: AppState, ownProps: RoutingProps)
   }
 }
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => ({
-  ...stateProps,
-  ...dispatchProps,
-  ...ownProps,
-  checkAudioAuthorizationStatus,
-  checkDeviceAuthorizationStatus,
-})
-
-const Connected = connect(mapStateToProps, Actions, mergeProps)(CommentsTab)
+const Connected = connect(mapStateToProps, Actions)(CommentsTab)
 export default (Connected: any)

@@ -21,7 +21,7 @@ exports[`DiscussionEdit renders 1`] = `
         "title": "Done",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachment (none)",
         "action": [Function],
         "badge": null,
         "image": 1,
@@ -1086,7 +1086,7 @@ exports[`DiscussionEdit renders new form 1`] = `
         "title": "Done",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachment (none)",
         "action": [Function],
         "badge": undefined,
         "image": 1,
@@ -2151,7 +2151,7 @@ exports[`DiscussionEdit updates from props 1`] = `
         "title": "Done",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachment (none)",
         "action": [Function],
         "badge": undefined,
         "image": 1,
@@ -3216,7 +3216,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
         "title": "Done",
       },
       Object {
-        "accessibilityLabel": "Add attachment",
+        "accessibilityLabel": "Edit attachment (none)",
         "action": [Function],
         "badge": null,
         "image": 1,

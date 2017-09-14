@@ -73,6 +73,20 @@ export default class AudioRecorder extends Component<any, Props, any> {
     const seconds = Math.floor(this.state.currentTime) - minutes * 60
     const pad = (n) => n < 10 ? `0${n}` : n
     const currentTime = `${pad(minutes)}:${pad(seconds)}`
+    const a11yMinutes = i18n(`{
+      minutes, plural,
+        one {# minute}
+        other {# minutes}
+    }`, { minutes })
+    const a11ySeconds = i18n(`{
+      seconds, plural,
+        one {# second}
+        other {# seconds}
+    }`, { seconds })
+    const currentTimeA11yLabel = i18n('Time elapsed: {minutes}, {seconds}.', {
+      minutes: a11yMinutes,
+      seconds: a11ySeconds,
+    })
 
     return (
       <View style={style.recorder}>
@@ -84,20 +98,26 @@ export default class AudioRecorder extends Component<any, Props, any> {
                 onPress={this._remove}
                 testID='audio-recorder.reset-btn'
                 underlayColor='transparent'
+                accessibilityLabel={i18n('Clear recording')}
+                accessibilityTraits='button'
               >
                 <Image source={images.mediaComments.trash} style={style.headerButtonImage} />
               </TouchableHighlight>
             }
           </View>
-          <Text style={style.title}>
-            {this.state.recording || this.state.filePath ? currentTime : i18n('Tap to record')}
-          </Text>
+          <View accessibilityLabel={currentTimeA11yLabel} accessible={true} style={{ flex: 1 }}>
+            <Text style={style.title} accessibilityLabel={currentTimeA11yLabel}>
+              {currentTime}
+            </Text>
+          </View>
           <View style={[style.headerButton, style.cancel]}>
             <TouchableHighlight
               onPress={this._cancel}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               testID='audio-recorder.cancel-btn'
               underlayColor='transparent'
+              accessibilityLabel={i18n('Cancel')}
+              accessibilityTraits='button'
             >
               <Image source={images.mediaComments.x} style={style.headerButtonImage} />
             </TouchableHighlight>
@@ -150,7 +170,7 @@ export default class AudioRecorder extends Component<any, Props, any> {
     RNAudioRecorder.prepareRecordingAtPath(audioPath, {
       SampleRate: 22050,
       Channels: 2,
-      AudioQuality: 'Low',
+      AudioQuality: 'Medium',
       AudioEncoding: 'aac',
     })
 
@@ -196,6 +216,8 @@ export default class AudioRecorder extends Component<any, Props, any> {
           style={style.recordButton}
           onPress={this.startRecording}
           testID='audio-recorder.record-btn'
+          accessibilityLabel={i18n('Start recording')}
+          accessibilityTraits='button'
         >
           <View></View>
         </TouchableHighlight>
@@ -210,6 +232,8 @@ export default class AudioRecorder extends Component<any, Props, any> {
           style={style.stopButton}
           onPress={this.stopRecording}
           testID='audio-recorder.stop-btn'
+          accessibilityLabel={i18n('Stop recording')}
+          accessibilityTraits='button'
         >
           <View></View>
         </TouchableHighlight>
@@ -218,15 +242,17 @@ export default class AudioRecorder extends Component<any, Props, any> {
   }
 
   _renderSendButton () {
+    const text = this.props.doneButtonText || i18n('Upload')
     return (
       <TouchableHighlight
         style={[style.sendButton, { backgroundColor: colors.primaryButtonColor }]}
         onPress={this._sendRecording}
         testID='audio-recorder.done-btn'
+        accessibilityLabel={text}
       >
         <View>
           <Text style={[style.sendButtonText, { color: colors.primaryButtonTextColor }]}>
-            {this.props.doneButtonText || i18n('Upload')}
+            {text}
           </Text>
         </View>
       </TouchableHighlight>

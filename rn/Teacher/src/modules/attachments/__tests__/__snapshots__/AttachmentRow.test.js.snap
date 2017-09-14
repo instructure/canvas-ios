@@ -8,6 +8,7 @@ exports[`AttachmentRow renders 1`] = `
       "button",
     ]
   }
+  accessible={false}
   onPress={[Function]}
   style={
     Array [
@@ -37,15 +38,20 @@ exports[`AttachmentRow renders 1`] = `
       ]
     }
   >
-    <Image
-      source={1}
+    <View
+      accessibilityLabel="Upload complete"
+      accessible={true}
       style={
         Object {
           "marginRight": 16,
         }
       }
-      testID="attachment-row.0.icon.complete"
-    />
+    >
+      <Image
+        source={1}
+        testID="attachment-row.0.icon.complete"
+      />
+    </View>
     <View
       style={
         Object {
@@ -103,6 +109,8 @@ exports[`AttachmentRow renders 1`] = `
         }
       >
         <TouchableHighlight
+          accessibilityLabel="Remove attachment"
+          accessibilityTraits="button"
           hitSlop={
             Object {
               "bottom": 8,

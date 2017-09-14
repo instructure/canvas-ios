@@ -28,22 +28,33 @@ exports[`AudioRecorder renders default state 1`] = `
         }
       }
     />
-    <Text
+    <View
+      accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
       accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Object {
           "flex": 1,
-          "fontSize": 20,
-          "marginHorizontal": 4,
-          "textAlign": "center",
         }
       }
     >
-      Tap to record
-    </Text>
+      <Text
+        accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 20,
+            "marginHorizontal": 4,
+            "textAlign": "center",
+          }
+        }
+      >
+        00:00
+      </Text>
+    </View>
     <View
       style={
         Array [
@@ -58,6 +69,8 @@ exports[`AudioRecorder renders default state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Cancel"
+        accessibilityTraits="button"
         hitSlop={
           Object {
             "bottom": 8,
@@ -106,6 +119,8 @@ exports[`AudioRecorder renders default state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Start recording"
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {
@@ -152,22 +167,33 @@ exports[`AudioRecorder renders recording state 1`] = `
         }
       }
     />
-    <Text
+    <View
+      accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
       accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Object {
           "flex": 1,
-          "fontSize": 20,
-          "marginHorizontal": 4,
-          "textAlign": "center",
         }
       }
     >
-      00:00
-    </Text>
+      <Text
+        accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 20,
+            "marginHorizontal": 4,
+            "textAlign": "center",
+          }
+        }
+      >
+        00:00
+      </Text>
+    </View>
     <View
       style={
         Array [
@@ -182,6 +208,8 @@ exports[`AudioRecorder renders recording state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Cancel"
+        accessibilityTraits="button"
         hitSlop={
           Object {
             "bottom": 8,
@@ -230,6 +258,8 @@ exports[`AudioRecorder renders recording state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Stop recording"
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {
@@ -275,22 +305,33 @@ exports[`AudioRecorder renders reset state 1`] = `
         }
       }
     />
-    <Text
+    <View
+      accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
       accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Object {
           "flex": 1,
-          "fontSize": 20,
-          "marginHorizontal": 4,
-          "textAlign": "center",
         }
       }
     >
-      Tap to record
-    </Text>
+      <Text
+        accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 20,
+            "marginHorizontal": 4,
+            "textAlign": "center",
+          }
+        }
+      >
+        00:00
+      </Text>
+    </View>
     <View
       style={
         Array [
@@ -305,6 +346,8 @@ exports[`AudioRecorder renders reset state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Cancel"
+        accessibilityTraits="button"
         hitSlop={
           Object {
             "bottom": 8,
@@ -353,6 +396,8 @@ exports[`AudioRecorder renders reset state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Start recording"
+        accessibilityTraits="button"
         onPress={[Function]}
         style={
           Object {
@@ -400,6 +445,8 @@ exports[`AudioRecorder renders stopped state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Clear recording"
+        accessibilityTraits="button"
         hitSlop={
           Object {
             "bottom": 8,
@@ -424,22 +471,33 @@ exports[`AudioRecorder renders stopped state 1`] = `
         />
       </TouchableHighlight>
     </View>
-    <Text
+    <View
+      accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
       accessible={true}
-      allowFontScaling={true}
-      disabled={false}
-      ellipsizeMode="tail"
       style={
         Object {
           "flex": 1,
-          "fontSize": 20,
-          "marginHorizontal": 4,
-          "textAlign": "center",
         }
       }
     >
-      00:00
-    </Text>
+      <Text
+        accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 20,
+            "marginHorizontal": 4,
+            "textAlign": "center",
+          }
+        }
+      >
+        00:00
+      </Text>
+    </View>
     <View
       style={
         Array [
@@ -454,6 +512,8 @@ exports[`AudioRecorder renders stopped state 1`] = `
       }
     >
       <TouchableHighlight
+        accessibilityLabel="Cancel"
+        accessibilityTraits="button"
         hitSlop={
           Object {
             "bottom": 8,
@@ -489,6 +549,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
     }
   >
     <TouchableHighlight
+      accessibilityLabel="Upload"
       onPress={[Function]}
       style={
         Array [

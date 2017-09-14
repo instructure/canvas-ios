@@ -255,7 +255,7 @@ export class Compose extends PureComponent {
             image: Images.attachmentLarge,
             testID: 'compose-message.attach',
             action: this.editAttachments,
-            accessibilityLabel: i18n('Add attachment'),
+            accessibilityLabel: i18n('Edit attachments ({count})', { count: this.state.attachments.length }),
             badge: this.state.attachments.length > 0 && {
               text: i18n.number(this.state.attachments.length),
               backgroundColor: processColor('#008EE2'),

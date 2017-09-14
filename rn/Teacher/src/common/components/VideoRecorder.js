@@ -55,6 +55,20 @@ export default class VideoRecorder extends Component<any, Props, any> {
     const seconds = Math.floor(this.state.currentTime) - minutes * 60
     const pad = (n) => n < 10 ? `0${n}` : n
     const currentTime = `${pad(minutes)}:${pad(seconds)}`
+    const a11yMinutes = i18n(`{
+      minutes, plural,
+        one {# minute}
+        other {# minutes}
+    }`, { minutes })
+    const a11ySeconds = i18n(`{
+      seconds, plural,
+        one {# second}
+        other {# seconds}
+    }`, { seconds })
+    const currentTimeA11yLabel = i18n('Time elapsed: {minutes}, {seconds}.', {
+      minutes: a11yMinutes,
+      seconds: a11ySeconds,
+    })
 
     const { recording, loading, filePath } = this.state
     const ready = filePath == null
@@ -71,6 +85,8 @@ export default class VideoRecorder extends Component<any, Props, any> {
               hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
               testID='video-recorder.cancel.btn'
               style={{ marginRight: 12 }}
+              accessibilityLabel={i18n('Cancel')}
+              accessibilityTraits='button'
             >
               <Image source={images.mediaComments.x} style={style.headerButtonImage} />
             </TouchableHighlight>
@@ -80,12 +96,14 @@ export default class VideoRecorder extends Component<any, Props, any> {
                 underlayColor='transparent'
                 hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                 testID='video-recorder.reset.btn'
+                accessibilityLabel={i18n('Clear recording')}
+                accessibilityTraits='button'
               >
                 <Image source={images.mediaComments.trash} style={style.headerButtonImage} />
               </TouchableHighlight>
             }
           </View>
-          <Text style={style.title}>{currentTime}</Text>
+          <Text style={style.title} accessibilityLabel={currentTimeA11yLabel}>{currentTime}</Text>
           <View style={[style.headerButtons, { justifyContent: 'flex-end' }]}>
             { finished &&
               <TouchableHighlight
@@ -93,6 +111,8 @@ export default class VideoRecorder extends Component<any, Props, any> {
                 underlayColor='transparent'
                 hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
                 testID='video-recorder.send.btn'
+                accessibilityLabel={i18n('Send recording')}
+                accessibilityTraits='button'
               >
                 <Image source={images.mediaComments.send} style={style.headerButtonImage} />
               </TouchableHighlight>
@@ -108,6 +128,8 @@ export default class VideoRecorder extends Component<any, Props, any> {
                   borderColor: recording ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,1)',
                 }]}
                 underlayColor='transparent'
+                accessibilityLabel={recording ? i18n('Stop recording') : i18n('Start recording')}
+                accessibilityTraits='button'
               >
                 <View style={recording ? style.stopButton : style.startButton}>
                 </View>
@@ -163,9 +185,9 @@ export default class VideoRecorder extends Component<any, Props, any> {
   }
 
   stopRecording () {
+    this.setState({ recording: false, loading: true })
     this.camera && this.camera.stopCapture()
     LayoutAnimation.configureNext(StartStopButtonAnimation)
-    this.setState({ recording: false, loading: true })
     this.currentTimeInterval && clearInterval(this.currentTimeInterval)
   }
 
