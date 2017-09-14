@@ -27,6 +27,8 @@ const NSInteger ddLogLevel = DDLogLevelVerbose;
 const NSInteger ddLogLevel = DDLogLevelOff;
 #endif
 
+static CBILogFormatter *_sharedFormatter = nil;
+
 @implementation CBILogger
 
 + (CBILogger *)sharedInstance {
@@ -42,22 +44,21 @@ const NSInteger ddLogLevel = DDLogLevelOff;
 
 + (void)install:(id <DDLogFileManager>)logFileManager {
     // Set up DDLog :)
-    CBILogFormatter *formatter = [CBILogFormatter new];
-    [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
-    [[CBILogger sharedInstance] setLogFormatter:formatter];
+    _sharedFormatter = [CBILogFormatter new];
+    [[DDTTYLogger sharedInstance] setLogFormatter:_sharedFormatter];
+    [[CBILogger sharedInstance] setLogFormatter:_sharedFormatter];
     
     // only log errors marked as debug to xcode console so our logging doesn't drive us insane
     [DDLog addLogger:[DDTTYLogger sharedInstance] withLevel:DDLogLevelDebug];
     [DDLog addLogger:[CBILogger sharedInstance]];
     
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init];
-    [fileLogger setLogFormatter:formatter];
+    [fileLogger setLogFormatter:_sharedFormatter];
     fileLogger = [[DDFileLogger alloc] initWithLogFileManager:logFileManager];
     fileLogger.rollingFrequency = 0;            // disable time based rolling
     fileLogger.maximumFileSize = 1024 * 100;    // 100KB;
     fileLogger.logFileManager.maximumNumberOfLogFiles = 1;  // only need one file
     [DDLog addLogger:fileLogger];
-
 }
 
 - (void)logMessage:(DDLogMessage *)logMessage
@@ -66,15 +67,12 @@ const NSInteger ddLogLevel = DDLogLevelOff;
     logMsg = logMessage->_message;
     
     if (logMsg != nil) {
-        id<DDLogFormatter> formatter = [[DDLog allLoggers].firstObject logFormatter];
-        if (formatter != nil) {
-            logMsg = [formatter formatLogMessage:logMessage];
+        if (_sharedFormatter) {
+            logMsg = [_sharedFormatter formatLogMessage:logMessage];
         }
         
         CLSLog(@"%@",logMsg);
     }
-    
-    return;
 }
 
 @end
