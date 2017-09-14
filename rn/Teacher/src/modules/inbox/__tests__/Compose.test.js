@@ -208,6 +208,7 @@ describe('Compose', () => {
     })
     const props = {
       ...defaultProps,
+      contextCode: 'course_1',
       recipients: [u1],
       subject: 'new conversation subject',
       onlySendIndividualMessages: false,
@@ -229,6 +230,7 @@ describe('Compose', () => {
       subject: 'new conversation subject',
       group_conversation: true,
       attachment_ids: [],
+      context_code: 'course_1',
     })
   })
 
@@ -243,6 +245,7 @@ describe('Compose', () => {
       onlySendIndividualMessages: true,
       conversationID: '1',
       includedMessages: [template.conversationMessage({ id: '1' }), template.conversationMessage({ id: '2' })],
+      contextCode: 'course_1',
     }
 
     let response = apiResponse(template.conversation(props.includedMessages[0]))
@@ -263,6 +266,7 @@ describe('Compose', () => {
       bulk_message: 1,
       included_messages: ['1', '2'],
       attachment_ids: [],
+      context_code: 'course_1',
     })
   })
 
@@ -275,6 +279,7 @@ describe('Compose', () => {
       recipients: [u1],
       subject: 'new conversation subject',
       onlySendIndividualMessages: false,
+      contextCode: 'course_1',
       navigator: template.navigator({
         show: jest.fn((route, options, props) => {
           props.onComplete([template.attachment({ id: '234' })])
@@ -298,6 +303,7 @@ describe('Compose', () => {
       subject: 'new conversation subject',
       group_conversation: true,
       attachment_ids: ['234'],
+      context_code: 'course_1',
     })
   })
 

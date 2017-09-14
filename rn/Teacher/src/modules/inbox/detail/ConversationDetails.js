@@ -24,6 +24,7 @@ import {
   TouchableOpacity,
   Image,
   ActionSheetIOS,
+  AlertIOS,
 } from 'react-native'
 import { connect } from 'react-redux'
 import refresh from '../../../utils/refresh'
@@ -192,6 +193,13 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
 
   forwardMessage (id: string) {
     let conversation = this.props.conversation || {}
+    if (!conversation.context_code) {
+      return AlertIOS.alert(
+        i18n('Can not forward message'),
+        i18n('That message can not be forwarded.')
+      )
+    }
+
     let includedMessages = []
     if (id === this.props.conversationID) {
       includedMessages = this.props.messages

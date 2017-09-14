@@ -134,6 +134,7 @@ export class Compose extends PureComponent {
       group_conversation: true,
       included_messages: this.props.includedMessages && this.props.includedMessages.map(({ id }) => id),
       attachment_ids: this.state.attachments.map(a => a.id),
+      context_code: state.contextCode,
     }
 
     if (this.state.sendToAll) {

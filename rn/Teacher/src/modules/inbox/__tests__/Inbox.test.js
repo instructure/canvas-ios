@@ -250,24 +250,3 @@ it('filters conversations based on course', () => {
   const node = tree.toJSON()
   expect(node).toMatchSnapshot()
 })
-
-it('filters out conversations without a context_code', () => {
-  const courses = [
-    { id: '1' },
-    { id: '2' },
-  ]
-  let props = {
-    ...defaultProps,
-    conversations: [
-      ...defaultProps.conversations,
-      { id: '3', context_code: null },
-    ],
-  }
-  const tree = renderer.create(
-    <Inbox {...props} courses={courses} scope='all' />
-  )
-  const instance = tree.getInstance()
-  instance.setState({ selectedCourse: '1' })
-  const node = tree.toJSON()
-  expect(node).toMatchSnapshot()
-})

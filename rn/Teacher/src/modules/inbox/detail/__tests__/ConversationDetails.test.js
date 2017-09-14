@@ -17,6 +17,7 @@
 /* @flow */
 import {
   ActionSheetIOS,
+  AlertIOS,
 } from 'react-native'
 import React from 'react'
 import { ConversationDetails, mapStateToProps, handleRefresh, shouldRefresh, type ConversationDetailsProps } from '../ConversationDetails.js'
@@ -36,6 +37,9 @@ const template = {
 jest
   .mock('TouchableHighlight', () => 'TouchableHighlight')
   .mock('../../../../routing/Screen')
+  .mock('AlertIOS', () => ({
+    alert: jest.fn(),
+  }))
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
@@ -67,6 +71,7 @@ const Screen = (props: ConversationDetailsProps) => {
 describe('ConversationDetails', () => {
   let props
   beforeEach(() => {
+    jest.resetAllMocks()
     props = {
       conversation: template.conversation({ id: '1' }),
       conversationID: '1',
@@ -193,6 +198,15 @@ describe('ConversationDetails', () => {
       requireMessageBody: false,
       includedMessages: [props.messages[0]],
     })
+  })
+
+  it('does not allow forwarding of messages with no context_code', () => {
+    props.conversationID = '1'
+    props.messages = [template.conversationMessage({ id: '3' })]
+    props.conversation = template.conversation({ id: '1', context_code: undefined })
+    Screen(props).instance.forwardMessage('3')
+    expect(AlertIOS.alert).toHaveBeenCalled()
+    expect(props.navigator.show).not.toHaveBeenCalled()
   })
 
   it('calls options with an id', () => {
