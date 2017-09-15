@@ -67,6 +67,14 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
     }
   }
 
+  componentWillReceiveProps (nextProps: QuizSubmissionBreakdownGraphSectionProps) {
+    if (!this.props.assignmentID && nextProps.assignmentID) {
+      this.props.refreshSubmissionSummary(this.props.courseID, nextProps.assignmentID)
+    } else if (this.props.assignmentID && !nextProps.assignmentID) {
+      this.props.refreshEnrollments(this.props.courseID)
+    }
+  }
+
   render () {
     let { graded, ungraded, notSubmitted, submissionTotalCount } = this.props
     let data = [graded, ungraded, notSubmitted]

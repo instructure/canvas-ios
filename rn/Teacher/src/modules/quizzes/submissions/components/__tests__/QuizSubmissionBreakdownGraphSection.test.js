@@ -23,6 +23,7 @@ import React from 'react'
 import { QuizSubmissionBreakdownGraphSection, mapStateToProps } from '../QuizSubmissionBreakdownGraphSection'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../../test/helpers/explore'
+import setProps from '../../../../../../test/helpers/setProps'
 const template = {
   ...require('../../../../../__templates__/quiz'),
   ...require('../../../../../__templates__/assignments'),
@@ -157,6 +158,32 @@ test('misc functions', () => {
   expect(() => {
     instance.onPress(null)
   }).not.toThrow()
+})
+
+test('refreshSubmissionSummary gets called once assignmentID gets passed in', () => {
+  const spy = jest.fn()
+  defaultProps.refreshSubmissionSummary = spy
+  defaultProps.assignmentID = null
+  defaultProps.courseID = '1'
+  let view = renderer.create(
+    <QuizSubmissionBreakdownGraphSection {...defaultProps} />
+  )
+  setProps(view, { assignmentID: '30984' })
+  expect(spy).toHaveBeenCalledTimes(1)
+  expect(spy).toHaveBeenCalledWith('1', '30984')
+})
+
+test('refreshEnrollments gets called if assignmentID goes away', () => {
+  const spy = jest.fn()
+  defaultProps.refreshEnrollments = spy
+  defaultProps.assignmentID = '1'
+  defaultProps.courseID = '1'
+  let view = renderer.create(
+    <QuizSubmissionBreakdownGraphSection {...defaultProps} />
+  )
+  setProps(view, { assignmentID: null })
+  expect(spy).toHaveBeenCalledTimes(1)
+  expect(spy).toHaveBeenCalledWith('1')
 })
 
 function testDialOnPress (expectedID: string, expectedValueParameter: string) {
