@@ -31,6 +31,7 @@ describe('AttachmentRow', () => {
   let props
   beforeEach(() => {
     props = {
+      completed: true,
       title: 'Attachment 1',
       subtitle: 'Uploading...',
       onPress: jest.fn(),

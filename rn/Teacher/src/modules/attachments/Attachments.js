@@ -40,6 +40,7 @@ type StorageOptions = {
 }
 
 type AttachmentState = {
+  fileID: ?string,
   progress: Progress,
   error: null,
   cancel?: ?(() => void),
@@ -47,7 +48,7 @@ type AttachmentState = {
 }
 
 type State = {
-  attachments: { [string]: ?AttachmentState },
+  attachments: { [string]: AttachmentState },
 }
 
 export type Props = NavigationProps & {
@@ -78,6 +79,7 @@ export class Attachments extends Component<any, Props, any> {
           progress: { loaded: 0, total: 0 },
           error: null,
           data: attachment,
+          fileID: attachment.id,
         },
       }), {}),
     }
@@ -90,10 +92,10 @@ export class Attachments extends Component<any, Props, any> {
   render () {
     const anyInProgress = Object.values(this.state.attachments).reduce((current, attachment) => {
       // $FlowFixMe
-      return current || (attachment && !attachment.error && attachment.progress.loaded < attachment.progress.total)
+      return current || (attachment.error == null && attachment.fileID == null)
     }, false)
     // $FlowFixMe
-    const canAdd = this.props.maxAllowed == null || Object.values(this.state.attachments).filter(a => a).length < this.props.maxAllowed
+    const canAdd = this.props.maxAllowed == null || Object.values(this.state.attachments).length < this.props.maxAllowed
     return (
       <Screen
         title={i18n('Attachments')}
@@ -117,7 +119,7 @@ export class Attachments extends Component<any, Props, any> {
         <View style={styles.container}>
           <FlatList
             ListEmptyComponent={this.renderEmptyComponent}
-            data={Object.values(this.state.attachments).filter(a => a)}
+            data={Object.values(this.state.attachments)}
             renderItem={this.renderRow}
             keyExtractor={(item, index) => item.data.id}
             testID='attachments.list.list'
@@ -136,8 +138,10 @@ export class Attachments extends Component<any, Props, any> {
     return (
       <AttachmentRow
         title={item.data.display_name}
+        completed={item.fileID != null}
         error={item.error}
         progress={item.progress}
+        fileID={item.fileID}
         onRemovePressed={this.removeAttachment(item.data)}
         onPress={this.showAttachment(item.data)}
         testID={`attachments.attachment-row.${index}`}
@@ -182,8 +186,10 @@ export class Attachments extends Component<any, Props, any> {
   }
 
   dismiss = () => {
-    // $FlowFixMe
-    this.props.onComplete(Object.values(this.state.attachments).filter(a => a).map(a => a.data))
+    const attachments = Object.values(this.state.attachments)
+      .filter(a => a.error == null)
+      .map(a => a.data)
+    this.props.onComplete(attachments)
     this.props.navigator.dismiss()
   }
 
@@ -205,6 +211,7 @@ export class Attachments extends Component<any, Props, any> {
           progress: shouldUpload ? { loaded: 0.1, total: 1 } : { loaded: 0, total: 0 },
           error: null,
           data: attachment,
+          fileID: shouldUpload ? null : attachment.id,
         },
       },
     })
@@ -213,12 +220,9 @@ export class Attachments extends Component<any, Props, any> {
   }
 
   removeAttachment = (attachment: Attachment) => () => {
-    this.setState({
-      attachments: {
-        ...this.state.attachments,
-        [attachment.id]: null,
-      },
-    })
+    const attachments = { ...this.state.attachments }
+    delete attachments[attachment.id]
+    this.setState({ attachments })
   }
 
   showAttachment (attachment: Attachment) {
@@ -255,12 +259,12 @@ export class Attachments extends Component<any, Props, any> {
       this.setState({
         attachments: {
           ...this.state.attachments,
-          [attachment.id]: null,
-          [file.id]: {
+          [attachment.id]: {
             ...this.state.attachments[attachment.id],
             error: null,
             cancel: null,
             data: file,
+            fileID: file.id,
           },
         },
       })
@@ -273,6 +277,7 @@ export class Attachments extends Component<any, Props, any> {
             ...this.state.attachments[attachment.id],
             error,
             cancel: null,
+            fileID: null,
           },
         },
       })

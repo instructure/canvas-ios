@@ -133,6 +133,31 @@ describe('Attachments', () => {
     expect(props.onComplete).toHaveBeenCalledWith(props.attachments)
   })
 
+  it('does not pass attachments with errors back on dismiss', async () => {
+    const spy = jest.fn()
+    props.onComplete = spy
+    const createNodeMock = ({ type }) => {
+      if (type === 'AttachmentPicker') {
+        return {
+          show: jest.fn((options, callback) => callback(template.attachment())),
+        }
+      }
+    }
+    props.uploadAttachment = jest.fn((attachment, options) => {
+      return Promise.reject('Whoa, file big')
+    })
+    props.storageOptions = {
+      uploadPath: '/my files/conversation attachments',
+    }
+    props.attachments = []
+    const view = render(props, { createNodeMock })
+    const add: any = explore(view.toJSON()).selectRightBarButton('attachments.add-btn')
+    await add.action()
+    const done: any = explore(view.toJSON()).selectLeftBarButton('attachments.dismiss-btn')
+    done.action()
+    expect(spy).toHaveBeenCalledWith([])
+  })
+
   it('renders uploading state', () => {
     const createNodeMock = ({ type }) => {
       if (type === 'AttachmentPicker') {

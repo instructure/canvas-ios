@@ -50,6 +50,7 @@ exports[`Attachments renders attachments 1`] = `
               "url": "http://canvaslms.com/bookreport",
             },
             "error": null,
+            "fileID": "1",
             "progress": Object {
               "loaded": 0,
               "total": 0,
@@ -68,6 +69,7 @@ exports[`Attachments renders attachments 1`] = `
               "url": "http://canvaslms.com/bookreport",
             },
             "error": null,
+            "fileID": "2",
             "progress": Object {
               "loaded": 0,
               "total": 0,

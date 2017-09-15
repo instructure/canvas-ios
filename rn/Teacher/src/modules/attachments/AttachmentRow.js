@@ -34,6 +34,7 @@ import i18n from 'format-message'
 import { type Progress } from 'instructure-canvas-api'
 
 export type Props = {
+  completed: boolean,
   title: string,
   progress: Progress,
   error: ?string,
@@ -99,7 +100,7 @@ export default class AttachmentRow extends Component<any, Props, any> {
       )
     }
 
-    if (this.props.progress.loaded >= this.props.progress.total) {
+    if (this.props.completed) {
       return (
         <View
           style={style.image}
