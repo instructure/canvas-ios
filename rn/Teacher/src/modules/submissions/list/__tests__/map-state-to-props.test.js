@@ -24,6 +24,7 @@ jest.mock('knuth-shuffle-seeded', () => jest.fn())
 
 let t = {
   ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/course'),
   ...require('../../../../__templates__/submissions'),
   ...require('../../../../__templates__/enrollments'),
   ...require('../../../../__templates__/users'),
@@ -32,7 +33,7 @@ let t = {
   ...require('../__templates__/submission-props'),
 }
 
-export const submissionProps: Array<SubmissionDataProps> = [
+const submissionProps: Array<SubmissionDataProps> = [
   t.submissionProps({
     name: 'S1',
     status: 'none',
@@ -191,4 +192,32 @@ test('anonymous grading shuffles the data', () => {
 
   mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
   expect(shuffle).toHaveBeenCalled()
+})
+
+test('filters out StudentViewEnrollment', () => {
+  const student = t.enrollment({ id: '1', type: 'StudentEnrollment', user_id: '1' })
+  const testStudent = t.enrollment({ id: '2', type: 'StudentViewEnrollment', user_id: '2' })
+  const course = t.course()
+  const assignment = t.assignment()
+  const state = t.appState({
+    entities: {
+      enrollments: {
+        [student.id]: student,
+        [testStudent.id]: testStudent,
+      },
+      courses: {
+        [course.id]: {
+          enrollments: { pending: 0, refs: [student.id, testStudent.id] },
+        },
+      },
+      assignments: {
+        [assignment.id]: {
+          submissions: { pending: 0, refs: [] },
+          data: assignment,
+        },
+      },
+    },
+  })
+  const result = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
+  expect(result.submissions.map(u => u.userID)).toEqual(['1'])
 })

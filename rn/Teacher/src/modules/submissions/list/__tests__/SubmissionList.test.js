@@ -24,7 +24,6 @@ import {
   shouldRefresh,
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
-import { submissionProps } from './map-state-to-props.test'
 import setProps from '../../../../../test/helpers/setProps'
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -40,6 +39,33 @@ jest
     alert: jest.fn(),
   }))
   .mock('knuth-shuffle-seeded', () => jest.fn())
+
+const submissionProps: Array<SubmissionDataProps> = [
+  template.submissionProps({
+    name: 'S1',
+    status: 'none',
+    grade: 'not_submitted',
+    userID: '1',
+  }),
+  template.submissionProps({
+    name: 'S2',
+    status: 'none',
+    grade: 'excused',
+    userID: '2',
+  }),
+  template.submissionProps({
+    name: 'S3',
+    status: 'late',
+    grade: 'ungraded',
+    userID: '3',
+  }),
+  template.submissionProps({
+    name: 'S4',
+    status: 'submitted',
+    grade: 'A-',
+    userID: '4',
+  }),
+]
 
 const props = {
   submissions: submissionProps,
