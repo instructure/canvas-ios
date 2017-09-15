@@ -19,7 +19,7 @@
 import {
   enrollments,
 } from '../enrollments-refs-reducer'
-import Actions from '../Actions'
+import Actions from '../actions'
 
 const { refreshEnrollments } = Actions
 const templates = {
