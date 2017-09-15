@@ -95,6 +95,8 @@ export default class SubmissionViewer extends Component {
         return <CanvadocViewer
           config={{
             previewPath: attachment.preview_url,
+            fallbackURL: attachment.url,
+            filename: attachment.filename,
             drawerInset: this.props.drawerInset,
           }}
           style={[styles.container, { backgroundColor: '#A3ADB3' }]}

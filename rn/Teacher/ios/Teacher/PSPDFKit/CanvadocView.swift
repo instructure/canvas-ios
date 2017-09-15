@@ -51,7 +51,9 @@ class CanvadocView: UIView {
     weak var pdfViewController: PSPDFViewController?
     var bottomInset = CGFloat(0.0)
     
-    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    fileprivate let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    fileprivate let openInButton = UIButton()
+    fileprivate var docInteractionController: UIDocumentInteractionController?
     
     private let toolbar = UIToolbar()
     private let flexibleToolbarContainer = PSPDFFlexibleToolbarContainer()
@@ -77,10 +79,25 @@ class CanvadocView: UIView {
         }
     }
     
+    var fallbackURL: URL? {
+        guard let url = config["fallbackURL"] as? String else { return nil}
+        return URL(string: url)
+    }
+    var fallbackLocalURL: URL? = nil
+    
+    var filename: String? {
+        return config["filename"] as? String
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         activityIndicator.hidesWhenStopped = true
         toolbar.autoresizingMask = .flexibleWidth
+        
+        openInButton.setTitle(NSLocalizedString("Open in…", comment: ""), for: .normal)
+        openInButton.sizeToFit()
+        openInButton.isHidden = true
+        openInButton.addTarget(self, action: #selector(openInButtonTapped), for: .touchUpInside)
     }
     required init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
@@ -89,6 +106,10 @@ class CanvadocView: UIView {
         
         if activityIndicator.superview == nil {
             addSubview(activityIndicator)
+        }
+        
+        if openInButton.superview == nil {
+            addSubview(openInButton)
         }
         
         // using the animating prop of the activity indicator as state to determine if we are already trying to load
@@ -100,6 +121,7 @@ class CanvadocView: UIView {
         activityIndicator.frame = CGRect(x: (bounds.width/2)-(activityIndicator.bounds.width/2), y: (bounds.height/2)-(activityIndicator.bounds.height/2), width: activityIndicator.bounds.width, height: activityIndicator.bounds.height)
         toolbar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 33.0)
         flexibleToolbarContainer.frame = bounds
+        openInButton.center = activityIndicator.center
         
         if let margin = pdfViewController?.configuration.margin, margin.bottom != self.bottomInset {
             pdfViewController?.updateConfigurationWithoutReloading { config in
@@ -149,6 +171,8 @@ class CanvadocView: UIView {
     private func loadDocument() {
         activityIndicator.startAnimating()
         
+        guard previewPath != "" else { downloadFallback(); return }
+        
         let client = CanvasKeymaster.the().currentClient.copy() as! CKIClient
         client.requestSerializer = AFHTTPRequestSerializer()
         client.responseSerializer = AFHTTPResponseSerializer()
@@ -168,6 +192,8 @@ class CanvadocView: UIView {
                     if let pdfViewController = pdfViewController as? PSPDFViewController {
                         self.activityIndicator.stopAnimating()
                         self.embed(pdfViewController: pdfViewController)
+                    } else  {
+                        self.downloadFallback()
                     }
                 }
             }
@@ -195,6 +221,23 @@ class CanvadocView: UIView {
             view = view?.superview
         }
     }
+    
+    fileprivate func downloadFallback() {
+        guard let fallbackURL = self.fallbackURL else { return }
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+        let task = session.downloadTask(with: fallbackURL)
+        task.resume()
+    }
+    
+    func openInButtonTapped() {
+        guard let fallbackLocalURL = fallbackLocalURL else { return }
+        
+        docInteractionController = UIDocumentInteractionController(url: fallbackLocalURL)
+        docInteractionController?.delegate = self
+        docInteractionController?.presentOpenInMenu(from: openInButton.frame, in: self, animated: true)
+    }
 }
 
 extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
@@ -206,3 +249,29 @@ extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
         }
     }
 }
+
+extension CanvadocView: URLSessionDownloadDelegate {
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        if let filename = self.filename, let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
+            let fileURL = caches.appendingPathComponent(filename)
+            if FileManager.default.fileExists(atPath: fileURL.relativePath) {
+                let _ = try? FileManager.default.removeItem(at: fileURL)
+            }
+            
+            do {
+                try FileManager.default.copyItem(at: location, to: fileURL)
+            } catch (let writeError) {
+                print("error writing file \(fileURL): \(writeError)")
+            }
+            
+            self.fallbackLocalURL = fileURL
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.openInButton.isHidden = false
+            }
+        }
+    }
+}
+
+extension CanvadocView: UIDocumentInteractionControllerDelegate { }
