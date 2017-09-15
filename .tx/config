@@ -132,3 +132,9 @@ file_filter = translations/canvas-ios.en_whizzyxliff/<lang>.xlf
 source_file = translations/source/whizzy/en-complete.xliff
 source_lang = en
 type = XLIFF
+
+[canvas-ios.en_teacherjson]
+file_filter = rn/Teacher/i18n/locales/<lang>.json
+source_file = rn/Teacher/i18n/locales/en.json
+source_lang = en
+type = KEYVALUEJSON

@@ -3,1269 +3,1269 @@
 	"message": "?"
   },
   "a_description_is_required_54b5f1f6": {
-	"message": "Yon deskripsyon obligatwa"
+	"message": "A description is required"
   },
   "a_message_is_required_129e1814": {
-	"message": "Yon mesaj obligatwa"
+	"message": "A message is required"
   },
   "a_title_is_required_71222850": {
-	"message": "Yon tit obligatwa"
+	"message": "A title is required"
   },
   "access_code_74f4864f": {
-	"message": "Kòd Aksè"
+	"message": "Access code"
   },
   "add_a_few_of_your_favorite_courses_to_make_this_pl_dcea7435": {
-	"message": "Ajoute kèk nan kou favori ou yo pou w ka fè plas sa a akèy ou."
+	"message": "Add a few of your favourite courses to make this place your home."
   },
   "add_an_attachment_by_tapping_the_plus_at_the_top_r_f9350b62": {
-	"message": "Tape plis ki anlè adwat la pou ajoute yon atachman."
+	"message": "Add an attachment by tapping the plus at the top right."
   },
   "add_assignee_24ee0b71": {
-	"message": "Ajoute Asiyen"
+	"message": "Add Assignee"
   },
   "add_attachment_dcdb8bf8": {
-	"message": "Ajoute atachman"
+	"message": "Add attachment"
   },
   "add_comment_3205529f": {
-	"message": "Ajoute Kòmantè"
+	"message": "Add comment"
   },
   "add_courses_fd45abf": {
-	"message": "Ajoute Kou"
+	"message": "Add courses"
   },
   "add_description_required_e222e483": {
-	"message": "Ajoute deskripsyon (obligatwa)"
+	"message": "Add description (required)"
   },
   "add_due_date_65b08f6c": {
-	"message": "Ajoute Delè"
+	"message": "Add Due Date"
   },
   "add_media_cfa37b54": {
-	"message": "Ajoute Medya"
+	"message": "Add Media"
   },
   "add_recipient_7de2dc74": {
-	"message": "Ajoute destinatè"
+	"message": "Add recipient"
   },
   "add_title_4f788d37": {
-	"message": "Ajoute tit"
+	"message": "Add title"
   },
   "after_date_e5d9b0e1": {
-	"message": "Aprè { date }"
+	"message": "After { date }"
   },
   "after_last_attempt_c9168da2": {
-	"message": "Aprè Dènye Tantativ"
+	"message": "After last attempt"
   },
   "all_4321c3a1": {
-	"message": "Tout"
+	"message": "All"
   },
   "all_courses_a7dbb853": {
-	"message": "Tout Kou"
+	"message": "All courses"
   },
   "all_grading_periods_77974940": {
-	"message": "Tout Peryòd Klasman"
+	"message": "All marking periods"
   },
   "all_in_e5ddaee0": {
-	"message": "Tout nan"
+	"message": "All in"
   },
   "all_people_16d90b41": {
-	"message": "Tout Moun"
+	"message": "All people"
   },
   "all_submissions_3eedfb97": {
-	"message": "Tout Soumisyon"
+	"message": "All submissions"
   },
   "all_submissions_assignmentname_3f4f4a9e": {
-	"message": "Tout soumisyon - { assignmentName }"
+	"message": "All submissions - { assignmentName }"
   },
   "all_submissions_b8717440": {
-	"message": "Tout Soumisyon"
+	"message": "All Submissions"
   },
   "allow_multiple_attempts_e67a0a37": {
-	"message": "Otorize Plizyè Tantativ"
+	"message": "Allow multiple attempts"
   },
   "allow_threaded_replies_43b2311e": {
-	"message": "Otorize repons filte"
+	"message": "Allow threaded replies"
   },
   "allowed_attempts_4e229caa": {
-	"message": "Tantativ Otorize"
+	"message": "Allowed attempts"
   },
   "always_3a59e701": {
-	"message": "Toujou"
+	"message": "Always"
   },
   "an_error_occured_while_fetching_this_conversation_453ca633": {
-	"message": "Gen yon erè ki fèt pandan rechèch konvèsasyon sa a."
+	"message": "An error occurred while fetching this conversation."
   },
   "an_error_occurred_a4e1cda4": {
-	"message": "Gen yon erè ki fèt"
+	"message": "An error occurred"
   },
   "announcement_details_81b0bda2": {
-	"message": "Detay Anons"
+	"message": "Announcement Details"
   },
   "announcements_a4b8ed4a": {
-	"message": "Anons"
+	"message": "Announcements"
   },
   "anonymous_grading_3083dc0": {
-	"message": "Klasman anomin"
+	"message": "Anonymous grading"
   },
   "anonymous_grading_ccb5045c": {
-	"message": "Klasman Anomin"
+	"message": "Anonymous grading"
   },
   "archived_de543437": {
-	"message": "Stoke"
+	"message": "Archived"
   },
   "are_you_sure_you_want_to_delete_this_announcement_293d51a8": {
-	"message": "Ou kwè vrèman ou vle efase anons sa a?"
+	"message": "Are you sure you want to delete this announcement?"
   },
   "are_you_sure_you_want_to_delete_this_discussion_334554e0": {
-	"message": "Ou kwè vrèman ou vle efase diskisyon sa a?"
+	"message": "Are you sure you want to delete this discussion?"
   },
   "are_you_sure_you_want_to_delete_this_reply_6a35cccc": {
-	"message": "Ou kwè vrèman ou vle efase kòmantè sa a?"
+	"message": "Are you sure you want to delete this reply?"
   },
   "assign_to_95404a83": {
-	"message": "Asiyen A"
+	"message": "Assign To"
   },
   "assignees_314d5e55": {
-	"message": "Sesyonè"
+	"message": "Assignees"
   },
   "assignees_required_1b9218fb": {
-	"message": "Sesyonè obligatwa"
+	"message": "Assignees required"
   },
   "assignment_details_bc488179": {
-	"message": "Detay Sesyon"
+	"message": "Assignment details"
   },
   "assignment_group_1a781505": {
-	"message": "Sesyon Gwoup"
+	"message": "Assignment group"
   },
   "assignments_1e02582c": {
-	"message": "Sesyon"
+	"message": "Assignments"
   },
   "assignments_list_fe3e54be": {
-	"message": "Lis Sesyon"
+	"message": "Assignments list"
   },
   "at_791460b3": {
-	"message": "nan"
+	"message": "at"
   },
   "attachment_deffe5a9": {
-	"message": "Atachman"
+	"message": "Attachment"
   },
   "attachments_694cf227": {
-	"message": "Atachman"
+	"message": "Attachments"
   },
   "attempt_number_75028cfa": {
-	"message": "Tantativ { number }"
+	"message": "Attempt { number }"
   },
   "audio_comment_baf426c7": {
-	"message": "Kòmantè Odyo"
+	"message": "Audio Comment"
   },
   "audio_dd489fcc": {
-	"message": "Odyo"
+	"message": "Audio"
   },
   "audio_playback_failed_912bcb82": {
-	"message": "Echèk lekti odyo"
+	"message": "Audio playback failed"
   },
   "availability_8942cde6": {
-	"message": "Disponibilite"
+	"message": "Availability"
   },
   "availability_closed_429d1ba5": {
-	"message": "Disponibilite: Fèmen"
+	"message": "Availability: Closed"
   },
   "availability_e415e857": {
-	"message": "Disponibilite:"
+	"message": "Availability:"
   },
   "available_from_3821bccc": {
-	"message": "Disponib Depi:"
+	"message": "Available From:"
   },
   "available_from_587ce92f": {
-	"message": "Disponib Depi"
+	"message": "Available from"
   },
   "available_from_date_bb9d5115": {
-	"message": "Disponib depi: { date }"
+	"message": "Available from: { date }"
   },
   "available_from_must_be_before_available_until_38d313cc": {
-	"message": "\"Disponib Depi\" dwe anvan \"Disponib Jiska\" "
+	"message": "''Available From'' must be before ''Available Until''"
   },
   "available_until_20c0cc5c": {
-	"message": "Disponib Jiska:"
+	"message": "Available Until:"
   },
   "available_until_date_37684818": {
-	"message": "Disponib jiska: { date }"
+	"message": "Available until: { date }"
   },
   "available_until_f3b9c4ed": {
-	"message": "Disponib Jiska"
+	"message": "Available until"
   },
   "average_49c63f9b": {
-	"message": "Mwayèn"
+	"message": "Average"
   },
   "back_2900f52a": {
-	"message": "Retounen"
+	"message": "Back"
   },
   "back_to_replies_94f3c127": {
-	"message": "Retounen nan kòmantè"
+	"message": "Back to replies"
   },
   "bold_34b9d97e": {
-	"message": "Gra"
+	"message": "Bold"
   },
   "cancel_caeb1e68": {
-	"message": "Anile"
+	"message": "Cancel"
   },
   "canvas_parent_app_f9236a3a": {
-	"message": "App Canvas Parent"
+	"message": "Canvas Parent App"
   },
   "canvas_student_app_329567f": {
-	"message": "App Canvas Student"
+	"message": "Canvas Student App"
   },
   "change_discussiontitle_to_different_grouping_9f5ed8c1": {
-	"message": "Chanje { discussionTitle } an diferan gwoupman"
+	"message": "Change { discussionTitle } to different grouping"
   },
   "choose_1319ef6b": {
-	"message": "Chwazi"
+	"message": "Choose"
   },
   "choose_color_11148181": {
-	"message": "Chwazi { color }"
+	"message": "Choose { color }"
   },
   "choose_from_library_1b9caf95": {
-	"message": "Chwazi Nan Bibliyotèk"
+	"message": "Choose From Library"
   },
   "clear_filter_5b3a182d": {
-	"message": "Efase Filtè"
+	"message": "Clear filter"
   },
   "clear_filter_5c961d1b": {
-	"message": "Efase Filtrasyon"
+	"message": "Clear Filter"
   },
   "clear_filter_inbox_9465e74c": {
-	"message": "Elimine Filtè Bwat resepsyon"
+	"message": "Clear Filter Inbox"
   },
   "clear_filter_submissions_7def30db": {
-	"message": "Efase Soumisyon Filtrasyon"
+	"message": "Clear Filter Submissions"
   },
   "close_for_comments_ce0e5d00": {
-	"message": "Fèmen pou kòmantè"
+	"message": "Close for comments"
   },
   "closed_983a96fe": {
-	"message": "Fèmen"
+	"message": "Closed"
   },
   "closed_for_comments_e395b42f": {
-	"message": "Fèmen pou Kòmantè"
+	"message": "Closed for comments"
   },
   "color_a363e1b0": {
-	"message": "Koulè"
+	"message": "Colour"
   },
   "comment_7ef1428e": {
-	"message": "Kòmantè"
+	"message": "Comment"
   },
   "comment_failed_acf11b54": {
-	"message": "Kòmantè Echwe"
+	"message": "Comment Failed"
   },
   "comments_e07bcbe3": {
-	"message": "Komantè"
+	"message": "Comments"
   },
   "complete_fd828dea": {
-	"message": "Konplete"
+	"message": "Complete"
   },
   "complete_incomplete_15b3a89c": {
-	"message": "Komplè/Enkonplè"
+	"message": "Complete/Incomplete"
   },
   "compose_message_45002196": {
-	"message": "Konpoze yon mesaj"
+	"message": "Compose message"
   },
   "conversation_options_8be926f3": {
-	"message": "Opsyon konvèsasyon"
+	"message": "Conversation options"
   },
   "could_not_get_list_of_assignments_76aa2c7e": {
-	"message": "Paka jwenn lis sesyon yo"
+	"message": "Could not get list of assignments"
   },
   "could_not_start_recording_8f31c2e4": {
-	"message": "Pa ka kòmanse anrejistre"
+	"message": "Could not start recording"
   },
   "count_plural_0_0_students_one_student_other_studen_801f8933": {
-	"message": "{ count, plural,\n     =0 {0 elèv}\n    one {# elèv}\n  other {# elèv}\n}"
+	"message": "{ count, plural,\n     =0 {0 students}\n    one {# student}\n  other {# students}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_45cd88a4": {
-	"message": "{ count, plural,\n    one {Bezwen Evalyasyon}\n  other {Bezwen Evalyasyon}\n}"
+	"message": "{ count, plural,\n    one {Needs Grading}\n  other {Need Grading}\n}"
   },
   "count_plural_one_needs_grading_other_need_grading_7eba188e": {
-	"message": "{ count, plural,\n    one {# Bezwen Evalyasyon}\n  other {# Bezwen Evalyasyon}\n}"
+	"message": "{ count, plural,\n    one {# Needs Grading}\n  other {# Need Grading}\n}"
   },
   "count_plural_one_pt_other_pts_c5a3bced": {
 	"message": "{ count, plural,\n    one {# pt}\n  other {# pts}\n}"
   },
   "count_plural_one_question_other_questions_309aafa": {
-	"message": "{ count, plural,\n    one {# Kesyon}\n  other {# Kesyon}\n}"
+	"message": "{ count, plural,\n    one {# Question}\n  other {# Questions}\n}"
   },
   "count_plural_one_there_is_assignee_without_a_grade_15facb89": {
-	"message": "{ count, plural,\n    one {Gen yon # sesyonè ki pa gen nòt.}\n  other {Gen # sesyonè ki pa gen nòt.}\n}"
+	"message": "{ count, plural,\n    one {There is # assignee without a grade.}\n  other {There are # assignees without grades.}\n}"
   },
   "count_plural_zero_replies_one_reply_other_replies_98b01de5": {
-	"message": "{ count, plural,\n   zero {# Repons}\n    one {# Repons}\n  other {# Repons}\n}"
+	"message": "{ count, plural,\n   zero {# Replies}\n    one {# Reply}\n  other {# Replies}\n}"
   },
   "count_students_4ae780ca": {
-	"message": "{ count } elèv"
+	"message": "{ count } students"
   },
   "course_activity_stream_40091c17": {
-	"message": "Flux Aktivite Kou"
+	"message": "Course activity stream"
   },
   "course_modules_795cb95e": {
-	"message": "Modil Kou"
+	"message": "Course modules"
   },
   "course_sections_380358a5": {
-	"message": "Seksyon Kou"
+	"message": "Course sections"
   },
   "course_settings_f6d0bbf8": {
-	"message": "Paramèt Kou"
+	"message": "Course settings"
   },
   "courses_43204aae": {
-	"message": "Kou"
+	"message": "Courses"
   },
   "customize_course_eefa9c21": {
-	"message": "Pèsonalize Kou"
+	"message": "Customise course"
   },
   "customize_grade_c9d046d": {
-	"message": "Pèsonalize Nòt"
+	"message": "Customise Grade"
   },
   "customize_grade_value_964695a3": {
-	"message": "Pèsonalize Nòt { value }"
+	"message": "Customise Grade { value }"
   },
   "datestring_at_timestring_183180ce": {
-	"message": "{ dateString } nan { timeString }"
+	"message": "{ dateString } at { timeString }"
   },
   "delay_posting_f45eed7d": {
-	"message": "Retade Piblikasyon"
+	"message": "Delay Posting"
   },
   "delete_a6efa79d": {
-	"message": "Efase"
+	"message": "Delete"
   },
   "delete_recipient_recipient_22a1e3dd": {
-	"message": "Efase destinatè { recipient }"
+	"message": "Delete recipient { recipient }"
   },
   "deleted_this_reply_8b5b0ddc": {
-	"message": "Elimine kòmantè sa a."
+	"message": "Deleted this reply."
   },
   "description_436c48d7": {
-	"message": "Deskripsyon"
+	"message": "Description"
   },
   "designer_c458392": {
-	"message": "Kreyatè"
+	"message": "Designer"
   },
   "details_98a31b68": {
-	"message": "Detay"
+	"message": "Details"
   },
   "discussion_details_5728ea3d": {
-	"message": "Detay Diskisyon"
+	"message": "Discussion Details"
   },
   "discussion_submission_781d5d33": {
-	"message": "Soumisyon Diskisyon"
+	"message": "Discussion submission"
   },
   "discussion_topic_dc85ad4c": {
-	"message": "Sijè Diskisyon"
+	"message": "Discussion topic"
   },
   "discussions_a5f96392": {
-	"message": "Diskisyon"
+	"message": "Discussions"
   },
   "display_grade_as_7b5376a6": {
-	"message": "Afiche Nòt Tankou"
+	"message": "Display Grade As"
   },
   "display_grade_as_c165e9a6": {
-	"message": "Afiche Nòt tankou..."
+	"message": "Display Grade as..."
   },
   "done_54e3d4b6": {
-	"message": "Fini"
+	"message": "Done"
   },
   "due_5d7267be": {
-	"message": "Delè:"
+	"message": "Due:"
   },
   "due_a73610f6": {
-	"message": "Delè"
+	"message": "Due"
   },
   "due_date_822625d8": {
-	"message": "Delè"
+	"message": "Due date"
   },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
-	"message": "\"Delè\" a dwe ant dat \"Disponib Depi\" e \"Disponib Jiska\" yo"
+	"message": "''Due Date'' must be between ''Available From'' and ''Available Until'' dates"
   },
   "due_dates_double_tap_for_details_36c5a7a4": {
-	"message": "Delè, Tape de fwa pou ka wè detay yo."
+	"message": "Due Dates, Double tap for details."
   },
   "due_datestring_be4410c7": {
-	"message": "Delè { dateString }"
+	"message": "Due { dateString }"
   },
   "edit_assignment_ebf22a72": {
-	"message": "Modifye Sesyon"
+	"message": "Edit assignment"
   },
   "edit_c5fbea07": {
-	"message": "Modifye"
+	"message": "Edit"
   },
   "edit_comment_22b23c2f": {
-	"message": "Modifye Kòmantè"
+	"message": "Edit Comment"
   },
   "edit_course_settings_9736fd1f": {
-	"message": "Modifye paramèt kou"
+	"message": "Edit course settings"
   },
   "edit_courses_1f63340f": {
-	"message": "Modifye Kou"
+	"message": "Edit courses"
   },
   "edit_description_1206e0a8": {
-	"message": "Modifye Deskripsyon"
+	"message": "Edit Description"
   },
   "edit_quiz_details_72cd055": {
-	"message": "Modifye Detay Quiz"
+	"message": "Edit Quiz Details"
   },
   "email_contact_e095f380": {
-	"message": "Imèl Kontak"
+	"message": "Email Contact"
   },
   "enter_code_c7ab5104": {
-	"message": "Antre Kòd"
+	"message": "Enter code"
   },
   "error_98e81528": {
-	"message": "Erè"
+	"message": "Error"
   },
   "error_sending_e_mail_275383b": {
-	"message": "Erè pandan w ap voye imèl la"
+	"message": "Error sending e-mail"
   },
   "everyone_854554dd": {
-	"message": "Tout Moun"
+	"message": "Everyone"
   },
   "everyone_else_cc5f6888": {
-	"message": "Tout lòt yo"
+	"message": "Everyone else"
   },
   "excuse_student_1b60e311": {
-	"message": "Eskiz Elèv"
+	"message": "Excuse Student"
   },
   "excused_cf8792eb": {
-	"message": "Eskize"
+	"message": "Excused"
   },
   "external_tool_c5a6410a": {
-	"message": "Zouti Eksteryè"
+	"message": "External tool"
   },
   "external_tool_submission_c7b1dfa4": {
-	"message": "Soumisyon Zouti Ekstèn"
+	"message": "External Tool Submission"
   },
   "fail_c2e91f54": {
-	"message": "Echwe"
+	"message": "Fail"
   },
   "failed_comment_options_aa19a936": {
-	"message": "Echèk opsyon kòmantè"
+	"message": "Failed comment options"
   },
   "failed_to_download_audio_23abb7b1": {
-	"message": "Echèk telechajman odyo"
+	"message": "Failed to download audio"
   },
   "failed_to_load_audio_46309612": {
-	"message": "Echèk chajman odyo"
+	"message": "Failed to load audio"
   },
   "failed_to_upload_attachment_acb5c28f": {
-	"message": "Echèk transfè atachman"
+	"message": "Failed to upload attachment"
   },
   "failed_to_upload_media_comment_c43f581a": {
-	"message": "Echèk transfè kòmantè miltimedya"
+	"message": "Failed to upload media comment"
   },
   "favorite_courses_fbd356f0": {
-	"message": "Kou Prefere"
+	"message": "Favourite courses"
   },
   "files_c300e900": {
-	"message": "Fichye"
+	"message": "Files"
   },
   "files_numberoffiles_66240ab2": {
-	"message": "Fichye ({ numberOfFiles })"
+	"message": "Files ({ numberOfFiles })"
   },
   "filter_by_ffcbd05b": {
-	"message": "Filtre pa:"
+	"message": "Filter by:"
   },
   "filter_e3398407": {
-	"message": "Filtè"
+	"message": "Filter"
   },
   "filter_inbox_dae0ff8f": {
-	"message": "Filtè Bwat resepsyon"
+	"message": "Filter Inbox"
   },
   "filter_people_b34b567b": {
-	"message": "Filtre Moun"
+	"message": "Filter people"
   },
   "filter_submissions_81bc50de": {
-	"message": "Soumisyon Filtrasyon"
+	"message": "Filter Submissions"
   },
   "for_974cbb84": {
-	"message": "Pou"
+	"message": "For"
   },
   "for_e3490d05": {
-	"message": "Pou:"
+	"message": "For:"
   },
   "forward_d143f64": {
-	"message": "Fè swiv"
+	"message": "Forward"
   },
   "forwarded_message_3acb578c": {
-	"message": "Mesaj Transfere:"
+	"message": "Forwarded Message:"
   },
   "full_screen_712e95f1": {
-	"message": "Plen ekran"
+	"message": "Full screen"
   },
   "fw_subject_ebe04db7": {
 	"message": "Fw: { subject }"
   },
   "gpa_71809a99": {
-	"message": "GPA"
+	"message": "Class"
   },
   "gpa_scale_a6d1cdea": {
-	"message": "Echèl GPA"
+	"message": "GPA scale"
   },
   "grade_9c6f076d": {
-	"message": "Klas"
+	"message": "Mark"
   },
   "graded_25cd3fcd": {
-	"message": "Klase"
+	"message": "Graded"
   },
   "graded_assignmentname_f530f81d": {
-	"message": "Klase - { assignmentName }"
+	"message": "Graded - { assignmentName }"
   },
   "graded_quiz_7fabdf1f": {
-	"message": "Quiz Klase"
+	"message": "Graded quiz"
   },
   "graded_survey_c0f0c395": {
-	"message": "Ankèt Klase"
+	"message": "Graded survey"
   },
   "grades_a61eba0a": {
-	"message": "Klas"
+	"message": "Marks"
   },
   "grades_muted_76c70047": {
-	"message": "Nòt sou silans"
+	"message": "Grades muted"
   },
   "grades_muted_anonymous_grading_9291ea4b": {
-	"message": "Nòt sou silans, klasman Anonim"
+	"message": "Grades muted, Anonymous grading"
   },
   "group_a8f5ed9c": {
-	"message": "Gwoup"
+	"message": "Group"
   },
   "groups_6c90e26a": {
-	"message": "Gwoup"
+	"message": "Groups"
   },
   "half_screen_9cdd83ad": {
-	"message": "Mwatye ekran"
+	"message": "Half screen"
   },
   "haven_t_been_graded_1fbfda56": {
-	"message": "Poko evalye"
+	"message": "Haven''t been graded"
   },
   "haven_t_been_graded_assignmentname_eaafdd9f": {
-	"message": "Poko klase - { assignmentName }"
+	"message": "Have not been graded - { assignmentName }"
   },
   "haven_t_submitted_yet_3a127a27": {
-	"message": "Poko soumèt"
+	"message": "Haven''t submitted yet"
   },
   "haven_t_submitted_yet_assignmentname_dd06c39f": {
-	"message": "Poko soumèt - { assignmentName }"
+	"message": "Have not submitted yet - { assignmentName }"
   },
   "hide_correct_answers_at_b1a59408": {
-	"message": "Kache Bon Repons yo Nan"
+	"message": "Hide Correct Answers At"
   },
   "hide_date_cannot_be_before_show_date_cfaa35f0": {
-	"message": "\"Kache Dat\" paka anvan \"Afiche Dat\""
+	"message": "''Hide Date'' cannot be before ''Show Date''"
   },
   "highest_28ad71e6": {
-	"message": "Pi Wo"
+	"message": "Highest"
   },
   "incomplete_da3c2ea2": {
-	"message": "Enkonplè"
+	"message": "Incomplete"
   },
   "insert_image_42d30344": {
-	"message": "Ensere Imaj"
+	"message": "Insert Image"
   },
   "insert_link_6dc23cae": {
-	"message": "Ensere Lyen"
+	"message": "Insert link"
   },
   "invalid_field_54480fae": {
-	"message": "Chan envalid"
+	"message": "Invalid field"
   },
   "italic_ac45200a": {
-	"message": "Italik"
+	"message": "Italic"
   },
   "last_activity_on_lastactivity_date_mmmm_d_at_lasta_1a7e8430": {
-	"message": "Dènye aktivite le { lastActivity, date, 'MMMM d' } a { lastActivity, time, short }"
+	"message": "Last activity on { lastActivity, date, 'MMMM d' } at { lastActivity, time, short }"
   },
   "last_post_lastreplydatestr_55fbe7ce": {
-	"message": "Dènye piblikasyon { lastReplyDateStr }"
+	"message": "Last post { lastReplyDateStr }"
   },
   "late_2be42b88": {
-	"message": "Ta"
+	"message": "Late"
   },
   "latest_f604a75": {
-	"message": "Dènye"
+	"message": "Latest"
   },
   "launch_external_tool_672c0409": {
-	"message": "Lanse Zouti eksteryè"
+	"message": "Launch external tool"
   },
   "length_in_minutes_eca69868": {
-	"message": "Longè an minit"
+	"message": "Length in minutes"
   },
   "let_students_see_the_correct_answer_a4da886e": {
-	"message": "Kite Elèv yo Wè Bon Repons lan"
+	"message": "Let Students See the Correct Answer"
   },
   "let_students_see_their_quiz_responses_fbc07d14": {
-	"message": "Kite Elèv yo Wè Repons Quiz yo"
+	"message": "Let students see their quiz responses"
   },
   "letter_grade_29ff1938": {
-	"message": "Nòt an Lèt"
+	"message": "Letter Grade"
   },
   "letter_grade_e83e363c": {
-	"message": "Nòt an lèt"
+	"message": "Letter grade"
   },
   "lock_questions_after_answering_e0f61d7c": {
-	"message": "Bloke Kesyon Aprè Repons"
+	"message": "Lock questions after answering"
   },
   "log_out_379ba28a": {
-	"message": "Dekonekte"
+	"message": "Log out"
   },
   "long_description_7d89285c": {
-	"message": "Deskripsyon Long"
+	"message": "Long description"
   },
   "mark_all_as_read_8f3bdf57": {
-	"message": "Make Tout Ke yo Li"
+	"message": "Mark all as read"
   },
   "me_bf110f4d": {
-	"message": "mwen menm"
+	"message": "me"
   },
   "media_attachment_e412aab8": {
-	"message": "Atachman Miltimedya"
+	"message": "Media attachment"
   },
   "media_recording_77cddc52": {
-	"message": "Anrejistreman Medya"
+	"message": "Media recording"
   },
   "media_submission_464829f0": {
-	"message": "Soumisyon Medya"
+	"message": "Media submission"
   },
   "message_5c38209d": {
-	"message": "Mesaj"
+	"message": "Message"
   },
   "message_details_342e931f": {
-	"message": "Detay Mesaj"
+	"message": "Message Details"
   },
   "message_options_59805b8e": {
-	"message": "Opsyon mesaj"
+	"message": "Message options"
   },
   "message_students_who_778ce759": {
-	"message": "Mesaj elèv ki"
+	"message": "Message students who"
   },
   "minutes_4aee5a41": {
-	"message": "Minit"
+	"message": "Minutes"
   },
   "missing_1a256b3b": {
-	"message": "Manke"
+	"message": "Missing"
   },
   "moderated_grading_unsupported_e3a2bba3": {
-	"message": "Klasman Modere pa Pran an Chaj"
+	"message": "Moderated Grading Unsupported"
   },
   "multiple_due_dates_283dd861": {
-	"message": "Plizyè Delè"
+	"message": "Multiple due dates"
   },
   "mute_grades_b85bece1": {
-	"message": "Nòt sou Silans"
+	"message": "Mute Grades"
   },
   "name_1aed4a1b": {
-	"message": "Non"
+	"message": "Name"
   },
   "name_count_others_6e5afa7c": {
-	"message": "{ name } + { count } lòt"
+	"message": "{ name } + { count } others"
   },
   "names_count_more_643849d3": {
-	"message": "{ names } + { count } plis"
+	"message": "{ names } + { count } more"
   },
   "needs_grading_9143d47c": {
-	"message": "Bezwen Klasman"
+	"message": "Needs Grading"
   },
   "new_13daf639": {
-	"message": "Nouvo"
+	"message": "New"
   },
   "new_discussion_dae4fae3": {
-	"message": "Nouvo Diskisyon"
+	"message": "New discussion"
   },
   "new_message_f9bbd1c0": {
-	"message": "Nouvo Mesaj"
+	"message": "New message"
   },
   "nickname_1e6da3ad": {
-	"message": "Ti Non Jwèt"
+	"message": "Nickname"
   },
   "no_attachments_e875f6d5": {
-	"message": "Okenn Atachman"
+	"message": "No Attachments"
   },
   "no_available_from_date_set_6f659d06": {
-	"message": "Pa disponib apadi de dat ki defini an."
+	"message": "No available from date set."
   },
   "no_available_from_date_set_db356ac3": {
-	"message": "Pa disponib apati de dat ki defini an"
+	"message": "No available from date set"
   },
   "no_available_until_date_set_ad4b4bbb": {
-	"message": "Pa disponib jiska dat fikse"
+	"message": "No available until date set"
   },
   "no_available_until_date_set_df9e7434": {
-	"message": "Pa disponib jiska dat fikse."
+	"message": "No available until date set."
   },
   "no_due_date_44271c53": {
-	"message": "San Delè"
+	"message": "No due date"
   },
   "no_due_date_set_bb3a2bf7": {
-	"message": "Pa gen delè ki defini"
+	"message": "No due date set."
   },
   "no_e16d9132": {
-	"message": "Non"
+	"message": "No"
   },
   "no_internet_connection_9df26cf8": {
-	"message": "Pa gen koneksyon entènèt"
+	"message": "No internet connection"
   },
   "no_messages_a2e67ad4": {
-	"message": "Pa gen Mesaj"
+	"message": "No messages"
   },
   "no_results_f36777ee": {
-	"message": "Okenn rezilta"
+	"message": "No results"
   },
   "no_starred_messages_e1b28bca": {
-	"message": "Pa gen Mesaj ki Make"
+	"message": "No Starred Messages"
   },
   "no_subject_2e2a413c": {
-	"message": "(pa gen sijè)"
+	"message": "(no subject)"
   },
   "no_subject_58b7941c": {
-	"message": "Pa gen Sijè"
+	"message": "No Subject"
   },
   "no_time_limit_2147d9bf": {
-	"message": "Pa Gen Delè"
+	"message": "No time limit"
   },
   "none_3b5e34d2": {
-	"message": "Okenn"
+	"message": "None"
   },
   "not_a_teacher_b0d0fc55": {
-	"message": "Se pa yon pofesè?"
+	"message": "Not a teacher?"
   },
   "not_graded_e027c866": {
-	"message": "Pa Klase"
+	"message": "Not Graded"
   },
   "not_published_73f7079": {
-	"message": "Pa Pibliye"
+	"message": "Not published"
   },
   "not_submitted_7d05fdb4": {
-	"message": "Pa Soumèt"
+	"message": "Not submitted"
   },
   "number_plural_one_minute_other_minutes_648ec0e1": {
-	"message": "{ number, plural,\n    one {# Minit}\n  other {# Minit}\n}"
+	"message": "{ number, plural,\n    one {# Minute}\n  other {# Minutes}\n}"
   },
   "observer_248a192e": {
-	"message": "Obsèvatè"
+	"message": "Observer"
   },
   "off_5385ef3f": {
-	"message": "Fèmen"
+	"message": "Off"
   },
   "ok_c47544a2": {
 	"message": "OK"
   },
   "on_8f7190e5": {
-	"message": "Ouvri"
+	"message": "On"
   },
   "on_paper_46d0ba36": {
-	"message": "Sou Papye"
+	"message": "On paper"
   },
   "one_of_our_other_apps_might_be_a_better_fit_tap_on_a3138a": {
-	"message": "Yonn nan lòt aplikasyon nou yo kapab pi bon. Tape yonn pou al vizite App Store la"
+	"message": "One of our other apps may be a better fit. Tap one to visit the App Store."
   },
   "one_question_at_a_time_3161ceeb": {
-	"message": "Yon Kesyon Alafwa"
+	"message": "One question at a time"
   },
   "online_quiz_5beb2ae5": {
-	"message": "Quiz an Liy"
+	"message": "Online quiz"
   },
   "online_text_entry_1d893ce": {
-	"message": "Antre Tèks an Liy"
+	"message": "Online text entry"
   },
   "online_upload_59969592": {
-	"message": "Transfè An Liy"
+	"message": "Online upload"
   },
   "online_url_37830a72": {
-	"message": "URL an liy"
+	"message": "Online URL"
   },
   "only_once_after_each_attempt_cc842738": {
-	"message": "Yon Fwa Sèlman Aprè Chak Tantativ"
+	"message": "Only once after each attempt"
   },
   "open_coursename_user_preferences_430b877e": {
-	"message": "Ouvri { courseName } preferans itilizatè"
+	"message": "Open { courseName } user preferences"
   },
   "open_drawer_f3c8b11": {
-	"message": "Ouvri Desinatè"
+	"message": "Open drawer"
   },
   "open_for_comments_1810648": {
-	"message": "Ouvri pou kòmantè"
+	"message": "Open for comments"
   },
   "options_3ab0ea65": {
-	"message": "Opsyon"
+	"message": "Options"
   },
   "ordered_list_5fb1ce41": {
-	"message": "Lis Kòmande"
+	"message": "Ordered list"
   },
   "out_of_count_fc1cd44d": {
-	"message": "Sou { count }"
+	"message": "Out of { count }"
   },
   "out_of_points_c40a0475": {
-	"message": "Sou { points }"
+	"message": "Out of { points }"
   },
   "out_of_score_c17b26bb": {
-	"message": "Sou { score }"
+	"message": "Out of { score }"
   },
   "out_of_total_number_188f9a69": {
-	"message": "sou { total, number }"
+	"message": "out of { total, number }"
   },
   "pages_front_page_9ce5188": {
-	"message": "Paj Paj Prensipal"
+	"message": "Pages front page"
   },
   "pass_8abee039": {
-	"message": "Pase"
+	"message": "Pass"
   },
   "people_b4ebb13c": {
-	"message": "Moun"
+	"message": "People"
   },
   "percent_d7ddd35b": {
-	"message": "Pousantaj (%)"
+	"message": "Percent (%)"
   },
   "percentage_34ab7c2c": {
-	"message": "Pousantaj"
+	"message": "Percentage"
   },
   "permission_needed_7e971495": {
-	"message": "Otorizasyon Nesesè"
+	"message": "Permission Needed"
   },
   "pin_cdbc9f8f": {
-	"message": "Tache"
+	"message": "Pin"
   },
   "pinned_discussions_a55c0cea": {
-	"message": "Diskisyon Epengle"
+	"message": "Pinned discussions"
   },
   "points_bb475533": {
-	"message": "Pwen"
+	"message": "Points"
   },
   "points_number_out_of_totalpoints_number_291efb47": {
-	"message": "{ points, number } sou { totalPoints, number }"
+	"message": "{ points, number } out of { totalPoints, number }"
   },
   "points_possible_b18e4e80": {
 	"message": "{ points }/{ possible }"
   },
   "points_possible_must_be_a_number_4a592dc6": {
-	"message": "Pwen ki posib yo dwe se yon chif"
+	"message": "Points possible must be a number"
   },
   "post_at_a9e0fecb": {
-	"message": "Poste a..."
+	"message": "Post at..."
   },
   "practice_quiz_19a8505d": {
-	"message": "Pratike Quiz"
+	"message": "Practice quiz"
   },
   "preview_quiz_1ffbf684": {
-	"message": "Gade yon apèsi Quiz"
+	"message": "Preview Quiz"
   },
   "preview_unavailable_aacd459a": {
-	"message": "Apèsi pa Disponib"
+	"message": "Preview Unavailable"
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
-	"message": "Apèsi fichye sa a pa sipòte"
+	"message": "Previewing this file type is not supported"
   },
   "profile_actions_cfcbb476": {
-	"message": "Aksyon pwofil"
+	"message": "Profile actions"
   },
   "pts_699bd9aa": {
-	"message": "pts"
+	"message": "Pts"
   },
   "publish_5211dca3": {
-	"message": "Pibliye"
+	"message": "Publish"
   },
   "published_4bb5209e": {
-	"message": "Pibliye"
+	"message": "Published"
   },
   "quiz_details_6c4473d3": {
-	"message": "Detay Quiz"
+	"message": "Quiz details"
   },
   "quiz_preview_a7e75769": {
-	"message": "Apèsi Quiz"
+	"message": "Quiz Preview"
   },
   "quiz_score_to_keep_d1f7c4b1": {
-	"message": "Nòt Quiz pou Kenbe"
+	"message": "Quiz score to keep"
   },
   "quiz_submission_dca0c013": {
-	"message": "Soumisyon Quiz"
+	"message": "Quiz submission"
   },
   "quiz_type_be1633db": {
-	"message": "Tip Quiz"
+	"message": "Quiz type"
   },
   "quizzes_7e598f57": {
-	"message": "Quiz"
+	"message": "Quizzes"
   },
   "recipient_recipient_394cf528": {
-	"message": "Destinatè: { recipient }"
+	"message": "Recipient: { recipient }"
   },
   "record_audio_14666880": {
-	"message": "Anrejistre Son"
+	"message": "Record audio"
   },
   "record_video_70dc8439": {
-	"message": "Anrejistre Videyo"
+	"message": "Record video"
   },
   "recording_failed_2e1861b": {
-	"message": "Echèk anrejistreman"
+	"message": "Recording failed"
   },
   "redo_363c58b7": {
-	"message": "Refè"
+	"message": "Redo"
   },
   "remove_date_edf2f565": {
-	"message": "Elimine Dat"
+	"message": "Remove date"
   },
   "remove_due_date_c1cc8f7": {
-	"message": "Elimine Delè"
+	"message": "Remove Due Date"
   },
   "remove_f47dc62a": {
-	"message": "Elimine"
+	"message": "Remove"
   },
   "remove_this_attachment_90a6665c": {
-	"message": "Elimine atachman sa a?"
+	"message": "Remove this attachment?"
   },
   "replies_4a8577c8": {
-	"message": "Repons"
+	"message": "Replies"
   },
   "reply_389d6fb9": {
-	"message": "Reponn"
+	"message": "Reply"
   },
   "report_a_problem_4d48624a": {
-	"message": "Rapòte yon Pwoblèm"
+	"message": "Report a problem"
   },
   "require_an_access_code_46a02601": {
-	"message": "Yon Kòd Aksè Nesesè"
+	"message": "Require an Access Code"
   },
   "retry_ebd5f8ba": {
-	"message": "Reeseye"
+	"message": "Retry"
   },
   "retry_upload_d854b33b": {
-	"message": "Re eseye Transfè"
+	"message": "Retry Upload"
   },
   "rubric_fc39da76": {
-	"message": "Ribrik"
+	"message": "Rubric"
   },
   "saving_2521e616": {
-	"message": "Anrejistreman"
+	"message": "Saving"
   },
   "score_more_than_score_assignmentname_a4fdc7fe": {
-	"message": "Fè plis ke { score } - { assignmentName }"
+	"message": "Score more than { score } - { assignmentName }"
   },
   "score_to_keep_48ace09b": {
-	"message": "Nòt pou Kenbe"
+	"message": "Score to keep"
   },
   "scored_less_than_93cde0d2": {
-	"message": "Fè mwens ke..."
+	"message": "Scored less than…"
   },
   "scored_less_than_score_assignmentname_1b20b789": {
-	"message": "Fè mwens ke { score } - { assignmentName }"
+	"message": "Scored less than { score } - { assignmentName }"
   },
   "scored_more_than_2185a818": {
-	"message": "Fè plis ke..."
+	"message": "Scored more than…"
   },
   "search_280d00bd": {
-	"message": "Chèche"
+	"message": "Search"
   },
   "section_sectionname_a455be11": {
-	"message": "Seksyon: { sectionName }"
+	"message": "Section: { sectionName }"
   },
   "see_all_ffa422ef": {
-	"message": "Gade Tout"
+	"message": "See all"
   },
   "select_a_course_40bc3229": {
-	"message": "Seleksyone yon kou"
+	"message": "Select a course"
   },
   "select_a_course_4710371f": {
-	"message": "Seleksyone yon Kou"
+	"message": "Select a Course"
   },
   "send_e3bd0ed0": {
-	"message": "Voye"
+	"message": "Send"
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
-	"message": "Voye mesaj pèsonèl bay chak destinatè"
+	"message": "Send individual message to each recipient"
   },
   "sending_bf324366": {
-	"message": "Voye..."
+	"message": "sending..."
   },
   "sent_fe0a1eb4": {
-	"message": "Voye"
+	"message": "Sent"
   },
   "set_home_to_82ab5119": {
-	"message": "Defini \"Akèy\" nan..."
+	"message": "Set ''Home'' to..."
   },
   "settings_5aa0fd0c": {
-	"message": "Reglaj"
+	"message": "Settings"
   },
   "show_correct_answers_a4b957e4": {
-	"message": "Afiche Bon Repons"
+	"message": "Show correct answers"
   },
   "show_correct_answers_at_a5475aa3": {
-	"message": "Afiche Bon Repons Nan"
+	"message": "Show Correct Answers At"
   },
   "show_one_question_at_a_time_52f5b1a0": {
-	"message": "Afiche Kesyon Yonn pa Yonn"
+	"message": "Show One Question at a Time"
   },
   "show_to_hide_2c0b6d39": {
-	"message": "{ show } pou { hide }"
+	"message": "{ show } to { hide }"
   },
   "shuffle_answers_edb602b7": {
-	"message": "Melanje Repons"
+	"message": "Shuffle answers"
   },
   "similarity_score_f4b5c343": {
-	"message": "Nòt Resanblans"
+	"message": "Similarity Score"
   },
   "star_messages_by_tapping_the_star_in_the_message_1c3e8a80": {
-	"message": "Tape sou etwal nan mesaj yo pou ka make yo"
+	"message": "Star messages by tapping the star within the message."
   },
   "starred_5a9efa8a": {
-	"message": "Favori"
+	"message": "Starred"
   },
   "student_5da6bfd1": {
-	"message": "Elèv"
+	"message": "Student"
   },
   "students_1b8cd07b": {
-	"message": "Elèv"
+	"message": "Students"
   },
   "subject_114b2e98": {
-	"message": "Sijè"
+	"message": "Subject"
   },
   "submission_settings_f57b0cf8": {
-	"message": "Paramèt Soumisyon"
+	"message": "Submission Settings"
   },
   "submission_types_af57bf0": {
-	"message": "Tip Soumisyon"
+	"message": "Submission types"
   },
   "submissions_11e96106": {
-	"message": "Soumisyon"
+	"message": "Submissions"
   },
   "submitted_318fad53": {
-	"message": "Soumèt"
+	"message": "Submitted"
   },
   "submitted_late_3741af29": {
-	"message": "Soumèt an reta"
+	"message": "Submitted late"
   },
   "submitted_late_assignmentname_adf957b2": {
-	"message": "Soumèt an reta - { assignmentName }"
+	"message": "Submitted late - { assignmentName }"
   },
   "subscribe_4b301fb7": {
-	"message": "Enskri"
+	"message": "Subscribe"
   },
   "survey_31a240e6": {
-	"message": "Ankèt"
+	"message": "Survey"
   },
   "swipe_left_or_right_to_view_other_student_submissi_da37c1c1": {
-	"message": "Glise dwèt ou agoch ou adwat pou w afiche soumisyon lòt elèv yo"
+	"message": "Swipe left or right to view other student submissions"
   },
   "syllabus_f191f65b": {
-	"message": "Pwogram"
+	"message": "Syllabus"
   },
   "ta_8d966626": {
 	"message": "TA"
   },
   "tap_and_hold_a_rubric_number_to_see_its_descriptio_8762082a": {
-	"message": "Tape epi kite dwèt ou sou yon ribrik pou w ka wè deskripsyon li"
+	"message": "Tap and hold a rubric number to see its description"
   },
   "tap_the_to_create_a_new_conversation_80f77725": {
-	"message": "Tape \"+\" pou w ka kreye yon nouvo konvèsasyon"
+	"message": "Tap the \"+\" to create a new conversation"
   },
   "tap_to_record_9d84c163": {
-	"message": "Tape pou Anrejistre"
+	"message": "Tap to record"
   },
   "tap_to_view_submissions_list_5bfe32f3": {
-	"message": "tape pou afiche lis soumisyon."
+	"message": "Tap to view submissions list."
   },
   "teacher_5a73b637": {
-	"message": "Pwofesè"
+	"message": "Teacher"
   },
   "terms_of_use_6542769b": {
-	"message": "Kondisyon Itilizasyon"
+	"message": "Terms of Use"
   },
   "text_color_acf75eb6": {
-	"message": "Koulè Tèks"
+	"message": "Text Colour"
   },
   "text_submission_935eeb5": {
-	"message": "Soumisyon Tèks"
+	"message": "Text submission"
   },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
-	"message": "Valè pwen posib yo dwe siperyè ou egal a zewo"
+	"message": "Value of possible points must be zero or greater"
   },
   "there_currently_is_no_long_description_for_this_it_ea943d61": {
-	"message": "Pou kounye a pa gen deskripsyon long pou eleman sa a."
+	"message": "There currently is no long description for this item."
   },
   "there_was_a_error_loading_the_list_of_enrollments_fe01818c": {
-	"message": "Te gen yon erè nan chajman lis enskripsyon an"
+	"message": "There was an error loading the list of enrolments"
   },
   "there_was_a_problem_loading_discussions_ce5318af": {
-	"message": "Te gen yon pwoblèm nan chajman diskisyon yo."
+	"message": "There was a problem loading discussions."
   },
   "there_was_a_problem_loading_the_announcements_4871afc4": {
-	"message": "Te gen yon pwoblèm nan chajman anons yo."
+	"message": "Error loading the announcements."
   },
   "there_was_a_problem_loading_the_assignment_submiss_4ace7374": {
-	"message": "Te gen yon pwoblèm nan chajman soumisyon sesyon yo."
+	"message": "There was a problem loading the assignment submissions."
   },
   "there_was_a_problem_loading_the_groups_6945e624": {
-	"message": "Te gen yon pwoblèm nan chajman gwoup yo."
+	"message": "Error loading the groups."
   },
   "there_was_a_problem_loading_the_quiz_submissions_b4f5503b": {
-	"message": "Te gen yon pwoblèm nan chajman soumisyon quiz yo."
+	"message": "There was a problem loading the quiz submissions."
   },
   "there_was_a_problem_loading_the_quizzes_c76f5bdd": {
-	"message": "Te gen yon pwoblèm nan chajman quiz yo."
+	"message": "There was a problem loading the quizzes."
   },
   "there_was_an_error_loading_the_quiz_preview_3f3c8104": {
-	"message": "Te gen yon erè nan chajman apèsi quiz la."
+	"message": "There was an error loading the quiz preview."
   },
   "there_was_an_problem_loading_your_messages_b80423ac": {
-	"message": "Te gen yon pwoblèm nan chajman mesaj ou a."
+	"message": "Error loading your messages."
   },
   "there_was_an_unexpected_error_please_try_again_5e08774e": {
-	"message": "Te gen yon erè sanzatann. Tanpri eseye ankò."
+	"message": "There was an unexpected error. Please try again."
   },
   "this_action_can_not_be_undone_eb8a297b": {
-	"message": "Aksyon sa a paka defèt."
+	"message": "This action can not be undone."
   },
   "this_action_requires_an_internet_connection_81f6688a": {
-	"message": "Pou aksyon sa a ou bezwen konekte sou entènèt."
+	"message": "This action requires an internet connection."
   },
   "this_assignment_does_not_allow_submissions_30af1caa": {
-	"message": "Sesyon sa a pa otorize soumisyon."
+	"message": "This assignment does not allow submissions."
   },
   "this_assignment_only_allows_on_paper_submissions_f478408a": {
-	"message": "Sesyon sa a otorize soumisyon ou papye sèlman."
+	"message": "This assignment only allows on-paper submissions."
   },
   "this_group_does_not_have_a_submission_for_this_ass_ca275999": {
-	"message": "Gwoup sa a pa gen soumisyon pou sesyon sa a."
+	"message": "Group does not have a submission for this assignment."
   },
   "this_is_your_personal_color_setting_only_you_will__e47dba70": {
-	"message": "Sa se paramèt koulè pèsonèl ou. Sèlman ou menm k ap wè koulè sa a pou kou a."
+	"message": "This is your personal colour setting. Only you will see this colour for the course."
   },
   "this_student_does_not_have_a_submission_for_this_a_c8c2eafe": {
-	"message": "Elèv sa a pa gen soumisyon pou sesyon sa a."
+	"message": "This student does not have a submission for this assignment."
   },
   "this_submission_is_a_url_to_an_external_page_we_ve_9993d2fd": {
-	"message": "Soumisyon sa a se yon URL ki mennen nan yon paj ekstèn Nou mete yon apèsi sou a kisa paj la te sanble lè yo te soumèt li a."
+	"message": "Submission is a URL to an external page. Snapshot included of how the page appeared when submitted."
   },
   "this_will_anonymize_each_student_and_shuffle_the_s_127956c7": {
-	"message": "Sa ap kache non chak elèv epi melanje lis soumisyon an."
+	"message": "Will anonymise each student and shuffle the submission list."
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
-	"message": "Sa ap elimine delè a ak tout sesyonè ki asosye yo."
+	"message": "This will remove the due date and all of the associated assignees."
   },
   "time_limit_a6f1a51e": {
-	"message": "Limit tan"
+	"message": "Time limit"
   },
   "title_announcement_c0cdaa10": {
-	"message": "{ title } Anons"
+	"message": "{ title } Announcement"
   },
   "title_discussion_4cff9841": {
-	"message": "{ title } Diskisyon"
+	"message": "{ title } Discussion"
   },
   "title_ee03d132": {
-	"message": "Tit"
+	"message": "Title"
   },
   "to_51406be9": {
-	"message": "Pou"
+	"message": "To"
   },
   "to_count_others_853f5dc8": {
-	"message": "pou { count } lòt"
+	"message": "to { count } others"
   },
   "to_me_780716c7": {
-	"message": "pou mwen"
+	"message": "to me"
   },
   "to_name_bb3e415e": {
-	"message": "pou { name }"
+	"message": "to { name }"
   },
   "try_logging_in_again_7a66111a": {
-	"message": "Eseye rekonekte "
+	"message": "Try logging in again"
   },
   "un_starred_8fef021f": {
-	"message": "Demake"
+	"message": "Un-starred"
   },
   "undo_a7be8fef": {
-	"message": "Defèt"
+	"message": "Undo"
   },
   "unexpected_error_93991f40": {
-	"message": "Erè Sanzatann"
+	"message": "Unexpected error"
   },
   "ungraded_survey_ad7de790": {
-	"message": "Ankèt san Klase"
+	"message": "Ungraded survey"
   },
   "unknown_author_40d64455": {
-	"message": "Otè Enkoni"
+	"message": "Unknown author"
   },
   "unlimited_ff19e96d": {
-	"message": "San limit"
+	"message": "Unlimited"
   },
   "unordered_list_3c1650b3": {
-	"message": "Lis non Òdone"
+	"message": "Unordered list"
   },
   "unpin_a318452a": {
-	"message": "Detache"
+	"message": "Unpin"
   },
   "unpublished_8b6107d6": {
-	"message": "Pa Pibliye"
+	"message": "Unpublished"
   },
   "unread_e9c1b19c": {
-	"message": "San li"
+	"message": "Unread"
   },
   "until_date_f3b9f367": {
-	"message": "Jiska { date }"
+	"message": "Until { date }"
   },
   "upload_8b403d05": {
-	"message": "Chaje"
+	"message": "Upload"
   },
   "upload_cancelled_by_user_ca7723be": {
-	"message": "Transfè anile pa itilizatè"
+	"message": "Upload cancelled by user"
   },
   "upload_error_38012123": {
-	"message": "Erè Transfè"
+	"message": "Upload error"
   },
   "upload_file_fd2361b8": {
-	"message": "Transfere Fichye"
+	"message": "Upload file"
   },
   "uploading_loaded_of_total_d5c3d555": {
-	"message": "Transfè { loaded } sou { total }"
+	"message": "Uploading { loaded } of { total }"
   },
   "url_preview_image_a263a21e": {
-	"message": "URL Apèsi Imaj"
+	"message": "URL Preview Image"
   },
   "url_submission_f76327e3": {
-	"message": "Soumisyon URL"
+	"message": "URL submission"
   },
   "use_camera_47a0387b": {
-	"message": "Itilize Kamera"
+	"message": "Use Camera"
   },
   "users_must_post_before_seeing_replies_d1761968": {
-	"message": "Itilizatè yo dwe poste anvan yo wè repons yo"
+	"message": "Users must post before seeing replies"
   },
   "version_version_a051e218": {
-	"message": "Vèsyon { version }"
+	"message": "Version { version }"
   },
   "video_b9f27375": {
-	"message": "Videyo"
+	"message": "Video"
   },
   "video_recording_90d21249": {
-	"message": "Anrejistreman Videyo"
+	"message": "Video Recording"
   },
   "view_all_submissions_915a8b78": {
-	"message": "Afiche tout soumisyon"
+	"message": "View all submissions"
   },
   "view_long_description_bafad8a4": {
-	"message": "Afiche tout deskripsyon"
+	"message": "View long description"
   },
   "view_more_replies_9fef9983": {
-	"message": "Afiche plis kòmantè"
+	"message": "View more replies"
   },
   "view_responses_d2874266": {
-	"message": "Afiche Repons"
+	"message": "View responses"
   },
   "visit_the_canvas_guides_7328b93f": {
-	"message": "Vizite Gid Canvas la"
+	"message": "Visit the Canvas Guides"
   },
   "welcome_73d18b4d": {
-	"message": "Bienveni!"
+	"message": "Welcome!"
   },
   "yes_dde87d5": {
-	"message": "Wi"
+	"message": "Yes"
   },
   "you_must_enable_camera_and_microphone_permissions__34eba5a0": {
-	"message": "Ou dwe aktive pèmisyon Kamera ak Mikwo nan Paramèt pou ka anrejistre videyo"
+	"message": "You must enable Camera and Microphone permissions in Settings to record video"
   },
   "you_must_enable_microphone_permissions_in_settings_75448e50": {
-	"message": "Ou dwe aktive pèmisyon Mikwo nan Paramèt pou ka anrejistre odyo"
+	"message": "You must enable Microphone permissions in Settings to record audio"
   },
   "you_must_enter_an_access_code_8c2c7ae0": {
-	"message": "Ou dwe ekri yon kòd aksè"
+	"message": "You must enter an access code"
   },
   "your_submission_comment_failed_to_send_5c8d2809": {
-	"message": "Kòmantè soumisyon ou an pa ale."
+	"message": "Submission comment failed to send."
   }
 }

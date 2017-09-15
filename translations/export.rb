@@ -68,13 +68,21 @@ puts "Transifex cli version: #{tx_version}"
 puts 'Exporting all localizations to /translations/source'
 
 json = IO.read('translations/projects.json', encoding:'utf-8')
-projects = JSON.parse json 
+projects = JSON.parse json
+projects = projects.select { |project| project.fetch('name') == options[:project] || !project.fetch('json') } if options[:project]
+
 exporter = ExportLocalizations.new(projects)
 exporter.do_the_thing
 
 unless options[:skipPush]
     puts 'Pushing all source files to Transifex'
-    success = system('tx push -s')
+    command = 'tx push -s'
+
+    if options[:project]
+        command << " -r canvas-ios.en_#{options[:project]}*"
+    end
+
+    success = system(command)
     raise 'tx push -s failed miserable, this is such a sad turn of events' unless success
 end
 

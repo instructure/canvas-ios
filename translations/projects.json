@@ -18,4 +18,5 @@
  {"name": "supportive",    "location": "Frameworks/SoSupportive/SoSupportive.xcodeproj"},
  {"name": "todo",          "location": "Frameworks/Todo/Todo.xcodeproj"},
  {"name": "legit",         "location": "Frameworks/TooLegit/TooLegit.xcodeproj"},
- {"name": "whizzy",        "location": "Frameworks/WhizzyWig/WhizzyWig.xcodeproj"}]
+ {"name": "whizzy",        "location": "Frameworks/WhizzyWig/WhizzyWig.xcodeproj"},
+ {"name": "teacher",       "location": "rn/Teacher/i18n/locales", "json": true}]
