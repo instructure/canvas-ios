@@ -61,6 +61,10 @@
 		2CB69BD21D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69BD41D91CE4D0059C5A5 /* CalendarEventWeekPageViewController.storyboard */; };
 		2CB69C191D92C5860059C5A5 /* DetailsAttachmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB69C1B1D92C5860059C5A5 /* DetailsAttachmentCell.xib */; };
 		2CCDE2951DA7E3AB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2971DA7E3AB00B46D87 /* InfoPlist.strings */; };
+		2CDCA2021F6B2180004110EA /* ObserverAlertKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC232281C6D0FCF00F7CAF8 /* ObserverAlertKit.framework */; };
+		2CDCA2031F6B2180004110EA /* ObserverAlertKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC232281C6D0FCF00F7CAF8 /* ObserverAlertKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2CDCA2041F6B21B8004110EA /* Keymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61E4E7761C6BB22C0043D3B2 /* Keymaster.framework */; };
+		2CDCA2051F6B21B8004110EA /* Keymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61E4E7761C6BB22C0043D3B2 /* Keymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		356C88F96F1E90DB68DCB888 /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912C02D05FC77D2B15BE0C /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift */; };
 		3BDE4DF31F67001100DFE643 /* MediaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61E94C5C1C87372100777B95 /* MediaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BDE4DF51F67014300DFE643 /* Keymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BDE4DF41F67014300DFE643 /* Keymaster.framework */; };
@@ -234,8 +238,10 @@
 				5E75B5FE1C4D4A7F00A44160 /* TooLegit.framework in Embed Frameworks */,
 				5E75B5FA1C4D4A7F00A44160 /* SoPersistent.framework in Embed Frameworks */,
 				5E75B5F81C4D4A7F00A44160 /* SoLazy.framework in Embed Frameworks */,
+				2CDCA2051F6B21B8004110EA /* Keymaster.framework in Embed Frameworks */,
 				61F454141CA58EC200F32B72 /* DiscussionKit.framework in Embed Frameworks */,
 				61E94C5B1C8736CF00777B95 /* FileKit.framework in Embed Frameworks */,
+				2CDCA2031F6B2180004110EA /* ObserverAlertKit.framework in Embed Frameworks */,
 				615300091C85E84A002529CF /* WhizzyWig.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -926,6 +932,7 @@
 				3BDE4DF51F67014300DFE643 /* Keymaster.framework in Frameworks */,
 				2C75ABA51DDF630700650856 /* BuddyBuildSDK.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
+				2CDCA2041F6B21B8004110EA /* Keymaster.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
 				2C75AB9D1DDF62E000650856 /* AVFoundation.framework in Frameworks */,
@@ -933,6 +940,7 @@
 				2C75AB991DDF62D500650856 /* CoreText.framework in Frameworks */,
 				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
+				2CDCA2021F6B2180004110EA /* ObserverAlertKit.framework in Frameworks */,
 				2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */,
 				5E75B5FB1C4D4A7F00A44160 /* SoPretty.framework in Frameworks */,
 				4907F9181DA80941004AB1A3 /* SoIconic.framework in Frameworks */,
