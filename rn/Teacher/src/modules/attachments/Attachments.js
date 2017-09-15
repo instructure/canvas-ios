@@ -61,6 +61,7 @@ export type Props = NavigationProps & {
 export class Attachments extends Component<any, Props, any> {
   state: State
   attachmentPicker: AttachmentPicker
+  progress: { [string]: number }
 
   static defaultProps = {
     storageOptions: {},
@@ -69,6 +70,7 @@ export class Attachments extends Component<any, Props, any> {
   constructor (props: Props) {
     super(props)
 
+    this.progress = {}
     this.state = {
       attachments: props.attachments.reduce((current, attachment) => ({
         ...current,
@@ -242,6 +244,7 @@ export class Attachments extends Component<any, Props, any> {
   }
 
   async uploadAttachment (attachment: Attachment, path: string) {
+    this.progress[attachment.id] = 0
     try {
       const file = await this.props.uploadAttachment(attachment, {
         path,
@@ -278,15 +281,20 @@ export class Attachments extends Component<any, Props, any> {
 
   updateProgress (id: string) {
     return (progress: Progress) => {
-      this.setState({
-        attachments: {
-          ...this.state.attachments,
-          [id]: {
-            ...this.state.attachments[id],
-            progress,
+      const ratio = progress.loaded / progress.total
+      const delta = Math.max(ratio - this.progress[id])
+      if (delta >= 0.3 || ratio >= 1) {
+        this.progress[id] = ratio
+        this.setState({
+          attachments: {
+            ...this.state.attachments,
+            [id]: {
+              ...this.state.attachments[id],
+              progress,
+            },
           },
-        },
-      })
+        })
+      }
     }
   }
 }

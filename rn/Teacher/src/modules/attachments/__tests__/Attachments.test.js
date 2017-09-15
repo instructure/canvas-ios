@@ -143,7 +143,7 @@ describe('Attachments', () => {
     }
     let resolvePromise = jest.fn()
     props.uploadAttachment = jest.fn((attachment, options) => {
-      options.onProgress({ loaded: 90, total: 1024 })
+      options.onProgress({ loaded: 400, total: 1024 })
       return new Promise((resolve, reject) => { resolvePromise = resolve })
     })
     props.storageOptions = {
@@ -156,7 +156,7 @@ describe('Attachments', () => {
     const icon: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0.icon.progress')
     const subtitle: any = explore(view.toJSON()).selectByID('attachments.attachment-row.0-subtitle-lbl')
     expect(icon).not.toBeNull()
-    expect(subtitle.children[0]).toEqual('Uploading 90 B of 1 KB')
+    expect(subtitle.children[0]).toEqual('Uploading 400 B of 1 KB')
     resolvePromise(template.file())
   })
 
