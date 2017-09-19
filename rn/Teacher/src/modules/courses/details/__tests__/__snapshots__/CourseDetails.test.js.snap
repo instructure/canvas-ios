@@ -44,12 +44,14 @@ exports[`refresh function second test 1`] = `
     }
   >
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
         }
       }
+      contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
           "y": -235,
@@ -289,12 +291,14 @@ exports[`renders correctly 1`] = `
     }
   >
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
         }
       }
+      contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
           "y": -235,
@@ -648,12 +652,14 @@ exports[`renders correctly without tabs 1`] = `
     }
   >
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
         }
       }
+      contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
           "y": -235,
@@ -869,12 +875,14 @@ exports[`renders with empty image url 1`] = `
     }
   >
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
         }
       }
+      contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
           "y": -235,
@@ -1211,12 +1219,14 @@ exports[`renders with image url 1`] = `
     }
   >
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
         }
       }
+      contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
           "y": -235,
@@ -1570,12 +1580,14 @@ exports[`renders without image url 1`] = `
     }
   >
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       collapsable={undefined}
       contentInset={
         Object {
           "top": 235,
         }
       }
+      contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
           "y": -235,

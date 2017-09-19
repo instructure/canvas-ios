@@ -75,20 +75,4 @@ class PagesHomeViewControllerTest: UnitTestCase {
             XCTAssert(controller.view.subviews.contains(childController.view))
         }
     }
-
-    func testAddConstraints_addsConstraintsToTheView() {
-        attempt {
-            let controller = try PagesHomeViewController.build()
-            let view = UIView()
-            controller.view.addSubview(view)
-
-            controller.addConstraints(view)
-
-            XCTAssertFalse(view.translatesAutoresizingMaskIntoConstraints)
-            XCTAssertEqual(controller.view.constraints.count, 4)
-        }
-    }
-
-
-
 }

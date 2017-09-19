@@ -128,6 +128,13 @@ final class HelmViewController: UIViewController, HelmScreen {
         if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
             let titleView: UIView? = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath)
             titleView?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+            if let titleView = titleView {
+                NSLayoutConstraint.activate([
+                    titleView.widthAnchor.constraint(equalToConstant: 32.0),
+                    titleView.heightAnchor.constraint(equalToConstant: 32.0)
+                ])
+            }
+            
             titleView?.contentMode = .scaleAspectFit
             titleView?.autoresizingMask = navigationItem.titleView?.autoresizingMask ?? [.flexibleWidth, .flexibleHeight]
             self.navigationItem.titleView = titleView
@@ -495,6 +502,7 @@ final class HelmViewController: UIViewController, HelmScreen {
             if let path = navBarImagePath as? String {
                 if (path as NSString).pathExtension == "svg" {
                     titleView = SVGImageView(contentsOf: URL(string: path)!)
+                    titleView?.contentMode = .scaleAspectFit
                 } else {
                     let imageView = UIImageView()
                     imageView.sd_setImage(with: URL(string: path))

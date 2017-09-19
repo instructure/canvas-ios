@@ -78,6 +78,10 @@ open class CoursesCollectionViewController: FetchedCollectionViewController<Cour
             }
         }
         
+        if #available(iOS 11.0, *) {
+            collectionView?.contentInsetAdjustmentBehavior = .never
+        }
+        
         let favorites = NSPredicate(format: "%K == YES", "isFavorite")
         self.favoritesCountObserver = ManagedObjectCountObserver<Course>(predicate: favorites, inContext: context) { [weak self] (courseFavoriteCount) in
             
@@ -108,10 +112,7 @@ open class CoursesCollectionViewController: FetchedCollectionViewController<Cour
             }
         }
         
-        navigationItem.rightBarButtonItems = [
-            editButton,
-            toggleGradesButton,
-        ]
+        updateNavigationBarItems()
     }
     
     func editFavorites(_ button: Any?) {
@@ -135,35 +136,38 @@ open class CoursesCollectionViewController: FetchedCollectionViewController<Cour
         return edit
     }()
     
-    fileprivate lazy var toggleGradesButton: UIBarButtonItem = {
-        let toggle = UIButton(type: .custom)
-        toggle.accessibilityIdentifier = "toggleGrades"
-        toggle.translatesAutoresizingMaskIntoConstraints = false
-        toggle.addTarget(self, action: #selector(toggleGrades(_:)), for: .touchUpInside)
-        toggle.bounds = CGRect(x: 0, y: 0, width: 32, height: 32)
+    // Creating new buttons each time an update was required didn't work, so I had to cache the button
+    var button: UIBarButtonItem?
+    
+    func toggleGradesButton() -> UIBarButtonItem {
+        let image: UIImage
+        let label: String
         
-        let GradesHiddenA11yLabel = NSLocalizedString("Show Grades", comment: "Accessibility label for toggling grades to visible")
-        let GradesVisibleA11yLabel = NSLocalizedString("Hide Grades", comment: "Accessibility label for toggling grades to hidden")
-        toggle.rac_a11yLabel <~ self.showingGrades.producer.map { $0 ? GradesVisibleA11yLabel : GradesHiddenA11yLabel }
-
-        let GradesHiddenIcon = UIImage(named: "icon_grades_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)
-        let GradesVisibleIcon = UIImage(named: "icon_grades_fill_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)
-        toggle.rac_image <~ self.showingGrades.producer.map { $0 ? GradesVisibleIcon : GradesHiddenIcon }
-
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        view.addSubview(toggle)
-        view.tintColor = .white
-        constrain(view, toggle) { view, toggle in
-            toggle.width == 40
-            toggle.height == 40
-            toggle.center == view.center
+        if showingGrades.value {
+            label = NSLocalizedString("Hide Grades", comment: "Accessibility label for toggling grades to hidden")
+            image = UIImage(named: "icon_grades_fill_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)!
+        } else {
+            label = NSLocalizedString("Show Grades", comment: "Accessibility label for toggling grades to visible")
+            image = UIImage(named: "icon_grades_small", in: Bundle(for: CoursesCollectionViewController.self), compatibleWith: nil)!
         }
-
-        return UIBarButtonItem(customView: view)
-    }()
+        
+        let button = self.button ?? UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleGrades(_:)))
+        button.image = image
+        button.accessibilityLabel = label
+        self.button = button
+        return button
+    }
     
     func toggleGrades(_ sender: Any) {
         showingGrades.value = !showingGrades.value
+        updateNavigationBarItems()
+    }
+    
+    func updateNavigationBarItems() {
+        navigationItem.rightBarButtonItems = [
+            editButton,
+            toggleGradesButton(),
+        ]
     }
     
     public required init?(coder aDecoder: NSCoder) {

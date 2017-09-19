@@ -49,9 +49,6 @@
 @import SoPretty;
 @import CanvasKeymaster;
 
-#define TOP_INSET 64
-#define BOTTOM_INSET 80
-
 @interface ScheduleItemController() <UIWebViewDelegate, UIPopoverControllerDelegate, CKCommentViewControllerDelegate, UIAlertViewDelegate, CKRichTextInputViewDelegate> {
     CKSubmission *currentSubmission;
     CKAssignment *currentAssignment;

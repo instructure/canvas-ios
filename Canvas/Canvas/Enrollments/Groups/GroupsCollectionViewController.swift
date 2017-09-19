@@ -36,6 +36,10 @@ class GroupsCollectionViewController: FetchedCollectionViewController<Group>, UI
         self.route = route
         super.init()
         
+        if #available(iOS 11.0, *) {
+            collectionView?.contentInsetAdjustmentBehavior = .never
+        }
+        
         let customize: (Enrollment)->() = { [weak self] enrollment in
             let picker = CustomizeEnrollmentViewController(session: session, context: enrollment.contextID)
             let nav = UINavigationController(rootViewController: picker)

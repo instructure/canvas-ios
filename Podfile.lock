@@ -29,7 +29,7 @@ PODS:
   - CWStatusBarNotification (2.3.5)
   - DeviceKit (1.2.3)
   - DVR (1.0.1)
-  - Eureka (3.1.0)
+  - Eureka (3.0.0)
   - Fabric (1.6.13)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
@@ -85,7 +85,7 @@ DEPENDENCIES:
   - CWStatusBarNotification (from `https://github.com/derrh/CWStatusBarNotification.git`, branch `framework`)
   - DeviceKit (~> 1.0)
   - DVR (~> 1.0)
-  - Eureka (~> 3.1)
+  - Eureka (from `https://github.com/xmartlabs/Eureka`, branch `feature/Xcode9-Swift3_2`)
   - Fabric (~> 1.6)
   - FXKeychain (~> 1.5)
   - Google/Analytics
@@ -112,11 +112,17 @@ EXTERNAL SOURCES:
   CWStatusBarNotification:
     :branch: framework
     :git: https://github.com/derrh/CWStatusBarNotification.git
+  Eureka:
+    :branch: feature/Xcode9-Swift3_2
+    :git: https://github.com/xmartlabs/Eureka
 
 CHECKOUT OPTIONS:
   CWStatusBarNotification:
     :commit: 24a00b088865aa836e66dc0a6abbf341696a4ad8
     :git: https://github.com/derrh/CWStatusBarNotification.git
+  Eureka:
+    :commit: 170433bedb6db4228da60eb6c866156b6b29e666
+    :git: https://github.com/xmartlabs/Eureka
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -127,7 +133,7 @@ SPEC CHECKSUMS:
   CWStatusBarNotification: 3d2738b25c3207f60cc50201388d3c96182545ff
   DeviceKit: f33cbc6e67d9bb416e42dedc647557c7c2f6d3d7
   DVR: 48f5f24790d12eddaba28e6d279c11e11e4bc1fb
-  Eureka: d6725c38d0dcdceaa331d1468f75e76315715ae0
+  Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
@@ -155,6 +161,6 @@ SPEC CHECKSUMS:
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 
-PODFILE CHECKSUM: abd3bf3cfed32185693cc9737d709b40902a892c
+PODFILE CHECKSUM: 0ecc24e3faa8d51c5d36f1017d41753e1f9d8588
 
 COCOAPODS: 1.3.1

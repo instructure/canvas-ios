@@ -169,6 +169,8 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
             {({ height }) => (
               <Animated.ScrollView
                 scrollEventThrottle={1}
+                contentInsetAdjustmentBehavior='never'
+                automaticallyAdjustContentInsets={false}
                 onScroll={Animated.event(
                   [{ nativeEvent: { contentOffset: { y: this.animatedValue } } }],
                 )}

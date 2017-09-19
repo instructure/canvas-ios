@@ -64,6 +64,10 @@
     }
     
     [self.webView removeShadow];
+    
+    if (@available(iOS 11.0, *)) {
+        self.webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
 
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 }

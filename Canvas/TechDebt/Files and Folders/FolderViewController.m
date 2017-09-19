@@ -119,10 +119,6 @@
     
     UIImage *image = [UIImage techDebtImageNamed:@"icon_cog_fill"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(showOptions:)];
-        
-    [self setAutomaticallyAdjustsScrollViewInsets:NO];
-    [self.tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
-    [self.tableView setScrollIndicatorInsets:self.tableView.contentInset];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -132,9 +128,6 @@
     
     [super viewWillAppear:animated];
     [self updateSelectionOnTableView];
-    
-    [self.tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
-    [self.tableView setScrollIndicatorInsets:UIEdgeInsetsMake(64, 0, 0, 0)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

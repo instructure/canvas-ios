@@ -50,10 +50,7 @@ extension DiscussionTopic {
     }
 
     open class DetailViewController: TableViewController {
-        fileprivate (set) open var observer: ManagedObjectObserver<DiscussionTopic>!
-
         open func prepare<DVM: TableViewCellViewModel>(_ observer: ManagedObjectObserver<DiscussionTopic>, refresher: Refresher? = nil, detailsFactory: @escaping (DiscussionTopic)->[DVM]) where DVM: Equatable {
-            self.observer = observer
             let details = FetchedDetailsCollection(observer: observer, detailsFactory: detailsFactory)
             self.refresher = refresher
             dataSource = CollectionTableViewDataSource(collection: details)

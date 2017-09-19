@@ -95,6 +95,10 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
         self.tableView.estimatedRowHeight = 44.f;
     }
     
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     UINib *cellNib = [UINib nibWithNibName:@"RubricPointsCell" bundle:[NSBundle bundleForClass:[self class]]];
     [self.tableView registerNib:cellNib forCellReuseIdentifier:@"RubricPointsCell"];
     

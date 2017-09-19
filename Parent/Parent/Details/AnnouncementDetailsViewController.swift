@@ -27,13 +27,11 @@ import EnrollmentKit
 import Airwolf
 import FileKit
 
-typealias Announcement = DiscussionTopic
-
 private let TitleCellReuseIdentifier = "TitleCell"
 private let AttachmentCellReuseIdentifier = "AttachmentCell"
 private let MessageBodyCellReuseIdentifier = "MessageBodyCell"
 
-enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
+enum AnnouncementDetailsCellViewModel: SoPersistent.TableViewCellViewModel {
     case title(String)
     case attachment(String)
     case message(URL, String)
@@ -101,12 +99,12 @@ func ==(lhs: AnnouncementDetailsCellViewModel, rhs: AnnouncementDetailsCellViewM
     }
 }
 
-class AnnouncementDetailsViewController: Announcement.DetailViewController {
+class AnnouncementDetailsViewController: DiscussionTopic.DetailViewController {
     var disposable: Disposable?
 
     init(session: Session, studentID: String, courseID: String, announcementID: String) throws {
         super.init()
-        let observer = try Announcement.observer(session, studentID: studentID, courseID: courseID, discussionTopicID: announcementID)
+        let observer = try DiscussionTopic.observer(session, studentID: studentID, courseID: courseID, discussionTopicID: announcementID)
         let refresher = try DiscussionTopic.refresher(session, studentID: studentID, courseID: courseID, discussionTopicID: announcementID)
 
         prepare(observer, refresher: refresher) { AnnouncementDetailsCellViewModel.detailsForDiscussionTopic(session.baseURL, discussionTopic: $0) }

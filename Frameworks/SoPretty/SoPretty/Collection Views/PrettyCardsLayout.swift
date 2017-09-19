@@ -25,8 +25,8 @@ extension UITraitCollection {
     }
 }
 
-private let minCardWidth: CGFloat = 250.0
-private let maxCardWidth: CGFloat = 350.0
+private let minCardWidth: CGFloat = 220.0
+private let maxCardWidth: CGFloat = 360.0
 
 
 open class PrettyCardsLayout: UICollectionViewFlowLayout {

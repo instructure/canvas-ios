@@ -64,13 +64,6 @@
     self.view = webView;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    UIWebView *webView = (UIWebView *)self.view;
-    [webView.scrollView setContentInset:UIEdgeInsetsMake(64, 0, 54, 0)];
-}
-
 - (void)setUrl:(NSURL *)url
 {
     if (url == _url) {
