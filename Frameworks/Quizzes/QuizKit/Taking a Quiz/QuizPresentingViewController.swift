@@ -107,7 +107,7 @@ class QuizPresentingViewController: UIViewController {
             }
         }
         submissionController.almostDue = {
-            let alert = UIAlertController(title: NSLocalizedString("Quiz Due", comment: "Title for alert that shows when a quiz hits the due date"), message: NSLocalizedString("The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possbily be late?", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Description for alert that shows when the quiz hits the due date"), preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Quiz Due", comment: "Title for alert that shows when a quiz hits the due date"), message: NSLocalizedString("The quiz is due in 1 minute. Would you like to submit now and be on time or continue taking the quiz and possibly be late?", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Description for alert that shows when the quiz hits the due date"), preferredStyle: .alert)
             let beASlackerAction = UIAlertAction(title: NSLocalizedString("Continue Quiz", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Button for electing to be late on a quiz"), style: .destructive, handler: { _ in })
             let notASlackerAction = UIAlertAction(title: NSLocalizedString("Submit", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Submit button title"), style: .default, handler: { [weak self] _ in
                 self?.goAheadAndSubmit()
