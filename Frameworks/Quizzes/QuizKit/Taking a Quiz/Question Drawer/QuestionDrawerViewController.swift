@@ -84,39 +84,33 @@ extension QuestionDrawerViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionDrawerCell", for: indexPath) as! QuestionDrawerCell
-        
-        if indexPath.section == 0 { // flagged
-            let question = flaggedQuestions[indexPath.row]
+        let question = indexPath.section == 0 ? flaggedQuestions[indexPath.row] : questions[indexPath.row]
+        if question.flagged || indexPath.section == 0 {
             cell.displayState(.flagged)
-            let template = NSLocalizedString("Question %@", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
-            cell.questionTextLabel.text = String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: question.question.position)) ?? "")
         } else {
-            let question = questions[indexPath.row]
-            if question.flagged {
-                cell.displayState(.flagged)
-            } else {
-                switch question.answer {
-                case .id(_):
+            switch question.answer {
+            case .id(_):
+                cell.displayState(.answered)
+            case .ids(_):
+                cell.displayState(.answered)
+            case .text(_):
+                cell.displayState(.answered)
+            case .Matches(let matches):
+                if matches.keys.count == question.question.answers.count {
                     cell.displayState(.answered)
-                case .ids(_):
-                    cell.displayState(.answered)
-                case .text(_):
-                    cell.displayState(.answered)
-                case .Matches(let matches):
-                    if matches.keys.count == question.question.answers.count {
-                        cell.displayState(.answered)
-                    } else {
-                        cell.displayState(.untouched)
-                    }
-                default:
+                } else {
                     cell.displayState(.untouched)
-                    break
                 }
+            default:
+                cell.displayState(.untouched)
+                break
             }
-
-            let template = NSLocalizedString("Question %@", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
-            cell.questionTextLabel.text = String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: question.question.position)) ?? "")
         }
+
+        let template = NSLocalizedString("Question %@", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Shows question position")
+        let position = String.localizedStringWithFormat(template, QuestionDrawerViewController.questionNumberFormatter.string(from: NSNumber(value: question.question.position)) ?? "")
+        let spacer = NSLocalizedString("Spacer", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Text only quiz question label")
+        cell.questionTextLabel.text = question.question.kind == .TextOnly ? spacer : position
         
         return cell
     }
