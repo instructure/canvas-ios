@@ -94,6 +94,8 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
 
             for index in stride(from: (annotations.count - 1), through: 0, by: -1) {
                 let annotation = annotations[index]
+                (annotation as? PSPDFFreeTextAnnotation)?.sizeToFit()
+                annotation.flags.remove(.readOnly) // Allows user to view and add comments
                 if let noteAnnotation = annotation as? PSPDFNoteAnnotation {
                     // the call to super should be limiting these annots by the page for us
                     for (_, value) in childrenMapping {
