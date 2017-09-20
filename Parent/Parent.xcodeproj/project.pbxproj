@@ -32,6 +32,8 @@
 		1D4E0858596E01257BE0AD84 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */; };
 		2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; };
 		2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C6049661F72BC8A00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049651F72BC8A00252BC5 /* CanvasCore.framework */; };
+		2C6049671F72BC8A00252BC5 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049651F72BC8A00252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
 		2C61CD301D9311EC00196C03 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD321D9311EC00196C03 /* InfoPlist.strings */; };
 		2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C75AB941DDF62CA00650856 /* AssetsLibrary.framework */; };
@@ -74,8 +76,6 @@
 		4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4907F9171DA80936004AB1A3 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		492246081D1C75EF0053766B /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492246061D1C75DE0053766B /* EarlGrey.framework */; };
 		4959161E1DC134B6006583C4 /* NoStudentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49ED5A341DBFC84D009E2896 /* NoStudentsViewController.xib */; };
-		4969475F1E02EE3100EA2C30 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4969475E1E02EE2600EA2C30 /* Secrets.framework */; };
-		496947601E02EE3100EA2C30 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4969475E1E02EE2600EA2C30 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		496A49D91DB810620044E19C /* ParentSelectDomainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */; };
 		496A49DB1DB822A40044E19C /* CanvasObserverLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */; };
 		49DB0AE61E4E27030036D96E /* Student+AccessRemoved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */; };
@@ -224,6 +224,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2C6049671F72BC8A00252BC5 /* CanvasCore.framework in Embed Frameworks */,
 				3BDE4DFA1F67025000DFE643 /* SoSupportive.framework in Embed Frameworks */,
 				3BDE4DF31F67001100DFE643 /* MediaKit.framework in Embed Frameworks */,
 				5E2BD3941C52A0E0009511FB /* EnrollmentKit.framework in Embed Frameworks */,
@@ -232,7 +233,6 @@
 				617A672C1CE272540065E487 /* SoProgressive.framework in Embed Frameworks */,
 				4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */,
 				61E94C581C87366900777B95 /* AssignmentKit.framework in Embed Frameworks */,
-				496947601E02EE3100EA2C30 /* Secrets.framework in Embed Frameworks */,
 				2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */,
 				5E2BD39E1C52C2C5009511FB /* CalendarKit.framework in Embed Frameworks */,
 				5E75B5FE1C4D4A7F00A44160 /* TooLegit.framework in Embed Frameworks */,
@@ -310,6 +310,7 @@
 		2C0CADA01DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		2C0CADA11DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
 		2C47623A1DD0FFB40003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6049651F72BC8A00252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C61CD0A1D9311B400196C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD0C1D9311E300196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2C61CD0D1D9311E400196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/CourseCell.strings; sourceTree = "<group>"; };
@@ -949,8 +950,8 @@
 				5E2BD3931C52A0E0009511FB /* EnrollmentKit.framework in Frameworks */,
 				61E94C5A1C8736CF00777B95 /* FileKit.framework in Frameworks */,
 				617A672B1CE272540065E487 /* SoProgressive.framework in Frameworks */,
+				2C6049661F72BC8A00252BC5 /* CanvasCore.framework in Frameworks */,
 				617A677A1CE37C150065E487 /* Airwolf.framework in Frameworks */,
-				4969475F1E02EE3100EA2C30 /* Secrets.framework in Frameworks */,
 				5E75B6001C4D4A8E00A44160 /* CoreData.framework in Frameworks */,
 				5E75B5FD1C4D4A7F00A44160 /* TooLegit.framework in Frameworks */,
 				5E2BD39D1C52C2C5009511FB /* CalendarKit.framework in Frameworks */,
@@ -1170,6 +1171,7 @@
 		5E64417E1C3EE2E0003D7397 = {
 			isa = PBXGroup;
 			children = (
+				2C6049651F72BC8A00252BC5 /* CanvasCore.framework */,
 				5E6441891C3EE2E0003D7397 /* Parent */,
 				5E64419E1C3EE2E0003D7397 /* ParentTests */,
 				F96C7E6B1D108AEB008935F3 /* ParentEarlGreyTests */,

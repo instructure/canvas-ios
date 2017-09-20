@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C23AE901ED5EAC9006F0AEF /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */; };
-		2C23AE911ED5EAC9006F0AEF /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2C23AE921ED5F5E3006F0AEF /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */; };
+		2C6D60861F72F0AA009C3707 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6D60871F72F0AA009C3707 /* CanvasCore.framework */; };
 		49998E771E1D7A4800C98AC2 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; };
 		49998E781E1D7A4800C98AC2 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49998E791E1D7A4800C98AC2 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACADC8E91CE667D100D16200 /* FileKit.framework */; };
@@ -121,7 +119,6 @@
 				AC9DD5351CE4E888007A474A /* PageKit.framework in Embed Frameworks */,
 				49998E941E1D7A7D00C98AC2 /* SoIconic.framework in Embed Frameworks */,
 				49998E841E1D7A4800C98AC2 /* TooLegit.framework in Embed Frameworks */,
-				2C23AE911ED5EAC9006F0AEF /* Secrets.framework in Embed Frameworks */,
 				49998E991E1D7AC500C98AC2 /* WhizzyWig.framework in Embed Frameworks */,
 				49998E7A1E1D7A4800C98AC2 /* FileKit.framework in Embed Frameworks */,
 				49998E881E1D7A4800C98AC2 /* SoLazy.framework in Embed Frameworks */,
@@ -140,6 +137,7 @@
 		0BF5FFDC86FC76EF2AC0A843 /* Pods-defaults-Pages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Pages.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Pages/Pods-defaults-Pages.release.xcconfig"; sourceTree = "<group>"; };
 		155055FBC75FD03F3C153EE0 /* Pods-PageKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageKitTests.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-PageKitTests/Pods-PageKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6D60871F72F0AA009C3707 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D62A42E96815E2667CE12B8 /* Pods-Pages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pages.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Pages/Pods-Pages.release.xcconfig"; sourceTree = "<group>"; };
 		490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998E8B1E1D7A5B00C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -376,7 +374,6 @@
 				ACADC8F41CE67F2500D16200 /* SoPersistent.framework in Frameworks */,
 				49998E931E1D7A7D00C98AC2 /* SoIconic.framework in Frameworks */,
 				49998E981E1D7AC500C98AC2 /* WhizzyWig.framework in Frameworks */,
-				2C23AE901ED5EAC9006F0AEF /* Secrets.framework in Frameworks */,
 				49998E771E1D7A4800C98AC2 /* DoNotShipThis.framework in Frameworks */,
 				B073BAF307D48932D888C0DD /* Pods_defaults_Pages.framework in Frameworks */,
 			);
@@ -390,7 +387,7 @@
 				AC9DD5471CE4EDA7007A474A /* SoLazy.framework in Frameworks */,
 				AC9DD5511CE4EE74007A474A /* SoPretty.framework in Frameworks */,
 				AC9DD5521CE4EE74007A474A /* TooLegit.framework in Frameworks */,
-				2C23AE921ED5F5E3006F0AEF /* Secrets.framework in Frameworks */,
+				2C6D60861F72F0AA009C3707 /* CanvasCore.framework in Frameworks */,
 				D55EFC4C996F32A5367099F4 /* Pods_defaults_PageKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,6 +418,7 @@
 				9AF611244C581491E4C28A9E /* Pods_Pages.framework */,
 				9A6F41C2B154A3AC0B28A6F8 /* Pods_PageKitTests.framework */,
 				C5551808A062DB7E0D3949CB /* Pods_defaults_PageKit.framework */,
+				2C6D60871F72F0AA009C3707 /* CanvasCore.framework */,
 				88E440B9E2C61B4717E5D0A5 /* Pods_defaults_Pages.framework */,
 				A9A54E94819E112E1CD3A9CB /* Pods_defaults_common_tests_PageKitTests.framework */,
 			);

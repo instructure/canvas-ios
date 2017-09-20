@@ -31,7 +31,7 @@
 #import "CBILog.h"
 @import CanvasKeymaster;
 @import PageKit;
-@import Secrets;
+@import CanvasCore;
 
 @interface AssignmentDetailsViewController () <UIWebViewDelegate>
 @end

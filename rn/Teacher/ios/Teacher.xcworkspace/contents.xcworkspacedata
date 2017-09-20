@@ -11,10 +11,10 @@
       location = "container:"
       name = "Dependencies">
       <FileRef
-         location = "group:../../../Frameworks/SoLazy/SoLazy.xcodeproj">
+         location = "group:../../../CanvasCore/CanvasCore.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:../../../Frameworks/Secrets/Secrets.xcodeproj">
+         location = "group:../../../Frameworks/SoLazy/SoLazy.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:../../../Frameworks/Attendance/Attendance.xcodeproj">

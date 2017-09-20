@@ -23,7 +23,7 @@ import CoreData
 import ReactiveSwift
 import Marshal
 import SoLazy
-import Secrets
+import CanvasCore
 
 extension Page {
     public static func detailCacheKey(context: NSManagedObjectContext, contextID: ContextID, url: String) -> String {

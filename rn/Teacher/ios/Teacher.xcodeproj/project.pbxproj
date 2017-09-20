@@ -46,12 +46,12 @@
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
 		2C841F601F3DF983009BF851 /* main.jsbundle.meta in Resources */ = {isa = PBXBuildFile; fileRef = 2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */; };
 		2C841F611F3DF9BF009BF851 /* main.jsbundle.map in Resources */ = {isa = PBXBuildFile; fileRef = 2C841F5E1F3DF983009BF851 /* main.jsbundle.map */; };
+		2C921E781F72E366003E5C9B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C921E771F72E366003E5C9B /* CanvasCore.framework */; };
+		2C921E791F72E366003E5C9B /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C921E771F72E366003E5C9B /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
 		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
 		2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */; };
-		2CE78AAD1F55B7CC00AB3726 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */; };
-		2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
 		2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */; };
@@ -604,8 +604,8 @@
 				3B51311F1F6AFAD1003C534F /* AttendanceLE.framework in Embed Frameworks */,
 				61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */,
 				3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */,
-				2CE78AAE1F55B7CC00AB3726 /* Secrets.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
+				2C921E791F72E366003E5C9B /* CanvasCore.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
 				619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */,
 			);
@@ -767,6 +767,7 @@
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 		2C841F5E1F3DF983009BF851 /* main.jsbundle.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = main.jsbundle.map; sourceTree = "<group>"; };
 		2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle.meta; sourceTree = "<group>"; };
+		2C921E771F72E366003E5C9B /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476A1F21472D0000BB79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476B1F2147300000BB79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -998,7 +999,6 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
 				9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */,
-				2CE78AAD1F55B7CC00AB3726 /* Secrets.framework in Frameworks */,
 				A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */,
 				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
 				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
@@ -1006,6 +1006,7 @@
 				EF9BA2CEE3604DD5B95E86E6 /* libRNDocumentPicker.a in Frameworks */,
 				5031AD3F5ACC4AB890DB0437 /* libRNAudio.a in Frameworks */,
 				AB03B0349E454DCEA2ADC585 /* libBugsnagReactNative.a in Frameworks */,
+				2C921E781F72E366003E5C9B /* CanvasCore.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
 				B8A7C38963894269A892A2BC /* libRNSound.a in Frameworks */,
 				BD604147FC4E46ECABACB114 /* libBVLinearGradient.a in Frameworks */,
@@ -1619,6 +1620,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2C921E771F72E366003E5C9B /* CanvasCore.framework */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,

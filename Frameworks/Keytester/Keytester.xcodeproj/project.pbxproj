@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C50EE1C1E7371BD0096592C /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE1B1E7371BD0096592C /* Secrets.framework */; };
+		2C60499C1F72DFE700252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C60499D1F72DFE700252BC5 /* CanvasCore.framework */; };
 		2CCDE2CF1DA845B800B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2D11DA845B800B46D87 /* InfoPlist.strings */; };
 		2CCDE2DE1DA845BA00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E01DA845BA00B46D87 /* InfoPlist.strings */; };
 		2CCDE2E31DA845BB00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E51DA845BB00B46D87 /* InfoPlist.strings */; };
@@ -129,6 +129,7 @@
 /* Begin PBXFileReference section */
 		0F134D2C62A9857F37B60C8B /* Pods-Keymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Keymaster/Pods-Keymaster.debug.xcconfig"; sourceTree = "<group>"; };
 		2C50EE1B1E7371BD0096592C /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/Secrets.framework"; sourceTree = "<group>"; };
+		2C60499D1F72DFE700252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCDE2D01DA845B800B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2DF1DA845BA00B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2CCDE2E41DA845BB00B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -341,10 +342,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EB86AFC1C4ECE8400C920A2 /* SoLazy.framework in Frameworks */,
+				2C60499C1F72DFE700252BC5 /* CanvasCore.framework in Frameworks */,
 				5EB86AFD1C4ECE8400C920A2 /* SoPersistent.framework in Frameworks */,
 				5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */,
 				5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */,
-				2C50EE1C1E7371BD0096592C /* Secrets.framework in Frameworks */,
 				A5D7243BAF0E14D56CF13ED9 /* Pods_defaults_Keymaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				2C50EE1B1E7371BD0096592C /* Secrets.framework */,
+				2C60499D1F72DFE700252BC5 /* CanvasCore.framework */,
 				62C69148FAB3046E8D993D04 /* Pods_Keytester.framework */,
 				ED53A19FAAAECB055B4FA8E2 /* Pods_Keymaster.framework */,
 				D2E23328A02D29C70AD5400D /* Pods_defaults_Keymaster.framework */,

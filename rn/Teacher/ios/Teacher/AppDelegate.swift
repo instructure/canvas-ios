@@ -21,7 +21,7 @@ import UserNotifications
 import PSPDFKit
 import Fabric
 import Crashlytics
-import Secrets
+import CanvasCore
 import SoLazy
 
 public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;

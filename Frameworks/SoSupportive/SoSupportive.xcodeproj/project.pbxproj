@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		229128B0FBF71A731252FA7D /* Pods_defaults_SoSupportive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DCDAEA2344A310E79AA6FE /* Pods_defaults_SoSupportive.framework */; };
-		2C2F48A51DDDFEFB00804485 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F48A31DDDFEFB00804485 /* Secrets.framework */; };
+		2C60499E1F72E00E00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C60499F1F72E00E00252BC5 /* CanvasCore.framework */; };
 		2CCDE39C1DAC0BB100B46D87 /* Bundle+SoSupportive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCDE39B1DAC0BB100B46D87 /* Bundle+SoSupportive.swift */; };
-		49998ECA1E1D88FA00C98AC2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2F48A31DDDFEFB00804485 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49998ED01E1D893800C98AC2 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998ECC1E1D892000C98AC2 /* SoIconic.framework */; };
 		49998ED21E1D896C00C98AC2 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998ECD1E1D893100C98AC2 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49998ED41E1D896C00C98AC2 /* CWNotification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998ECB1E1D892000C98AC2 /* CWNotification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -100,7 +99,6 @@
 				49BE5A591D95B8A100292757 /* Marshal.framework in Embed Frameworks */,
 				49BE5A561D95B85800292757 /* Kingfisher.framework in Embed Frameworks */,
 				49998ED41E1D896C00C98AC2 /* CWNotification.framework in Embed Frameworks */,
-				49998ECA1E1D88FA00C98AC2 /* Secrets.framework in Embed Frameworks */,
 				49BE5A3B1D95A7CB00292757 /* TooLegit.framework in Embed Frameworks */,
 				49998ED21E1D896C00C98AC2 /* ReactiveSwift.framework in Embed Frameworks */,
 			);
@@ -114,6 +112,7 @@
 		169BE694949856308E1DEA85 /* Pods-SoSupportive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoSupportive.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-SoSupportive/Pods-SoSupportive.release.xcconfig"; sourceTree = "<group>"; };
 		2C2F48A11DDDFEA900804485 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../Debug-iphonesimulator/Secrets.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2F48A31DDDFEFB00804485 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C60499F1F72E00E00252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCDE39B1DAC0BB100B46D87 /* Bundle+SoSupportive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+SoSupportive.swift"; sourceTree = "<group>"; };
 		42DCDAEA2344A310E79AA6FE /* Pods_defaults_SoSupportive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoSupportive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998ECB1E1D892000C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,9 +278,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E5F9B441D2EC2BF0034207D /* TooLegit.framework in Frameworks */,
+				2C60499E1F72E00E00252BC5 /* CanvasCore.framework in Frameworks */,
 				5E7949641D1C711B005FD5C0 /* SoLazy.framework in Frameworks */,
 				5E4C23531D26B28200238215 /* SoPretty.framework in Frameworks */,
-				2C2F48A51DDDFEFB00804485 /* Secrets.framework in Frameworks */,
 				229128B0FBF71A731252FA7D /* Pods_defaults_SoSupportive.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				2C2F48A11DDDFEA900804485 /* Secrets.framework */,
+				2C60499F1F72E00E00252BC5 /* CanvasCore.framework */,
 				7AB9FC050474A8F06A832B31 /* Pods_SoSupportive.framework */,
 				42DCDAEA2344A310E79AA6FE /* Pods_defaults_SoSupportive.framework */,
 			);

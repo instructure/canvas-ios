@@ -85,9 +85,6 @@
          location = "group:Quizzes/Quizzes.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Secrets/Secrets.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:SixtySix/SixtySix.xcodeproj">
       </FileRef>
       <FileRef
@@ -142,6 +139,9 @@
          location = "group:Attendance/Attendance.xcodeproj">
       </FileRef>
    </Group>
+   <FileRef
+      location = "group:CanvasCore/CanvasCore.xcodeproj">
+   </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>

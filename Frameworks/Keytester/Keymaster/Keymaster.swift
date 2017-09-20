@@ -20,7 +20,7 @@ import Foundation
 import SoLazy
 import TooLegit
 import Security
-import Secrets
+import CanvasCore
 
 open class Keymaster {
     

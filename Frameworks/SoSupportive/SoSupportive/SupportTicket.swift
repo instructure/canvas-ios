@@ -20,7 +20,7 @@ import UIKit
 
 import DeviceKit
 import TooLegit
-import Secrets
+import CanvasCore
 
 public enum ImpactLevel: String {
     case Comment, NotUrgent, WorkaroundPossible, Blocking, Emergency, None

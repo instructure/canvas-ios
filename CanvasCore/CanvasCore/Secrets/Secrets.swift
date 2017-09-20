@@ -17,7 +17,6 @@
     
 
 import Foundation
-import SoLazy
 
 // I wish that I could make this a string enum, but to keep compatible with obj-c it's not. 
 // It has a toString() function instead
@@ -79,7 +78,7 @@ open class Secrets: NSObject {
     
     fileprivate lazy var keys: [String: String] = {
         
-        guard let path = Bundle.secrets.url(forResource: "secrets", withExtension: "plist") else {
+        guard let path = Bundle.core.url(forResource: "secrets", withExtension: "plist") else {
             fatalError("keys.plist not found")
         }
         
@@ -108,7 +107,7 @@ open class Secrets: NSObject {
     // Support for feature toggles that are based on a domain
     fileprivate lazy var toggles: [String: [String]]? = {
         
-        guard let path = Bundle.secrets.url(forResource: "feature_toggles", withExtension: "plist") else {
+        guard let path = Bundle.core.url(forResource: "feature_toggles", withExtension: "plist") else {
             return nil
         }
         
@@ -125,7 +124,7 @@ open class Secrets: NSObject {
             return false
         }
         
-        return toggleValues.findFirst { domain.contains($0) || $0.contains(domain) } != nil
+        return toggleValues.findFirstMatch { domain.contains($0) || $0.contains(domain) } != nil
     }
     
     open static func featureEnabled(_ toggle: FeatureToggleKey, domain: String?) -> Bool {
@@ -136,7 +135,7 @@ open class Secrets: NSObject {
 extension Secrets {
     
     // Quick way to check if a url is a external resource from one central place
-    open static func urlIsExternalResource(_ aURL: URL?) -> Bool {
+    @objc open static func urlIsExternalResource(_ aURL: URL?) -> Bool {
         guard let url = aURL?.absoluteString else { return false }
         guard let toggles = Secrets._shared.toggles else { return false }
         guard let externalURLs = toggles[FeatureToggleKey.externalResources.toString()] else { return false }
@@ -145,9 +144,14 @@ extension Secrets {
         }).count > 0
     }
     
-    open static func openExternalResourceIfNecessary(aURL: URL?) -> Bool {
+    @objc open static func openExternalResourceIfNecessary(aURL: URL?) -> Bool {
         guard let url = aURL else { return false }
         guard urlIsExternalResource(url) else { return false }
-        return UIApplication.shared.openURL(url)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            return true
+        } else {
+            return UIApplication.shared.openURL(url)
+        }
     }
 }

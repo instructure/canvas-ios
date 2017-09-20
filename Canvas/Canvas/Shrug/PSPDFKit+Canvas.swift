@@ -18,7 +18,7 @@
 
 import Foundation
 import PSPDFKit
-import Secrets
+import CanvasCore
 
 extension PSPDFKit {
     static func license() {

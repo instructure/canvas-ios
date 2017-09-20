@@ -16,6 +16,9 @@
 		2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; };
 		2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C47623D1DD1184B0003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; };
+		2C60495F1F72BAAF00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */; };
+		2C6049601F72BAAF00252BC5 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */; };
 		2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */; };
 		2C67B0CA1E01F06300DDD191 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C91E01F06300DDD191 /* CoreText.framework */; };
@@ -24,10 +27,7 @@
 		2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */; };
 		2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */; };
 		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
-		2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
-		2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; };
-		2CA548321DCB8C1000A05E0F /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */; };
 		2CDCA2411F6B377F004110EA /* Peeps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDCA2401F6B377F004110EA /* Peeps.framework */; };
 		3B9155051F610B2500C790F3 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; };
 		3B9155061F610B2500C790F3 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -894,7 +894,6 @@
 				4927088D1CF4C38100C631C6 /* QuizKit.framework in Embed Frameworks */,
 				492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */,
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
-				2C6DC3DB1DC39FDF00F3E8C2 /* Secrets.framework in Embed Frameworks */,
 				6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */,
 				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
 				2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */,
@@ -911,6 +910,7 @@
 				492708971CF4C38100C631C6 /* SoPretty.framework in Embed Frameworks */,
 				49A04E5A1CF64CCF0051E1E7 /* NotificationKit.framework in Embed Frameworks */,
 				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
+				2C6049601F72BAAF00252BC5 /* CanvasCore.framework in Embed Frameworks */,
 				492708951CF4C38100C631C6 /* SoPersistent.framework in Embed Frameworks */,
 				4927089B1CF4C38100C631C6 /* TodoKit.framework in Embed Frameworks */,
 				492708891CF4C38100C631C6 /* MyLittleViewController.framework in Embed Frameworks */,
@@ -950,6 +950,9 @@
 		2C0CAD831DEF6E5D008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2C0CAD841DEF6E5F008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C4762321DD0D2FB0003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6049621F72BB6900252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C6049631F72BC5300252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasCore.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphoneos/CanvasCore.framework"; sourceTree = "<group>"; };
+		2C6049641F72BC5600252BC5 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoLazy.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphoneos/SoLazy.framework"; sourceTree = "<group>"; };
 		2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2C67B0C91E01F06300DDD191 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -960,8 +963,8 @@
 		2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C67B0D51E01F11A00DDD191 /* Canvas-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Canvas-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
-		2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C73C9B91E031ECD0064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDCA2401F6B377F004110EA /* Peeps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Peeps.framework; path = "../Frameworks/Peeps/build/Debug-iphoneos/Peeps.framework"; sourceTree = "<group>"; };
 		3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2033,6 +2036,7 @@
 				2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */,
 				4927089A1CF4C38100C631C6 /* TodoKit.framework in Frameworks */,
 				492708741CF4C38100C631C6 /* AssignmentKit.framework in Frameworks */,
+				2C60495F1F72BAAF00252BC5 /* CanvasCore.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				61F8ED861D999F0500DFAC6E /* SoIconic.framework in Frameworks */,
 				49A04E591CF64CCF0051E1E7 /* NotificationKit.framework in Frameworks */,
@@ -2043,7 +2047,6 @@
 				4927087E1CF4C38100C631C6 /* EnrollmentKit.framework in Frameworks */,
 				492708941CF4C38100C631C6 /* SoPersistent.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
-				2C6DC3DA1DC39FDF00F3E8C2 /* Secrets.framework in Frameworks */,
 				61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */,
 				49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */,
 				61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */,
@@ -2065,6 +2068,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */,
 				2CDCA2411F6B377F004110EA /* Peeps.framework in Frameworks */,
 				61D4A2241EE36CAC008D2528 /* AssignmentKit.framework in Frameworks */,
 				6122B9B61D58E6B6001282BF /* SoAnnotated.framework in Frameworks */,
@@ -2089,7 +2093,6 @@
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
 				6199FD461EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */,
 				6122B9B71D58E6DA001282BF /* PSPDFKit.framework in Frameworks */,
-				2CA548321DCB8C1000A05E0F /* Secrets.framework in Frameworks */,
 				1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2158,6 +2161,7 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
+				2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */,
 				3B94AFDD1F6105CD0093F403 /* SoLazy.framework */,
 				3B94AFDA1F6105940093F403 /* FileKit.framework */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
@@ -2908,6 +2912,8 @@
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C6049641F72BC5600252BC5 /* SoLazy.framework */,
+				2C6049631F72BC5300252BC5 /* CanvasCore.framework */,
 				47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */,
 				6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */,
 				2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */,
@@ -2942,7 +2948,6 @@
 				6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */,
 				4907DF971DF62C07000D745D /* ReactiveObjCBridge.framework */,
 				4927086C1CF4C37100C631C6 /* Result.framework */,
-				2C6DC3D91DC39FDF00F3E8C2 /* Secrets.framework */,
 				61681E9A1D58E5000011E75D /* SoAnnotated.framework */,
 				61F8ED821D999EA800DFAC6E /* SoEdventurous.framework */,
 				61F8ED851D999EFD00DFAC6E /* SoIconic.framework */,
@@ -3591,6 +3596,7 @@
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C6049621F72BB6900252BC5 /* CanvasCore.framework */,
 				2CDCA2401F6B377F004110EA /* Peeps.framework */,
 				61D4A2231EE36CAC008D2528 /* AssignmentKit.framework */,
 				2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */,

@@ -17,8 +17,6 @@
 		49AFAB611E0AE0F300522289 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB461E09EBF600522289 /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49AFAB631E0AE15C00522289 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB621E0AE12300522289 /* SoIconic.framework */; };
 		49AFAB641E0AE15C00522289 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB621E0AE12300522289 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49AFAB681E0AE1BD00522289 /* Secrets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB671E0AE1AC00522289 /* Secrets.framework */; };
-		49AFAB691E0AE1BD00522289 /* Secrets.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB671E0AE1AC00522289 /* Secrets.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49AFAB6A1E0AE1BD00522289 /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB661E0AE19700522289 /* SoThankful.framework */; };
 		49AFAB6B1E0AE1BD00522289 /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB661E0AE19700522289 /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49AFAB6C1E0AE1BD00522289 /* SoProgressive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB651E0AE19000522289 /* SoProgressive.framework */; };
@@ -74,7 +72,6 @@
 				B1254B0F1DCA712100DCD110 /* SoEdventurous.framework in Embed Frameworks */,
 				49AFAB611E0AE0F300522289 /* SoPretty.framework in Embed Frameworks */,
 				49C98E0F1D9230FC006AF2FB /* DiscussionKit.framework in Embed Frameworks */,
-				49AFAB691E0AE1BD00522289 /* Secrets.framework in Embed Frameworks */,
 				49AFAB701E0AE1FF00522289 /* WhizzyWig.framework in Embed Frameworks */,
 				49C98E111D9230FC006AF2FB /* TodoKit.framework in Embed Frameworks */,
 			);
@@ -136,7 +133,6 @@
 				49AFAB6A1E0AE1BD00522289 /* SoThankful.framework in Frameworks */,
 				B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */,
 				49C98E011D922EA0006AF2FB /* CalendarKit.framework in Frameworks */,
-				49AFAB681E0AE1BD00522289 /* Secrets.framework in Frameworks */,
 				49C98E031D922EA0006AF2FB /* FileKit.framework in Frameworks */,
 				49C98E071D922EA0006AF2FB /* PageKit.framework in Frameworks */,
 				49AFAB311E09C18400522289 /* ReactiveSwift.framework in Frameworks */,

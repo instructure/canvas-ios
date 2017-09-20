@@ -26,7 +26,6 @@ import WhizzyWig
 import Fabric
 import Crashlytics
 import Airwolf
-import Secrets
 import SoLazy
 
 @UIApplicationMain

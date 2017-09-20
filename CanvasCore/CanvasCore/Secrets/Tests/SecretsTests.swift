@@ -13,17 +13,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+
+@testable import CanvasCore
+
+import XCTest
+
+class SecretsTests: XCTestCase {
     
+    func testFetch() {
+        let secret = Secrets.fetch(.canvasPSPDFKit)
+        XCTAssertNotNil(secret)
+    }
     
-
-#import <UIKit/UIKit.h>
-
-//! Project version number for Secrets.
-FOUNDATION_EXPORT double SecretsVersionNumber;
-
-//! Project version string for Secrets.
-FOUNDATION_EXPORT const unsigned char SecretsVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <Secrets/PublicHeader.h>
-
-
+    func testFeatureToggles() {
+        let trueToggle = Secrets.featureEnabled(.protectedUserInformation, domain: "mobiledev.instructure.com")
+        XCTAssert(trueToggle)
+        
+        let falseToggle = Secrets.featureEnabled(.protectedUserInformation, domain: "hogwarts.instructure.com")
+        XCTAssertFalse(falseToggle)
+    }
+}

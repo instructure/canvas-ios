@@ -27,7 +27,6 @@ import SoEdventurous
 import CanvasKeymaster
 import Fabric
 import Crashlytics
-import Secrets
 import AttendanceLE
 
 @UIApplicationMain
