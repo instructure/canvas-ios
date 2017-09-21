@@ -22,7 +22,7 @@ import SoPersistent
 import TooLegit
 import Airwolf
 import SoPretty
-import SoThankful
+import CanvasCore
 
 typealias SettingsSessionAction = (_ session: Session)->Void
 typealias SettingsObserveeSelectedAction = (_ session: Session, _ observee: Student)->Void
@@ -239,7 +239,7 @@ class SettingsViewController: UIViewController {
 
         let openSource = UIAlertAction(title: NSLocalizedString("Open Source Components", comment: "Open Source Components Button"), style: .default) { [weak self] _ in
             guard let me = self else { return }
-            let thankful = ThankfulViewController()
+            let thankful = OSSAttributionViewController()
             thankful.hidesBottomBarWhenPushed = true
             me.navigationController?.pushViewController(thankful, animated: true)
         }

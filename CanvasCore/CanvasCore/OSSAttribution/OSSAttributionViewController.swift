@@ -16,10 +16,10 @@
 
 import UIKit
 
-open class ThankfulViewController: UITableViewController {
+@objc open class OSSAttributionViewController: UITableViewController {
     
     lazy var components: [(name: String, url: String?)] = {
-        guard let url = Bundle.soThankfulBundle().url(forResource: "components", withExtension: "plist") else {
+        guard let url = Bundle.core.url(forResource: "components", withExtension: "plist") else {
             fatalError("components.plist is missing")
         }
         

@@ -26,7 +26,7 @@
 #import "WebBrowserViewController.h"
 #import "Analytics.h"
 @import SoPretty;
-@import SoThankful;
+@import CanvasCore;
 #import "CBILog.h"
 
 typedef NS_ENUM(NSInteger, AboutSections) {
@@ -253,8 +253,8 @@ typedef NS_ENUM(NSInteger, LegalRows) {
     if (indexPath.section == LegalSection) {
         
         if (indexPath.row == OpenSourceRow) {
-            ThankfulViewController *soThankful = [ThankfulViewController new];
-            [self.navigationController pushViewController:soThankful animated:YES];
+            OSSAttributionViewController *viewController = [OSSAttributionViewController new];
+            [self.navigationController pushViewController:viewController animated:YES];
             return;
         }
         

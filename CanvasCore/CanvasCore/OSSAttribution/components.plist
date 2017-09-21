@@ -4,12 +4,6 @@
 <array>
 	<dict>
 		<key>name</key>
-		<string>Armchair</string>
-		<key>url</key>
-		<string>https://github.com/UrbanApps/Armchair</string>
-	</dict>
-	<dict>
-		<key>name</key>
 		<string>Masonry</string>
 		<key>url</key>
 		<string>https://github.com/SnapKit/Masonry</string>

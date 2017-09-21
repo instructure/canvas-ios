@@ -13,9 +13,6 @@
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
 		2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */; };
-		2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; };
-		2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2C47623D1DD1184B0003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C4762321DD0D2FB0003BEAE /* SoThankful.framework */; };
 		2C60495F1F72BAAF00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */; };
 		2C6049601F72BAAF00252BC5 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
@@ -896,7 +893,6 @@
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
 				6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */,
 				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
-				2C4762341DD0D2FB0003BEAE /* SoThankful.framework in Embed Frameworks */,
 				3B94AFDC1F6105940093F403 /* FileKit.framework in Embed Frameworks */,
 				4927088B1CF4C38100C631C6 /* Peeps.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
@@ -2033,7 +2029,6 @@
 				2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */,
 				2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */,
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
-				2C4762331DD0D2FB0003BEAE /* SoThankful.framework in Frameworks */,
 				4927089A1CF4C38100C631C6 /* TodoKit.framework in Frameworks */,
 				492708741CF4C38100C631C6 /* AssignmentKit.framework in Frameworks */,
 				2C60495F1F72BAAF00252BC5 /* CanvasCore.framework in Frameworks */,
@@ -2086,7 +2081,6 @@
 				492708A61CF4C38500C631C6 /* FileKit.framework in Frameworks */,
 				492708B01CF4C38500C631C6 /* SoPersistent.framework in Frameworks */,
 				492708B31CF4C38500C631C6 /* TodoKit.framework in Frameworks */,
-				2C47623D1DD1184B0003BEAE /* SoThankful.framework in Frameworks */,
 				492708AA1CF4C38500C631C6 /* MyLittleViewController.framework in Frameworks */,
 				492708B21CF4C38500C631C6 /* SoProgressive.framework in Frameworks */,
 				492708A51CF4C38500C631C6 /* EnrollmentKit.framework in Frameworks */,

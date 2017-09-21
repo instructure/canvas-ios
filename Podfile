@@ -35,14 +35,12 @@ abstract_target 'defaults' do
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'
-    pod 'Armchair', '~> 0.3'
     pod 'Fabric', '~> 1.6'
     pod 'Crashlytics', '~> 3.8'
   end
 
   target 'EverythingBagel' do
     project 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
-    pod 'Armchair', '~> 0.3'
     pod 'Fabric', '~> 1.6'
     pod 'Crashlytics', '~> 3.8'
   end

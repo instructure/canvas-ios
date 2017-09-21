@@ -118,13 +118,7 @@
          location = "group:SoSupportive/SoSupportive.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:SoThankful/SoThankful.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:SuchActivity/SuchActivity.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:SwiftGrader/SwiftGrader.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Todo/Todo.xcodeproj">

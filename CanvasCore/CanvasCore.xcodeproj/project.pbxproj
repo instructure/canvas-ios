@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C2D7AD71F7301D000207CE9 /* Collection+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D7AD61F7301D000207CE9 /* Collection+Core.swift */; };
+		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
+		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3B1F72B294007225DF /* feature_toggles.plist */; };
 		2C6D608A1F72F85F009C3707 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
 		2CAF1B1E1F72AEDB007225DF /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		2C2D7AD61F7301D000207CE9 /* Collection+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Core.swift"; sourceTree = "<group>"; };
+		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
+		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
 		2C60495E1F72B9CE00252BC5 /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6D60891F72F85F009C3707 /* SecretsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsTests.swift; sourceTree = "<group>"; };
 		2CAF1B141F72AEDB007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +67,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C3421191F74093000D8E158 /* OSSAttribution */ = {
+			isa = PBXGroup;
+			children = (
+				2C34211A1F74099400D8E158 /* components.plist */,
+				2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */,
+			);
+			path = OSSAttribution;
+			sourceTree = "<group>";
+		};
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +114,7 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				2C3421191F74093000D8E158 /* OSSAttribution */,
 				2CAF1B381F72B18F007225DF /* Extensions */,
 				2CAF1B311F72AFCF007225DF /* Secrets */,
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
@@ -233,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CAF1B361F72B173007225DF /* secrets.plist in Resources */,
+				2C34211D1F7409CF00D8E158 /* components.plist in Resources */,
 				2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +268,7 @@
 			files = (
 				2C2D7AD71F7301D000207CE9 /* Collection+Core.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
+				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
