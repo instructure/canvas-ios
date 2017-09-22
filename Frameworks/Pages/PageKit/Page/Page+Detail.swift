@@ -24,6 +24,7 @@ import ReactiveSwift
 import Marshal
 import SoLazy
 import CanvasCore
+import WebKit
 
 extension Page {
     public static func detailCacheKey(context: NSManagedObjectContext, contextID: ContextID, url: String) -> String {
@@ -102,7 +103,7 @@ extension Page {
 
         // MARK: - Properties
 
-        open let webView = UIWebView(frame: CGRect.zero)
+        open let webView = WKWebView(frame: CGRect.zero)
 
         open var refresher: Refresher
         open var observer: ManagedObjectObserver<Page>
@@ -134,8 +135,8 @@ extension Page {
 
         override open func viewDidLoad() {
             super.viewDidLoad()
-            webView.delegate = self
-
+            webView.navigationDelegate = self
+            
             view.backgroundColor = .white
 
             configureObserver()
@@ -215,86 +216,78 @@ extension Page {
         open func refresh() {
             refresher.refresh(true)
         }
-
-        // MARK: - Web View Delegate
-
-        open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-            guard let requestURL = request.url else {
-                print("No url provided in request")
-                return false
-            }
-
-            if requestURL.scheme == "mailto" {
-                return true
-            }
-            
-            if Secrets.openExternalResourceIfNecessary(aURL: requestURL) {
-                return false
-            }
-            
-            if requestURL.absoluteString.localizedCaseInsensitiveContains("slideshare.net") {
-                var requestWithReferer = request
-                requestWithReferer.url = requestURL
-                requestWithReferer.setValue(session.baseURL.description, forHTTPHeaderField: "Referer")
-                requestWithReferer.cachePolicy = .useProtocolCachePolicy
-                self.relaunchRequest(requestWithReferer, webView: self.webView)
-                return false
-            }
-
-            if navigationType != .linkClicked {
-                return true
-            }
-
-            if requestURL.absoluteString.contains("external_tools/retrieve?") {
-                return true
-            }
-            
-            let components = requestURL.pathComponents
-            if let component = components.last, let fragment = requestURL.fragment, components.count > 0 {
-                let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString, fragment)
-                let jsScrollToAnchor = jsScrollToHashTag(fragment)
-                
-                if requestURL.absoluteString == selfReferencingFragment {
-                    self.webView.stringByEvaluatingJavaScript(from: jsScrollToAnchor)
-                    return false
-                }
-                
-                let requestBaseURL = requestURL.deletingPathExtension().absoluteString
-                if let currentBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.htmlPath)?.absoluteString,
-                    let currentAPIBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.apiPath)?.absoluteString {
-                    
-                    if requestBaseURL.localizedCaseInsensitiveContains(currentBaseURL) || requestBaseURL.localizedCaseInsensitiveContains(currentAPIBaseURL) {
-                        let pageIdentifierWithFragmentSymbol = self.url + "#"
-                        if component.caseInsensitiveCompare(self.url) == .orderedSame || component.localizedCaseInsensitiveContains(pageIdentifierWithFragmentSymbol) {
-                            webView.stringByEvaluatingJavaScript(from: jsScrollToAnchor)
-                            return false
-                        }
-                    }
-                }
-            } else if let fragment = requestURL.fragment {
-                let components = requestURL.pathComponents
-                if (components.count == 0 && requestURL.scheme == "applewebdata") {
-                    self.webView.stringByEvaluatingJavaScript(from: jsScrollToHashTag(fragment))
-                    return false
-                }
-            }
-            
-            route(self, requestURL)
-            return false
-        }
         
         func jsScrollToHashTag(_ fragment: String) -> String {
             return String(format: "window.location.href='#%@';", fragment)
         }
 
-        func relaunchRequest(_ request: URLRequest, webView: UIWebView) {
+        func relaunchRequest(_ request: URLRequest) {
             DispatchQueue.global(qos: .default).async {
                 DispatchQueue.main.async {
-                    self.webView.loadRequest(request as URLRequest)
+                    self.webView.load(request)
                 }
             }
         }
-        
     }
-    
+}
+
+extension Page.DetailViewController: WKNavigationDelegate {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let request = navigationAction.request
+        guard let requestURL = request.url else {
+            return decisionHandler(.cancel)
+        }
+        
+        if requestURL.scheme == "mailto" ||
+           navigationAction.navigationType != .linkActivated ||
+           requestURL.absoluteString.contains("external_tools/retrieve?") {
+            return decisionHandler(.allow)
+        }
+        
+        if Secrets.openExternalResourceIfNecessary(aURL: requestURL) {
+            return decisionHandler(.cancel)
+        }
+        
+        if requestURL.absoluteString.localizedCaseInsensitiveContains("slideshare.net") {
+            var requestWithReferer = request
+            requestWithReferer.url = requestURL
+            requestWithReferer.setValue(session.baseURL.description, forHTTPHeaderField: "Referer")
+            requestWithReferer.cachePolicy = .useProtocolCachePolicy
+            self.relaunchRequest(requestWithReferer)
+            return decisionHandler(.cancel)
+        }
+        
+        let components = requestURL.pathComponents
+        if let component = components.last, let fragment = requestURL.fragment, components.count > 0 {
+            let selfReferencingFragment = String(format: "%@#%@", session.baseURL.absoluteString, fragment)
+            let jsScrollToAnchor = jsScrollToHashTag(fragment)
+            
+            if requestURL.absoluteString == selfReferencingFragment {
+                self.webView.evaluateJavaScript(jsScrollToAnchor, completionHandler: nil)
+                return decisionHandler(.cancel)
+            }
+            
+            let requestBaseURL = requestURL.deletingPathExtension().absoluteString
+            if let currentBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.htmlPath)?.absoluteString,
+                let currentAPIBaseURL = URL(string: session.baseURL.absoluteString + self.contextID.apiPath)?.absoluteString {
+                
+                if requestBaseURL.localizedCaseInsensitiveContains(currentBaseURL) || requestBaseURL.localizedCaseInsensitiveContains(currentAPIBaseURL) {
+                    let pageIdentifierWithFragmentSymbol = self.url + "#"
+                    if component.caseInsensitiveCompare(self.url) == .orderedSame || component.localizedCaseInsensitiveContains(pageIdentifierWithFragmentSymbol) {
+                        self.webView.evaluateJavaScript(jsScrollToAnchor, completionHandler: nil)
+                        return decisionHandler(.cancel)
+                    }
+                }
+            }
+        } else if let fragment = requestURL.fragment {
+            let components = requestURL.pathComponents
+            if (components.count == 0 && requestURL.scheme == "applewebdata") {
+                self.webView.evaluateJavaScript(jsScrollToHashTag(fragment), completionHandler: nil)
+                return decisionHandler(.cancel)
+            }
+        }
+        
+        route(self, requestURL)
+        return decisionHandler(.cancel)
+    }
 }

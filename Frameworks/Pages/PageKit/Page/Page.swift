@@ -23,7 +23,8 @@ import TooLegit
 
 public final class Page: NSManagedObject, LockableModel {
     
-    @NSManaged internal (set) public var url: String // Unique locator for the page
+    @NSManaged internal (set) public var url: String // Unique locator for the page, but not unique across courses
+    @NSManaged internal (set) public var htmlURL: String
     @NSManaged internal (set) public var title: String
     @NSManaged internal (set) public var createdAt: Date
     @NSManaged internal (set) public var updatedAt: Date // Date the page was last updated
@@ -61,12 +62,13 @@ import SoLazy
 extension Page: SynchronizedModel {
     
     public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
-        let url: String = try json <| "url"
-        return NSPredicate(format: "%K == %@", "url", url)
+        let url: String = try json <| "html_url"
+        return NSPredicate(format: "%K == %@", "htmlURL", url)
     }
 
     public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         url             = try json <| "url"
+        htmlURL         = try json <| "html_url"
         title           = try json <| "title"
         createdAt       = try json <| "created_at"
         updatedAt       = (try json <| "updated_at") ?? createdAt
@@ -85,5 +87,4 @@ extension Page: SynchronizedModel {
         
         try updateLockStatus(json)
     }
-    
 }
