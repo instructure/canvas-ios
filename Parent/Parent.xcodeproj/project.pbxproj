@@ -30,8 +30,6 @@
 		0AF959D11DD511090096104D /* SettingsPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B41DD511080096104D /* SettingsPageTests.swift */; };
 		0E586CE804E516C885D23FEE /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */; };
 		1D4E0858596E01257BE0AD84 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */; };
-		2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; };
-		2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C47623A1DD0FFB40003BEAE /* SoThankful.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6049661F72BC8A00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049651F72BC8A00252BC5 /* CanvasCore.framework */; };
 		2C6049671F72BC8A00252BC5 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049651F72BC8A00252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
@@ -233,7 +231,6 @@
 				617A672C1CE272540065E487 /* SoProgressive.framework in Embed Frameworks */,
 				4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */,
 				61E94C581C87366900777B95 /* AssignmentKit.framework in Embed Frameworks */,
-				2C47623C1DD0FFB40003BEAE /* SoThankful.framework in Embed Frameworks */,
 				5E2BD39E1C52C2C5009511FB /* CalendarKit.framework in Embed Frameworks */,
 				5E75B5FE1C4D4A7F00A44160 /* TooLegit.framework in Embed Frameworks */,
 				5E75B5FA1C4D4A7F00A44160 /* SoPersistent.framework in Embed Frameworks */,
@@ -942,7 +939,6 @@
 				2C75AB971DDF62CF00650856 /* CoreTelephony.framework in Frameworks */,
 				2C75AB951DDF62CA00650856 /* AssetsLibrary.framework in Frameworks */,
 				2CDCA2021F6B2180004110EA /* ObserverAlertKit.framework in Frameworks */,
-				2C47623B1DD0FFB40003BEAE /* SoThankful.framework in Frameworks */,
 				5E75B5FB1C4D4A7F00A44160 /* SoPretty.framework in Frameworks */,
 				4907F9181DA80941004AB1A3 /* SoIconic.framework in Frameworks */,
 				61E94C571C87366900777B95 /* AssignmentKit.framework in Frameworks */,
