@@ -114,7 +114,7 @@ export class QuizzesList extends Component<any, Props, any> {
   }
 
   renderSectionHeader = ({ section }: any) => {
-    return <SectionHeader title={HEADERS[section.key]} key={section.key} top={section.index === 0} />
+    return <SectionHeader title={HEADERS[section.key]} sectionKey={section.key} top={section.index === 0} />
   }
 
   _selectedQuiz = (quiz: Quiz) => {

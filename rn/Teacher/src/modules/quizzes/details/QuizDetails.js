@@ -188,11 +188,12 @@ export class QuizDetails extends Component<any, Props, any> {
     return (
       <View style={style.detailsSection}>
         {
-          details.filter(d => d[1]).map((detail) => {
+          details.filter(d => d[1]).map((detail, index) => {
             // $FlowFixMe
             const accessibilityLabel = `${detail[0]}, ${detail[1]}`
             return (
               <View
+                key={`detail_section_${index}`}
                 style={style.details}
                 accessible={true}
                 accessibilityLabel={accessibilityLabel}

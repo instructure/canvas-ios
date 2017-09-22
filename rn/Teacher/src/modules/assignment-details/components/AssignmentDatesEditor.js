@@ -513,7 +513,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
     )
   }
 
-  renderDate = (date: StagedAssignmentDate) => {
+  renderDate = (date: StagedAssignmentDate, index: number) => {
     let title = i18n('Assign To')
     let requiredAssigneesText = i18n('Assignees required')
     let requiredDueDateText = i18n("'Due Date' must be between 'Available From' and 'Available Until' dates")
@@ -524,7 +524,7 @@ export default class AssignmentDatesEditor extends Component<any, Props, any> {
 
     const canEditAssignees = this.props.canEditAssignees || this.props.canEditAssignees == null
 
-    return (<View>
+    return (<View key={index}>
               <View style={styles.dateContainer} key={date.id || 'base'} onLayout={ (event) => { this.layouts[date.id] = event.nativeEvent.layout } } >
                 <EditSectionHeader title={title} style={styles.headerText}>
                   {removeButton}

@@ -33,6 +33,7 @@ jest
   .mock('../components/FilesTab')
   .mock('../components/SimilarityScore')
   .mock('../comments/CommentsTab')
+  .mock('../SubmissionViewer', () => 'SubmissionViewer')
 
 let template = {
   ...require('../../../__templates__/submissions'),

@@ -26,7 +26,7 @@ test('render', () => {
   let header = renderer.create(
     <SectionHeader
       title='Header'
-      key='key' />
+      sectionKey='key' />
   )
   expect(header.toJSON()).toMatchSnapshot()
 })

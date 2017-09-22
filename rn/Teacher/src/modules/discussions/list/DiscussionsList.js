@@ -82,7 +82,7 @@ export class DiscussionsList extends Component<any, Props, any> {
   }
 
   renderSectionHeader = ({ section }: any) => {
-    return <SectionHeader title={HEADERS[section.key]} key={HEADERS[section.key]} />
+    return <SectionHeader title={HEADERS[section.key]} sectionKey={HEADERS[section.key]} />
   }
 
   _selectedDiscussion = (discussion: Discussion) => {

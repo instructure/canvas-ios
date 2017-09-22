@@ -94,7 +94,7 @@ export default class Reply extends Component <any, Props, any> {
     const unreadDot = this._renderUnreadDot(readState)
     return (
       <View style={style.parentRow}>
-        <ThreadedLinesView depth={depth} avatarSize={AVATAR_SIZE} marginRight={AVATAR_MARGIN_RIGHT}/>
+        <ThreadedLinesView reply={reply} depth={depth} avatarSize={AVATAR_SIZE} marginRight={AVATAR_MARGIN_RIGHT}/>
         <View style={style.colA}>
           { unreadDot }
           {user &&

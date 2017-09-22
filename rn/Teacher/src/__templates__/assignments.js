@@ -19,8 +19,8 @@
 import template, { type Template } from '../utils/template'
 
 export const assignment: Template<Assignment> = template({
-  id: 123456789,
-  course_id: 987654321,
+  id: '123456789',
+  course_id: '987654321',
   name: 'learn to write code',
   description: 'a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.',
   due_at: '2037-06-01T05:59:00Z',
@@ -45,7 +45,7 @@ export const assignment: Template<Assignment> = template({
 })
 
 export const assignmentGroup: Template<AssignmentGroup> = template({
-  id: 1,
+  id: '1',
   name: 'Learn React Native',
   position: 1,
   assignments: [assignment()],

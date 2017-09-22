@@ -47,7 +47,7 @@ let assignment: any = template.assignment()
 let defaultProps = {
   navigator: template.navigator(),
   courseID: course.id,
-  assignmentID: assignment.assignmentID,
+  assignmentID: assignment.id,
   refreshAssignmentDetails: (courseID: string, assignmentID: string) => {},
   assignmentDetails: assignment,
   pending: 0,

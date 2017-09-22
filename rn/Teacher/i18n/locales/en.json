@@ -1,4 +1,7 @@
 {
+  "_376f89ea": {
+    "message": "--"
+  },
   "_4927a5f1": {
 	"message": "?"
   },
@@ -203,6 +206,9 @@
   "bold_34b9d97e": {
 	"message": "Bold"
   },
+  "can_not_forward_message_2a4d4953": {
+    "message": "Can not forward message"
+  },
   "cancel_caeb1e68": {
 	"message": "Cancel"
   },
@@ -235,6 +241,9 @@
   },
   "clear_filter_submissions_7def30db": {
 	"message": "Clear Filter Submissions"
+  },
+  "clear_recording_5a97b475": {
+    "message": "Clear recording"
   },
   "close_for_comments_ce0e5d00": {
 	"message": "Close for comments"
@@ -323,6 +332,15 @@
   "customize_grade_value_964695a3": {
 	"message": "Customize Grade { value }"
   },
+  "date_date_medium_at_date_time_short_2b9ce48b": {
+    "message": "{ date, date, medium } at { date, time, short }"
+  },
+  "date_date_mmm_d_at_date_time_short_61eeb79b": {
+    "message": "{ date, date, 'MMM d' } at { date, time, short }"
+  },
+  "date_date_mmm_d_date_time_short_e82719d6": {
+    "message": "{ date, date, 'MMM d' } { date, time, short }"
+  },
   "datestring_at_timestring_183180ce": {
 	"message": "{ dateString } at { timeString }"
   },
@@ -388,6 +406,12 @@
   },
   "edit_assignment_ebf22a72": {
 	"message": "Edit Assignment"
+  },
+  "edit_attachment_count_ae907c46": {
+    "message": "Edit attachment ({ count })"
+  },
+  "edit_attachments_count_5e9276ea": {
+    "message": "Edit attachments ({ count })"
   },
   "edit_c5fbea07": {
 	"message": "Edit"
@@ -460,6 +484,9 @@
   },
   "files_c300e900": {
 	"message": "Files"
+  },
+  "files_numberoffiles_number_410d9eba": {
+    "message": "Files ({ numberOfFiles, number })"
   },
   "files_numberoffiles_66240ab2": {
 	"message": "Files ({ numberOfFiles })"
@@ -641,6 +668,9 @@
   "minutes_4aee5a41": {
 	"message": "Minutes"
   },
+  "minutes_plural_one_minute_other_minutes_e2adacfe": {
+    "message": "{ minutes, plural,\n    one {# minute}\n  other {# minutes}\n}"
+  },
   "missing_1a256b3b": {
 	"message": "Missing"
   },
@@ -724,6 +754,9 @@
   },
   "none_3b5e34d2": {
 	"message": "None"
+  },
+  "none_9b6c9bec": {
+    "message": "none"
   },
   "not_a_teacher_b0d0fc55": {
 	"message": "Not a teacher?"
@@ -839,6 +872,9 @@
   "points_possible_must_be_a_number_4a592dc6": {
 	"message": "Points possible must be a number"
   },
+  "pointspossible_number_pts_2d9f157d": {
+    "message": "{ pointsPossible, number } pts"
+  },
   "post_at_a9e0fecb": {
 	"message": "Post at..."
   },
@@ -899,6 +935,9 @@
   "redo_363c58b7": {
 	"message": "Redo"
   },
+  "remove_attachment_81f30aa3": {
+    "message": "Remove attachment"
+  },
   "remove_date_edf2f565": {
 	"message": "Remove date"
   },
@@ -938,6 +977,9 @@
   "score_more_than_score_assignmentname_a4fdc7fe": {
 	"message": "Score more than { score } - { assignmentName }"
   },
+  "score_number_pointspossible_number_fd8705b8": {
+    "message": "{ score, number }/{ pointsPossible, number }"
+  },
   "score_to_keep_48ace09b": {
 	"message": "Score to Keep"
   },
@@ -952,6 +994,9 @@
   },
   "search_280d00bd": {
 	"message": "Search"
+  },
+  "seconds_plural_one_second_other_seconds_d33cf6e3": {
+    "message": "{ seconds, plural,\n    one {# second}\n  other {# seconds}\n}"
   },
   "section_sectionname_a455be11": {
 	"message": "Section: { sectionName }"
@@ -970,6 +1015,9 @@
   },
   "send_individual_message_to_each_recipient_4fdfc1e5": {
 	"message": "Send individual message to each recipient"
+  },
+  "send_recording_82e5a550": {
+    "message": "Send recording"
   },
   "sending_bf324366": {
 	"message": "Sending..."
@@ -1006,6 +1054,15 @@
   },
   "starred_5a9efa8a": {
 	"message": "Starred"
+  },
+  "start_recording_189496b9": {
+    "message": "Start recording"
+  },
+  "stop_playing_audio_96aed3bc": {
+    "message": "Stop playing audio"
+  },
+  "stop_recording_6efe2129": {
+    "message": "Stop recording"
   },
   "student_5da6bfd1": {
 	"message": "Student"
@@ -1073,6 +1130,9 @@
   "text_submission_935eeb5": {
 	"message": "Text Submission"
   },
+  "that_message_can_not_be_forwarded_76cb2b1a": {
+    "message": "That message can not be forwarded."
+  },
   "the_value_of_possible_points_must_be_zero_or_great_374e175a": {
 	"message": "The value of possible points must be zero or greater"
   },
@@ -1138,6 +1198,9 @@
   },
   "this_will_remove_the_due_date_and_all_of_the_assoc_56d1ea8": {
 	"message": "This will remove the due date and all of the associated assignees."
+  },
+  "time_elapsed_minutes_seconds_f5d82cb": {
+    "message": "Time elapsed: { minutes }, { seconds }."
   },
   "time_limit_a6f1a51e": {
 	"message": "Time Limit"
@@ -1205,11 +1268,17 @@
   "upload_cancelled_by_user_ca7723be": {
 	"message": "Upload cancelled by user"
   },
+  "upload_complete_46473c7b": {
+    "message": "Upload complete"
+  },
   "upload_error_38012123": {
 	"message": "Upload error"
   },
   "upload_file_fd2361b8": {
 	"message": "Upload File"
+  },
+  "upload_in_progress_57b96797": {
+    "message": "Upload in progress"
   },
   "uploading_loaded_of_total_d5c3d555": {
 	"message": "Uploading { loaded } of { total }"
@@ -1255,6 +1324,15 @@
   },
   "yes_dde87d5": {
 	"message": "Yes"
+  },
+  "you_must_enable_camera_and_microphone_permissions__bf35451f": {
+    "message": "You must enable Camera and Microphone permissions in Settings to use the camera."
+  },
+  "you_must_enable_microphone_permissions_in_settings_b0cf8b44": {
+    "message": "You must enable Microphone permissions in Settings to record audio."
+  },
+  "you_must_enable_photos_permissions_in_settings_26faf052": {
+    "message": "You must enable Photos permissions in Settings."
   },
   "you_must_enable_camera_and_microphone_permissions__34eba5a0": {
 	"message": "You must enable Camera and Microphone permissions in Settings to record video"

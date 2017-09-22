@@ -34,7 +34,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
               Object {
                 "allow_rating": false,
                 "assignment": null,
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -145,7 +145,7 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
               Object {
                 "allow_rating": false,
                 "assignment": null,
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -1022,7 +1022,6 @@ exports[`DiscussionDetails renders a non-assignment discussion 1`] = `
                   onLayout={[Function]}
                   style={
                     Object {
-                      "color": "#2D3B45",
                       "flex": 1,
                     }
                   }
@@ -1532,13 +1531,13 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
-                  "course_id": 987654321,
+                  "course_id": "987654321",
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
                   "grading_type": "points",
                   "html_url": "http://hostname.tld/whatever",
-                  "id": 123456789,
+                  "id": "123456789",
                   "lock_at": "2037-06-01T05:59:59Z",
                   "name": "learn to write code",
                   "needs_grading_count": 0,
@@ -1555,7 +1554,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "updated_at": "2017-03-17T19:15:25Z",
                 },
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -1633,13 +1632,13 @@ exports[`DiscussionDetails renders no replies 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
-                  "course_id": 987654321,
+                  "course_id": "987654321",
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
                   "grading_type": "points",
                   "html_url": "http://hostname.tld/whatever",
-                  "id": 123456789,
+                  "id": "123456789",
                   "lock_at": "2037-06-01T05:59:59Z",
                   "name": "learn to write code",
                   "needs_grading_count": 0,
@@ -1656,7 +1655,7 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "updated_at": "2017-03-17T19:15:25Z",
                 },
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -2524,7 +2523,6 @@ exports[`DiscussionDetails renders no replies 1`] = `
                   onLayout={[Function]}
                   style={
                     Object {
-                      "color": "#2D3B45",
                       "flex": 1,
                     }
                   }
@@ -2631,13 +2629,13 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
-                  "course_id": 987654321,
+                  "course_id": "987654321",
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
                   "grading_type": "points",
                   "html_url": "http://hostname.tld/whatever",
-                  "id": 123456789,
+                  "id": "123456789",
                   "lock_at": "2037-06-01T05:59:59Z",
                   "name": "learn to write code",
                   "needs_grading_count": 0,
@@ -2654,7 +2652,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "updated_at": "2017-03-17T19:15:25Z",
                 },
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -2844,13 +2842,13 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
-                  "course_id": 987654321,
+                  "course_id": "987654321",
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
                   "grading_type": "points",
                   "html_url": "http://hostname.tld/whatever",
-                  "id": 123456789,
+                  "id": "123456789",
                   "lock_at": "2037-06-01T05:59:59Z",
                   "name": "learn to write code",
                   "needs_grading_count": 0,
@@ -2867,7 +2865,7 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "updated_at": "2017-03-17T19:15:25Z",
                 },
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -3848,7 +3846,6 @@ exports[`DiscussionDetails renders with nested replies selected 1`] = `
                   onLayout={[Function]}
                   style={
                     Object {
-                      "color": "#2D3B45",
                       "flex": 1,
                     }
                   }
@@ -4793,13 +4790,13 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
-                  "course_id": 987654321,
+                  "course_id": "987654321",
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
                   "grading_type": "points",
                   "html_url": "http://hostname.tld/whatever",
-                  "id": 123456789,
+                  "id": "123456789",
                   "lock_at": "2037-06-01T05:59:59Z",
                   "name": "learn to write code",
                   "needs_grading_count": 0,
@@ -4816,7 +4813,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "updated_at": "2017-03-17T19:15:25Z",
                 },
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -4929,13 +4926,13 @@ exports[`DiscussionDetails renders with replies 1`] = `
                 "assignment": Object {
                   "assignment_group_id": 1376,
                   "automatic_peer_reviews": false,
-                  "course_id": 987654321,
+                  "course_id": "987654321",
                   "created_at": "2017-03-17T19:15:25Z",
                   "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
                   "due_at": "2037-06-01T05:59:00Z",
                   "grading_type": "points",
                   "html_url": "http://hostname.tld/whatever",
-                  "id": 123456789,
+                  "id": "123456789",
                   "lock_at": "2037-06-01T05:59:59Z",
                   "name": "learn to write code",
                   "needs_grading_count": 0,
@@ -4952,7 +4949,7 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   "unlock_at": "2017-03-17T06:00:00Z",
                   "updated_at": "2017-03-17T19:15:25Z",
                 },
-                "assignment_id": 123456789,
+                "assignment_id": "123456789",
                 "author": Object {
                   "avatar_url": "http://www.fillmurray.com/100/100",
                   "display_name": "The Donald",
@@ -5856,7 +5853,6 @@ exports[`DiscussionDetails renders with replies 1`] = `
                   onLayout={[Function]}
                   style={
                     Object {
-                      "color": "#2D3B45",
                       "flex": 1,
                     }
                   }

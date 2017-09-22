@@ -27,6 +27,7 @@ import {
   Heading2,
   TextInput,
   ModalActivityIndicatorAlertText,
+  Separated,
 } from '../text'
 
 // Note: test renderer must be required after react-native.
@@ -84,6 +85,20 @@ test('renders paragraph correctly', () => {
 test('renders modalActivityIndicatorAlertText correctly', () => {
   let tree = renderer.create(
     <ModalActivityIndicatorAlertText />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders separated correctly', () => {
+  let tree = renderer.create(
+    <Separated separator={' * '} separated={['a', 'b', 'c']} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
+test('renders separated with one item', () => {
+  let tree = renderer.create(
+    <Separated separator={' * '} separated={['a']} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
 })

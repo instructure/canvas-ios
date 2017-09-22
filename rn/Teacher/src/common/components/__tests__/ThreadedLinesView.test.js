@@ -23,10 +23,15 @@ import ThreadedLinesView from '../ThreadedLinesView'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
 
+const template = {
+  ...require('../../../__templates__/discussion'),
+}
+
 let defaultProps = {
   depth: 0,
   avatarSize: 24,
   marginRight: 8,
+  reply: template.discussionReply(),
 }
 
 it('renders correctly with empty depth', () => {

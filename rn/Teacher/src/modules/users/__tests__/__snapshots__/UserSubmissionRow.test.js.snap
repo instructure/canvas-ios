@@ -234,11 +234,11 @@ exports[`UserSubmissionRow renders 1`] = `
                   }
                 }
               >
-                <BVLinearGradient
+                <LinearGradient
                   colors={
                     Array [
-                      4278226658,
-                      4278239731,
+                      "#008EE2",
+                      "#00C1F3",
                     ]
                   }
                   end={
@@ -247,7 +247,6 @@ exports[`UserSubmissionRow renders 1`] = `
                       "y": 0,
                     }
                   }
-                  locations={null}
                   start={
                     Object {
                       "x": 0,
@@ -535,11 +534,11 @@ exports[`UserSubmissionRow renders complete 1`] = `
                   }
                 }
               >
-                <BVLinearGradient
+                <LinearGradient
                   colors={
                     Array [
-                      4278226658,
-                      4278239731,
+                      "#008EE2",
+                      "#00C1F3",
                     ]
                   }
                   end={
@@ -548,7 +547,6 @@ exports[`UserSubmissionRow renders complete 1`] = `
                       "y": 0,
                     }
                   }
-                  locations={null}
                   start={
                     Object {
                       "x": 0,
@@ -1042,11 +1040,11 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
                   }
                 }
               >
-                <BVLinearGradient
+                <LinearGradient
                   colors={
                     Array [
-                      4278226658,
-                      4278239731,
+                      "#008EE2",
+                      "#00C1F3",
                     ]
                   }
                   end={
@@ -1055,7 +1053,6 @@ exports[`UserSubmissionRow renders incomplete 1`] = `
                       "y": 0,
                     }
                   }
-                  locations={null}
                   start={
                     Object {
                       "x": 0,

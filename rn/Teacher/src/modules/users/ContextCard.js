@@ -160,7 +160,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
     )
   }
 
-  renderItem = ({ item: assignment }: { item: Assignment }) => {
+  renderItem = ({ item: assignment, index }: { item: Assignment, index: number }) => {
     let submission = this.props.submissions.find(submission => assignment.id === submission.assignment_id)
     return (
       <UserSubmissionRow
@@ -169,6 +169,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
         submission={submission}
         user={this.props.user}
         onPress={this._navigateToSpeedGrader}
+
       />
     )
   }
@@ -219,11 +220,14 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
           refreshing={this.props.refreshing}
           data={isStudent ? this.props.assignments : []}
           renderItem={this.renderItem}
+          keyExtractor={this._keyExtractor}
           ItemSeparatorComponent={RowSeparator}
         />
       </Screen>
     )
   }
+
+  _keyExtractor = (item: Object, index: number) => `${index}`
 
   _emailContact = () => {
     const { course, user } = this.props

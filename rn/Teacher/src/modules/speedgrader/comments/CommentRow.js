@@ -114,6 +114,7 @@ export default class CommentRow extends Component<any, CommentRowProps, any> {
             attachmentIndex={i}
             onPress={this.props.switchFile}
             submissionID={contents.submissionID}
+            key={`commentRow_${i}`}
           />
           ))
       case 'media':

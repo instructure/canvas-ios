@@ -171,7 +171,7 @@ export default class ConversationMessageRow extends Component<any, ConversationM
           </TouchableWithoutFeedback>
           { this.props.message.attachments &&
             this.props.message.attachments.map((attachment, index) => {
-              return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} onPress={() => {
+              return (<TouchableOpacity testID={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} key={`inbox.conversation-message-${message.id}.attachment-${attachment.id}`} onPress={() => {
                 this._showAttachment(attachment)
               }}>
                 <View style={styles.attachment}>

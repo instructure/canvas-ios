@@ -104,7 +104,7 @@ test('render without courses and *zero* total courses', () => {
 })
 
 test('select course', () => {
-  const course: CourseProps = { ...template.course({ id: 1, is_favorite: true }), color: '#112233' }
+  const course: CourseProps = { ...template.course({ id: '1', is_favorite: true }), color: '#112233' }
   const props = {
     ...defaultProps,
     courses: [course],
@@ -122,7 +122,7 @@ test('select course', () => {
 })
 
 test('opens course preferences', () => {
-  const course = template.course({ id: 1, is_favorite: true })
+  const course = template.course({ id: '1', is_favorite: true })
   const props = {
     ...defaultProps,
     courses: [{ ...course, color: '#fff' }],
@@ -143,7 +143,7 @@ test('opens course preferences', () => {
 })
 
 test('go to all courses', () => {
-  const course = template.course({ id: 1, is_favorite: true })
+  const course = template.course({ id: '1', is_favorite: true })
   const props = {
     ...defaultProps,
     courses: [{ ...course, color: '#fff' }],

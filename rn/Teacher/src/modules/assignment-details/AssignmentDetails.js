@@ -295,7 +295,7 @@ const style = StyleSheet.create({
 const assignementDetailsShape = PropTypes.shape({
   id: PropTypes.string,
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   created_at: PropTypes.string,
   updated_at: PropTypes.string,
   due_at: PropTypes.string,

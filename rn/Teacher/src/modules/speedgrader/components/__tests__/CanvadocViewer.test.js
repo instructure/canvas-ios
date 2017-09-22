@@ -28,7 +28,7 @@ const templates = {
 test('Canvadoc viewer renders', () => {
   let tree = renderer.create(
     <CanvadocViewer
-      config={{ previewPath: templates.attachment().preview_url }}
+      config={{ drawerInset: 0, previewPath: templates.attachment().preview_url }}
     />
   ).toJSON()
   expect(tree).toMatchSnapshot()

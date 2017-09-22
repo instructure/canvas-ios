@@ -89,6 +89,210 @@ exports[`renders paragraph correctly 1`] = `
 />
 `;
 
+exports[`renders separated correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+        "b",
+        "c",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    a
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          undefined,
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 10,
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+     * 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+        "b",
+        "c",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    b
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        Array [
+          undefined,
+          Object {
+            "alignSelf": "center",
+            "color": "#8B969E",
+            "fontSize": 10,
+          },
+        ],
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+     * 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+        "b",
+        "c",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    c
+  </Text>
+</View>
+`;
+
+exports[`renders separated with one item 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    separated={
+      Array [
+        "a",
+      ]
+    }
+    separator=" * "
+    style={
+      Array [
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 16,
+        },
+        undefined,
+        Object {
+          "fontFamily": ".SFUIDisplay",
+        },
+      ]
+    }
+  >
+    a
+  </Text>
+</View>
+`;
+
 exports[`renders text correctly 1`] = `
 <Text
   accessible={true}

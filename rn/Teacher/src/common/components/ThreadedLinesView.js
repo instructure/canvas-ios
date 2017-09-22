@@ -30,6 +30,7 @@ type Props = {
   depth: number,
   avatarSize: number,
   marginRight: number,
+  reply: DiscussionReply,
 }
 
 export default class ThreadedLinesView extends PureComponent {
@@ -38,7 +39,9 @@ export default class ThreadedLinesView extends PureComponent {
     return this.createThreadDepth(this.props.depth)
   }
 
-  renderLine () {
+  renderLine (index: number) {
+    const { reply } = this.props || { id: '' }
+
     return (
       <View style={{
         flexDirection: 'column',
@@ -46,7 +49,7 @@ export default class ThreadedLinesView extends PureComponent {
         alignItems: 'center',
         marginRight: this.props.marginRight,
         width: this.props.avatarSize,
-      }}>
+      }} key={`reply_line_${reply.id}_${index}`}>
         <View style={style.threadLine}/>
       </View>
     )
@@ -60,7 +63,7 @@ export default class ThreadedLinesView extends PureComponent {
       let lines = depth
       let views = []
       while (lines > 0) {
-        views.push(this.renderLine())
+        views.push(this.renderLine(lines))
         lines--
       }
       return (

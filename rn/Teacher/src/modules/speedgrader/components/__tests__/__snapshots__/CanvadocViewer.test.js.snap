@@ -4,6 +4,7 @@ exports[`Canvadoc viewer renders 1`] = `
 <CanvadocView
   config={
     Object {
+      "drawerInset": 0,
       "previewPath": "/",
     }
   }

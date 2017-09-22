@@ -292,7 +292,7 @@ export class Compose extends PureComponent {
                 }
                 <View style={styles.tokenContainer}>
                   {this.state.recipients.map((r) => {
-                    return (<AddressBookToken item={r} delete={this._deleteRecipient} />)
+                    return (<AddressBookToken key={r.id} item={r} delete={this._deleteRecipient} />)
                   })}
                 </View>
                 { this.props.canAddRecipients &&

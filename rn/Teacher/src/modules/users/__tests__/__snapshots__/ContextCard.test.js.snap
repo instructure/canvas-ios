@@ -200,7 +200,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
         Object {
           "assignment_group_id": 1376,
           "automatic_peer_reviews": false,
-          "course_id": 987654321,
+          "course_id": "987654321",
           "created_at": "2017-03-17T19:15:25Z",
           "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
           "due_at": "2037-06-01T05:59:00Z",
@@ -880,11 +880,11 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                           }
                         }
                       >
-                        <BVLinearGradient
+                        <LinearGradient
                           colors={
                             Array [
-                              4278226658,
-                              4278239731,
+                              "#008EE2",
+                              "#00C1F3",
                             ]
                           }
                           end={
@@ -893,7 +893,6 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                               "y": 0,
                             }
                           }
-                          locations={null}
                           start={
                             Object {
                               "x": 0,
@@ -1151,7 +1150,7 @@ exports[`ContextCard renders 1`] = `
         Object {
           "assignment_group_id": 1376,
           "automatic_peer_reviews": false,
-          "course_id": 987654321,
+          "course_id": "987654321",
           "created_at": "2017-03-17T19:15:25Z",
           "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
           "due_at": "2037-06-01T05:59:00Z",
@@ -1831,11 +1830,11 @@ exports[`ContextCard renders 1`] = `
                           }
                         }
                       >
-                        <BVLinearGradient
+                        <LinearGradient
                           colors={
                             Array [
-                              4278226658,
-                              4278239731,
+                              "#008EE2",
+                              "#00C1F3",
                             ]
                           }
                           end={
@@ -1844,7 +1843,6 @@ exports[`ContextCard renders 1`] = `
                               "y": 0,
                             }
                           }
-                          locations={null}
                           start={
                             Object {
                               "x": 0,
@@ -2449,7 +2447,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
         Object {
           "assignment_group_id": 1376,
           "automatic_peer_reviews": false,
-          "course_id": 987654321,
+          "course_id": "987654321",
           "created_at": "2017-03-17T19:15:25Z",
           "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
           "due_at": "2037-06-01T05:59:00Z",
@@ -3165,11 +3163,11 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                           }
                         }
                       >
-                        <BVLinearGradient
+                        <LinearGradient
                           colors={
                             Array [
-                              4278226658,
-                              4278239731,
+                              "#008EE2",
+                              "#00C1F3",
                             ]
                           }
                           end={
@@ -3178,7 +3176,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                               "y": 0,
                             }
                           }
-                          locations={null}
                           start={
                             Object {
                               "x": 0,
