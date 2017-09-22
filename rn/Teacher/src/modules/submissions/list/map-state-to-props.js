@@ -33,11 +33,15 @@ type RoutingProps = {
 export function mapStateToProps ({ entities }: AppState, { courseID, assignmentID }: RoutingProps): SubmissionListDataProps {
   // submissions
   const assignmentContent = entities.assignments[assignmentID]
+  const courseContent = entities.courses[courseID]
   let pointsPossible
   let groupAssignment = null
   if (assignmentContent && assignmentContent.data) {
     const a = assignmentContent.data
-    if (a.group_category_id) {
+    const groupExists = a.group_category_id && courseContent.groups.refs
+      .filter(ref => entities.groups[ref].group.group_category_id === a.group_category_id)
+      .length > 0
+    if (groupExists) {
       groupAssignment = {
         groupCategoryID: a.group_category_id,
         gradeIndividually: a.grade_group_students_individually,
@@ -47,13 +51,12 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
   }
 
   let submissions
-  if (groupAssignment != null && !groupAssignment.gradeIndividually) {
+  if (groupAssignment && !groupAssignment.gradeIndividually) {
     submissions = getGroupSubmissionProps(entities, courseID, assignmentID)
   } else {
     submissions = getSubmissionsProps(entities, courseID, assignmentID)
   }
 
-  const courseContent = entities.courses[courseID]
   let courseColor = '#FFFFFF'
   if (courseContent && courseContent.color) {
     courseColor = courseContent.color

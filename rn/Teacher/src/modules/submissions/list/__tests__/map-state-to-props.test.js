@@ -29,6 +29,7 @@ let t = {
   ...require('../../../../__templates__/enrollments'),
   ...require('../../../../__templates__/users'),
   ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/group'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../__templates__/submission-props'),
 }
@@ -220,4 +221,52 @@ test('filters out StudentViewEnrollment', () => {
   })
   const result = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
   expect(result.submissions.map(u => u.userID)).toEqual(['1'])
+})
+
+test('gets all submissions if group doesnt exist', () => {
+  const s1 = t.enrollment({
+    id: '1',
+    type: 'StudentEnrollment',
+    user_id: '1',
+    user: t.user({ id: '1' }),
+  })
+  const s2 = t.enrollment({
+    id: '2',
+    type: 'StudentEnrollment',
+    user_id: '2',
+    user: t.user({ id: '2' }),
+  })
+  const course = t.course()
+  const assignment = t.assignment({
+    group_category_id: '555',
+  })
+  const state = t.appState({
+    entities: {
+      enrollments: {
+        [s1.id]: s1,
+        [s2.id]: s2,
+      },
+      courses: {
+        [course.id]: {
+          enrollments: { pending: 0, refs: [s1.id, s2.id] },
+          groups: { pending: 0, refs: ['1'] },
+        },
+      },
+      assignments: {
+        [assignment.id]: {
+          submissions: { pending: 0, refs: [] },
+          data: assignment,
+        },
+      },
+      groups: {
+        '1': {
+          group: t.group({ group_category_id: '111' }),
+        },
+      },
+    },
+  })
+  const { submissions } = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
+  const userIDs = submissions.map(u => u.userID)
+  expect(userIDs).toContain('1')
+  expect(userIDs).toContain('2')
 })
