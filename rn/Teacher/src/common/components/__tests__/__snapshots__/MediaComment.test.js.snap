@@ -32,6 +32,7 @@ exports[`MediaComment renders videos 1`] = `
     }
   >
     <View
+      pointerEvents="none"
       style={
         Object {
           "alignItems": "center",
@@ -47,47 +48,6 @@ exports[`MediaComment renders videos 1`] = `
         }
       }
     >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "width": 60,
-          }
-        }
-      >
-        <TouchableHighlight
-          accessibilityLabel="Cancel"
-          accessibilityTraits="button"
-          hitSlop={
-            Object {
-              "bottom": 4,
-              "left": 4,
-              "right": 4,
-              "top": 4,
-            }
-          }
-          onPress={[Function]}
-          style={
-            Object {
-              "marginRight": 12,
-            }
-          }
-          testID="video-recorder.cancel.btn"
-          underlayColor="transparent"
-        >
-          <Image
-            source={1}
-            style={
-              Object {
-                "height": 24,
-                "tintColor": "white",
-                "width": 24,
-              }
-            }
-          />
-        </TouchableHighlight>
-      </View>
       <Text
         accessibilityLabel="Time elapsed: 0 minutes, 0 seconds."
         accessible={true}
@@ -105,21 +65,49 @@ exports[`MediaComment renders videos 1`] = `
       >
         00:00
       </Text>
-      <View
+    </View>
+    <TouchableHighlight
+      accessibilityLabel="Cancel"
+      accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 4,
+          "left": 4,
+          "right": 4,
+          "top": 4,
+        }
+      }
+      onPress={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255,255,255,0.14)",
+            "borderRadius": 8,
+            "height": 31,
+            "justifyContent": "center",
+            "width": 45,
+          },
+          Object {
+            "left": 7,
+            "position": "absolute",
+            "top": 8,
+            "zIndex": 2,
+          },
+        ]
+      }
+      testID="video-recorder.cancel.btn"
+      underlayColor="transparent"
+    >
+      <Image
+        source={1}
         style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "width": 60,
-            },
-            Object {
-              "justifyContent": "flex-end",
-            },
-          ]
+          Object {
+            "tintColor": "white",
+          }
         }
       />
-    </View>
+    </TouchableHighlight>
     <View
       style={
         Object {

@@ -77,63 +77,50 @@ export default class VideoRecorder extends Component<any, Props, any> {
 
     return (
       <View style={style.container}>
-        <View style={style.header}>
-          <View style={style.headerButtons}>
-            <TouchableHighlight
-              onPress={this.cancel}
-              underlayColor='transparent'
-              hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-              testID='video-recorder.cancel.btn'
-              style={{ marginRight: 12 }}
-              accessibilityLabel={i18n('Cancel')}
-              accessibilityTraits='button'
-            >
-              <Image source={images.mediaComments.x} style={style.headerButtonImage} />
-            </TouchableHighlight>
-            { finished &&
-              <TouchableHighlight
-                onPress={this.reset}
-                underlayColor='transparent'
-                hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                testID='video-recorder.reset.btn'
-                accessibilityLabel={i18n('Clear recording')}
-                accessibilityTraits='button'
-              >
-                <Image source={images.mediaComments.trash} style={style.headerButtonImage} />
-              </TouchableHighlight>
-            }
-          </View>
+        <View style={style.header} pointerEvents='none'>
           <Text style={style.title} accessibilityLabel={currentTimeA11yLabel}>{currentTime}</Text>
-          <View style={[style.headerButtons, { justifyContent: 'flex-end' }]}>
-            { finished &&
-              <TouchableHighlight
-                onPress={this.send}
-                underlayColor='transparent'
-                hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-                testID='video-recorder.send.btn'
-                accessibilityLabel={i18n('Send recording')}
-                accessibilityTraits='button'
-              >
-                <Image source={images.mediaComments.send} style={style.headerButtonImage} />
-              </TouchableHighlight>
-            }
-          </View>
         </View>
+        { !recording &&
+          <TouchableHighlight
+            onPress={finished ? this.reset : this.cancel}
+            underlayColor='transparent'
+            hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+            testID={finished ? 'video-recorder.reset.btn' : 'video-recorder.cancel.btn'}
+            style={[style.actionButton, finished ? style.resetButton : style.cancelButton]}
+            accessibilityLabel={finished ? i18n('Clear recording') : i18n('Cancel')}
+            accessibilityTraits='button'
+          >
+            <Image source={images.mediaComments[finished ? 'trash' : 'x']} style={style.actionButtonImage} />
+          </TouchableHighlight>
+        }
+        { finished &&
+          <TouchableHighlight
+            onPress={this.send}
+            underlayColor='transparent'
+            hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
+            testID='video-recorder.send.btn'
+            accessibilityLabel={i18n('Send recording')}
+            accessibilityTraits='button'
+            style={[style.actionButton, style.sendButton]}
+          >
+            <Image source={images.mediaComments.send} style={style.actionButtonImage} />
+          </TouchableHighlight>
+        }
         { showingCamera &&
           <View style={style.controls}>
-              <TouchableHighlight
-                onPress={this._toggleRecording}
-                testID='video-recorder.start-recording.btn'
-                style={[style.startStopButtonContainer, {
-                  borderColor: recording ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,1)',
-                }]}
-                underlayColor='transparent'
-                accessibilityLabel={recording ? i18n('Stop recording') : i18n('Start recording')}
-                accessibilityTraits='button'
-              >
-                <View style={recording ? style.stopButton : style.startButton}>
-                </View>
-              </TouchableHighlight>
+            <TouchableHighlight
+              onPress={this._toggleRecording}
+              testID='video-recorder.start-recording.btn'
+              style={[style.startStopButtonContainer, {
+                borderColor: recording ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,1)',
+              }]}
+              underlayColor='transparent'
+              accessibilityLabel={recording ? i18n('Stop recording') : i18n('Start recording')}
+              accessibilityTraits='button'
+            >
+              <View style={recording ? style.stopButton : style.startButton}>
+              </View>
+            </TouchableHighlight>
           </View>
         }
         { loading &&
@@ -214,6 +201,9 @@ export default class VideoRecorder extends Component<any, Props, any> {
   }
 }
 
+const ACTION_BUTTON_MARGIN = 7
+const ACTION_BUTTON_BOTTOM = 50
+
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -236,15 +226,34 @@ const style = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-  headerButtons: {
-    width: 24 * 2 + 12, // image width * num images + margin
-    flexDirection: 'row',
-    alignItems: 'center',
+  cancelButton: {
+    position: 'absolute',
+    top: 8,
+    left: ACTION_BUTTON_MARGIN,
+    zIndex: 2,
   },
-  headerButtonImage: {
+  resetButton: {
+    position: 'absolute',
+    bottom: ACTION_BUTTON_BOTTOM,
+    left: ACTION_BUTTON_MARGIN,
+    zIndex: 2,
+  },
+  sendButton: {
+    position: 'absolute',
+    bottom: ACTION_BUTTON_BOTTOM,
+    right: ACTION_BUTTON_MARGIN,
+    zIndex: 2,
+  },
+  actionButton: {
+    backgroundColor: 'rgba(255,255,255,0.14)',
+    borderRadius: 8,
+    width: 45,
+    height: 31,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  actionButtonImage: {
     tintColor: 'white',
-    width: 24,
-    height: 24,
   },
   camera: {
     flex: 1,
