@@ -324,7 +324,8 @@ class AirwolfLoginViewController: UIViewController {
             }
             .forEach(alert.addAction(_:))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: nil))
-        
+        alert.popoverPresentationController?.sourceView = button
+        alert.popoverPresentationController?.sourceRect = button.bounds
         present(alert, animated: true, completion: nil)
     }
 
