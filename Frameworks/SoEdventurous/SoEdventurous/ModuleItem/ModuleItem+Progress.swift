@@ -100,6 +100,7 @@ extension ModuleItem {
         let contentID = NSPredicate(format: "%K == %@", "contentID", progress.itemID)
         let pageURL = NSPredicate(format: "%K == %@", "pageURL", progress.itemID)
         let externalURL = NSPredicate(format: "%K == %@", "externalURL", progress.itemID)
+        let url = NSPredicate(format: "%K == %@", "url", progress.itemID)
         let type = contentType(progress).flatMap { NSPredicate(format: "%K == %@", "contentType", $0.rawValue) }
         let course = progress.contextID.context == .course ? NSPredicate(format: "%K == %@", "courseID", progress.contextID.id) : NSPredicate(value: false)
         let requirement = NSPredicate(format: "%K == %@", "completionRequirement", completionRequirement(progress).rawValue)
@@ -113,7 +114,7 @@ extension ModuleItem {
             // The legacy module item progress (CBIPostModuleItemProgressUpdate) does not
             // include the course id or the item type so we find them the best we can
             // using only the `itemID` and the `completionRequirement`.
-            let id = NSCompoundPredicate(orPredicateWithSubpredicates: [contentID, pageURL, externalURL])
+            let id = NSCompoundPredicate(orPredicateWithSubpredicates: [contentID, pageURL, externalURL, url])
             return NSCompoundPredicate(andPredicateWithSubpredicates: [id, requirement, incomplete, unlocked])
         case .assignment, .file, .quiz, .discussion:
             return NSCompoundPredicate(andPredicateWithSubpredicates: [contentID, predicate])
