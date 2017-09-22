@@ -84,3 +84,7 @@ export function unfavoriteCourse (courseID: string): Promise<AxiosResponse<Favor
 export function updateCourseColor (courseId: string, hexcode: string): Promise<AxiosResponse<UpdateCustomColorResponse>> {
   return httpClient().put(`users/self/colors/course_${courseId}`, { hexcode })
 }
+
+export function createCourse (course: CreateCourse): Promise<AxiosResponse<Course>> {
+  return httpClient().post(`accounts/self/courses`, course)
+}

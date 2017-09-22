@@ -38,3 +38,31 @@ export type UserDisplay = {
   avatar_image_url: string,
   html_url: string,
 }
+
+export type CreateUser = {
+  user: {
+    name: string,
+    short_name?: string,
+    sortable_name?: string,
+    time_zone?: string,
+    locale?: string,
+    birthdate?: Date,
+    terms_of_use?: boolean,
+    skip_registration?: boolean,
+  },
+  pseudonym: {
+    unique_id: string,
+    password: string,
+    sis_user_id?: string,
+    integration_id?: string,
+    send_confirmation?: boolean,
+    force_self_registration?: boolean,
+    authentication_provider_id?: string,
+  },
+  communication_channel?: {
+    communication_channel_type?: string,
+    communication_channel_address?: string,
+    communication_channel_confirmation_url?: boolean,
+    communication_channel_skip_confirmation?: boolean,
+  }
+}

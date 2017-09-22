@@ -17,6 +17,7 @@
 // @flow
 
 import { paginate, exhaust } from '../utils/pagination'
+import httpClient from '../httpClient'
 
 export function getCourseEnrollments (courseID: string): Promise<ApiResponse<Array<Enrollment>>> {
   const enrollments = paginate(`courses/${courseID}/enrollments`, {
@@ -26,4 +27,8 @@ export function getCourseEnrollments (courseID: string): Promise<ApiResponse<Arr
   })
 
   return exhaust(enrollments)
+}
+
+export function enrollUser (courseID: string, enrollment: CreateEnrollment): Promise<ApiResponse<Enrollment>> {
+  return httpClient().post(`courses/${courseID}/enrollments`, { enrollment })
 }

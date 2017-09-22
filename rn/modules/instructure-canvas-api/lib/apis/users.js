@@ -25,3 +25,24 @@ export function getCustomColors (): Promise<AxiosResponse<CustomColors>> {
 export function getUserProfile (userID: string): Promise<AxiosResponse<User>> {
   return httpClient().get(`/users/${userID}/profile`)
 }
+
+export function createUser (createUserData: CreateUser): Promise<AxiosResponse<User>> {
+  let data = {
+    user: {
+      short_name: createUserData.user.name,
+      sortable_name: createUserData.user.name,
+      time_zone: "America/Denver",
+      locale: 'en',
+      birthdate: (new Date()).toISOString(),
+      terms_of_use: true,
+      skip_registration: true,
+      ...createUserData.user
+    },
+    pseudonym: {
+      send_confirmation: false,
+      ...createUserData.pseudonym
+    },
+    communication_channel: createUserData.communication_channel
+  }
+  return httpClient().post(`/accounts/self/users`, data)
+}

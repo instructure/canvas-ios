@@ -15,6 +15,7 @@
 //
 
 // @flow
+import 'babel-polyfill'
 
 import api from './apis/index'
 import client from './httpClient'
@@ -37,3 +38,5 @@ export * from './apis/file-uploads'
 
 export * from './session'
 export const httpClient = client
+
+export * from './seeding/index'

@@ -38,3 +38,15 @@ export type Enrollment = {
   course_section_id: string,
   computed_current_grade: string,
 }
+
+export type CreateEnrollment = {
+  user_id: string,
+  type: 'StudentEnrollment' | 'TeacherEnrollment' | 'TAEnrollment' | 'ObserverEnrollment' | 'DesignerEnrollment',
+  enrollment_state?: 'active' | 'invited' | 'inactive',
+  course_section_id?: string,
+  limit_privileges_to_course_section?: boolean,
+  notify?: boolean,
+  self_enrollment_code?: string,
+  self_enrolled?: boolean,
+  associated_user_id?: string
+}
