@@ -207,7 +207,8 @@ open class CalendarDayListViewController: UITableViewController {
         cell.titleLabel.text = calEvent.title
         cell.dueLabel.text = calEvent.dueText()
         cell.typeImage.image = calEvent.typeImage()
-
+        cell.locationLabel.text = calEvent.locationInfo.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
         guard let context = ContextID(canvasContext: calEvent.contextCode), let color = session.enrollmentsDataSource[context]?.color.value else {
             cell.typeImage.tintColor = UIColor.calendarTintColor
             cell.courseLabel.text = ""

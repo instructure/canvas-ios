@@ -23,6 +23,7 @@ class CalendarDayListCell: UITableViewCell
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var courseLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var typeImage: UIImageView!
     @IBOutlet weak var containerView: UIView!
     

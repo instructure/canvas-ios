@@ -184,6 +184,18 @@ public final class CalendarEvent: NSManagedObject {
         return EventType.error
     }
 
+    public var locationInfo: String {
+        if (locationName == nil && locationAddress == nil) { return "" }
+        if let name = locationName,
+            let address = locationAddress,
+            !name.isEmpty, !address.isEmpty {
+            return [name, address].joined(separator: ", ")
+        }
+        
+        if let address = locationAddress, !address.isEmpty { return address }
+        return (locationName ?? "")
+    }
+    
     public var pastStartDate: Bool {
         guard let startAt = startAt else {
             return false
