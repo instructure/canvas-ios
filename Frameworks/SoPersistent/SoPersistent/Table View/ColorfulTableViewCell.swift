@@ -42,7 +42,7 @@ public struct ColorfulViewModel: TableViewCellViewModel {
     public let accessibilityLabel = MutableProperty<String?>(nil)
 
     public var iconSize: CGFloat = 24.0
-    public var titleLineBreakMode = NSLineBreakMode.byTruncatingTail
+    public var titleLineBreakMode = NSLineBreakMode.byWordWrapping
     
     public let features = MutableProperty<ColorfulTableViewCell.Features>([])
 
