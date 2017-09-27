@@ -161,10 +161,8 @@ export class QuizzesList extends Component<any, Props, any> {
       return <ActivityIndicatorView />
     }
 
-    if (this.data.length === 0) {
-      this.data = this._getData()
-      this.selectFirstListItemIfNecessary()
-    }
+    this.data = this._getData()
+    this.selectFirstListItemIfNecessary()
 
     return (
       <Screen
@@ -183,6 +181,7 @@ export class QuizzesList extends Component<any, Props, any> {
             onRefresh={this.props.refresh}
             keyExtractor={(item, index) => item.id}
             testID='quiz-list.list'
+            extraData
           />
         </View>
       </Screen>

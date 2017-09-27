@@ -26,8 +26,8 @@ PODS:
   - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
   - CWStatusBarNotification (2.3.5)
-  - DeviceKit (1.2.3)
-  - DVR (1.0.1)
+  - DeviceKit (1.4.0)
+  - DVR (1.1.0)
   - Eureka (3.0.0)
   - Fabric (1.6.13)
   - FirebaseAnalytics (3.9.0):
@@ -49,12 +49,12 @@ PODS:
   - GoogleToolboxForMac/NSData+zlib (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - JSTokenField (1.1)
-  - Kingfisher (3.12.2)
+  - Kingfisher (3.13.1)
   - Mantle (1.5.8):
     - Mantle/extobjc (= 1.5.8)
   - Mantle/extobjc (1.5.8)
   - Marshal (1.2.4)
-  - Masonry (1.0.2)
+  - Masonry (1.1.0)
   - Nimble (7.0.1)
   - PocketSVG (2.2.1)
   - Quick (1.1.0)
@@ -71,7 +71,7 @@ PODS:
   - SDWebImage (4.1.0):
     - SDWebImage/Core (= 4.1.0)
   - SDWebImage/Core (4.1.0)
-  - SVProgressHUD (2.1.2)
+  - SVProgressHUD (2.2.1)
   - TBBModal (1.0.2)
   - TPKeyboardAvoiding (1.3.1)
 
@@ -119,7 +119,7 @@ CHECKOUT OPTIONS:
     :commit: 24a00b088865aa836e66dc0a6abbf341696a4ad8
     :git: https://github.com/derrh/CWStatusBarNotification.git
   Eureka:
-    :commit: 170433bedb6db4228da60eb6c866156b6b29e666
+    :commit: 05acfb04c24a480f1868e671d19b39e0f22fc265
     :git: https://github.com/xmartlabs/Eureka
 
 SPEC CHECKSUMS:
@@ -128,8 +128,8 @@ SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   CWStatusBarNotification: 3d2738b25c3207f60cc50201388d3c96182545ff
-  DeviceKit: f33cbc6e67d9bb416e42dedc647557c7c2f6d3d7
-  DVR: 48f5f24790d12eddaba28e6d279c11e11e4bc1fb
+  DeviceKit: fa74d97499660e88081718b16688e19217595dba
+  DVR: f785f86273f7a3a94335acf44611ac2cbf5920f9
   Eureka: 5b9418d7bfdc21ca977d69d124a6409f3e9af2c7
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
@@ -140,10 +140,10 @@ SPEC CHECKSUMS:
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   JSTokenField: f619bc91e942f05b2bf4e67fe46aabd9e7891f5a
-  Kingfisher: 320626678acadfcf47008b3c6841cd882050737b
+  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   Mantle: f03b2b606c3f0cabd80214ad8a2fed6b464a7359
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
-  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   PocketSVG: 51c4d5cb9ae7623d4494f439f69747394bad5d67
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
@@ -154,7 +154,7 @@ SPEC CHECKSUMS:
   ReactiveSwift: 3fea31f8fc49f112d2dc613282c5d395c4d167bb
   Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
   TBBModal: 376820c480cac24b262c2e10c0178c67bb288390
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
 

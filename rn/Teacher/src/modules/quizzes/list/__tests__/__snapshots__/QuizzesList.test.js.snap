@@ -12,6 +12,7 @@ exports[`QuizzesList renders 1`] = `
     ItemSeparatorComponent={undefined}
     data={Array []}
     disableVirtualization={false}
+    extraData={true}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -116,6 +117,7 @@ exports[`QuizzesList renders in correct order 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={true}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}
@@ -1049,6 +1051,7 @@ exports[`QuizzesList renders quizzes 1`] = `
       ]
     }
     disableVirtualization={false}
+    extraData={true}
     getItem={[Function]}
     getItemCount={[Function]}
     horizontal={false}

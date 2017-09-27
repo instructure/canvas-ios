@@ -25,6 +25,7 @@ export let Actions = (api: CanvasApi): * => ({
       promise: api.updateQuiz(updatedQuiz, courseID),
       updatedQuiz,
       originalQuiz,
+      quizID: updatedQuiz.id,
       handlesError: true,
     }
   }),
