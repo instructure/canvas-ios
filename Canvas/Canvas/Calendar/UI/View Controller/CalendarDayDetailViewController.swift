@@ -129,6 +129,7 @@ open class CalendarDayDetailViewController: UIViewController, CalendarDayPageVie
         dateLabel = UILabel(frame: CGRect.zero)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.textAlignment = NSTextAlignment.center
+        dateLabel.font = UIFont.preferredFont(forTextStyle: .title3).noLargerThan(20.0)
         view.addSubview(dateLabel)
     }
     

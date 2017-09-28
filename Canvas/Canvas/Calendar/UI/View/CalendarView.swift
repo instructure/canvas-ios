@@ -25,7 +25,7 @@ public protocol CalendarViewDelegate {
 }
 
 public protocol CalendarViewDataSource {
-    func calendarViewColorsForMarkingDate(_ calendarView: CalendarView, date: Date) -> [UIColor]
+    func calendarViewNumberOfEventsForDate(_ calendarView: CalendarView, date: Date) -> Int
 }
 
 open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, CalendarCollectionViewDelegate {
@@ -182,7 +182,6 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         
         if !(firstDayCalendarDate.year == cellCalDate.year && firstDayCalendarDate.month == cellCalDate.month) {
             cell.cellState = .notMonth
-            cell.colorsToIndicate = nil
             cell.setNeedsDisplay()
             return cell
         }
@@ -200,7 +199,7 @@ open class CalendarView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         }
         
         if let dataSource = self.dataSource {
-            cell.colorsToIndicate = dataSource.calendarViewColorsForMarkingDate(self, date: cellDate)
+            cell.eventCount = dataSource.calendarViewNumberOfEventsForDate(self, date: cellDate)
         }
         
         cell.setNeedsDisplay()

@@ -29,6 +29,8 @@ class NoResultsView : UIView {
             
             noResultsView.lblExplanation.textColor = UIColor.calendarNoResultsTextColor
             noResultsView.lblExplanation.text = explanation
+            noResultsView.lblExplanation.adjustsFontSizeToFitWidth = true
+            noResultsView.lblExplanation.font = UIFont.preferredFont(forTextStyle: .body).noLargerThan(28.0)
             return noResultsView
         }
         

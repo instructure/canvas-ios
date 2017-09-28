@@ -35,25 +35,35 @@ class CalendarWeekView : UIView {
     var highlightCircleColor = UIColor.calendarHighlightTintColor
     
     // font
-    var buttonFont = UIFont(name: "HelveticaNeue-Bold", size: 10.0)!
+    var buttonFont = UIFont.preferredFont(forTextStyle: .title3).noLargerThan(32.0)
     
     // text colors
     var buttonTextColor = UIColor.black
     var offButtonTextColor = UIColor.calendarDayOffTextColor
-    var buttonSelectedTextColor: UIColor = .white
-    var buttonHighlightedTextColor: UIColor = .white
+    var buttonSelectedTextColor: UIColor = .contextPink()
+    var buttonHighlightedTextColor: UIColor = .contextLightPink()
     
-    
-    var dateFormatter = DateFormatter()
-    lazy var calendar = Calendar.current
+    lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        formatter.calendar = Calendar.current
+        formatter.locale = Calendar.current.locale
+        return formatter
+    }()
     
     var selectedDay: Date?
     var initialDay = Date()
     
     fileprivate var weekButtons = [UIButton]()
-    fileprivate var veryShortStandaloneWeekdaySymbols: [Any]?
-    fileprivate var shortStandaloneWeekdaySymbols: [Any]?
-    fileprivate var standaloneWeekdaySymbols: [Any]?
+    fileprivate lazy var veryShortStandaloneWeekdaySymbols: [String] = {
+        return self.dateFormatter.veryShortStandaloneWeekdaySymbols
+    }()
+    fileprivate lazy var shortStandaloneWeekdaySymbols: [String] = {
+       return self.dateFormatter.shortStandaloneWeekdaySymbols
+    }()
+    fileprivate lazy var standaloneWeekdaySymbols: [String] = {
+        return self.dateFormatter.standaloneWeekdaySymbols
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,15 +76,6 @@ class CalendarWeekView : UIView {
     }
     
     func initialize() {
-        dateFormatter.dateFormat = "d"
-        dateFormatter.calendar = calendar
-        dateFormatter.locale = calendar.locale
-        
-        
-        veryShortStandaloneWeekdaySymbols = dateFormatter.veryShortStandaloneWeekdaySymbols as [Any]?
-        shortStandaloneWeekdaySymbols = dateFormatter.shortStandaloneWeekdaySymbols as [Any]?
-        standaloneWeekdaySymbols = dateFormatter.standaloneWeekdaySymbols as [Any]?
-        
         backgroundColor = UIColor.calendarDaysOfWeekBackgroundColor
         initializeWeekdayLabels()
     }
@@ -93,7 +94,6 @@ class CalendarWeekView : UIView {
         super.layoutSubviews()
         self.layoutWeekdayLabels()
         self.updateWeekdayLabels(false)
-        self.updateBackgroundImages()
     }
     
     func dayButtonPressed(_ button: UIButton) {
@@ -132,33 +132,20 @@ class CalendarWeekView : UIView {
         }
     }
     
-    func updateBackgroundImages() {
-        let normalCircleImage = self.itemCircleImage(self.normalCircleColor)
-        let selectedCirlceImage = self.itemCircleImage(self.selectedCircleColor)
-        let highlightCircleImage = self.itemCircleImage(self.highlightCircleColor)
-        
-        for button in weekButtons {
-            button.setBackgroundImage(normalCircleImage, for: UIControlState())
-            button.setBackgroundImage(selectedCirlceImage, for: UIControlState.selected)
-            button.setBackgroundImage(highlightCircleImage, for: UIControlState.highlighted)
-        }
-    }
-    
-    func textForIndex(_ index: Int) -> String? {
+    func textForIndex(_ index: Int) -> String {
         
         if isPhone() {
-            let weekdaySymbols = isPortrait() ? veryShortStandaloneWeekdaySymbols! : shortStandaloneWeekdaySymbols!
-            return weekdaySymbols[index] as? String
+            return veryShortStandaloneWeekdaySymbols[index]
         } else {
-            let weekdaySymbols = isPortrait() ? shortStandaloneWeekdaySymbols! : standaloneWeekdaySymbols!
-            return weekdaySymbols[index] as? String
+            let weekdaySymbols = isPortrait() ? shortStandaloneWeekdaySymbols : standaloneWeekdaySymbols
+            return weekdaySymbols[index]
         }
     }
     
     func dateForIndex(_ index: Int) -> Date {
-        var weekComponents = (calendar as NSCalendar).components([.year, .month, .weekOfYear, .weekday], from: self.initialDay)
+        var weekComponents = (Calendar.current as NSCalendar).components([.year, .month, .weekOfYear, .weekday], from: self.initialDay)
         weekComponents.weekday = index + 1
-        return calendar.date(from: weekComponents)!
+        return Calendar.current.date(from: weekComponents)!
     }
     
     func setSelectedWeekdayIndex(_ index: Int, animated: Bool) {
@@ -184,11 +171,10 @@ class CalendarWeekView : UIView {
         let itemHeight = self.frame.height
         
         return CGSize(width: itemWidth, height: itemHeight)
-        
     }
     
     func numberOfDaysInWeek() -> Int {
-        return (calendar as NSCalendar).maximumRange(of: .weekday).length
+        return (Calendar.current as NSCalendar).maximumRange(of: .weekday).length
     }
     
     func isPhone() -> Bool {
@@ -199,26 +185,6 @@ class CalendarWeekView : UIView {
         return UIDeviceOrientationIsPortrait(UIDevice.current.orientation)
     }
     
-
-    fileprivate func itemCircleImage(_ color: UIColor) -> UIImage {
-        let itemDim = itemSize()
-        let itemDimention = itemDim.height > itemDim.width ? itemDim.width - 10 : itemDim.height - 10
-        let itemSz = CGSize(width: itemDimention, height: itemDimention)
-        let rect = CGRect(x: itemDim.width/2 - itemSz.width/2, y: itemDim.height/2 - itemSz.height/2, width: itemSz.width, height: itemSz.height)
-        
-        UIGraphicsBeginImageContextWithOptions(itemDim, false, 0.0)
-        let context = UIGraphicsGetCurrentContext()
-        context!.saveGState()
-        context!.setFillColor(color.cgColor)
-        context!.fillEllipse(in: rect)
-        context!.restoreGState()
-        let returnImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext();
-        
-        return returnImage!
-
-    }
-
     fileprivate func dayOfWeekButton(_ index: Int) -> UIButton {
         let button = UIButton(type: .custom)
         button.addTarget(self, action:#selector(CalendarWeekView.dayButtonPressed(_:)), for: UIControlEvents.touchUpInside)

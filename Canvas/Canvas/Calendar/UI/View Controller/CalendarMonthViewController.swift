@@ -228,22 +228,8 @@ open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, 
         return true
     }
 
-    open func calendarViewColorsForMarkingDate(_ calendarView: CalendarView, date: Date) -> [UIColor] {
-        let calEvents = calendarEventsForDate(date as Date)
-
-        var colorsForDate = Set<UIColor>()
-        for calEvent in calEvents {
-            guard let context = ContextID(canvasContext: calEvent.contextCode), let color = session.enrollmentsDataSource[context]?.color else {
-                colorsForDate.insert(UIColor.calendarTintColor)
-                continue
-            }
-
-            if let c = color.value {
-                colorsForDate.insert(c)
-            }
-        }
-
-        return Array(colorsForDate)
+    open func calendarViewNumberOfEventsForDate(_ calendarView: CalendarView, date: Date) -> Int {
+        return calendarEventsForDate(date).count
     }
 
     // ---------------------------------------------

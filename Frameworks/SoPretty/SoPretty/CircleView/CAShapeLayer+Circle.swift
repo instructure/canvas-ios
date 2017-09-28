@@ -18,7 +18,7 @@
 
 import Foundation
 
-private let pi = CGFloat(M_PI) // just cast it dang it <twitching eye>
+private let pi = CGFloat.pi
 
 public extension CAShapeLayer {
     static func pathForAngle(_ angle: CGFloat) -> UIBezierPath {

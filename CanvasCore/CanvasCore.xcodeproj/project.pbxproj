@@ -12,6 +12,8 @@
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
 		2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3B1F72B294007225DF /* feature_toggles.plist */; };
 		2C6D608A1F72F85F009C3707 /* SecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D60891F72F85F009C3707 /* SecretsTests.swift */; };
+		2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */; };
+		2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */; };
 		2CAF1B1E1F72AEDB007225DF /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B141F72AEDB007225DF /* CanvasCore.framework */; };
 		2CAF1B231F72AEDB007225DF /* CanvasCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B221F72AEDB007225DF /* CanvasCoreTests.swift */; };
 		2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CAF1B171F72AEDB007225DF /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,6 +38,8 @@
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
 		2C60495E1F72B9CE00252BC5 /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6D60891F72F85F009C3707 /* SecretsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretsTests.swift; sourceTree = "<group>"; };
+		2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Core.swift"; sourceTree = "<group>"; };
+		2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B141F72AEDB007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CAF1B171F72AEDB007225DF /* CanvasCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
 		2CAF1B181F72AEDB007225DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 			children = (
 				2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */,
 				2C2D7AD61F7301D000207CE9 /* Collection+Core.swift */,
+				2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */,
+				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,7 +275,9 @@
 				2C2D7AD71F7301D000207CE9 /* Collection+Core.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
+				2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */,
 				2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */,
+				2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

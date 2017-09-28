@@ -21,25 +21,25 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V3P-wO-fcn">
                         <rect key="frame" x="5" y="5" width="590" height="90.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar Event Title" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6E-ta-CbA">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar Event Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6E-ta-CbA">
                                 <rect key="frame" x="42" y="10" width="160.5" height="20"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 10:45 PM" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyA-qi-QKd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due: 10:45 PM" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyA-qi-QKd">
                                 <rect key="frame" x="42" y="64" width="89" height="16"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suM-af-gfX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suM-af-gfX">
                                 <rect key="frame" x="42" y="48" width="52" height="16"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Cu-GsL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Cu-GsL">
                                 <rect key="frame" x="42" y="30" width="49" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -58,8 +58,11 @@
                             <constraint firstItem="pyA-qi-QKd" firstAttribute="leading" secondItem="hNm-Cu-GsL" secondAttribute="leading" id="0Dd-Vc-ijk"/>
                             <constraint firstItem="pyA-qi-QKd" firstAttribute="top" secondItem="suM-af-gfX" secondAttribute="bottom" id="0p5-hz-ntI"/>
                             <constraint firstItem="iTw-ci-BvZ" firstAttribute="leading" secondItem="V3P-wO-fcn" secondAttribute="leading" constant="10" id="5QH-Ib-oYw"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="suM-af-gfX" secondAttribute="trailing" constant="8" id="B1r-bg-v1l"/>
                             <constraint firstItem="hNm-Cu-GsL" firstAttribute="top" secondItem="u6E-ta-CbA" secondAttribute="bottom" id="DWd-ps-QnR"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hNm-Cu-GsL" secondAttribute="trailing" constant="8" id="IrN-ey-oHh"/>
                             <constraint firstItem="u6E-ta-CbA" firstAttribute="top" secondItem="V3P-wO-fcn" secondAttribute="top" constant="10" id="Rk7-gs-vxa"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pyA-qi-QKd" secondAttribute="trailing" constant="8" id="XsX-5Q-2no"/>
                             <constraint firstItem="u6E-ta-CbA" firstAttribute="leading" secondItem="V3P-wO-fcn" secondAttribute="leading" constant="42" id="Y9b-lA-B8j"/>
                             <constraint firstItem="suM-af-gfX" firstAttribute="top" secondItem="hNm-Cu-GsL" secondAttribute="bottom" id="eat-ld-qJQ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="u6E-ta-CbA" secondAttribute="trailing" constant="8" id="eo9-S4-n6L"/>

@@ -18,128 +18,57 @@
 
 import UIKit
 
-class CalendarDaysOfWeekView : UIView {
+class CalendarDaysOfWeekView : UIStackView {
     
-    var interitemSpacing: CGFloat = 2.0
+    fileprivate lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar.current
+        formatter.locale = Calendar.current.locale
+        return formatter
+    }()
     
-    var dayOfWeekLabelFont: UIFont = UIFont(name: "HelveticaNeue", size: 10.0)!
-    var dayOfWeekLabelTextColor: UIColor = UIColor.black
-    var dayOffWeekLabelTextColor: UIColor = UIColor.calendarDayOffTextColor
-    var calendar = Calendar.current
-    
-    
-    fileprivate var weekdayLabels = [UILabel]()
-    fileprivate var veryShortStandaloneWeekdaySymbols: [Any]?
-    fileprivate var shortStandaloneWeekdaySymbols: [Any]?
-    fileprivate var standaloneWeekdaySymbols: [Any]?
+    fileprivate lazy var symbols: [String] = {
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) &&
+            UIDevice.current.userInterfaceIdiom == .phone {
+            return self.dateFormatter.veryShortStandaloneWeekdaySymbols
+        }
+        
+        return self.dateFormatter.shortStandaloneWeekdaySymbols
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         initialize()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initialize()
     }
     
     func initialize() {
         backgroundColor = UIColor.calendarDaysOfWeekBackgroundColor
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = calendar
-        dateFormatter.locale = calendar.locale
-        
-        veryShortStandaloneWeekdaySymbols = dateFormatter.veryShortStandaloneWeekdaySymbols as [Any]?
-        shortStandaloneWeekdaySymbols = dateFormatter.shortStandaloneWeekdaySymbols as [Any]?
-        standaloneWeekdaySymbols = dateFormatter.standaloneWeekdaySymbols as [Any]?
-        
-        
-        var weekdaySymbols: [Any]?
-        if isPhone() {
-            weekdaySymbols = isPortrait() ? veryShortStandaloneWeekdaySymbols : shortStandaloneWeekdaySymbols
-        } else {
-            weekdaySymbols = isPortrait() ? shortStandaloneWeekdaySymbols : standaloneWeekdaySymbols
-        }
-        
-        initializeWeekdayLabels(weekdaySymbols!)
+        self.distribution = .fillEqually
+        self.axis = .horizontal
+        self.spacing = 2.0
+        initLabels()
     }
     
-    func initializeWeekdayLabels(_ weekdaySymbols: [Any]) {
-        weekdayLabels.removeAll(keepingCapacity: false)
+    func initLabels() {
         
-        let dayOfWeekLabelBackgroundColor = UIColor.clear
-        for (index, weekdaySymbol) in weekdaySymbols.enumerated() {
+        for (index, weekdaySymbol) in symbols.enumerated() {
             let weekdayLabel = UILabel()
             weekdayLabel.textAlignment = NSTextAlignment.center
-            weekdayLabel.backgroundColor = dayOfWeekLabelBackgroundColor
-            weekdayLabel.font = dayOfWeekLabelFont
-            weekdayLabel.text = weekdaySymbol as? String
+            weekdayLabel.backgroundColor = UIColor.clear
+            weekdayLabel.font = UIFont.preferredFont(forTextStyle: .title3).noLargerThan(32.0)
+            weekdayLabel.text = weekdaySymbol
+            weekdayLabel.adjustsFontSizeToFitWidth = true
             if index != 0 && index != 6 {
-                weekdayLabel.textColor = dayOfWeekLabelTextColor
+                weekdayLabel.textColor = UIColor.black
             } else {
-                weekdayLabel.textColor = dayOffWeekLabelTextColor
+                weekdayLabel.textColor = UIColor.calendarDayOffTextColor
             }
-            addSubview(weekdayLabel)
-            weekdayLabels.append(weekdayLabel)
+            addArrangedSubview(weekdayLabel)
         }
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layoutWeekdayLabels()
-        self.updateWeekdayLabels()
-    }
-    
-    func layoutWeekdayLabels() {
-        let size = itemSize()
-        
-        let y: CGFloat = 0.0
-        var x: CGFloat = 0.0
-        for label in weekdayLabels {
-            label.frame = CGRect(x: x, y: y, width: size.width, height: size.height)
-            x += size.width + interitemSpacing
-        }
-    }
-    
-    func updateWeekdayLabels() {
-        for (index, label) in weekdayLabels.enumerated() {
-            label.font = dayOfWeekLabelFont
-            label.text = self.textForIndex(index) as? String
-        }
-    }
-    
-    func textForIndex(_ index: Int) -> Any {
-        if isPhone() {
-            let weekdaySymbols = isPortrait() ? veryShortStandaloneWeekdaySymbols! : shortStandaloneWeekdaySymbols!
-            return weekdaySymbols[index]
-        } else {
-            let weekdaySymbols = isPortrait() ? shortStandaloneWeekdaySymbols! : standaloneWeekdaySymbols!
-            return weekdaySymbols[index]
-        }
-    }
-    
-    func isPhone() -> Bool {
-        return UIDevice.current.userInterfaceIdiom == .phone
-    }
-    
-    func isPortrait() -> Bool {
-        return UIDeviceOrientationIsPortrait(UIDevice.current.orientation)
-    }
-    
-    func itemSize() -> CGSize {
-        let numberOfItems = numberOfDaysInWeek()
-        let totalIteritemSpacing = interitemSpacing * CGFloat(numberOfItems - 1)
-        var itemWidth = (self.frame.width - totalIteritemSpacing)/CGFloat(numberOfItems)
-        itemWidth = floor(itemWidth * 1000) / 1000
-        let itemHeight = self.frame.height
-        
-        return CGSize(width: itemWidth, height: itemHeight)
-        
-    }
-    
-    func numberOfDaysInWeek() -> Int {
-        return (self.calendar as NSCalendar).maximumRange(of: .weekday).length
-    }
-    
 }
