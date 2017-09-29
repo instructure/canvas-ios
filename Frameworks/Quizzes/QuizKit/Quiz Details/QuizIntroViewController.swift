@@ -237,6 +237,13 @@ open class QuizIntroViewController: UIViewController {
             } else {
                 var message = ""
                 switch takeabilityController.takeability {
+                case .viewResults(let url):
+                    if let quiz = quizController.quiz, !quiz.requiresLockdownBrowserForResults {
+                        UIApplication.shared.open(url)
+                        return
+                    } else {
+                        message = NSLocalizedString("Lockdown Browser is required for viewing your results. Please open the quiz in Lockdown Browser to continue.", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "Detail label for when a tool called Lockdown Browser is required to take the quiz")
+                    }
                 case .notTakeable(let reason):
                     switch reason {
                     case .attemptLimitReached:

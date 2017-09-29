@@ -32,6 +32,7 @@ enum Takeability {
     case take
     case resume
     case retake
+    case viewResults(URL)
     
     var takeable: Bool {
         return self == .take || self == .resume || self == .retake
@@ -47,6 +48,9 @@ enum Takeability {
             return NSLocalizedString("Resume Quiz", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "button for resuming a quiz")
         case .retake:
             return NSLocalizedString("Retake Quiz", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "button for retaking quiz")
+        case .viewResults:
+            return NSLocalizedString("View Results", tableName: "Localizable", bundle: Bundle(identifier: "com.instructure.QuizKit")!, value: "", comment: "button for viewing quiz results")
+
         }
     }
 }
@@ -59,7 +63,8 @@ func ==(lhs: Takeability, rhs: Takeability) -> Bool {
     case
     (.take, .take),
     (.resume, .resume),
-    (.retake, .retake):
+    (.retake, .retake),
+    (.viewResults, .viewResults):
         return true
         
     default:

@@ -24,6 +24,9 @@ class QuizTakeabilityController {
     
     let quiz: Quiz
     let service: QuizService
+    lazy var quizController: QuizController = {
+        return QuizController(service: self.service, quiz: self.quiz)
+    }()
     
     fileprivate (set) var attempts: Int = 0 // NOTE: right now this is broken due to an api bug that is being worked on, so don't rely on this
     
@@ -53,7 +56,12 @@ class QuizTakeabilityController {
     }
     
     fileprivate func updateTakeability(_ submissions: [Submission]) {
+        let sortedSubmissions = submissions.sorted(by: { $0.attempt < $1.attempt })
         if quiz.lockedForUser {
+            if let url = sortedSubmissions.last.flatMap({ self.quizController.urlForViewingResultsForAttempt($0.attempt) }) {
+                takeability = .viewResults(url)
+                return
+            }
             takeability = .notTakeable(reason: .locked)
             return
         }
