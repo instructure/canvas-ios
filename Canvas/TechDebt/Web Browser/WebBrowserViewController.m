@@ -67,6 +67,13 @@
     return self;
 }
 
+- (instancetype)initWithURL:(NSURL *)url delegate:(id<WebBrowserViewControllerDelegate>)delegate
+{
+    self = [[WebBrowserViewController alloc] initWithURL:url];
+    [self setDelegate:delegate];
+    return self;
+}
+
 - (void)dealloc {
     _webView.delegate = nil;
     dic.delegate = nil;

@@ -30,6 +30,7 @@ open class ModuleItem: NSManagedObject, LockableModel {
     @NSManaged internal (set) open var title: String
     @NSManaged internal (set) open var indent: Int64
     @NSManaged internal (set) open var url: String?
+    @NSManaged internal (set) open var htmlURL: String?
 
     // LockableModel
     @NSManaged open var lockedForUser: Bool
@@ -115,6 +116,9 @@ open class ModuleItem: NSManagedObject, LockableModel {
             case .externalTool:
                 guard let contentID = contentID else { return nil }
                 guard let urlStr = self.externalURL, let externalURL = URL(string: urlStr) else { return nil }
+                if urlStr.range(of: "chalkandwire") != nil, let htmlStr = htmlURL, let url = URL(string: htmlStr) {
+                    return .externalURL(url: url)
+                }
                 return .externalTool(id: contentID, url: externalURL)
             case .masteryPaths: return .masteryPaths
             }
@@ -213,6 +217,7 @@ extension ModuleItem: SynchronizedModel {
         pageURL     = try json <| "page_url"
         externalURL = try json <| "external_url"
         url         = try json <| "url"
+        htmlURL     = try json <| "html_url"
 
         try updateCompletionRequirement(json)
         try updateMasteryPaths(json, inContext: context)

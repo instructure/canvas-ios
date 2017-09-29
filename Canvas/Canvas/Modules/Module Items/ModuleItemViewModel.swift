@@ -49,9 +49,7 @@ class ModuleItemViewModel: NSObject {
             if let content = content {
                 switch content {
                 case .externalURL(url: let url):
-                    let browser = WebBrowserViewController(url: url)
-                    browser?.delegate = self
-                    return browser
+                    return WebBrowserViewController(url: url, delegate: self)
                 case .masteryPaths:
                     if let moduleItemID = moduleItemID {
                         return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: self.moduleID, itemIDWithMasteryPaths: moduleItemID)

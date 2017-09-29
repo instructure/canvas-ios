@@ -39,6 +39,7 @@
 @interface WebBrowserViewController : UIViewController
 
 - (instancetype)initWithURL:(NSURL *)url;
+- (instancetype)initWithURL:(NSURL *)url delegate:(id<WebBrowserViewControllerDelegate>)delegate;
 
 // EITHER
 @property (nonatomic) NSURL *url;
