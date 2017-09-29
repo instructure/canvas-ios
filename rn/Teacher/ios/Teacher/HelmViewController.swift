@@ -126,18 +126,16 @@ final class HelmViewController: UIViewController, HelmScreen {
         }
         
         if let navBarImagePath = screenConfig[PropKeys.navBarImage] {
-            let titleView: UIView? = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath)
-            titleView?.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-            if let titleView = titleView {
-                NSLayoutConstraint.activate([
-                    titleView.widthAnchor.constraint(equalToConstant: 32.0),
-                    titleView.heightAnchor.constraint(equalToConstant: 32.0)
-                ])
+            if let titleView: UIView = titleViewFromNavBarImagePath(navBarImagePath: navBarImagePath) {
+                titleView.contentMode = .scaleAspectFit
+                let container = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+                titleView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+                container.addSubview(titleView)
+                self.navigationItem.titleView = container
             }
-            
-            titleView?.contentMode = .scaleAspectFit
-            titleView?.autoresizingMask = navigationItem.titleView?.autoresizingMask ?? [.flexibleWidth, .flexibleHeight]
-            self.navigationItem.titleView = titleView
+            else {
+                self.navigationItem.titleView = nil
+            }
         }
         
         _screenDidRender = true

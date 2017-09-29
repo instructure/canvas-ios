@@ -153,7 +153,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
-    const submission = this.props.submissions[index]
+    const submission = this.filteredSubmissions()[index]
     if (submission) {
       const currentStudentID = submission.userID
       if (currentStudentID !== this.state.currentStudentID) {
@@ -168,13 +168,17 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     index,
   })
 
+  filteredSubmissions (): Array<SubmissionItem> {
+    return this.props.submissions
+      .filter(submission => this.state.filteredIDs && this.state.filteredIDs.includes(submission.userID))
+  }
+
   renderBody = () => {
     if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
 
-    const items: Array<SubmissionItem> = this.props.submissions
-      .filter(submission => this.state.filteredIDs && this.state.filteredIDs.includes(submission.userID))
+    const items = this.filteredSubmissions()
       .map(submission => ({ key: submission.userID, submission }))
 
     return (
