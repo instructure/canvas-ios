@@ -15,7 +15,6 @@
 //
 
 import SoGrey
-import EarlGrey
 
 class InboxPage {
 

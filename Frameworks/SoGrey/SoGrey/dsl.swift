@@ -13,11 +13,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+// DSL that auto waits for elements to exist. Enables react-native compatability.
 
 import Foundation
 import EarlGrey
-
-// DSL that auto waits for elements to exist. Enables react-native compatability.
 
 // MARK: Element timeout and poll
 
@@ -29,15 +28,15 @@ public let elementPoll:TimeInterval = 1.0 // seconds
 open class e {
 
   open static func selectBy(id:String, file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityID(id), file: file, line: line)
+    return EarlGreyHelper.select(elementWithMatcher: grey_accessibilityID(id), file: file, line: line)
   }
 
   open static func selectBy(label:String, file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
+    return EarlGreyHelper.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
   }
 
   open static func selectBy(matchers:[GREYMatcher], file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGrey.select(elementWithMatcher: grey_allOf(matchers), file: file, line: line)
+    return EarlGreyHelper.select(elementWithMatcher: grey_allOf(matchers), file: file, line: line)
   }
 
   @available(*, deprecated, message: "Only you can prevent memory leaks 🔥🐻")

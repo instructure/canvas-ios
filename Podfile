@@ -52,7 +52,7 @@ abstract_target 'defaults' do
       pod 'Fabric', '~> 1.6'
       pod 'Crashlytics', '~> 3.8'
   end
-  
+
   target 'TechDebt' do
     project 'Canvas/Canvas.xcodeproj'
     pod 'JSTokenField', '~> 1.1'
@@ -79,6 +79,11 @@ abstract_target 'defaults' do
 
   target 'SoLazy' do
     project 'Frameworks/SoLazy/SoLazy.xcodeproj'
+  end
+
+  target 'SoGrey' do
+    project 'Frameworks/SoGrey/SoGrey.xcodeproj'
+    pod 'EarlGrey', '~> 1.1'
   end
 
   target 'MyLittleViewController' do
@@ -267,6 +272,13 @@ abstract_target 'defaults' do
     end
     target 'DiscussionKitTests' do
       project 'Frameworks/Discussions/Discussions.xcodeproj'
+    end
+  end
+
+  abstract_target 'common_ui_tests' do
+    target 'TeacherUITests' do
+      pod 'EarlGrey', '~> 1.1'
+      project 'rn/Teacher/ios/Teacher.xcodeproj'
     end
   end
 end

@@ -36,7 +36,7 @@ class CourseBrowserPage {
     // MARK: Helpers
 
     private func navBarTitleView(_ course: Course) -> GREYElementInteraction {
-        let titleViewElement = EarlGrey.select(
+        let titleViewElement = EarlGreyHelper.select(
             elementWithMatcher: grey_allOf([grey_accessibilityLabel(course.courseCode),
                                             grey_accessibilityTrait(UIAccessibilityTraitHeader),
                                             grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))

@@ -56,6 +56,8 @@
 		B16B5E851E255F7400DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E871E255F7400DED47B /* InfoPlist.strings */; };
 		B16B5E8A1E255F7600DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E8C1E255F7600DED47B /* InfoPlist.strings */; };
 		B16B5E8F1E255F7700DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B5E911E255F7700DED47B /* InfoPlist.strings */; };
+		B18126761F746CDA00EF253E /* CWStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18126751F746CD200EF253E /* CWStatusBarNotification.framework */; };
+		B18126771F746CE200EF253E /* CWStatusBarNotification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18126751F746CD200EF253E /* CWStatusBarNotification.framework */; };
 		B189810C1E4D283E003E5B68 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B189810B1E4D283E003E5B68 /* UIColor+Hex.swift */; };
 		B5E793FF1D8CA39600D3E38B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E793FB1D8CA39600D3E38B /* Localizable.strings */; };
 		B5FE27C21C9768C300D07C43 /* CAShapeLayer+Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FE27C11C9768C300D07C43 /* CAShapeLayer+Circle.swift */; };
@@ -108,9 +110,6 @@
 		1F21CDF6295C6FD8EF027709 /* Pods-defaults-common_tests-SoPrettyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-SoPrettyTests.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-common_tests-SoPrettyTests/Pods-defaults-common_tests-SoPrettyTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C1CBC701E58BBDE00D3F15A /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "SoPretty/fr-CA.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		2C73C9C31E0331AE0064A19D /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B0142F81F608F7500890498 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CWStatusBarNotification.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-gitayijnkpmmevdxebwsntfrltsv/Build/Products/Debug-iphoneos/CWStatusBarNotification/CWStatusBarNotification.framework"; sourceTree = "<group>"; };
-		3BD6C3851F67CFEF003A0206 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CWStatusBarNotification.framework; path = "/Users/grichards/src/inst/ios/Pods/../build/Debug-iphoneos/CWStatusBarNotification/CWStatusBarNotification.framework"; sourceTree = "<absolute>"; };
-		3BD6C3871F67D01D003A0206 /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CWStatusBarNotification.framework; path = "/Users/grichards/src/inst/ios/Pods/../build/Debug-iphoneos/CWStatusBarNotification/CWStatusBarNotification.framework"; sourceTree = "<absolute>"; };
 		4909C7021C75073B00FAC8FB /* PrettyCardsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyCardsLayout.swift; sourceTree = "<group>"; };
 		492C4A3E1BFD3F8D00D1158A /* HairlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HairlineView.swift; sourceTree = "<group>"; };
 		492EEAF01DE3674D00E5700D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +243,7 @@
 		B16B5ED81E25605700DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5ED91E25605800DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5EDA1E25605900DED47B /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B18126751F746CD200EF253E /* CWStatusBarNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CWStatusBarNotification.framework; path = "../Debug-iphonesimulator/CWStatusBarNotification/CWStatusBarNotification.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B189810B1E4D283E003E5B68 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B2D165781F7A574C85520AEB /* Pods-defaults-Pretty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Pretty.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Pretty/Pods-defaults-Pretty.debug.xcconfig"; sourceTree = "<group>"; };
 		B51B2E601D8CA3DA0093A7A6 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = SoPretty/pt.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
@@ -280,6 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18126761F746CDA00EF253E /* CWStatusBarNotification.framework in Frameworks */,
 				49A9C3EC1BCF008C002E3A62 /* TooLegit.framework in Frameworks */,
 				ACE5F8BA1CF8CE6400FEB8F6 /* SoLazy.framework in Frameworks */,
 				496947621E034E7600EA2C30 /* SoIconic.framework in Frameworks */,
@@ -300,6 +301,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B18126771F746CE200EF253E /* CWStatusBarNotification.framework in Frameworks */,
 				49D3B8BA1C51A33200291009 /* SoPretty.framework in Frameworks */,
 				492EEAEA1DE366EA00E5700D /* SoLazy.framework in Frameworks */,
 				49D3B8BF1C51A35400291009 /* TooLegit.framework in Frameworks */,
@@ -313,9 +315,6 @@
 		2C73C9C21E0331AE0064A19D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3BD6C3871F67D01D003A0206 /* CWStatusBarNotification.framework */,
-				3BD6C3851F67CFEF003A0206 /* CWStatusBarNotification.framework */,
-				3B0142F81F608F7500890498 /* CWStatusBarNotification.framework */,
 				6D2B08CFCBC99FC3F3FCA79D /* Pods_Pretty.framework */,
 				D828BF1D9830DD5A863269A4 /* Pods_SoPretty.framework */,
 				170E8C9C6E4805F7BABD4004 /* Pods_SoPrettyTests.framework */,
@@ -504,6 +503,7 @@
 				ACE5F8B91CF8CE5C00FEB8F6 /* SoLazy.framework */,
 				49F3100D1CA9B7BF004D49C7 /* Cartography.framework */,
 				49A9C3EB1BCF008C002E3A62 /* TooLegit.framework */,
+				B18126751F746CD200EF253E /* CWStatusBarNotification.framework */,
 			);
 			name = Dependencies;
 			path = SoPretty;

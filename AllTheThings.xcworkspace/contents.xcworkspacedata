@@ -238,4 +238,7 @@
    <FileRef
       location = "group:rn/Teacher/ios/Teacher.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Frameworks/SoGrey/SoGrey.xcodeproj">
+   </FileRef>
 </Workspace>
