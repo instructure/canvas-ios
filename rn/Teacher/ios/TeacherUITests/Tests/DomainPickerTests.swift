@@ -21,4 +21,11 @@ class DomainPickerTests: TeacherTest {
         domainPickerPage.enterDomain(domain)
         domainPickerPage.assertDomainField(contains: domain)
     }
+
+    // todo: tmp test only. used to validate webdriver logic
+    func testBadLogin() {
+        let domain = "mobileqa.test.instructure.com"
+        domainPickerPage.openDomain(domain)
+        canvasLoginPage.logInTmp(loginId: "fakeuser", password: "fakepassword")
+    }
 }

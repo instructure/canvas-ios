@@ -45,7 +45,7 @@ FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
   def install_native_deps
-    retry_cmd('carthage', 10) { _execute(command: 'carthage checkout --no-use-binaries') }
+    #retry_cmd('carthage', 10) { _execute(command: 'carthage checkout --no-use-binaries') }
     retry_cmd('cocoapods', 10) { cocoapods }
 
     rn_teacher = join(__dir__, '../rn/Teacher')
