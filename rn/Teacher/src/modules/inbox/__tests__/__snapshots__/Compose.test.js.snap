@@ -431,7 +431,7 @@ exports[`Compose renders 1`] = `
             </View>
           </View>
         </View>
-        <ScrollViewDisabler
+        <View
           style={
             Array [
               Object {
@@ -444,7 +444,8 @@ exports[`Compose renders 1`] = `
               },
               Object {
                 "borderBottomWidth": 0,
-                "paddingVertical": 10,
+                "paddingBottom": 40,
+                "paddingTop": 10,
               },
             ]
           }
@@ -471,7 +472,7 @@ exports[`Compose renders 1`] = `
             }
             testID="compose-message.body-text-input"
           />
-        </ScrollViewDisabler>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -1002,7 +1003,7 @@ exports[`Compose renders after picking a course 1`] = `
             </View>
           </View>
         </View>
-        <ScrollViewDisabler
+        <View
           style={
             Array [
               Object {
@@ -1015,7 +1016,8 @@ exports[`Compose renders after picking a course 1`] = `
               },
               Object {
                 "borderBottomWidth": 0,
-                "paddingVertical": 10,
+                "paddingBottom": 40,
+                "paddingTop": 10,
               },
             ]
           }
@@ -1042,7 +1044,7 @@ exports[`Compose renders after picking a course 1`] = `
             }
             testID="compose-message.body-text-input"
           />
-        </ScrollViewDisabler>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -1554,7 +1556,7 @@ exports[`Compose renders reply 1`] = `
             </View>
           </View>
         </View>
-        <ScrollViewDisabler
+        <View
           style={
             Array [
               Object {
@@ -1567,7 +1569,8 @@ exports[`Compose renders reply 1`] = `
               },
               Object {
                 "borderBottomWidth": 0,
-                "paddingVertical": 10,
+                "paddingBottom": 40,
+                "paddingTop": 10,
               },
             ]
           }
@@ -1594,7 +1597,7 @@ exports[`Compose renders reply 1`] = `
             }
             testID="compose-message.body-text-input"
           />
-        </ScrollViewDisabler>
+        </View>
       </View>
     </RCTScrollView>
   </View>
@@ -2032,7 +2035,7 @@ exports[`Compose renders with passed in recipients 1`] = `
             </View>
           </View>
         </View>
-        <ScrollViewDisabler
+        <View
           style={
             Array [
               Object {
@@ -2045,7 +2048,8 @@ exports[`Compose renders with passed in recipients 1`] = `
               },
               Object {
                 "borderBottomWidth": 0,
-                "paddingVertical": 10,
+                "paddingBottom": 40,
+                "paddingTop": 10,
               },
             ]
           }
@@ -2072,7 +2076,7 @@ exports[`Compose renders with passed in recipients 1`] = `
             }
             testID="compose-message.body-text-input"
           />
-        </ScrollViewDisabler>
+        </View>
       </View>
     </RCTScrollView>
   </View>

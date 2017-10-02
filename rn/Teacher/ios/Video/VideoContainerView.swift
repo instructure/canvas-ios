@@ -63,8 +63,12 @@ class VideoContainerView: UIView {
     }
 
     var itemURL: URL? {
-        let uri = source["uri"] as? String
-        return uri.flatMap(URL.init)
+        guard let uri = source["uri"] as? String else { return nil }
+        if uri.hasPrefix("file://") {
+            let path = uri.substring(from: uri.index(uri.startIndex, offsetBy: 7))
+            return URL(fileURLWithPath: path)
+        }
+        return URL(string: uri)
     }
     
     func embedPlayer() {

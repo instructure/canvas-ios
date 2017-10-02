@@ -101,6 +101,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
                 accessibilityLabel={starred ? i18n('Starred') : i18n('Un-starred')}
                 accessibilityTraits='button'
                 testID={`inbox.detail.${starred ? 'starred' : 'not-starred'}`}
+                focusedOpacity={0.7}
                 onPress={this._toggleStarred}
                 hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               >

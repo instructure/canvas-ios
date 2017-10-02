@@ -115,19 +115,25 @@ export class QuizPreview extends Component<any, LocalProps, any> {
         ]}
       >
         <View style={style.container}>
-          { this.state.error && <View style={style.errorContainer}>
-                                  <Text>{i18n('There was an error loading the quiz preview.')}</Text>
-                                </View> }
-          { this.state.waiting && <ActivityIndicatorView style={{ flex: 1 }} /> }
-          { !this.state.error && <View style={ this.state.waiting ? style.waitingWebView : style.webView }>
-                                   <AuthenticatedWebView style={ this.state.waiting ? style.waitingWebView : style.webView }
-                                                         source={{ uri }}
-                                                         automaticallyAdjustContentInsets={false}
-                                                         onMessage={this.onMessage}
-                                                         ref={this.captureRef}
-                                                         onLoadEnd={this.onLoadEnd}
-                                                         onError={this.onError} />
-                                  </View>}
+          { this.state.error &&
+            <View style={style.errorContainer}>
+              <Text>{i18n('There was an error loading the quiz preview.')}</Text>
+            </View>
+          }
+          { this.state.waiting &&
+            <ActivityIndicatorView style={{ flex: 1 }} />
+          }
+          { !this.state.error &&
+            <View style={ this.state.waiting ? style.waitingWebView : style.webView }>
+              <AuthenticatedWebView style={ this.state.waiting ? style.waitingWebView : style.webView }
+                                    source={{ uri }}
+                                    automaticallyAdjustContentInsets={false}
+                                    onMessage={this.onMessage}
+                                    ref={this.captureRef}
+                                    onLoadEnd={this.onLoadEnd}
+                                    onError={this.onError} />
+            </View>
+          }
         </View>
       </Screen>
     )

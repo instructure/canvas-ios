@@ -58,6 +58,12 @@ export default class AttachmentView extends Component<any, Props, any> {
       this.setState({ filePath: this.props.attachment.uri })
       return
     }
+
+    if (this.props.attachment.mime_class === 'image') {
+      this.setState({ filePath: this.props.attachment.url })
+      return
+    }
+
     const path = `${CachesDirectoryPath}/${this.props.attachment.filename || this.props.attachment.display_name}`
     let { jobId, promise } = downloadFile({
       fromUrl: this.props.attachment.url,

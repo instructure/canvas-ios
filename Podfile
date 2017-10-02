@@ -1,11 +1,50 @@
-
-
 source 'git@github.com:instructure/ios-podspecs.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 workspace 'AllTheThings.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '10.0'
+
+def react_native
+  nm_path = './rn/Teacher/node_modules/'
+  rn_path = nm_path + 'react-native/'
+  pod 'Yoga', :path => rn_path + 'ReactCommon/yoga'
+  pod 'React', :path => rn_path, :subspecs => [
+    'Core',
+    'ART',
+    'RCTActionSheet',
+    'RCTAnimation',
+    'RCTImage',
+    'RCTSettings',
+    'RCTVibration',
+    'RCTNetwork',
+    'RCTText',
+    'RCTWebSocket',
+    'RCTPushNotification',
+    'RCTLinkingIOS',
+    'DevSupport',
+    'BatchedBridge',
+  ]
+
+  # node modules
+  pod 'RNFS', :path => nm_path + 'react-native-fs'
+  pod 'react-native-blur', :path => nm_path + 'react-native-blur'
+  pod 'RNDeviceInfo', :path => nm_path + 'react-native-device-info'
+  pod 'react-native-image-picker', :path => nm_path + 'react-native-image-picker'
+  pod 'Interactable', :path => nm_path + 'react-native-interactable'
+  pod 'BVLinearGradient', :path => nm_path + 'react-native-linear-gradient'
+  pod 'BugsnagReactNative', :path => nm_path + 'bugsnag-react-native'
+  pod 'react-native-mail', :path => nm_path + 'react-native-mail'
+  pod 'ReactNativeSearchBar', :path => nm_path + 'react-native-search-bar'
+  pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
+  pod 'react-native-document-picker', :path => nm_path + 'react-native-document-picker'
+  pod 'RNAudio', :path => nm_path + 'react-native-audio'
+  pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
+  pod 'RNSound', :path => nm_path + 'react-native-sound'
+  pod 'react-native-camera', :path => nm_path + 'react-native-camera'
+  pod 'react-native-wkwebview', :path => nm_path + 'react-native-wkwebview-reborn'
+
+end
 
 abstract_target 'defaults' do
   use_frameworks!
@@ -46,11 +85,14 @@ abstract_target 'defaults' do
   end
   
   target 'Teacher' do
-      project 'rn/Teacher/ios/Teacher.xcodeproj'
-	  pod 'PocketSVG', '~> 2.2'
-	  pod 'SDWebImage', '~> 4.1'
-      pod 'Fabric', '~> 1.6'
-      pod 'Crashlytics', '~> 3.8'
+    project 'rn/Teacher/ios/Teacher.xcodeproj'
+
+    pod 'PocketSVG', '~> 2.2'
+    pod 'SDWebImage', '~> 4.1'
+    pod 'Fabric', '~> 1.6'
+    pod 'Crashlytics', '~> 3.8'
+
+    react_native
   end
 
   target 'TechDebt' do
@@ -286,7 +328,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     # puts "=== #{target.name}"
-    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD'
+    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD' || target.name == 'BugsnagReactNative' || target.name == 'RCTSFSafariViewController' || target.name == 'react-native-camera' || 'react-native-mail'
     puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'

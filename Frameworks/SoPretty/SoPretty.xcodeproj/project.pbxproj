@@ -13,7 +13,7 @@
 		492C4A3F1BFD3F8D00D1158A /* HairlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492C4A3E1BFD3F8D00D1158A /* HairlineView.swift */; };
 		492EEAEA1DE366EA00E5700D /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE5F8B91CF8CE5C00FEB8F6 /* SoLazy.framework */; };
 		492EEAEB1DE366EA00E5700D /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACE5F8B91CF8CE5C00FEB8F6 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		496947621E034E7600EA2C30 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496947611E034E6600EA2C30 /* SoIconic.framework */; };
+		4968694C1F7549A40046E02C /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4968694B1F75499B0046E02C /* SoIconic.framework */; };
 		496E7D1F1BEA8727005C8746 /* SmallModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E7D1E1BEA8727005C8746 /* SmallModalNavigationController.swift */; };
 		49A961101BC31C4700592D94 /* SoPretty.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A9610F1BC31C4700592D94 /* SoPretty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49A961161BC31C4700592D94 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A9610A1BC31C4700592D94 /* SoPretty.framework */; };
@@ -115,7 +115,7 @@
 		492EEAF01DE3674D00E5700D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492EEAF41DE3678500E5700D /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492EEAF71DE367BE00E5700D /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		496947611E034E6600EA2C30 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4968694B1F75499B0046E02C /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496E7D1E1BEA8727005C8746 /* SmallModalNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalNavigationController.swift; sourceTree = "<group>"; };
 		49A9610A1BC31C4700592D94 /* SoPretty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A9610E1BC31C4700592D94 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -282,8 +282,8 @@
 			files = (
 				B18126761F746CDA00EF253E /* CWStatusBarNotification.framework in Frameworks */,
 				49A9C3EC1BCF008C002E3A62 /* TooLegit.framework in Frameworks */,
+				4968694C1F7549A40046E02C /* SoIconic.framework in Frameworks */,
 				ACE5F8BA1CF8CE6400FEB8F6 /* SoLazy.framework in Frameworks */,
-				496947621E034E7600EA2C30 /* SoIconic.framework in Frameworks */,
 				DAA77704AB79EFC939DD3BF0 /* Pods_defaults_SoPretty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,7 +494,7 @@
 		49EB06C41BC44348008F938C /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				496947611E034E6600EA2C30 /* SoIconic.framework */,
+				4968694B1F75499B0046E02C /* SoIconic.framework */,
 				2C73C9C31E0331AE0064A19D /* CWNotification.framework */,
 				492EEAF71DE367BE00E5700D /* Marshal.framework */,
 				492EEAF41DE3678500E5700D /* Kingfisher.framework */,

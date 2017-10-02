@@ -3243,7 +3243,7 @@ exports[`DiscussionEdit updates with new props 1`] = `
         ]
       }
       transparent={true}
-      visible={false}
+      visible={true}
     >
       <View
         style={

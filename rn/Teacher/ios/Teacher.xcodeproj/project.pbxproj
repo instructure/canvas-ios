@@ -7,24 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
-		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
-		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
-		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
-		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		0610738F1EA11F5300BEB914 /* TeacherTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0610738E1EA11F5300BEB914 /* TeacherTest.swift */; };
 		061073911EA11FD800BEB914 /* CoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061073901EA11FD800BEB914 /* CoursesListPage.swift */; };
 		061073931EA11FED00BEB914 /* EditCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061073921EA11FED00BEB914 /* EditCoursesListPage.swift */; };
-		09CAD8E25B102C1A638088BD /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 484E95B3435758542C488C27 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */; };
 		0AA62E58EBF68C43D256EA3D /* AssignmentOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */; };
-		10A81D2926DD4E5FACC5B7AE /* libRCTWKWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A7ECEE839604B9CBB1F3DFE /* libRCTWKWebView.a */; };
-		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
-		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
-		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1D25A1A4E3FEEA56408EF301 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4CD2A2F10EABBB6B24B6E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift */; };
+		20A0DB89280A80AFF823848C /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */; };
 		2209FD28B6C589BA04765552 /* AssignmentListPageTest_testAssignmentListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A58F9AE81847984674DD1A /* AssignmentListPageTest_testAssignmentListPage_displaysPageObjects.swift */; };
 		256358B5011A350B9B5F65F5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715FA7B506E025841189821D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift */; };
 		279DC42F392D254716A9F524 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */; };
@@ -45,14 +35,11 @@
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C65E0C11F214822008C6C95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C65E0C31F214822008C6C95 /* InfoPlist.strings */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
-		2C841F601F3DF983009BF851 /* main.jsbundle.meta in Resources */ = {isa = PBXBuildFile; fileRef = 2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */; };
-		2C841F611F3DF9BF009BF851 /* main.jsbundle.map in Resources */ = {isa = PBXBuildFile; fileRef = 2C841F5E1F3DF983009BF851 /* main.jsbundle.map */; };
 		2C921E781F72E366003E5C9B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C921E771F72E366003E5C9B /* CanvasCore.framework */; };
 		2C921E791F72E366003E5C9B /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C921E771F72E366003E5C9B /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
 		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
-		2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
 		2F087B331EC508BB0042C03E /* CourseSettingsPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */; };
@@ -74,7 +61,6 @@
 		3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
 		3B5812F11EC4F34200173C37 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
 		3B5812F21EC4F34700173C37 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
-		3B5813101EC4F55900173C37 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */; };
 		3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */; };
 		3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */; };
@@ -87,7 +73,6 @@
 		3B9D72859115B817CD00CD83 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECA86954393EA402EE37DE /* Data.swift */; };
 		3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
 		3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
-		3BEF7C101E7C96940092C864 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEF7BF51E7C96860092C864 /* libART.a */; };
 		3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* Brand.swift */; };
 		3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */; };
 		45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */; };
@@ -99,15 +84,12 @@
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
 		4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C81ED4E9390054D333 /* VideoContainerManager.m */; };
 		4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C91ED4E9390054D333 /* VideoContainerView.swift */; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
 		49D86BD21F059E6B008951CE /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D86BD11F059E6B008951CE /* A11yGroupManager.m */; };
-		5031AD3F5ACC4AB890DB0437 /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A9E2238589494EAD158883 /* libRNAudio.a */; };
 		51FAC2FAFBA2AE0C3653F5CF /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13EF8804255A313109F1 /* ConversationMessage.swift */; };
 		54F1E2CE1143A2D662FFEEFA /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B527DFA5898B0D5DD57EDD1 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift */; };
-		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		6098E7BDB694A6ACEF131151 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70862A515621F745F8148C6 /* DiscussionEntry.swift */; };
 		61032ABA1F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */; };
 		611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */; };
@@ -119,7 +101,10 @@
 		619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619C94291ED8A25100AC7D7B /* CanvadocView.swift */; };
 		619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */; };
 		619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */; };
+		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
+		61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; };
+		61B5372D1E786A27000FEABB /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		61B5372E1E786A27000FEABB /* SoGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerTests.swift */; };
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
@@ -128,13 +113,11 @@
 		61B7F5C31ED5EB3300EC6865 /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */; };
 		61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */; };
 		61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5CD1ED619A200EC6865 /* libRNFS.a */; };
 		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
 		61E6C4E11F14263900B7B6C1 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */; };
 		646EA8592A1AF9C81B6877D4 /* CourseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5D28EB09C19518A6BA81F /* CourseModule.swift */; };
 		65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */; };
-		685999502ED04B3D8C1FF049 /* libRNMail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A173E7C1016F4F56BBFC43B7 /* libRNMail.a */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
 		700E43A18ED77E9C4B9B4176 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */; };
 		748E680E19A62B76BAFC5262 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523CC8C3560F5F179BB84D4 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift */; };
@@ -146,52 +129,41 @@
 		88F5E8BF43D0785FAE27C7F6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328A92B769017B28C51D2EFE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift */; };
 		8B83E26D393B3BB9C1813496 /* GroupMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8D0646677276C36E70E17 /* GroupMembership.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
-		9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A14A839A5EB460283B1F75B /* libRNImagePicker.a */; };
 		952E99B216DEE7FD0BEF819D /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E479910A81A38C8833E5314 /* Page.swift */; };
 		974B8DF683AD12FE51E4AF8A /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BC3AF0DC3303E15679EB88 /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift */; };
 		9DB84819BAE9F4B338DDC4AC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */; };
 		9E6536DB74C410F2A191F54F /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */; };
 		9E80454AFF54FA3A301495CC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43F594F5734FBD9DF2146C /* Section.swift */; };
 		9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */; };
-		9F59C09C1E980384003BF661 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		9FC637F5B6B1017FE76C67F2 /* QuizQuestionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F44325652F4B30CB471123 /* QuizQuestionAnswer.swift */; };
 		9FCE7BB21ED6340C00DD1693 /* PushNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
-		A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7A08992613846128FD3E3D2 /* libRNBlur.a */; };
 		A94ACBBB553790F98F7C9EE5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */; };
-		AB03B0349E454DCEA2ADC585 /* libBugsnagReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */; };
 		ACE0FB9C60C46429FCB245BE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */; };
 		ADA15143C8D5C6E6E3DB3076 /* CourseListPageTest_testCourseListPage_displaysList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */; };
 		AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
 		B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B170B0651F58756E00B92700 /* SoLazy.framework */; };
 		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
-		B1C66FE51F7D9427008BD9C0 /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C66FE41F7D941B008BD9C0 /* SoGrey.framework */; };
-		B8A7C38963894269A892A2BC /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55069B727E0D4A34B80CED9D /* libRNSound.a */; };
-		BD604147FC4E46ECABACB114 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
 		BF691547C3F6A0433A07B2AD /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8420872227378302E813DF7 /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift */; };
 		BFA74EE1DDF1A40F2A5AC5B7 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE442A069DF0F82B2A6AE25 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift */; };
 		BFEF14CECBEF3577D41F7BBF /* GradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484C40873F5A33402D194B04 /* GradingPeriod.swift */; };
-		C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2411260A6CA04D6D874912A2 /* libRNSearchBar.a */; };
 		C4ECC257F431783ED35CBF11 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F798127265B286008D5A43E /* DataProvider.swift */; };
 		CB206CA59F21CDA6CF21EB0D /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0679F6C1793F7855CCF998AE /* Submission.swift */; };
 		CDA436B8FCAEB0E0B3CAD077 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8F13453A04E64C495109D4 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift */; };
-		D1506F166CC24444A103B9CD /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */; };
 		D2AEEB32E46E3C2C3D904AC5 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0146025D5E27613B19DA93 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift */; };
 		D6924E8C8F31F0D47E297377 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */; };
 		D8032C018889FDF18F2E28C7 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621E9A4A25A91690500722D2 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift */; };
 		DDA2B605FB1586F3495269EF /* CourseModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */; };
 		DE7AAF9B002B30AA97A21897 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9FFEF21ECA9728122AA39D /* Group.swift */; };
-		DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E745A09DE28474C8094A8FB /* libInteractable.a */; };
 		DF02A1E31EFC26BE00B17B8D /* InboxPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */; };
 		DF02A2091EFC31C000B17B8D /* InboxPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A2081EFC31C000B17B8D /* InboxPage.swift */; };
 		DF02A22F1EFC43A400B17B8D /* TabBarControllerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */; };
 		E0FFC2B3DB6D05EE7A864DB7 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A75DDE30E7DF0E48B12475 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift */; };
 		E95E120300F55714C77F2BB4 /* DataUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E779D0FC821A88203D0C34D /* DataUtil.swift */; };
-		EF9BA2CEE3604DD5B95E86E6 /* libRNDocumentPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7BF161C7C894A7B942A2CD3 /* libRNDocumentPicker.a */; };
 		F0188C0A3AD93224BEADC600 /* SubmissionComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */; };
 		F420DAA9E52EF1478D71614F /* EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B77F1C0B62FA8B31FF0A08 /* EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift */; };
 		F4A743642DFB033A9214739E /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77ACE41DEF36F816C9F81E2 /* QuizQuestion.swift */; };
@@ -219,139 +191,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		00C302AB1ABCB8CE00DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTActionSheet;
-		};
-		00C302B91ABCB90400DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTGeolocation;
-		};
-		00C302BF1ABCB91800DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
-			remoteInfo = RCTImage;
-		};
-		00C302DB1ABCB9D200DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 58B511DB1A9E6C8500147676;
-			remoteInfo = RCTNetwork;
-		};
-		00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 832C81801AAF6DEF007FA2F7;
-			remoteInfo = RCTVibration;
-		};
-		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTSettings;
-		};
-		139FDEF31B06529B00C62182 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3C86DF461ADF2C930047B81A;
-			remoteInfo = RCTWebSocket;
-		};
-		146834031AC3E56700842450 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
-			remoteInfo = React;
-		};
-		2C1A49931F6351D800159F7C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9F81E69EBA2B4405905DDE9F /* RCTWKWebView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0974579A1D2A440A000D9368;
-			remoteInfo = RCTWKWebView;
-		};
-		2C26CA271F41EBD2000E15A2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8AD256131D6DE5F600C7D842;
-			remoteInfo = BugsnagReactNative;
-		};
-		2C588EAA1F13F0F3006CB2C4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D383D3C1EBD27B6005632C8;
-			remoteInfo = "third-party-tvOS";
-		};
-		2C588EAC1F13F0F3006CB2C4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D383D621EBD27B9005632C8;
-			remoteInfo = "double-conversion-tvOS";
-		};
-		2C588EB01F13F0F3006CB2C4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
-			remoteInfo = "RNBlur-tvOS";
-		};
-		2C5F35801EEB437E006A26F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEF7BF01E7C96860092C864 /* ART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 323A12871E5F266B004975B8;
-			remoteInfo = "ART-tvOS";
-		};
-		2C5F359D1EEB437E006A26F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 139D7ECE1E25DB7D00323FB7;
-			remoteInfo = "third-party";
-		};
-		2C5F359F1EEB437E006A26F9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 139D7E881E25C6D100323FB7;
-			remoteInfo = "double-conversion";
-		};
-		2CD62AE91F193A370051E36D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6524D40F1D2FAE0F0060C92E;
-			remoteInfo = RCTSFSafariViewController;
-		};
-		2CD62B001F193A370051E36D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6456441F1EB8DA9100672408;
-			remoteInfo = "RNFS-tvOS";
-		};
-		2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CC0127971E3ACC3900B23C9F;
-			remoteInfo = Interactable;
-		};
 		3B5812C61EC4F15900173C37 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
@@ -359,236 +198,12 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Teacher;
 		};
-		3BEF7BF41E7C96860092C864 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3BEF7BF01E7C96860092C864 /* ART.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
-			remoteInfo = ART;
-		};
-		3DAD3EA41DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3C059A1DE3340900C268FA;
-			remoteInfo = yoga;
-		};
-		3DAD3EA81DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9251DE5FBEC00167DC4;
-			remoteInfo = cxxreact;
-		};
-		3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD90B1DE5FBD600167DC4;
-			remoteInfo = jschelpers;
-		};
-		4924262C1EAEB37C0046ED43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNSearchBar;
-		};
-		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTAnimation;
-		};
-		611BDFA01E7B16AC008FD321 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
-			remoteInfo = React;
-		};
 		61B537251E786969000FEABB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Teacher;
-		};
-		61B7F5CC1ED619A200EC6865 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F12AFB9B1ADAF8F800E0535D;
-			remoteInfo = RNFS;
-		};
-		61FCAF131E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
-			remoteInfo = "RCTAnimation-tvOS";
-		};
-		61FCAF181E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A283A1D9B042B00D4039D;
-			remoteInfo = "RCTImage-tvOS";
-		};
-		61FCAF1C1E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28471D9B043800D4039D;
-			remoteInfo = "RCTLinking-tvOS";
-		};
-		61FCAF201E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28541D9B044C00D4039D;
-			remoteInfo = "RCTNetwork-tvOS";
-		};
-		61FCAF241E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28611D9B046600D4039D;
-			remoteInfo = "RCTSettings-tvOS";
-		};
-		61FCAF281E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A287B1D9B048500D4039D;
-			remoteInfo = "RCTText-tvOS";
-		};
-		61FCAF2D1E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28881D9B049200D4039D;
-			remoteInfo = "RCTWebSocket-tvOS";
-		};
-		61FCAF371E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 2D2A28131D9B038B00D4039D;
-			remoteInfo = "React-tvOS";
-		};
-		61FCAF391E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3C06751DE3340C00C268FA;
-			remoteInfo = "yoga-tvOS";
-		};
-		61FCAF3B1E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9321DE5FBEE00167DC4;
-			remoteInfo = "cxxreact-tvOS";
-		};
-		61FCAF3D1E5FC0190042921A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
-			remoteInfo = "jschelpers-tvOS";
-		};
-		78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RCTLinking;
-		};
-		832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
-			remoteInfo = RCTText;
-		};
-		9F053B941E98360A00135AD0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A68BD7BC1BC31318005F02DF;
-			remoteInfo = RNBlur;
-		};
-		9F36E7561F4E173700835E76 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = BVLinearGradient;
-		};
-		B14018E41F5746E1000B4955 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
-			remoteInfo = RCTCamera;
-		};
-		B1C9418B1F32343100E64303 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A12D0172B35E403093B42C62 /* RNDocumentPicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E01DD9DB1D2311A600C39062;
-			remoteInfo = RNDocumentPicker;
-		};
-		B1D0FE901F5A0BC00061925A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 64AA15081EF7F30100718508;
-			remoteInfo = "BVLinearGradient-tvOS";
-		};
-		B1D0FEBC1F5A0BC00061925A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
-			remoteInfo = RNSound;
-		};
-		B1E67EEA1F3A100200C9622B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EDFE7D14C67645C5AA3B3E11 /* RNAudio.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 42F559BA1CFC90C400DC3F84;
-			remoteInfo = RNAudio;
-		};
-		B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
-			remoteInfo = RNImagePicker;
-		};
-		E4B8ECC41F0D7D220038C5F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 46FEDE7F1AFF192F00D3261C;
-			remoteInfo = RNMail;
-		};
-		E4B8ECC61F0D7D220038C5F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 46FEDE8A1AFF192F00D3261C;
-			remoteInfo = RNMailTests;
-		};
-		F95BD47D1E7C600000117939 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5891D81BA9A9FC002B4DB2;
-			remoteInfo = RNDeviceInfo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -616,43 +231,29 @@
 			dstPath = "$(TEST_HOST)";
 			dstSubfolderSpec = 10;
 			files = (
+				61B5372D1E786A27000FEABB /* EarlGrey.framework in CopyFiles */,
+				61B5372E1E786A27000FEABB /* SoGrey.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
-		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
-		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
-		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
-		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		019B5D1CC3F56216F70B12D9 /* Pods_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		0610738E1EA11F5300BEB914 /* TeacherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTest.swift; sourceTree = "<group>"; };
 		061073901EA11FD800BEB914 /* CoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesListPage.swift; sourceTree = "<group>"; };
 		061073921EA11FED00BEB914 /* EditCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesListPage.swift; sourceTree = "<group>"; };
 		0679F6C1793F7855CCF998AE /* Submission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Submission.swift; path = models/Submission.swift; sourceTree = "<group>"; };
 		06F44325652F4B30CB471123 /* QuizQuestionAnswer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizQuestionAnswer.swift; path = models/QuizQuestionAnswer.swift; sourceTree = "<group>"; };
-		08246A7886D442347ADB6D3C /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		0AF4CD2A2F10EABBB6B24B6E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysClosedAvailability.swift; sourceTree = "<group>"; };
-		0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		0E9FFEF21ECA9728122AA39D /* Group.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Group.swift; path = models/Group.swift; sourceTree = "<group>"; };
 		105261256A70B5DFD1139104 /* Quiz.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Quiz.swift; path = models/Quiz.swift; sourceTree = "<group>"; };
 		1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
-		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
-		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Teacher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teacher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Teacher/Images.xcassets; sourceTree = "<group>"; };
-		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BugsnagReactNative.xcodeproj; path = "../node_modules/bugsnag-react-native/cocoa/BugsnagReactNative.xcodeproj"; sourceTree = "<group>"; };
+		1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
-		2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
-		2411260A6CA04D6D874912A2 /* libRNSearchBar.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSearchBar.a; sourceTree = "<group>"; };
-		2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		2C3DE5091F21494D00AE1D59 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Teacher/Info.plist; sourceTree = "<group>"; };
 		2C3DE50B1F21498900AE1D59 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C3DE50F1F21498A00AE1D59 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -763,8 +364,6 @@
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C65E0C21F214822008C6C95 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		2C841F5E1F3DF983009BF851 /* main.jsbundle.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = main.jsbundle.map; sourceTree = "<group>"; };
-		2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle.meta; sourceTree = "<group>"; };
 		2C921E771F72E366003E5C9B /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476A1F21472D0000BB79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -773,21 +372,20 @@
 		2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
 		2CAC3DC91F2146C500856778 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2CC98BB91F2143AB00D9F1F1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSFSafariViewController.xcodeproj; path = "../node_modules/react-native-sfsafariviewcontroller/RCTSFSafariViewController.xcodeproj"; sourceTree = "<group>"; };
 		2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
 		2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
 		2F087B321EC508BB0042C03E /* CourseSettingsPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPageTest.swift; sourceTree = "<group>"; };
 		2F087B531EC509190042C03E /* CourseSettingsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSettingsPage.swift; sourceTree = "<group>"; };
+		3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		31A58F9AE81847984674DD1A /* AssignmentListPageTest_testAssignmentListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysPageObjects.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		328A92B769017B28C51D2EFE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
 		371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift; sourceTree = "<group>"; };
-		37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
-		3A14A839A5EB460283B1F75B /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		3B2C7FBF1EB7DBF000A99D44 /* Helm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helm.m; path = Teacher/Helm.m; sourceTree = "<group>"; };
 		3B2C7FC01EB7DBF000A99D44 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helm.swift; path = Teacher/Helm.swift; sourceTree = "<group>"; };
 		3B2D872A1F571471001E3252 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -803,36 +401,39 @@
 		3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerHandleViewManager.m; path = Teacher/DrawerHandleViewManager.m; sourceTree = "<group>"; };
 		3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+PureEvil.swift"; path = "Teacher/NSObject+PureEvil.swift"; sourceTree = "<group>"; };
 		3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmSplitViewController.swift; path = Teacher/HelmSplitViewController.swift; sourceTree = "<group>"; };
+		3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjCBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmConstants.swift; path = Teacher/HelmConstants.swift; sourceTree = "<group>"; };
 		3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmNavigationViewController.swift; path = Teacher/HelmNavigationViewController.swift; sourceTree = "<group>"; };
 		3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmViewController.swift; path = Teacher/HelmViewController.swift; sourceTree = "<group>"; };
 		3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../RootTabBarController.swift; sourceTree = "<group>"; };
 		3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITraitEnvironmentExtensions.swift; path = Teacher/UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
-		3BDF53A71EC507C100956C1B /* libSDWebImage iOS static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libSDWebImage iOS static.a"; path = "../../../Carthage/Checkouts/SDWebImage/build/Debug-iphoneos/libSDWebImage iOS static.a"; sourceTree = "<group>"; };
-		3BEF7BF01E7C96860092C864 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		3BF71FC81EC117BE00234D25 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
-		3C972CBD2F070022AC54F8B9 /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3BF720DF1EC266EB00234D25 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BF720FF1EC4054100234D25 /* PocketSVG.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PocketSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		42A161BC86548CE0BB3E1AC7 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; sourceTree = "<group>"; };
-		4824B4180DB6D07AAAE9B68C /* Pods_defaults_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
-		484E95B3435758542C488C27 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491EF3131F2BD1C5002B6C76 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAttendanceViewController.swift; sourceTree = "<group>"; };
 		491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; sourceTree = "<group>"; };
+		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4943ECAD1E5CEFAC001DC5B5 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4943ECAE1E5CEFAC001DC5B5 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4943ECAF1E5CEFAC001DC5B5 /* FXKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FXKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
 		4994B2C81ED4E9390054D333 /* VideoContainerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
 		4994B2C91ED4E9390054D333 /* VideoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
 		49D86BD11F059E6B008951CE /* A11yGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
-		4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
-		4A7ECEE839604B9CBB1F3DFE /* libRCTWKWebView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTWKWebView.a; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
-		55069B727E0D4A34B80CED9D /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
-		5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSearchBar.xcodeproj; path = "../node_modules/react-native-search-bar/RNSearchBar.xcodeproj"; sourceTree = "<group>"; };
-		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
 		611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
@@ -843,80 +444,65 @@
 		619C94291ED8A25100AC7D7B /* CanvadocView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocView.swift; sourceTree = "<group>"; };
 		619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61B536A21E774B6A000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../Frameworks/SoGrey/build/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
+		61B536A41E774B70000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = "../../../Carthage/Checkouts/EarlGrey/build/Debug-iphoneos/EarlGrey.framework"; sourceTree = "<group>"; };
 		61B536DD1E784946000FEABB /* DomainPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerTests.swift; sourceTree = "<group>"; };
 		61B536DF1E784A4B000FEABB /* Pages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
 		61B536E31E78599D000FEABB /* DomainPickerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerPage.swift; sourceTree = "<group>"; };
+		61B536EC1E7860CE000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EarlGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61B536ED1E7860CE000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushAnimatedTransitioning.swift; path = Teacher/PushAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
 		61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
-		61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bridging-header.h"; path = "Teacher/bridging-header.h"; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
 		61E6C4DF1F14263900B7B6C1 /* HapticFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HapticFeedback.h; sourceTree = "<group>"; };
 		61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HapticFeedback.m; sourceTree = "<group>"; };
 		621E9A4A25A91690500722D2 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift; sourceTree = "<group>"; };
-		64E4814C24C5852C6409E547 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		6DF7526D87BCDDCAB4075E5E /* Conversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Conversation.swift; path = models/Conversation.swift; sourceTree = "<group>"; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
 		715FA7B506E025841189821D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoToDate.swift; sourceTree = "<group>"; };
-		7208A3391EE477AE3ADAA673 /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		73DCB88DA3ECC3A55C5772A6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift; sourceTree = "<group>"; };
+		7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.debug.xcconfig"; sourceTree = "<group>"; };
 		74FC7DEC9C71D3A13687458B /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InboxPageTest_testInboxPage_displaysNewMessagePage.swift; path = data/InboxPageTest/InboxPageTest_testInboxPage_displaysNewMessagePage.swift; sourceTree = "<group>"; };
-		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A0EEB8EFFD2C55D1AA39353 /* QuizSubmission.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizSubmission.swift; path = models/QuizSubmission.swift; sourceTree = "<group>"; };
-		7A8024038C5DB0739D9C12F8 /* Pods-TeacherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeacherUITests.debug.xcconfig"; path = "../../../Pods/Target Support Files/Pods-TeacherUITests/Pods-TeacherUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Interactable.xcodeproj; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; };
 		8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift; sourceTree = "<group>"; };
-		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8523CC8C3560F5F179BB84D4 /* CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift; path = data/CourseBrowserPageTest/CourseBrowserPageTest_testCourseBrowserPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
 		88A75DDE30E7DF0E48B12475 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; path = data/CourseSettingsPageTest/CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
+		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupCategory.swift; path = models/GroupCategory.swift; sourceTree = "<group>"; };
 		922B8388DD687B870A89727F /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift; sourceTree = "<group>"; };
-		9E745A09DE28474C8094A8FB /* libInteractable.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInteractable.a; sourceTree = "<group>"; };
 		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
 		9F25FA521ECA4EC900275E30 /* NativeAccessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAccessibility.h; sourceTree = "<group>"; };
 		9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAccessibility.m; sourceTree = "<group>"; };
-		9F81E69EBA2B4405905DDE9F /* RCTWKWebView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTWKWebView.xcodeproj; path = "../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView.xcodeproj"; sourceTree = "<group>"; };
 		9FCE7BB01ED6340C00DD1693 /* PushNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
 		9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
 		A06E780FA4F813E8535599C4 /* Discussion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Discussion.swift; path = models/Discussion.swift; sourceTree = "<group>"; };
-		A12D0172B35E403093B42C62 /* RNDocumentPicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDocumentPicker.xcodeproj; path = "../node_modules/react-native-document-picker/ios/RNDocumentPicker.xcodeproj"; sourceTree = "<group>"; };
-		A173E7C1016F4F56BBFC43B7 /* libRNMail.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNMail.a; sourceTree = "<group>"; };
 		A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InboxPageTest_testInboxPage_displaysPageObjects.swift; path = data/InboxPageTest/InboxPageTest_testInboxPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; sourceTree = "<group>"; };
-		A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		A77ACE41DEF36F816C9F81E2 /* QuizQuestion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QuizQuestion.swift; path = models/QuizQuestion.swift; sourceTree = "<group>"; };
 		A8420872227378302E813DF7 /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift; sourceTree = "<group>"; };
-		A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNMail.xcodeproj; path = "../node_modules/react-native-mail/RNMail.xcodeproj"; sourceTree = "<group>"; };
 		AA8F13453A04E64C495109D4 /* EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_unfavoriteCourse.swift; sourceTree = "<group>"; };
 		AAA2CE83FCF7E3A5CEF100C6 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift; sourceTree = "<group>"; };
-		ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		AE0146025D5E27613B19DA93 /* CourseListPageTest_testCourseListPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysPageObjects.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
 		B092C7F1FFB519DC8F91E3B7 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; sourceTree = "<group>"; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1739F3A1F7D8DCD005465C5 /* SoGrey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewHacker.h; path = Teacher/WebViewHacker.h; sourceTree = "<group>"; };
 		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewHacker.m; path = Teacher/WebViewHacker.m; sourceTree = "<group>"; };
-		B1C66FE41F7D941B008BD9C0 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../Debug-iphonesimulator/SoGrey.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2F4D7AC589D95B4BAF6D3DB /* Pods-TeacherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeacherUITests.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-TeacherUITests/Pods-TeacherUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
 		B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseModuleItem.swift; path = models/CourseModuleItem.swift; sourceTree = "<group>"; };
 		B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; sourceTree = "<group>"; };
 		B70862A515621F745F8148C6 /* DiscussionEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiscussionEntry.swift; path = models/DiscussionEntry.swift; sourceTree = "<group>"; };
 		BB28BA928334A7C4FFA230C7 /* Attachment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Attachment.swift; path = models/Attachment.swift; sourceTree = "<group>"; };
-		BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBugsnagReactNative.a; sourceTree = "<group>"; };
-		C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
 		C3B77F1C0B62FA8B31FF0A08 /* EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysCourseList.swift; sourceTree = "<group>"; };
-		C3FBFFD266EF405A0A04A7E1 /* Pods_defaults_common_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C48A877FC5DFDFB58133F13B /* AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift; sourceTree = "<group>"; };
-		C7A08992613846128FD3E3D2 /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift; sourceTree = "<group>"; };
 		CAC8D0646677276C36E70E17 /* GroupMembership.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupMembership.swift; path = models/GroupMembership.swift; sourceTree = "<group>"; };
 		CB4A26FAD3481B8CC4F39E20 /* Enrollment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Enrollment.swift; path = models/Enrollment.swift; sourceTree = "<group>"; };
@@ -925,13 +511,11 @@
 		D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubmissionComment.swift; path = models/SubmissionComment.swift; sourceTree = "<group>"; };
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
 		D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; sourceTree = "<group>"; };
-		D7BF161C7C894A7B942A2CD3 /* libRNDocumentPicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDocumentPicker.a; sourceTree = "<group>"; };
 		DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPageTest.swift; sourceTree = "<group>"; };
 		DF02A2081EFC31C000B17B8D /* InboxPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPage.swift; sourceTree = "<group>"; };
 		DF02A22E1EFC43A400B17B8D /* TabBarControllerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerPage.swift; sourceTree = "<group>"; };
 		E65CD579E3B4B8C70263266C /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift; sourceTree = "<group>"; };
 		E8A5D28EB09C19518A6BA81F /* CourseModule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseModule.swift; path = models/CourseModule.swift; sourceTree = "<group>"; };
-		EDFE7D14C67645C5AA3B3E11 /* RNAudio.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAudio.xcodeproj; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; };
 		EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Teacher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift; sourceTree = "<group>"; };
 		F3AF41997730E9FF32CA0729 /* AssignmentOverride.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentOverride.swift; path = models/AssignmentOverride.swift; sourceTree = "<group>"; };
@@ -946,7 +530,6 @@
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
 		F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPage.swift; sourceTree = "<group>"; };
 		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
-		F9A9E2238589494EAD158883 /* libRNAudio.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudio.a; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 		FA10A579F7F9ADB535EC6CAD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -956,10 +539,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD62B061F193A4B0051E36D /* libRCTSFSafariViewController.a in Frameworks */,
-				61B7F5CE1ED619D000EC6865 /* libRNFS.a in Frameworks */,
-				496354ED1EB3E90100477CD9 /* libRCTText.a in Frameworks */,
-				3BEF7C101E7C96940092C864 /* libART.a in Frameworks */,
 				2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */,
 				61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
@@ -971,36 +550,13 @@
 				2C50EDFF1E735CB10096592C /* CoreText.framework in Frameworks */,
 				2C50EDFD1E735CAC0096592C /* CoreTelephony.framework in Frameworks */,
 				2C50EDE11E735CA50096592C /* AssetsLibrary.framework in Frameworks */,
-				146834051AC3E58100842450 /* libReact.a in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
-				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */,
-				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */,
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
-				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
-				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
-				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */,
-				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				61AD9B63975E448BAF5C6F25 /* libRNDeviceInfo.a in Frameworks */,
-				9476F5B887844F7BAEBA7738 /* libRNImagePicker.a in Frameworks */,
-				A779010714254FD09112BFF7 /* libRNBlur.a in Frameworks */,
-				DEBFD761CA06448195663E88 /* libInteractable.a in Frameworks */,
-				C31D10A45ABA434ABB185FDD /* libRNSearchBar.a in Frameworks */,
-				685999502ED04B3D8C1FF049 /* libRNMail.a in Frameworks */,
-				EF9BA2CEE3604DD5B95E86E6 /* libRNDocumentPicker.a in Frameworks */,
-				5031AD3F5ACC4AB890DB0437 /* libRNAudio.a in Frameworks */,
-				AB03B0349E454DCEA2ADC585 /* libBugsnagReactNative.a in Frameworks */,
 				2C921E781F72E366003E5C9B /* CanvasCore.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
-				B8A7C38963894269A892A2BC /* libRNSound.a in Frameworks */,
-				BD604147FC4E46ECABACB114 /* libBVLinearGradient.a in Frameworks */,
-				D1506F166CC24444A103B9CD /* libRCTCamera.a in Frameworks */,
-				10A81D2926DD4E5FACC5B7AE /* libRCTWKWebView.a in Frameworks */,
 				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1009,7 +565,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B5813101EC4F55900173C37 /* libReact.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1025,56 +580,15 @@
 				F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */,
 				F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */,
 				F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */,
-				09CAD8E25B102C1A638088BD /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */,
-				B1C66FE51F7D9427008BD9C0 /* SoGrey.framework in Frameworks */,
+				61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */,
+				61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */,
+				20A0DB89280A80AFF823848C /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00C302A81ABCB8CE00DB3ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		00C302B61ABCB90400DB3ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		00C302BC1ABCB91800DB3ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00C302C01ABCB91800DB3ED1 /* libRCTImage.a */,
-				61FCAF191E5FC0190042921A /* libRCTImage-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		00C302D41ABCB9D200DB3ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */,
-				61FCAF211E5FC0190042921A /* libRCTNetwork-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		00C302E01ABCB9EE00DB3ED1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		00E356EF1AD99517003FC87E /* TeacherTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,24 +603,6 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		139105B71AF99BAD00B5F7CC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				139105C11AF99BAD00B5F7CC /* libRCTSettings.a */,
-				61FCAF251E5FC0190042921A /* libRCTSettings-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		139FDEE71B06529A00C62182 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
-				61FCAF2E1E5FC0190042921A /* libRCTWebSocket-tvOS.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
@@ -1124,9 +620,6 @@
 				3B8B24241EB2ABF900B61EF8 /* Helm */,
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				2C841F5E1F3DF983009BF851 /* main.jsbundle.map */,
-				2C841F5F1F3DF983009BF851 /* main.jsbundle.meta */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
 				2C3DE5091F21494D00AE1D59 /* Info.plist */,
@@ -1137,48 +630,13 @@
 			name = Teacher;
 			sourceTree = "<group>";
 		};
-		146834001AC3E56700842450 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				146834041AC3E56700842450 /* libReact.a */,
-				61FCAF381E5FC0190042921A /* libReact.a */,
-				3DAD3EA51DF850E9000B6D8A /* libyoga.a */,
-				61FCAF3A1E5FC0190042921A /* libyoga.a */,
-				3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */,
-				61FCAF3C1E5FC0190042921A /* libcxxreact.a */,
-				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
-				61FCAF3E1E5FC0190042921A /* libjschelpers.a */,
-				2C5F359E1EEB437E006A26F9 /* libthird-party.a */,
-				2C588EAB1F13F0F3006CB2C4 /* libthird-party.a */,
-				2C5F35A01EEB437E006A26F9 /* libdouble-conversion.a */,
-				2C588EAD1F13F0F3006CB2C4 /* libdouble-conversion.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2C1A49771F6351D800159F7C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2C1A49941F6351D800159F7C /* libRCTWKWebView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2C26CA221F41EBD1000E15A2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2C26CA281F41EBD2000E15A2 /* libBugsnagReactNative.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1739F3A1F7D8DCD005465C5 /* SoGrey.framework */,
 				2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */,
 				2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */,
-				3BDF53A71EC507C100956C1B /* libSDWebImage iOS static.a */,
+				61B536A41E774B70000FEABB /* EarlGrey.framework */,
+				61B536A21E774B6A000FEABB /* SoGrey.framework */,
 				2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */,
 				2C50EE081E735CCB0096592C /* SystemConfiguration.framework */,
 				2C50EE061E735CC60096592C /* QuartzCore.framework */,
@@ -1190,20 +648,9 @@
 				2C50EDE01E735CA50096592C /* AssetsLibrary.framework */,
 				D063D27A1B3640208ABF74D4 /* libz.tbd */,
 				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
-				4824B4180DB6D07AAAE9B68C /* Pods_defaults_TeacherUITests.framework */,
-				C3FBFFD266EF405A0A04A7E1 /* Pods_defaults_common_tests_TeacherUITests.framework */,
-				019B5D1CC3F56216F70B12D9 /* Pods_TeacherUITests.framework */,
-				484E95B3435758542C488C27 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
+				2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2CD62AD71F193A370051E36D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		2CEC445D1E8AABBD00AF7344 /* Helpers */ = {
@@ -1214,14 +661,6 @@
 				F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */,
 			);
 			name = Helpers;
-			sourceTree = "<group>";
-		};
-		2CF540961EA6772800F79DB1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2CF5409B1EA6772800F79DB1 /* libInteractable.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3B379781808A96719F53B283 /* data */ = {
@@ -1303,15 +742,6 @@
 			name = Helm;
 			sourceTree = "<group>";
 		};
-		3BEF7BF11E7C96860092C864 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3BEF7BF51E7C96860092C864 /* libART.a */,
-				2C5F35811EEB437E006A26F9 /* libART-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		3BF71FC71EC117A500234D25 /* Branding */ = {
 			isa = PBXGroup;
 			children = (
@@ -1351,31 +781,10 @@
 			path = Attendance;
 			sourceTree = "<group>";
 		};
-		4924260C1EAEB37C0046ED43 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4924262D1EAEB37C0046ED43 /* libRNSearchBar.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		493EC8621F016CB800A1ED1E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				0456B43BE349468FA3E976BB /* libRNDeviceInfo.a */,
-				3A14A839A5EB460283B1F75B /* libRNImagePicker.a */,
-				C7A08992613846128FD3E3D2 /* libRNBlur.a */,
-				9E745A09DE28474C8094A8FB /* libInteractable.a */,
-				2411260A6CA04D6D874912A2 /* libRNSearchBar.a */,
-				A173E7C1016F4F56BBFC43B7 /* libRNMail.a */,
-				D7BF161C7C894A7B942A2CD3 /* libRNDocumentPicker.a */,
-				F9A9E2238589494EAD158883 /* libRNAudio.a */,
-				BEF2A87979664A25BD6B3890 /* libBugsnagReactNative.a */,
-				4A74935DF7F747AA97E43FC9 /* libBVLinearGradient.a */,
 				B170B0651F58756E00B92700 /* SoLazy.framework */,
-				55069B727E0D4A34B80CED9D /* libRNSound.a */,
-				C33E3CEBB2B54A8E80C03B9D /* libRCTCamera.a */,
-				4A7ECEE839604B9CBB1F3DFE /* libRCTWKWebView.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1385,12 +794,27 @@
 			children = (
 				3B2D872A1F571471001E3252 /* SoLazy.framework */,
 				2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */,
+				491EF3131F2BD1C5002B6C76 /* Marshal.framework */,
 				491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */,
 				619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */,
 				61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */,
+				3BF720FF1EC4054100234D25 /* PocketSVG.framework */,
+				3BF720DF1EC266EB00234D25 /* SDWebImage.framework */,
+				3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */,
+				3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */,
+				3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */,
+				61B536EC1E7860CE000FEABB /* EarlGrey.framework */,
+				61B536ED1E7860CE000FEABB /* SoGrey.framework */,
 				2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */,
+				4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */,
 				4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */,
 				4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */,
+				4943ECAD1E5CEFAC001DC5B5 /* CocoaLumberjack.framework */,
+				4943ECAE1E5CEFAC001DC5B5 /* CWNotification.framework */,
+				4943ECAF1E5CEFAC001DC5B5 /* FXKeychain.framework */,
+				4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */,
+				4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */,
+				4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -1431,15 +855,6 @@
 			name = EditCoursesPageTest;
 			sourceTree = "<group>";
 		};
-		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */,
-				61FCAF141E5FC0190042921A /* libRCTAnimation.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		61032A8F1F3CF35500EB1924 /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
@@ -1451,7 +866,6 @@
 		61B536591E7749F5000FEABB /* TeacherUITests */ = {
 			isa = PBXGroup;
 			children = (
-				B1739F6D1F7D90B4005465C5 /* Dependencies */,
 				2C3DE5151F21498C00AE1D59 /* InfoPlist.strings */,
 				2CEC445D1E8AABBD00AF7344 /* Helpers */,
 				61B536DC1E78491B000FEABB /* Tests */,
@@ -1511,15 +925,6 @@
 			path = Teacher/PSPDFKit;
 			sourceTree = "<group>";
 		};
-		61B7F5C91ED619A100EC6865 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				61B7F5CD1ED619A200EC6865 /* libRNFS.a */,
-				2CD62B011F193A370051E36D /* libRNFS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		61BD856A1EB290C0005A09A5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -1543,65 +948,12 @@
 			name = ComposeNewMessageTest;
 			sourceTree = "<group>";
 		};
-		78C398B11ACF4ADC00677621 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				78C398B91ACF4ADC00677621 /* libRCTLinking.a */,
-				61FCAF1D1E5FC0190042921A /* libRCTLinking-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */,
-				61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */,
-				3BEF7BF01E7C96860092C864 /* ART.xcodeproj */,
-				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
-				146833FF1AC3E56700842450 /* React.xcodeproj */,
-				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
-				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
-				00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */,
-				78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */,
-				00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */,
-				139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */,
-				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
-				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
-				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */,
-				A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */,
-				2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */,
-				7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */,
-				5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */,
-				A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */,
-				A12D0172B35E403093B42C62 /* RNDocumentPicker.xcodeproj */,
-				EDFE7D14C67645C5AA3B3E11 /* RNAudio.xcodeproj */,
-				1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */,
-				0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */,
-				37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */,
-				2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */,
-				9F81E69EBA2B4405905DDE9F /* RCTWKWebView.xcodeproj */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
-		832341B11AAA6A8300B99B32 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				832341B51AAA6A8300B99B32 /* libRCTText.a */,
-				61FCAF291E5FC0190042921A /* libRCTText-tvOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
 				2C921E771F72E366003E5C9B /* CanvasCore.framework */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TeacherTests */,
 				61B536591E7749F5000FEABB /* TeacherUITests */,
 				3B5812C21EC4F15900173C37 /* TeacherUnitTests */,
@@ -1631,24 +983,6 @@
 				74FC7DEC9C71D3A13687458B /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift */,
 			);
 			name = InboxPageTest;
-			sourceTree = "<group>";
-		};
-		9F053B761E98360A00135AD0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9F053B951E98360A00135AD0 /* libRNBlur.a */,
-				2C588EB11F13F0F3006CB2C4 /* libRNBlur.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		9F36E7501F4E173700835E76 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9F36E7571F4E173700835E76 /* libBVLinearGradient.a */,
-				B1D0FE911F5A0BC00061925A /* libBVLinearGradient.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A28EBC62822C9634F1AE7766 /* AllCoursesListPageTest */ = {
@@ -1689,54 +1023,6 @@
 				B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */,
 			);
 			name = models;
-			sourceTree = "<group>";
-		};
-		B14018E11F5746E1000B4955 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B14018E51F5746E1000B4955 /* libRCTCamera.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1739F6D1F7D90B4005465C5 /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				B1C66FE41F7D941B008BD9C0 /* SoGrey.framework */,
-			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		B1C941651F32343100E64303 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1C9418C1F32343100E64303 /* libRNDocumentPicker.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1D0FE891F5A0BC00061925A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1D0FEBD1F5A0BC00061925A /* libRNSound.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1E67EC71F3A100100C9622B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1E67EEB1F3A100200C9622B /* libRNAudio.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		B1FE61931EA6AF5500A2A434 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B1FE61B21EA6AF5500A2A434 /* libRNImagePicker.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		BAA3161B08EDCBBFF9A59B2D /* CourseSettingsPageTest */ = {
@@ -1781,31 +1067,12 @@
 		E3598DCFB2D0E7A9019957B2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7A8024038C5DB0739D9C12F8 /* Pods-TeacherUITests.debug.xcconfig */,
-				B2F4D7AC589D95B4BAF6D3DB /* Pods-TeacherUITests.release.xcconfig */,
-				08246A7886D442347ADB6D3C /* Pods-defaults-Teacher.debug.xcconfig */,
-				64E4814C24C5852C6409E547 /* Pods-defaults-Teacher.release.xcconfig */,
-				3C972CBD2F070022AC54F8B9 /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */,
-				7208A3391EE477AE3ADAA673 /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */,
+				7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */,
+				9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */,
+				3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */,
+				1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		E4B8EC9F1F0D7D220038C5F5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E4B8ECC51F0D7D220038C5F5 /* libRNMail.a */,
-				E4B8ECC71F0D7D220038C5F5 /* RNMailTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F95BD4611E7C600000117939 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F95BD47E1E7C600000117939 /* libRNDeviceInfo.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1816,9 +1083,10 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Teacher" */;
 			buildPhases = (
 				B3ADBFFA3D2F8B176CD267CC /* [CP] Check Pods Manifest.lock */,
+				4931EB6B1F731BD700715EF2 /* Start the Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
-				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				49AD4F601F730CB000BEDB8E /* Bundle React Native Code and Resources */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				4943ECC51E5CEFBD001DC5B5 /* Embed Frameworks */,
 				B1C60D611F1D82E800F7902C /* Strip PSPDFKit */,
@@ -1857,18 +1125,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 61B537271E78696A000FEABB /* Build configuration list for PBXNativeTarget "TeacherUITests" */;
 			buildPhases = (
-				03AF19B184CEA3905BA7A8C2 /* [CP] Check Pods Manifest.lock */,
+				1A72CE124A64DFA829D69A08 /* [CP] Check Pods Manifest.lock */,
 				61B5371C1E786969000FEABB /* Sources */,
 				61B5371D1E786969000FEABB /* Frameworks */,
 				61B5371E1E786969000FEABB /* Resources */,
 				61B5372C1E7869F5000FEABB /* CopyFiles */,
-				2FD2A358B9F7785F4109515B /* [CP] Embed Pods Frameworks */,
-				C8DC4AB896D44063BDFA1BA1 /* [CP] Copy Pods Resources */,
+				73E9BB7D3716B4C23CA578E2 /* [CP] Embed Pods Frameworks */,
+				BF300A9E217237A7707FC6F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				611BDFA11E7B16AC008FD321 /* PBXTargetDependency */,
 				61B537261E786969000FEABB /* PBXTargetDependency */,
 			);
 			name = TeacherUITests;
@@ -1928,116 +1195,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3BEF7BF11E7C96860092C864 /* Products */;
-					ProjectRef = 3BEF7BF01E7C96860092C864 /* ART.xcodeproj */;
-				},
-				{
-					ProductGroup = 2C26CA221F41EBD1000E15A2 /* Products */;
-					ProjectRef = 1E9C71B3FBA649FE9191E72C /* BugsnagReactNative.xcodeproj */;
-				},
-				{
-					ProductGroup = 9F36E7501F4E173700835E76 /* Products */;
-					ProjectRef = 37B117A4EE364B63B1E76598 /* BVLinearGradient.xcodeproj */;
-				},
-				{
-					ProductGroup = 2CF540961EA6772800F79DB1 /* Products */;
-					ProjectRef = 7C24CBAEEF2D4F208E312DB3 /* Interactable.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
-					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
-				},
-				{
-					ProductGroup = 5E91572E1DD0AC6500FF2AA8 /* Products */;
-					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
-				},
-				{
-					ProductGroup = B14018E11F5746E1000B4955 /* Products */;
-					ProjectRef = 2383631F3377472AB82AE858 /* RCTCamera.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
-					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302BC1ABCB91800DB3ED1 /* Products */;
-					ProjectRef = 00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */;
-				},
-				{
-					ProductGroup = 78C398B11ACF4ADC00677621 /* Products */;
-					ProjectRef = 78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302D41ABCB9D200DB3ED1 /* Products */;
-					ProjectRef = 00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */;
-				},
-				{
-					ProductGroup = 139105B71AF99BAD00B5F7CC /* Products */;
-					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
-				},
-				{
-					ProductGroup = 2CD62AD71F193A370051E36D /* Products */;
-					ProjectRef = 2CD62AD61F193A370051E36D /* RCTSFSafariViewController.xcodeproj */;
-				},
-				{
-					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
-					ProjectRef = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
-				},
-				{
-					ProductGroup = 00C302E01ABCB9EE00DB3ED1 /* Products */;
-					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
-				},
-				{
-					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
-					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
-				},
-				{
-					ProductGroup = 2C1A49771F6351D800159F7C /* Products */;
-					ProjectRef = 9F81E69EBA2B4405905DDE9F /* RCTWKWebView.xcodeproj */;
-				},
-				{
-					ProductGroup = 146834001AC3E56700842450 /* Products */;
-					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-				},
-				{
-					ProductGroup = B1E67EC71F3A100100C9622B /* Products */;
-					ProjectRef = EDFE7D14C67645C5AA3B3E11 /* RNAudio.xcodeproj */;
-				},
-				{
-					ProductGroup = 9F053B761E98360A00135AD0 /* Products */;
-					ProjectRef = 2588A02103A446BDAFDF1D16 /* RNBlur.xcodeproj */;
-				},
-				{
-					ProductGroup = F95BD4611E7C600000117939 /* Products */;
-					ProjectRef = ADFDE20662E4478E9D4B1E2D /* RNDeviceInfo.xcodeproj */;
-				},
-				{
-					ProductGroup = B1C941651F32343100E64303 /* Products */;
-					ProjectRef = A12D0172B35E403093B42C62 /* RNDocumentPicker.xcodeproj */;
-				},
-				{
-					ProductGroup = 61B7F5C91ED619A100EC6865 /* Products */;
-					ProjectRef = 61B7F5C81ED619A100EC6865 /* RNFS.xcodeproj */;
-				},
-				{
-					ProductGroup = B1FE61931EA6AF5500A2A434 /* Products */;
-					ProjectRef = A5E13B8FB1EB4A08AD4FEFFC /* RNImagePicker.xcodeproj */;
-				},
-				{
-					ProductGroup = E4B8EC9F1F0D7D220038C5F5 /* Products */;
-					ProjectRef = A91D2BE899B64FC79522C8CB /* RNMail.xcodeproj */;
-				},
-				{
-					ProductGroup = 4924260C1EAEB37C0046ED43 /* Products */;
-					ProjectRef = 5D24B3DAF2D843B28222A21A /* RNSearchBar.xcodeproj */;
-				},
-				{
-					ProductGroup = B1D0FE891F5A0BC00061925A /* Products */;
-					ProjectRef = 0E6A1A0BCD204B46AEFC3D87 /* RNSound.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Teacher */,
@@ -2046,359 +1203,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTActionSheet.a;
-			remoteRef = 00C302AB1ABCB8CE00DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTGeolocation.a;
-			remoteRef = 00C302B91ABCB90400DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302C01ABCB91800DB3ED1 /* libRCTImage.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTImage.a;
-			remoteRef = 00C302BF1ABCB91800DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTNetwork.a;
-			remoteRef = 00C302DB1ABCB9D200DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTVibration.a;
-			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTSettings.a;
-			remoteRef = 139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139FDEF41B06529B00C62182 /* libRCTWebSocket.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTWebSocket.a;
-			remoteRef = 139FDEF31B06529B00C62182 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		146834041AC3E56700842450 /* libReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReact.a;
-			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C1A49941F6351D800159F7C /* libRCTWKWebView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTWKWebView.a;
-			remoteRef = 2C1A49931F6351D800159F7C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C26CA281F41EBD2000E15A2 /* libBugsnagReactNative.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBugsnagReactNative.a;
-			remoteRef = 2C26CA271F41EBD2000E15A2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C588EAB1F13F0F3006CB2C4 /* libthird-party.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libthird-party.a";
-			remoteRef = 2C588EAA1F13F0F3006CB2C4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C588EAD1F13F0F3006CB2C4 /* libdouble-conversion.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libdouble-conversion.a";
-			remoteRef = 2C588EAC1F13F0F3006CB2C4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C588EB11F13F0F3006CB2C4 /* libRNBlur.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNBlur.a;
-			remoteRef = 2C588EB01F13F0F3006CB2C4 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C5F35811EEB437E006A26F9 /* libART-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libART-tvOS.a";
-			remoteRef = 2C5F35801EEB437E006A26F9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C5F359E1EEB437E006A26F9 /* libthird-party.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libthird-party.a";
-			remoteRef = 2C5F359D1EEB437E006A26F9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2C5F35A01EEB437E006A26F9 /* libdouble-conversion.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libdouble-conversion.a";
-			remoteRef = 2C5F359F1EEB437E006A26F9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2CD62AEA1F193A370051E36D /* libRCTSFSafariViewController.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTSFSafariViewController.a;
-			remoteRef = 2CD62AE91F193A370051E36D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2CD62B011F193A370051E36D /* libRNFS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFS.a;
-			remoteRef = 2CD62B001F193A370051E36D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2CF5409B1EA6772800F79DB1 /* libInteractable.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libInteractable.a;
-			remoteRef = 2CF5409A1EA6772800F79DB1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3BEF7BF51E7C96860092C864 /* libART.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libART.a;
-			remoteRef = 3BEF7BF41E7C96860092C864 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EA51DF850E9000B6D8A /* libyoga.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libyoga.a;
-			remoteRef = 3DAD3EA41DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcxxreact.a;
-			remoteRef = 3DAD3EA81DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 3DAD3EAC1DF850E9000B6D8A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4924262D1EAEB37C0046ED43 /* libRNSearchBar.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNSearchBar.a;
-			remoteRef = 4924262C1EAEB37C0046ED43 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTAnimation.a;
-			remoteRef = 5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61B7F5CD1ED619A200EC6865 /* libRNFS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNFS.a;
-			remoteRef = 61B7F5CC1ED619A200EC6865 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF141E5FC0190042921A /* libRCTAnimation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTAnimation.a;
-			remoteRef = 61FCAF131E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF191E5FC0190042921A /* libRCTImage-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTImage-tvOS.a";
-			remoteRef = 61FCAF181E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF1D1E5FC0190042921A /* libRCTLinking-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTLinking-tvOS.a";
-			remoteRef = 61FCAF1C1E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF211E5FC0190042921A /* libRCTNetwork-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTNetwork-tvOS.a";
-			remoteRef = 61FCAF201E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF251E5FC0190042921A /* libRCTSettings-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTSettings-tvOS.a";
-			remoteRef = 61FCAF241E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF291E5FC0190042921A /* libRCTText-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTText-tvOS.a";
-			remoteRef = 61FCAF281E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF2E1E5FC0190042921A /* libRCTWebSocket-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libRCTWebSocket-tvOS.a";
-			remoteRef = 61FCAF2D1E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF381E5FC0190042921A /* libReact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libReact.a;
-			remoteRef = 61FCAF371E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF3A1E5FC0190042921A /* libyoga.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libyoga.a;
-			remoteRef = 61FCAF391E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF3C1E5FC0190042921A /* libcxxreact.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libcxxreact.a;
-			remoteRef = 61FCAF3B1E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		61FCAF3E1E5FC0190042921A /* libjschelpers.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjschelpers.a;
-			remoteRef = 61FCAF3D1E5FC0190042921A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78C398B91ACF4ADC00677621 /* libRCTLinking.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTLinking.a;
-			remoteRef = 78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		832341B51AAA6A8300B99B32 /* libRCTText.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTText.a;
-			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9F053B951E98360A00135AD0 /* libRNBlur.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNBlur.a;
-			remoteRef = 9F053B941E98360A00135AD0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9F36E7571F4E173700835E76 /* libBVLinearGradient.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBVLinearGradient.a;
-			remoteRef = 9F36E7561F4E173700835E76 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B14018E51F5746E1000B4955 /* libRCTCamera.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRCTCamera.a;
-			remoteRef = B14018E41F5746E1000B4955 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1C9418C1F32343100E64303 /* libRNDocumentPicker.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDocumentPicker.a;
-			remoteRef = B1C9418B1F32343100E64303 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1D0FE911F5A0BC00061925A /* libBVLinearGradient.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libBVLinearGradient.a;
-			remoteRef = B1D0FE901F5A0BC00061925A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1D0FEBD1F5A0BC00061925A /* libRNSound.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNSound.a;
-			remoteRef = B1D0FEBC1F5A0BC00061925A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1E67EEB1F3A100200C9622B /* libRNAudio.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNAudio.a;
-			remoteRef = B1E67EEA1F3A100200C9622B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B1FE61B21EA6AF5500A2A434 /* libRNImagePicker.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNImagePicker.a;
-			remoteRef = B1FE61B11EA6AF5500A2A434 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E4B8ECC51F0D7D220038C5F5 /* libRNMail.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNMail.a;
-			remoteRef = E4B8ECC41F0D7D220038C5F5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E4B8ECC71F0D7D220038C5F5 /* RNMailTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = RNMailTests.xctest;
-			remoteRef = E4B8ECC61F0D7D220038C5F5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F95BD47E1E7C600000117939 /* libRNDeviceInfo.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNDeviceInfo.a;
-			remoteRef = F95BD47D1E7C600000117939 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
@@ -2411,9 +1215,6 @@
 				2C3DE50A1F21494D00AE1D59 /* Info.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */,
-				9F59C09C1E980384003BF661 /* main.jsbundle in Resources */,
-				2C841F611F3DF9BF009BF851 /* main.jsbundle.map in Resources */,
-				2C841F601F3DF983009BF851 /* main.jsbundle.meta in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2436,21 +1237,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+		0E294238A76D6C78A20DE9E1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Bundle React Native code and images";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output ./ios/main.jsbundle --sourcemap-output ./ios/main.jsbundle.map --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
-		03AF19B184CEA3905BA7A8C2 /* [CP] Check Pods Manifest.lock */ = {
+		1A72CE124A64DFA829D69A08 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2468,21 +1270,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0E294238A76D6C78A20DE9E1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2CDD85CA1F1D6CDB00FD1CF8 /* Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2497,7 +1284,37 @@
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/Fabric/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
 		};
-		2FD2A358B9F7785F4109515B /* [CP] Embed Pods Frameworks */ = {
+		4931EB6B1F731BD700715EF2 /* Start the Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Start the Packager";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/myfile",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\nopen \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi";
+			showEnvVarsInLog = 0;
+		};
+		49AD4F601F730CB000BEDB8E /* Bundle React Native Code and Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code and Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../node_modules/react-native/scripts/react-native-xcode.sh\nfi";
+		};
+		73E9BB7D3716B4C23CA578E2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2617,8 +1434,25 @@
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
+				"${BUILT_PRODUCTS_DIR}/BugsnagReactNative/BugsnagReactNative.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-wkwebview/react_native_wkwebview.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2643,15 +1477,32 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BugsnagReactNative.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_wkwebview.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C8DC4AB896D44063BDFA1BA1 /* [CP] Copy Pods Resources */ = {
+		BF300A9E217237A7707FC6F6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2832,11 +1683,6 @@
 			target = 13B07F861A680F5B00A75B9A /* Teacher */;
 			targetProxy = 3B5812C61EC4F15900173C37 /* PBXContainerItemProxy */;
 		};
-		611BDFA11E7B16AC008FD321 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = React;
-			targetProxy = 611BDFA01E7B16AC008FD321 /* PBXContainerItemProxy */;
-		};
 		61B537261E786969000FEABB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* Teacher */;
@@ -2989,7 +1835,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08246A7886D442347ADB6D3C /* Pods-defaults-Teacher.debug.xcconfig */;
+			baseConfigurationReference = 7448D73B0E788B7806B47BFC /* Pods-defaults-Teacher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -3053,7 +1899,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64E4814C24C5852C6409E547 /* Pods-defaults-Teacher.release.xcconfig */;
+			baseConfigurationReference = 9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -3155,75 +2001,20 @@
 		};
 		61B537281E78696A000FEABB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C972CBD2F070022AC54F8B9 /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */;
+			baseConfigurationReference = 3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../../ExternalFrameworks",
-					"$(PROJECT_DIR)",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
-					"\"CWStatusBarNotification\"",
-					"-framework",
-					"\"Cartography\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"DeviceKit\"",
-					"-framework",
-					"\"Eureka\"",
-					"-framework",
-					"\"FXKeychain\"",
-					"-framework",
-					"\"Fabric\"",
-					"-framework",
-					"\"JSTokenField\"",
-					"-framework",
-					"\"Kingfisher\"",
-					"-framework",
-					"\"Mantle\"",
-					"-framework",
-					"\"Marshal\"",
-					"-framework",
-					"\"Masonry\"",
-					"-framework",
-					"\"Reachability\"",
-					"-framework",
-					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"ReactiveObjC\"",
-					"-framework",
-					"\"ReactiveObjCBridge\"",
-					"-framework",
-					"\"ReactiveSwift\"",
-					"-framework",
-					"\"Result\"",
-					"-framework",
-					"\"SVProgressHUD\"",
-					"-framework",
-					"\"TBBModal\"",
-					"-framework",
-					"\"TPKeyboardAvoiding\"",
-					"-framework",
-					"\"UIKit\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -3236,76 +2027,21 @@
 		};
 		61B537291E78696A000FEABB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7208A3391EE477AE3ADAA673 /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */;
+			baseConfigurationReference = 1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../../../ExternalFrameworks",
-					"$(PROJECT_DIR)",
-				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
-					"\"CWStatusBarNotification\"",
-					"-framework",
-					"\"Cartography\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"DeviceKit\"",
-					"-framework",
-					"\"Eureka\"",
-					"-framework",
-					"\"FXKeychain\"",
-					"-framework",
-					"\"Fabric\"",
-					"-framework",
-					"\"JSTokenField\"",
-					"-framework",
-					"\"Kingfisher\"",
-					"-framework",
-					"\"Mantle\"",
-					"-framework",
-					"\"Marshal\"",
-					"-framework",
-					"\"Masonry\"",
-					"-framework",
-					"\"Reachability\"",
-					"-framework",
-					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"ReactiveObjC\"",
-					"-framework",
-					"\"ReactiveObjCBridge\"",
-					"-framework",
-					"\"ReactiveSwift\"",
-					"-framework",
-					"\"Result\"",
-					"-framework",
-					"\"SVProgressHUD\"",
-					"-framework",
-					"\"TBBModal\"",
-					"-framework",
-					"\"TPKeyboardAvoiding\"",
-					"-framework",
-					"\"UIKit\"",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = TeacherUITests/bridge.h;

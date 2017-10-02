@@ -106,7 +106,6 @@ export class AnnouncementEdit extends Component<any, Props, any> {
     }
 
     if (this.state.pending && !props.pending) {
-      this.setState({ pending: false })
       this.props.navigator.dismissAllModals()
       return
     }

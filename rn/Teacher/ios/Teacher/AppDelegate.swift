@@ -23,6 +23,7 @@ import Fabric
 import Crashlytics
 import CanvasCore
 import SoLazy
+import BugsnagReactNative
 
 public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 

@@ -60,3 +60,5 @@ coverage
 
 # RN
 ios/main.jsbundle
+ios/main.jsbundle.map
+ios/main.jsbundle.meta

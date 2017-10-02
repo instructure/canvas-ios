@@ -93,7 +93,6 @@
 		49AFAB481E09EC0E00522289 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AFAB621E0AE12300522289 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AFAB651E0AE19000522289 /* SoProgressive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoProgressive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49AFAB661E0AE19700522289 /* SoThankful.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AFAB671E0AE1AC00522289 /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AFAB6E1E0AE1F000522289 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C98DDF1D922837006AF2FB /* EverythingBagel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EverythingBagel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,7 +183,6 @@
 			children = (
 				49AFAB6E1E0AE1F000522289 /* WhizzyWig.framework */,
 				49AFAB671E0AE1AC00522289 /* Secrets.framework */,
-				49AFAB661E0AE19700522289 /* SoThankful.framework */,
 				49AFAB651E0AE19000522289 /* SoProgressive.framework */,
 				49AFAB621E0AE12300522289 /* SoIconic.framework */,
 				49AFAB481E09EC0E00522289 /* CWNotification.framework */,

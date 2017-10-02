@@ -23,3 +23,7 @@ if [[ "$BUDDYBUILD_APP_ID" = $TEACHER_UI_JOB_ID ]]; then
 
   fastlane seed_teacher
 fi
+
+cd rn/Teacher
+yarn install
+

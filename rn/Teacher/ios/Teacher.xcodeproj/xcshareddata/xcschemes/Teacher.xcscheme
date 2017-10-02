@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83CBBA2D1A601D0E00E9B192"
-               BuildableName = "libReact.a"
-               BlueprintName = "React"
-               ReferencedContainer = "container:../node_modules/react-native/React/React.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "Teacher.app"
                BlueprintName = "Teacher"
@@ -70,7 +56,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D5130C638B1A5FD4A4D877666C9AC52"
+               BlueprintIdentifier = "0CF1C2F2FBB07FBF6C9C6D467FEC7B44"
                BuildableName = "Pods_defaults_AttendanceLE.framework"
                BlueprintName = "Pods-defaults-AttendanceLE"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -84,7 +70,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6BAC0F18F429AA406681BECC4686D6F"
+               BlueprintIdentifier = "29F2CC322534D2C2A36AEFA961743A02"
                BuildableName = "Pods_defaults_CanvasKeymaster.framework"
                BlueprintName = "Pods-defaults-CanvasKeymaster"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -98,7 +84,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "958761548E3D84A3DA0ABE9B4225D391"
+               BlueprintIdentifier = "BDDB2F542DE8316D26CABAB545991CA3"
                BuildableName = "Pods_defaults_CanvasKit.framework"
                BlueprintName = "Pods-defaults-CanvasKit"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -112,7 +98,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5C68737759C6B537AA6FF56D14212C56"
+               BlueprintIdentifier = "B890069041A608116248E92A0F27B435"
                BuildableName = "Pods_defaults_SoLazy.framework"
                BlueprintName = "Pods-defaults-SoLazy"
                ReferencedContainer = "container:../../../Pods/Pods.xcodeproj">
@@ -175,6 +161,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"

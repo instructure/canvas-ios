@@ -306,7 +306,6 @@
 		2C0CAD9F1DEF6ECD008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C0CADA01DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/SettingsViewController.strings"; sourceTree = "<group>"; };
 		2C0CADA11DEF6ECE008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/StudentSettingsHeaderView.strings"; sourceTree = "<group>"; };
-		2C47623A1DD0FFB40003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6049651F72BC8A00252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C61CD0A1D9311B400196C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C61CD0C1D9311E300196C03 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -740,9 +739,6 @@
 		3BDE4DF11F66FFA600DFE643 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasKeymaster.framework; path = "../Frameworks/CanvasKeymaster/build/Debug-iphoneos/CanvasKeymaster.framework"; sourceTree = "<group>"; };
 		3BDE4DF41F67014300DFE643 /* Keymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Keymaster.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-gitayijnkpmmevdxebwsntfrltsv/Build/Products/Debug-iphonesimulator/Keymaster.framework"; sourceTree = "<group>"; };
 		3BDE4DF61F67017300DFE643 /* ObserverAlertKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObserverAlertKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-gitayijnkpmmevdxebwsntfrltsv/Build/Products/Debug-iphonesimulator/ObserverAlertKit.framework"; sourceTree = "<group>"; };
-		3BDE4DFB1F67031300DFE643 /* DeviceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-gitayijnkpmmevdxebwsntfrltsv/Build/Products/Debug-iphonesimulator/DeviceKit/DeviceKit.framework"; sourceTree = "<group>"; };
-		3BDE4DFD1F67064300DFE643 /* DeviceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceKit.framework; path = "/Users/grichards/src/inst/ios/Pods/../build/Debug-iphoneos/DeviceKit/DeviceKit.framework"; sourceTree = "<absolute>"; };
-		3BDE4DFF1F67077B00DFE643 /* DeviceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DeviceKit.framework; path = "/Users/grichards/src/inst/ios/Pods/../build/Debug-iphoneos/DeviceKit/DeviceKit.framework"; sourceTree = "<absolute>"; };
 		3D717C1344BD77482A213EA6 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CanvasUser.swift; sourceTree = "<group>"; };
 		3EED713D4FA4FBF43B7B2484 /* SettingsPageTests_testSettingsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SettingsPageTests_testSettingsPage_displaysPageObjects.swift; path = SettingsPageTests/SettingsPageTests_testSettingsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		4907F9171DA80936004AB1A3 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -753,6 +749,7 @@
 		496A49D81DB810620044E19C /* ParentSelectDomainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentSelectDomainDataSource.swift; sourceTree = "<group>"; };
 		496A49DA1DB822A40044E19C /* CanvasObserverLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasObserverLoginViewController.swift; sourceTree = "<group>"; };
 		49912C02D05FC77D2B15BE0C /* ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift; path = ForgotPasswordPageTests/ForgotPasswordPageTests_testForgotPasswordPage_submitButtonEnabled.swift; sourceTree = "<group>"; };
+		49952C3B1F7477C300A11404 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49998E271E1D6B0100C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49DB0AE51E4E27030036D96E /* Student+AccessRemoved.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+AccessRemoved.swift"; sourceTree = "<group>"; };
 		49E21B071D1C667A00B7B9B4 /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1261,9 +1258,7 @@
 		5E7790AF1C46CBA100429BF8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3BDE4DFF1F67077B00DFE643 /* DeviceKit.framework */,
-				3BDE4DFD1F67064300DFE643 /* DeviceKit.framework */,
-				3BDE4DFB1F67031300DFE643 /* DeviceKit.framework */,
+				49952C3B1F7477C300A11404 /* CanvasCore.framework */,
 				3BDE4DF61F67017300DFE643 /* ObserverAlertKit.framework */,
 				3BDE4DF41F67014300DFE643 /* Keymaster.framework */,
 				3BDE4DF11F66FFA600DFE643 /* CanvasKeymaster.framework */,
@@ -1309,7 +1304,6 @@
 				5E7790B11C46CBCE00429BF8 /* SoPretty.framework */,
 				617A672A1CE2724D0065E487 /* SoProgressive.framework */,
 				5E5F9B5E1D2F13890034207D /* SoSupportive.framework */,
-				2C47623A1DD0FFB40003BEAE /* SoThankful.framework */,
 				5E7790B01C46CBBB00429BF8 /* TooLegit.framework */,
 				61D7DA961D00815600894813 /* TPKeyboardAvoidingKit.framework */,
 				615300061C85E82E002529CF /* WhizzyWig.framework */,

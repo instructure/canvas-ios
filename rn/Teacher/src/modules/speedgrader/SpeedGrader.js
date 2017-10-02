@@ -55,6 +55,7 @@ type State = {
   currentStudentID: string,
   filteredIDs?: Array<string>,
   drawerInset: number,
+  hasScrolledToInitialSubmission: boolean,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
@@ -62,6 +63,7 @@ const PAGE_GUTTER_HALF_WIDTH = 10.0
 export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   props: SpeedGraderProps
   state: State
+  _flatList: ?FlatList
 
   static drawerState = new DrawerState()
 
@@ -77,6 +79,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       },
       currentStudentID: props.userID,
       drawerInset: SpeedGrader.drawerState.drawerHeight(position, height),
+      hasScrolledToInitialSubmission: false,
     }
     SpeedGrader.drawerState.registerDrawer(this)
   }
@@ -117,6 +120,18 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     if (height !== 0 && (width !== this.state.size.width || height !== this.state.size.height)) {
       this.setState({ size: { width, height } })
     }
+
+    this.setState((prevState, props) => {
+      if (this._flatList == null || prevState.hasScrolledToInitialSubmission) {
+        return prevState
+      }
+      this._flatList.scrollToOffset({ animated: false, offset: this.state.size.width * this.props.studentIndex })
+      return { ...prevState, hasScrolledToInitialSubmission: true }
+    })
+  }
+
+  _captureFlatList = (list: FlatList) => {
+    this._flatList = list
   }
 
   renderItem = ({ item }: { item: SubmissionItem }) => {
@@ -183,6 +198,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
     return (
       <FlatList
+        ref={this._captureFlatList}
         keyboardShouldPersistTaps='handled'
         onLayout={this.onLayout}
         data={items}

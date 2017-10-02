@@ -25,7 +25,6 @@ import ReactNative, {
   TouchableOpacity,
   Image,
   LayoutAnimation,
-  requireNativeComponent,
   Alert,
   processColor,
 } from 'react-native'
@@ -44,7 +43,6 @@ import AddressBookToken from './components/AddressBookToken'
 import { createConversation, addMessage } from 'instructure-canvas-api'
 import axios from 'axios'
 import { Text } from '../../common/text'
-const ScrollViewDisabler = requireNativeComponent('ScrollViewDisabler')
 
 type OwnProps = {
   conversationID?: string,
@@ -321,7 +319,7 @@ export class Compose extends PureComponent {
                 identifier='compose-message.send-all-toggle'
               />
             }
-            <ScrollViewDisabler style={[styles.message, styles.messageWrapper]}>
+            <View style={[styles.message, styles.messageWrapper]}>
               <AutoGrowingTextInput
                 placeholder={i18n('Compose message')}
                 style={styles.cell}
@@ -332,7 +330,7 @@ export class Compose extends PureComponent {
                 testID='compose-message.body-text-input'
                 extraHeight={20}
               />
-            </ScrollViewDisabler>
+            </View>
             {this.props.includedMessages &&
               <View testID='compose.forwarded-message' style={styles.forwardedMessage}>
                 <Text style={styles.forwardedMessageTitle}>{i18n('Forwarded Message:')}</Text>
@@ -357,7 +355,8 @@ const styles = StyleSheet.create({
   },
   messageWrapper: {
     borderBottomWidth: 0,
-    paddingVertical: 10,
+    paddingTop: 10,
+    paddingBottom: 40,
   },
   message: {
     fontSize: 16,

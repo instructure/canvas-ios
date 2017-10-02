@@ -142,13 +142,11 @@ export class DiscussionEdit extends Component<any, Props, any> {
   componentWillReceiveProps (props: Props) {
     const error = props.error
     if (error) {
-      this.setState({ pending: false })
       this._handleError(error)
       return
     }
 
     if (this.state.pending && !props.pending) {
-      this.setState({ pending: false })
       this.props.navigator.dismissAllModals()
       return
     }

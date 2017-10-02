@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "49B5D65B1D05E8A90084BD39"
+               BuildableName = "SoIconic.framework"
+               BlueprintName = "SoIconic"
+               ReferencedContainer = "container:../Icons/Icons.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "49C98DDE1D922837006AF2FB"
                BuildableName = "EverythingBagel.app"
                BlueprintName = "EverythingBagel"
-               ReferencedContainer = "container:Frameworks/EverythingBagel/EverythingBagel.xcodeproj">
+               ReferencedContainer = "container:EverythingBagel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +45,7 @@
                BlueprintIdentifier = "610AF2E81D79E6BB00386E81"
                BuildableName = "SoEdventurousTests.xctest"
                BlueprintName = "SoEdventurousTests"
-               ReferencedContainer = "container:Frameworks/SoEdventurous/SoEdventurous.xcodeproj">
+               ReferencedContainer = "container:../SoEdventurous/SoEdventurous.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,6 +54,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
@@ -50,7 +65,7 @@
                BlueprintIdentifier = "5ECEDD981C49570E00E59B53"
                BuildableName = "EnrollmentKitTests.xctest"
                BlueprintName = "EnrollmentKitTests"
-               ReferencedContainer = "container:Frameworks/Enrollments/Enrollments.xcodeproj">
+               ReferencedContainer = "container:../Enrollments/Enrollments.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -60,7 +75,7 @@
                BlueprintIdentifier = "490A86861C407CB200351185"
                BuildableName = "AssignmentKitTests.xctest"
                BlueprintName = "AssignmentKitTests"
-               ReferencedContainer = "container:Frameworks/Assignments/Assignments.xcodeproj">
+               ReferencedContainer = "container:../Assignments/Assignments.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -70,7 +85,7 @@
                BlueprintIdentifier = "5ECEDE161C499FE200E59B53"
                BuildableName = "CalendarKitTests.xctest"
                BlueprintName = "CalendarKitTests"
-               ReferencedContainer = "container:Frameworks/Calendar/Calendar.xcodeproj">
+               ReferencedContainer = "container:../Calendar/Calendar.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -80,7 +95,7 @@
                BlueprintIdentifier = "49C1A79F1BE97B2E008A21B9"
                BuildableName = "FileKitTests.xctest"
                BlueprintName = "FileKitTests"
-               ReferencedContainer = "container:Frameworks/FileKit/FileKit.xcodeproj">
+               ReferencedContainer = "container:../FileKit/FileKit.xcodeproj">
             </BuildableReference>
             <SkippedTests>
                <Test
@@ -95,7 +110,7 @@
                BlueprintIdentifier = "AC9DD5271CE4E888007A474A"
                BuildableName = "PageKitTests.xctest"
                BlueprintName = "PageKitTests"
-               ReferencedContainer = "container:Frameworks/Pages/Pages.xcodeproj">
+               ReferencedContainer = "container:../Pages/Pages.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -105,7 +120,7 @@
                BlueprintIdentifier = "B160941E1C4DB7EC0007C42C"
                BuildableName = "TooLegitTests.xctest"
                BlueprintName = "TooLegitTests"
-               ReferencedContainer = "container:Frameworks/TooLegit/TooLegit.xcodeproj">
+               ReferencedContainer = "container:../TooLegit/TooLegit.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -115,7 +130,7 @@
                BlueprintIdentifier = "617BE7871CA42D4C008A6908"
                BuildableName = "DiscussionKitTests.xctest"
                BlueprintName = "DiscussionKitTests"
-               ReferencedContainer = "container:Frameworks/Discussions/Discussions.xcodeproj">
+               ReferencedContainer = "container:../Discussions/Discussions.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -125,7 +140,7 @@
                BlueprintIdentifier = "491FC74E1C406CCB00550505"
                BuildableName = "SoPersistentTests.xctest"
                BlueprintName = "SoPersistentTests"
-               ReferencedContainer = "container:Frameworks/SoPersistent/SoPersistent.xcodeproj">
+               ReferencedContainer = "container:../SoPersistent/SoPersistent.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -135,7 +150,7 @@
                BlueprintIdentifier = "617BE75C1CA42D26008A6908"
                BuildableName = "DiscussionsTests.xctest"
                BlueprintName = "DiscussionsTests"
-               ReferencedContainer = "container:Frameworks/Discussions/Discussions.xcodeproj">
+               ReferencedContainer = "container:../Discussions/Discussions.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -145,7 +160,7 @@
                BlueprintIdentifier = "610AF2E81D79E6BB00386E81"
                BuildableName = "SoEdventurousTests.xctest"
                BlueprintName = "SoEdventurousTests"
-               ReferencedContainer = "container:Frameworks/SoEdventurous/SoEdventurous.xcodeproj">
+               ReferencedContainer = "container:../SoEdventurous/SoEdventurous.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -155,7 +170,7 @@
                BlueprintIdentifier = "490639C71E200E26001106D7"
                BuildableName = "PersistentCrashingTests.xctest"
                BlueprintName = "PersistentCrashingTests"
-               ReferencedContainer = "container:Frameworks/SoPersistent/SoPersistent.xcodeproj">
+               ReferencedContainer = "container:../SoPersistent/SoPersistent.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -165,7 +180,7 @@
                BlueprintIdentifier = "B14E11621C63C60F00007938"
                BuildableName = "TodoKitTests.xctest"
                BlueprintName = "TodoKitTests"
-               ReferencedContainer = "container:Frameworks/Todo/Todo.xcodeproj">
+               ReferencedContainer = "container:../Todo/Todo.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -175,7 +190,7 @@
             BlueprintIdentifier = "49C98DDE1D922837006AF2FB"
             BuildableName = "EverythingBagel.app"
             BlueprintName = "EverythingBagel"
-            ReferencedContainer = "container:Frameworks/EverythingBagel/EverythingBagel.xcodeproj">
+            ReferencedContainer = "container:EverythingBagel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -185,6 +200,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -198,7 +214,7 @@
             BlueprintIdentifier = "49C98DDE1D922837006AF2FB"
             BuildableName = "EverythingBagel.app"
             BlueprintName = "EverythingBagel"
-            ReferencedContainer = "container:Frameworks/EverythingBagel/EverythingBagel.xcodeproj">
+            ReferencedContainer = "container:EverythingBagel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -217,7 +233,7 @@
             BlueprintIdentifier = "49C98DDE1D922837006AF2FB"
             BuildableName = "EverythingBagel.app"
             BlueprintName = "EverythingBagel"
-            ReferencedContainer = "container:Frameworks/EverythingBagel/EverythingBagel.xcodeproj">
+            ReferencedContainer = "container:EverythingBagel.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

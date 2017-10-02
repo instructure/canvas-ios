@@ -24,16 +24,11 @@ type Props = {
   defaultHeight: number,
   style?: any,
   onContentSizeChange?: Function,
-  extraHeight: number,
 }
 
 export default class AutoGrowingTextInput extends PureComponent {
   props: Props
   state: State
-
-  static defaultProps = {
-    extraHeight: 0,
-  }
 
   constructor (props: Props) {
     super(props)
@@ -42,7 +37,7 @@ export default class AutoGrowingTextInput extends PureComponent {
   }
 
   updateContentSize = (e: any) => {
-    this.setState({ height: Math.max(e.nativeEvent.contentSize.height + this.props.extraHeight, this.props.defaultHeight) })
+    this.setState({ height: Math.max(e.nativeEvent.contentSize.height, this.props.defaultHeight) })
     this.props.onContentSizeChange && this.props.onContentSizeChange(e)
   }
 
