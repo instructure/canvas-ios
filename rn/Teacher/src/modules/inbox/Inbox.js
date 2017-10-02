@@ -99,6 +99,7 @@ export class Inbox extends Component {
   _filteredConversations () {
     return this.props.conversations.filter((convo) => {
       if (this.state.selectedCourse === 'all') return true
+      if (!convo.context_code) return false
       return convo.context_code.replace('course_', '') === this.state.selectedCourse
     })
   }
