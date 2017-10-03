@@ -40,6 +40,7 @@ import Colors from '../colors'
 import Images from '../../images'
 import Navigator from '../../routing/Navigator'
 import Video from './Video'
+import md5 from 'md5'
 
 type Props = {
   attachment: Attachment,
@@ -58,30 +59,37 @@ export default class AttachmentView extends Component<any, Props, any> {
       this.setState({ filePath: this.props.attachment.uri })
       return
     }
+    this.fetchFile()
+  }
 
-    if (this.props.attachment.mime_class === 'image') {
-      this.setState({ filePath: this.props.attachment.url })
-      return
-    }
-
-    const path = `${CachesDirectoryPath}/${this.props.attachment.filename || this.props.attachment.display_name}`
-    let { jobId, promise } = downloadFile({
-      fromUrl: this.props.attachment.url,
-      toFile: path,
-    })
+  fetchFile = async () => {
+    const fromUrl = this.props.attachment.url
+    const filename = (this.props.attachment.filename || this.props.attachment.display_name)
+    // filenames from canvas come back encoded, and RN doesn't like that. So i'm creating a new filename based of the url hash and extension. gross.
+    const toFile = `${CachesDirectoryPath}/${md5(fromUrl)}.${filename.split('.').pop()}`
+    let { jobId, promise } = downloadFile({ fromUrl, toFile })
     this.setState({ jobID: jobId, downloadPromise: promise })
-    promise.then((r) => {
-      console.log('Done downloading file', path, r.statusCode)
-      this.setState({ jobID: null, filePath: r.statusCode === 200 ? `file://${path}` : null })
+    return promise.then((r) => {
+      if (r.statusCode === 200) {
+        this.setState({ jobID: null, filePath: `file://${toFile}`, error: null })
+      } else {
+        this.setState({ jobID: null, filePath: null, error: i18n('There was an error loading this attachment.') })
+      }
     })
   }
 
   handleLayout = (event: any) => {
-    console.log('onLayout', event)
     const { width, height } = event.nativeEvent.layout
     if (height !== 0 && width !== this.state.size.width && height !== this.state.size.height) {
       this.setState({ size: { width, height } })
     }
+  }
+
+  onError = () => {
+    this.setState({
+      jobID: null,
+      error: i18n('There was an error loading the attachment.'),
+    })
   }
 
   componentWillUnmount () {
@@ -105,11 +113,16 @@ export default class AttachmentView extends Component<any, Props, any> {
   }
 
   renderBody () {
+    if (this.state.error) {
+      return <View style={styles.centeredContainer}>
+               <Text style={styles.errorText}>{this.state.error}</Text>
+             </View>
+    }
     let body = <View></View>
     switch (this.props.attachment.mime_class) {
       case 'image':
         body = <View style={styles.imageContainer}>
-          <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} />
+          <Image source={{ uri: this.state.filePath }} resizeMode='contain' style={styles.image} onError={this.onError} />
         </View>
         break
       case 'audio':
@@ -164,14 +177,12 @@ export default class AttachmentView extends Component<any, Props, any> {
         }]}
       >
         <View style={styles.container}>
-          { this.state.filePath === null &&
+          { (this.state.jobID !== null) &&
             <View style={styles.centeredContainer}>
               <ActivityIndicator />
             </View>
           }
-          { this.state.filePath !== null &&
-            this.renderBody()
-          }
+          { this.state.jobID === null && this.renderBody() }
         </View>
       </Screen>
     )
@@ -203,5 +214,8 @@ const styles = StyleSheet.create({
   },
   document: {
     flex: 1,
+  },
+  errorText: {
+    padding: global.defaultPadding,
   },
 })

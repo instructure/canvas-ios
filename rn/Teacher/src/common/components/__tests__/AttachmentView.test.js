@@ -20,6 +20,7 @@ import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import AttachmentView from '../AttachmentView'
 import renderer from 'react-test-renderer'
+import md5 from 'md5'
 
 const templates = {
   ...require('../../../__templates__/helm'),
@@ -44,37 +45,39 @@ let defaultProps = {
   attachment: {
     id: '1',
     display_name: 'Something.pdf',
-    url: '',
+    url: 'http://www.fillmurray.com/100/100',
     mime_class: 'pdf',
   },
 }
 
 describe('AttachmentView', () => {
-  it('renders a pdf', () => {
+  it('renders a pdf', async () => {
     let tree = renderer.create(
       <AttachmentView {...defaultProps} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    await tree.getInstance().fetchFile()
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
-  it('renders an image', () => {
+  it('renders an image', async () => {
     let props = {
       navigator: templates.navigator(),
       attachment: {
         id: '1',
         display_name: 'Something.png',
-        url: '',
+        url: 'http://www.fillmurray.com/100/100',
         mime_class: 'image',
       },
     }
 
     let tree = renderer.create(
       <AttachmentView {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    await tree.getInstance().fetchFile()
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
-  it('renders unsupported stuffs', () => {
+  it('renders unsupported stuffs', async () => {
     let props = {
       navigator: templates.navigator(),
       attachment: {
@@ -87,11 +90,12 @@ describe('AttachmentView', () => {
 
     let tree = renderer.create(
       <AttachmentView {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    await tree.getInstance().fetchFile()
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
-  it('renders a video', () => {
+  it('renders a video', async () => {
     let props = {
       navigator: templates.navigator(),
       attachment: {
@@ -104,11 +108,12 @@ describe('AttachmentView', () => {
 
     let tree = renderer.create(
       <AttachmentView {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    await tree.getInstance().fetchFile()
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
-  it('renders audio', () => {
+  it('renders audio', async () => {
     let props = {
       navigator: templates.navigator(),
       attachment: {
@@ -121,11 +126,12 @@ describe('AttachmentView', () => {
 
     let tree = renderer.create(
       <AttachmentView {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    await tree.getInstance().fetchFile()
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
-  it('renders audio with unknown mime class', () => {
+  it('renders audio with unknown mime class', async () => {
     let props = {
       navigator: templates.navigator(),
       attachment: {
@@ -139,8 +145,9 @@ describe('AttachmentView', () => {
 
     let tree = renderer.create(
       <AttachmentView {...props} />
-    ).toJSON()
-    expect(tree).toMatchSnapshot()
+    )
+    await tree.getInstance().fetchFile()
+    expect(tree.toJSON()).toMatchSnapshot()
   })
 
   it('opens share sheet', () => {
@@ -158,7 +165,7 @@ describe('AttachmentView', () => {
     return instance.state.downloadPromise.then(r => {
       instance.share()
       expect(ActionSheetIOS.showShareActionSheetWithOptions).toHaveBeenCalledWith({
-        url: 'file://caches/Something.pdf',
+        url: `file://caches/${md5(props.attachment.url)}.pdf`,
       }, expect.any(Function), expect.any(Function))
     })
   })

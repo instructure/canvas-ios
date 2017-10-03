@@ -8,22 +8,18 @@ exports[`AttachmentView renders a pdf 1`] = `
     }
   }
 >
-  <View
-    style={
+  <WebView
+    source={
       Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
+        "uri": "file://caches/ed075ce5e86325eed0f5138a4613fdd6.pdf",
       }
     }
-  >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
-    />
-  </View>
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  />
 </View>
 `;
 
@@ -36,6 +32,7 @@ exports[`AttachmentView renders a video 1`] = `
   }
 >
   <View
+    onLayout={[Function]}
     style={
       Object {
         "alignItems": "center",
@@ -44,11 +41,18 @@ exports[`AttachmentView renders a video 1`] = `
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
+    <VideoContainer
+      source={
+        Object {
+          "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp4",
+        }
+      }
+      style={
+        Object {
+          "height": 0,
+          "width": 0,
+        }
+      }
     />
   </View>
 </View>
@@ -74,10 +78,11 @@ exports[`AttachmentView renders an image 1`] = `
     }
   >
     <Image
+      onError={[Function]}
       resizeMode="contain"
       source={
         Object {
-          "uri": "",
+          "uri": "file://caches/ed075ce5e86325eed0f5138a4613fdd6.png",
         }
       }
       style={
@@ -103,6 +108,7 @@ exports[`AttachmentView renders audio 1`] = `
   }
 >
   <View
+    onLayout={[Function]}
     style={
       Object {
         "alignItems": "center",
@@ -111,11 +117,18 @@ exports[`AttachmentView renders audio 1`] = `
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
+    <VideoContainer
+      source={
+        Object {
+          "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp3",
+        }
+      }
+      style={
+        Object {
+          "height": 0,
+          "width": 0,
+        }
+      }
     />
   </View>
 </View>
@@ -130,6 +143,7 @@ exports[`AttachmentView renders audio with unknown mime class 1`] = `
   }
 >
   <View
+    onLayout={[Function]}
     style={
       Object {
         "alignItems": "center",
@@ -138,11 +152,18 @@ exports[`AttachmentView renders audio with unknown mime class 1`] = `
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
+    <VideoContainer
+      source={
+        Object {
+          "uri": "file://caches/d41d8cd98f00b204e9800998ecf8427e.mp3",
+        }
+      }
+      style={
+        Object {
+          "height": 0,
+          "width": 0,
+        }
+      }
     />
   </View>
 </View>
@@ -165,12 +186,21 @@ exports[`AttachmentView renders unsupported stuffs 1`] = `
       }
     }
   >
-    <ActivityIndicator
-      animating={true}
-      color="#999999"
-      hidesWhenStopped={true}
-      size="small"
-    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#2D3B45",
+          "fontSize": 14,
+          "textAlign": "center",
+        }
+      }
+    >
+      Previewing this file type is not supported
+    </Text>
   </View>
 </View>
 `;
