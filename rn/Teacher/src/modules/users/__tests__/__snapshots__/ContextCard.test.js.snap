@@ -2357,7 +2357,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
               }
               testID="context-card.grade"
             >
-              100
+              100%
             </Text>
             <Text
               style={
@@ -2763,7 +2763,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                 }
                 testID="context-card.grade"
               >
-                100
+                100%
               </Text>
               <Text
                 accessible={true}
