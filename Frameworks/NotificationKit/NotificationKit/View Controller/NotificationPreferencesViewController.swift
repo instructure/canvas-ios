@@ -46,6 +46,10 @@ open class NotificationPreferencesViewController: UITableViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 25
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
         

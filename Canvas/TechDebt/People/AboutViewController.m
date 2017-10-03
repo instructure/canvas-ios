@@ -77,6 +77,9 @@ typedef NS_ENUM(NSInteger, LegalRows) {
 {
     [super viewDidLoad];
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
+    
     [self updateForUser];
     
     NSDictionary *bundleInfo = [[NSBundle mainBundle] infoDictionary];
@@ -196,6 +199,7 @@ typedef NS_ENUM(NSInteger, LegalRows) {
     else{
         backgroundView.backgroundColor = [UIColor whiteColor];
         selectedBackgroundView.backgroundColor = Brand.current.tintColor;
+        cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     }
     
     cell.backgroundView = backgroundView;

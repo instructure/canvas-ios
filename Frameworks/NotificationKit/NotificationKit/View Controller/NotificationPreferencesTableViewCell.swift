@@ -48,6 +48,7 @@ class NotificationPreferencesTableViewCell: UITableViewCell {
         // Also if it's not set to immediately then we're setting it to never
         self.notificationSwitch.isOn = item.items.first?.frequency == NotificationPreference.Frequency.Immediately
         self.notificationLabel.text = item.name
+        self.notificationLabel.font = UIFont.preferredFont(forTextStyle: .body)
     }
     
     override func prepareForReuse() {

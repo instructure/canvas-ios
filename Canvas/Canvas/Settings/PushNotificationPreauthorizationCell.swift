@@ -37,7 +37,7 @@ class PushNotificationPreauthorizationCell : UITableViewCell {
     
     func setupCell(_ protocolHandler: PushNotificationPreauthorizationProtocol) {
         self.label.text = NSLocalizedString("Enable Push Notifications", comment: "Prompt asking user to enable push notifications")
-        
+        self.label.font = UIFont.preferredFont(forTextStyle: .body)
         // This cell is only shown in the case of the user have a value of PushState.DeclinedPreauthorizationPrompt and the whole purpose is to provide an opportunity for the user to reconsider and turn push on
         self.preauthorizationSwitch.isOn = false
         

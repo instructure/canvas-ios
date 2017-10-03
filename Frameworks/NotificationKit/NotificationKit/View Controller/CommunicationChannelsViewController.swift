@@ -105,7 +105,9 @@ extension CommunicationChannelsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CommunicationChannelsViewController.cellReuseIdentifier, for: indexPath) 
         let communicationChannel = datasource[indexPath.row] as CommunicationChannel
         cell.textLabel?.text = communicationChannel.address
+        cell.textLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         cell.detailTextLabel?.text = communicationChannel.type.description
+        cell.detailTextLabel?.font = UIFont.preferredFont(forTextStyle: .caption1)
         return cell
     }
     

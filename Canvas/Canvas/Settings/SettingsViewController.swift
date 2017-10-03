@@ -35,11 +35,14 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.rowHeight  = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44.0
         
         dataSource = data()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let selectedRowIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedRowIndexPath, animated: false)
         }
@@ -117,23 +120,6 @@ private class EnablePushSettingsRow: SettingsRow {
     }
 }
 
-private class SystemSettingsLinkSettingsRow: SettingsRow {
-    fileprivate var action: () -> ()
-    
-    fileprivate static var identifier = "SystemSettingsLinkCell"
-    
-    init(action: @escaping () -> ()) {
-        self.action = action
-    }
-    
-    fileprivate func cellForSettingsRow(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SystemSettingsLinkSettingsRow.identifier, for: indexPath) as! SystemSettingsLinkCell
-        cell.setupCell()
-        return cell
-    }
-}
-
-
 // MARK: Datasource Generation
 extension SettingsViewController {
     
@@ -167,12 +153,12 @@ extension SettingsViewController {
 //            dataSource.insert(enablePush, atIndex: find(dataSource, notificationPreferences))
             dataSource.append(enablePush)
         } else if (UIApplication.shared.currentUserNotificationSettings?.types.contains(.alert) != nil) { // if the user declined the user notifications
-            let systemSettingsLink = SystemSettingsLinkSettingsRow(action: { () -> () in
+            let systemSettingsLink = TextSettingsRow(title: NSLocalizedString("Allow Notifications in Settings", comment: "Allow Notifications in Settings")) { () -> () in
                 // Open the settings app and take it to our app where they can turn on notifications
                 if let url = URL(string: UIApplicationOpenSettingsURLString) { // should always succeed
                     UIApplication.shared.openURL(url)
                 }
-            })
+            }
             dataSource.append(systemSettingsLink)
         }
         

@@ -688,6 +688,9 @@ CGFloat square(CGFloat x){return x*x;}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
+    
     self.filesCell.textLabel.text = NSLocalizedString(@"My Files", @"files button");
     self.logoutCell.textLabel.text = NSLocalizedString(@"Logout", @"Title for a button to logout a user");
     self.settingsCell.textLabel.text = NSLocalizedString(@"Settings", @"Title for Settings");
@@ -717,6 +720,10 @@ CGFloat square(CGFloat x){return x*x;}
     }
     
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 }
 
 @end
