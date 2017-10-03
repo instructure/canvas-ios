@@ -109,7 +109,13 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
   }
 
   renderHeader () {
-    let sectionName = this.props.enrollment ? this.props.course.sections.find(({ id }) => id === this.props.enrollment.course_section_id).name : ''
+    let sectionName
+    if (this.props.enrollment) {
+      const section = this.props.sections.find(({ id }) => id === this.props.enrollment.course_section_id)
+      if (section) {
+        sectionName = section.name
+      }
+    }
     let grade = this.props.enrollment.grades && this.props.enrollment.grades.current_grade
     let isStudent = this.props.enrollment.type === 'StudentEnrollment'
     return (
@@ -128,7 +134,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
           </View>
           <View>
             <Heading1>{this.props.course.name}</Heading1>
-            <Text testID='context-card.section-name' style={{ marginVertical: 4, fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text>
+            { sectionName && <Text testID='context-card.section-name' style={{ marginVertical: 4, fontSize: 14 }}>{i18n('Section: {sectionName}', { sectionName })}</Text> }
             <SubTitle testID='context-card.last-activity'>
               {this.props.enrollment && i18n(`Last activity on {lastActivity, date, 'MMMM d'} at {lastActivity, time, short}`, {
                 lastActivity: new Date(this.props.enrollment.last_activity_at),
@@ -361,6 +367,10 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
       else return -1
     })
 
+  const sections = Object.values(state.entities.sections).filter((s) => {
+    return s.course_id === ownProps.courseID
+  })
+
   return {
     user: user.data,
     pending: user.pending || enrollments.pending || false,
@@ -369,6 +379,7 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
     enrollment,
     submissions,
     assignments,
+    sections,
     totalPoints: calculateTotalPoints(state, ownProps),
     numLate: calculateStatus(state, ownProps, 'late'),
     numMissing: calculateStatus(state, ownProps, 'missing'),
