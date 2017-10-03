@@ -76,6 +76,13 @@ export type PendingCommentsState = {
   [string]: Array<PendingCommentState>,
 }
 
+export type AsyncActionState = {
+  pending: number,
+  total: number,
+  lastResolvedDate?: date,
+  lastError?: ?string,
+}
+
 export type PendingNewDiscussionState = {
   new?: AsyncState & { id?: ?string },
 }
@@ -185,4 +192,5 @@ export type AppState = {
   favoriteCourses: FavoriteCoursesState,
   entities: Entities,
   inbox: InboxState,
+  asyncActions: { [string]: AsyncActionState },
 }

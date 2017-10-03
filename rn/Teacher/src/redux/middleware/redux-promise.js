@@ -18,6 +18,9 @@
 
 import { isFSA } from 'flux-standard-action'
 import type { Middleware, MiddlewareAPI, Dispatch } from 'redux'
+import { AsyncActionTracker } from '../actions/async-tracker'
+
+let { pending, resolved, rejected } = AsyncActionTracker
 
 export type Action = {
   payload: any,
@@ -27,6 +30,11 @@ export type Action = {
 
 function isPromise (val: any): boolean {
   return val && typeof val.then === 'function'
+}
+
+let tracksAsyncActions = true
+export function shouldTrackAsyncActions (should: boolean): void {
+  tracksAsyncActions = should
 }
 
 /*
@@ -50,13 +58,16 @@ let promiseMiddleware = <S, A: Action>({ dispatch }: MiddlewareAPI<S, A>): Middl
         result => {
           let payload = { ...action.payload, result }
           delete payload.promise
+          if (tracksAsyncActions) dispatch(resolved(action.type))
           return dispatch({ ...action, payload })
         },
         error => {
           let payload = { ...action.payload, error }
+          if (tracksAsyncActions) dispatch(rejected(action.type, error))
           return dispatch({ ...action, payload, error: true })
         }
       )
+      if (tracksAsyncActions) dispatch(pending(action.type))
       next({
         ...action,
         pending: true,

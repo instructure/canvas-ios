@@ -19,6 +19,13 @@
 import { cloneDeep } from 'lodash'
 import i18n from 'format-message'
 import Navigator from '../../routing/Navigator'
+import EnrollmentActions from '../enrollments/actions'
+import SectionActions from './actions'
+import { asyncChecker } from '../../redux/actions/async-tracker'
+
+let { refreshGroupsForCategory, refreshSections } = SectionActions
+let { refreshEnrollments } = EnrollmentActions
+let actions = [refreshEnrollments, refreshGroupsForCategory, refreshSections]
 
 export type AssigneeSearchProps = {
   courseID: string,
@@ -66,6 +73,7 @@ export function searchMapStateToProps (state: AppState, ownProps: AssigneeSearch
     enrollments,
     assignment,
     groups,
+    pending: asyncChecker(state, actions),
   }
 }
 
@@ -105,7 +113,7 @@ export function pickerMapStateToProps (state: AppState, ownProps: AssigneePicker
         break
       case 'student':
         const user = state.entities.users[assignee.dataId]
-        if (user) {
+        if (user && user.data) {
           newAssignee.name = user.data.name
           newAssignee.imageURL = user.data.avatar_url
         }

@@ -53,6 +53,7 @@ const defaultProps: AssigneeSearchProps = {
   refreshEnrollments: jest.fn(),
   refreshGroupsForCategory: jest.fn(),
   onSelection: jest.fn(),
+  pending: false,
 }
 
 test('render correctly', () => {

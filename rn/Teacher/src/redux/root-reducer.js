@@ -35,6 +35,7 @@ import { quizSubmissions, quizAssignmentSubmissions } from '../modules/quizzes/s
 import { discussions } from '../modules/discussions/reducer'
 import inbox from '../modules/inbox/reducer'
 import { groups } from '../modules/groups/group-entities-reducer'
+import { asyncActions } from './actions/async-tracker'
 
 const entities = combineReducers({
   courses,
@@ -56,6 +57,7 @@ const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   favoriteCourses,
   inbox,
   entities,
+  asyncActions,
 })
 
 export default function rootReducer (state: ?AppState, action: Action): AppState {

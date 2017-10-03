@@ -16,7 +16,9 @@
 
 /* @flow */
 import setupI18n from '../../i18n/setup'
+import { shouldTrackAsyncActions } from '../../src/redux/middleware/redux-promise'
 setupI18n('en')
+shouldTrackAsyncActions(false)
 
 const { NativeModules } = require('react-native')
 

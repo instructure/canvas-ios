@@ -58,3 +58,17 @@ test('callbacks get called correctly', () => {
   expect(onPress).toHaveBeenCalled()
   expect(onDelete).toHaveBeenCalled()
 })
+
+test('callbacks do not get called if they do not exist', () => {
+  const onPress = jest.fn()
+  const onDelete = jest.fn()
+  const assignee = template.enrollmentAssignee()
+  let tree = renderer.create(
+    <AssigneeRow assignee={assignee}/>
+  )
+
+  tree.getInstance().onPress()
+  tree.getInstance().onDelete()
+  expect(onPress).not.toHaveBeenCalled()
+  expect(onDelete).not.toHaveBeenCalled()
+})

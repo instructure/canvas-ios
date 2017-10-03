@@ -36,6 +36,7 @@ import { escapeRegExp } from 'lodash'
 import Screen from '../../routing/Screen'
 import SectionHeader from '../../common/components/rows/SectionHeader'
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
+import RowSeparator from '../../common/components/rows/RowSeparator'
 
 export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   searchBar: SearchBar
@@ -58,7 +59,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   }
 
   componentWillMount () {
-    this.refreshData()
+    this.refresh()
     this.updateData(this.props)
   }
 
@@ -66,7 +67,7 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
     this.props.navigator.dismiss()
   }
 
-  refreshData () {
+  refresh = () => {
     this.props.refreshSections(this.props.courseID)
     this.props.refreshEnrollments(this.props.courseID)
     this.props.refreshGroupsForCategory(this.props.assignment.group_category_id)
@@ -162,7 +163,6 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
   }
 
   render () {
-    const search = this.renderSearchBar()
     const empty = <ListEmptyComponent title={i18n('No results')} />
     return (
       <Screen
@@ -176,14 +176,17 @@ export class AssigneeSearch extends Component<any, AssigneeSearchProps, any> {
         ]}
       >
         <View style={styles.container}>
+          { this.renderSearchBar() }
           <SectionList
             testID='assignee-picker.list'
             sections={this.state.sections}
             renderItem={this.renderRow}
             renderSectionHeader={this.renderSectionHeader}
             keyExtractor={(item) => item.id}
-            ListHeaderComponent={search}
+            ListHeaderComponent={<RowSeparator />}
             ListEmptyComponent={empty}
+            refreshing={this.props.pending}
+            onRefresh={this.refresh}
           />
         </View>
       </Screen>

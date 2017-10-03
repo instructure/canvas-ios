@@ -8,6 +8,12 @@ exports[`render correctly 1`] = `
     }
   }
 >
+  <SearchBar
+    onCancelButtonPress={[Function]}
+    onChangeText={[Function]}
+    onSearchButtonPress={[Function]}
+    placeholder="Search"
+  />
   <RCTScrollView
     ItemSeparatorComponent={undefined}
     ListEmptyComponent={
@@ -15,14 +21,7 @@ exports[`render correctly 1`] = `
         title="No results"
       />
     }
-    ListHeaderComponent={
-      <SearchBar
-        onCancelButtonPress={[Function]}
-        onChangeText={[Function]}
-        onSearchButtonPress={[Function]}
-        placeholder="Search"
-      />
-    }
+    ListHeaderComponent={<RowSeparator />}
     data={
       Array [
         Object {
@@ -86,10 +85,19 @@ exports[`render correctly 1`] = `
     onEndReachedThreshold={2}
     onLayout={[Function]}
     onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderItem={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
@@ -158,16 +166,22 @@ exports[`render correctly 1`] = `
     updateCellsBatchingPeriod={50}
     windowSize={21}
   >
+    <RCTRefreshControl />
     <View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <SearchBar
-          onCancelButtonPress={[Function]}
-          onChangeText={[Function]}
-          onSearchButtonPress={[Function]}
-          placeholder="Search"
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
         />
       </View>
       <View
@@ -842,6 +856,12 @@ exports[`render correctly 2`] = `
     }
   }
 >
+  <SearchBar
+    onCancelButtonPress={[Function]}
+    onChangeText={[Function]}
+    onSearchButtonPress={[Function]}
+    placeholder="Search"
+  />
   <RCTScrollView
     ItemSeparatorComponent={undefined}
     ListEmptyComponent={
@@ -849,14 +869,7 @@ exports[`render correctly 2`] = `
         title="No results"
       />
     }
-    ListHeaderComponent={
-      <SearchBar
-        onCancelButtonPress={[Function]}
-        onChangeText={[Function]}
-        onSearchButtonPress={[Function]}
-        placeholder="Search"
-      />
-    }
+    ListHeaderComponent={<RowSeparator />}
     data={
       Array [
         Object {
@@ -896,10 +909,19 @@ exports[`render correctly 2`] = `
     onEndReachedThreshold={2}
     onLayout={[Function]}
     onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
     onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
     renderItem={[Function]}
     renderSectionHeader={[Function]}
     scrollEventThrottle={50}
@@ -942,16 +964,22 @@ exports[`render correctly 2`] = `
     updateCellsBatchingPeriod={50}
     windowSize={21}
   >
+    <RCTRefreshControl />
     <View>
       <View
         onLayout={[Function]}
         style={null}
       >
-        <SearchBar
-          onCancelButtonPress={[Function]}
-          onChangeText={[Function]}
-          onSearchButtonPress={[Function]}
-          placeholder="Search"
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#C7CDD1",
+                "height": 0.5,
+              },
+              undefined,
+            ]
+          }
         />
       </View>
       <View
