@@ -255,7 +255,7 @@ exports[`UserSubmissionRow renders 1`] = `
                   }
                   style={
                     Object {
-                      "flex": 1,
+                      "flex": 0.8,
                       "height": 18,
                     }
                   }

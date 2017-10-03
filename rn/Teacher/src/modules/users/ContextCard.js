@@ -175,7 +175,6 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
         submission={submission}
         user={this.props.user}
         onPress={this._navigateToSpeedGrader}
-
       />
     )
   }
@@ -323,7 +322,7 @@ export function fetchData (props: ContextCardProps): void {
 }
 
 export function isRefreshing (props: ContextCardProps): boolean {
-  return props.pending
+  return Boolean(props.pending)
 }
 
 const Refreshed = refresh(

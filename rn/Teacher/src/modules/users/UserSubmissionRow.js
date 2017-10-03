@@ -61,8 +61,8 @@ export default class UserSubmissionRow extends Component<any, Props, any> {
   }
 
   grade = () => {
-    let grade = formatGradeText(this.props.submission.grade, this.props.assignment.grade_type)
-
+    const grade = formatGradeText(this.props.submission.grade, this.props.assignment.grade_type)
+    const flex = Math.min(1, (this.props.submission.score || 0) / this.props.assignment.points_possible)
     return (
       <View style={styles.gradeWrapper}>
         <View style={styles.progressWrapper}>
@@ -74,7 +74,7 @@ export default class UserSubmissionRow extends Component<any, Props, any> {
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}
               style={{
-                flex: Math.min(1, this.props.submission.score || 0 / this.props.assignment.points_possible),
+                flex,
                 height: 18,
               }}
               colors={['#008EE2', '#00C1F3']}
