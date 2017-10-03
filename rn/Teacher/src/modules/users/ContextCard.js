@@ -251,7 +251,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
     }
 
     let url = `${assignment.html_url}/submissions/${userID}`
-    this.props.navigator.show(url, { modal: true }, {
+    this.props.navigator.show(url, { modal: true, modalPresentationStyle: 'fullscreen' }, {
       studentIndex: 0,
       selectedFilter: { filter },
     })
