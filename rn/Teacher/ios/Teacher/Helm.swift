@@ -17,6 +17,7 @@
 import UIKit
 import AttendanceLE
 import CanvasKeymaster
+import React
 
 public typealias ModuleName = String
 

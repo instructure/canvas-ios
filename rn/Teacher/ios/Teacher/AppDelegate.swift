@@ -23,7 +23,7 @@ import Fabric
 import Crashlytics
 import CanvasCore
 import SoLazy
-import BugsnagReactNative
+import React
 
 public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 
@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BuddyBuildSDK.setup()
-        BugsnagReactNative.start()
         prepareReactNative()
         preparePSPDFKit()
         createMainWindow()

@@ -138,7 +138,6 @@ dependencies {
     compile project(':react-native-linear-gradient')
     compile project(':react-native-audio')
     compile project(':react-native-document-picker')
-    compile project(':bugsnag-react-native')
     compile project(':react-native-mail')
     compile project(':react-native-fs')
     compile project(':react-native-navigation')

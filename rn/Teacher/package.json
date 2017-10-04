@@ -17,8 +17,6 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "bugsnag-react-native": "^2.3.1",
-    "bugsnag-sourcemaps": "^1.0.1",
     "bytes": "https://github.com/n8armstrong/bytes.js",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
@@ -27,6 +25,7 @@
     "hoist-non-react-statics": "^1.2.0",
     "instructure-canvas-api": "^2.0.5",
     "knuth-shuffle-seeded": "^1.0.6",
+    "md5": "^2.2.1",
     "prop-types": "^15.5.10",
     "querystring": "^0.2.0",
     "react": "16.0.0-alpha.12",
@@ -37,8 +36,8 @@
     "react-native-camera": "^0.10.0",
     "react-native-counter": "^0.2.0",
     "react-native-device-info": "^0.10.1",
-    "react-native-fs": "^2.5.2",
     "react-native-document-picker": "https://github.com/Elyx0/react-native-document-picker.git",
+    "react-native-fs": "^2.3.2",
     "react-native-image-picker": "^0.26.3",
     "react-native-interactable": "https://github.com/derrh/react-native-interactable.git",
     "react-native-keyboard-aware-scroll-view": "^0.2.9",
@@ -60,8 +59,7 @@
     "url-parse": "^1.1.9",
     "uuid": "^3.1.0",
     "valid-url": "1.0.9",
-    "xmldom": "^0.1.27",
-    "md5": "^2.2.1"
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

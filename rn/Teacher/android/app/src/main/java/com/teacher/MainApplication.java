@@ -8,7 +8,6 @@ import com.zmxv.RNSound.RNSoundPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.rnim.rn.audio.ReactNativeAudioPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
-import com.bugsnag.BugsnagReactNative;
 import com.chirag.RNMail.RNMail;
 import com.rnfs.RNFSPackage;
 import com.reactnativenavigation.NavigationReactPackage;
@@ -43,7 +42,6 @@ public class MainApplication extends Application implements ReactApplication {
             new LinearGradientPackage(),
             new ReactNativeAudioPackage(),
             new ReactNativeDocumentPicker(),
-            BugsnagReactNative.getPackage(),
             new RNMail(),
             new RNFSPackage(),
             new NavigationReactPackage(),

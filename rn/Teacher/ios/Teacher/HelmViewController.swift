@@ -17,6 +17,7 @@
 import UIKit
 import SDWebImage
 import PocketSVG
+import React
 
 typealias Props = [String: Any]
 

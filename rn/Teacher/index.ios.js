@@ -36,11 +36,6 @@ import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
 
-import { Client, Configuration } from 'bugsnag-react-native'
-const configuration = new Configuration()
-configuration.notifyReleaseStages = ['testflight', 'production']
-global.crashReporter = new Client(configuration)
-
 global.v12 = false
 
 const PushNotifications = NativeModules.PushNotifications

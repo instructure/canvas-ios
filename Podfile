@@ -33,7 +33,6 @@ def react_native
   pod 'react-native-image-picker', :path => nm_path + 'react-native-image-picker'
   pod 'Interactable', :path => nm_path + 'react-native-interactable'
   pod 'BVLinearGradient', :path => nm_path + 'react-native-linear-gradient'
-  pod 'BugsnagReactNative', :path => nm_path + 'bugsnag-react-native'
   pod 'react-native-mail', :path => nm_path + 'react-native-mail'
   pod 'ReactNativeSearchBar', :path => nm_path + 'react-native-search-bar'
   pod 'RCTSFSafariViewController', :path => nm_path + 'react-native-sfsafariviewcontroller'
@@ -328,7 +327,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     # puts "=== #{target.name}"
-    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD' || target.name == 'BugsnagReactNative' || target.name == 'RCTSFSafariViewController' || target.name == 'react-native-camera' || 'react-native-mail'
+    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD' || target.name == 'RCTSFSafariViewController' || target.name == 'react-native-camera' || 'react-native-mail'
     puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
