@@ -6,6 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start-iphone": "react-native run-ios --simulator='iPhone 8' --project-path ../../ --scheme Teacher",
     "start-ipad": "react-native run-ios --simulator='iPad Pro (10.5-inch)' --project-path ../../ --scheme Teacher",
+    "build": "yarn && pod install",
+    "clean": "rm -rf \"$HOME/Library/Developer/Xcode/DerivedData/\" && rm -rf './node_modules' && rm -rf './ios/build' && pod cache clean --all",
     "test": "jest",
     "lint": "eslint *.js __tests__/*.js src test flow",
     "lint:fix": "eslint --fix *.js __tests__/*.js src test",

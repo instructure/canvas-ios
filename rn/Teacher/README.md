@@ -4,6 +4,7 @@
 
 - Install node. You probably should use 6.x or newer.
 - Install yarn: https://yarnpkg.com/en/docs/install#mac-tab
+- Install cocoapods: https://rubygems.org/gems/cocoapods/
 - Follow the installation steps in the react native getting started guide:
 
 https://facebook.github.io/react-native/docs/getting-started.html
@@ -15,9 +16,7 @@ xcode-select --install
 sudo xcode-select -s /Applications/Xcode.app
 ```
 
-- Install node dependencies: `yarn install`
-- Install cocoapods: `gem install cocoapods`
-- Install pod dependencies: `pod install`
+- Install dependencies: `yarn build`
 - Launch the app: `yarn start-iphone` or `yarn start-ipad`
   (note: if you already have a simulator running, kill it before running that
    command)
