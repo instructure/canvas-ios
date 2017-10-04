@@ -45,6 +45,12 @@ FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
   def install_native_deps
+    FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/node_modules/')
+    FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/ios/build')
+
+    clear_derived_data
+    clean_cocoapods_cache
+
     # must yarn before cocoapods because Podfile references pod in npm module path
     rn_teacher = join(__dir__, '../rn/Teacher')
     retry_cmd('yarn', 10) { _execute(dir: rn_teacher, command: 'yarn') }
