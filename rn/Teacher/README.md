@@ -16,10 +16,9 @@ sudo xcode-select -s /Applications/Xcode.app
 ```
 
 - Install node dependencies: `yarn install`
-- Install carthage: `brew install carthage`
-- Run a carthage checkout at the top level of the repo:
-  `(cd ../.. ; carthage checkout --no-use-binaries)`
-- Launch the app: `react-native run-ios`
+- Install cocoapods: `gem install cocoapods`
+- Install pod dependencies: `pod install`
+- Launch the app: `yarn start-iphone` or `yarn start-ipad`
   (note: if you already have a simulator running, kill it before running that
    command)
 
