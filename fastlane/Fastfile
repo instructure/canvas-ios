@@ -45,11 +45,11 @@ FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
   def install_native_deps
-    #retry_cmd('carthage', 10) { _execute(command: 'carthage checkout --no-use-binaries') }
-    retry_cmd('cocoapods', 10) { cocoapods }
-
+    # must yarn before cocoapods because Podfile references pod in npm module path
     rn_teacher = join(__dir__, '../rn/Teacher')
     retry_cmd('yarn', 10) { _execute(dir: rn_teacher, command: 'yarn') }
+
+    retry_cmd('cocoapods', 10) { cocoapods }
   end
 
   def update_build_number(xc_project)
@@ -191,7 +191,7 @@ platform :ios do
   ############
   # Generic
 
-  desc 'Update carthage and cocoapods dependencies'
+  desc 'Update dependencies'
   lane :deps do
     install_native_deps
   end

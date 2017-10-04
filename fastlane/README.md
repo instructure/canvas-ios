@@ -74,7 +74,7 @@ Test Parent.app
 ```
 fastlane ios deps
 ```
-Update carthage and cocoapods dependencies
+Update dependencies
 ### ios build_earlgrey_parent
 ```
 fastlane ios build_earlgrey_parent

@@ -82,7 +82,7 @@ abstract_target 'defaults' do
     pod 'Fabric', '~> 1.6'
     pod 'Crashlytics', '~> 3.8'
   end
-  
+
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
 
@@ -158,7 +158,7 @@ abstract_target 'defaults' do
   target 'SoPersistent' do
     project 'Frameworks/SoPersistent/SoPersistent.xcodeproj'
   end
-  
+
   target 'PersistentCrashing' do
     project 'Frameworks/SoPersistent/SoPersistent.xcodeproj'
   end
@@ -318,6 +318,7 @@ abstract_target 'defaults' do
 
   abstract_target 'common_ui_tests' do
     target 'TeacherUITests' do
+      pod 'SwiftProtobuf', '~> 0.9.904'
       pod 'EarlGrey', '~> 1.1'
       project 'rn/Teacher/ios/Teacher.xcodeproj'
     end

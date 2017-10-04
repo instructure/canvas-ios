@@ -13,6 +13,7 @@
 		492246031D1C744A0053766B /* EarlGreyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492246001D1C744A0053766B /* EarlGreyUtils.swift */; };
 		49E21B171D1C694D00B7B9B4 /* SoGrey.h in Headers */ = {isa = PBXBuildFile; fileRef = 49E21B161D1C694D00B7B9B4 /* SoGrey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61B536E21E784AD5000FEABB /* PageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E11E784AD5000FEABB /* PageObject.swift */; };
+		A2684C796FE5A7D2E028DD02 /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08266CCC56596120DB935F98 /* EarlGrey.framework */; };
 		F908C9631E8EBAE800C7FF1B /* dsl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F908C9621E8EBAE800C7FF1B /* dsl.swift */; };
 		F95E3D521E89555D000CE6A1 /* WebDriverAtomScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95E3D511E89555D000CE6A1 /* WebDriverAtomScripts.swift */; };
 		F98D9BBF1E8AE18000114F59 /* EvaluationAtom.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D9BBE1E8AE18000114F59 /* EvaluationAtom.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		0678AA8C863643A5B665382B /* Pods-defaults-SoGrey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoGrey.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoGrey/Pods-defaults-SoGrey.release.xcconfig"; sourceTree = "<group>"; };
+		08266CCC56596120DB935F98 /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Pods/EarlGrey/EarlGrey/EarlGrey.framework; sourceTree = SOURCE_ROOT; };
 		492245FE1D1C744A0053766B /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		492245FF1D1C744A0053766B /* EarlGrey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		492246001D1C744A0053766B /* EarlGreyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EarlGreyUtils.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3696136A1F6140C7404BB529 /* Pods_defaults_SoGrey.framework in Frameworks */,
+				A2684C796FE5A7D2E028DD02 /* EarlGrey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				CB46F2583A3A0958EE74AC43 /* Pods_defaults_SoGrey.framework */,
+				08266CCC56596120DB935F98 /* EarlGrey.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

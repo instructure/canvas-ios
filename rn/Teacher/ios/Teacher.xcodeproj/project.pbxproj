@@ -75,6 +75,7 @@
 		3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
 		3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* Brand.swift */; };
 		3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */; };
+		436C75F340B454FEE823CF4F /* EarlGrey.framework in EarlGrey Copy Files */ = {isa = PBXBuildFile; fileRef = D755363065723C5524C77F2A /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */; };
 		451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
@@ -146,6 +147,7 @@
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
 		B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B170B0651F58756E00B92700 /* SoLazy.framework */; };
 		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
+		B704C165D67D6B901C48047E /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
 		BF691547C3F6A0433A07B2AD /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8420872227378302E813DF7 /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift */; };
@@ -234,6 +236,17 @@
 				61B5372D1E786A27000FEABB /* EarlGrey.framework in CopyFiles */,
 				61B5372E1E786A27000FEABB /* SoGrey.framework in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E711B6A8C5AC4BEB43920AA /* EarlGrey Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(TEST_HOST)/../";
+			dstSubfolderSpec = 0;
+			files = (
+				436C75F340B454FEE823CF4F /* EarlGrey.framework in EarlGrey Copy Files */,
+			);
+			name = "EarlGrey Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -474,6 +487,7 @@
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
 		88A75DDE30E7DF0E48B12475 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; path = data/CourseSettingsPageTest/CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
+		91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupCategory.swift; path = models/GroupCategory.swift; sourceTree = "<group>"; };
 		922B8388DD687B870A89727F /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; sourceTree = "<group>"; };
@@ -510,6 +524,7 @@
 		D063D27A1B3640208ABF74D4 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D3A38F55FC2ABB80A92DB5C6 /* SubmissionComment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubmissionComment.swift; path = models/SubmissionComment.swift; sourceTree = "<group>"; };
 		D71370A64E454689407684D4 /* CanvasUser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CanvasUser.swift; path = models/CanvasUser.swift; sourceTree = "<group>"; };
+		D755363065723C5524C77F2A /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EarlGrey.framework; path = Pods/EarlGrey/EarlGrey/EarlGrey.framework; sourceTree = SOURCE_ROOT; };
 		D761EBE7E2201A7EB5D4DE87 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeDiscussionTopic.swift; sourceTree = "<group>"; };
 		DF02A1E21EFC26BE00B17B8D /* InboxPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPageTest.swift; sourceTree = "<group>"; };
 		DF02A2081EFC31C000B17B8D /* InboxPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxPage.swift; sourceTree = "<group>"; };
@@ -649,6 +664,7 @@
 				D063D27A1B3640208ABF74D4 /* libz.tbd */,
 				EE78272172F7D235E49A1D77 /* Pods_defaults_Teacher.framework */,
 				2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */,
+				D755363065723C5524C77F2A /* EarlGrey.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -874,6 +890,7 @@
 				3B379781808A96719F53B283 /* data */,
 				A8E2B112896154A95919D6FF /* models */,
 				F99A8E911F06C1450032449B /* bridge.h */,
+				91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */,
 			);
 			path = TeacherUITests;
 			sourceTree = "<group>";
@@ -1132,6 +1149,7 @@
 				61B5372C1E7869F5000FEABB /* CopyFiles */,
 				73E9BB7D3716B4C23CA578E2 /* [CP] Embed Pods Frameworks */,
 				BF300A9E217237A7707FC6F6 /* [CP] Copy Pods Resources */,
+				6E711B6A8C5AC4BEB43920AA /* EarlGrey Copy Files */,
 			);
 			buildRules = (
 			);
@@ -1343,6 +1361,7 @@
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${PODS_ROOT}/EarlGrey/EarlGrey/EarlGrey.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1368,6 +1387,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EarlGrey.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1670,6 +1690,7 @@
 				3B157F535719FD93105E8EC9 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift in Sources */,
 				54F1E2CE1143A2D662FFEEFA /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift in Sources */,
 				35C24FD96D4AC6ACD54942E5 /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift in Sources */,
+				B704C165D67D6B901C48047E /* EarlGrey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
