@@ -71,7 +71,7 @@ test('mapStateToProps throws without course', () => {
 
 test('mapStateToProps hides attendance tab if it is hidden', () => {
   const course = template.course({ id: '1' })
-  const tabs = { tabs: [template.tab({ id: '1' })], pending: 0 }
+  const tabs = { tabs: [template.tab({ id: '1', hidden: true })], pending: 0 }
   const attendanceTool = { tabID: '1', pending: 0 }
   const state = template.appState({
     entities: {

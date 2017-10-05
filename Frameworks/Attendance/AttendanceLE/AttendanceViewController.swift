@@ -314,6 +314,7 @@ open class AttendanceViewController: UIViewController {
         })
         RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
         statiiUpdateTimers[path.row] = timer
+        updateBigBlueButton()
     }
     
     private func titleView(with title: String, and subtitle: String) -> (titleView: UIView, titleLabel: UILabel, subtitleLabel: UILabel) {
