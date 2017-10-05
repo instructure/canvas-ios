@@ -70,11 +70,11 @@ build Parent.app and submit to iTunes Connect
 fastlane ios test_parent
 ```
 Test Parent.app
-### ios deps
+### ios delete
 ```
-fastlane ios deps
+fastlane ios delete
 ```
-Update dependencies
+Delete untracked code and install deps
 ### ios build_earlgrey_parent
 ```
 fastlane ios build_earlgrey_parent
