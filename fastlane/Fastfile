@@ -44,11 +44,18 @@ FRAMEWORKS_SCHEME  = 'EverythingBagel'
 FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
+  def terminate_react_native_packager
+    # thanks https://github.com/livioso/react-native-kill-packager/blob/master/index.js
+    `lsof -n -i4TCP:8081 | sed '1 d' | awk '{print $2}' | xargs kill -9`
+  end
+
   def delete_untracked_and_install_deps
     FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/node_modules/')
     FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/ios/build')
 
     puts `cd .. && git clean -dfx`
+
+    terminate_react_native_packager
 
     clear_derived_data
     clean_cocoapods_cache
