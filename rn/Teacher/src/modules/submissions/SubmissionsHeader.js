@@ -205,6 +205,38 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
   }
 }
 
+export function messageStudentsWhoSubject (selectedFilter: ?SelectedSubmissionFilter, assignmentName: string): string {
+  if (!selectedFilter) {
+    return i18n('All submissions - {assignmentName}', { assignmentName })
+  }
+  var subject = ''
+  switch (selectedFilter.filter.type) {
+    case 'all':
+      subject = i18n('All submissions - {assignmentName}', { assignmentName })
+      break
+    case 'late':
+      subject = i18n('Submitted late - {assignmentName}', { assignmentName })
+      break
+    case 'notsubmitted':
+      subject = i18n("Haven't submitted yet - {assignmentName}", { assignmentName })
+      break
+    case 'notgraded':
+      subject = i18n("Haven't been graded - {assignmentName}", { assignmentName })
+      break
+    case 'graded':
+      subject = i18n('Graded - {assignmentName}', { assignmentName })
+      break
+    case 'lessthan':
+      subject = i18n('Scored less than {score} - {assignmentName}', { score: selectedFilter.metadata || '', assignmentName })
+      break
+    case 'morethan':
+      subject = i18n('Score more than {score} - {assignmentName}', { score: selectedFilter.metadata || '', assignmentName })
+      break
+  }
+
+  return subject
+}
+
 const styles = StyleSheet.create({
   headerWrapper: {
     borderBottomWidth: StyleSheet.hairlineWidth,

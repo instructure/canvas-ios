@@ -40,7 +40,7 @@ import GroupActions from '../../groups/actions'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
-import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../SubmissionsHeader'
+import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter, messageStudentsWhoSubject } from '../SubmissionsHeader'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
@@ -159,39 +159,13 @@ export class SubmissionList extends Component {
   }
 
   messageStudentsWho = () => {
-    var subject = ''
-    if (this.selectedFilter) {
-      switch (this.selectedFilter.filter.type) {
-        case 'all':
-          subject = i18n('All submissions - {assignmentName}', { assignmentName: this.props.assignmentName })
-          break
-        case 'late':
-          subject = i18n('Submitted late - {assignmentName}', { assignmentName: this.props.assignmentName })
-          break
-        case 'notsubmitted':
-          subject = i18n("Haven't submitted yet - {assignmentName}", { assignmentName: this.props.assignmentName })
-          break
-        case 'notgraded':
-          subject = i18n("Haven't been graded - {assignmentName}", { assignmentName: this.props.assignmentName })
-          break
-        case 'graded':
-          subject = i18n('Graded - {assignmentName}', { assignmentName: this.props.assignmentName })
-          break
-        case 'lessthan':
-          subject = i18n('Scored less than {score} - {assignmentName}', { score: this.selectedFilter.metadata || '', assignmentName: this.props.assignmentName })
-          break
-        case 'morethan':
-          subject = i18n('Score more than {score} - {assignmentName}', { score: this.selectedFilter.metadata || '', assignmentName: this.props.assignmentName })
-          break
-        default:
-          break
-      }
-    }
+    const subject = messageStudentsWhoSubject(this.selectedFilter, this.props.assignmentName)
+    const recipients = this.state.submissions.map((submission) => {
+      return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
+    })
     this.props.navigator.show('/conversations/compose', { modal: true }, {
-      recipients: this.state.submissions.map((submission) => {
-        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
-      }),
-      subject: subject,
+      recipients,
+      subject,
       contextName: this.props.course ? this.props.course.name : null,
       contextCode: this.props.course ? `course_${this.props.course.id}` : null,
       canAddRecipients: false,

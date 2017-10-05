@@ -29,7 +29,7 @@ import {
 import find from 'lodash/find'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
-import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter } from '../../submissions/SubmissionsHeader'
+import SubmissionsHeader, { type SubmissionFilterOption, type SelectedSubmissionFilter, messageStudentsWhoSubject } from '../../submissions/SubmissionsHeader'
 import SubmissionRow, { type SubmissionRowDataProps } from '../../submissions/list/SubmissionRow'
 import mapStateToProps from './map-state-to-props'
 import Images from '../../../images'
@@ -143,8 +143,29 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
     )
   }
 
+  messageStudentsWho = () => {
+    const subject = messageStudentsWhoSubject(this.selectedFilter, this.props.quiz.data.title || '')
+    const recipients = this.state.rows.map((row) => {
+      return { id: row.userID, name: row.name, avatar_url: row.avatarURL }
+    })
+
+    this.props.navigator.show('/conversations/compose', { modal: true }, {
+      recipients,
+      subject,
+      contextName: this.props.courseName,
+      contextCode: this.props.courseID ? `course_${this.props.courseID}` : null,
+      canAddRecipients: false,
+      onlySendIndividualMessages: true,
+    })
+  }
+
   render () {
-    let rightBarButtons = []
+    let rightBarButtons = [{
+      accessibilityLabel: i18n('Message students who'),
+      image: Images.smallMail,
+      testID: 'submission-list.message-who-btn',
+      action: this.messageStudentsWho,
+    }]
     if (this.props.quiz && this.props.quiz.data.assignment_id) {
       rightBarButtons.push({
         accessibilityLabel: i18n('Submission Settings'),

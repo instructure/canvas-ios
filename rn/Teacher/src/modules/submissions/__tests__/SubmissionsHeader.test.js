@@ -17,7 +17,7 @@
 // @flow
 import { ActionSheetIOS, AlertIOS } from 'react-native'
 import React from 'react'
-import SubmissionsHeader from '../SubmissionsHeader.js'
+import SubmissionsHeader, { messageStudentsWhoSubject } from '../SubmissionsHeader.js'
 import renderer from 'react-test-renderer'
 
 jest.mock('ActionSheetIOS', () => ({
@@ -140,4 +140,23 @@ test('SubmissionHeader anonymous and muted', () => {
   ).toJSON()
 
   expect(tree).toMatchSnapshot()
+})
+
+test('messageStudentsWhoSubject', () => {
+  const filter = (type: string, metadata: ?any) => {
+    return {
+      filter: { type },
+      metadata,
+    }
+  }
+  expect(messageStudentsWhoSubject(filter('all'), 'title')).toEqual('All submissions - title')
+  expect(messageStudentsWhoSubject(filter('late'), 'title')).toEqual('Submitted late - title')
+  expect(messageStudentsWhoSubject(filter('notsubmitted'), 'title')).toEqual("Haven't submitted yet - title")
+  expect(messageStudentsWhoSubject(filter('notgraded'), 'title')).toEqual("Haven't been graded - title")
+  expect(messageStudentsWhoSubject(filter('graded'), 'title')).toEqual('Graded - title')
+  expect(messageStudentsWhoSubject(filter('lessthan', 5), 'title')).toEqual('Scored less than 5 - title')
+  expect(messageStudentsWhoSubject(filter('morethan', 5), 'title')).toEqual('Score more than 5 - title')
+  expect(messageStudentsWhoSubject(null, 'title')).toEqual('All submissions - title')
+  expect(messageStudentsWhoSubject(filter('lessthan'), 'title')).toEqual('Scored less than  - title')
+  expect(messageStudentsWhoSubject(filter('morethan'), 'title')).toEqual('Score more than  - title')
 })

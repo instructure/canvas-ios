@@ -319,69 +319,16 @@ test('shows message compose with correct data', () => {
   )
   let instance = tree.getInstance()
 
-  let expectSubjectToBeCorrect = (subject: string) => {
-    instance.messageStudentsWho()
-    expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
-      recipients: instance.state.submissions.map((submission) => {
-        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
-      }),
-      subject: subject,
-      course: expandedProps.course,
-      canAddRecipients: false,
-      onlySendIndividualMessages: true,
-    })
-  }
-  expect(navigator.show).toHaveBeenCalledW
-
-  it('handles all submissions', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[0],
-    })
-    expectSubjectToBeCorrect('All submissions - Blah')
-  })
-
-  it('handles late submissions', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[1],
-    })
-    expectSubjectToBeCorrect('Submitted late - Blah')
-  })
-
-  it('handles un-submissions', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[2],
-    })
-    expectSubjectToBeCorrect("Haven't submitted yet - Blah")
-  })
-
-  it('handles un-gradedness', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[3],
-    })
-    expectSubjectToBeCorrect("Haven't been graded - Blah")
-  })
-
-  it('handles graded', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[4],
-    })
-    expectSubjectToBeCorrect('Graded - Blah')
-  })
-
-  it('handles scored less than', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[5],
-      metadata: 50,
-    })
-    expectSubjectToBeCorrect('Scored less than 50 - Blah')
-  })
-
-  it('handles scored more than', () => {
-    instance.updateFilter({
-      filter: instance.filterOptions[6],
-      metadata: 50,
-    })
-    expectSubjectToBeCorrect('Scored more than 50 - Blah')
+  instance.messageStudentsWho()
+  expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
+    recipients: instance.state.submissions.map((submission) => {
+      return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
+    }),
+    subject: 'All submissions - Blah',
+    contextName: expandedProps.course.name,
+    contextCode: `course_${expandedProps.course.id}`,
+    canAddRecipients: false,
+    onlySendIndividualMessages: true,
   })
 })
 
