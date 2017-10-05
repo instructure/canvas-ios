@@ -18,29 +18,28 @@ import UIKit
 import CanvasKeymaster
 import CocoaLumberjack
 
-class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
-  static let shared = LoginConfiguration()
-  
-  let logFileManager: DDLogFileManagerDefault = {
+public class LoginConfiguration: NSObject, CanvasKeymasterDelegate {
+    
+    public init(mobileVerifyName: String, logo: UIImage) {
+        self.appNameForMobileVerify = mobileVerifyName
+        self.logoForDomainPicker = logo
+    }
+    
+  public let logFileManager: DDLogFileManagerDefault = {
     let logsDirectory = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString).appendingPathComponent("InstructureLog")
     return DDLogFileManagerDefault(logsDirectory: logsDirectory)
   }()
-  
-  var appNameForMobileVerify: String! {
-    return "iCanvas"
-  }
-  
-  var backgroundViewForDomainPicker: UIView! {
+
+  public var appNameForMobileVerify: String
+  public let logoForDomainPicker: UIImage
+
+  public var backgroundViewForDomainPicker: UIView! {
     let view = UIView()
-    view.backgroundColor = UIColor(white: 1.0, alpha: 1)
+    view.backgroundColor = UIColor(white: 0.95, alpha: 1)
     return view
   }
-  
-  var logoForDomainPicker: UIImage! {
-    return #imageLiteral(resourceName: "logo")
-  }
-  
-  var logFilePath: String! {
+
+  public var logFilePath: String! {
     return logFileManager.sortedLogFilePaths().first as? String
   }
 }

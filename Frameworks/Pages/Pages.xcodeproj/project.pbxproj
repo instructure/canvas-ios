@@ -8,32 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		2C6D60861F72F0AA009C3707 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6D60871F72F0AA009C3707 /* CanvasCore.framework */; };
-		49998E771E1D7A4800C98AC2 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; };
-		49998E781E1D7A4800C98AC2 /* DoNotShipThis.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E791E1D7A4800C98AC2 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACADC8E91CE667D100D16200 /* FileKit.framework */; };
-		49998E7A1E1D7A4800C98AC2 /* FileKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACADC8E91CE667D100D16200 /* FileKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E7F1E1D7A4800C98AC2 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE926641CFF57180020D375 /* EnrollmentKit.framework */; };
-		49998E801E1D7A4800C98AC2 /* EnrollmentKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACE926641CFF57180020D375 /* EnrollmentKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E811E1D7A4800C98AC2 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54E1CE4EE58007A474A /* SoPretty.framework */; };
-		49998E821E1D7A4800C98AC2 /* SoPretty.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54E1CE4EE58007A474A /* SoPretty.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E831E1D7A4800C98AC2 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */; };
-		49998E841E1D7A4800C98AC2 /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E871E1D7A4800C98AC2 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5461CE4ED99007A474A /* SoLazy.framework */; };
-		49998E881E1D7A4800C98AC2 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5461CE4ED99007A474A /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E891E1D7A4800C98AC2 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5441CE4ED20007A474A /* SoPersistent.framework */; };
-		49998E8A1E1D7A4800C98AC2 /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5441CE4ED20007A474A /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E931E1D7A7D00C98AC2 /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E8C1E1D7A6700C98AC2 /* SoIconic.framework */; };
-		49998E941E1D7A7D00C98AC2 /* SoIconic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E8C1E1D7A6700C98AC2 /* SoIconic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E981E1D7AC500C98AC2 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E971E1D7ABF00C98AC2 /* WhizzyWig.framework */; };
-		49998E991E1D7AC500C98AC2 /* WhizzyWig.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E971E1D7ABF00C98AC2 /* WhizzyWig.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49998E9B1E1D7B0200C98AC2 /* MediaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E9A1E1D7AFD00C98AC2 /* MediaKit.framework */; };
-		49998E9C1E1D7B0200C98AC2 /* MediaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49998E9A1E1D7AFD00C98AC2 /* MediaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		49F44A051DFA81B4001B8DA9 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5461CE4ED99007A474A /* SoLazy.framework */; };
+		4936B6E41F852E340026501C /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4936B6E31F852E2C0026501C /* SoAutomated.framework */; };
+		4936B6E51F8530060026501C /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC71F844A89009C8F8E /* SoLazy.framework */; };
+		4936B6E61F8530060026501C /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC81F844A89009C8F8E /* TooLegit.framework */; };
+		4936B6F21F8531EB0026501C /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC71F844A89009C8F8E /* SoLazy.framework */; };
+		49383CC91F844A9B009C8F8E /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC71F844A89009C8F8E /* SoLazy.framework */; };
+		49383CCA1F844A9B009C8F8E /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC71F844A89009C8F8E /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49383CCB1F844A9B009C8F8E /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC81F844A89009C8F8E /* TooLegit.framework */; };
+		49383CCC1F844A9B009C8F8E /* TooLegit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC81F844A89009C8F8E /* TooLegit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49383CEB1F848900009C8F8E /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CEA1F8488F9009C8F8E /* SoPersistent.framework */; };
+		49383CEC1F84890F009C8F8E /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CEA1F8488F9009C8F8E /* SoPersistent.framework */; };
+		49383CED1F84890F009C8F8E /* SoPersistent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CEA1F8488F9009C8F8E /* SoPersistent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8F6D6D14860763CCD654D7A5 /* Pods_defaults_common_tests_PageKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A54E94819E112E1CD3A9CB /* Pods_defaults_common_tests_PageKitTests.framework */; };
-		AC47B0BE1CEA78FC00A1E54A /* SoAutomated.framework in Resources */ = {isa = PBXBuildFile; fileRef = AC47B0BD1CEA78DF00A1E54A /* SoAutomated.framework */; };
 		AC47B0C51CEB70B000A1E54A /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC47B0C41CEB70B000A1E54A /* PageTests.swift */; };
-		AC47B0C71CEB74ED00A1E54A /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; };
-		AC47B0C81CEB754F00A1E54A /* DoNotShipThis.framework in Resources */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; };
 		AC608DFD1D0F6BAA00489EBB /* PageTemplateRendererTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC608DFC1D0F6BAA00489EBB /* PageTemplateRendererTest.swift */; };
 		AC608DFF1D10615400489EBB /* PagesHomeViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC608DFE1D10615400489EBB /* PagesHomeViewControllerTest.swift */; };
 		AC9DD5091CE4E80B007A474A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9DD5081CE4E80B007A474A /* AppDelegate.swift */; };
@@ -44,31 +31,16 @@
 		AC9DD5291CE4E888007A474A /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD51F1CE4E887007A474A /* PageKit.framework */; };
 		AC9DD5351CE4E888007A474A /* PageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD51F1CE4E887007A474A /* PageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AC9DD5411CE4EA5C007A474A /* PageKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AC9DD53F1CE4EA5C007A474A /* PageKit.xcdatamodeld */; };
-		AC9DD5451CE4ED45007A474A /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5441CE4ED20007A474A /* SoPersistent.framework */; };
-		AC9DD5471CE4EDA7007A474A /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5461CE4ED99007A474A /* SoLazy.framework */; };
-		AC9DD5511CE4EE74007A474A /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54E1CE4EE58007A474A /* SoPretty.framework */; };
-		AC9DD5521CE4EE74007A474A /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */; };
 		AC9DD5541CE4F041007A474A /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9DD5531CE4F041007A474A /* Page.swift */; };
 		ACADC8E01CE62ED600D16200 /* Page+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADC8DF1CE62ED600D16200 /* Page+Network.swift */; };
 		ACADC8E31CE62FB500D16200 /* PageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADC8E21CE62FB500D16200 /* PageAPI.swift */; };
 		ACADC8E51CE6455B00D16200 /* Page+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADC8E41CE6455B00D16200 /* Page+Collections.swift */; };
 		ACADC8E81CE6610D00D16200 /* Session+Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACADC8E71CE6610D00D16200 /* Session+Page.swift */; };
-		ACADC8F01CE67F2500D16200 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54E1CE4EE58007A474A /* SoPretty.framework */; };
-		ACADC8F11CE67F2500D16200 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */; };
-		ACADC8F31CE67F2500D16200 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5461CE4ED99007A474A /* SoLazy.framework */; };
-		ACADC8F41CE67F2500D16200 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5441CE4ED20007A474A /* SoPersistent.framework */; };
 		ACBB946C1CF66A8900D8808E /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB946B1CF66A8900D8808E /* Factories.swift */; };
 		ACBF16E21D08B4B400C55AC4 /* PagesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBF16E11D08B4B400C55AC4 /* PagesHomeViewController.swift */; };
 		ACC9687A1D24369C006AEAB1 /* Page+viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC968791D24369C006AEAB1 /* Page+viewModel.swift */; };
-		ACE5F8BD1CF8CEAC00FEB8F6 /* DoNotShipThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */; };
 		ACE5F8C31CF8E19400FEB8F6 /* Page+CollectionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5F8C21CF8E19400FEB8F6 /* Page+CollectionsTest.swift */; };
-		ACE5F8C41CFE023200FEB8F6 /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC47B0BD1CEA78DF00A1E54A /* SoAutomated.framework */; };
-		ACE5F8D41CFE1ADD00FEB8F6 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */; };
-		ACE5F8D71CFE1AE700FEB8F6 /* SoPersistent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD5441CE4ED20007A474A /* SoPersistent.framework */; };
-		ACE5F8DA1CFE1B0900FEB8F6 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54C1CE4EE58007A474A /* ReactiveCocoa.framework */; };
-		ACE5F8DC1CFE1B1100FEB8F6 /* SoPretty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9DD54E1CE4EE58007A474A /* SoPretty.framework */; };
 		ACE5F8DE1CFE206700FEB8F6 /* PageTableViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5F8DD1CFE206700FEB8F6 /* PageTableViewControllerTest.swift */; };
-		ACE926651CFF571F0020D375 /* EnrollmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE926641CFF57180020D375 /* EnrollmentKit.framework */; };
 		ACE926671CFF579F0020D375 /* Page+Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE926661CFF579F0020D375 /* Page+Detail.swift */; };
 		ACE926771CFF57F40020D375 /* PageTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = ACE926711CFF57F40020D375 /* PageTemplate.html */; };
 		ACE926781CFF57F40020D375 /* PageTemplateRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE926721CFF57F40020D375 /* PageTemplateRenderer.swift */; };
@@ -115,17 +87,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				49998E821E1D7A4800C98AC2 /* SoPretty.framework in Embed Frameworks */,
+				49383CCA1F844A9B009C8F8E /* SoLazy.framework in Embed Frameworks */,
+				49383CED1F84890F009C8F8E /* SoPersistent.framework in Embed Frameworks */,
 				AC9DD5351CE4E888007A474A /* PageKit.framework in Embed Frameworks */,
-				49998E941E1D7A7D00C98AC2 /* SoIconic.framework in Embed Frameworks */,
-				49998E841E1D7A4800C98AC2 /* TooLegit.framework in Embed Frameworks */,
-				49998E991E1D7AC500C98AC2 /* WhizzyWig.framework in Embed Frameworks */,
-				49998E7A1E1D7A4800C98AC2 /* FileKit.framework in Embed Frameworks */,
-				49998E881E1D7A4800C98AC2 /* SoLazy.framework in Embed Frameworks */,
-				49998E781E1D7A4800C98AC2 /* DoNotShipThis.framework in Embed Frameworks */,
-				49998E8A1E1D7A4800C98AC2 /* SoPersistent.framework in Embed Frameworks */,
-				49998E9C1E1D7B0200C98AC2 /* MediaKit.framework in Embed Frameworks */,
-				49998E801E1D7A4800C98AC2 /* EnrollmentKit.framework in Embed Frameworks */,
+				49383CCC1F844A9B009C8F8E /* TooLegit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,16 +101,12 @@
 		066F524D12DA708039B91390 /* Pods-defaults-common_tests-PageKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-PageKitTests.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-common_tests-PageKitTests/Pods-defaults-common_tests-PageKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF5FFDC86FC76EF2AC0A843 /* Pods-defaults-Pages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Pages.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Pages/Pods-defaults-Pages.release.xcconfig"; sourceTree = "<group>"; };
 		155055FBC75FD03F3C153EE0 /* Pods-PageKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageKitTests.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-PageKitTests/Pods-PageKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6D60871F72F0AA009C3707 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D62A42E96815E2667CE12B8 /* Pods-Pages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pages.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Pages/Pods-Pages.release.xcconfig"; sourceTree = "<group>"; };
-		490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49998E8B1E1D7A5B00C98AC2 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49998E8C1E1D7A6700C98AC2 /* SoIconic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoIconic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49998E8D1E1D7A6E00C98AC2 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49998E8E1E1D7A7600C98AC2 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49998E971E1D7ABF00C98AC2 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49998E9A1E1D7AFD00C98AC2 /* MediaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MediaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4936B6E31F852E2C0026501C /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49383CC71F844A89009C8F8E /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49383CC81F844A89009C8F8E /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49383CEA1F8488F9009C8F8E /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D59B810595A6B2B43D429BD /* Pods_PageKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69003A8C77A1EB7CC76DAE47 /* Pods-defaults-PageKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-PageKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-PageKit/Pods-defaults-PageKit.debug.xcconfig"; sourceTree = "<group>"; };
 		88E440B9E2C61B4717E5D0A5 /* Pods_defaults_Pages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Pages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,9 +114,7 @@
 		9AF611244C581491E4C28A9E /* Pods_Pages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D20636364E6BD5322625C8F /* Pods-PageKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageKit.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-PageKit/Pods-PageKit.release.xcconfig"; sourceTree = "<group>"; };
 		A9A54E94819E112E1CD3A9CB /* Pods_defaults_common_tests_PageKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_PageKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC47B0BD1CEA78DF00A1E54A /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC47B0C41CEB70B000A1E54A /* PageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTests.swift; sourceTree = "<group>"; };
-		AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DoNotShipThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC608DFC1D0F6BAA00489EBB /* PageTemplateRendererTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTemplateRendererTest.swift; sourceTree = "<group>"; };
 		AC608DFE1D10615400489EBB /* PagesHomeViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesHomeViewControllerTest.swift; sourceTree = "<group>"; };
 		AC95C1D142F4ADC14317580A /* Pods-PageKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageKit.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-PageKit/Pods-PageKit.debug.xcconfig"; sourceTree = "<group>"; };
@@ -171,25 +130,16 @@
 		AC9DD5281CE4E888007A474A /* PageKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PageKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9DD5311CE4E888007A474A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC9DD5401CE4EA5C007A474A /* PageKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PageKit.xcdatamodel; sourceTree = "<group>"; };
-		AC9DD5441CE4ED20007A474A /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9DD5461CE4ED99007A474A /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9DD5491CE4EE05007A474A /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9DD54C1CE4EE58007A474A /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9DD54D1CE4EE58007A474A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9DD54E1CE4EE58007A474A /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC9DD5531CE4F041007A474A /* Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		ACADC8DF1CE62ED600D16200 /* Page+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+Network.swift"; sourceTree = "<group>"; };
 		ACADC8E21CE62FB500D16200 /* PageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageAPI.swift; sourceTree = "<group>"; };
 		ACADC8E41CE6455B00D16200 /* Page+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Page+Collections.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		ACADC8E71CE6610D00D16200 /* Session+Page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Page.swift"; sourceTree = "<group>"; };
-		ACADC8E91CE667D100D16200 /* FileKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBB946B1CF66A8900D8808E /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		ACBF16E11D08B4B400C55AC4 /* PagesHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesHomeViewController.swift; sourceTree = "<group>"; };
 		ACC968791D24369C006AEAB1 /* Page+viewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+viewModel.swift"; sourceTree = "<group>"; };
 		ACE5F8C21CF8E19400FEB8F6 /* Page+CollectionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+CollectionsTest.swift"; sourceTree = "<group>"; };
 		ACE5F8DD1CFE206700FEB8F6 /* PageTableViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTableViewControllerTest.swift; sourceTree = "<group>"; };
-		ACE926641CFF57180020D375 /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE926661CFF579F0020D375 /* Page+Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Page+Detail.swift"; sourceTree = "<group>"; };
 		ACE926711CFF57F40020D375 /* PageTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PageTemplate.html; sourceTree = "<group>"; };
 		ACE926721CFF57F40020D375 /* PageTemplateRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageTemplateRenderer.swift; sourceTree = "<group>"; };
@@ -359,23 +309,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49998E791E1D7A4800C98AC2 /* FileKit.framework in Frameworks */,
-				ACE926651CFF571F0020D375 /* EnrollmentKit.framework in Frameworks */,
-				49998E871E1D7A4800C98AC2 /* SoLazy.framework in Frameworks */,
-				49998E891E1D7A4800C98AC2 /* SoPersistent.framework in Frameworks */,
-				ACE5F8BD1CF8CEAC00FEB8F6 /* DoNotShipThis.framework in Frameworks */,
-				ACADC8F01CE67F2500D16200 /* SoPretty.framework in Frameworks */,
-				ACADC8F11CE67F2500D16200 /* TooLegit.framework in Frameworks */,
-				ACADC8F31CE67F2500D16200 /* SoLazy.framework in Frameworks */,
-				49998E9B1E1D7B0200C98AC2 /* MediaKit.framework in Frameworks */,
-				49998E831E1D7A4800C98AC2 /* TooLegit.framework in Frameworks */,
-				49998E7F1E1D7A4800C98AC2 /* EnrollmentKit.framework in Frameworks */,
-				49998E811E1D7A4800C98AC2 /* SoPretty.framework in Frameworks */,
-				ACADC8F41CE67F2500D16200 /* SoPersistent.framework in Frameworks */,
-				49998E931E1D7A7D00C98AC2 /* SoIconic.framework in Frameworks */,
-				49998E981E1D7AC500C98AC2 /* WhizzyWig.framework in Frameworks */,
-				49998E771E1D7A4800C98AC2 /* DoNotShipThis.framework in Frameworks */,
+				49383CC91F844A9B009C8F8E /* SoLazy.framework in Frameworks */,
+				49383CEC1F84890F009C8F8E /* SoPersistent.framework in Frameworks */,
 				B073BAF307D48932D888C0DD /* Pods_defaults_Pages.framework in Frameworks */,
+				49383CCB1F844A9B009C8F8E /* TooLegit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,11 +320,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC9DD5451CE4ED45007A474A /* SoPersistent.framework in Frameworks */,
-				AC9DD5471CE4EDA7007A474A /* SoLazy.framework in Frameworks */,
-				AC9DD5511CE4EE74007A474A /* SoPretty.framework in Frameworks */,
-				AC9DD5521CE4EE74007A474A /* TooLegit.framework in Frameworks */,
+				4936B6E61F8530060026501C /* TooLegit.framework in Frameworks */,
+				49383CEB1F848900009C8F8E /* SoPersistent.framework in Frameworks */,
 				2C6D60861F72F0AA009C3707 /* CanvasCore.framework in Frameworks */,
+				4936B6E51F8530060026501C /* SoLazy.framework in Frameworks */,
 				D55EFC4C996F32A5367099F4 /* Pods_defaults_PageKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,14 +332,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE5F8DC1CFE1B1100FEB8F6 /* SoPretty.framework in Frameworks */,
-				ACE5F8D41CFE1ADD00FEB8F6 /* TooLegit.framework in Frameworks */,
-				49F44A051DFA81B4001B8DA9 /* SoLazy.framework in Frameworks */,
-				ACE5F8C41CFE023200FEB8F6 /* SoAutomated.framework in Frameworks */,
-				ACE5F8DA1CFE1B0900FEB8F6 /* ReactiveCocoa.framework in Frameworks */,
-				ACE5F8D71CFE1AE700FEB8F6 /* SoPersistent.framework in Frameworks */,
+				4936B6E41F852E340026501C /* SoAutomated.framework in Frameworks */,
 				AC9DD5291CE4E888007A474A /* PageKit.framework in Frameworks */,
-				AC47B0C71CEB74ED00A1E54A /* DoNotShipThis.framework in Frameworks */,
+				4936B6F21F8531EB0026501C /* SoLazy.framework in Frameworks */,
 				8F6D6D14860763CCD654D7A5 /* Pods_defaults_common_tests_PageKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,25 +492,10 @@
 		AC9DD5421CE4EC00007A474A /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				2C23AE8F1ED5EAC9006F0AEF /* Secrets.framework */,
-				49998E9A1E1D7AFD00C98AC2 /* MediaKit.framework */,
-				49998E971E1D7ABF00C98AC2 /* WhizzyWig.framework */,
-				49998E8E1E1D7A7600C98AC2 /* Kingfisher.framework */,
-				49998E8D1E1D7A6E00C98AC2 /* Cartography.framework */,
-				49998E8C1E1D7A6700C98AC2 /* SoIconic.framework */,
-				49998E8B1E1D7A5B00C98AC2 /* CWNotification.framework */,
-				490D34AF1DEF41A5009A280D /* ReactiveSwift.framework */,
-				AC47B0C61CEB74ED00A1E54A /* DoNotShipThis.framework */,
-				AC47B0BD1CEA78DF00A1E54A /* SoAutomated.framework */,
-				ACADC8E91CE667D100D16200 /* FileKit.framework */,
-				AC9DD54C1CE4EE58007A474A /* ReactiveCocoa.framework */,
-				AC9DD54D1CE4EE58007A474A /* Result.framework */,
-				ACE926641CFF57180020D375 /* EnrollmentKit.framework */,
-				AC9DD54E1CE4EE58007A474A /* SoPretty.framework */,
-				AC9DD54B1CE4EE3F007A474A /* TooLegit.framework */,
-				AC9DD5491CE4EE05007A474A /* Marshal.framework */,
-				AC9DD5461CE4ED99007A474A /* SoLazy.framework */,
-				AC9DD5441CE4ED20007A474A /* SoPersistent.framework */,
+				4936B6E31F852E2C0026501C /* SoAutomated.framework */,
+				49383CEA1F8488F9009C8F8E /* SoPersistent.framework */,
+				49383CC71F844A89009C8F8E /* SoLazy.framework */,
+				49383CC81F844A89009C8F8E /* TooLegit.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -781,10 +697,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC47B0BE1CEA78FC00A1E54A /* SoAutomated.framework in Resources */,
 				B16B5DA81E254E9E00DED47B /* Localizable.strings in Resources */,
 				B16B5D9C1E254E8100DED47B /* InfoPlist.strings in Resources */,
-				AC47B0C81CEB754F00A1E54A /* DoNotShipThis.framework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,50 +728,86 @@
 			inputPaths = (
 				"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-Pages/Pods-defaults-Pages-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-wkwebview/react_native_wkwebview.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_wkwebview.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -908,26 +858,44 @@
 			inputPaths = (
 				"${SRCROOT}/../../Pods/Target Support Files/Pods-defaults-common_tests-PageKitTests/Pods-defaults-common_tests-PageKitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-wkwebview/react_native_wkwebview.framework",
 				"${BUILT_PRODUCTS_DIR}/DVR/DVR.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -935,26 +903,44 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_wkwebview.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",

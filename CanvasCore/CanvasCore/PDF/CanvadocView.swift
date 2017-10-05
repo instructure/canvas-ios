@@ -18,6 +18,8 @@ import UIKit
 import PSPDFKit
 import SoAnnotated
 import React
+import CanvasKeymaster
+import AFNetworking
 
 // CREDIT: https://stackoverflow.com/a/24590678
 extension UIView {

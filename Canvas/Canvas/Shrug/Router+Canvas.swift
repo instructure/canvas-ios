@@ -23,9 +23,10 @@ import Marshal
 import TooLegit
 import SoPersistent
 import PageKit
+import CanvasKeymaster
 
 var currentSession: Session {
-    return TheKeymaster!.currentClient.authSession
+    return CanvasKeymaster.the().currentClient.authSession
 }
 
 extension Router {

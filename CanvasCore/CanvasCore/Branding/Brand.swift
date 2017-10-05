@@ -16,17 +16,17 @@
 
 import Foundation
 
-struct Brand {
-    var navBgColor = UIColor.red
-    var navButtonColor = UIColor.red
-    var navTextColor = UIColor.red
-    var primaryButtonColor = UIColor.red
-    var primaryButtonTextColor = UIColor.red
-    var primaryBrandColor = UIColor.red
-    var fontColorDark = UIColor.red
-    var headerImageURL: String = ""
+public struct Brand {
+    public var navBgColor = UIColor.red
+    public var navButtonColor = UIColor.red
+    public var navTextColor = UIColor.red
+    public var primaryButtonColor = UIColor.red
+    public var primaryButtonTextColor = UIColor.red
+    public var primaryBrandColor = UIColor.red
+    public var fontColorDark = UIColor.red
+    public var headerImageURL: String = ""
     
-    init(webPayload: [String: Any]?) {
+    public init(webPayload: [String: Any]?) {
         if let payload = webPayload {
             if let hex = payload["ic-brand-global-nav-bgd"] as? String, let color = UIColor.colorFromHexString(hex) {
                 navBgColor = color
@@ -61,5 +61,5 @@ struct Brand {
         }
     }
     
-    init() {}
+    public init() {}
 }

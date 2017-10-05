@@ -32,20 +32,22 @@ extension UIView {
     }
 }
 
-class VideoContainerView: UIView {
-    override init(frame: CGRect) {
+public class VideoContainerView: UIView {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    required init?(coder aDecoder: NSCoder) { fatalError("nope") }
+    public required init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
     weak var player: AVPlayerViewController?
     
+    @objc
     var source: Dictionary<String, Any> = [:] {
         didSet {
             setNeedsLayout()
         }
     }
 
+    @objc
     var paused = false {
         didSet {
             if paused {
@@ -54,6 +56,7 @@ class VideoContainerView: UIView {
         }
     }
 
+    @objc
     var playing = false {
         didSet {
             if playing {
@@ -86,7 +89,7 @@ class VideoContainerView: UIView {
         self.player = player
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         if (player == nil) {

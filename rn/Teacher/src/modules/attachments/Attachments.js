@@ -98,6 +98,8 @@ export class Attachments extends Component<any, Props, any> {
     const canAdd = this.props.maxAllowed == null || Object.values(this.state.attachments).length < this.props.maxAllowed
     return (
       <Screen
+        navBarColor='#fff'
+        drawUnderNavBar={true}
         title={i18n('Attachments')}
         rightBarButtons={canAdd ? [
           {

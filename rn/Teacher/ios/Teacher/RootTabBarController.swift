@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import CanvasCore
 
 class RootTabBarController: UITabBarController {
     
@@ -43,7 +44,7 @@ class RootTabBarController: UITabBarController {
     }
     
     func configureTabs() {
-        var controllers = [coursesTab(), inboxTab(), profileTab()]
+        var controllers = [coursesTab(), inboxTab(branding: branding), profileTab()]
         #if DEBUG
         controllers.append(stagingTab())
         #endif
@@ -57,25 +58,7 @@ class RootTabBarController: UITabBarController {
         enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         return HelmNavigationController(rootViewController: enrollmentsVC)
     }
-    
-    func inboxTab() -> UIViewController {
-        let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-        let inboxNav = HelmNavigationController(rootViewController: inboxVC)
         
-        let inboxSplit = HelmSplitViewController()
-        let empty = HelmNavigationController()
-        if let brand = self.branding {
-            empty.navigationBar.barTintColor = brand.navBgColor
-            empty.navigationBar.tintColor = brand.navButtonColor
-            empty.navigationBar.isTranslucent = false
-        }
-        inboxSplit.viewControllers = [inboxNav, empty]
-        inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: UIImage(named: "inbox"), selectedImage: nil)
-        inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
-        inboxSplit.extendedLayoutIncludesOpaqueBars = true
-        return inboxSplit
-    }
-    
     func profileTab() -> UIViewController {
         let profileVC = HelmViewController(moduleName: "/profile", props: [:])
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: UIImage(named: "profile"), selectedImage: nil)

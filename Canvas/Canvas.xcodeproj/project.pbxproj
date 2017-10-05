@@ -13,8 +13,6 @@
 		2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */; };
 		2C0CAD6F1DEF6C31008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD711DEF6C31008D90FA /* InfoPlist.strings */; };
 		2C0CAD751DEF6C33008D90FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */; };
-		2C60495F1F72BAAF00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */; };
-		2C6049601F72BAAF00252BC5 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6049611F72BB6900252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; };
 		2C67B0C61E01F05A00DDD191 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */; };
 		2C67B0C81E01F05F00DDD191 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */; };
@@ -24,12 +22,9 @@
 		2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0CF1E01F07800DDD191 /* QuartzCore.framework */; };
 		2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D11E01F07C00DDD191 /* SystemConfiguration.framework */; };
 		2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */; };
-		2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */; };
 		2CDCA2411F6B377F004110EA /* Peeps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDCA2401F6B377F004110EA /* Peeps.framework */; };
 		3B9155051F610B2500C790F3 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; };
 		3B9155061F610B2500C790F3 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4927086D1CF4C37100C631C6 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3B94AFDB1F6105940093F403 /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94AFDA1F6105940093F403 /* FileKit.framework */; };
-		3B94AFDC1F6105940093F403 /* FileKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B94AFDA1F6105940093F403 /* FileKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B94AFE01F6108240093F403 /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BBBD38B1F62F890002ACA58 /* SuchActivity.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6181F1321DFF547400B94488 /* SuchActivity.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4902E1251CF4C8890069E043 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 4902E1231CF4C8890069E043 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -409,6 +404,10 @@
 		492708B31CF4C38500C631C6 /* TodoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708711CF4C37100C631C6 /* TodoKit.framework */; };
 		492708B41CF4C38500C631C6 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708721CF4C37100C631C6 /* TooLegit.framework */; };
 		492708B51CF4C38500C631C6 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708731CF4C37100C631C6 /* WhizzyWig.framework */; };
+		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
+		49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		49383CEE1F848A2B009C8F8E /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; };
+		49383CEF1F848A2B009C8F8E /* FileKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		494E139E1D355C690068279D /* MobileQuizInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494E139B1D355C690068279D /* MobileQuizInformation.storyboard */; };
 		494E139F1D355C690068279D /* MobileQuizInformationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 494E139C1D355C690068279D /* MobileQuizInformationViewController.h */; };
 		494E13A01D355C690068279D /* MobileQuizInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 494E139D1D355C690068279D /* MobileQuizInformationViewController.m */; };
@@ -502,8 +501,6 @@
 		49A04E781CF6504D0051E1E7 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */; };
 		49A04E7B1CF650EE0051E1E7 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E7A1CF650EE0051E1E7 /* UserPreferences.swift */; };
 		49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A04E7C1CF653050051E1E7 /* libc++.tbd */; };
-		49A04E811CF654AB0051E1E7 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E7F1CF654AB0051E1E7 /* LoginConfiguration.swift */; };
-		49A04E821CF654AB0051E1E7 /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A04E801CF654AB0051E1E7 /* Session+Login.swift */; };
 		49AA291A1CF4D1880055862D /* CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA29191CF4D1880055862D /* CanvasKit1.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA291E1CF4D1880055862D /* CanvasKit1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; };
 		49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AA29171CF4D1880055862D /* CanvasKit1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -893,23 +890,23 @@
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
 				6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */,
 				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
-				3B94AFDC1F6105940093F403 /* FileKit.framework in Embed Frameworks */,
 				4927088B1CF4C38100C631C6 /* Peeps.framework in Embed Frameworks */,
+				49383CEF1F848A2B009C8F8E /* FileKit.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
 				4927089F1CF4C38100C631C6 /* WhizzyWig.framework in Embed Frameworks */,
 				61681E9C1D58E5130011E75D /* SoAnnotated.framework in Embed Frameworks */,
 				61F8ED871D999F0500DFAC6E /* SoIconic.framework in Embed Frameworks */,
 				492708871CF4C38100C631C6 /* MediaKit.framework in Embed Frameworks */,
-				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
 				49E80A291CFF8E42002AF45E /* PageKit.framework in Embed Frameworks */,
 				492708751CF4C38100C631C6 /* AssignmentKit.framework in Embed Frameworks */,
 				492708971CF4C38100C631C6 /* SoPretty.framework in Embed Frameworks */,
 				49A04E5A1CF64CCF0051E1E7 /* NotificationKit.framework in Embed Frameworks */,
 				492704B31CF4B6D700C631C6 /* TechDebt.framework in Embed Frameworks */,
-				2C6049601F72BAAF00252BC5 /* CanvasCore.framework in Embed Frameworks */,
 				492708951CF4C38100C631C6 /* SoPersistent.framework in Embed Frameworks */,
 				4927089B1CF4C38100C631C6 /* TodoKit.framework in Embed Frameworks */,
 				492708891CF4C38100C631C6 /* MyLittleViewController.framework in Embed Frameworks */,
+				49642BC71CF4C4DC00238B3F /* CanvasKit.framework in Embed Frameworks */,
+				49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */,
 				49AA291F1CF4D1880055862D /* CanvasKit1.framework in Embed Frameworks */,
 				492708991CF4C38100C631C6 /* SoProgressive.framework in Embed Frameworks */,
 				4927087F1CF4C38100C631C6 /* EnrollmentKit.framework in Embed Frameworks */,
@@ -947,8 +944,6 @@
 		2C0CAD841DEF6E5F008D90FA /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2C4762321DD0D2FB0003BEAE /* SoThankful.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoThankful.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6049621F72BB6900252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C6049631F72BC5300252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasCore.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphoneos/CanvasCore.framework"; sourceTree = "<group>"; };
-		2C6049641F72BC5600252BC5 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoLazy.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphoneos/SoLazy.framework"; sourceTree = "<group>"; };
 		2C67B0C51E01F05A00DDD191 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		2C67B0C71E01F05F00DDD191 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2C67B0C91E01F06300DDD191 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -959,14 +954,10 @@
 		2C67B0D31E01F08A00DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C67B0D51E01F11A00DDD191 /* Canvas-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Canvas-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
-		2C73C9B91E031ECD0064A19D /* CWNotification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDCA2401F6B377F004110EA /* Peeps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Peeps.framework; path = "../Frameworks/Peeps/build/Debug-iphoneos/Peeps.framework"; sourceTree = "<group>"; };
 		3105EE2FF7DE0582A458F38F /* Pods-defaults-TechDebt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-TechDebt.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-TechDebt/Pods-defaults-TechDebt.debug.xcconfig"; sourceTree = "<group>"; };
 		35490A998ED46E2FC6020548 /* Pods_defaults_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		396B37BFEED26519D8237DA7 /* Pods_Canvas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canvas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B94AFDA1F6105940093F403 /* FileKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B94AFDD1F6105CD0093F403 /* SoLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3C1D72C08DB705A5532B30 /* Pods-Canvas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canvas.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Canvas/Pods-Canvas.release.xcconfig"; sourceTree = "<group>"; };
 		47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4902E1231CF4C8890069E043 /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
@@ -975,11 +966,6 @@
 		490687911D02151E0072DBEA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		490687921D02151E0072DBEA /* SystemSettingsLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemSettingsLinkCell.swift; sourceTree = "<group>"; };
 		490687971D0215330072DBEA /* LandingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
-		4907DF941DF61492000D745D /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4907DF971DF62C07000D745D /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjCBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		491A66011D9057410092CDE9 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Masonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		491A66021D9057410092CDE9 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		491A66031D9057410092CDE9 /* TBBModal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TBBModal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704731CF4AF7100C631C6 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasAppDelegate.swift; sourceTree = "<group>"; };
 		492704821CF4AF7100C631C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1318,17 +1304,12 @@
 		4927085E1CF4C37100C631C6 /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AssignmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4927085F1CF4C37100C631C6 /* CalendarKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CalendarKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708601CF4C37100C631C6 /* Cartography.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		492708611CF4C37100C631C6 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708631CF4C37100C631C6 /* EnrollmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EnrollmentKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708641CF4C37100C631C6 /* FileKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FileKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		492708651CF4C37100C631C6 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		492708661CF4C37100C631C6 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708671CF4C37100C631C6 /* MediaKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MediaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708681CF4C37100C631C6 /* MyLittleViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MyLittleViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708691CF4C37100C631C6 /* Peeps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Peeps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4927086A1CF4C37100C631C6 /* QuizKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuizKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4927086C1CF4C37100C631C6 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4927086D1CF4C37100C631C6 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4927086E1CF4C37100C631C6 /* SoPersistent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPersistent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4927086F1CF4C37100C631C6 /* SoPretty.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoPretty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1336,6 +1317,7 @@
 		492708711CF4C37100C631C6 /* TodoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TodoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708721CF4C37100C631C6 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708731CF4C37100C631C6 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		494E139B1D355C690068279D /* MobileQuizInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MobileQuizInformation.storyboard; sourceTree = "<group>"; };
 		494E139C1D355C690068279D /* MobileQuizInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileQuizInformationViewController.h; sourceTree = "<group>"; };
 		494E139D1D355C690068279D /* MobileQuizInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileQuizInformationViewController.m; sourceTree = "<group>"; };
@@ -1362,12 +1344,6 @@
 		496D31231CF7529A00A3B11E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		496D31251CF752C600A3B11E /* LegacyModuleProgressShim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShim.swift; sourceTree = "<group>"; };
 		496D31291CF7550A00A3B11E /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		496FFEA91E00B34C00F1742E /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		496FFEAA1E00B34C00F1742E /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjCBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4985D3B91CFE34EB00BA3685 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4985D3BF1CFE35A500BA3685 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4985D3C21CFE35D600BA3685 /* FXKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FXKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A047261CF4F5AD0051E1E7 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = Classes/JSON.h; sourceTree = "<group>"; };
 		49A047271CF4F5AD0051E1E7 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJSON.h"; path = "Classes/NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		49A047281CF4F5AD0051E1E7 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJSON.m"; path = "Classes/NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -1430,8 +1406,6 @@
 		49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ToDoListViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		49A04E7A1CF650EE0051E1E7 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		49A04E7C1CF653050051E1E7 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		49A04E7F1CF654AB0051E1E7 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
-		49A04E801CF654AB0051E1E7 /* Session+Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		49AA290C1CF4CD320055862D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		49AA290D1CF4CD320055862D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
 		49AA29171CF4D1880055862D /* CanvasKit1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1675,7 +1649,6 @@
 		49DC23031CFE4260009F27BA /* HandleDropboxOpen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandleDropboxOpen.h; sourceTree = "<group>"; };
 		49E80A271CFF8E37002AF45E /* PageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E80A311CFF93E6002AF45E /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		49E80A321CFF93EF002AF45E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DVR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F9FA461CF7B6F600654758 /* TechDebt.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TechDebt.xcassets; sourceTree = "<group>"; };
 		49F9FA4A1CF7B73100654758 /* Canvas.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Canvas.xcassets; sourceTree = "<group>"; };
 		49F9FA4C1CF89F8600654758 /* Router+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Canvas.swift"; sourceTree = "<group>"; };
@@ -1730,9 +1703,6 @@
 		6181F12E1DFF41AD00B94488 /* ToDoTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTab.swift; sourceTree = "<group>"; };
 		6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ActivityStreamTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6181F1321DFF547400B94488 /* SuchActivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SuchActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6181F13B1DFF6FB300B94488 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6181F13E1DFF705600B94488 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated_PreSubmission.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61CF10A61DBFB6C200B68E45 /* MasteryPathAssignmentPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasteryPathAssignmentPreviewViewController.swift; sourceTree = "<group>"; };
 		61CF10AA1DBFF93A00B68E45 /* MasteryPathAssignmentInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MasteryPathAssignmentInfoCell.xib; sourceTree = "<group>"; };
@@ -2018,7 +1988,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B94AFDB1F6105940093F403 /* FileKit.framework in Frameworks */,
 				2C67B0D41E01F08A00DDD191 /* BuddyBuildSDK.framework in Frameworks */,
 				2C67B0D21E01F07C00DDD191 /* SystemConfiguration.framework in Frameworks */,
 				2C67B0D01E01F07800DDD191 /* QuartzCore.framework in Frameworks */,
@@ -2031,7 +2000,6 @@
 				49A04E7D1CF653050051E1E7 /* libc++.tbd in Frameworks */,
 				4927089A1CF4C38100C631C6 /* TodoKit.framework in Frameworks */,
 				492708741CF4C38100C631C6 /* AssignmentKit.framework in Frameworks */,
-				2C60495F1F72BAAF00252BC5 /* CanvasCore.framework in Frameworks */,
 				49642BC61CF4C4DC00238B3F /* CanvasKit.framework in Frameworks */,
 				61F8ED861D999F0500DFAC6E /* SoIconic.framework in Frameworks */,
 				49A04E591CF64CCF0051E1E7 /* NotificationKit.framework in Frameworks */,
@@ -2043,6 +2011,7 @@
 				492708941CF4C38100C631C6 /* SoPersistent.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
 				61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */,
+				49383CEE1F848A2B009C8F8E /* FileKit.framework in Frameworks */,
 				49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */,
 				61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */,
 				4927088C1CF4C38100C631C6 /* QuizKit.framework in Frameworks */,
@@ -2096,7 +2065,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A04DAD1CF4F65D0051E1E7 /* libxml2.tbd in Frameworks */,
-				2C7205341DC8F1940095FA0A /* AFNetworking.framework in Frameworks */,
 				9C50D612DA6414266300170B /* Pods_defaults_CanvasKit1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2155,9 +2123,6 @@
 		4927046A1CF4AF7100C631C6 = {
 			isa = PBXGroup;
 			children = (
-				2CAF1B2E1F72AF83007225DF /* CanvasCore.framework */,
-				3B94AFDD1F6105CD0093F403 /* SoLazy.framework */,
-				3B94AFDA1F6105940093F403 /* FileKit.framework */,
 				4927085D1CF4C33700C631C6 /* Dependencies */,
 				492704751CF4AF7100C631C6 /* Canvas */,
 				4927048A1CF4AF7100C631C6 /* CanvasTests */,
@@ -2184,6 +2149,7 @@
 		492704751CF4AF7100C631C6 /* Canvas */ = {
 			isa = PBXGroup;
 			children = (
+				49383CE01F84834A009C8F8E /* Login */,
 				2C0CAD771DEF6C33008D90FA /* InfoPlist.strings */,
 				B5E212D51D88856B009D8C07 /* Localizable.strings */,
 				492704761CF4AF7100C631C6 /* CanvasAppDelegate.swift */,
@@ -2194,12 +2160,9 @@
 				49F9FA4A1CF7B73100654758 /* Canvas.xcassets */,
 				496D31221CF7528500A3B11E /* Shrug */,
 				49F9FA4E1CF8CA8300654758 /* Assignments */,
-				6168A1801D417BD60011CD7F /* Files */,
 				49A04E721CF64ED90051E1E7 /* Calendar */,
 				49A04E5B1CF64D130051E1E7 /* Enrollments */,
 				49F9FA521CF8CB3B00654758 /* Grades */,
-				49F9FA541CF8CB3B00654758 /* Grading Periods */,
-				49A04E7E1CF654AB0051E1E7 /* Login */,
 				496157611DD663FB001578B1 /* Messages */,
 				B1E3D6DF1D8305B100B4AC11 /* Modules */,
 				49A04E521CF64C320051E1E7 /* Notifications */,
@@ -2906,30 +2869,16 @@
 		4927085D1CF4C33700C631C6 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				2C6049641F72BC5600252BC5 /* SoLazy.framework */,
-				2C6049631F72BC5300252BC5 /* CanvasCore.framework */,
 				47F5B1381F293D7A00B03DAC /* AttendanceLE.framework */,
 				6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */,
 				2C67B0D81E01F25800DDD191 /* BuddyBuildSDK.framework */,
-				2C73C9B91E031ECD0064A19D /* CWNotification.framework */,
-				496FFEA91E00B34C00F1742E /* ReactiveObjC.framework */,
-				496FFEAA1E00B34C00F1742E /* ReactiveObjCBridge.framework */,
-				6181F13E1DFF705600B94488 /* Reachability.framework */,
-				6181F13B1DFF6FB300B94488 /* ReactiveSwift.framework */,
-				4985D3BC1CFE354D00BA3685 /* AFNetworking.framework */,
 				4927085E1CF4C37100C631C6 /* AssignmentKit.framework */,
 				4927085F1CF4C37100C631C6 /* CalendarKit.framework */,
 				49642BC21CF4C4CD00238B3F /* CanvasKeymaster.framework */,
 				49642BC31CF4C4CD00238B3F /* CanvasKit.framework */,
 				492708601CF4C37100C631C6 /* Cartography.framework */,
-				492708611CF4C37100C631C6 /* CocoaLumberjack.framework */,
 				492708631CF4C37100C631C6 /* EnrollmentKit.framework */,
 				492708641CF4C37100C631C6 /* FileKit.framework */,
-				4985D3C21CFE35D600BA3685 /* FXKeychain.framework */,
-				492708651CF4C37100C631C6 /* Kingfisher.framework */,
-				4985D3BF1CFE35A500BA3685 /* Mantle.framework */,
-				492708661CF4C37100C631C6 /* Marshal.framework */,
-				491A66011D9057410092CDE9 /* Masonry.framework */,
 				492708671CF4C37100C631C6 /* MediaKit.framework */,
 				492708681CF4C37100C631C6 /* MyLittleViewController.framework */,
 				49A04E581CF64CBE0051E1E7 /* NotificationKit.framework */,
@@ -2937,11 +2886,6 @@
 				492708691CF4C37100C631C6 /* Peeps.framework */,
 				61681E9D1D58E5380011E75D /* PSPDFKit.framework */,
 				4927086A1CF4C37100C631C6 /* QuizKit.framework */,
-				4907DF941DF61492000D745D /* Reachability.framework */,
-				4927086B1CF4C37100C631C6 /* ReactiveCocoa.framework */,
-				6181F1361DFF6CFB00B94488 /* ReactiveObjC.framework */,
-				4907DF971DF62C07000D745D /* ReactiveObjCBridge.framework */,
-				4927086C1CF4C37100C631C6 /* Result.framework */,
 				61681E9A1D58E5000011E75D /* SoAnnotated.framework */,
 				61F8ED821D999EA800DFAC6E /* SoEdventurous.framework */,
 				61F8ED851D999EFD00DFAC6E /* SoIconic.framework */,
@@ -2951,15 +2895,20 @@
 				492708701CF4C37100C631C6 /* SoProgressive.framework */,
 				2C4762321DD0D2FB0003BEAE /* SoThankful.framework */,
 				6181F1321DFF547400B94488 /* SuchActivity.framework */,
-				491A66021D9057410092CDE9 /* SVProgressHUD.framework */,
-				491A66031D9057410092CDE9 /* TBBModal.framework */,
 				49E80A301CFF93DC002AF45E /* Tests */,
 				492708711CF4C37100C631C6 /* TodoKit.framework */,
 				492708721CF4C37100C631C6 /* TooLegit.framework */,
 				492708731CF4C37100C631C6 /* WhizzyWig.framework */,
-				4985D3B91CFE34EB00BA3685 /* Reachability.framework */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		49383CE01F84834A009C8F8E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				49383CE11F84834A009C8F8E /* Session+Login.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		495068551D414DC00030A9D5 /* Resources */ = {
@@ -3194,15 +3143,6 @@
 				49A04E761CF6504D0051E1E7 /* ToDoListViewController.swift */,
 			);
 			path = "To Do";
-			sourceTree = "<group>";
-		};
-		49A04E7E1CF654AB0051E1E7 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				49A04E7F1CF654AB0051E1E7 /* LoginConfiguration.swift */,
-				49A04E801CF654AB0051E1E7 /* Session+Login.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		49AA290B1CF4CD320055862D /* External */ = {
@@ -3550,7 +3490,6 @@
 		49E80A301CFF93DC002AF45E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				49E80A321CFF93EF002AF45E /* DVR.framework */,
 				49E80A311CFF93E6002AF45E /* SoAutomated.framework */,
 			);
 			name = Tests;
@@ -3570,13 +3509,6 @@
 				49F9FA531CF8CB3B00654758 /* GradesTableViewController.swift */,
 			);
 			path = Grades;
-			sourceTree = "<group>";
-		};
-		49F9FA541CF8CB3B00654758 /* Grading Periods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Grading Periods";
 			sourceTree = "<group>";
 		};
 		49F9FA6D1CF8FC6A00654758 /* SoPushy */ = {
@@ -3680,13 +3612,6 @@
 				5EB46DE41D21A75C00C859A4 /* CalendarWeekPageViewController.swift */,
 			);
 			path = "View Controller";
-			sourceTree = "<group>";
-		};
-		6168A1801D417BD60011CD7F /* Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Files;
 			sourceTree = "<group>";
 		};
 		61D7185B1DB7C8EC0081D56A /* Mastery Paths */ = {
@@ -4065,8 +3990,10 @@
 			buildConfigurationList = 4927049B1CF4AF7200C631C6 /* Build configuration list for PBXNativeTarget "Canvas" */;
 			buildPhases = (
 				420D38066A53E2683A07A16C /* [CP] Check Pods Manifest.lock */,
+				49383CF01F848F7D009C8F8E /* Start the Packager */,
 				4927046F1CF4AF7100C631C6 /* Sources */,
 				492704701CF4AF7100C631C6 /* Frameworks */,
+				49383CF11F848FCD009C8F8E /* Bundle React Native Code and Resources */,
 				492704711CF4AF7100C631C6 /* Resources */,
 				492704B71CF4B6D700C631C6 /* Embed Frameworks */,
 				49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */,
@@ -4448,26 +4375,44 @@
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-wkwebview/react_native_wkwebview.framework",
 				"${BUILT_PRODUCTS_DIR}/DVR/DVR.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -4475,26 +4420,44 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_wkwebview.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DVR.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
@@ -4553,6 +4516,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/Fabric/run 7cf76817b5c71690f9c8655cc366155508371fc6 f47067a1c45bff8852736f919c942fabe3f29421be87e8157e920616d5f4766b";
+		};
+		49383CF01F848F7D009C8F8E /* Start the Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Start the Packager";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] ; then\nexit 0\nfi\n\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\nif nc -w 5 -z localhost 8081 ; then\nif ! curl -s \"http://localhost:8081/status\" | grep -q \"packager-status:running\" ; then\necho \"Port 8081 already in use, packager is either not running or not running correctly\"\nexit 2\nfi\nelse\npwd\nopen \"$SRCROOT/../rn/Teacher/node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\nfi\nfi";
+		};
+		49383CF11F848FCD009C8F8E /* Bundle React Native Code and Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code and Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../rn/Teacher\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../rn/Teacher/node_modules/react-native/scripts/react-native-xcode.sh\nfi";
 		};
 		49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4642,51 +4633,87 @@
 			inputPaths = (
 				"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-Canvas/Pods-defaults-Canvas-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-wkwebview/react_native_wkwebview.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_wkwebview.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4753,11 +4780,9 @@
 				49A04E6D1CF64D130051E1E7 /* GroupsCollectionViewController.swift in Sources */,
 				5EB46DF31D21A75C00C859A4 /* CalendarDayCell.swift in Sources */,
 				5EB46DF71D21A75C00C859A4 /* CalendarMonthHeaderView.swift in Sources */,
-				49A04E811CF654AB0051E1E7 /* LoginConfiguration.swift in Sources */,
 				49A04E571CF64C7F0051E1E7 /* CanvasTabBar.swift in Sources */,
 				49A04E681CF64D130051E1E7 /* CoursesCollectionViewController.swift in Sources */,
 				5EB46E021D21A75C00C859A4 /* CalendarDayPageViewController.swift in Sources */,
-				49A04E821CF654AB0051E1E7 /* Session+Login.swift in Sources */,
 				5EB46DE61D21A75C00C859A4 /* NSDate+ReferenceDate.swift in Sources */,
 				49F9FA501CF8CA8300654758 /* AssignmentsTableViewController.swift in Sources */,
 				B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */,
@@ -4791,6 +4816,7 @@
 				492704771CF4AF7100C631C6 /* CanvasAppDelegate.swift in Sources */,
 				5EB46DE81D21A75C00C859A4 /* NSObject+Bundle.swift in Sources */,
 				5EB46DF81D21A75C00C859A4 /* CalendarNoticeView.swift in Sources */,
+				49383CE21F848353009C8F8E /* Session+Login.swift in Sources */,
 				6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */,
 				5EB46DF91D21A75C00C859A4 /* CalendarView.swift in Sources */,
 				5EB46DE91D21A75C00C859A4 /* UIColor+Calendar.swift in Sources */,

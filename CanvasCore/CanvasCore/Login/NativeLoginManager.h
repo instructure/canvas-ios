@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol NativeLoginManagerDelegate;
 
-@interface NativeLoginManager : NSObject <CanvasKeymasterDelegate>
+@interface NativeLoginManager : NSObject
 
 @property (nonatomic, weak) id<NativeLoginManagerDelegate> delegate;
 

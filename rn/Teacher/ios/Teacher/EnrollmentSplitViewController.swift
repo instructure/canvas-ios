@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import CanvasCore
 
 class EnrollmentSplitViewController: HelmSplitViewController {
     

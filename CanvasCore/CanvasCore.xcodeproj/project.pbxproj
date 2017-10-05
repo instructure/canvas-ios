@@ -20,6 +20,46 @@
 		2CAF1B361F72B173007225DF /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B341F72B036007225DF /* secrets.plist */; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
 		2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3C1F72B295007225DF /* Secrets.swift */; };
+		49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */; };
+		49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDE1F846FCB009C8F8E /* CanvasKit.framework */; };
+		49383CE71F848652009C8F8E /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C60495E1F72B9CE00252BC5 /* SoLazy.framework */; };
+		49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */; };
+		49383CF61F849933009C8F8E /* inboxTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CF51F849933009C8F8E /* inboxTab.swift */; };
+		494AE0891F8436C1001A8F31 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */; };
+		494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0881F8436C1001A8F31 /* NativeLoginManager.m */; };
+		494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0871F8436C0001A8F31 /* NativeLoginManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */; };
+		494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */; };
+		494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE08E1F843A01001A8F31 /* HapticFeedback.h */; };
+		494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0911F843A02001A8F31 /* HapticFeedback.m */; };
+		494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0971F843A04001A8F31 /* NativeAccessibility.h */; };
+		494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0921F843A02001A8F31 /* NativeAccessibility.m */; };
+		494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0931F843A02001A8F31 /* PushNotifications.h */; };
+		494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0941F843A03001A8F31 /* PushNotifications.m */; };
+		494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */; };
+		494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */; };
+		494AE0A31F843A09001A8F31 /* WebViewHacker.h in Headers */ = {isa = PBXBuildFile; fileRef = 494AE0981F843A04001A8F31 /* WebViewHacker.h */; };
+		494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0961F843A03001A8F31 /* WebViewHacker.m */; };
+		494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */; };
+		494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */; };
+		494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */; };
+		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
+		497CA76F1F82D19600501613 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7661F82D18B00501613 /* Helm.swift */; };
+		497CA7701F82D19600501613 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7621F82D18900501613 /* HelmConstants.swift */; };
+		497CA7721F82D19600501613 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7611F82D18900501613 /* HelmNavigationViewController.swift */; };
+		497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7651F82D18A00501613 /* HelmSplitViewController.swift */; };
+		497CA7741F82D19600501613 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7631F82D18A00501613 /* HelmViewController.swift */; };
+		497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */; };
+		497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7671F82D18B00501613 /* PushAnimatedTransitioning.swift */; };
+		497CA7771F82D19A00501613 /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7691F82D18B00501613 /* NSObject+PureEvil.swift */; };
+		497CA7781F82D19A00501613 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76A1F82D18B00501613 /* UISplitViewControllerExtensions.swift */; };
+		497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */; };
+		497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */; };
+		497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */; };
+		497CA7831F82D66B00501613 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7811F82D64F00501613 /* Brand.swift */; };
+		497CA7841F82D66B00501613 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7821F82D65000501613 /* UIColor+Hex.swift */; };
+		4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */; };
+		5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +90,51 @@
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B3B1F72B294007225DF /* feature_toggles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = feature_toggles.plist; sourceTree = "<group>"; };
 		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		49383CDE1F846FCB009C8F8E /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CanvasCore.xcassets; sourceTree = "<group>"; };
+		49383CF51F849933009C8F8E /* inboxTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inboxTab.swift; sourceTree = "<group>"; };
+		494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
+		494AE0871F8436C0001A8F31 /* NativeLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
+		494AE0881F8436C1001A8F31 /* NativeLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
+		494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
+		494AE08E1F843A01001A8F31 /* HapticFeedback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HapticFeedback.h; sourceTree = "<group>"; };
+		494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawerHandleViewManager.m; sourceTree = "<group>"; };
+		494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawerHandleViewManager.h; sourceTree = "<group>"; };
+		494AE0911F843A02001A8F31 /* HapticFeedback.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HapticFeedback.m; sourceTree = "<group>"; };
+		494AE0921F843A02001A8F31 /* NativeAccessibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeAccessibility.m; sourceTree = "<group>"; };
+		494AE0931F843A02001A8F31 /* PushNotifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
+		494AE0941F843A03001A8F31 /* PushNotifications.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
+		494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollViewDisablerManager.h; sourceTree = "<group>"; };
+		494AE0961F843A03001A8F31 /* WebViewHacker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewHacker.m; sourceTree = "<group>"; };
+		494AE0971F843A04001A8F31 /* NativeAccessibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeAccessibility.h; sourceTree = "<group>"; };
+		494AE0981F843A04001A8F31 /* WebViewHacker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewHacker.h; sourceTree = "<group>"; };
+		494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
+		494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
+		494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
+		494AE0B01F843B58001A8F31 /* CanvadocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvadocView.swift; sourceTree = "<group>"; };
+		494AE0B11F843B58001A8F31 /* PSPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
+		494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
+		494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
+		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
+		497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		497CA7611F82D18900501613 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationViewController.swift; sourceTree = "<group>"; };
+		497CA7621F82D18900501613 /* HelmConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmConstants.swift; sourceTree = "<group>"; };
+		497CA7631F82D18A00501613 /* HelmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmViewController.swift; sourceTree = "<group>"; };
+		497CA7651F82D18A00501613 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmSplitViewController.swift; sourceTree = "<group>"; };
+		497CA7661F82D18B00501613 /* Helm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helm.swift; sourceTree = "<group>"; };
+		497CA7671F82D18B00501613 /* PushAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		497CA7691F82D18B00501613 /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+PureEvil.swift"; sourceTree = "<group>"; };
+		497CA76A1F82D18B00501613 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
+		497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
+		497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
+		497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
+		497CA7811F82D64F00501613 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		497CA7821F82D65000501613 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
+		7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
+		B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +142,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */,
+				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
+				49383CE71F848652009C8F8E /* SoLazy.framework in Frameworks */,
+				5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +172,10 @@
 		2C60495C1F72B9CE00252BC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */,
+				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
 				2C60495E1F72B9CE00252BC5 /* SoLazy.framework */,
+				7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,6 +195,7 @@
 				2CAF1B211F72AEDB007225DF /* CanvasCoreTests */,
 				2CAF1B151F72AEDB007225DF /* Products */,
 				2C60495C1F72B9CE00252BC5 /* Frameworks */,
+				BC05497B6B1077BCF72B5B87 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,11 +211,18 @@
 		2CAF1B161F72AEDB007225DF /* CanvasCore */ = {
 			isa = PBXGroup;
 			children = (
+				49383CF41F849921009C8F8E /* Inbox */,
+				494AE0AF1F843B1F001A8F31 /* PDF */,
+				494AE08C1F8439A8001A8F31 /* React Native Modules */,
+				4988D47B1F82DC450006D18C /* Login */,
+				497CA7801F82D62200501613 /* Branding */,
+				497CA7351F82B3C200501613 /* Helm */,
 				2C3421191F74093000D8E158 /* OSSAttribution */,
 				2CAF1B381F72B18F007225DF /* Extensions */,
 				2CAF1B311F72AFCF007225DF /* Secrets */,
 				2CAF1B171F72AEDB007225DF /* CanvasCore.h */,
 				2CAF1B181F72AEDB007225DF /* Info.plist */,
+				49383CF21F8498DA009C8F8E /* CanvasCore.xcassets */,
 			);
 			path = CanvasCore;
 			sourceTree = "<group>";
@@ -158,6 +258,104 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		49383CF41F849921009C8F8E /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				49383CF51F849933009C8F8E /* inboxTab.swift */,
+			);
+			path = Inbox;
+			sourceTree = "<group>";
+		};
+		494AE08C1F8439A8001A8F31 /* React Native Modules */ = {
+			isa = PBXGroup;
+			children = (
+				494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */,
+				494AE0901F843A01001A8F31 /* DrawerHandleViewManager.h */,
+				494AE08F1F843A01001A8F31 /* DrawerHandleViewManager.m */,
+				494AE08E1F843A01001A8F31 /* HapticFeedback.h */,
+				494AE0911F843A02001A8F31 /* HapticFeedback.m */,
+				494AE0971F843A04001A8F31 /* NativeAccessibility.h */,
+				494AE0921F843A02001A8F31 /* NativeAccessibility.m */,
+				494AE0931F843A02001A8F31 /* PushNotifications.h */,
+				494AE0941F843A03001A8F31 /* PushNotifications.m */,
+				494AE0951F843A03001A8F31 /* ScrollViewDisablerManager.h */,
+				494AE08D1F843A01001A8F31 /* ScrollViewDisablerManager.m */,
+				494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */,
+				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
+				494AE0981F843A04001A8F31 /* WebViewHacker.h */,
+				494AE0961F843A03001A8F31 /* WebViewHacker.m */,
+			);
+			path = "React Native Modules";
+			sourceTree = "<group>";
+		};
+		494AE0AF1F843B1F001A8F31 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				494AE0B01F843B58001A8F31 /* CanvadocView.swift */,
+				494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */,
+				494AE0B11F843B58001A8F31 /* PSPDFView.swift */,
+				494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */,
+			);
+			path = PDF;
+			sourceTree = "<group>";
+		};
+		497CA7351F82B3C200501613 /* Helm */ = {
+			isa = PBXGroup;
+			children = (
+				497CA7681F82D18B00501613 /* Extensions */,
+				497CA75F1F82D18900501613 /* Helm.m */,
+				497CA7661F82D18B00501613 /* Helm.swift */,
+				497CA7621F82D18900501613 /* HelmConstants.swift */,
+				497CA7611F82D18900501613 /* HelmNavigationViewController.swift */,
+				497CA7651F82D18A00501613 /* HelmSplitViewController.swift */,
+				497CA7631F82D18A00501613 /* HelmViewController.swift */,
+				497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */,
+				497CA7671F82D18B00501613 /* PushAnimatedTransitioning.swift */,
+			);
+			path = Helm;
+			sourceTree = "<group>";
+		};
+		497CA7681F82D18B00501613 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				497CA7691F82D18B00501613 /* NSObject+PureEvil.swift */,
+				497CA76A1F82D18B00501613 /* UISplitViewControllerExtensions.swift */,
+				497CA76B1F82D18B00501613 /* UITraitEnvironmentExtensions.swift */,
+				497CA76C1F82D18B00501613 /* UIViewControllerRotationExtensions.swift */,
+				497CA76D1F82D18B00501613 /* UIUserInterfaceSizeClassExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		497CA7801F82D62200501613 /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				497CA7811F82D64F00501613 /* Brand.swift */,
+				497CA7821F82D65000501613 /* UIColor+Hex.swift */,
+			);
+			path = Branding;
+			sourceTree = "<group>";
+		};
+		4988D47B1F82DC450006D18C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				494AE0861F8436C0001A8F31 /* LoginConfiguration.swift */,
+				494AE0871F8436C0001A8F31 /* NativeLoginManager.h */,
+				494AE0881F8436C1001A8F31 /* NativeLoginManager.m */,
+				4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BC05497B6B1077BCF72B5B87 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */,
+				A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -165,7 +363,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */,
+				494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */,
 				2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */,
+				494AE09F1F843A09001A8F31 /* PushNotifications.h in Headers */,
+				494AE0A31F843A09001A8F31 /* WebViewHacker.h in Headers */,
+				494AE09D1F843A09001A8F31 /* NativeAccessibility.h in Headers */,
+				494AE0A11F843A09001A8F31 /* ScrollViewDisablerManager.h in Headers */,
+				494AE08B1F8436E6001A8F31 /* NativeLoginManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,10 +381,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CAF1B281F72AEDB007225DF /* Build configuration list for PBXNativeTarget "CanvasCore" */;
 			buildPhases = (
+				2FFA491C502A6AEFE02D7438 /* [CP] Check Pods Manifest.lock */,
 				2CAF1B0F1F72AEDB007225DF /* Sources */,
 				2CAF1B101F72AEDB007225DF /* Frameworks */,
 				2CAF1B111F72AEDB007225DF /* Headers */,
 				2CAF1B121F72AEDB007225DF /* Resources */,
+				DDB54B1F931416B2CD7CA416 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -252,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49383CF31F8498DA009C8F8E /* CanvasCore.xcassets in Resources */,
 				2CAF1B361F72B173007225DF /* secrets.plist in Resources */,
 				2C34211D1F7409CF00D8E158 /* components.plist in Resources */,
 				2C44846F1F72FD83000D1778 /* feature_toggles.plist in Resources */,
@@ -267,17 +475,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2FFA491C502A6AEFE02D7438 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-CanvasCore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDB54B1F931416B2CD7CA416 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2CAF1B0F1F72AEDB007225DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				497CA7841F82D66B00501613 /* UIColor+Hex.swift in Sources */,
 				2C2D7AD71F7301D000207CE9 /* Collection+Core.swift in Sources */,
+				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
+				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
+				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
+				497CA7771F82D19A00501613 /* NSObject+PureEvil.swift in Sources */,
+				494AE0891F8436C1001A8F31 /* LoginConfiguration.swift in Sources */,
 				2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */,
+				494AE09E1F843A09001A8F31 /* NativeAccessibility.m in Sources */,
+				494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */,
+				494AE0A01F843A09001A8F31 /* PushNotifications.m in Sources */,
+				494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */,
+				497CA76E1F82D19600501613 /* Helm.m in Sources */,
+				4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */,
+				497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */,
+				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
+				497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */,
+				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
+				497CA76F1F82D19600501613 /* Helm.swift in Sources */,
+				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
+				497CA7721F82D19600501613 /* HelmNavigationViewController.swift in Sources */,
+				497CA7741F82D19600501613 /* HelmViewController.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
+				497CA7781F82D19A00501613 /* UISplitViewControllerExtensions.swift in Sources */,
+				497CA7831F82D66B00501613 /* Brand.swift in Sources */,
 				2C7CBD2B1F79A42600E5EC02 /* CGRect+Core.swift in Sources */,
 				2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */,
+				494AE09A1F843A09001A8F31 /* DrawerHandleViewManager.m in Sources */,
+				497CA7791F82D19A00501613 /* UITraitEnvironmentExtensions.swift in Sources */,
+				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
+				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
+				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
 				2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */,
+				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +688,7 @@
 		};
 		2CAF1B291F72AEDB007225DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -434,13 +707,14 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		2CAF1B2A1F72AEDB007225DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -458,7 +732,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

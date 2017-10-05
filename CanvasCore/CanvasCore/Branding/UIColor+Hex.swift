@@ -17,7 +17,7 @@
 import Foundation
 
 extension UIColor {
-    public static func colorFromHexString(_ hex: String) -> UIColor? {
+    static func colorFromHexString(_ hex: String) -> UIColor? {
         let justTheNumber = hex
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .trimmingCharacters(in: CharacterSet(charactersIn: "#"))

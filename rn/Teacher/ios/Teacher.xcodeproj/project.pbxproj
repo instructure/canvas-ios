@@ -31,14 +31,10 @@
 		2C50EE071E735CC60096592C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE061E735CC60096592C /* QuartzCore.framework */; };
 		2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE081E735CCB0096592C /* SystemConfiguration.framework */; };
 		2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */; };
-		2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */; };
 		2C62DC7B1E8BF532006638F3 /* CourseListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */; };
 		2C65E0C11F214822008C6C95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C65E0C31F214822008C6C95 /* InfoPlist.strings */; };
 		2C7B27A81E6F5A1100E097B9 /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */; };
-		2C921E781F72E366003E5C9B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C921E771F72E366003E5C9B /* CanvasCore.framework */; };
-		2C921E791F72E366003E5C9B /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C921E771F72E366003E5C9B /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2CA347401F2147290000BB79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CA3473E1F2147290000BB79 /* Localizable.strings */; };
-		2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */; };
 		2CBA46785F24A17E94700673 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB28BA928334A7C4FFA230C7 /* Attachment.swift */; };
 		2F0879101EC3C04F0042C03E /* CourseBrowserPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */; };
 		2F0879311EC3C1DB0042C03E /* CourseBrowserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */; };
@@ -47,76 +43,40 @@
 		31C9F17B182AA3ABB965DDA2 /* DataMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EA5B9B254626D699014C44 /* DataMap.swift */; };
 		35C24FD96D4AC6ACD54942E5 /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FC7DEC9C71D3A13687458B /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift */; };
 		3B157F535719FD93105E8EC9 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A161BC86548CE0BB3E1AC7 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift */; };
-		3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
-		3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
 		3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; };
 		3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
 		3B51311F1F6AFAD1003C534F /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5812EA1EC4F18500173C37 /* HelmTests.swift */; };
-		3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FC01EB7DBF000A99D44 /* Helm.swift */; };
-		3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
-		3B5812EE1EC4F33700173C37 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */; };
-		3B5812EF1EC4F33900173C37 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
-		3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
-		3B5812F11EC4F34200173C37 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2C7FBF1EB7DBF000A99D44 /* Helm.m */; };
-		3B5812F21EC4F34700173C37 /* UISplitViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */; };
-		3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */; };
-		3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */; };
-		3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */; };
-		3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */; };
-		3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */; };
-		3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */; };
-		3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */; };
-		3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */; };
-		3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */; };
 		3B9D72859115B817CD00CD83 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECA86954393EA402EE37DE /* Data.swift */; };
-		3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
-		3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */; };
-		3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF71FC81EC117BE00234D25 /* Brand.swift */; };
 		3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */; };
 		436C75F340B454FEE823CF4F /* EarlGrey.framework in EarlGrey Copy Files */ = {isa = PBXBuildFile; fileRef = D755363065723C5524C77F2A /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */; };
 		451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; };
-		491EF3181F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
 		4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C81ED4E9390054D333 /* VideoContainerManager.m */; };
-		4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994B2C91ED4E9390054D333 /* VideoContainerView.swift */; };
+		494AE0B81F843CB5001A8F31 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B41F843CB3001A8F31 /* EnrollmentSplitViewController.swift */; };
+		494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */; };
+		494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */; };
+		494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */; };
+		497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
+		497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49B274C21E8437D700828E42 /* CanvasLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B274C01E8437D700828E42 /* CanvasLoginPage.swift */; };
-		49D86BD21F059E6B008951CE /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D86BD11F059E6B008951CE /* A11yGroupManager.m */; };
 		51FAC2FAFBA2AE0C3653F5CF /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC13EF8804255A313109F1 /* ConversationMessage.swift */; };
 		54F1E2CE1143A2D662FFEEFA /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B527DFA5898B0D5DD57EDD1 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift */; };
 		6098E7BDB694A6ACEF131151 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70862A515621F745F8148C6 /* DiscussionEntry.swift */; };
-		61032ABA1F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */; };
-		611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */; };
-		6118BE291F0561F000E14869 /* UIViewControllerRotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */; };
-		6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */; };
 		618D511E4EB75555E78C7A6B /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B092C7F1FFB519DC8F91E3B7 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */; };
-		6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */; };
-		6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */; };
-		619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619C94291ED8A25100AC7D7B /* CanvadocView.swift */; };
 		619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */; };
 		619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; };
-		61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; };
-		61B5372D1E786A27000FEABB /* EarlGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61B536EC1E7860CE000FEABB /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		61B5372E1E786A27000FEABB /* SoGrey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 61B536ED1E7860CE000FEABB /* SoGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		61B5372F1E786A51000FEABB /* DomainPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DD1E784946000FEABB /* DomainPickerTests.swift */; };
 		61B537301E786A54000FEABB /* Pages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536DF1E784A4B000FEABB /* Pages.swift */; };
 		61B537311E786A58000FEABB /* DomainPickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B536E31E78599D000FEABB /* DomainPickerPage.swift */; };
-		61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */; };
 		61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */; };
-		61B7F5C31ED5EB3300EC6865 /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */; };
-		61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */; };
 		61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */; };
 		61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */; };
-		61E6C4E11F14263900B7B6C1 /* HapticFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */; };
 		646EA8592A1AF9C81B6877D4 /* CourseModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5D28EB09C19518A6BA81F /* CourseModule.swift */; };
 		65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */; };
 		6DB0C2A2AEC5AB57B8968B3E /* GroupCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */; };
@@ -135,9 +95,7 @@
 		9DB84819BAE9F4B338DDC4AC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCF467DCEF9F445E82A1DC9 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysInstructions.swift */; };
 		9E6536DB74C410F2A191F54F /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */; };
 		9E80454AFF54FA3A301495CC /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE43F594F5734FBD9DF2146C /* Section.swift */; };
-		9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */; };
 		9FC637F5B6B1017FE76C67F2 /* QuizQuestionAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F44325652F4B30CB471123 /* QuizQuestionAnswer.swift */; };
-		9FCE7BB21ED6340C00DD1693 /* PushNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */; };
 		A45A7871AEE461283E84002D /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105261256A70B5DFD1139104 /* Quiz.swift */; };
 		A6A99147D8722993787C0994 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FF3DE89359E019540B64CA /* Assignment.swift */; };
 		A94ACBBB553790F98F7C9EE5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279FA1F5A8C63F99B0DEC9F /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift */; };
@@ -146,7 +104,6 @@
 		AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
 		B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B170B0651F58756E00B92700 /* SoLazy.framework */; };
-		B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */; };
 		B704C165D67D6B901C48047E /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
@@ -220,7 +177,7 @@
 				61B7F5C61ED5EE8800EC6865 /* PSPDFKit.framework in Embed Frameworks */,
 				3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */,
 				4943ECB81E5CEFBD001DC5B5 /* CanvasKit.framework in Embed Frameworks */,
-				2C921E791F72E366003E5C9B /* CanvasCore.framework in Embed Frameworks */,
+				497CA7341F82AE8D00501613 /* CanvasCore.framework in Embed Frameworks */,
 				4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */,
 				619C94821ED8EBCF00AC7D7B /* SoAnnotated.framework in Embed Frameworks */,
 			);
@@ -233,8 +190,6 @@
 			dstPath = "$(TEST_HOST)";
 			dstSubfolderSpec = 10;
 			files = (
-				61B5372D1E786A27000FEABB /* EarlGrey.framework in CopyFiles */,
-				61B5372E1E786A27000FEABB /* SoGrey.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +207,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0610738E1EA11F5300BEB914 /* TeacherTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherTest.swift; sourceTree = "<group>"; };
 		061073901EA11FD800BEB914 /* CoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesListPage.swift; sourceTree = "<group>"; };
 		061073921EA11FED00BEB914 /* EditCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesListPage.swift; sourceTree = "<group>"; };
@@ -373,21 +327,16 @@
 		2C50EE081E735CCB0096592C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2C50EE0A1E735CDD0096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BuddyBuildSDK.framework; path = ../../../ExternalFrameworks/BuddyBuildSDK.framework; sourceTree = "<group>"; };
-		2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
 		2C62DC7A1E8BF532006638F3 /* CourseListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseListPageTest.swift; sourceTree = "<group>"; };
 		2C65E0C21F214822008C6C95 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
-		2C921E771F72E366003E5C9B /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA3473F1F2147290000BB79 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Teacher/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476A1F21472D0000BB79 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Teacher/de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA3476B1F2147300000BB79 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = Teacher/ar.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewDisablerManager.h; sourceTree = "<group>"; };
-		2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewDisablerManager.m; sourceTree = "<group>"; };
 		2CAC3DC91F2146C500856778 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2CC98BB91F2143AB00D9F1F1 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../../../ExternalFrameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../../../ExternalFrameworks/Fabric.framework; sourceTree = "<group>"; };
-		2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Secrets.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E32426347BE56C907EB34A1 /* Pods_defaults_common_ui_tests_TeacherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_ui_tests_TeacherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F08790F1EC3C04F0042C03E /* CourseBrowserPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPageTest.swift; sourceTree = "<group>"; };
 		2F0879301EC3C1DB0042C03E /* CourseBrowserPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseBrowserPage.swift; sourceTree = "<group>"; };
@@ -399,62 +348,27 @@
 		329DC2282549635CBA9EDD0B /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = models/Course.swift; sourceTree = "<group>"; };
 		33EA5B9B254626D699014C44 /* DataMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataMap.swift; path = data/DataMap.swift; sourceTree = "<group>"; };
 		371B73BCBA25B41C78CD0E3E /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift; sourceTree = "<group>"; };
-		3B2C7FBF1EB7DBF000A99D44 /* Helm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Helm.m; path = Teacher/Helm.m; sourceTree = "<group>"; };
-		3B2C7FC01EB7DBF000A99D44 /* Helm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helm.swift; path = Teacher/Helm.swift; sourceTree = "<group>"; };
 		3B2D872A1F571471001E3252 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UISplitViewControllerExtensions.swift; path = Teacher/UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3B527DFA5898B0D5DD57EDD1 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift; sourceTree = "<group>"; };
 		3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5812C51EC4F15900173C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B5812EA1EC4F18500173C37 /* HelmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
 		3B5813121EC4F64400173C37 /* bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
-		3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIUserInterfaceSizeClassExtensions.swift; path = Teacher/UIUserInterfaceSizeClassExtensions.swift; sourceTree = "<group>"; };
-		3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Hex.swift"; path = "Teacher/UIColor+Hex.swift"; sourceTree = "<group>"; };
-		3B748B611ECA53E9008D6A57 /* DrawerHandleViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrawerHandleViewManager.h; path = Teacher/DrawerHandleViewManager.h; sourceTree = "<group>"; };
-		3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrawerHandleViewManager.m; path = Teacher/DrawerHandleViewManager.m; sourceTree = "<group>"; };
-		3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+PureEvil.swift"; path = "Teacher/NSObject+PureEvil.swift"; sourceTree = "<group>"; };
-		3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmSplitViewController.swift; path = Teacher/HelmSplitViewController.swift; sourceTree = "<group>"; };
-		3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjCBridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmConstants.swift; path = Teacher/HelmConstants.swift; sourceTree = "<group>"; };
-		3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmNavigationViewController.swift; path = Teacher/HelmNavigationViewController.swift; sourceTree = "<group>"; };
-		3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelmViewController.swift; path = Teacher/HelmViewController.swift; sourceTree = "<group>"; };
-		3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = ../RootTabBarController.swift; sourceTree = "<group>"; };
-		3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITraitEnvironmentExtensions.swift; path = Teacher/UITraitEnvironmentExtensions.swift; sourceTree = "<group>"; };
-		3BF71FC81EC117BE00234D25 /* Brand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
-		3BF720DF1EC266EB00234D25 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3BF720FF1EC4054100234D25 /* PocketSVG.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PocketSVG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		42A161BC86548CE0BB3E1AC7 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; sourceTree = "<group>"; };
 		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
 		491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		491EF3131F2BD1C5002B6C76 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAttendanceViewController.swift; sourceTree = "<group>"; };
 		491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; sourceTree = "<group>"; };
-		4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECAD1E5CEFAC001DC5B5 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECAE1E5CEFAC001DC5B5 /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CWNotification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECAF1E5CEFAC001DC5B5 /* FXKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FXKeychain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mantle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
-		4994B2C81ED4E9390054D333 /* VideoContainerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoContainerManager.m; sourceTree = "<group>"; };
-		4994B2C91ED4E9390054D333 /* VideoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContainerView.swift; sourceTree = "<group>"; };
+		494AE0B41F843CB3001A8F31 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EnrollmentSplitViewController.swift; path = Teacher/EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
+		494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootTabBarController.swift; path = Teacher/RootTabBarController.swift; sourceTree = "<group>"; };
+		494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Routes.swift"; path = "Teacher/AppDelegate+Routes.swift"; sourceTree = "<group>"; };
+		494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeacherAttendanceViewController.swift; path = Teacher/TeacherAttendanceViewController.swift; sourceTree = "<group>"; };
+		497CA7321F82ACF400501613 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B274C01E8437D700828E42 /* CanvasLoginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasLoginPage.swift; sourceTree = "<group>"; };
-		49D86BD11F059E6B008951CE /* A11yGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = A11yGroupManager.m; sourceTree = "<group>"; };
 		5399B86B6CD0D6C6C41CC27D /* CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListEmptyPage_displaysEmptyState.swift; sourceTree = "<group>"; };
-		61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentSplitViewController.swift; sourceTree = "<group>"; };
-		611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
-		6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerRotationExtensions.swift; sourceTree = "<group>"; };
-		6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
-		6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeLoginManager.h; sourceTree = "<group>"; };
-		6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeLoginManager.m; sourceTree = "<group>"; };
-		6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeLoginManager.swift; sourceTree = "<group>"; };
-		619C94291ED8A25100AC7D7B /* CanvadocView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocView.swift; sourceTree = "<group>"; };
 		619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B5365C1E7749F5000FEABB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61B536A21E774B6A000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoGrey.framework; path = "../../../Frameworks/SoGrey/build/Debug-iphoneos/SoGrey.framework"; sourceTree = "<group>"; };
@@ -462,18 +376,10 @@
 		61B536DD1E784946000FEABB /* DomainPickerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerTests.swift; sourceTree = "<group>"; };
 		61B536DF1E784A4B000FEABB /* Pages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pages.swift; sourceTree = "<group>"; };
 		61B536E31E78599D000FEABB /* DomainPickerPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainPickerPage.swift; sourceTree = "<group>"; };
-		61B536EC1E7860CE000FEABB /* EarlGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EarlGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61B536ED1E7860CE000FEABB /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61B537201E786969000FEABB /* TeacherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushAnimatedTransitioning.swift; path = Teacher/PushAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
-		61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
-		61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
-		61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfiguration.swift; sourceTree = "<group>"; };
 		61BD85FA1EB29270005A09A5 /* bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "bridging-header.h"; path = "Teacher/bridging-header.h"; sourceTree = "<group>"; };
 		61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Teacher/AppDelegate.swift; sourceTree = "<group>"; };
-		61E6C4DF1F14263900B7B6C1 /* HapticFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HapticFeedback.h; sourceTree = "<group>"; };
-		61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HapticFeedback.m; sourceTree = "<group>"; };
 		621E9A4A25A91690500722D2 /* AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift; path = data/AssignmentListPageTest/AssignmentListPageTest_testAssignmentListPage_displaysAssignment.swift; sourceTree = "<group>"; };
 		6DF7526D87BCDDCAB4075E5E /* Conversation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Conversation.swift; path = models/Conversation.swift; sourceTree = "<group>"; };
 		6F798127265B286008D5A43E /* DataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataProvider.swift; path = data/DataProvider.swift; sourceTree = "<group>"; };
@@ -493,10 +399,6 @@
 		922B8388DD687B870A89727F /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift; sourceTree = "<group>"; };
 		9E779D0FC821A88203D0C34D /* DataUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataUtil.swift; path = data/DataUtil.swift; sourceTree = "<group>"; };
-		9F25FA521ECA4EC900275E30 /* NativeAccessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeAccessibility.h; sourceTree = "<group>"; };
-		9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeAccessibility.m; sourceTree = "<group>"; };
-		9FCE7BB01ED6340C00DD1693 /* PushNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotifications.h; sourceTree = "<group>"; };
-		9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotifications.m; sourceTree = "<group>"; };
 		A06E780FA4F813E8535599C4 /* Discussion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Discussion.swift; path = models/Discussion.swift; sourceTree = "<group>"; };
 		A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InboxPageTest_testInboxPage_displaysPageObjects.swift; path = data/InboxPageTest/InboxPageTest_testInboxPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		A5443E11C07A46B641B6D15D /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUpload.swift; sourceTree = "<group>"; };
@@ -508,8 +410,6 @@
 		AE43F594F5734FBD9DF2146C /* Section.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Section.swift; path = models/Section.swift; sourceTree = "<group>"; };
 		B092C7F1FFB519DC8F91E3B7 /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; path = data/AssignmentsListPageTest/AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift; sourceTree = "<group>"; };
 		B170B0651F58756E00B92700 /* SoLazy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewHacker.h; path = Teacher/WebViewHacker.h; sourceTree = "<group>"; };
-		B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewHacker.m; path = Teacher/WebViewHacker.m; sourceTree = "<group>"; };
 		B4ECA86954393EA402EE37DE /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = data/Data.swift; sourceTree = "<group>"; };
 		B61F057105AAE69E12B80F3A /* CourseModuleItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseModuleItem.swift; path = models/CourseModuleItem.swift; sourceTree = "<group>"; };
 		B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift; sourceTree = "<group>"; };
@@ -554,6 +454,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				497CA7331F82AE8D00501613 /* CanvasCore.framework in Frameworks */,
 				2C50EE0D1E735D980096592C /* BuddyBuildSDK.framework in Frameworks */,
 				61B7F5A21ED5E9EC00EC6865 /* PSPDFKit.framework in Frameworks */,
 				2C50EE091E735CCB0096592C /* SystemConfiguration.framework in Frameworks */,
@@ -570,7 +471,6 @@
 				4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */,
 				4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */,
 				619C94621ED8EBC400AC7D7B /* SoAnnotated.framework in Frameworks */,
-				2C921E781F72E366003E5C9B /* CanvasCore.framework in Frameworks */,
 				8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */,
 				F9FDB9351C9FB4F9CF7E0F94 /* Pods_defaults_Teacher.framework in Frameworks */,
 			);
@@ -595,8 +495,6 @@
 				F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */,
 				F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */,
 				F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */,
-				61B5372B1E7869F1000FEABB /* SoGrey.framework in Frameworks */,
-				61B5372A1E7869EA000FEABB /* EarlGrey.framework in Frameworks */,
 				20A0DB89280A80AFF823848C /* Pods_defaults_common_ui_tests_TeacherUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,36 +502,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* TeacherTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = TeacherTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* Teacher */ = {
 			isa = PBXGroup;
 			children = (
-				61032A8F1F3CF35500EB1924 /* Enrollments */,
-				491EF3161F2BD2D9002B6C76 /* Attendance */,
-				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
-				49D86BAE1F059E42008951CE /* A11y */,
-				4994B2A91ED4E9230054D333 /* Video */,
-				61B7F5C11ED5EABA00EC6865 /* PSPDFKit */,
-				61BD856A1EB290C0005A09A5 /* Login */,
-				3BF71FC71EC117A500234D25 /* Branding */,
-				3B748B601ECA53D4008D6A57 /* React Native Modules */,
-				3B8B24241EB2ABF900B61EF8 /* Helm */,
 				61BD85FB1EB2933C005A09A5 /* AppDelegate.swift */,
+				494AE0B61F843CB4001A8F31 /* AppDelegate+Routes.swift */,
+				494AE0B41F843CB3001A8F31 /* EnrollmentSplitViewController.swift */,
+				494AE0B51F843CB4001A8F31 /* RootTabBarController.swift */,
+				494AE0B71F843CB4001A8F31 /* TeacherAttendanceViewController.swift */,
+				2C3DE5101F21498A00AE1D59 /* InfoPlist.strings */,
 				4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				2C7B27A71E6F5A1100E097B9 /* AppIcon.xcassets */,
@@ -700,18 +577,6 @@
 			name = data;
 			sourceTree = "<group>";
 		};
-		3B3946B81EBA6DD2002F7B9C /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				3B748B641ECA54A7008D6A57 /* NSObject+PureEvil.swift */,
-				3B748B5A1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift */,
-				3B3946D71EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift */,
-				3BB47E501ECCE42800795E73 /* UITraitEnvironmentExtensions.swift */,
-				6118BE281F0561F000E14869 /* UIViewControllerRotationExtensions.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		3B5812C21EC4F15900173C37 /* TeacherUnitTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -721,50 +586,6 @@
 				3B5813121EC4F64400173C37 /* bridging-header.h */,
 			);
 			path = TeacherUnitTests;
-			sourceTree = "<group>";
-		};
-		3B748B601ECA53D4008D6A57 /* React Native Modules */ = {
-			isa = PBXGroup;
-			children = (
-				B1B2FE5C1EA86E26003AD5AA /* WebViewHacker.h */,
-				B1B2FE5D1EA86E26003AD5AA /* WebViewHacker.m */,
-				3B748B611ECA53E9008D6A57 /* DrawerHandleViewManager.h */,
-				3B748B621ECA53E9008D6A57 /* DrawerHandleViewManager.m */,
-				9F25FA521ECA4EC900275E30 /* NativeAccessibility.h */,
-				9F25FA531ECA4EC900275E30 /* NativeAccessibility.m */,
-				9FCE7BB01ED6340C00DD1693 /* PushNotifications.h */,
-				9FCE7BB11ED6340C00DD1693 /* PushNotifications.m */,
-				2CA631831EF44E770051662C /* ScrollViewDisablerManager.h */,
-				2CA631841EF44E770051662C /* ScrollViewDisablerManager.m */,
-				61E6C4DF1F14263900B7B6C1 /* HapticFeedback.h */,
-				61E6C4E01F14263900B7B6C1 /* HapticFeedback.m */,
-			);
-			name = "React Native Modules";
-			sourceTree = "<group>";
-		};
-		3B8B24241EB2ABF900B61EF8 /* Helm */ = {
-			isa = PBXGroup;
-			children = (
-				3B2C7FC01EB7DBF000A99D44 /* Helm.swift */,
-				3B2C7FBF1EB7DBF000A99D44 /* Helm.m */,
-				3B8B24431EB2AC0B00B61EF8 /* HelmConstants.swift */,
-				3B8B24451EB2AC0B00B61EF8 /* HelmViewController.swift */,
-				3B8B24441EB2AC0B00B61EF8 /* HelmNavigationViewController.swift */,
-				3B8083521EB8FC6D009380F8 /* HelmSplitViewController.swift */,
-				3B3946B81EBA6DD2002F7B9C /* Extensions */,
-				61B7F4F91ED4A49D00EC6865 /* PushAnimatedTransitioning.swift */,
-				611645F91F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift */,
-			);
-			name = Helm;
-			sourceTree = "<group>";
-		};
-		3BF71FC71EC117A500234D25 /* Branding */ = {
-			isa = PBXGroup;
-			children = (
-				3BF71FC81EC117BE00234D25 /* Brand.swift */,
-				3B748B5C1ECA538E008D6A57 /* UIColor+Hex.swift */,
-			);
-			name = Branding;
 			sourceTree = "<group>";
 		};
 		46390B051F5EC30034393E49 /* AssignmentDetailsPageTest */ = {
@@ -789,14 +610,6 @@
 			name = AssignmentDetailsPageTest;
 			sourceTree = "<group>";
 		};
-		491EF3161F2BD2D9002B6C76 /* Attendance */ = {
-			isa = PBXGroup;
-			children = (
-				491EF3171F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift */,
-			);
-			path = Attendance;
-			sourceTree = "<group>";
-		};
 		493EC8621F016CB800A1ED1E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -808,48 +621,16 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				497CA7321F82ACF400501613 /* CanvasCore.framework */,
 				3B2D872A1F571471001E3252 /* SoLazy.framework */,
-				2CE78AAC1F55B7CB00AB3726 /* Secrets.framework */,
-				491EF3131F2BD1C5002B6C76 /* Marshal.framework */,
 				491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */,
 				619C94611ED8EBC400AC7D7B /* SoAnnotated.framework */,
 				61B7F5A11ED5E9EC00EC6865 /* PSPDFKit.framework */,
-				3BF720FF1EC4054100234D25 /* PocketSVG.framework */,
-				3BF720DF1EC266EB00234D25 /* SDWebImage.framework */,
-				3B8B24101EB2AB7C00B61EF8 /* ReactiveObjCBridge.framework */,
-				3B8B240C1EB2AA3700B61EF8 /* ReactiveSwift.framework */,
-				3B8B23EC1EB2AA0D00B61EF8 /* Result.framework */,
-				61B536EC1E7860CE000FEABB /* EarlGrey.framework */,
-				61B536ED1E7860CE000FEABB /* SoGrey.framework */,
 				2C50EE0C1E735D980096592C /* BuddyBuildSDK.framework */,
-				4943ECAA1E5CEFAC001DC5B5 /* AFNetworking.framework */,
 				4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */,
 				4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */,
-				4943ECAD1E5CEFAC001DC5B5 /* CocoaLumberjack.framework */,
-				4943ECAE1E5CEFAC001DC5B5 /* CWNotification.framework */,
-				4943ECAF1E5CEFAC001DC5B5 /* FXKeychain.framework */,
-				4943ECB01E5CEFAC001DC5B5 /* Mantle.framework */,
-				4943ECB11E5CEFAC001DC5B5 /* Reachability.framework */,
-				4943ECB21E5CEFAC001DC5B5 /* ReactiveObjC.framework */,
 			);
 			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		4994B2A91ED4E9230054D333 /* Video */ = {
-			isa = PBXGroup;
-			children = (
-				4994B2C81ED4E9390054D333 /* VideoContainerManager.m */,
-				4994B2C91ED4E9390054D333 /* VideoContainerView.swift */,
-			);
-			path = Video;
-			sourceTree = "<group>";
-		};
-		49D86BAE1F059E42008951CE /* A11y */ = {
-			isa = PBXGroup;
-			children = (
-				49D86BD11F059E6B008951CE /* A11yGroupManager.m */,
-			);
-			path = A11y;
 			sourceTree = "<group>";
 		};
 		56FD6751A8BF861246980476 /* CourseBrowserPageTest */ = {
@@ -869,14 +650,6 @@
 				9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */,
 			);
 			name = EditCoursesPageTest;
-			sourceTree = "<group>";
-		};
-		61032A8F1F3CF35500EB1924 /* Enrollments */ = {
-			isa = PBXGroup;
-			children = (
-				61032AB91F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift */,
-			);
-			path = Enrollments;
 			sourceTree = "<group>";
 		};
 		61B536591E7749F5000FEABB /* TeacherUITests */ = {
@@ -930,32 +703,6 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		61B7F5C11ED5EABA00EC6865 /* PSPDFKit */ = {
-			isa = PBXGroup;
-			children = (
-				61B7F5C21ED5EB3300EC6865 /* PSPDFViewManager.m */,
-				61B7F5C41ED5EBAA00EC6865 /* PSPDFView.swift */,
-				6135D9781EDDE3CE00449159 /* CanvadocViewManager.m */,
-				619C94291ED8A25100AC7D7B /* CanvadocView.swift */,
-			);
-			name = PSPDFKit;
-			path = Teacher/PSPDFKit;
-			sourceTree = "<group>";
-		};
-		61BD856A1EB290C0005A09A5 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				3B8B245C1EB2AC7F00B61EF8 /* RootTabBarController.swift */,
-				6190DE381EC4D28800D3C1A9 /* NativeLoginManager.h */,
-				6190DE391EC4D28800D3C1A9 /* NativeLoginManager.m */,
-				6190DE3A1EC4D28800D3C1A9 /* NativeLoginManager.swift */,
-				61BD85F61EB291A2005A09A5 /* LoginConfiguration.swift */,
-				2C610EC71EEF0D300082A8DA /* LoadingStateViewController.swift */,
-			);
-			name = Login;
-			path = Teacher/Login;
-			sourceTree = "<group>";
-		};
 		785856136D1B74B3600C4555 /* ComposeNewMessageTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,10 +715,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2C921E771F72E366003E5C9B /* CanvasCore.framework */,
 				13B07FAE1A68108700A75B9A /* Teacher */,
 				4943EC8A1E5CEF93001DC5B5 /* Dependencies */,
-				00E356EF1AD99517003FC87E /* TeacherTests */,
 				61B536591E7749F5000FEABB /* TeacherUITests */,
 				3B5812C21EC4F15900173C37 /* TeacherUnitTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -1340,52 +1085,88 @@
 			inputPaths = (
 				"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
+				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
+				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/React/React.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-document-picker/react_native_document_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-image-picker/react_native_image_picker.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-mail/react_native_mail.framework",
+				"${BUILT_PRODUCTS_DIR}/react-native-wkwebview/react_native_wkwebview.framework",
 				"${PODS_ROOT}/EarlGrey/EarlGrey/EarlGrey.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_document_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_image_picker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_mail.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_wkwebview.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EarlGrey.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 			);
@@ -1434,37 +1215,37 @@
 			inputPaths = (
 				"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
 				"${BUILT_PRODUCTS_DIR}/CWStatusBarNotification/CWStatusBarNotification.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DeviceKit/DeviceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
+				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/JSTokenField/JSTokenField.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
-				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
-				"${BUILT_PRODUCTS_DIR}/BVLinearGradient/BVLinearGradient.framework",
-				"${BUILT_PRODUCTS_DIR}/Interactable/Interactable.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDeviceInfo/RNDeviceInfo.framework",
 				"${BUILT_PRODUCTS_DIR}/RNFS/RNFS.framework",
 				"${BUILT_PRODUCTS_DIR}/RNSound/RNSound.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/React/React.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactNativeSearchBar/ReactNativeSearchBar.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjCBridge/ReactiveObjCBridge.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-blur/react_native_blur.framework",
 				"${BUILT_PRODUCTS_DIR}/react-native-camera/react_native_camera.framework",
@@ -1476,37 +1257,37 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CWStatusBarNotification.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSTokenField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BVLinearGradient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Interactable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDeviceInfo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSound.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeSearchBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjCBridge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_blur.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/react_native_camera.framework",
@@ -1542,42 +1323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6118BE291F0561F000E14869 /* UIViewControllerRotationExtensions.swift in Sources */,
-				3B8B24481EB2AC0B00B61EF8 /* HelmViewController.swift in Sources */,
-				6135D9791EDDE3CF00449159 /* CanvadocViewManager.m in Sources */,
-				3B8B245D1EB2AC7F00B61EF8 /* RootTabBarController.swift in Sources */,
-				6190DE3C1EC4D28800D3C1A9 /* NativeLoginManager.swift in Sources */,
-				3B3946D81EBA6DE5002F7B9C /* UISplitViewControllerExtensions.swift in Sources */,
-				4994B2CB1ED4E9390054D333 /* VideoContainerView.swift in Sources */,
-				6190DE3B1EC4D28800D3C1A9 /* NativeLoginManager.m in Sources */,
-				3B2C7FC11EB7DBF000A99D44 /* Helm.m in Sources */,
-				9FCE7BB21ED6340C00DD1693 /* PushNotifications.m in Sources */,
-				2CA631851EF44E770051662C /* ScrollViewDisablerManager.m in Sources */,
-				3B748B5D1ECA538E008D6A57 /* UIColor+Hex.swift in Sources */,
-				3B748B5B1ECA5382008D6A57 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
-				61E6C4E11F14263900B7B6C1 /* HapticFeedback.m in Sources */,
-				3B748B631ECA53E9008D6A57 /* DrawerHandleViewManager.m in Sources */,
-				611645FA1F0D4E4B00EFEAF3 /* NoAnimatedTransitioning.swift in Sources */,
-				2C610EC81EEF0D300082A8DA /* LoadingStateViewController.swift in Sources */,
-				61B7F4FA1ED4A49D00EC6865 /* PushAnimatedTransitioning.swift in Sources */,
-				61B7F5C51ED5EBAA00EC6865 /* PSPDFView.swift in Sources */,
-				9F25FA541ECA4EC900275E30 /* NativeAccessibility.m in Sources */,
-				3BF71FC91EC117BE00234D25 /* Brand.swift in Sources */,
-				B1B2FE5E1EA86E26003AD5AA /* WebViewHacker.m in Sources */,
-				3B748B651ECA54A7008D6A57 /* NSObject+PureEvil.swift in Sources */,
-				3BB47E511ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
-				3B8B24471EB2AC0B00B61EF8 /* HelmNavigationViewController.swift in Sources */,
-				491EF3181F2BD2F5002B6C76 /* TeacherAttendanceViewController.swift in Sources */,
-				61B7F5C31ED5EB3300EC6865 /* PSPDFViewManager.m in Sources */,
-				3B8B24461EB2AC0B00B61EF8 /* HelmConstants.swift in Sources */,
-				4994B2CA1ED4E9390054D333 /* VideoContainerManager.m in Sources */,
-				61032ABA1F3CFFBC00EB1924 /* EnrollmentSplitViewController.swift in Sources */,
+				494AE0BB1F843CB5001A8F31 /* TeacherAttendanceViewController.swift in Sources */,
+				494AE0BA1F843CB5001A8F31 /* AppDelegate+Routes.swift in Sources */,
 				61BD85FC1EB2933C005A09A5 /* AppDelegate.swift in Sources */,
-				3B8083531EB8FC6D009380F8 /* HelmSplitViewController.swift in Sources */,
-				49D86BD21F059E6B008951CE /* A11yGroupManager.m in Sources */,
-				3B2C7FC21EB7DBF000A99D44 /* Helm.swift in Sources */,
-				61BD85F71EB291A2005A09A5 /* LoginConfiguration.swift in Sources */,
-				619C942A1ED8A25100AC7D7B /* CanvadocView.swift in Sources */,
+				494AE0B91F843CB5001A8F31 /* RootTabBarController.swift in Sources */,
+				494AE0B81F843CB5001A8F31 /* EnrollmentSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1585,15 +1335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B5812F21EC4F34700173C37 /* UISplitViewControllerExtensions.swift in Sources */,
-				3B5812ED1EC4F32900173C37 /* HelmViewController.swift in Sources */,
-				3B5812EE1EC4F33700173C37 /* HelmConstants.swift in Sources */,
 				3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */,
-				3BB47E521ECCE42800795E73 /* UITraitEnvironmentExtensions.swift in Sources */,
-				3B5812F01EC4F33F00173C37 /* HelmSplitViewController.swift in Sources */,
-				3B5812EF1EC4F33900173C37 /* HelmNavigationViewController.swift in Sources */,
-				3B5812EC1EC4F2BA00173C37 /* Helm.swift in Sources */,
-				3B5812F11EC4F34200173C37 /* Helm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1860,6 +1602,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
@@ -1923,6 +1666,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Teacher/Teacher.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				ENABLE_BITCODE = NO;

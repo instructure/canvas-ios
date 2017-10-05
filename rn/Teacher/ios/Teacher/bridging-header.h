@@ -16,7 +16,6 @@
 
 extern void RCTRegisterModule(Class);
 
-#import "NativeLoginManager.h"
 #import <BuddyBuildSDK/BuddyBuildSDK.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBridgeModule.h>

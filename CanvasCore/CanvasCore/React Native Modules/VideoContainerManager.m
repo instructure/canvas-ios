@@ -14,8 +14,23 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import Foundation
+#import <UIKit/UIKit.h>
+#import <CanvasCore/CanvasCore-Swift.h>
+#import <React/RCTUIManager.h>
 
-extension NativeLoginManager {
-  
+@interface VideoContainerManager : RCTViewManager
+@end
+
+@implementation VideoContainerManager
+
+RCT_EXPORT_MODULE()
+
+- (UIView *)view {
+    return [VideoContainerView new];
 }
+
+RCT_EXPORT_VIEW_PROPERTY(source, NSDictionary *)
+RCT_EXPORT_VIEW_PROPERTY(paused, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(playing, BOOL)
+
+@end

@@ -17,7 +17,7 @@
 #import "NativeLoginManager.h"
 #import <React/RCTLog.h>
 #import <React/RCTBridge.h>
-#import "Teacher-Swift.h"
+#import <CanvasCore/CanvasCore-Swift.h>
 
 @import CanvasKeymaster;
 @import CocoaLumberjack;
@@ -191,26 +191,6 @@ RCT_EXPORT_METHOD(stopObserving)
 }
 
 #pragma MARK - CanvasKeymasterDelegate
-
-- (NSString *)appNameForMobileVerify {
-    return @"iCanvas";
-}
-
-- (UIView *)backgroundViewForDomainPicker {
-    UIView *bg = [[UIView alloc] init];
-    bg.backgroundColor = [UIColor whiteColor];
-    return bg;
-}
-
-- (UIImage *)logoForDomainPicker {
-    return [UIImage imageNamed:@"logo"];
-}
-
-- (NSString *)logFilePath {
-    NSString *cacheDir = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true) firstObject] stringByAppendingPathComponent:@"InstructureLogs"];
-    
-    return [[DDLogFileManagerDefault alloc] initWithLogsDirectory:cacheDir].sortedLogFilePaths.firstObject;
-}
 
 - (void)injectLoginInformation:(NSDictionary *)info {
     

@@ -15,22 +15,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Teacher-Swift.h"
-#import <React/RCTUIManager.h>
+#import <CanvasCore/CanvasCore-Swift.h>
+@import React;
 
-@interface VideoContainerManager : RCTViewManager
+@interface A11yGroupManager: RCTViewManager
 @end
 
-@implementation VideoContainerManager
+@implementation A11yGroupManager
 
 RCT_EXPORT_MODULE()
 
 - (UIView *)view {
-    return [VideoContainerView new];
+    RCTView *a11yGroup = [RCTView new];
+    a11yGroup.shouldGroupAccessibilityChildren = YES;
+    return a11yGroup;
 }
-
-RCT_EXPORT_VIEW_PROPERTY(source, NSDictionary *)
-RCT_EXPORT_VIEW_PROPERTY(paused, BOOL)
-RCT_EXPORT_VIEW_PROPERTY(playing, BOOL)
 
 @end

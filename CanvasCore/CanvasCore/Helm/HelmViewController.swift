@@ -19,7 +19,7 @@ import SDWebImage
 import PocketSVG
 import React
 
-typealias Props = [String: Any]
+public typealias Props = [String: Any]
 
 protocol HelmScreen {
     var screenConfig: [String: Any] { get set }
@@ -27,7 +27,7 @@ protocol HelmScreen {
     var screenConfigRendered: Bool { get set }
 }
 
-final class HelmViewController: UIViewController, HelmScreen {
+public final class HelmViewController: UIViewController, HelmScreen {
     
     let moduleName: String
     let screenInstanceID: String
@@ -37,24 +37,24 @@ final class HelmViewController: UIViewController, HelmScreen {
     fileprivate var titleViewTitleLabel: UILabel?
     fileprivate var titleViewSubtitleLabel: UILabel?
     
-    open var statusBarStyle: UIStatusBarStyle = .default {
+    public var statusBarStyle: UIStatusBarStyle = .default {
         didSet {
             if (statusBarStyle != oldValue) {
                 statusBarDirty = true
             }
         }
     }
-    open var statusBarHidden: Bool = false {
+    public var statusBarHidden: Bool = false {
         didSet {
             if (statusBarHidden != oldValue) {
                 statusBarDirty = true
             }
         }
     }
-    open var statusBarUpdateAnimation: UIStatusBarAnimation = .fade
+    public var statusBarUpdateAnimation: UIStatusBarAnimation = .fade
     fileprivate var statusBarDirty: Bool = false
     
-    private(set) open var isVisible: Bool = false
+    private(set) public var isVisible: Bool = false
 
     var screenConfigRendered: Bool = false {
         didSet {
@@ -89,7 +89,7 @@ final class HelmViewController: UIViewController, HelmScreen {
         setupSensibleDefaults()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -100,7 +100,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     
     // MARK: - View lifecycle
     
-    override open func loadView() {
+    override public func loadView() {
         self.view = RCTRootView(bridge: HelmManager.shared.bridge, moduleName: moduleName, initialProperties: props)
     }
     
@@ -142,13 +142,13 @@ final class HelmViewController: UIViewController, HelmScreen {
         _screenDidRender = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isVisible = true
         handleStyles()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isVisible = false
     }
@@ -166,26 +166,26 @@ final class HelmViewController: UIViewController, HelmScreen {
         }
     }
     
-    override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    override public var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return statusBarUpdateAnimation
     }
     
-    override open var prefersStatusBarHidden: Bool {
+    override public var prefersStatusBarHidden: Bool {
         return statusBarHidden
     }
     
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
     }
     
     
     // MARK: - Orientation
     
-    override var shouldAutorotate: Bool {
+    public override var shouldAutorotate: Bool {
         return super.shouldAutorotate
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if let cantRotate = screenConfig[PropKeys.noRotationInVerticallyCompact] as? Bool, cantRotate, (self.traitCollection.verticalSizeClass == .compact || self.traitCollection.horizontalSizeClass == .compact) {
             return .portrait
         }
@@ -196,7 +196,7 @@ final class HelmViewController: UIViewController, HelmScreen {
     
     // MARK: - Styles
     
-    open func handleStyles() {
+    public func handleStyles() {
         // Nav bar props
         
         if let titleLabel = titleViewTitleLabel, let subtitleLabel = titleViewSubtitleLabel {
@@ -518,7 +518,7 @@ final class HelmViewController: UIViewController, HelmScreen {
         return titleView
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if let onTraitCollectionChange = screenConfig["onTraitCollectionChange"] as? NSString {
             HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [onTraitCollectionChange])

@@ -78,7 +78,7 @@ const loginHandler = async (info: {
     } else {
       store.dispatch(hydrate())
     }
-    Helm.initTabs()
+    Helm.loginComplete()
     loginVerify()
   }
 }

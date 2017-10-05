@@ -5,7 +5,10 @@ workspace 'AllTheThings.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '10.0'
 
-def react_native
+
+abstract_target 'defaults' do
+  use_frameworks!
+
   nm_path = './rn/Teacher/node_modules/'
   rn_path = nm_path + 'react-native/'
   pod 'Yoga', :path => rn_path + 'ReactCommon/yoga'
@@ -43,11 +46,8 @@ def react_native
   pod 'react-native-camera', :path => nm_path + 'react-native-camera'
   pod 'react-native-wkwebview', :path => nm_path + 'react-native-wkwebview-reborn'
 
-end
-
-abstract_target 'defaults' do
-  use_frameworks!
-
+  pod 'SDWebImage', '~> 4.1'
+  pod 'PocketSVG', '~> 2.2'
   pod 'ReactiveCocoa', '~> 5.0'
   pod 'Marshal', '~> 1.1'
   pod 'Result', '~> 3.2'
@@ -86,12 +86,8 @@ abstract_target 'defaults' do
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
 
-    pod 'PocketSVG', '~> 2.2'
-    pod 'SDWebImage', '~> 4.1'
     pod 'Fabric', '~> 1.6'
     pod 'Crashlytics', '~> 3.8'
-
-    react_native
   end
 
   target 'TechDebt' do
@@ -104,6 +100,10 @@ abstract_target 'defaults' do
 
   target 'Canvas' do
     project 'Canvas/Canvas.xcodeproj'
+  end
+
+  target 'CanvasCore' do
+    project 'CanvasCore/CanvasCore.xcodeproj'
   end
 
   target 'CanvasKit1' do
@@ -275,6 +275,9 @@ abstract_target 'defaults' do
     target 'SoAutomatedTests' do
       project 'Frameworks/SoAutomated/SoAutomated.xcodeproj'
     end
+    target 'ParentTests' do
+      project 'Parent/Parent.xcodeproj'
+    end
     target 'SoPrettyTests' do
       project 'Frameworks/SoPretty/SoPretty.xcodeproj'
     end
@@ -327,8 +330,7 @@ end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    # puts "=== #{target.name}"
-    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD' || target.name == 'RCTSFSafariViewController' || target.name == 'react-native-camera' || 'react-native-mail'
+    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD' || target.name == 'BugsnagReactNative' || target.name == 'RCTSFSafariViewController' || target.name == 'react-native-camera' || target.name == 'react-native-mail' || target.name == 'React' || target.name == 'react-native-document-picker' || target.name == 'react-native-wkwebview'
     puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'

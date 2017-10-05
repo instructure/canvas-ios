@@ -15,7 +15,7 @@
 //
 
 #import <React/RCTBridgeModule.h>
-#import "Teacher-Swift.h"
+#import <CanvasCore/CanvasCore-Swift.h>
 
 @interface Helm: NSObject <RCTBridgeModule>
 
@@ -65,8 +65,8 @@ RCT_EXPORT_METHOD(initLoadingStateIfRequired) {
     [[HelmManager shared] initLoadingStateIfRequired];
 }
 
-RCT_EXPORT_METHOD(initTabs) {
-    [[HelmManager shared] initTabs];
+RCT_EXPORT_METHOD(loginComplete) {
+    [[HelmManager shared] loginComplete];
 }
 
 @end

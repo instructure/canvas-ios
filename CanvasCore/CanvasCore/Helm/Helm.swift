@@ -15,7 +15,6 @@
 //
 
 import UIKit
-import AttendanceLE
 import CanvasKeymaster
 import React
 
@@ -27,10 +26,18 @@ typealias HelmPreActionHandler = (HelmViewController) -> Void
 
 @objc(HelmManager)
 open class HelmManager: NSObject {
-    static let shared = HelmManager()
-    static var branding: Brand?
-    open var bridge: RCTBridge!
-    open var rootViewController: UIViewController?
+
+    public static let shared = HelmManager()
+    public static var branding: Brand?
+    public var bridge: RCTBridge!
+    
+    public var onReactLoginComplete: () -> Void = {}
+    
+    @objc
+    public func loginComplete() {
+        onReactLoginComplete()
+    }
+
     private var viewControllers = NSMapTable<NSString, HelmViewController>(keyOptions: .strongMemory, valueOptions: .weakMemory)
     private(set) var defaultScreenConfiguration: [ModuleName: [String: Any]] = [:]
     fileprivate(set) var masterModules = Set<ModuleName>()
@@ -59,7 +66,7 @@ open class HelmManager: NSObject {
         nativeViewControllerFactories[moduleName] = (factory, presentation)
     }
 
-    func register<T: HelmViewController>(screen: T) where T: HelmScreen {
+    func register<T: HelmViewController>(screen: T) {
         viewControllers.setObject(screen, forKey: screen.screenInstanceID as NSString)
     }
     
@@ -196,7 +203,7 @@ open class HelmManager: NSObject {
             
             var toPresent: UIViewController = viewController
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController, stuff.customPresentation == nil {
-                toPresent = UINavigationController(rootViewController: viewController)
+                toPresent = HelmNavigationController(rootViewController: viewController)
             }
             
             configureModalProps(for: toPresent)
@@ -214,7 +221,7 @@ open class HelmManager: NSObject {
             toPresent = vc
             helmVC = vc
             if let embedInNavigationController: Bool = options["embedInNavigationController"] as? Bool, embedInNavigationController {
-                toPresent = UINavigationController(rootViewController: vc)
+                toPresent = HelmNavigationController(rootViewController: vc)
             }
             
             configureModalProps(for: toPresent)
@@ -242,7 +249,7 @@ open class HelmManager: NSObject {
         })
     }
     
-    func traitCollection(_ screenInstanceID: String, moduleName: String, callback: @escaping RCTResponseSenderBlock) {
+    public func traitCollection(_ screenInstanceID: String, moduleName: String, callback: @escaping RCTResponseSenderBlock) {
         var top = topMostViewController()
         //  FIXME: - fix sourceController method, something named more appropriate
         if let svc = top as? HelmSplitViewController, let sourceController = svc.sourceController(moduleName: moduleName) {
@@ -272,16 +279,12 @@ open class HelmManager: NSObject {
         showLoadingState()
     }
     
-    open func initTabs() {
-        let tabs = RootTabBarController(branding: HelmManager.branding)
-        rootViewController = tabs
-        UIApplication.shared.keyWindow?.rootViewController = tabs
-    }
-    
     open func showLoadingState() {
+        if UIApplication.shared.keyWindow?.rootViewController is LoadingStateViewController {
+            return
+        }
         cleanup()
         let controller = LoadingStateViewController()
-        rootViewController = controller
         UIApplication.shared.keyWindow?.rootViewController = controller
     }
     
@@ -297,7 +300,6 @@ open class HelmManager: NSObject {
         }
         viewControllers.removeAllObjects()
         dismissAllModals(["animated": false])
-        rootViewController = nil
         UIApplication.shared.keyWindow?.rootViewController = UIViewController()
     }
 }
@@ -325,7 +327,7 @@ extension HelmManager {
 
 extension HelmManager {
     open func topMostViewController() -> UIViewController? {
-        return rootViewController?.topMostViewController()
+        return UIApplication.shared.keyWindow?.rootViewController?.topMostViewController()
     }
 
     open func topNavigationController() -> UINavigationController? {

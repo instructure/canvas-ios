@@ -2,15 +2,15 @@
 // Copyright (C) 2016-present Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// it under the terms of the GNU General open License as published by
 // the Free Software Foundation, version 3 of the License.
 //
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
+// GNU General open License for more details.
 //
-// You should have received a copy of the GNU General Public License
+// You should have received a copy of the GNU General open License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
@@ -27,7 +27,7 @@ class HelmSplitViewControllerWrapper: UIViewController {
     }
 }
 
-class HelmSplitViewController: UISplitViewController {
+open class HelmSplitViewController: UISplitViewController {
 
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -53,7 +53,7 @@ class HelmSplitViewController: UISplitViewController {
 }
 
 extension HelmSplitViewController: UISplitViewControllerDelegate {
-    public func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
+    open func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
         if svc.displayMode == .primaryOverlay || svc.displayMode == .primaryHidden {
             if let nav = svc.viewControllers.last as? UINavigationController {
                 nav.topViewController?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem
@@ -69,7 +69,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         }
     }
 
-    public func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
+    open func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         if let nav = secondaryViewController as? UINavigationController {
             if let _ = nav.topViewController as? EmptyViewController {
                 return true
@@ -84,7 +84,7 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
         return false
     }
     
-    func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
+    open func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
         if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)

@@ -27,11 +27,13 @@ import SoEdventurous
 import CanvasKeymaster
 import Fabric
 import Crashlytics
-import AttendanceLE
+import CanvasCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let loginConfig = LoginConfiguration(mobileVerifyName: "iCanvas", logo: #imageLiteral(resourceName: "login_logo"))
+    var session: Session?
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if unitTesting {
@@ -114,11 +116,13 @@ extension AppDelegate {
     
     func postLaunchSetup() {
         PSPDFKit.license()
-        self.setupCrashlytics()
+        setupCrashlytics()
+        prepareReactNative()
         Analytics.prepare()
         NetworkMonitor.engage()
-        CBILogger.install(LoginConfiguration.sharedConfiguration.logFileManager)
+        CBILogger.install(loginConfig.logFileManager)
         Brand.current().apply(self.window!)
+        excludeHelmInBranding()
         UINavigationBar.appearance().barStyle = .black
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
@@ -129,29 +133,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     func prepareTheKeymaster() {
-        TheKeymaster?.delegate = LoginConfiguration.sharedConfiguration
-
-        Session.logoutSignalProducer
-            .startWithValues(didLogout)
-
-        Session.loginSignalProducer
-            .startWithValues(didLogin)
-    }
-    
-    func didLogin(_ session: Session) {
-        LegacyModuleProgressShim.observeProgress(session)
-        ModuleItem.beginObservingProgress(session)
-        ConversationUpdater.shared().updateUnreadConversationCount()
-        CKCanvasAPI.updateCurrentAPI() // set's currenAPI from CKIClient.currentClient()
-        
-        let root = rootViewController(session)
-        addClearCacheGesture(root.view)
-
-        window?.rootViewController = root
-    }
-    
-    func didLogout(_ domainPicker: UIViewController) {
-        window?.rootViewController = domainPicker
+        TheKeymaster?.delegate = loginConfig
     }
     
     func addClearCacheGesture(_ view: UIView) {
@@ -252,5 +234,55 @@ extension AppDelegate {
         
         Router.shared().openCanvasURL(url)
         return true
+    }
+}
+
+import React
+
+extension AppDelegate: RCTBridgeDelegate {
+    func prepareReactNative() {
+        NativeLoginManager.shared().delegate = self
+        HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
+        HelmManager.shared.onReactLoginComplete = {
+            guard let session = self.session else {
+                return
+            }
+
+            let root = rootViewController(session)
+            self.addClearCacheGesture(root.view)
+            self.window?.rootViewController = root
+        }
+    }
+    
+    func excludeHelmInBranding() {
+        let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [HelmNavigationController.self])
+        appearance.barTintColor = nil
+        appearance.tintColor = nil
+        appearance.titleTextAttributes = nil
+    }
+    
+    func sourceURL(for bridge: RCTBridge!) -> URL! {
+        let url = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index.ios", fallbackResource: nil)
+        return url
+    }
+}
+
+extension AppDelegate: NativeLoginManagerDelegate {
+    func didLogin(_ client: CKIClient) {
+        let session = client.authSession
+        self.session = session
+        
+        LegacyModuleProgressShim.observeProgress(session)
+        ModuleItem.beginObservingProgress(session)
+        ConversationUpdater.shared().updateUnreadConversationCount()
+        CKCanvasAPI.updateCurrentAPI()
+
+        if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
+            HelmManager.branding = Brand(webPayload: brandingInfo)
+        }
+    }
+    
+    func didLogout(_ controller: UIViewController) {
+        self.window?.rootViewController = controller
     }
 }
