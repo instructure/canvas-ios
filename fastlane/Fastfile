@@ -44,9 +44,11 @@ FRAMEWORKS_SCHEME  = 'EverythingBagel'
 FRAMEWORKS_PROJECT = 'Frameworks/EverythingBagel/EverythingBagel.xcodeproj'
 
 platform :ios do
-  def install_native_deps
+  def delete_untracked_and_install_deps
     FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/node_modules/')
     FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/ios/build')
+
+    puts `cd .. && git clean -dfx`
 
     clear_derived_data
     clean_cocoapods_cache
@@ -197,9 +199,9 @@ platform :ios do
   ############
   # Generic
 
-  desc 'Update dependencies'
-  lane :deps do
-    install_native_deps
+  desc 'Delete untracked code and install deps'
+  lane :delete do
+    delete_untracked_and_install_deps
   end
 
   desc 'Parent.app EarlGrey build-for-testing'
