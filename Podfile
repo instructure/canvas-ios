@@ -330,7 +330,18 @@ end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
-    next unless target.name == 'CWStatusBarNotification' || target.name == 'SVProgressHUD' || target.name == 'BugsnagReactNative' || target.name == 'RCTSFSafariViewController' || target.name == 'react-native-camera' || target.name == 'react-native-mail' || target.name == 'React' || target.name == 'react-native-document-picker' || target.name == 'react-native-wkwebview'
+    usesNonAppExAPI = %w[
+      CWStatusBarNotification
+      SVProgressHUD
+      BugsnagReactNative
+      RCTSFSafariViewController
+      react-native-camera
+      react-native-mail
+      React
+      react-native-document-picker
+      react-native-wkwebview
+    ]
+    next unless usesNonAppExAPI.include? target.name
     puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
