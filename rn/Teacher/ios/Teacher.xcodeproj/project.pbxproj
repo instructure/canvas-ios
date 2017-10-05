@@ -46,14 +46,14 @@
 		3B2D87591F5718AA001E3252 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; };
 		3B2D875A1F5718AA001E3252 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B2D872A1F571471001E3252 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3B51311F1F6AFAD1003C534F /* AttendanceLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5812EA1EC4F18500173C37 /* HelmTests.swift */; };
 		3B9D72859115B817CD00CD83 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ECA86954393EA402EE37DE /* Data.swift */; };
 		3C708BCABCD3A54EA61B56BD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25CB6D78220C5D55EEF127 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNotSubmittedDonut.swift */; };
-		436C75F340B454FEE823CF4F /* EarlGrey.framework in EarlGrey Copy Files */ = {isa = PBXBuildFile; fileRef = D755363065723C5524C77F2A /* EarlGrey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4732EAFCE06B1CE4F70702B /* InboxPageTest_testInboxPage_displaysPageObjects.swift */; };
 		451E895B8112D07EB318A7FC /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635ABBA39A7126FB8433FEE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmittedDonut.swift */; };
 		462B9DCCC3A10C7F30AE8168 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 329DC2282549635CBA9EDD0B /* Course.swift */; };
 		491EF3111F2BCF19002B6C76 /* AttendanceLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */; };
+		49295B4D1F86CC8C001DAB1F /* SoGrey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49295B4C1F86CC81001DAB1F /* SoGrey.framework */; };
+		49295B4E1F86CD37001DAB1F /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		4943ECB51E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; };
 		4943ECB61E5CEFBD001DC5B5 /* CanvasKeymaster.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4943ECB71E5CEFBD001DC5B5 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */; };
@@ -104,7 +104,6 @@
 		AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1291F78B67D06C4FDFE58FFA /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift */; };
 		B05F743AE35D1A455FF83813 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22773B52A1AD2EBB85DC5819 /* AllCoursesListPageTest_testAllCoursesListPage_displaysPageObjects.swift */; };
 		B170B0661F58756E00B92700 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B170B0651F58756E00B92700 /* SoLazy.framework */; };
-		B704C165D67D6B901C48047E /* EarlGrey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */; };
 		BE6A9F0A2C765D09BCA16023 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF7526D87BCDDCAB4075E5E /* Conversation.swift */; };
 		BE89F683114891EC19D4AD4E /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9761AECD1CE112E8E4E9F30D /* EditCoursesPageTest_testEditCoursesPage_favoriteCourse.swift */; };
 		BF691547C3F6A0433A07B2AD /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8420872227378302E813DF7 /* AssignmentListPageTest_testAssignmentListPage_displaysNoAssignmentsView.swift */; };
@@ -191,17 +190,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6E711B6A8C5AC4BEB43920AA /* EarlGrey Copy Files */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(TEST_HOST)/../";
-			dstSubfolderSpec = 0;
-			files = (
-				436C75F340B454FEE823CF4F /* EarlGrey.framework in EarlGrey Copy Files */,
-			);
-			name = "EarlGrey Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -352,13 +340,13 @@
 		3B527DFA5898B0D5DD57EDD1 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift; sourceTree = "<group>"; };
 		3B5812C11EC4F15900173C37 /* TeacherUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B5812C51EC4F15900173C37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B5812EA1EC4F18500173C37 /* HelmTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
 		3B5813121EC4F64400173C37 /* bridging-header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "bridging-header.h"; sourceTree = "<group>"; };
 		3E479910A81A38C8833E5314 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = models/Page.swift; sourceTree = "<group>"; };
 		42A161BC86548CE0BB3E1AC7 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; path = data/ComposeNewMessageTest/ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift; sourceTree = "<group>"; };
 		484C40873F5A33402D194B04 /* GradingPeriod.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GradingPeriod.swift; path = models/GradingPeriod.swift; sourceTree = "<group>"; };
 		491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		491F8D8F1CB250C5B1DF1E8D /* AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; path = data/AllCoursesListPageTest/AllCoursesListPageTest_testAllCoursesListPage_displaysCourseList.swift; sourceTree = "<group>"; };
+		49295B4C1F86CC81001DAB1F /* SoGrey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoGrey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAB1E5CEFAC001DC5B5 /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECAC1E5CEFAC001DC5B5 /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943ECC91E5D0133001DC5B5 /* Teacher.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Teacher.entitlements; path = Teacher/Teacher.entitlements; sourceTree = "<group>"; };
@@ -393,7 +381,6 @@
 		86FF3DE89359E019540B64CA /* Assignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Assignment.swift; path = models/Assignment.swift; sourceTree = "<group>"; };
 		88A75DDE30E7DF0E48B12475 /* CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; path = data/CourseSettingsPageTest/CourseSettingsPageTest_testSettingsPage_displaysPageObjects.swift; sourceTree = "<group>"; };
 		8E7F715417106A8B2328DE09 /* CourseListPageTest_testCourseListPage_displaysList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseListPageTest_testCourseListPage_displaysList.swift; path = data/CourseListPageTest/CourseListPageTest_testCourseListPage_displaysList.swift; sourceTree = "<group>"; };
-		91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EarlGrey.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		9220704E0DB0FD86DAA3F41B /* GroupCategory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GroupCategory.swift; path = models/GroupCategory.swift; sourceTree = "<group>"; };
 		922B8388DD687B870A89727F /* EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; path = data/EditCoursesPageTest/EditCoursesPageTest_testEditCoursesPage_displaysPageObjects.swift; sourceTree = "<group>"; };
@@ -487,10 +474,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49295B4E1F86CD37001DAB1F /* CanvasCore.framework in Frameworks */,
 				F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */,
 				F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */,
 				F99A8E8E1F06C1080032449B /* CoreVideo.framework in Frameworks */,
 				F99A8E8D1F06C1010032449B /* AVFoundation.framework in Frameworks */,
+				49295B4D1F86CC8C001DAB1F /* SoGrey.framework in Frameworks */,
 				F99A8E8C1F06C0FA0032449B /* CoreMedia.framework in Frameworks */,
 				F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */,
 				F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */,
@@ -582,7 +571,6 @@
 			children = (
 				2C65E0C31F214822008C6C95 /* InfoPlist.strings */,
 				3B5812C51EC4F15900173C37 /* Info.plist */,
-				3B5812EA1EC4F18500173C37 /* HelmTests.swift */,
 				3B5813121EC4F64400173C37 /* bridging-header.h */,
 			);
 			path = TeacherUnitTests;
@@ -621,6 +609,7 @@
 		4943EC8A1E5CEF93001DC5B5 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				49295B4C1F86CC81001DAB1F /* SoGrey.framework */,
 				497CA7321F82ACF400501613 /* CanvasCore.framework */,
 				3B2D872A1F571471001E3252 /* SoLazy.framework */,
 				491EF2E61F2BCF02002B6C76 /* AttendanceLE.framework */,
@@ -663,7 +652,6 @@
 				3B379781808A96719F53B283 /* data */,
 				A8E2B112896154A95919D6FF /* models */,
 				F99A8E911F06C1450032449B /* bridge.h */,
-				91D08D86C06F8BC30845CDD2 /* EarlGrey.swift */,
 			);
 			path = TeacherUITests;
 			sourceTree = "<group>";
@@ -894,7 +882,6 @@
 				61B5372C1E7869F5000FEABB /* CopyFiles */,
 				73E9BB7D3716B4C23CA578E2 /* [CP] Embed Pods Frameworks */,
 				BF300A9E217237A7707FC6F6 /* [CP] Copy Pods Resources */,
-				6E711B6A8C5AC4BEB43920AA /* EarlGrey Copy Files */,
 			);
 			buildRules = (
 			);
@@ -1173,7 +1160,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../../../Pods/Target Support Files/Pods-defaults-common_ui_tests-TeacherUITests/Pods-defaults-common_ui_tests-TeacherUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		B1C60D611F1D82E800F7902C /* Strip PSPDFKit */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1335,7 +1321,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B5812EB1EC4F18500173C37 /* HelmTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1432,7 +1417,6 @@
 				3B157F535719FD93105E8EC9 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift in Sources */,
 				54F1E2CE1143A2D662FFEEFA /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectedCourse.swift in Sources */,
 				35C24FD96D4AC6ACD54942E5 /* InboxPageTest_testInboxPage_displaysNewMessagePage.swift in Sources */,
-				B704C165D67D6B901C48047E /* EarlGrey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1764,15 +1748,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3088A0FC28C5D205A6F7EBBA /* Pods-defaults-common_ui_tests-TeacherUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
-				HEADER_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1790,7 +1775,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1ED095C0D4A9D20D53D1F6BD /* Pods-defaults-common_ui_tests-TeacherUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1798,8 +1782,10 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = B6333T4PXQ;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../../ExternalFrameworks";
-				HEADER_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
