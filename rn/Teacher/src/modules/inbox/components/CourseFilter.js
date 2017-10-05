@@ -67,6 +67,7 @@ export default class CourseFilter extends Component<any, CourseFilterProps, any>
               <View style={styles.header}>
                 <Heading1
                   style={styles.headerTitle}
+                  numberOfLines={1}
                   >
                   { title }
                 </Heading1>
@@ -111,11 +112,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   headerTitle: {
+    flex: 1,
     fontSize: 20,
     fontWeight: '600',
     color: '#2d3b44',
   },
   filterButton: {
     marginBottom: 1,
+    marginLeft: global.style.defaultPadding / 2,
+    flexShrink: 0,
   },
 })

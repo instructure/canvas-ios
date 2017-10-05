@@ -362,6 +362,7 @@ exports[`filters conversations based on course 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -374,6 +375,7 @@ exports[`filters conversations based on course 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -398,7 +400,9 @@ exports[`filters conversations based on course 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "flexShrink": 0,
             "marginBottom": 1,
+            "marginLeft": 8,
             "opacity": 1,
           }
         }
@@ -1085,6 +1089,7 @@ exports[`refreshed component 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -1097,6 +1102,7 @@ exports[`refreshed component 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -1123,7 +1129,9 @@ exports[`refreshed component 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "flexShrink": 0,
             "marginBottom": 1,
+            "marginLeft": 8,
             "opacity": 1,
           }
         }
@@ -1655,6 +1663,7 @@ exports[`renders correctly 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -1667,6 +1676,7 @@ exports[`renders correctly 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -1693,7 +1703,9 @@ exports[`renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "flexShrink": 0,
             "marginBottom": 1,
+            "marginLeft": 8,
             "opacity": 1,
           }
         }
@@ -2627,6 +2639,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -2639,6 +2652,7 @@ exports[`renders the activity indicator when loading conversations 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -2665,7 +2679,9 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "flexShrink": 0,
             "marginBottom": 1,
+            "marginLeft": 8,
             "opacity": 1,
           }
         }
@@ -3093,6 +3109,7 @@ exports[`renders the starred empty state 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -3105,6 +3122,7 @@ exports[`renders the starred empty state 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -3131,7 +3149,9 @@ exports[`renders the starred empty state 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "flexShrink": 0,
             "marginBottom": 1,
+            "marginLeft": 8,
             "opacity": 1,
           }
         }
@@ -3655,6 +3675,7 @@ exports[`renders with an empty state 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -3667,6 +3688,7 @@ exports[`renders with an empty state 1`] = `
             },
             Object {
               "color": "#2d3b44",
+              "flex": 1,
               "fontSize": 20,
               "fontWeight": "600",
             },
@@ -3693,7 +3715,9 @@ exports[`renders with an empty state 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "flexShrink": 0,
             "marginBottom": 1,
+            "marginLeft": 8,
             "opacity": 1,
           }
         }

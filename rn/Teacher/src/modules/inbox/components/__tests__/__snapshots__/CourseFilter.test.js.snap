@@ -27,6 +27,7 @@ exports[`CourseFilter renders correctly 1`] = `
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      numberOfLines={1}
       style={
         Array [
           Object {
@@ -39,6 +40,7 @@ exports[`CourseFilter renders correctly 1`] = `
           },
           Object {
             "color": "#2d3b44",
+            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -53,7 +55,9 @@ exports[`CourseFilter renders correctly 1`] = `
       onPress={[Function]}
       style={
         Object {
+          "flexShrink": 0,
           "marginBottom": 1,
+          "marginLeft": 8,
         }
       }
       testID="inbox.filterByCourse"

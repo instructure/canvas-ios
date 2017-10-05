@@ -216,6 +216,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   errorText: {
-    padding: global.defaultPadding,
+    padding: global.style.defaultPadding,
   },
 })
