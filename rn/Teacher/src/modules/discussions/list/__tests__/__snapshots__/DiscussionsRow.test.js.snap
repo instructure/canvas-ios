@@ -369,6 +369,7 @@ exports[`DiscussionsRow renders 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -380,7 +381,7 @@ exports[`DiscussionsRow renders 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [
@@ -795,6 +796,7 @@ exports[`DiscussionsRow renders published 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -806,7 +808,7 @@ exports[`DiscussionsRow renders published 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [
@@ -1221,6 +1223,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -1232,7 +1235,7 @@ exports[`DiscussionsRow renders unpublished 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [
@@ -1602,6 +1605,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -1613,7 +1617,7 @@ exports[`DiscussionsRow renders with no assignment 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [
@@ -2028,6 +2032,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -2039,7 +2044,7 @@ exports[`DiscussionsRow renders with no unread count 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [
@@ -2442,6 +2447,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -2453,7 +2459,7 @@ exports[`DiscussionsRow renders with points possible 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [
@@ -2834,6 +2840,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                   "flexDirection": "column",
                   "height": 43,
                   "justifyContent": "center",
+                  "marginRight": -8,
                   "marginTop": -15,
                   "width": 43,
                 }
@@ -2845,7 +2852,7 @@ exports[`DiscussionsRow renders without points possible 1`] = `
                 source={1}
                 style={
                   Object {
-                    "alignSelf": "flex-end",
+                    "alignSelf": "center",
                     "height": 18,
                     "tintColor": "#000",
                     "transform": Array [

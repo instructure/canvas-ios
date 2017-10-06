@@ -842,6 +842,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -853,7 +854,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -1270,6 +1271,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -1281,7 +1283,7 @@ exports[`DiscussionsList renders discussions 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -1959,6 +1961,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -1970,7 +1973,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -2353,6 +2356,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -2364,7 +2368,7 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -3180,6 +3184,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -3191,7 +3196,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -3608,6 +3613,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -3619,7 +3625,7 @@ exports[`DiscussionsList renders in correct order 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -4444,6 +4450,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -4455,7 +4462,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [
@@ -4929,6 +4936,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                             "flexDirection": "column",
                             "height": 43,
                             "justifyContent": "center",
+                            "marginRight": -8,
                             "marginTop": -15,
                             "width": 43,
                           }
@@ -4940,7 +4948,7 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
                           source={1}
                           style={
                             Object {
-                              "alignSelf": "flex-end",
+                              "alignSelf": "center",
                               "height": 18,
                               "tintColor": "#000",
                               "transform": Array [

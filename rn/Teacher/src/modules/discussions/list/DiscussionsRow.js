@@ -228,9 +228,10 @@ const style = StyleSheet.create({
     width: 43,
     height: 43,
     marginTop: -15,
+    marginRight: -global.style.defaultPadding / 2,
   },
   kabob: {
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
     width: 18,
     height: 18,
     tintColor: '#000',
