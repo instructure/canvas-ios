@@ -264,13 +264,15 @@ export class DiscussionEdit extends Component<any, Props, any> {
               onValueChange={this._valueChanged('discussion_type', b => b ? 'threaded' : 'side_comment')}
               identifier='discussions.edit.discussion_type.switch'
             />
-            <RowWithSwitch
+            {this.props.discussionID &&
+             <RowWithSwitch
               title={i18n('Subscribe')}
               border='bottom'
               value={this.state.subscribed}
               onValueChange={this._subscribe}
               identifier='discussions.edit.subscribed.switch'
             />
+            }
             <RowWithSwitch
               title={i18n('Users must post before seeing replies')}
               border='bottom'
