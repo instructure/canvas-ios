@@ -133,6 +133,12 @@
 		F79F609F1EFDA57200ED594E /* TeacherTest+FormattedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */; };
 		F7A4A8DA1EDE2A5400809880 /* AllCoursesListPageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */; };
 		F7A4A8FA1EDE2B6100809880 /* AllCoursesListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */; };
+		F93595141F8705B700DBF1B5 /* CgRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595101F8705B600DBF1B5 /* CgRPC.framework */; };
+		F93595151F8705B700DBF1B5 /* Czlib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595111F8705B600DBF1B5 /* Czlib.framework */; };
+		F93595161F8705B700DBF1B5 /* BoringSSL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595121F8705B600DBF1B5 /* BoringSSL.framework */; };
+		F93595171F8705B700DBF1B5 /* gRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F93595131F8705B700DBF1B5 /* gRPC.framework */; };
+		F93595191F87065900DBF1B5 /* soseedy.client.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */; };
+		F935951B1F87066C00DBF1B5 /* soseedy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */; };
 		F99A8E671F06C0DA0032449B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDE01E735CA50096592C /* AssetsLibrary.framework */; };
 		F99A8E8A1F06C0EC0032449B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFC1E735CAC0096592C /* CoreTelephony.framework */; };
 		F99A8E8B1F06C0F40032449B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50EDFE1E735CB10096592C /* CoreText.framework */; };
@@ -431,6 +437,12 @@
 		F79F609E1EFDA57200ED594E /* TeacherTest+FormattedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TeacherTest+FormattedString.swift"; sourceTree = "<group>"; };
 		F7A4A8D91EDE2A5400809880 /* AllCoursesListPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPageTest.swift; sourceTree = "<group>"; };
 		F7A4A8F91EDE2B6100809880 /* AllCoursesListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCoursesListPage.swift; sourceTree = "<group>"; };
+		F93595101F8705B600DBF1B5 /* CgRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CgRPC.framework; path = ../../../ExternalFrameworks/CgRPC.framework; sourceTree = "<group>"; };
+		F93595111F8705B600DBF1B5 /* Czlib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Czlib.framework; path = ../../../ExternalFrameworks/Czlib.framework; sourceTree = "<group>"; };
+		F93595121F8705B600DBF1B5 /* BoringSSL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoringSSL.framework; path = ../../../ExternalFrameworks/BoringSSL.framework; sourceTree = "<group>"; };
+		F93595131F8705B700DBF1B5 /* gRPC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = gRPC.framework; path = ../../../ExternalFrameworks/gRPC.framework; sourceTree = "<group>"; };
+		F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soseedy.client.pb.swift; sourceTree = "<group>"; };
+		F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = soseedy.pb.swift; sourceTree = "<group>"; };
 		F99A8E911F06C1450032449B /* bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
 		F9D224681EB7C51000BB0990 /* EditCoursesPageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCoursesPageTest.swift; sourceTree = "<group>"; };
 		FA10A579F7F9ADB535EC6CAD /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; path = data/AssignmentDetailsPageTest/AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineUrl.swift; sourceTree = "<group>"; };
@@ -474,6 +486,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F93595141F8705B700DBF1B5 /* CgRPC.framework in Frameworks */,
+				F93595151F8705B700DBF1B5 /* Czlib.framework in Frameworks */,
+				F93595161F8705B700DBF1B5 /* BoringSSL.framework in Frameworks */,
+				F93595171F8705B700DBF1B5 /* gRPC.framework in Frameworks */,
 				49295B4E1F86CD37001DAB1F /* CanvasCore.framework in Frameworks */,
 				F99A8E901F06C1150032449B /* SystemConfiguration.framework in Frameworks */,
 				F99A8E8F1F06C10F0032449B /* QuartzCore.framework in Frameworks */,
@@ -514,6 +530,10 @@
 		2C50EDDF1E735CA50096592C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F93595121F8705B600DBF1B5 /* BoringSSL.framework */,
+				F93595101F8705B600DBF1B5 /* CgRPC.framework */,
+				F93595111F8705B600DBF1B5 /* Czlib.framework */,
+				F93595131F8705B700DBF1B5 /* gRPC.framework */,
 				2CDD85F41F1D6D3800FD1CF8 /* Crashlytics.framework */,
 				2CDD85F51F1D6D3800FD1CF8 /* Fabric.framework */,
 				61B536A41E774B70000FEABB /* EarlGrey.framework */,
@@ -652,6 +672,8 @@
 				3B379781808A96719F53B283 /* data */,
 				A8E2B112896154A95919D6FF /* models */,
 				F99A8E911F06C1450032449B /* bridge.h */,
+				F93595181F87065900DBF1B5 /* soseedy.client.pb.swift */,
+				F935951A1F87066C00DBF1B5 /* soseedy.pb.swift */,
 			);
 			path = TeacherUITests;
 			sourceTree = "<group>";
@@ -1397,6 +1419,7 @@
 				A94ACBBB553790F98F7C9EE5 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoInstructionsMessage.swift in Sources */,
 				81B7EA2B7B492D6C3CB4B65B /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysCorrectDetails.swift in Sources */,
 				ACE0FB9C60C46429FCB245BE /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysNoFromDate.swift in Sources */,
+				F93595191F87065900DBF1B5 /* soseedy.client.pb.swift in Sources */,
 				BFA74EE1DDF1A40F2A5AC5B7 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeNone.swift in Sources */,
 				750B65D07ECFE3D90B2B6095 /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnlineTextEntry.swift in Sources */,
 				65F299034AD22220D4F1160A /* AssignmentDetailsPageTest_testAssignmentDetailsPage_displaysSubmissionTypeOnPaper.swift in Sources */,
@@ -1412,6 +1435,7 @@
 				87F264330A355494AE61743A /* AssignmentListPageTest_testAssignmentListPage_displaysGradingPeriods.swift in Sources */,
 				45042BB4C5FDB80C734CCB6B /* InboxPageTest_testInboxPage_displaysPageObjects.swift in Sources */,
 				AEEDEEA8860ACD359CC4E956 /* AssignmentsListPageTest_testAssignmentsListPage_displaysPageObjects.swift in Sources */,
+				F935951B1F87066C00DBF1B5 /* soseedy.pb.swift in Sources */,
 				618D511E4EB75555E78C7A6B /* AssignmentsListPageTest_testAssignmentsListPage_displaysNoAssignmentsView.swift in Sources */,
 				974B8DF683AD12FE51E4AF8A /* AssignmentsListPageTest_testAssignmentsListPage_displaysAssignment.swift in Sources */,
 				3B157F535719FD93105E8EC9 /* ComposeNewMessageTest_testComposeNewMessagePage_displaysSelectCoursePage.swift in Sources */,
@@ -1759,8 +1783,8 @@
 					"$(SRCROOT)/../../../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/../../../ExternalFrameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1787,8 +1811,8 @@
 					"$(SRCROOT)/../../../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = TeacherUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/../../../ExternalFrameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.TeacherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = TeacherUITests/bridge.h;
