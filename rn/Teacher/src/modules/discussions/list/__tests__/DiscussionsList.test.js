@@ -125,25 +125,25 @@ describe('DiscussionsList', () => {
 
   it('Will open an action sheet and press pin/unpin', () => {
     const input = template.discussion({ pinned: false, locked: false })
-    const expected = template.discussion({ pinned: true, locked: false })
+    const expected = { id: input.id, pinned: true, locked: false }
     testActionSheet(input, expected, 0)
   })
 
   it('Will open an action sheet and press open/close for comments', () => {
     const input = template.discussion({ pinned: false, locked: false })
-    const expected = template.discussion({ pinned: false, locked: true })
+    const expected = { id: input.id, pinned: false, locked: true }
     testActionSheet(input, expected, 1)
   })
 
   it('Will open an action sheet and press open/close for comments when pinned', () => {
     const input = template.discussion({ pinned: true, locked: false })
-    const expected = template.discussion({ pinned: false, locked: true })
+    const expected = { id: input.id, pinned: false, locked: true }
     testActionSheet(input, expected, 1)
   })
 
   it('Will open an action sheet and press pinned when closed for comments', () => {
     const input = template.discussion({ pinned: false, locked: true })
-    const expected = template.discussion({ pinned: true, locked: false })
+    const expected = { id: input.id, pinned: true, locked: false }
     testActionSheet(input, expected, 0)
   })
 

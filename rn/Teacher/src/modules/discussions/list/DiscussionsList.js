@@ -111,8 +111,8 @@ export class DiscussionsList extends Component<any, Props, any> {
         this._confirmDeleteDiscussion(discussion)
         return
       }
-      let updatedDiscussion = Object.assign({}, discussion)
 
+      let updatedDiscussion = { id: discussion.id, locked: discussion.locked, pinned: discussion.pinned }
       if (button === 0) { updatedDiscussion.pinned = !updatedDiscussion.pinned; updatedDiscussion.locked = false }
       if (button === 1) { updatedDiscussion.locked = !updatedDiscussion.locked; updatedDiscussion.pinned = false }
 
