@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0524CC1F87E07A00B182B9 /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524CB1F87E07700B182B9 /* SoAnnotated.framework */; };
 		2C2D7AD71F7301D000207CE9 /* Collection+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D7AD61F7301D000207CE9 /* Collection+Core.swift */; };
 		2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */; };
 		2C34211D1F7409CF00D8E158 /* components.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C34211A1F74099400D8E158 /* components.plist */; };
@@ -20,6 +21,11 @@
 		2CAF1B361F72B173007225DF /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B341F72B036007225DF /* secrets.plist */; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
 		2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3C1F72B295007225DF /* Secrets.swift */; };
+		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
+		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
+		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
+		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
+		2CE40CA11F87D3EF00ECEACB /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE40CA01F87D3D200ECEACB /* PSPDFKit.framework */; };
 		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
 		49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */; };
 		49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDE1F846FCB009C8F8E /* CanvasKit.framework */; };
@@ -74,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0524CB1F87E07700B182B9 /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C2D7AD61F7301D000207CE9 /* Collection+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Core.swift"; sourceTree = "<group>"; };
 		2C34211A1F74099400D8E158 /* components.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = components.plist; sourceTree = "<group>"; };
 		2C34211B1F74099400D8E158 /* OSSAttributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSSAttributionViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B3B1F72B294007225DF /* feature_toggles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = feature_toggles.plist; sourceTree = "<group>"; };
 		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		2CE40CA01F87D3D200ECEACB /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		49295B4F1F86D3B2001DAB1F /* HelmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
 		49383CDE1F846FCB009C8F8E /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +156,8 @@
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
 				49383CE71F848652009C8F8E /* SoLazy.framework in Frameworks */,
 				5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */,
+				2CE40CA11F87D3EF00ECEACB /* PSPDFKit.framework in Frameworks */,
+				2C0524CC1F87E07A00B182B9 /* SoAnnotated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +188,7 @@
 				49383CDE1F846FCB009C8F8E /* CanvasKit.framework */,
 				2C60495E1F72B9CE00252BC5 /* SoLazy.framework */,
 				7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */,
+				2C0524CB1F87E07700B182B9 /* SoAnnotated.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -193,6 +204,7 @@
 		2CAF1B0A1F72AEDB007225DF = {
 			isa = PBXGroup;
 			children = (
+				2CE40C9F1F87D3BF00ECEACB /* Dependencies */,
 				2CAF1B161F72AEDB007225DF /* CanvasCore */,
 				2CAF1B211F72AEDB007225DF /* CanvasCoreTests */,
 				2CAF1B151F72AEDB007225DF /* Products */,
@@ -259,6 +271,14 @@
 				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2CE40C9F1F87D3BF00ECEACB /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				2CE40CA01F87D3D200ECEACB /* PSPDFKit.framework */,
+			);
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 		49383CF41F849921009C8F8E /* Inbox */ = {
@@ -533,6 +553,7 @@
 				494AE0A41F843A09001A8F31 /* WebViewHacker.m in Sources */,
 				497CA76E1F82D19600501613 /* Helm.m in Sources */,
 				4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */,
+				2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */,
 				497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
 				497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */,
@@ -540,6 +561,7 @@
 				497CA76F1F82D19600501613 /* Helm.swift in Sources */,
 				494AE09C1F843A09001A8F31 /* HapticFeedback.m in Sources */,
 				497CA7721F82D19600501613 /* HelmNavigationViewController.swift in Sources */,
+				2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */,
 				497CA7741F82D19600501613 /* HelmViewController.swift in Sources */,
 				2C34211C1F7409CD00D8E158 /* OSSAttributionViewController.swift in Sources */,
 				497CA7781F82D19A00501613 /* UISplitViewControllerExtensions.swift in Sources */,
@@ -551,8 +573,10 @@
 				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
+				2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */,
 				2CAF17801F7AF61100EA2742 /* UIFont+Core.swift in Sources */,
 				494AE0A21F843A09001A8F31 /* ScrollViewDisablerManager.m in Sources */,
+				2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +726,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -728,6 +757,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

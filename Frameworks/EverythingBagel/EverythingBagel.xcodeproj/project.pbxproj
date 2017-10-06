@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		294C3CD253BF8C4663A3DFE9 /* Pods_defaults_EverythingBagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9B29E6B7F326A4D6F42F62 /* Pods_defaults_EverythingBagel.framework */; };
+		2C0524D71F87EDCA00B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */; };
+		2C0524D81F87EDCA00B182B9 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49AFAB311E09C18400522289 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2E1E09C17600522289 /* ReactiveSwift.framework */; };
 		49AFAB3C1E09C1F900522289 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB351E09C19D00522289 /* SoLazy.framework */; };
 		49AFAB3D1E09C1F900522289 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB351E09C19D00522289 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -60,6 +62,7 @@
 				49C98E0A1D922EA0006AF2FB /* TooLegit.framework in Embed Frameworks */,
 				49C98E021D922EA0006AF2FB /* CalendarKit.framework in Embed Frameworks */,
 				49C98E041D922EA0006AF2FB /* FileKit.framework in Embed Frameworks */,
+				2C0524D81F87EDCA00B182B9 /* PSPDFKit.framework in Embed Frameworks */,
 				49C98E081D922EA0006AF2FB /* PageKit.framework in Embed Frameworks */,
 				49AFAB6D1E0AE1BD00522289 /* SoProgressive.framework in Embed Frameworks */,
 				49C98E001D922EA0006AF2FB /* AssignmentKit.framework in Embed Frameworks */,
@@ -80,6 +83,7 @@
 /* Begin PBXFileReference section */
 		164C906EBD8A0A52B0884595 /* Pods-defaults-EverythingBagel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-EverythingBagel.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-EverythingBagel/Pods-defaults-EverythingBagel.debug.xcconfig"; sourceTree = "<group>"; };
 		1E9B29E6B7F326A4D6F42F62 /* Pods_defaults_EverythingBagel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_EverythingBagel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		3BBBD64A4B287A802DF679A0 /* Pods-EverythingBagel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EverythingBagel.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-EverythingBagel/Pods-EverythingBagel.release.xcconfig"; sourceTree = "<group>"; };
 		496268F61DAC44E400B45487 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AFAB2C1E09C16800522289 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +129,7 @@
 				49AFAB3C1E09C1F900522289 /* SoLazy.framework in Frameworks */,
 				49C98E091D922EA0006AF2FB /* TooLegit.framework in Frameworks */,
 				49AFAB4A1E09EC1800522289 /* Cartography.framework in Frameworks */,
+				2C0524D71F87EDCA00B182B9 /* PSPDFKit.framework in Frameworks */,
 				49AFAB4B1E09EC1800522289 /* SoPretty.framework in Frameworks */,
 				B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */,
 				49C98E011D922EA0006AF2FB /* CalendarKit.framework in Frameworks */,
@@ -150,6 +155,7 @@
 		49C98DD61D922837006AF2FB = {
 			isa = PBXGroup;
 			children = (
+				2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */,
 				49C98DF41D922853006AF2FB /* Dependencies */,
 				49C98DE11D922837006AF2FB /* EverythingBagel */,
 				49C98DE01D922837006AF2FB /* Products */,
@@ -372,6 +378,7 @@
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSimplify/SwiftSimplify.framework",
 				"${BUILT_PRODUCTS_DIR}/TBBModal/TBBModal.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
@@ -414,6 +421,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSimplify.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TBBModal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
@@ -555,6 +563,52 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BVLinearGradient\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CWStatusBarNotification\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Cartography\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DeviceKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Eureka\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FXKeychain\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Interactable\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSTokenField\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Mantle\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Marshal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Masonry\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PocketSVG\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RCTSFSafariViewController\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNAudio\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNDeviceInfo\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNFS\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNSound\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Reachability\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/React\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactNativeSearchBar\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveCocoa\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjC\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjCBridge\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftSimplify\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TBBModal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TPKeyboardAvoiding\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Yoga\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-blur\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-camera\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-document-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-image-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-mail\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-wkwebview\"",
+					"\"${PODS_ROOT}/Crashlytics/iOS\"",
+					"\"${PODS_ROOT}/Fabric/iOS\"",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = EverythingBagel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -570,6 +624,52 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BVLinearGradient\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CWStatusBarNotification\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Cartography\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DeviceKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Eureka\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FXKeychain\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Interactable\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSTokenField\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Mantle\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Marshal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Masonry\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PocketSVG\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RCTSFSafariViewController\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNAudio\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNDeviceInfo\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNFS\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNSound\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Reachability\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/React\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactNativeSearchBar\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveCocoa\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjC\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjCBridge\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftSimplify\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TBBModal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TPKeyboardAvoiding\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Yoga\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-blur\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-camera\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-document-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-image-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-mail\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-wkwebview\"",
+					"\"${PODS_ROOT}/Crashlytics/iOS\"",
+					"\"${PODS_ROOT}/Fabric/iOS\"",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = EverythingBagel/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

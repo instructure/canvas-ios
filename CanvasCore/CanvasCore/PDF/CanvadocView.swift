@@ -49,7 +49,7 @@ private func != <T>(lhs: T?, rhs: T?) -> Bool where T: Equatable {
     return !(lhs == rhs)
 }
 
-class CanvadocView: UIView {
+public class CanvadocView: UIView {
     
     weak var pdfViewController: PSPDFViewController?
     var bottomInset = CGFloat(0.0)
@@ -102,9 +102,9 @@ class CanvadocView: UIView {
         openInButton.isHidden = true
         openInButton.addTarget(self, action: #selector(openInButtonTapped), for: .touchUpInside)
     }
-    required init?(coder aDecoder: NSCoder) { fatalError("nope") }
+    required public init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if activityIndicator.superview == nil {
@@ -254,7 +254,7 @@ extension CanvadocView: PSPDFAnnotationStateManagerDelegate {
 }
 
 extension CanvadocView: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         if let filename = self.filename, let caches = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first {
             let fileURL = caches.appendingPathComponent(filename)
             if FileManager.default.fileExists(atPath: fileURL.relativePath) {

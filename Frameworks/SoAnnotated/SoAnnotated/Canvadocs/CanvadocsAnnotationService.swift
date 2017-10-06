@@ -45,15 +45,9 @@ struct PandaPushMetadata {
 
 typealias MetadataResult = Result<CanvadocsFileMetadata, NSError>
 typealias DocumentResult = Result<URL, NSError>
-typealias AnnotationsResult = Result<URL, NSError>
+typealias AnnotationsResult = Result<[CanvadocsAnnotation], NSError>
 typealias UpdateAnnotationsResult = Result<Bool, NSError>
 typealias DeleteAnnotationResult = Result<Bool, NSError>
-
-
-protocol PandaPushAnnotationUpdateHandler {
-    func annotationCreatedOrUpdated(_ annotation: XFDFAnnotation)
-    func annotationDeleted(_ annotation: XFDFAnnotation)
-}
 
 
 class CanvadocsAnnotationService: NSObject {
@@ -62,11 +56,17 @@ class CanvadocsAnnotationService: NSObject {
     fileprivate let baseURLString: String
     
     var metadata: CanvadocsFileMetadata? = nil
-    var pandaPushHandler: PandaPushAnnotationUpdateHandler? = nil
     
     fileprivate let clientId: String
     
-    fileprivate let parser = CanvadocsXFDFParser()
+    static let ISO8601MillisecondFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+        let tz = TimeZone(abbreviation:"GMT")
+        formatter.timeZone = tz
+        return formatter
+    }()
     
     init(sessionURL: URL) {
         self.sessionURL = sessionURL
@@ -176,113 +176,95 @@ class CanvadocsAnnotationService: NSObject {
         }
     }
     
+    
+    
     func getAnnotations(_ completed: @escaping (AnnotationsResult)->()) {
-        if let metadata = metadata {
-            let downloadTask = URLSession.shared.downloadTask(with: metadata.annotationMetadata.xfdfURL, completionHandler: { (temporaryURL, response, error) in
-                if let error = error {
-                    print("SO SAD - failed downloading xfdf annotations: \(error)")
-                    completed(Result.failure(error as NSError))
-                    return
-                } else {
-                    print("YAY - downloaded xfdf annotations")
-                    // Move the doc to a permanent location
-                    let fileManager = FileManager.default
-                    let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                    // TODO: unify the places we do this sorta thing
-                    let filename = "\(self.sessionURL.absoluteString.substring(from: self.sessionURL.absoluteString.characters.index(self.sessionURL.absoluteString.endIndex, offsetBy: -12)))_annots.xfdf"
-                    let copyURL = directoryURL.appendingPathComponent(filename)
-                    
-                    if fileManager.fileExists(atPath: copyURL.path) {
-                        do {
-                            try fileManager.removeItem(at: copyURL)
-                        } catch let error {
-                            print("Couldn't remove old annots file: \(error)")
-                        }
-                    }
-                    
+        let url = sessionURL.appendingPathComponent("annotations")
+        let request = URLRequest(url: url)
+        let completion: (Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
+            if let error = error {
+                print("SO SAD - failed fetching annotations: \(error)")
+                completed(Result.failure(error as NSError))
+                return
+            } else {
+                if let data = data {
                     do {
-                        if let temporaryURL = temporaryURL {
-                            try fileManager.copyItem(at: temporaryURL, to: copyURL)
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .custom { decoder in
+                            let dateStr = try decoder.singleValueContainer().decode(String.self)
+                            guard let date = CanvadocsAnnotationService.ISO8601MillisecondFormatter.date(from: dateStr) else {
+                                throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "Invalid date received from API"])
+                            }
+                            return date
                         }
-                    } catch let error {
-                        print("Couldn't copy new annots file: \(error)")
+                        let data = try decoder.decode(CanvadocsAnnotationList.self, from: data)
+                        completed(.success(data.data))
+                    } catch let error as NSError {
+                        completed(.failure(error))
                     }
-                    
-                    let data = try? Data(contentsOf: copyURL)
-                    let str = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-                    print("This is the xfdf:\n \(str)")
-                    completed(Result.success(copyURL))
+                } else if let error = error{
+                    completed(.failure(error as NSError))
                 }
-            }) 
-            downloadTask.resume()
+            }
         }
+        let dataTask = URLSession.shared.dataTask(with: request, completionHandler: completion)
+        dataTask.resume()
     }
     
-    func updateAnnotationsFromFile(_ fileURL: URL, completed: (UpdateAnnotationsResult)->()) {
-        if let metadata = metadata {
-            let string = try? NSString(contentsOf: fileURL, encoding: String.Encoding.utf8.rawValue)
-            print("About to upload annots: \(string!)")
-            let request = NSMutableURLRequest(url: metadata.annotationMetadata.xfdfURL)
-            request.httpMethod = "PUT"
-            request.addValue("text/xml", forHTTPHeaderField: "Content-Type")
-            let uploadTask = URLSession.shared.uploadTask(with: request as URLRequest, fromFile: fileURL, completionHandler: { _, response, error in
-                if let error = error {
-                    print("UH OH - Couldn't upload annots: \(error)")
-                    print(response)
+    func upsertAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<CanvadocsAnnotation, NSError>) ->()) {
+        guard let annotationID = annotation.id else { return }
+        let url = sessionURL.appendingPathComponent("annotations").appendingPathComponent(annotationID)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let encoder = JSONEncoder()
+        do {
+            let json = try encoder.encode(annotation)
+            request.httpBody = json
+        } catch {
+            completed(.failure(error as NSError))
+            return
+        }
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .custom { decoder in
+                        let dateStr = try decoder.singleValueContainer().decode(String.self)
+                        guard let date = CanvadocsAnnotationService.ISO8601MillisecondFormatter.date(from: dateStr) else {
+                            throw NSError(domain: "com.instructure.annotations", code: -1, userInfo: [NSLocalizedFailureReasonErrorKey: "Invalid date received from API"])
+                        }
+                        return date
+                    }
+                    let annotation = try decoder.decode(CanvadocsAnnotation.self, from: data)
+                    completed(.success(annotation))
+                } catch let error as NSError {
+                    completed(.failure(error))
                 }
-            }) 
-            uploadTask.resume()
+            } else if let error = error {
+                completed(.failure(error as NSError))
+            }
         }
+        dataTask.resume()
     }
     
-    func addAnnotations(_ annotations: Array<XFDFAnnotation>) {
-        for xfdfAnnotation in annotations {
-            print("About to send this new annotation: \(xfdfAnnotation)")
+    func deleteAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<Bool, NSError>)->()) {
+        guard let annotationID = annotation.id else { return }
+        let url = sessionURL.appendingPathComponent("annotations").appendingPathComponent(annotationID)
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completed(.failure(error as NSError))
+            } else {
+                completed(.success(true))
+            }
         }
-        let xfdf = parser.updateXFDFActionsXML(annotations)
-        updateXFDFFromActionsFormat(xfdf)
-    }
-    
-    func modifyAnnotations(_ annotations: Array<XFDFAnnotation>) {
-        let xfdf = parser.updateXFDFActionsXML(modifying: annotations)
-        updateXFDFFromActionsFormat(xfdf)
-    }
-    
-    func deleteAnnotation(_ annotationID: String) {
-        if let url = URL(string: "\(sessionURL.absoluteString)/annotations/\(annotationID)") {
-            var request = URLRequest(url: url)
-            request.httpMethod = "DELETE"
-            
-            let deleteTask = URLSession.shared.dataTask(with: request, completionHandler: { (_, response, error) in
-                if let error = error {
-                    print("UH OH - Couldn't delete annotation \(annotationID): \(error)")
-                    print(response)
-                }
-            }) 
-            deleteTask.resume()
-        }
-    }
-    
-    func deleteAnnotations(_ annotationIDs: Array<String>) {
-        for annotationID in annotationIDs {
-            deleteAnnotation(annotationID)
-        }
-    }
-    
-    fileprivate func updateXFDFFromActionsFormat(_ xfdf: String) {
-        print("About to update xfdf from actions format: \(xfdf)")
-        if let metadata = metadata, let data = xfdf.data(using: String.Encoding.utf8) {
-            let request = NSMutableURLRequest(url: metadata.annotationMetadata.xfdfURL)
-            request.httpMethod = "POST"
-            request.addValue("text/xml", forHTTPHeaderField: "Content-Type")
-            let uploadTask = URLSession.shared.uploadTask(with: request as URLRequest, from: data, completionHandler: { _, response, error in
-                if let error = error {
-                    print("UH OH - Couldn't add annots: \(error)")
-                    print(response)
-                }
-            }) 
-            uploadTask.resume()
-        }
+        dataTask.resume()
     }
 }
 

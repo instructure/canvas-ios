@@ -31,15 +31,15 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     let configuration: PSPDFConfiguration
 
     var localPDFURL: URL
-    var localXFDFURL: URL
+    var annotations: [CanvadocsAnnotation]
     var metadata: CanvadocsFileMetadata?
-    let service: CanvadocsAnnotationService?
+    let service: CanvadocsAnnotationService
     var annotationProvider: CanvadocsAnnotationProvider?
 
     open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, completed: @escaping (UIViewController?, [NSError]?)->()) {
         var metadata: CanvadocsFileMetadata? = nil
         var localPDFURL: URL? = nil
-        var localXFDFURL: URL? = nil
+        var canvadocsAnnotations: [CanvadocsAnnotation]? = nil
 
         let loadGroup = DispatchGroup();
         let canvadocsAnnotationService = CanvadocsAnnotationService(sessionURL: sessionURL)
@@ -69,11 +69,13 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
 
                 loadGroup.enter()
                 canvadocsAnnotationService.getAnnotations() { result in
+                    print("ANNOTATIONS RESULT: \(result)")
                     switch result {
                     case .failure(let error):
+                        print("FAILED GETTING ANNOTATIONS: \(error)")
                         errors.append(error)
-                    case .success(let value):
-                        localXFDFURL = value
+                    case .success(let annotations):
+                        canvadocsAnnotations = annotations
                     }
                     loadGroup.leave()
                 }
@@ -87,18 +89,18 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
                 completed(nil, errors)
             }
 
-            if let localPDFURL = localPDFURL, let localXFDFURL = localXFDFURL, let metadata = metadata {
+            if let localPDFURL = localPDFURL, let annotations = canvadocsAnnotations, let metadata = metadata {
                 canvadocsAnnotationService.metadata = metadata
-                let documentPresenter = CanvadocsPDFDocumentPresenter(localPDFURL: localPDFURL, localXFDFURL: localXFDFURL, metadata: metadata, service: canvadocsAnnotationService, configuration: configuration)
+                let documentPresenter = CanvadocsPDFDocumentPresenter(localPDFURL: localPDFURL, annotations: annotations, metadata: metadata, service: canvadocsAnnotationService, configuration: configuration)
                 let pdfViewController = documentPresenter.getPDFViewController()
                 completed(pdfViewController, nil)
             }
         }
     }
 
-    init(localPDFURL: URL, localXFDFURL: URL, metadata: CanvadocsFileMetadata? = nil, service: CanvadocsAnnotationService? = nil, configuration: PSPDFConfiguration) {
+    init(localPDFURL: URL, annotations: [CanvadocsAnnotation], metadata: CanvadocsFileMetadata? = nil, service: CanvadocsAnnotationService, configuration: PSPDFConfiguration) {
         self.localPDFURL = localPDFURL
-        self.localXFDFURL = localXFDFURL
+        self.annotations = annotations
         self.metadata = metadata
         self.service = service
         self.pdfDocument = PSPDFDocument(url: localPDFURL)
@@ -108,19 +110,10 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         if let metadata = metadata {
             pdfDocument.defaultAnnotationUsername = metadata.annotationMetadata.userName
         }
-        if let service = service {
-            pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
-                let canvadocsAnnotationProvider = CanvadocsAnnotationProvider(documentProvider: documentProvider, fileURL: self.localXFDFURL, service: service)
-                documentProvider.annotationManager.annotationProviders = [canvadocsAnnotationProvider]
-                self.annotationProvider = canvadocsAnnotationProvider
-            }
-        } else {
-            pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
-                let annotationProvider = PSPDFXFDFAnnotationProvider(documentProvider: documentProvider, fileURL: localXFDFURL)
-                let fileProvider = PSPDFFileAnnotationProvider(documentProvider: documentProvider)
-                documentProvider.annotationManager.annotationProviders = [annotationProvider, fileProvider]
-            }
-            pdfDocument.annotationSaveMode = .embedded
+        pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
+            let canvadocsAnnotationProvider = CanvadocsAnnotationProvider(documentProvider: documentProvider, annotations: annotations, service: service)
+            documentProvider.annotationManager.annotationProviders = [canvadocsAnnotationProvider]
+            self.annotationProvider = canvadocsAnnotationProvider
         }
     }
 
@@ -130,13 +123,14 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
 
         let highlightPresets = highlightCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
         let inkPresets = standardCanvadocsColors.map { return PSPDFColorPreset(color: $0) }
+        let textPresets = standardCanvadocsColors.map { return PSPDFColorPreset(color: $0, fill: .white, alpha: 1) }
         styleManager.setPresets(highlightPresets, forKey: .highlight, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen), type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .square, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .circle, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .line, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .strikeOut, type: PSPDFStyleManagerColorPresetKey)
-        styleManager.setPresets(inkPresets, forKey: .freeText, type: PSPDFStyleManagerColorPresetKey)
+        styleManager.setPresets(textPresets, forKey: .freeText, type: PSPDFStyleManagerColorPresetKey)
 
         styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: .highlight)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
@@ -145,6 +139,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .line)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .strikeOut)
         styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: .freeText)
+        styleManager.setLastUsedValue(UIColor.white, forProperty: "fillColor", forKey: .freeText)
         styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
         styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .square)
         styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: .circle)

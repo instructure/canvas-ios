@@ -31,7 +31,7 @@ extension UIView {
     }
 }
 
-class PSPDFView: UIView {
+public class PSPDFView: UIView {
     
     weak var pdfViewController: PSPDFViewController?
     
@@ -51,9 +51,9 @@ class PSPDFView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    required init?(coder aDecoder: NSCoder) { fatalError("nope") }
+    required public init?(coder aDecoder: NSCoder) { fatalError("nope") }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if pdfViewController == nil {

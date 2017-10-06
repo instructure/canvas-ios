@@ -23,7 +23,6 @@
 		61A943781D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */; };
 		61A943791D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943741D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift */; };
 		61A9437A1D55294500E0DEA5 /* CanvadocsAnnotationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943751D55294500E0DEA5 /* CanvadocsAnnotationService.swift */; };
-		61A9437B1D55294500E0DEA5 /* CanvadocsXFDFParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943761D55294500E0DEA5 /* CanvadocsXFDFParser.swift */; };
 		61A9437C1D55294500E0DEA5 /* CanvadocsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943771D55294500E0DEA5 /* CanvadocsConstants.swift */; };
 		61A943831D55298400E0DEA5 /* CanvasCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A9437E1D55298400E0DEA5 /* CanvasCommentsViewController.swift */; };
 		61A943841D55298400E0DEA5 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A9437F1D55298400E0DEA5 /* CommentTableViewCell.swift */; };
@@ -32,6 +31,7 @@
 		61A943871D55298400E0DEA5 /* CommentReplyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61A943821D55298400E0DEA5 /* CommentReplyView.xib */; };
 		61A943891D5529A500E0DEA5 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943881D5529A500E0DEA5 /* UIColor+Hex.swift */; };
 		61B9C4D41D636AEA00BAF2F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61B9C4D31D636AEA00BAF2F3 /* Assets.xcassets */; };
+		61F0A1591F794F5500D83C6E /* CanvadocsAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F0A1581F794F5500D83C6E /* CanvadocsAnnotation.swift */; };
 		B16B59021E244E6900DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B59041E244E6900DED47B /* InfoPlist.strings */; };
 		B16B59071E244E6A00DED47B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B16B59091E244E6A00DED47B /* InfoPlist.strings */; };
 		B5E4855E1D8CBAEA0025CDCF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E485581D8CBAEA0025CDCF /* Localizable.strings */; };
@@ -81,7 +81,6 @@
 		61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		61A943741D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationProvider.swift; sourceTree = "<group>"; };
 		61A943751D55294500E0DEA5 /* CanvadocsAnnotationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationService.swift; sourceTree = "<group>"; };
-		61A943761D55294500E0DEA5 /* CanvadocsXFDFParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsXFDFParser.swift; sourceTree = "<group>"; };
 		61A943771D55294500E0DEA5 /* CanvadocsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsConstants.swift; sourceTree = "<group>"; };
 		61A9437E1D55298400E0DEA5 /* CanvasCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasCommentsViewController.swift; sourceTree = "<group>"; };
 		61A9437F1D55298400E0DEA5 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		61A943821D55298400E0DEA5 /* CommentReplyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentReplyView.xib; sourceTree = "<group>"; };
 		61A943881D5529A500E0DEA5 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		61B9C4D31D636AEA00BAF2F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		61F0A1581F794F5500D83C6E /* CanvadocsAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotation.swift; sourceTree = "<group>"; };
 		820574125171563D97E6E616 /* Pods_defaults_SoAnnotated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F1D5951D159AFA0D895F047 /* Pods-defaults-SoAnnotated.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-SoAnnotated.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-SoAnnotated/Pods-defaults-SoAnnotated.release.xcconfig"; sourceTree = "<group>"; };
 		B16B59031E244E6900DED47B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -255,11 +255,11 @@
 		61A943671D5528EF00E0DEA5 /* Canvadocs */ = {
 			isa = PBXGroup;
 			children = (
+				61F0A1581F794F5500D83C6E /* CanvadocsAnnotation.swift */,
 				61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */,
 				6199E5451F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift */,
 				61A943741D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift */,
 				61A943751D55294500E0DEA5 /* CanvadocsAnnotationService.swift */,
-				61A943761D55294500E0DEA5 /* CanvadocsXFDFParser.swift */,
 				61A943771D55294500E0DEA5 /* CanvadocsConstants.swift */,
 				61A9437D1D55296900E0DEA5 /* Comments */,
 				618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */,
@@ -485,8 +485,8 @@
 				61A943831D55298400E0DEA5 /* CanvasCommentsViewController.swift in Sources */,
 				61A943861D55298400E0DEA5 /* CommentReplyView.swift in Sources */,
 				6199E5461F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift in Sources */,
-				61A9437B1D55294500E0DEA5 /* CanvadocsXFDFParser.swift in Sources */,
 				61A9437C1D55294500E0DEA5 /* CanvadocsConstants.swift in Sources */,
+				61F0A1591F794F5500D83C6E /* CanvadocsAnnotation.swift in Sources */,
 				618878181EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift in Sources */,
 				61A943781D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift in Sources */,
 				61A943791D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift in Sources */,

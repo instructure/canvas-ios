@@ -15,8 +15,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Teacher-Swift.h"
 #import <React/RCTUIManager.h>
+#import <CanvasCore/CanvasCore-Swift.h>
 
 @interface PSPDFViewManager : RCTViewManager
 @end

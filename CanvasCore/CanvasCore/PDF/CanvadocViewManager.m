@@ -15,7 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Teacher-Swift.h"
+#import <CanvasCore/CanvasCore-Swift.h>
 #import <React/RCTUIManager.h>
 
 @interface CanvadocViewManager : RCTViewManager

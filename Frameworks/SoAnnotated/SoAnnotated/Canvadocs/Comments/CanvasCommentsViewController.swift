@@ -64,6 +64,10 @@ class CanvadocsCommentsViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: tableView.contentInset.top + 10, left: tableView.contentInset.left, bottom: tableView.contentInset.bottom + 10, right: tableView.contentInset.right)
         tableView.dataSource = self
         
+        comments = comments.sorted(by: { (comment1, comment2) in
+            return comment1.creationDate ?? Date() < comment2.creationDate ?? Date()
+        })
+        
         replyToolbar.sendAction = { [unowned self] in
             if self.replyToolbar.replyTextView.text.lengthOfBytes(using: String.Encoding.utf8) > 0 { // make sure they actually entered something
                 // Cases to handle:
@@ -89,16 +93,15 @@ class CanvadocsCommentsViewController: UIViewController {
                     self.pdfDocument.add([self.rootComment!], options: [:])
                     self.newThread = false
                 } else {
-                    if let firstComment = self.comments.first {
+                    if let baseAnnotation = self.comments.first {
                         // There must be some text on it already, so this must be a reply
                         let newAnnotation = CanvadocsCommentReplyAnnotation(contents: self.replyToolbar.replyTextView.text)
-                        newAnnotation.pageIndex = firstComment.pageIndex
-                        newAnnotation.boundingBox = firstComment.boundingBox
-                        newAnnotation.inReplyTo = firstComment.name
+                        newAnnotation.pageIndex = baseAnnotation.pageIndex
+                        newAnnotation.boundingBox = baseAnnotation.boundingBox
+                        newAnnotation.inReplyTo = baseAnnotation.name
                         self.comments.append(newAnnotation)
                         self.pdfDocument.add([newAnnotation], options: [:])
                     }
-                    
                 }
                 self.replyToolbar.clearText()
                 self.tableView.reloadData()

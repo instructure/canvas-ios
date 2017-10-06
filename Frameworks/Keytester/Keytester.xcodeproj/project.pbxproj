@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0524D21F87EB9300B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */; };
+		2C0524DF1F87F2F000B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */; };
+		2C0524E01F87F2F000B182B9 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C60499C1F72DFE700252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C60499D1F72DFE700252BC5 /* CanvasCore.framework */; };
 		2CCDE2CF1DA845B800B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2D11DA845B800B46D87 /* InfoPlist.strings */; };
 		2CCDE2DE1DA845BA00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E01DA845BA00B46D87 /* InfoPlist.strings */; };
@@ -116,6 +119,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5EB86AF61C4ECE8000C920A2 /* SoPretty.framework in Embed Frameworks */,
+				2C0524E01F87F2F000B182B9 /* PSPDFKit.framework in Embed Frameworks */,
 				5EB86AF21C4ECE8000C920A2 /* SoLazy.framework in Embed Frameworks */,
 				5EB86AF41C4ECE8000C920A2 /* SoPersistent.framework in Embed Frameworks */,
 				5EB86AF81C4ECE8000C920A2 /* TooLegit.framework in Embed Frameworks */,
@@ -128,6 +132,7 @@
 
 /* Begin PBXFileReference section */
 		0F134D2C62A9857F37B60C8B /* Pods-Keymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Keymaster/Pods-Keymaster.debug.xcconfig"; sourceTree = "<group>"; };
+		2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		2C50EE1B1E7371BD0096592C /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/Secrets.framework"; sourceTree = "<group>"; };
 		2C60499D1F72DFE700252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCDE2D01DA845B800B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -316,6 +321,7 @@
 				493EBDA91D9638B200DCDDA2 /* Cartography.framework in Frameworks */,
 				49998E361E1D734A00C98AC2 /* CWNotification.framework in Frameworks */,
 				4928EBD71C84DEAA00799E04 /* Marshal.framework in Frameworks */,
+				2C0524DF1F87F2F000B182B9 /* PSPDFKit.framework in Frameworks */,
 				5EB86AA51C4ECC6E00C920A2 /* Keymaster.framework in Frameworks */,
 				4980F9B11DE3ACA600D71093 /* ReactiveSwift.framework in Frameworks */,
 				493EBDAD1D9638B200DCDDA2 /* Kingfisher.framework in Frameworks */,
@@ -347,6 +353,7 @@
 				5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */,
 				5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */,
 				A5D7243BAF0E14D56CF13ED9 /* Pods_defaults_Keymaster.framework in Frameworks */,
+				2C0524D21F87EB9300B182B9 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +552,7 @@
 		5EB86AE31C4ECD7800C920A2 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */,
 				49998E351E1D733A00C98AC2 /* CWNotification.framework */,
 				4980F9B01DE3AC9900D71093 /* ReactiveSwift.framework */,
 				493EBDA61D96383C00DCDDA2 /* Cartography.framework */,
@@ -1190,6 +1198,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../ExternalFrameworks";
 				INFOPLIST_FILE = Keytester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keytester;
@@ -1204,6 +1213,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B6333T4PXQ;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../../ExternalFrameworks";
 				INFOPLIST_FILE = Keytester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.Keytester;
@@ -1276,6 +1286,51 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BVLinearGradient\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CWStatusBarNotification\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Cartography\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DeviceKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Eureka\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FXKeychain\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Interactable\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSTokenField\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Mantle\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Marshal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Masonry\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PocketSVG\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RCTSFSafariViewController\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNAudio\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNDeviceInfo\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNFS\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNSound\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Reachability\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/React\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactNativeSearchBar\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveCocoa\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjC\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjCBridge\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftSimplify\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TBBModal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TPKeyboardAvoiding\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Yoga\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-blur\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-camera\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-document-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-image-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-mail\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-wkwebview\"",
+					"\"${PODS_ROOT}/Fabric/iOS\"",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = Keymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1302,6 +1357,51 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AFNetworking\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BVLinearGradient\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CWStatusBarNotification\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Cartography\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DeviceKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Eureka\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/FXKeychain\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Interactable\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/JSTokenField\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Mantle\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Marshal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Masonry\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PocketSVG\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RCTSFSafariViewController\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNAudio\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNDeviceInfo\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNFS\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RNSound\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Reachability\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/React\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactNativeSearchBar\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveCocoa\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjC\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveObjCBridge\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ReactiveSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SVProgressHUD\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftSimplify\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TBBModal\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/TPKeyboardAvoiding\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Yoga\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-blur\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-camera\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-document-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-image-picker\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-mail\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-wkwebview\"",
+					"\"${PODS_ROOT}/Fabric/iOS\"",
+					"$(PROJECT_DIR)/../../ExternalFrameworks",
+				);
 				INFOPLIST_FILE = Keymaster/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

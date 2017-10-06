@@ -70,6 +70,7 @@ abstract_target 'defaults' do
   pod 'DeviceKit', '~> 1.0'
   pod 'TPKeyboardAvoiding', '~> 1.3'
   pod 'Eureka', git: 'https://github.com/xmartlabs/Eureka', branch: 'feature/Xcode9-Swift3_2'
+  pod 'SwiftSimplify'
 
   target 'Parent' do
     project 'Parent/Parent.xcodeproj'

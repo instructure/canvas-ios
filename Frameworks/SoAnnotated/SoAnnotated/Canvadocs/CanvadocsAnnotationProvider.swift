@@ -19,45 +19,28 @@
 import Foundation
 import PSPDFKit
 
-extension UIColor {
-    fileprivate var toHexString: String {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        
-        return String(
-            format: "%02X%02X%02X",
-            Int(r * 0xff),
-            Int(g * 0xff),
-            Int(b * 0xff)
-        )
-    }
-}
-
-class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
+class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     
     let service: CanvadocsAnnotationService
-    let xfdfParser = CanvadocsXFDFParser()
+
+    private var canvadocsAnnotations: [CanvadocsAnnotation] = []
+
     var childrenMapping: [String:[CanvadocsCommentReplyAnnotation]] = [:]
     
-    init(documentProvider: PSPDFDocumentProvider!, fileURL XFDFFileURL: URL, service: CanvadocsAnnotationService) {
+    init(documentProvider: PSPDFDocumentProvider!, annotations: [CanvadocsAnnotation], service: CanvadocsAnnotationService) {
         self.service = service
-        super.init(documentProvider: documentProvider, fileURL: XFDFFileURL)
-        
-        let parser = PSPDFXFDFParser(inputStream: InputStream(url: fileURL!)!, documentProvider: documentProvider)
-        var pspdfAnnotations: [PSPDFAnnotation] = []
-        do {
-            pspdfAnnotations = try parser.parse()
-        } catch {
-            print("Error parsing annotations: \(error)")
+        self.canvadocsAnnotations = annotations
+
+        super.init(documentProvider: documentProvider)
+
+        if let doc = documentProvider.document {
+            setAnnotations(annotations.map { $0.pspdfAnnotation(for: doc) }.filter { $0 != nil }.map { $0! }, append: false)
         }
-        let (parentToChildrenMap, childToParentMap) = xfdfParser.commentThreadMappingsFromXFDF(try! Data(contentsOf: fileURL!))
-        
+
+        let (parentToChildrenMap, childToParentMap) = commentThreadMappings(from: annotations)
+
         var commentAnnotations = Dictionary<String, CanvadocsCommentReplyAnnotation>()
-        for annotation in pspdfAnnotations {
+        for annotation in allAnnotations {
             if let noteAnnotation = annotation as? PSPDFNoteAnnotation, let id = noteAnnotation.name, let inReplyTo = childToParentMap[id] {
                 let contents = noteAnnotation.contents?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? ""
                 let commentAnnotation = CanvadocsCommentReplyAnnotation(contents: contents)
@@ -75,7 +58,7 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
                 commentAnnotations[id] = commentAnnotation
             }
         }
-        
+
         for (parent, children) in parentToChildrenMap {
             let childAnnots = children.filter({ commentAnnotations[$0] != nil }).map({ commentAnnotations[$0]! }).sorted { comment1, comment2 in
                 let date1 = comment1.creationDate ?? Date()
@@ -86,93 +69,97 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
         }
     }
     
-    override func annotationsForPage(at pageIndex: UInt) -> [PSPDFAnnotation]? {
-        var mut_annotations = super.annotationsForPage(at: pageIndex)
-
-        if let annotations = mut_annotations {
-            // Find and remove any lone note annotations, and send back that filtered list, plus our own comment annotations
-
-            for index in stride(from: (annotations.count - 1), through: 0, by: -1) {
-                let annotation = annotations[index]
-                (annotation as? PSPDFFreeTextAnnotation)?.sizeToFit()
-                annotation.flags.remove(.readOnly) // Allows user to view and add comments
-                if let noteAnnotation = annotation as? PSPDFNoteAnnotation {
-                    // the call to super should be limiting these annots by the page for us
-                    for (_, value) in childrenMapping {
-                        for annot in value {
-                            if annot.name == annotation.name {
-                                mut_annotations?.remove(at: index)
-                                break
-                            }
-                        }
-                    }
-                    
-                    // Don't ask me why, but somehow some notes were going black, this fixes it ¯\_(ツ)_/¯
-                    DispatchQueue.main.async(execute: {
-                        if noteAnnotation.color?.toHexString != "F2DD47" {
-                            noteAnnotation.color = UIColor(rgba: "#F2DD47")
-                            NotificationCenter.default.post(name: NSNotification.Name.PSPDFAnnotationChanged, object: noteAnnotation, userInfo: [PSPDFAnnotationChangedNotificationKeyPathKey: ["color"]])
-                        }
-                    })
-                } else {
-                    if let metadata = service.metadata {
-                        if annotation.user != metadata.annotationMetadata.userName || metadata.annotationMetadata.permissions == .Read {
-                            annotation.isEditable = false
-                        }
-                    }
-                }
+    func commentThreadMappings(from annotations: [CanvadocsAnnotation]) -> (parentToChildren: Dictionary<String, Array<String>>, childToParent: Dictionary<String, String>) {
+        var parentToChildrenMap = Dictionary<String, Array<String>>()
+        var childToParentMap = Dictionary<String, String>()
+        
+        for annot in annotations {
+            if case let .commentReply(parent, _) = annot.type, let annotationID = annot.id {
+                childToParentMap[annotationID] = parent
             }
         }
         
-        return (mut_annotations ?? [])
+        // Now we have something like
+        // "A" -> "", "B" -> "A", "C" -> "B", "D" -> "C"
+        // where key is the child and value is it's parent
+        
+        for (childID, parentID) in childToParentMap {
+            if parentID != "" {
+                var childrenList: Array<String> = parentToChildrenMap[parentID] ?? []
+                childrenList.append(childID)
+                parentToChildrenMap[parentID] = childrenList
+            } else if (parentToChildrenMap[childID] == nil){
+                parentToChildrenMap[childID] = []
+            }
+        }
+        
+        // Now we have something like
+        // "A" -> ["B", "C", "D"] (after sorting by date)
+        // where key is the parent and value is all the children
+        
+        return (parentToChildrenMap, childToParentMap)
+    }
+    
+    override func annotationsForPage(at pageIndex: UInt) -> [PSPDFAnnotation]? {
+        let pageAnnotations = super.annotationsForPage(at: pageIndex)
+        for annotation in (pageAnnotations ?? []) {
+            (annotation as? PSPDFFreeTextAnnotation)?.sizeToFit()
+            annotation.flags.remove(.readOnly) // Allows user to view and add comments
+
+            if let metadata = service.metadata {
+                if annotation.user != metadata.annotationMetadata.userName || metadata.annotationMetadata.permissions == .Read {
+                    annotation.isEditable = false
+                }
+            }
+        }
+        return pageAnnotations
     }
     
     override func add(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
-        // I tried doing this without the verbose if statement, trust me. IT DIDN'T WORK so here I lay...
         let filtered = annotations.filter {
-            if let noteAnnotation = $0 as? PSPDFNoteAnnotation {
-                if noteAnnotation.contents == nil || noteAnnotation.contents == "" {
-                    return false
-                }
-            }
-            if type(of: $0) === CanvadocsCommentReplyAnnotation.self {
+            if type(of: $0) === CanvadocsCommentAnnotation.self {
                 return false
-            } else {
-                return true
             }
+            return true
         }
-        let _ = super.add(filtered, options: options) ?? []
+        super.add(filtered, options: options)
         
-        // Doing it this way instead of sending the xfdf because at this point in time, the xfdf hasn't been written out to disk
-        var xfdfAnnotations: [XFDFAnnotation] = []
         for annotation in annotations {
-            if let noteAnnotation = annotation as? PSPDFNoteAnnotation {
-                if noteAnnotation.contents == nil || noteAnnotation.contents == "" {
-                    continue
+            if let noteAnnotation = annotation as? PSPDFNoteAnnotation, (noteAnnotation.contents == nil || noteAnnotation.contents == "") {
+                continue
+            } else if let freeTextAnnotation = annotation as? PSPDFFreeTextAnnotation, (freeTextAnnotation.contents == nil || freeTextAnnotation.contents == "") {
+                continue
+            }
+
+            if let canvasCommentAnnotation = annotation as? CanvadocsCommentReplyAnnotation, let inReplyTo = canvasCommentAnnotation.inReplyTo {
+                if var children = childrenMapping[inReplyTo] {
+                    children.append(canvasCommentAnnotation)
+                    childrenMapping[inReplyTo] = children
+                } else {
+                    childrenMapping[inReplyTo] = [canvasCommentAnnotation]
                 }
             }
             
-            if let canvasCommentAnnotation = annotation as? CanvadocsCommentReplyAnnotation, let inReplyTo = canvasCommentAnnotation.inReplyTo {
-                for (parentID, _) in childrenMapping {
-                    if parentID == inReplyTo {
-                        childrenMapping[parentID]!.append(canvasCommentAnnotation)
+            guard let doc = documentProvider?.document else { continue }
+            if let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc) {
+                canvadocsAnnotations.append(canvadocsAnnotation)
+                service.upsertAnnotation(canvadocsAnnotation) { [weak self] result in
+                    switch result {
+                    case .success(let annotation):
+                        if let id = annotation.id {
+                            if let index = self?.canvadocsAnnotations.index(where: { $0.id == id }) {
+                                self?.canvadocsAnnotations[index] = canvadocsAnnotation
+                            }
+                        }
+                    case .failure(let error):
+                        _ = self?.remove([annotation])
+                        print(error)
                     }
                 }
             }
-            
-            if let annotationID = annotation.name {
-                if childrenMapping[annotationID] == nil {
-                    childrenMapping[annotationID] = []
-                }
-            }
-           
-            if let xfdf = xfdfParser.XFDFFormatOfAnnotation(annotation) {
-                xfdfAnnotations.append(xfdf)
-            }
         }
-        service.addAnnotations(xfdfAnnotations)
         
-        return annotations
+        return filtered
     }
     
     override func remove(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
@@ -180,8 +167,21 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
         
         for annotation in annotations {
             if let annotationID = annotation.name {
-                childrenMapping[annotationID] = []
-                service.deleteAnnotation(annotationID)
+                print("Deleting annotation \(annotationID)")
+                childrenMapping.removeValue(forKey: annotationID)
+                
+                for index in stride(from: (canvadocsAnnotations.count - 1), through: 0, by: -1) {
+                    let canvadocsAnnotation = canvadocsAnnotations[index]
+                    if canvadocsAnnotation.id == annotationID {
+                        service.deleteAnnotation(canvadocsAnnotation) { [weak self] result in
+                            if result.error != nil {
+                                // Let's go back and reset so the user can try deleting again
+                                self?.canvadocsAnnotations.append(canvadocsAnnotation)
+                            }
+                        }
+                        canvadocsAnnotations.remove(at: index)
+                    }
+                }
             }
         }
         
@@ -189,8 +189,34 @@ class CanvadocsAnnotationProvider: PSPDFXFDFAnnotationProvider {
     }
     
     override func didChange(_ annotation: PSPDFAnnotation, keyPaths: [String], options: [String : Any]? = nil) {
-        if let xfdf = xfdfParser.XFDFFormatOfAnnotation(annotation) {
-            service.modifyAnnotations([xfdf])
+        guard let doc = documentProvider?.document else { return }
+        guard let pspdfAnnotationID = annotation.name else { return }
+        guard let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc) else { return }
+        
+        if let noteAnnotation = annotation as? PSPDFNoteAnnotation, (noteAnnotation.contents == nil || noteAnnotation.contents == "") {
+            return
+        } else if let freeTextAnnotation = annotation as? PSPDFFreeTextAnnotation, (freeTextAnnotation.contents == nil || freeTextAnnotation.contents == "") {
+            return
         }
+
+        if let index = canvadocsAnnotations.index(where: { $0.id == pspdfAnnotationID }) {
+            canvadocsAnnotations[index] = canvadocsAnnotation
+        } else {
+            canvadocsAnnotations.append(canvadocsAnnotation)
+        }
+
+        service.upsertAnnotation(canvadocsAnnotation) { [weak self] result in
+            switch result {
+            case .success(let annotation):
+                if let id = annotation.id {
+                    if let index = self?.canvadocsAnnotations.index(where: { $0.id == id }) {
+                        self?.canvadocsAnnotations[index] = canvadocsAnnotation
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
 }
