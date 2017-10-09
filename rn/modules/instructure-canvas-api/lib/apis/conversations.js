@@ -62,6 +62,12 @@ export function deleteConversation (conversationID: string): Promise<ApiResponse
   return httpClient().delete(`conversations/${conversationID}`)
 }
 
+export function deleteConversationMessage (conversationID: string, messageID: string): Promise<ApiResponse<>> {
+  return httpClient().post(`conversations/${conversationID}/remove_messages`, {
+    remove: [messageID],
+  })
+}
+
 export function createConversation (conversation: CreateConversationParameters): Promise<ApiResponse<Conversation>> {
   const url = 'conversations'
   return httpClient().post(url, conversation)

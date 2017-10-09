@@ -36,6 +36,7 @@ const {
   starConversation,
   unstarConversation,
   deleteConversation,
+  deleteConversationMessage,
   markAsRead,
 } = Actions
 
@@ -170,6 +171,55 @@ export const conversations: Reducer = handleActions({
         ...state[conversationID],
         pending: (state[conversationID] && state[conversationID].pending || 1) - 1,
         error: parseErrorMessage(error),
+      },
+    }),
+  }),
+  [deleteConversationMessage.toString()]: handleAsync({
+    pending: (state, { conversationID, messageID }) => ({
+      ...state,
+      [conversationID]: {
+        ...state[conversationID],
+        data: {
+          ...state[conversationID].data,
+          messages: state[conversationID].data.messages.map(message => {
+            if (message.id === messageID) {
+              return {
+                ...message,
+                pendingDelete: true,
+              }
+            } else {
+              return message
+            }
+          }),
+        },
+      },
+    }),
+    resolved: (state, { conversationID, messageID }) => ({
+      ...state,
+      [conversationID]: {
+        ...state[conversationID],
+        data: {
+          ...state[conversationID].data,
+          messages: state[conversationID].data.messages.filter(message => message.id !== messageID),
+        },
+      },
+    }),
+    rejected: (state, { conversationID, messageID }) => ({
+      ...state,
+      [conversationID]: {
+        ...state[conversationID],
+        data: {
+          ...state[conversationID].data,
+          messages: state[conversationID].data.messages.map(message => {
+            if (message.id === messageID) {
+              let newMessage = { ...message }
+              delete newMessage.pendingDelete
+              return newMessage
+            } else {
+              return message
+            }
+          }),
+        },
       },
     }),
   }),

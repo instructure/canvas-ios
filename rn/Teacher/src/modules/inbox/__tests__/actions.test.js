@@ -115,6 +115,32 @@ test('deleteConversation', async () => {
   expect(api.deleteConversation).toHaveBeenCalledWith('12')
 })
 
+test('deleteConversationMessage', async () => {
+  const api = {
+    deleteConversationMessage: () => Promise.resolve(),
+  }
+  const actions = InboxActions(api)
+  const action = actions.deleteConversationMessage('12', '13')
+  const result = await testAsyncAction(action)
+  expect(result).toMatchObject([
+    {
+      type: actions.deleteConversationMessage.toString(),
+      pending: true,
+      payload: {
+        conversationID: '12',
+        messageID: '13',
+      },
+    },
+    {
+      type: actions.deleteConversationMessage.toString(),
+      payload: {
+        conversationID: '12',
+        messageID: '13',
+      },
+    },
+  ])
+})
+
 test('markAsRead', async () => {
   let data = template.conversation()
   let api = {

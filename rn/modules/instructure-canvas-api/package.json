@@ -1,6 +1,6 @@
 {
   "name": "instructure-canvas-api",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "API module to interact with canvas",
   "main": "lib/index.js",
   "scripts": {

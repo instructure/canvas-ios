@@ -69,6 +69,13 @@ export let InboxActions = (api: CanvasApi): * => ({
       conversationID,
     }
   }),
+  deleteConversationMessage: createAction('inbox.delete-conversation-message', (conversationID: string, messageID: string) => {
+    return {
+      promise: api.deleteConversationMessage(conversationID, messageID),
+      conversationID,
+      messageID,
+    }
+  }),
   markAsRead: createAction('inbox.mark-as-read', (conversationID: string) => {
     return {
       promise: api.markConversationAsRead(conversationID),

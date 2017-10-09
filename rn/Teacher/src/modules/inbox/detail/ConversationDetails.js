@@ -118,7 +118,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
       <View style={styles.container}>
         <FlatList
           style={styles.list}
-          data={this.props.messages}
+          data={this.props.messages.filter(message => !message.pendingDelete)}
           renderItem={this._renderItem}
           ListHeaderComponent={header}
           refreshing={this.props.refreshing}
@@ -158,8 +158,6 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   }
 
   showOptionsActionSheet = (id: string) => {
-    id = id || this.props.conversationID
-
     const options = [
       i18n('Forward'),
       i18n('Delete'),
@@ -171,17 +169,23 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         destructiveButtonIndex: options.length - 2,
         cancelButtonIndex: options.length - 1,
       },
-      this.handleOptionsActionSheet.bind(null, id),
+      (index: number) => {
+        this.handleOptionsActionSheet(id, index)
+      }
     )
   }
 
   handleOptionsActionSheet = (id: string, index: number) => {
     switch (index) {
       case 0:
-        this.forwardMessage(id)
+        this.forwardMessage(id || this.props.conversationID)
         break
       case 1:
-        this.deleteConversation(id)
+        if (id) {
+          this.deleteConversationMessage(id)
+        } else {
+          this.deleteConversation(this.props.conversationID)
+        }
         break
     }
   }
@@ -190,6 +194,10 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     this.setState({ deletePending: true })
     // $FlowFixMe
     this.props.deleteConversation(id)
+  }
+
+  deleteConversationMessage (id: string) {
+    this.props.deleteConversationMessage(this.props.conversationID, id)
   }
 
   forwardMessage (id: string) {

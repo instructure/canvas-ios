@@ -21,7 +21,7 @@ import { InboxActions } from '../actions'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
-const { refreshInboxAll, updateInboxSelectedScope, markAsRead } = InboxActions()
+const { refreshInboxAll, updateInboxSelectedScope, markAsRead, deleteConversationMessage } = InboxActions()
 const templates = {
   ...require('../../../__templates__/conversations'),
 }
@@ -198,6 +198,58 @@ describe('deleteConversation', () => {
       expectedPending,
       expectedRejected,
     ])
+  })
+})
+
+describe('deleteConversationMessage', () => {
+  let defaultState = {
+    '1': {
+      data: templates.conversation({ id: '1', messages: [templates.conversationMessage({ id: '1' })] }),
+      error: null,
+      pending: 0,
+    },
+  }
+
+  it('adds pendingDelete field on pending', () => {
+    let action = {
+      type: deleteConversationMessage.toString(),
+      pending: true,
+      payload: {
+        conversationID: '1',
+        messageID: '1',
+      },
+    }
+    expect(conversations(defaultState, action)).toMatchObject({
+      '1': {
+        data: {
+          messages: [{ pendingDelete: true }],
+        },
+      },
+    })
+  })
+
+  it('removes pendingDelete field on error', () => {
+    let action = {
+      type: deleteConversationMessage.toString(),
+      error: true,
+      payload: {
+        conversationID: '1',
+        messageID: '1',
+      },
+    }
+    defaultState['1'].data.messages[0].pendingDelete = true
+    expect(conversations(defaultState, action)['1'].data.messages[0].pendingDelete).toBeUndefined()
+  })
+
+  it('deletes the message once it was successful', () => {
+    let action = {
+      type: deleteConversationMessage.toString(),
+      payload: {
+        conversationID: '1',
+        messageID: '1',
+      },
+    }
+    expect(conversations(defaultState, action)['1'].data.messages.length).toEqual(0)
   })
 })
 

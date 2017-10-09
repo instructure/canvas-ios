@@ -81,6 +81,7 @@ describe('ConversationDetails', () => {
       starConversation: jest.fn(),
       unstarConversation: jest.fn(),
       deleteConversation: jest.fn(),
+      deleteConversationMessage: jest.fn(),
       markAsRead: jest.fn(),
       navigator: template.navigator(),
       enrollments: [template.enrollment()],
@@ -102,6 +103,11 @@ describe('ConversationDetails', () => {
 
   it('renders with alternate data', () => {
     props.conversation = template.conversation({ id: '1', starred: true, subject: null })
+    Screen(props).testRender()
+  })
+
+  it('doesnt render messages that are pendingDelete', () => {
+    props.messages = [template.conversationMessage({ pendingDelete: true })]
     Screen(props).testRender()
   })
 
@@ -144,6 +150,7 @@ describe('ConversationDetails', () => {
       unstarConversation,
       starConversation,
       markAsRead: jest.fn(),
+      messages: [],
     }
 
     let tree = renderer.create(
@@ -212,16 +219,14 @@ describe('ConversationDetails', () => {
   it('calls options with an id', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 2))
-    props.deleteConversation = jest.fn()
     props.conversationID = '1'
     Screen(props).instance.showOptionsActionSheet('2')
-    expect(props.deleteConversation).toHaveBeenCalledWith('2')
+    expect(props.deleteConversationMessage).toHaveBeenCalledWith('1', '2')
   })
 
   it('calls pop after delete finishes', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 2))
-    props.navigator.pop = jest.fn()
     const screen = Screen(props)
     props.deleteConversation = jest.fn(() => {
       setProps(screen.component, { pending: 1 })
