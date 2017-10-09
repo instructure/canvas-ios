@@ -148,6 +148,7 @@ exports[`Compose renders 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       contentContainerStyle={
         Object {
           "flexGrow": 1,
@@ -627,6 +628,7 @@ exports[`Compose renders after picking a course 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       contentContainerStyle={
         Object {
           "flexGrow": 1,
@@ -1199,6 +1201,7 @@ exports[`Compose renders reply 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       contentContainerStyle={
         Object {
           "flexGrow": 1,
@@ -1752,6 +1755,7 @@ exports[`Compose renders with passed in recipients 1`] = `
       </View>
     </Modal>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
       contentContainerStyle={
         Object {
           "flexGrow": 1,

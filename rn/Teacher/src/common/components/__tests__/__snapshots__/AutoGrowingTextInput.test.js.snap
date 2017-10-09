@@ -9,7 +9,7 @@ exports[`AutoGrowingTextInput adjusts the height when content size is updated 1`
     Array [
       undefined,
       Object {
-        "height": 100,
+        "height": 105,
       },
     ]
   }

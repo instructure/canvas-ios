@@ -166,6 +166,8 @@ exports[`AnnouncementEdit renders 1`] = `
       visible={false}
     />
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -742,6 +744,8 @@ exports[`AnnouncementEdit updates with new props 1`] = `
       visible={false}
     />
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,

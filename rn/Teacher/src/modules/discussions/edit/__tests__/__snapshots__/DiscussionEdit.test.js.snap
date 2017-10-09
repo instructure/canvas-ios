@@ -150,6 +150,8 @@ exports[`DiscussionEdit renders 1`] = `
       visible={false}
     />
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -1215,6 +1217,8 @@ exports[`DiscussionEdit renders new form 1`] = `
       visible={false}
     />
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -2171,6 +2175,8 @@ exports[`DiscussionEdit updates from props 1`] = `
       visible={false}
     />
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -3127,6 +3133,8 @@ exports[`DiscussionEdit updates with new props 1`] = `
       visible={false}
     />
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,

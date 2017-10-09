@@ -184,6 +184,8 @@ exports[`error occurs when done pressed 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -1109,6 +1111,8 @@ exports[`modal saving is shown on assignment update 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -2034,6 +2038,8 @@ exports[`renders 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -2959,6 +2965,8 @@ exports[`saving invalid dates displays banner 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -3891,6 +3899,8 @@ exports[`saving invalid name displays banner 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -4855,6 +4865,8 @@ exports[`saving invalid points possible displays banner 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,
@@ -5819,6 +5831,8 @@ exports[`saving negative points possible displays banner 1`] = `
       </View>
     </View>
     <RCTScrollView
+      automaticallyAdjustContentInsets={false}
+      contentContainerStyle={undefined}
       contentInset={
         Object {
           "bottom": 0,

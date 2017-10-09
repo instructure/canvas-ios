@@ -43,6 +43,7 @@ import AddressBookToken from './components/AddressBookToken'
 import { createConversation, addMessage } from 'instructure-canvas-api'
 import axios from 'axios'
 import { Text } from '../../common/text'
+import throttle from 'lodash/throttle'
 
 type OwnProps = {
   conversationID?: string,
@@ -200,8 +201,14 @@ export class Compose extends PureComponent {
     })
   }
 
+  adjust = throttle((e: any) => {
+    const element = ReactNative.findNodeHandle(e.target)
+    this.scrollView.scrollToFocusedInput(element)
+  }, 250)
+
   scrollToEnd = (e: any) => {
-    this.scrollView.scrollToFocusedInput(ReactNative.findNodeHandle(e.target))
+    e.persist()
+    this.adjust(e)
   }
 
   setStateAndUpdate = (state: any) => {

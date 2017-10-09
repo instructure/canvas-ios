@@ -37,7 +37,8 @@ export default class AutoGrowingTextInput extends PureComponent {
   }
 
   updateContentSize = (e: any) => {
-    this.setState({ height: Math.max(e.nativeEvent.contentSize.height, this.props.defaultHeight) })
+    // By adding a few pixels to the height of this content size, it ensures that the view will not scroll
+    this.setState({ height: Math.max(e.nativeEvent.contentSize.height + 5, this.props.defaultHeight) })
     this.props.onContentSizeChange && this.props.onContentSizeChange(e)
   }
 
