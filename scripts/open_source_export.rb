@@ -32,11 +32,10 @@ unless options[:skip_clean]
 end
 
 targets = [workspace_name,
+           'CanvasCore'
            'Canvas',
            'Parent',
            'rn',
-           'Cartfile',
-           'Cartfile.resolved',
            'Frameworks',
            'Podfile',
            'Podfile.lock',
@@ -44,17 +43,20 @@ targets = [workspace_name,
            'secrets.plist',
            '.gitignore',
            'fastlane',
-           'Tinker.playground',
            'setup.sh']
 
 destination          = 'ios-open-source'
 frameworks_path      = File.join(destination, 'Frameworks')
+canvas_core_path     = File.join(destination, 'CanvasCore')
 workspace_path       = File.join(destination, workspace_name)
 
 # The groups in the workspace that shouldn't be included
 groups_to_remove     = %w[]
 
 # Frameworks that should be removed as well
+# DoNotShipThis - has auth tokens for test accounts
+# SoAutomated - has DVR network recordings with private data
+# EverythingBagel - I don't know why this is not open source
 frameworks_to_remove = %w[DoNotShipThis SoAutomated EverythingBagel]
 
 # Create a copy of all the required files and folders
@@ -109,6 +111,7 @@ def remove_fabric_from_plist(plist_path)
 end
 
 def prune_plist(plist_path)
+  abort("File doesn't exist: #{plist_path}") unless File.exist?(plist_path)
   keys_hash = Plist::parse_xml(plist_path)
   keys_hash.each { |key, value| keys_hash[key] = '' }
   File.write(plist_path, keys_hash.to_plist)
@@ -125,7 +128,7 @@ remove_fabric_from_plist File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
-prune_plist File.join(frameworks_path, 'Secrets', 'Secrets', 'feature_toggles.plist')
+prune_plist File.join(canvas_core_path, 'CanvasCore', 'Secrets', 'feature_toggles.plist')
 
 opensource_files_dir    = File.join('opensource', 'files')
 external_frameworks_dir = File.join(destination, 'ExternalFrameworks')
