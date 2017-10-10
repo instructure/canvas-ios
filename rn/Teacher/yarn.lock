@@ -4315,7 +4315,7 @@ react-native-test-utils@^1.0.6:
 
 "react-native-wkwebview-reborn@https://github.com/instructure/react-native-wkwebview":
   version "1.8.0"
-  resolved "https://github.com/instructure/react-native-wkwebview#218018d948f78472427b1bb08c11e92e7c4269d8"
+  resolved "https://github.com/instructure/react-native-wkwebview#c1e00307b0128ece331fe8f0b8f3c20b8825b8d6"
   dependencies:
     fbjs "^0.8.3"
 
