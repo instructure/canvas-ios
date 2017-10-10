@@ -128,7 +128,7 @@ describe('Compose', () => {
     let course = template.course()
     const recipient = template.addressBookResult()
     let component = renderer.create(
-      <Compose {...defaultProps} navigator={navigator} />
+      <Compose {...defaultProps} />
     )
     const instance = component.getInstance()
     instance._bodyChanged('body of the message')

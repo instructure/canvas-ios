@@ -44,7 +44,10 @@ export const enrollmentUsers: Reducer<UserProfileState, any> = handleActions({
           const incomingUser = enrollment.user
           let user = state[incomingUser.id]
           if (user) {
-            Object.assign(user, incomingUser)
+            user = {
+              ...user,
+              ...incomingUser,
+            }
           } else {
             user = incomingUser
           }

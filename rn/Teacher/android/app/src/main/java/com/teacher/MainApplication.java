@@ -52,6 +52,11 @@ public class MainApplication extends Application implements ReactApplication {
             new NavigationReactPackage()
       );
     }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
+    }
   };
 
   @Override

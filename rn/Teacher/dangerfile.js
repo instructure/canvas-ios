@@ -49,6 +49,7 @@ export function annotations (): void {
   const unFlowedFiles = newJSFiles.filter((filepath: string) => {
     // Navigating up two directories cuz this dangerfile isn't at the project root
     const content = fs.readFileSync(path.join('../../', filepath))
+    if (!content) return false
     return !content.includes('@flow')
   })
 

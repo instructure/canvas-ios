@@ -6,6 +6,8 @@ sed -i '' '/RCTLogError(@"Setting onMessage on a WebView overrides existing valu
 sed -i '' 's/RCTAnimation/React/' node_modules/react-native/Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h
 
 # https://github.com/facebook/react-native/issues/15808
-sed -i '' -e 's/MAX(0, MIN(originalOffset.x/MAX(-contentInset.left, MIN(originalOffset.x/' node_modules/react-native/React/Views/RCTScrollView.m
-sed -i '' -e 's/MAX(0, MIN(originalOffset.y/MAX(-contentInset.top, MIN(originalOffset.y/' node_modules/react-native/React/Views/RCTScrollView.m
+sed -i '' -e 's/MAX(-contentInset.top, MIN(contentSize.width/MAX(-contentInset.left, MIN(contentSize.width/' node_modules/react-native/React/Views/RCTScrollView.m
+sed -i '' -e 's/MAX(-contentInset.left, MIN(contentSize.height/MAX(-contentInset.top, MIN(contentSize.height/' node_modules/react-native/React/Views/RCTScrollView.m
 
+# https://github.com/facebook/react-native/issues/16039
+sed -i '' 's#<fishhook/fishhook.h>#\"fishhook.h\"#g' ./node_modules/react-native/Libraries/WebSocket/RCTReconnectingWebSocket.m

@@ -27,7 +27,7 @@ import path from 'path'
 
 jest
   .mock('danger')
-  .mock('fs')
+  .mock('fs', () => require('../../src/__mocks__/fs.js'))
 
 const GITHUB = {
   pr: {

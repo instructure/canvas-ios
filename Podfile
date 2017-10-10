@@ -11,7 +11,7 @@ abstract_target 'defaults' do
 
   nm_path = './rn/Teacher/node_modules/'
   rn_path = nm_path + 'react-native/'
-  pod 'Yoga', :path => rn_path + 'ReactCommon/yoga'
+  pod 'yoga', :path => rn_path + 'ReactCommon/yoga'
   pod 'React', :path => rn_path, :subspecs => [
     'Core',
     'ART',
@@ -27,6 +27,7 @@ abstract_target 'defaults' do
     'RCTLinkingIOS',
     'DevSupport',
     'BatchedBridge',
+    'fishhook'
   ]
 
   # node modules
