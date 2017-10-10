@@ -212,9 +212,8 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
           "needs_grading_count": 0,
           "overrides": Array [],
           "peer_reviews": false,
-          "points_possible": 20,
+          "points_possible": 100,
           "position": 1,
-          "possible_points": 100,
           "submission_types": Array [
             "online_text_entry",
             "online_url",
@@ -935,7 +934,7 @@ exports[`ContextCard formats the last_activity_at properly 1`] = `
                         ]
                       }
                     >
-                      50
+                      50/100
                     </Text>
                   </View>
                 </View>
@@ -1162,9 +1161,8 @@ exports[`ContextCard renders 1`] = `
           "needs_grading_count": 0,
           "overrides": Array [],
           "peer_reviews": false,
-          "points_possible": 20,
+          "points_possible": 100,
           "position": 1,
-          "possible_points": 100,
           "submission_types": Array [
             "online_text_entry",
             "online_url",
@@ -1885,7 +1883,7 @@ exports[`ContextCard renders 1`] = `
                         ]
                       }
                     >
-                      50
+                      50/100
                     </Text>
                   </View>
                 </View>
@@ -2394,26 +2392,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
             <Text
               style={
                 Object {
-                  "color": "#7F91A7",
-                  "fontSize": 12,
-                  "fontWeight": "600",
-                  "top": -3,
-                }
-              }
-            >
-              out of 100
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "flexDirection": "row",
-              }
-            }
-          >
-            <Text
-              style={
-                Object {
                   "flex": 1,
                 }
               }
@@ -2459,9 +2437,8 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
           "needs_grading_count": 0,
           "overrides": Array [],
           "peer_reviews": false,
-          "points_possible": 20,
+          "points_possible": 100,
           "position": 1,
-          "possible_points": 100,
           "submission_types": Array [
             "online_text_entry",
             "online_url",
@@ -2844,42 +2821,6 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                       "fontSize": 16,
                     },
                     Object {
-                      "color": "#7F91A7",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "top": -3,
-                    },
-                    Object {
-                      "fontFamily": ".SFUIDisplay-semibold",
-                    },
-                  ]
-                }
-              >
-                out of 100
-              </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
-                    Object {
                       "flex": 1,
                     },
                     Object {
@@ -3218,7 +3159,7 @@ exports[`ContextCard shows points values when there is no grade 1`] = `
                         ]
                       }
                     >
-                      50
+                      50/100
                     </Text>
                   </View>
                 </View>

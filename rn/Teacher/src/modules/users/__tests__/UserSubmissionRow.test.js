@@ -28,7 +28,7 @@ let templates = {
 
 let defaultProps = {
   assignment: templates.assignment({ id: '1', points_possible: 10 }),
-  submission: templates.submission({ id: '1', assignment_id: '1', score: 8 }),
+  submission: templates.submission({ id: '1', assignment_id: '1', score: 8, grade: 8 }),
   tintColor: '#fff',
 }
 

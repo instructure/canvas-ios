@@ -150,11 +150,6 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
               <Text style={styles.largeText}>{i18n.number(this.props.numLate)}</Text>
               <Text style={styles.largeText}>{i18n.number(this.props.numMissing)}</Text>
             </View>
-            {!grade &&
-              <View style={styles.line}>
-                <Text style={styles.outOf}>{i18n('out of {total, number}', { total: this.props.totalPoints })}</Text>
-              </View>
-            }
             <View style={styles.line}>
               <Text style={styles.label}>{i18n('Grade')}</Text>
               <Text style={styles.label}>{i18n('Late')}</Text>

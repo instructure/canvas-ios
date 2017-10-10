@@ -47,7 +47,7 @@ const defaultProps = {
   user: templates.user({ id: '1' }),
   course: templates.courseWithSection({ id: '1' }),
   enrollment: templates.enrollment({ id: '1', course_id: '1', user_id: '1', course_section_id: '32', grades: { current_grade: 'A', current_score: 50 } }),
-  assignments: [templates.assignment({ id: '1', possible_points: 100 })],
+  assignments: [templates.assignment({ id: '1', points_possible: 100 })],
   submissions: [templates.submissionHistory([{ id: '1', assignment_id: '1', grade: 50 }])],
   sections: [templates.section()],
   courseColor: '#fff',
