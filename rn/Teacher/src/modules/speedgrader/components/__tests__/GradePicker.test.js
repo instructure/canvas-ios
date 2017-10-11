@@ -21,11 +21,13 @@ import { AlertIOS, Animated } from 'react-native'
 import { GradePicker, mapStateToProps } from '../GradePicker'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
+import setProps from '../../../../../test/helpers/setProps'
 
 jest
   .mock('TouchableOpacity', () => 'TouchableOpacity')
   .mock('AlertIOS', () => ({
     prompt: jest.fn(),
+    alert: jest.fn(),
   }))
   .mock('Animated', () => ({
     timing: jest.fn(),
@@ -134,7 +136,6 @@ describe('GradePicker', () => {
   })
 
   it('calls excuseAssignment with the right ids when the excuse button is pressed', () => {
-    // $FlowFixMe
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[0].onPress())
 
     let tree = renderer.create(
@@ -148,7 +149,6 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission with the prompt value', () => {
-    // $FlowFixMe
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('yo'))
 
     let tree = renderer.create(
@@ -162,7 +162,6 @@ describe('GradePicker', () => {
   })
 
   it('calls gradeSubmission with a % at the end of the grade for percentage grading type if the user leaves it off', () => {
-    // $FlowFixMe
     AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('80'))
 
     let tree = renderer.create(
@@ -252,6 +251,22 @@ describe('GradePicker', () => {
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
+  })
+
+  it('calls AlertIOS.alert when the grade doesnt stick', () => {
+    AlertIOS.prompt = jest.fn((title, message, buttons) => buttons[1].onPress('asdf'))
+
+    let view = renderer.create(
+      <GradePicker {...defaultProps} />
+    )
+
+    let button = explore(view.toJSON()).selectByID('grade-picker.button') || {}
+    button.props.onPress()
+
+    setProps(view, { grade: 'asdf', pending: true })
+    setProps(view, { grade: null, pending: false })
+
+    expect(AlertIOS.alert).toHaveBeenCalled()
   })
 })
 

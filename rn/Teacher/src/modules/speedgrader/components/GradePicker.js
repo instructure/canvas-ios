@@ -65,6 +65,16 @@ export class GradePicker extends Component {
     this.state = state
   }
 
+  componentWillReceiveProps (nextProps: GradePickerProps) {
+    if (this.state.promptValue && this.props.pending && !nextProps.pending && !nextProps.grade) {
+      this.setState({ promptValue: null })
+      AlertIOS.alert(
+        i18n('Error saving grade'),
+        i18n('The was a problem saving the grade. Please try again.')
+      )
+    }
+  }
+
   openPrompt = () => {
     let buttons = [
       {
@@ -74,7 +84,7 @@ export class GradePicker extends Component {
             let hasPercentage = promptValue[-1] === '%'
             promptValue = hasPercentage ? promptValue : promptValue + '%'
           }
-          this.setState({ useCustomGrade: true, originalRubricScore: this.props.rubricScore })
+          this.setState({ useCustomGrade: true, originalRubricScore: this.props.rubricScore, promptValue })
           this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, promptValue)
         },
       },
@@ -324,4 +334,5 @@ type GradePickerState = {
   easeAnimation: Animated.Value,
   useCustomGrade: boolean,
   originalRubricScore: string,
+  promptValue: ?string,
 }
