@@ -80,7 +80,8 @@ export function gradeProp (submission: ?Submission): GradeProp {
   return 'ungraded'
 }
 
-function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDate: ?string): SubmissionDataProps {
+function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?string): SubmissionDataProps {
+  let { user, course_section_id: sectionID } = enrollment
   const { id, name } = user
   const avatarURL = user.avatar_url
   const status = statusProp(submission, dueDate)
@@ -90,7 +91,7 @@ function submissionProps (user: User, submission: ?SubmissionWithHistory, dueDat
   if (submission) {
     submissionID = submission.id
   }
-  return { userID: id, avatarURL, name, status, grade, submissionID, submission, score }
+  return { userID: id, avatarURL, name, status, grade, submissionID, submission, score, sectionID }
 }
 
 export function dueDate (assignment: Assignment, user: ?User): ?string {
@@ -156,9 +157,8 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     })
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
-      const user = enrollment.user
-      const due = dueDate(assignmentContent.data, user)
-      return submissionProps(user, submission, due)
+      const due = dueDate(assignmentContent.data, enrollment.user)
+      return submissionProps(enrollment, submission, due)
     })
 
   const pending = pendingProp(assignmentContent, courseContent)

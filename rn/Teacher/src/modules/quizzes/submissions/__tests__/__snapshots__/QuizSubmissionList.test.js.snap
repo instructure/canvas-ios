@@ -35,6 +35,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -132,6 +133,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
           "grade": "8",
           "name": "Bill Murray",
           "score": 8,
+          "sectionID": "1",
           "status": "submitted",
           "userID": "1",
         },
@@ -437,6 +439,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -460,7 +463,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
       </Text>
       <View
         accessibilityComponentType={undefined}
-        accessibilityLabel="Clear Filter Submissions"
+        accessibilityLabel="Filter Submissions"
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
@@ -518,7 +521,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
               ]
             }
           >
-            Clear Filter
+            Filter (1)
           </Text>
         </View>
       </View>
@@ -534,6 +537,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
           "grade": "8",
           "name": "Bill Murray",
           "score": 8,
+          "sectionID": "1",
           "status": "submitted",
           "userID": "1",
         },
@@ -815,6 +819,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
         allowFontScaling={true}
         disabled={false}
         ellipsizeMode="tail"
+        numberOfLines={1}
         style={
           Array [
             Object {
@@ -912,6 +917,7 @@ exports[`QuizSubmissionList navigate to submission settings 1`] = `
           "grade": "8",
           "name": "Bill Murray",
           "score": 8,
+          "sectionID": "1",
           "status": "submitted",
           "userID": "1",
         },

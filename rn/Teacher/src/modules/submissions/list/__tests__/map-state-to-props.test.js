@@ -30,6 +30,7 @@ let t = {
   ...require('../../../../__templates__/users'),
   ...require('../../../../__templates__/assignments'),
   ...require('../../../../__templates__/group'),
+  ...require('../../../../__templates__/section'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../__templates__/submission-props'),
 }
@@ -151,6 +152,7 @@ function createHappyPathTestState () {
       submissions,
       courses,
       assignments,
+      sections: [t.section({ course_id: '100' })],
     },
   })
 }
@@ -177,6 +179,7 @@ test('submissions with missing data', () => {
       submissions: {},
       courses: {},
       assignments: {},
+      sections: [],
     },
   })
 
@@ -217,6 +220,7 @@ test('filters out StudentViewEnrollment', () => {
           data: assignment,
         },
       },
+      sections: [t.section({ course_id: course.id })],
     },
   })
   const result = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })
@@ -263,6 +267,7 @@ test('gets all submissions if group doesnt exist', () => {
           group: t.group({ group_category_id: '111' }),
         },
       },
+      sections: [t.section({ course_id: course.id })],
     },
   })
   const { submissions } = mapStateToProps(state, { courseID: course.id, assignmentID: assignment.id })

@@ -26,4 +26,5 @@ export const enrollment: Template<Enrollment> = template({
   type: 'StudentEnrollment',
   enrollment_state: 'active',
   last_activity_at: '2017-04-05T15:12:45Z',
+  course_section_id: '1',
 })

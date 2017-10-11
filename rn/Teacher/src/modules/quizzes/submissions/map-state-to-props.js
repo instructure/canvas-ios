@@ -72,6 +72,7 @@ export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string
       grade,
       score,
       anonymous: false, // this will be done in another commit
+      sectionID: enrollment.course_section_id,
     }
   })
 }
@@ -137,6 +138,10 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     }
   }
 
+  const sections = Object.values(entities.sections).filter((s) => {
+    return s.course_id === courseID
+  })
+
   const rows = buildRows(enrollments, quizSubmissions, submissions)
 
   return {
@@ -149,5 +154,6 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     error,
     anonymous,
     muted,
+    sections,
   }
 }

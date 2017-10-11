@@ -141,11 +141,11 @@ test('onPress is called graded dial', () => {
 })
 
 test('onPress is called ungraded dial', () => {
-  testDialOnPress('quiz-submission_dial_1', 'notgraded')
+  testDialOnPress('quiz-submission_dial_1', 'ungraded')
 })
 
 test('onPress is called not_submitted dial', () => {
-  testDialOnPress('quiz-submission_dial_2', 'notsubmitted')
+  testDialOnPress('quiz-submission_dial_2', 'not_submitted')
 })
 
 test('misc functions', () => {

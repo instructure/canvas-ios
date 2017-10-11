@@ -112,10 +112,10 @@ export class QuizSubmissionBreakdownGraphSection extends Component<any, QuizSubm
         this.props.onPress('graded')
         break
       case ungraded:
-        this.props.onPress('notgraded')
+        this.props.onPress('ungraded')
         break
       case notSubmitted:
-        this.props.onPress('notsubmitted')
+        this.props.onPress('not_submitted')
         break
     }
   }

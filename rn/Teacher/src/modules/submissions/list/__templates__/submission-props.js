@@ -31,4 +31,5 @@ export const submissionProps: Template<SubmissionDataProps> = template({
   status: 'submitted',
   userID: submissionWithHistory.user.id,
   avatarURL: submissionWithHistory.user.avatar_url,
+  sectionID: '1',
 })

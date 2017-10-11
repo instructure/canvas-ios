@@ -1,0 +1,2360 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter renders the filter options 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "filter.reset",
+        "title": "Reset",
+      },
+    ]
+  }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "filter.done",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Filter by"
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "all",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "late",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "not_submitted",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "ungraded",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "graded",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "prompt": true,
+          "selected": false,
+          "title": [Function],
+          "type": "lessthan",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "prompt": true,
+          "selected": false,
+          "title": [Function],
+          "type": "morethan",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    extraData={true}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-all"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                All submissions
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-late"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Submitted late
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-not_submitted"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Haven't submitted yet
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-ungraded"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Haven't been graded
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-graded"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Graded
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-lessthan"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Scored less than…
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-morethan"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Scored more than…
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </RCTScrollView>
+</Screen>
+`;
+
+exports[`Filter renders with preselected options 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "filter.reset",
+        "title": "Reset",
+      },
+    ]
+  }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "filter.done",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Filter by"
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "all",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "late",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "not_submitted",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "ungraded",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "promptValue": undefined,
+          "selected": true,
+          "title": [Function],
+          "type": "graded",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "prompt": true,
+          "selected": false,
+          "title": [Function],
+          "type": "lessthan",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "prompt": true,
+          "selected": false,
+          "title": [Function],
+          "type": "morethan",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    extraData={true}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-all"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                All submissions
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-late"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Submitted late
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-not_submitted"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Haven't submitted yet
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-ungraded"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Haven't been graded
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-graded"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Graded
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "padding": 6,
+                      "width": 24,
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 12,
+                        "width": 12,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-lessthan"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Scored less than…
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-morethan"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Scored more than…
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </RCTScrollView>
+</Screen>
+`;
+
+exports[`Filter updates the selection when pressed for non prompt filter options 1`] = `
+<Screen
+  leftBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "filter.reset",
+        "title": "Reset",
+      },
+    ]
+  }
+  rightBarButtons={
+    Array [
+      Object {
+        "action": [Function],
+        "testID": "filter.done",
+        "title": "Done",
+      },
+    ]
+  }
+  title="Filter by"
+>
+  <RCTScrollView
+    data={
+      Array [
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "all",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "late",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "not_submitted",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "selected": false,
+          "title": [Function],
+          "type": "ungraded",
+        },
+        Object {
+          "disabled": false,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "promptValue": undefined,
+          "selected": true,
+          "title": [Function],
+          "type": "graded",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "prompt": true,
+          "selected": false,
+          "title": [Function],
+          "type": "lessthan",
+        },
+        Object {
+          "disabled": true,
+          "exclusive": true,
+          "filterFunc": [Function],
+          "prompt": true,
+          "selected": false,
+          "title": [Function],
+          "type": "morethan",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    extraData={true}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-all"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                All submissions
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-late"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Submitted late
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-not_submitted"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Haven't submitted yet
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-ungraded"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Haven't been graded
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-graded"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        null,
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Graded
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "flex": 1,
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "backgroundColor": "#008EE2",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "padding": 6,
+                      "width": 24,
+                    }
+                  }
+                >
+                  <Image
+                    source={1}
+                    style={
+                      Object {
+                        "height": 12,
+                        "width": 12,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-lessthan"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Scored less than…
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <TouchableHighlight
+          accessibilityLabel={undefined}
+          accessibilityTraits={
+            Array [
+              "button",
+            ]
+          }
+          onPress={[Function]}
+          style={
+            Array [
+              undefined,
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+              },
+            ]
+          }
+          testID="filter.option-morethan"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "white",
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "minHeight": 54,
+                  "paddingBottom": 12,
+                  "paddingLeft": 16,
+                  "paddingRight": 16,
+                  "paddingTop": 12,
+                },
+                Object {
+                  "backgroundColor": "white",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "flexDirection": "column",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                numberOfLines={0}
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Array [
+                      Object {
+                        "fontWeight": "600",
+                      },
+                      Array [
+                        Object {
+                          "fontSize": 18,
+                          "fontWeight": "400",
+                        },
+                        Object {
+                          "color": "#73818C",
+                        },
+                      ],
+                    ],
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+              >
+                Scored more than…
+              </Text>
+            </View>
+          </View>
+        </TouchableHighlight>
+      </View>
+    </View>
+  </RCTScrollView>
+</Screen>
+`;

@@ -20,7 +20,6 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
-  ActionSheetIOS,
   AlertIOS,
 } from 'react-native'
 
@@ -28,25 +27,14 @@ import i18n from 'format-message'
 import { LinkButton } from '../../common/buttons'
 import { Heading1, Text } from '../../common/text'
 import colors from '../../common/colors'
-
-type SubmissionFilterOptionType = 'all' | 'late' | 'notsubmitted' | 'notgraded' | 'graded' | 'lessthan' | 'morethan' | 'cancel'
-
-export type SubmissionFilterOption = {
-  type: SubmissionFilterOptionType,
-  title: string,
-  filterFunc?: Function,
-}
-
-export type SelectedSubmissionFilter = {
-  filter: SubmissionFilterOption,
-  metadata?: ?any,
-}
+import { joinTitles } from '../filter/filter-options'
 
 export type SubmissionsHeaderProps = {
   filterOptions: SubmissionFilterOption[],
   selectedFilter?: ?SelectedSubmissionFilter,
   onClearFilter: Function,
   onSelectFilter: Function,
+  navigator: Navigator,
 }
 
 const anonymousSubtitle = i18n('Anonymous grading')
@@ -55,13 +43,10 @@ const bothSubtitle = i18n('Grades muted, Anonymous grading')
 
 export default class SubmissionsHeader extends Component<any, SubmissionsHeaderProps, any> {
 
-  chooseFilter = () => {
-    const options = this.props.filterOptions.map((option) => option.title)
-    ActionSheetIOS.showActionSheetWithOptions({
-      options,
-      cancelButtonIndex: options.length - 1,
-      title: i18n('Filter by:'),
-    }, this.updateFilter)
+  navigateToFilter = () => {
+    this.props.navigator.show('/filter', {
+      modal: true,
+    }, { ...this.props })
   }
 
   updateFilter = (index: number) => {
@@ -103,11 +88,7 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
   }
 
   render () {
-    let title = i18n('All Submissions')
-    const selected = this.props.selectedFilter
-    if (selected && selected.filter && selected.filter.type !== 'all') {
-      title = selected.filter.title
-    }
+    let title = joinTitles(this.props.filterOptions) || i18n('All Submissions')
 
     let subTitle = ''
     if (this.props.muted && this.props.anonymous) {
@@ -121,6 +102,7 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
     return (<View style={styles.headerWrapper}>
               <View style={styles.header}>
                 <Heading1
+                  numberOfLines={1}
                   style={styles.headerTitle}
                   >
                   { title }
@@ -134,16 +116,11 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
   renderFilterButton = () => {
     let title = i18n('Filter')
     let accessibilityLabel = i18n('Filter Submissions')
-    let onPress = this.chooseFilter
-    const selected = this.props.selectedFilter
+    let onPress = this.navigateToFilter
 
-    if (selected &&
-        selected.filter &&
-        selected.filter.type !== 'all' &&
-        selected.filter.type !== 'cancel') {
-      title = i18n('Clear Filter')
-      accessibilityLabel = i18n('Clear Filter Submissions')
-      onPress = this.clearFilter
+    let selected = this.props.filterOptions.filter(option => option.selected)
+    if (selected.length > 0) {
+      title = i18n('Filter ({numSelected})', { numSelected: selected.length })
     }
 
     return (<LinkButton
@@ -155,86 +132,6 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
               { title }
             </LinkButton>)
   }
-
-  // This assumes using some flavor of SubmissionRowDataProps to back the rows in a submission list
-  static defaultFilterOptions (): SubmissionFilterOption[] {
-    return [
-      {
-        type: 'all',
-        title: i18n('All submissions'),
-      },
-      {
-        type: 'late',
-        title: i18n('Submitted late'),
-        filterFunc: (submissions: any) => submissions.filter((s) => s.status === 'late'),
-      },
-      {
-        type: 'notsubmitted',
-        title: i18n("Haven't submitted yet"),
-        filterFunc: (submissions: any) => submissions.filter((s) => s.grade === 'not_submitted'),
-      },
-      {
-        type: 'notgraded',
-        title: i18n("Haven't been graded"),
-        filterFunc: (submissions: any) => submissions.filter((s) => s.grade === 'ungraded'),
-      },
-      {
-        type: 'graded',
-        title: i18n('Graded'),
-        filterFunc: (submissions: any) => submissions.filter((s) => s.grade === 'excused' || (s.grade !== 'not_submitted' && s.grade !== 'ungraded')),
-      },
-      {
-        type: 'lessthan',
-        title: i18n('Scored less than…'),
-        filterFunc: (submissions: any, metadata: any) => submissions.filter((s) => {
-          return (s.score !== null && s.score !== undefined) && (s.score < Number(metadata))
-        }),
-      },
-      {
-        type: 'morethan',
-        title: i18n('Scored more than…'),
-        filterFunc: (submissions: any, metadata: any) => submissions.filter((s) => {
-          return (s.score !== null && s.score !== undefined) && (s.score > Number(metadata))
-        }),
-      },
-      {
-        type: 'cancel',
-        title: i18n('Cancel'),
-      },
-    ]
-  }
-}
-
-export function messageStudentsWhoSubject (selectedFilter: ?SelectedSubmissionFilter, assignmentName: string): string {
-  if (!selectedFilter) {
-    return i18n('All submissions - {assignmentName}', { assignmentName })
-  }
-  var subject = ''
-  switch (selectedFilter.filter.type) {
-    case 'all':
-      subject = i18n('All submissions - {assignmentName}', { assignmentName })
-      break
-    case 'late':
-      subject = i18n('Submitted late - {assignmentName}', { assignmentName })
-      break
-    case 'notsubmitted':
-      subject = i18n("Haven't submitted yet - {assignmentName}", { assignmentName })
-      break
-    case 'notgraded':
-      subject = i18n("Haven't been graded - {assignmentName}", { assignmentName })
-      break
-    case 'graded':
-      subject = i18n('Graded - {assignmentName}', { assignmentName })
-      break
-    case 'lessthan':
-      subject = i18n('Scored less than {score} - {assignmentName}', { score: selectedFilter.metadata || '', assignmentName })
-      break
-    case 'morethan':
-      subject = i18n('Score more than {score} - {assignmentName}', { score: selectedFilter.metadata || '', assignmentName })
-      break
-  }
-
-  return subject
 }
 
 const styles = StyleSheet.create({

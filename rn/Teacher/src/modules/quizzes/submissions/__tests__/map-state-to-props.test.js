@@ -29,6 +29,7 @@ const template = {
   ...require('../../../../__templates__/submissions'),
   ...require('../../../../__templates__/quizSubmission'),
   ...require('../../../../__templates__/assignments'),
+  ...require('../../../../__templates__/section'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 
@@ -141,6 +142,7 @@ describe('QuizSubmissionList mapStateToProps', () => {
         submissions: {
           [s2.id]: { submission: s2 },
         },
+        sections: [template.section({ course_id: course.id })],
       },
     })
 
@@ -152,21 +154,25 @@ describe('QuizSubmissionList mapStateToProps', () => {
           userID: '1',
           grade: 'ungraded',
           status: 'submitted',
+          sectionID: '1',
         },
         {
           userID: '2',
           grade: 'B-',
           status: 'submitted',
+          sectionID: '1',
         },
         {
           userID: '3',
           grade: 'not_submitted',
           status: 'none',
+          sectionID: '1',
         },
         {
           userID: '4',
           grade: 'not_submitted',
           status: 'late',
+          sectionID: '1',
         },
       ],
       anonymous: true,

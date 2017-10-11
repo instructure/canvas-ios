@@ -28,6 +28,7 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      numberOfLines={1}
       style={
         Array [
           Object {
@@ -49,31 +50,17 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
     >
       All Submissions
     </Text>
-    <View
-      accessibilityComponentType={undefined}
+    <TouchableOpacity
       accessibilityLabel="Filter Submissions"
       accessibilityTraits="button"
-      accessible={true}
-      collapsable={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+      onPress={[Function]}
       style={
         Object {
           "marginBottom": 1,
-          "opacity": 1,
           "width": "auto",
         }
       }
       testID="submission-list.filter"
-      tvParallaxProperties={undefined}
     >
       <View>
         <Text
@@ -112,7 +99,7 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
           Filter
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   </View>
   <Text
     accessible={true}
@@ -172,6 +159,7 @@ exports[`SubmissionHeader anonymous grading 1`] = `
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      numberOfLines={1}
       style={
         Array [
           Object {
@@ -193,31 +181,17 @@ exports[`SubmissionHeader anonymous grading 1`] = `
     >
       All Submissions
     </Text>
-    <View
-      accessibilityComponentType={undefined}
+    <TouchableOpacity
       accessibilityLabel="Filter Submissions"
       accessibilityTraits="button"
-      accessible={true}
-      collapsable={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+      onPress={[Function]}
       style={
         Object {
           "marginBottom": 1,
-          "opacity": 1,
           "width": "auto",
         }
       }
       testID="submission-list.filter"
-      tvParallaxProperties={undefined}
     >
       <View>
         <Text
@@ -256,7 +230,7 @@ exports[`SubmissionHeader anonymous grading 1`] = `
           Filter
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   </View>
   <Text
     accessible={true}
@@ -316,6 +290,7 @@ exports[`SubmissionHeader muted grading 1`] = `
       allowFontScaling={true}
       disabled={false}
       ellipsizeMode="tail"
+      numberOfLines={1}
       style={
         Array [
           Object {
@@ -337,31 +312,17 @@ exports[`SubmissionHeader muted grading 1`] = `
     >
       All Submissions
     </Text>
-    <View
-      accessibilityComponentType={undefined}
+    <TouchableOpacity
       accessibilityLabel="Filter Submissions"
       accessibilityTraits="button"
-      accessible={true}
-      collapsable={undefined}
-      hitSlop={undefined}
-      isTVSelectable={true}
-      nativeID={undefined}
-      onLayout={undefined}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
+      onPress={[Function]}
       style={
         Object {
           "marginBottom": 1,
-          "opacity": 1,
           "width": "auto",
         }
       }
       testID="submission-list.filter"
-      tvParallaxProperties={undefined}
     >
       <View>
         <Text
@@ -400,7 +361,7 @@ exports[`SubmissionHeader muted grading 1`] = `
           Filter
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   </View>
   <Text
     accessible={true}

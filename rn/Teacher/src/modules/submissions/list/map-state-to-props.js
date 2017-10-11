@@ -76,10 +76,10 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     assignmentName = assignmentContent.data.name
     gradingType = assignmentContent.data.grading_type
   }
-  let course = null
-  if (courseContent && courseContent.course) {
-    course = courseContent.course
-  }
+
+  const sections = Object.values(entities.sections).filter((s) => {
+    return s.course_id === courseID
+  })
 
   return {
     groupAssignment,
@@ -91,7 +91,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     anonymous,
     muted,
     assignmentName,
-    course,
     gradingType,
+    sections,
   }
 }

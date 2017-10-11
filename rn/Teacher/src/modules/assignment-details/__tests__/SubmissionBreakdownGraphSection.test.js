@@ -158,11 +158,11 @@ test('onPress is called graded dial', () => {
 })
 
 test('onPress is called ungraded dial', () => {
-  testDialOnPress('assignment-details.submission-breakdown-graph-section.ungraded-dial', 'notgraded')
+  testDialOnPress('assignment-details.submission-breakdown-graph-section.ungraded-dial', 'ungraded')
 })
 
 test('onPress is called not_submitted dial', () => {
-  testDialOnPress('assignment-details.submission-breakdown-graph-section.not-submitted-dial', 'notsubmitted')
+  testDialOnPress('assignment-details.submission-breakdown-graph-section.not_submitted-dial', 'not_submitted')
 })
 
 function testDialOnPress (expectedID: string, expectedValueParameter: string) {

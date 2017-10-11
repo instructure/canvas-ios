@@ -43,7 +43,6 @@ import type {
 import Screen from '../../routing/Screen'
 import Navigator from '../../routing/Navigator'
 import DrawerState, { type DrawerPosition } from './utils/drawer-state'
-import { type SelectedSubmissionFilter } from '../submissions/SubmissionsHeader'
 import Tutorial from './components/Tutorial'
 import i18n from 'format-message'
 import Images from '../../images'
@@ -98,8 +97,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   setFilteredIDs = (props: SpeedGraderProps) => {
     if (props.submissions.length && !this.state.filteredIDs) {
-      let filteredSubmissions = props.selectedFilter && props.selectedFilter.filter.filterFunc
-        ? props.selectedFilter.filter.filterFunc(props.submissions, props.selectedFilter.metadata)
+      let filteredSubmissions = props.filter
+        ? props.filter(props.submissions)
         : props.submissions
 
       this.setState({
@@ -342,7 +341,7 @@ type RoutingProps = {
   courseID: string,
   assignmentID: string,
   userID: string,
-  selectedFilter?: SelectedSubmissionFilter,
+  filter?: Function,
   studentIndex: number,
 }
 type SpeedGraderActionProps = {

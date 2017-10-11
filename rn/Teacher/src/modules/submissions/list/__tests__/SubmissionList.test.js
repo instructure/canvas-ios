@@ -24,13 +24,14 @@ import {
   shouldRefresh,
 } from '../SubmissionList'
 import renderer from 'react-test-renderer'
-import setProps from '../../../../../test/helpers/setProps'
 import cloneDeep from 'lodash/cloneDeep'
+import defaultFilterOptions, { updateFilterSelection } from '../../../filter/filter-options'
 
 const template = {
   ...require('../../../../__templates__/helm'),
   ...require('../__templates__/submission-props'),
   ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/section'),
 }
 
 jest
@@ -77,14 +78,15 @@ const props = {
   refreshSubmissions: jest.fn(),
   refreshEnrollments: jest.fn(),
   refreshGroupsForCourse: jest.fn(),
+  refreshSections: jest.fn(),
   shouldRefresh: false,
   refreshing: false,
   refresh: jest.fn(),
   anonymous: false,
   muted: false,
   assignmentName: 'Blah',
-  course: template.course(),
   groupAssignment: null,
+  sections: [template.section()],
 }
 
 beforeEach(() => jest.resetAllMocks())
@@ -101,15 +103,6 @@ test('SubmissionList shows loading indicator', () => {
     <SubmissionList {...props} navigator={template.navigator()} pending={true} />
   ).toJSON()
   expect(tree).toMatchSnapshot()
-})
-
-test('SubmissionList loaded with nothing and it should not explode, and then props should be set and it should be great', () => {
-  const tree = renderer.create(
-    <SubmissionList {...props} navigator={template.navigator()} />
-  )
-  expect(tree).toBeDefined()
-  setProps(tree, props)
-  expect(tree.getInstance().state.submissions).toEqual(props.submissions)
 })
 
 test('SubmissionList select filter function', () => {
@@ -135,55 +128,40 @@ test('SubmissionList select filter function', () => {
     <SubmissionList { ...expandedProps } navigator={template.navigator()} />
   ).getInstance()
 
-  instance.updateFilter({
-    filter: instance.filterOptions[0],
-  })
-  expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
+  instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'all'))
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject(expandedProps.submissions)
 
-  instance.updateFilter({
-    filter: instance.filterOptions[1],
-  })
-  expect(instance.state.submissions).toMatchObject([
+  instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'late'))
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
     {
       status: 'late',
     },
   ])
 
-  instance.updateFilter({
-    filter: instance.filterOptions[2],
-  })
-  expect(instance.state.submissions).toMatchObject([
+  instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'not_submitted'))
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
     {
       grade: 'not_submitted',
     },
   ])
 
-  instance.updateFilter({
-    filter: instance.filterOptions[3],
-  })
-  expect(instance.state.submissions).toMatchObject([
+  instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'ungraded'))
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
     {
       grade: 'ungraded',
     },
   ])
 
-  instance.updateFilter({
-    filter: instance.filterOptions[5],
-    metadata: 50,
-  })
-  expect(instance.state.submissions).toMatchObject([
+  instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'lessthan', 50))
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
     {
       score: 30,
       status: 'submitted',
     },
   ])
 
-  // Scored more than…
-  instance.updateFilter({
-    filter: instance.filterOptions[6],
-    metadata: 50,
-  })
-  expect(instance.state.submissions).toMatchObject([
+  instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'morethan', 50))
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject([
     {
       score: 60,
       status: 'submitted',
@@ -191,12 +169,8 @@ test('SubmissionList select filter function', () => {
   ])
 
   // Cancel
-  instance.clearFilter()
-  expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
-  instance.updateFilter({
-    filter: instance.filterOptions[7],
-  })
-  expect(instance.state.submissions).toMatchObject(expandedProps.submissions)
+  instance.applyFilter(defaultFilterOptions())
+  expect(instance.state.filter(instance.props.submissions)).toMatchObject(expandedProps.submissions)
 })
 
 test('SubmissionList renders correctly with graded filter', () => {
@@ -284,12 +258,13 @@ test('should navigate to a submission', () => {
   const tree = renderer.create(
     <SubmissionList {...props} navigator={navigator} />
   )
-  tree.getInstance().navigateToSubmission(1)(submission.userID)
+  let instance = tree.getInstance()
 
+  instance.navigateToSubmission(1)(submission.userID)
   expect(navigator.show).toHaveBeenCalledWith(
     '/courses/12/assignments/32/submissions/1',
     { modal: true, modalPresentationStyle: 'fullscreen' },
-    { selectedFilter: undefined, studentIndex: 1 }
+    { filter: instance.state.filter, studentIndex: 1 }
   )
 })
 
@@ -319,16 +294,52 @@ test('shows message compose with correct data', () => {
   )
   let instance = tree.getInstance()
 
-  instance.messageStudentsWho()
-  expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
-    recipients: instance.state.submissions.map((submission) => {
-      return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
-    }),
-    subject: 'All submissions - Blah',
-    contextName: expandedProps.course.name,
-    contextCode: `course_${expandedProps.course.id}`,
-    canAddRecipients: false,
-    onlySendIndividualMessages: true,
+  let expectSubjectToBeCorrect = (subject: string) => {
+    instance.messageStudentsWho()
+    expect(navigator.show).toHaveBeenCalledWith('/conversations/compose', { modal: true }, {
+      recipients: instance.state.submissions.map((submission) => {
+        return { id: submission.userID, name: submission.name, avatar_url: submission.avatarURL }
+      }),
+      subject: subject,
+      course: expandedProps.course,
+      canAddRecipients: false,
+      onlySendIndividualMessages: true,
+    })
+  }
+
+  it('handles all submissions', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'all'))
+    expectSubjectToBeCorrect('All submissions - Blah')
+  })
+
+  it('handles late submissions', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'late'))
+    expectSubjectToBeCorrect('Submitted late - Blah')
+  })
+
+  it('handles un-submissions', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'not_submitted'))
+    expectSubjectToBeCorrect("Haven't submitted yet - Blah")
+  })
+
+  it('handles un-gradedness', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'ungraded'))
+    expectSubjectToBeCorrect("Haven't been graded - Blah")
+  })
+
+  it('handles graded', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'graded'))
+    expectSubjectToBeCorrect('Graded - Blah')
+  })
+
+  it('handles scored less than', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'lessthan', 50))
+    expectSubjectToBeCorrect('Scored less than 50 - Blah')
+  })
+
+  it('handles scored more than', () => {
+    instance.applyFilter(updateFilterSelection(instance.state.filterOptions, 'morethan', 50))
+    expectSubjectToBeCorrect('Scored more than 50 - Blah')
   })
 })
 

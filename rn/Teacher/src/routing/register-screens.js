@@ -58,6 +58,7 @@ import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
+import Filter from '../modules/filter/Filter'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -115,4 +116,5 @@ export function registerScreens (store: Store): void {
   registerScreen('/notATeacher', wrap(NoATeacher), store)
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)
   registerScreen('/attendance')
+  registerScreen('/filter', wrap(Filter), store)
 }

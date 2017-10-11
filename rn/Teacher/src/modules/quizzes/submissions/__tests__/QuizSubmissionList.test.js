@@ -19,12 +19,12 @@
 import React from 'react'
 import { QuizSubmissionList, refreshQuizSubmissionData } from '../QuizSubmissionList'
 import renderer from 'react-test-renderer'
-import setProps from '../../../../../test/helpers/setProps'
 import cloneDeep from 'lodash/cloneDeep'
 
 const template = {
   ...require('../../../../__templates__/helm'),
   ...require('../../../../__templates__/quiz'),
+  ...require('../../../../__templates__/section'),
 }
 
 jest.mock('../../../../routing')
@@ -37,6 +37,7 @@ const rows = [{
   grade: '8',
   score: 8,
   disclosure: true,
+  sectionID: '1',
 }]
 
 const props = {
@@ -47,9 +48,11 @@ const props = {
   quiz: { data: template.quiz() },
   refreshQuizSubmissions: jest.fn(),
   refreshEnrollments: jest.fn(),
+  refreshSections: jest.fn(),
   shouldRefresh: false,
   refreshing: false,
   refresh: jest.fn(),
+  sections: [template.section({ id: '1' })],
 }
 
 describe('QuizSubmissionList', () => {
@@ -67,15 +70,6 @@ describe('QuizSubmissionList', () => {
     expect(tree).toMatchSnapshot()
   })
 
-  test('loads with nothing and it should not explode, and then props should be set and it should be great', () => {
-    const tree = renderer.create(
-      <QuizSubmissionList navigator={template.navigator()} />
-    )
-    expect(tree).toBeDefined()
-    setProps(tree, props)
-    expect(tree.getInstance().state.rows).toEqual(props.rows)
-  })
-
   test('loads with a filter type', () => {
     const tree = renderer.create(
       <QuizSubmissionList {...props} navigator={template.navigator()} filterType='graded' />
@@ -88,18 +82,6 @@ describe('QuizSubmissionList', () => {
       <QuizSubmissionList {...props} navigator={template.navigator()} filterType='whatisthis' />
     ).toJSON()
     expect(tree).toBeDefined()
-  })
-
-  test('set a filter and then clear out that filter', () => {
-    const instance = renderer.create(
-      <QuizSubmissionList {...props} navigator={template.navigator()} filterType='whatisthis' />
-    ).getInstance()
-    instance.updateFilter({
-      filter: instance.filterOptions[2],
-    })
-    expect(instance.state.rows).toMatchObject([])
-    instance.clearFilter()
-    expect(instance.state.rows).toMatchObject(props.rows)
   })
 
   test('do not navigate to speedgrader if you do not have an assignment id', () => {
@@ -122,7 +104,7 @@ describe('QuizSubmissionList', () => {
     expect(navigator.show).toHaveBeenCalledWith(
       '/courses/12/assignments/1/submissions/1',
       { modal: true, modalPresentationStyle: 'fullscreen' },
-      { selectedFilter: undefined, studentIndex: 33 }
+      { filter: instance.state.filter, studentIndex: 33 }
     )
   })
 

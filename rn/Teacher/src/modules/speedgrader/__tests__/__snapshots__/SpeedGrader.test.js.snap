@@ -32,6 +32,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
             "avatarURL": "http://www.fillmurray.com/100/100",
             "grade": "B-",
             "name": "Donald Trump",
+            "sectionID": "1",
             "status": "submitted",
             "userID": "55",
           },
@@ -117,6 +118,7 @@ exports[`SpeedGrader renders submissions if there are some 1`] = `
                   "avatarURL": "http://www.fillmurray.com/100/100",
                   "grade": "B-",
                   "name": "Donald Trump",
+                  "sectionID": "1",
                   "status": "submitted",
                   "userID": "55",
                 }
@@ -205,6 +207,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             "avatarURL": "http://www.fillmurray.com/100/100",
             "grade": "B-",
             "name": "Donald Trump",
+            "sectionID": "1",
             "status": "submitted",
             "userID": "55",
           },
@@ -215,6 +218,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
             "avatarURL": "http://www.fillmurray.com/100/100",
             "grade": "B-",
             "name": "Donald Trump",
+            "sectionID": "1",
             "status": "missing",
             "userID": "55",
           },
@@ -300,6 +304,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "avatarURL": "http://www.fillmurray.com/100/100",
                   "grade": "B-",
                   "name": "Donald Trump",
+                  "sectionID": "1",
                   "status": "submitted",
                   "userID": "55",
                 }
@@ -407,6 +412,7 @@ exports[`SpeedGrader renders with a filter 1`] = `
                   "avatarURL": "http://www.fillmurray.com/100/100",
                   "grade": "B-",
                   "name": "Donald Trump",
+                  "sectionID": "1",
                   "status": "missing",
                   "userID": "55",
                 }
