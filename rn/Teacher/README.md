@@ -22,10 +22,7 @@ sudo xcode-select -s /Applications/Xcode.app
    command)
 
 ### BuddyBuild
-In the root of the git repo is `buddybuild_postclone.sh` which will ensure that only the apps
-with relevant changes will build. But because we can only cancel builds right now, the builds
-in buddy build will show as failed. You should look to make sure that the Teacher App build
-succeeded for all commits related to this app.
+We use BuddyBuild's [selective builds](https://docs.buddybuild.com/builds/selective_builds.html) feature to ensure that only the apps with relevant changes will build.
 
 ### Linting
 We use the eslint config from the project http://standardjs.com/.
