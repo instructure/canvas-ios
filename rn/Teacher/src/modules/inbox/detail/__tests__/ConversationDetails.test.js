@@ -224,6 +224,13 @@ describe('ConversationDetails', () => {
     expect(props.deleteConversationMessage).toHaveBeenCalledWith('1', '2')
   })
 
+  it('calls navigator.pop when there is no conversation', () => {
+    let screen = Screen(props)
+    setProps(screen.component, { conversation: undefined })
+
+    expect(props.navigator.pop).toHaveBeenCalled()
+  })
+
   it('calls pop after delete finishes', () => {
     // $FlowFixMe
     ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 2))

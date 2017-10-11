@@ -194,16 +194,26 @@ export const conversations: Reducer = handleActions({
         },
       },
     }),
-    resolved: (state, { conversationID, messageID }) => ({
-      ...state,
-      [conversationID]: {
-        ...state[conversationID],
-        data: {
-          ...state[conversationID].data,
-          messages: state[conversationID].data.messages.filter(message => message.id !== messageID),
+    resolved: (state, { conversationID, messageID }) => {
+      if (state[conversationID].data.messages.length === 1 &&
+          state[conversationID].data.messages[0].id === messageID) {
+        return {
+          ...state,
+          [conversationID]: undefined,
+        }
+      }
+
+      return {
+        ...state,
+        [conversationID]: {
+          ...state[conversationID],
+          data: {
+            ...state[conversationID].data,
+            messages: state[conversationID].data.messages.filter(message => message.id !== messageID),
+          },
         },
-      },
-    }),
+      }
+    },
     rejected: (state, { conversationID, messageID }) => ({
       ...state,
       [conversationID]: {

@@ -70,6 +70,16 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
     this.props.markAsRead(this.props.conversationID)
   }
 
+  componentWillReceiveProps (nextProps: ConversationDetailsProps) {
+    if (this.state.deletePending && !nextProps.pending && !nextProps.conversation) {
+      this.setState({ deletePending: false })
+      this.props.navigator.pop()
+    }
+
+    if (this.props.conversation && !nextProps.conversation) {
+      this.props.navigator.pop()
+    }
+  }
   _renderItem = ({ item, index }) => {
     return <ConversationMessageRow
               navigator={this.props.navigator}
@@ -148,13 +158,6 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         { this._renderComponent() }
       </Screen>
     )
-  }
-
-  componentWillReceiveProps (nextProps: ConversationDetailsProps) {
-    if (this.state.deletePending && !nextProps.pending && !nextProps.conversation) {
-      this.setState({ deletePending: false })
-      this.props.navigator.pop()
-    }
   }
 
   showOptionsActionSheet = (id: string) => {

@@ -202,13 +202,22 @@ describe('deleteConversation', () => {
 })
 
 describe('deleteConversationMessage', () => {
-  let defaultState = {
-    '1': {
-      data: templates.conversation({ id: '1', messages: [templates.conversationMessage({ id: '1' })] }),
-      error: null,
-      pending: 0,
-    },
-  }
+  let defaultState
+  beforeEach(() => {
+    defaultState = {
+      '1': {
+        data: templates.conversation({
+          id: '1',
+          messages: [
+            templates.conversationMessage({ id: '1' }),
+            templates.conversationMessage({ id: '2' }),
+          ],
+        }),
+        error: null,
+        pending: 0,
+      },
+    }
+  })
 
   it('adds pendingDelete field on pending', () => {
     let action = {
@@ -222,7 +231,12 @@ describe('deleteConversationMessage', () => {
     expect(conversations(defaultState, action)).toMatchObject({
       '1': {
         data: {
-          messages: [{ pendingDelete: true }],
+          messages: [{
+            id: '1',
+            pendingDelete: true,
+          }, {
+            id: '2',
+          }],
         },
       },
     })
@@ -249,7 +263,22 @@ describe('deleteConversationMessage', () => {
         messageID: '1',
       },
     }
-    expect(conversations(defaultState, action)['1'].data.messages.length).toEqual(0)
+    expect(conversations(defaultState, action)['1'].data.messages.length).toEqual(1)
+  })
+
+  it('deletes the conversation if it was the last message in the conversation', () => {
+    let action = {
+      type: deleteConversationMessage.toString(),
+      payload: {
+        conversationID: '1',
+        messageID: '2',
+      },
+    }
+    let state = conversations(defaultState, action)
+
+    action.payload.messageID = '1'
+    state = conversations(state, action)
+    expect(state['1']).toBeUndefined()
   })
 })
 
