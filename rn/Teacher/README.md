@@ -1,4 +1,5 @@
 # Teacher App
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58b0b2116096900100863eb8&branch=develop&build=latest)](https://dashboard.buddybuild.com/apps/58b0b2116096900100863eb8/build/latest?branch=develop)
 
 ### Getting started
 
