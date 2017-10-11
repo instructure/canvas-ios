@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C1CBC6F1E58B97A00D3F15A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61A943461D55184300E0DEA5 /* Info.plist */; };
-		49C98DD51D921EE0006AF2FB /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A943631D5521F000E0DEA5 /* PSPDFKit.framework */; };
 		618878181EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618878171EF0382400DF8FFD /* PSPDFScrollView+Fixed.swift */; };
 		6199E5461F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199E5451F16AF32007F77C0 /* CanvadocsAnnotationToolbar.swift */; };
 		6199E5481F16C789007F77C0 /* CanvadocsCommentAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199E5471F16C789007F77C0 /* CanvadocsCommentAnnotation.swift */; };
@@ -19,7 +18,6 @@
 		61A943511D55184300E0DEA5 /* SoAnnotatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943501D55184300E0DEA5 /* SoAnnotatedTests.swift */; };
 		61A9435F1D5518A000E0DEA5 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 61A9435D1D5518A000E0DEA5 /* GDataXMLNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61A943601D5518A000E0DEA5 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 61A9435E1D5518A000E0DEA5 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		61A943641D5521F000E0DEA5 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61A943631D5521F000E0DEA5 /* PSPDFKit.framework */; };
 		61A943781D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */; };
 		61A943791D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943741D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift */; };
 		61A9437A1D55294500E0DEA5 /* CanvadocsAnnotationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A943751D55294500E0DEA5 /* CanvadocsAnnotationService.swift */; };
@@ -76,7 +74,6 @@
 		61A943521D55184300E0DEA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61A9435D1D5518A000E0DEA5 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		61A9435E1D5518A000E0DEA5 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
-		61A943631D5521F000E0DEA5 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		61A943651D55279A00E0DEA5 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61A943731D55294500E0DEA5 /* CanvadocsPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsPDFDocumentPresenter.swift; sourceTree = "<group>"; };
 		61A943741D55294500E0DEA5 /* CanvadocsAnnotationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvadocsAnnotationProvider.swift; sourceTree = "<group>"; };
@@ -159,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61A943641D5521F000E0DEA5 /* PSPDFKit.framework in Frameworks */,
 				E6ADF8CF9D0BEA2EB74E8E1F /* Pods_defaults_SoAnnotated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				61A9434C1D55184300E0DEA5 /* SoAnnotated.framework in Frameworks */,
-				49C98DD51D921EE0006AF2FB /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +231,6 @@
 				618D35761D64EDE40067619F /* TooLegit.framework */,
 				618D35611D64D7440067619F /* SoPretty.framework */,
 				61A943651D55279A00E0DEA5 /* Result.framework */,
-				61A943631D5521F000E0DEA5 /* PSPDFKit.framework */,
 				61A9435C1D55188700E0DEA5 /* GDataXML */,
 			);
 			name = Dependencies;
@@ -710,10 +704,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../ExternalFrameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/include/libxml2,
@@ -746,10 +737,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../../ExternalFrameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/include/libxml2,

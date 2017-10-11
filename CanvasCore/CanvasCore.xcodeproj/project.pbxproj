@@ -25,7 +25,6 @@
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
 		2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */; };
-		2CE40CA11F87D3EF00ECEACB /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE40CA01F87D3D200ECEACB /* PSPDFKit.framework */; };
 		49295B501F86D3B2001DAB1F /* HelmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49295B4F1F86D3B2001DAB1F /* HelmTests.swift */; };
 		49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */; };
 		49383CE61F848652009C8F8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CDE1F846FCB009C8F8E /* CanvasKit.framework */; };
@@ -98,7 +97,6 @@
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B3B1F72B294007225DF /* feature_toggles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = feature_toggles.plist; sourceTree = "<group>"; };
 		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		2CE40CA01F87D3D200ECEACB /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		49295B4F1F86D3B2001DAB1F /* HelmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmTests.swift; sourceTree = "<group>"; };
 		49383CDE1F846FCB009C8F8E /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49383CDF1F846FCC009C8F8E /* CanvasKeymaster.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasKeymaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,7 +154,6 @@
 				49383CE51F848652009C8F8E /* CanvasKeymaster.framework in Frameworks */,
 				49383CE71F848652009C8F8E /* SoLazy.framework in Frameworks */,
 				5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */,
-				2CE40CA11F87D3EF00ECEACB /* PSPDFKit.framework in Frameworks */,
 				2C0524CC1F87E07A00B182B9 /* SoAnnotated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,7 +201,6 @@
 		2CAF1B0A1F72AEDB007225DF = {
 			isa = PBXGroup;
 			children = (
-				2CE40C9F1F87D3BF00ECEACB /* Dependencies */,
 				2CAF1B161F72AEDB007225DF /* CanvasCore */,
 				2CAF1B211F72AEDB007225DF /* CanvasCoreTests */,
 				2CAF1B151F72AEDB007225DF /* Products */,
@@ -271,14 +267,6 @@
 				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2CE40C9F1F87D3BF00ECEACB /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				2CE40CA01F87D3D200ECEACB /* PSPDFKit.framework */,
-			);
-			name = Dependencies;
 			sourceTree = "<group>";
 		};
 		49383CF41F849921009C8F8E /* Inbox */ = {
@@ -729,7 +717,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -760,7 +747,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = CanvasCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

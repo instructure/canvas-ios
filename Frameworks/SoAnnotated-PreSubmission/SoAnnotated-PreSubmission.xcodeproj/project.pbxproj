@@ -13,7 +13,6 @@
 		6199FD241EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6199FD201EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard */; };
 		6199FD251EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD211EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift */; };
 		6199FD261EE3792400240D4E /* SubmitAssignmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199FD221EE3792400240D4E /* SubmitAssignmentActivity.swift */; };
-		6199FD291EE3795600240D4E /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD281EE3795600240D4E /* PSPDFKit.framework */; };
 		6199FD2B1EE3799200240D4E /* AssignmentKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD2A1EE3799200240D4E /* AssignmentKit.framework */; };
 		6199FD3E1EE37A1800240D4E /* SoIconic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD321EE37A1800240D4E /* SoIconic.framework */; };
 		6199FD3F1EE37A1800240D4E /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD331EE37A1800240D4E /* SoLazy.framework */; };
@@ -33,7 +32,6 @@
 		6199FD201EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubmitAnnotatedAssignmentViewController.storyboard; sourceTree = "<group>"; };
 		6199FD211EE3792400240D4E /* SubmitAnnotatedAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAnnotatedAssignmentViewController.swift; sourceTree = "<group>"; };
 		6199FD221EE3792400240D4E /* SubmitAssignmentActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentActivity.swift; sourceTree = "<group>"; };
-		6199FD281EE3795600240D4E /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		6199FD2A1EE3799200240D4E /* AssignmentKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssignmentKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/AssignmentKit.framework"; sourceTree = "<group>"; };
 		6199FD2C1EE37A1800240D4E /* CWNotification.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CWNotification.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/CWNotification.framework"; sourceTree = "<group>"; };
 		6199FD2D1EE37A1800240D4E /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = "../../../../Library/Developer/Xcode/DerivedData/AllTheThings-cnvuxgbwglwsnibwgtfbmdnnbmsc/Build/Products/Debug-iphoneos/Kingfisher.framework"; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 				6199FD421EE37A1800240D4E /* TooLegit.framework in Frameworks */,
 				6199FD431EE37A1800240D4E /* WhizzyWig.framework in Frameworks */,
 				6199FD3E1EE37A1800240D4E /* SoIconic.framework in Frameworks */,
-				6199FD291EE3795600240D4E /* PSPDFKit.framework in Frameworks */,
 				2891B585CCBD3D16CE609D66 /* Pods_defaults_SoAnnotated_PreSubmission.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,7 +127,6 @@
 				6199FD361EE37A1800240D4E /* TooLegit.framework */,
 				6199FD371EE37A1800240D4E /* WhizzyWig.framework */,
 				6199FD2A1EE3799200240D4E /* AssignmentKit.framework */,
-				6199FD281EE3795600240D4E /* PSPDFKit.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";

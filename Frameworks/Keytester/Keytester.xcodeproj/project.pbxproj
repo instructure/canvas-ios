@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C0524D21F87EB9300B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */; };
-		2C0524DF1F87F2F000B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */; };
-		2C0524E01F87F2F000B182B9 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C60499C1F72DFE700252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C60499D1F72DFE700252BC5 /* CanvasCore.framework */; };
 		2CCDE2CF1DA845B800B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2D11DA845B800B46D87 /* InfoPlist.strings */; };
 		2CCDE2DE1DA845BA00B46D87 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2CCDE2E01DA845BA00B46D87 /* InfoPlist.strings */; };
@@ -119,7 +116,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5EB86AF61C4ECE8000C920A2 /* SoPretty.framework in Embed Frameworks */,
-				2C0524E01F87F2F000B182B9 /* PSPDFKit.framework in Embed Frameworks */,
 				5EB86AF21C4ECE8000C920A2 /* SoLazy.framework in Embed Frameworks */,
 				5EB86AF41C4ECE8000C920A2 /* SoPersistent.framework in Embed Frameworks */,
 				5EB86AF81C4ECE8000C920A2 /* TooLegit.framework in Embed Frameworks */,
@@ -132,7 +128,6 @@
 
 /* Begin PBXFileReference section */
 		0F134D2C62A9857F37B60C8B /* Pods-Keymaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Keymaster.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-Keymaster/Pods-Keymaster.debug.xcconfig"; sourceTree = "<group>"; };
-		2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		2C50EE1B1E7371BD0096592C /* Secrets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Secrets.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/AllTheThings-hkuxdlosjqseyiefrjcrjyxhdecy/Build/Products/Debug-iphonesimulator/Secrets.framework"; sourceTree = "<group>"; };
 		2C60499D1F72DFE700252BC5 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCDE2D01DA845B800B46D87 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -321,7 +316,6 @@
 				493EBDA91D9638B200DCDDA2 /* Cartography.framework in Frameworks */,
 				49998E361E1D734A00C98AC2 /* CWNotification.framework in Frameworks */,
 				4928EBD71C84DEAA00799E04 /* Marshal.framework in Frameworks */,
-				2C0524DF1F87F2F000B182B9 /* PSPDFKit.framework in Frameworks */,
 				5EB86AA51C4ECC6E00C920A2 /* Keymaster.framework in Frameworks */,
 				4980F9B11DE3ACA600D71093 /* ReactiveSwift.framework in Frameworks */,
 				493EBDAD1D9638B200DCDDA2 /* Kingfisher.framework in Frameworks */,
@@ -353,7 +347,6 @@
 				5EB86AFE1C4ECE8400C920A2 /* SoPretty.framework in Frameworks */,
 				5EB86AFF1C4ECE8400C920A2 /* TooLegit.framework in Frameworks */,
 				A5D7243BAF0E14D56CF13ED9 /* Pods_defaults_Keymaster.framework in Frameworks */,
-				2C0524D21F87EB9300B182B9 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +545,6 @@
 		5EB86AE31C4ECD7800C920A2 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				2C0524D11F87EB9100B182B9 /* PSPDFKit.framework */,
 				49998E351E1D733A00C98AC2 /* CWNotification.framework */,
 				4980F9B01DE3AC9900D71093 /* ReactiveSwift.framework */,
 				493EBDA61D96383C00DCDDA2 /* Cartography.framework */,

@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C0524D01F87EA4E00B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524CF1F87EA4C00B182B9 /* PSPDFKit.framework */; };
-		2C0524D91F87EE4200B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524CF1F87EA4C00B182B9 /* PSPDFKit.framework */; };
-		2C0524DA1F87EE4200B182B9 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524CF1F87EA4C00B182B9 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6D60861F72F0AA009C3707 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6D60871F72F0AA009C3707 /* CanvasCore.framework */; };
 		4936B6E41F852E340026501C /* SoAutomated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4936B6E31F852E2C0026501C /* SoAutomated.framework */; };
 		4936B6E51F8530060026501C /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49383CC71F844A89009C8F8E /* SoLazy.framework */; };
@@ -93,7 +90,6 @@
 				49383CCA1F844A9B009C8F8E /* SoLazy.framework in Embed Frameworks */,
 				49383CED1F84890F009C8F8E /* SoPersistent.framework in Embed Frameworks */,
 				AC9DD5351CE4E888007A474A /* PageKit.framework in Embed Frameworks */,
-				2C0524DA1F87EE4200B182B9 /* PSPDFKit.framework in Embed Frameworks */,
 				49383CCC1F844A9B009C8F8E /* TooLegit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -105,7 +101,6 @@
 		066F524D12DA708039B91390 /* Pods-defaults-common_tests-PageKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-PageKitTests.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-common_tests-PageKitTests/Pods-defaults-common_tests-PageKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		0BF5FFDC86FC76EF2AC0A843 /* Pods-defaults-Pages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Pages.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-Pages/Pods-defaults-Pages.release.xcconfig"; sourceTree = "<group>"; };
 		155055FBC75FD03F3C153EE0 /* Pods-PageKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageKitTests.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-PageKitTests/Pods-PageKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2C0524CF1F87EA4C00B182B9 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		2C6D60871F72F0AA009C3707 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D62A42E96815E2667CE12B8 /* Pods-Pages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pages.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-Pages/Pods-Pages.release.xcconfig"; sourceTree = "<group>"; };
 		4936B6E31F852E2C0026501C /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,7 +312,6 @@
 				49383CC91F844A9B009C8F8E /* SoLazy.framework in Frameworks */,
 				49383CEC1F84890F009C8F8E /* SoPersistent.framework in Frameworks */,
 				B073BAF307D48932D888C0DD /* Pods_defaults_Pages.framework in Frameworks */,
-				2C0524D91F87EE4200B182B9 /* PSPDFKit.framework in Frameworks */,
 				49383CCB1F844A9B009C8F8E /* TooLegit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,7 +325,6 @@
 				2C6D60861F72F0AA009C3707 /* CanvasCore.framework in Frameworks */,
 				4936B6E51F8530060026501C /* SoLazy.framework in Frameworks */,
 				D55EFC4C996F32A5367099F4 /* Pods_defaults_PageKit.framework in Frameworks */,
-				2C0524D01F87EA4E00B182B9 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +492,6 @@
 		AC9DD5421CE4EC00007A474A /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				2C0524CF1F87EA4C00B182B9 /* PSPDFKit.framework */,
 				4936B6E31F852E2C0026501C /* SoAutomated.framework */,
 				49383CEA1F8488F9009C8F8E /* SoPersistent.framework */,
 				49383CC71F844A89009C8F8E /* SoLazy.framework */,
@@ -749,6 +741,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -792,6 +785,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
@@ -881,6 +875,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -927,6 +922,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
@@ -1556,7 +1552,6 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-mail\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-wkwebview\"",
 					"\"${PODS_ROOT}/Fabric/iOS\"",
-					"$(PROJECT_DIR)/../../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = PageKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1626,7 +1621,6 @@
 					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-mail\"",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/react-native-wkwebview\"",
 					"\"${PODS_ROOT}/Fabric/iOS\"",
-					"$(PROJECT_DIR)/../../ExternalFrameworks",
 				);
 				INFOPLIST_FILE = PageKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

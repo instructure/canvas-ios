@@ -62,6 +62,7 @@ PODS:
   - Masonry (1.1.0)
   - Nimble (7.0.2)
   - PocketSVG (2.2.1)
+  - PSPDFKit (6.8.0)
   - Quick (1.1.0)
   - RCTSFSafariViewController (0.2.4):
     - React
@@ -173,6 +174,7 @@ DEPENDENCIES:
   - Masonry (~> 1.0)
   - Nimble (~> 7.0)
   - PocketSVG (~> 2.2)
+  - PSPDFKit (from `https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/6.8.0.podspec`)
   - Quick (~> 1.1)
   - RCTSFSafariViewController (from `./rn/Teacher/node_modules/react-native-sfsafariviewcontroller`)
   - Reachability (~> 3.2)
@@ -226,6 +228,8 @@ EXTERNAL SOURCES:
     :git: https://github.com/xmartlabs/Eureka
   Interactable:
     :path: ./rn/Teacher/node_modules/react-native-interactable
+  PSPDFKit:
+    :podspec: https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma/pspdfkit/6.8.0.podspec
   RCTSFSafariViewController:
     :path: ./rn/Teacher/node_modules/react-native-sfsafariviewcontroller
   React:
@@ -290,6 +294,7 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   PocketSVG: 51c4d5cb9ae7623d4494f439f69747394bad5d67
+  PSPDFKit: 721f520417693fe900549f9186fcf0a491b7ac7e
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   RCTSFSafariViewController: 954d0fedb55f8b01b8695c78a8697fdc09a931b4
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -318,6 +323,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   yoga: 6e56575501ecea04196f9c9f08b90cf97cd5da24
 
-PODFILE CHECKSUM: 2c4aff6c16ba0340a395f3154150228c14995a10
+PODFILE CHECKSUM: 6d21d78aa3659131525c5e971c6aa1b77776b041
 
 COCOAPODS: 1.3.1

@@ -31,8 +31,6 @@
 		0AF959D11DD511090096104D /* SettingsPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF959B41DD511080096104D /* SettingsPageTests.swift */; };
 		0E586CE804E516C885D23FEE /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7D72F0B9B76A0A4384E49C /* Enrollment.swift */; };
 		1D4E0858596E01257BE0AD84 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */; };
-		2C0524D41F87EC6800B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D31F87EC6500B182B9 /* PSPDFKit.framework */; };
-		2C0524D51F87EC6800B182B9 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D31F87EC6500B182B9 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C6049661F72BC8A00252BC5 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049651F72BC8A00252BC5 /* CanvasCore.framework */; };
 		2C6049671F72BC8A00252BC5 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049651F72BC8A00252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C61CD091D9311B400196C03 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C61CD0B1D9311B400196C03 /* Localizable.strings */; };
@@ -231,7 +229,6 @@
 				5E2BD3941C52A0E0009511FB /* EnrollmentKit.framework in Embed Frameworks */,
 				5E75B5FC1C4D4A7F00A44160 /* SoPretty.framework in Embed Frameworks */,
 				617A677B1CE37C150065E487 /* Airwolf.framework in Embed Frameworks */,
-				2C0524D51F87EC6800B182B9 /* PSPDFKit.framework in Embed Frameworks */,
 				617A672C1CE272540065E487 /* SoProgressive.framework in Embed Frameworks */,
 				4907F9191DA80941004AB1A3 /* SoIconic.framework in Embed Frameworks */,
 				61E94C581C87366900777B95 /* AssignmentKit.framework in Embed Frameworks */,
@@ -289,7 +286,6 @@
 		24B1A39A8CA98A1A398F08E0 /* Alert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		2A3ED97A77AFC097218003E9 /* ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift; path = ParentDomainPickerPageTests/ParentDomainPickerPageTests_testParentDomainPickerPage_loginButtonEnabled.swift; sourceTree = "<group>"; };
 		2BB6E5A59B673384E6504E16 /* Parent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Parent.swift; sourceTree = "<group>"; };
-		2C0524D31F87EC6500B182B9 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		2C0CAD8A1DEF6EC0008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CourseCell.strings"; sourceTree = "<group>"; };
 		2C0CAD8B1DEF6EC1008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/CalendarEventCell.strings"; sourceTree = "<group>"; };
 		2C0CAD8C1DEF6EC2008D90FA /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -950,7 +946,6 @@
 				61E94C5D1C87372B00777B95 /* MediaKit.framework in Frameworks */,
 				5E2BD3931C52A0E0009511FB /* EnrollmentKit.framework in Frameworks */,
 				61E94C5A1C8736CF00777B95 /* FileKit.framework in Frameworks */,
-				2C0524D41F87EC6800B182B9 /* PSPDFKit.framework in Frameworks */,
 				617A672B1CE272540065E487 /* SoProgressive.framework in Frameworks */,
 				2C6049661F72BC8A00252BC5 /* CanvasCore.framework in Frameworks */,
 				617A677A1CE37C150065E487 /* Airwolf.framework in Frameworks */,
@@ -1174,7 +1169,6 @@
 		5E64417E1C3EE2E0003D7397 = {
 			isa = PBXGroup;
 			children = (
-				2C0524D31F87EC6500B182B9 /* PSPDFKit.framework */,
 				2C6049651F72BC8A00252BC5 /* CanvasCore.framework */,
 				5E6441891C3EE2E0003D7397 /* Parent */,
 				5E64419E1C3EE2E0003D7397 /* ParentTests */,
@@ -1684,6 +1678,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -1727,6 +1722,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
@@ -1810,6 +1806,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -1856,6 +1853,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",

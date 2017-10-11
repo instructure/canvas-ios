@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		294C3CD253BF8C4663A3DFE9 /* Pods_defaults_EverythingBagel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E9B29E6B7F326A4D6F42F62 /* Pods_defaults_EverythingBagel.framework */; };
-		2C0524D71F87EDCA00B182B9 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */; };
-		2C0524D81F87EDCA00B182B9 /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49AFAB311E09C18400522289 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB2E1E09C17600522289 /* ReactiveSwift.framework */; };
 		49AFAB3C1E09C1F900522289 /* SoLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB351E09C19D00522289 /* SoLazy.framework */; };
 		49AFAB3D1E09C1F900522289 /* SoLazy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49AFAB351E09C19D00522289 /* SoLazy.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -62,7 +60,6 @@
 				49C98E0A1D922EA0006AF2FB /* TooLegit.framework in Embed Frameworks */,
 				49C98E021D922EA0006AF2FB /* CalendarKit.framework in Embed Frameworks */,
 				49C98E041D922EA0006AF2FB /* FileKit.framework in Embed Frameworks */,
-				2C0524D81F87EDCA00B182B9 /* PSPDFKit.framework in Embed Frameworks */,
 				49C98E081D922EA0006AF2FB /* PageKit.framework in Embed Frameworks */,
 				49AFAB6D1E0AE1BD00522289 /* SoProgressive.framework in Embed Frameworks */,
 				49C98E001D922EA0006AF2FB /* AssignmentKit.framework in Embed Frameworks */,
@@ -83,7 +80,6 @@
 /* Begin PBXFileReference section */
 		164C906EBD8A0A52B0884595 /* Pods-defaults-EverythingBagel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-EverythingBagel.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-defaults-EverythingBagel/Pods-defaults-EverythingBagel.debug.xcconfig"; sourceTree = "<group>"; };
 		1E9B29E6B7F326A4D6F42F62 /* Pods_defaults_EverythingBagel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_EverythingBagel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		3BBBD64A4B287A802DF679A0 /* Pods-EverythingBagel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EverythingBagel.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-EverythingBagel/Pods-EverythingBagel.release.xcconfig"; sourceTree = "<group>"; };
 		496268F61DAC44E400B45487 /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AFAB2C1E09C16800522289 /* Marshal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +125,6 @@
 				49AFAB3C1E09C1F900522289 /* SoLazy.framework in Frameworks */,
 				49C98E091D922EA0006AF2FB /* TooLegit.framework in Frameworks */,
 				49AFAB4A1E09EC1800522289 /* Cartography.framework in Frameworks */,
-				2C0524D71F87EDCA00B182B9 /* PSPDFKit.framework in Frameworks */,
 				49AFAB4B1E09EC1800522289 /* SoPretty.framework in Frameworks */,
 				B1254B0E1DCA712100DCD110 /* SoEdventurous.framework in Frameworks */,
 				49C98E011D922EA0006AF2FB /* CalendarKit.framework in Frameworks */,
@@ -155,7 +150,6 @@
 		49C98DD61D922837006AF2FB = {
 			isa = PBXGroup;
 			children = (
-				2C0524D61F87EDC700B182B9 /* PSPDFKit.framework */,
 				49C98DF41D922853006AF2FB /* Dependencies */,
 				49C98DE11D922837006AF2FB /* EverythingBagel */,
 				49C98DE01D922837006AF2FB /* Products */,
@@ -362,6 +356,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -405,6 +400,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",

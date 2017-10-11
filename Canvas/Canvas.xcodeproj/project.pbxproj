@@ -789,15 +789,12 @@
 		61074F051DB7E88100DEEE63 /* MasteryPathSelectOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D7185C1DB7CA070081D56A /* MasteryPathSelectOptionViewController.swift */; };
 		611495C71DFF1FF900A05873 /* EnrollmentsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611495C61DFF1FF900A05873 /* EnrollmentsTab.swift */; };
 		6122B9B61D58E6B6001282BF /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9A1D58E5000011E75D /* SoAnnotated.framework */; };
-		6122B9B71D58E6DA001282BF /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; };
 		613729511D54E91800C020A0 /* UIImage+CanvasKit1.h in Headers */ = {isa = PBXBuildFile; fileRef = 6137294F1D54E91800C020A0 /* UIImage+CanvasKit1.h */; };
 		613729521D54E91800C020A0 /* UIImage+CanvasKit1.m in Sources */ = {isa = PBXBuildFile; fileRef = 613729501D54E91800C020A0 /* UIImage+CanvasKit1.m */; };
 		61592F771DA7F0A200552B44 /* ModuleDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */; };
 		61592F791DA83C4900552B44 /* ModuleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */; };
 		61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9A1D58E5000011E75D /* SoAnnotated.framework */; };
 		61681E9C1D58E5130011E75D /* SoAnnotated.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9A1D58E5000011E75D /* SoAnnotated.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; };
-		61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 61681E9D1D58E5380011E75D /* PSPDFKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6181F12F1DFF41AD00B94488 /* ToDoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F12E1DFF41AD00B94488 /* ToDoTab.swift */; };
 		6181F1311DFF47AF00B94488 /* ActivityStreamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */; };
 		6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6199FD441EE37D3600240D4E /* SoAnnotated_PreSubmission.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -889,7 +886,6 @@
 				492708771CF4C38100C631C6 /* CalendarKit.framework in Embed Frameworks */,
 				4927089D1CF4C38100C631C6 /* TooLegit.framework in Embed Frameworks */,
 				6199E55D1F16D672007F77C0 /* SoAnnotated_PreSubmission.framework in Embed Frameworks */,
-				61681E9F1D58E5410011E75D /* PSPDFKit.framework in Embed Frameworks */,
 				4927088B1CF4C38100C631C6 /* Peeps.framework in Embed Frameworks */,
 				49383CEF1F848A2B009C8F8E /* FileKit.framework in Embed Frameworks */,
 				49642BC51CF4C4DC00238B3F /* CanvasKeymaster.framework in Embed Frameworks */,
@@ -1698,7 +1694,6 @@
 		61592F761DA7F0A200552B44 /* ModuleDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailDataSource.swift; sourceTree = "<group>"; };
 		61592F781DA83C4900552B44 /* ModuleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModuleDetailsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		61681E9A1D58E5000011E75D /* SoAnnotated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAnnotated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		61681E9D1D58E5380011E75D /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../ExternalFrameworks/PSPDFKit.framework; sourceTree = "<group>"; };
 		6181E615D15EF2EA5E2642B7 /* Pods-defaults-common_tests-CanvasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6181F12E1DFF41AD00B94488 /* ToDoTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoTab.swift; sourceTree = "<group>"; };
 		6181F1301DFF47AF00B94488 /* ActivityStreamTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ActivityStreamTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -2010,7 +2005,6 @@
 				4927087E1CF4C38100C631C6 /* EnrollmentKit.framework in Frameworks */,
 				492708941CF4C38100C631C6 /* SoPersistent.framework in Frameworks */,
 				492704B21CF4B6D700C631C6 /* TechDebt.framework in Frameworks */,
-				61681E9E1D58E5410011E75D /* PSPDFKit.framework in Frameworks */,
 				49383CEE1F848A2B009C8F8E /* FileKit.framework in Frameworks */,
 				49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */,
 				61681E9B1D58E5130011E75D /* SoAnnotated.framework in Frameworks */,
@@ -2055,7 +2049,6 @@
 				492708A51CF4C38500C631C6 /* EnrollmentKit.framework in Frameworks */,
 				49A04E4E1CF6420C0051E1E7 /* CanvasKit1.framework in Frameworks */,
 				6199FD461EE37D3600240D4E /* SoAnnotated_PreSubmission.framework in Frameworks */,
-				6122B9B71D58E6DA001282BF /* PSPDFKit.framework in Frameworks */,
 				1D39C6E1D2AC732040A7B9B7 /* Pods_defaults_TechDebt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2884,7 +2877,6 @@
 				49A04E581CF64CBE0051E1E7 /* NotificationKit.framework */,
 				49E80A271CFF8E37002AF45E /* PageKit.framework */,
 				492708691CF4C37100C631C6 /* Peeps.framework */,
-				61681E9D1D58E5380011E75D /* PSPDFKit.framework */,
 				4927086A1CF4C37100C631C6 /* QuizKit.framework */,
 				61681E9A1D58E5000011E75D /* SoAnnotated.framework */,
 				61F8ED821D999EA800DFAC6E /* SoEdventurous.framework */,
@@ -3996,7 +3988,6 @@
 				49383CF11F848FCD009C8F8E /* Bundle React Native Code and Resources */,
 				492704711CF4AF7100C631C6 /* Resources */,
 				492704B71CF4B6D700C631C6 /* Embed Frameworks */,
-				49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */,
 				B0C8BDFA0291149E97BCF90D /* [CP] Embed Pods Frameworks */,
 				F4B1928409941E7F0687120C /* [CP] Copy Pods Resources */,
 				4902E1271CF4CBA00069E043 /* Fabric */,
@@ -4388,6 +4379,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -4434,6 +4426,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
@@ -4547,20 +4540,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n\n# Define NVM_DIR and source the nvm.sh setup script\n[ -z \"$NVM_DIR\" ] && export NVM_DIR=\"$HOME/.nvm\"\nif [[ -s \"$HOME/.nvm/nvm.sh\" ]]; then\n. \"$HOME/.nvm/nvm.sh\"\nelif [[ -x \"$(command -v brew)\" && -s \"$(brew --prefix nvm)/nvm.sh\" ]]; then\n. \"$(brew --prefix nvm)/nvm.sh\"\nfi\n\nif [ \"${CONFIGURATION}\" = \"Release\" ]\nthen\ncd \"${PROJECT_DIR}/../rn/Teacher\"\nset -x\nDEST=$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nreact-native bundle --entry-file ./index.ios.js --platform ios --bundle-output \"${DEST}/main.jsbundle\" --sourcemap-output \"${DEST}/main.jsbundle.map\" --dev false --assets-dest \"$DEST\" --reset-cache\ncd \"${PROJECT_DIR}\"\nelse\n../rn/Teacher/node_modules/react-native/scripts/react-native-xcode.sh\nfi";
 		};
-		49AA2D391CF4EA8B0055862D /* 📄Strip PSPDFKit */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📄Strip PSPDFKit";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APP_PATH=\"${TARGET_BUILD_DIR}/${WRAPPER_NAME}\"\n\n# This script loops through the frameworks embedded in the application and\n# removes unused architectures.\nfind \"$APP_PATH\" -name 'PSPDFKit.framework' -type d | while read -r FRAMEWORK\ndo\nFRAMEWORK_EXECUTABLE_NAME=$(defaults read \"$FRAMEWORK/Info.plist\" CFBundleExecutable)\nFRAMEWORK_EXECUTABLE_PATH=\"$FRAMEWORK/$FRAMEWORK_EXECUTABLE_NAME\"\necho \"Executable is $FRAMEWORK_EXECUTABLE_PATH\"\n\nEXTRACTED_ARCHS=()\n\nfor ARCH in $ARCHS\ndo\necho \"Extracting $ARCH from $FRAMEWORK_EXECUTABLE_NAME\"\nlipo -extract \"$ARCH\" \"$FRAMEWORK_EXECUTABLE_PATH\" -o \"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\"\nEXTRACTED_ARCHS+=(\"$FRAMEWORK_EXECUTABLE_PATH-$ARCH\")\ndone\n\necho \"Merging extracted architectures: ${ARCHS}\"\nlipo -o \"$FRAMEWORK_EXECUTABLE_PATH-merged\" -create \"${EXTRACTED_ARCHS[@]}\"\nrm \"${EXTRACTED_ARCHS[@]}\"\n\necho \"Replacing original executable with thinned version\"\nrm \"$FRAMEWORK_EXECUTABLE_PATH\"\nmv \"$FRAMEWORK_EXECUTABLE_PATH-merged\" \"$FRAMEWORK_EXECUTABLE_PATH\"\n\ndone";
-		};
 		71B7D2303DAF27D7EBF8BFDD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4648,6 +4627,7 @@
 				"${BUILT_PRODUCTS_DIR}/Mantle/Mantle.framework",
 				"${BUILT_PRODUCTS_DIR}/Marshal/Marshal.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${PODS_ROOT}/PSPDFKit/PSPDFKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PocketSVG/PocketSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RCTSFSafariViewController/RCTSFSafariViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/RNAudio/RNAudio.framework",
@@ -4692,6 +4672,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mantle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Marshal.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PSPDFKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PocketSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RCTSFSafariViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNAudio.framework",
