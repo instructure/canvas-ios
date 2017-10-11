@@ -51,7 +51,7 @@ platform :ios do
 
   def delete_untracked_and_install_deps
     FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/node_modules/')
-    FileUtils.rm_rf File.join(__dir__, '../rn/Teacher/ios/build')
+    FileUtils.rm_rf File.join(__dir__, '../build')
 
     puts `cd .. && git clean -dfx`
 
