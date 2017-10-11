@@ -53,7 +53,7 @@ describe('Filter', () => {
     let resetButton = explore(view.toJSON()).selectLeftBarButton('filter.reset')
     resetButton.action()
 
-    expect(instance.state.filterOptions.every(option => !option.selected)).toBeTruthy()
+    expect(instance.state.filterOptions.every(option => !option.selected && !option.promptValue)).toBeTruthy()
   })
 
   it('calls applyFilter with the new filter options and then dismisses itself when done is pressed', () => {

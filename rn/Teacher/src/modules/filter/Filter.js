@@ -38,7 +38,7 @@ export default class Filter extends Component {
   }
 
   resetAllFilters = () => {
-    let options = this.state.filterOptions.map(filter => ({ ...filter, selected: false, disabled: false }))
+    let options = this.state.filterOptions.map(filter => ({ ...filter, selected: false, disabled: false, promptValue: undefined }))
     this.setState({ filterOptions: options })
   }
 
