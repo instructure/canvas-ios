@@ -32,7 +32,7 @@ unless options[:skip_clean]
 end
 
 targets = [workspace_name,
-           'CanvasCore'
+           'CanvasCore',
            'Canvas',
            'Parent',
            'rn',
@@ -49,9 +49,10 @@ destination          = 'ios-open-source'
 frameworks_path      = File.join(destination, 'Frameworks')
 canvas_core_path     = File.join(destination, 'CanvasCore')
 workspace_path       = File.join(destination, workspace_name)
+podfile_path         = File.join(destination, 'Podfile')
 
 # The groups in the workspace that shouldn't be included
-groups_to_remove     = %w[]
+groups_to_remove = %w[]
 
 # Frameworks that should be removed as well
 # DoNotShipThis - has auth tokens for test accounts
@@ -59,7 +60,7 @@ groups_to_remove     = %w[]
 # EverythingBagel - I don't know why this is not open source
 frameworks_to_remove = %w[DoNotShipThis SoAutomated EverythingBagel]
 
-# Create a copy of all the required files and folders
+puts "Copying all required files and folders"
 unless options[:skip_copy]
   FileUtils.rm_r destination if File.exists? destination
   FileUtils.mkdir destination
@@ -74,6 +75,7 @@ workspace     = Xcodeproj::Workspace.new_from_xcworkspace(workspace_path)
 workspace_xml = workspace.document
 
 # Goes through all the groups and all of the files and removes anything that shouldn't be there
+puts "Pruning Xcode workspace"
 workspace_xml.elements.each do |root|
   root.elements.each do |element|
     name = element.attribute('name').to_s
@@ -85,12 +87,12 @@ workspace_xml.elements.each do |root|
   end
 end
 
-# Package up the new workspace and peace out
+# Package up the new workspace
 fixed_workspace = Xcodeproj::Workspace.from_s(workspace_xml.to_s, workspace_path)
 raise 'error creating fixed up workspace' unless fixed_workspace
 fixed_workspace.save_as(workspace_path)
 
-# Remove Fabric build scripts
+puts "Removing Fabric build scripts"
 def remove_fabric_from_project(project_path)
   project = Xcodeproj::Project.open(project_path)
   project.targets.each do |target|
@@ -103,7 +105,7 @@ end
 remove_fabric_from_project File.join(destination, 'Canvas', 'Canvas.xcodeproj')
 remove_fabric_from_project File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher.xcodeproj')
 
-# Remove stuff from the Info.plist files
+puts "Removing all sensitive data"
 def remove_fabric_from_plist(plist_path)
   hash = Plist::parse_xml(plist_path)
   hash.delete 'Fabric'
@@ -158,5 +160,17 @@ FileUtils.rm File.join(destination, 'rn', 'Teacher', 'ios', 'buddybuild_prebuild
 frameworks_to_remove.each do |folder|
   FileUtils.rm_r File.join(frameworks_path, folder)
 end
+
+# Replace PSPDFKit stuff in Podfile
+
+expires = Date.new(2018, 10, 1)
+raise "Cannot update Podfile with the correct information. You need to renew the trial Podfile URL with PSPDFKit" unless expires > Date.today
+
+podfile = File.open(podfile_path)
+podfile_contents = File.read(podfile)
+pspdfkit_license = "https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma"
+raise "Cannot update the Podfile with the correct PSPDFKit license" unless podfile_contents.include?(pspdfkit_license)
+new_podfile_contents = podfile_contents.gsub(pspdfkit_license, "https://customers.pspdfkit.com/cocoapods/TRIAL-x47r57c_x_ndkkTGJ8Un-fmB8EXXDom1r2FSyQhPZEx2i2uQGGBjZnzJTJ_az2BccXySgrFZK3AwksivROwULg")
+File.open(podfile, "w") {|file| file.puts new_podfile_contents }
 
 puts "PRAISE THE SUN IT'S FINISHED"
