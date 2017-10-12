@@ -81,6 +81,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       hasScrolledToInitialSubmission: false,
     }
     SpeedGrader.drawerState.registerDrawer(this)
+    this.currentPageIndex = props.studentIndex
   }
 
   snapTo = (position: DrawerPosition) => {
@@ -127,6 +128,8 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       this._flatList.scrollToOffset({ animated: false, offset: this.state.size.width * this.props.studentIndex })
       return { ...prevState, hasScrolledToInitialSubmission: true }
     })
+
+    this._flatList.scrollToOffset({ animated: false, offset: width * this.currentPageIndex })
   }
 
   _captureFlatList = (list: FlatList) => {
@@ -167,6 +170,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   scrollEnded = (event: Object) => {
     const index = event.nativeEvent.contentOffset.x / this.state.size.width
+    this.currentPageIndex = index
     const submission = this.filteredSubmissions()[index]
     if (submission) {
       const currentStudentID = submission.userID
