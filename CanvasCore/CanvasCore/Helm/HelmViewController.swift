@@ -463,16 +463,18 @@ public final class HelmViewController: UIViewController, HelmScreen {
         titleLabel.textColor = titleColor
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.textAlignment = .center
+        titleLabel.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         
         subtitleLabel.backgroundColor = UIColor.clear
         subtitleLabel.textColor = subtitleColor
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.textAlignment = .center
+        subtitleLabel.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         
         //  adjust width of subtitle 
         var subtitleLabelFrame = subtitleLabel.frame
         let subtitleLabelYOrigin = subtitleLabelFrame.origin.y
-        var percentageOfWidth:CGFloat = 1.45
+        var percentageOfWidth:CGFloat = 1.60
         let minWidthMultiplierWithMultipleBarButtonItems:CGFloat = 2.2
         if let barButtonItems = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]], barButtonItems.count > 1 {
             percentageOfWidth = minWidthMultiplierWithMultipleBarButtonItems
