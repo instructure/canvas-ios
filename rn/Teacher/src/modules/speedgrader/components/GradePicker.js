@@ -125,14 +125,6 @@ export class GradePicker extends Component {
 
   togglePicker = () => {
     this.setState((previousState: GradePickerState, props: GradePickerProps) => {
-      if (previousState.pickerOpen) {
-        if (this.state.passFailValue === 'ex') {
-          props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID)
-        } else {
-          props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, this.state.passFailValue)
-        }
-      }
-
       Animated.timing(
         this.state.easeAnimation,
         { toValue: previousState.pickerOpen ? 0 : 192 },
@@ -169,6 +161,11 @@ export class GradePicker extends Component {
 
   changePassFailValue = (value: string) => {
     this.setState({ passFailValue: value })
+    if (value === 'ex') {
+      this.props.excuseAssignment(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID)
+    } else {
+      this.props.gradeSubmission(this.props.courseID, this.props.assignmentID, this.props.userID, this.props.submissionID, value)
+    }
   }
 
   getButtonStyles = () => {

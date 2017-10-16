@@ -224,25 +224,27 @@ describe('GradePicker', () => {
   })
 
   it('calls excuseAssignment when the user chooses excused option in picker for pass fail assignments', () => {
+    const spy = jest.fn()
     let tree = renderer.create(
-      <GradePicker {...defaultProps} gradingType='pass_fail' />
+      <GradePicker {...defaultProps} gradingType='pass_fail' excuseAssignment={spy} />
     )
 
-    tree.getInstance().setState({ pickerOpen: true, passFailValue: 'ex' })
-    tree.getInstance().togglePicker()
+    const picker: any = explore(tree.toJSON()).selectByType('PickerIOS')
+    picker.props.onValueChange('ex')
 
-    expect(defaultProps.excuseAssignment).toHaveBeenCalledWith('3', '2', '4', '1')
+    expect(spy).toHaveBeenCalledWith('3', '2', '4', '1')
   })
 
   it('calls gradeSubmission with the pass fail value when it is not excused for pass fail assignments', () => {
+    const spy = jest.fn()
     let tree = renderer.create(
-      <GradePicker {...defaultProps} gradingType='pass_fail' />
+      <GradePicker {...defaultProps} gradingType='pass_fail' gradeSubmission={spy} />
     )
 
-    tree.getInstance().setState({ pickerOpen: true, passFailValue: 'complete' })
-    tree.getInstance().togglePicker()
+    const picker: any = explore(tree.toJSON()).selectByType('PickerIOS')
+    picker.props.onValueChange('complete')
 
-    expect(defaultProps.gradeSubmission).toHaveBeenCalledWith('3', '2', '4', '1', 'complete')
+    expect(spy).toHaveBeenCalledWith('3', '2', '4', '1', 'complete')
   })
 
   it('disables the button and has correct text for not graded assignment type', () => {
