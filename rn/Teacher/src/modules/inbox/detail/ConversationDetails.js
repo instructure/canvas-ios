@@ -67,7 +67,9 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   }
 
   componentDidMount () {
-    this.props.markAsRead(this.props.conversationID)
+    if (this.props.conversation && this.props.conversation.workflow_state === 'unread') {
+      this.props.markAsRead(this.props.conversationID)
+    }
   }
 
   componentWillReceiveProps (nextProps: ConversationDetailsProps) {

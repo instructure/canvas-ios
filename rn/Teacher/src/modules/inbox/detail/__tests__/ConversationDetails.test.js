@@ -244,12 +244,28 @@ describe('ConversationDetails', () => {
     expect(props.navigator.pop).toHaveBeenCalled()
   })
 
-  it('calls markAsRead on componentDidMount', () => {
+  it('calls markAsRead on componentDidMount when the conversation has workflow state of unread', () => {
+    const myProps = {
+      ...props,
+      conversation: template.conversation({ workflow_state: 'unread' }),
+    }
     renderer.create(
-      <ConversationDetails {...props} />
+      <ConversationDetails {...myProps} />
     )
 
     expect(props.markAsRead).toHaveBeenCalledWith('1')
+  })
+
+  it('does not call markAsRead on componentDidMount when the conversation has workflow state of archived', () => {
+    const myProps = {
+      ...props,
+      conversation: template.conversation({ workflow_state: 'archived' }),
+    }
+    renderer.create(
+      <ConversationDetails {...myProps} />
+    )
+
+    expect(props.markAsRead).not.toHaveBeenCalledWith('1')
   })
 })
 
