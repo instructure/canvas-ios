@@ -46,7 +46,7 @@ NSString *CKAttachmentMediaTypeAudioString = @"audio/mp4";
 
         raw = info;
         self.displayName = [info objectForKeyCheckingNull:@"display_name"];
-        self.filename = [info objectForKeyCheckingNull:@"filename"];
+        self.filename = [[info objectForKeyCheckingNull:@"filename"] stringByRemovingPercentEncoding];
         if (!self.displayName) self.displayName = self.filename;
         self.contentType = [info objectForKeyCheckingNull:@"content-type"];
         self.directDownloadURL = [NSURL URLWithString:[info objectForKeyCheckingNull:@"url"]];
