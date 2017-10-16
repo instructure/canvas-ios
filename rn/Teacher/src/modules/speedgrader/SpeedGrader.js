@@ -113,6 +113,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     SpeedGrader.drawerState.snapTo(0, false)
     this.props.refreshSubmissions(this.props.courseID, this.props.assignmentID, false)
     this.props.refreshSubmissionSummary(this.props.courseID, this.props.assignmentID)
+    this.props.refreshAssignment(this.props.courseID, this.props.assignmentID)
   }
 
   onLayout = (event: any) => {

@@ -143,6 +143,15 @@ describe('SpeedGrader', () => {
       index: 2,
     })
   })
+
+  it('refreshes assignment on unmount', () => {
+    const spy = jest.fn()
+    let view = renderer.create(
+      <SpeedGrader {...defaultProps} refreshAssignment={spy} />
+    )
+    view.getInstance().componentWillUnmount()
+    expect(spy).toHaveBeenCalledWith(defaultProps.courseID, defaultProps.assignmentID)
+  })
 })
 
 describe('refresh functions', () => {
