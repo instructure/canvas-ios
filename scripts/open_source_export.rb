@@ -57,8 +57,7 @@ groups_to_remove = %w[]
 # Frameworks that should be removed as well
 # DoNotShipThis - has auth tokens for test accounts
 # SoAutomated - has DVR network recordings with private data
-# EverythingBagel - I don't know why this is not open source
-frameworks_to_remove = %w[DoNotShipThis SoAutomated EverythingBagel]
+frameworks_to_remove = %w[DoNotShipThis SoAutomated]
 
 puts "Copying all required files and folders"
 unless options[:skip_copy]
@@ -125,8 +124,21 @@ def purge_plist(plist_path)
   File.write(plist_path, keys_hash.to_plist)
 end
 
+# Fabric.with([Crashlytics.self, Answers.self]) will crash with:
+# reason: '[Fabric] Value of Info.plist key "Fabric" must be a NSDictionary.'
+# To fix this, the AppDelegate is rewritten to comment out Fabric.
+def remove_fabric_from_app_delegate(app_delegate_path)
+  raise "File doesn't exist: #{app_delegate_path}" unless File.exist?(app_delegate_path)
+  fabric_init = 'Fabric.with('
+  app_delegate = File.read(app_delegate_path)
+  app_delegate.sub!(fabric_init, "//#{fabric_init}")
+  File.write(app_delegate_path, app_delegate)
+end
+
 remove_fabric_from_plist File.join(destination, 'Canvas', 'Canvas', 'Info.plist')
 remove_fabric_from_plist File.join(destination, 'rn', 'Teacher', 'ios', 'Teacher', 'Info.plist')
+
+remove_fabric_from_app_delegate File.join(destination, 'rn/Teacher/ios/Teacher/AppDelegate.swift')
 
 # Strip out all of the keys from our stuff, making an empty template file
 prune_plist File.join(destination, 'secrets.plist')
@@ -166,11 +178,14 @@ end
 expires = Date.new(2018, 10, 1)
 raise "Cannot update Podfile with the correct information. You need to renew the trial Podfile URL with PSPDFKit" unless expires > Date.today
 
-podfile = File.open(podfile_path)
-podfile_contents = File.read(podfile)
-pspdfkit_license = "https://customers.pspdfkit.com/cocoapods/8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma"
+podfile_contents = File.read(podfile_path)
+pspdfkit_license = "8YzxfVzsGsqs4HKYsejmoeD6WEJ9ma"
 raise "Cannot update the Podfile with the correct PSPDFKit license" unless podfile_contents.include?(pspdfkit_license)
-new_podfile_contents = podfile_contents.gsub(pspdfkit_license, "https://customers.pspdfkit.com/cocoapods/TRIAL-x47r57c_x_ndkkTGJ8Un-fmB8EXXDom1r2FSyQhPZEx2i2uQGGBjZnzJTJ_az2BccXySgrFZK3AwksivROwULg")
-File.open(podfile, "w") {|file| file.puts new_podfile_contents }
+podfile_contents.gsub!(pspdfkit_license, "TRIAL-x47r57c_x_ndkkTGJ8Un-fmB8EXXDom1r2FSyQhPZEx2i2uQGGBjZnzJTJ_az2BccXySgrFZK3AwksivROwULg")
+raise "Prod license not removed! Check gsub pattern" if podfile_contents.include?(pspdfkit_license)
+
+# remove SoAutomated
+podfile_contents.gsub!(/target\s*['"]SoAutomated.*?['"]\s*do.*?end\s*/m, '')
+File.write(podfile_path, podfile_contents)
 
 puts "PRAISE THE SUN IT'S FINISHED"

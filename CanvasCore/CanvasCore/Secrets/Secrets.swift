@@ -96,7 +96,9 @@ open class Secrets: NSObject {
         guard let value = keys[stringKey] else {
             fatalError("Cannot find a secret with the key \(stringKey). Please verify keys.plist")
         }
-        
+
+        if value.isEmpty { return nil }
+
         return value
     }
     
