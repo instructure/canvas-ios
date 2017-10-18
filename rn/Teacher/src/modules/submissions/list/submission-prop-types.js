@@ -37,6 +37,7 @@ export type SubmissionDataProps = {
   submissionID: ?string,
   submission: ?Object,
   sectionID: string,
+  allSectionIDs: [string],
 }
 
 export type SubmissionProps = SubmissionDataProps & {

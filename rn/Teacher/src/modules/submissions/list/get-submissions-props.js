@@ -80,18 +80,19 @@ export function gradeProp (submission: ?Submission): GradeProp {
   return 'ungraded'
 }
 
-function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?string): SubmissionDataProps {
+function submissionProps (enrollment: Enrollment, submission: ?SubmissionWithHistory, dueDate: ?string, sectionIDs: { string: [string] }): SubmissionDataProps {
   let { user, course_section_id: sectionID } = enrollment
   const { id, name } = user
   const avatarURL = user.avatar_url
   const status = statusProp(submission, dueDate)
   const grade = gradeProp(submission)
   const score = submission ? submission.score : null
+  const allSectionIDs = sectionIDs[id]
   let submissionID
   if (submission) {
     submissionID = submission.id
   }
-  return { userID: id, avatarURL, name, status, grade, submissionID, submission, score, sectionID }
+  return { userID: id, avatarURL, name, status, grade, submissionID, submission, score, sectionID, allSectionIDs }
 }
 
 export function dueDate (assignment: Assignment, user: ?User): ?string {
@@ -135,6 +136,12 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
   const courseContent = entities.courses[courseID]
   const enrollments = getEnrollments(courseContent, entities.enrollments)
 
+  const sectionIDs = enrollments.reduce((memo, enrollment) => {
+    const userID = enrollment.user_id
+    const existing = memo[userID] || []
+    return { ...memo, [userID]: [...existing, enrollment.course_section_id] }
+  }, {})
+
   // submissions
   const assignmentContent = entities.assignments[assignmentID]
   const submissionsByUserID = getSubmissionsByUserID(assignmentContent, entities.submissions)
@@ -158,7 +165,7 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
       const due = dueDate(assignmentContent.data, enrollment.user)
-      return submissionProps(enrollment, submission, due)
+      return submissionProps(enrollment, submission, due, sectionIDs)
     })
 
   const pending = pendingProp(assignmentContent, courseContent)

@@ -271,6 +271,8 @@ function createFilterFromSection (section) {
     disabled: false,
     selected: false,
     exclusive: false,
-    filterFunc: (submission) => submission.sectionID === section.id,
+    filterFunc: (submission) => {
+      return submission.allSectionIDs.includes(section.id)
+    },
   }
 }

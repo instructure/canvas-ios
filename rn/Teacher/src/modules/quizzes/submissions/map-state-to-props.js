@@ -21,7 +21,10 @@ import { gradeProp, statusProp } from '../../submissions/list/get-submissions-pr
 import { type QuizSubmissionListDataProps } from './QuizSubmissionList'
 import shuffle from 'knuth-shuffle-seeded'
 
-export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string]: QuizSubmissionState }, submissions: { [string]: SubmissionState }): SubmissionRowDataProps[] {
+export function buildRows (enrollments: Enrollment[],
+                           quizSubmissions: { [string]: QuizSubmissionState },
+                           submissions: { [string]: SubmissionState },
+                           sectionIDs: [string]): SubmissionRowDataProps[] {
   return enrollments.map((enrollment) => {
     const { user } = enrollment
     const quizSubmission = quizSubmissions[user.id]
@@ -73,6 +76,7 @@ export function buildRows (enrollments: Enrollment[], quizSubmissions: { [string
       score,
       anonymous: false, // this will be done in another commit
       sectionID: enrollment.course_section_id,
+      allSectionIDs: sectionIDs[user.id],
     }
   })
 }
@@ -82,6 +86,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
   let quizSubmissions: { [string]: QuizSubmissionState } = {}
   let submissions: { [string]: SubmissionState } = {}
   let enrollments: Enrollment[] = []
+  let sectionIDs: [string] = []
   let pending = false
   let error = null
   let pointsPossible = 0
@@ -113,10 +118,17 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
 
   const course = entities.courses[courseID]
   if (course) {
-    enrollments = course.enrollments.refs.map((r) => {
+    const allEnrollments = course.enrollments.refs.map((r) => {
       return entities.enrollments[r]
     })
-    .filter((e) => {
+
+    sectionIDs = allEnrollments.reduce((memo, enrollment) => {
+      const userID = enrollment.user_id
+      const existing = memo[userID] || []
+      return { ...memo, [userID]: [...existing, enrollment.course_section_id] }
+    }, {})
+
+    enrollments = allEnrollments.filter((e) => {
       if (!e) return false
       return (e.type === 'StudentEnrollment' ||
               e.type === 'StudentViewEnrollment') &&
@@ -142,7 +154,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     return s.course_id === courseID
   })
 
-  const rows = buildRows(enrollments, quizSubmissions, submissions)
+  const rows = buildRows(enrollments, quizSubmissions, submissions, sectionIDs)
 
   return {
     courseColor,
