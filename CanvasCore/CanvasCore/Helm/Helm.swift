@@ -183,6 +183,7 @@ open class HelmManager: NSObject {
                 case "fullscreen": viewController.modalPresentationStyle = .fullScreen
                 case "formsheet": viewController.modalPresentationStyle = .formSheet
                 case "currentContext": viewController.modalPresentationStyle = .currentContext
+                case "overCurrentContext": viewController.modalPresentationStyle = .overCurrentContext
                 default: viewController.modalPresentationStyle = .fullScreen
                 }
             }

@@ -1,37 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ZSSRichTextEditor link modal triggers insert link with selection 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <WebView
-    onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    scrollEnabled={true}
-    source={Object {}}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-      }
-    }
-  />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title="selection"
-    url={null}
-    visible={true}
-  />
-</View>
-`;
-
 exports[`ZSSRichTextEditor link modal triggers insert new link 1`] = `
 Array [
   Array [
@@ -95,14 +63,6 @@ exports[`ZSSRichTextEditor renders 1`] = `
       }
     }
   />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title={undefined}
-    url={undefined}
-    visible={false}
-  />
 </View>
 `;
 
@@ -128,70 +88,6 @@ Array [
     "zss_editor.setCustomCSS('img { max-width: 100%; } ');",
   ],
 ]
-`;
-
-exports[`ZSSRichTextEditor shows link modal 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <WebView
-    onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    scrollEnabled={true}
-    source={Object {}}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-      }
-    }
-  />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title={undefined}
-    url={null}
-    visible={true}
-  />
-</View>
-`;
-
-exports[`ZSSRichTextEditor shows link modal when link touched 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <WebView
-    onLoad={[Function]}
-    onMessage={[Function]}
-    scalesPageToFit={true}
-    scrollEnabled={true}
-    source={Object {}}
-    style={
-      Object {
-        "backgroundColor": "transparent",
-      }
-    }
-  />
-  <LinkModal
-    linkCreated={[Function]}
-    linkUpdated={[Function]}
-    onCancel={[Function]}
-    title="test update link"
-    url="http://test-update-link.com"
-    visible={true}
-  />
-</View>
 `;
 
 exports[`ZSSRichTextEditor triggers blur 1`] = `

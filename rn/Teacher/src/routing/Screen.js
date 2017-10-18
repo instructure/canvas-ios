@@ -36,6 +36,7 @@ type ScreenProps = {
   automaticallyAdjustsScrollViewInsets?: boolean,
   supportedOrientations?: any,
   noRotationInVerticallyCompact?: boolean,
+  backgroundColor?: string,
 
   // Nav bar stuff
   navBarStyle?: 'light' | 'dark',

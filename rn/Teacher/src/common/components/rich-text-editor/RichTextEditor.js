@@ -24,6 +24,7 @@ import {
   StyleSheet,
   View,
   NativeModules,
+  Dimensions,
 } from 'react-native'
 
 export type Props = {
@@ -36,10 +37,12 @@ export type Props = {
   contentHeight?: number,
   placeholder?: string,
   focusOnLoad?: boolean,
+  navigator: Navigator,
 }
 
 export default class RichTextEditor extends Component<any, Props, any> {
   editor: ZSSRichTextEditor
+  container: View
 
   constructor (props: Props) {
     super(props)
@@ -47,12 +50,25 @@ export default class RichTextEditor extends Component<any, Props, any> {
     this.state = {
       activeEditorItems: [],
       editorFocused: false,
+      topKeyboardSpace: 0,
     }
+  }
+
+  onLayout = () => {
+    this._setKeyboardSpace()
+  }
+
+  onKeyboardSpaceToggle = () => {
+    this._setKeyboardSpace()
   }
 
   render () {
     return (
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+        ref={this._captureContainer}
+        onLayout={this.onLayout}
+      >
         <View style={styles.editor}>
           <ZSSRichTextEditor
             ref={(editor) => { this.editor = editor }}
@@ -64,6 +80,7 @@ export default class RichTextEditor extends Component<any, Props, any> {
             onInputChange={this.props.onChangeValue}
             onHeightChange={this.props.onChangeHeight}
             scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
+            navigator={this.props.navigator}
           />
         </View>
         { this.toolbarShown() &&
@@ -81,10 +98,23 @@ export default class RichTextEditor extends Component<any, Props, any> {
           />
         }
         { (this.props.keyboardAware === undefined || this.props.keyboardAware) &&
-          <KeyboardSpacer />
+          <KeyboardSpacer
+            topSpacing={this.state.topKeyboardSpace}
+            onToggle={this.onKeyboardSpaceToggle}
+          />
         }
       </View>
     )
+  }
+
+  _captureContainer = (ref: View) => { this.container = ref }
+
+  _setKeyboardSpace = () => {
+    this.container.measureInWindow((x, y, width, height) => {
+      const window = Dimensions.get('window')
+      const space = (window.height - (y + height)) * -1
+      this.setState({ topKeyboardSpace: space })
+    })
   }
 
   // EDITOR EVENTS
@@ -108,6 +138,7 @@ export default class RichTextEditor extends Component<any, Props, any> {
   }
 
   _onFocus = () => {
+    this._setKeyboardSpace()
     this.setState({ editorFocused: true })
   }
 

@@ -49,7 +49,8 @@ export default class Navigator {
       canBecomeMaster = r.config.canBecomeMaster
     }
     if (options.modal) {
-      this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController: true, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
+      const embedInNavigationController = options.embedInNavigationController == null || options.embedInNavigationController
+      this.present(r, { modal: options.modal, modalPresentationStyle: options.modalPresentationStyle || 'formsheet', embedInNavigationController, canBecomeMaster: canBecomeMaster, modalTransitionStyle: options.modalTransitionStyle })
     } else {
       this.push(r)
     }

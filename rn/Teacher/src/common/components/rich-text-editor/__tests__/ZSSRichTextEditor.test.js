@@ -24,6 +24,10 @@ import ZSSRichTextEditor from '../ZSSRichTextEditor'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 
+const template = {
+  ...require('../../../../__templates__/helm'),
+}
+
 jest
   .mock('WebView', () => 'WebView')
   .mock('ScrollView', () => 'ScrollView')
@@ -49,10 +53,6 @@ describe('ZSSRichTextEditor', () => {
 
   const webView = (component) => {
     return explore(component.toJSON()).query(({ type }) => type === 'WebView')[0]
-  }
-
-  const linkModal = (component) => {
-    return explore(component.toJSON()).query(({ type }) => type === 'LinkModal')[0]
   }
 
   it('renders', () => {
@@ -136,57 +136,113 @@ describe('ZSSRichTextEditor', () => {
   })
 
   it('shows link modal', () => {
+    const navigator = template.navigator({ show: jest.fn() })
     const component = renderer.create(
-      <ZSSRichTextEditor />, options
+      <ZSSRichTextEditor navigator={navigator} />, options
     )
     component.getInstance().insertLink()
     const web = webView(component)
     postMessage(web, 'INSERT_LINK')
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(navigator.show).toHaveBeenCalledWith(
+      '/rich-text-editor/link',
+      {
+        modal: true,
+        modalPresentationStyle: 'overCurrentContext',
+        modalTransitionStyle: 'fade',
+        embedInNavigationController: false,
+      },
+      {
+        url: null,
+        title: undefined,
+        linkUpdated: expect.any(Function),
+        linkCreated: expect.any(Function),
+        onCancel: expect.any(Function),
+      },
+    )
   })
 
   it('shows link modal when link touched', () => {
+    const navigator = template.navigator({ show: jest.fn() })
     const link = {
       url: 'http://test-update-link.com',
       title: 'test update link',
     }
     const component = renderer.create(
-      <ZSSRichTextEditor />, options
+      <ZSSRichTextEditor navigator={navigator} />, options
     )
     component.getInstance().insertLink()
     const web = webView(component)
     postMessage(web, 'LINK_TOUCHED', link)
-    expect(component.toJSON()).toMatchSnapshot()
+    expect(navigator.show).toHaveBeenCalledWith(
+      '/rich-text-editor/link',
+      {
+        modal: true,
+        modalPresentationStyle: 'overCurrentContext',
+        modalTransitionStyle: 'fade',
+        embedInNavigationController: false,
+      },
+      {
+        url: 'http://test-update-link.com',
+        title: 'test update link',
+        linkUpdated: expect.any(Function),
+        linkCreated: expect.any(Function),
+        onCancel: expect.any(Function),
+      },
+    )
   })
 
   describe('link modal', () => {
     it('triggers insert new link', () => {
+      const navigator = template.navigator({
+        show: (route, options, props) => {
+          props.linkCreated('url', 'title')
+        },
+      })
       const component = renderer.create(
-        <ZSSRichTextEditor />, options
+        <ZSSRichTextEditor navigator={navigator} />, options
       )
       component.getInstance().insertLink()
       postMessage(webView(component), 'INSERT_LINK')
-      linkModal(component).props.linkCreated('url', 'title')
 
       expect(js.mock.calls).toMatchSnapshot()
     })
 
     it('triggers insert link with selection', () => {
+      const navigator = template.navigator({ show: jest.fn() })
       const component = renderer.create(
-        <ZSSRichTextEditor />, options
+        <ZSSRichTextEditor navigator={navigator} />, options
       )
       component.getInstance().insertLink()
       postMessage(webView(component), 'INSERT_LINK', 'selection')
-      expect(component).toMatchSnapshot()
+      expect(navigator.show).toHaveBeenCalledWith(
+        '/rich-text-editor/link',
+        {
+          modal: true,
+          modalPresentationStyle: 'overCurrentContext',
+          modalTransitionStyle: 'fade',
+          embedInNavigationController: false,
+        },
+        {
+          url: null,
+          title: 'selection',
+          linkUpdated: expect.any(Function),
+          linkCreated: expect.any(Function),
+          onCancel: expect.any(Function),
+        },
+      )
     })
 
     it('triggers update link', () => {
+      const navigator = template.navigator({
+        show: (route, options, props) => {
+          props.linkUpdated('url', 'title')
+        },
+      })
       const component = renderer.create(
-        <ZSSRichTextEditor />, options
+        <ZSSRichTextEditor navigator={navigator} />, options
       )
       component.getInstance().insertLink()
       postMessage(webView(component), 'INSERT_LINK')
-      linkModal(component).props.linkUpdated('url', 'title')
 
       expect(js.mock.calls).toMatchSnapshot()
     })

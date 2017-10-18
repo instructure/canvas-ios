@@ -26,6 +26,7 @@ struct PropKeys {
     static let automaticallyAdjustsScrollViewInsets = "automaticallyAdjustsScrollViewInsets"
     static let supportedOrientations = "supportedOrientations"
     static let noRotationInVerticallyCompact = "noRotationInVerticallyCompact"
+    static let backgroundColor = "backgroundColor"
     
     // Nav bar stuff
     static let navBarStyle = "navBarStyle"

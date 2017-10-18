@@ -43,6 +43,7 @@ import QuizzesList from '../modules/quizzes/list/QuizzesList'
 import QuizDetails from '../modules/quizzes/details/QuizDetails'
 import QuizEdit from '../modules/quizzes/edit/QuizEdit'
 import RichTextEditor from '../modules/rich-text-editor/RichTextEditor'
+import LinkModal from '../common/components/rich-text-editor/LinkModal'
 import QuizPreview from '../modules/quizzes/details/QuizPreview'
 import QuizSubmissions from '../modules/quizzes/submissions/QuizSubmissionList'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
@@ -107,6 +108,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/profile', wrap(Profile), store)
   registerScreen('/staging', wrap(Staging), store)
   registerScreen('/rich-text-editor', wrap(RichTextEditor), store)
+  registerScreen('/rich-text-editor/link', wrap(LinkModal), store)
   registerScreen('/attachment', wrap(AttachmentView), store)
   registerScreen('/attachments', wrap(Attachments), store)
   registerScreen('/courses/:courseID/placeholder', wrap(CourseDetailsSplitViewPlaceholder), store)

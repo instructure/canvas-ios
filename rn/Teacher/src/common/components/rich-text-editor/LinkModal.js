@@ -21,11 +21,11 @@ import {
   StyleSheet,
   View,
   Button,
-  Modal,
   TextInput,
   Text,
 } from 'react-native'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+import Screen from '../../../routing/Screen'
 
 type Props = {
   visible: boolean,
@@ -48,61 +48,59 @@ export default class LinkModal extends Component<any, Props, any> {
 
   render () {
     return (
-      <Modal
-        animationType='fade'
-        transparent={true}
-        visible={this.props.visible}
-      >
-        <View style={styles.container}>
-          <View style={styles.innerContainer}>
-            <Text style={styles.titleText}>
-              Link to Website URL
-            </Text>
-            <View style={styles.textInputContainer}>
-              <TextInput
-                placeholder='Title'
-                style={styles.textInput}
-                defaultValue={this.props.title}
-                autoCapitalize='none'
-                testID='rich-text-editor.link-modal.titleInput'
-                onChangeText={ (title) => this.setState({ title })}
-                autoFocus={ typeof (jest) === 'undefined' }
-              />
-            </View>
-            <View style={styles.textInputContainer}>
-              <TextInput
-                style={styles.textInput}
-                defaultValue={this.props.url}
-                placeholder='URL'
-                keyboardType='url'
-                autoCapitalize='none'
-                autoCorrect={false}
-                testID='rich-text-editor.link-modal.urlInput'
-                onChangeText={ (url) => this.setState({ url })}
-              />
-            </View>
-            <View style={[styles.separator, { height: 1, marginTop: 6 }]}/>
-            <View style={styles.actionsContainer}>
-              <View style={styles.actionContainer}>
-                <Button
-                  title='Cancel'
-                  testID='rich-text-editor.link-modal.cancelButton'
-                  onPress={this._onPressCancel}
+      <Screen backgroundColor='rgba(0,0,0,0.5)'>
+        <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+          <View style={styles.container}>
+            <View style={styles.innerContainer}>
+              <Text style={styles.titleText}>
+                Link to Website URL
+              </Text>
+              <View style={styles.textInputContainer}>
+                <TextInput
+                  placeholder='Title'
+                  style={styles.textInput}
+                  defaultValue={this.props.title}
+                  autoCapitalize='none'
+                  testID='rich-text-editor.link-modal.titleInput'
+                  onChangeText={ (title) => this.setState({ title })}
+                  autoFocus={ typeof (jest) === 'undefined' }
                 />
               </View>
-              <View style={[styles.separator, { width: 1 }]}/>
-              <View style={styles.actionContainer}>
-                <Button
-                  title='OK'
-                  testID='rich-text-editor.link-modal.okButton'
-                  onPress={this._onPressOK}
+              <View style={styles.textInputContainer}>
+                <TextInput
+                  style={styles.textInput}
+                  defaultValue={this.props.url}
+                  placeholder='URL'
+                  keyboardType='url'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  testID='rich-text-editor.link-modal.urlInput'
+                  onChangeText={ (url) => this.setState({ url })}
                 />
+              </View>
+              <View style={[styles.separator, { height: 1, marginTop: 6 }]}/>
+              <View style={styles.actionsContainer}>
+                <View style={styles.actionContainer}>
+                  <Button
+                    title='Cancel'
+                    testID='rich-text-editor.link-modal.cancelButton'
+                    onPress={this._onPressCancel}
+                  />
+                </View>
+                <View style={[styles.separator, { width: 1 }]}/>
+                <View style={styles.actionContainer}>
+                  <Button
+                    title='OK'
+                    testID='rich-text-editor.link-modal.okButton'
+                    onPress={this._onPressOK}
+                  />
+                </View>
               </View>
             </View>
           </View>
+          <KeyboardSpacer />
         </View>
-        <KeyboardSpacer />
-      </Modal>
+      </Screen>
     )
   }
 
@@ -117,7 +115,7 @@ export default class LinkModal extends Component<any, Props, any> {
 
   _onPressOK = () => {
     let url = this.state.url
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    if (url && !url.startsWith('http://') && !url.startsWith('https://')) {
       url = `http://${url}`
     }
     this.props[this.props.url ? 'linkUpdated' : 'linkCreated'](url, this.state.title)
@@ -132,7 +130,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'transparent',
     padding: 50,
   },
   innerContainer: {

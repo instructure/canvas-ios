@@ -138,6 +138,10 @@ public final class HelmViewController: UIViewController, HelmScreen {
                 self.navigationItem.titleView = nil
             }
         }
+
+        if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
+            view.backgroundColor = RCTConvert.uiColor(backgroundColor)
+        }
         
         _screenDidRender = true
     }

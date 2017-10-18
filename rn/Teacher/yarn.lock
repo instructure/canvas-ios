@@ -4267,9 +4267,9 @@ react-native-keyboard-aware-scroll-view@^0.3.0:
     prop-types "^15.5.10"
     react-timer-mixin "^0.13.3"
 
-react-native-keyboard-spacer@^0.4.1:
+"react-native-keyboard-spacer@https://github.com/n8armstrong/react-native-keyboard-spacer.git":
   version "0.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-keyboard-spacer/-/react-native-keyboard-spacer-0.4.1.tgz#46f18a320432098a25ea9fa89f5143dd254d332d"
+  resolved "https://github.com/n8armstrong/react-native-keyboard-spacer.git#551938c6690e7bde10d87fcb854ed7a6f5986fb1"
 
 react-native-kill-packager@^1.0.0:
   version "1.0.0"

@@ -426,10 +426,18 @@ zss_editor.setFontFamily = function(fontFamily) {
 
 zss_editor.setTextColor = function(color) {
 
+    var boldEnabled = zss_editor.isCommandEnabled('bold');
+    var italicEnabled = zss_editor.isCommandEnabled('italic');
     zss_editor.restorerange();
     document.execCommand("styleWithCSS", null, true);
     document.execCommand('foreColor', false, color);
     document.execCommand("styleWithCSS", null, false);
+    if (boldEnabled !== zss_editor.isCommandEnabled('bold')) {
+      document.execCommand('bold', false, null);
+    }
+    if (italicEnabled !== zss_editor.isCommandEnabled('italic')) {
+      document.execCommand('italic', false, null);
+    }
     zss_editor.enabledEditingItems();
     // document.execCommand("removeFormat", false, "foreColor"); // Removes just foreColor
 
@@ -688,31 +696,29 @@ zss_editor.enabledEditingItems = function(e) {
         $(this).addClass('zs_active');
     });
 
-    // Use jQuery to figure out those that are not supported
+    // The target element
+    var s = zss_editor.getSelectedNode();
+    var t = $(s);
+
+    // Background Color
+    var bgColor = t.css('backgroundColor');
+    if (bgColor.length != 0 && bgColor != 'rgba(0, 0, 0, 0)' && bgColor != 'rgb(0, 0, 0)' && bgColor != 'transparent') {
+        items.push('backgroundColor');
+    }
+    // Text Color
+    var textColor = (document.queryCommandEnabled('foreColor') && document.queryCommandValue('foreColor')) || t.css('color');
+    if (textColor.length != 0 && textColor != 'transparent') {
+        items.push('textColor:'+textColor);
+    }
+
+    //Fonts
+    var font = t.css('font-family');
+    if (font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
+        items.push('fonts');
+    }
+
     if (typeof(e) != "undefined") {
-
-        // The target element
-        var s = zss_editor.getSelectedNode();
-        var t = $(s);
         var nodeName = e.target.nodeName.toLowerCase();
-
-        // Background Color
-        var bgColor = t.css('backgroundColor');
-        if (bgColor.length != 0 && bgColor != 'rgba(0, 0, 0, 0)' && bgColor != 'rgb(0, 0, 0)' && bgColor != 'transparent') {
-            items.push('backgroundColor');
-        }
-        // Text Color
-        var textColor = (document.queryCommandEnabled('foreColor') && document.queryCommandValue('foreColor')) || t.css('color');
-        if (textColor.length != 0 && textColor != 'transparent') {
-            items.push('textColor:'+textColor);
-        }
-
-        //Fonts
-        var font = t.css('font-family');
-        if (font.length != 0 && font != 'Arial, Helvetica, sans-serif') {
-            items.push('fonts');
-        }
-
         // Link
         if (nodeName == 'a') {
             zss_editor.currentEditingLink = t;
@@ -740,7 +746,6 @@ zss_editor.enabledEditingItems = function(e) {
         } else {
             zss_editor.currentEditingImage = null;
         }
-
     }
 
     setTimeout(function() {

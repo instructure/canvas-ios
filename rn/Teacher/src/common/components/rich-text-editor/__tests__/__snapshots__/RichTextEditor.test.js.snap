@@ -9,6 +9,7 @@ exports[`RichTextEditor does height stuff when color picker shown 1`] = `
 
 exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
@@ -31,6 +32,7 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
       _setMock={[Function]}
       editorItemsChanged={[Function]}
       html=""
+      navigator={undefined}
       onBlur={[Function]}
       onFocus={[Function]}
       onHeightChange={undefined}
@@ -39,12 +41,16 @@ exports[`RichTextEditor hides toolbar when editor blurs 1`] = `
       scrollEnabled={true}
     />
   </View>
-  <KeyboardSpacer />
+  <KeyboardSpacer
+    onToggle={[Function]}
+    topSpacing={0}
+  />
 </View>
 `;
 
 exports[`RichTextEditor renders 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
@@ -67,6 +73,7 @@ exports[`RichTextEditor renders 1`] = `
       _setMock={[Function]}
       editorItemsChanged={[Function]}
       html=""
+      navigator={undefined}
       onBlur={[Function]}
       onFocus={[Function]}
       onHeightChange={undefined}
@@ -75,12 +82,16 @@ exports[`RichTextEditor renders 1`] = `
       scrollEnabled={true}
     />
   </View>
-  <KeyboardSpacer />
+  <KeyboardSpacer
+    onToggle={[Function]}
+    topSpacing={0}
+  />
 </View>
 `;
 
 exports[`RichTextEditor renders toolbar when editor focused 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
@@ -103,6 +114,7 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
       _setMock={[Function]}
       editorItemsChanged={[Function]}
       html=""
+      navigator={undefined}
       onBlur={[Function]}
       onFocus={[Function]}
       onHeightChange={undefined}
@@ -123,12 +135,16 @@ exports[`RichTextEditor renders toolbar when editor focused 1`] = `
     setUnorderedList={[Function]}
     undo={[Function]}
   />
-  <KeyboardSpacer />
+  <KeyboardSpacer
+    onToggle={[Function]}
+    topSpacing={0}
+  />
 </View>
 `;
 
 exports[`RichTextEditor should update active editor items in toolbar 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
@@ -151,6 +167,7 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
       _setMock={[Function]}
       editorItemsChanged={[Function]}
       html=""
+      navigator={undefined}
       onBlur={[Function]}
       onFocus={[Function]}
       onHeightChange={undefined}
@@ -175,12 +192,16 @@ exports[`RichTextEditor should update active editor items in toolbar 1`] = `
     setUnorderedList={[Function]}
     undo={[Function]}
   />
-  <KeyboardSpacer />
+  <KeyboardSpacer
+    onToggle={[Function]}
+    topSpacing={0}
+  />
 </View>
 `;
 
 exports[`RichTextEditor should update active editor items in toolbar 2`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
@@ -203,6 +224,7 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
       _setMock={[Function]}
       editorItemsChanged={[Function]}
       html=""
+      navigator={undefined}
       onBlur={[Function]}
       onFocus={[Function]}
       onHeightChange={undefined}
@@ -227,6 +249,9 @@ exports[`RichTextEditor should update active editor items in toolbar 2`] = `
     setUnorderedList={[Function]}
     undo={[Function]}
   />
-  <KeyboardSpacer />
+  <KeyboardSpacer
+    onToggle={[Function]}
+    topSpacing={0}
+  />
 </View>
 `;

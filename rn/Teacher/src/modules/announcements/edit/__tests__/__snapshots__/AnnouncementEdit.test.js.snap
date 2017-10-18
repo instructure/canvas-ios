@@ -331,6 +331,15 @@ exports[`AnnouncementEdit renders 1`] = `
             contentHeight={150}
             defaultValue="Gather tribute or face my curse."
             keyboardAware={false}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
             onChangeValue={[Function]}
             placeholder="Add description (required)"
             scrollEnabled={true}
@@ -909,6 +918,15 @@ exports[`AnnouncementEdit updates with new props 1`] = `
             contentHeight={150}
             defaultValue="Gather tribute or face my curse."
             keyboardAware={false}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
             onChangeValue={[Function]}
             placeholder="Add description (required)"
             scrollEnabled={true}

@@ -22,7 +22,6 @@ import {
   StyleSheet,
   View,
 } from 'react-native'
-import LinkModal from './LinkModal'
 
 import isEqual from 'lodash/isEqual'
 
@@ -37,10 +36,12 @@ type Props = {
   onBlur?: () => void,
   editorItemsChanged?: (items: [string]) => void,
   scrollEnabled?: boolean,
+  navigator: Navigator,
 }
 
 export default class ZSSRichTextEditor extends Component<any, Props, any> {
   webView: WebView
+  showingLinkModal: boolean
 
   constructor (props: Props) {
     super(props)
@@ -69,14 +70,6 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
           scalesPageToFit={true}
           scrollEnabled={this.props.scrollEnabled === undefined || this.props.scrollEnabled}
           style={{ backgroundColor: 'transparent' }}
-        />
-        <LinkModal
-          visible={this.state.linkModalVisible}
-          url={this.state.linkURL}
-          title={this.state.linkTitle}
-          linkUpdated={this._updateLink}
-          linkCreated={this._insertLink}
-          onCancel={this._hideLinkModal}
         />
       </View>
     )
@@ -249,20 +242,30 @@ export default class ZSSRichTextEditor extends Component<any, Props, any> {
   }
 
   _showLinkModal (url, title) {
-    this.setState({
-      linkURL: url,
-      linkTitle: title,
-      linkModalVisible: true,
-    })
+    if (this.showingLinkModal) return
+    this.showingLinkModal = true
+    this.props.navigator.show(
+      '/rich-text-editor/link',
+      {
+        modal: true,
+        modalPresentationStyle: 'overCurrentContext',
+        modalTransitionStyle: 'fade',
+        embedInNavigationController: false,
+      },
+      {
+        url: url,
+        title: title,
+        linkUpdated: this._updateLink,
+        linkCreated: this._insertLink,
+        onCancel: this._hideLinkModal,
+      },
+    )
   }
 
   _hideLinkModal = () => {
-    this.setState({
-      linkModalVisible: false,
-      linkTitle: null,
-      linkURL: null,
-    })
+    this.props.navigator.dismiss()
     this.focusEditor()
+    this.showingLinkModal = false
   }
 
   _onZSSLoaded = () => {

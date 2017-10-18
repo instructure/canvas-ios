@@ -186,6 +186,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
                 scrollEnabled={true}
                 contentHeight={150}
                 placeholder={i18n('Add description (required)')}
+                navigator={this.props.navigator}
               />
             </View>
             <RequiredFieldSubscript title={i18n('A description is required')} visible={!this.state.isValid} />

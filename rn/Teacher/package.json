@@ -45,7 +45,7 @@
     "react-native-fs": "^2.3.2",
     "react-native-image-picker": "^0.26.3",
     "react-native-interactable": "https://github.com/derrh/react-native-interactable.git",
-    "react-native-keyboard-spacer": "^0.4.1",
+    "react-native-keyboard-spacer": "https://github.com/n8armstrong/react-native-keyboard-spacer.git",
     "react-native-keyboard-aware-scroll-view": "^0.3.0",
     "react-native-linear-gradient": "^2.2.0",
     "react-native-mail": "https://github.com/instructure/react-native-mail",

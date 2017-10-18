@@ -37,14 +37,18 @@ RCT_EXPORT_MODULE();
 // see: http://stackoverflow.com/questions/19033292/ios-7-uiwebview-keyboard-issue/19042279#19042279
 RCT_EXPORT_METHOD(removeInputAccessoryView)
 {
-  UIWebView *webView = [self webViewInView:RCTPresentedViewController().view];
-  [self hideAccessoryView:webView];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    UIWebView *webView = [self webViewInView:RCTPresentedViewController().view];
+    [self hideAccessoryView:webView];
+  });
 }
 
 RCT_EXPORT_METHOD(setKeyboardDisplayRequiresUserAction:(BOOL)requiresUserAction)
 {
-  UIWebView *webView = [self webViewInView:RCTPresentedViewController().view];
-  webView.keyboardDisplayRequiresUserAction = requiresUserAction;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    UIWebView *webView = [self webViewInView:RCTPresentedViewController().view];
+    webView.keyboardDisplayRequiresUserAction = requiresUserAction;
+  });
 }
 
 - (UIWebView *)webViewInView:(UIView *)view {
