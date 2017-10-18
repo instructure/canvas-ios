@@ -92,8 +92,8 @@ export function addOrUpdateReply (reply: DiscussionReply, localIndexPath: number
   for (let i = 0; i < localIndexPath.length; i++) {
     let index = localIndexPath[i]
     if (!isAdd && i === localIndexPath.length - 1) {
-      const replies = r[index].replies
-      r[index] = Object.assign(reply, r[index])
+      const replies = r[index] && r[index].replies ? r[index].replies : []
+      r[index] = r[index] ? Object.assign(r[index], reply) : { ...reply }
       r[index] = {
         ...r[index],
         replies: replies,
@@ -209,7 +209,7 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
       let pendingRepliesNeedingToBeRemoved = []
       for (let i = 0; i < pendingReplyKeys.length; i++) {
         let reply = pendingReplies[pendingReplyKeys[i]]
-        if (reply && !newEntriesContainsReply(newEntries, reply.data)) {
+        if (reply && !reply.data.editor_id && !newEntriesContainsReply(newEntries, reply.data)) {
           pendingRepliesNeedingToBeRemoved.push(pendingReplyKeys[i])
         } else {
           if (reply && reply.data.deleted) {

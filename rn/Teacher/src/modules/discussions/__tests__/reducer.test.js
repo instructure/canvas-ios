@@ -1296,6 +1296,18 @@ describe('createEntry', () => {
     let expected = [a, b]
     expect(result).toEqual(expected)
   })
+
+  it('addOrUpdateReply UPDATE reply 1 deep not yet in incoming replies', () => {
+    let c = template.discussionReply({ id: '3', message: 'BBBB' })
+    let a = template.discussionReply({ id: '1' })
+    let replies = [a]
+
+    let localIndexPath = [0, 0]
+    let result = addOrUpdateReply(c, localIndexPath, { replies }, false, 'side_comment')
+
+    let expected = [template.discussionReply({ id: '1', replies: [c] })]
+    expect(result).toEqual(expected)
+  })
 })
 
 describe('editEntry', () => {

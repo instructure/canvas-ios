@@ -102,7 +102,6 @@ export class EditReply extends React.Component<any, Props, any> {
       return
     }
     if (this.state.pending && !props.pending) {
-      this.setState({ pending: false })
       this.props.refreshDiscussionEntries(this.props.courseID, this.props.discussionID, true)
       this.props.navigator.dismissAllModals()
       return
