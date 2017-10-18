@@ -41,6 +41,11 @@ describe('Profile Tests', () => {
   beforeEach(() => {
     setSession(template.session())
     jest.resetAllMocks()
+
+    NativeModules.RNMail = {
+      ...NativeModules.RNMail,
+      canSendMail: true,
+    }
   })
   it('renders correctly', () => {
     const tree = renderer.create(
@@ -89,14 +94,6 @@ describe('Profile Tests', () => {
     expect(Linking.openURL).toHaveBeenCalled()
   })
 
-  it('redirects to Terms of Use', () => {
-    const instance = renderer.create(
-      <Profile />
-    ).getInstance()
-
-    instance.handleActions(10)
-  })
-
   it('opens mail app to report a problem', () => {
     const mail = jest.fn((data, cb) => {
       cb()
@@ -104,6 +101,7 @@ describe('Profile Tests', () => {
     NativeModules.RNMail = {
       ...NativeModules.RNMail,
       mail,
+      canSendMail: true,
     }
 
     const instance = renderer.create(
@@ -121,6 +119,7 @@ describe('Profile Tests', () => {
     NativeModules.RNMail = {
       ...NativeModules.RNMail,
       mail,
+      canSendMail: true,
     }
 
     const instance = renderer.create(
@@ -129,6 +128,30 @@ describe('Profile Tests', () => {
 
     instance.handleActions(1)
     expect(AlertIOS.alert).toHaveBeenCalled()
+  })
+
+  it('mail app is not configured, so hitting the button at index 1 should open a link', () => {
+    NativeModules.RNMail = {
+      ...NativeModules.RNMail,
+      canSendMail: false,
+    }
+
+    const instance = renderer.create(
+      <Profile />
+    ).getInstance()
+
+    instance.handleActions(1)
+    expect(Linking.openURL).toHaveBeenCalled()
+  })
+
+  it('cancel the action sheet', () => {
+    const instance = renderer.create(
+      <Profile />
+    ).getInstance()
+
+    instance.handleActions(3)
+    expect(Linking.openURL).not.toHaveBeenCalled()
+    expect(NativeModules.RNMail.mail).not.toHaveBeenCalled()
   })
 
   it('secret tap!', () => {

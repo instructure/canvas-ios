@@ -48,7 +48,7 @@
     "react-native-keyboard-spacer": "^0.4.1",
     "react-native-keyboard-aware-scroll-view": "^0.3.0",
     "react-native-linear-gradient": "^2.2.0",
-    "react-native-mail": "^3.0.3",
+    "react-native-mail": "https://github.com/instructure/react-native-mail",
     "react-native-on-layout": "^2.0.2",
     "react-native-progress": "^3.3.0",
     "react-native-search-bar": "https://github.com/instructure/react-native-search-bar",

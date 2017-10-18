@@ -44,6 +44,17 @@ export default class Profile extends Component {
   constructor (props: any) {
     super(props)
     this.secretTapCount = 0
+
+    const settingsActions = [
+      { title: i18n('Visit the Canvas Guides'), id: 'canvas-guides' },
+    ]
+    if (NativeModules.RNMail.canSendMail) {
+      settingsActions.push({ title: i18n('Report a Problem'), id: 'mail' })
+    }
+
+    settingsActions.push({ title: i18n('Terms of Use'), id: 'terms' })
+    settingsActions.push({ title: i18n('Cancel'), id: 'cancel' })
+    this.settingsActions = settingsActions
   }
 
   logout = () => {
@@ -59,34 +70,29 @@ export default class Profile extends Component {
   }
 
   settings = () => {
-    let buttons = [
-      i18n('Visit the Canvas Guides'),
-      i18n('Report a Problem'),
-      i18n('Terms of Use'),
-      i18n('Cancel'),
-    ]
     ActionSheetIOS.showActionSheetWithOptions({
-      options: buttons,
-      cancelButtonIndex: buttons.length - 1,
+      options: this.settingsActions.map(a => a.title),
+      cancelButtonIndex: this.settingsActions.length - 1,
     }, this.handleActions)
   }
 
   handleActions = (index: number) => {
-    switch (index) {
-      case 0:
+    const action = this.settingsActions[index]
+    switch (action.id) {
+      case 'canvas-guides':
         Linking.openURL('https://community.canvaslms.com/community/answers/guides/mobile-guide/content?filterID=contentstatus%5Bpublished%5D~category%5Btable-of-contents%5D')
         break
-      case 1:
+      case 'mail':
         NativeModules.RNMail.mail({
           subject: 'Canvas Teacher - Report a problem',
           recipients: ['support@instructure.com'],
         }, (error, event) => {
           if (error) {
-            AlertIOS.alert('Error', i18n('Error sending e-mail'))
+            AlertIOS.alert(i18n('Unavailable'), i18n('Mail is unavailable on your device.'))
           }
         })
         break
-      case 2:
+      case 'terms':
         Linking.openURL('https://www.canvaslms.com/policies/terms-of-use')
         break
       default:

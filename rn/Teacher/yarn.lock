@@ -4281,9 +4281,9 @@ react-native-linear-gradient@^2.2.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-mail@^3.0.3:
+"react-native-mail@https://github.com/instructure/react-native-mail":
   version "3.0.4"
-  resolved "https://registry.yarnpkg.com/react-native-mail/-/react-native-mail-3.0.4.tgz#764c5db699c36351fea455f02a746c5082f0301a"
+  resolved "https://github.com/instructure/react-native-mail#3b32b0cb86994d18c20edc0eea11522c2d083a2c"
 
 react-native-on-layout@^2.0.2:
   version "2.0.2"
