@@ -17,18 +17,13 @@
 /* @flow */
 
 import { createAction } from 'redux-actions'
-import canvas from 'instructure-canvas-api'
 
-export let Actions = (api: CanvasApi): * => ({
-  updateQuiz: createAction('quizzes.edit.update', (updatedQuiz: Quiz, courseID: string, originalQuiz: Quiz) => {
+export let Actions = (): * => ({
+  quizUpdated: createAction('quizzes.update', (updatedQuiz: Quiz) => {
     return {
-      promise: api.updateQuiz(updatedQuiz, courseID),
       updatedQuiz,
-      originalQuiz,
-      quizID: updatedQuiz.id,
-      handlesError: true,
     }
   }),
 })
 
-export default (Actions(canvas): *)
+export default (Actions(): *)

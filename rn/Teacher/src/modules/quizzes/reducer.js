@@ -25,12 +25,11 @@ import { default as DetailsActions } from './details/actions'
 import { default as QuizSubmissionActions } from './submissions/actions'
 import { default as EditActions } from './edit/actions'
 import i18n from 'format-message'
-import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshQuizzes } = ListActions
 const { refreshQuiz } = DetailsActions
 const { refreshQuizSubmissions } = QuizSubmissionActions
-const { updateQuiz } = EditActions
+const { quizUpdated } = EditActions
 
 export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
   refreshQuizzes.toString(),
@@ -94,33 +93,16 @@ export const quizData: Reducer<QuizzesState, any> = handleActions({
       },
     }),
   }),
-  [updateQuiz.toString()]: handleAsync({
-    pending: (state, { originalQuiz }) => ({
+  [quizUpdated.toString()]: (state, { payload }) => {
+    const quiz = payload.updatedQuiz
+    return {
       ...state,
-      [originalQuiz.id]: {
-        ...state[originalQuiz.id],
-        pending: state[originalQuiz.id] && state[originalQuiz.id].pending ? state[originalQuiz.id].pending + 1 : 1,
+      [quiz.id]: {
+        ...state[quiz.id],
+        data: quiz,
       },
-    }),
-    rejected: (state, { originalQuiz, error }) => ({
-      ...state,
-      [originalQuiz.id]: {
-        ...state[originalQuiz.id],
-        data: originalQuiz,
-        pending: state[originalQuiz.id].pending - 1,
-        error: parseErrorMessage(error),
-      },
-    }),
-    resolved: (state, { updatedQuiz }) => ({
-      ...state,
-      [updatedQuiz.id]: {
-        ...state[updatedQuiz.id],
-        data: updatedQuiz,
-        pending: state[updatedQuiz.id].pending - 1,
-        error: null,
-      },
-    }),
-  }),
+    }
+  },
 }, {})
 
 export function quizzes (state: any = {}, action: any): any {

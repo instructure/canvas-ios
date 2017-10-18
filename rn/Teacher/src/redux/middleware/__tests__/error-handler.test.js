@@ -212,7 +212,7 @@ describe('parse error message', () => {
       },
       headers: { link: null },
     }
-    const expected = 'name cannot be changed because this assignment is due in a closed grading period. description is too long'
+    const expected = 'cannot be changed because this assignment is due in a closed grading period. is too long'
     const result = parseErrorMessage(response)
     expect(result).toEqual(expected)
   })
@@ -224,12 +224,12 @@ describe('parse error message', () => {
         errors: {
           name: [{
           }],
-          'description': [{ attribute: 'description', message: 'is too long' }],
+          'description': [{ attribute: 'description', message: 'description is too long' }],
         },
       },
       headers: { link: null },
     }
-    const expected = ' . description is too long'
+    const expected = '. description is too long'
     const result = parseErrorMessage(response)
     expect(result).toEqual(expected)
   })

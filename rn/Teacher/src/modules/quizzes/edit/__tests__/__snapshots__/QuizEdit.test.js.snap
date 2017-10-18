@@ -6,6 +6,7 @@ exports[`QuizEdit changes assignment group 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -18,6 +19,7 @@ exports[`QuizEdit changes assignment group 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -29,160 +31,11 @@ exports[`QuizEdit changes assignment group 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -2252,6 +2105,7 @@ exports[`QuizEdit changes quiz type 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -2264,6 +2118,7 @@ exports[`QuizEdit changes quiz type 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -2275,160 +2130,11 @@ exports[`QuizEdit changes quiz type 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -4504,6 +4210,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -4516,6 +4223,7 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -4527,160 +4235,11 @@ exports[`QuizEdit clears "hide correct answers at" date 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -7008,6 +6567,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -7020,6 +6580,7 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -7031,160 +6592,11 @@ exports[`QuizEdit clears "show correct answers at" date 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -9512,6 +8924,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -9524,6 +8937,7 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -9535,123 +8949,15 @@ exports[`QuizEdit hides modal when save finishes 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <View
       style={
         Object {
-          "alignItems": "stretch",
-          "backgroundColor": "#EE0612",
-          "flex": 0.04,
-          "flexDirection": "column",
+          "flex": 0,
         }
       }
     >
@@ -11743,6 +11049,7 @@ exports[`QuizEdit renders 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -11755,6 +11062,7 @@ exports[`QuizEdit renders 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -11766,160 +11074,11 @@ exports[`QuizEdit renders 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -13971,6 +13130,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": true,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -13983,6 +13143,7 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": true,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -13994,159 +13155,51 @@ exports[`QuizEdit saving invalid due dates displays banner 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={true}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <View
       style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
+        Array [
           Object {
             "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
+            "flexDirection": "row",
             "justifyContent": "center",
+            "padding": 10,
+          },
+          Object {
+            "backgroundColor": "transparent",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 17,
+            "marginRight": 5,
           }
         }
       >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
+        Saving...
+      </Text>
+      <ActivityIndicator
+        animating={true}
+        color="#999999"
+        hidesWhenStopped={true}
+        size="small"
+        style={
+          Object {
+            "marginLeft": 5,
           }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
+        }
+      />
     </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
@@ -16199,6 +15252,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -16211,6 +15265,7 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -16222,123 +15277,15 @@ exports[`QuizEdit saving invalid name displays banner 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <View
       style={
         Object {
-          "alignItems": "stretch",
-          "backgroundColor": "#EE0612",
-          "flex": 0.04,
-          "flexDirection": "column",
+          "flex": 0,
         }
       }
     >
@@ -18466,6 +17413,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -18478,6 +17426,7 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -18489,123 +17438,15 @@ exports[`QuizEdit saving invalid viewing dates displays banner 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <View
       style={
         Object {
-          "alignItems": "stretch",
-          "backgroundColor": "#EE0612",
-          "flex": 0.04,
-          "flexDirection": "column",
+          "flex": 0,
         }
       }
     >
@@ -21079,6 +19920,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -21091,6 +19933,7 @@ exports[`QuizEdit saving password displays banner 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -21102,123 +19945,15 @@ exports[`QuizEdit saving password displays banner 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <View
       style={
         Object {
-          "alignItems": "stretch",
-          "backgroundColor": "#EE0612",
-          "flex": 0.04,
-          "flexDirection": "column",
+          "flex": 0,
         }
       }
     >
@@ -23472,6 +22207,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -23484,6 +22220,7 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -23495,160 +22232,11 @@ exports[`QuizEdit shows Assignment Group picker 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -25712,6 +24300,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -25724,6 +24313,7 @@ exports[`QuizEdit shows modal while saving 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -25735,123 +24325,15 @@ exports[`QuizEdit shows modal while saving 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
     <View
       style={
         Object {
-          "alignItems": "stretch",
-          "backgroundColor": "#EE0612",
-          "flex": 0.04,
-          "flexDirection": "column",
+          "flex": 0,
         }
       }
     >
@@ -27943,6 +26425,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -27955,6 +26438,7 @@ exports[`QuizEdit shows quiz time picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -27966,160 +26450,11 @@ exports[`QuizEdit shows quiz time picker 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -30195,6 +28530,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -30207,6 +28543,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -30218,160 +28555,11 @@ exports[`QuizEdit toggles "Lock Questions After Answering 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -32532,6 +30720,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -32544,6 +30733,7 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -32555,160 +30745,11 @@ exports[`QuizEdit toggles "Lock Questions After Answering 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -34869,6 +32910,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -34881,6 +32923,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -34892,160 +32935,11 @@ exports[`QuizEdit toggles "Show One Question at a Time" 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -37206,6 +35100,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -37218,6 +35113,7 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -37229,160 +35125,11 @@ exports[`QuizEdit toggles "Show One Question at a Time" 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -39434,6 +37181,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -39446,6 +37194,7 @@ exports[`QuizEdit toggles "access code" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -39457,160 +37206,11 @@ exports[`QuizEdit toggles "access code" 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -41788,6 +39388,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -41800,6 +39401,7 @@ exports[`QuizEdit toggles "access code" 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -41811,160 +39413,11 @@ exports[`QuizEdit toggles "access code" 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -44016,6 +41469,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -44028,6 +41482,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -44039,160 +41494,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -46562,6 +43868,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -46574,6 +43881,7 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -46585,160 +43893,11 @@ exports[`QuizEdit toggles "hide correct answers" date picker 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -49101,6 +46260,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -49113,6 +46273,7 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -49124,160 +46285,11 @@ exports[`QuizEdit toggles "let students see responses" 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -51329,6 +48341,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -51341,6 +48354,7 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -51352,160 +48366,11 @@ exports[`QuizEdit toggles "one question at a time" 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -53666,6 +50531,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -53678,6 +50544,7 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -53689,160 +50556,11 @@ exports[`QuizEdit toggles "only once after each attempt" 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -55894,6 +52612,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -55906,6 +52625,7 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -55917,160 +52637,11 @@ exports[`QuizEdit toggles "only once after each attempt" 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -58122,6 +54693,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -58134,6 +54706,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -58145,160 +54718,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -60668,6 +57092,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -60680,6 +57105,7 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -60691,160 +57117,11 @@ exports[`QuizEdit toggles "show correct answers" date picker 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -63207,6 +59484,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -63219,6 +59497,7 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -63230,160 +59509,11 @@ exports[`QuizEdit toggles "show correct answers" options 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -65435,6 +61565,7 @@ exports[`QuizEdit toggles publish 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -65447,6 +61578,7 @@ exports[`QuizEdit toggles publish 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -65458,160 +61590,11 @@ exports[`QuizEdit toggles publish 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -67663,6 +63646,7 @@ exports[`QuizEdit toggles publish 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -67675,6 +63659,7 @@ exports[`QuizEdit toggles publish 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -67686,160 +63671,11 @@ exports[`QuizEdit toggles publish 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -69891,6 +65727,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -69903,6 +65740,7 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -69914,160 +65752,11 @@ exports[`QuizEdit toggles shuffle answers 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -72119,6 +67808,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -72131,6 +67821,7 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -72142,160 +67833,11 @@ exports[`QuizEdit toggles shuffle answers 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -74347,6 +69889,7 @@ exports[`QuizEdit toggles time limit 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -74359,6 +69902,7 @@ exports[`QuizEdit toggles time limit 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -74370,160 +69914,11 @@ exports[`QuizEdit toggles time limit 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -76701,6 +72096,7 @@ exports[`QuizEdit toggles time limit 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -76713,6 +72109,7 @@ exports[`QuizEdit toggles time limit 2`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -76724,160 +72121,11 @@ exports[`QuizEdit toggles time limit 2`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -78929,6 +74177,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -78941,6 +74190,7 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -78952,160 +74202,11 @@ exports[`QuizEdit updates "hide correct answers at" date from picker 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}
@@ -81475,6 +76576,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "testID": "quizzes.edit.cancelButton",
         "title": "Cancel",
       },
@@ -81487,6 +76589,7 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
     Array [
       Object {
         "action": [Function],
+        "disabled": false,
         "style": "done",
         "testID": "quizzes.edit.doneButton",
         "title": "Done",
@@ -81498,160 +76601,11 @@ exports[`QuizEdit updates "show correct answers at" date from picker 1`] = `
   <View
     style={
       Object {
+        "backgroundColor": "#F5F5F5",
         "flex": 1,
       }
     }
   >
-    <Modal
-      animationType="fade"
-      hardwareAccelerated={false}
-      supportedOrientations={
-        Array [
-          "portrait",
-          "landscape",
-        ]
-      }
-      transparent={true}
-      visible={false}
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "flexDirection": "row",
-              "justifyContent": "center",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.6)",
-                "borderRadius": 12,
-              },
-              Object {
-                "backgroundColor": "rgba(0,0,0,0.8)",
-              },
-              Object {
-                "height": 170,
-                "width": 170,
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "flexDirection": "column",
-                "justifyContent": "center",
-              }
-            }
-          >
-            <View
-              style={
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "flexDirection": "column",
-                  "justifyContent": "center",
-                }
-              }
-            >
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#fff",
-                      "fontFamily": ".SFUIDisplay-semibold",
-                      "fontSize": 24,
-                    },
-                    Array [
-                      Object {
-                        "alignItems": "center",
-                        "color": "#fff",
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ],
-                  ]
-                }
-              >
-                Saving
-              </Text>
-            </View>
-          </View>
-          <ActivityIndicator
-            animating={true}
-            color="#fff"
-            hidesWhenStopped={true}
-            size="large"
-            style={
-              Object {
-                "flex": 1,
-                "marginTop": -40,
-              }
-            }
-          />
-        </View>
-      </View>
-    </Modal>
-    <View
-      style={
-        Object {
-          "flex": 0,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "flex": 1,
-            "flexDirection": "column",
-            "justifyContent": "center",
-          }
-        }
-      >
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
-            Array [
-              Object {
-                "fontFamily": ".SFUIDisplay",
-              },
-              Object {
-                "color": "#fff",
-                "fontFamily": ".SFUIDisplay-medium",
-                "fontSize": 12,
-              },
-              Object {
-                "alignItems": "center",
-                "textAlign": "center",
-              },
-            ]
-          }
-          testID="quizEdit.unmet-requirement-banner"
-        >
-          Invalid field
-        </Text>
-      </View>
-    </View>
     <RCTScrollView
       automaticallyAdjustContentInsets={false}
       contentContainerStyle={undefined}

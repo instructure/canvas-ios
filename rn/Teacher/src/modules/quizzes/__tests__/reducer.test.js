@@ -23,7 +23,7 @@ import { default as EditActions } from '../edit/actions'
 
 const { refreshQuizzes } = ListActions
 const { refreshQuiz } = DetailsActions
-const { updateQuiz } = EditActions
+const { quizUpdated } = EditActions
 
 const template = {
   ...require('../../../__templates__/quiz'),
@@ -151,89 +151,18 @@ describe('quizData', () => {
     })
   })
 
-  describe('updateQuiz', () => {
-    it('handles pending', () => {
-      const quiz = template.quiz({ id: '1' })
-      const pending = {
-        type: updateQuiz.toString(),
-        pending: true,
-        payload: {
-          originalQuiz: quiz,
-          updatedQuiz: quiz,
-        },
-      }
-
-      expect(
-        quizData({}, pending)
-      ).toEqual({
-        '1': {
-          pending: 1,
-        },
-      })
-    })
-
-    it('handles rejected', () => {
-      const original = template.quiz({ id: '1' })
-      const updated = {
-        ...original,
-        description: 'changed description',
-      }
-      const rejected = {
-        type: updateQuiz.toString(),
-        error: true,
-        payload: {
-          originalQuiz: original,
-          updatedQuiz: updated,
-          error: template.error('User not authorized'),
-        },
-      }
-      const pendingState = {
-        '1': {
-          pending: 1,
-          data: original,
-          error: null,
-        },
-      }
-      expect(
-        quizData(pendingState, rejected)
-      ).toEqual({
-        '1': {
-          pending: 0,
-          data: original,
-          error: 'User not authorized',
-        },
-      })
-    })
-
-    it('handles resolved', () => {
-      const original = template.quiz({ id: '1' })
-      const updated = {
-        ...original,
-        description: 'changed description',
-      }
-      const pendingState = {
-        '1': {
-          pending: 1,
-          data: original,
-          error: null,
-        },
-      }
+  describe('quizUpdated', () => {
+    it('should update the quiz in the store', () => {
+      const updatedQuiz = template.quiz({ id: '1' })
       const resolved = {
-        type: updateQuiz.toString(),
+        type: quizUpdated.toString(),
         payload: {
-          originalQuiz: original,
-          updatedQuiz: updated,
+          updatedQuiz,
         },
       }
-      expect(
-        quizData(pendingState, resolved)
-      ).toEqual({
-        '1': {
-          pending: 0,
-          data: updated,
-          error: null,
-        },
-      })
+
+      const result = quizData({ '1': {} }, resolved)
+      expect(result['1'].data).toMatchObject(updatedQuiz)
     })
   })
 })

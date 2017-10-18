@@ -76,7 +76,7 @@ export function parseErrorMessage (error: any): string {
     let result = Object.keys(data)
       .map((key, index) => data[key])
       .map(obj => obj.length > 0 ? obj[0] : {})
-      .map(obj => `${obj.attribute || ''} ${obj.message || ''}`)
+      .map(obj => `${obj.message || ''}`)
       .join('. ')
 
     if (result.trim()) {
