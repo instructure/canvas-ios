@@ -51,4 +51,11 @@ extension ModuleItem {
         let request = try session.POST(modulePath/"items"/moduleItemID/"select_mastery_path", parameters: ["assignment_set_id": assignmentSetID], encoding: .urlEncodedInURL)
         return session.JSONSignalProducer(request)
     }
+
+    public static func moduleItemSequence(_ session: Session, courseID: String, moduleItemID: String) throws -> SignalProducer<JSONObject, NSError> {
+        let path = api/v1/"courses"/courseID/"module_item_sequence"
+        let parameters = ["asset_id": moduleItemID, "asset_type": "ModuleItem"]
+        let request = try session.GET(path, parameters: parameters)
+        return session.JSONSignalProducer(request)
+    }
 }

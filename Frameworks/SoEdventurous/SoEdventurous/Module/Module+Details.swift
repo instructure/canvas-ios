@@ -31,7 +31,7 @@ extension Module {
         return try ManagedObjectObserver(predicate: predicate, inContext: context)
     }
 
-    public static func refresher(session: Session, courseID: String, moduleID: String) throws -> Refresher {
+    public static func detailSyncSignalProducer(session: Session, courseID: String, moduleID: String) throws -> SignalProducer<Void, NSError> {
         let context = try session.soEdventurousManagedObjectContext()
 
         // Refresh all modules because prerequisite modules.
@@ -43,9 +43,13 @@ extension Module {
         let syncModuleItems = ModuleItem.syncSignalProducer(ModuleItem.predicate(forItemsIn: moduleID), includeSubentities: false, inContext: context, fetchRemote: moduleItems)
 
         let sync: SignalProducer<SignalProducer<Void, NSError>, NSError> = SignalProducer([syncModules.map { _ in () }, syncModuleItems.map { _ in () }])
+        return sync.flatten(.merge)
+    }
 
+    public static func refresher(session: Session, courseID: String, moduleID: String) throws -> Refresher {
+        let context = try session.soEdventurousManagedObjectContext()
+        let sync = try detailSyncSignalProducer(session: session, courseID: courseID, moduleID: moduleID)
         let key = detailsCacheKey(context: context, courseID: courseID, moduleID: moduleID)
-
-        return SignalProducerRefresher(refreshSignalProducer: sync.flatten(.merge), scope: session.refreshScope, cacheKey: key)
+        return SignalProducerRefresher(refreshSignalProducer: sync, scope: session.refreshScope, cacheKey: key)
     }
 }

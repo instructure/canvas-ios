@@ -247,6 +247,16 @@
 
 # pragma marks - Parsing
 
+- (NSDictionary *)parseURLQuery:(NSURL *)url
+{
+    NSMutableDictionary *queries = [NSMutableDictionary new];
+    NSURLComponents *components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    [[components queryItems] enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull queryItem, NSUInteger idx, BOOL * _Nonnull stop) {
+        queries[queryItem.name] = queryItem.value;
+    }];
+    return queries;
+}
+
 - (BOOL)matchURL:(NSURL *)url matchHandler:(void(^)(NSDictionary *params, id classOrBlock))matchHandler {
     NSString *path = url.path;
     path = [path stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
@@ -262,6 +272,7 @@
         NSArray *routeComponents = [routeURL.pathComponents subarrayWithRange:NSMakeRange(1, routeURL.pathComponents.count -1)];
         params = [NSMutableDictionary new];
         params[@"url"] = url;
+        params[@"query"] = [self parseURLQuery:url];
         
         if (urlComponents.count != routeComponents.count) {
             return; // can't possibly match

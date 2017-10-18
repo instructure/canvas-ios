@@ -89,6 +89,19 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     return tableViewController;
 }
 
+- (UIViewController *)moduleItemControllerForParams:(NSDictionary *)params forClass:(Class)type
+{
+    NSString *contextID = [params[@"contextID"] description];
+    NSDictionary *query = params[@"query"];
+    NSString *moduleItemID = query[@"module_item_id"];
+
+    if (moduleItemID) {
+        return [self controllerForHandlingURL:[self urlForModuleItemID:moduleItemID contextID:contextID contextClass:type]];
+    }
+
+    return nil;
+}
+
 - (id(^)(NSDictionary *params, CBIFilesTabViewModel *viewModel)) filesBlockForClass:(Class)type
 {
     return ^ (NSDictionary *params, CBIFilesTabViewModel *viewModel) {
@@ -199,11 +212,15 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
 
 - (id(^)(NSDictionary *params, id viewModel)) courseGroupDiscussionTopicBlockForClass:(Class)type
 {
-    return ^ (NSDictionary *params, id viewModel) {
-        
+
+    return ^ UIViewController *(NSDictionary *params, id viewModel) {
+        if ([self moduleItemControllerForParams:params forClass:type]) {
+            return [self moduleItemControllerForParams:params forClass:type];
+        }
+
         NSString *contextID = [params[@"contextID"] description];
         NSString *topicID = [params[@"topicID"] description];
-        
+
         ThreadedDiscussionViewController *discussionViewController = [ThreadedDiscussionViewController new];
         [discussionViewController trackScreenViewWithScreenName:@"Discussion Screen"];
         
@@ -276,6 +293,13 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     return tintColor;
 }
 
+- (NSURL *)urlForModuleItemID:(NSString *)moduleItemID contextID:(NSString *)contextID contextClass:(Class)contextClass
+{
+    NSString *context = [contextClass isSubclassOfClass:[CKIGroup class]] ? @"groups" : @"courses";
+    NSString *urlString = [NSString stringWithFormat:@"/%@/%@/modules/items/%@", context, contextID, moduleItemID];
+    return [NSURL URLWithString:urlString];
+}
+
 #pragma mark - Routes
 - (void)addRoutes
 {
@@ -318,6 +342,9 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         
         // TODO: SoPersistent assignments
         @"/courses/:courseID/assignments/:assignmentID" : ^ (NSDictionary *params, id viewModel) {
+            if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
+                return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
+            }
         
             NSString *assignmentID = [params[@"assignmentID"] description];
             if ([assignmentID isEqualToString:@"syllabus"]) {
@@ -503,7 +530,11 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
     
     
     // Quizzes
-    UIViewController *(^quizControllerConstructor)(NSDictionary *, CBIQuizViewModel *) = ^(NSDictionary *params, CBIQuizViewModel *vm) {
+    UIViewController *(^quizControllerConstructor)(NSDictionary *, CBIQuizViewModel *) = ^ UIViewController *(NSDictionary *params, CBIQuizViewModel *vm) {
+        if ([self moduleItemControllerForParams:params forClass:[CKICourse class]]) {
+            return [self moduleItemControllerForParams:params forClass:[CKICourse class]];
+        }
+
         if (vm == nil) {
             CKICourse *course = [CKICourse modelWithID:[params[@"courseID"] description]];
             vm = [CBIQuizViewModel viewModelForModel:[CKIQuiz modelWithID:[params[@"quizID"] description] context:course]];

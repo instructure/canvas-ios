@@ -819,7 +819,6 @@
 		B10713A61D748A1A0061E84A /* CourseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10713A51D748A1A0061E84A /* CourseSpec.swift */; };
 		B141390B1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B141390A1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift */; };
 		B15738001D94C38C00ADBB85 /* ModuleItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */; };
-		B15738051D95827F00ADBB85 /* ModuleItemViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15738041D95827F00ADBB85 /* ModuleItemViewModelSpec.swift */; };
 		B177E6FD1E2EC8BA00D7477D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B177E6FF1E2EC8BA00D7477D /* Settings.storyboard */; };
 		B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70B1E2ECAB900D7477D /* CBIGradeDetailView.xib */; };
 		B177E70C1E2ECAC700D7477D /* ReceivedFilesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B177E70E1E2ECAC700D7477D /* ReceivedFilesViewController.xib */; };
@@ -828,7 +827,6 @@
 		B18B347E1DB59BF000355EDD /* SpecHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B347D1DB59BF000355EDD /* SpecHelper.swift */; };
 		B18B34801DB59C3200355EDD /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B347F1DB59C3200355EDD /* MockClient.swift */; };
 		B1AA934F1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA934E1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift */; };
-		B1BF382F1DC582BD005F606C /* ModuleDetailsViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BF382E1DC582BD005F606C /* ModuleDetailsViewControllerSpec.swift */; };
 		B1BFE4441D492AF100ED3887 /* AssignmentsTableViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFE4431D492AF100ED3887 /* AssignmentsTableViewControllerSpec.swift */; };
 		B1BFE4451D492B1200ED3887 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFE4311D492A2B00ED3887 /* Nimble.framework */; };
 		B1BFE4461D492B1700ED3887 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1BFE42F1D492A1600ED3887 /* Quick.framework */; };
@@ -839,7 +837,6 @@
 		B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */ = {isa = PBXBuildFile; fileRef = B1CB84EF1D076025004D2265 /* ExpandingComment.js */; };
 		B1CC97961DB91E7000C0F8DD /* ModuleItemDetailViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1CC97951DB91E7000C0F8DD /* ModuleItemDetailViewController+Helpers.swift */; };
 		B1E0C7AF1DB7BBE90086B0A2 /* RouterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0C7AE1DB7BBE90086B0A2 /* RouterSpec.swift */; };
-		B1E0C7B11DB7CF680086B0A2 /* ModuleItemDetailViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0C7B01DB7CF680086B0A2 /* ModuleItemDetailViewControllerSpec.swift */; };
 		B1E351F81DB97055003473B3 /* ModuleViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E351F71DB97055003473B3 /* ModuleViewModelSpec.swift */; };
 		B5A790BB1D8C743400ACA9FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A790A61D8C743400ACA9FE /* Localizable.strings */; };
 		B5E212CB1D888529009D8C07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E212CD1D888529009D8C07 /* InfoPlist.strings */; };
@@ -1720,7 +1717,6 @@
 		B10713A51D748A1A0061E84A /* CourseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseSpec.swift; sourceTree = "<group>"; };
 		B141390A1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyModuleProgressShimSpec.swift; sourceTree = "<group>"; };
 		B15737FF1D94C38C00ADBB85 /* ModuleItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewController.swift; sourceTree = "<group>"; };
-		B15738041D95827F00ADBB85 /* ModuleItemViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModelSpec.swift; sourceTree = "<group>"; };
 		B15738061D95AA7600ADBB85 /* ModuleItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemViewModel.swift; sourceTree = "<group>"; };
 		B16B5A2E1E24534B00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16B5A2F1E24534C00DED47B /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1909,7 +1905,6 @@
 		B18B347D1DB59BF000355EDD /* SpecHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecHelper.swift; sourceTree = "<group>"; };
 		B18B347F1DB59C3200355EDD /* MockClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		B1AA934E1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesCollectionViewControllerSpec.swift; sourceTree = "<group>"; };
-		B1BF382E1DC582BD005F606C /* ModuleDetailsViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleDetailsViewControllerSpec.swift; sourceTree = "<group>"; };
 		B1BFE42F1D492A1600ED3887 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BFE4311D492A2B00ED3887 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Nimble.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BFE4391D492ABD00ED3887 /* CanvasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1921,7 +1916,6 @@
 		B1CB84EF1D076025004D2265 /* ExpandingComment.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ExpandingComment.js; sourceTree = "<group>"; };
 		B1CC97951DB91E7000C0F8DD /* ModuleItemDetailViewController+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModuleItemDetailViewController+Helpers.swift"; sourceTree = "<group>"; };
 		B1E0C7AE1DB7BBE90086B0A2 /* RouterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterSpec.swift; sourceTree = "<group>"; };
-		B1E0C7B01DB7CF680086B0A2 /* ModuleItemDetailViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleItemDetailViewControllerSpec.swift; sourceTree = "<group>"; };
 		B1E351F71DB97055003473B3 /* ModuleViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModelSpec.swift; sourceTree = "<group>"; };
 		B1E3D6E01D8305D900B4AC11 /* ModulesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ModulesTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B1FF7EDE1D8758720069C9BE /* ModuleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
@@ -3678,7 +3672,6 @@
 			isa = PBXGroup;
 			children = (
 				B1EE2EDD1D888BAC007A9B4B /* Module Items */,
-				B1BF382E1DC582BD005F606C /* ModuleDetailsViewControllerSpec.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -3695,8 +3688,6 @@
 		B1EE2EDD1D888BAC007A9B4B /* Module Items */ = {
 			isa = PBXGroup;
 			children = (
-				B15738041D95827F00ADBB85 /* ModuleItemViewModelSpec.swift */,
-				B1E0C7B01DB7CF680086B0A2 /* ModuleItemDetailViewControllerSpec.swift */,
 				B1E351F71DB97055003473B3 /* ModuleViewModelSpec.swift */,
 			);
 			path = "Module Items";
@@ -5072,13 +5063,10 @@
 			files = (
 				B18B34801DB59C3200355EDD /* MockClient.swift in Sources */,
 				B1E0C7AF1DB7BBE90086B0A2 /* RouterSpec.swift in Sources */,
-				B1BF382F1DC582BD005F606C /* ModuleDetailsViewControllerSpec.swift in Sources */,
-				B15738051D95827F00ADBB85 /* ModuleItemViewModelSpec.swift in Sources */,
 				B1E351F81DB97055003473B3 /* ModuleViewModelSpec.swift in Sources */,
 				B1AA934F1D6CEDD5004B3226 /* CoursesCollectionViewControllerSpec.swift in Sources */,
 				B1CC97961DB91E7000C0F8DD /* ModuleItemDetailViewController+Helpers.swift in Sources */,
 				B1BFE4441D492AF100ED3887 /* AssignmentsTableViewControllerSpec.swift in Sources */,
-				B1E0C7B11DB7CF680086B0A2 /* ModuleItemDetailViewControllerSpec.swift in Sources */,
 				B18B347E1DB59BF000355EDD /* SpecHelper.swift in Sources */,
 				B10713A61D748A1A0061E84A /* CourseSpec.swift in Sources */,
 				B141390B1DBD549A007537DD /* LegacyModuleProgressShimSpec.swift in Sources */,

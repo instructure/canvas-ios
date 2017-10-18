@@ -34,25 +34,26 @@ extension Notification.Name {
 class ModuleItemViewModel: NSObject {
     // Input
     let session: Session
-    let moduleID: String
 
     // Output
     let title: Property<String?>
     let completionRequirement: Property<ModuleItem.CompletionRequirement?>
     let errorSignal: Signal<NSError, NoError>
+    let moduleID: Property<String?>
     let moduleItemID: Property<String?>
     lazy var embeddedViewController: SignalProducer<UIViewController?, NoError> = {
         let content = self.moduleItem.producer.map { $0?.content }.skipRepeats(==)
         let masteryPathsItemModuleItemID = self.moduleItem.producer.map { $0 as? MasteryPathsItem }.map { $0?.moduleItemID }.skipRepeats(==)
         let url = self.url.producer.skipRepeats(==)
-        return SignalProducer.combineLatest(url, content, masteryPathsItemModuleItemID).map { url, content, moduleItemID in
+        let moduleID = self.moduleID.producer.skipRepeats(==)
+        return SignalProducer.combineLatest(url, content, masteryPathsItemModuleItemID, moduleID).map { url, content, moduleItemID, moduleID in
             if let content = content {
                 switch content {
                 case .externalURL(url: let url):
                     return WebBrowserViewController(url: url, delegate: self)
                 case .masteryPaths:
-                    if let moduleItemID = moduleItemID {
-                        return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: self.moduleID, itemIDWithMasteryPaths: moduleItemID)
+                    if let moduleItemID = moduleItemID, let moduleID = moduleID {
+                        return try! MasteryPathSelectOptionViewController(session: self.session, moduleID: moduleID, itemIDWithMasteryPaths: moduleItemID)
                     }
                 default: break
                 }
@@ -69,11 +70,9 @@ class ModuleItemViewModel: NSObject {
             moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.isDeleted ?? false) }
         }
     }
-    fileprivate let moduleObserver: ManagedObjectObserver<Module>
     fileprivate let module: Property<Module?>
     fileprivate let errorObserver: Observer<NSError, NoError>
     fileprivate let disposable = CompositeDisposable()
-    fileprivate let siblingsCollection: FetchedCollection<ModuleItem>
     fileprivate let siblingsUpdates: Property<[CollectionUpdate<ModuleItem>]>
     fileprivate let url: Property<URL?>
     fileprivate let completed: Property<Bool?>
@@ -185,19 +184,36 @@ class ModuleItemViewModel: NSObject {
         return vm
     }()
 
-    init(session: Session, moduleID: String, moduleItemID: String) throws {
+    init(session: Session, moduleItemID: String) throws {
         self.session = session
-        self.moduleID = moduleID
 
         observer = try ModuleItem.observer(session, moduleItemID: moduleItemID)
         moduleItem = MutableProperty(observer.object)
         moduleItem <~ observer.signal.map { $0.1 }.filter { !($0?.isDeleted ?? false) }
+        moduleID = Property(initial: nil, then: moduleItem.signal.map { $0?.moduleID }.skipRepeats(==))
 
-        moduleObserver = try Module.observer(session: session, moduleID: moduleID)
-        module = Property(initial: moduleObserver.object, then: moduleObserver.signal.map { $0.1 })
+        let moduleSignal = moduleID
+            .signal
+            .skipNil()
+            .flatMap(.latest) { id in
+                attemptProducer { try Module.observer(session: session, moduleID: id) }
+            }
+            .flatMap(.latest) { $0.signal }
+            .map { $0.1 }
+            .flatMapError { _ in SignalProducer<Module?, NoError>(value: nil) }
+        module = Property(initial: nil, then: moduleSignal)
 
-        siblingsCollection = try ModuleItem.allModuleItemsCollection(session, moduleID: moduleID)
-        siblingsUpdates = Property(initial: [], then: siblingsCollection.collectionUpdates)
+        let updatesSignal = moduleID
+            .signal
+            .skipNil()
+            .flatMap(.latest) { id in
+                attemptProducer { () -> FetchedCollection<ModuleItem> in
+                    try ModuleItem.allModuleItemsCollection(session, moduleID: id)
+                }
+            }
+            .flatMap(.latest) { $0.collectionUpdates }
+            .flatMapError { _ in SignalProducer<[CollectionUpdate<ModuleItem>], NoError>(value: []) }
+        siblingsUpdates = Property(initial: [], then: updatesSignal)
 
         title = moduleItem.map { item in
             if let masteryPathsItem = item as? MasteryPathsItem {
@@ -267,7 +283,7 @@ class ModuleItemViewModel: NSObject {
     }
 
     convenience init(session: Session, moduleItem: ModuleItem) throws {
-        try self.init(session: session, moduleID: moduleItem.moduleID, moduleItemID: moduleItem.id)
+        try self.init(session: session, moduleItemID: moduleItem.id)
     }
 
     deinit {
