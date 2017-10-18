@@ -19,6 +19,10 @@
 import Foundation
 import PSPDFKit
 
+protocol CanvadocsAnnotationProviderDelegate: class {
+    func annotationDidExceedLimit(annotation: CanvadocsAnnotation)
+}
+
 class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     
     let service: CanvadocsAnnotationService
@@ -26,6 +30,8 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     private var canvadocsAnnotations: [CanvadocsAnnotation] = []
 
     var childrenMapping: [String:[CanvadocsCommentReplyAnnotation]] = [:]
+
+    weak var delegate: CanvadocsAnnotationProviderDelegate?
     
     init(documentProvider: PSPDFDocumentProvider!, annotations: [CanvadocsAnnotation], service: CanvadocsAnnotationService) {
         self.service = service
@@ -117,7 +123,7 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
     
     override func add(_ annotations: [PSPDFAnnotation], options: [String : Any]? = nil) -> [PSPDFAnnotation]? {
         let filtered = annotations.filter {
-            if type(of: $0) === CanvadocsCommentAnnotation.self {
+            if type(of: $0) === CanvadocsCommentAnnotation.self || type(of: $0) === CanvadocsCommentReplyAnnotation.self {
                 return false
             }
             return true
@@ -192,10 +198,16 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
         guard let doc = documentProvider?.document else { return }
         guard let pspdfAnnotationID = annotation.name else { return }
         guard let canvadocsAnnotation = CanvadocsAnnotation(pspdfAnnotation: annotation, onDocument: doc) else { return }
-        
+
         if let noteAnnotation = annotation as? PSPDFNoteAnnotation, (noteAnnotation.contents == nil || noteAnnotation.contents == "") {
             return
         } else if let freeTextAnnotation = annotation as? PSPDFFreeTextAnnotation, (freeTextAnnotation.contents == nil || freeTextAnnotation.contents == "") {
+            return
+        }
+
+        if let inkAnnotation = annotation as? PSPDFInkAnnotation, inkAnnotation.lines.count > 120 {
+            doc.undoController?.undo()
+            delegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
             return
         }
 
@@ -214,9 +226,15 @@ class CanvadocsAnnotationProvider: PSPDFContainerAnnotationProvider {
                     }
                 }
             case .failure(let error):
-                print(error)
+                doc.undoController?.undo()
+                switch error {
+                case .tooBig:
+                    self?.delegate?.annotationDidExceedLimit(annotation: canvadocsAnnotation)
+                case .nsError(let e):
+                    print(e)
+                }
             }
         }
-        
     }
+
 }

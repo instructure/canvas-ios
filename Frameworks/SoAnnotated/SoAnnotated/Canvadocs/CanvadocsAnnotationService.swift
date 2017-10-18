@@ -43,6 +43,13 @@ struct PandaPushMetadata {
     let annotationsToken: String
 }
 
+enum CanvadocsAnnotationError: Error {
+    case tooBig
+    case nsError(NSError)
+}
+
+let CanvadocsServerAnnotationSizeLimit = 102_400 // Bytes
+
 typealias MetadataResult = Result<CanvadocsFileMetadata, NSError>
 typealias DocumentResult = Result<URL, NSError>
 typealias AnnotationsResult = Result<[CanvadocsAnnotation], NSError>
@@ -211,7 +218,7 @@ class CanvadocsAnnotationService: NSObject {
         dataTask.resume()
     }
     
-    func upsertAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<CanvadocsAnnotation, NSError>) ->()) {
+    func upsertAnnotation(_ annotation: CanvadocsAnnotation, completed: @escaping (Result<CanvadocsAnnotation, CanvadocsAnnotationError>) ->()) {
         guard let annotationID = annotation.id else { return }
         let url = sessionURL.appendingPathComponent("annotations").appendingPathComponent(annotationID)
         var request = URLRequest(url: url)
@@ -222,9 +229,13 @@ class CanvadocsAnnotationService: NSObject {
         let encoder = JSONEncoder()
         do {
             let json = try encoder.encode(annotation)
+            guard json.count < CanvadocsServerAnnotationSizeLimit else {
+                completed(.failure(CanvadocsAnnotationError.tooBig))
+                return
+            }
             request.httpBody = json
         } catch {
-            completed(.failure(error as NSError))
+            completed(.failure(.nsError(error as NSError)))
             return
         }
         
@@ -242,10 +253,10 @@ class CanvadocsAnnotationService: NSObject {
                     let annotation = try decoder.decode(CanvadocsAnnotation.self, from: data)
                     completed(.success(annotation))
                 } catch let error as NSError {
-                    completed(.failure(error))
+                    completed(.failure(.nsError(error)))
                 }
             } else if let error = error {
-                completed(.failure(error as NSError))
+                completed(.failure(.nsError(error as NSError)))
             }
         }
         dataTask.resume()

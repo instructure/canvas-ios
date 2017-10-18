@@ -79,7 +79,8 @@ func applySharedAppConfiguration(to builder: PSPDFConfigurationBuilder) {
     builder.shouldHideStatusBarWithHUD = false
     builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
     builder.editableAnnotationTypes = [.note, .highlight, .freeText, .strikeOut, .ink, .square]
-    
+    builder.naturalDrawingAnnotationEnabled = true
+
     builder.propertiesForAnnotations = [
         .highlight: [["color"]],
         PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen): [["color"]],

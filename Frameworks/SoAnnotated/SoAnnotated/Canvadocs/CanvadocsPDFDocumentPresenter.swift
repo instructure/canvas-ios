@@ -35,6 +35,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
     var metadata: CanvadocsFileMetadata?
     let service: CanvadocsAnnotationService
     var annotationProvider: CanvadocsAnnotationProvider?
+    weak var pdfViewController: PSPDFViewController?
 
     open static func loadPDFViewController(_ sessionURL: URL, with configuration: PSPDFConfiguration, completed: @escaping (UIViewController?, [NSError]?)->()) {
         var metadata: CanvadocsFileMetadata? = nil
@@ -112,6 +113,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         }
         pdfDocument.didCreateDocumentProviderBlock = { documentProvider in
             let canvadocsAnnotationProvider = CanvadocsAnnotationProvider(documentProvider: documentProvider, annotations: annotations, service: service)
+            canvadocsAnnotationProvider.delegate = self
             documentProvider.annotationManager.annotationProviders = [canvadocsAnnotationProvider]
             self.annotationProvider = canvadocsAnnotationProvider
         }
@@ -130,6 +132,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setPresets(inkPresets, forKey: .circle, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .line, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(inkPresets, forKey: .strikeOut, type: PSPDFStyleManagerColorPresetKey)
+        styleManager.setPresets(inkPresets, forKey: .note, type: PSPDFStyleManagerColorPresetKey)
         styleManager.setPresets(textPresets, forKey: .freeText, type: PSPDFStyleManagerColorPresetKey)
 
         styleManager.setLastUsedValue(CanvadocsHighlightColor.yellow.color, forProperty: "color", forKey: .highlight)
@@ -138,6 +141,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .circle)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .line)
         styleManager.setLastUsedValue(CanvadocsAnnotationColor.red.color, forProperty: "color", forKey: .strikeOut)
+        styleManager.setLastUsedValue(CanvadocsAnnotationColor.blue.color, forProperty: "fillColor", forKey: .note)
         styleManager.setLastUsedValue(UIColor.black, forProperty: "color", forKey: .freeText)
         styleManager.setLastUsedValue(UIColor.white, forProperty: "fillColor", forKey: .freeText)
         styleManager.setLastUsedValue(2.0, forProperty: "lineWidth", forKey: PSPDFAnnotationStateVariantIdentifier(.ink, .inkVariantPen))
@@ -152,6 +156,7 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         let pdfViewController = PSPDFViewController(document: pdfDocument, configuration: configuration)
         pdfViewController.delegate = self
         pdfViewController.navigationItem.rightBarButtonItems = [pdfViewController.activityButtonItem, pdfViewController.searchButtonItem, pdfViewController.annotationButtonItem]
+        self.pdfViewController = pdfViewController
 
         return pdfViewController
     }
@@ -228,5 +233,19 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
         }
 
         return true
+    }
+}
+
+extension CanvadocsPDFDocumentPresenter: CanvadocsAnnotationProviderDelegate {
+    func annotationDidExceedLimit(annotation: CanvadocsAnnotation) {
+        guard let pdfViewController = pdfViewController else { return }
+        switch annotation.type {
+        case .ink where pdfViewController.annotationStateManager.state == .ink:
+            let variant = pdfViewController.annotationStateManager.variant
+            self.pdfViewController?.annotationStateManager.toggleState(.ink, variant: variant)
+            self.pdfViewController?.annotationStateManager.toggleState(.ink, variant: variant)
+        default:
+            break
+        }
     }
 }

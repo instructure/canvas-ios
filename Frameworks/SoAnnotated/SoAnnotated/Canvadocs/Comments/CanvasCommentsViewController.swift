@@ -144,6 +144,8 @@ class CanvadocsCommentsViewController: UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
+
+    override var prefersStatusBarHidden: Bool { return true }
 }
 
 extension CanvadocsCommentsViewController: UITableViewDataSource {

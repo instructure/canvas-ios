@@ -13,7 +13,7 @@ import SwiftSimplify
 enum CanvadocsAnnotationType {
     case highlight(color: String, boundingBoxes: [CGRect], rect: CGRect, contents: String?)
     case strikeout(color: String, boundingBoxes: [CGRect], rect: CGRect, contents: String?)
-    case freeText(fontInfo: (family: String, size: Int), text: String, rect: CGRect)
+    case freeText(fontInfo: (family: String, size: Int), text: String, rect: CGRect, color: String)
     case comment(text: String, rect: CGRect)
     case commentReply(parent: String, text: String)
     case ink(gestures: [CanvadocsInkAnnotationGesture], color: String, rect: CGRect, contents: String?)
@@ -112,8 +112,9 @@ struct CanvadocsAnnotation: Codable {
             let family = fontInfoStr?.matches(for: "\\b(\\w+)$").first ?? "Helvetica"
             let size = Int(sizeStr) ?? 12
             let text = try container.decode(String.self, forKey: .contents)
+            let color = try container.decodeIfPresent(String.self, forKey: .color) ?? "#000000"
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
-            self.type = .freeText(fontInfo: (family: family, size: size), text: text, rect: rect)
+            self.type = .freeText(fontInfo: (family: family, size: size), text: text, rect: rect, color: color)
         case "text":
             let text = try container.decode(String.self, forKey: .contents)
             let rect = try CanvadocsAnnotation.decodeRect(with: decoder, in: container)
@@ -184,16 +185,18 @@ struct CanvadocsAnnotation: Codable {
             if let contents = contents, contents.lengthOfBytes(using: .utf8) > 0 {
                 try container.encode(contents, forKey: .contents)
             }
-        case .freeText(let fontInfo, let text, let rect):
+        case .freeText(let fontInfo, let text, let rect, let color):
             let font = "\(fontInfo.size) pt \(fontInfo.family)"
             try container.encode(font, forKey: .font)
             try container.encode(text, forKey: .contents)
+            try container.encode(color, forKey: .color)
             try container.encode("freetext", forKey: .type)
             try encodeRect(rect: rect)
         case .comment(let text, let rect):
             try container.encode(text, forKey: .contents)
             try encodeRect(rect: rect)
             try container.encode("text", forKey: .type)
+            try container.encode("#008EE2", forKey: .color)
             try container.encode("Comment", forKey: .icon)
         case .commentReply(let parent, let text):
             try container.encode(text, forKey: .contents)
@@ -203,9 +206,9 @@ struct CanvadocsAnnotation: Codable {
             var inklist = container.nestedContainer(keyedBy: InklistCodingKeys.self, forKey: .inklist)
             var gesturesContainer = inklist.nestedUnkeyedContainer(forKey: .gestures)
             for gesture in gestures {
-                if gesture.count > 1 {
+                if gesture.count > 10 {
                     let points = gesture.map { $0.cgPoint }
-                    let simpleGesture = SwiftSimplify.simplify(points, tolerance: 1.0).map { CanvadocsInkAnnotationGesturePoint(cgPoint: $0) }
+                    let simpleGesture = SwiftSimplify.simplify(points, tolerance: 0.4, highQuality: true).map { CanvadocsInkAnnotationGesturePoint(cgPoint: $0) }
                     try gesturesContainer.encode(simpleGesture)
                 } else {
                     try gesturesContainer.encode(gesture)
@@ -250,7 +253,13 @@ struct CanvadocsAnnotation: Codable {
             self.type = .strikeout(color: color, boundingBoxes: boundingBoxes, rect: pspdfAnnotation.boundingBox, contents: pspdfAnnotation.contents)
         case .freeText:
             guard let freeTextAnnot = pspdfAnnotation as? PSPDFFreeTextAnnotation else { fallthrough }
-            self.type = .freeText(fontInfo: (family: freeTextAnnot.fontName ?? "Helvetica", size: Int(freeTextAnnot.fontSize)), text: freeTextAnnot.contents ?? "", rect: pspdfAnnotation.boundingBox)
+            let fontFamily = freeTextAnnot.fontName ?? "Helvetica"
+            let size = Int(freeTextAnnot.fontSize)
+            let fontInfo = (family: fontFamily, size: size)
+            let text = freeTextAnnot.contents ?? ""
+            let rect = freeTextAnnot.boundingBox
+            let color = freeTextAnnot.color?.hexString ?? "#000000"
+            self.type = .freeText(fontInfo: fontInfo, text: text, rect: rect, color: color)
         case .note:
             if let commentReplyAnnot = pspdfAnnotation as? CanvadocsCommentReplyAnnotation {
                 self.type = .commentReply(parent: commentReplyAnnot.inReplyTo ?? "", text: commentReplyAnnot.contents ?? "")
@@ -282,39 +291,31 @@ struct CanvadocsAnnotation: Codable {
     func pspdfAnnotation(for document: PSPDFDocument) -> PSPDFAnnotation? {
         var pspdfAnnotation: PSPDFAnnotation?
         switch self.type {
-        case .highlight(let color, let boundingBoxes, _, let contents), .strikeout(let color, let boundingBoxes, _, let contents):
-            var affectedGlyphs: [PSPDFGlyph] = []
-            for boundingBox in boundingBoxes {
-                let objs = document.objects(atPDFRect: boundingBox, pageIndex: page, options: nil)
-                let glyphs = (objs[PSPDFObjectsGlyphsKey] as? [PSPDFGlyph] ?? []).filter { e in
-                    let glyph = e as PSPDFGlyph
-                    return glyph.indexOnPage != -1 // don't count the fillers
-                }
-                affectedGlyphs += glyphs
-            }
-            
+        case .highlight(let color, let boundingBoxes, let rect, let contents), .strikeout(let color, let boundingBoxes, let rect, let contents):
             guard let pageInfo = document.pageInfoForPage(at: page) else { return nil }
             
             switch self.type {
             case .highlight:
-                pspdfAnnotation = PSPDFHighlightAnnotation(glyphs: affectedGlyphs, pageRotation: Int(pageInfo.rotation))
+                pspdfAnnotation = PSPDFHighlightAnnotation()
             case .strikeout:
-                pspdfAnnotation = PSPDFStrikeOutAnnotation(glyphs: affectedGlyphs, pageRotation: Int(pageInfo.rotation))
+                pspdfAnnotation = PSPDFStrikeOutAnnotation()
             default:
                 break // should never get here
             }
-            
-            var boundingBox = CGRect()
-            let rects = PSPDFRectsFromGlyphs(affectedGlyphs, &boundingBox, Int(pageInfo.rotation))
-            pspdfAnnotation?.rects = rects
-            pspdfAnnotation?.boundingBox = boundingBox
+
+            pspdfAnnotation?.rotation = pageInfo.rotation
+            pspdfAnnotation?.pageIndex = page
+            pspdfAnnotation?.rects = boundingBoxes.map { NSValue(cgRect: $0) }
+            pspdfAnnotation?.boundingBox = rect
             pspdfAnnotation?.color = UIColor(rgba: color)
             pspdfAnnotation?.contents = contents
-        case .freeText(let fontInfo, let text, let rect):
+        case .freeText(let fontInfo, let text, let rect, let color):
             let freeTextAnnotation = PSPDFFreeTextAnnotation(contents: text)
             freeTextAnnotation.fontName = fontInfo.family
             freeTextAnnotation.fontSize = CGFloat(fontInfo.size)
             freeTextAnnotation.boundingBox = rect
+            freeTextAnnotation.fillColor = .white
+            freeTextAnnotation.color = UIColor(rgba: color)
             pspdfAnnotation = freeTextAnnotation
         case .comment(let text, let rect):
             let noteAnnotation = PSPDFNoteAnnotation(contents: text)
