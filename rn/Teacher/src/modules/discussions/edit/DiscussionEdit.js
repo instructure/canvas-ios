@@ -216,6 +216,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
             keyboardShouldPersistTaps='handled'
             enableAutoAutomaticScroll={false}
             ref={(r) => { this.scrollView = r }}
+            keyboardDismissMode={'on-drag'}
           >
             <Heading1 style={style.heading}>{i18n('Title')}</Heading1>
             <RowWithTextInput
