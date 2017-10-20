@@ -31,7 +31,7 @@ class EditCoursesListPage {
     // MARK: - Helpers
 
     private func navBarTitleView() -> GREYElementInteraction {
-        let titleViewElement = EarlGreyHelper.select(
+        let titleViewElement = EarlGrey.select(
             elementWithMatcher: grey_allOf([grey_accessibilityLabel("Edit Courses"),
                                             grey_accessibilityTrait(UIAccessibilityTraitHeader),
                                             grey_accessibilityTrait(UIAccessibilityTraitStaticText)]))
@@ -77,7 +77,7 @@ class EditCoursesListPage {
             let courseIsFavoritedID = "edit-favorites.course-favorite.\(course.id)-favorited"
             let courseIsNotFavoritedID = "edit-favorites.course-favorite.\(course.id)-not-favorited"
             
-            let courseElement = EarlGreyHelper.select(
+            let courseElement = EarlGrey.select(
                 elementWithMatcher: grey_anyOf([grey_accessibilityID(courseIsFavoritedID),
                                                 grey_accessibilityID(courseIsNotFavoritedID)]))
             

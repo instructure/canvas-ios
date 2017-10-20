@@ -28,15 +28,15 @@ public let elementPoll:TimeInterval = 1.0 // seconds
 open class e {
 
   open static func selectBy(id:String, file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGreyHelper.select(elementWithMatcher: grey_accessibilityID(id), file: file, line: line)
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityID(id), file: file, line: line)
   }
 
   open static func selectBy(label:String, file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGreyHelper.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
+    return EarlGrey.select(elementWithMatcher: grey_accessibilityLabel(label), file: file, line: line)
   }
 
   open static func selectBy(matchers:[GREYMatcher], file:StaticString = #file, line:UInt = #line) -> GREYElementInteraction {
-    return EarlGreyHelper.select(elementWithMatcher: grey_allOf(matchers), file: file, line: line)
+    return EarlGrey.select(elementWithMatcher: grey_allOf(matchers), file: file, line: line)
   }
 
   @available(*, deprecated, message: "Only you can prevent memory leaks 🔥🐻")

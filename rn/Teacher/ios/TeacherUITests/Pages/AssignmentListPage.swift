@@ -34,7 +34,7 @@ class AssignmentListPage  {
     // MARK: - Helpers
 
     private func backButton(_ course: Course) -> GREYElementInteraction {
-        let backButtonElement = EarlGreyHelper.select(
+        let backButtonElement = EarlGrey.select(
             elementWithMatcher: grey_allOf([grey_accessibilityLabel(course.courseCode),
                                             grey_accessibilityTrait(UIAccessibilityTraitButton)]))
         return backButtonElement

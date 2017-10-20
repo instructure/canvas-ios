@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
-import Foundation
 import EarlGrey
+import Foundation
 
 public func GREYAssert(_ expression: @autoclosure () -> Bool, reason: String) {
   GREYAssert(expression, reason, details: "Expected expression to be true")
@@ -54,19 +54,19 @@ public func GREYAssertEqualObjects<T: Equatable>( _ left: @autoclosure () -> T?,
 }
 
 public func GREYAssertNotEqualObjects<T: Equatable>( _ left: @autoclosure () -> T?,
-                                      _ right: @autoclosure () -> T?, reason: String) {
+                                                     _ right: @autoclosure () -> T?, reason: String) {
   GREYAssert(left() != right(), reason, details: "Expected object of the left term to not" +
     " equal the object of the right term")
 }
 
 public func GREYFail(_ reason: String) {
-  EarlGreyHelper.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
+  EarlGrey.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
                                                     reason: reason),
                   details: "")
 }
 
 public func GREYFailWithDetails(_ reason: String, details: String) {
-  EarlGreyHelper.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
+  EarlGrey.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
                                                     reason: reason),
                   details: details)
 }
@@ -76,7 +76,7 @@ private func GREYAssert(_ expression: @autoclosure () -> Bool,
   GREYSetCurrentAsFailable()
   GREYWaitUntilIdle()
   if !expression() {
-    EarlGreyHelper.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
+    EarlGrey.handle(exception: GREYFrameworkException(name: kGREYAssertionFailedException,
                                                       reason: reason),
                     details: details)
   }
@@ -96,27 +96,27 @@ private func GREYWaitUntilIdle() {
   GREYUIThreadExecutor.sharedInstance().drainUntilIdle()
 }
 
-open class EarlGreyHelper: NSObject {
-  open class func select(elementWithMatcher matcher:GREYMatcher,
-                           file: StaticString = #file,
-                           line: UInt = #line) -> GREYElementInteraction {
+open class EarlGrey: NSObject {
+  open class func select(elementWithMatcher matcher: GREYMatcher,
+                         file: StaticString = #file,
+                         line: UInt = #line) -> GREYElementInteraction {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-             .selectElement(with: matcher)
+      .selectElement(with: matcher)
   }
 
   open class func setFailureHandler(handler: GREYFailureHandler,
-                                      file: StaticString = #file,
-                                      line: UInt = #line) {
+                                    file: StaticString = #file,
+                                    line: UInt = #line) {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-             .setFailureHandler(handler)
+      .setFailureHandler(handler)
   }
 
   open class func handle(exception: GREYFrameworkException,
-                           details: String,
-                           file: StaticString = #file,
-                           line: UInt = #line) {
+                         details: String,
+                         file: StaticString = #file,
+                         line: UInt = #line) {
     return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-             .handle(exception, details: details)
+      .handle(exception, details: details)
   }
 
   @discardableResult open class func rotateDeviceTo(orientation: UIDeviceOrientation,
@@ -124,9 +124,9 @@ open class EarlGreyHelper: NSObject {
                                                     file: StaticString = #file,
                                                     line: UInt = #line)
     -> Bool {
-    return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
-             .rotateDevice(to: orientation,
-                           errorOrNil: errorOrNil)
+      return EarlGreyImpl.invoked(fromFile: file.description, lineNumber: line)
+        .rotateDevice(to: orientation,
+                      errorOrNil: errorOrNil)
   }
 }
 
@@ -136,7 +136,7 @@ extension GREYInteraction {
   }
 
   @discardableResult public func assert(_ matcher: @autoclosure () -> GREYMatcher,
-                                        error:UnsafeMutablePointer<NSError?>!) -> Self {
+                                        error: UnsafeMutablePointer<NSError?>!) -> Self {
     return self.assert(with: matcher(), error: error)
   }
 
@@ -153,6 +153,7 @@ extension GREYCondition {
 
   open func waitWithTimeout(seconds: CFTimeInterval, pollInterval: CFTimeInterval)
     -> Bool {
-    return self.wait(withTimeout: seconds, pollInterval: pollInterval)
+      return self.wait(withTimeout: seconds, pollInterval: pollInterval)
   }
 }
+
