@@ -16,13 +16,11 @@
 
 import UIKit
 import Foundation
-import TechDebt
 import SoIconic
 import CanvasCore
 
 func MessagesTab() -> UIViewController {
-//    let vc = inboxTab(branding: HelmManager.branding)
-    let vc = UIViewController.messagesTab()
+    let vc = inboxTab(branding: HelmManager.branding)
     vc.tabBarItem.image = .icon(.inbox)
     vc.tabBarItem.selectedImage = .icon(.inbox, filled: true)
     return vc

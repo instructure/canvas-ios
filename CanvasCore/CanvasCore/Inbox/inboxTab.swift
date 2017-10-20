@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
 
 public func inboxTab(branding: Brand?) -> UIViewController {
     let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
@@ -24,5 +26,10 @@ public func inboxTab(branding: Brand?) -> UIViewController {
     inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: icon, selectedImage: nil)
     inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true
+    
+    inboxSplit.tabBarItem.reactive.badgeValue
+        <~ UnreadMessages.count
+            .map { count in count > 0 ? "\(count)" : nil }
+    
     return inboxSplit
 }

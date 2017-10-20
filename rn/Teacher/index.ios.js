@@ -35,6 +35,8 @@ import logout from './src/redux/logout-action'
 import loginVerify from './src/common/login-verify'
 import { hydrateStoreFromPersistedState } from './src/redux/middleware/persist'
 import hydrate from './src/redux/hydrate-action'
+import { beginUpdatingUnreadCount, stopUpdatingUnreadCount } from './src/modules/inbox/update-unread-count'
+import App, { type AppId } from './src/modules/app'
 
 global.v12 = false
 
@@ -51,35 +53,47 @@ const Helm = NativeModules.Helm
 
 Helm.initLoadingStateIfRequired()
 
-const loginHandler = async (info: {
+const loginHandler = async ({
+  appId,
+  authToken,
+  baseURL,
+  branding,
+  user,
+  skipHydrate,
+}: {
+  appId: AppId,
   authToken: string,
   baseURL: string,
   branding: Object,
   user: SessionUser,
   skipHydrate: boolean,
 }) => {
-  if (info.user) {
+  App.setCurrentApp(appId)
+  stopUpdatingUnreadCount()
+
+  if (user) {
     // flow already thinks the id is a string but it's not so coerce ;)
-    info.user.id = info.user.id.toString()
+    user.id = user.id.toString()
   }
 
-  if (info.branding) {
-    setupBrandingFromNativeBrandingInfo(info.branding)
+  if (branding) {
+    setupBrandingFromNativeBrandingInfo(branding)
   }
 
-  if (!info.authToken) {
+  if (!authToken) {
     setSession(null)
     store.dispatch(logout)
   } else {
     PushNotifications.requestPermissions()
-    setSession(info)
-    if (!info.skipHydrate) {
+    setSession({ authToken, baseURL, user })
+    if (!skipHydrate) {
       await hydrateStoreFromPersistedState(store)
     } else {
       store.dispatch(hydrate())
     }
     Helm.loginComplete()
     loginVerify()
+    beginUpdatingUnreadCount()
   }
 }
 

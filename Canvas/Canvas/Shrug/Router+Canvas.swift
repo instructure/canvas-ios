@@ -24,6 +24,7 @@ import TooLegit
 import SoPersistent
 import PageKit
 import CanvasKeymaster
+import CanvasCore
 
 var currentSession: Session {
     return CanvasKeymaster.the().currentClient.authSession
@@ -120,6 +121,38 @@ extension Router {
         addContextRoute([.course], subPath: "modules/items/:itemID") { contextID, parameters in
             let itemID: String = try parameters.stringID("itemID")
             return try ModuleItemDetailViewController(session: currentSession, courseID: contextID.id, moduleItemID: itemID, route: route)
+        }
+        addRoute("/conversations/:conversationID") { parameters, _ in
+            guard let params = parameters, let convoID = try? params.stringID("conversationID") else {
+                fatalError("How did this path match if there is no conversationID?")
+            }
+            return HelmViewController(moduleName: "/conversations/:conversationID", props: ["conversationID": convoID])
+        }
+        
+        CBIConversationStarter.setConversationStarter { recipients, context in
+            guard
+                let contextID = ContextID(canvasContext: context),
+                let enrollment = currentSession.enrollmentsDataSource[contextID] else {
+                    return
+            }
+            HelmManager.shared.present(
+                "/conversations/compose",
+                withProps: [
+                    "recipients": recipients.map { recipient in
+                        return [
+                            "name": recipient.name,
+                            "avatar_url": recipient.avatarURL,
+                            "id": recipient.id,
+                        ]
+                    },
+                    "contextCode": context,
+                    "contextName": enrollment.name,
+                ],
+                options: [
+                    "modal": true,
+                    "embedInNavigationController": true,
+                ]
+            )
         }
     }
 }

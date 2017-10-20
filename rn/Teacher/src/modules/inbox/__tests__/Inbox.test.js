@@ -40,8 +40,10 @@ const c2 = template.conversation({
 })
 
 let defaultProps = {
+  courses: [template.course()],
   conversations: [c1, c2],
   refreshInboxAll: jest.fn(),
+  refreshCourses: jest.fn(),
   scope: 'all',
   navigator: template.navigator({
     show: jest.fn(),
@@ -170,6 +172,7 @@ it('updates on scope change', () => {
   let props = {
     scope: 'unread',
     refreshInboxUnread: jest.fn(),
+    refreshCourses: jest.fn(),
   }
 
   setProps(tree, props)
@@ -178,17 +181,21 @@ it('updates on scope change', () => {
   props = {
     scope: 'unread',
     refreshInboxUnread: jest.fn(),
+    refreshCourses: jest.fn(),
   }
 
   setProps(tree, props)
   expect(props.refreshInboxUnread).not.toHaveBeenCalled()
+  expect(props.refreshCourses).not.toHaveBeenCalled()
 })
 
 it('refreshed component', () => {
   const props = {
     conversations: [],
+    refreshCourses: jest.fn(),
     refreshInboxAll: jest.fn(),
     scope: 'all',
+    courses: [template.course()],
   }
 
   const tree = renderer.create(
@@ -197,6 +204,7 @@ it('refreshed component', () => {
   expect(tree.toJSON()).toMatchSnapshot()
   tree.getInstance().refresh()
   setProps(tree, props)
+  expect(props.refreshCourses).not.toHaveBeenCalled()
   expect(props.refreshInboxAll).toHaveBeenCalled()
 })
 
@@ -204,13 +212,17 @@ it('should call the right functions in handleRefresh', () => {
   let props = {
     refreshInboxAll: jest.fn(),
     scope: 'all',
+    refreshCourses: jest.fn(),
+    courses: [],
   }
   handleRefresh(props)
   expect(props.refreshInboxAll).toHaveBeenCalled()
+  expect(props.refreshCourses).toHaveBeenCalled()
 
   props = {
     refreshInboxUnread: jest.fn(),
     scope: 'unread',
+    refreshCourses: jest.fn(),
   }
   handleRefresh(props)
   expect(props.refreshInboxUnread).toHaveBeenCalled()
@@ -218,6 +230,7 @@ it('should call the right functions in handleRefresh', () => {
   props = {
     refreshInboxStarred: jest.fn(),
     scope: 'starred',
+    refreshCourses: jest.fn(),
   }
   handleRefresh(props)
   expect(props.refreshInboxStarred).toHaveBeenCalled()
@@ -225,6 +238,7 @@ it('should call the right functions in handleRefresh', () => {
   props = {
     refreshInboxSent: jest.fn(),
     scope: 'sent',
+    refreshCourses: jest.fn(),
   }
   handleRefresh(props)
   expect(props.refreshInboxSent).toHaveBeenCalled()
@@ -232,9 +246,21 @@ it('should call the right functions in handleRefresh', () => {
   props = {
     refreshInboxArchived: jest.fn(),
     scope: 'archived',
+    refreshCourses: jest.fn(),
   }
   handleRefresh(props)
   expect(props.refreshInboxArchived).toHaveBeenCalled()
+})
+
+it('does not refresh courses if present', () => {
+  const props = {
+    refreshInboxArchived: jest.fn(),
+    scope: 'archived',
+    refreshCourses: jest.fn(),
+    courses: [template.course()],
+  }
+  handleRefresh(props)
+  expect(props.refreshCourses).not.toHaveBeenCalled()
 })
 
 it('filters conversations based on course', () => {

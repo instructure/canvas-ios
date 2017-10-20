@@ -52,8 +52,6 @@
 #import "CBIAnnouncementViewModel.h"
 #import "CKIClient+CBIClient.h"
 #import "UnsupportedViewController.h"
-#import "CBIMessageViewModel.h"
-#import "CBIMessageDetailViewController.h"
 
 #import "CBIAssignmentViewModel.h"
 #import "CBIAssignmentDetailViewController.h"
@@ -513,18 +511,6 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
             FileViewController *fileVC = [[FileViewController alloc] init];
             [fileVC applyRoutingParameters:params];
             return (UIViewController *)fileVC;
-        },
-        
-        @"/conversations/:conversationID" : ^ (NSDictionary *params, CBIMessageViewModel *viewModel) {
-            if (viewModel == nil) {
-                CKIConversation *conversation = [CKIConversation modelWithID:[params[@"conversationID"] description]];
-                viewModel = [CBIMessageViewModel viewModelForModel:conversation];
-            }
-        
-            CBIMessageDetailViewController *messageVC = [[CBIMessageDetailViewController alloc] init];
-            messageVC.viewModel = viewModel;
-            
-            return messageVC;
         },
     }];
     

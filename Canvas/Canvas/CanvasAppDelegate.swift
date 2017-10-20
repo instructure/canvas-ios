@@ -28,6 +28,7 @@ import CanvasKeymaster
 import Fabric
 import Crashlytics
 import CanvasCore
+import ReactiveSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         makeAWindow()
         postLaunchSetup()
-        prepareTheKeymaster()
+        TheKeymaster?.delegate = loginConfig
         
         return true
     }
@@ -126,15 +127,13 @@ extension AppDelegate {
         UINavigationBar.appearance().barStyle = .black
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
+        UIApplication.shared.reactive.applicationIconBadgeNumber
+            <~ UnreadMessages.count
     }
 }
 
 // MARK: Logging in/out
 extension AppDelegate {
-    
-    func prepareTheKeymaster() {
-        TheKeymaster?.delegate = loginConfig
-    }
     
     func addClearCacheGesture(_ view: UIView) {
         let clearCacheGesture = UITapGestureRecognizer(target: self, action: #selector(clearCache))
@@ -242,6 +241,7 @@ import React
 extension AppDelegate: RCTBridgeDelegate {
     func prepareReactNative() {
         NativeLoginManager.shared().delegate = self
+        NativeLoginManager.shared().app = .student
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
             guard let session = self.session else {
@@ -274,12 +274,30 @@ extension AppDelegate: NativeLoginManagerDelegate {
         
         LegacyModuleProgressShim.observeProgress(session)
         ModuleItem.beginObservingProgress(session)
-        ConversationUpdater.shared().updateUnreadConversationCount()
         CKCanvasAPI.updateCurrentAPI()
-
-        if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            HelmManager.branding = Brand(webPayload: brandingInfo)
+        
+        let b = Brand.current()
+        guard let brand = CKIBrand() else {
+            fatalError("Why can't I init a brand?")
         }
+        brand.navigationBackground = "#313640" // ask me why this value is hard-coded and I'll tell you a sad sad tale
+        brand.navigationButtonColor = b.navForegroundColor.hex
+        brand.navigationTextColor = b.navForegroundColor.hex
+        brand.primaryColor = b.tintColor.hex
+        brand.primaryButtonTextColor = b.secondaryTintColor.hex
+        brand.linkColor = b.tintColor.hex
+        brand.primaryButtonBackgroundColor = b.tintColor.hex
+        brand.primaryButtonTextColor = "#FFFFFF"
+        brand.secondaryButtonBackgroundColor = b.secondaryTintColor.hex
+        brand.secondaryButtonTextColor = "#FFFFFF"
+        brand.fontColorDark = "#000000"
+        brand.fontColorLight = "#666666"
+        brand.headerImageURL = ""
+        
+        client.branding = brand
+        HelmManager.branding = (brand.jsonDictionary()
+            as? [String: Any])
+            .flatMap(CanvasCore.Brand.init(webPayload:))
     }
     
     func didLogout(_ controller: UIViewController) {

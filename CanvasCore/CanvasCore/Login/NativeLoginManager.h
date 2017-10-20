@@ -11,12 +11,18 @@
 #import <React/RCTEventEmitter.h>
 @import CanvasKeymaster;
 
+typedef NSString *CanvasApp NS_EXTENSIBLE_STRING_ENUM;
+
+extern CanvasApp _Nonnull CanvasAppStudent;
+extern CanvasApp _Nonnull CanvasAppTeacher;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol NativeLoginManagerDelegate;
 
 @interface NativeLoginManager : NSObject
 
+@property (nonatomic, nonnull) CanvasApp app;
 @property (nonatomic, weak) id<NativeLoginManagerDelegate> delegate;
 
 + (instancetype)shared;

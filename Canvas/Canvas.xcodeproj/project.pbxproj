@@ -264,60 +264,6 @@
 		492706E01CF4BA8400C631C6 /* CBILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706DB1CF4BA8400C631C6 /* CBILogger.m */; };
 		492706E41CF4BAB500C631C6 /* VideoRecorderController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706E21CF4BAB500C631C6 /* VideoRecorderController.h */; };
 		492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706E31CF4BAB500C631C6 /* VideoRecorderController.m */; };
-		492707211CF4BACA00C631C6 /* CBIConversationStarter.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706E71CF4BACA00C631C6 /* CBIConversationStarter.h */; };
-		492707221CF4BACA00C631C6 /* CBIConversationStarter.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706E81CF4BACA00C631C6 /* CBIConversationStarter.m */; };
-		492707231CF4BACA00C631C6 /* CBIMessageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706E91CF4BACA00C631C6 /* CBIMessageCell.h */; };
-		492707241CF4BACA00C631C6 /* CBIMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706EA1CF4BACA00C631C6 /* CBIMessageCell.m */; };
-		492707251CF4BACA00C631C6 /* CBIMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492706EB1CF4BACA00C631C6 /* CBIMessageCell.xib */; };
-		492707261CF4BACA00C631C6 /* CBIMessageScopeSelectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706EC1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.h */; };
-		492707271CF4BACB00C631C6 /* CBIMessageScopeSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706ED1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.m */; };
-		492707281CF4BACB00C631C6 /* CBIMessageScopeSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 492706EE1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.xib */; };
-		492707291CF4BACB00C631C6 /* CBIMessagesListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706EF1CF4BACA00C631C6 /* CBIMessagesListViewController.h */; };
-		4927072A1CF4BACB00C631C6 /* CBIMessagesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706F01CF4BACA00C631C6 /* CBIMessagesListViewController.m */; };
-		4927072B1CF4BACB00C631C6 /* CBIMessagesListViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706F11CF4BACA00C631C6 /* CBIMessagesListViewModel.h */; };
-		4927072C1CF4BACB00C631C6 /* CBIMessagesListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706F21CF4BACA00C631C6 /* CBIMessagesListViewModel.m */; };
-		4927072F1CF4BACB00C631C6 /* CBIMessagesTab.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706F51CF4BACA00C631C6 /* CBIMessagesTab.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492707301CF4BACB00C631C6 /* CBIMessagesTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706F61CF4BACA00C631C6 /* CBIMessagesTab.m */; };
-		492707311CF4BACB00C631C6 /* CBIMessageViewModel+CellViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706F71CF4BACA00C631C6 /* CBIMessageViewModel+CellViewModel.h */; };
-		492707321CF4BACB00C631C6 /* CBIMessageViewModel+CellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706F81CF4BACA00C631C6 /* CBIMessageViewModel+CellViewModel.m */; };
-		492707331CF4BACB00C631C6 /* CBIMessageViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706F91CF4BACA00C631C6 /* CBIMessageViewModel.h */; };
-		492707341CF4BACB00C631C6 /* CBIMessageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706FA1CF4BACA00C631C6 /* CBIMessageViewModel.m */; };
-		492707351CF4BACB00C631C6 /* ConversationUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706FB1CF4BACA00C631C6 /* ConversationUpdater.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492707361CF4BACB00C631C6 /* ConversationUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706FC1CF4BACA00C631C6 /* ConversationUpdater.m */; };
-		492707371CF4BACB00C631C6 /* AttachmentsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492706FE1CF4BACA00C631C6 /* AttachmentsTableViewController.h */; };
-		492707381CF4BACB00C631C6 /* AttachmentsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492706FF1CF4BACA00C631C6 /* AttachmentsTableViewController.m */; };
-		492707391CF4BACB00C631C6 /* CBIMessageComposeMessageCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707001CF4BACA00C631C6 /* CBIMessageComposeMessageCell.h */; };
-		4927073A1CF4BACB00C631C6 /* CBIMessageComposeMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707011CF4BACA00C631C6 /* CBIMessageComposeMessageCell.m */; };
-		4927073B1CF4BACB00C631C6 /* CBIMessageComposeMessageViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707021CF4BACA00C631C6 /* CBIMessageComposeMessageViewModel.h */; };
-		4927073C1CF4BACB00C631C6 /* CBIMessageComposeMessageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707031CF4BACA00C631C6 /* CBIMessageComposeMessageViewModel.m */; };
-		4927073D1CF4BACB00C631C6 /* CBIMessageContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707041CF4BACA00C631C6 /* CBIMessageContentViewController.h */; };
-		4927073E1CF4BACB00C631C6 /* CBIMessageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707051CF4BACA00C631C6 /* CBIMessageContentViewController.m */; };
-		4927073F1CF4BACB00C631C6 /* CBIMessageDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492707061CF4BACA00C631C6 /* CBIMessageDetail.storyboard */; };
-		492707401CF4BACB00C631C6 /* CBIMessageDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707071CF4BACA00C631C6 /* CBIMessageDetailViewController.h */; };
-		492707411CF4BACB00C631C6 /* CBIMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707081CF4BACA00C631C6 /* CBIMessageDetailViewController.m */; };
-		492707421CF4BACB00C631C6 /* CBIMessageHeaderTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707091CF4BACA00C631C6 /* CBIMessageHeaderTableView.h */; };
-		492707431CF4BACB00C631C6 /* CBIMessageHeaderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927070A1CF4BACA00C631C6 /* CBIMessageHeaderTableView.m */; };
-		492707441CF4BACB00C631C6 /* CBIMessageParticipantsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927070B1CF4BACA00C631C6 /* CBIMessageParticipantsCell.h */; };
-		492707451CF4BACB00C631C6 /* CBIMessageParticipantsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927070C1CF4BACA00C631C6 /* CBIMessageParticipantsCell.m */; };
-		492707461CF4BACB00C631C6 /* CBIMessageParticipantsViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927070D1CF4BACA00C631C6 /* CBIMessageParticipantsViewModel.h */; };
-		492707471CF4BACB00C631C6 /* CBIMessageParticipantsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927070E1CF4BACA00C631C6 /* CBIMessageParticipantsViewModel.m */; };
-		492707481CF4BACB00C631C6 /* CBIResizableTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927070F1CF4BACA00C631C6 /* CBIResizableTextView.h */; };
-		492707491CF4BACB00C631C6 /* CBIResizableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707101CF4BACA00C631C6 /* CBIResizableTextView.m */; };
-		4927074A1CF4BACB00C631C6 /* ConversationRecipients.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492707111CF4BACA00C631C6 /* ConversationRecipients.storyboard */; };
-		4927074B1CF4BACB00C631C6 /* ConversationRecipientsController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707121CF4BACA00C631C6 /* ConversationRecipientsController.h */; };
-		4927074C1CF4BACB00C631C6 /* ConversationRecipientsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707131CF4BACA00C631C6 /* ConversationRecipientsController.m */; };
-		4927074D1CF4BACB00C631C6 /* ConversationTemplateRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707141CF4BACA00C631C6 /* ConversationTemplateRenderer.h */; };
-		4927074E1CF4BACB00C631C6 /* ConversationTemplateRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707151CF4BACA00C631C6 /* ConversationTemplateRenderer.m */; };
-		4927074F1CF4BACB00C631C6 /* ConversationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707161CF4BACA00C631C6 /* ConversationViewController.h */; };
-		492707501CF4BACB00C631C6 /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707171CF4BACA00C631C6 /* ConversationViewController.m */; };
-		492707511CF4BACB00C631C6 /* Conversation.css in Resources */ = {isa = PBXBuildFile; fileRef = 492707191CF4BACA00C631C6 /* Conversation.css */; };
-		492707521CF4BACB00C631C6 /* Conversation.html in Resources */ = {isa = PBXBuildFile; fileRef = 4927071A1CF4BACA00C631C6 /* Conversation.html */; };
-		492707531CF4BACB00C631C6 /* Conversation.js in Resources */ = {isa = PBXBuildFile; fileRef = 4927071B1CF4BACA00C631C6 /* Conversation.js */; };
-		492707541CF4BACB00C631C6 /* ConversationAttachmentLink.html in Resources */ = {isa = PBXBuildFile; fileRef = 4927071C1CF4BACA00C631C6 /* ConversationAttachmentLink.html */; };
-		492707551CF4BACB00C631C6 /* ConversationEntry.html in Resources */ = {isa = PBXBuildFile; fileRef = 4927071D1CF4BACA00C631C6 /* ConversationEntry.html */; };
-		492707561CF4BACB00C631C6 /* ConversationSubmissionEntry.html in Resources */ = {isa = PBXBuildFile; fileRef = 4927071E1CF4BACA00C631C6 /* ConversationSubmissionEntry.html */; };
-		492707571CF4BACB00C631C6 /* SubtitleAndRightDetailCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927071F1CF4BACA00C631C6 /* SubtitleAndRightDetailCell.h */; };
-		492707581CF4BACB00C631C6 /* SubtitleAndRightDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 492707201CF4BACA00C631C6 /* SubtitleAndRightDetailCell.m */; };
 		4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */; };
 		492707C31CF4BBBA00C631C6 /* PagedItemsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 492707BE1CF4BBBA00C631C6 /* PagedItemsViewController.h */; };
@@ -404,6 +350,7 @@
 		492708B31CF4C38500C631C6 /* TodoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708711CF4C37100C631C6 /* TodoKit.framework */; };
 		492708B41CF4C38500C631C6 /* TooLegit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708721CF4C37100C631C6 /* TooLegit.framework */; };
 		492708B51CF4C38500C631C6 /* WhizzyWig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708731CF4C37100C631C6 /* WhizzyWig.framework */; };
+		49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49295B511F87F01B001DAB1F /* CBIResizableTextView.m */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49383CEE1F848A2B009C8F8E /* FileKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492708641CF4C37100C631C6 /* FileKit.framework */; };
@@ -740,6 +687,8 @@
 		49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2D231CF4DC540055862D /* RoundedButton.m */; };
 		49BC9BC71CF768FF00DCB3DD /* PSPDFKit+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */; };
 		49DC23041CFE42E7009F27BA /* HandleDropboxOpen.h in Headers */ = {isa = PBXBuildFile; fileRef = 49DC23031CFE4260009F27BA /* HandleDropboxOpen.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49DE1DA31F8808F30055D74A /* CBIConversationStarter.h in Headers */ = {isa = PBXBuildFile; fileRef = 49DE1DA11F8808F30055D74A /* CBIConversationStarter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE1DA21F8808F30055D74A /* CBIConversationStarter.m */; };
 		49E80A281CFF8E42002AF45E /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; };
 		49E80A291CFF8E42002AF45E /* PageKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		49E80A2A1CFF8E67002AF45E /* PageKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49E80A271CFF8E37002AF45E /* PageKit.framework */; };
@@ -1193,60 +1142,6 @@
 		492706DB1CF4BA8400C631C6 /* CBILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBILogger.m; sourceTree = "<group>"; };
 		492706E21CF4BAB500C631C6 /* VideoRecorderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoRecorderController.h; sourceTree = "<group>"; };
 		492706E31CF4BAB500C631C6 /* VideoRecorderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoRecorderController.m; sourceTree = "<group>"; };
-		492706E71CF4BACA00C631C6 /* CBIConversationStarter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIConversationStarter.h; sourceTree = "<group>"; };
-		492706E81CF4BACA00C631C6 /* CBIConversationStarter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIConversationStarter.m; sourceTree = "<group>"; };
-		492706E91CF4BACA00C631C6 /* CBIMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageCell.h; sourceTree = "<group>"; };
-		492706EA1CF4BACA00C631C6 /* CBIMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessageCell.m; sourceTree = "<group>"; };
-		492706EB1CF4BACA00C631C6 /* CBIMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBIMessageCell.xib; sourceTree = "<group>"; };
-		492706EC1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageScopeSelectionView.h; sourceTree = "<group>"; };
-		492706ED1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIMessageScopeSelectionView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492706EE1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CBIMessageScopeSelectionView.xib; sourceTree = "<group>"; };
-		492706EF1CF4BACA00C631C6 /* CBIMessagesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessagesListViewController.h; sourceTree = "<group>"; };
-		492706F01CF4BACA00C631C6 /* CBIMessagesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessagesListViewController.m; sourceTree = "<group>"; };
-		492706F11CF4BACA00C631C6 /* CBIMessagesListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessagesListViewModel.h; sourceTree = "<group>"; };
-		492706F21CF4BACA00C631C6 /* CBIMessagesListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIMessagesListViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492706F51CF4BACA00C631C6 /* CBIMessagesTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessagesTab.h; sourceTree = "<group>"; };
-		492706F61CF4BACA00C631C6 /* CBIMessagesTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIMessagesTab.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492706F71CF4BACA00C631C6 /* CBIMessageViewModel+CellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBIMessageViewModel+CellViewModel.h"; sourceTree = "<group>"; };
-		492706F81CF4BACA00C631C6 /* CBIMessageViewModel+CellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBIMessageViewModel+CellViewModel.m"; sourceTree = "<group>"; };
-		492706F91CF4BACA00C631C6 /* CBIMessageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageViewModel.h; sourceTree = "<group>"; };
-		492706FA1CF4BACA00C631C6 /* CBIMessageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessageViewModel.m; sourceTree = "<group>"; };
-		492706FB1CF4BACA00C631C6 /* ConversationUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationUpdater.h; sourceTree = "<group>"; };
-		492706FC1CF4BACA00C631C6 /* ConversationUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationUpdater.m; sourceTree = "<group>"; };
-		492706FE1CF4BACA00C631C6 /* AttachmentsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentsTableViewController.h; sourceTree = "<group>"; };
-		492706FF1CF4BACA00C631C6 /* AttachmentsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentsTableViewController.m; sourceTree = "<group>"; };
-		492707001CF4BACA00C631C6 /* CBIMessageComposeMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageComposeMessageCell.h; sourceTree = "<group>"; };
-		492707011CF4BACA00C631C6 /* CBIMessageComposeMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIMessageComposeMessageCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492707021CF4BACA00C631C6 /* CBIMessageComposeMessageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageComposeMessageViewModel.h; sourceTree = "<group>"; };
-		492707031CF4BACA00C631C6 /* CBIMessageComposeMessageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessageComposeMessageViewModel.m; sourceTree = "<group>"; };
-		492707041CF4BACA00C631C6 /* CBIMessageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageContentViewController.h; sourceTree = "<group>"; };
-		492707051CF4BACA00C631C6 /* CBIMessageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessageContentViewController.m; sourceTree = "<group>"; };
-		492707061CF4BACA00C631C6 /* CBIMessageDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CBIMessageDetail.storyboard; sourceTree = "<group>"; };
-		492707071CF4BACA00C631C6 /* CBIMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageDetailViewController.h; sourceTree = "<group>"; };
-		492707081CF4BACA00C631C6 /* CBIMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIMessageDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492707091CF4BACA00C631C6 /* CBIMessageHeaderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageHeaderTableView.h; sourceTree = "<group>"; };
-		4927070A1CF4BACA00C631C6 /* CBIMessageHeaderTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessageHeaderTableView.m; sourceTree = "<group>"; };
-		4927070B1CF4BACA00C631C6 /* CBIMessageParticipantsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageParticipantsCell.h; sourceTree = "<group>"; };
-		4927070C1CF4BACA00C631C6 /* CBIMessageParticipantsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIMessageParticipantsCell.m; sourceTree = "<group>"; };
-		4927070D1CF4BACA00C631C6 /* CBIMessageParticipantsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIMessageParticipantsViewModel.h; sourceTree = "<group>"; };
-		4927070E1CF4BACA00C631C6 /* CBIMessageParticipantsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CBIMessageParticipantsViewModel.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4927070F1CF4BACA00C631C6 /* CBIResizableTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIResizableTextView.h; sourceTree = "<group>"; };
-		492707101CF4BACA00C631C6 /* CBIResizableTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIResizableTextView.m; sourceTree = "<group>"; };
-		492707111CF4BACA00C631C6 /* ConversationRecipients.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConversationRecipients.storyboard; sourceTree = "<group>"; };
-		492707121CF4BACA00C631C6 /* ConversationRecipientsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationRecipientsController.h; sourceTree = "<group>"; };
-		492707131CF4BACA00C631C6 /* ConversationRecipientsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ConversationRecipientsController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492707141CF4BACA00C631C6 /* ConversationTemplateRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationTemplateRenderer.h; sourceTree = "<group>"; };
-		492707151CF4BACA00C631C6 /* ConversationTemplateRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationTemplateRenderer.m; sourceTree = "<group>"; };
-		492707161CF4BACA00C631C6 /* ConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationViewController.h; sourceTree = "<group>"; };
-		492707171CF4BACA00C631C6 /* ConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ConversationViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		492707191CF4BACA00C631C6 /* Conversation.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Conversation.css; sourceTree = "<group>"; };
-		4927071A1CF4BACA00C631C6 /* Conversation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Conversation.html; sourceTree = "<group>"; };
-		4927071B1CF4BACA00C631C6 /* Conversation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Conversation.js; sourceTree = "<group>"; };
-		4927071C1CF4BACA00C631C6 /* ConversationAttachmentLink.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ConversationAttachmentLink.html; sourceTree = "<group>"; };
-		4927071D1CF4BACA00C631C6 /* ConversationEntry.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ConversationEntry.html; sourceTree = "<group>"; };
-		4927071E1CF4BACA00C631C6 /* ConversationSubmissionEntry.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ConversationSubmissionEntry.html; sourceTree = "<group>"; };
-		4927071F1CF4BACA00C631C6 /* SubtitleAndRightDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtitleAndRightDetailCell.h; sourceTree = "<group>"; };
-		492707201CF4BACA00C631C6 /* SubtitleAndRightDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtitleAndRightDetailCell.m; sourceTree = "<group>"; };
 		492707691CF4BB2100C631C6 /* CBIModuleProgressNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIModuleProgressNotifications.h; sourceTree = "<group>"; };
 		4927076A1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIModuleProgressNotifications.m; sourceTree = "<group>"; };
 		492707BE1CF4BBBA00C631C6 /* PagedItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedItemsViewController.h; sourceTree = "<group>"; };
@@ -1310,6 +1205,8 @@
 		492708711CF4C37100C631C6 /* TodoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TodoKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708721CF4C37100C631C6 /* TooLegit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TooLegit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492708731CF4C37100C631C6 /* WhizzyWig.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WhizzyWig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49295B511F87F01B001DAB1F /* CBIResizableTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBIResizableTextView.m; sourceTree = "<group>"; };
+		49295B521F87F01C001DAB1F /* CBIResizableTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBIResizableTextView.h; sourceTree = "<group>"; };
 		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		494E139B1D355C690068279D /* MobileQuizInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MobileQuizInformation.storyboard; sourceTree = "<group>"; };
 		494E139C1D355C690068279D /* MobileQuizInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileQuizInformationViewController.h; sourceTree = "<group>"; };
@@ -1640,6 +1537,8 @@
 		49AA2D231CF4DC540055862D /* RoundedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundedButton.m; sourceTree = "<group>"; };
 		49BC9BC61CF768FF00DCB3DD /* PSPDFKit+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PSPDFKit+Canvas.swift"; sourceTree = "<group>"; };
 		49DC23031CFE4260009F27BA /* HandleDropboxOpen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HandleDropboxOpen.h; sourceTree = "<group>"; };
+		49DE1DA11F8808F30055D74A /* CBIConversationStarter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBIConversationStarter.h; sourceTree = "<group>"; };
+		49DE1DA21F8808F30055D74A /* CBIConversationStarter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBIConversationStarter.m; sourceTree = "<group>"; };
 		49E80A271CFF8E37002AF45E /* PageKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PageKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E80A311CFF93E6002AF45E /* SoAutomated.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SoAutomated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F9FA461CF7B6F600654758 /* TechDebt.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TechDebt.xcassets; sourceTree = "<group>"; };
@@ -2183,6 +2082,7 @@
 		492704AC1CF4B6D700C631C6 /* TechDebt */ = {
 			isa = PBXGroup;
 			children = (
+				49DE1DA01F8808B80055D74A /* Messages */,
 				2C0CAD6C1DEF6C30008D90FA /* InfoPlist.strings */,
 				B5A790A61D8C743400ACA9FE /* Localizable.strings */,
 				495068551D414DC00030A9D5 /* Resources */,
@@ -2211,7 +2111,6 @@
 				492706C71CF4BA7B00C631C6 /* Locked */,
 				492706D61CF4BA8400C631C6 /* Logging */,
 				492706E11CF4BAB500C631C6 /* Media Recording */,
-				492706E61CF4BACA00C631C6 /* Messages */,
 				492708561CF4C17500C631C6 /* MKNumberBadgeView */,
 				4927075D1CF4BB2100C631C6 /* Modules */,
 				492707BD1CF4BBBA00C631C6 /* Pagination */,
@@ -2441,6 +2340,8 @@
 		492705F91CF4B79B00C631C6 /* Custom Views and Cells */ = {
 			isa = PBXGroup;
 			children = (
+				49295B521F87F01C001DAB1F /* CBIResizableTextView.h */,
+				49295B511F87F01B001DAB1F /* CBIResizableTextView.m */,
 				492705FA1CF4B79B00C631C6 /* CNVTableViewCell.h */,
 				492705FB1CF4B79B00C631C6 /* CNVTableViewCell.m */,
 				492705FC1CF4B79B00C631C6 /* IconCell.h */,
@@ -2634,83 +2535,6 @@
 				492706E31CF4BAB500C631C6 /* VideoRecorderController.m */,
 			);
 			path = "Media Recording";
-			sourceTree = "<group>";
-		};
-		492706E61CF4BACA00C631C6 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				492706E71CF4BACA00C631C6 /* CBIConversationStarter.h */,
-				492706E81CF4BACA00C631C6 /* CBIConversationStarter.m */,
-				492706E91CF4BACA00C631C6 /* CBIMessageCell.h */,
-				492706EA1CF4BACA00C631C6 /* CBIMessageCell.m */,
-				492706EB1CF4BACA00C631C6 /* CBIMessageCell.xib */,
-				492706EC1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.h */,
-				492706ED1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.m */,
-				492706EE1CF4BACA00C631C6 /* CBIMessageScopeSelectionView.xib */,
-				492706EF1CF4BACA00C631C6 /* CBIMessagesListViewController.h */,
-				492706F01CF4BACA00C631C6 /* CBIMessagesListViewController.m */,
-				492706F11CF4BACA00C631C6 /* CBIMessagesListViewModel.h */,
-				492706F21CF4BACA00C631C6 /* CBIMessagesListViewModel.m */,
-				492706F51CF4BACA00C631C6 /* CBIMessagesTab.h */,
-				492706F61CF4BACA00C631C6 /* CBIMessagesTab.m */,
-				492706F71CF4BACA00C631C6 /* CBIMessageViewModel+CellViewModel.h */,
-				492706F81CF4BACA00C631C6 /* CBIMessageViewModel+CellViewModel.m */,
-				492706F91CF4BACA00C631C6 /* CBIMessageViewModel.h */,
-				492706FA1CF4BACA00C631C6 /* CBIMessageViewModel.m */,
-				492706FB1CF4BACA00C631C6 /* ConversationUpdater.h */,
-				492706FC1CF4BACA00C631C6 /* ConversationUpdater.m */,
-				492706FD1CF4BACA00C631C6 /* MessageDetail */,
-			);
-			path = Messages;
-			sourceTree = "<group>";
-		};
-		492706FD1CF4BACA00C631C6 /* MessageDetail */ = {
-			isa = PBXGroup;
-			children = (
-				492706FE1CF4BACA00C631C6 /* AttachmentsTableViewController.h */,
-				492706FF1CF4BACA00C631C6 /* AttachmentsTableViewController.m */,
-				492707001CF4BACA00C631C6 /* CBIMessageComposeMessageCell.h */,
-				492707011CF4BACA00C631C6 /* CBIMessageComposeMessageCell.m */,
-				492707021CF4BACA00C631C6 /* CBIMessageComposeMessageViewModel.h */,
-				492707031CF4BACA00C631C6 /* CBIMessageComposeMessageViewModel.m */,
-				492707041CF4BACA00C631C6 /* CBIMessageContentViewController.h */,
-				492707051CF4BACA00C631C6 /* CBIMessageContentViewController.m */,
-				492707061CF4BACA00C631C6 /* CBIMessageDetail.storyboard */,
-				492707071CF4BACA00C631C6 /* CBIMessageDetailViewController.h */,
-				492707081CF4BACA00C631C6 /* CBIMessageDetailViewController.m */,
-				492707091CF4BACA00C631C6 /* CBIMessageHeaderTableView.h */,
-				4927070A1CF4BACA00C631C6 /* CBIMessageHeaderTableView.m */,
-				4927070B1CF4BACA00C631C6 /* CBIMessageParticipantsCell.h */,
-				4927070C1CF4BACA00C631C6 /* CBIMessageParticipantsCell.m */,
-				4927070D1CF4BACA00C631C6 /* CBIMessageParticipantsViewModel.h */,
-				4927070E1CF4BACA00C631C6 /* CBIMessageParticipantsViewModel.m */,
-				4927070F1CF4BACA00C631C6 /* CBIResizableTextView.h */,
-				492707101CF4BACA00C631C6 /* CBIResizableTextView.m */,
-				492707111CF4BACA00C631C6 /* ConversationRecipients.storyboard */,
-				492707121CF4BACA00C631C6 /* ConversationRecipientsController.h */,
-				492707131CF4BACA00C631C6 /* ConversationRecipientsController.m */,
-				492707141CF4BACA00C631C6 /* ConversationTemplateRenderer.h */,
-				492707151CF4BACA00C631C6 /* ConversationTemplateRenderer.m */,
-				492707161CF4BACA00C631C6 /* ConversationViewController.h */,
-				492707171CF4BACA00C631C6 /* ConversationViewController.m */,
-				492707181CF4BACA00C631C6 /* HTML */,
-				4927071F1CF4BACA00C631C6 /* SubtitleAndRightDetailCell.h */,
-				492707201CF4BACA00C631C6 /* SubtitleAndRightDetailCell.m */,
-			);
-			path = MessageDetail;
-			sourceTree = "<group>";
-		};
-		492707181CF4BACA00C631C6 /* HTML */ = {
-			isa = PBXGroup;
-			children = (
-				492707191CF4BACA00C631C6 /* Conversation.css */,
-				4927071A1CF4BACA00C631C6 /* Conversation.html */,
-				4927071B1CF4BACA00C631C6 /* Conversation.js */,
-				4927071C1CF4BACA00C631C6 /* ConversationAttachmentLink.html */,
-				4927071D1CF4BACA00C631C6 /* ConversationEntry.html */,
-				4927071E1CF4BACA00C631C6 /* ConversationSubmissionEntry.html */,
-			);
-			path = HTML;
 			sourceTree = "<group>";
 		};
 		4927075D1CF4BB2100C631C6 /* Modules */ = {
@@ -3465,6 +3289,15 @@
 			path = People;
 			sourceTree = "<group>";
 		};
+		49DE1DA01F8808B80055D74A /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				49DE1DA11F8808F30055D74A /* CBIConversationStarter.h */,
+				49DE1DA21F8808F30055D74A /* CBIConversationStarter.m */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		49E80A2B1CFF8EC2002AF45E /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -3703,16 +3536,13 @@
 				492705F51CF4B76A00C631C6 /* CBIColorfulViewModel.h in Headers */,
 				492708021CF4BC1000C631C6 /* ScheduleItemController.h in Headers */,
 				492705DE1CF4B73300C631C6 /* UIWebView+RemoveShadow.h in Headers */,
-				492707371CF4BACB00C631C6 /* AttachmentsTableViewController.h in Headers */,
 				492705131CF4B70600C631C6 /* CBIAssignmentDetailViewController.h in Headers */,
 				492706101CF4B79B00C631C6 /* MultiLineTextField.h in Headers */,
 				492706531CF4B7A800C631C6 /* DiscussionEntryHeightCalculationOperation.h in Headers */,
 				492706751CF4B87C00C631C6 /* CBILTIViewController.h in Headers */,
 				492705201CF4B70600C631C6 /* CBIAddSubmissionCommentCell.h in Headers */,
 				492706D31CF4BA7B00C631C6 /* ContentLockViewController.h in Headers */,
-				492707401CF4BACB00C631C6 /* CBIMessageDetailViewController.h in Headers */,
 				4927053F1CF4B70600C631C6 /* CBISubmissionViewModel.h in Headers */,
-				492707331CF4BACB00C631C6 /* CBIMessageViewModel.h in Headers */,
 				4927077C1CF4BB2100C631C6 /* CBIModuleProgressNotifications.h in Headers */,
 				492706451CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.h in Headers */,
 				492705CA1CF4B73200C631C6 /* UITableView+in_updateInBlocks.h in Headers */,
@@ -3721,8 +3551,6 @@
 				492706951CF4B88600C631C6 /* FolderViewController.h in Headers */,
 				492706581CF4B7A800C631C6 /* DiscussionTemplateRenderer.h in Headers */,
 				4927054D1CF4B70600C631C6 /* SubmissionAttachmentsController.h in Headers */,
-				492707291CF4BACB00C631C6 /* CBIMessagesListViewController.h in Headers */,
-				4927074D1CF4BACB00C631C6 /* ConversationTemplateRenderer.h in Headers */,
 				49A04E231CF5052A0051E1E7 /* CBIQuizzesTabViewModel.h in Headers */,
 				49AA2D2B1CF4DC540055862D /* CBIPeopleDetailViewController.h in Headers */,
 				4927053A1CF4B70600C631C6 /* CBISubmissionInputView.h in Headers */,
@@ -3740,7 +3568,6 @@
 				492705C81CF4B73200C631C6 /* UITableView+in_backgroundImage.h in Headers */,
 				492706C01CF4BA6700C631C6 /* LoadingDotsCell.h in Headers */,
 				4927060B1CF4B79B00C631C6 /* IconCell.h in Headers */,
-				492707441CF4BACB00C631C6 /* CBIMessageParticipantsCell.h in Headers */,
 				492707F61CF4BC1000C631C6 /* RubricViewController.h in Headers */,
 				492707C31CF4BBBA00C631C6 /* PagedItemsViewController.h in Headers */,
 				4927053C1CF4B70600C631C6 /* CBISubmissionInputViewController.h in Headers */,
@@ -3755,7 +3582,6 @@
 				492706CF1CF4BA7B00C631C6 /* CBIContentLockViewController.h in Headers */,
 				492706C51CF4BA7400C631C6 /* CBILocalNotificationHandler.h in Headers */,
 				492705101CF4B70600C631C6 /* AssignmentDetailsViewController.h in Headers */,
-				492707571CF4BACB00C631C6 /* SubtitleAndRightDetailCell.h in Headers */,
 				492706BD1CF4BA6700C631C6 /* CBILoadingIndicator.h in Headers */,
 				492705281CF4B70600C631C6 /* CBIStudentSubmissionViewModel.h in Headers */,
 				492705521CF4B70600C631C6 /* URLSubmissionPreviewViewController.h in Headers */,
@@ -3763,20 +3589,15 @@
 				492705F71CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h in Headers */,
 				4927060E1CF4B79B00C631C6 /* InsetTableViewCell.h in Headers */,
 				492705DC1CF4B73300C631C6 /* UIWebView+LinkProcessing.h in Headers */,
-				492707421CF4BACB00C631C6 /* CBIMessageHeaderTableView.h in Headers */,
 				49642BC11CF4C44A00238B3F /* metamacros.h in Headers */,
 				492707C71CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h in Headers */,
 				492705B41CF4B73200C631C6 /* NSArray_in_additions.h in Headers */,
-				4927073D1CF4BACB00C631C6 /* CBIMessageContentViewController.h in Headers */,
 				4927064C1CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.h in Headers */,
 				492706511CF4B7A800C631C6 /* DiscussionEntryCell.h in Headers */,
 				492704C11CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.h in Headers */,
-				4927074F1CF4BACB00C631C6 /* ConversationViewController.h in Headers */,
 				492706651CF4B7CF00C631C6 /* CBIDropbox.h in Headers */,
-				492707461CF4BACB00C631C6 /* CBIMessageParticipantsViewModel.h in Headers */,
 				492704C31CF4B6F100C631C6 /* CBIAnnouncementViewModel.h in Headers */,
 				492706DF1CF4BA8400C631C6 /* CBILogger.h in Headers */,
-				4927074B1CF4BACB00C631C6 /* ConversationRecipientsController.h in Headers */,
 				492707C51CF4BBBA00C631C6 /* PagedTableViewController.h in Headers */,
 				492706971CF4B88600C631C6 /* NoPreviewAvailableController.h in Headers */,
 				492705F01CF4B76A00C631C6 /* CBIColorfulCell.h in Headers */,
@@ -3796,15 +3617,12 @@
 				492706B11CF4B99700C631C6 /* Router.h in Headers */,
 				4927068E1CF4B88600C631C6 /* CBIFileViewModel.h in Headers */,
 				492705411CF4B70600C631C6 /* CBITeacherSubmissionViewModel.h in Headers */,
-				492707481CF4BACB00C631C6 /* CBIResizableTextView.h in Headers */,
 				492706E41CF4BAB500C631C6 /* VideoRecorderController.h in Headers */,
 				49AA2D271CF4DC540055862D /* AFHTTPAvatarImageResponseSerializer.h in Headers */,
 				492706A91CF4B98900C631C6 /* iCanvasConstants.h in Headers */,
-				492707391CF4BACB00C631C6 /* CBIMessageComposeMessageCell.h in Headers */,
 				4927052C1CF4B70600C631C6 /* CBISubmissionCell.h in Headers */,
 				4927063E1CF4B7A800C631C6 /* CBIColorfulBadgeView.h in Headers */,
 				49F9FA5A1CF8CDC400654758 /* UIImage+TechDebt.h in Headers */,
-				492707261CF4BACA00C631C6 /* CBIMessageScopeSelectionView.h in Headers */,
 				49642BC01CF4C44A00238B3F /* EXTScope.h in Headers */,
 				49AA2D321CF4DC540055862D /* ProfileViewController.h in Headers */,
 				492705D21CF4B73300C631C6 /* UIView+FloatingView.h in Headers */,
@@ -3823,7 +3641,6 @@
 				492706121CF4B79B00C631C6 /* NonResponsiveTextField.h in Headers */,
 				492706141CF4B79B00C631C6 /* ProgressTableViewCell.h in Headers */,
 				492705B81CF4B73200C631C6 /* NSString+IN_Additions.h in Headers */,
-				492707231CF4BACA00C631C6 /* CBIMessageCell.h in Headers */,
 				492706931CF4B88600C631C6 /* FileViewController.h in Headers */,
 				4927083D1CF4BC3200C631C6 /* CBISyllabusDetailViewController.h in Headers */,
 				4927054F1CF4B70600C631C6 /* SubmissionWorkflowController.h in Headers */,
@@ -3835,24 +3652,19 @@
 				492708001CF4BC1000C631C6 /* ScheduleItem.h in Headers */,
 				61F438E61DD667D900552D14 /* MLVCCollectionController+CBIRefresh.h in Headers */,
 				492706781CF4B87C00C631C6 /* LTIViewController.h in Headers */,
-				4927073B1CF4BACB00C631C6 /* CBIMessageComposeMessageViewModel.h in Headers */,
 				492705A21CF4B73200C631C6 /* CKIUser+SwiftCompatibility.h in Headers */,
-				4927072B1CF4BACB00C631C6 /* CBIMessagesListViewModel.h in Headers */,
 				492708531CF4BC3200C631C6 /* WebBrowserViewController.h in Headers */,
-				492707311CF4BACB00C631C6 /* CBIMessageViewModel+CellViewModel.h in Headers */,
 				492704AE1CF4B6D700C631C6 /* TechDebt.h in Headers */,
 				492707FB1CF4BC1000C631C6 /* UnsupportedViewController.h in Headers */,
 				492705151CF4B70600C631C6 /* CBIAssignmentViewModel.h in Headers */,
+				49DE1DA31F8808F30055D74A /* CBIConversationStarter.h in Headers */,
 				492708501CF4BC3200C631C6 /* ShortPressGestureRecognizer.h in Headers */,
 				492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */,
-				492707211CF4BACA00C631C6 /* CBIConversationStarter.h in Headers */,
 				492705C21CF4B73200C631C6 /* UIImage+ImageEffects.h in Headers */,
 				492706421CF4B7A800C631C6 /* CBIDiscussionTopicCell.h in Headers */,
 				4927065D1CF4B7A800C631C6 /* ThreadedDiscussionViewController.h in Headers */,
 				4927068C1CF4B88600C631C6 /* CBIFileViewController.h in Headers */,
 				492705A01CF4B73200C631C6 /* CBICalendarEventViewModel.h in Headers */,
-				492707351CF4BACB00C631C6 /* ConversationUpdater.h in Headers */,
-				4927072F1CF4BACB00C631C6 /* CBIMessagesTab.h in Headers */,
 				492705351CF4B70600C631C6 /* CBISubmissionCommentCell.h in Headers */,
 				492705E41CF4B73900C631C6 /* CBIViewModel.h in Headers */,
 				492705D61CF4B73300C631C6 /* UIViewController+AnalyticsTracking.h in Headers */,
@@ -4178,8 +3990,6 @@
 				492706771CF4B87C00C631C6 /* LTIView.storyboard in Resources */,
 				4950687A1D414DC00030A9D5 /* unlock.png in Resources */,
 				4927050F1CF4B70600C631C6 /* AssignmentDetails.storyboard in Resources */,
-				492707551CF4BACB00C631C6 /* ConversationEntry.html in Resources */,
-				492707251CF4BACA00C631C6 /* CBIMessageCell.xib in Resources */,
 				492705331CF4B70600C631C6 /* CBISubmissionCommentCell-Theirs.xib in Resources */,
 				4927065B1CF4B7A800C631C6 /* ThreadedDiscussionEntry.html in Resources */,
 				4927083A1CF4BC3200C631C6 /* unfilled.png in Resources */,
@@ -4199,28 +4009,22 @@
 				492707FD1CF4BC1000C631C6 /* ScheduleItemDetails.css in Resources */,
 				492705121CF4B70600C631C6 /* CBIAssignmentDetail.storyboard in Resources */,
 				492707FE1CF4BC1000C631C6 /* ScheduleItemDetails.html in Resources */,
-				492707531CF4BACB00C631C6 /* Conversation.js in Resources */,
-				492707281CF4BACB00C631C6 /* CBIMessageScopeSelectionView.xib in Resources */,
 				492705311CF4B70600C631C6 /* CBISubmissionCommentCell-MyVideo.xib in Resources */,
 				492708041CF4BC1000C631C6 /* ScheduleItemController.storyboard in Resources */,
 				4950686E1D414DC00030A9D5 /* dropbox-logos_dropbox-vertical-blue.png in Resources */,
 				492708551CF4BC3200C631C6 /* WebBrowserViewController.xib in Resources */,
 				492705441CF4B70600C631C6 /* discussion_submissions.js in Resources */,
 				492707FF1CF4BC1000C631C6 /* ScheduleItemDetails.js in Resources */,
-				492707541CF4BACB00C631C6 /* ConversationAttachmentLink.html in Resources */,
 				49AA2D291CF4DC540055862D /* CBIPeopleAvatarCell.xib in Resources */,
 				4927065C1CF4B7A800C631C6 /* ThreadedDiscussion.storyboard in Resources */,
 				492705321CF4B70600C631C6 /* CBISubmissionCommentCell-TheirAudio.xib in Resources */,
-				4927074A1CF4BACB00C631C6 /* ConversationRecipients.storyboard in Resources */,
 				492705251CF4B70600C631C6 /* CBIFloatingActionBar.xib in Resources */,
 				2C0CAD6A1DEF6C30008D90FA /* InfoPlist.strings in Resources */,
 				49AA2D101CF4DBC90055862D /* DBChooser.bundle in Resources */,
-				492707521CF4BACB00C631C6 /* Conversation.html in Resources */,
 				4950686A1D414DC00030A9D5 /* activity-indicator.gif in Resources */,
 				492708381CF4BC3200C631C6 /* filled@2x.png in Resources */,
 				B1CB84F31D076026004D2265 /* ExpandingComment.js in Resources */,
 				B177E70C1E2ECAC700D7477D /* ReceivedFilesViewController.xib in Resources */,
-				492707561CF4BACB00C631C6 /* ConversationSubmissionEntry.html in Resources */,
 				495068761D414DC00030A9D5 /* icon_video_large@2x.png in Resources */,
 				49AA2D2A1CF4DC540055862D /* CBIPeopleDetail.storyboard in Resources */,
 				49AA2D311CF4DC540055862D /* Profile.storyboard in Resources */,
@@ -4230,7 +4034,6 @@
 				B177E7091E2ECAB900D7477D /* CBIGradeDetailView.xib in Resources */,
 				4927053E1CF4B70600C631C6 /* CBISubmissionInputViewController.storyboard in Resources */,
 				495068751D414DC00030A9D5 /* icon_video_large.png in Resources */,
-				4927073F1CF4BACB00C631C6 /* CBIMessageDetail.storyboard in Resources */,
 				492708431CF4BC3200C631C6 /* SyllabusDetails.html in Resources */,
 				492705451CF4B70600C631C6 /* jquery-1.4.2.min.js in Resources */,
 				495068701D414DC00030A9D5 /* empty-checkbox-white@2x.png in Resources */,
@@ -4249,7 +4052,6 @@
 				4927065A1CF4B7A800C631C6 /* ThreadedDiscussion.css in Resources */,
 				492705F41CF4B76A00C631C6 /* CBIColorfulSubtitleCell.xib in Resources */,
 				4950686C1D414DC00030A9D5 /* avatar-default-50.png in Resources */,
-				492707511CF4BACB00C631C6 /* Conversation.css in Resources */,
 				492705341CF4B70600C631C6 /* CBISubmissionCommentCell-TheirVideo.xib in Resources */,
 				4927052F1CF4B70600C631C6 /* CBISubmissionCommentCell-Mine.xib in Resources */,
 				492708371CF4BC3200C631C6 /* filled.png in Resources */,
@@ -4812,16 +4614,12 @@
 				492705B31CF4B73200C631C6 /* NSURL+RemoveFragment.m in Sources */,
 				492706911CF4B88600C631C6 /* CBIFolderViewModel.m in Sources */,
 				4927068F1CF4B88600C631C6 /* CBIFileViewModel.m in Sources */,
-				492707321CF4BACB00C631C6 /* CBIMessageViewModel+CellViewModel.m in Sources */,
-				492707471CF4BACB00C631C6 /* CBIMessageParticipantsViewModel.m in Sources */,
 				492705AD1CF4B73200C631C6 /* MKNumberBadgeView+CanvasStyle.m in Sources */,
 				492706E51CF4BAB500C631C6 /* VideoRecorderController.m in Sources */,
-				492707451CF4BACB00C631C6 /* CBIMessageParticipantsCell.m in Sources */,
 				492708401CF4BC3200C631C6 /* CBISyllabusTabViewModel.m in Sources */,
 				492706431CF4B7A800C631C6 /* CBIDiscussionTopicCell.m in Sources */,
 				4927064D1CF4B7A800C631C6 /* DiscussionChildCountIndicatorView.m in Sources */,
 				49AA2D351CF4DC540055862D /* RoundedButton.m in Sources */,
-				492707301CF4BACB00C631C6 /* CBIMessagesTab.m in Sources */,
 				492705B71CF4B73200C631C6 /* NSCache+AvatarCache.m in Sources */,
 				492706791CF4B87C00C631C6 /* LTIViewController.m in Sources */,
 				492705501CF4B70600C631C6 /* SubmissionWorkflowController.m in Sources */,
@@ -4831,13 +4629,10 @@
 				492705F81CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.m in Sources */,
 				492705C91CF4B73200C631C6 /* UITableView+in_backgroundImage.m in Sources */,
 				492705A31CF4B73200C631C6 /* CKIUser+SwiftCompatibility.m in Sources */,
-				492707431CF4BACB00C631C6 /* CBIMessageHeaderTableView.m in Sources */,
 				49A04E241CF5052A0051E1E7 /* CBIQuizzesTabViewModel.m in Sources */,
 				4927077D1CF4BB2100C631C6 /* CBIModuleProgressNotifications.m in Sources */,
 				49AA2D2E1CF4DC540055862D /* CBIPeopleTabViewModel.m in Sources */,
-				492707491CF4BACB00C631C6 /* CBIResizableTextView.m in Sources */,
 				492704C21CF4B6F100C631C6 /* CBIAnnouncementsTabViewModel.m in Sources */,
-				492707271CF4BACB00C631C6 /* CBIMessageScopeSelectionView.m in Sources */,
 				4927064F1CF4B7A800C631C6 /* DiscussionCreationIPhoneStrategy.m in Sources */,
 				4927053B1CF4B70600C631C6 /* CBISubmissionInputView.m in Sources */,
 				492705D71CF4B73300C631C6 /* UIViewController+AnalyticsTracking.m in Sources */,
@@ -4853,13 +4648,12 @@
 				4927054E1CF4B70600C631C6 /* SubmissionAttachmentsController.m in Sources */,
 				492706761CF4B87C00C631C6 /* CBILTIViewController.m in Sources */,
 				4902E1261CF4C8890069E043 /* Analytics.m in Sources */,
-				4927073A1CF4BACB00C631C6 /* CBIMessageComposeMessageCell.m in Sources */,
+				49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */,
 				492705F61CF4B76A00C631C6 /* CBIColorfulViewModel.m in Sources */,
-				4927073E1CF4BACB00C631C6 /* CBIMessageContentViewController.m in Sources */,
 				4927065E1CF4B7A800C631C6 /* ThreadedDiscussionViewController.m in Sources */,
 				492707F71CF4BC1000C631C6 /* RubricViewController.m in Sources */,
-				4927072C1CF4BACB00C631C6 /* CBIMessagesListViewModel.m in Sources */,
 				492705291CF4B70600C631C6 /* CBIStudentSubmissionViewModel.m in Sources */,
+				49DE1DA41F8808F30055D74A /* CBIConversationStarter.m in Sources */,
 				49F9FA5B1CF8CDC400654758 /* UIImage+TechDebt.m in Sources */,
 				492705241CF4B70600C631C6 /* CBIAddSubmissionCommentViewModel.m in Sources */,
 				492705271CF4B70600C631C6 /* CBIStudentSubmissionViewController.m in Sources */,
@@ -4872,25 +4666,19 @@
 				492705381CF4B70600C631C6 /* CBISubmissionCommentViewModel.m in Sources */,
 				492705DD1CF4B73300C631C6 /* UIWebView+LinkProcessing.m in Sources */,
 				492705CB1CF4B73200C631C6 /* UITableView+in_updateInBlocks.m in Sources */,
-				492707341CF4BACB00C631C6 /* CBIMessageViewModel.m in Sources */,
 				492706111CF4B79B00C631C6 /* MultiLineTextField.m in Sources */,
 				4927054A1CF4B70600C631C6 /* ReceivedFilesViewController.m in Sources */,
 				492704C01CF4B6F100C631C6 /* AnnouncementCreationIPhoneStrategy.m in Sources */,
-				4927073C1CF4BACB00C631C6 /* CBIMessageComposeMessageViewModel.m in Sources */,
 				492706BE1CF4BA6700C631C6 /* CBILoadingIndicator.m in Sources */,
 				492706461CF4B7A800C631C6 /* CBIDiscussionTopicViewModel.m in Sources */,
 				492707C41CF4BBBA00C631C6 /* PagedItemsViewController.m in Sources */,
-				492707381CF4BACB00C631C6 /* AttachmentsTableViewController.m in Sources */,
-				4927072A1CF4BACB00C631C6 /* CBIMessagesListViewController.m in Sources */,
 				49AA2D2C1CF4DC540055862D /* CBIPeopleDetailViewController.m in Sources */,
 				492706561CF4B7A800C631C6 /* DiscussionEntryHeightCalculationQueue.m in Sources */,
 				4927052D1CF4B70600C631C6 /* CBISubmissionCell.m in Sources */,
-				492707581CF4BACB00C631C6 /* SubtitleAndRightDetailCell.m in Sources */,
 				4927051B1CF4B70600C631C6 /* CKAttachmentManager.m in Sources */,
 				492705181CF4B70600C631C6 /* CBIGradeDetailView.m in Sources */,
 				492705DF1CF4B73300C631C6 /* UIWebView+RemoveShadow.m in Sources */,
 				61F438E71DD667D900552D14 /* MLVCCollectionController+CBIRefresh.m in Sources */,
-				492707241CF4BACA00C631C6 /* CBIMessageCell.m in Sources */,
 				4927083E1CF4BC3200C631C6 /* CBISyllabusDetailViewController.m in Sources */,
 				492705A11CF4B73200C631C6 /* CBICalendarEventViewModel.m in Sources */,
 				492706591CF4B7A800C631C6 /* DiscussionTemplateRenderer.m in Sources */,
@@ -4904,10 +4692,8 @@
 				492706AA1CF4B98900C631C6 /* iCanvasConstants.m in Sources */,
 				492705CF1CF4B73300C631C6 /* UIView+Circular.m in Sources */,
 				4927060A1CF4B79B00C631C6 /* CNVTableViewCell.m in Sources */,
-				492707501CF4BACB00C631C6 /* ConversationViewController.m in Sources */,
 				492705BD1CF4B73200C631C6 /* UIFont+Canvas.m in Sources */,
 				492706981CF4B88600C631C6 /* NoPreviewAvailableController.m in Sources */,
-				492707221CF4BACA00C631C6 /* CBIConversationStarter.m in Sources */,
 				4927053D1CF4B70600C631C6 /* CBISubmissionInputViewController.m in Sources */,
 				492705111CF4B70600C631C6 /* AssignmentDetailsViewController.m in Sources */,
 				492705401CF4B70600C631C6 /* CBISubmissionViewModel.m in Sources */,
@@ -4919,7 +4705,6 @@
 				492708511CF4BC3200C631C6 /* ShortPressGestureRecognizer.m in Sources */,
 				492706E01CF4BA8400C631C6 /* CBILogger.m in Sources */,
 				492706C61CF4BA7400C631C6 /* CBILocalNotificationHandler.m in Sources */,
-				492707361CF4BACB00C631C6 /* ConversationUpdater.m in Sources */,
 				492705161CF4B70600C631C6 /* CBIAssignmentViewModel.m in Sources */,
 				492706741CF4B87C00C631C6 /* CBIExternalToolViewModel.m in Sources */,
 				49A04E281CF506810051E1E7 /* CKCanvasAPI+CurrentAPI.m in Sources */,
@@ -4928,7 +4713,6 @@
 				492708541CF4BC3200C631C6 /* WebBrowserViewController.m in Sources */,
 				492706411CF4B7A800C631C6 /* CBIDiscussionsTabViewModel.m in Sources */,
 				492706941CF4B88600C631C6 /* FileViewController.m in Sources */,
-				4927074E1CF4BACB00C631C6 /* ConversationTemplateRenderer.m in Sources */,
 				4927068D1CF4B88600C631C6 /* CBIFileViewController.m in Sources */,
 				492708031CF4BC1000C631C6 /* ScheduleItemController.m in Sources */,
 				4927084B1CF4BC3200C631C6 /* UIViewController+Transitions.m in Sources */,
@@ -4946,7 +4730,6 @@
 				492705B51CF4B73200C631C6 /* NSArray_in_additions.m in Sources */,
 				492705421CF4B70600C631C6 /* CBITeacherSubmissionViewModel.m in Sources */,
 				492705E11CF4B73300C631C6 /* UIWebView+SafeAPIURL.m in Sources */,
-				4927074C1CF4BACB00C631C6 /* ConversationRecipientsController.m in Sources */,
 				4927084F1CF4BC3200C631C6 /* PopoverWrapperViewController.m in Sources */,
 				492706DE1CF4BA8400C631C6 /* CBILogFormatter.m in Sources */,
 				492705A71CF4B73200C631C6 /* CKIClient+CBIClient.m in Sources */,
@@ -4954,7 +4737,6 @@
 				492705211CF4B70600C631C6 /* CBIAddSubmissionCommentCell.m in Sources */,
 				4927084D1CF4BC3200C631C6 /* CBIURLParser.m in Sources */,
 				492706B21CF4B99700C631C6 /* Router.m in Sources */,
-				492707411CF4BACB00C631C6 /* CBIMessageDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

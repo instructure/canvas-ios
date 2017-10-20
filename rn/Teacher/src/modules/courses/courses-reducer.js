@@ -31,8 +31,8 @@ import { refs as quizzes } from '../quizzes/reducer'
 import { refs as discussions } from '../discussions/reducer'
 import { refs as announcements } from '../announcements/reducer'
 import attendanceTool from '../external-tools/attendance-tool-reducer'
-import find from 'lodash/find'
 import groups from '../groups/group-refs-reducer'
+import App from '../app'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
@@ -72,20 +72,6 @@ const emptyCourseState: CourseContentState = {
   attendanceTool: { pending: 0 },
 }
 
-// Filters out courses that are not teachers or tas or designers
-export function filterCourses (course: Course): boolean {
-  const enrollments = course.enrollments
-  if (!enrollments) return false
-  return !!find(enrollments, (e) => {
-    return [
-      'teacher',
-      'teacherenrollment',
-      'designer',
-      'ta',
-    ].includes(e.type.toLowerCase())
-  })
-}
-
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {
   const { id } = course
   const color = colors[(id || 'none')] || '#ffc100'
@@ -101,7 +87,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
   [refreshCourses.toString()]: handleAsync({
     resolved: (state, { result: [coursesResponse, colorsResponse] }) => {
       const colors = groupCustomColors(colorsResponse.data).custom_colors.course
-      const courses = coursesResponse.data.filter(filterCourses)
+      const courses = coursesResponse.data.filter(App.current().filterCourse)
       const newStates = courses.map((course) => {
         return [course.id, normalizeCourse(course, colors, state[course.id])]
       })

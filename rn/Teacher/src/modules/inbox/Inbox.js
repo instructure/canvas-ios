@@ -34,6 +34,7 @@ import Images from '../../images'
 import i18n from 'format-message'
 import color from '../../common/colors'
 import RowSeparator from '../../common/components/rows/RowSeparator'
+import CourseActions from '../courses/actions'
 
 export type InboxProps = {
   conversations: Conversation[],
@@ -194,6 +195,9 @@ export function mapStateToProps ({ inbox, entities }: AppState): InboxProps {
 }
 
 export function handleRefresh (props: InboxProps, next: Function): void {
+  if (!props.courses || props.courses.length === 0) {
+    props.refreshCourses()
+  }
   switch (props.scope) {
     case 'all': props.refreshInboxAll(next); break
     case 'unread': props.refreshInboxUnread(next); break
@@ -212,5 +216,5 @@ export const Refreshed: any = refresh(
   shouldRefresh,
   props => Boolean(props.pending)
 )(Inbox)
-const Connected = connect(mapStateToProps, Actions)(Refreshed)
+const Connected = connect(mapStateToProps, { ...Actions, ...CourseActions })(Refreshed)
 export default (Connected: Component<any, Props, any>)

@@ -22,6 +22,9 @@
 @import CanvasKeymaster;
 @import CocoaLumberjack;
 
+CanvasApp _Nonnull CanvasAppStudent = @"student";
+CanvasApp _Nonnull CanvasAppTeacher = @"teacher";
+
 @interface NativeLoginManager ()
 
 @property (nonatomic) NSDictionary *injectedLoginInfo;
@@ -130,6 +133,7 @@ RCT_EXPORT_METHOD(stopObserving)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[NativeLoginManager alloc] init];
+        manager.app = CanvasAppTeacher; // default to teacher app
     });
     return manager;
 }
@@ -181,6 +185,7 @@ RCT_EXPORT_METHOD(stopObserving)
     }
     
     NSDictionary *body = @{
+                           @"appId": self.app,
                            @"authToken": client.accessToken,
                            @"user": client.currentUser.JSONDictionary,
                            @"baseURL": client.baseURL.absoluteString,

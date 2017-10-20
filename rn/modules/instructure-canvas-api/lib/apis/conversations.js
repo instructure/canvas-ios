@@ -18,6 +18,11 @@
 import { paginate } from '../utils/pagination'
 import httpClient from '../httpClient'
 
+export function getUnreadConversationsCount (): Promise<ApiResponse<{ unread_count: number }>> {
+  const url = 'conversations/unread_count'
+  return httpClient().get(url)
+}
+
 export function getConversations (scope: InboxScope): Promise<ApiResponse<Conversation>> {
   const url = 'conversations'
   const params: { [string]: any } = {

@@ -21,6 +21,7 @@ import {
   View,
   StyleSheet,
   ActionSheetIOS,
+  ActivityIndicator,
 } from 'react-native'
 
 import { Heading1 } from '../../../common/text'
@@ -77,6 +78,9 @@ export default class CourseFilter extends Component<any, CourseFilterProps, any>
   }
 
   renderFilterButton = () => {
+    if (!this.props.courses || this.props.courses.length === 0) {
+      return <ActivityIndicator />
+    }
     let title = i18n('Filter')
     let accessibilityLabel = i18n('Filter Inbox')
     let onPress = this.chooseFilter

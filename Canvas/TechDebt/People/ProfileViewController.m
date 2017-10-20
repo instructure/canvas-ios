@@ -27,10 +27,6 @@
 #import "AboutViewController.h"
 #import "UIImage+ImageEffects.h"
 #import "AFHTTPAvatarImageResponseSerializer.h"
-#import "CBIMessageViewModel.h"
-#import "CBIMessageDetailViewController.h"
-
-#import "CBIConversationStarter.h"
 
 #import <CanvasKeymaster/SupportTicketViewController.h>
 #import "CKIClient+CBIClient.h"

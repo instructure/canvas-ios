@@ -49,6 +49,8 @@
 		494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0A51F843A8A001A8F31 /* A11yGroupManager.m */; };
 		494AE0AD1F843AAC001A8F31 /* VideoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */; };
 		494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0AC1F843AAC001A8F31 /* VideoContainerManager.m */; };
+		496C7D641F8BEF690010DC03 /* UnreadMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D631F8BEF690010DC03 /* UnreadMessages.swift */; };
+		496C7D661F8C00250010DC03 /* UnreadMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 496C7D651F8C00250010DC03 /* UnreadMessages.m */; };
 		497CA76E1F82D19600501613 /* Helm.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA75F1F82D18900501613 /* Helm.m */; };
 		497CA76F1F82D19600501613 /* Helm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7661F82D18B00501613 /* Helm.swift */; };
 		497CA7701F82D19600501613 /* HelmConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7621F82D18900501613 /* HelmConstants.swift */; };
@@ -65,6 +67,7 @@
 		497CA7831F82D66B00501613 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7811F82D64F00501613 /* Brand.swift */; };
 		497CA7841F82D66B00501613 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497CA7821F82D65000501613 /* UIColor+Hex.swift */; };
 		4988D47D1F82DCC10006D18C /* LoadingStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */; };
+		49A667D31F96B1B900A5166E /* UIApplication+Reactive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */; };
 		5C7007265DCAB575C9739092 /* Pods_defaults_CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +127,8 @@
 		494AE0B11F843B58001A8F31 /* PSPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSPDFView.swift; sourceTree = "<group>"; };
 		494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvadocViewManager.m; sourceTree = "<group>"; };
 		494AE0B31F843B59001A8F31 /* PSPDFViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSPDFViewManager.m; sourceTree = "<group>"; };
+		496C7D631F8BEF690010DC03 /* UnreadMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessages.swift; sourceTree = "<group>"; };
+		496C7D651F8C00250010DC03 /* UnreadMessages.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnreadMessages.m; sourceTree = "<group>"; };
 		497CA75F1F82D18900501613 /* Helm.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Helm.m; sourceTree = "<group>"; };
 		497CA7601F82D18900501613 /* NoAnimatedTransitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		497CA7611F82D18900501613 /* HelmNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 		497CA7811F82D64F00501613 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		497CA7821F82D65000501613 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		4988D47C1F82DCBF0006D18C /* LoadingStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStateViewController.swift; sourceTree = "<group>"; };
+		49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Reactive.swift"; sourceTree = "<group>"; };
 		7C6B70EE92D795277E0861B4 /* Pods_defaults_CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42B8DF2C9F8BDD47BDCBF67 /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
 		B6F5EAC7A3F6A1CB04CF9E40 /* Pods-defaults-CanvasCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.debug.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +271,7 @@
 				2C2D7AD61F7301D000207CE9 /* Collection+Core.swift */,
 				2C7CBD2A1F79A42600E5EC02 /* CGRect+Core.swift */,
 				2CAF177F1F7AF61100EA2742 /* UIFont+Core.swift */,
+				49A667D21F96B1B900A5166E /* UIApplication+Reactive.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,6 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				49383CF51F849933009C8F8E /* inboxTab.swift */,
+				496C7D631F8BEF690010DC03 /* UnreadMessages.swift */,
+				496C7D651F8C00250010DC03 /* UnreadMessages.m */,
 			);
 			path = Inbox;
 			sourceTree = "<group>";
@@ -529,7 +538,9 @@
 			files = (
 				497CA7841F82D66B00501613 /* UIColor+Hex.swift in Sources */,
 				2C2D7AD71F7301D000207CE9 /* Collection+Core.swift in Sources */,
+				496C7D661F8C00250010DC03 /* UnreadMessages.m in Sources */,
 				49383CF61F849933009C8F8E /* inboxTab.swift in Sources */,
+				49A667D31F96B1B900A5166E /* UIApplication+Reactive.swift in Sources */,
 				494AE08A1F8436C1001A8F31 /* NativeLoginManager.m in Sources */,
 				497CA77A1F82D19A00501613 /* UIViewControllerRotationExtensions.swift in Sources */,
 				497CA7771F82D19A00501613 /* NSObject+PureEvil.swift in Sources */,
@@ -544,6 +555,7 @@
 				2CE40C9D1F87D37300ECEACB /* PSPDFViewManager.m in Sources */,
 				497CA7761F82D19600501613 /* PushAnimatedTransitioning.swift in Sources */,
 				497CA77B1F82D19A00501613 /* UIUserInterfaceSizeClassExtensions.swift in Sources */,
+				496C7D641F8BEF690010DC03 /* UnreadMessages.swift in Sources */,
 				497CA7751F82D19600501613 /* NoAnimatedTransitioning.swift in Sources */,
 				494AE0A61F843A8A001A8F31 /* A11yGroupManager.m in Sources */,
 				497CA76F1F82D19600501613 /* Helm.swift in Sources */,
@@ -714,7 +726,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -745,7 +757,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

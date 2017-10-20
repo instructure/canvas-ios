@@ -26,7 +26,7 @@
 @import CanvasKeymaster;
 #import "CBILog.h"
 
-@interface CBIPeopleDetailViewController () <UIGestureRecognizerDelegate, UIAlertViewDelegate>
+@interface CBIPeopleDetailViewController () <UIGestureRecognizerDelegate>
 @property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *messageButton;
@@ -59,10 +59,16 @@
 - (IBAction)sendMessagePressed
 {
     CKIUser *user = self.viewModel.model;
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    NSNumber *userID = [numberFormatter numberFromString:user.id];
-    CKIConversationRecipient *recipient = [CKIConversationRecipient modelFromJSONDictionary:@{@"id": userID, @"name": user.name}];
-    [[CBIConversationStarter sharedConversationStarter] startAConversationWithRecipients:@[recipient]];
+    // there is a chance that the user id is an NSNumber instance through an obscure bug.
+    NSString *userID = [NSString stringWithFormat:@"%@", user.id];
+    CBIConversationRecipient *recipient = [[CBIConversationRecipient alloc] initWithName:user.name id:userID avatarURL:user.avatarURL.absoluteString];
+    NSString *context = nil;
+    if ([user.context isKindOfClass:[CKICourse class]]) {
+        context = [NSString stringWithFormat:@"course_%@", [(CKICourse *)user.context id]];
+    } else if ([user.context isKindOfClass:[CKIGroup class]]) {
+        context = [NSString stringWithFormat:@"group_%@", [(CKIGroup *)user.context id]];
+    }
+    [CBIConversationStarter startAConversationWithRecipients:@[recipient] inContext:context];
 }
 
 #pragma mark - Gesture recognizer delegate
@@ -75,24 +81,17 @@
 
 - (void)masqueradeAsUser
 {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Do you want to masquerade as this user?", "Alert title asking if you want to masquerade") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", "Cancel button title") otherButtonTitles:NSLocalizedString(@"Masquerade", "Button title for beginning masquerading"), nil];
-    alertView.alertViewStyle = UIAlertViewStyleDefault;
-    
-    [alertView show];
-}
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Do you want to masquerade as this user?", "Alert title asking if you want to masquerade") message:nil preferredStyle:UIAlertControllerStyleAlert];
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    switch (buttonIndex) {
-        case 0: //cancel
-            DDLogVerbose(@"masqueradeAsUserCancelled");
-            break;
-        case 1: { //masquerade
-            DDLogVerbose(@"masqueradeAsUserSubmit");
-            [self masquerade:self.viewModel.model.id];
-        } break;
-        default:
-            break;
-    }
+    @weakify(self);
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Masquerade", "Button title for beginning masquerading") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        [self masquerade:self.viewModel.model.id];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", "Cancel button title") style:UIAlertActionStyleCancel handler:nil]];
+    
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 - (void)masquerade:(NSString *)masqueradeAs
