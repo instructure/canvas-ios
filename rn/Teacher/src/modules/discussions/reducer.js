@@ -183,7 +183,7 @@ const handleAsyncDiscussions = handleAsync({
       .reduce((incoming, discussion) => ({
         ...incoming,
         [discussion.id]: {
-          data: discussion,
+          data: { ...(state[discussion.id] && state[discussion.id].data), ...discussion },
           pending: 0,
           error: null,
         },

@@ -25,6 +25,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
+import { getSession } from 'instructure-canvas-api'
 import localeSort from '../../../utils/locale-sort'
 import { LinkButton } from '../../../common/buttons'
 import i18n from 'format-message'
@@ -71,7 +72,11 @@ export class FavoritedCourseList extends Component {
   }
 
   componentWillReceiveProps (newProps: Props) {
-    if (!newProps.pending && !newProps.error && !newProps.totalCourseCount && !this.state.showingModal) {
+    if (!newProps.pending &&
+        !newProps.error &&
+        !newProps.totalCourseCount &&
+        !this.state.showingModal &&
+        getSession()) {
       this.props.navigator.show('/notATeacher', { modal: true })
       this.setState({
         showingModal: true,

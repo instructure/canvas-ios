@@ -315,6 +315,15 @@ exports[`DiscussionEdit renders 1`] = `
             contentHeight={150}
             defaultValue="Gather tribute or face my curse."
             keyboardAware={false}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
             onChangeValue={[Function]}
             placeholder="Add description (required)"
             scrollEnabled={true}
@@ -1382,6 +1391,7 @@ exports[`DiscussionEdit renders new form 1`] = `
             contentHeight={150}
             defaultValue={undefined}
             keyboardAware={false}
+            navigator={undefined}
             onChangeValue={[Function]}
             placeholder="Add description (required)"
             scrollEnabled={true}
@@ -2340,6 +2350,7 @@ exports[`DiscussionEdit updates from props 1`] = `
             contentHeight={150}
             defaultValue={undefined}
             keyboardAware={false}
+            navigator={undefined}
             onChangeValue={[Function]}
             placeholder="Add description (required)"
             scrollEnabled={true}
@@ -3298,6 +3309,15 @@ exports[`DiscussionEdit updates with new props 1`] = `
             contentHeight={150}
             defaultValue="Gather tribute or face my curse."
             keyboardAware={false}
+            navigator={
+              Object {
+                "dismiss": [Function],
+                "dismissAllModals": [Function],
+                "pop": [Function],
+                "show": [Function],
+                "traitCollection": [Function],
+              }
+            }
             onChangeValue={[Function]}
             placeholder="Add description (required)"
             scrollEnabled={true}

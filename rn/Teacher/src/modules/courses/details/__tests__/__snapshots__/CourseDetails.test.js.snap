@@ -54,7 +54,7 @@ exports[`refresh function second test 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": -235,
+          "y": 0,
         }
       }
       onScroll={[Function]}
@@ -301,7 +301,7 @@ exports[`renders correctly 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": -235,
+          "y": 0,
         }
       }
       onScroll={[Function]}
@@ -662,7 +662,7 @@ exports[`renders correctly without tabs 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": -235,
+          "y": 0,
         }
       }
       onScroll={[Function]}
@@ -885,7 +885,7 @@ exports[`renders with empty image url 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": -235,
+          "y": 0,
         }
       }
       onScroll={[Function]}
@@ -1229,7 +1229,7 @@ exports[`renders with image url 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": -235,
+          "y": 0,
         }
       }
       onScroll={[Function]}
@@ -1590,7 +1590,7 @@ exports[`renders without image url 1`] = `
       contentInsetAdjustmentBehavior="never"
       contentOffset={
         Object {
-          "y": -235,
+          "y": 0,
         }
       }
       onScroll={[Function]}

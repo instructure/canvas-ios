@@ -412,6 +412,41 @@ describe('refreshDiscussions', () => {
       },
     })
   })
+
+  it('preserves replies', () => {
+    const discussion = template.discussion({
+      id: '1',
+      message: 'initial message',
+    })
+    const replies = [template.discussionReply()]
+    const initialState = {
+      '1': {
+        data: { ...discussion, replies },
+        error: null,
+        pending: 0,
+      },
+    }
+    const expected = {
+      '1': {
+        data: {
+          ...discussion,
+          replies,
+          message: 'updated message',
+        },
+        error: null,
+        pending: 0,
+      },
+    }
+    const resolved = {
+      type: refreshDiscussions.toString(),
+      payload: {
+        result: {
+          data: [{ ...discussion, message: 'updated message' }],
+        },
+      },
+    }
+    expect(discussions(initialState, resolved)).toEqual(expected)
+  })
 })
 
 describe('markAllAsRead', () => {

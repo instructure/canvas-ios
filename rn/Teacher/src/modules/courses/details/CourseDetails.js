@@ -138,7 +138,7 @@ export class CourseDetails extends Component<any, CourseDetailsProps, any> {
     if (compactMode) {
       inOffsets = {
         contentInset: { top: 235 },
-        contentOffset: { y: -235 },
+        contentOffset: { y: 0 },
       }
     }
 

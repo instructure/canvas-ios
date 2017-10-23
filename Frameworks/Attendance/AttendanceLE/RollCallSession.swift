@@ -124,8 +124,9 @@ public class RollCallSession: NSObject {
     }
 
     var task: URLSessionTask?
-    public func updateStatus(_ status: Status) -> Void {
+    public func updateStatus(_ status: Status, completed: @escaping (Int?, Error?) -> Void) -> Void {
         guard case .active(let session) = state else { return }
+        
         var url = URL(string: "https://rollcall.instructure.com/statuses")!
         var method = "POST"
         if let id = status.id {
@@ -145,17 +146,43 @@ public class RollCallSession: NSObject {
             let data = try status.marshaled().jsonData()
             request.httpBody = data
         } catch let error {
+            DispatchQueue.main.async {
+                completed(nil, error)
+            }
             print(error)
+            return
         }
         
         task = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 let error = NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")])
                 print(error)
+                DispatchQueue.main.async {
+                    completed(nil, error)
+                }
                 return
             }
-            if let msg = String(data: data, encoding: .utf8) {
-                print(msg)
+
+            do {
+                guard status.attendance != nil else {
+                    // don't capture the ID of the deleted status... leave it nil
+                    DispatchQueue.main.async {
+                        completed(nil, nil)
+                    }
+                    return
+                }
+                let statusJSON = try JSONParser.JSONObjectWithData(data)
+                let id: Int? = try statusJSON <| "id"
+                if let id = id {
+                    DispatchQueue.main.async {
+                        completed(id, nil)
+                    }
+                }
+            } catch let e {
+                print("Error parsing status response: \(e)")
+                DispatchQueue.main.async {
+                    completed(nil, e)
+                }
             }
         }
         

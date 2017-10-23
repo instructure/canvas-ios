@@ -22,6 +22,7 @@
 		490F5F331F27B4B1007FF07D /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F5F321F27B4B1007FF07D /* AttendanceViewController.swift */; };
 		4969DBC21F2818B300C1AA39 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969DBC11F2818B300C1AA39 /* StatusCell.swift */; };
 		4969DBC41F281BF000C1AA39 /* StagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969DBC31F281BF000C1AA39 /* StagingViewController.swift */; };
+		49849F071F99477B005E2CD8 /* AttendanceStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49849F061F99477B005E2CD8 /* AttendanceStatusController.swift */; };
 		49BC34781F29403C000A66A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49BC34771F29403C000A66A4 /* Assets.xcassets */; };
 		49BC347A1F294707000A66A4 /* Bundle+AttendanceLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BC34791F294707000A66A4 /* Bundle+AttendanceLE.swift */; };
 		49BC5D421F266E9F00623FB2 /* AttendanceLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 49BC5D401F266E9F00623FB2 /* AttendanceLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,8 +82,7 @@
 		490F5F321F27B4B1007FF07D /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		4969DBC11F2818B300C1AA39 /* StatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		4969DBC31F281BF000C1AA39 /* StagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StagingViewController.swift; sourceTree = "<group>"; };
-		4969DBD91F28FDED00C1AA39 /* StudentBTLEConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentBTLEConnector.swift; sourceTree = "<group>"; };
-		4969DBDA1F28FDED00C1AA39 /* TeacherBTLEConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherBTLEConnector.swift; sourceTree = "<group>"; };
+		49849F061F99477B005E2CD8 /* AttendanceStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceStatusController.swift; sourceTree = "<group>"; };
 		49BC34771F29403C000A66A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49BC34791F294707000A66A4 /* Bundle+AttendanceLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+AttendanceLE.swift"; sourceTree = "<group>"; };
 		49BC5D3E1F266E9F00623FB2 /* AttendanceLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AttendanceLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,15 +144,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		473E8DF41F27E40400D342BF /* BTLEConnectors */ = {
-			isa = PBXGroup;
-			children = (
-				4969DBD91F28FDED00C1AA39 /* StudentBTLEConnector.swift */,
-				4969DBDA1F28FDED00C1AA39 /* TeacherBTLEConnector.swift */,
-			);
-			path = BTLEConnectors;
-			sourceTree = "<group>";
-		};
 		490F5F161F267E2A007FF07D /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,12 +164,12 @@
 				490F5F2C1F26ABA7007FF07D /* Status.swift */,
 				490F5F2A1F269226007FF07D /* RollCallSession.swift */,
 				490F5F321F27B4B1007FF07D /* AttendanceViewController.swift */,
+				49849F061F99477B005E2CD8 /* AttendanceStatusController.swift */,
 				610185491F3506AA003B5AAC /* DatePickerViewController.swift */,
 				6101854B1F3513A7003B5AAC /* DatePickerCollectionView.swift */,
 				4969DBC11F2818B300C1AA39 /* StatusCell.swift */,
 				49BC34791F294707000A66A4 /* Bundle+AttendanceLE.swift */,
 				4759D5B61F2A9E7D00B28F02 /* Toast.swift */,
-				473E8DF41F27E40400D342BF /* BTLEConnectors */,
 				49BC34771F29403C000A66A4 /* Assets.xcassets */,
 				49E760121F3A207600AC70A7 /* CKIClient+AuthorizedSections.swift */,
 			);
@@ -390,6 +381,7 @@
 				49BC347A1F294707000A66A4 /* Bundle+AttendanceLE.swift in Sources */,
 				490F5F331F27B4B1007FF07D /* AttendanceViewController.swift in Sources */,
 				6101854C1F3513A7003B5AAC /* DatePickerCollectionView.swift in Sources */,
+				49849F071F99477B005E2CD8 /* AttendanceStatusController.swift in Sources */,
 				4969DBC21F2818B300C1AA39 /* StatusCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

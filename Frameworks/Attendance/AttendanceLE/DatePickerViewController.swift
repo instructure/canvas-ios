@@ -64,6 +64,19 @@ class DatePickerViewController: UIViewController {
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "YYYY", options: 0, locale: Locale.current)
         return dateFormatter
     }()
+
+    static var a11yDayFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
+
+    static var a11yMonthFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MMMM YYYY", options: 0, locale: Locale.current)
+        return dateFormatter
+    }()
     
     fileprivate var hasScrolledToInitialDate = false
     
@@ -200,7 +213,9 @@ extension DatePickerViewController: UICollectionViewDataSource {
         if month == calendar.component(.month, from: firstDayInMonth) {
             let day = calendar.component(.day, from: cellDate)
             cell.label.text = "\(day)"
+            cell.label.accessibilityLabel = DatePickerViewController.a11yDayFormatter.string(from: cellDate)
             cell.isToday = calendar.isDateInToday(cellDate)
+            cell.label.accessibilityTraits = cell.isToday ? UIAccessibilityTraitSelected : UIAccessibilityTraitNone
             cell.setIsHighlighted(calendar.isDate(selectedDate, inSameDayAs: cellDate))
         } else {
             cell.label.text = ""
@@ -217,8 +232,11 @@ extension DatePickerViewController: UICollectionViewDataSource {
         let sectionMonth = calendar.component(.month, from: firstDayInSection)
         
         view.yearLabel.isHidden = sectionMonth != 1
+        view.yearLabel.accessibilityElementsHidden = true
         view.yearLabel.text = DatePickerViewController.yearFormatter.string(from: firstDayInSection)
-        view.monthLabel.text = DatePickerViewController.monthHeaderFormatter.string(from: firstDayInSection)        
+        view.monthLabel.text = DatePickerViewController.monthHeaderFormatter.string(from: firstDayInSection)
+        view.monthLabel.accessibilityTraits = UIAccessibilityTraitHeader
+        view.monthLabel.accessibilityLabel = DatePickerViewController.a11yMonthFormatter.string(from: firstDayInSection)
         
         return view
     }

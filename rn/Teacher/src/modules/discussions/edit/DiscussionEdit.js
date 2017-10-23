@@ -240,6 +240,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
                 scrollEnabled={true}
                 contentHeight={150}
                 placeholder={i18n('Add description (required)')}
+                navigator={this.props.navigator}
               />
             </View>
             <RequiredFieldSubscript

@@ -26,7 +26,6 @@ private func attendanceError(message: String) -> Error {
 open class AttendanceViewController: UIViewController {
     fileprivate let client: CKIClient
     fileprivate let courseID: String
-    
     fileprivate let session: RollCallSession
     
     fileprivate var sections: [CKISection] = [] {
@@ -65,9 +64,7 @@ open class AttendanceViewController: UIViewController {
     fileprivate let bigBlueButton = UIButton(type: .custom)
     fileprivate var bigBlueButtonBottom: NSLayoutConstraint!
     
-    fileprivate var statii: [Status] = []
-    
-    fileprivate var statiiUpdateTimers: [Int: Timer] = [:]
+    fileprivate var statii: [AttendanceStatusController] = []
     
     static let dateFormatter: DateFormatter = {
         let d = DateFormatter()
@@ -185,7 +182,7 @@ open class AttendanceViewController: UIViewController {
         // If ALL are unmarked, display "Mark All as Present"
         // Or, if less than all are unmarked, display "Mark Remaining as Present"
         
-        let containsNonNull = statii.contains(where: { $0.attendance != nil })
+        let containsNonNull = statii.contains(where: { $0.status.attendance != nil })
         if !containsNonNull {
             bigBlueButton.setTitle(NSLocalizedString("Mark All as Present", comment: ""), for: .normal)
         } else {
@@ -196,7 +193,7 @@ open class AttendanceViewController: UIViewController {
     }
     
     func showOrHideBigBlueButton() {
-        let containsNull = statii.contains(where: { $0.attendance == nil })
+        let containsNull = statii.contains(where: { $0.status.attendance == nil })
         if containsNull && bigBlueButtonBottom.constant != 0 {
             bigBlueButtonBottom.constant = 0
             view.setNeedsUpdateConstraints()
@@ -229,6 +226,32 @@ open class AttendanceViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    func prepareStatusControllers(for statuses: [Status]) {
+        let existingControllers = statii
+        statii = statuses.enumerated().map { index, status in
+            let controller: AttendanceStatusController
+            
+            if let existing = existingControllers.first(where: { existing in
+                return status.studentID == existing.status.studentID
+            }) {
+                controller  = existing
+            } else {
+                controller = AttendanceStatusController(status: status, in: session)
+            }
+            controller.statusDidChange = { [weak self] in
+                if let cell = self?.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? StatusCell {
+                    cell.status = self?.statii[index].status
+                }
+            }
+            controller.statusUpdateDidFail = { [weak self] e in self?.alertError(e) }
+            return controller
+        }
+        if isViewLoaded {
+            tableView.reloadData()
+        }
+        updateBigBlueButton()
+    }
+    
     func refreshStatusesForCurrentSection(completed: @escaping () -> Void) {
         guard let sectionID = self.sectionID else {
             completed()
@@ -240,11 +263,7 @@ open class AttendanceViewController: UIViewController {
             if let error = error {
                 me.alertError(error)
             } else {
-                me.statii = statii
-                if me.isViewLoaded {
-                    me.tableView.reloadData()
-                }
-                me.updateBigBlueButton()
+                me.prepareStatusControllers(for: statii)
             }
             completed()
         }
@@ -289,32 +308,6 @@ open class AttendanceViewController: UIViewController {
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    fileprivate func updateStatus(attendance: Attendance?, path: IndexPath) {
-        var updatedStatus = statii[path.row]
-        updatedStatus.attendance = attendance
-        
-        if let cell = tableView.cellForRow(at: path) as? StatusCell {
-            cell.status = updatedStatus
-        }
-        
-        statii[path.row] = updatedStatus
-        
-        if let t = statiiUpdateTimers[path.row] {
-            if t.isValid {
-                t.invalidate()
-            }
-            statiiUpdateTimers.removeValue(forKey: path.row)
-        }
-        
-        let timer = Timer(timeInterval: 1, repeats: false, block: { timer in
-            self.session.updateStatus(updatedStatus)
-            self.statiiUpdateTimers[path.row] = nil
-        })
-        RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
-        statiiUpdateTimers[path.row] = timer
-        updateBigBlueButton()
     }
     
     private func titleView(with title: String, and subtitle: String) -> (titleView: UIView, titleLabel: UILabel, subtitleLabel: UILabel) {
@@ -364,9 +357,9 @@ open class AttendanceViewController: UIViewController {
     }
     
     func markRemainingPresent(_ sender: Any?) {
-        for (index, status) in statii.enumerated() {
-            if status.attendance == nil {
-                updateStatus(attendance: .present, path: IndexPath(row: index, section: 0))
+        statii.forEach { statusController in
+            if statusController.status.attendance == nil {
+                statusController.update(attendance: .present)
             }
         }
     }
@@ -382,7 +375,7 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("Expected a StatusCell instance")
         }
         
-        cell.status = statii[indexPath.row]
+        cell.status = statii[indexPath.row].status
         return cell
     }
     
@@ -404,34 +397,33 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
     
     open func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         var actions: [UITableViewRowAction] = []
-        let status = statii[indexPath.row]
+        let sc = statii[indexPath.row]
         
         let newStatus: (Attendance?) -> ((UITableViewRowAction, IndexPath) -> Void) = { newStatus in
             return { [weak self] action, path in
-                guard let me = self else { return }
-                me.updateStatus(attendance: newStatus, path: path)
+                sc.update(attendance: newStatus)
             }
         }
         
-        if status.attendance != .present {
+        if sc.status.attendance != .present {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Present", comment: "Mark student present"), handler: newStatus(.present))
             action.backgroundColor = #colorLiteral(red: 0, green: 0.6745098039, blue: 0.09411764706, alpha: 1)
             actions.append(action)
         }
 
-        if status.attendance != .absent {
+        if sc.status.attendance != .absent {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Absent", comment: "Mark student absent"), handler: newStatus(.absent))
             action.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.02352941176, blue: 0.07058823529, alpha: 1)
             actions.append(action)
         }
         
-        if status.attendance != .late {
+        if sc.status.attendance != .late {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Late", comment: "Mark student late"), handler: newStatus(.late))
             action.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.368627451, blue: 0.07450980392, alpha: 1)
             actions.append(action)
         }
 
-        if status.attendance != nil {
+        if sc.status.attendance != nil {
             let action = UITableViewRowAction(style: .normal, title: NSLocalizedString("Unmark", comment: "Remove attendance status"), handler: newStatus(nil))
             action.backgroundColor = #colorLiteral(red: 0.4509803922, green: 0.5058823529, blue: 0.5490196078, alpha: 1)
             actions.append(action)
@@ -441,16 +433,16 @@ extension AttendanceViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let status = statii[indexPath.row]
+        let sc = statii[indexPath.row]
         
-        if let attendance = status.attendance {
+        if let attendance = sc.status.attendance {
             switch attendance {
-            case .present: updateStatus(attendance: .absent, path: indexPath)
-            case .absent: updateStatus(attendance: .late, path: indexPath)
-            case .late: updateStatus(attendance: nil, path: indexPath)
+            case .present: sc.update(attendance: .absent)
+            case .absent: sc.update(attendance: .late)
+            case .late: sc.update(attendance: nil)
             }
         } else {
-            updateStatus(attendance: .present, path: indexPath)
+            sc.update(attendance: .present)
         }
     }
 }

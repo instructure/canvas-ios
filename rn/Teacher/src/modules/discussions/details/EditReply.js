@@ -89,6 +89,7 @@ export class EditReply extends React.Component<any, Props, any> {
             scrollEnabled={true}
             placeholder={i18n('Message')}
             focusOnLoad={true}
+            navigator={this.props.navigator}
           />
         </View>
       </Screen>

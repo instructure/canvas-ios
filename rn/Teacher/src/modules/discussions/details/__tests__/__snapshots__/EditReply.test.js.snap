@@ -142,6 +142,15 @@ exports[`EditReply calls dismiss on cancel 1`] = `
     <RichTextEditor
       defaultValue=""
       focusOnLoad={true}
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       onChangeValue={[Function]}
       placeholder="Message"
       scrollEnabled={true}
@@ -293,6 +302,15 @@ exports[`EditReply dismisses modal activity upon save error 1`] = `
     <RichTextEditor
       defaultValue=""
       focusOnLoad={true}
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       onChangeValue={[Function]}
       placeholder="Message"
       scrollEnabled={true}
@@ -444,6 +462,15 @@ exports[`EditReply renders 1`] = `
     <RichTextEditor
       defaultValue=""
       focusOnLoad={true}
+      navigator={
+        Object {
+          "dismiss": [Function],
+          "dismissAllModals": [Function],
+          "pop": [Function],
+          "show": [Function],
+          "traitCollection": [Function],
+        }
+      }
       onChangeValue={[Function]}
       placeholder="Message"
       scrollEnabled={true}
