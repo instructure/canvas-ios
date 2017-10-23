@@ -18,43 +18,15 @@
 
 import Foundation
 import CanvasKeymaster
-import TooLegit
-import SoLazy
 import Result
 import ReactiveSwift
 import ReactiveObjCBridge
-
+import CanvasCore
 
 let TheKeymaster = CanvasKeymaster.the()
-
 
 extension CKIUser {
     fileprivate var sessionUser: SessionUser {
         return SessionUser(id: id, name: name, loginID: loginID, sortableName: sortableName, email: email, avatarURL: avatarURL)
-    }
-}
-
-extension CKIClient {
-    fileprivate var legitSession: Session {
-        guard let url = baseURL else { ❨╯°□°❩╯⌢"The client doesn't have a baseURL?" }
-        return Session(baseURL: url, user: currentUser.sessionUser, token: accessToken, masqueradeAsUserID: self.actAsUserID)
-    }
-}
-
-extension Session {
-    static var loginSignalProducer: SignalProducer<Session, NoError> {
-        let login: SignalProducer<CKIClient?, NoError> = bridgedSignalProducer(from: CanvasKeymaster.the().signalForLogin).flatMapError { _ in .empty }
-        return login
-            .map { $0!.authSession }
-            .start(on: UIScheduler())
-            .observe(on: UIScheduler())
-    }
-    
-    static var logoutSignalProducer: SignalProducer<UIViewController, NoError> {
-        let logout: SignalProducer<UIViewController?, NoError> = bridgedSignalProducer(from: CanvasKeymaster.the().signalForLogout).flatMapError { _ in .empty }
-        return logout
-            .map { $0! }
-            .start(on: UIScheduler())
-            .observe(on: UIScheduler())
     }
 }

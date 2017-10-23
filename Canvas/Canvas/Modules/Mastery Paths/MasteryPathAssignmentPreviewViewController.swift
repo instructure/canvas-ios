@@ -15,10 +15,7 @@
 //
 
 import UIKit
-import SoPersistent
-import SoEdventurous
-import TooLegit
-import WhizzyWig
+import CanvasCore
 
 private enum AssignmentPreviewViewModel: TableViewCellViewModel {
     case info(name: String, dueDate: Date?, points: Double)

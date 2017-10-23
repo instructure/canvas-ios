@@ -17,8 +17,7 @@
     
 
 import UIKit
-
-import TooLegit
+import CanvasCore
 
 open class CalendarDayDetailViewController: UIViewController, CalendarDayPageViewControllerDelegate, CalendarWeekPageViewControllerDelegate {
     

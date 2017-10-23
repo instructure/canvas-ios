@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49B5D65B1D05E8A90084BD39"
-               BuildableName = "SoIconic.framework"
-               BlueprintName = "SoIconic"
-               ReferencedContainer = "container:../Frameworks/Icons/Icons.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "5E6441861C3EE2E0003D7397"
                BuildableName = "Parent.app"
                BlueprintName = "Parent"
@@ -44,16 +30,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5E64419A1C3EE2E0003D7397"
-               BuildableName = "ParentTests.xctest"
-               BlueprintName = "ParentTests"
-               ReferencedContainer = "container:Parent.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

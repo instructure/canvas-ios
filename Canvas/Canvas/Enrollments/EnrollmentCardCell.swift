@@ -17,13 +17,10 @@
     
 
 import UIKit
-import EnrollmentKit
 import Result
 import ReactiveSwift
 import ReactiveCocoa
-import SoLazy
-import SoPersistent
-import TooLegit
+import CanvasCore
 
 class CustomA11yActionBarButton: UIBarButtonItem {
     var customAction: CocoaAction<UIAccessibilityCustomAction>?

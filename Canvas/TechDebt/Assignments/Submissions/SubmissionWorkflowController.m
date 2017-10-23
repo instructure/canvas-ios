@@ -32,9 +32,7 @@
 #import "MobileQuizInformationViewController.h"
 
 @import CanvasKeymaster;
-@import AssignmentKit;
-@import EnrollmentKit;
-
+@import CanvasCore;
 
 @interface SubmissionWorkflowController () <CKRichTextInputViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) UIViewController *viewController;

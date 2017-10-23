@@ -13,16 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
-import AssignmentKit
-import TooLegit
+import CanvasCore
 import ReactiveSwift
-import SoPersistent
-import EnrollmentKit
-import Airwolf
 
 extension EventDetailsViewModel {
     static func detailsForAssignment(_ baseURL: URL, observeeID: String, context: UIViewController) -> (Assignment) -> [EventDetailsViewModel] {
@@ -46,7 +40,7 @@ extension EventDetailsViewModel {
     }
 }
 
-class AssignmentDetailsViewController: AssignmentKit.AssignmentDetailViewController {
+class AssignmentDetailsViewController: AssignmentDetailViewController {
     var disposable: Disposable?
     let courseID: String
     let assignmentID: String

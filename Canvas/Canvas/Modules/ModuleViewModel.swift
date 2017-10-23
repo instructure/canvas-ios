@@ -14,16 +14,9 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import SoEdventurous
-import SoPersistent
-import TooLegit
-import SoPretty
 import ReactiveSwift
 import Result
-import SoIconic
-import EnrollmentKit
-import SoLazy
-import SoProgressive
+import CanvasCore
 
 class ModuleViewModel {
     // Input

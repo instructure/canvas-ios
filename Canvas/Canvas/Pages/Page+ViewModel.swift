@@ -17,11 +17,8 @@
     
 
 import UIKit
-import PageKit
-import TooLegit
-import SoPersistent
+import CanvasCore
 import ReactiveSwift
-import EnrollmentKit
 
 extension Page {
     static func colorfulPageViewModel(session: Session, page: Page) -> ColorfulViewModel {

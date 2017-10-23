@@ -17,7 +17,7 @@
     
 
 import Foundation
-import TooLegit
+import CanvasCore
 
 open class CalendarSplitMonthViewController: UIViewController {
     

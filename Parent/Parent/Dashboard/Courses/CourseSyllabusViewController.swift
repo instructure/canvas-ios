@@ -17,12 +17,12 @@
     
 
 import UIKit
-import WhizzyWig
-import EnrollmentKit
-import TooLegit
-import SoPersistent
+import CanvasCore
+import CanvasCore
+
+
 import ReactiveSwift
-import SoLazy
+import CanvasCore
 
 class CourseSyllabusViewController: UIViewController {
 

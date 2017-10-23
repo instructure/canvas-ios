@@ -25,7 +25,7 @@
 #import "DiscussionCreationStrategy.h"
 #import "Analytics.h"
 
-@import SoPretty;
+@import CanvasCore;
 
 #import "CBILog.h"
 #import "UIImage+TechDebt.h"

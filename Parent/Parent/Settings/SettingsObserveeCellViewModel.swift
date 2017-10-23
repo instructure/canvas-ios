@@ -18,9 +18,9 @@
 
 import Foundation
 
-import SoPersistent
-import EnrollmentKit
-import Airwolf
+
+import CanvasCore
+
 
 struct SettingsObserveeCellViewModel: TableViewCellViewModel {
     let name: String

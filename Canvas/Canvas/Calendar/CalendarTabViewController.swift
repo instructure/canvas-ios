@@ -17,11 +17,8 @@
     
 
 import Foundation
-import SoPretty
-import TooLegit
-import CalendarKit
 import TechDebt
-import SoIconic
+import CanvasCore
 
 public func CalendarTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
     let calendarTitle = NSLocalizedString("Calendar", comment: "Calendar page title")

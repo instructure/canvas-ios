@@ -17,7 +17,7 @@
     
 
 #import <CanvasKit/CanvasKit.h>
-@import MyLittleViewController;
+#import <TechDebt/MyLittleViewController.h>
 
 @interface CBIViewModel : NSObject <MLVCViewModel>
 + (instancetype)viewModelForModel:(CKIModel *)model;

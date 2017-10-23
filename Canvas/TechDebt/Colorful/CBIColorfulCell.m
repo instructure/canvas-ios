@@ -23,7 +23,7 @@
 #import "UIView+Circular.h"
 #import "UIImage+TechDebt.h"
 
-@import SoPretty;
+@import CanvasCore;
 
 @interface CBIColorfulCell ()
 @property (nonatomic) UIColor *courseTintColor;

@@ -17,11 +17,11 @@
     
 
 import UIKit
-import ObserverAlertKit
-import TooLegit
+
+
 import CoreData
-import SoPersistent
-import SoLazy
+
+import CanvasCore
 import ReactiveSwift
 
 class AlertsListViewController: FetchedTableViewController<Alert> {

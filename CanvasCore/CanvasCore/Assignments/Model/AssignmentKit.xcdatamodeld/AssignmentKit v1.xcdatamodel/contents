@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="1.0">
+    <entity name="Assignment" representedClassName=".Assignment" syncable="YES">
+        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="assignmentGroupID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="canView" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="courseID" attributeType="String" syncable="YES"/>
+        <attribute name="currentGrade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="details" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="discussionTopicID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="due" optional="YES" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="gradingPeriodID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="groupSetID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasSubmitted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlURL" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lockExplanation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="muted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="&quot;&quot;" indexed="YES" syncable="YES"/>
+        <attribute name="needsGradingCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="quizID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawDueStatus" attributeType="String" defaultValueString="2" syncable="YES"/>
+        <attribute name="rawGradingType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawStatus" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="rawSubmissionTypes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="submissionExcused" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="submissionLate" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AssignmentGroup" inverseName="assignments" inverseEntity="AssignmentGroup" syncable="YES"/>
+        <relationship name="dueDateOverrides" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DueDateOverride" inverseName="assignment" inverseEntity="DueDateOverride" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubmissionEvent" inverseName="assignment" inverseEntity="SubmissionEvent" syncable="YES"/>
+        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="assignment" inverseEntity="Rubric" syncable="YES"/>
+    </entity>
+    <entity name="AssignmentGroup" representedClassName=".AssignmentGroup" syncable="YES">
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="weight" attributeType="Double" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="assignmentGroup" inverseEntity="Assignment" syncable="YES"/>
+    </entity>
+    <entity name="DueDateOverride" representedClassName=".DueDateOverride" syncable="YES">
+        <attribute name="due" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="dueDateOverrides" inverseEntity="Assignment" syncable="YES"/>
+    </entity>
+    <entity name="MediaComment" representedClassName=".MediaComment" syncable="YES">
+        <attribute name="contentType" attributeType="String" defaultValueString="video/mp4" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rawKind" attributeType="String" defaultValueString="video" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
+    </entity>
+    <entity name="Rubric" representedClassName=".Rubric" syncable="YES">
+        <attribute name="assignmentID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="freeFormCriterionComments" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pointsPossible" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="rubric" inverseEntity="Assignment" syncable="YES"/>
+        <relationship name="currentSubmission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" syncable="YES"/>
+        <relationship name="rubricCriterions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RubricCriterion" inverseName="rubric" inverseEntity="RubricCriterion" syncable="YES"/>
+    </entity>
+    <entity name="RubricAssessment" representedClassName=".RubricAssessment" syncable="YES">
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="assessments" inverseEntity="Submission" syncable="YES"/>
+    </entity>
+    <entity name="RubricCriterion" representedClassName=".RubricCriterion" syncable="YES">
+        <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="criterionDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="ratings" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RubricCriterionRating" inverseName="criterion" inverseEntity="RubricCriterionRating" syncable="YES"/>
+        <relationship name="rubric" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Rubric" inverseName="rubricCriterions" inverseEntity="Rubric" syncable="YES"/>
+    </entity>
+    <entity name="RubricCriterionRating" representedClassName=".RubricCriterionRating" syncable="YES">
+        <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="ratingDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="criterion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RubricCriterion" inverseName="ratings" inverseEntity="RubricCriterion" syncable="YES"/>
+    </entity>
+    <entity name="Submission" representedClassName=".Submission" parentEntity="SubmissionEvent" syncable="YES">
+        <attribute name="allowedExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="assignmentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="assignmentVisible" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="attempt" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateGraded" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="excused" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="late" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="rawSubmissionType" attributeType="String" defaultValueString="none" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="submittedMediaID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="submittedText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="submittedURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="assessments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RubricAssessment" inverseName="submission" inverseEntity="RubricAssessment" syncable="YES"/>
+        <fetchedProperty name="submittedMedia" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="Submission" predicateString="$FETCH_SOURCE.submittedMediaID == id"/>
+        </fetchedProperty>
+    </entity>
+    <entity name="SubmissionComment" representedClassName=".SubmissionComment" parentEntity="SubmissionEvent" syncable="YES">
+        <attribute name="text" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SubmissionEvent" representedClassName=".SubmissionEvent" isAbstract="YES" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="events" inverseEntity="Assignment" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Assignment" positionX="-10791" positionY="-3133" width="128" height="600"/>
+        <element name="AssignmentGroup" positionX="-10523" positionY="-3075" width="128" height="120"/>
+        <element name="DueDateOverride" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="MediaComment" positionX="-10791" positionY="-2232" width="128" height="120"/>
+        <element name="Rubric" positionX="-10530" positionY="-2799" width="128" height="165"/>
+        <element name="RubricAssessment" positionX="-10440" positionY="-2301" width="128" height="30"/>
+        <element name="RubricCriterion" positionX="-10314" positionY="-2997" width="128" height="165"/>
+        <element name="RubricCriterionRating" positionX="-10253" positionY="-2736" width="128" height="135"/>
+        <element name="Submission" positionX="-10791" positionY="-2555" width="128" height="344"/>
+        <element name="SubmissionComment" positionX="-10442" positionY="-2418" width="128" height="60"/>
+        <element name="SubmissionEvent" positionX="-10514" positionY="-2547" width="128" height="75"/>
+    </elements>
+</model>

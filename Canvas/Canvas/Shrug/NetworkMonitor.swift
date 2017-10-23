@@ -19,8 +19,7 @@
 import Foundation
 import CanvasKit1
 import Reachability
-import SoPretty
-
+import CanvasCore
 
 class NetworkMonitor: NSObject {
     static func engage() {

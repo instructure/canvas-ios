@@ -17,14 +17,8 @@
     
 
 import UIKit
-
-import TooLegit
-import SoLazy
-import SoPretty
-import SoPersistent
-import EnrollmentKit
 import ReactiveSwift
-import CalendarKit
+import CanvasCore
 
 open class CalendarDayListViewController: UITableViewController {
     // ---------------------------------------------
@@ -75,7 +69,6 @@ open class CalendarDayListViewController: UITableViewController {
     // Views
     var emptyView: NoResultsView? = nil
     var noResultsLabel: UILabel? = nil
-    fileprivate var customRefreshControl: CSGFlyingPandaRefreshControl? = nil
 
     // Date Formatters
     var dateFormatter = DateFormatter()

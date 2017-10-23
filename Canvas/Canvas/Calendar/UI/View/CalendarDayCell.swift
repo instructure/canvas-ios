@@ -18,7 +18,7 @@
 
 import UIKit
 import CanvasCore
-import SoPretty
+
 
 enum CalendarDayCellState {
     case normal

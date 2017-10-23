@@ -15,18 +15,11 @@
 //
 
 import UIKit
-import SoEdventurous
-import TooLegit
-import SoPersistent
-import SoIconic
+import CanvasCore
 import SafariServices
-import SoProgressive
-import SoPretty
-import ReactiveSwift
-import SoLazy
 import ReactiveSwift
 
-class ModuleDetailsViewController: SoPersistent.TableViewController {
+class ModuleDetailsViewController: CanvasCore.TableViewController {
     let session: Session
     let courseID: String
     let viewModel: ModuleViewModel

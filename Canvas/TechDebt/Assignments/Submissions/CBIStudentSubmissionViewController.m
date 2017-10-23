@@ -39,11 +39,7 @@
 #import "ThreadedDiscussionViewController.h"
 
 @import CanvasKeymaster;
-@import SoPretty;
-@import AssignmentKit;
-@import FileKit;
-@import TooLegit;
-@import EnrollmentKit;
+@import CanvasCore;
 
 static const BOOL newSubmissionWorkflowFeatureEnabled = NO;
 

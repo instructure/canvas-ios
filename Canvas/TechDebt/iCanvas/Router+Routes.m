@@ -24,7 +24,7 @@
 #import "UIViewController+Transitions.h"
 #import "CBIQuizzesTabViewModel.h"
 #import "CBIQuizViewModel.h"
-@import MyLittleViewController;
+#import <TechDebt/MyLittleViewController.h>
 
 #import "CBIAnnouncementsTabViewModel.h"
 #import "CBISyllabusTabViewModel.h"
@@ -57,15 +57,12 @@
 #import "CBIAssignmentDetailViewController.h"
 #import "UIViewController+AnalyticsTracking.h"
 
-@import QuizKit;
 #import <CanvasKit/CanvasKit.h>
 #import "CKCanvasAPI+CurrentAPI.h"
 
-@import PageKit;
-@import WhizzyWig;
+@import CanvasCore;
 @import CanvasKeymaster;
-@import EnrollmentKit;
-@import SoPretty;
+@import CanvasCore;
 
 typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id viewModel);
 

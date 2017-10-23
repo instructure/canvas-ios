@@ -19,18 +19,8 @@ import CanvasCore
 
 class RootTabBarController: UITabBarController {
     
-    let branding: Brand?
-    
-    init(branding: Brand?) {
-        self.branding = branding
+    init() {
         super.init(nibName: nil, bundle: nil)
-        
-        if let branding = branding {
-            UITabBar.appearance().tintColor = branding.primaryBrandColor
-            UITabBar.appearance().barTintColor = UIColor.white
-            UITabBar.appearance().unselectedItemTintColor = UIColor(red: 115/255.0, green: 129/255.0, blue: 140/255.0, alpha: 1)
-        }
-        
         self.delegate = self
     }
     
@@ -44,7 +34,7 @@ class RootTabBarController: UITabBarController {
     }
     
     func configureTabs() {
-        var controllers = [coursesTab(), inboxTab(branding: branding), profileTab()]
+        var controllers = [coursesTab(), inboxTab(), profileTab()]
         #if DEBUG
         controllers.append(stagingTab())
         #endif

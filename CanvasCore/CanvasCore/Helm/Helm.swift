@@ -28,7 +28,6 @@ typealias HelmPreActionHandler = (HelmViewController) -> Void
 open class HelmManager: NSObject {
 
     public static let shared = HelmManager()
-    public static var branding: Brand?
     public var bridge: RCTBridge!
     
     public var onReactLoginComplete: () -> Void = {}

@@ -17,7 +17,7 @@
     
 
 #import "CBIColorfulViewModel.h"
-@import MyLittleViewController;
+#import <TechDebt/MyLittleViewController.h>
 
 @interface CBIColorfulViewModel (CellViewModel) <MLVCTableViewCellViewModel>
 

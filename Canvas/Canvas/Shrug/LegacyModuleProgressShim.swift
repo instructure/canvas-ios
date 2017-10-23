@@ -17,12 +17,9 @@
     
 
 import Foundation
-import SoProgressive
-import TooLegit
 import TechDebt
 import CanvasKit
-import SoEdventurous
-import struct SoProgressive.Progress
+import CanvasCore
 
 /** Keeps TechDebt Modules and Assignments UI up to date course progress
  */
@@ -40,7 +37,7 @@ extension Session {
     }
 }
 
-extension Progress {
+extension CanvasCore.Progress {
     init?(contextID: ContextID, notification: NSNotification) {
         guard let
             id = notification.userInfo?[CBIUpdatedModuleItemIDStringKey] as? String,
@@ -49,7 +46,7 @@ extension Progress {
             return nil
         }
 
-        let kind: Progress.Kind
+        let kind: CanvasCore.Progress.Kind
         switch noteKind {
         case CKIModuleItemCompletionRequirementMustView:
             kind = .viewed

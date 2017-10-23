@@ -17,7 +17,7 @@
     
 
 import UIKit
-import WhizzyWig
+import CanvasCore
 
 class DetailsDescriptionCell: WhizzyWigTableViewCell {
 

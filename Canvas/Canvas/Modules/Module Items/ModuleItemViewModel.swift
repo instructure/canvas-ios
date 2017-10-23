@@ -17,15 +17,8 @@
 import ReactiveSwift
 import ReactiveCocoa
 import Result
-import SoPersistent
-import SoEdventurous
-import TooLegit
-import SoIconic
-import SoPretty
+import CanvasCore
 import TechDebt
-import SoProgressive
-import PageKit
-import AssignmentKit
 
 extension Notification.Name {
     static let moduleItemBecameActive = Notification.Name(rawValue: "ModuleItemBecameActiveNotification")

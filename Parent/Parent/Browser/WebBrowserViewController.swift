@@ -13,13 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
-import TooLegit
-import SoPretty
 import CFNetwork
+import CanvasCore
 
 class WebBrowserViewController: UIViewController {
 
@@ -119,7 +116,7 @@ class WebBrowserViewController: UIViewController {
         titleField.textColor = self.navigationController?.navigationBar.barStyle == .black ? UIColor.white : UIColor.darkText
         titleField.backgroundColor = UIColor.clear
         titleField.borderStyle = .none
-        titleField.tintColor = Brand.current().tintColor
+        titleField.tintColor = Brand.current.tintColor
         titleField.returnKeyType = .go
         titleField.delegate = self
 

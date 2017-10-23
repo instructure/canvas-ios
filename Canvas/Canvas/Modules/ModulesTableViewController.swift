@@ -15,9 +15,7 @@
 //
 
 import UIKit
-import SoEdventurous
-import TooLegit
-import SoPersistent
+import CanvasCore
 
 class ModulesTableViewController: FetchedTableViewController<Module> {
     let courseID: String

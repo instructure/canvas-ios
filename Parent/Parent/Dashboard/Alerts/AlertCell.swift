@@ -18,10 +18,10 @@
 
 import UIKit
 
-import SoPersistent
-import ObserverAlertKit
-import SoLazy
-import TooLegit
+
+
+import CanvasCore
+
 
 class AlertCell: UITableViewCell {
 

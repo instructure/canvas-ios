@@ -28,12 +28,10 @@
 #import "CBIQuizViewModel.h"
 #import "CBISubmissionAnnotationPreviewHelper.h"
 #import "UIImage+TechDebt.h"
-@import PageKit;
 @import CanvasKeymaster;
-
 @import PSPDFKit;
-@import SoAnnotated;
 @import CanvasKit;
+@import CanvasCore;
 
 static NSString *const CBISubmissionCellReuseIDAndNibName = @"CBISubmissionCell";
 static UIImage *(^iconForSubmissionType)(NSString *) = ^(NSString *submissionType) {

@@ -17,12 +17,8 @@
     
 
 import UIKit
-import EnrollmentKit
-import TooLegit
-import SoPretty
-import SoPersistent
 import ReactiveSwift
-import SoLazy
+import CanvasCore
 import TechDebt
 
 extension Tab {

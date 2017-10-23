@@ -17,8 +17,7 @@
     
 
 import Foundation
-import NotificationKit
-
+import CanvasCore
 
 protocol PushNotificationPreauthorizationProtocol {
     func showPreauthorizationPrompt()

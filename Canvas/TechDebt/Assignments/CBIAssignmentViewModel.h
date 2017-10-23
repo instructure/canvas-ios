@@ -17,7 +17,7 @@
     
 
 #import "CBILockableViewModel.h"
-@import MyLittleViewController;
+#import <TechDebt/MyLittleViewController.h>
 
 @protocol CBISubmissionsViewModel <MLVCTableViewModel>
 - (UIViewController *)createViewController;

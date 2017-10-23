@@ -18,7 +18,7 @@
 
 #import "CBISubmissionCell.h"
 #import "CBISubmissionViewModel.h"
-@import SoPretty;
+@import CanvasCore;
 
 @interface CBISubmissionCell ()
 @property (nonatomic) UIColor *courseTintColor;

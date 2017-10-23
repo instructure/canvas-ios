@@ -14,14 +14,11 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-import SoEdventurous
-import SoPersistent
-import TooLegit
+import CanvasCore
 import ReactiveSwift
 import ReactiveCocoa
 import Result
 import Cartography
-import SoLazy
 import TechDebt
 
 

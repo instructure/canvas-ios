@@ -17,8 +17,7 @@
     
 
 import UIKit
-
-import CalendarKit
+import CanvasCore
 
 public typealias CalendarEventSelected = (CalendarEvent) -> ()
 

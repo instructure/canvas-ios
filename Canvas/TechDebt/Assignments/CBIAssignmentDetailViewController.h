@@ -16,7 +16,7 @@
     
     
 
-@import MyLittleViewController;
+#import <TechDebt/MyLittleViewController.h>
 #import "CBIAssignmentViewModel.h"
 
 @interface CBIAssignmentDetailViewController : MLVCViewController

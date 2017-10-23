@@ -18,10 +18,8 @@
 
 import UIKit
 import Foundation
-import NotificationKit
-import TooLegit
+import CanvasCore
 import CanvasKeymaster
-import SoLazy
 
 // TODO: Due to an error that occurs in Swift 1.2 and Xcode 6.3 it is not possible to
 // create an extension that implements UIApplicationDelegate.  As a workaround the methods

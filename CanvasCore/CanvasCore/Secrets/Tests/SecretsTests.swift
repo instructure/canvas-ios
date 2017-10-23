@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-@testable import CanvasCore
+@testable 
 
 import XCTest
 

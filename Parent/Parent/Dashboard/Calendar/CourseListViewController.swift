@@ -16,10 +16,10 @@
     
     
 
-import SoPersistent
-import TooLegit
-import EnrollmentKit
-import Airwolf
+
+
+import CanvasCore
+
 
 
 typealias CourseListSelectCourseAction = (_ session: Session, _ observeeID: String, _ course: Course)->Void

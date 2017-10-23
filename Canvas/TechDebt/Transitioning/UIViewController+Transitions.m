@@ -17,7 +17,7 @@
     
 
 #import "UIViewController+Transitions.h"
-@import SoPretty;
+@import CanvasCore;
 
 @implementation UIViewController (Transitions)
 

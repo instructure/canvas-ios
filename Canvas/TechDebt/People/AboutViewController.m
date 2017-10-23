@@ -25,7 +25,7 @@
 #import "AboutViewController.h"
 #import "WebBrowserViewController.h"
 #import "Analytics.h"
-@import SoPretty;
+@import CanvasCore;
 @import CanvasCore;
 #import "CBILog.h"
 

@@ -35,11 +35,9 @@
 #import "Analytics.h"
 #import "LTIViewController.h"
 
-@import SoPretty;
+@import CanvasCore;
 @import CanvasKit;
 @import CanvasKeymaster;
-@import Peeps;
-@import EnrollmentKit;
 #import "CBILog.h"
 
 #ifdef __APPLE__

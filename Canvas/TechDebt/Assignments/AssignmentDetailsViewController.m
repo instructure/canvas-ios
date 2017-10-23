@@ -26,11 +26,9 @@
 #import "UIWebView+SafeAPIURL.h"
 #import "Router.h"
 #import "CBIModuleProgressNotifications.h"
-@import SoPretty;
 @import CanvasKit;
 #import "CBILog.h"
 @import CanvasKeymaster;
-@import PageKit;
 @import CanvasCore;
 
 @interface AssignmentDetailsViewController () <UIWebViewDelegate>

@@ -17,7 +17,7 @@
     
 
 import Foundation
-import CalendarKit
+import CanvasCore
 
 extension UIColor {
     public static func parentRedColor() -> UIColor {

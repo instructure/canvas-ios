@@ -16,12 +16,7 @@
     
     
 
-import EnrollmentKit
-import SoPretty
-import TooLegit
-import SoIconic
-import SoPretty
-import SoLazy
+import CanvasCore
 
 public func EnrollmentsTab(session: Session) throws -> UIViewController {
     let route: (UIViewController, URL)->() = { vc, url in

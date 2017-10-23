@@ -17,8 +17,8 @@
     
 
 import Foundation
-import TooLegit
-import Airwolf
+
+
 
 class DefaultAvatarCoordinator {
     static let CurrentAvatarIndexKey = "current_image_index"

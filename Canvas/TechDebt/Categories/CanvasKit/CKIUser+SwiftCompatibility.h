@@ -25,7 +25,7 @@
 //
 
 @import CanvasKit;
-@import TooLegit;
+@import CanvasCore;
 
 @interface CKIUser (SwiftCompatibility)
 

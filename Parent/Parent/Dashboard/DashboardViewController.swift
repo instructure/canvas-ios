@@ -18,17 +18,17 @@
 
 import UIKit
 
-import TooLegit
+
 import Result
 import CoreData
 import ReactiveSwift
-import SoPersistent
-import EnrollmentKit
-import CalendarKit
-import ObserverAlertKit
-import SoPretty
-import SoLazy
-import Airwolf
+
+import CanvasCore
+import CanvasCore
+
+
+import CanvasCore
+
 
 typealias DashboardSettingsAction = (_ session: Session)->Void
 typealias DashboardSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
@@ -67,8 +67,8 @@ class DashboardViewController: UIViewController {
     var selectCalendarEventAction: DashboardSelectCalendarEventAction? = nil
     var selectAlertAction: DashboardSelectAlertAction? = nil
 
-    var logoutAction: ((Void)->Void)? = nil
-    var addStudentAction: ((Void)->Void)? = nil
+    var logoutAction: (()->Void)? = nil
+    var addStudentAction: (()->Void)? = nil
 
     var currentStudent: Student? {
         didSet {

@@ -13,17 +13,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
-import TooLegit
 import TechDebt
 import PSPDFKit
-import SoPretty
-import SoLazy
-import SoPersistent
-import SoEdventurous
 import CanvasKeymaster
 import Fabric
 import Crashlytics
@@ -45,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         makeAWindow()
         postLaunchSetup()
+        TheKeymaster?.fetchesBranding = true
         TheKeymaster?.delegate = loginConfig
         
         return true
@@ -122,9 +116,10 @@ extension AppDelegate {
         Analytics.prepare()
         NetworkMonitor.engage()
         CBILogger.install(loginConfig.logFileManager)
-        Brand.current().apply(self.window!)
+        Brand.current.apply(self.window!)
         excludeHelmInBranding()
         UINavigationBar.appearance().barStyle = .black
+        if let w = window { Brand.current.apply(w) }
         Router.shared().addCanvasRoutes(handleError)
         setupDefaultErrorHandling()
         UIApplication.shared.reactive.applicationIconBadgeNumber
@@ -171,7 +166,7 @@ extension AppDelegate {
     }
     
     func setupDefaultErrorHandling() {
-        SoLazy.ErrorReporter.setErrorHandler({ error, presentingViewController in
+        CanvasCore.ErrorReporter.setErrorHandler({ error, presentingViewController in
             self.alertUser(of: error, from: presentingViewController)
             
             if error.shouldRecordInCrashlytics {
@@ -276,13 +271,13 @@ extension AppDelegate: NativeLoginManagerDelegate {
         ModuleItem.beginObservingProgress(session)
         CKCanvasAPI.updateCurrentAPI()
         
-        let b = Brand.current()
+        let b = Brand.current
         guard let brand = CKIBrand() else {
             fatalError("Why can't I init a brand?")
         }
         brand.navigationBackground = "#313640" // ask me why this value is hard-coded and I'll tell you a sad sad tale
-        brand.navigationButtonColor = b.navForegroundColor.hex
-        brand.navigationTextColor = b.navForegroundColor.hex
+        brand.navigationButtonColor = b.navButtonColor.hex
+        brand.navigationTextColor = b.navTextColor.hex
         brand.primaryColor = b.tintColor.hex
         brand.primaryButtonTextColor = b.secondaryTintColor.hex
         brand.linkColor = b.tintColor.hex
@@ -295,9 +290,6 @@ extension AppDelegate: NativeLoginManagerDelegate {
         brand.headerImageURL = ""
         
         client.branding = brand
-        HelmManager.branding = (brand.jsonDictionary()
-            as? [String: Any])
-            .flatMap(CanvasCore.Brand.init(webPayload:))
     }
     
     func didLogout(_ controller: UIViewController) {

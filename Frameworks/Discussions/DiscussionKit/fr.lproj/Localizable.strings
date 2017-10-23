@@ -1,6 +1,0 @@
-/* Error Message when the app can't load an object model from the database */
-"Failed to load (discussionKitModelName) NSManagedObjectModel" = "Échec de téléchargement (discussionKitModelName) NSManagedObjectModel";
-
-/* DiscussionKit Database Load Failure Message */
-"There was a problem loading the DiscussionKit database file." = "Un problème est survenu lors du chargement du fichier de base de données DiscussionKit.";
-

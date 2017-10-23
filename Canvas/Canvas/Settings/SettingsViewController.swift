@@ -18,8 +18,7 @@
 
 import Foundation
 import UIKit
-import NotificationKit
-import TooLegit
+import CanvasCore
 import CanvasKit1
 import TechDebt
 import CanvasKeymaster

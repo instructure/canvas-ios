@@ -16,7 +16,6 @@
 
 import UIKit
 import PSPDFKit
-import SoAnnotated
 import React
 import CanvasKeymaster
 import AFNetworking

@@ -17,18 +17,18 @@
     
 
 import UIKit
-import TooLegit
-import SoPretty
-import SoLazy
-import Airwolf
+
+
+import CanvasCore
+
 
 class NoStudentsViewController: UIViewController {
 
     @IBOutlet var triangleBackgroundGradientView: TriangleBackgroundGradientView!
     @IBOutlet var proceedButton: UIButton!
 
-    var proceedAction: (Void)->Void = { }
-    var logoutAction: (Void)->Void = { }
+    var proceedAction: ()->Void = { }
+    var logoutAction: ()->Void = { }
 
     init() {
         super.init(nibName: "NoStudentsViewController", bundle: nil)

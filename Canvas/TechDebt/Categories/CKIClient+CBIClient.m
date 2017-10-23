@@ -21,7 +21,7 @@
 
 #import <objc/runtime.h>
 
-@import TooLegit;
+@import CanvasCore;
 
 NSString * const CBICourseColorUpdatedNotification = @"CBICourseColorUpdatedNotification";
 NSString * const CBICourseColorUpdatedCourseIDKey = @"CBICourseColorUpdatedCourseIDKey";

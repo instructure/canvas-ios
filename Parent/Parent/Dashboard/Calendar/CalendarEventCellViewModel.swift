@@ -18,8 +18,8 @@
 
 import Foundation
 
-import SoPersistent
-import CalendarKit
+
+import CanvasCore
 
 struct CalendarEventCellViewModel: TableViewCellViewModel {
     static var subtitleDateFormatter: DateFormatter = {

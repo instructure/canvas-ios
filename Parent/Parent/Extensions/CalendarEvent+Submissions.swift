@@ -17,8 +17,8 @@
     
 
 import Foundation
-import CalendarKit
-import AssignmentKit
+import CanvasCore
+import CanvasCore
 
 private struct Submission {
 

@@ -17,11 +17,7 @@
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
-import SoPretty
-import SoPersistent
-import SuchActivity
-import TooLegit
-import SoIconic
+import CanvasCore
 
 extension Activity {
     var icon: UIImage? {

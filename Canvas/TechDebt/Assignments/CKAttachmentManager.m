@@ -30,7 +30,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "EXTScope.h"
 
-@import MediaKit;
+@import CanvasCore;
 
 @interface CKAttachmentManager () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

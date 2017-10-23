@@ -24,7 +24,7 @@
 
 #import "FileViewController.h"
 
-@import SoPretty;
+@import CanvasCore;
 
 @interface CBIDeleteFileConfirmationAlertView : UIAlertView
 @property (nonatomic) MLVCTableViewController *tableViewController;

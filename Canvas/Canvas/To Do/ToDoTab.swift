@@ -18,10 +18,10 @@
 
 import Foundation
 
-import SoPretty
-import TooLegit
+
+
 import TechDebt
-import SoIconic
+import CanvasCore
 
 public func ToDoTabViewController(session: Session, route: @escaping (UIViewController, URL)->()) throws -> UIViewController {
         

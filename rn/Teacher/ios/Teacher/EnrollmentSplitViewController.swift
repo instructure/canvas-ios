@@ -43,7 +43,7 @@ class EnrollmentSplitViewController: HelmSplitViewController {
         guard let tabBarController = vc.tabBarController else { return }
         guard let window = UIApplication.shared.delegate?.window else { return }
         
-        let enrollments = RootTabBarController(branding: nil).coursesTab()
+        let enrollments = RootTabBarController().coursesTab()
         var vcs = tabBarController.viewControllers ?? []
         vcs[0] = enrollments
         

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="Alert" representedClassName=".Alert" syncable="YES">
+        <attribute name="actionDate" attributeType="Date" syncable="YES"/>
+        <attribute name="assetPath" attributeType="String" syncable="YES"/>
+        <attribute name="courseID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="dismissed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="observerID" attributeType="String" syncable="YES"/>
+        <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="studentID" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="thresholdID" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="AlertThreshold" representedClassName=".AlertThreshold" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="observerID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="studentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="threshold" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Alert" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="AlertThreshold" positionX="-63" positionY="63" width="128" height="120"/>
+    </elements>
+</model>

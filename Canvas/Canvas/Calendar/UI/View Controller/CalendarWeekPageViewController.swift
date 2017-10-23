@@ -17,7 +17,7 @@
     
 
 import UIKit
-import CalendarKit
+import CanvasCore
 
 public protocol CalendarWeekPageViewControllerDelegate: class {
     func weekPageViewController(_ calendarWeekPageViewController: CalendarWeekPageViewController, daySelected day: Date)

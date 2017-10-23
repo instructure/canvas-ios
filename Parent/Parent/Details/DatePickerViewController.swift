@@ -17,7 +17,7 @@
     
 
 import Foundation
-import SoLazy
+import CanvasCore
 
 class DatePickerViewController: UIViewController {
 

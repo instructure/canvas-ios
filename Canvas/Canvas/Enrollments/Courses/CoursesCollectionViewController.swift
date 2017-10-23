@@ -16,12 +16,9 @@
     
     
 
-import EnrollmentKit
-import SoPersistent
-import TooLegit
+import CanvasCore
 import ReactiveSwift
 import Cartography
-import SoLazy
 
 func courseCardViewModel(_ enrollment: Enrollment, session: Session, viewController:
     CoursesCollectionViewController?, routeGrades: @escaping (URL) -> ()) -> EnrollmentCardViewModel {

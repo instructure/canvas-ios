@@ -19,9 +19,9 @@
 #import "DiscussionChildCountIndicatorView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@import SoPretty;
+@import CanvasCore;
 
-@import SoPretty;
+@import CanvasCore;
 
 @implementation DiscussionChildCountIndicatorView {
     UILabel *textDrawingLabel;

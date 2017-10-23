@@ -14,13 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
     
-    
-
 import UIKit
-import Airwolf
-import SoPersistent
-import TooLegit
-
+import CanvasCore
 
 typealias StudentsListSelectStudentAction = (_ session: Session, _ student: Student)->Void
 

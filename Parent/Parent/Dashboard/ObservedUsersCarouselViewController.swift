@@ -18,13 +18,13 @@
 
 import UIKit
 
-import TooLegit
+
 import CoreData
-import SoPersistent
-import SoLazy
+
+import CanvasCore
 import ReactiveSwift
 import Kingfisher
-import Airwolf
+
 
 typealias StudentFetchedCollection = FetchedCollection<Student>
 

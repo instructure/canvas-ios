@@ -15,9 +15,7 @@
 //
 
 import UIKit
-import Airwolf
-import TooLegit
-
+import CanvasCore
 
 extension Student {
     static func refreshForAccessRemoved(session: Session, from currentViewController: UIViewController) {

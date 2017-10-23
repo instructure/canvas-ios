@@ -15,9 +15,8 @@
 //
 
 import Foundation
-import Keymaster
-import SoLazy
-import Airwolf
+import CanvasCore
+
 
 extension AppDelegate {
     static func resetRegionForTesting() {

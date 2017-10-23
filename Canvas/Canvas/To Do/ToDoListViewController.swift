@@ -17,13 +17,8 @@
     
 
 import Foundation
-import TooLegit
-import TodoKit
-import SoPersistent
-import SoPretty
 import ReactiveSwift
-import SoLazy
-import SoIconic
+import CanvasCore
 
 func colorfulToDoViewModel(session: Session, toDoItem: Todo) -> ColorfulViewModel {
     struct DateFormatters {

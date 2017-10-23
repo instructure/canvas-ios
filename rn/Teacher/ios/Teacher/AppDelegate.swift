@@ -22,9 +22,7 @@ import PSPDFKit
 import Fabric
 import Crashlytics
 import CanvasCore
-import SoLazy
 import React
-import SoAnnotated
 
 public let EarlGreyExists = NSClassFromString("EarlGreyImpl") != nil;
 
@@ -53,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         registerNativeRoutes()
         HelmManager.shared.onReactLoginComplete = {
-            self.window?.rootViewController = self.createRootViewController()
+            self.window?.rootViewController = RootTabBarController()
         }
     }
     
@@ -105,7 +103,7 @@ extension AppDelegate: RCTBridgeDelegate {
 extension AppDelegate: NativeLoginManagerDelegate {
     func didLogin(_ client: CKIClient) {
         if let brandingInfo = client.branding?.jsonDictionary() as? [String: Any] {
-            HelmManager.branding = Brand(webPayload: brandingInfo)
+            Brand.setCurrent(Brand(webPayload: brandingInfo), applyInWindow: window)
         }
     }
     

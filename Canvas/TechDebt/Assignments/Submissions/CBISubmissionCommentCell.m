@@ -20,7 +20,7 @@
 #import "CBISubmissionCommentViewModel.h"
 #import <MediaPlayer/MediaPlayer.h>
 @import CanvasKeymaster;
-@import SoPretty;
+@import CanvasCore;
 
 static NSString *const CBISubmissionCommentCellPlayingNotification = @"CBISubmissionCommentCellPlayingNotification";
 

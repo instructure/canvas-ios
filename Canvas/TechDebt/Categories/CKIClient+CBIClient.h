@@ -17,7 +17,7 @@
     
 
 #import <CanvasKit/CanvasKit.h>
-@import TooLegit;
+@import CanvasCore;
 
 
 

@@ -17,7 +17,7 @@
     
 
 import UIKit
-import SoLazy
+import CanvasCore
 
 let RemindableIDKey = "RemindableID"
 let RemindableActionURLKey = "RemindableActionURL"
@@ -68,7 +68,7 @@ extension Remindable {
     }
 }
 
-import AssignmentKit
+import CanvasCore
 
 extension Assignment: Remindable {
     fileprivate static var dueDateFormatter: DateFormatter = {
@@ -95,7 +95,7 @@ extension Assignment: Remindable {
     }
 }
 
-import CalendarKit
+import CanvasCore
 
 extension CalendarEvent: Remindable {
     fileprivate static var startAtDateFormatter: DateFormatter = {

@@ -18,11 +18,11 @@
 
 import UIKit
 import Result
-import SoLazy
-import TooLegit
-import Airwolf
-import SoPersistent
-import SoPretty
+import CanvasCore
+
+
+
+
 
 class WebLoginViewController: UIViewController {
     

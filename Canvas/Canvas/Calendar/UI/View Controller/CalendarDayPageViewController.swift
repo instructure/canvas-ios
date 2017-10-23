@@ -17,9 +17,7 @@
     
 
 import UIKit
-
-import TooLegit
-import CalendarKit
+import CanvasCore
 
 public protocol CalendarDayPageViewControllerDelegate {
     func dayPageViewController(_ calendarDayPageViewController: CalendarDayPageViewController, willTransitionToDay day: Date)

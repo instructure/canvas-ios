@@ -17,10 +17,10 @@
     
 
 import Foundation
-import SoPersistent
-import ObserverAlertKit
-import SoLazy
-import TooLegit
+
+
+import CanvasCore
+
 
 struct AlertCellViewModel: TableViewCellViewModel {
 

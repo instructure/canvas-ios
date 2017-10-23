@@ -34,12 +34,9 @@
 #import "CKIClient+CBIClient.h"
 #import "CBIAssignmentDetailViewController.h"
 
-@import SoAnnotated;
 @import PSPDFKit;
 @import CanvasKeymaster;
-@import AssignmentKit;
-@import SoPersistent;
-@import SoAnnotated_PreSubmission;
+@import CanvasCore;
 
 // TODO: REMOVE
 

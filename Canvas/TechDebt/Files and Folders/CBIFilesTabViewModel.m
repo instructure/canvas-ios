@@ -25,7 +25,7 @@
 #import "ReceivedFilesViewController.h"
 @import CanvasKeymaster;
 
-@import SoPretty;
+@import CanvasCore;
 @import CanvasKit;
 
 @interface CBIFilesTabViewModel () <UIAlertViewDelegate, UIActionSheetDelegate>

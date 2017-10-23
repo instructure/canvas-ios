@@ -18,9 +18,9 @@
 
 import Foundation
 
-import Airwolf
+
 import Marshal
-import SoLazy
+import CanvasCore
 
 extension Router {
     func defaultErrorHandler() -> ((UIViewController, NSError) -> ()) {

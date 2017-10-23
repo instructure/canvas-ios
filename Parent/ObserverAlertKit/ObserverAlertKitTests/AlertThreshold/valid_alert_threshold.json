@@ -1,7 +1,0 @@
-{
-    "parent_id" : "7f6a632b-3f52-4fb2-a2ee-1dd22b8aa5e3",
-    "threshold" : "90",
-    "id" : "14648805210330.8522924964781851",
-    "alert_type" : "assignment_grade_high",
-    "student_id" : "16"
-}

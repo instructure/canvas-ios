@@ -19,15 +19,13 @@
 import UIKit
 
 import Result
-import TooLegit
-import Keymaster
+
+
 import ReactiveSwift
 import ReactiveCocoa
-import EnrollmentKit
-import Airwolf
-import SoLazy
-import SoPersistent
-import SoSupportive
+import CanvasCore
+
+import CanvasCore
 import Marshal
 
 let LoggedInNotificationContentsSession = "LoggedInNotificationContentsSession"

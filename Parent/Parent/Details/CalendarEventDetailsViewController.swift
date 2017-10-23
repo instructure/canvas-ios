@@ -17,11 +17,11 @@
     
 
 import UIKit
-import CalendarKit
-import TooLegit
+import CanvasCore
+
 import ReactiveSwift
-import SoPersistent
-import EnrollmentKit
+
+import CanvasCore
 
 extension EventDetailsViewModel {
     static func detailsForCalendarEvent(_ baseURL: URL, studentID: String, context: UIViewController, calendarEvent: CalendarEvent) -> [EventDetailsViewModel] {

@@ -14,19 +14,10 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
     
-    
-
 import UIKit
-
-import TooLegit
-import Keymaster
-import ObserverAlertKit
-import TooLegit
-import WhizzyWig
+import CanvasCore
 import Fabric
 import Crashlytics
-import Airwolf
-import SoLazy
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

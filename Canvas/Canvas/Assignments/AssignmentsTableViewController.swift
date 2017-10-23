@@ -17,15 +17,10 @@
     
 
 import Foundation
-import AssignmentKit
-import SoPretty
-import EnrollmentKit
-import TooLegit
 import ReactiveSwift
-import SoLazy
-import SoPersistent
 import Result
 import TechDebt
+import CanvasCore
 
 extension Course {
     func totalGrade(_ gradingPeriodItem: GradingPeriodItem?) -> String {

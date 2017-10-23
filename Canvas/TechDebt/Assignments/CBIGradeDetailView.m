@@ -21,11 +21,8 @@
 #import <CanvasKit1/CanvasKit1.h>
 #import <QuartzCore/QuartzCore.h>
 #import "CKIClient+CBIClient.h"
-
-@import EnrollmentKit;
-@import TooLegit;
 @import CanvasKeymaster;
-@import SoPretty;
+@import CanvasCore;
 
 @interface CBIGradeDetailView ()
 @property (weak, nonatomic) IBOutlet UILabel *pointsGrade;

@@ -126,7 +126,7 @@ open class Secrets: NSObject {
             return false
         }
         
-        return toggleValues.findFirstMatch { domain.contains($0) || $0.contains(domain) } != nil
+        return toggleValues.first { domain.contains($0) || $0.contains(domain) } != nil
     }
     
     open static func featureEnabled(_ toggle: FeatureToggleKey, domain: String?) -> Bool {

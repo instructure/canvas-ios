@@ -27,7 +27,7 @@
 #import "CKCourse.h"
 
 #import "UIWebView+SafeAPIURL.h"
-@import SoPretty;
+@import CanvasCore;
 @import CanvasKeymaster;
 
 // uncomment this #define to get some logging data to debug cell loading

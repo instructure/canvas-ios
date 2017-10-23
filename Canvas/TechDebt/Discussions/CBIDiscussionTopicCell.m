@@ -19,7 +19,7 @@
 #import "CBIDiscussionTopicCell.h"
 #import "CBIColorfulBadgeView.h"
 #import "CBIDiscussionTopicViewModel.h"
-@import SoPretty;
+@import CanvasCore;
 #import "UIImage+TechDebt.h"
 
 

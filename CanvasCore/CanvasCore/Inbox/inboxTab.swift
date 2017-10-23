@@ -10,17 +10,17 @@ import UIKit
 import ReactiveSwift
 import ReactiveCocoa
 
-public func inboxTab(branding: Brand?) -> UIViewController {
+public func inboxTab() -> UIViewController {
     let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
     let inboxNav = HelmNavigationController(rootViewController: inboxVC)
     
     let inboxSplit = HelmSplitViewController()
+    
     let empty = HelmNavigationController()
-    if let brand = branding {
-        empty.navigationBar.barTintColor = brand.navBgColor
-        empty.navigationBar.tintColor = brand.navButtonColor
-        empty.navigationBar.isTranslucent = false
-    }
+    empty.navigationBar.barTintColor = Brand.current.navBgColor
+    empty.navigationBar.tintColor = Brand.current.navButtonColor
+    empty.navigationBar.isTranslucent = false
+    
     inboxSplit.viewControllers = [inboxNav, empty]
     let icon = UIImage(named: "inbox", in: .core, compatibleWith: nil)
     inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: icon, selectedImage: nil)

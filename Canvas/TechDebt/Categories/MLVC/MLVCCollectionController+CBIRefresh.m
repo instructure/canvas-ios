@@ -16,7 +16,7 @@
     
     
 
-@import MyLittleViewController;
+#import <TechDebt/MyLittleViewController.h>
 @import ReactiveObjC;
 
 typedef id<MLVCViewModel> (^ViewModelFactory)(id model);

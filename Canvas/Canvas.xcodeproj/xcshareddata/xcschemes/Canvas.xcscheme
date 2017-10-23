@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49B5D65B1D05E8A90084BD39"
-               BuildableName = "SoIconic.framework"
-               BlueprintName = "SoIconic"
-               ReferencedContainer = "container:../Frameworks/Icons/Icons.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "492704721CF4AF7100C631C6"
                BuildableName = "Canvas.app"
                BlueprintName = "Canvas"
@@ -44,16 +30,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B1BFE4381D492ABD00ED3887"
-               BuildableName = "CanvasTests.xctest"
-               BlueprintName = "CanvasTests"
-               ReferencedContainer = "container:Canvas.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -18,11 +18,8 @@
 
 import Foundation
 import TechDebt
-import SoLazy
+import CanvasCore
 import Marshal
-import TooLegit
-import SoPersistent
-import PageKit
 import CanvasKeymaster
 import CanvasCore
 

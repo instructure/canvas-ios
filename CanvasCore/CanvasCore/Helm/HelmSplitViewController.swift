@@ -107,16 +107,3 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
     }
 }
 
-extension UISplitViewController {
-    open var prettyDisplayModeButtonItem: UIBarButtonItem {
-        let defaultButton = self.displayModeButtonItem
-        let icon: UIImage
-        if displayMode == .primaryOverlay || displayMode == .primaryHidden {
-            icon = UIImage(named: "collapse")!
-        } else {
-            icon = UIImage(named: "expand")!
-        }
-        let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
-        return prettyButton
-    }
-}

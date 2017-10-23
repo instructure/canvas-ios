@@ -10,10 +10,6 @@ import Foundation
 import CanvasCore
 
 extension AppDelegate {
-    func createRootViewController() -> UIViewController {
-        return RootTabBarController(branding: HelmManager.branding)
-    }
-    
     func registerNativeRoutes() {
         HelmManager.shared.registerNativeViewController(for: "/courses/:courseID", factory: { props in
             let split = EnrollmentSplitViewController()

@@ -20,8 +20,6 @@
 
 #import "UIFont+Canvas.h"
 
-@import SoPretty;
-
 @implementation MKNumberBadgeView (CanvasStyle)
 
 + (instancetype)badgeViewForView:(UIView *)view
@@ -35,8 +33,9 @@
     badgeView.alignment = NSTextAlignmentRight;
     badgeView.userInteractionEnabled = NO;
     badgeView.hideWhenZero = YES;
-    badgeView.fillColor = Brand.current.tintColor;
-    badgeView.strokeColor = Brand.current.tintColor;
+// MKNumberBadgeView should be removed with `remove-old-inbox` see https://github.com/instructure/ios/pull/1123
+//    badgeView.fillColor = Brand.current.tintColor;
+//    badgeView.strokeColor = Brand.current.tintColor;
     badgeView.strokeWidth = 0;
     return badgeView;
 }

@@ -25,7 +25,7 @@
 #import "ReceivedFilesViewController.h"
 #import "UIImage+TechDebt.h"
 
-@import SoPretty;
+@import CanvasCore;
 @import CanvasKeymaster;
 
 @interface CBIDeleteFolderConfirmationAlertView : UIAlertView

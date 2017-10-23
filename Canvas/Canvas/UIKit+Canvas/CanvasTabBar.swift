@@ -17,7 +17,7 @@
     
 
 import UIKit
-import NotificationKit
+import CanvasCore
 
 class CanvasTabBarController: UITabBarController {
     fileprivate var previousSelectedIndex = 0

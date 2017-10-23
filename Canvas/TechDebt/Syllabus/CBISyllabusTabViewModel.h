@@ -17,6 +17,7 @@
     
 
 #import "CBIColorfulViewModel.h"
+#import "MyLittleViewController.h"
 
 @interface CBISyllabusTabViewModel : CBIColorfulViewModel <MLVCTableViewModel>
 

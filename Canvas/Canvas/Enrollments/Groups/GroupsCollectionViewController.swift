@@ -17,10 +17,7 @@
     
 
 import UIKit
-import EnrollmentKit
-import SoPersistent
-import TooLegit
-import SoLazy
+import CanvasCore
 
 class GroupsCollectionViewController: FetchedCollectionViewController<Group>, UICollectionViewDelegateFlowLayout {
     

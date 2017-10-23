@@ -24,7 +24,7 @@
 #import "iCanvasConstants.h"
 #import "Analytics.h"
 
-@import SoPretty;
+@import CanvasCore;
 @import CanvasKit;
 
 @interface WebBrowserViewController() <UIWebViewDelegate, UIDocumentInteractionControllerDelegate, UITextFieldDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate> {

@@ -18,8 +18,8 @@
 
 import Foundation
 
-import SoPersistent
-import EnrollmentKit
+
+import CanvasCore
 
 struct CourseCellViewModel: TableViewCellViewModel {
     

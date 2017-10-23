@@ -21,9 +21,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 @import CanvasKit;
 @import CanvasKeymaster;
-
+@import CanvasCore;
 @import PSPDFKit;
-@import SoAnnotated;
 
 @implementation CBISubmissionAnnotationPreviewHelper
 

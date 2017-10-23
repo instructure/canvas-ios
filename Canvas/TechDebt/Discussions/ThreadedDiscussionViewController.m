@@ -40,7 +40,7 @@
 #import "UIImage+TechDebt.h"
 
 @import CanvasKeymaster;
-@import SoPretty;
+@import CanvasCore;
 
 #define PADDING_BOTTOM 10
 typedef void (^FetchAll)(NSArray *allObjects);

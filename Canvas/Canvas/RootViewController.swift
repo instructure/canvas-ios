@@ -18,16 +18,10 @@
 
 import Foundation
 import UIKit
-import SoLazy
-import EnrollmentKit
-import CalendarKit
 import ReactiveSwift
 import Kingfisher
 import TechDebt
-import TooLegit
-import Peeps
-import SoPretty
-
+import CanvasCore
 
 func rootViewController(_ session: Session) -> UIViewController {
     let tabs = CanvasTabBarController()

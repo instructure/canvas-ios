@@ -17,15 +17,9 @@
     
 
 import UIKit
-
-import TooLegit
-import SoLazy
-import SoPretty
-import SoPersistent
-import EnrollmentKit
 import ReactiveSwift
-import CalendarKit
 import Crashlytics
+import CanvasCore
 
 open class CalendarMonthViewController: UIViewController, CalendarViewDelegate, CalendarViewDataSource {
 

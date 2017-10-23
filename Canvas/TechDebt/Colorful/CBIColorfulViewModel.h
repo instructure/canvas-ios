@@ -18,7 +18,7 @@
 
 #import <CanvasKit/CanvasKit.h>
 #import "CBIViewModel.h"
-#import <MyLittleViewController/MyLittleViewController.h>
+#import <TechDebt/MyLittleViewController.h>
 
 @interface CBIColorfulViewModel : CBIViewModel <MLVCTableViewModel>
 

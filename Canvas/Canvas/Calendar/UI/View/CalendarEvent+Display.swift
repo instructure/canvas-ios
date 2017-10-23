@@ -17,8 +17,7 @@
     
 
 import Foundation
-import CalendarKit
-import SoIconic
+import CanvasCore
 
 extension CalendarEvent {
 

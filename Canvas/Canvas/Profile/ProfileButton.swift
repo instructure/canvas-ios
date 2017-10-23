@@ -17,11 +17,10 @@
     
 
 import UIKit
-import Peeps
 import ReactiveSwift
-import TooLegit
 import TechDebt
 import Kingfisher
+import CanvasCore
 
 func addProfileButton(_ session: Session, viewController: UIViewController) {
     let profileButton = ProfileBarButtonItem(avatarURL: session.user.avatarURL)

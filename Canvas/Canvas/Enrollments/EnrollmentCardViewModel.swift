@@ -17,10 +17,7 @@
     
 
 import Foundation
-import TooLegit
-import EnrollmentKit
-import SoPersistent
-import SoPretty
+import CanvasCore
 import ReactiveSwift
 
 private let CourseNibAndReuseID = "CourseCardCell"

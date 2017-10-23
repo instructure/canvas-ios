@@ -16,12 +16,12 @@
     
     
 
-import CalendarKit
-import SoPersistent
-import TooLegit
-import EnrollmentKit
-import SoLazy
-import Airwolf
+import CanvasCore
+
+
+import CanvasCore
+import CanvasCore
+
 import ReactiveSwift
 
 typealias CalendarEventListSelectCalendarEventAction = (Session, String, CalendarEvent)->Void

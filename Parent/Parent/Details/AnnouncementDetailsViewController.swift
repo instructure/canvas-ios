@@ -17,21 +17,21 @@
     
 
 import Foundation
-import DiscussionKit
-import TooLegit
+import CanvasCore
+
 import ReactiveSwift
-import SoLazy
-import SoPersistent
-import WhizzyWig
-import EnrollmentKit
-import Airwolf
-import FileKit
+import CanvasCore
+
+import CanvasCore
+import CanvasCore
+
+
 
 private let TitleCellReuseIdentifier = "TitleCell"
 private let AttachmentCellReuseIdentifier = "AttachmentCell"
 private let MessageBodyCellReuseIdentifier = "MessageBodyCell"
 
-enum AnnouncementDetailsCellViewModel: SoPersistent.TableViewCellViewModel {
+enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
     case title(String)
     case attachment(String)
     case message(URL, String)

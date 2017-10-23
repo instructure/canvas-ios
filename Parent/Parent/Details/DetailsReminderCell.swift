@@ -17,7 +17,7 @@
     
 
 import UIKit
-import SoLazy
+import CanvasCore
 
 class DetailsReminderCell: UITableViewCell {
 

@@ -16,7 +16,7 @@
 
 import Foundation
 import CanvasKeymaster
-import AttendanceLE
+import CanvasCore
 
 class TeacherAttendanceViewController: AttendanceViewController {
     

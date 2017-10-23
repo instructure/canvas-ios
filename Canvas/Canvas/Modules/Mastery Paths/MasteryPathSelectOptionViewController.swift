@@ -15,14 +15,8 @@
 //
 
 import UIKit
-import SoPersistent
-import SoEdventurous
-import TooLegit
-import SoPretty
-import SoIconic
+import CanvasCore
 import ReactiveSwift
-import EnrollmentKit
-import SoLazy
 
 extension MasteryPathAssignment {
     func colorfulViewModel(_ session: Session, courseID: String) -> ColorfulViewModel {
@@ -105,8 +99,8 @@ class MasteryPathSelectOptionViewController: UIViewController {
         navigationItem.title = NSLocalizedString("Select Option", comment: "")
 
         let toolbar = UIToolbar()
-        toolbar.barTintColor = Brand.current().navBarTintColor
-        toolbar.tintColor = Brand.current().navForegroundColor
+        toolbar.barTintColor = Brand.current.navBgColor
+        toolbar.tintColor = Brand.current.navButtonColor
         let item = UIBarButtonItem(customView: optionSegmentedControl)
         toolbar.setItems([UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), item, UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)], animated: false)
         toolbar.delegate = self

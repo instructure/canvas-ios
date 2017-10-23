@@ -17,11 +17,11 @@
     
 
 import Foundation
-import SoPretty
-import SoLazy
+
+import CanvasCore
 import ReactiveSwift
-import Airwolf
-import TooLegit
+
+
 import Marshal
 
 class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelegate {

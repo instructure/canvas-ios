@@ -17,9 +17,9 @@
     
 
 import UIKit
-import SoPretty
-import SoPersistent
-import WhizzyWig
+
+
+import CanvasCore
 
 private let TitleCellReuseIdentifier = "TitleCell"
 private let ReminderCellReuseIdentifier = "ReminderCell"

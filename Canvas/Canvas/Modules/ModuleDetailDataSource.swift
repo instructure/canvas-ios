@@ -15,10 +15,10 @@
 //
 
 import Foundation
-import SoPersistent
+
 import CoreData
-import SoEdventurous
-import TooLegit
+import CanvasCore
+
 import ReactiveSwift
 
 class ModuleDetailDataSource<ModuleVM: TableViewCellViewModel, ModuleItemVM: TableViewCellViewModel>: NSObject, TableViewDataSource {

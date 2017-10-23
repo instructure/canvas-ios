@@ -18,7 +18,7 @@
 
 #import "CBIResizableTextView.h"
 @import ReactiveObjC;
-@import SoPretty;
+@import CanvasCore;
 
 
 @implementation CBIResizableTextView {

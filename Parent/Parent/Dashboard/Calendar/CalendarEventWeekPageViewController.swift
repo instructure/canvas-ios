@@ -18,10 +18,10 @@
 
 import Foundation
 
-import TooLegit
-import SoLazy
-import CalendarKit
-import SoPretty
+
+import CanvasCore
+import CanvasCore
+
 
 typealias EventWeekPageSelectCalendarEventAction = (_ session: Session, _ observeeID: String, _ calendarEvent: CalendarEvent)->Void
 

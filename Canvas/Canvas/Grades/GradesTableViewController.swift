@@ -16,14 +16,10 @@
     
     
 
-import SoPersistent
-import AssignmentKit
-import TooLegit
-import SoLazy
-import EnrollmentKit
-import SoPretty
+
 import ReactiveSwift
 import Result
+import CanvasCore
 
 extension Assignment {
     func gradeColorfulViewModel(_ dataSource: EnrollmentsDataSource) -> ColorfulViewModel {
