@@ -50,6 +50,10 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "pages": Object {
+        "pending": 0,
+        "refs": Array [],
+      },
       "pending": 0,
       "quizzes": Object {
         "pending": 0,
@@ -114,6 +118,10 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "pages": Object {
+        "pending": 0,
+        "refs": Array [],
+      },
       "pending": 0,
       "quizzes": Object {
         "pending": 0,
@@ -159,6 +167,10 @@ Array [
         "refs": Array [],
       },
       "groups": Object {
+        "pending": 0,
+        "refs": Array [],
+      },
+      "pages": Object {
         "pending": 0,
         "refs": Array [],
       },

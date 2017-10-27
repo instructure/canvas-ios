@@ -60,6 +60,8 @@ import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
+import PagesList from '../modules/pages/list/PagesList'
+import PageDetails from '../modules/pages/details/PageDetails'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -119,4 +121,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)
   registerScreen('/attendance')
   registerScreen('/filter', wrap(Filter), store)
+  registerScreen('/courses/:courseID/wiki', wrap(PagesList), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { canBecomeMaster: true })
 }

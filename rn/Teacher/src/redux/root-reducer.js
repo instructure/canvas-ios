@@ -36,6 +36,7 @@ import { discussions } from '../modules/discussions/reducer'
 import inbox from '../modules/inbox/reducer'
 import { groups } from '../modules/groups/group-entities-reducer'
 import { asyncActions } from './actions/async-tracker'
+import { entities as pages } from '../modules/pages/reducer'
 
 const entities = combineReducers({
   courses,
@@ -51,6 +52,7 @@ const entities = combineReducers({
   quizSubmissions,
   discussions,
   courseDetailsTabSelectedRow,
+  pages,
 })
 
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({
