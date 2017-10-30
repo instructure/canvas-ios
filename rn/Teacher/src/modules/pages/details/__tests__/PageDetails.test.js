@@ -1,9 +1,9 @@
 /* @flow */
 
 import React from 'react'
-import 'react-native'
+import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
-import { PageDetails, type Props } from '../PageDetails'
+import { PageDetails, mapStateToProps, type Props } from '../PageDetails'
 
 jest
   .mock('Button', () => 'Button')
@@ -13,6 +13,8 @@ jest
 const template = {
   ...require('../../../../__templates__/page'),
   ...require('../../../../__templates__/helm'),
+  ...require('../../../../__templates__/course'),
+  ...require('../../../../__templates__/error'),
   ...require('../../../../redux/__templates__/app-state'),
 }
 
@@ -59,7 +61,52 @@ describe('PageDetails', () => {
     expect(spy).toHaveBeenCalledWith(page, props.courseID)
   })
 
+  it('alerts when refresh fails', async () => {
+    const spy = jest.fn()
+    // $FlowFixMe
+    Alert.alert = spy
+    props.getPage = jest.fn(() => Promise.reject(template.error('fail')))
+    const view = render(props)
+    await view.getInstance().componentWillMount()
+    expect(spy).toHaveBeenCalledWith('Unexpected Error', 'fail')
+  })
+
   function render (props: Props, options: any = {}): any {
     return renderer.create(<PageDetails {...props} />, options)
   }
+})
+
+describe('mapStateToProps', () => {
+  it('maps course and page to props', () => {
+    const page = template.page({ url: 'page-1' })
+    const state = template.appState({
+      entities: {
+        pages: {
+          'page-1': {
+            data: page,
+          },
+        },
+      },
+    })
+    expect(mapStateToProps(state, { courseID: '1', url: 'page-1' })).toEqual({
+      page,
+      courseName: '',
+    })
+  })
+
+  it('maps course name to props', () => {
+    const state = template.appState({
+      entities: {
+        courses: {
+          '1': {
+            course: template.course({ name: 'Course FTW' }),
+          },
+        },
+      },
+    })
+    expect(mapStateToProps(state, { courseID: '1', url: 'page-1' })).toEqual({
+      page: undefined,
+      courseName: 'Course FTW',
+    })
+  })
 })
