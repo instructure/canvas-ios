@@ -128,9 +128,9 @@ export default class ConversationMessageRow extends Component<any, ConversationM
         recipientName = i18n('to {count} others', { count: audience.length })
       }
     } else {
-      const extras = this._extraParicipipantCount()
+      const extras = (this._extraParicipipantCount() - 1)
       if (extras > 0) {
-        authorName = i18n('{name} + {count} others', { name: authorName, count: extras })
+        authorName = i18n('{name} + {count, plural, one {# other} other {# others}}', { name: authorName, count: extras })
       }
       recipientName = i18n('to me')
     }

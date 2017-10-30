@@ -669,7 +669,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                 }
               >
                 <View
-                  accessibilityLabel="artorias of the abyss + 1 others to me May 31 at 11:59 PM"
+                  accessibilityLabel="artorias of the abyss to me May 31 at 11:59 PM"
                   accessible={true}
                   style={
                     Object {
@@ -780,7 +780,7 @@ exports[`ConversationDetails renders correctly with some messages 1`] = `
                           ]
                         }
                       >
-                        artorias of the abyss + 1 others 
+                        artorias of the abyss 
                       </Text>
                       <Text
                         accessible={true}

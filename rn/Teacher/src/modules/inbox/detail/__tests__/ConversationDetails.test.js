@@ -117,9 +117,9 @@ describe('ConversationDetails', () => {
     Screen(props).tapOptionsButton()
     expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith(
       {
-        options: ['Forward', 'Delete', 'Cancel'],
-        destructiveButtonIndex: 1,
-        cancelButtonIndex: 2,
+        options: ['Forward', 'Reply', 'Delete', 'Cancel'],
+        destructiveButtonIndex: 2,
+        cancelButtonIndex: 3,
       },
       expect.any(Function),
     )
@@ -172,7 +172,7 @@ describe('ConversationDetails', () => {
 
   it('it passess all messages as included messages when forwarding the conversation', () => {
     // $FlowFixMe
-    ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 3))
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn((config, callback) => callback(config.options.length - 4))
     props.conversationID = '1'
     props.messages = [
       template.conversationMessage({ id: '1' }),

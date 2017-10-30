@@ -37,6 +37,8 @@ import { Heading1 } from '../../../common/text'
 import color from '../../../common/colors'
 import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
+import find from 'lodash/find'
+import { getSession } from 'instructure-canvas-api'
 
 export type ConversationOwnProps = {
   conversation: ?Conversation,
@@ -165,6 +167,7 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
   showOptionsActionSheet = (id: string) => {
     const options = [
       i18n('Forward'),
+      i18n('Reply'),
       i18n('Delete'),
       i18n('Cancel'),
     ]
@@ -186,6 +189,9 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
         this.forwardMessage(id || this.props.conversationID)
         break
       case 1:
+        this.reply(id)
+        break
+      case 2:
         if (id) {
           this.deleteConversationMessage(id)
         } else {
@@ -234,6 +240,30 @@ export class ConversationDetails extends Component <any, ConversationDetailsProp
       navBarTitle: i18n('Forward'),
       requireMessageBody: false,
     })
+  }
+
+  reply (id: ?string) {
+    const convo = this.props.conversation
+    const options = {
+      recipients: convo.participants.filter(p => convo.audience.includes(p.id)),
+      contextName: convo.context_name,
+      contextCode: convo.context_code,
+      subject: convo.subject,
+      canSelectCourse: false,
+      canEditSubject: false,
+    }
+
+    if (id) {
+      const message = find(convo.messages, { id })
+      const me = (getSession() || {}).user
+      if (message) {
+        if (me && message.author_id !== me.id) {
+          options.recipients = convo.participants.filter(p => p.id === message.author_id)
+        }
+      }
+    }
+
+    this.props.navigator.show(`/conversations/${this.props.conversation.id}/add_message`, { modal: true }, options)
   }
 }
 

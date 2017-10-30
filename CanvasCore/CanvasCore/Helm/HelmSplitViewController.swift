@@ -32,11 +32,13 @@ open class HelmSplitViewController: UISplitViewController {
     public init() {
         super.init(nibName: nil, bundle: nil)
         delegate = self
+        preferredDisplayMode = .allVisible
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         delegate = self
+        preferredDisplayMode = .allVisible
     }
 
     override open var preferredStatusBarStyle: UIStatusBarStyle {
