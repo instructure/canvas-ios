@@ -30,6 +30,7 @@ import * as loginApi from './login'
 import * as externalTools from './external-tools'
 import * as mediaComments from './media-comments'
 import * as fileUploads from './file-uploads'
+import * as files from './files'
 
 export default ({
   ...coursesApi,
@@ -46,4 +47,5 @@ export default ({
   ...externalTools,
   ...mediaComments,
   ...fileUploads,
+  ...files,
 }: *)

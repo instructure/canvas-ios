@@ -35,6 +35,7 @@ export * from './apis/submissions'
 export * from './apis/users'
 export * from './apis/media-comments'
 export * from './apis/file-uploads'
+export * from './apis/files'
 export * from './apis/pages'
 
 export * from './session'

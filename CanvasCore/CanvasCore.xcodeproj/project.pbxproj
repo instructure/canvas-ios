@@ -19,6 +19,8 @@
 		2CAF1B361F72B173007225DF /* secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CAF1B341F72B036007225DF /* secrets.plist */; };
 		2CAF1B3A1F72B1B7007225DF /* Bundle+Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */; };
 		2CAF1B3D1F72B295007225DF /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAF1B3C1F72B295007225DF /* Secrets.swift */; };
+		2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD20D741FA125EC00F339F7 /* DropViewManager.h */; };
+		2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD20D751FA125EC00F339F7 /* DropViewManager.m */; };
 		2CE40C9A1F87D36900ECEACB /* CanvadocViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B21F843B59001A8F31 /* CanvadocViewManager.m */; };
 		2CE40C9B1F87D36E00ECEACB /* CanvadocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B01F843B58001A8F31 /* CanvadocView.swift */; };
 		2CE40C9C1F87D37100ECEACB /* PSPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494AE0B11F843B58001A8F31 /* PSPDFView.swift */; };
@@ -498,6 +500,8 @@
 		2CAF1B391F72B1B7007225DF /* Bundle+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Core.swift"; sourceTree = "<group>"; };
 		2CAF1B3B1F72B294007225DF /* feature_toggles.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = feature_toggles.plist; sourceTree = "<group>"; };
 		2CAF1B3C1F72B295007225DF /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		2CD20D741FA125EC00F339F7 /* DropViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DropViewManager.h; sourceTree = "<group>"; };
+		2CD20D751FA125EC00F339F7 /* DropViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropViewManager.m; sourceTree = "<group>"; };
 		4917183B1F8EE797008B4599 /* DiscussionEntry+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Network.swift"; sourceTree = "<group>"; };
 		4917183C1F8EE797008B4599 /* DiscussionEntry+Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DiscussionEntry+Collections.swift"; sourceTree = "<group>"; };
 		4917183D1F8EE797008B4599 /* DiscussionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntry.swift; sourceTree = "<group>"; };
@@ -1491,6 +1495,8 @@
 				494AE0AB1F843AAB001A8F31 /* VideoContainerView.swift */,
 				494AE0981F843A04001A8F31 /* WebViewHacker.h */,
 				494AE0961F843A03001A8F31 /* WebViewHacker.m */,
+				2CD20D741FA125EC00F339F7 /* DropViewManager.h */,
+				2CD20D751FA125EC00F339F7 /* DropViewManager.m */,
 			);
 			path = "React Native Modules";
 			sourceTree = "<group>";
@@ -2579,6 +2585,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD20D761FA125EC00F339F7 /* DropViewManager.h in Headers */,
 				494AE09B1F843A09001A8F31 /* HapticFeedback.h in Headers */,
 				494AE0991F843A09001A8F31 /* DrawerHandleViewManager.h in Headers */,
 				2CAF1B251F72AEDB007225DF /* CanvasCore.h in Headers */,
@@ -3037,6 +3044,7 @@
 				49CE96BC1F8FF94B00121A43 /* PageAPI.swift in Sources */,
 				493020171F901CF5006BD777 /* CanvadocsAnnotationService.swift in Sources */,
 				4930204B1F902364006BD777 /* Concat.swift in Sources */,
+				2CD20D771FA125EC00F339F7 /* DropViewManager.m in Sources */,
 				49CE965A1F8FF41B00121A43 /* QuizIntroFooterView.swift in Sources */,
 				4961F55B1F8FAF310093EC86 /* PlaybackScrubber.swift in Sources */,
 				4961F6311F8FB70A0093EC86 /* Grade+Network.swift in Sources */,

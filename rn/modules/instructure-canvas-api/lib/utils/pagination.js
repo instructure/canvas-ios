@@ -57,7 +57,6 @@ export async function exhaust<T> (initial: Promise<ApiResponse<[T]>>, keys?: str
   }
 
   let next = () => initial
-
   while (next) {
     const response = await next()
     if (response.data) {

@@ -28,7 +28,7 @@
     "format-message": "^5.1.1",
     "global": "^4.3.2",
     "hoist-non-react-statics": "^1.2.0",
-    "instructure-canvas-api": "^2.1.5",
+    "instructure-canvas-api": "2.1.7",
     "knuth-shuffle-seeded": "^1.0.6",
     "md5": "^2.2.1",
     "prop-types": "^15.6.0",
@@ -65,7 +65,8 @@
     "url-parse": "^1.1.9",
     "uuid": "^3.1.0",
     "valid-url": "1.0.9",
-    "xmldom": "^0.1.27"
+    "xmldom": "^0.1.27",
+    "bytes": "3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

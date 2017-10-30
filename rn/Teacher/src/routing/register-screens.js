@@ -60,6 +60,7 @@ import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
+import CourseFilesList from '../modules/files/CourseFilesList'
 import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
 
@@ -100,6 +101,9 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/discussion_topics/:discussionID/entries/:entryID/replies', wrap(EditReply), store)
   registerScreen('/courses/:courseID/users', wrap(PeopleList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/address-book', wrap(AddressBook), store)
+  registerScreen('/courses/:courseID/files', wrap(CourseFilesList), store)
+  registerScreen('/courses/:courseID/files/folder/*subFolder', wrap(CourseFilesList), store)
+  registerScreen('/courses/:courseID/file/:fileID', wrap(CourseFilesList), store)
   registerScreen('/groups/:groupID/users', wrap(GroupList), store)
   registerScreen('/conversations', wrap(Inbox), store, { canBecomeMaster: true })
   registerScreen('/conversations/compose', wrap(Compose), store)

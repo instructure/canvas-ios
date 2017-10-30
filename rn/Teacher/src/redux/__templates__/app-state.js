@@ -38,6 +38,8 @@ const emptyAppState: AppState = {
     quizSubmissions: {},
     discussions: {},
     announcements: {},
+    files: {},
+    folders: {},
     courseDetailsTabSelectedRow: { rowID: '' },
   },
   inbox: {

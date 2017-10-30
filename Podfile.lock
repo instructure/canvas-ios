@@ -70,7 +70,7 @@ PODS:
     - React
   - react-native-camera (0.10.0):
     - React
-  - react-native-document-picker (2.0.0):
+  - react-native-document-picker (2.1.0):
     - React
   - react-native-image-picker (0.14.3):
     - React
@@ -132,7 +132,7 @@ PODS:
     - React
   - RNDeviceInfo (0.9.3):
     - React
-  - RNFS (2.5.2):
+  - RNFS (2.8.1):
     - React
   - RNSound (0.10.4):
     - React/Core
@@ -292,7 +292,7 @@ SPEC CHECKSUMS:
   React: 5751f5630c58f7ef31a00cf03044878295bceff0
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-camera: a4446f056fb28a9aa7acb3e14af595216aac0a8d
-  react-native-document-picker: b91b5ac3ba064d67d784abf35a0c31a9f39e3843
+  react-native-document-picker: 1e75650447a24dd5621d0d02884f004c619547f9
   react-native-image-picker: 3693786b3d5958c8f71deed66ec068b323565e0d
   react-native-mail: 8bf6f105a7df00faad2ad258671611a6ac9f3ba4
   react-native-wkwebview: 302cd5ea20cb00eda83bfb84cb63171ab97ba6c3
@@ -304,7 +304,7 @@ SPEC CHECKSUMS:
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RNAudio: df81928c9981683b34b8e8bca4b3b56aa988a0be
   RNDeviceInfo: dc3cbee96cd2392cf03d6ff6191dc15f1606a166
-  RNFS: 70077bf58db01284be9de0ee9308f678733bb6be
+  RNFS: 44ef20bb355e894d86a439be668c3c5ac70838a5
   RNSound: dcbb42c698757ee4fa9a8528317c40d18a5deb1b
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4

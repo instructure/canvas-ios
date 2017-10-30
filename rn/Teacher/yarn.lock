@@ -1063,9 +1063,9 @@ bytes@2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-2.4.0.tgz#7d97196f9d5baf7f6935e25985549edd2a6c2339"
 
-"bytes@https://github.com/n8armstrong/bytes.js":
-  version "2.5.0"
-  resolved "https://github.com/n8armstrong/bytes.js#e92630a888227d9978e5143e2b96f8bffac605b8"
+bytes@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
 
 caller-path@^0.1.0:
   version "0.1.0"
@@ -2615,9 +2615,9 @@ inquirer@^3.0.6:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-instructure-canvas-api@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/instructure-canvas-api/-/instructure-canvas-api-2.1.5.tgz#826b75040f540ee009ba81e0cf86c976cd02765e"
+instructure-canvas-api@2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/instructure-canvas-api/-/instructure-canvas-api-2.1.7.tgz#d7be2381dea8088de3ce044b84eff23d1e08d93c"
   dependencies:
     axios "^0.16.2"
     babel-polyfill "^6.26.0"
