@@ -41,8 +41,6 @@ FOUNDATION_EXPORT const unsigned char CanvasKit1VersionString[];
 #import <CanvasKit1/CKContextInfo.h>
 #import <CanvasKit1/CKDiscussionEntry.h>
 #import <CanvasKit1/CKDiscussionTopic.h>
-#import <CanvasKit1/CKConversation.h>
-#import <CanvasKit1/CKConversationMessage.h>
 #import <CanvasKit1/NSFileManager+CKAdditions.h>
 #import <CanvasKit1/CKModelObject.h>
 #import <CanvasKit1/CKCrossfadingImageView.h>
@@ -65,9 +63,6 @@ FOUNDATION_EXPORT const unsigned char CanvasKit1VersionString[];
 #import <CanvasKit1/NSDictionary+CKAdditions.h>
 #import <CanvasKit1/CKCommentViewController.h>
 #import <CanvasKit1/CKSubmission.h>
-#import <CanvasKit1/CKConversationAttachment.h>
-#import <CanvasKit1/CKConversationRecipient.h>
-#import <CanvasKit1/CKConversationRelatedSubmission.h>
 #import <CanvasKit1/CKURLRouter.h>
 #import <CanvasKit1/CKByteCountFormatter.h>
 #import <CanvasKit1/CKFolder.h>

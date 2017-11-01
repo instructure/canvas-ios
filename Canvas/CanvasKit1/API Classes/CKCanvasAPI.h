@@ -21,7 +21,7 @@
 #import <CanvasKit1/CKDiscussionTopic.h>
 #import <CanvasKit1/CKAttachment.h>
 
-@class CKConversation, CKGroup, CKDiscussionEntry, CKAPICredentials, CKFolder, CKPaginationInfo, CKAssignmentOverride, CKUser, CKContextInfo, CKCourse, CKCanvasURLConnection, CKSubmission, CKRubricAssessment;
+@class CKGroup, CKDiscussionEntry, CKAPICredentials, CKFolder, CKPaginationInfo, CKAssignmentOverride, CKUser, CKContextInfo, CKCourse, CKCanvasURLConnection, CKSubmission, CKRubricAssessment;
 
 
 
@@ -185,36 +185,6 @@ typedef void (^CKDiscussionTopicBlock)(NSError *error, CKDiscussionTopic *topic)
 - (void)getMediaServerConfigurationWithBlock:(CKSimpleBlock)block;
 // Nest the call to post a media comment into this method when uploading audio or video to kaltura
 - (void)postMediaCommentAtPath:(NSString *)path ofMediaType:(CKAttachmentMediaType)mediaType block:(CKMediaBlock)block;
-
-
-
-#pragma mark - Conversations
-#pragma mark (Viewing)
-extern NSString * const CKAPIConversationScopeAll; // == nil
-extern NSString * const CKAPIConversationScopeUnread;
-extern NSString * const CKAPIConversationScopeStarred;
-extern NSString * const CKAPIConversationScopeArchived;
-
-- (void)getConversationsInScope:(NSString *)scope withPageURL:(NSURL *)pageURLOrNil block:(CKPagedArrayBlock)block;
-- (void)getDetailedConversationWithIdent:(uint64_t)ident block:(CKObjectBlock)block;
-- (void)getDetailedConversationForConversation:(CKConversation *)conversation withBlock:(CKObjectBlock)block;
-- (void)postConversationAttachments:(NSArray *)attachments block:(CKArrayBlock)uploadFinishedBlock;
-
-#pragma mark (Starting/Replying)
-- (void)postMessage:(NSString *)message withAttachments:(NSArray *)attachments toConversation:(CKConversation *)conversation withBlock:(CKObjectBlock)block;
-
-- (void)startNewConversationWithRecipients:(NSArray *)recipients message:(NSString *)message attachments:(NSArray *)attachments groupConversation:(BOOL)grouped block:(CKArrayBlock)block; // recipients: NSArray(CKUser)
-
-- (void)addRecipients:(NSArray *)recipients toConversation:(CKConversation *)conversation block:(CKObjectBlock)conversationDeltaBlock;
-
-typedef void (^CKSearchResultsBlock)(NSError *error, NSArray *results, NSString *searchString);
-- (void)findConversationRecipientsWithSearchString:(NSString *)search
-                                         inContext:(NSString *)contextID
-                                             block:(CKSearchResultsBlock)block;
-
-#pragma mark (Workflow)
-- (void)markConversation:(CKConversation *)conversation asRead:(BOOL)read withBlock:(CKSimpleBlock)block;
-
 
 
 #pragma mark - Files

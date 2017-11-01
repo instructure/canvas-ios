@@ -307,10 +307,6 @@
 		492708591CF4C19B00C631C6 /* MKNumberBadgeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 492708571CF4C19B00C631C6 /* MKNumberBadgeView.h */; };
 		4927085A1CF4C19B00C631C6 /* MKNumberBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 492708581CF4C19B00C631C6 /* MKNumberBadgeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		49295B531F87F01D001DAB1F /* CBIResizableTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49295B511F87F01B001DAB1F /* CBIResizableTextView.m */; };
-		493020221F9021FE006BD777 /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4930201E1F9021FE006BD777 /* SubmitAnnotatedAssignmentViewController.storyboard */; };
-		493020231F9021FE006BD777 /* PreSubmissionPDFDocumentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4930201F1F9021FE006BD777 /* PreSubmissionPDFDocumentPresenter.swift */; };
-		493020241F9021FE006BD777 /* SubmitAssignmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020201F9021FE006BD777 /* SubmitAssignmentActivity.swift */; };
-		493020251F9021FE006BD777 /* SubmitAnnotatedAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493020211F9021FE006BD777 /* SubmitAnnotatedAssignmentViewController.swift */; };
 		49383CE21F848353009C8F8E /* Session+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49383CE11F84834A009C8F8E /* Session+Login.swift */; };
 		49383CE81F84887A009C8F8E /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6049621F72BB6900252BC5 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		494E139E1D355C690068279D /* MobileQuizInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494E139B1D355C690068279D /* MobileQuizInformation.storyboard */; };
@@ -466,16 +462,6 @@
 		49AA2BD71CF4D51B0055862D /* CKContentLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B0B1CF4D51B0055862D /* CKContentLock.m */; };
 		49AA2BD81CF4D51B0055862D /* CKContextInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B0C1CF4D51B0055862D /* CKContextInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BD91CF4D51B0055862D /* CKContextInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B0D1CF4D51B0055862D /* CKContextInfo.m */; };
-		49AA2BDA1CF4D51B0055862D /* CKConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B0E1CF4D51B0055862D /* CKConversation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BDB1CF4D51B0055862D /* CKConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B0F1CF4D51B0055862D /* CKConversation.m */; };
-		49AA2BDC1CF4D51B0055862D /* CKConversationAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B101CF4D51B0055862D /* CKConversationAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BDD1CF4D51B0055862D /* CKConversationAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B111CF4D51B0055862D /* CKConversationAttachment.m */; };
-		49AA2BDE1CF4D51B0055862D /* CKConversationMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B121CF4D51B0055862D /* CKConversationMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BDF1CF4D51B0055862D /* CKConversationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B131CF4D51B0055862D /* CKConversationMessage.m */; };
-		49AA2BE01CF4D51B0055862D /* CKConversationRecipient.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B141CF4D51B0055862D /* CKConversationRecipient.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BE11CF4D51B0055862D /* CKConversationRecipient.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B151CF4D51B0055862D /* CKConversationRecipient.m */; };
-		49AA2BE21CF4D51B0055862D /* CKConversationRelatedSubmission.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B161CF4D51B0055862D /* CKConversationRelatedSubmission.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49AA2BE31CF4D51B0055862D /* CKConversationRelatedSubmission.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B171CF4D51B0055862D /* CKConversationRelatedSubmission.m */; };
 		49AA2BE41CF4D51B0055862D /* CKCourse.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B181CF4D51B0055862D /* CKCourse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49AA2BE51CF4D51B0055862D /* CKCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2B191CF4D51B0055862D /* CKCourse.m */; };
 		49AA2BE61CF4D51B0055862D /* CKDiscussionEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AA2B1A1CF4D51B0055862D /* CKDiscussionEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1105,10 +1091,6 @@
 		492708581CF4C19B00C631C6 /* MKNumberBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNumberBadgeView.m; sourceTree = "<group>"; };
 		49295B511F87F01B001DAB1F /* CBIResizableTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBIResizableTextView.m; sourceTree = "<group>"; };
 		49295B521F87F01C001DAB1F /* CBIResizableTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBIResizableTextView.h; sourceTree = "<group>"; };
-		4930201E1F9021FE006BD777 /* SubmitAnnotatedAssignmentViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubmitAnnotatedAssignmentViewController.storyboard; sourceTree = "<group>"; };
-		4930201F1F9021FE006BD777 /* PreSubmissionPDFDocumentPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreSubmissionPDFDocumentPresenter.swift; sourceTree = "<group>"; };
-		493020201F9021FE006BD777 /* SubmitAssignmentActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAssignmentActivity.swift; sourceTree = "<group>"; };
-		493020211F9021FE006BD777 /* SubmitAnnotatedAssignmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitAnnotatedAssignmentViewController.swift; sourceTree = "<group>"; };
 		49383CE11F84834A009C8F8E /* Session+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Login.swift"; sourceTree = "<group>"; };
 		494E139B1D355C690068279D /* MobileQuizInformation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MobileQuizInformation.storyboard; sourceTree = "<group>"; };
 		494E139C1D355C690068279D /* MobileQuizInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileQuizInformationViewController.h; sourceTree = "<group>"; };
@@ -1259,16 +1241,6 @@
 		49AA2B0B1CF4D51B0055862D /* CKContentLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKContentLock.m; sourceTree = "<group>"; };
 		49AA2B0C1CF4D51B0055862D /* CKContextInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKContextInfo.h; sourceTree = "<group>"; };
 		49AA2B0D1CF4D51B0055862D /* CKContextInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKContextInfo.m; sourceTree = "<group>"; };
-		49AA2B0E1CF4D51B0055862D /* CKConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKConversation.h; sourceTree = "<group>"; };
-		49AA2B0F1CF4D51B0055862D /* CKConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKConversation.m; sourceTree = "<group>"; };
-		49AA2B101CF4D51B0055862D /* CKConversationAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKConversationAttachment.h; sourceTree = "<group>"; };
-		49AA2B111CF4D51B0055862D /* CKConversationAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKConversationAttachment.m; sourceTree = "<group>"; };
-		49AA2B121CF4D51B0055862D /* CKConversationMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKConversationMessage.h; sourceTree = "<group>"; };
-		49AA2B131CF4D51B0055862D /* CKConversationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKConversationMessage.m; sourceTree = "<group>"; };
-		49AA2B141CF4D51B0055862D /* CKConversationRecipient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKConversationRecipient.h; sourceTree = "<group>"; };
-		49AA2B151CF4D51B0055862D /* CKConversationRecipient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKConversationRecipient.m; sourceTree = "<group>"; };
-		49AA2B161CF4D51B0055862D /* CKConversationRelatedSubmission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKConversationRelatedSubmission.h; sourceTree = "<group>"; };
-		49AA2B171CF4D51B0055862D /* CKConversationRelatedSubmission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKConversationRelatedSubmission.m; sourceTree = "<group>"; };
 		49AA2B181CF4D51B0055862D /* CKCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCourse.h; sourceTree = "<group>"; };
 		49AA2B191CF4D51B0055862D /* CKCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCourse.m; sourceTree = "<group>"; };
 		49AA2B1A1CF4D51B0055862D /* CKDiscussionEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKDiscussionEntry.h; sourceTree = "<group>"; };
@@ -2855,16 +2827,6 @@
 				49AA2B0B1CF4D51B0055862D /* CKContentLock.m */,
 				49AA2B0C1CF4D51B0055862D /* CKContextInfo.h */,
 				49AA2B0D1CF4D51B0055862D /* CKContextInfo.m */,
-				49AA2B0E1CF4D51B0055862D /* CKConversation.h */,
-				49AA2B0F1CF4D51B0055862D /* CKConversation.m */,
-				49AA2B101CF4D51B0055862D /* CKConversationAttachment.h */,
-				49AA2B111CF4D51B0055862D /* CKConversationAttachment.m */,
-				49AA2B121CF4D51B0055862D /* CKConversationMessage.h */,
-				49AA2B131CF4D51B0055862D /* CKConversationMessage.m */,
-				49AA2B141CF4D51B0055862D /* CKConversationRecipient.h */,
-				49AA2B151CF4D51B0055862D /* CKConversationRecipient.m */,
-				49AA2B161CF4D51B0055862D /* CKConversationRelatedSubmission.h */,
-				49AA2B171CF4D51B0055862D /* CKConversationRelatedSubmission.m */,
 				49AA2B181CF4D51B0055862D /* CKCourse.h */,
 				49AA2B191CF4D51B0055862D /* CKCourse.m */,
 				49AA2B1A1CF4D51B0055862D /* CKDiscussionEntry.h */,
@@ -3070,15 +3032,6 @@
 			path = People;
 			sourceTree = "<group>";
 		};
-		49DE1DA01F8808B80055D74A /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				49DE1DA11F8808F30055D74A /* CBIConversationStarter.h */,
-				49DE1DA21F8808F30055D74A /* CBIConversationStarter.m */,
-			);
-			path = Messages;
-			sourceTree = "<group>";
-		};
 		49CE97511F900AD500121A43 /* MyLittleViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -3112,6 +3065,15 @@
 				49CE975B1F900B4300121A43 /* EXTScope.h */,
 			);
 			path = extobjc;
+			sourceTree = "<group>";
+		};
+		49DE1DA01F8808B80055D74A /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				49DE1DA11F8808F30055D74A /* CBIConversationStarter.h */,
+				49DE1DA21F8808F30055D74A /* CBIConversationStarter.m */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		49E80A2B1CFF8EC2002AF45E /* Pages */ = {
@@ -3424,7 +3386,6 @@
 				492708501CF4BC3200C631C6 /* ShortPressGestureRecognizer.h in Headers */,
 				492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */,
 				49CE976B1F900B4700121A43 /* MLVCCollectionViewController.h in Headers */,
-				492707211CF4BACA00C631C6 /* CBIConversationStarter.h in Headers */,
 				492705C21CF4B73200C631C6 /* UIImage+ImageEffects.h in Headers */,
 				492706421CF4B7A800C631C6 /* CBIDiscussionTopicCell.h in Headers */,
 				4927065D1CF4B7A800C631C6 /* ThreadedDiscussionViewController.h in Headers */,
@@ -3448,7 +3409,6 @@
 				49AA2BA21CF4D51B0055862D /* CKPaginationInfo.h in Headers */,
 				49AA2C1E1CF4D51B0055862D /* CKSubmission.h in Headers */,
 				49A04A761CF4F5B00051E1E7 /* SBJsonBase.h in Headers */,
-				49AA2BE21CF4D51B0055862D /* CKConversationRelatedSubmission.h in Headers */,
 				49AA2C081CF4D51B0055862D /* CKRubric.h in Headers */,
 				49AA2C351CF4D51B0055862D /* CKCommentViewController.h in Headers */,
 				49A04E001CF4F8620051E1E7 /* CXMLDocument_CreationExtensions.h in Headers */,
@@ -3472,7 +3432,6 @@
 				49AA2BF01CF4D51B0055862D /* CKFakeAttachment.h in Headers */,
 				49AA2C391CF4D51B0055862D /* CKMediaCommentRecorderView.h in Headers */,
 				49AA2C461CF4D51B0055862D /* CKRubricView.h in Headers */,
-				49AA2BDE1CF4D51B0055862D /* CKConversationMessage.h in Headers */,
 				49AA2C0E1CF4D51B0055862D /* CKRubricCriterionRating.h in Headers */,
 				49AA2C441CF4D51B0055862D /* CKRemoteImageView.h in Headers */,
 				49AA2C541CF4D51B0055862D /* CKSafeDictionary.h in Headers */,
@@ -3503,7 +3462,6 @@
 				49A04A7A1CF4F5B00051E1E7 /* SBJsonWriter.h in Headers */,
 				49AA2C481CF4D51B0055862D /* CKStylingButton.h in Headers */,
 				49A04E021CF4F8620051E1E7 /* CXMLNode_CreationExtensions.h in Headers */,
-				49AA2BE01CF4D51B0055862D /* CKConversationRecipient.h in Headers */,
 				49A04E121CF4F8620051E1E7 /* CXMLNode_PrivateExtensions.h in Headers */,
 				49AA2C4E1CF4D51B0055862D /* CKURLPreviewViewController.h in Headers */,
 				49A04E1A1CF4F8620051E1E7 /* TouchXML.h in Headers */,
@@ -3520,10 +3478,8 @@
 				49A04E141CF4F8620051E1E7 /* CXMLNode_XPathExtensions.h in Headers */,
 				49AA2BB41CF4D51B0055862D /* NSHTTPURLResponse+CKAdditions.h in Headers */,
 				49AA2BD81CF4D51B0055862D /* CKContextInfo.h in Headers */,
-				49AA2BDA1CF4D51B0055862D /* CKConversation.h in Headers */,
 				49AA2C0A1CF4D51B0055862D /* CKRubricAssessment.h in Headers */,
 				49AA2B971CF4D51B0055862D /* CKCanvasAPI+Private.h in Headers */,
-				49AA2BDC1CF4D51B0055862D /* CKConversationAttachment.h in Headers */,
 				49A04E161CF4F8620051E1E7 /* CXMLNode.h in Headers */,
 				49A04A721CF4F5B00051E1E7 /* NSObject+SBJSON.h in Headers */,
 				49AA2BD41CF4D51B0055862D /* CKCommentAttachment.h in Headers */,
@@ -4350,10 +4306,8 @@
 				49AA2C491CF4D51B0055862D /* CKStylingButton.m in Sources */,
 				49AA2BF31CF4D51B0055862D /* CKFolder.m in Sources */,
 				49AA2BBB1CF4D51B0055862D /* UIImage+Resize.m in Sources */,
-				49AA2BDF1CF4D51B0055862D /* CKConversationMessage.m in Sources */,
 				49AA2BA71CF4D51B0055862D /* CKURLRouter.m in Sources */,
 				49AA2BAB1CF4D51B0055862D /* ISO8601DateFormatter+CKAdditions.m in Sources */,
-				49AA2BDB1CF4D51B0055862D /* CKConversation.m in Sources */,
 				49AA2C2B1CF4D51B0055862D /* CKUser.m in Sources */,
 				49AA2BA31CF4D51B0055862D /* CKPaginationInfo.m in Sources */,
 				49AA2C0F1CF4D51B0055862D /* CKRubricCriterionRating.m in Sources */,
@@ -4374,7 +4328,6 @@
 				49AA2B8E1CF4D51B0055862D /* CKAPICredentials.m in Sources */,
 				49AA2BAD1CF4D51B0055862D /* NSArray+CKAdditions.m in Sources */,
 				49AA2B921CF4D51B0055862D /* CKCanvasAPI+Conversations.m in Sources */,
-				49AA2BE31CF4D51B0055862D /* CKConversationRelatedSubmission.m in Sources */,
 				49A04E191CF4F8620051E1E7 /* CTidy.m in Sources */,
 				49AA2C4D1CF4D51B0055862D /* CKUploadProgressToolbar.m in Sources */,
 				49AA2C431CF4D51B0055862D /* CKRemoteImageButton.m in Sources */,
@@ -4400,7 +4353,6 @@
 				49AA2C471CF4D51B0055862D /* CKRubricView.m in Sources */,
 				49A04E171CF4F8620051E1E7 /* CXMLNode.m in Sources */,
 				49A04E0B1CF4F8620051E1E7 /* CXMLElement_CreationExtensions.m in Sources */,
-				49AA2BE11CF4D51B0055862D /* CKConversationRecipient.m in Sources */,
 				49AA2C511CF4D51B0055862D /* INAVPlayerView.m in Sources */,
 				49AA2C551CF4D51B0055862D /* CKSafeDictionary.m in Sources */,
 				49A04E151CF4F8620051E1E7 /* CXMLNode_XPathExtensions.m in Sources */,
@@ -4417,7 +4369,6 @@
 				49AA2BE91CF4D51B0055862D /* CKDiscussionTopic.m in Sources */,
 				49A04E031CF4F8620051E1E7 /* CXMLNode_CreationExtensions.m in Sources */,
 				49AA2BB91CF4D51B0055862D /* UIImage+Alpha.m in Sources */,
-				49AA2BDD1CF4D51B0055862D /* CKConversationAttachment.m in Sources */,
 				49AA2C091CF4D51B0055862D /* CKRubric.m in Sources */,
 				49A04A771CF4F5B00051E1E7 /* SBJsonBase.m in Sources */,
 				49AA2BED1CF4D51B0055862D /* CKEnrollment.m in Sources */,
