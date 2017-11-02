@@ -68,23 +68,26 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
                     loadGroup.leave()
                 }
 
-                loadGroup.enter()
-                canvadocsAnnotationService.getAnnotations() { result in
-                    print("ANNOTATIONS RESULT: \(result)")
-                    switch result {
-                    case .failure(let error):
-                        print("FAILED GETTING ANNOTATIONS: \(error)")
-                        errors.append(error)
-                    case .success(let annotations):
-                        canvadocsAnnotations = annotations
+                if metadataValue.annotationMetadata.enabled {
+                    loadGroup.enter()
+                    canvadocsAnnotationService.getAnnotations() { result in
+                        print("ANNOTATIONS RESULT: \(result)")
+                        switch result {
+                        case .failure(let error):
+                            print("FAILED GETTING ANNOTATIONS: \(error)")
+                            errors.append(error)
+                        case .success(let annotations):
+                            canvadocsAnnotations = annotations
+                        }
+                        loadGroup.leave()
                     }
-                    loadGroup.leave()
+                } else {
+                    canvadocsAnnotations = []
                 }
-
-                loadGroup.leave()
             }
+            loadGroup.leave()
         }
-
+        
         loadGroup.notify(queue: DispatchQueue.main) {
             if errors.count > 0 {
                 completed(nil, errors)

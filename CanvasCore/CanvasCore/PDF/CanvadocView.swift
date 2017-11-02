@@ -119,7 +119,7 @@ public class CanvadocView: UIView {
             loadDocument()
         }
         
-        pdfViewController?.view.frame = CGRect(x: 0, y: 33.0, width: bounds.width, height: bounds.height-33.0)
+        pdfViewController?.view.frame = self.getPDFViewControllerFrame()
         activityIndicator.frame = CGRect(x: (bounds.width/2)-(activityIndicator.bounds.width/2), y: (bounds.height/2)-(activityIndicator.bounds.height/2), width: activityIndicator.bounds.width, height: activityIndicator.bounds.height)
         toolbar.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 33.0)
         flexibleToolbarContainer.frame = bounds
@@ -140,24 +140,26 @@ public class CanvadocView: UIView {
         
         parentVC.addChildViewController(pdfViewController)
         addSubview(pdfViewController.view)
-        pdfViewController.view.frame = CGRect(x: 0, y: 33.0, width: bounds.width, height: bounds.height-33.0)
+        pdfViewController.view.frame = self.getPDFViewControllerFrame()
         pdfViewController.didMove(toParentViewController: parentVC)
         self.pdfViewController = pdfViewController
         
-        addSubview(toolbar)
-        
-        let manager = pdfViewController.annotationStateManager
-        let annotationToolbar = CanvadocsAnnotationToolbar(annotationStateManager: manager)
-        annotationToolbar.supportedToolbarPositions = [.positionInTopBar]
-        annotationToolbar.isDragEnabled = false
-        annotationToolbar.showDoneButton = false
-        
-        flexibleToolbarContainer.flexibleToolbar = annotationToolbar
-        flexibleToolbarContainer.overlaidBar = toolbar
-        addSubview(flexibleToolbarContainer)
+        if let presenter = pdfViewController.delegate as? CanvadocsPDFDocumentPresenter, let metadata = presenter.metadata, metadata.annotationMetadata.enabled {
+            addSubview(toolbar)
+            
+            let manager = pdfViewController.annotationStateManager
+            let annotationToolbar = CanvadocsAnnotationToolbar(annotationStateManager: manager)
+            annotationToolbar.supportedToolbarPositions = [.positionInTopBar]
+            annotationToolbar.isDragEnabled = false
+            annotationToolbar.showDoneButton = false
+            
+            flexibleToolbarContainer.flexibleToolbar = annotationToolbar
+            flexibleToolbarContainer.overlaidBar = toolbar
+            addSubview(flexibleToolbarContainer)
 
-        flexibleToolbarContainer.show(animated: true, completion: nil)
-        self.pdfViewController?.annotationStateManager.add(self)
+            flexibleToolbarContainer.show(animated: true, completion: nil)
+            self.pdfViewController?.annotationStateManager.add(self)
+        }
     }
     
     private func removePDFViewFromView() {
@@ -212,6 +214,13 @@ public class CanvadocView: UIView {
         }
     }
     
+    private func getPDFViewControllerFrame() -> CGRect {
+        var annotationsEnabled = false
+        if let vc = pdfViewController, let presenter = vc.delegate as? CanvadocsPDFDocumentPresenter {
+            annotationsEnabled = presenter.metadata!.annotationMetadata.enabled
+        }
+        return CGRect(x: 0, y: annotationsEnabled ? 33.0 : 0, width: bounds.width, height: annotationsEnabled ? bounds.height-33.0 : bounds.height)
+    }
     
     fileprivate func setScrollEnabled(_ enabled: Bool) {
         var view = self.superview

@@ -32,9 +32,9 @@ struct CanvadocsAnnotationMetadata {
     }
     
     let enabled: Bool
-    let userName: String
-    let permissions: Permissions
-    let xfdfURL: URL
+    let userName: String?
+    let permissions: Permissions?
+    let xfdfURL: URL?
 }
 
 struct PandaPushMetadata {
@@ -109,11 +109,13 @@ class CanvadocsAnnotationService: NSObject {
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-                        if let json = json as? [String: AnyObject], let urls = json["urls"] as? [String: AnyObject], let annotationSettings = json["annotations"] as? [String: AnyObject] {
+                        if let json = json as? [String: AnyObject], let urls = json["urls"] as? [String: AnyObject] {
                             var annotationMetadata: CanvadocsAnnotationMetadata?
-                            if let enabled = annotationSettings["enabled"] as? Bool, let userName = annotationSettings["user_name"] as? String, let permissionsStr = annotationSettings["permissions"] as? String, let permissions = CanvadocsAnnotationMetadata.Permissions(rawValue: permissionsStr), let xfdfURLStr = annotationSettings["xfdf_url"] as? String {
+                            if let annotationSettings = json["annotations"] as? [String: AnyObject], let enabled = annotationSettings["enabled"] as? Bool, let userName = annotationSettings["user_name"] as? String, let permissionsStr = annotationSettings["permissions"] as? String, let permissions = CanvadocsAnnotationMetadata.Permissions(rawValue: permissionsStr), let xfdfURLStr = annotationSettings["xfdf_url"] as? String {
                                 let xfdfURL = URL(string: (self.baseURLString+self.removeLeadingSlash(xfdfURLStr)))!
                                 annotationMetadata = CanvadocsAnnotationMetadata(enabled: enabled, userName: userName, permissions: permissions, xfdfURL: xfdfURL)
+                            } else {
+                                annotationMetadata = CanvadocsAnnotationMetadata(enabled: false, userName: nil, permissions: nil, xfdfURL: nil)
                             }
                             
                             var pandaPushMetadata: PandaPushMetadata?
