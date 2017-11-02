@@ -21,7 +21,6 @@
 
 #import "AssignmentDetailsViewController.h"
 #import "iCanvasErrorHandler.h"
-#import "UIWebView+LinkProcessing.h"
 #import "UIWebView+RemoveShadow.h"
 #import "UIWebView+SafeAPIURL.h"
 #import "Router.h"
@@ -175,7 +174,6 @@
     
     if (webView.loading == NO) {
         [webView replaceHREFsWithAPISafeURLs];
-        [webView replaceYoutubeLinksWithInlineVideo];
     }
     
     DDLogVerbose(@"AssignmentDetailViewController posting module item progress update");

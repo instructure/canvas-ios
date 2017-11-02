@@ -138,8 +138,6 @@
 		492705D71CF4B73300C631C6 /* UIViewController+AnalyticsTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705951CF4B73200C631C6 /* UIViewController+AnalyticsTracking.m */; };
 		492705DA1CF4B73300C631C6 /* UIWebView+iCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */; };
 		492705DB1CF4B73300C631C6 /* UIWebView+iCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */; };
-		492705DC1CF4B73300C631C6 /* UIWebView+LinkProcessing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059A1CF4B73200C631C6 /* UIWebView+LinkProcessing.h */; };
-		492705DD1CF4B73300C631C6 /* UIWebView+LinkProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927059B1CF4B73200C631C6 /* UIWebView+LinkProcessing.m */; };
 		492705DE1CF4B73300C631C6 /* UIWebView+RemoveShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059C1CF4B73200C631C6 /* UIWebView+RemoveShadow.h */; };
 		492705DF1CF4B73300C631C6 /* UIWebView+RemoveShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4927059D1CF4B73200C631C6 /* UIWebView+RemoveShadow.m */; };
 		492705E01CF4B73300C631C6 /* UIWebView+SafeAPIURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */; };
@@ -921,8 +919,6 @@
 		492705951CF4B73200C631C6 /* UIViewController+AnalyticsTracking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+AnalyticsTracking.m"; sourceTree = "<group>"; };
 		492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+iCanvas.h"; sourceTree = "<group>"; };
 		492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+iCanvas.m"; sourceTree = "<group>"; };
-		4927059A1CF4B73200C631C6 /* UIWebView+LinkProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+LinkProcessing.h"; sourceTree = "<group>"; };
-		4927059B1CF4B73200C631C6 /* UIWebView+LinkProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+LinkProcessing.m"; sourceTree = "<group>"; };
 		4927059C1CF4B73200C631C6 /* UIWebView+RemoveShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+RemoveShadow.h"; sourceTree = "<group>"; };
 		4927059D1CF4B73200C631C6 /* UIWebView+RemoveShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+RemoveShadow.m"; sourceTree = "<group>"; };
 		4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+SafeAPIURL.h"; sourceTree = "<group>"; };
@@ -2069,8 +2065,6 @@
 				492705951CF4B73200C631C6 /* UIViewController+AnalyticsTracking.m */,
 				492705981CF4B73200C631C6 /* UIWebView+iCanvas.h */,
 				492705991CF4B73200C631C6 /* UIWebView+iCanvas.m */,
-				4927059A1CF4B73200C631C6 /* UIWebView+LinkProcessing.h */,
-				4927059B1CF4B73200C631C6 /* UIWebView+LinkProcessing.m */,
 				4927059C1CF4B73200C631C6 /* UIWebView+RemoveShadow.h */,
 				4927059D1CF4B73200C631C6 /* UIWebView+RemoveShadow.m */,
 				4927059E1CF4B73200C631C6 /* UIWebView+SafeAPIURL.h */,
@@ -3305,7 +3299,6 @@
 				49A04E211CF5052A0051E1E7 /* CBIQuizViewModel.h in Headers */,
 				492705F71CF4B76A00C631C6 /* CBIColorfulViewModel+CellViewModel.h in Headers */,
 				4927060E1CF4B79B00C631C6 /* InsetTableViewCell.h in Headers */,
-				492705DC1CF4B73300C631C6 /* UIWebView+LinkProcessing.h in Headers */,
 				49642BC11CF4C44A00238B3F /* metamacros.h in Headers */,
 				492707C71CF4BBBA00C631C6 /* PagedTableViewControllerInternal.h in Headers */,
 				492705B41CF4B73200C631C6 /* NSArray_in_additions.h in Headers */,
@@ -4215,7 +4208,6 @@
 				492705F11CF4B76A00C631C6 /* CBIColorfulCell.m in Sources */,
 				492705381CF4B70600C631C6 /* CBISubmissionCommentViewModel.m in Sources */,
 				49CE976F1F900B4700121A43 /* MLVCCollectionViewController.m in Sources */,
-				492705DD1CF4B73300C631C6 /* UIWebView+LinkProcessing.m in Sources */,
 				492705CB1CF4B73200C631C6 /* UITableView+in_updateInBlocks.m in Sources */,
 				492706111CF4B79B00C631C6 /* MultiLineTextField.m in Sources */,
 				4927054A1CF4B70600C631C6 /* ReceivedFilesViewController.m in Sources */,
