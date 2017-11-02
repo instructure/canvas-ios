@@ -44,8 +44,8 @@ export default class Avatar extends Component<any, Props, any> {
     if (!url) return null
 
     // There are a few different forms that the default picture can take
-    const defaults = ['images/dotted_pic.png', 'images%2Fmessages%2Favatar-50.png']
-    if (defaults.filter(d => url.includes(d)).length) {
+    const defaults = ['images/dotted_pic.png', 'images/messages/avatar-50.png']
+    if (defaults.filter(d => decodeURIComponent(url).includes(d)).length) {
       return null
     }
 
