@@ -186,8 +186,6 @@ public class NewFileUpload: Uploadable {
     }
 
     public var image: UIImage {
-        let size = CGSize(width: 34, height: 34)
-        
         switch kind {
         case .audioFile(_):
             return UIImage(named: "icon_audio", in: .core, compatibleWith: nil)!

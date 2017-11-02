@@ -248,7 +248,6 @@
 		4961F6711F8FB9620093EC86 /* NewUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F6491F8FB9600093EC86 /* NewUpload.swift */; };
 		4961F6721F8FB9620093EC86 /* FileUploadsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F64A1F8FB9600093EC86 /* FileUploadsViewModel.swift */; };
 		4961F6731F8FB9620093EC86 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F64B1F8FB9600093EC86 /* Uploader.swift */; };
-		4961F6741F8FB9620093EC86 /* Upload Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4961F64C1F8FB9600093EC86 /* Upload Icons.xcassets */; };
 		4961F6751F8FB9620093EC86 /* FileUploadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F64D1F8FB9600093EC86 /* FileUploadTableViewCell.swift */; };
 		4961F6761F8FB9620093EC86 /* FileUpload+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F64E1F8FB9600093EC86 /* FileUpload+Details.swift */; };
 		4961F6771F8FB9620093EC86 /* FileUploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F64F1F8FB9600093EC86 /* FileUploadViewModel.swift */; };
@@ -420,7 +419,6 @@
 		49CE973A1F8FFEA600121A43 /* Submission+Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97071F8FFEA200121A43 /* Submission+Details.swift */; };
 		49CE973B1F8FFEA600121A43 /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE97091F8FFEA200121A43 /* Submission.swift */; };
 		49CE973C1F8FFEA600121A43 /* SubmissionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970A1F8FFEA200121A43 /* SubmissionEvent.swift */; };
-		49CE973D1F8FFEA600121A43 /* Submission Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49CE970B1F8FFEA200121A43 /* Submission Icons.xcassets */; };
 		49CE973E1F8FFEA600121A43 /* Submission+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970C1F8FFEA200121A43 /* Submission+Collections.swift */; };
 		49CE973F1F8FFEA600121A43 /* Submission+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970D1F8FFEA200121A43 /* Submission+Network.swift */; };
 		49CE97401F8FFEA600121A43 /* Upload+SubmissionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CE970E1F8FFEA200121A43 /* Upload+SubmissionDetails.swift */; };
@@ -738,7 +736,6 @@
 		4961F6491F8FB9600093EC86 /* NewUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUpload.swift; sourceTree = "<group>"; };
 		4961F64A1F8FB9600093EC86 /* FileUploadsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadsViewModel.swift; sourceTree = "<group>"; };
 		4961F64B1F8FB9600093EC86 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
-		4961F64C1F8FB9600093EC86 /* Upload Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Upload Icons.xcassets"; sourceTree = "<group>"; };
 		4961F64D1F8FB9600093EC86 /* FileUploadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadTableViewCell.swift; sourceTree = "<group>"; };
 		4961F64E1F8FB9600093EC86 /* FileUpload+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileUpload+Details.swift"; sourceTree = "<group>"; };
 		4961F64F1F8FB9600093EC86 /* FileUploadViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUploadViewModel.swift; sourceTree = "<group>"; };
@@ -929,7 +926,6 @@
 		49CE97071F8FFEA200121A43 /* Submission+Details.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Details.swift"; sourceTree = "<group>"; };
 		49CE97091F8FFEA200121A43 /* Submission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Submission.swift; sourceTree = "<group>"; };
 		49CE970A1F8FFEA200121A43 /* SubmissionEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionEvent.swift; sourceTree = "<group>"; };
-		49CE970B1F8FFEA200121A43 /* Submission Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Submission Icons.xcassets"; sourceTree = "<group>"; };
 		49CE970C1F8FFEA200121A43 /* Submission+Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Collections.swift"; sourceTree = "<group>"; };
 		49CE970D1F8FFEA200121A43 /* Submission+Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Submission+Network.swift"; sourceTree = "<group>"; };
 		49CE970E1F8FFEA200121A43 /* Upload+SubmissionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Upload+SubmissionDetails.swift"; sourceTree = "<group>"; };
@@ -1921,7 +1917,6 @@
 				4961F6491F8FB9600093EC86 /* NewUpload.swift */,
 				4961F64A1F8FB9600093EC86 /* FileUploadsViewModel.swift */,
 				4961F64B1F8FB9600093EC86 /* Uploader.swift */,
-				4961F64C1F8FB9600093EC86 /* Upload Icons.xcassets */,
 				4961F64D1F8FB9600093EC86 /* FileUploadTableViewCell.swift */,
 				4961F64E1F8FB9600093EC86 /* FileUpload+Details.swift */,
 				4961F64F1F8FB9600093EC86 /* FileUploadViewModel.swift */,
@@ -2408,7 +2403,6 @@
 				49CE97061F8FFEA200121A43 /* Assignment+AllowedFileSubmissionTypes.swift */,
 				49CE97071F8FFEA200121A43 /* Submission+Details.swift */,
 				49CE97081F8FFEA200121A43 /* Model */,
-				49CE970B1F8FFEA200121A43 /* Submission Icons.xcassets */,
 				49CE970C1F8FFEA200121A43 /* Submission+Collections.swift */,
 				49CE970D1F8FFEA200121A43 /* Submission+Network.swift */,
 				49CE970E1F8FFEA200121A43 /* Upload+SubmissionDetails.swift */,
@@ -2731,7 +2725,6 @@
 				494BC6041F953D0D00C77257 /* SubmitAnnotatedAssignmentViewController.storyboard in Resources */,
 				4961F59C1F8FB2920093EC86 /* PrettyImages.xcassets in Resources */,
 				49CE97491F8FFEA600121A43 /* Assignment.storyboard in Resources */,
-				4961F6741F8FB9620093EC86 /* Upload Icons.xcassets in Resources */,
 				4961F66C1F8FB9620093EC86 /* FileKit.xcassets in Resources */,
 				49CE96781F8FF41B00121A43 /* MatchAnswerCell.xib in Resources */,
 				49CE96BA1F8FF94B00121A43 /* PageTemplate.html in Resources */,
@@ -2747,7 +2740,6 @@
 				49698D771F8FA2D000E38B78 /* Assets.xcassets in Resources */,
 				49CE97441F8FFEA600121A43 /* ScheduleItemDetails.js in Resources */,
 				49CE96571F8FF41B00121A43 /* Quizzes.xcassets in Resources */,
-				49CE973D1F8FFEA600121A43 /* Submission Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

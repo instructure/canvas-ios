@@ -95,7 +95,7 @@ open class AttendanceViewController: UIViewController {
         navigationItem.titleView = titleStuff.titleView
         dateLabel = titleStuff.subtitleLabel
         
-        let datePickerButton = UIBarButtonItem(image: UIImage(named: "calendar", in: .core, compatibleWith: nil), style: .plain, target: self, action: #selector(showDatePicker(_:)))
+        let datePickerButton = UIBarButtonItem(image: UIImage(named: "attendance-calendar", in: .core, compatibleWith: nil), style: .plain, target: self, action: #selector(showDatePicker(_:)))
         datePickerButton.accessibilityLabel = NSLocalizedString("Date picker", comment: "")
         datePickerButton.accessibilityHint = NSLocalizedString("Select to change the roll call date", comment: "")
         navigationItem.rightBarButtonItem = datePickerButton

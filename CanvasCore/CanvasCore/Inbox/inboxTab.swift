@@ -22,7 +22,7 @@ public func inboxTab() -> UIViewController {
     empty.navigationBar.isTranslucent = false
     
     inboxSplit.viewControllers = [inboxNav, empty]
-    let icon = UIImage(named: "inbox", in: .core, compatibleWith: nil)
+    let icon = UIImage(named: "teacher-inbox", in: .core, compatibleWith: nil)
     inboxSplit.tabBarItem = UITabBarItem(title: NSLocalizedString("Inbox", comment: ""), image: icon, selectedImage: nil)
     inboxSplit.tabBarItem.accessibilityIdentifier = "tab-bar.inbox-btn"
     inboxSplit.extendedLayoutIncludesOpaqueBars = true

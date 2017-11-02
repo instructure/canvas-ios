@@ -49,7 +49,7 @@ class QuestionDrawerCell: UITableViewCell {
             let flagImage = UIImage(named: "flag_selected", in: Bundle(for: QuestionDrawerCell.self), compatibleWith: nil)
             statusIconView.image = flagImage
         case .answered:
-            let checkImage = UIImage(named: "check", in: Bundle(for: QuestionDrawerCell.self), compatibleWith: nil)
+            let checkImage = UIImage(named: "quiz-check", in: Bundle(for: QuestionDrawerCell.self), compatibleWith: nil)
             statusIconView.image = checkImage
         case .untouched:
             statusIconView.image = nil

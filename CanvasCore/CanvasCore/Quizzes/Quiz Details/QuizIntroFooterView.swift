@@ -116,7 +116,7 @@ extension QuizIntroFooterView {
                 takeabilityActivityIndicator.isHidden = false
                 takeabilityActivityIndicator.startAnimating()
             } else {
-                let lockImage = UIImage(named: "lock", in: Bundle(for: QuizIntroViewController.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+                let lockImage = UIImage(named: "quiz-lock", in: Bundle(for: QuizIntroViewController.self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
                 takeButton.imageView?.tintColor = UIColor.white
                 takeButton.setImage(lockImage, for: UIControlState())
                 takeButton.setTitle(nil, for: UIControlState())
