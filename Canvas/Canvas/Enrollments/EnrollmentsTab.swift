@@ -26,8 +26,8 @@ public func EnrollmentsTab(session: Session) throws -> UIViewController {
         let masterNav = UINavigationController()
         masterNav.view.backgroundColor = UIColor.white
         masterNav.delegate = split
-        masterNav.interactivePopGestureRecognizer?.delegate = split // setting the UINavController's delegate, breaks the interactive pop. This fixes it.
-
+        masterNav.interactivePopGestureRecognizer?.isEnabled = false
+        
         if url.lastPathComponent == "tabs" {
             let tabsVC = Router.shared().controller(forHandling: url) as! TabsTableViewController
             masterNav.viewControllers = [UIViewController(), tabsVC]

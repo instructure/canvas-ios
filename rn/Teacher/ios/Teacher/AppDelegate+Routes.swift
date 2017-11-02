@@ -19,8 +19,7 @@ extension AppDelegate {
             masterNav.viewControllers = [EmptyViewController(), master]
             masterNav.view.backgroundColor = .white
             masterNav.delegate = split
-            // setting the UINavController's delegate breaks the interactive pop. This fixes it.
-            masterNav.interactivePopGestureRecognizer?.delegate = split
+            masterNav.interactivePopGestureRecognizer?.isEnabled = false
             
             let emptyNav = HelmNavigationController(rootViewController: EmptyViewController())
             
