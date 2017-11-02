@@ -68,13 +68,12 @@ export function gradeProp (submission: ?Submission): GradeProp {
     return 'excused'
   }
 
-  // workflow_state will not be 'graded' when a student resubmits an assigment, or quiz
-  if (submission.workflow_state === 'graded') {
-    return submission.grade
+  if (!submission.submitted_at) {
+    return 'not_submitted'
   }
 
-  if (submission.workflow_state === 'unsubmitted') {
-    return 'not_submitted'
+  if (submission.grade != null && submission.grade_matches_current_submission) {
+    return submission.grade
   }
 
   return 'ungraded'

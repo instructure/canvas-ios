@@ -18,6 +18,7 @@
 * @flow
 */
 
+import i18n from 'format-message'
 import React, { Component } from 'react'
 import {
   View,
@@ -28,7 +29,7 @@ import Icon from '../../common/components/PublishedIcon'
 import { Text } from '../../common/text'
 import Row from '../../common/components/rows/Row'
 import Images from '../../images'
-import { statusProp, dueDate } from '../submissions/list/get-submissions-props'
+import { gradeProp, statusProp, dueDate } from '../submissions/list/get-submissions-props'
 import SubmissionStatus from '../submissions/list/SubmissionStatus'
 import LinearGradient from 'react-native-linear-gradient'
 import Token from '../../common/components/Token'
@@ -91,6 +92,7 @@ export default class UserSubmissionRow extends Component<any, Props, any> {
     const hasGrade = submission &&
                      submission.grade &&
                      submission.grade_matches_current_submission
+    const needsGrading = gradeProp(submission) === 'ungraded'
 
     return (
       <View>
@@ -105,10 +107,10 @@ export default class UserSubmissionRow extends Component<any, Props, any> {
             height='auto'
           >
             {this.submissionStatus()}
-            {hasGrade && !this.props.submission.excused && this.grade()}
-            {!hasGrade && this.props.submission && !this.props.submission.excused &&
+            {hasGrade && !submission.excused && this.grade()}
+            {needsGrading &&
               <View style={{ flexDirection: 'row' }}>
-                <Token color='#FC5E13'>Needs Grading</Token>
+                <Token color='#FC5E13'>{i18n('Needs Grading')}</Token>
               </View>
             }
           </Row>

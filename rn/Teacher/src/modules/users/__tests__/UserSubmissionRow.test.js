@@ -72,4 +72,14 @@ describe('UserSubmissionRow', () => {
 
     expect(view.toJSON()).toMatchSnapshot()
   })
+
+  it('renders needs grading', () => {
+    let submission = templates.submission({ id: '1', assignment_id: '1', grade: null })
+
+    let view = renderer.create(
+      <UserSubmissionRow {...defaultProps} submission={submission} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
+  })
 })

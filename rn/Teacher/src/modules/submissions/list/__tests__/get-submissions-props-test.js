@@ -30,7 +30,8 @@ describe('GetSubmissionsProps gradeProp', () => {
 
   test('unsubmitted submission', () => {
     const submission = template.submission({
-      workflow_state: 'unsubmitted',
+      grade: null,
+      submitted_at: null,
     })
 
     const result = gradeProp(submission)
@@ -44,15 +45,6 @@ describe('GetSubmissionsProps gradeProp', () => {
 
     const result = gradeProp(submission)
     expect(result).toEqual('excused')
-  })
-
-  test('submission with pending_review is ungraded', () => {
-    const submission = template.submission({
-      workflow_state: 'pending_review',
-    })
-
-    const result = gradeProp(submission)
-    expect(result).toEqual('ungraded')
   })
 
   test('graded submission', () => {

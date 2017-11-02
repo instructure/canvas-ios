@@ -113,7 +113,7 @@ test('submissions', () => {
       submission: t.submissionHistory([{
         id: '40',
         user_id: '4',
-        grade: 'A-',
+        grade: null,
         submitted_at: '2017-04-05T15:12:45Z',
         workflow_state: 'submitted',
         attempt: 1,
@@ -131,7 +131,6 @@ test('submissions', () => {
         id: '50',
         user_id: '6',
         grade: 'B+',
-        submitted_at: null,
         workflow_state: 'graded',
         attempt: null,
         excused: false,
