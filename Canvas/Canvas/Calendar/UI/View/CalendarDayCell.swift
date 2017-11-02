@@ -98,7 +98,7 @@ open class CalendarDayCell: UICollectionViewCell {
         
         updateCellState()
         dateLabel.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
-        eventCountDot.center = CGPoint(x: self.frame.width / 2, y: dateLabel.frame.maxY)
+        eventCountDot.center = CGPoint(x: self.frame.width / 2, y: dateLabel.frame.maxY + 3)
     }
     
     override open func prepareForReuse() {

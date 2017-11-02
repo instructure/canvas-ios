@@ -13,8 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-    
-    
 
 import UIKit
 
@@ -27,23 +25,28 @@ class CalendarMonthHeaderView: UICollectionReusableView {
             if let currMonth = currentMonth {
                 self.dateLabel.textColor = currMonth ? UIColor.calendarTintColor : UIColor.black
             }
+            
+            sizeLabel()
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initialize()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         initialize()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        sizeLabel()
+    }
+    
+    func sizeLabel() {
+        dateLabel.sizeToFit()
         dateLabel.frame = dateLabel.frame.clamp(self.frame.size, inset: 2.0)
         dateLabel.center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
     }
@@ -55,9 +58,5 @@ class CalendarMonthHeaderView: UICollectionReusableView {
         dateLabel.textAlignment = NSTextAlignment.center
         dateLabel.sizeToFit()
         addSubview(dateLabel)
-    }
-    
-    func isPad() -> Bool {
-        return UIDevice.current.userInterfaceIdiom == .pad
     }
 }
