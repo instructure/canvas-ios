@@ -19,6 +19,8 @@
 import Foundation
 import PSPDFKit
 
+let DisabledMenuItems: [String] = [PSPDFAnnotationMenuOpacity]
+
 // This class will be the manager for the PSPDFViewController. Any app that wants to display this document will have to:
 // 1. Decide between Crocodoc or Native.
 // IF NATIVE:
@@ -203,16 +205,19 @@ extension CanvadocsPDFDocumentPresenter: PSPDFViewControllerDelegate {
                     }
                 }))
 
-                for menuItem in menuItems {
-                    if menuItem.identifier != PSPDFAnnotationMenuCopy && menuItem.identifier != PSPDFAnnotationMenuNote {
-                        realMenuItems.append(menuItem)
-                    }
+                let filteredMenuItems = menuItems.filter {
+                    guard let identifier = $0.identifier else { return true }
+                    return identifier != PSPDFAnnotationMenuCopy && identifier != PSPDFAnnotationMenuNote && !DisabledMenuItems.contains(identifier)
                 }
+                realMenuItems.append(contentsOf: filteredMenuItems)
                 return realMenuItems
             }
         }
 
-        return menuItems
+        return menuItems.filter {
+            guard let identifier = $0.identifier else { return true }
+            return !DisabledMenuItems.contains(identifier)
+        }
     }
 
     public func pdfViewController(_ pdfController: PSPDFViewController, shouldShow controller: UIViewController, options: [String : Any]? = nil, animated: Bool) -> Bool {
