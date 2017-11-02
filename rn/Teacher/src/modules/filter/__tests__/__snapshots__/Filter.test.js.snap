@@ -117,6 +117,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -208,6 +209,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -299,6 +301,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -390,6 +393,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -481,6 +485,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -572,6 +577,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -663,6 +669,7 @@ exports[`Filter renders the filter options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -869,6 +876,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -962,6 +970,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1055,6 +1064,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1148,6 +1158,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1241,6 +1252,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -1372,6 +1384,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1465,6 +1478,7 @@ exports[`Filter renders with preselected options 1`] = `
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1673,6 +1687,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1766,6 +1781,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1859,6 +1875,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -1952,6 +1969,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -2045,6 +2063,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "selected",
               "button",
             ]
           }
@@ -2176,6 +2195,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }
@@ -2269,6 +2289,7 @@ exports[`Filter updates the selection when pressed for non prompt filter options
           accessibilityLabel={undefined}
           accessibilityTraits={
             Array [
+              "none",
               "button",
             ]
           }

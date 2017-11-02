@@ -66,9 +66,11 @@ export default class Filter extends Component {
   }
 
   renderRow = ({ item }: { item: SubmissionFilterOption }) => {
+    const traits = item.selected ? 'selected' : 'none'
     return (
       <Row
         title={item.title()}
+        accessibilityTraits={traits}
         identifier={item.type}
         onPress={this.onFilterPress}
         border='bottom'
