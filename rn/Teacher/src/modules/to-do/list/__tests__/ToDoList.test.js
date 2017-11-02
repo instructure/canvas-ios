@@ -134,11 +134,11 @@ describe('mapStateToProps', () => {
     const assignment = template.assignment({ id: '1' })
     const ungraded = template.submission({
       id: '1',
-      workflow_state: 'submitted',
+      grade: null,
     })
     const graded = template.submission({
       id: '2',
-      workflow_state: 'graded',
+      grade: 'A',
     })
     const staleItem = template.toDoItem({
       assignment,
@@ -175,11 +175,11 @@ describe('mapStateToProps', () => {
     const quiz = template.quiz({ id: '1' })
     const s1 = template.submission({
       id: '1',
-      workflow_state: 'submitted',
+      grade: null,
     })
     const s2 = template.submission({
       id: '2',
-      workflow_state: 'submitted',
+      grade: null,
     })
     const staleItem = template.toDoItem({
       quiz,
