@@ -95,7 +95,10 @@
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
 
-        [self.webView loadRequest:request];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.webView loadRequest:request];
+        });
+
         DDLogVerbose(@"LTIViewController posting module item progress update after starting to load the External Tool URL in the webview");
         CBIPostModuleItemProgressUpdate([self.externalTool.url absoluteString], CKIModuleItemCompletionRequirementMustView);
     }];
@@ -159,6 +162,15 @@
      "document.getElementsByTagName('head')[0].appendChild(meta)", @(width)];
     
     [webView evaluateJavaScript:js completionHandler:nil];
+}
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    if (!navigationAction.targetFrame) {
+        [webView loadRequest:navigationAction.request];
+        decisionHandler(WKNavigationResponsePolicyCancel);
+        return;
+    }
+    decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(nonnull WKNavigationResponse *)navigationResponse decisionHandler:(nonnull void (^)(WKNavigationResponsePolicy))decisionHandler {
