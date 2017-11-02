@@ -51,13 +51,14 @@ import A11yGroup from '../../common/components/A11yGroup'
 
 type State = {
   size: { width: number, height: number },
-  currentStudentID: string,
+  currentStudentID: ?string,
   filteredIDs?: Array<string>,
   drawerInset: number,
   hasScrolledToInitialSubmission: boolean,
 }
 
 const PAGE_GUTTER_HALF_WIDTH = 10.0
+const REFRESH_TTL = 1000 * 60 * 15 // 15 minutes
 
 export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   props: SpeedGraderProps
@@ -65,6 +66,9 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   _flatList: ?FlatList
 
   static drawerState = new DrawerState()
+  static defaultProps = {
+    onDismiss: () => {},
+  }
 
   constructor (props: SpeedGraderProps) {
     super(props)
@@ -86,26 +90,6 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
 
   snapTo = (position: DrawerPosition) => {
     this.setState({ drawerInset: SpeedGrader.drawerState.drawerHeight(position, this.state.size.height) })
-  }
-
-  componentWillMount () {
-    this.setFilteredIDs(this.props)
-  }
-
-  componentWillReceiveProps (nextProps: SpeedGraderProps) {
-    this.setFilteredIDs(nextProps)
-  }
-
-  setFilteredIDs = (props: SpeedGraderProps) => {
-    if (props.submissions.length && !this.state.filteredIDs) {
-      let filteredSubmissions = props.filter
-        ? props.filter(props.submissions)
-        : props.submissions
-
-      this.setState({
-        filteredIDs: filteredSubmissions.map(({ userID }) => userID),
-      })
-    }
   }
 
   componentWillUnmount () {
@@ -137,7 +121,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
     this._flatList = list
   }
 
-  renderItem = ({ item }: { item: SubmissionItem }) => {
+  renderItem = ({ item, index }: { item: SubmissionItem }) => {
     const submissionEntity = item.submission.submissionID != null
       ? this.props.submissionEntities[item.submission.submissionID]
       : null
@@ -148,15 +132,19 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
       ? submissionEntity.selectedAttachmentIndex
       : null
 
+    const isCurrentStudent = this.state.currentStudentID
+      ? this.state.currentStudentID === item.submission.userID
+      : index === 0
+
     return <A11yGroup style={[styles.page, this.state.size]}>
       <SubmissionGrader
-        isCurrentStudent={this.state.currentStudentID === item.submission.userID}
+        isCurrentStudent={isCurrentStudent}
         drawerState={SpeedGrader.drawerState}
         courseID={this.props.courseID}
         assignmentID={this.props.assignmentID}
         userID={item.submission.userID}
         submissionID={item.submission.submissionID}
-        closeModal={this.props.navigator.dismiss}
+        closeModal={this.dismiss}
         submissionProps={item.submission}
         selectedIndex={selectedIndex}
         selectedAttachmentIndex={selectedAttachmentIndex}
@@ -167,6 +155,11 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         gradeSubmissionWithRubric={this.props.gradeSubmissionWithRubric}
       />
     </A11yGroup>
+  }
+
+  dismiss = () => {
+    this.props.navigator.dismiss()
+    this.props.onDismiss()
   }
 
   scrollEnded = (event: Object) => {
@@ -188,12 +181,12 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
   })
 
   filteredSubmissions (): Array<SubmissionItem> {
-    return this.props.submissions
-      .filter(submission => this.state.filteredIDs && this.state.filteredIDs.includes(submission.userID))
+    if (!this.props.filter) return this.props.submissions
+    return this.props.filter(this.props.submissions)
   }
 
   renderBody = () => {
-    if (!this.props.refreshing && this.props.pending || !this.props.submissions) {
+    if (this.props.refreshing || !this.props.submissions.length) {
       return <View style={styles.loadingWrapper}><ActivityIndicator /></View>
     }
 
@@ -241,7 +234,7 @@ export class SpeedGrader extends Component<any, SpeedGraderProps, State> {
         noRotationInVerticallyCompact={true}
       >
         <View style={styles.speedGrader}>
-          { !!this.state.filteredIDs && this.renderBody() }
+          { this.renderBody() }
           <Tutorial
             tutorials={tutorials}
           />
@@ -272,6 +265,9 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
   const { courseID, assignmentID } = ownProps
 
   const assignmentContent = entities.assignments[assignmentID]
+  const assignmentData = assignmentContent && assignmentContent.data
+  let anonymous = assignmentContent && assignmentContent.anonymousGradingOn
+
   let groupAssignment = null
   if (assignmentContent && assignmentContent.data) {
     const a = assignmentContent.data
@@ -290,18 +286,18 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
     props = getSubmissionsProps(entities, courseID, assignmentID)
   }
 
-  let anonymous = state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
-
-  return {
+  const result = {
     ...props,
     submissions: anonymous ? shuffle(props.submissions.slice(), ownProps.assignmentID) : props.submissions,
     groupAssignment,
     submissionEntities: state.entities.submissions,
-    assignmentSubmissionTypes: state.entities.assignments[ownProps.assignmentID].data.submission_types,
-    isModeratedGrading: !!state.entities.assignments[ownProps.assignmentID].data.moderated_grading,
-    hasRubric: !!state.entities.assignments[ownProps.assignmentID].data.rubric,
-    hasAssignment: !!state.entities.assignments[ownProps.assignmentID].data.id,
+    assignmentSubmissionTypes: assignmentData ? assignmentData.submission_types : [],
+    isModeratedGrading: !!(assignmentData && assignmentData.moderated_grading),
+    hasRubric: !!(assignmentData && assignmentData.rubric),
+    hasAssignment: !!(assignmentData && assignmentData.id),
   }
+
+  return result
 }
 
 export function refreshSpeedGrader (props: SpeedGraderProps): void {
@@ -323,10 +319,16 @@ export function isRefreshing (props: SpeedGraderProps): boolean {
   return props.pending
 }
 
+export function ttlKeyExtractor (props: SpeedGraderProps): string {
+  return `${props.courseID}-${props.assignmentID}`
+}
+
 const Refreshed = refresh(
   refreshSpeedGrader,
   shouldRefresh,
-  isRefreshing
+  isRefreshing,
+  REFRESH_TTL,
+  ttlKeyExtractor,
 )(SpeedGrader)
 const Connected = connect(mapStateToProps, {
   ...SubmissionActions,
@@ -371,4 +373,4 @@ type SpeedGraderProps
   & SpeedGraderActionProps
   & SpeedGraderDataProps
   & RefreshProps
-  & { navigator: Navigator }
+  & { navigator: Navigator, onDismiss: Function }

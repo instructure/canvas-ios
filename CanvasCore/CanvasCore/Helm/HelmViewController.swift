@@ -15,9 +15,9 @@
 //
 
 import UIKit
-import SDWebImage
 import PocketSVG
 import React
+import Kingfisher
 
 public typealias Props = [String: Any]
 
@@ -284,7 +284,29 @@ public final class HelmViewController: UIViewController, HelmScreen {
                 let styleConfig = buttonConfig["style"] as? String
                 let style: UIBarButtonItemStyle = styleConfig == "done" ? .done : .plain
                 let barButtonItem: UIBarButtonItem
-                if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig), let simulateBackChevron = buttonConfig["simulateBackChevron"] as? Bool, simulateBackChevron {
+                if let imageConfig = buttonConfig["image"] as? [String: Any],
+                    let imageSource = RCTConvert.rctImageSource(imageConfig),
+                    let url = imageSource.request.url, url.scheme?.lowercased() == "https" {
+                    let button = UIButton(type: .custom)
+                    button.kf.setImage(with: url, for: .normal)
+                    button.imageView?.contentMode = .scaleAspectFit
+                    let view = UIView()
+                    if let width = imageConfig["width"] as? CGFloat, let height = imageConfig["height"] as? CGFloat {
+                        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+                        view.frame = frame
+                        button.frame = frame
+                    }
+                    if let borderRadius = imageConfig["borderRadius"] as? CGFloat {
+                        view.layer.cornerRadius = borderRadius
+                        view.clipsToBounds = true
+                    }
+                    if let action = buttonConfig["action"] as? NSString {
+                        button.addTarget(self, action: #selector(barButtonTapped(_:)), for: .touchUpInside)
+                        button.setAssociatedObject(action, forKey: &Associated.barButtonAction)
+                    }
+                    view.addSubview(button)
+                    barButtonItem = UIBarButtonItem(customView: view)
+                } else if let imageConfig = buttonConfig["image"], let image = RCTConvert.uiImage(imageConfig), let simulateBackChevron = buttonConfig["simulateBackChevron"] as? Bool, simulateBackChevron {
                     let button =  UIButton(type: .custom)
                     button.setImage(image, for: .normal)
                     var width: CGFloat = 26
@@ -510,7 +532,7 @@ public final class HelmViewController: UIViewController, HelmScreen {
                     titleView?.contentMode = .scaleAspectFit
                 } else {
                     let imageView = UIImageView()
-                    imageView.sd_setImage(with: URL(string: path))
+                    imageView.kf.setImage(with: URL(string: path))
                     titleView = imageView
                 }
             }

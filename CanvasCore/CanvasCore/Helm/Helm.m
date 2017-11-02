@@ -49,8 +49,10 @@ RCT_EXPORT_METHOD(present:(NSString *)module withProps:(NSDictionary *)props opt
     [[HelmManager shared] present:module withProps:props options:options];
 }
 
-RCT_EXPORT_METHOD(dismiss:(NSDictionary *)options) {
-    [[HelmManager shared] dismiss:options];
+RCT_REMAP_METHOD(dismiss, dismissWithOptions:(NSDictionary *)options resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [[HelmManager shared] dismiss:options callback:^(NSArray *response) {
+        resolve(nil);
+    }];
 }
 
 RCT_EXPORT_METHOD(dismissAllModals:(NSDictionary *)options) {

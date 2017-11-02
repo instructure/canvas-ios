@@ -163,7 +163,7 @@ export function getSubmissionsProps (entities: Entities, courseID: string, assig
     })
     .map(enrollment => {
       const submission: ?SubmissionWithHistory = submissionsByUserID[enrollment.user_id]
-      const due = dueDate(assignmentContent.data, enrollment.user)
+      const due = assignmentContent && dueDate(assignmentContent.data, enrollment.user)
       return submissionProps(enrollment, submission, due, sectionIDs)
     })
 

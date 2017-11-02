@@ -100,6 +100,10 @@ export class FavoritedCourseList extends Component {
     this.props.navigator.show('/courses')
   }
 
+  goToProfile = () => {
+    this.props.navigator.show('/profile', { modal: true })
+  }
+
   renderHeader = () => {
     return (
       <View style={styles.header}>
@@ -136,6 +140,19 @@ export class FavoritedCourseList extends Component {
   }
 
   render () {
+    let avatarURL
+    const session = getSession()
+    if (session) {
+      avatarURL = session.user.avatar_url
+    }
+
+    const avatarConfig = {
+      uri: avatarURL,
+      width: 32,
+      height: 32,
+      borderRadius: 16,
+    }
+
     return (
       <Screen
         navBarHidden={false}
@@ -149,6 +166,14 @@ export class FavoritedCourseList extends Component {
             testID: 'favorited-course-list.edit-btn',
             action: this.showFavoritesList,
             disabled: !this.props.totalCourseCount,
+          },
+        ]}
+        leftBarButtons={[
+          {
+            image: avatarURL ? avatarConfig : Images.profile,
+            testID: 'favorited-course-list.profile-btn',
+            action: this.goToProfile,
+            accessibilityLabel: i18n('Profile'),
           },
         ]}
         >

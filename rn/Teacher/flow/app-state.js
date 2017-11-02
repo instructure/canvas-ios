@@ -111,6 +111,7 @@ export type SubmissionState = AsyncState & {
   rubricGradePending: boolean,
   selectedIndex: ?number,
   selectedAttachmentIndex: ?number,
+  lastGradedAt: ?number,
 }
 
 export type QuizState = AsyncState & {
@@ -195,9 +196,14 @@ export type InboxState = {
   archived: AsyncRefs,
 }
 
+export type ToDoState = {
+  items: ToDoItem[],
+}
+
 export type AppState = {
   favoriteCourses: FavoriteCoursesState,
   entities: Entities,
   inbox: InboxState,
+  toDo: ToDoState,
   asyncActions: { [string]: AsyncActionState },
 }

@@ -34,7 +34,7 @@ class RootTabBarController: UITabBarController {
     }
     
     func configureTabs() {
-        var controllers = [coursesTab(), inboxTab(), profileTab()]
+        var controllers = [coursesTab(), toDoTab(), inboxTab()]
         #if DEBUG
         controllers.append(stagingTab())
         #endif
@@ -48,7 +48,14 @@ class RootTabBarController: UITabBarController {
         enrollmentsVC.tabBarItem.accessibilityIdentifier = "tab-bar.courses-btn"
         return HelmNavigationController(rootViewController: enrollmentsVC)
     }
-        
+
+    func toDoTab() -> UIViewController {
+        let toDoVC = HelmViewController(moduleName: "/to-do", props: [:])
+        toDoVC.view.accessibilityIdentifier = "to-do-list.view"
+        toDoVC.tabBarItem = UITabBarItem(title: NSLocalizedString("To Do", comment: ""), image: UIImage(named: "todo"), selectedImage: nil)
+        toDoVC.tabBarItem.accessibilityIdentifier = "tab-bar.to-do-btn"
+        return HelmNavigationController(rootViewController: toDoVC)
+    }
     func profileTab() -> UIViewController {
         let profileVC = HelmViewController(moduleName: "/profile", props: [:])
         profileVC.tabBarItem = UITabBarItem(title: NSLocalizedString("Profile", comment: ""), image: UIImage(named: "profile"), selectedImage: nil)

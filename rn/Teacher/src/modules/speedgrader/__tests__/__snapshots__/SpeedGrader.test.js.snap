@@ -7,7 +7,24 @@ exports[`SpeedGrader renders 1`] = `
       "flex": 1,
     }
   }
-/>
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+    />
+  </View>
+</View>
 `;
 
 exports[`SpeedGrader renders submissions if there are some 1`] = `
@@ -486,7 +503,24 @@ exports[`SpeedGrader shows the loading spinner when pending and not refreshing 1
       "flex": 1,
     }
   }
-/>
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+    />
+  </View>
+</View>
 `;
 
 exports[`SpeedGrader shows the loading spinner when there are no submissions 1`] = `
@@ -496,5 +530,22 @@ exports[`SpeedGrader shows the loading spinner when there are no submissions 1`]
       "flex": 1,
     }
   }
-/>
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <ActivityIndicator
+      animating={true}
+      color="#999999"
+      hidesWhenStopped={true}
+      size="small"
+    />
+  </View>
+</View>
 `;

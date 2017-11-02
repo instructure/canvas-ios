@@ -114,10 +114,10 @@ export default class Profile extends Component {
         navBarStyle='dark'
         leftBarButtons={[
           {
-            image: Images.course.settings,
-            testID: 'profile.navigation-settings-btn',
-            action: this.settings,
-            accessibilityLabel: i18n('Profile actions'),
+            title: i18n('Done'),
+            testID: 'profile.navigation-dismiss-btn',
+            action: this.props.navigator.dismiss,
+            accessibilityLabel: i18n('Done'),
           },
         ]}
         rightBarButtons={[
@@ -125,6 +125,12 @@ export default class Profile extends Component {
             title: i18n('Log Out'),
             testID: 'profile.navigation-logout-btn',
             action: this.logout,
+          },
+          {
+            image: Images.course.settings,
+            testID: 'profile.navigation-settings-btn',
+            action: this.settings,
+            accessibilityLabel: i18n('Profile actions'),
           },
         ]}
       >

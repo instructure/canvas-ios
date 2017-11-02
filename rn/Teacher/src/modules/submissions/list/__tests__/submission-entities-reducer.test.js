@@ -467,6 +467,7 @@ test('gradeSubmissionWithRubric creates the submission if there is no submission
     pending: 0,
     error: null,
     rubricGradePending: false,
+    lastGradedAt: expect.any(Number),
   })
 })
 

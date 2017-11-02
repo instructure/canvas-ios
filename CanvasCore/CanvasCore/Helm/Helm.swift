@@ -233,11 +233,13 @@ open class HelmManager: NSObject {
         }
     }
 
-    open func dismiss(_ options: [String: Any]) {
+    open func dismiss(_ options: [String: Any], callback: RCTResponseSenderBlock? = nil) {
         // TODO: maybe not always dismiss the top - UIKit allows dismissing things not the top, dismisses all above
         guard let vc = topMostViewController() else { return }
         let animated = options["animated"] as? Bool ?? true
-        vc.dismiss(animated: animated, completion: nil)
+        vc.dismiss(animated: animated) {
+            callback?([])
+        }
     }
     
     open func dismissAllModals(_ options: [String: Any]) {

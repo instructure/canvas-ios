@@ -66,6 +66,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
           submission: result.data,
           pending: 0,
           error: null,
+          lastGradedAt: Date.now(),
         },
       }
     },
@@ -129,6 +130,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
             excused: false,
           },
           pending: submissionState.pending - 1,
+          lastGradedAt: Date.now(),
         },
       }
     },
@@ -167,6 +169,7 @@ export const submissions: Reducer<SubmissionsState, any> = handleActions({
         [id]: {
           ...submissionState,
           rubricGradePending: false,
+          lastGradedAt: Date.now(),
           submission: {
             ...submissionState.submission,
             grade: result.data.grade,

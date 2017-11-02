@@ -22,14 +22,18 @@ import hoistStatics from 'hoist-non-react-statics'
 export type RefreshFunction = (*) => *
 export type ShouldRefresh = (*) => boolean
 export type IsFetchingData = (*) => boolean
+export type TtlKeyExtractor = (*) => string
+
+const DEFAULT_TTL_KEY = 'default'
 
 export default function refresh (
     refreshFunction: RefreshFunction,
     shouldRefresh: ShouldRefresh,
     isFetchingData: IsFetchingData,
-    ttl: ?number = 1000 * 60 * 60 // 1 hour
+    ttl: ?number = 1000 * 60 * 60, // 1 hour
+    ttlKeyExtractor: TtlKeyExtractor = (props) => DEFAULT_TTL_KEY,
   ): * {
-  let lastUpdate = null
+  let updates = {}
 
   return function (TheirComponent) {
     class Refreshed extends Component {
@@ -54,19 +58,25 @@ export default function refresh (
 
       componentWillMount () {
         if (shouldRefresh(this.props)) {
-          lastUpdate = Date.now()
+          this.setLastUpdate(Date.now())
           refreshFunction(this.props)
-        } else if (!lastUpdate || Date.now() > lastUpdate + ttl) {
+        } else if (!this.getLastUpdate() || Date.now() > this.getLastUpdate() + ttl) {
           this.refresh()
         }
       }
 
       refresh = () => {
         this.setState({ refreshing: true }, () => {
-          lastUpdate = Date.now()
+          this.setLastUpdate(Date.now())
           refreshFunction(this.props)
         })
       }
+
+      setLastUpdate = (date: Date) => {
+        updates[ttlKeyExtractor(this.props)] = date
+      }
+
+      getLastUpdate = () => updates[ttlKeyExtractor(this.props)]
 
       render = () => <TheirComponent {...this.props} refresh={this.refresh} refreshing={this.state.refreshing} />
     }

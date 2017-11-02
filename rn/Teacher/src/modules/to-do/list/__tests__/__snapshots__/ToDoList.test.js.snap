@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToDoList renders items 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListEmptyComponent={
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "white",
+              "flex": 1,
+              "flexDirection": "column",
+              "justifyContent": "center",
+            },
+            Object {
+              "height": 0,
+            },
+          ]
+        }
+      >
+        <Image
+          source={1}
+          style={
+            Object {
+              "marginBottom": 24,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontSize": 18,
+            }
+          }
+        >
+          Nothing more to do.
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#8B969E",
+              "fontSize": 18,
+            }
+          }
+        >
+          Enjoy your day!
+        </Text>
+      </View>
+    }
+    data={
+      Array [
+        Object {
+          "assignment": Object {
+            "assignment_group_id": 1376,
+            "automatic_peer_reviews": false,
+            "course_id": "987654321",
+            "created_at": "2017-03-17T19:15:25Z",
+            "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+            "due_at": "2037-06-01T05:59:00Z",
+            "grading_type": "points",
+            "html_url": "http://hostname.tld/whatever",
+            "id": "123456789",
+            "lock_at": "2037-06-01T05:59:59Z",
+            "name": "learn to write code",
+            "needs_grading_count": 0,
+            "overrides": Array [],
+            "peer_reviews": false,
+            "points_possible": 20,
+            "position": 1,
+            "submission_types": Array [
+              "online_text_entry",
+              "online_url",
+              "media_recording",
+              "online_upload",
+            ],
+            "unlock_at": "2017-03-17T06:00:00Z",
+            "updated_at": "2017-03-17T19:15:25Z",
+          },
+          "context_type": "course",
+          "course_id": "1",
+          "group_id": null,
+          "html_url": "https://api.instructure.com/api/v1/path/to/html_url",
+          "ignore": "https://api.instructure.com/api/v1/path/to/ignore",
+          "ignore_permanently": "https://api.instructure.com/api/v1/path/to/ignore_permanently",
+          "needs_grading_count": 5,
+          "type": "grading",
+        },
+      ]
+    }
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={true}
+      />
+    }
+    refreshing={true}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    testID="to-do-list.list"
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <ToDoListItem
+          index={0}
+          item={
+            Object {
+              "assignment": Object {
+                "assignment_group_id": 1376,
+                "automatic_peer_reviews": false,
+                "course_id": "987654321",
+                "created_at": "2017-03-17T19:15:25Z",
+                "description": "a course that can take any beginner to professional in a matter of microseconds.  Harness the power of your favorite languages like PHP and Cold Fusion.",
+                "due_at": "2037-06-01T05:59:00Z",
+                "grading_type": "points",
+                "html_url": "http://hostname.tld/whatever",
+                "id": "123456789",
+                "lock_at": "2037-06-01T05:59:59Z",
+                "name": "learn to write code",
+                "needs_grading_count": 0,
+                "overrides": Array [],
+                "peer_reviews": false,
+                "points_possible": 20,
+                "position": 1,
+                "submission_types": Array [
+                  "online_text_entry",
+                  "online_url",
+                  "media_recording",
+                  "online_upload",
+                ],
+                "unlock_at": "2017-03-17T06:00:00Z",
+                "updated_at": "2017-03-17T19:15:25Z",
+              },
+              "context_type": "course",
+              "course_id": "1",
+              "group_id": null,
+              "html_url": "https://api.instructure.com/api/v1/path/to/html_url",
+              "ignore": "https://api.instructure.com/api/v1/path/to/ignore",
+              "ignore_permanently": "https://api.instructure.com/api/v1/path/to/ignore_permanently",
+              "needs_grading_count": 5,
+              "type": "grading",
+            }
+          }
+          onPress={[Function]}
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

@@ -46,3 +46,7 @@ export function createUser (createUserData: CreateUser): Promise<AxiosResponse<U
   }
   return httpClient().post(`/accounts/self/users`, data)
 }
+
+export function getToDo (): Promise<AxiosResponse<ToDoItem[]>> {
+  return httpClient().get('users/self/todo')
+}

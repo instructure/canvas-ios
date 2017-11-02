@@ -37,6 +37,8 @@ jest.mock('AlertIOS', () => ({
   alert: jest.fn(),
 }))
 
+const { navigator } = template
+
 describe('Profile Tests', () => {
   beforeEach(() => {
     setSession(template.session())
@@ -49,7 +51,7 @@ describe('Profile Tests', () => {
   })
   it('renders correctly', () => {
     const tree = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).toJSON()
 
     expect(tree).toMatchSnapshot()
@@ -60,7 +62,7 @@ describe('Profile Tests', () => {
 
   it('logout called', () => {
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.logout()
@@ -69,7 +71,7 @@ describe('Profile Tests', () => {
 
   it('shows the action sheet', () => {
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.settings()
@@ -78,7 +80,7 @@ describe('Profile Tests', () => {
 
   it('redirects to Canvas Guides', () => {
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.handleActions(0)
@@ -87,7 +89,7 @@ describe('Profile Tests', () => {
 
   it('redirects to Terms of Use', () => {
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.handleActions(2)
@@ -105,7 +107,7 @@ describe('Profile Tests', () => {
     }
 
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.handleActions(1)
@@ -123,7 +125,7 @@ describe('Profile Tests', () => {
     }
 
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.handleActions(1)
@@ -137,7 +139,7 @@ describe('Profile Tests', () => {
     }
 
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.handleActions(1)
@@ -146,7 +148,7 @@ describe('Profile Tests', () => {
 
   it('cancel the action sheet', () => {
     const instance = renderer.create(
-      <Profile />
+      <Profile navigator={navigator} />
     ).getInstance()
 
     instance.handleActions(3)
@@ -169,7 +171,7 @@ describe('Profile Tests', () => {
   it('render with no session', () => {
     setSession(null)
     const tree = renderer.create(
-      <Profile />
+      <Profile navigator={navigator}/>
     ).toJSON()
 
     expect(tree).toMatchSnapshot()

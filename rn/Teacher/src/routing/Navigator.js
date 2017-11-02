@@ -68,8 +68,8 @@ export default class Navigator {
     NativeModules.Helm.present(route.screen, route.passProps, options)
   }
 
-  dismiss () {
-    NativeModules.Helm.dismiss({})
+  async dismiss () {
+    await NativeModules.Helm.dismiss({})
   }
 
   dismissAllModals () {

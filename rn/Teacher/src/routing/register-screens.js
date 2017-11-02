@@ -60,6 +60,7 @@ import Attachments from '../modules/attachments/Attachments'
 import ContextCard from '../modules/users/ContextCard'
 import PeopleList from '../modules/people/PeopleList'
 import Filter from '../modules/filter/Filter'
+import ToDoList from '../modules/to-do/list/ToDoList'
 import CourseFilesList from '../modules/files/CourseFilesList'
 import PagesList from '../modules/pages/list/PagesList'
 import PageDetails from '../modules/pages/details/PageDetails'
@@ -87,6 +88,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', wrap(SubmissionList), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submission_settings', wrap(SubmissionSettings), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', wrap(SpeedGrader), store)
+  registerScreen('/courses/:courseID/gradebook/speed_grader', wrap(SpeedGrader), store)
   registerScreen('/courses/:courseID/assignments/:assignmentID/rubrics/:rubricID/description', wrap(RubricDescription), store)
   registerScreen('/courses/:courseID/quizzes', wrap(QuizzesList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/quizzes/:quizID', wrap(QuizDetails), store)
@@ -125,6 +127,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/users/:userID', wrap(ContextCard), store)
   registerScreen('/attendance')
   registerScreen('/filter', wrap(Filter), store)
+  registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/wiki', wrap(PagesList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { canBecomeMaster: true })

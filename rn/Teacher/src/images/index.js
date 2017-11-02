@@ -106,6 +106,7 @@ const images = {
   edit: require('./edit.png'),
   pencilBG: require('./Pencil-BG.jpg'),
   pickerArrow: require('./picker-arrow.png'),
+  profile: require('./profile.png'),
   published: require('./Published.png'),
   unpublished: require('./Unpublished.png'),
   upArrow: require('./mini-arrow-up.png'),
@@ -118,6 +119,7 @@ const images = {
   group: require('./group.png'),
   trash: require('./trash.png'),
   share: require('./share.png'),
+  relax: require('./relax.png'),
 }
 
 export default (images: *)
