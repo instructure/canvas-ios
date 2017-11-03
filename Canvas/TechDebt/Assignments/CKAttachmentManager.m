@@ -212,20 +212,25 @@
 
 - (void)recordAudio 
 {
-    NSString *doneButtonTitle = NSLocalizedString(@"Use", @"button for using the recorded audio");
-    AudioRecorderViewController *recorder = [AudioRecorderViewController presentFrom:self.presentFromViewController completeButtonTitle:doneButtonTitle];
-
-    
-    @weakify(recorder);
-    [recorder setCancelButtonTapped:^{
-        @strongify(recorder);
-        [recorder dismissViewControllerAnimated:true completion:nil];
-    }];
-
-    [recorder setDidFinishRecordingAudioFile:^(NSURL *url) {
-        @strongify(recorder);
-        [self finishedRecordingAudioFile:url];
-        [recorder dismissViewControllerAnimated:true completion:nil];
+    @weakify(self);
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *doneButtonTitle = NSLocalizedString(@"Use", @"button for using the recorded audio");
+            AudioRecorderViewController *recorder = [AudioRecorderViewController presentFrom:self.presentFromViewController completeButtonTitle:doneButtonTitle];
+            
+            @weakify(recorder);
+            [recorder setCancelButtonTapped:^{
+                @strongify(recorder);
+                [recorder dismissViewControllerAnimated:true completion:nil];
+            }];
+            
+            [recorder setDidFinishRecordingAudioFile:^(NSURL *url) {
+                @strongify(recorder);
+                @strongify(self);
+                [self finishedRecordingAudioFile:url];
+                [recorder dismissViewControllerAnimated:true completion:nil];
+            }];
+        });
     }];
 }
 

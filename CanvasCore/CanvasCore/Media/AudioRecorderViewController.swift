@@ -31,7 +31,7 @@ public class AudioRecorderViewController: SmallModalNavigationController {
         return me
     }
 
-    public static func new(completeButtonTitle completeButtonTitle: String, permissionDelegate: AudioRecorderPermissionDelegate = AVAudioSession.sharedInstance()) -> AudioRecorderViewController {
+    public static func new(completeButtonTitle: String, permissionDelegate: AudioRecorderPermissionDelegate = AVAudioSession.sharedInstance()) -> AudioRecorderViewController {
         let bundle = Bundle(for: self)
 
         let me = UIStoryboard(name: "AudioRecorderViewController", bundle: bundle).instantiateInitialViewController() as! AudioRecorderViewController

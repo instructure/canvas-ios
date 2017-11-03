@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZyV-oP-1Pn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZyV-oP-1Pn">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Audio Recorder View Controller-->
         <scene sceneID="Jtt-xr-qlh">
             <objects>
-                <navigationController navigationBarHidden="YES" id="ZyV-oP-1Pn" customClass="AudioRecorderViewController" customModule="MediaKit" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="ZyV-oP-1Pn" customClass="AudioRecorderViewController" customModule="CanvasCore" customModuleProvider="target" sceneMemberID="viewController">
                     <value key="contentSizeForViewInPopover" type="size" width="300" height="158"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="300" height="158"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ftB-nv-btb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -38,18 +37,18 @@
                         <viewControllerLayoutGuide type="top" id="zaO-GD-fXW"/>
                         <viewControllerLayoutGuide type="bottom" id="S1z-Tx-mzl"/>
                     </layoutGuides>
-                    <view key="view" opaque="NO" contentMode="scaleToFill" id="AaX-wt-1AZ" customClass="AudioRecorderView" customModule="MediaKit" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="158"/>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="AaX-wt-1AZ" customClass="AudioRecorderView" customModule="CanvasCore" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Uz-Xq-5te">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="158"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="avr-Hd-YTw">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="158"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYm-mg-PLf" customClass="RecordButton" customModule="MediaKit" customModuleProvider="target">
-                                            <rect key="frame" x="117" y="26" width="66" height="66"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYm-mg-PLf" customClass="RecordButton" customModule="CanvasCore" customModuleProvider="target">
+                                            <rect key="frame" x="154.5" y="26" width="66" height="66"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="66" id="3Wf-RQ-H5x"/>
                                                 <constraint firstAttribute="width" constant="66" id="Jd5-dW-Zng"/>
@@ -62,13 +61,13 @@
                                             </connections>
                                         </button>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64h-lc-V80">
-                                            <rect key="frame" x="0.0" y="35" width="117" height="48"/>
+                                            <rect key="frame" x="0.0" y="35" width="154.5" height="48"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5u5-R5-4Ag">
-                                                <rect key="frame" x="0.0" y="0.0" width="117" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="154" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhW-b7-ZLy">
-                                                        <rect key="frame" x="29" y="13" width="60" height="20.5"/>
+                                                        <rect key="frame" x="48" y="13" width="60" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -87,13 +86,13 @@
                                             </vibrancyEffect>
                                         </visualEffectView>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zYx-Xq-eC1">
-                                            <rect key="frame" x="183" y="35" width="117" height="48"/>
+                                            <rect key="frame" x="220.5" y="35" width="154.5" height="48"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Url-BN-c5I">
-                                                <rect key="frame" x="0.0" y="0.0" width="117" height="48"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="155" height="48"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAC-OH-1Ef" customClass="VolumeLevelMeterView" customModule="MediaKit" customModuleProvider="target">
-                                                        <rect key="frame" x="19" y="18" width="80" height="15"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAC-OH-1Ef" customClass="VolumeLevelMeterView" customModule="CanvasCore" customModuleProvider="target">
+                                                        <rect key="frame" x="38" y="18" width="80" height="15"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="FTg-LT-AW0"/>
@@ -101,7 +100,7 @@
                                                         </constraints>
                                                     </view>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oj-Vu-TOF">
-                                                        <rect key="frame" x="42" y="7" width="34" height="34"/>
+                                                        <rect key="frame" x="61" y="7" width="34" height="34"/>
                                                         <accessibility key="accessibilityConfiguration" hint="Delete the recording" identifier="Trash" label="Trash"/>
                                                         <state key="normal" image="icon_trash">
                                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -127,7 +126,7 @@
                                             </vibrancyEffect>
                                         </visualEffectView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Db4-hU-GHJ">
-                                            <rect key="frame" x="247" y="4" width="38" height="30"/>
+                                            <rect key="frame" x="322" y="4" width="38" height="30"/>
                                             <accessibility key="accessibilityConfiguration" hint="Finished recording" identifier="Done" label="Done"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <state key="normal" title="Done">
@@ -137,13 +136,13 @@
                                                 <action selector="doneButtonTapped:" destination="AaX-wt-1AZ" eventType="touchUpInside" id="M3h-rn-Vrp"/>
                                             </connections>
                                         </button>
-                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-vf-4iL" customClass="PlaybackScrubber" customModule="MediaKit" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="124" width="300" height="34"/>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQ3-vf-4iL" customClass="PlaybackScrubber" customModule="CanvasCore" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="633" width="375" height="34"/>
                                             <subviews>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ijl-9W-Kgp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eKa-kQ-0r5">
-                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqS-8f-4JF">
@@ -153,13 +152,13 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y02-Gd-Ikh">
-                                                                <rect key="frame" x="253" y="7" width="39" height="17"/>
+                                                                <rect key="frame" x="328" y="7" width="39" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYI-dP-Yi6">
-                                                                <rect key="frame" x="54" y="12" width="192" height="7"/>
+                                                                <rect key="frame" x="54" y="12" width="267" height="7"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="7" id="V6c-Iy-32M"/>
