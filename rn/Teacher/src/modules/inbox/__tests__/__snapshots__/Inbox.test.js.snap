@@ -388,7 +388,14 @@ exports[`filters conversations based on course 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
-        hitSlop={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
         isTVSelectable={true}
         nativeID={undefined}
         onLayout={undefined}
@@ -1117,7 +1124,14 @@ exports[`refreshed component 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
-        hitSlop={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
         isTVSelectable={true}
         nativeID={undefined}
         onLayout={undefined}
@@ -1691,7 +1705,14 @@ exports[`renders correctly 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
-        hitSlop={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
         isTVSelectable={true}
         nativeID={undefined}
         onLayout={undefined}
@@ -2667,7 +2688,14 @@ exports[`renders the activity indicator when loading conversations 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
-        hitSlop={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
         isTVSelectable={true}
         nativeID={undefined}
         onLayout={undefined}
@@ -3137,7 +3165,14 @@ exports[`renders the starred empty state 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
-        hitSlop={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
         isTVSelectable={true}
         nativeID={undefined}
         onLayout={undefined}
@@ -3703,7 +3738,14 @@ exports[`renders with an empty state 1`] = `
         accessibilityTraits="button"
         accessible={true}
         collapsable={undefined}
-        hitSlop={undefined}
+        hitSlop={
+          Object {
+            "bottom": 15,
+            "left": 15,
+            "right": 15,
+            "top": 15,
+          }
+        }
         isTVSelectable={true}
         nativeID={undefined}
         onLayout={undefined}

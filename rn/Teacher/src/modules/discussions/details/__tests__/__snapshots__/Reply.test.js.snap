@@ -138,6 +138,14 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
       >
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -235,6 +243,14 @@ exports[`DiscussionReplies edit action sheet calls cancel 1`] = `
         </Text>
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -438,6 +454,14 @@ exports[`DiscussionReplies renders 1`] = `
       >
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -535,6 +559,14 @@ exports[`DiscussionReplies renders 1`] = `
         </Text>
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -949,6 +981,14 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
       >
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -1046,6 +1086,14 @@ exports[`DiscussionReplies renders more button with some deleted replies 1`] = `
         </Text>
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -1249,6 +1297,14 @@ exports[`DiscussionReplies renders with no user 1`] = `
       >
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {
@@ -1346,6 +1402,14 @@ exports[`DiscussionReplies renders with no user 1`] = `
         </Text>
         <TouchableOpacity
           accessibilityTraits="button"
+          hitSlop={
+            Object {
+              "bottom": 15,
+              "left": 15,
+              "right": 15,
+              "top": 15,
+            }
+          }
           onPress={[Function]}
           style={
             Object {

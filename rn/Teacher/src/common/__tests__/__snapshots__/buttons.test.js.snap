@@ -37,7 +37,14 @@ exports[`renders link correctly 1`] = `
   accessibilityTraits="button"
   accessible={true}
   collapsable={undefined}
-  hitSlop={undefined}
+  hitSlop={
+    Object {
+      "bottom": 15,
+      "left": 15,
+      "right": 15,
+      "top": 15,
+    }
+  }
   isTVSelectable={true}
   nativeID={undefined}
   onLayout={undefined}

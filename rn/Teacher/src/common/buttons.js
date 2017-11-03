@@ -49,6 +49,7 @@ export class LinkButton extends Component {
     delete propsWithoutTextStyle.textStyle
     return (
       <TouchableOpacity
+        hitSlop={{ top: 15, left: 15, bottom: 15, right: 15 }}
         {...propsWithoutTextStyle}
         accessibilityTraits='button'
       >

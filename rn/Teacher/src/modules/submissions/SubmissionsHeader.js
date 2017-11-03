@@ -107,9 +107,9 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
                   >
                   { title }
                 </Heading1>
-                { this.renderFilterButton() }
+                {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
               </View>
-              {!!subTitle && <Text style={styles.subtitle}>{subTitle}</Text>}
+              { this.renderFilterButton() }
             </View>)
   }
 
@@ -138,21 +138,22 @@ const styles = StyleSheet.create({
   headerWrapper: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'lightgrey',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingTop: 16,
     paddingBottom: 8,
     paddingHorizontal: 16,
     height: 'auto',
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
+    flex: 1,
+    flexDirection: 'column',
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: '600',
     color: '#2d3b44',
-    flex: 1,
   },
   subtitle: {
     color: colors.grey4,

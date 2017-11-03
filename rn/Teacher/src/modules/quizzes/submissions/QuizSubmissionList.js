@@ -36,6 +36,7 @@ import Images from '../../../images'
 import i18n from 'format-message'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTitles } from '../../filter/filter-options'
 
 export type QuizSubmissionListNavProps = {
@@ -197,6 +198,9 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
                 refreshing={this.props.refreshing}
                 onRefresh={this.props.refresh}
                 ItemSeparatorComponent={RowSeparator}
+                ListEmptyComponent={
+                  <ListEmptyComponent title={i18n('No results')} />
+                }
                 />
             </View>
         }

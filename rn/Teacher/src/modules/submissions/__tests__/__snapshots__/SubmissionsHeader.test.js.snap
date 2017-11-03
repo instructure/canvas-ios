@@ -4,9 +4,12 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
 <View
   style={
     Object {
+      "alignItems": "center",
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
+      "flexDirection": "row",
       "height": "auto",
+      "justifyContent": "space-between",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -16,9 +19,8 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
+        "flex": 1,
+        "flexDirection": "column",
       }
     }
   >
@@ -41,7 +43,6 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
           },
           Object {
             "color": "#2d3b44",
-            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -50,84 +51,92 @@ exports[`SubmissionHeader anonymous and muted 1`] = `
     >
       All Submissions
     </Text>
-    <TouchableOpacity
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits="button"
-      onPress={[Function]}
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
       style={
-        Object {
-          "marginBottom": 1,
-          "width": "auto",
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "color": "#8B969E",
+            "fontSize": 14,
+            "fontWeight": "500",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+          },
+        ]
       }
-      testID="submission-list.filter"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
+      Grades muted, Anonymous grading
+    </Text>
+  </View>
+  <TouchableOpacity
+    accessibilityLabel="Filter Submissions"
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 15,
+        "left": 15,
+        "right": 15,
+        "top": 15,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Object {
+        "marginBottom": 1,
+        "width": "auto",
+      }
+    }
+    testID="submission-list.filter"
+  >
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#374A59",
+                "fontSize": 14,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "fontFamily": ".SFUIDisplay-bold",
               },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#374A59",
               },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "color": "#8B969E",
-          "fontSize": 14,
-          "fontWeight": "500",
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
-        },
-      ]
-    }
-  >
-    Grades muted, Anonymous grading
-  </Text>
+              Object {},
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -135,9 +144,12 @@ exports[`SubmissionHeader anonymous grading 1`] = `
 <View
   style={
     Object {
+      "alignItems": "center",
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
+      "flexDirection": "row",
       "height": "auto",
+      "justifyContent": "space-between",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -147,9 +159,8 @@ exports[`SubmissionHeader anonymous grading 1`] = `
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
+        "flex": 1,
+        "flexDirection": "column",
       }
     }
   >
@@ -172,7 +183,6 @@ exports[`SubmissionHeader anonymous grading 1`] = `
           },
           Object {
             "color": "#2d3b44",
-            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -181,84 +191,92 @@ exports[`SubmissionHeader anonymous grading 1`] = `
     >
       All Submissions
     </Text>
-    <TouchableOpacity
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits="button"
-      onPress={[Function]}
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
       style={
-        Object {
-          "marginBottom": 1,
-          "width": "auto",
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "color": "#8B969E",
+            "fontSize": 14,
+            "fontWeight": "500",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+          },
+        ]
       }
-      testID="submission-list.filter"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
+      Anonymous grading
+    </Text>
+  </View>
+  <TouchableOpacity
+    accessibilityLabel="Filter Submissions"
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 15,
+        "left": 15,
+        "right": 15,
+        "top": 15,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Object {
+        "marginBottom": 1,
+        "width": "auto",
+      }
+    }
+    testID="submission-list.filter"
+  >
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#374A59",
+                "fontSize": 14,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "fontFamily": ".SFUIDisplay-bold",
               },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#374A59",
               },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "color": "#8B969E",
-          "fontSize": 14,
-          "fontWeight": "500",
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
-        },
-      ]
-    }
-  >
-    Anonymous grading
-  </Text>
+              Object {},
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -266,9 +284,12 @@ exports[`SubmissionHeader muted grading 1`] = `
 <View
   style={
     Object {
+      "alignItems": "center",
       "borderBottomColor": "lightgrey",
       "borderBottomWidth": 0.5,
+      "flexDirection": "row",
       "height": "auto",
+      "justifyContent": "space-between",
       "paddingBottom": 8,
       "paddingHorizontal": 16,
       "paddingTop": 16,
@@ -278,9 +299,8 @@ exports[`SubmissionHeader muted grading 1`] = `
   <View
     style={
       Object {
-        "alignItems": "flex-end",
-        "flexDirection": "row",
-        "justifyContent": "space-between",
+        "flex": 1,
+        "flexDirection": "column",
       }
     }
   >
@@ -303,7 +323,6 @@ exports[`SubmissionHeader muted grading 1`] = `
           },
           Object {
             "color": "#2d3b44",
-            "flex": 1,
             "fontSize": 20,
             "fontWeight": "600",
           },
@@ -312,83 +331,91 @@ exports[`SubmissionHeader muted grading 1`] = `
     >
       All Submissions
     </Text>
-    <TouchableOpacity
-      accessibilityLabel="Filter Submissions"
-      accessibilityTraits="button"
-      onPress={[Function]}
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
       style={
-        Object {
-          "marginBottom": 1,
-          "width": "auto",
-        }
+        Array [
+          Object {
+            "fontFamily": ".SFUIDisplay",
+          },
+          Object {
+            "color": "#2D3B45",
+            "fontSize": 16,
+          },
+          Object {
+            "color": "#8B969E",
+            "fontSize": 14,
+            "fontWeight": "500",
+          },
+          Object {
+            "fontFamily": ".SFUIDisplay-medium",
+          },
+        ]
       }
-      testID="submission-list.filter"
     >
-      <View>
-        <Text
-          accessible={true}
-          allowFontScaling={true}
-          disabled={false}
-          ellipsizeMode="tail"
-          style={
+      Grades muted
+    </Text>
+  </View>
+  <TouchableOpacity
+    accessibilityLabel="Filter Submissions"
+    accessibilityTraits="button"
+    hitSlop={
+      Object {
+        "bottom": 15,
+        "left": 15,
+        "right": 15,
+        "top": 15,
+      }
+    }
+    onPress={[Function]}
+    style={
+      Object {
+        "marginBottom": 1,
+        "width": "auto",
+      }
+    }
+    testID="submission-list.filter"
+  >
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+            Object {
+              "color": "#2D3B45",
+              "fontSize": 16,
+            },
             Array [
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#374A59",
+                "fontSize": 14,
               },
               Object {
-                "color": "#2D3B45",
-                "fontSize": 16,
+                "fontFamily": ".SFUIDisplay-bold",
               },
-              Array [
-                Object {
-                  "color": "#374A59",
-                  "fontSize": 14,
-                },
-                Object {
-                  "fontFamily": ".SFUIDisplay-bold",
-                },
-                Object {
-                  "color": "#374A59",
-                },
-                Object {},
-              ],
               Object {
-                "fontFamily": ".SFUIDisplay",
+                "color": "#374A59",
               },
-            ]
-          }
-        >
-          Filter
-        </Text>
-      </View>
-    </TouchableOpacity>
-  </View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "fontFamily": ".SFUIDisplay",
-        },
-        Object {
-          "color": "#2D3B45",
-          "fontSize": 16,
-        },
-        Object {
-          "color": "#8B969E",
-          "fontSize": 14,
-          "fontWeight": "500",
-        },
-        Object {
-          "fontFamily": ".SFUIDisplay-medium",
-        },
-      ]
-    }
-  >
-    Grades muted
-  </Text>
+              Object {},
+            ],
+            Object {
+              "fontFamily": ".SFUIDisplay",
+            },
+          ]
+        }
+      >
+        Filter
+      </Text>
+    </View>
+  </TouchableOpacity>
 </View>
 `;

@@ -54,6 +54,14 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
     </Text>
     <TouchableOpacity
       accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "left": 15,
+          "right": 15,
+          "top": 15,
+        }
+      }
       onPress={[Function]}
       style={
         Object {
@@ -633,6 +641,14 @@ exports[`applyFilter will apply a new filter 1`] = `
     </Text>
     <TouchableOpacity
       accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "left": 15,
+          "right": 15,
+          "top": 15,
+        }
+      }
       onPress={[Function]}
       style={
         Object {
@@ -1727,6 +1743,14 @@ exports[`renders correctly 1`] = `
     </Text>
     <TouchableOpacity
       accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "left": 15,
+          "right": 15,
+          "top": 15,
+        }
+      }
       onPress={[Function]}
       style={
         Object {
@@ -2314,6 +2338,14 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
     </Text>
     <TouchableOpacity
       accessibilityTraits="button"
+      hitSlop={
+        Object {
+          "bottom": 15,
+          "left": 15,
+          "right": 15,
+          "top": 15,
+        }
+      }
       onPress={[Function]}
       style={
         Object {

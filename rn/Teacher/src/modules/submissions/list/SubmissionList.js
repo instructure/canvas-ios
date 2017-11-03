@@ -44,6 +44,7 @@ import defaultFilterOptions, { type SubmissionFilterOption, createFilter, joinTi
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 type Props = SubmissionListProps & { navigator: Navigator } & RefreshProps
 type State = {
@@ -203,6 +204,9 @@ export class SubmissionList extends Component {
                 onRefresh={this.props.refresh}
                 ItemSeparatorComponent={RowSeparator}
                 ListFooterComponent={RowSeparator}
+                ListEmptyComponent={
+                  <ListEmptyComponent title={i18n('No results')} />
+                }
                 />
             </View>
         }

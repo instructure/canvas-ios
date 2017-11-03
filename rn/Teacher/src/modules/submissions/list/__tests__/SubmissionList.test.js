@@ -233,6 +233,16 @@ test('SubmissionList renders correctly with not_submitted filter', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('SubmissionList renders correctly with empty list', () => {
+  const expandedProps = cloneDeep(props)
+  expandedProps.submissions = []
+
+  const tree = renderer.create(
+    <SubmissionList {...expandedProps} navigator={template.navigator()} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('should refresh', () => {
   expect(shouldRefresh(props)).toEqual(true)
 })

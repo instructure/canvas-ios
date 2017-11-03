@@ -191,6 +191,14 @@ exports[`render 1`] = `
           </View>
           <TouchableOpacity
             accessibilityTraits="button"
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
             onPress={[Function]}
             testID="favorited-course-list.see-all-btn"
           >
@@ -922,6 +930,14 @@ exports[`render without courses and *zero* total courses 1`] = `
           </View>
           <TouchableOpacity
             accessibilityTraits="button"
+            hitSlop={
+              Object {
+                "bottom": 15,
+                "left": 15,
+                "right": 15,
+                "top": 15,
+              }
+            }
             onPress={[Function]}
             testID="favorited-course-list.see-all-btn"
           >

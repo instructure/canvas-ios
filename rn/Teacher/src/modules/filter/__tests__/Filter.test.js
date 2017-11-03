@@ -90,6 +90,9 @@ describe('Filter', () => {
     expect(AlertIOS.prompt).toHaveBeenCalled()
     expect(AlertIOS.prompt.mock.calls[0][0]).toEqual('Scored less than…')
     expect(AlertIOS.prompt.mock.calls[0][1]).toEqual(defaultProps.filterPromptMessage)
+    expect(AlertIOS.prompt.mock.calls[0][3]).toEqual('plain-text')
+    expect(AlertIOS.prompt.mock.calls[0][4]).toEqual('')
+    expect(AlertIOS.prompt.mock.calls[0][5]).toEqual('numeric')
 
     AlertIOS.prompt.mock.calls[0][2]('10')
 

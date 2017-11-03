@@ -59,7 +59,7 @@ export default class Filter extends Component {
     if (selectedOption.prompt && !selectedOption.selected) {
       AlertIOS.prompt(selectedOption.title(), this.props.filterPromptMessage, (promptValue) => {
         this.updateFilterSelection(selectedOption.type, promptValue)
-      })
+      }, 'plain-text', '', 'numeric')
     } else {
       this.updateFilterSelection(selectedOption.type)
     }
