@@ -28,11 +28,13 @@ const template = {
 describe('CourseFileList', () => {
   it('files updated', () => {
     const file = template.file()
-    expect(Actions.filesUpdated([file])).toMatchObject({ payload: { files: [file] } })
+    const action = Actions.filesUpdated([file], 'path', 'id', 'type')
+    expect(action).toMatchObject({ payload: { files: [file], path: 'path', id: 'id', type: 'type' } })
   })
 
   it('folders updated', () => {
     const folder = template.folder()
-    expect(Actions.foldersUpdated([folder])).toMatchObject({ payload: { folders: [folder] } })
+    const action = Actions.foldersUpdated([folder], 'path', 'id', 'type')
+    expect(action).toMatchObject({ payload: { folders: [folder], path: 'path', id: 'id', type: 'type' } })
   })
 })

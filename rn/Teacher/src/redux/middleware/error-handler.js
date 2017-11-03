@@ -20,8 +20,20 @@ import { Alert } from 'react-native'
 import type { MiddlewareAPI } from 'redux'
 import i18n from 'format-message'
 import loginVerify from '../../common/login-verify'
-export const ERROR_TITLE: string = i18n('Unexpected Error')
-export const ERROR_MESSAGE: string = i18n('There was an unexpected error. Please try again.')
+
+export function alertError (error: any): void {
+  const title = defaultErrorTitle()
+  const message = parseErrorMessage(error)
+  Alert.alert(title, message)
+}
+
+export function defaultErrorTitle (): string {
+  return i18n('Unexpected Error')
+}
+
+export function defaultErrorMessage (): string {
+  return i18n('There was an unexpected error. Please try again.')
+}
 
 const showGlobalErrorAlertIfNecessary = (error: any) => {
   // should only continue if:
@@ -32,8 +44,7 @@ const showGlobalErrorAlertIfNecessary = (error: any) => {
     error = error.response
   }
   if (!isOfflineError) {
-    let errorMessage = parseErrorMessage(error)
-    Alert.alert(ERROR_TITLE, errorMessage)
+    alertError(error)
   }
 }
 
@@ -66,6 +77,10 @@ export function parseErrorMessage (error: any): string {
     return error.message
   }
 
+  if (typeof error === 'string') {
+    return error
+  }
+
   if (error && error.data && error.data.errors && error.data.errors.length > 0) {
     return error.data.errors
         .map(error => error.message)
@@ -84,5 +99,5 @@ export function parseErrorMessage (error: any): string {
     }
   }
 
-  return ERROR_MESSAGE
+  return defaultErrorMessage()
 }

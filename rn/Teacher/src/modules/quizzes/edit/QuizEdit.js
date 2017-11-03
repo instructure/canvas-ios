@@ -27,7 +27,6 @@ import {
   LayoutAnimation,
   PickerIOS,
   DatePickerIOS,
-  Alert,
   NativeModules,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -42,7 +41,7 @@ import RowWithSwitch from '../../../common/components/rows/RowWithSwitch'
 import formatter, { SCORING_POLICIES, QUIZ_TYPES } from '../formatter'
 import { extractDateFromString } from '../../../utils/dateUtils'
 import { default as QuizEditActions } from './actions'
-import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import Navigator from '../../../routing/Navigator'
 import Screen from '../../../routing/Screen'
 import AssignmentActions from '../../assignments/actions'
@@ -604,7 +603,7 @@ export class QuizEdit extends Component<any, Props, any> {
       this.props.navigator.dismiss()
     } catch (error) {
       this.setState({ pending: this.props.pending || false })
-      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+      alertError(error)
     }
   }
 

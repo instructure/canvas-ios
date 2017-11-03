@@ -21,7 +21,6 @@ import {
   View,
   StyleSheet,
   Image,
-  Alert,
   Dimensions,
   NativeModules,
 } from 'react-native'
@@ -37,7 +36,7 @@ import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
 import colors from '../../../common/colors'
-import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 
 const HapticFeedback = NativeModules.HapticFeedback
@@ -91,7 +90,7 @@ export class UserCoursePreferences extends Component {
     if (props.error) {
       this.setState({ name: props.course.name, pending: false })
       setTimeout(() => {
-        Alert.alert(ERROR_TITLE, props.error)
+        alertError(props.error)
       }, 100)
       return
     }

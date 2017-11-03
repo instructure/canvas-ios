@@ -5,11 +5,10 @@ import { connect } from 'react-redux'
 import {
   View,
   StyleSheet,
-  Alert,
 } from 'react-native'
 import Actions from './actions'
 import { getPage } from 'instructure-canvas-api'
-import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import WebContainer from '../../../common/components/WebContainer'
 import Screen from '../../../routing/Screen'
 
@@ -60,7 +59,7 @@ export class PageDetails extends Component<any, Props, any> {
       const { data } = await this.props.getPage(this.props.courseID, this.props.url)
       this.props.refreshedPage(data, this.props.courseID)
     } catch (error) {
-      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+      alertError(error)
     }
   }
 }

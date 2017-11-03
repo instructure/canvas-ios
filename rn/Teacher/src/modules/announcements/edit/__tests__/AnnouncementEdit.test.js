@@ -26,7 +26,7 @@ import renderer from 'react-test-renderer'
 import { AnnouncementEdit, mapStateToProps, type Props } from '../AnnouncementEdit'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
-import { ERROR_TITLE } from '../../../../redux/middleware/error-handler'
+import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 jest
   .mock('Button', () => 'Button')
@@ -188,7 +188,7 @@ describe('AnnouncementEdit', () => {
     component.update(<AnnouncementEdit {...props} createDiscussion={createDiscussion} />)
     tapDone(component)
     jest.runAllTimers()
-    expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, 'ERROR WAS ALERTED')
+    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), 'ERROR WAS ALERTED')
   })
 
   it('dismisses on successful save', () => {

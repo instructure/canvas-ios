@@ -40,14 +40,13 @@ import Images from '../../images'
 import Screen from '../../routing/Screen'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import { getSessionlessLaunchURL } from 'instructure-canvas-api'
-import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
+import { alertError } from '../../redux/middleware/error-handler'
 
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   TouchableHighlight,
-  Alert,
 } from 'react-native'
 
 export class AssignmentDetails extends Component<any, AssignmentDetailsProps, any> {
@@ -212,7 +211,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
       })
       url && RCTSFSafariViewController.open(url)
     } catch (e) {
-      Alert.alert(ERROR_TITLE, parseErrorMessage(e))
+      alertError(e)
     }
   }
 }

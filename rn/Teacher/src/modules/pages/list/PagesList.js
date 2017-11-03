@@ -22,7 +22,6 @@ import {
   View,
   StyleSheet,
   FlatList,
-  Alert,
 } from 'react-native'
 import i18n from 'format-message'
 
@@ -32,7 +31,7 @@ import Actions from './actions'
 import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import { getPages } from 'instructure-canvas-api'
-import { ERROR_TITLE, parseErrorMessage } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import PublishedIcon from '../../../common/components/PublishedIcon'
 import { Text } from '../../../common/text'
 
@@ -123,7 +122,7 @@ export class PagesList extends Component<any, Props, any> {
       const { data } = await this.props.getPages(this.props.courseID)
       this.props.refreshedPages(data, this.props.courseID)
     } catch (error) {
-      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+      alertError(error)
     }
     this.setState({ pending: false })
   }

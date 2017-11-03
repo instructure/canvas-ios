@@ -30,19 +30,29 @@ const template = {
 describe('CourseFileList', () => {
   it('files updated', () => {
     const file = template.file()
-    const action = Actions.filesUpdated([file])
+    const path = 'path'
+    const id = '123'
+    const type = 'Course'
+    const action = Actions.filesUpdated([file], path, id, type)
     const result = filesData(template.appState(), action)
     expect(result).toMatchObject({
-      [file.id]: file,
+      [`${type}-${id}`]: {
+        [path]: [file],
+      },
     })
   })
 
   it('folders updated', () => {
     const folder = template.folder()
-    const action = Actions.foldersUpdated([folder])
+    const path = 'path'
+    const id = '123'
+    const type = 'Course'
+    const action = Actions.foldersUpdated([folder], path, id, type)
     const result = foldersData(template.appState(), action)
     expect(result).toMatchObject({
-      [folder.id]: folder,
+      [`${type}-${id}`]: {
+        [path]: [folder],
+      },
     })
   })
 })

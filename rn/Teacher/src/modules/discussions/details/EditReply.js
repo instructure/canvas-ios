@@ -23,12 +23,11 @@ import color from '../../../common/colors'
 import Screen from '../../../routing/Screen'
 import RichTextEditor from '../../../common/components/rich-text-editor/RichTextEditor'
 import Actions from './actions'
-import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import {
-    View,
-    LayoutAnimation,
-    Alert,
+  View,
+  LayoutAnimation,
 } from 'react-native'
 
 type OwnProps = {
@@ -145,7 +144,7 @@ export class EditReply extends React.Component<any, Props, any> {
 
   _handleError (error: string) {
     setTimeout(() => {
-      Alert.alert(ERROR_TITLE, error)
+      alertError(error)
     }, 1000)
   }
 }

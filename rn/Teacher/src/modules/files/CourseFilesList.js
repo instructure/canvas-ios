@@ -22,8 +22,10 @@ import React, { Component } from 'react'
 import {
   View,
   FlatList,
-  Alert,
   StyleSheet,
+  ActionSheetIOS,
+  AlertIOS,
+  LayoutAnimation,
 } from 'react-native'
 
 import { connect } from 'react-redux'
@@ -31,7 +33,7 @@ import Actions from './actions'
 import i18n from 'format-message'
 import Screen from '../../routing/Screen'
 import canvas from 'instructure-canvas-api'
-import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
+import { alertError } from '../../redux/middleware/error-handler'
 import Row from '../../common/components/rows/Row'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 import find from 'lodash/find'
@@ -41,6 +43,7 @@ import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import images from '../../images'
 import bytes from 'bytes'
 import DropView from '../../common/components/DropView'
+import SavingBanner from '../../common/components/SavingBanner'
 
 type CourseFilesListProps = {
   data: [any], // The folders and files that are currently being shown
@@ -70,23 +73,24 @@ export class CourseFilesList extends Component<any, Props, any> {
   update = async () => {
     this.setState({ pending: true })
     try {
-      const updateFolder = async (folderID: string) => {
+      const courseID = this.props.courseID
+      const updateFolder = async (folderID: string, path: string) => {
         const folders = await this.props.getFolderFolders(folderID)
-        this.props.foldersUpdated(folders.data)
+        this.props.foldersUpdated(folders.data, path, courseID, 'Course')
         const files = await this.props.getFolderFiles(folderID)
-        this.props.filesUpdated(files.data)
+        this.props.filesUpdated(files.data, path, courseID, 'Course')
       }
 
       if (this.props.folder) {
-        await updateFolder(this.props.folder.id)
+        await updateFolder(this.props.folder.id, this.props.folder.full_name)
       } else {
-        const response = await this.props.getCourseFolder(this.props.courseID, 'root')
+        const response = await this.props.getCourseFolder(courseID, 'root')
         const root = response.data
-        this.props.foldersUpdated([root])
-        await updateFolder(root.id)
+        this.props.foldersUpdated([root], 'root', courseID, 'Course')
+        await updateFolder(root.id, root.full_name)
       }
     } catch (error) {
-      Alert.alert(ERROR_TITLE, parseErrorMessage(error))
+      alertError(error)
     }
     this.setState({ pending: false })
   }
@@ -105,6 +109,54 @@ export class CourseFilesList extends Component<any, Props, any> {
       }
       this.props.navigator.show(route)
     }
+  }
+
+  addItem = () => {
+    const options = [
+      i18n('Create Folder'),
+      i18n('Cancel'),
+    ]
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex: options.length - 1,
+      },
+      this.handleAddItem
+    )
+  }
+
+  handleAddItem = (index: number) => {
+    switch (index) {
+      case 0:
+        this.promptForNewFolder()
+        break
+    }
+  }
+
+  promptForNewFolder = () => {
+    AlertIOS.prompt(
+      i18n('Create Folder'),
+      null,
+      this.createNewFolder,
+    )
+  }
+
+  createNewFolder = async (name: string) => {
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ folderPending: true })
+    try {
+      const folder: NewFolder = {
+        name,
+        parent_folder_id: this.props.folder.id,
+        locked: true,
+      }
+      await this.props.createFolder(this.props.courseID, folder)
+      await this.update()
+    } catch (error) {
+      alertError(error)
+    }
+    LayoutAnimation.easeInEaseOut()
+    this.setState({ folderPending: false })
   }
 
   renderRow = ({ item, index }: any) => {
@@ -150,17 +202,26 @@ export class CourseFilesList extends Component<any, Props, any> {
   render () {
     const title = this.props.subFolder ? this.props.subFolder.split('/').pop() : i18n('Files')
     const empty = <ListEmptyComponent title={i18n('This folder is empty.')} />
+
+    const rightBarButtons = [{
+      image: images.add,
+      testID: 'course-files.add.button',
+      action: this.addItem,
+      accessibilityLabel: i18n('Add Item'),
+    }]
     return (
       <Screen
         title={title}
         navBarTitleColor={'#fff'}
+        rightBarButtons={rightBarButtons}
       >
         <DropView style={{ flex: 1 }}>
+          { this.state.folderPending && <SavingBanner /> }
           <FlatList
             data={this.props.data}
             renderItem={this.renderRow}
             onRefresh={this.update}
-            refreshing={this.state.pending}
+            refreshing={Boolean(this.state.pending) && !this.state.folderPending}
             ItemSeparatorComponent={RowSeparator}
             ListHeaderComponent={this.props.data.length > 0 ? RowSeparator : null}
             ListFooterComponent={this.props.data.length > 0 ? RowSeparator : null}
@@ -175,23 +236,23 @@ CourseFilesList.defaultProps = {
   getCourseFolder: canvas.getCourseFolder,
   getFolderFolders: canvas.getFolderFolders,
   getFolderFiles: canvas.getFolderFiles,
+  createFolder: canvas.createFolder,
 }
 
-export function rootFolderForCourseID (courseID: string, folders: [Folder]): ?Folder {
-  return find(folders, { parent_folder_id: null, context_type: 'Course', context_id: courseID })
-}
-
-export function mapStateToProps ({ entities }: any, props: CourseFileListNavProps): CourseFilesListProps {
+export function mapStateToProps (state: AppState, props: CourseFileListNavProps): CourseFilesListProps {
   let parentFolder
-  const allFolders = Object.values(entities.folders)
-  const rootFolder = rootFolderForCourseID(props.courseID, allFolders)
-  if (!rootFolder) {
+  const key = `Course-${props.courseID}`
+  const courseFolders = state.folders[key] || {}
+  const courseFiles = state.files[key] || {}
+  if (!courseFolders['root'] || !courseFolders['root'][0]) {
     return { data: [] }
   }
-  const courseFolders = allFolders.filter((folder) => folder.context_id === props.courseID && folder.context_type === 'Course')
+  const rootFolder = courseFolders['root'][0]
   if (props.subFolder) {
-    const fullName = `${rootFolder.name}/${props.subFolder}`
-    parentFolder = find(allFolders, { full_name: fullName })
+    const fullPath = `${rootFolder.name}/${props.subFolder}`
+    const parentPath = fullPath.substring(0, fullPath.lastIndexOf('/'))
+    const possibleParents = courseFolders[parentPath]
+    parentFolder = find(possibleParents, { full_name: fullPath })
   } else {
     parentFolder = rootFolder
   }
@@ -200,26 +261,12 @@ export function mapStateToProps ({ entities }: any, props: CourseFileListNavProp
     return { data: [] }
   }
 
-  const folders = courseFolders.filter((folder) => {
-    return folder.parent_folder_id === parentFolder.id
-  }).map((folder) => {
-    return {
-      ...folder,
-      type: 'folder',
-      key: `folder-${folder.id}`,
-    }
-  })
+  const mapper = (type: string) => (item) => {
+    return { ...item, type, key: `${type}-${item.id}` }
+  }
 
-  const files = Object.values(entities.files).filter((file) => {
-    return file.folder_id === parentFolder.id
-  }).map((file) => {
-    return {
-      ...file,
-      type: 'file',
-      key: `file-${file.id}`,
-    }
-  })
-
+  const folders = (courseFolders[parentFolder.full_name] || []).map(mapper('folder'))
+  const files = (courseFiles[parentFolder.full_name] || []).map(mapper('file'))
   const data = [...folders, ...files].sort((a, b) => localeSort(a.name || a.display_name, b.name || b.display_name))
 
   return { data, folder: parentFolder }

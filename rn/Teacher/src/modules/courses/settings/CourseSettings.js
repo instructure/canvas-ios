@@ -28,7 +28,6 @@ import {
   PickerIOS,
   Image,
   LayoutAnimation,
-  Alert,
 } from 'react-native'
 
 import i18n from 'format-message'
@@ -36,7 +35,7 @@ import colors from '../../../common/colors'
 import { mapStateToProps } from './map-state-to-props'
 import CourseSettingsActions from './actions'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
-import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Text, TextInput } from '../../../common/text'
 import Screen from '../../../routing/Screen'
@@ -84,7 +83,7 @@ export class CourseSettings extends Component<any, Props, any> {
       this.setState({ pending: false })
 
       setTimeout(() => {
-        Alert.alert(ERROR_TITLE, props.error)
+        alertError(props.error)
       }, 100)
     }
     this.state.pending && !props.pending && !props.error && this.props.navigator.dismissAllModals()

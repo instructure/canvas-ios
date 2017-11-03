@@ -23,7 +23,6 @@ import ReactNative, {
   StyleSheet,
   LayoutAnimation,
   DatePickerIOS,
-  Alert,
   NativeModules,
   processColor,
 } from 'react-native'
@@ -40,7 +39,7 @@ import RichTextEditor from '../../../common/components/rich-text-editor/RichText
 import { extractDateFromString } from '../../../utils/dateUtils'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
-import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
 
@@ -314,7 +313,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
 
   _handleError (error: string) {
     setTimeout(() => {
-      Alert.alert(ERROR_TITLE, error)
+      alertError(error)
     }, 1000)
   }
 

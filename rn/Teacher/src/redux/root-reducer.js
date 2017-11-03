@@ -53,8 +53,6 @@ const entities = combineReducers({
   quizzes,
   quizSubmissions,
   discussions,
-  files,
-  folders,
   courseDetailsTabSelectedRow,
   pages,
 })
@@ -62,6 +60,8 @@ const entities = combineReducers({
 const actualRootReducer: Reducer<AppState, Action> = combineReducers({
   favoriteCourses,
   inbox,
+  files,
+  folders,
   entities,
   asyncActions,
   toDo,

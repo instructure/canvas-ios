@@ -22,7 +22,6 @@ import ReactNative, {
   View,
   StyleSheet,
   LayoutAnimation,
-  Alert,
   PickerIOS,
   DatePickerIOS,
   Image,
@@ -45,7 +44,7 @@ import Images from '../../../images'
 import ModalActivityIndicator from '../../../common/components/ModalActivityIndicator'
 import { default as EditDiscussionActions } from '../../discussions/edit/actions'
 import { default as DiscussionDetailsActions } from '../../discussions/details/actions'
-import { ERROR_TITLE } from '../../../redux/middleware/error-handler'
+import { alertError } from '../../../redux/middleware/error-handler'
 import { gradeDisplayOptions } from '../../assignment-details/AssignmentDetailsEdit'
 import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
 import { default as AssignmentsActions } from '../../assignments/actions'
@@ -426,7 +425,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
 
   _handleError (error: string) {
     setTimeout(() => {
-      Alert.alert(ERROR_TITLE, error)
+      alertError(error)
     }, 1000)
   }
 

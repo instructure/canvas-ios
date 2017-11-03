@@ -19,6 +19,7 @@
  */
 import React from 'react'
 import renderer from 'react-test-renderer'
+import { ActionSheetIOS, AlertIOS, Alert } from 'react-native'
 
 import { CourseFilesList, mapStateToProps } from '../CourseFilesList'
 
@@ -148,22 +149,75 @@ describe('CourseFileList', () => {
       { attachment: data[1] })
   })
 
+  it('add item should open an action sheet', () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    let instance = renderer.create(
+      <CourseFilesList data={data} navigator={navigator} courseID={courseID}/>
+    ).getInstance()
+
+    ActionSheetIOS.showActionSheetWithOptions = jest.fn()
+    instance.addItem()
+    expect(ActionSheetIOS.showActionSheetWithOptions).toHaveBeenCalledWith({ 'cancelButtonIndex': 1, 'options': ['Create Folder', 'Cancel'] }, instance.handleAddItem)
+  })
+
+  it('adding folder should alert for text', () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    let instance = renderer.create(
+      <CourseFilesList data={data} navigator={navigator} courseID={courseID}/>
+    ).getInstance()
+
+    AlertIOS.prompt = jest.fn()
+    instance.handleAddItem(0)
+    expect(AlertIOS.prompt).toHaveBeenCalledWith('Create Folder', null, instance.createNewFolder)
+  })
+
+  it('add folder to the api should work', async () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    const createFolder = jest.fn(() => Promise.resolve())
+    const folder = template.folder()
+    let instance = renderer.create(
+      <CourseFilesList data={data} navigator={navigator} courseID={courseID} createFolder={createFolder} folder={folder} />
+    ).getInstance()
+
+    await instance.createNewFolder('folder name')
+    expect(createFolder).toHaveBeenCalledWith(courseID, { locked: true, name: 'folder name', parent_folder_id: folder.id })
+  })
+
+  it('add folder to the api should work', async () => {
+    const courseID = '1'
+    const navigator = template.navigator({ show: jest.fn() })
+    const createFolder = jest.fn(() => Promise.reject(new Error('this is messed up')))
+    const folder = template.folder()
+    let instance = renderer.create(
+      <CourseFilesList data={data} navigator={navigator} courseID={courseID} createFolder={createFolder} folder={folder} />
+    ).getInstance()
+
+    Alert.alert = jest.fn()
+    await instance.createNewFolder('folder name')
+    expect(Alert.alert).toHaveBeenCalled()
+  })
+
   describe('map state to props', () => {
     it('should work without folders passed in', () => {
       const courseID = '4'
-      const folderOne = template.folder({ id: '1', context_type: 'Course', context_id: courseID, parent_folder_id: null })
-      const folderTwo = template.folder({ id: '2', name: 'zzz', context_type: 'Course', context_id: courseID, parent_folder_id: folderOne.id })
+      const folderOne = template.folder({ id: '1', name: 'files', full_name: 'files', context_type: 'Course', context_id: courseID, parent_folder_id: null })
+      const folderTwo = template.folder({ id: '2', name: 'zzz', full_name: 'files/zzz', context_type: 'Course', context_id: courseID, parent_folder_id: folderOne.id })
       const fileOne = template.file({ id: '3', display_name: 'first', context_type: 'Course', context_id: courseID, folder_id: folderOne.id })
       const fileTwo = template.file({ id: '4', display_name: 'last', context_type: 'Course', context_id: courseID, folder_id: folderOne.id })
+
       const state = template.appState({
-        entities: {
-          folders: {
-            [folderOne.id]: folderOne,
-            [folderTwo.id]: folderTwo,
+        folders: {
+          'Course-4': {
+            'root': [folderOne],
+            'files': [folderTwo],
           },
-          files: {
-            [fileOne.id]: fileOne,
-            [fileTwo.id]: fileTwo,
+        },
+        files: {
+          'Course-4': {
+            'files': [fileOne, fileTwo],
           },
         },
       })
@@ -176,17 +230,20 @@ describe('CourseFileList', () => {
       const courseID = '4'
       const folderOne = template.folder({ id: '1', name: 'course files', context_type: 'Course', context_id: courseID, parent_folder_id: null })
       const folderTwo = template.folder({ id: '2', full_name: 'course files/weird folder', context_type: 'Course', context_id: courseID, parent_folder_id: folderOne.id })
-      const folderThree = template.folder({ id: '3', name: 'zzz', context_type: 'Course', context_id: courseID, parent_folder_id: folderTwo.id })
+      const folderThree = template.folder({ id: '3', name: 'zzz', full_name: 'course files/weird folder/zzz', context_type: 'Course', context_id: courseID, parent_folder_id: folderTwo.id })
       const fileOne = template.file({ id: '4', display_name: 'first', context_type: 'Course', context_id: courseID, folder_id: folderTwo.id })
+
       const state = template.appState({
-        entities: {
-          folders: {
-            [folderOne.id]: folderOne,
-            [folderTwo.id]: folderTwo,
-            [folderThree.id]: folderThree,
+        folders: {
+          'Course-4': {
+            'root': [folderOne],
+            'course files': [folderTwo],
+            'course files/weird folder': [folderThree],
           },
-          files: {
-            [fileOne.id]: fileOne,
+        },
+        files: {
+          'Course-4': {
+            'course files/weird folder': [fileOne],
           },
         },
       })
@@ -201,16 +258,43 @@ describe('CourseFileList', () => {
       expect(result).toMatchObject({ data: [] })
     })
 
+    it('root folder exists but nothing else exists', () => {
+      const courseID = '4'
+      const folderOne = template.folder({ id: '1', name: 'course files', context_type: 'Course', context_id: courseID, parent_folder_id: null })
+
+      const state = template.appState({
+        folders: {
+          'Course-4': {
+            'root': [folderOne],
+          },
+        },
+      })
+      const result = mapStateToProps(state, { courseID })
+      expect(result).toMatchObject({ data: [] })
+    })
+
+    it('root folder exists but wrong subFolder is being requested', () => {
+      const courseID = '4'
+      const folderOne = template.folder({ id: '1', name: 'course files', context_type: 'Course', context_id: courseID, parent_folder_id: null })
+
+      const state = template.appState({
+        folders: {
+          'Course-4': {
+            'root': [folderOne],
+          },
+        },
+      })
+      const result = mapStateToProps(state, { courseID, subFolder: 'nothing here' })
+      expect(result).toMatchObject({ data: [] })
+    })
+
     it('should work with root folder but no parent folder', () => {
       const courseID = '4'
       const folders = 'course files/some folder'
       const folderOne = template.folder({ id: '1', name: 'course files', context_type: 'Course', context_id: courseID, parent_folder_id: null })
       const appState = template.appState({
-        entities: {
-          folders: {
-            [folderOne.id]: folderOne,
-          },
-          files: {},
+        folders: {
+          'root': [folderOne],
         },
       })
       const result = mapStateToProps(appState, { courseID, folders })

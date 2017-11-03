@@ -4,6 +4,7 @@ import React from 'react'
 import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import { PageDetails, mapStateToProps, type Props } from '../PageDetails'
+import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 jest
   .mock('Button', () => 'Button')
@@ -68,7 +69,7 @@ describe('PageDetails', () => {
     props.getPage = jest.fn(() => Promise.reject(template.error('fail')))
     const view = render(props)
     await view.getInstance().componentWillMount()
-    expect(spy).toHaveBeenCalledWith('Unexpected Error', 'fail')
+    expect(spy).toHaveBeenCalledWith(defaultErrorTitle(), 'fail')
   })
 
   function render (props: Props, options: any = {}): any {

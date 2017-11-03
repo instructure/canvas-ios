@@ -38,8 +38,6 @@ const emptyAppState: AppState = {
     quizSubmissions: {},
     discussions: {},
     announcements: {},
-    files: {},
-    folders: {},
     courseDetailsTabSelectedRow: { rowID: '' },
   },
   inbox: {
@@ -52,6 +50,8 @@ const emptyAppState: AppState = {
     sent: { refs: [], pending: 0 },
   },
   asyncActions: {},
+  files: {},
+  folders: {},
 }
 
 export const appState: Template<AppState> = template(emptyAppState)

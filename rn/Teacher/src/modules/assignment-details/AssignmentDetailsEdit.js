@@ -29,7 +29,7 @@ import { TextInput, Text } from '../../common/text'
 import ModalActivityIndicator from '../../common/components/ModalActivityIndicator'
 import UnmetRequirementBanner from '../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../common/components/RequiredFieldSubscript'
-import { ERROR_TITLE, parseErrorMessage } from '../../redux/middleware/error-handler'
+import { alertError } from '../../redux/middleware/error-handler'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import color from './../../common/colors'
 import images from '../../images/'
@@ -41,7 +41,6 @@ import Screen from '../../routing/Screen'
 import ReactNative, {
   View,
   StyleSheet,
-  Alert,
   PickerIOS,
   TouchableHighlight,
   LayoutAnimation,
@@ -368,14 +367,14 @@ export class AssignmentDetailsEdit extends Component<any, AssignmentDetailsProps
   }
 
   handleError () {
-    setTimeout(() => { Alert.alert(ERROR_TITLE, this.state.error); delete this.state.error }, 1000)
+    setTimeout(() => { alertError(this.state.error); delete this.state.error }, 1000)
   }
 
   componentWillReceiveProps (nextProps: AssignmentDetailsProps) {
     if (!nextProps.pending) {
       if (nextProps.error) {
-        let error = parseErrorMessage(nextProps.error.response)
-        this.setState({ pending: false, error: error, assignment: Object.assign({}, this.state.assignment) })
+        const error = nextProps.error.response
+        this.setState({ pending: false, error, assignment: Object.assign({}, this.state.assignment) })
         return
       }
 

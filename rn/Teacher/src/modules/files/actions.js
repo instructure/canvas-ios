@@ -19,11 +19,11 @@
 import { createAction } from 'redux-actions'
 
 export let Actions = (): * => ({
-  filesUpdated: createAction('files.update', (files: [File]) => {
-    return { files }
+  filesUpdated: createAction('files.update', (files: [File], path: string, id: string, type: string) => {
+    return { files, path, id, type }
   }),
-  foldersUpdated: createAction('folders.update', (folders: [Folder]) => {
-    return { folders }
+  foldersUpdated: createAction('folders.update', (folders: [Folder], path: string, id: string, type: string) => {
+    return { folders, path, id, type }
   }),
 })
 

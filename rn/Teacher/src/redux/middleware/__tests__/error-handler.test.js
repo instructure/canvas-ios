@@ -16,7 +16,7 @@
 
 // @flow
 
-import { ERROR_TITLE, ERROR_MESSAGE, parseErrorMessage } from '../error-handler'
+import { parseErrorMessage, defaultErrorMessage, defaultErrorTitle } from '../error-handler'
 import { Alert } from 'react-native'
 import mockStore from '../../../../test/helpers/mockStore'
 import { updateStatus } from '../../../utils/online-status'
@@ -51,7 +51,7 @@ describe('error-handler-middleware', () => {
         error: new Error(message),
       },
     })
-    expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, message)
+    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), message)
   })
 
   it('throws up an alert with a custom error message when the action is an api error and the user is online', () => {
@@ -74,7 +74,7 @@ describe('error-handler-middleware', () => {
       },
     })
 
-    expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
   })
 
   describe('401 errors', () => {
@@ -98,7 +98,7 @@ describe('error-handler-middleware', () => {
         },
       })
 
-      expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+      expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
     })
 
     it('do nothing because the component handles the error', () => {
@@ -122,7 +122,7 @@ describe('error-handler-middleware', () => {
         },
       })
 
-      expect(Alert.alert).not.toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+      expect(Alert.alert).not.toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
     })
   })
 
@@ -163,7 +163,7 @@ describe('error-handler-middleware', () => {
       },
     })
 
-    expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, ERROR_MESSAGE)
+    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), defaultErrorMessage())
   })
 
   it('does not throw up an alert when the action indicates it will handle its own errors', () => {
@@ -240,9 +240,8 @@ describe('parse error message', () => {
       data: {},
       headers: { link: null },
     }
-    const expected = ERROR_MESSAGE
     const result = parseErrorMessage(response)
-    expect(result).toEqual(expected)
+    expect(result).toEqual(defaultErrorMessage())
   })
 
   it('should use default error message if there are no messages round 2', () => {
@@ -253,9 +252,8 @@ describe('parse error message', () => {
       },
       headers: { link: null },
     }
-    const expected = ERROR_MESSAGE
     const result = parseErrorMessage(response)
-    expect(result).toEqual(expected)
+    expect(result).toEqual(defaultErrorMessage())
   })
 
   it('should use default error message if there are no messages round 3', () => {
@@ -268,9 +266,8 @@ describe('parse error message', () => {
       },
       headers: { link: null },
     }
-    const expected = ERROR_MESSAGE
     const result = parseErrorMessage(response)
-    expect(result).toEqual(expected)
+    expect(result).toEqual(defaultErrorMessage())
   })
 
   it('should parse Error types', () => {

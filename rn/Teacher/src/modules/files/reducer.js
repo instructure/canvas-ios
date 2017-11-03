@@ -22,34 +22,28 @@ const { filesUpdated, foldersUpdated } = Actions
 
 export const filesData: Reducer<any, any> = handleActions({
   [filesUpdated.toString()]: (state, { payload }) => {
-    const files = payload.files
-    const updated = {}
-    files.forEach((file) => {
-      updated[file.id] = {
-        ...state[file.id],
-        ...file,
-      }
-    })
+    const key = `${payload.type}-${payload.id}`
+    const context = state[key] || {}
     return {
       ...state,
-      ...updated,
+      [key]: {
+        ...context,
+        [payload.path]: payload.files,
+      },
     }
   },
 }, {})
 
 export const foldersData: Reducer<any, any> = handleActions({
   [foldersUpdated.toString()]: (state, { payload }) => {
-    const folders = payload.folders
-    const updated = {}
-    folders.forEach((folder) => {
-      updated[folder.id] = {
-        ...state[folder.id],
-        ...folder,
-      }
-    })
+    const key = `${payload.type}-${payload.id}`
+    const context = state[key] || {}
     return {
       ...state,
-      ...updated,
+      [key]: {
+        ...context,
+        [payload.path]: payload.folders,
+      },
     }
   },
 }, {})

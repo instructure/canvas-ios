@@ -75,3 +75,7 @@ export function getCourseFolder (courseID: string, folderID: string): Promise<Ap
   }
   return httpClient().get(url, options)
 }
+
+export function createFolder (courseID: string, folder: NewFolder): Promise<ApiResponse<Folder>> {
+  return httpClient().post(`courses/${courseID}/folders`, folder)
+}

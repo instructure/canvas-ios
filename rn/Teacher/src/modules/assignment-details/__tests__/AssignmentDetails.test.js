@@ -23,6 +23,7 @@ import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+import { defaultErrorTitle } from '../../../redux/middleware/error-handler'
 
 const template = {
   ...require('../../../__templates__/assignments'),
@@ -194,7 +195,7 @@ describe('external tool', () => {
       ).toJSON()
       const button: any = explore(tree).selectByID('assignment-details.launch-external-tool.button')
       await button.props.onPress()
-      expect(Alert.alert).toHaveBeenCalledWith('Unexpected Error', 'Network error')
+      expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), 'Network error')
     })
   })
 })

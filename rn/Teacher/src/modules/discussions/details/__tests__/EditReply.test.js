@@ -21,7 +21,7 @@ import { EditReply, mapStateToProps } from '../EditReply'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 import { Alert } from 'react-native'
-import { ERROR_TITLE } from '../../../../redux/middleware/error-handler'
+import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 import renderer from 'react-test-renderer'
 
 jest
@@ -86,7 +86,7 @@ describe('EditReply', () => {
     setProps(component, { error: errorMessage })
     jest.runAllTimers()
 
-    expect(Alert.alert).toHaveBeenCalledWith(ERROR_TITLE, errorMessage)
+    expect(Alert.alert).toHaveBeenCalledWith(defaultErrorTitle(), errorMessage)
   })
 
   it('calls dismiss on cancel', () => {
