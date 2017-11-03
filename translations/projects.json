@@ -1,4 +1,7 @@
-[{"name": "canvas",        "location": "Canvas/Canvas.xcodeproj"},
- {"name": "parent",        "location": "Parent/Parent.xcodeproj"},
- {"name": "teacher",       "location": "rn/Teacher/i18n/locales", "json": true},
- {"name": "canvas_core",    "location": "CanvasCore/CanvasCore.xcodeproj"}]
+[{"name": "canvas",           "location": "Canvas/Canvas.xcodeproj"},
+ {"name": "parent",           "location": "Parent/Parent.xcodeproj"},
+ {"name": "teacher_native",   "location": "rn/Teacher/ios/Teacher.xcodeproj"},
+ {"name": "teacher",          "location": "rn/Teacher/i18n/locales", "json": true},
+ {"name": "canvas_core",      "location": "CanvasCore/CanvasCore.xcodeproj"},
+ {"name": "canvas_keymaster", "location": "Frameworks/CanvasKeymaster/CanvasKeymaster.xcodeproj"},
+ {"name": "canvas_kit", "location": "Frameworks/CanvasKit/CanvasKit.xcodeproj"}]

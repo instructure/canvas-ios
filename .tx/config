@@ -19,6 +19,24 @@ source_file = translations/source/canvas_core/en-complete.xliff
 source_lang = en
 type = XLIFF
 
+[canvas-ios.en_canvas_keymasterxliff]
+file_filter = translations/canvas-ios.en_canvas_keymasterxliff/<lang>.xlf
+source_file = translations/source/canvas_keymaster/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_canvas_kitxliff]
+file_filter = translations/canvas-ios.en_canvas_kitxliff/<lang>.xlf
+source_file = translations/source/canvas_kit/en-complete.xliff
+source_lang = en
+type = XLIFF
+
+[canvas-ios.en_teacher_nativexliff]
+file_filter = translations/canvas-ios.en_teacher_nativexliff/<lang>.xlf
+source_file = translations/source/teacher_native/en-complete.xliff
+source_lang = en
+type = XLIFF
+
 [canvas-ios.en_teacherjson]
 file_filter = rn/Teacher/i18n/locales/<lang>.json
 source_file = rn/Teacher/i18n/locales/en.json

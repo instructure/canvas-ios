@@ -383,6 +383,9 @@
   "due_date_822625d8": {
 		"message": "Due Date"
   },
+  "due_date_date_mmm_d_yyyy_at_date_time_short_76c5900f": {
+		"message": "Due { date, date, 'MMM d, YYYY' } at { date, time, short }"
+  },
   "due_date_must_be_between_available_from_and_availa_bc4d7904": {
 		"message": "''Due Date'' must be between ''Available From'' and ''Available Until'' dates"
   },
@@ -421,6 +424,9 @@
   },
   "email_contact_e095f380": {
 		"message": "Email Contact"
+  },
+  "enjoy_your_day_a4cb2c1": {
+		"message": "Enjoy your day!"
   },
   "enter_code_c7ab5104": {
 		"message": "Enter code"
@@ -755,6 +761,9 @@
   "not_submitted_7d05fdb4": {
 		"message": "Not Submitted"
   },
+  "nothing_more_to_do_b017e8bb": {
+		"message": "Nothing more to do."
+  },
   "number_plural_one_minute_other_minutes_648ec0e1": {
 		"message": "{ number, plural,    one {# Minute}  other {# Minutes}}"
   },
@@ -871,6 +880,9 @@
   },
   "previewing_this_file_type_is_not_supported_7df9231": {
 		"message": "Previewing this file type is not supported"
+  },
+  "profile_6bd2baed": {
+		"message": "Profile"
   },
   "profile_actions_cfcbb476": {
 		"message": "Profile actions"
@@ -1234,6 +1246,9 @@
   },
   "unexpected_error_93991f40": {
 		"message": "Unexpected Error"
+  },
+  "ungraded_ed0c6f98": {
+		"message": "Ungraded"
   },
   "ungraded_survey_ad7de790": {
 		"message": "Ungraded Survey"
