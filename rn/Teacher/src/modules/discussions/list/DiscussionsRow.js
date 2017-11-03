@@ -147,7 +147,6 @@ export default class DiscussionsRow extends Component<any, Props, any> {
     const replies = i18n({
       default: `{
         count, plural,
-        zero {# Replies}
         one {# Reply}
         other {# Replies}
       }`,

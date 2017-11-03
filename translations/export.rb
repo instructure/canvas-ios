@@ -29,17 +29,47 @@ class ExportLocalizations
         @projects = projects
     end
 
+    def extract_xliff(project)
+        location = project.fetch('location')
+        name = project.fetch('name')
+        output_path = "translations/source/#{name}/"
+        puts "Exporting #{name} at #{location} to #{output_path}"
+
+        success = system(%Q(xcodebuild -exportLocalizations -project "#{location}" -localizationPath "#{output_path}"))
+        raise 'xcodebuild -exportLocalizations failed for some reason... :(' unless success
+        strip_unwanted_stuff "#{output_path}/en.xliff"
+    end
+
+    def extract_json(project)
+        location = project.fetch('location')
+        name = project.fetch('name')
+        puts "Exporting #{name} to #{location}"
+        Dir.chdir(location) {
+            system('yarn extract-strings')
+            success = system("mv en.json temp.json && touch en.json")
+            input = File.open("temp.json")
+            output = File.open("en.json", 'a')
+            input.each_line do |line|
+                message = line[/^\s*\"message\": \"(.*)\"$/, 1].to_s
+
+                if message.length > 0
+                    message.gsub!('\n', '')
+                    line = "\t\t\"message\": \"#{message}\""
+                end
+                output.puts line
+            end
+            system("rm temp.json")
+        }
+    end
+
     def do_the_thing
         puts "Exporting #{@projects.count} projects..."
         @projects.each do |project|
-            location = project.fetch('location')
-            name = project.fetch('name')
-            output_path = "translations/source/#{name}/"
-            puts "Exporting #{name} at #{location} to #{output_path}"
-
-            success = system(%Q(xcodebuild -exportLocalizations -project "#{location}" -localizationPath "#{output_path}"))
-            raise 'xcodebuild -exportLocalizations failed for some reason... :(' unless success
-            strip_unwanted_stuff "#{output_path}/en.xliff"
+            if project['json']
+                self.extract_json(project)
+            else
+                self.extract_xliff(project)
+            end
         end
     end
 
@@ -69,7 +99,7 @@ puts 'Exporting all localizations to /translations/source'
 
 json = IO.read('translations/projects.json', encoding:'utf-8')
 projects = JSON.parse json
-projects = projects.select { |project| project.fetch('name') == options[:project] || !project.fetch('json') } if options[:project]
+projects = projects.select { |project| project.fetch('name') == options[:project] } if options[:project]
 
 exporter = ExportLocalizations.new(projects)
 exporter.do_the_thing
