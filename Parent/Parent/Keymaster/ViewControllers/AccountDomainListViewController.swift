@@ -49,7 +49,7 @@ open class AccountDomainListViewController: UITableViewController {
 
     let syncProducer: SignalProducer<[AccountDomain], NSError>
     var disposable: Disposable?
-    var pickedDomainAction: ((URL)->Void)?
+    var pickedDomainAction: ((AccountDomain)->Void)?
     var collectionUpdatesDisposable: Disposable?
 
     let context: NSManagedObjectContext = {
@@ -111,7 +111,6 @@ open class AccountDomainListViewController: UITableViewController {
 
     func refresh(_ refreshContol: UIRefreshControl?) {
         disposable = syncProducer.start { event in
-            print(event)
             switch event {
             case .completed, .interrupted, .failed:
                 refreshContol?.endRefreshing()
@@ -147,11 +146,7 @@ open class AccountDomainListViewController: UITableViewController {
 
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        let domain = collection[indexPath].domain
-        if let url = URL(string: "https://\(domain)") {
-            pickedDomainAction?(url)
-        }
+        pickedDomainAction?(collection[indexPath])
     }
 
     fileprivate func handleUpdates(_ updates: [CollectionUpdate<AccountDomain>]) {

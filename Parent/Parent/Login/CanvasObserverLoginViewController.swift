@@ -27,9 +27,9 @@ import Marshal
 class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelegate {
     let loginSuccess: (Session)->()
     
-    init(domain: String, loginSuccess: @escaping (Session)->()) {
+    init(domain: String, authenticationProvider: String?, loginSuccess: @escaping (Session)->()) {
         self.loginSuccess = loginSuccess
-        super.init(request: AirwolfAPI.authenticateAsCanvasObserver(domain), loginFailureMessage: NSLocalizedString("Only Canvas observers can authenticate in Canvas Parent.", comment: "Canvas Observer Auth Failed Message"))
+        super.init(request: AirwolfAPI.authenticateAsCanvasObserver(domain, provider: authenticationProvider), loginFailureMessage: NSLocalizedString("Only Canvas observers can authenticate in Canvas Parent.", comment: "Canvas Observer Auth Failed Message"))
     }
     
     required init?(coder aDecoder: NSCoder) {

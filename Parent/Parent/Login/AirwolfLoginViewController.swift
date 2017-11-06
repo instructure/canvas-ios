@@ -336,15 +336,22 @@ class AirwolfLoginViewController: UIViewController {
 
     @IBAction func canvasLogin(_ sender: Any) {
         let domainPicker = SelectDomainViewController.new()
-        domainPicker.useMobileVerify = true
+        domainPicker.useMobileVerify = false
         domainPicker.useKeymasterLogin = false
         domainPicker.dataSource = ParentSelectDomainDataSource.instance
-        domainPicker.pickedDomainAction = { [weak self] url in
+        domainPicker.pickedDomainAction = { [weak self] url, provider in
             DispatchQueue.main.async {
-                guard let me = self, let host = URLComponents(url: url, resolvingAgainstBaseURL: false)?.host else {
+                var pickedURL = url
+                let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+                if let comps = components, comps.scheme == nil {
+                    if let url = URL(string: "https://\(pickedURL.absoluteString)") {
+                        pickedURL = url
+                    }
+                }
+                guard let me = self, let host = URLComponents(url: pickedURL, resolvingAgainstBaseURL: false)?.host else {
                     return
                 }
-                let login = CanvasObserverLoginViewController(domain: host) { [weak me] session in
+                let login = CanvasObserverLoginViewController(domain: host, authenticationProvider: provider) { [weak me] session in
                     RegionPicker.shared.pickRegion(for: session.baseURL)
                     me?.completeLogin(session)
                 }

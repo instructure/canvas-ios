@@ -260,7 +260,7 @@ extension Router {
         return { params in
             let selectDomainViewController = SelectDomainViewController.new()
             selectDomainViewController.dataSource = ParentSelectDomainDataSource.instance
-            selectDomainViewController.pickedDomainAction = { [weak self, weak selectDomainViewController] domain in
+            selectDomainViewController.pickedDomainAction = { [weak self, weak selectDomainViewController] domain, authenticationProvider in
                 guard let session = self?.session else {
                     fatalError("You can't add a user without a session")
                 }
@@ -302,7 +302,7 @@ extension Router {
                             selectDomainViewController?.present(alert, animated: true, completion: nil)
                         case .completed:
                             do {
-                                let addVC = try AddStudentViewController(session: session, domain: domain) { result in
+                                let addVC = try AddStudentViewController(session: session, domain: domain, authenticationProvider: authenticationProvider) { result in
                                     if let presentor = selectDomainViewController?.presentingViewController {
                                         presentor.dismiss(animated: true)
                                     } else {

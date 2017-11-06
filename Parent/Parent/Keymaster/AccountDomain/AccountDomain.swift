@@ -22,8 +22,10 @@ import CanvasCore
 // MARK: - Model
 // ---------------------------------------------
 public final class AccountDomain: NSManagedObject {
+    @NSManaged fileprivate (set) public var id: String
     @NSManaged fileprivate (set) public var name: String
     @NSManaged fileprivate (set) public var domain: String
+    @NSManaged fileprivate (set) public var authenticationProvider: String?
 }
 
 
@@ -34,12 +36,14 @@ import Marshal
 // ---------------------------------------------
 extension AccountDomain: SynchronizedModel {
     public static func uniquePredicateForObject(_ json: JSONObject) throws -> NSPredicate {
-        let domain: String = try json <| "domain"
-        return NSPredicate(format: "%K == %@", "domain", domain)
+        let id: String = try json.stringID("id")
+        return NSPredicate(format: "%K == %@", "id", id)
     }
     
     public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
+        id      = try json.stringID("id")
         name    = try json <| "name"
         domain  = try json <| "domain"
+        authenticationProvider = try json <| "authentication_provider"
     }
 }

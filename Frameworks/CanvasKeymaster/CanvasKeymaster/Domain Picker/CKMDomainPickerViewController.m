@@ -159,11 +159,11 @@ int ddLogLevel =
     [self addThinGrayBorderToView:self.suggestionContainer];
 
     @weakify(self);
-    [self.suggestionTableViewController.selectedTextSignal subscribeNext:^(NSString *selectedText) {
+    [self.suggestionTableViewController.selectedSchoolSignal subscribeNext:^(CKIAccountDomain *school) {
         @strongify(self);
-        DDLogVerbose(@"suggestionTableViewControllerSelected : %@", selectedText);
-        self.domainTextField.text = selectedText;
-        [self sendDomain];
+        DDLogVerbose(@"suggestionTableViewControllerSelected : %@", school.domain);
+        self.domainTextField.text = school.domain;
+        [self sendDomain:school];
     }];
     
     [self.suggestionTableViewController.selectedHelpSignal subscribeNext:^(id x) {
@@ -222,7 +222,7 @@ int ddLogLevel =
 
     [[self.connectButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id value) {
         DDLogVerbose(@"connectButtonPressed : %@", self.domainTextField.text);
-        [self sendDomain];
+        [self sendTextFieldDomain];
     }];
 }
 
@@ -277,7 +277,7 @@ int ddLogLevel =
     self.domainTextField.delegate = self;
     [self.textFieldShouldReturnSignal subscribeNext:^(RACTuple *arguments) {
         DDLogVerbose(@"textFieldReturnPressed : %@", self.domainTextField.text);
-        [self sendDomain];
+        [self sendTextFieldDomain];
     }];
     // make the placeholder italic. unfortunately, setting an attributedPlaceholder cannot change the font.
     RAC(self, domainTextField.font) = [self.domainTextField.rac_textSignal map:^id(NSString *text) {
@@ -332,7 +332,13 @@ int ddLogLevel =
     return _domainSubject;
 }
 
-- (void)sendDomain
+- (void)sendTextFieldDomain
+{
+    CKIAccountDomain *domain = [[CKIAccountDomain alloc] initWithDomain:self.domainTextField.text];
+    [self sendDomain: domain];
+}
+
+- (void)sendDomain:(CKIAccountDomain *)domain
 {
     // check if we've got network connectivity
     Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
@@ -356,7 +362,6 @@ int ddLogLevel =
             }
         case ReachableViaWWAN:
         case ReachableViaWiFi: {
-            NSString *domain = [self domainify:self.domainTextField.text];
             [self.domainSubject sendNext:domain];
             [[TheKeymaster analyticsProvider] trackScreenView:@"Domain Picker"];
             break;
@@ -368,7 +373,7 @@ int ddLogLevel =
     }
 }
 
-- (RACSignal *)selecteADomainSignal
+- (RACSignal *)selectedADomainSignal
 {
     return self.domainSubject;
 }
@@ -380,47 +385,6 @@ int ddLogLevel =
     } else {
         self.defaultDomainTextfieldValue = domain;
     }
-}
-
-#pragma mark - URL Manipulation
-
-/**
- Domainify takes whatever crap the user typed, strips off any schemes,
- trailing slashes, etc., to get just the domain. If it doesn't seem to have
- a top level domain, it adds instructure.com for good measure.
-*/
-- (NSString *)domainify:(NSString *)domainString
-{
-    NSString *urlString = [domainString lowercaseString];
-    urlString = [self stripURLScheme:urlString];
-    urlString = [self removeSlashes:urlString];
-    urlString = [self addInstructureDotComIfNeeded:urlString];
-    return urlString;
-}
-
-- (NSString *)addInstructureDotComIfNeeded:(NSString *)hostname
-{
-    if ([hostname rangeOfString:@"."].location == NSNotFound && [hostname rangeOfString:@":"].location == NSNotFound) {
-        hostname = [NSString stringWithFormat:@"%@.instructure.com", hostname];
-    }
-    return hostname;
-}
-
-- (NSString *)removeSlashes:(NSString *)hostname
-{
-    hostname = [hostname stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/"]];
-    return hostname;
-}
-
-- (NSString *)stripURLScheme:(NSString *)url
-{
-    if ([url hasPrefix:@"https://"]) {
-        url = [url substringFromIndex:8];
-    }
-    else if ([url hasPrefix:@"http://"]) {
-        url = [url substringFromIndex:7];
-    }
-    return url;
 }
 
 #pragma mark - Launch Animation
@@ -533,7 +497,7 @@ static NSString *const CanvasNetworkDomain = @"learn.canvas.net";
 {
     DDLogVerbose(@"logIntoCanvasNetworkPressed : %@", CanvasNetworkDomain);
     self.domainTextField.text = CanvasNetworkDomain;
-    [self sendDomain];
+    [self sendTextFieldDomain];
 }
 
 #pragma mark - UITextFieldDelegate

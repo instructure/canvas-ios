@@ -25,12 +25,17 @@ open class AirwolfAPI {
         return try URLRequest(method: .POST, URL: url, parameters: ["username": email, "password": password], encoding: .json)
     }
     
-    open class func authenticateAsCanvasObserver(_ domain: String) -> URLRequest {
+    open class func authenticateAsCanvasObserver(_ domain: String, provider: String?) -> URLRequest {
         let url = RegionPicker.shared.apiURL
             .appendingPathComponent("canvas")
             .appendingPathComponent("authenticate")
+
+        var parameters = ["domain": domain]
+        if let provider = provider {
+            parameters["authentication_provider"] = provider
+        }
         
-        return try! URLRequest(method: .GET, URL: url, parameters: ["domain": domain], encoding: .url)
+        return try! URLRequest(method: .GET, URL: url, parameters: parameters, encoding: .url)
     }
 
     open class func createAccountRequest(email: String, password: String, firstName: String, lastName: String) throws -> URLRequest {
@@ -58,8 +63,12 @@ open class AirwolfAPI {
         return try session.GET("/students/\(parentID)")
     }
 
-    open class func addStudentRequest(_ session: Session, parentID: String, studentDomain: URL) throws -> URLRequest {
-        return try session.GET("/add_student/\(parentID)", parameters: ["student_domain": studentDomain.absoluteString], encoding: .urlEncodedInURL, authorized: true)
+    open class func addStudentRequest(_ session: Session, parentID: String, studentDomain: URL, authenticationProvider: String?) throws -> URLRequest {
+        var parameters = ["student_domain": studentDomain.absoluteString]
+        if let provider = authenticationProvider {
+            parameters["authentication_provider"] = provider
+        }
+        return try session.GET("/add_student/\(parentID)", parameters: parameters, encoding: .urlEncodedInURL, authorized: true)
     }
 
     open class func checkDomainRequest(_ session: Session, parentID: String, studentDomain: URL) throws -> URLRequest {

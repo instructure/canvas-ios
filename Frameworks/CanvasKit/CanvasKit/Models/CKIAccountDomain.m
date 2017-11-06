@@ -26,6 +26,7 @@
             @"name": @"name"
             ,@"domain": @"domain"
             ,@"distance": @"distance"
+            ,@"authenticationProvider": @"authentication_provider"
     };
     NSDictionary *superPaths = [super JSONKeyPathsByPropertyKey];
     return [superPaths dictionaryByAddingObjectsFromDictionary:keyPaths];
@@ -34,6 +35,14 @@
 + (NSValueTransformer *)distanceJSONTransformer
 {
     return [NSValueTransformer valueTransformerForName:CKINumberStringTransformerName];
+}
+
+- (instancetype)initWithDomain:(NSString *)domain
+{
+    if ((self = [super init])) {
+        self.domain = domain;
+    }
+    return self;
 }
 
 - (NSString *)path

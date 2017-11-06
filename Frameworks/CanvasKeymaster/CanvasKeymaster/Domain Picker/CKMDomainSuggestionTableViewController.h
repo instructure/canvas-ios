@@ -30,7 +30,7 @@
 * This signal will send an NSString with the value of the domain when
 * a user selects a cell with a value in it.
 */
-- (RACSignal *)selectedTextSignal;
+- (RACSignal *)selectedSchoolSignal;
 
 /**
  * This is a signal that can be subscribed to when the user asks for help in the tableview

@@ -29,12 +29,14 @@ public protocol SelectDomainDataSource {
     var tintBottomColor: UIColor { get }
 }
 
+public typealias PickedDomainAction = (URL, String?) -> Void // domain, authentication provider
+
 open class SelectDomainViewController: UIViewController {
 
     // ---------------------------------------------
     // MARK: - typealias
     // ---------------------------------------------
-    public typealias PickDomainAction = (URL) -> ()
+    public typealias PickDomainAction = (AccountDomain) -> ()
     public typealias PickSessionAction = (Session) -> ()
 
     // ---------------------------------------------
@@ -78,18 +80,19 @@ open class SelectDomainViewController: UIViewController {
     open var useBackButton = true
     open var prompt: String? = nil
 
-    open var pickedDomainAction : ((URL) -> ())? {
+    open var pickedDomainAction : PickedDomainAction? {
         didSet {
             if let _ = pickedDomainAction {
                 accountDomainsTableViewController.pickedDomainAction = { [weak self] domain in
                     guard let me = self else { return }
                     me.searchTextField.resignFirstResponder()
-                    if (me.useMobileVerify) {
-                        let host = domain.host ?? domain.absoluteString
-                        me.validateMobileVerify(host)
-                    } else {
-                        print(domain)
-                        me.pickedDomainAction?(domain as URL)
+                    if let url = URL(string: domain.domain) {
+                        if (me.useMobileVerify) {
+                            let host = url.host ?? url.absoluteString
+                            me.validateMobileVerify(host)
+                        } else {
+                            me.pickedDomainAction?(url, domain.authenticationProvider)
+                        }
                     }
                 }
             }
@@ -521,7 +524,7 @@ extension SelectDomainViewController: UIGestureRecognizerDelegate {
             alertController.addAction(action)
             self.present(alertController, animated: true, completion: nil)
         }
-        
+
         guard let navigationController = self.navigationController, let baseURL = response.baseURL, let clientID = response.clientID, let clientSecret = response.clientSecret else {
             showError(response.baseURL)
             return
@@ -535,7 +538,7 @@ extension SelectDomainViewController: UIGestureRecognizerDelegate {
         var pickedURL = baseURL
         let components = URLComponents(url: pickedURL, resolvingAgainstBaseURL: false)
         if let comps = components, comps.scheme == nil {
-            
+
             if let url = URL(string: "https://\(pickedURL.absoluteString)") {
                 pickedURL = url
             }
@@ -543,8 +546,8 @@ extension SelectDomainViewController: UIGestureRecognizerDelegate {
                 return showError(baseURL)
             }
         }
-        
-        pickedDomainAction?(pickedURL)
+
+        pickedDomainAction?(pickedURL, nil)
 
         if useKeymasterLogin {
             DispatchQueue.main.async(execute: {
@@ -595,13 +598,13 @@ extension SelectDomainViewController: UITextFieldDelegate {
             } else {
                 domain.addURLScheme()
                 guard let url = URL(string: domain) else {
-                    
+
                     let errorDescription = NSLocalizedString("Could not create domain.  Please check your school's domain and try again.", bundle: .parent, comment: "Error alert message")
-                    
+
                     presentError(NSError(domain: "com.instructure.selectdomain", code: 101, userInfo: [ NSLocalizedDescriptionKey:  errorDescription]))
                     return false
                 }
-                pickedDomainAction?(url)
+                pickedDomainAction?(url, nil)
             }
         }
 
@@ -627,9 +630,9 @@ extension SelectDomainViewController {
                 self?.presentError(MobileVerifyResult.errorForResult(response.result))
                 return
             }
-            
+
             self?.selectDomain(response)
-            
+
         }) { [weak self] error in
             self?.presentError(error)
         }

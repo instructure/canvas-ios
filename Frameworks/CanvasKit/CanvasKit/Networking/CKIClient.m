@@ -38,6 +38,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 @property (nonatomic, strong) NSString *accessToken;
 @property (nonatomic, strong) CKIUser *currentUser;
 @property (nonatomic, assign) BOOL invalidated;
+@property (nonatomic, strong) NSString *authenticationProvider;
 
 #if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 @property (nonatomic, weak) UIViewController *webLoginViewController;
@@ -68,12 +69,12 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     return self;
 }
 
-+ (instancetype)clientWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret
++ (instancetype)clientWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider
 {
-    return [[CKIClient alloc] initWithBaseURL:baseURL clientID:clientID clientSecret:clientSecret];
+    return [[CKIClient alloc] initWithBaseURL:baseURL clientID:clientID clientSecret:clientSecret authenticationProvider:authenticationProvider];
 }
 
-- (instancetype)initWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret
+- (instancetype)initWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider
 {
     NSParameterAssert(baseURL);
     NSParameterAssert(clientID);
@@ -86,6 +87,7 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
 
     self.clientID = clientID;
     self.clientSecret = clientSecret;
+    self.authenticationProvider = authenticationProvider;
 
     return self;
 }
@@ -185,6 +187,10 @@ NSString *const CKIClientAccessTokenExpiredNotification = @"CKIClientAccessToken
     
     if (method == CKIAuthenticationMethodForcedCanvasLogin) {
         urlString = [urlString stringByAppendingString:@"&canvas_login=1"];
+    }
+
+    if (self.authenticationProvider) {
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&authentication_provider=%@", self.authenticationProvider]];
     }
     
     NSURL *url = [NSURL URLWithString:urlString];

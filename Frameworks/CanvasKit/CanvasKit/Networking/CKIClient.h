@@ -78,7 +78,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param clientID the special client ID that uniquely identifies this application
  @param clientSecret the client secret for the application
  */
-+ (instancetype)clientWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret;
++ (instancetype)clientWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider;
 
 /**
  Instantiates a canvas client with the given information.
@@ -87,7 +87,7 @@ extern NSString *const CKIClientAccessTokenExpiredNotification;
  @param clientID the special client ID that uniquely identifies this application
  @param clientSecret the client secret for the application
  */
-- (instancetype)initWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret;
+- (instancetype)initWithBaseURL:(NSURL *)baseURL clientID:(NSString *)clientID clientSecret:(NSString *)clientSecret authenticationProvider:(NSString *)authenticationProvider;
 
 
 /**

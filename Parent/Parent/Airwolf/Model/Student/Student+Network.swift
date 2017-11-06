@@ -20,8 +20,8 @@ import Marshal
 import CanvasCore
 
 extension Student {
-    public static func addStudent(_ session: Session, parentID: String, domain: URL) throws -> SignalProducer<(), NSError> {
-        let request = try AirwolfAPI.addStudentRequest(session, parentID: parentID, studentDomain: domain)
+    public static func addStudent(_ session: Session, parentID: String, domain: URL, authenticationProvider: String?) throws -> SignalProducer<(), NSError> {
+        let request = try AirwolfAPI.addStudentRequest(session, parentID: parentID, studentDomain: domain, authenticationProvider: authenticationProvider)
         return session.emptyResponseSignalProducer(request)
     }
 

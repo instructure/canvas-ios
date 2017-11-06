@@ -125,10 +125,10 @@ class AddStudentViewController: WebLoginViewController {
     var completionHandler: ((Result<Bool, NSError>)->Void)?
     let refresher: Refresher
 
-    init(session: Session, domain: URL, completionHandler: @escaping (Result<Bool, NSError>)->Void) throws {
+    init(session: Session, domain: URL, authenticationProvider: String?, completionHandler: @escaping (Result<Bool, NSError>)->Void) throws {
         self.refresher = try Student.observedStudentsRefresher(session)
         
-        super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain), loginFailureMessage: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"))
+        super.init(request: try? AirwolfAPI.addStudentRequest(session, parentID: session.user.id, studentDomain: domain, authenticationProvider: authenticationProvider), loginFailureMessage: NSLocalizedString("Unexpected Authentication Error.  Please try logging in again", comment: "Auth Failed Message"))
         
         webView.delegate = self
         self.completionHandler = completionHandler

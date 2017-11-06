@@ -22,9 +22,12 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *domain;
 @property (nonatomic, strong) NSNumber *distance;
+@property (nonatomic, strong) NSString *authenticationProvider;
 
 + (CKIAccountDomain *)canvasNetSchool;
 + (CKIAccountDomain *)cantFindSchool;
 + (NSArray *)developmentSchools;
+
+- (instancetype)initWithDomain:(NSString *)domain;
 
 @end

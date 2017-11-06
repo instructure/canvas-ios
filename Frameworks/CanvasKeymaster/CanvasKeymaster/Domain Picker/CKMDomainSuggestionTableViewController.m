@@ -83,7 +83,7 @@
     return self.suggestions[indexPath.row];
 }
 
-- (RACSignal *)selectedTextSignal
+- (RACSignal *)selectedSchoolSignal
 {
     return self.suggestionSelectionSubject;
 }
@@ -138,7 +138,7 @@
         return;
     }
     
-    [self.suggestionSelectionSubject sendNext:school.domain];
+    [self.suggestionSelectionSubject sendNext:school];
 }
 
 - (RACSubject *)selectedHelpSubject

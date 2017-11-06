@@ -33,7 +33,7 @@
 * Signal fires when a domain has been selected and connect was pressed.
 * Signal sends an NSURL of the selected domain.
 */
-- (RACSignal *)selecteADomainSignal;
+- (RACSignal *)selectedADomainSignal;
 
 /**
  * Select the domain
