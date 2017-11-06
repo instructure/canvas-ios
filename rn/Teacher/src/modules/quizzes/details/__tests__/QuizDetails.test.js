@@ -19,6 +19,7 @@
 import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
+import { setSession } from 'instructure-canvas-api'
 
 import { QuizDetails, mapStateToProps } from '../QuizDetails'
 import explore from '../../../../../test/helpers/explore'
@@ -37,9 +38,12 @@ const template = {
   ...require('../../../../__templates__/quiz'),
   ...require('../../../../__templates__/assignments'),
   ...require('../../../../redux/__templates__/app-state'),
+  ...require('../../../../__templates__/session'),
 }
 
 describe('QuizDetails', () => {
+  beforeAll(() => setSession(template.session()))
+
   let props
   beforeEach(() => {
     jest.clearAllMocks()

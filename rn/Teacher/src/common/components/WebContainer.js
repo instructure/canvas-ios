@@ -51,6 +51,10 @@ const TEMPLATE = `
                 padding: 0;
                 margin: 0;
             }
+            iframe {
+              border: none;
+              width: 100% !important;
+            }
         </style>
     </head>
 <body>
@@ -129,6 +133,8 @@ export default class WebContainer extends Component<any, Props, any> {
 
     html = TEMPLATE.replace('{{content}}', html)
     html = html.replace('{{content-width}}', `${this.state.viewportWidth}`)
+    const baseUrl = getSession().baseURL
+
     return (
       <View style={style} onLayout={this.onLayout} testID='web-container.view'>
         {
@@ -136,7 +142,7 @@ export default class WebContainer extends Component<any, Props, any> {
             ? null
             : <WebView
                 style={{ height: this.state.webViewHeight, backgroundColor: 'rgba(0, 0, 0, 0)' }}
-                source={{ html: html }}
+                source={{ html: html, baseUrl }}
                 onMessage={this._onMessage}
                 scrollEnabled={scrollEnabled}
                 contentInset={this.props.contentInset}

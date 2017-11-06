@@ -4,6 +4,7 @@ import React from 'react'
 import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import { PageDetails, mapStateToProps, type Props } from '../PageDetails'
+import { setSession } from 'instructure-canvas-api'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 jest
@@ -17,10 +18,12 @@ const template = {
   ...require('../../../../__templates__/course'),
   ...require('../../../../__templates__/error'),
   ...require('../../../../redux/__templates__/app-state'),
+  ...require('../../../../__templates__/session'),
 }
 
 describe('PageDetails', () => {
   let props: Props
+  beforeAll(() => setSession(template.session()))
   beforeEach(() => {
     props = {
       page: template.page(),

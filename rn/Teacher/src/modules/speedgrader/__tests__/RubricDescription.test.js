@@ -19,6 +19,7 @@
 import React from 'react'
 import { RubricDescription, mapStateToProps } from '../RubricDescription'
 import renderer from 'react-test-renderer'
+import { setSession } from 'instructure-canvas-api'
 
 jest.unmock('ScrollView')
 
@@ -27,6 +28,7 @@ const templates = {
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/rubric'),
   ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/session'),
 }
 
 let ownProps = {
@@ -41,6 +43,7 @@ let defaultProps = {
 }
 
 describe('RubricDescription', () => {
+  beforeAll(() => setSession(templates.session()))
   beforeEach(() => jest.resetAllMocks())
 
   it('calls dismiss modal when the done button is pressed', () => {

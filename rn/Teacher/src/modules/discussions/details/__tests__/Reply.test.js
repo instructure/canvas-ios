@@ -20,6 +20,7 @@ import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
+import { setSession } from 'instructure-canvas-api'
 
 import Reply, { type Props } from '../Reply'
 
@@ -29,6 +30,7 @@ const template = {
   ...require('../../../../__templates__/discussion'),
   ...require('../../../../__templates__/users'),
   ...require('../../../../__templates__/helm'),
+  ...require('../../../../__templates__/session'),
 }
 jest.mock('WebView', () => 'WebView')
   .mock('ActionSheetIOS', () => ({
@@ -37,6 +39,8 @@ jest.mock('WebView', () => 'WebView')
   .mock('../../../../common/components/Avatar', () => 'Avatar')
 
 describe('DiscussionReplies', () => {
+  beforeAll(() => setSession(template.session()))
+
   let props
   beforeEach(() => {
     let reply = template.discussionReply({ id: '1' })

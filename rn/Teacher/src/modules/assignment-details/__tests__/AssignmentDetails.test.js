@@ -23,6 +23,8 @@ import React from 'react'
 import { AssignmentDetails } from '../AssignmentDetails'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+import renderer from 'react-test-renderer'
+import { setSession } from 'instructure-canvas-api'
 import { defaultErrorTitle } from '../../../redux/middleware/error-handler'
 
 const template = {
@@ -31,10 +33,8 @@ const template = {
   ...require('../../../__templates__/helm'),
   ...require('../../../__templates__/external-tool'),
   ...require('../../../__templates__/error'),
+  ...require('../../../__templates__/session'),
 }
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer'
 
 jest
   .mock('../../../routing')
@@ -57,6 +57,8 @@ let defaultProps = {
   refreshing: false,
   getSessionlessLaunchURL: jest.fn(),
 }
+
+beforeAll(() => setSession(template.session()))
 
 test('renders', () => {
   let tree = renderer.create(
@@ -155,6 +157,8 @@ describe('external tool', () => {
     beforeEach(() => {
       RCTSFSafariViewController.open = jest.fn()
     })
+
+    setSession(template.session())
     const url = 'https://canvas.instructure.com/external_tool'
     const props = {
       ...defaultProps,

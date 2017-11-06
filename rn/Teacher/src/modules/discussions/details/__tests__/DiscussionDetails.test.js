@@ -26,6 +26,7 @@ import renderer from 'react-test-renderer'
 import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDetails'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
+import { setSession } from 'instructure-canvas-api'
 
 jest
   .mock('Button', () => 'Button')
@@ -48,9 +49,12 @@ const template = {
   ...require('../../../../__templates__/users'),
   ...require('../../../../redux/__templates__/app-state'),
   ...require('../../../../__templates__/helm'),
+  ...require('../../../../__templates__/session'),
 }
 
 describe('DiscussionDetails', () => {
+  beforeAll(() => setSession(template.session()))
+
   let props: Props
   beforeEach(() => {
     jest.clearAllMocks()
