@@ -15,7 +15,7 @@
 //
 
 import UIKit
-import PocketSVG
+import SVGKit
 import React
 import Kingfisher
 
@@ -528,8 +528,9 @@ public final class HelmViewController: UIViewController, HelmScreen {
         case is String:
             if let path = navBarImagePath as? String {
                 if (path as NSString).pathExtension == "svg" {
-                    titleView = SVGImageView(contentsOf: URL(string: path)!)
-                    titleView?.contentMode = .scaleAspectFit
+                    let svgImage = SVGKImage(contentsOf: URL(string: path)!)
+                    let imageView = UIImageView(image: svgImage?.uiImage)
+                    titleView = imageView
                 } else {
                     let imageView = UIImageView()
                     imageView.kf.setImage(with: URL(string: path))

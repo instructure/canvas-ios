@@ -48,7 +48,7 @@ abstract_target 'defaults' do
   pod 'react-native-wkwebview', :path => nm_path + 'react-native-wkwebview-reborn'
 
   pod 'SDWebImage', '~> 4.1'
-  pod 'PocketSVG', '~> 2.2'
+  pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '2.x'
   pod 'ReactiveCocoa', '~> 5.0'
   pod 'Marshal', '~> 1.1'
   pod 'Result', '~> 3.2'
@@ -57,7 +57,7 @@ abstract_target 'defaults' do
   pod 'CWStatusBarNotification', git: 'https://github.com/derrh/CWStatusBarNotification.git', branch: 'framework'
   pod 'Kingfisher', '~> 3.2'
   pod 'JSTokenField', '~> 1.1'
-  pod 'CocoaLumberjack', '~> 2.4.0'
+  pod 'CocoaLumberjack', '~> 3.0'
   pod 'Masonry', '~> 1.0'
   pod 'SVProgressHUD', '~> 2.0'
   pod 'TBBModal', '~> 1.0'
