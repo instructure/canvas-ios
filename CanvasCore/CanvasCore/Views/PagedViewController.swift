@@ -68,7 +68,7 @@ open class PagedViewController: UIViewController {
         if let parent = parent {
             let nav = (parent as? UINavigationController) ?? parent.navigationController
             
-            var top = CGFloat(20)
+            var top = UIApplication.shared.statusBarFrame.height
             top += nav?.navigationBar.bounds.height ?? 0.0
             var bottom = parent.tabBarController?.tabBar.bounds.height ?? 0.0
             if nav?.isToolbarHidden == false {
