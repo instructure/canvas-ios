@@ -120,6 +120,7 @@ export class QuizSubmissionList extends Component<any, QuizSubmissionListProps, 
       onPress={this.navigateToSubmission(index)}
       disclosure={disclosure}
       anonymous={this.props.anonymous}
+      disabled={!this.props.quiz.data.assignment_id}
     />
   }
 

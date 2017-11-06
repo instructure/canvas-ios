@@ -192,4 +192,34 @@ describe('QuizSubmissionList mapStateToProps', () => {
       anonymous: false,
     })
   })
+
+  test('anonymous will be true if the quiz has anonymous submissions turned on', () => {
+    const course = template.course()
+    const quiz = template.quiz({
+      anonymous_submissions: true,
+    })
+
+    const appState = template.appState({
+      entities: {
+        courses: {
+          [course.id]: { enrollments: { refs: [] } },
+        },
+        enrollments: {},
+        quizzes: {
+          [quiz.id]: {
+            data: quiz,
+            quizSubmissions: { refs: [] },
+            submissions: { refs: [] },
+          },
+        },
+        quizSubmissions: {},
+        submissions: {},
+        sections: [template.section({ course_id: course.id })],
+      },
+    })
+
+    const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
+    expect(result.anonymous).toEqual(true)
+    expect(shuffle).toHaveBeenCalled()
+  })
 })

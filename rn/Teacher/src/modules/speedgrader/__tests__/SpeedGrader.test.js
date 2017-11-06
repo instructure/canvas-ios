@@ -38,6 +38,7 @@ jest.mock('knuth-shuffle-seeded', () => jest.fn())
 const templates = {
   ...require('../../../__templates__/submissions'),
   ...require('../../../__templates__/assignments'),
+  ...require('../../../__templates__/quiz'),
   ...require('../../../redux/__templates__/app-state'),
   ...require('../../../__templates__/helm'),
   ...require('../../submissions/list/__templates__/submission-props'),
@@ -221,6 +222,34 @@ test('mapStateToProps shuffles when anonymous grading is on', () => {
         [assignment.id]: {
           data: assignment,
           anonymousGradingOn: true,
+        },
+      },
+    },
+  })
+  mapStateToProps(appState, {
+    assignmentID: assignment.id,
+    courseID: '2',
+    userID: '3',
+    studentIndex: 1,
+  })
+  expect(shuffle).toHaveBeenCalled()
+})
+
+test('mapStateToProps shuffles when the assignment is an anonymous quiz', () => {
+  const assignment = templates.assignment({ quiz_id: '1' })
+  const quiz = templates.quiz({ id: '1', anonymous_submissions: true })
+  const appState = templates.appState({
+    entities: {
+      submissions: {},
+      assignments: {
+        [assignment.id]: {
+          data: assignment,
+          anonymousGradingOn: true,
+        },
+      },
+      quizzes: {
+        [quiz.id]: {
+          data: quiz,
         },
       },
     },

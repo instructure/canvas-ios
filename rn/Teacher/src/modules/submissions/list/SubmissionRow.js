@@ -52,12 +52,13 @@ export type SubmissionRowDataProps = {
   gradingType: GradingType,
   score: ?number,
   disclosure?: boolean,
-  anonymous: boolean,
+  disabled?: boolean,
 }
 
 export type SubmissionRowProps = {
   onPress: () => void,
   onAvatarPress?: Function,
+  anonymous: boolean,
 } & SubmissionRowDataProps
 
 class Row extends Component<any, RowProps, any> {

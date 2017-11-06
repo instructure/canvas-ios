@@ -266,7 +266,12 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 
   const assignmentContent = entities.assignments[assignmentID]
   const assignmentData = assignmentContent && assignmentContent.data
-  let anonymous = assignmentContent && assignmentContent.anonymousGradingOn
+  const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id].data
+
+  let anonymous = (
+    assignmentContent && assignmentContent.anonymousGradingOn ||
+    quiz && quiz.anonymous_submissions
+  )
 
   let groupAssignment = null
   if (assignmentContent && assignmentContent.data) {
@@ -288,7 +293,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 
   const result = {
     ...props,
-    submissions: anonymous ? shuffle(props.submissions.slice(), ownProps.assignmentID) : props.submissions,
+    submissions: anonymous ? shuffle(props.submissions.slice(), quiz && quiz.id || ownProps.assignmentID) : props.submissions,
     groupAssignment,
     submissionEntities: state.entities.submissions,
     assignmentSubmissionTypes: assignmentData ? assignmentData.submission_types : [],

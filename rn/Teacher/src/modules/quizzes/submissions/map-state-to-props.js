@@ -74,7 +74,6 @@ export function buildRows (enrollments: Enrollment[],
       status,
       grade,
       score,
-      anonymous: false, // this will be done in another commit
       sectionID: enrollment.course_section_id,
       allSectionIDs: sectionIDs[user.id],
     }
@@ -114,6 +113,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
       anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
       muted = entities.assignments[quiz.data.assignment_id].data.muted
     }
+    anonymous = anonymous || quiz.data && quiz.data.anonymous_submissions
   }
 
   const course = entities.courses[courseID]
@@ -154,12 +154,12 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
     return s.course_id === courseID
   })
 
-  const rows = buildRows(enrollments, quizSubmissions, submissions, sectionIDs)
+  const rows = buildRows(enrollments, quizSubmissions, submissions, sectionIDs, anonymous)
 
   return {
     courseColor,
     courseName,
-    rows: anonymous ? shuffle(rows, quiz.data.assignment_id) : rows,
+    rows: anonymous ? shuffle(rows, quiz.data.id) : rows,
     quiz,
     pending,
     pointsPossible,
