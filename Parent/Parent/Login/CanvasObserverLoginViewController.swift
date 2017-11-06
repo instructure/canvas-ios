@@ -45,6 +45,15 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
     var jsonBodyData: Data? {
         return webView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('pre')[0].innerHTML")?.data(using: String.Encoding.utf8)
     }
+
+    func presentBadDomainError() {
+        let title = NSLocalizedString("Invalid domain.", comment: "Invalid Domain title")
+        let message = NSLocalizedString("Please double-check the domain and try again.", comment: "Invalid Domain message")
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK Button Title"), style: .default, handler: { [weak self] _ in _ = self?.navigationController?.popViewController(animated: true) })
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     // MARK: UIWebViewDelegate
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -68,5 +77,14 @@ class CanvasObserverLoginViewController: WebLoginViewController, UIWebViewDelega
         loginSuccess(session)
         
         return true
+    }
+
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        guard let result = webView.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].childNodes[0].childNodes[0].data") else { return }
+        if result.contains("Bad Request") && result.contains("Error validating domain") {
+            webView.isHidden = true
+            presentBadDomainError()
+            return
+        }
     }
 }

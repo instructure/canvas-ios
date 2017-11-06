@@ -272,7 +272,7 @@ extension Router {
                             print("Error adding Student Domain: \(e)")
                             var createAccountTitle = NSLocalizedString("Unable to Add Student", comment: "Title for alert when failing to add student domain")
                             var createAccountMessage = e.localizedDescription
-                            if e.code == 401 {
+                            if e.code == 401 || e.code == 400 {
                                 createAccountMessage = NSLocalizedString("Invalid student domain.\nPlease double-check the domain and try again.", comment: "Alert Message for invalid domain")
                             } else if e.code == 403 {
                                 createAccountMessage = NSLocalizedString("This institution has not enabled access to the Canvas Parent mobile app.", comment: "Alert Message for institution not authorized")
