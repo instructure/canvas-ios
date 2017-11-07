@@ -17,7 +17,7 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from 'instructure-canvas-api'
+import canvas from '../../canvas-api'
 
 export const SpeedGraderActions = (api: CanvasApi): * => ({
   excuseAssignment: createAction('submission.excuse', (courseID: string, assignmentID: string, userID: string, submissionID: ?string) => ({

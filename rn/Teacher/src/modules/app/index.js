@@ -1,7 +1,7 @@
 // @flow
 
 import find from 'lodash/find'
-import { type Course } from 'instructure-canvas-api'
+import { type Course } from '../../canvas-api'
 
 export type AppId = 'student' | 'teacher'
 export type App = {

@@ -20,7 +20,7 @@ import React from 'react'
 import { ActionSheetIOS } from 'react-native'
 import renderer from 'react-test-renderer'
 import explore from '../../../../../test/helpers/explore'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../../canvas-api'
 
 import Reply, { type Props } from '../Reply'
 

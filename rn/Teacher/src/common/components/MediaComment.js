@@ -10,7 +10,7 @@ import {
 import { connect } from 'react-redux'
 import AudioRecorder from './AudioRecorder'
 import VideoRecorder from './VideoRecorder'
-import { uploadMedia } from 'instructure-canvas-api'
+import { uploadMedia } from '../../canvas-api'
 import i18n from 'format-message'
 
 export type Media = {

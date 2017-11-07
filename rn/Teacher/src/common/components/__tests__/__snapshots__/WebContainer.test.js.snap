@@ -21,7 +21,7 @@ exports[`render html 1`] = `
     scrollEnabled={true}
     source={
       Object {
-        "baseUrl": "http://mobiledev.instructure.com",
+        "baseUrl": "http://mobiledev.instructure.com/",
         "html": "
       <html>
           <head>
@@ -106,7 +106,7 @@ exports[`updates height from js 1`] = `
     scrollEnabled={true}
     source={
       Object {
-        "baseUrl": "http://mobiledev.instructure.com",
+        "baseUrl": "http://mobiledev.instructure.com/",
         "html": "
       <html>
           <head>
@@ -183,7 +183,7 @@ exports[`updates height from js with scroll disabled 1`] = `
     scrollEnabled={false}
     source={
       Object {
-        "baseUrl": "http://mobiledev.instructure.com",
+        "baseUrl": "http://mobiledev.instructure.com/",
         "html": "
       <html>
           <head>

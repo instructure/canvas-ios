@@ -37,7 +37,7 @@ import device from 'react-native-device-info'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
-import { getSession } from 'instructure-canvas-api'
+import { getSession } from '../../canvas-api'
 
 export default class Profile extends Component {
 

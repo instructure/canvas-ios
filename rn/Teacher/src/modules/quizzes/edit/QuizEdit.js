@@ -48,7 +48,7 @@ import AssignmentActions from '../../assignments/actions'
 import AssignmentDatesEditor from '../../assignment-details/components/AssignmentDatesEditor'
 import UnmetRequirementBanner from '../../../common/components/UnmetRequirementBanner'
 import RequiredFieldSubscript from '../../../common/components/RequiredFieldSubscript'
-import canvas from 'instructure-canvas-api'
+import canvas from '../../../canvas-api'
 import SavingBanner from '../../../common/components/SavingBanner'
 
 const { NativeAccessibility } = NativeModules

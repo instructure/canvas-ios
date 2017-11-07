@@ -21,7 +21,7 @@ import {
 } from 'react-native'
 import React from 'react'
 import { ConversationDetails, mapStateToProps, handleRefresh, shouldRefresh, type ConversationDetailsProps } from '../ConversationDetails.js'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../../canvas-api'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
 

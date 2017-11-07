@@ -4,7 +4,7 @@ import React from 'react'
 import { Alert } from 'react-native'
 import renderer from 'react-test-renderer'
 import { PageDetails, mapStateToProps, type Props } from '../PageDetails'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../../canvas-api'
 import { defaultErrorTitle } from '../../../../redux/middleware/error-handler'
 
 jest

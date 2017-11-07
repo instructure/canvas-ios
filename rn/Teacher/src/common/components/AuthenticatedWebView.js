@@ -18,7 +18,7 @@
 
 import React from 'react'
 import ActivityIndicatorView from './ActivityIndicatorView'
-import canvas from 'instructure-canvas-api'
+import canvas from '../../canvas-api'
 import WKWebView from 'react-native-wkwebview-reborn'
 
 export default class AuthenticatedWebView extends React.Component<any, any, any> {

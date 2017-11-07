@@ -19,7 +19,7 @@
 import React from 'react'
 import { RubricDescription, mapStateToProps } from '../RubricDescription'
 import renderer from 'react-test-renderer'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../canvas-api'
 
 jest.unmock('ScrollView')
 

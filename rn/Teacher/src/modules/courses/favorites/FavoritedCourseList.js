@@ -25,7 +25,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import { getSession } from 'instructure-canvas-api'
+import { getSession } from '../../../canvas-api'
 import localeSort from '../../../utils/locale-sort'
 import { LinkButton } from '../../../common/buttons'
 import i18n from 'format-message'

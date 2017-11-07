@@ -21,7 +21,7 @@ import SubmissionViewer from '../SubmissionViewer'
 import renderer from 'react-test-renderer'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../canvas-api'
 
 const templates = {
   ...require('../../../__templates__/submissions'),

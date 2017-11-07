@@ -20,12 +20,12 @@ import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
 import TypeAheadSearch, { type Props } from '../TypeAheadSearch'
-import { httpClient } from 'instructure-canvas-api'
+import { httpClient } from '../../canvas-api'
 import explore from '../../../test/helpers/explore'
 
 jest
   .mock('react-native-search-bar', () => 'SearchBar')
-  .mock('instructure-canvas-api')
+  .mock('../../canvas-api')
 
 describe('TypeAheadSearch', () => {
   let props: Props = {

@@ -39,8 +39,8 @@ import AssignmentActions from '../assignments/actions'
 import Images from '../../images'
 import Screen from '../../routing/Screen'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
-import { getSessionlessLaunchURL } from 'instructure-canvas-api'
 import { alertError } from '../../redux/middleware/error-handler'
+import { getSessionlessLaunchURL } from '../../canvas-api'
 
 import {
   View,

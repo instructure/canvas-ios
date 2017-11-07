@@ -31,7 +31,7 @@ import colors from '../../common/colors'
 import { Circle } from 'react-native-progress'
 import bytes from 'bytes'
 import i18n from 'format-message'
-import { type Progress } from 'instructure-canvas-api'
+import { type Progress } from '../../canvas-api'
 
 export type Props = {
   completed: boolean,

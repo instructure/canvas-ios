@@ -27,7 +27,7 @@ import {
 import { Text } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import color from '../../../common/colors'
-import { getSession } from 'instructure-canvas-api'
+import { getSession } from '../../../canvas-api'
 import i18n from 'format-message'
 import Images from '../../../images'
 import branding from '../../../common/branding'

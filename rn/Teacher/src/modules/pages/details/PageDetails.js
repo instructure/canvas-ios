@@ -7,8 +7,8 @@ import {
   StyleSheet,
 } from 'react-native'
 import Actions from './actions'
-import { getPage } from 'instructure-canvas-api'
 import { alertError } from '../../../redux/middleware/error-handler'
+import { getPage } from '../../../canvas-api'
 import WebContainer from '../../../common/components/WebContainer'
 import Screen from '../../../routing/Screen'
 

@@ -20,8 +20,8 @@ import React from 'react'
 import { Compose, mapStateToProps } from '../Compose'
 import renderer from 'react-test-renderer'
 import explore from '../../../../test/helpers/explore'
-import api from 'instructure-canvas-api'
-import { apiResponse } from 'instructure-canvas-api/lib/utils/testHelpers'
+import api from '../../../canvas-api'
+import { apiResponse } from '../../../canvas-api/utils/testHelpers'
 
 let template = {
   ...require('../../../__templates__/helm'),
@@ -51,7 +51,7 @@ jest
     },
   }))
   .mock('TouchableOpacity', () => 'TouchableOpacity')
-  .mock('instructure-canvas-api')
+  .mock('../../../canvas-api')
   .mock('../../../routing/Screen')
 
 describe('Compose', () => {

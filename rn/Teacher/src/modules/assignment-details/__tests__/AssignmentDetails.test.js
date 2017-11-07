@@ -24,7 +24,7 @@ import { AssignmentDetails } from '../AssignmentDetails'
 import explore from '../../../../test/helpers/explore'
 import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import renderer from 'react-test-renderer'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../canvas-api'
 import { defaultErrorTitle } from '../../../redux/middleware/error-handler'
 
 const template = {

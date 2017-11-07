@@ -32,7 +32,7 @@ import { default as TypeAheadSearch, type TypeAheadSearchResults } from '../../c
 import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 import { Heading1 } from '../../common/text'
 import { LinkButton } from '../../common/buttons'
-import { httpClient } from 'instructure-canvas-api'
+import { httpClient } from '../../canvas-api'
 import axios from 'axios'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 

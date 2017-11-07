@@ -20,7 +20,7 @@ import template, { type Template } from '../utils/template'
 
 export const session: Template<Session> = template({
   authToken: 'iamanauthtoken',
-  baseURL: 'http://mobiledev.instructure.com',
+  baseURL: 'http://mobiledev.instructure.com/',
   user: {
     id: 1,
     name: 'Key and Peele',

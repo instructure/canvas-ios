@@ -30,7 +30,7 @@ import AttachmentRow from './AttachmentRow'
 import AttachmentPicker from './AttachmentPicker'
 import EmptyAttachments from './EmptyAttachments'
 import uuid from 'uuid/v1'
-import { uploadAttachment, type Progress } from 'instructure-canvas-api'
+import { uploadAttachment, type Progress } from '../../canvas-api'
 import axios from 'axios'
 import RowSeparator from '../../common/components/rows/RowSeparator'
 

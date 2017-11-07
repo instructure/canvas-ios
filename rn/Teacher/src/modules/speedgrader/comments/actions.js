@@ -17,7 +17,7 @@
 // @flow
 
 import { createAction } from 'redux-actions'
-import canvas from 'instructure-canvas-api'
+import canvas from '../../../canvas-api'
 import uuid from 'uuid/v1'
 
 export const SubmissionCommentActions = (api: CanvasApi): * => ({

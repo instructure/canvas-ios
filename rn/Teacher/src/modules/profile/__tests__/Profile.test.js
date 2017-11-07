@@ -22,7 +22,7 @@ import explore from '../../../../test/helpers/explore'
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../canvas-api'
 
 const template = {
   ...require('../../../__templates__/session'),

@@ -1,6 +1,6 @@
 // @flow
 
-import canvas from 'instructure-canvas-api'
+import canvas from '../../../canvas-api'
 import {
   interval,
   updateUnreadCount,

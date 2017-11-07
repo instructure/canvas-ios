@@ -32,7 +32,7 @@ import {
 } from '../../../common/text'
 import Avatar from '../../../common/components/Avatar'
 import color from '../../../common/colors'
-import { getSession } from 'instructure-canvas-api'
+import { getSession } from '../../../canvas-api'
 import i18n from 'format-message'
 import find from 'lodash/find'
 import Images from '../../../images'

@@ -38,7 +38,7 @@ import color from '../../../common/colors'
 import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
 import find from 'lodash/find'
-import { getSession } from 'instructure-canvas-api'
+import { getSession } from '../../../canvas-api'
 
 export type ConversationOwnProps = {
   conversation: ?Conversation,

@@ -19,7 +19,7 @@
 import React from 'react'
 import 'react-native'
 import renderer from 'react-test-renderer'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../../canvas-api'
 
 import { QuizDetails, mapStateToProps } from '../QuizDetails'
 import explore from '../../../../../test/helpers/explore'

@@ -20,7 +20,6 @@ import React, { Component } from 'react'
 import {
   View,
   StyleSheet,
-  AlertIOS,
 } from 'react-native'
 
 import i18n from 'format-message'
@@ -32,7 +31,6 @@ import { joinTitles } from '../filter/filter-options'
 export type SubmissionsHeaderProps = {
   filterOptions: SubmissionFilterOption[],
   selectedFilter?: ?SelectedSubmissionFilter,
-  onClearFilter: Function,
   onSelectFilter: Function,
   navigator: Navigator,
 }
@@ -47,44 +45,6 @@ export default class SubmissionsHeader extends Component<any, SubmissionsHeaderP
     this.props.navigator.show('/filter', {
       modal: true,
     }, { ...this.props })
-  }
-
-  updateFilter = (index: number) => {
-    const prompt = (title: string, callback: Function) => {
-      let message = i18n('Out of {count}', { count: this.props.pointsPossible || 0 })
-      AlertIOS.prompt(
-        title,
-        message,
-        callback,
-        'plain-text',
-        '',
-        'numeric'
-      )
-    }
-
-    const filter = this.props.filterOptions[index]
-    const selectedFilter: SelectedSubmissionFilter = {
-      filter: filter,
-    }
-
-    switch (filter.type) {
-      case 'lessthan':
-      case 'morethan':
-        prompt(filter.title, (text) => {
-          selectedFilter.metadata = text
-          this.props.onSelectFilter(selectedFilter)
-        })
-        return
-      case 'cancel':
-        break
-      default:
-        this.props.onSelectFilter(selectedFilter)
-        break
-    }
-  }
-
-  clearFilter = () => {
-    this.props.onClearFilter()
   }
 
   render () {

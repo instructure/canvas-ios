@@ -1,6 +1,6 @@
 // @flow
 import { NativeModules } from 'react-native'
-import canvas from 'instructure-canvas-api'
+import canvas from '../../canvas-api'
 
 export let interval: ?any
 

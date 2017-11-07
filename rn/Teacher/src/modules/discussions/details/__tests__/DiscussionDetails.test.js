@@ -26,7 +26,7 @@ import renderer from 'react-test-renderer'
 import { DiscussionDetails, mapStateToProps, type Props } from '../DiscussionDetails'
 import explore from '../../../../../test/helpers/explore'
 import setProps from '../../../../../test/helpers/setProps'
-import { setSession } from 'instructure-canvas-api'
+import { setSession } from '../../../../canvas-api'
 
 jest
   .mock('Button', () => 'Button')
