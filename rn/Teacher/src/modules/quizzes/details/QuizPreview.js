@@ -71,10 +71,13 @@ export class QuizPreview extends Component<any, LocalProps, any> {
 
   onLoadEnd = (event: any) => {
     const js = `
+      var results = document.querySelector('.quiz-submission')
       var button = document.getElementById('preview_quiz_button')
       var instructions = document.getElementById('quiz-instructions')
       var login = document.getElementById('login_form')
-      if (button) {
+      if (results) {
+        results.scrollIntoView(true)
+      } else if (button) {
         button.click()
       } else if (login) {
         window.webkit.messageHandlers.reactNative.postMessage('login')
