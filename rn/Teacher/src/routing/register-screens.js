@@ -130,6 +130,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/to-do', wrap(ToDoList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/wiki', wrap(PagesList), store, { canBecomeMaster: true })
   registerScreen('/courses/:courseID/pages', wrap(PagesList), store, { canBecomeMaster: true })
-  registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store, { canBecomeMaster: true })
-  registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store, { canBecomeMaster: true })
+  registerScreen('/courses/:courseID/wiki/:url', wrap(PageDetails), store)
+  registerScreen('/courses/:courseID/pages/:url', wrap(PageDetails), store)
 }
