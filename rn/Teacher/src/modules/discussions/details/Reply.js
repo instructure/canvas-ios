@@ -91,7 +91,7 @@ export default class Reply extends Component <any, Props, any> {
 
     let user = this._userFromParticipants(reply, participants)
     let message = reply.deleted ? `<i style="color:${colors.grey4}">${i18n('Deleted this reply.')}</i>` : reply.message
-    const unreadDot = this._renderUnreadDot(readState)
+    const unreadDot = this._renderUnreadDot(reply, readState)
     return (
       <View style={style.parentRow}>
         <ThreadedLinesView reply={reply} depth={depth} avatarSize={AVATAR_SIZE} marginRight={AVATAR_MARGIN_RIGHT}/>
@@ -172,8 +172,8 @@ export default class Reply extends Component <any, Props, any> {
     )
   }
 
-  _renderUnreadDot (state: ReadState) {
-    return state === 'unread' ? (<View style={style.unreadDot}/>) : <View />
+  _renderUnreadDot (reply: Reply, state: ReadState) {
+    return state === 'unread' && !reply.deleted ? (<View style={style.unreadDot}/>) : <View />
   }
 
   _actionMore = () => {

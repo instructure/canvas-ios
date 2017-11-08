@@ -30,7 +30,7 @@ import composeReducers from '../../redux/compose-reducers'
 import { parseErrorMessage } from '../../redux/middleware/error-handler'
 
 const { refreshDiscussions } = ListActions
-const { refreshDiscussionEntries, refreshSingleDiscussion, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead } = DetailsActions
+const { refreshDiscussionEntries, refreshSingleDiscussion, createEntry, editEntry, deleteDiscussionEntry, deletePendingReplies, markAllAsRead, markEntryAsRead } = DetailsActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
   createDiscussion,
@@ -508,6 +508,20 @@ export const discussionData: Reducer<DiscussionState, any> = handleActions({
         },
       },
     }),
+  }),
+  [markEntryAsRead.toString()]: handleAsync({
+    resolved: (state, { discussionID, entryID }) => {
+      let unreadEntries = [...state[discussionID].unread_entries || []]
+      let index = unreadEntries.indexOf(entryID)
+      if (index > -1) unreadEntries.splice(index, 1)
+      return {
+        ...state,
+        [discussionID]: {
+          ...state[discussionID],
+          unread_entries: unreadEntries,
+        },
+      }
+    },
   }),
   [markAllAsRead.toString()]: handleAsync({
     pending: (state, { discussionID, courseID }) => ({

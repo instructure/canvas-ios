@@ -30,6 +30,7 @@ const {
   deleteDiscussionEntry,
   deletePendingReplies,
   markAllAsRead,
+  markEntryAsRead,
 } = DetailActions
 const { refreshAnnouncements } = AnnouncementListActions
 const {
@@ -446,6 +447,32 @@ describe('refreshDiscussions', () => {
       },
     }
     expect(discussions(initialState, resolved)).toEqual(expected)
+  })
+})
+
+describe('markEntryAsRead', () => {
+  it('updates unread_entries', () => {
+    let discussion = template.discussion()
+    let state = {
+      [discussion.id]: {
+        data: discussion,
+        unread_entries: ['1'],
+      },
+    }
+    let action = {
+      type: markEntryAsRead.toString(),
+      payload: {
+        discussionID: discussion.id,
+        entryID: '1',
+      },
+    }
+
+    expect(discussions(state, action)).toMatchObject({
+      [discussion.id]: {
+        data: discussion,
+        unread_entries: [],
+      },
+    })
   })
 })
 
