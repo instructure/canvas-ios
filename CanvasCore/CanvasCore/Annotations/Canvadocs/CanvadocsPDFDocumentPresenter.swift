@@ -19,7 +19,11 @@
 import Foundation
 import PSPDFKit
 
-let DisabledMenuItems: [String] = [PSPDFAnnotationMenuOpacity]
+let DisabledMenuItems: [String] = [
+    PSPDFAnnotationMenuOpacity,
+    PSPDFAnnotationStateVariantIdentifier(PSPDFAnnotationString.ink, PSPDFAnnotationString.inkVariantPen).rawValue,
+    PSPDFAnnotationStateVariantIdentifier(PSPDFAnnotationString.ink, PSPDFAnnotationString.inkVariantHighlighter).rawValue,
+]
 
 // This class will be the manager for the PSPDFViewController. Any app that wants to display this document will have to:
 // 1. Decide between Crocodoc or Native.
