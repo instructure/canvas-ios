@@ -78,6 +78,7 @@ let defaultProps = {
   resetDrawer: jest.fn(),
   assignmentSubmissionTypes: ['none'],
   gradeSubmissionWithRubric: jest.fn(),
+  getCourseEnabledFeatures: jest.fn(),
 }
 
 describe('SpeedGrader', () => {
@@ -180,12 +181,14 @@ describe('refresh functions', () => {
     groupAssignment: null,
     studentIndex: 1,
     gradeSubmissionWithRubric: jest.fn(),
+    getCourseEnabledFeatures: jest.fn(),
   }
   it('refreshSubmissions', () => {
     refreshSpeedGrader(props)
     expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, false)
     expect(props.refreshEnrollments).toHaveBeenCalledWith(props.courseID)
     expect(props.refreshAssignment).toHaveBeenCalledWith(props.courseID, props.assignmentID)
+    expect(props.getCourseEnabledFeatures).toHaveBeenCalledWith(props.courseID)
   })
   it('refreshSubmissions on group assignments', () => {
     refreshSpeedGrader({
@@ -195,6 +198,7 @@ describe('refresh functions', () => {
     expect(props.refreshSubmissions).toHaveBeenCalledWith(props.courseID, props.assignmentID, true)
     expect(props.refreshGroupsForCourse).toHaveBeenCalledWith(props.courseID)
     expect(props.refreshAssignment).toHaveBeenCalledWith(props.courseID, props.assignmentID)
+    expect(props.getCourseEnabledFeatures).toHaveBeenCalledWith(props.courseID)
   })
   it('isRefreshing', () => {
     const isNot = isRefreshing(props)
@@ -224,6 +228,7 @@ test('mapStateToProps shuffles when anonymous grading is on', () => {
           anonymousGradingOn: true,
         },
       },
+      courses: {},
     },
   })
   mapStateToProps(appState, {
@@ -250,6 +255,34 @@ test('mapStateToProps shuffles when the assignment is an anonymous quiz', () => 
       quizzes: {
         [quiz.id]: {
           data: quiz,
+        },
+      },
+      courses: {},
+    },
+  })
+  mapStateToProps(appState, {
+    assignmentID: assignment.id,
+    courseID: '2',
+    userID: '3',
+    studentIndex: 1,
+  })
+  expect(shuffle).toHaveBeenCalled()
+})
+
+test('mapStateToProps shuffles when the course has anonymous_grading turned on', () => {
+  const assignment = templates.assignment()
+  const appState = templates.appState({
+    entities: {
+      submissions: {},
+      assignments: {
+        [assignment.id]: {
+          data: assignment,
+          anonymousGradingOn: false,
+        },
+      },
+      courses: {
+        '2': {
+          enabledFeatures: ['anonymous_grading'],
         },
       },
     },

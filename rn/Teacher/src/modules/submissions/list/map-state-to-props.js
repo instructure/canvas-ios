@@ -67,7 +67,8 @@ export function mapStateToProps ({ entities }: AppState, { courseID, assignmentI
     courseName = courseContent.course.name
   }
 
-  let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn
+  let anonymous = !!assignmentContent && assignmentContent.anonymousGradingOn ||
+                  courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
   let muted = !!assignmentContent && assignmentContent.data.muted
 
   let assignmentName = ''

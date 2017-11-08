@@ -39,6 +39,7 @@ type SubmissionSettingsDataProps = {
   anonymous: boolean,
   muted: boolean,
   assignment: Assignment,
+  disableAnonymous: boolean,
 }
 type SubmissionSettingsActions = {
   anonymousGrading: (string, string, boolean) => void,
@@ -102,6 +103,7 @@ export class SubmissionSettings extends PureComponent {
             value={this.props.anonymous}
             onValueChange={this.toggleAnonymousGrading}
             identifier='submission-settings.anonymous'
+            disabled={this.props.disableAnonymous}
           />
           <RowSeparator />
           <SubTitle style={{ paddingHorizontal: 12, paddingVertical: 4 }}>
@@ -114,10 +116,17 @@ export class SubmissionSettings extends PureComponent {
 }
 
 export function mapStateToProps (state: AppState, ownProps: SubmissionSettingsOwnProps): SubmissionSettingsDataProps {
-  let anonymous = !!state.entities.assignments[ownProps.assignmentID].anonymousGradingOn
+  let course = state.entities.courses[ownProps.courseID]
+  let anonymousCourse = course && course.enabledFeatures.includes('anonymous_grading')
   let assignment = state.entities.assignments[ownProps.assignmentID].data
-  let muted = !!assignment.muted
-  return { anonymous, muted, assignment }
+  let muted = assignment.muted
+  let quiz = assignment.quiz_id && state.entities.quizzes[assignment.quiz_id]
+  let anonymousQuiz = quiz && quiz.data && quiz.data.anonymous_submissions
+
+  let anonymous = state.entities.assignments[ownProps.assignmentID].anonymousGradingOn || anonymousCourse || anonymousQuiz
+  let disableAnonymous = anonymousCourse || anonymousQuiz || false
+
+  return { anonymous, muted, assignment, disableAnonymous }
 }
 const Connect = connect(mapStateToProps, AssignmentActions)(SubmissionSettings)
 export default (Connect: any)

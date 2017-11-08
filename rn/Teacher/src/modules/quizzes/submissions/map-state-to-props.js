@@ -113,7 +113,7 @@ export default function mapStateToProps ({ entities }: AppState, { courseID, qui
       anonymous = entities.assignments[quiz.data.assignment_id].anonymousGradingOn
       muted = entities.assignments[quiz.data.assignment_id].data.muted
     }
-    anonymous = anonymous || quiz.data && quiz.data.anonymous_submissions
+    anonymous = anonymous || quiz.data && quiz.data.anonymous_submissions || entities.courses[courseID].enabledFeatures.includes('anonymous_grading')
   }
 
   const course = entities.courses[courseID]

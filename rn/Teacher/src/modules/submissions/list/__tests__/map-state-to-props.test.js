@@ -130,7 +130,7 @@ function createHappyPathTestState () {
   }
 
   const courses = {
-    '100': { enrollments: enrRefs, color: '#000', course: { name: 'fancy name' } },
+    '100': { enrollments: enrRefs, color: '#000', course: { name: 'fancy name' }, enabledFeatures: [] },
   }
 
   const subRefs = { pending: 0, refs: ['20', '30', '40'] }
@@ -190,11 +190,21 @@ test('submissions with missing data', () => {
   })
 })
 
-test('anonymous grading shuffles the data', () => {
+test('anonymous grading on shuffles the data', () => {
   let state = createHappyPathTestState()
   state.entities.assignments['1000'].anonymousGradingOn = true
 
-  mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
+  let props = mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
+  expect(props.anonymous).toEqual(true)
+  expect(shuffle).toHaveBeenCalled()
+})
+
+test('course level anonymous grading shuffles the data', () => {
+  let state = createHappyPathTestState()
+  state.entities.courses['100'].enabledFeatures = ['anonymous_grading']
+
+  let props = mapStateToProps(state, { courseID: '100', assignmentID: '1000' })
+  expect(props.anonymous).toEqual(true)
   expect(shuffle).toHaveBeenCalled()
 })
 
@@ -212,6 +222,7 @@ test('filters out StudentViewEnrollment', () => {
       courses: {
         [course.id]: {
           enrollments: { pending: 0, refs: [student.id, testStudent.id] },
+          enabledFeatures: [],
         },
       },
       assignments: {
@@ -254,6 +265,7 @@ test('gets all submissions if group doesnt exist', () => {
         [course.id]: {
           enrollments: { pending: 0, refs: [s1.id, s2.id] },
           groups: { pending: 0, refs: ['1'] },
+          enabledFeatures: [],
         },
       },
       assignments: {

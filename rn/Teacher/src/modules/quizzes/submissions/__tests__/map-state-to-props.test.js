@@ -222,4 +222,35 @@ describe('QuizSubmissionList mapStateToProps', () => {
     expect(result.anonymous).toEqual(true)
     expect(shuffle).toHaveBeenCalled()
   })
+
+  test('anonymous will be true if the course has anonymous grading turned on', () => {
+    const course = template.course()
+    const quiz = template.quiz()
+
+    const appState = template.appState({
+      entities: {
+        courses: {
+          [course.id]: {
+            enrollments: { refs: [] },
+            enabledFeatures: ['anonymous_grading'],
+          },
+        },
+        enrollments: {},
+        quizzes: {
+          [quiz.id]: {
+            data: quiz,
+            quizSubmissions: { refs: [] },
+            submissions: { refs: [] },
+          },
+        },
+        quizSubmissions: {},
+        submissions: {},
+        sections: [template.section({ course_id: course.id })],
+      },
+    })
+
+    const result = mapStateToProps(appState, { courseID: course.id, quizID: quiz.id })
+    expect(result.anonymous).toEqual(true)
+    expect(shuffle).toHaveBeenCalled()
+  })
 })

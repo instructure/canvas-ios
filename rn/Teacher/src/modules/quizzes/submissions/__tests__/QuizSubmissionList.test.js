@@ -53,6 +53,7 @@ const props = {
   refreshing: false,
   refresh: jest.fn(),
   sections: [template.section({ id: '1' })],
+  getCourseEnabledFeatures: jest.fn(),
 }
 
 describe('QuizSubmissionList', () => {

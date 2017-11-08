@@ -36,6 +36,7 @@ import SubmissionActions from './actions'
 import EnrollmentActions from '../../enrollments/actions'
 import SectionActions from '../../assignee-picker/actions'
 import GroupActions from '../../groups/actions'
+import CourseActions from '../../courses/actions'
 import refresh from '../../../utils/refresh'
 import Screen from '../../../routing/Screen'
 import Navigator from '../../../routing/Navigator'
@@ -242,6 +243,7 @@ const styles = StyleSheet.create({
 
 export function refreshSubmissionList (props: SubmissionListProps): void {
   props.refreshSections(props.courseID)
+  props.getCourseEnabledFeatures(props.courseID)
   if (props.groupAssignment && !props.groupAssignment.gradeIndividually) {
     props.refreshGroupsForCourse(props.courseID)
     props.refreshSubmissions(props.courseID, props.assignmentID, true)
@@ -265,6 +267,7 @@ const Connected = connect(mapStateToProps, {
   ...EnrollmentActions,
   ...GroupActions,
   ...SectionActions,
+  ...CourseActions,
 })(Refreshed)
 export default (Connected: Component<any, SubmissionListProps, any>)
 

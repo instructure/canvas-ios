@@ -30,6 +30,7 @@ import SubmissionActions from '../submissions/list/actions'
 import EnrollmentActions from '../enrollments/actions'
 import AssignmentActions from '../assignments/actions'
 import GroupActions from '../groups/actions'
+import CourseActions from '../courses/actions'
 import SubmissionGrader from './SubmissionGrader'
 import SpeedGraderActions from './actions'
 import { getSubmissionsProps } from '../submissions/list/get-submissions-props'
@@ -267,10 +268,12 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
   const assignmentContent = entities.assignments[assignmentID]
   const assignmentData = assignmentContent && assignmentContent.data
   const quiz = assignmentData && assignmentData.quiz_id && entities.quizzes[assignmentData.quiz_id].data
+  const courseContent = state.entities.courses[courseID]
 
   let anonymous = (
     assignmentContent && assignmentContent.anonymousGradingOn ||
-    quiz && quiz.anonymous_submissions
+    quiz && quiz.anonymous_submissions ||
+    courseContent && courseContent.enabledFeatures.includes('anonymous_grading')
   )
 
   let groupAssignment = null
@@ -307,6 +310,7 @@ export function mapStateToProps (state: AppState, ownProps: RoutingProps): Speed
 
 export function refreshSpeedGrader (props: SpeedGraderProps): void {
   props.refreshAssignment(props.courseID, props.assignmentID)
+  props.getCourseEnabledFeatures(props.courseID)
   if (props.groupAssignment && !props.groupAssignment.gradeIndividually) {
     props.refreshGroupsForCourse(props.courseID)
     props.refreshSubmissions(props.courseID, props.assignmentID, true)
@@ -341,6 +345,7 @@ const Connected = connect(mapStateToProps, {
   ...AssignmentActions,
   ...GroupActions,
   ...SpeedGraderActions,
+  ...CourseActions,
 })(Refreshed)
 
 export default (Connected: any)

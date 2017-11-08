@@ -76,6 +76,7 @@ describe('courses refresher', () => {
         pending: 0,
         refs: [],
       },
+      enabledFeatures: [],
       gradingPeriods: {
         pending: 0,
         refs: [],
@@ -269,5 +270,71 @@ describe('update course', () => {
         },
       },
     ])
+  })
+})
+
+describe('getCourseEnabledFeature', () => {
+  it('should set the store to pending when the action is called', () => {
+    let action = {
+      type: CoursesActions().getCourseEnabledFeatures.toString(),
+      pending: true,
+      payload: {
+        courseID: '1',
+      },
+    }
+
+    let newState = coursesReducer({}, action)
+    expect(newState).toMatchObject({
+      '1': {
+        pending: 1,
+      },
+    })
+  })
+
+  it('should set the store not to pending whent the action is rejected', () => {
+    let action = {
+      type: CoursesActions().getCourseEnabledFeatures.toString(),
+      error: true,
+      payload: {
+        courseID: '1',
+      },
+    }
+
+    let state = {
+      '1': {
+        pending: 1,
+      },
+    }
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject({
+      '1': {
+        pending: 0,
+      },
+    })
+  })
+
+  it('should set the enabledFeatures on the course when it is successful', () => {
+    let action = {
+      type: CoursesActions().getCourseEnabledFeatures.toString(),
+      payload: {
+        courseID: '1',
+        result: {
+          data: ['anonymous_grading'],
+        },
+      },
+    }
+
+    let state = {
+      '1': {
+        pending: 1,
+      },
+    }
+    let newState = coursesReducer(state, action)
+    expect(newState).toMatchObject({
+      '1': {
+        pending: 0,
+        enabledFeatures: ['anonymous_grading'],
+      },
+    })
   })
 })

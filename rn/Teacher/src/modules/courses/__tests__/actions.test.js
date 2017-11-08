@@ -93,3 +93,23 @@ test('refreshGradingPeriods', async () => {
     payload: { handlesError: true, result: { data: response }, courseID: '1' },
   }])
 })
+
+test('getCourseEnabledFeatures', async () => {
+  let features = ['anonymous_grading']
+  let actions = CoursesActions({ getCourseEnabledFeatures: apiResponse(features) })
+  let result = await testAsyncAction(actions.getCourseEnabledFeatures('1'))
+
+  expect(result).toMatchObject([{
+    type: actions.getCourseEnabledFeatures.toString(),
+    payload: { courseID: '1' },
+    pending: true,
+  }, {
+    type: actions.getCourseEnabledFeatures.toString(),
+    payload: {
+      result: {
+        data: features,
+      },
+      courseID: '1',
+    },
+  }])
+})

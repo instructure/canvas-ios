@@ -41,6 +41,7 @@ const course = (state) => (state || {})
 const color = (state) => (state || '#FFFFFF00')
 const pending = (state) => (state || 0)
 const error = (state) => (state || null)
+const enabledFeatures = (state) => (state || [])
 
 const courseContents: Reducer<CourseState, Action> = combineReducers({
   course,
@@ -57,10 +58,11 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   groups,
   attendanceTool,
   pages,
+  enabledFeatures,
   gradingPeriods,
 })
 
-const { refreshCourses, updateCourseColor } = CourseListActions
+const { refreshCourses, updateCourseColor, getCourseEnabledFeatures } = CourseListActions
 const { updateCourse } = CourseSettingsActions
 
 export const defaultState: { [courseID: string]: CourseState & CourseContentState } = {}
@@ -75,6 +77,7 @@ const emptyCourseState: CourseContentState = {
   groups: { pending: 0, refs: [] },
   attendanceTool: { pending: 0 },
   pages: { pending: 0, refs: [] },
+  enabledFeatures: [],
   gradingPeriods: { pending: 0, refs: [] },
 }
 
@@ -164,6 +167,37 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
           course: oldCourse,
           error: parseErrorMessage(error),
           pending: state[oldCourse.id].pending - 1,
+        },
+      }
+    },
+  }),
+  [getCourseEnabledFeatures.toString()]: handleAsync({
+    pending: (state, { courseID }) => {
+      return {
+        ...state,
+        [courseID]: {
+          ...state[courseID],
+          pending: state[courseID].pending + 1,
+        },
+      }
+    },
+    rejected: (state, { courseID }) => {
+      return {
+        ...state,
+        [courseID]: {
+          ...state[courseID],
+          pending: state[courseID].pending - 1,
+        },
+      }
+    },
+    resolved: (state, payload) => {
+      let { courseID, result } = payload
+      return {
+        ...state,
+        [courseID]: {
+          ...state[courseID],
+          pending: state[courseID].pending - 1,
+          enabledFeatures: result.data,
         },
       }
     },

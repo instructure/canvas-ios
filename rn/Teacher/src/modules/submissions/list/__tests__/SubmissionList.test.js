@@ -87,6 +87,7 @@ const props = {
   assignmentName: 'Blah',
   groupAssignment: null,
   sections: [template.section()],
+  getCourseEnabledFeatures: jest.fn(),
 }
 
 beforeEach(() => jest.resetAllMocks())

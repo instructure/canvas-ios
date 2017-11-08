@@ -42,6 +42,12 @@ export let CoursesActions = (api: CanvasApi): * => ({
       courseID,
     }
   }),
+  getCourseEnabledFeatures: createAction('courses.getCourseEnabledFeatures', (courseID: string) => {
+    return {
+      promise: api.getCourseEnabledFeatures(courseID),
+      courseID,
+    }
+  }),
 })
 
 export default (CoursesActions(canvas): *)

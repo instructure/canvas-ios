@@ -81,10 +81,17 @@ export function unfavoriteCourse (courseID: string): Promise<AxiosResponse<Favor
   return httpClient().delete(`users/self/favorites/courses/${courseID}`)
 }
 
-export function updateCourseColor (courseId: string, hexcode: string): Promise<AxiosResponse<UpdateCustomColorResponse>> {
-  return httpClient().put(`users/self/colors/course_${courseId}`, { hexcode })
+export function updateCourseColor (courseID: string, hexcode: string): Promise<AxiosResponse<UpdateCustomColorResponse>> {
+  return httpClient().put(`users/self/colors/course_${courseID}`, { hexcode })
 }
 
 export function createCourse (course: CreateCourse): Promise<AxiosResponse<Course>> {
   return httpClient().post(`accounts/self/courses`, course)
+}
+
+export function getCourseEnabledFeatures (courseID: string): Promise<AxiosResponse<[string]>> {
+  let features = paginate(`/courses/${courseID}/features/enabled`, {
+    per_page: 99,
+  })
+  return exhaust(features)
 }

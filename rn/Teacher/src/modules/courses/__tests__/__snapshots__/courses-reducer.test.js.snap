@@ -42,6 +42,7 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "enabledFeatures": Array [],
       "enrollments": Object {
         "pending": 0,
         "refs": Array [],
@@ -114,6 +115,7 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "enabledFeatures": Array [],
       "enrollments": Object {
         "pending": 0,
         "refs": Array [],
@@ -170,6 +172,7 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "enabledFeatures": Array [],
       "enrollments": Object {
         "pending": 0,
         "refs": Array [],

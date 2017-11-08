@@ -37,6 +37,11 @@ export default class RowWithSwitch extends Component<any, RowWithSwitchProps, an
   }
 
   render () {
+    let traits = []
+    if (this.props.disabled) {
+      traits.push('disabled')
+    }
+
     const accessories = <Switch {...this.props}
                                 testID={this.props.identifier}
                                 onValueChange={this.onValueChange}
@@ -47,6 +52,7 @@ export default class RowWithSwitch extends Component<any, RowWithSwitchProps, an
       <Row {...this.props}
         accessories={accessories}
         accessibilityLabel={accessibilityLabel}
+        accessibilityTraits={traits}
         onPress={() => { this.onValueChange(!this.props.value) }}
       />
     )

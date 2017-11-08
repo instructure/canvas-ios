@@ -209,6 +209,7 @@ describe('mapStateToProps', () => {
             selectedIndex: 3,
           },
         },
+        courses: {},
       },
     })
 
@@ -235,6 +236,7 @@ describe('mapStateToProps', () => {
             selectedIndex: 3,
           },
         },
+        courses: {},
       },
     })
 
@@ -264,6 +266,38 @@ describe('mapStateToProps', () => {
             pending: 0,
             error: null,
             selectedIndex: 3,
+          },
+        },
+        courses: {},
+      },
+    })
+
+    let dataProps = mapStateToProps(state, subProps)
+    expect(dataProps).toMatchObject({
+      anonymous: true,
+    })
+  })
+
+  it('returns the correct data when the course has anonymous grading turned on', () => {
+    let state = templates.appState({
+      entities: {
+        assignments: {
+          '2': {
+            anonymousGradingOn: false,
+            data: templates.assignment({ id: '2' }),
+          },
+        },
+        submissions: {
+          '1': {
+            submission: {},
+            pending: 0,
+            error: null,
+            selectedIndex: 3,
+          },
+        },
+        courses: {
+          '3': {
+            enabledFeatures: ['anonymous_grading'],
           },
         },
       },

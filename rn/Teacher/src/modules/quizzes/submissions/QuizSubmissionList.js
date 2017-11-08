@@ -21,6 +21,7 @@ import { connect } from 'react-redux'
 import Actions from './actions'
 import SectionActions from '../../assignee-picker/actions'
 import EnrollmentActions from '../../enrollments/actions'
+import CoursesActions from '../../courses/actions'
 import {
   View,
   StyleSheet,
@@ -239,6 +240,7 @@ export function refreshQuizSubmissionData (props: any): void {
   props.refreshSections(courseID)
   props.refreshQuizSubmissions(courseID, quizID)
   props.refreshEnrollments(courseID)
+  props.getCourseEnabledFeatures(courseID)
 }
 
 let Refreshed = refresh(
@@ -246,7 +248,7 @@ let Refreshed = refresh(
   props => true,
   props => Boolean(props.pending)
 )(QuizSubmissionList)
-let Connected = connect(mapStateToProps, { ...Actions, ...EnrollmentActions, ...SectionActions })(Refreshed)
+let Connected = connect(mapStateToProps, { ...Actions, ...EnrollmentActions, ...SectionActions, ...CoursesActions })(Refreshed)
 export default (Connected: Component<any, QuizSubmissionListProps, any>)
 
 function createFilterFromSection (section) {
