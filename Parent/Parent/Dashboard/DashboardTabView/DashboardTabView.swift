@@ -45,13 +45,21 @@ class DashboardTabView: UIView {
     }
 
     let badgeView: BadgeView = BadgeView()
+
+    func color () -> UIColor {
+        if UIAccessibilityIsReduceTransparencyEnabled() {
+            return .black
+        } else {
+            return .white
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
         isAccessibilityElement = true
-        iconImageView.tintColor = UIColor.white
-        titleLabel.textColor = UIColor.white
+        iconImageView.tintColor = self.color()
+        titleLabel.textColor = self.color()
 
         iconImageView.addSubview(badgeView)
     }

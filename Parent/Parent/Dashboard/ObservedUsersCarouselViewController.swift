@@ -114,7 +114,7 @@ extension ObserveesCarouselViewController : iCarouselDataSource, iCarouselDelega
         if view == nil {
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:itemSize, height:itemSize))
             itemView.layer.cornerRadius = itemSize/2
-            itemView.layer.borderColor = UIColor.white.cgColor
+            itemView.layer.borderColor = UIAccessibilityIsReduceTransparencyEnabled() ? UIColor.black.cgColor : UIColor.white.cgColor
             itemView.layer.borderWidth = 2.0
             itemView.backgroundColor = UIColor(red: 235.0/255.0, green: 235.0/255.0, blue: 235.0/255.0, alpha: 1.0)
             itemView.clipsToBounds = true

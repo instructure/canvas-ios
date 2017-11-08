@@ -73,8 +73,10 @@ class DashboardViewController: UIViewController {
     var currentStudent: Student? {
         didSet {
             if let student = currentStudent {
-                let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
-                backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+                if !UIAccessibilityIsReduceTransparencyEnabled() {
+                    let colorScheme = ColorCoordinator.colorSchemeForStudentID(student.id)
+                    backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+                }
             }
 
             observeeNameLabel.text = currentStudent?.name.uppercased() ?? ""
@@ -107,11 +109,16 @@ class DashboardViewController: UIViewController {
     // MARK: - Lifecycle
     // ---------------------------------------------
     override func viewDidLoad() {
+
         super.viewDidLoad()
 
-        self.backgroundView = self.insertTriangleBackgroundView()
-        let colorScheme = ColorCoordinator.colorSchemeForParent()
-        backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+        if UIAccessibilityIsReduceTransparencyEnabled() {
+            observeeNameLabel.textColor = UIColor.black
+        } else {
+            self.backgroundView = self.insertTriangleBackgroundView()
+            let colorScheme = ColorCoordinator.colorSchemeForParent()
+            backgroundView.transitionToColors(colorScheme.tintTopColor, tintBottomColor: colorScheme.tintBottomColor)
+        }
 
         do {
             try setupCarousel()
@@ -143,7 +150,11 @@ class DashboardViewController: UIViewController {
     // MARK: - View Setup
     // ---------------------------------------------
     override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
+        if UIAccessibilityIsReduceTransparencyEnabled() {
+            return .default
+        } else {
+            return .lightContent
+        }
     }
 
     func setupCarousel() throws {
@@ -196,7 +207,7 @@ class DashboardViewController: UIViewController {
         settingsButton.setImage(UIImage(named: "icon_cog_fill")?.withRenderingMode(.alwaysTemplate), for: .selected)
         settingsButton.accessibilityLabel = NSLocalizedString("Settings", comment: "Settings Button Title")
         settingsButton.accessibilityIdentifier = "settings_button"
-        settingsButton.tintColor = UIColor.white
+        settingsButton.tintColor = UIAccessibilityIsReduceTransparencyEnabled() ? UIColor.black : UIColor.white
     }
 
     func setupNoStudentsViewController() throws {

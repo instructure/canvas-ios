@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RfP-iM-Wap">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RfP-iM-Wap">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Dashboard View Controller-->
@@ -14,12 +18,12 @@
                         <viewControllerLayoutGuide type="bottom" id="bUh-ji-2XM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="utC-55-lT3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-bS-THt">
-                                <rect key="frame" x="50" y="0.0" width="500" height="137"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <rect key="frame" x="50" y="0.0" width="275" height="137"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="user_selection_carousel"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="137" id="F0K-PW-vOh">
@@ -28,23 +32,23 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggc-Op-DMI" customClass="DashboardTabView" customModule="Parent" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="144" width="200" height="50"/>
+                                <rect key="frame" x="0.0" y="144" width="125" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGH-pi-DhB">
-                                        <rect key="frame" x="88" y="5" width="24" height="24"/>
+                                        <rect key="frame" x="50.5" y="5" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="KMo-Bv-6G5"/>
                                             <constraint firstAttribute="width" constant="24" id="MoL-ww-qFi"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwx-oe-CqA">
-                                        <rect key="frame" x="85" y="33" width="30" height="14"/>
+                                        <rect key="frame" x="47.5" y="33" width="30" height="14"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="courses_tab_button"/>
                                 <constraints>
                                     <constraint firstItem="kwx-oe-CqA" firstAttribute="centerX" secondItem="ggc-Op-DMI" secondAttribute="centerX" id="S7Z-dI-Twl"/>
@@ -65,23 +69,23 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wp1-PN-6an" customClass="DashboardTabView" customModule="Parent" customModuleProvider="target">
-                                <rect key="frame" x="200" y="144" width="200" height="50"/>
+                                <rect key="frame" x="125" y="144" width="125" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gBM-g4-SJj">
-                                        <rect key="frame" x="88" y="5" width="24" height="24"/>
+                                        <rect key="frame" x="50.5" y="5" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="b7I-Co-few"/>
                                             <constraint firstAttribute="height" constant="24" id="zQ8-sa-GAj"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dp-Vg-UGf">
-                                        <rect key="frame" x="85" y="33" width="30" height="14"/>
+                                        <rect key="frame" x="47.5" y="33" width="30" height="14"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="week_tab_button"/>
                                 <constraints>
                                     <constraint firstItem="0dp-Vg-UGf" firstAttribute="top" secondItem="gBM-g4-SJj" secondAttribute="bottom" constant="4" id="DTR-YR-Tlm"/>
@@ -102,23 +106,23 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yya-kZ-MC1" customClass="DashboardTabView" customModule="Parent" customModuleProvider="target">
-                                <rect key="frame" x="400" y="144" width="200" height="50"/>
+                                <rect key="frame" x="250" y="144" width="125" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tma-wu-sDN">
-                                        <rect key="frame" x="88" y="5" width="24" height="24"/>
+                                        <rect key="frame" x="50.5" y="5" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="2gO-I4-ZmZ"/>
                                             <constraint firstAttribute="width" constant="24" id="cL7-jA-w1h"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyr-5h-ISn">
-                                        <rect key="frame" x="85" y="33" width="30" height="14"/>
+                                        <rect key="frame" x="47.5" y="33" width="30" height="14"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="alerts_tab_button"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cyr-5h-ISn" secondAttribute="trailing" constant="8" id="95J-dt-FDl"/>
@@ -139,7 +143,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jd-6d-Mng">
-                                <rect key="frame" x="550" y="30" width="40" height="40"/>
+                                <rect key="frame" x="325" y="30" width="40" height="40"/>
                                 <accessibility key="accessibilityConfiguration" identifier="settings_button"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="rxf-Jq-SgS"/>
@@ -151,20 +155,20 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdc-P3-RTh">
-                                <rect key="frame" x="0.0" y="198" width="600" height="402"/>
+                                <rect key="frame" x="0.0" y="198" width="375" height="469"/>
                                 <connections>
                                     <segue destination="mwO-C7-kK6" kind="embed" identifier="embed_page_view_controller" id="7BX-NE-W3g"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax4-W0-zFC">
-                                <rect key="frame" x="295" y="113" width="10" height="24"/>
+                                <rect key="frame" x="182.5" y="113" width="10" height="24"/>
                                 <accessibility key="accessibilityConfiguration" identifier="student_name_label"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wp1-PN-6an" firstAttribute="leading" secondItem="ggc-Op-DMI" secondAttribute="trailing" id="C7t-xR-tTa"/>
                             <constraint firstItem="cdc-P3-RTh" firstAttribute="top" secondItem="ax4-W0-zFC" secondAttribute="bottom" constant="61" id="CaD-H9-6OO">
