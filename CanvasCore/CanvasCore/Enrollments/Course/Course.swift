@@ -186,9 +186,12 @@ extension Course: SynchronizedModel {
                 grade.course = self
                 grade.gradingPeriodID = currentGradingPeriodID
 
-                if multipleGradingPeriodsEnabled {
-                    grade.currentGrade = try eJSON <| "current_period_computed_current_grade"
-                    grade.currentScore = try eJSON <| "current_period_computed_current_score"
+                let mgpCurrentGrade: String? = try eJSON <| "current_period_computed_current_grade"
+                let mgpCurrentScore: NSNumber? = try eJSON <| "current_period_computed_current_score"
+
+                if multipleGradingPeriodsEnabled, let mgpCurrentGrade = mgpCurrentGrade, let mgpCurrentScore = mgpCurrentScore {
+                    grade.currentGrade = mgpCurrentGrade
+                    grade.currentScore = mgpCurrentScore
                     grade.finalGrade = try eJSON <| "current_period_computed_final_grade"
                     grade.finalScore = try eJSON <| "current_period_computed_final_score"
                     totalForAllGradingPeriodsEnabled = try eJSON <| "totals_for_all_grading_periods_option"
