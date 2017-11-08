@@ -641,6 +641,11 @@ NSString *CKDownloadsInProgressDirectory(void);
     
     [self postAttachmentsToUserFiles:attachments andFormatText:message block:^(NSError *error, BOOL isFinalValue, NSString *finalText) {
         
+        if (error) {
+            block(error, nil);
+            return;
+        }
+        
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
         
         parameters[@"title"] = title;
