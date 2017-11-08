@@ -32,10 +32,8 @@ extension Session {
         guard let model = NSManagedObjectModel(named: discussionKitModelName, inBundle: Bundle(for: DiscussionTopic.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: discussionKitSubdomain, code: discussionKitFailedToLoadErrorCode, title: discussionKitFailedToLoadErrorDescription, description: discussionKitFailedToLoadErrorDescription)
         }
-        let withFiles = model.loadingFileEntity()
-
         let storeName = scope == nil ? discussionKitModelName : "\(discussionKitModelName)_\(scope!)"
-        let storeID = StoreID(storeName: storeName, model: withFiles,
+        let storeID = StoreID(storeName: storeName, model: model,
                               localizedErrorDescription: discussionKitDBFailedToLoadErrorDescription)
 
         return try managedObjectContext(storeID)

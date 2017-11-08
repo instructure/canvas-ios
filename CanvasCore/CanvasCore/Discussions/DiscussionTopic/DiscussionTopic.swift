@@ -58,21 +58,8 @@ public final class DiscussionTopic: NSManagedObject, LockableModel {
     // TODO: Make protocol for publishing, like LockableModel
     @NSManaged internal (set) public var published: Bool     // Whether this discussion topic is published (true) or draft state (false)
 
-    internal (set) public var attachmentIDs: [String] {
-        get {
-            willAccessValue(forKey: "attachmentIDs")
-            let value = primitiveAttachmentIDs.components(separatedBy: ",")
-            didAccessValue(forKey: "attachmentIDs")
-            return value
-        }
-        set {
-            willChangeValue(forKey: "attachmentIDs")
-            primitiveAttachmentIDs = newValue.joined(separator: ",")
-            didChangeValue(forKey: "attachmentIDs")
-        }
-    }
-    @NSManaged fileprivate var primitiveAttachmentIDs: String
-
+    // Parent only cares about the first attachment's name
+    @NSManaged internal (set) public var attachmentName: String?
     /// MARK: Locking
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
@@ -114,11 +101,8 @@ extension DiscussionTopic: SynchronizedModel {
         try updateLockStatus(json)
 
         let attachmentsJSON: [JSONObject] = (try json <| "attachments") ?? []
-        let attachments: [File] = try attachmentsJSON.map { json in
-            let file: File = (try context.findOne(withPredicate: File.uniquePredicateForObject(json)) as? File) ?? File(inContext: context)
-            try file.updateValues(json, inContext: context)
-            return file
+        if let first = attachmentsJSON.first {
+            attachmentName = try first <| "display_name"
         }
-        self.attachmentIDs = (attachments.map { $0.id })
     }
 }

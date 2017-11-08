@@ -69,16 +69,10 @@ enum AnnouncementDetailsCellViewModel: TableViewCellViewModel {
     }
 
     static func detailsForDiscussionTopic(_ baseURL: URL, discussionTopic: DiscussionTopic) -> [AnnouncementDetailsCellViewModel] {
-        var attachmentInfo: AnnouncementDetailsCellViewModel? = nil
-        if let attachmentID = discussionTopic.attachmentIDs.first {
-            do {
-                if let file: File = try discussionTopic.managedObjectContext?.findOne(withPredicate: NSPredicate(format: "%K == %@", "id", attachmentID)) {
-                    attachmentInfo = .attachment(file.name)
-                }
-            } catch {
-                print("error fetching file: \(error)")
-            }
-        }
+        let attachmentInfo: AnnouncementDetailsCellViewModel? = discussionTopic
+            .attachmentName
+            .map(AnnouncementDetailsCellViewModel.attachment)
+        
         return [
             .title(discussionTopic.title),
             attachmentInfo,

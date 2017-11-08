@@ -28,12 +28,18 @@ let fileKitFailedToLoadErrorCode = 10001
 let fileKitFailedToLoadErrorDescription = "Failed to load \(fileKitModelName) NSManagedObjectModel"
 let fileKitDBFailedToLoadErrorDescription = NSLocalizedString("There was a problem loading the FileKit database file.", tableName: "Localizable", bundle: .core, value: "", comment: "FileKit Database Load Failure Message")
 
-extension Session {
-    public func filesManagedObjectContext() throws -> NSManagedObjectContext {
+extension NSManagedObjectModel {
+    static func filesManagedObjectModel() throws -> NSManagedObjectModel {
         guard let model = NSManagedObjectModel(named: fileKitModelName, inBundle: Bundle(for: FileNode.self))?.mutableCopy() as? NSManagedObjectModel else {
             throw NSError(subdomain: fileKitSubdomain, code: fileKitFailedToLoadErrorCode, title: fileKitFailedToLoadErrorDescription, description: fileKitFailedToLoadErrorDescription)
         }
-        
+        return model
+    }
+}
+
+extension Session {
+    public func filesManagedObjectContext() throws -> NSManagedObjectContext {
+        let model = try NSManagedObjectModel.filesManagedObjectModel()
         let storeID = StoreID(storeName: fileKitModelName, model: model,
                               localizedErrorDescription: fileKitDBFailedToLoadErrorDescription)
         

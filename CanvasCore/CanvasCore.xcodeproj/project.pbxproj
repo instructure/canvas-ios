@@ -268,7 +268,6 @@
 		4961F6861F8FB9620093EC86 /* FileUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F6661F8FB9620093EC86 /* FileUpload.swift */; };
 		4961F6871F8FB9620093EC86 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F6671F8FB9620093EC86 /* Folder.swift */; };
 		4961F6881F8FB9620093EC86 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F6681F8FB9620093EC86 /* File.swift */; };
-		4961F6891F8FB9620093EC86 /* NSManagedObjectModel+FileKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F6691F8FB9620093EC86 /* NSManagedObjectModel+FileKit.swift */; };
 		4961F68A1F8FB9620093EC86 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F66A1F8FB9620093EC86 /* Upload.swift */; };
 		4961F68B1F8FB9620093EC86 /* FileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961F66B1F8FB9620093EC86 /* FileNode.swift */; };
 		49698D771F8FA2D000E38B78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49698D6D1F8FA2CD00E38B78 /* Assets.xcassets */; };
@@ -756,7 +755,6 @@
 		4961F6661F8FB9620093EC86 /* FileUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUpload.swift; sourceTree = "<group>"; };
 		4961F6671F8FB9620093EC86 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		4961F6681F8FB9620093EC86 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		4961F6691F8FB9620093EC86 /* NSManagedObjectModel+FileKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectModel+FileKit.swift"; sourceTree = "<group>"; };
 		4961F66A1F8FB9620093EC86 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		4961F66B1F8FB9620093EC86 /* FileNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileNode.swift; sourceTree = "<group>"; };
 		49698D6D1F8FA2CD00E38B78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1984,7 +1982,6 @@
 				4961F6661F8FB9620093EC86 /* FileUpload.swift */,
 				4961F6671F8FB9620093EC86 /* Folder.swift */,
 				4961F6681F8FB9620093EC86 /* File.swift */,
-				4961F6691F8FB9620093EC86 /* NSManagedObjectModel+FileKit.swift */,
 				4961F66A1F8FB9620093EC86 /* Upload.swift */,
 				4961F66B1F8FB9620093EC86 /* FileNode.swift */,
 			);
@@ -2826,7 +2823,6 @@
 				4961F6281F8FB7050093EC86 /* Course+Details.swift in Sources */,
 				49CE96661F8FF41B00121A43 /* QuizService.swift in Sources */,
 				49CE968B1F8FF41B00121A43 /* CanvasTimedQuizSubmissionService.swift in Sources */,
-				4961F6891F8FB9620093EC86 /* NSManagedObjectModel+FileKit.swift in Sources */,
 				49DD239D1F8F9EBE004727F7 /* Session+DiscussionKit.swift in Sources */,
 				494BC6051F953D0D00C77257 /* SubmitAssignmentActivity.swift in Sources */,
 				4930206E1F902462006BD777 /* Path.swift in Sources */,
