@@ -18,7 +18,7 @@
 
 import { AssignmentListActions } from '../actions'
 import { CoursesActions } from '../../courses/actions'
-import { gradingPeriods } from '../grading-periods-reducer'
+import { gradingPeriods, refs } from '../grading-periods-reducer'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 
@@ -63,5 +63,19 @@ test('refresh assignment groups list', async () => {
     '1': {
       assignmentRefs: [group.assignments[0].id],
     },
+  }])
+})
+
+test('refs', async () => {
+  const gradingPeriod = template.gradingPeriod({ id: '1' })
+  let action = CoursesActions({ getCourseGradingPeriods: apiResponse({ grading_periods: [gradingPeriod] }) }).refreshGradingPeriods('1')
+  let state = await testAsyncReducer(refs, action)
+
+  expect(state).toEqual([{
+    pending: 1,
+    refs: [],
+  }, {
+    pending: 0,
+    refs: ['1'],
   }])
 })

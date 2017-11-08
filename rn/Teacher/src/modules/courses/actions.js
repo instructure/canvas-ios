@@ -39,6 +39,7 @@ export let CoursesActions = (api: CanvasApi): * => ({
     return {
       promise: api.getCourseGradingPeriods(courseID),
       handlesError: true,
+      courseID,
     }
   }),
 })

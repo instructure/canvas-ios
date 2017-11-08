@@ -80,13 +80,16 @@ test('refreshGradingPeriods', async () => {
   let gradingPeriod = template.gradingPeriod()
   let response = { grading_periods: [gradingPeriod] }
   let actions = CoursesActions({ getCourseGradingPeriods: apiResponse(response) })
-  let result = await testAsyncAction(actions.refreshGradingPeriods())
+  let result = await testAsyncAction(actions.refreshGradingPeriods('1'))
 
   expect(result).toMatchObject([{
     type: actions.refreshGradingPeriods.toString(),
     pending: true,
+    payload: {
+      courseID: '1',
+    },
   }, {
     type: actions.refreshGradingPeriods.toString(),
-    payload: { handlesError: true, result: { data: response } },
+    payload: { handlesError: true, result: { data: response }, courseID: '1' },
   }])
 })

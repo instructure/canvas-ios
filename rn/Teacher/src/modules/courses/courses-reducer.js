@@ -33,6 +33,7 @@ import { refs as announcements } from '../announcements/reducer'
 import attendanceTool from '../external-tools/attendance-tool-reducer'
 import groups from '../groups/group-refs-reducer'
 import { refs as pages } from '../pages/reducer'
+import { refs as gradingPeriods } from '../assignments/grading-periods-reducer'
 import App from '../app'
 
 // dummy's to appease combineReducers
@@ -56,6 +57,7 @@ const courseContents: Reducer<CourseState, Action> = combineReducers({
   groups,
   attendanceTool,
   pages,
+  gradingPeriods,
 })
 
 const { refreshCourses, updateCourseColor } = CourseListActions
@@ -73,6 +75,7 @@ const emptyCourseState: CourseContentState = {
   groups: { pending: 0, refs: [] },
   attendanceTool: { pending: 0 },
   pages: { pending: 0, refs: [] },
+  gradingPeriods: { pending: 0, refs: [] },
 }
 
 export const normalizeCourse = (course: Course, colors: { [courseId: string]: string } = {}, prevState: CourseContentState = emptyCourseState): CourseState => {

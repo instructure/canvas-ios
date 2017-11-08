@@ -19,11 +19,19 @@ import { handleActions } from 'redux-actions'
 import Actions from '../courses/actions'
 import handleAsync from '../../utils/handleAsync'
 import AssignmentActions from './actions'
+import { asyncRefsReducer } from '../../redux/async-refs-reducer'
+import i18n from 'format-message'
 
 export let defaultState: GradingPeriodsState = {}
 
 const { refreshGradingPeriods } = Actions
 const { refreshAssignmentList } = AssignmentActions
+
+export const refs: Reducer<AsyncRefs, any> = asyncRefsReducer(
+  refreshGradingPeriods.toString(),
+  i18n('There was a problem loading the grading periods.'),
+  ({ result }) => result.data.grading_periods.map(gp => gp.id)
+)
 
 export const gradingPeriods: Reducer<AssignmentListState, any> = handleActions({
   [refreshGradingPeriods.toString()]: handleAsync({

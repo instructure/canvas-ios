@@ -66,12 +66,16 @@ export function mapStateToProps ({ entities }: AppState, { courseID }: RoutingPr
     return groupWithAssignments
   })
 
-  let gradingPeriods = Object.keys(entities.gradingPeriods)
-    .map(id => ({
-      ...entities.gradingPeriods[id].gradingPeriod,
-      assignmentRefs: entities.gradingPeriods[id].assignmentRefs,
-    }))
-    .sort((gp1, gp2) => localeSort(gp1.title, gp2.title))
+  let gradingPeriods = []
+  if (course.gradingPeriods && course.gradingPeriods.refs) {
+    gradingPeriods = course.gradingPeriods.refs
+      .filter(r => entities.gradingPeriods[r])
+      .map((ref) => ({
+        ...entities.gradingPeriods[ref].gradingPeriod,
+        assignmentRefs: entities.gradingPeriods[ref].assignmentRefs,
+      }))
+      .sort((gp1, gp2) => localeSort(gp1.title, gp2.title))
+  }
 
   let selectedRowID = entities.courseDetailsTabSelectedRow.rowID || ''
 

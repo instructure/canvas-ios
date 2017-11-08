@@ -46,6 +46,10 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "gradingPeriods": Object {
+        "pending": 0,
+        "refs": Array [],
+      },
       "groups": Object {
         "pending": 0,
         "refs": Array [],
@@ -114,6 +118,10 @@ Array [
         "pending": 0,
         "refs": Array [],
       },
+      "gradingPeriods": Object {
+        "pending": 0,
+        "refs": Array [],
+      },
       "groups": Object {
         "pending": 0,
         "refs": Array [],
@@ -163,6 +171,10 @@ Array [
         "refs": Array [],
       },
       "enrollments": Object {
+        "pending": 0,
+        "refs": Array [],
+      },
+      "gradingPeriods": Object {
         "pending": 0,
         "refs": Array [],
       },

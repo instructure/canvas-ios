@@ -43,6 +43,7 @@ export type CourseContentState = {
   groups: AsyncRefs,
   attendanceTool: AttendanceToolState,
   pages: AsyncRefs,
+  gradingPeriods: AsyncRefs,
 }
 
 export type GroupState = AsyncState & {

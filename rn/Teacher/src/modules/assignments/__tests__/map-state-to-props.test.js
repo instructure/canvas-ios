@@ -38,6 +38,7 @@ test('map state to props should work', async () => {
       courses: {
         [course.id]: {
           assignmentGroups: { refs: [assignmentGroup.id] },
+          gradingPeriods: { refs: [gradingPeriod.id, gradingPeriodTwo.id] },
           course: course,
           color: 'blueish',
         },
@@ -128,5 +129,50 @@ test('returns default props when the course is not there', () => {
     courseColor: '',
     assignmentGroups: [],
     pending: 0,
+  })
+})
+
+it('filters grading periods by course id', () => {
+  const one = template.gradingPeriod({ id: '1' })
+  const two = template.gradingPeriod({ id: '2' })
+  const three = template.gradingPeriod({ id: '3' })
+  const state = template.appState({
+    entities: {
+      courseDetailsTabSelectedRow: { rowID: '' },
+      courses: {
+        '1': {
+          course: template.course(),
+          gradingPeriods: {
+            refs: [one.id, two.id],
+          },
+          assignmentGroups: {
+            refs: [],
+            pending: 0,
+            error: null,
+          },
+        },
+      },
+      gradingPeriods: {
+        '1': {
+          gradingPeriod: one,
+          assignmentRefs: [],
+        },
+        '2': {
+          gradingPeriod: two,
+          assignmentRefs: [],
+        },
+        '3': {
+          gradingPeriod: three,
+          assignmentRefs: [],
+        },
+      },
+    },
+  })
+
+  expect(mapStateToProps(state, { courseID: '1' })).toMatchObject({
+    gradingPeriods: [
+      { ...one, assignmentRefs: [] },
+      { ...two, assignmentRefs: [] },
+    ],
   })
 })
