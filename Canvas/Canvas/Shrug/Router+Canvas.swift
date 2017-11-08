@@ -47,7 +47,7 @@ extension Router {
         }
         
         let route: (UIViewController, URL)->() = { [weak self] viewController, url in
-            self?.route(from: viewController, to: url)
+            let _ = self?.route(from: viewController, to: url)
         }
         
 

@@ -201,6 +201,10 @@
 
 - (void)applyRoutingParameters:(NSDictionary *)params {
     [super applyRoutingParameters:params];
+    NSNumber *fileIdent = params[@"query"][@"preview"];
+    if (fileIdent) {
+        self.fileIdent = [fileIdent intValue];
+    }
     [self fetchFile];
 }
 

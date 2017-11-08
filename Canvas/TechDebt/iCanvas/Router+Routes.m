@@ -539,6 +539,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         @"/groups/:groupIdent/files/:fileIdent" : [FileViewController class],
         // Files
         @"/files/:fileIdent" : [FileViewController class],
+        @"/files" : [FileViewController class],
         @"/courses/:courseIdent/files/:fileIdent/download" : [FileViewController class],
     }];
     
@@ -546,7 +547,7 @@ typedef UIViewController *(^ViewControllerRouteBlock)(NSDictionary *params, id v
         if ([url.host isEqualToString:TheKeymaster.currentClient.baseURL.host]) {
             [self openCanvasURL:url];
         } else {
-            [[UIApplication sharedApplication] openURL:url];
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }
     }];
 
