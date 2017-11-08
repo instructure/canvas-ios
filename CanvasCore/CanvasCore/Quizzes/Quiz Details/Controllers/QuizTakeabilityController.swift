@@ -107,7 +107,7 @@ class QuizTakeabilityController {
                                 }
                             }
                         }
-                    }else if lastSubmission.endAt == nil  {
+                    } else if (lastSubmission.endAt.flatMap { $0 > Date() } ?? true)  {
                         takeability = .resume
                         unfinishedSubmission = lastSubmission
                         return
