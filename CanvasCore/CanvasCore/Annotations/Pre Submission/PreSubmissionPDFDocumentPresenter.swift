@@ -50,8 +50,7 @@ open class PreSubmissionPDFDocumentPresenter: NSObject {
             builder.isRenderAnimationEnabled = false
             builder.shouldHideNavigationBarWithHUD = false
             builder.shouldHideStatusBarWithHUD = false
-            builder.drawCreateMode = .separate
-            builder.naturalDrawingAnnotationEnabled = false
+            builder.naturalDrawingAnnotationEnabled = true
             builder.applicationActivities = [PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage, PSPDFActivityTypeSearch]
             builder.editableAnnotationTypes = [
                 .link,

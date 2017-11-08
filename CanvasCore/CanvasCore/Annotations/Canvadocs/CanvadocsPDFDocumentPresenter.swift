@@ -86,8 +86,8 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
                 } else {
                     canvadocsAnnotations = []
                 }
+                loadGroup.leave()
             }
-            loadGroup.leave()
         }
         
         loadGroup.notify(queue: DispatchQueue.main) {
@@ -110,7 +110,6 @@ open class CanvadocsPDFDocumentPresenter: NSObject {
         self.metadata = metadata
         self.service = service
         self.pdfDocument = PSPDFDocument(url: localPDFURL)
-        self.pdfDocument.autodetectTextLinkTypes = .link
         self.configuration = configuration
         super.init()
 
