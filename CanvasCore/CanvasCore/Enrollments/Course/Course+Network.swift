@@ -22,11 +22,11 @@ import Marshal
 
 extension Course {
     public static var getCoursesParameters: [String: Any] {
-        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores", "favorites", "tabs"]]
+        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores", "favorites", "tabs", "observed_users"]]
     }
     
     public static var getCourseParameters: [String: Any] {
-        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores"]]
+        return ["include": ["needs_grading_count", "syllabus_body", "total_scores", "term", "permissions", "current_grading_period_scores", "observed_users"]]
     }
 
     public static func getAllCourses(_ session: Session) throws -> SignalProducer<[JSONObject], NSError> {

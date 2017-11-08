@@ -352,7 +352,11 @@ extension Assignment: SynchronizedModel {
     func updateSubmission(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         var status: SubmissionStatus = []
         var submissionState = ""
-        if let submissionJSON: JSONObject = try json <| "submission" {
+
+        // "submission" is an array if we are an observer
+        let submissions: [JSONObject]? = try? json <| "submission"
+        let submission: JSONObject? = try? json <| "submission"
+        if let submissionJSON = submissions?.first ?? submission {
             let attempt: Int = (try submissionJSON <| "attempt") ?? 0
             hasSubmitted        = attempt > 0
 
@@ -403,5 +407,5 @@ extension Assignment: SynchronizedModel {
     }
 
     // API parameters
-    public static var parameters: [String: Any] { return ["include": ["assignment_visibility", "all_dates", "submission"]] }
+    public static var parameters: [String: Any] { return ["include": ["assignment_visibility", "all_dates", "submission", "observed_users"]] }
 }
