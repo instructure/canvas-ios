@@ -29,7 +29,7 @@ open class HelmManager: NSObject {
 
     public static let shared = HelmManager()
     public var bridge: RCTBridge!
-    
+    public var showsLoadingState = true
     public var onReactLoginComplete: () -> Void = {}
     
     @objc
@@ -282,9 +282,8 @@ open class HelmManager: NSObject {
     }
     
     open func showLoadingState() {
-        if UIApplication.shared.keyWindow?.rootViewController is LoadingStateViewController {
-            return
-        }
+        guard showsLoadingState == true else { return }
+        if UIApplication.shared.keyWindow?.rootViewController is LoadingStateViewController { return }
         cleanup()
         let controller = LoadingStateViewController()
         UIApplication.shared.keyWindow?.rootViewController = controller

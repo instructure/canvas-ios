@@ -237,6 +237,7 @@ extension AppDelegate: RCTBridgeDelegate {
     func prepareReactNative() {
         NativeLoginManager.shared().delegate = self
         NativeLoginManager.shared().app = .student
+        HelmManager.shared.showsLoadingState = false
         HelmManager.shared.bridge = RCTBridge(delegate: self, launchOptions: nil)
         HelmManager.shared.onReactLoginComplete = {
             guard let session = self.session else {
