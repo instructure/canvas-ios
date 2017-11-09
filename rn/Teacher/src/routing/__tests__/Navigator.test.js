@@ -35,6 +35,7 @@ describe('Navigator', () => {
       present: jest.fn(),
       dismiss: jest.fn(),
       dismissAllModals: jest.fn(),
+      traitCollection: jest.fn(),
     }
   })
 
@@ -75,5 +76,12 @@ describe('Navigator', () => {
     const navigator = new Navigator('dismiss all')
     navigator.dismissAllModals()
     expect(NativeModules.Helm.dismissAllModals).toHaveBeenCalledWith({})
+  })
+
+  test('traitCollection', () => {
+    const navigator = new Navigator('traitCollection')
+    const handler = () => {}
+    navigator.traitCollection(handler)
+    expect(NativeModules.Helm.traitCollection).toHaveBeenCalledWith('traitCollection', handler)
   })
 })

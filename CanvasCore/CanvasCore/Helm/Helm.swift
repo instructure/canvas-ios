@@ -251,7 +251,7 @@ open class HelmManager: NSObject {
         })
     }
     
-    public func traitCollection(_ screenInstanceID: String, moduleName: String, callback: @escaping RCTResponseSenderBlock) {
+    public func traitCollection(_ moduleName: String, callback: @escaping RCTResponseSenderBlock) {
         var top = topMostViewController()
         //  FIXME: - fix sourceController method, something named more appropriate
         if let svc = top as? HelmSplitViewController, let sourceController = svc.sourceController(moduleName: moduleName) {

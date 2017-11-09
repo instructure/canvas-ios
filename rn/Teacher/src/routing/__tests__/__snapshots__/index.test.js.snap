@@ -1,18 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders wrapped screen correctly 1`] = `
-<View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-  >
-    Test Screen
-  </Text>
-</View>
-`;
-
 exports[`renders wrapped screen with store correctly 1`] = `
 <View>
   <Text

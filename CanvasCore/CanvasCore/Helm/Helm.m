@@ -59,8 +59,8 @@ RCT_EXPORT_METHOD(dismissAllModals:(NSDictionary *)options) {
     [[HelmManager shared] dismissAllModals:options];
 }
 
-RCT_EXPORT_METHOD(traitCollection:(NSString *)screenInstanceID moduleName:(NSString*)moduleName callback:(RCTResponseSenderBlock)callback) {
-    [[HelmManager shared] traitCollection:screenInstanceID moduleName:moduleName callback:callback];
+RCT_EXPORT_METHOD(traitCollection:(NSString*)moduleName callback:(RCTResponseSenderBlock)callback) {
+    [[HelmManager shared] traitCollection:moduleName callback:callback];
 }
 
 RCT_EXPORT_METHOD(initLoadingStateIfRequired) {

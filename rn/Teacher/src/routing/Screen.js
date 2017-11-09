@@ -59,14 +59,22 @@ type ScreenProps = {
 class Screen extends React.Component<any, ScreenProps, any> {
   deviceEventEmitterSubscriptions: Object = {}
 
+  static propTypes = {
+    children: PropTypes.node,
+  }
+
+  static contextTypes = {
+    screenInstanceID: PropTypes.string,
+  }
+
   constructor (props: Object, context: Screen.contextTypes) {
     super(props, context)
-    this.state = { hasRendered: false, screenInstanceID: context.screenInstanceID }
+    this.state = { hasRendered: false }
     this.handleProps(props, context.screenInstanceID, false)
   }
 
   componentDidMount () {
-    this.handleProps(this.props, this.state.screenInstanceID, true)
+    this.handleProps(this.props, this.context.screenInstanceID, true)
     this.setState({ hasRendered: true })
   }
 
@@ -98,14 +106,6 @@ class Screen extends React.Component<any, ScreenProps, any> {
     if (!this.props.children) return null
     return React.Children.only(this.props.children)
   }
-}
-
-Screen.propTypes = {
-  children: PropTypes.node,
-}
-
-Screen.contextTypes = {
-  screenInstanceID: PropTypes.string,
 }
 
 module.exports = Screen

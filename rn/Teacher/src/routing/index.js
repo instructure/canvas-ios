@@ -24,9 +24,9 @@ import URL from 'url-parse'
 import Route from 'route-parser'
 import { AppRegistry } from 'react-native'
 import Navigator from './Navigator'
-import PropRegistry from './PropRegistry'
 
 export const routes: Map<Route, RouteConfig> = new Map()
+export const routeProps: Map<string, ?Object> = new Map()
 export type RouteConfig = {
   canBecomeMaster: boolean,
 }
@@ -47,16 +47,26 @@ export function registerScreen (
   options: RouteConfig = { canBecomeMaster: false }
 ): void {
   if (componentGenerator && store) {
-    const generator = wrapComponentInReduxProvider(path, wrapScreenWithContext(path, componentGenerator), store)
+    const generator = wrapComponentInReduxProvider(path, componentGenerator, store)
     AppRegistry.registerComponent(path, generator)
   }
   const route = new Route(screenID(path))
   routes.set(route, options)
 }
 
-export function wrapScreenWithContext (moduleName: string, generator: () => any): any {
-  const generatorWrapper = () => {
-    class WrappedScreen extends React.Component {
+export function wrapComponentInReduxProvider (moduleName: string, generator: () => any, store: Store): any {
+  const generatorWrapper = () =>
+    class extends React.Component<any, any, any> {
+      static displayName = `Scene(${moduleName})`
+
+      static propTypes = {
+        screenInstanceID: PropTypes.string,
+      }
+
+      static childContextTypes = {
+        screenInstanceID: PropTypes.string,
+      }
+
       getChildContext () {
         return {
           screenInstanceID: this.props.screenInstanceID,
@@ -64,53 +74,20 @@ export function wrapScreenWithContext (moduleName: string, generator: () => any)
       }
 
       render () {
+        const navigator = new Navigator(moduleName)
         const ScreenComponent = generator()
-        return <ScreenComponent { ...this.props } />
-      }
-    }
-
-    WrappedScreen.displayName = `Scene(${moduleName})`
-
-    WrappedScreen.propTypes = {
-      screenInstanceID: PropTypes.string,
-    }
-
-    WrappedScreen.childContextTypes = {
-      screenInstanceID: PropTypes.string,
-    }
-
-    return WrappedScreen
-  }
-  return generatorWrapper
-}
-
-export function wrapComponentInReduxProvider (screenID: string, generator: () => any, store: Store): any {
-  const generatorWrapper = () => {
-    const InternalComponent = generator()
-    return class extends React.Component<any, any, any> {
-      constructor (props) {
-        super(props)
-        this.state = {
-          internalProps: { ...props, ...PropRegistry.load(props.screenInstanceID) },
-        }
-      }
-
-      componentWillReceiveProps (nextProps) {
-        this.setState({
-          internalProps: { ...PropRegistry.load(this.props.screenInstanceID), ...nextProps },
-        })
-      }
-
-      render () {
-        let navigator = new Navigator(screenID)
         return (
           <Provider store={store}>
-            <InternalComponent testID={screenID} navigator={navigator} {...this.state.internalProps} />
+            <ScreenComponent
+              testID={moduleName}
+              navigator={navigator}
+              {...routeProps.get(this.props.screenInstanceID)}
+              {...this.props}
+            />
           </Provider>
         )
       }
     }
-  }
   return generatorWrapper
 }
 
@@ -122,8 +99,11 @@ export function route (url: string, additionalProps: Object = {}): RouteOptions 
       params = Object.assign(params, additionalProps)
     }
     if (params) {
+      const screen = r.spec.replace('(/api/v1)', '')
+      params.screenInstanceID = screen
+      routeProps.set(screen, params)
       return {
-        screen: r.spec.replace('(/api/v1)', ''),
+        screen,
         passProps: params,
         config: routes.get(r),
       }

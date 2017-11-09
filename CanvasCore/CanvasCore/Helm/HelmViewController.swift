@@ -383,13 +383,11 @@ public final class HelmViewController: UIViewController, HelmScreen {
             return items
         }
         
-        if let leftBarButtons = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]] {
-            navigationItem.leftBarButtonItems = barButtonItems(fromConfig: leftBarButtons)
-        }
+        let leftBarButtons = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]] ?? []
+        navigationItem.leftBarButtonItems = barButtonItems(fromConfig: leftBarButtons)
         
-        if let rightBarButtons = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]] {
-            navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
-        }
+        let rightBarButtons = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]] ?? []
+        navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
         
         // Status bar props
         if let statusBarStyle = screenConfig[PropKeys.statusBarStyle] as? String {
