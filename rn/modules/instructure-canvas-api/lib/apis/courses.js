@@ -63,12 +63,16 @@ export function getCourseSections (courseID: string): Promise<ApiResponse<Sectio
   return httpClient().get(url, options)
 }
 
-export function getCourseUsers (courseID: string, enrollmentType?: string = ''): Promise<ApiResponse<User[]>> {
+export function getCourseUsers (courseID: string, enrollmentType?: string = '', userIDs: Array<string>): Promise<ApiResponse<User[]>> {
   const url = `courses/${courseID}/users`
   const params = {}
   if (enrollmentType) {
     params.enrollment_type = [enrollmentType]
   }
+  if (userIDs) {
+    params.user_ids = userIDs
+  }
+
   const options = { params }
   return httpClient().get(url, options)
 }

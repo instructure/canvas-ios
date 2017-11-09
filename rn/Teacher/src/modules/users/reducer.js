@@ -44,9 +44,8 @@ export const users: Reducer<UserProfileState, any> = handleActions({
       }
     },
     resolved: (state, { result }) => {
-      const profiles = result.map((result) => result.data).filter((item) => item)
       let entities = {}
-      profiles.forEach((entity) => {
+      result.data.forEach((entity) => {
         entities[entity.id] =
         {
           data: entity,

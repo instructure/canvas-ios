@@ -22,7 +22,6 @@ import { courses as coursesReducer } from '../courses-reducer'
 import { apiResponse, apiError } from '../../../../test/helpers/apiMock'
 import { testAsyncReducer } from '../../../../test/helpers/async'
 import * as courseTemplate from '../../../__templates__/course'
-import App from '../../app'
 
 describe('courses refresher', () => {
   it('should capture courses from response', async () => {
@@ -87,24 +86,7 @@ describe('courses refresher', () => {
     }])
   })
 
-  it('ignores student courses for teacher app', async () => {
-    const course = courseTemplate.course()
-    const nonTeacherCourse = { ...courseTemplate.course({ id: 991 }), enrollments: [] }
-    const courses = [course, nonTeacherCourse]
-    const customColors = courseTemplate.customColors()
-
-    let action = CoursesActions({
-      getCourses: apiResponse(courses),
-      getCustomColors: apiResponse(customColors),
-    }).refreshCourses()
-
-    let state = await testAsyncReducer(coursesReducer, action)
-    expect(state).toMatchSnapshot()
-  })
-
-  it('includes all courses for student app', async () => {
-    App.setCurrentApp('student')
-
+  it('puts in all courses', async () => {
     const course = courseTemplate.course()
     const nonTeacherCourse = { ...courseTemplate.course({ id: 991 }), enrollments: [] }
     const courses = [course, nonTeacherCourse]

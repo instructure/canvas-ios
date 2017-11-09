@@ -19,18 +19,13 @@
 import { createAction } from 'redux-actions'
 import canvas from '../../canvas-api'
 
-export let UserProfileActions = (api: CanvasApi): * => ({
-  refreshUsers: createAction('user-profiles.refresh', (userIDs: string[]) => {
-    const promises = userIDs.map((userID) => {
-      return api.getUserProfile(userID)
-    })
-
+export let UserActions = (api: CanvasApi): * => ({
+  refreshUsers: createAction('users.refresh', (courseID: string, userIDs: string[]) => {
     return {
-      promise: Promise.all(promises),
+      promise: api.getCourseUsers(courseID, null, userIDs),
       userIDs,
-      handlesError: true,
     }
   }),
 })
 
-export default (UserProfileActions(canvas): *)
+export default (UserActions(canvas): *)

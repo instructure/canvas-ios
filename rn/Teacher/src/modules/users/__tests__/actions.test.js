@@ -16,7 +16,7 @@
 
 // @flow
 
-import { UserProfileActions } from '../actions'
+import { UserActions } from '../actions'
 import { testAsyncAction } from '../../../../test/helpers/async'
 import { apiResponse } from '../../../../test/helpers/apiMock'
 
@@ -24,10 +24,10 @@ let template = {
   ...require('../../../__templates__/users'),
 }
 
-test('should refresh user profiles based on a single userID passed in', async () => {
+test('should refresh users based on a single userID passed in', async () => {
   const user = template.user()
-  let actions = UserProfileActions({ getUserProfile: apiResponse(user) })
-  const result = await testAsyncAction(actions.refreshUsers([user.id]))
+  let actions = UserActions({ getCourseUsers: apiResponse([user]) })
+  const result = await testAsyncAction(actions.refreshUsers('1', [user.id]))
 
   expect(result).toMatchObject([
     {
@@ -39,15 +39,15 @@ test('should refresh user profiles based on a single userID passed in', async ()
     },
     {
       type: actions.refreshUsers.toString(),
-      payload: { result: [{ data: user }] },
+      payload: { result: { data: [user] } },
     },
   ])
 })
 
 test('should refresh user profiles based on the userIDs passed in', async () => {
   const user = template.user()
-  let actions = UserProfileActions({ getUserProfile: apiResponse(user) })
-  const result = await testAsyncAction(actions.refreshUsers([user.id, user.id]))
+  let actions = UserActions({ getCourseUsers: apiResponse([user, user]) })
+  const result = await testAsyncAction(actions.refreshUsers('1', [user.id, user.id]))
 
   expect(result).toMatchObject([
     {
@@ -59,7 +59,7 @@ test('should refresh user profiles based on the userIDs passed in', async () => 
     },
     {
       type: actions.refreshUsers.toString(),
-      payload: { result: [{ data: user }, { data: user }] },
+      payload: { result: { data: [user, user] } },
     },
   ])
 })

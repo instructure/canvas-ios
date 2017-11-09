@@ -129,7 +129,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
             />
             <View style={styles.userText}>
               <Text style={styles.userName}>{this.props.user.name}</Text>
-              <SubTitle>{this.props.user.primary_email}</SubTitle>
+              <SubTitle>{this.props.user.login_id}</SubTitle>
             </View>
           </View>
           <View>
@@ -175,8 +175,8 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
   }
 
   render () {
-    const { course, user, enrollment, submissions, assignments } = this.props
-    if ((this.props.pending && !this.props.refreshing) || !user || !enrollment || assignments.length === 0) {
+    const { course, enrollment, submissions } = this.props
+    if (this.props.pending && !this.props.refreshing) {
       return <Screen><ActivityIndicatorView /></Screen>
     }
 
@@ -310,14 +310,14 @@ export function shouldRefresh (props: ContextCardProps): boolean {
 }
 
 export function fetchData (props: ContextCardProps): void {
-  props.refreshUsers([props.userID])
+  props.refreshUsers(props.courseID, [props.userID])
   props.refreshCourses()
   props.refreshEnrollments(props.courseID)
   props.refreshAssignmentList(props.courseID)
 }
 
 export function isRefreshing (props: ContextCardProps): boolean {
-  return Boolean(props.pending)
+  return props.pending
 }
 
 const Refreshed = refresh(
@@ -332,7 +332,10 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
 
   let enrollment
   if (enrollments) {
-    let enrollmentID = enrollments.refs.find(id => state.entities.enrollments[id].user_id === ownProps.userID) || ''
+    let enrollmentID = enrollments.refs.find(id => {
+      let e = state.entities.enrollments[id]
+      return e && e.user_id === ownProps.userID
+    }) || ''
     enrollment = state.entities.enrollments[enrollmentID]
   } else {
     enrollments = {}
@@ -365,9 +368,15 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
     return s.course_id === ownProps.courseID
   })
 
+  let asyncActions = state.asyncActions
+  let pending = asyncActions['users.refresh'] && asyncActions['users.refresh'].pending ||
+                asyncActions['courses.refresh'] && asyncActions['courses.refresh'].pending ||
+                asyncActions['enrollments.update'] && asyncActions['enrollments.update'].pending ||
+                asyncActions['assignmentList.refresh'] && asyncActions['assignmentList.refresh'].pending
+
   return {
     user: user.data,
-    pending: user.pending || enrollments.pending || false,
+    pending: Boolean(pending) || !enrollment,
     courseColor: color,
     course,
     enrollment,

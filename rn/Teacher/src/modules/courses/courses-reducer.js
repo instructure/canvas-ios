@@ -34,7 +34,6 @@ import attendanceTool from '../external-tools/attendance-tool-reducer'
 import groups from '../groups/group-refs-reducer'
 import { refs as pages } from '../pages/reducer'
 import { refs as gradingPeriods } from '../assignments/grading-periods-reducer'
-import App from '../app'
 
 // dummy's to appease combineReducers
 const course = (state) => (state || {})
@@ -96,7 +95,7 @@ const coursesData: Reducer<CoursesState, any> = handleActions({
   [refreshCourses.toString()]: handleAsync({
     resolved: (state, { result: [coursesResponse, colorsResponse] }) => {
       const colors = groupCustomColors(colorsResponse.data).custom_colors.course
-      const courses = coursesResponse.data.filter(App.current().filterCourse)
+      const courses = coursesResponse.data
       const newStates = courses.map((course) => {
         return [course.id, normalizeCourse(course, colors, state[course.id])]
       })

@@ -216,7 +216,7 @@ describe('refresh', () => {
 
   it('should call refreshUsers and refreshCourses when fetchData is called', () => {
     fetchData(defaultProps)
-    expect(defaultProps.refreshUsers).toHaveBeenCalledWith(['1'])
+    expect(defaultProps.refreshUsers).toHaveBeenCalledWith('1', ['1'])
     expect(defaultProps.refreshCourses).toHaveBeenCalled()
     expect(defaultProps.refreshEnrollments).toHaveBeenCalledWith('1')
     expect(defaultProps.refreshAssignmentList).toHaveBeenCalledWith('1')
@@ -409,24 +409,43 @@ describe('mapStateToProps', () => {
     expect(props.numMissing).toEqual(1)
   })
 
-  it('returns pending based off of user pending and enrollment pending', () => {
+  it('returns pending based off of pending async actions and enrollment presence', () => {
     let pendingState = { ...state }
-    pendingState.entities.courses['1'].enrollments = {
-      pending: 0,
-      refs: ['1'],
+    pendingState.asyncActions = {
+      'users.refresh': {
+        pending: 1,
+      },
     }
     expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
 
-    pendingState.entities.courses['1'].enrollments.pending = 1
-    pendingState.entities.users['1'] = {
-      pending: 0,
-      data: user,
+    pendingState.asyncActions = {
+      'courses.refresh': {
+        pending: 1,
+      },
     }
     expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
 
-    pendingState.entities.courses['1'].enrollments.pending = 0
+    pendingState.asyncActions = {
+      'enrollments.update': {
+        pending: 1,
+      },
+    }
+    expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
+
+    pendingState.asyncActions = {
+      'assignmentList.refresh': {
+        pending: 1,
+      },
+    }
+    expect(mapStateToProps(templates.appState(), ownProps).pending).toBeTruthy()
+
+    pendingState.asyncActions = {}
+
+    let enrollment = pendingState.entities.enrollments['1']
+    pendingState.entities.enrollments['1'] = undefined
+    expect(mapStateToProps(pendingState, ownProps).pending).toBeTruthy()
+    pendingState.entities.enrollments['1'] = enrollment
+
     expect(mapStateToProps(pendingState, ownProps).pending).toBeFalsy()
-
-    expect(mapStateToProps(templates.appState(), ownProps).pending).toBeFalsy()
   })
 })

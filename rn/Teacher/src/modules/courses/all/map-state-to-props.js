@@ -18,6 +18,7 @@
 
 import type { CourseListDataProps } from '../course-prop-types'
 import localeSort from '../../../utils/locale-sort'
+import App from '../../app'
 
 export default function mapStateToProps (state: AppState): CourseListDataProps {
   const allCourses = state.entities.courses
@@ -25,6 +26,7 @@ export default function mapStateToProps (state: AppState): CourseListDataProps {
   let courses = Object.keys(allCourses)
     .map(id => allCourses[id])
     .map(({ course, color }) => ({ ...course, color }))
+    .filter(App.current().filterCourse)
     .sort((c1, cs2) => localeSort(c1.name, cs2.name))
 
   return { pending, error, courses }

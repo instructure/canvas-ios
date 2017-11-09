@@ -69,7 +69,7 @@ export class AssigneePicker extends Component<any, AssigneePickerProps, any> {
   componentDidMount () {
     this.props.refreshSections(this.props.courseID)
     const userIds = this.props.assignees.filter(a => a.type === 'student').map(a => a.dataId)
-    this.props.refreshUsers(userIds)
+    this.props.refreshUsers(this.props.courseID, userIds)
     this.props.assignees
       .filter(a => a.type === 'group')
       .forEach((group) => {

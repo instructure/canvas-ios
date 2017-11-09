@@ -42,6 +42,7 @@ import Screen from '../../../routing/Screen'
 import branding from '../../../common/branding'
 import color from '../../../common/colors'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import App from '../../app'
 
 const { width: deviceWidth } = Dimensions.get('window')
 
@@ -224,6 +225,7 @@ export function mapStateToProps (state: AppState): FavoritedCourseListDataProps 
   const courses: Array<CourseProps> = courseRefs
     .map(ref => allCourses[ref])
     .map(({ course, color }) => ({ ...course, color }))
+    .filter(App.current().filterCourse)
     .sort((c1, cs2) => localeSort(c1.name, cs2.name))
 
   return { pending, error, courses, totalCourseCount }

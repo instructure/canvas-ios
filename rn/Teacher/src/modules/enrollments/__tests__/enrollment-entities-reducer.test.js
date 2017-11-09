@@ -49,7 +49,9 @@ test('captures entities mapped by id for users', () => {
   const u1 = templates.user({ id: '1' })
   let u2 = templates.user({ id: '2' })
   const users = {
-    [u2.id]: u2,
+    [u2.id]: {
+      data: u2,
+    },
   }
 
   u2 = templates.user({
@@ -67,7 +69,11 @@ test('captures entities mapped by id for users', () => {
   }
 
   expect(enrollmentUsers(users, action)).toEqual({
-    '1': u1,
-    '2': u2,
+    '1': {
+      data: u1,
+    },
+    '2': {
+      data: u2,
+    },
   })
 })

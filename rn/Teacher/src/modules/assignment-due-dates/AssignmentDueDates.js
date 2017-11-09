@@ -27,7 +27,7 @@ import {
 } from 'react-native'
 
 import { mapStateToProps, type AssignmentDueDatesProps } from './map-state-to-props'
-import UserProfileActions from '../users/actions'
+import UserActions from '../users/actions'
 import AssignmentDates from '../../common/AssignmentDates'
 import { formattedDueDateWithStatus, formattedDueDate } from '../../common/formatters'
 import colors from '../../common/colors'
@@ -41,7 +41,7 @@ export class AssignmentDueDates extends Component<any, AssignmentDueDatesProps, 
   componentWillMount () {
     const studentIDs = new AssignmentDates(this.props.assignment).studentIDs()
     if (studentIDs.length) {
-      this.props.refreshUsers(studentIDs)
+      this.props.refreshUsers(this.props.courseID, studentIDs)
     }
   }
 
@@ -160,5 +160,5 @@ const styles = StyleSheet.create({
   },
 })
 
-let Connected = connect(mapStateToProps, UserProfileActions)(AssignmentDueDates)
+let Connected = connect(mapStateToProps, UserActions)(AssignmentDueDates)
 export default (Connected: Component<any, AssignmentDueDatesProps, any>)
