@@ -190,38 +190,16 @@ public class RollCallSession: NSObject {
     }
     
     fileprivate func attemptToActivate() {
-        guard HTTPCookieStorage.shared.cookies?
-            .filter({$0.domain == "rollcall.instructure.com"})
-            .first != nil else {
-            return
-        }
+        guard
+            case .launchingTool(let webView) = state,
+            let host = webView.request?.url?.host,
+            host == "rollcall.instructure.com"
+        else { return }
+
+        let preTextContent = webView.stringByEvaluatingJavaScript(from: "document.querySelector('pre').textContent")
+        let metaContent = webView.stringByEvaluatingJavaScript(from: "document.querySelector('meta[name=\"csrf-token\"]').content")
         
-        guard case .launchingTool(let webView) = state else {
-            return
-        }
-        
-        if let request = webView.request,
-            let response = URLCache.shared.cachedResponse(for: request),
-            let html = String(data: response.data, encoding: .utf8) {
-//                "<meta name=\"csrf-token\" content=\"cLVdjqbv/LR844EM1WLfSgZkmATdvk3SXn6GLeDjGcoZztWhSgiI7Dcj9UbFM/0REoymK2aOQC8+G0yLNws3Mg==\">"
-            
-            // search for the xsrf token
-            let linkRegexPattern = "<meta.*name=\"csrf-token\".*content=\"([^\"]*)\""
-            let linkRegex = try! NSRegularExpression(pattern: linkRegexPattern,
-                                                     options: .caseInsensitive)
-            let matches = linkRegex.matches(in: html,
-                                            range: NSMakeRange(0, html.utf16.count))
-            
-            guard let csrfToken = matches.first.map({ result -> String in
-                let hrefRange = result.rangeAt(1)
-                let start = String.UTF16Index(hrefRange.location)
-                let end = String.UTF16Index(hrefRange.location + hrefRange.length)
-                
-                return String(html.utf16[start..<end])!
-            }) else {
-                return
-            }
-            
+        if let csrfToken = metaContent, !csrfToken.isEmpty {
             let config = URLSessionConfiguration.default
             config.httpAdditionalHeaders = [
                 "X-CSRF-Token": csrfToken,
@@ -229,6 +207,10 @@ public class RollCallSession: NSObject {
             config.httpCookieStorage = .shared
             let session = URLSession(configuration: config)
             state = .active(session)
+        } else if let message = preTextContent, !message.isEmpty {
+            state = .error(NSError(domain: "com.instructure.rollcall", code: 2, userInfo: [NSLocalizedDescriptionKey: message]))
+        } else {
+            state = .error(NSError(domain: "com.instructure.rollcall", code: 1, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Error: No data returned from the rollcall api.", comment: "rollcall status error")]))
         }
     }
 }

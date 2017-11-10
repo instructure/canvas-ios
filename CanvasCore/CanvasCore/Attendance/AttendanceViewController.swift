@@ -471,6 +471,7 @@ extension AttendanceViewController: RollCallSessionDelegate {
     }
     
     public func session(_ session: RollCallSession, didFailWithError error: Error) {
+        tableView.refreshControl?.endRefreshing()
         alertError(error)
     }
     
