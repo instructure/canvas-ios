@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "start-iphone": "react-native run-ios --simulator='iPhone 8' --project-path ../../ --scheme Teacher",
+    "start-iphone-x": "react-native run-ios --simulator='iPhone X' --project-path ../../ --scheme Teacher",
     "start-ipad": "react-native run-ios --simulator='iPad Pro (10.5-inch)' --project-path ../../ --scheme Teacher",
     "build": "yarn && pod install",
     "build-update": "yarn && pod install --repo-update",
