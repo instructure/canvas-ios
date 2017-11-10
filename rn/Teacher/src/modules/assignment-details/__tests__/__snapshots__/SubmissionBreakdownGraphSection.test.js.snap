@@ -5,7 +5,7 @@ exports[`render 0 submissions 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -324,7 +324,7 @@ exports[`render 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -643,7 +643,7 @@ exports[`render 1 needs grading 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -962,7 +962,7 @@ exports[`render 2 need grading 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -1281,7 +1281,7 @@ exports[`render loading with pending set 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -1570,7 +1570,7 @@ exports[`render multiple data points  1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -1889,7 +1889,7 @@ exports[`render on paper submission type 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",
@@ -2077,7 +2077,7 @@ exports[`render undefined submission type 1`] = `
   style={
     Array [
       Object {
-        "alignItems": "center",
+        "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "flex-start",

@@ -4,6 +4,7 @@ exports[`my chat bubbles render correctly 1`] = `
 <View
   style={
     Object {
+      "flex": 1,
       "maxWidth": 300,
     }
   }
@@ -73,6 +74,7 @@ exports[`their chat bubbles render correctly 1`] = `
 <View
   style={
     Object {
+      "flex": 1,
       "maxWidth": 300,
     }
   }

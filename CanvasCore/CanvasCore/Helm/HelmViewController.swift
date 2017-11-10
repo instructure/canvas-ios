@@ -27,6 +27,15 @@ protocol HelmScreen {
     var screenConfigRendered: Bool { get set }
 }
 
+class TitleView: UIView {
+    public override func willMove(toSuperview: UIView?) {
+        if #available(iOS 11.0, *) {
+        } else if let parent = toSuperview {
+            self.frame = parent.bounds
+        }
+    }
+}
+
 public final class HelmViewController: UIViewController, HelmScreen {
     
     let moduleName: String
@@ -202,11 +211,6 @@ public final class HelmViewController: UIViewController, HelmScreen {
     
     public func handleStyles() {
         // Nav bar props
-        
-        if let titleLabel = titleViewTitleLabel, let subtitleLabel = titleViewSubtitleLabel {
-            styleTitleViewLabels(titleLabel: titleLabel, subtitleLabel: subtitleLabel)
-        }
-
         let drawUnderNavBar = screenConfig[PropKeys.drawUnderNavBar] as? Bool ?? false
         if (drawUnderNavBar) {
             edgesForExtendedLayout.insert(.top)
@@ -427,25 +431,25 @@ public final class HelmViewController: UIViewController, HelmScreen {
         subtitleLabel.text = subtitle
         subtitleLabel.sizeToFit()
 
-        let maxWidth = max(titleLabel.frame.size.width, subtitleLabel.frame.size.width)
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: maxWidth, height: 30))
+        let titleView = TitleView(frame: CGRect(x: 0, y: 0, width: 0, height: 30))
         titleView.addSubview(titleLabel)
         titleView.addSubview(subtitleLabel)
-        
-        // Center title or subtitle on screen (depending on which is larger)
-        if titleLabel.frame.width >= subtitleLabel.frame.width {
-            var adjustment = subtitleLabel.frame
-            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (subtitleLabel.frame.width/2)
-            subtitleLabel.frame = adjustment
-        } else {
-            var adjustment = titleLabel.frame
-            adjustment.origin.x = titleView.frame.origin.x + (titleView.frame.width/2) - (titleLabel.frame.width/2)
-            titleLabel.frame = adjustment
-        }
-        
         if let testID = screenConfig["testID"] as? String {
             titleView.accessibilityIdentifier = testID + ".nav-bar-title-view"
         }
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 11.0, *) {
+        } else {
+            titleLabel.topAnchor.constraint(equalTo: titleView.topAnchor).isActive = true
+        }
+        titleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor).isActive = true
+        
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        subtitleLabel.leadingAnchor.constraint(equalTo: titleView.leadingAnchor).isActive = true
+        subtitleLabel.trailingAnchor.constraint(equalTo: titleView.trailingAnchor).isActive = true
 
         return (titleView, titleLabel, subtitleLabel)
     }
@@ -487,31 +491,11 @@ public final class HelmViewController: UIViewController, HelmScreen {
         titleLabel.textColor = titleColor
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.textAlignment = .center
-        titleLabel.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
         
         subtitleLabel.backgroundColor = UIColor.clear
         subtitleLabel.textColor = subtitleColor
         subtitleLabel.font = UIFont.systemFont(ofSize: 12)
         subtitleLabel.textAlignment = .center
-        subtitleLabel.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
-        
-        //  adjust width of subtitle 
-        var subtitleLabelFrame = subtitleLabel.frame
-        let subtitleLabelYOrigin = subtitleLabelFrame.origin.y
-        var percentageOfWidth:CGFloat = 1.60
-        let minWidthMultiplierWithMultipleBarButtonItems:CGFloat = 2.2
-        if let barButtonItems = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]], barButtonItems.count > 1 {
-            percentageOfWidth = minWidthMultiplierWithMultipleBarButtonItems
-        }
-        if let barButtonItems = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]], barButtonItems.count > 1 {
-            percentageOfWidth = minWidthMultiplierWithMultipleBarButtonItems
-        }
-        subtitleLabelFrame.size.width = view.bounds.size.width > 0 ? view.bounds.size.width / percentageOfWidth : 225
-        subtitleLabel.frame = subtitleLabelFrame
-        subtitleLabel.center = titleLabel.center
-        subtitleLabelFrame = subtitleLabel.frame
-        subtitleLabelFrame.origin.y = subtitleLabelYOrigin
-        subtitleLabel.frame = subtitleLabelFrame
     }
     
     func barButtonTapped(_ barButton: UIBarButtonItem) {

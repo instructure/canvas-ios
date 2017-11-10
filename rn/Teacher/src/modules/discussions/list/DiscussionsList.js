@@ -61,12 +61,6 @@ export type Props = State & typeof Actions & OwnProps & {
   navigator: Navigator,
 }
 
-const HEADERS = {
-  'A_locked': i18n('Closed for Comments'),
-  'B_discussion': i18n('Discussions'),
-  'C_pinned': i18n('Pinned Discussions'),
-}
-
 export class DiscussionsList extends Component<any, Props, any> {
 
   renderRow = ({ item, index }: { item: Discussion, index: number }) => {
@@ -82,6 +76,11 @@ export class DiscussionsList extends Component<any, Props, any> {
   }
 
   renderSectionHeader = ({ section }: any) => {
+    const HEADERS = {
+      'A_locked': i18n('Closed for Comments'),
+      'B_discussion': i18n('Discussions'),
+      'C_pinned': i18n('Pinned Discussions'),
+    }
     return <SectionHeader title={HEADERS[section.key]} sectionKey={HEADERS[section.key]} />
   }
 

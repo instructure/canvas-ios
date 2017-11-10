@@ -72,9 +72,11 @@ const styles = StyleSheet.create({
     color: colors.darkText,
   },
   myMessageContainer: {
+    flex: 1,
     maxWidth: 300,
   },
   theirMessageContainer: {
+    flex: 1,
     maxWidth: 300,
   },
   message: {

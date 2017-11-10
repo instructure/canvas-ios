@@ -177,7 +177,7 @@ exports[`RubricItem changes the currently selected value when a circle is presse
             ]
           }
         >
-          View long description
+          View Long Description
         </Text>
       </View>
     </TouchableOpacity>
@@ -362,7 +362,7 @@ exports[`RubricItem renders 1`] = `
             ]
           }
         >
-          View long description
+          View Long Description
         </Text>
       </View>
     </TouchableOpacity>
@@ -547,7 +547,7 @@ exports[`RubricItem renders an already selected grade 1`] = `
             ]
           }
         >
-          View long description
+          View Long Description
         </Text>
       </View>
     </TouchableOpacity>
@@ -725,7 +725,7 @@ exports[`RubricItem renders the selected custom grade 1`] = `
             ]
           }
         >
-          View long description
+          View Long Description
         </Text>
       </View>
     </TouchableOpacity>
@@ -942,7 +942,7 @@ exports[`RubricItem renders with free form 1`] = `
             ]
           }
         >
-          View long description
+          View Long Description
         </Text>
       </View>
     </TouchableOpacity>
@@ -1127,7 +1127,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
             ]
           }
         >
-          View long description
+          View Long Description
         </Text>
       </View>
     </TouchableOpacity>
@@ -1145,6 +1145,7 @@ exports[`RubricItem will not show the add comment button and will show the comme
     <View
       style={
         Object {
+          "flex": 1,
           "maxWidth": 300,
         }
       }
@@ -1219,6 +1220,11 @@ exports[`RubricItem will not show the add comment button and will show the comme
         }
       }
       onPress={[Function]}
+      style={
+        Object {
+          "marginLeft": 16,
+        }
+      }
       testID="rubric-item.edit-comment-2"
     >
       <View>

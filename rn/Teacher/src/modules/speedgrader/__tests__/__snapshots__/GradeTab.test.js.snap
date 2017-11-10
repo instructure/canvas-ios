@@ -580,7 +580,7 @@ exports[`Rubric has the correct score 1`] = `
                     ]
                   }
                 >
-                  View long description
+                  View Long Description
                 </Text>
               </View>
             </TouchableOpacity>
@@ -1175,7 +1175,7 @@ exports[`Rubric renders a rubric 1`] = `
                     ]
                   }
                 >
-                  View long description
+                  View Long Description
                 </Text>
               </View>
             </TouchableOpacity>
@@ -1647,7 +1647,7 @@ exports[`Rubric renders the comment input when openCommentKeyboard is called 1`]
                     ]
                   }
                 >
-                  View long description
+                  View Long Description
                 </Text>
               </View>
             </TouchableOpacity>
@@ -2427,7 +2427,7 @@ exports[`Rubric shows the activity indicator when saving a rubric score 1`] = `
                     ]
                   }
                 >
-                  View long description
+                  View Long Description
                 </Text>
               </View>
             </TouchableOpacity>

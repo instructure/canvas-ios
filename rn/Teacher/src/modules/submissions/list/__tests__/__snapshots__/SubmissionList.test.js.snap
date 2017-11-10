@@ -890,52 +890,53 @@ exports[`SubmissionList loaded 1`] = `
                 >
                   Late
                 </Text>
-              </View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                color="#368BD8"
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  color="#368BD8"
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "backgroundColor": "white",
-                        "borderRadius": 9,
-                        "borderWidth": 1,
-                        "fontSize": 11,
-                        "fontWeight": "500",
-                        "overflow": "hidden",
-                        "paddingBottom": 0,
-                        "paddingLeft": 6,
-                        "paddingRight": 6,
-                        "paddingTop": 3,
-                        "textAlign": "center",
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "borderColor": "#368BD8",
-                        "color": "#368BD8",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "backgroundColor": "white",
+                          "borderRadius": 9,
+                          "borderWidth": 1,
+                          "fontSize": 11,
+                          "fontWeight": "500",
+                          "overflow": "hidden",
+                          "paddingBottom": 0,
+                          "paddingLeft": 6,
+                          "paddingRight": 6,
+                          "paddingTop": 3,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "borderColor": "#368BD8",
+                          "color": "#368BD8",
+                        },
+                        Object {
+                          "alignSelf": "flex-start",
+                          "marginTop": 8,
+                        },
+                      ],
                       Object {
-                        "alignSelf": "center",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                NEEDS GRADING
-              </Text>
+                    ]
+                  }
+                >
+                  NEEDS GRADING
+                </Text>
+              </View>
               <View
                 style={
                   Object {
@@ -3265,52 +3266,53 @@ exports[`SubmissionList renders correctly with ungraded filter 1`] = `
                 >
                   Late
                 </Text>
-              </View>
-              <Text
-                accessible={true}
-                allowFontScaling={true}
-                color="#368BD8"
-                disabled={false}
-                ellipsizeMode="tail"
-                style={
-                  Array [
-                    Object {
-                      "fontFamily": ".SFUIDisplay",
-                    },
-                    Object {
-                      "color": "#2D3B45",
-                      "fontSize": 16,
-                    },
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  color="#368BD8"
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
                     Array [
                       Object {
-                        "backgroundColor": "white",
-                        "borderRadius": 9,
-                        "borderWidth": 1,
-                        "fontSize": 11,
-                        "fontWeight": "500",
-                        "overflow": "hidden",
-                        "paddingBottom": 0,
-                        "paddingLeft": 6,
-                        "paddingRight": 6,
-                        "paddingTop": 3,
-                        "textAlign": "center",
+                        "fontFamily": ".SFUIDisplay",
                       },
                       Object {
-                        "borderColor": "#368BD8",
-                        "color": "#368BD8",
+                        "color": "#2D3B45",
+                        "fontSize": 16,
                       },
+                      Array [
+                        Object {
+                          "backgroundColor": "white",
+                          "borderRadius": 9,
+                          "borderWidth": 1,
+                          "fontSize": 11,
+                          "fontWeight": "500",
+                          "overflow": "hidden",
+                          "paddingBottom": 0,
+                          "paddingLeft": 6,
+                          "paddingRight": 6,
+                          "paddingTop": 3,
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "borderColor": "#368BD8",
+                          "color": "#368BD8",
+                        },
+                        Object {
+                          "alignSelf": "flex-start",
+                          "marginTop": 8,
+                        },
+                      ],
                       Object {
-                        "alignSelf": "center",
+                        "fontFamily": ".SFUIDisplay-medium",
                       },
-                    ],
-                    Object {
-                      "fontFamily": ".SFUIDisplay-medium",
-                    },
-                  ]
-                }
-              >
-                NEEDS GRADING
-              </Text>
+                    ]
+                  }
+                >
+                  NEEDS GRADING
+                </Text>
+              </View>
               <View
                 style={
                   Object {

@@ -203,13 +203,14 @@ export default class RubricItem extends Component {
             onPress={this.showDescription}
             testID='rubric-item.description'
           >
-            {i18n('View long description')}
+            {i18n('View Long Description')}
           </LinkButton>
         </View>
         {hasComment &&
           <View style={styles.chatBubble}>
             <ChatBubble from='them' message={this.props.grade.comments} />
             <LinkButton
+              style={styles.editButton}
               textStyle={styles.editButtonText}
               testID={`rubric-item.edit-comment-${rubricItem.id}`}
               onPress={this.openActionSheet}
@@ -254,6 +255,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  editButton: {
+    marginLeft: 16,
   },
   editButtonText: {
     fontSize: 16,
