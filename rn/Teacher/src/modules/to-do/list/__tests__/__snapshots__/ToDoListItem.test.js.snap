@@ -250,9 +250,7 @@ exports[`ToDoListItem renders 1`] = `
                 ]
               }
             >
-              5
-               
-              UNGRADED
+              5 NEED GRADING
             </Text>
           </View>
         </View>
@@ -550,9 +548,7 @@ exports[`ToDoListItem renders discussion 1`] = `
                 ]
               }
             >
-              5
-               
-              UNGRADED
+              5 NEED GRADING
             </Text>
           </View>
         </View>
@@ -850,9 +846,7 @@ exports[`ToDoListItem renders null due date 1`] = `
                 ]
               }
             >
-              5
-               
-              UNGRADED
+              5 NEED GRADING
             </Text>
           </View>
         </View>
@@ -1150,9 +1144,7 @@ exports[`ToDoListItem renders published assignment 1`] = `
                 ]
               }
             >
-              5
-               
-              UNGRADED
+              5 NEED GRADING
             </Text>
           </View>
         </View>
@@ -1462,9 +1454,7 @@ exports[`ToDoListItem renders quiz 1`] = `
                 ]
               }
             >
-              5
-               
-              UNGRADED
+              5 NEED GRADING
             </Text>
           </View>
         </View>
@@ -1774,9 +1764,7 @@ exports[`ToDoListItem renders unpublished assignment 1`] = `
                 ]
               }
             >
-              5
-               
-              UNGRADED
+              5 NEED GRADING
             </Text>
           </View>
         </View>

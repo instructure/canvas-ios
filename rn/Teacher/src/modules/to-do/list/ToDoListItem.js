@@ -79,6 +79,12 @@ export class ToDoListItem extends Component<any, Props, any> {
       dueLabel = i18n("Due { date, date, 'MMM d, YYYY'} at { date, time, short }", { date: new Date(dueAt) })
     }
 
+    const text = i18n(`{
+      count, plural,
+        one {# Needs Grading}
+      other {# Need Grading}
+    }`, { count }).toUpperCase()
+
     return (
       <View>
         <View style={{ marginLeft: -10 }}>
@@ -106,7 +112,7 @@ export class ToDoListItem extends Component<any, Props, any> {
                   },
                 ]}
               >
-                {count} {i18n('Ungraded').toUpperCase()}
+                {text}
               </Text>
             </View>
           </Row>
