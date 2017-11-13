@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSString *ratingDescription;
 @property (nonatomic, assign) double points;
 @property (nonatomic, strong) NSString *comments;
+@property (readonly) NSString *pointsDescription;
 
 - (id)initWithInfo:(NSDictionary *)info andRubricCriterion:(CKRubricCriterion *)aCriterion;
 - (id)initWithInfo:(NSDictionary *)info andCriterionIdent:(NSString *)criterionIdent;

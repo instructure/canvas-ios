@@ -25,7 +25,8 @@
         @"points": @"points",
         @"criterionDescription": @"description",
         @"longDescription": @"long_description",
-        @"ratings": @"ratings"
+        @"ratings": @"ratings",
+        @"useRange": @"criterion_use_range"
     };
     NSDictionary *superPaths = [super JSONKeyPathsByPropertyKey];
     return [superPaths dictionaryByAddingObjectsFromDictionary:keyPaths];

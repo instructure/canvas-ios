@@ -41,6 +41,7 @@
     self.criterionDescription = [info objectForKeyCheckingNull:@"description"];
     self.longDescription = [info objectForKeyCheckingNull:@"long_description"];
     self.points = [info[@"points"] doubleValue];
+    self.useRange = [info[@"criterion_use_range"] boolValue];
     
     for (NSDictionary *ratingInfo in info[@"ratings"]) {
         NSString *ratingIdent = ratingInfo[@"id"];

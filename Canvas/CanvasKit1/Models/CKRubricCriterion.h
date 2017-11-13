@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSString *longDescription;
 @property (nonatomic, assign) double points;
 @property (strong, nonatomic, readonly) NSMutableArray *ratings;
+@property (nonatomic, assign) BOOL useRange;
 
 - (id)initWithInfo:(NSDictionary *)info andRubric:(CKRubric *)aRubric;
 - (void)updateWithInfo:(NSDictionary *)info;

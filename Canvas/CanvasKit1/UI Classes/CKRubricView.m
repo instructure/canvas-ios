@@ -182,11 +182,8 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
         CKRubricCriterion *criterion = self.rubric.criteria[section];
         
         CKRubricCriterionRating *selectedRating = [self.assessment selectedRatingForCriterion:criterion];
-        if (selectedRating == nil) {
-            continue;
-        }
         
-        if (!selectedRating) {
+        if (!selectedRating || criterion.useRange) {
             [self.customGrades addObject:[NSIndexPath indexPathForRow:count inSection:section]];
         }
     }
@@ -311,16 +308,24 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
         cell.accessoryType = UITableViewCellAccessoryNone;
         self.rubricCell = nil;
     }
+
+    NSPredicate *dividerIdentifier = [NSPredicate predicateWithFormat:@"%K == %@", @"identifier", @"divider"];
+    NSLayoutConstraint *dividerConstraint = [[cell.contentView.constraints filteredArrayUsingPredicate:dividerIdentifier] firstObject];
+    [dividerConstraint setConstant:criterion.useRange ? 120 : 42];
     
     NSInteger count = [[self.rubric.criteria[indexPath.section] ratings] count];
     UILabel *pointsLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *descriptionLabel = (UILabel *)[cell viewWithTag:2];
+
+    CGFloat fontSize = criterion.useRange ? 15 : 24;
+    pointsLabel.font = [UIFont systemFontOfSize:fontSize weight:UIFontWeightSemibold];
     
     // if this is a custom grade cell
     if ([self.customGrades containsObject:indexPath]) {
         CKRubricCriterionRating *rating = self.assessment.ratings[criterion.identifier];
-        pointsLabel.text = [NSString stringWithFormat:@"%g", rating.points];
-        descriptionLabel.text = NSLocalizedString(@"Custom Grade", @"A custom grade not specified by the rubric.");
+        pointsLabel.text = [self.decimalFormatter stringFromNumber:@(rating.points)];
+        descriptionLabel.text = criterion.useRange ? NSLocalizedString(@"Score", nil) : NSLocalizedString(@"Custom Grade", @"A custom grade not specified by the rubric.");
+        descriptionLabel.font = [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
         [self setSelected:YES forRubricRatingCell:cell atIndexPath:indexPath];
     }
     // It's not a custom grade cell, but it's beyond the end of ratings. Must be the comment cell.
@@ -329,7 +334,7 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
     }
     else {
         CKRubricCriterionRating *rating = criterion.ratings[indexPath.row];
-        pointsLabel.text = [self.decimalFormatter stringFromNumber:@(rating.points)];
+        pointsLabel.text = rating.pointsDescription;
         descriptionLabel.text = rating.ratingDescription;
         
         // is this field selected in the current assessment?
@@ -337,6 +342,7 @@ CGFloat iOS7HeightForRowAtIndexPath(CKRubricView *self, SEL _cmd, UITableView *t
         if (self.assessment) {
             currentlySelected = [self.assessment isRatingSelected:rating];
         }
+        currentlySelected = currentlySelected && !criterion.useRange;
         
         [self setSelected:currentlySelected forRubricRatingCell:cell atIndexPath:indexPath];
     }

@@ -58,4 +58,9 @@
  */
 @property (nonatomic, readonly) CKIRubricCriterionRating *selectedRating;
 
+/**
+ Ranges enabled.
+ */
+@property (nonatomic, assign) BOOL useRange;
+
 @end

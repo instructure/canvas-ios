@@ -20,6 +20,12 @@
 #import "CKRubricCriterion.h"
 #import "NSDictionary+CKAdditions.h"
 
+@interface CKRubricCriterionRating ()
+
+@property (nonatomic, strong) NSNumberFormatter *decimalFormatter;
+
+@end
+
 @implementation CKRubricCriterionRating
 
 - (id)initWithInfo:(NSDictionary *)info andRubricCriterion:(CKRubricCriterion *)aCriterion
@@ -88,6 +94,41 @@
 
 - (NSUInteger)hash {
     return [self.identifier hash];
+}
+
+- (NSNumberFormatter *)decimalFormatter
+{
+    if (_decimalFormatter == nil) {
+        _decimalFormatter = [[NSNumberFormatter alloc] init];
+        _decimalFormatter.roundingIncrement = @0.01;
+        _decimalFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    }
+
+    return _decimalFormatter;
+}
+
+- (NSString *)pointsDescription
+{
+    NSString *myPoints = [self.decimalFormatter stringFromNumber:@(self.points)];
+    if (!self.criterion.useRange) {
+        return myPoints;
+    }
+
+    NSArray *ratings = [self.criterion ratings];
+    NSUInteger myIndex = [ratings indexOfObjectPassingTest:^BOOL(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return ((CKRubricCriterionRating *)obj).identifier == self.identifier;
+    }];
+    NSUInteger nextIndex = myIndex + 1;
+    if (myIndex == NSNotFound) {
+        return myPoints;
+    }
+    if (nextIndex >= ratings.count) {
+        NSString *nextPoints = [self.decimalFormatter stringFromNumber:@(0)];
+        return [NSString stringWithFormat:@"%@ to > %@ pts", myPoints, nextPoints];
+    }
+    CKRubricCriterionRating *nextRating = [ratings objectAtIndex:nextIndex];
+    NSString *nextPoints = [self.decimalFormatter stringFromNumber:@(nextRating.points)];
+    return [NSString stringWithFormat:@"%@ to > %@ pts", myPoints, nextPoints];
 }
 
 

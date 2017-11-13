@@ -77,7 +77,14 @@
 }
 
 - (CKRubricCriterionRating *)selectedRatingForCriterion:(CKRubricCriterion *)criterion {
-    return self.ratings[criterion.identifier];
+    CKRubricCriterionRating *rating = self.ratings[criterion.identifier];
+    NSUInteger index = [criterion.ratings indexOfObjectPassingTest:^BOOL(CKRubricCriterionRating *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return obj.points == rating.points;
+    }];
+    if (index == NSNotFound) {
+        return nil;
+    }
+    return rating;
 }
 
 - (void)selectRating:(CKRubricCriterionRating *)rating
