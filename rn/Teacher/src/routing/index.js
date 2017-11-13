@@ -81,8 +81,8 @@ export function wrapComponentInReduxProvider (moduleName: string, generator: () 
             <ScreenComponent
               testID={moduleName}
               navigator={navigator}
-              {...routeProps.get(this.props.screenInstanceID)}
               {...this.props}
+              {...routeProps.get(this.props.screenInstanceID)}
             />
           </Provider>
         )
