@@ -68,7 +68,7 @@ export function gradeProp (submission: ?Submission): GradeProp {
     return 'excused'
   }
 
-  if (!submission.submitted_at) {
+  if (!submission.submitted_at && !submission.grade) {
     return 'not_submitted'
   }
 
