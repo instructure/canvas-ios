@@ -118,6 +118,7 @@ public final class CalendarEvent: NSManagedObject {
     }()
 
     @NSManaged internal (set) public var id: String
+    @NSManaged internal (set) public var parentEventID: String?
     @NSManaged internal (set) public var title: String?
     @NSManaged internal (set) public var startAt: Date?
     @NSManaged internal (set) public var endAt: Date?
@@ -215,7 +216,7 @@ public final class CalendarEvent: NSManagedObject {
     public var routingURL: URL? {
         switch type {
         case .calendarEvent:
-            return URL(string: "/calendar_events/" + id)
+            return URL(string: "/calendar_events/" + (parentEventID ?? id))
         case .assignment:
             if submissionTypes.contains(.discussionTopic) {
                 guard let discussionTopicID = discussionTopicID, let courseID = courseID else { ❨╯°□°❩╯⌢"Cannot create routingID without discussionTopicID" }
@@ -244,30 +245,35 @@ extension CalendarEvent: SynchronizedModel {
 
     public func updateValues(_ json: JSONObject, inContext context: NSManagedObjectContext) throws {
         id = try json.stringID("id")
-
-        title = try json  <| ("title")
+        parentEventID = try json.stringID("parent_event_id")
+        title = try json <| ("title")
         startAt = try json <| "start_at"
         endAt = try json <| "end_at"
-        htmlDescription = try json  <| "description"
-        locationName = try json  <| "location_name"
-        locationAddress = try json  <| "location_address"
-        contextCode = try json  <| ("context_code")
-        effectiveContextCode = try json  <| "effective_context_code"
-        rawWorkflowState = try json  <| "workflow_state"
-        hidden = (try json  <| "hidden") ?? false
-        url = try json  <| "url"
-        htmlURL = try json  <| "html_url"
+        htmlDescription = try json <| "description"
+        locationName = try json <| "location_name"
+        locationAddress = try json <| "location_address"
+        contextCode = try json <| ("context_code")
+        effectiveContextCode = try json <| "effective_context_code"
+        rawWorkflowState = try json <| "workflow_state"
+        hidden = (try json <| "hidden") ?? false
+        url = try json <| "url"
+        htmlURL = try json <| "html_url"
+        allDay = (try json <| "all_day") ?? false
 
-        if let endAt = endAt {
+        if allDay, let allDayDate: String = try json <| "all_day_date" {
+            self.allDayDate = allDayDate
+            let date = CalendarEvent.dayDateFormatter.date(from: allDayDate)
+            startAt = date
+            endAt = date
+        } else if let endAt = endAt {
             allDayDate = CalendarEvent.dayDateFormatter.string(from: endAt)
         } else {
             allDayDate = "Unknown"
         }
 
-        allDay = (try json  <| "all_day") ?? false
-        createdAt = try json  <| "created_at"
-        updatedAt = try json  <| "updated_at"
-        rawType = try json  <| "type"
+        createdAt = try json <| "created_at"
+        updatedAt = try json <| "updated_at"
+        rawType = try json <| "type"
 
         var status: EventSubmissionStatus = []
         var submissionState = ""
