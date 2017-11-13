@@ -17,7 +17,8 @@
 /* @flow */
 import 'react-native'
 import React from 'react'
-import { Inbox, handleRefresh, mapStateToProps, Refreshed } from '../Inbox.js'
+import { Inbox, handleRefresh, shouldRefresh, mapStateToProps, Refreshed } from '../Inbox'
+import Navigator from '../../../routing/Navigator'
 import setProps from '../../../../test/helpers/setProps'
 import explore from '../../../../test/helpers/explore'
 import renderer from 'react-test-renderer'
@@ -275,4 +276,35 @@ it('filters conversations based on course', () => {
   instance.setState({ selectedCourse: '1' })
   const node = tree.toJSON()
   expect(node).toMatchSnapshot()
+})
+
+describe('Inbox shouldRefresh', () => {
+  it('returns true when there are no conversations', () => {
+    expect(shouldRefresh({
+      conversations: [],
+      scope: 'all',
+      courses: [],
+      next () {},
+      navigator: new Navigator(''),
+    })).toBe(true)
+  })
+
+  it('returns true when there is no next', () => {
+    expect(shouldRefresh({
+      conversations: [ template.conversation({}) ],
+      scope: 'all',
+      courses: [],
+      navigator: new Navigator(''),
+    })).toBe(true)
+  })
+
+  it('returns false when there is next & conversations', () => {
+    expect(shouldRefresh({
+      conversations: [ template.conversation({}) ],
+      scope: 'all',
+      courses: [],
+      next () {},
+      navigator: new Navigator(''),
+    })).toBe(false)
+  })
 })

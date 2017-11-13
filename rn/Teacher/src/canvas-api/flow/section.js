@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+/* @flow */
+
 export type Section = {
   id: string,
   name: string,

@@ -14,6 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+/* @flow */
+
 import Actions from './actions'
 import { asyncRefsReducer } from '../../redux/async-refs-reducer'
 import i18n from 'format-message'

@@ -14,6 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+/* @flow */
+
 import { Reducer } from 'redux'
 import { handleActions } from 'redux-actions'
 import Actions from '../courses/actions'

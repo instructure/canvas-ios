@@ -14,6 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+/* @flow */
+
 import React, { Component } from 'react'
 import {
   View,
@@ -208,7 +210,7 @@ export function handleRefresh (props: InboxProps, next: Function): void {
 }
 
 export function shouldRefresh (props: InboxProps): boolean {
-  return props => props.conversations.length === 0 || !props.next
+  return props.conversations.length === 0 || !props.next
 }
 
 export const Refreshed: any = refresh(

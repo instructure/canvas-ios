@@ -25,7 +25,6 @@
     "axios": "^0.16.2",
     "bytes": "https://github.com/n8armstrong/bytes.js",
     "create-react-class": "15.6.2",
-    "eslint-plugin-flowtype": "^2.39.1",
     "filesize": "^3.5.10",
     "flux-standard-action": "^1.2.0",
     "format-message": "^5.1.1",

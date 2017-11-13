@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+/* @flow */
+
 import parseLink from './parse-link-header'
 import httpClient from '../httpClient'
 
