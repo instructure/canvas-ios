@@ -52,7 +52,7 @@ export default class DiscussionsRow extends Component<any, Props, any> {
           <Row accessible={false}
             accessibilityLabel={`${discussion.title}`}
             renderImage={this._renderIcon}
-            title={discussion.title}
+            title={discussion.title || i18n('No Title')}
             titleProps={{ ellipsizeMode: 'tail', numberOfLines: 2 }}
             border='bottom'
             disclosureIndicator={false}

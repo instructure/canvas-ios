@@ -148,7 +148,7 @@ export class DiscussionDetails extends Component<any, Props, any> {
     return (
       <View>
         <AssignmentSection isFirstRow={true} style={style.topContainer}>
-          <Heading1>{discussion.title}</Heading1>
+          <Heading1>{discussion.title || i18n('No Title')}</Heading1>
             { !this.props.isAnnouncement &&
               <View style={style.pointsContainer}>
                 {Boolean(points) && <Text style={style.points}>{points}</Text>}

@@ -10,7 +10,7 @@ Array [
       "is_announcement": true,
       "message": "required",
       "require_initial_post": false,
-      "title": null,
+      "title": "No Title",
     },
   ],
 ]

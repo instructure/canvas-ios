@@ -77,7 +77,7 @@ export class AnnouncementsList extends Component<any, Props, any> {
   renderRow = ({ item, index }: { item: Discussion, index: number }) => {
     return (
       <Row
-        title={item.title}
+        title={item.title || i18n('No Title')}
         subtitle={i18n("{ date, date, 'MMM d'} at { date, time, short }", { date: new Date(item.delayed_post_at || item.posted_at) })}
         border='bottom'
         height='auto'

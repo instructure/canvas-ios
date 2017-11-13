@@ -503,7 +503,7 @@ export class DiscussionEdit extends Component<any, Props, any> {
 
   updateDiscussion () {
     const params = {
-      title: this.state.title === '' ? null : this.state.title,
+      title: this.state.title || i18n('No Title'),
       message: this.state.message,
       published: this.state.published || false,
       discussion_type: this.state.discussion_type || 'side_comment',

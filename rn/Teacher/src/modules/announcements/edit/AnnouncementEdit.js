@@ -281,7 +281,7 @@ export class AnnouncementEdit extends Component<any, Props, any> {
     }
 
     const params = {
-      title: this.state.title === '' ? null : this.state.title,
+      title: this.state.title || i18n('No Title'),
       message: this.state.message,
       require_initial_post: this.state.require_initial_post || false,
       delayed_post_at: this.state.delayed_post_at,
