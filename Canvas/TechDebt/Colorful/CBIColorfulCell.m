@@ -66,6 +66,9 @@
     RAC(self, selectedBackgroundView.backgroundColor) = RACObserve(self, viewModel.tintColor);
     
     self.accessoryView = self.nonHighlightedAccessoryView;
+    
+    self.textLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.detailTextLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
 }
 
 - (void)setCourseTintColor:(UIColor *)courseTintColor

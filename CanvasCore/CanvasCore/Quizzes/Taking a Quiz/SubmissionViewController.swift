@@ -42,6 +42,7 @@ class SubmissionViewController: UITableViewController {
     var questions: [SubmissionQuestion]
     let whizzyBaseURL: URL
     let quizService: QuizService
+    var didReceiveInitialUpdateResult = false
 
     let documentMenuViewModel: DocumentMenuViewModelType = DocumentMenuViewModel()
     private let fileUploadIndexPath = MutableProperty<IndexPath?>(nil)
@@ -110,6 +111,10 @@ class SubmissionViewController: UITableViewController {
         let index = Index(questionIndex: questionIndex)
         tableView.scrollToRow(at: index.indexPath, at: .top, animated: true)
     }
+    
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        tableView.reloadData()
+    }
 }
 
 // MARK: submit
@@ -162,20 +167,23 @@ extension SubmissionViewController {
         }
 
         else if let updates = result.value {
-            self.tableView.beginUpdates()
+            var updateTable = false
             for update in updates {
                 switch update {
                 case .added(let questionIndex):
+                    if (!updateTable) { self.tableView.beginUpdates(); updateTable = true }
                     let sectionSet = NSIndexSet(index: questionIndex + 1)
                     self.tableView.insertSections(sectionSet as IndexSet, with: .fade)
                 case .answerChanged(let questionIndex):
                     updateAnswersForQuestionAtIndex(questionIndex)
                 case .flagChanged(let questionIndex):
                     updateFlagStatusForQuestionAtIndex(questionIndex)
-                    break
                 }
             }
-            self.tableView.endUpdates()
+            
+            if(updateTable) {
+                self.tableView.endUpdates()
+            }
         }
     }
 }
@@ -572,7 +580,8 @@ extension SubmissionViewController {
 
     fileprivate func prepareTableView() {
         tableView.separatorStyle = .none
-        tableView.rowHeight = 60
+        tableView.estimatedSectionHeaderHeight = 44
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         tableView.register(WhizzyWigTableViewCell.classForCoder(), forCellReuseIdentifier: QuizDescriptionCellReuseID)
         tableView.register(EssayAnswerCell.classForCoder(), forCellReuseIdentifier: EssayAnswerCell.ReuseID)
         tableView.register(TextAnswerCell.Nib, forCellReuseIdentifier: TextAnswerCell.ReuseID)
@@ -643,7 +652,7 @@ extension SubmissionViewController {
             case .Essay:
                 let height = EssayAnswerCell.heightWithText(question.answer.answerText ?? NSLocalizedString("Enter answer...", tableName: "Localizable", bundle: .core, value: "", comment: "Default text for essay cell"), boundsWidth: tableView.bounds.size.width)
                 return height
-            case .MultipleChoice, .MultipleAnswers, .TextOnly:
+            case .MultipleChoice, .MultipleAnswers, .TextOnly, .TrueFalse:
                 let answerIndex = indexPath.row - 1
                 let answer = question.question.answers[answerIndex]
                 switch answer.content { // ignore HTML, should be handled by cell height cache
@@ -745,7 +754,10 @@ extension SubmissionViewController {
         case .quizDescription:
             return 0.0
         case .question( _):
-            return 44.0
+            if let headerView = tableView.headerView(forSection: section) as? QuestionHeaderView {
+                return headerView.heightWithText(width: tableView.bounds.size.width)
+            }
+            return UITableViewAutomaticDimension
         default: return 0.0
         }
     }

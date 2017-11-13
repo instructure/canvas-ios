@@ -72,6 +72,8 @@ class QuestionHeaderView: UITableViewHeaderFooterView {
         let toggleFlagAction = UIAccessibilityCustomAction(name: toggleName, target: self, selector: #selector(flagAction(_:)))
         
         accessibilityCustomActions = [toggleFlagAction]
+        
+        numberLabel.font = UIFont.preferredFont(forTextStyle: .body)
     }
     
     
@@ -93,6 +95,14 @@ class QuestionHeaderView: UITableViewHeaderFooterView {
 
 // MARK: Accessibility
 extension QuestionHeaderView {
+    
+    func heightWithText(width: CGFloat) -> CGFloat {
+        let insets = UIEdgeInsets(top: 15.0, left: 40.0, bottom: 15.0, right: 40.0)
+        let labelBoundsWidth = width - insets.left - insets.right
+        let text = numberLabel.text ?? ""
+        let textSize = numberLabel.font.sizeOfString(text, constrainedToWidth: labelBoundsWidth)
+        return ceil(textSize.height + insets.top + insets.bottom)
+    }
     
     func updateAccessibilityLabel() {
         let question = NSLocalizedString("Question", tableName: "Localizable", bundle: .core, value: "", comment: "accessibility label for a quiz question")

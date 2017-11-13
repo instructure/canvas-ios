@@ -170,7 +170,8 @@ extension QuizDetailsViewController {
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "QuizTitleCell")
                 cell?.textLabel?.textAlignment = .center
-                cell?.textLabel?.font = UIFont.boldSystemFont(ofSize: 20.0)
+                cell?.textLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+                cell?.textLabel?.numberOfLines = 0
             }
             cell!.textLabel?.text = quiz?.title ?? ""
             return cell!
@@ -181,6 +182,10 @@ extension QuizDetailsViewController {
             let deets = details[indexPath.row-1] // 1 for the padding cell
             cell.itemLabel.text = deets.0
             cell.detailLabel.text = deets.1
+            cell.itemLabel.numberOfLines = 0
+            cell.detailLabel.numberOfLines = 0
+            cell.itemLabel.font = UIFont.preferredFont(forTextStyle: .body)
+            cell.detailLabel.font = UIFont.preferredFont(forTextStyle: .body)
             return cell;
         }
     }
