@@ -144,8 +144,8 @@ zss_editor.init = function() {
         zss_editor.postInput()
     };
     $('#zss_editor_content').keyup(debounce(onInput, 100));
-    $('#zss_editor_content').on('paste', onInput);
-    $('#zss_editor_content').on('cut', onInput);
+    $('#zss_editor_content').on('paste', debounce(onInput, 100));
+    $('#zss_editor_content').on('cut', debounce(onInput, 100));
 
 
 }//end
