@@ -28,7 +28,7 @@ type Props = {
   style?: Object,
 }
 
-export default class CanvadocViewer extends Component<any, Props, any> {
+export default class CanvadocViewer extends Component<Props, any> {
   render () {
     return <CanvadocView style={this.props.style} {...this.props} />
   }

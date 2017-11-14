@@ -43,7 +43,7 @@ type OwnProps = {
 
 export type Props = OwnProps & State & typeof Actions & RefreshProps & NavigationProps
 
-export class AnnouncementsList extends Component<any, Props, any> {
+export class AnnouncementsList extends Component<Props, any> {
 
   render () {
     return (
@@ -141,4 +141,4 @@ const Refreshed = refresh(
   props => Boolean(props.pending)
 )(AnnouncementsList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

@@ -40,7 +40,7 @@ export type Props = {
   navigator: Navigator,
 }
 
-export default class RichTextEditor extends Component<any, Props, any> {
+export default class RichTextEditor extends Component<Props, any> {
   editor: ZSSRichTextEditor
   container: View
 

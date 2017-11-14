@@ -36,7 +36,7 @@ type Props = {
   onCancel: () => void,
 }
 
-export default class LinkModal extends Component<any, Props, any> {
+export default class LinkModal extends Component<Props, any> {
   constructor (props: Props) {
     super(props)
 

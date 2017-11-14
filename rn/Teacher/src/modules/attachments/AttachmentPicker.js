@@ -48,7 +48,7 @@ export const DEFAULT_OPTIONS: Options = {
   },
 }
 
-export default class AttachmentPicker extends Component<any, Props, any> {
+export default class AttachmentPicker extends Component<Props, any> {
   constructor (props: Props) {
     super(props)
     this.state = {

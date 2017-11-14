@@ -25,7 +25,7 @@ type Props = {
   style?: Object,
 }
 
-export default class Video extends Component<any, Props, any> {
+export default class Video extends Component<Props, any> {
   _container: ?typeof VideoContainer
 
   pause = () => {

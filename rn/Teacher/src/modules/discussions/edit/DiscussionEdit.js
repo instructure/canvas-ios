@@ -99,7 +99,7 @@ export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Act
   defaultDate?: ?Date,
 }
 
-export class DiscussionEdit extends Component<any, Props, any> {
+export class DiscussionEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
   datesEditor: AssignmentDatesEditor
 
@@ -633,4 +633,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
 }
 
 const Connected = connect(mapStateToProps, Actions)(DiscussionEdit)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

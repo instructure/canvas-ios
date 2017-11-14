@@ -46,7 +46,7 @@ type Props
     submissionID: string,
   }
 
-export default class SubmittedContent extends Component<any, Props, any> {
+export default class SubmittedContent extends Component<Props, any> {
 
   selectContent = () => {
     this.props.onPress(this.props.submissionID, this.props.attemptIndex, this.props.attachmentIndex)

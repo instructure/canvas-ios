@@ -36,7 +36,7 @@ type Props = {
   doneButtonText?: string,
 }
 
-export default class AudioRecorder extends Component<any, Props, any> {
+export default class AudioRecorder extends Component<Props, any> {
   constructor (props: Props) {
     super(props)
 

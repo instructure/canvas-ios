@@ -84,7 +84,7 @@ type State = {
 // These this component is rendered, it makes a copy of the assignment overrides and uses that as display
 // At any time, you can call the results method to get an updated view on edits that were made
 // Call validate to perform validation. (validation checks to see if there are any assignees, that's all. :))
-export default class AssignmentDatesEditor extends Component<any, Props, any> {
+export default class AssignmentDatesEditor extends Component<Props, any> {
   state: State
   layouts: any
 

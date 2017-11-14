@@ -74,7 +74,7 @@ export type Props = State & OwnProps & AsyncState & NavigationProps & typeof Act
   defaultDate?: Date,
 }
 
-export class AnnouncementEdit extends Component<any, Props, any> {
+export class AnnouncementEdit extends Component<Props, any> {
   scrollView: KeyboardAwareScrollView
 
   constructor (props: Props) {
@@ -399,4 +399,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID, announcemen
 }
 
 const Connected = connect(mapStateToProps, Actions)(AnnouncementEdit)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

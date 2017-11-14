@@ -44,7 +44,7 @@ type Props = {
   onPress: (Assignment) => void,
 }
 
-export default class UserSubmissionRow extends Component<any, Props, any> {
+export default class UserSubmissionRow extends Component<Props, any> {
   onPress = () => {
     const assignment = this.props.assignment
     this.props.onPress(assignment)

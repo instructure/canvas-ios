@@ -51,7 +51,7 @@ const TURN_IT_IN_COLORS = {
   THREAT_LEVEL_MIDNIGHT: '#EE0612',
 }
 
-export class SimilarityScore extends Component<any, Props, any> {
+export class SimilarityScore extends Component<Props, any> {
   render () {
     const { status, score } = this.props
     if (!status) {

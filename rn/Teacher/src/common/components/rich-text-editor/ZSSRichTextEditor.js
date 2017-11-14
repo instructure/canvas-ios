@@ -39,7 +39,7 @@ type Props = {
   navigator: Navigator,
 }
 
-export default class ZSSRichTextEditor extends Component<any, Props, any> {
+export default class ZSSRichTextEditor extends Component<Props, any> {
   webView: WebView
   showingLinkModal: boolean
 

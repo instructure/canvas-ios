@@ -35,7 +35,7 @@ export type Props = {
   defaultQuery?: string,
 }
 
-export default class TypeAheadSearch extends Component<any, Props, any> {
+export default class TypeAheadSearch extends Component<Props, any> {
   searchBar: SearchBar
   nextURL: ?string
   cancel: ?(() => void)

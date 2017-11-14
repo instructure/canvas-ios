@@ -26,10 +26,7 @@ type FilterState = {
   filterOptions: Array<SubmissionFilterOption>,
 }
 
-export default class Filter extends Component {
-  props: FilterProps
-  state: FilterState
-
+export default class Filter extends Component<FilterProps, FilterState> {
   constructor (props: FilterProps) {
     super(props)
     this.state = {

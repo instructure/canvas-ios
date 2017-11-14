@@ -51,7 +51,7 @@ const COLORS = [
   '#EE6491',
 ]
 
-export default class ColorPicker extends Component<any, Props, any> {
+export default class ColorPicker extends Component<Props, any> {
   render () {
     return (
       <View style={styles.container}>

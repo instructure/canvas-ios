@@ -38,7 +38,7 @@ export type Props = {
   selected: boolean,
 }
 
-export default class QuizRow extends Component<any, Props, any> {
+export default class QuizRow extends Component<Props, any> {
   render () {
     const { quiz, selected } = this.props
     return (

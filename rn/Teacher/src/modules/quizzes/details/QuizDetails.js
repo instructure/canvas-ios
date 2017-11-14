@@ -61,7 +61,7 @@ export type Props = State & OwnProps & RefreshProps & typeof Actions & {
   navigator: Navigator,
 }
 
-export class QuizDetails extends Component<any, Props, any> {
+export class QuizDetails extends Component<Props, any> {
 
   previewQuiz = () => {
     this.props.navigator.show(`/courses/${this.props.courseID}/quizzes/${this.props.quizID}/preview`, { modal: true, modalPresentationStyle: 'fullscreen' })
@@ -361,4 +361,4 @@ let Refreshed = refresh(
   props => Boolean(props.pending)
 )(QuizDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

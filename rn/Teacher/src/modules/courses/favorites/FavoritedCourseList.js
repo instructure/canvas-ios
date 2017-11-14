@@ -237,4 +237,4 @@ let Refreshed = refresh(
   props => Boolean(props.pending)
 )(FavoritedCourseList)
 let Connected = connect(mapStateToProps, CoursesActions)(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

@@ -45,7 +45,7 @@ export type Props = {
   onCancel: () => void,
 }
 
-export default class AttachmentRow extends Component<any, Props, any> {
+export default class AttachmentRow extends Component<Props, any> {
   render () {
     return (
       <Row

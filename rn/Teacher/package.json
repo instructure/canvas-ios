@@ -81,7 +81,7 @@
     "eslint-plugin-react": "^6.10.0",
     "eslint-plugin-standard": "^2.0.1",
     "eslint-watch": "^3.0.0",
-    "flow-bin": "0.40",
+    "flow-bin": "^0.59.0",
     "flow-result-checker": "0.3.0",
     "format-message-cli": "^5.1.1",
     "format-message-generate-id": "^5.1.0",

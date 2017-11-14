@@ -48,7 +48,7 @@ type Props = {
   navigator: Navigator,
 }
 
-export default class AttachmentView extends Component<any, Props, any> {
+export default class AttachmentView extends Component<Props, any> {
   state = {
     size: { width: 0, height: 0 },
     filePath: null,

@@ -89,7 +89,7 @@ function localizedRoles (): { [string]: string } {
   }
 }
 
-export class PeopleList extends Component<any, Props, any> {
+export class PeopleList extends Component<Props, any> {
 
   typeAhead: TypeAheadSearch
 
@@ -393,4 +393,4 @@ export function mapStateToProps (state: AppState, { courseID }: RoutingParams): 
 }
 
 const Connected = connect(mapStateToProps, {})(PeopleList)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

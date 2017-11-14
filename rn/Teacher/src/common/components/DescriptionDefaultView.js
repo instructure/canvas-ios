@@ -28,7 +28,7 @@ type Props = {
   testID: string,
 }
 
-export default class DescriptionDefaultView extends React.Component<any, Props, any> {
+export default class DescriptionDefaultView extends React.Component<Props, any> {
 
   render () {
     return (

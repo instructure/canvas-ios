@@ -35,7 +35,7 @@ type Props = {
   onPress?: Function,
 }
 
-export default class Avatar extends Component<any, Props, any> {
+export default class Avatar extends Component<Props, any> {
 
   // Checks for the crappy default profile picture from canvas
   // If it's one of those things, returns null

@@ -43,7 +43,7 @@ function isBranch (id: string): boolean {
     id.startsWith('section')
 }
 
-export class AddressBook extends Component<any, Props, any> {
+export class AddressBook extends Component<Props, any> {
 
   typeAhead: TypeAheadSearch
 
@@ -216,4 +216,4 @@ export function mapStateToProps (state: AppState): AddressBookDataProps {
 }
 
 const Connected = connect(mapStateToProps, {})(AddressBook)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

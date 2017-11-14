@@ -21,7 +21,7 @@ import Screen from '../../routing/Screen'
 
 import RichTextEditor, { type Props } from '../../common/components/rich-text-editor/RichTextEditor'
 
-export default class RichTextEditorScreen extends Component<any, Props, any> {
+export default class RichTextEditorScreen extends Component<Props, any> {
   render () {
     return (
       <Screen>

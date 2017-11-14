@@ -34,7 +34,7 @@ type Props = {
   image: any,
 }
 
-export default class PublishedIcon extends React.Component<any, Props, any> {
+export default class PublishedIcon extends React.Component<Props, any> {
   render () {
     const published = this.props.published
     const icon = published ? Images.published : Images.unpublished

@@ -59,7 +59,7 @@ export type Props = NavigationProps & {
   uploadAttachment: typeof uploadAttachment,
 }
 
-export class Attachments extends Component<any, Props, any> {
+export class Attachments extends Component<Props, any> {
   state: State
   attachmentPicker: AttachmentPicker
   progress: { [string]: number }

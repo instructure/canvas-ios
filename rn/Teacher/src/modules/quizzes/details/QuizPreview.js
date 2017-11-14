@@ -171,4 +171,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: P
 }
 
 let Connected = connect(mapStateToProps, {})(QuizPreview)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

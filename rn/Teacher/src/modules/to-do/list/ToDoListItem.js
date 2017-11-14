@@ -26,7 +26,7 @@ type OwnProps = {
 
 export type Props = StateProps & OwnProps
 
-export class ToDoListItem extends Component<any, Props, any> {
+export class ToDoListItem extends Component<Props, any> {
   render () {
     if (this.props.item.assignment) {
       return this._renderAssignment(this.props.item.assignment, this.props.item.needs_grading_count || 0)

@@ -61,7 +61,7 @@ const DISPLAY_NAMES = new Map([
   ['syllabus', i18n('Syllabus')],
 ])
 
-export class CourseSettings extends Component<any, Props, any> {
+export class CourseSettings extends Component<Props, any> {
   constructor (props: Props) {
     super(props)
 

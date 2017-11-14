@@ -39,7 +39,7 @@ type Props = {
   selected: boolean,
 }
 
-export default class AssignmentListRow extends Component<any, Props, any> {
+export default class AssignmentListRow extends Component<Props, any> {
   onPress = () => {
     const assignment = this.props.assignment
     this.props.onPress(assignment)

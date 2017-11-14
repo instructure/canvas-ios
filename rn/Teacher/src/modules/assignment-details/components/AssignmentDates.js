@@ -45,7 +45,7 @@ type Props = {
   assignment: Assignment,
 }
 
-export default class DueDates extends React.Component<any, Props, any> {
+export default class DueDates extends React.Component<Props, any> {
 
   renderMultipleDueDates () {
     const title = i18n('Multiple Due Dates')

@@ -57,7 +57,7 @@ type CourseFileListNavProps = {
 
 type Props = CourseFilesListProps & CourseFileListNavProps
 
-export class CourseFilesList extends Component<any, Props, any> {
+export class CourseFilesList extends Component<Props, any> {
 
   constructor (props: any) {
     super(props)

@@ -36,7 +36,7 @@ type Props = RowProps & {
 
 const ACCESSIBILITY_TRAITS = ['button']
 
-export default class RowWithTextInput extends Component<any, Props, any> {
+export default class RowWithTextInput extends Component<Props, any> {
 
   render () {
     return this.props.title ? this._renderWithTitle() : this._renderWithoutTitle()

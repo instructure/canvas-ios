@@ -20,17 +20,14 @@ export type Media = {
   mediaType: string,
 }
 
-type OwnProps = {
+export type Props = {
   onFinishedUploading: (media: Media) => void,
   onCancel: () => void,
   mediaType: 'audio' | 'video',
+  uploadMedia: typeof uploadMedia,
 }
 
-export type Props = OwnProps & {
-  uploadMedia: (string) => Promise<string>,
-}
-
-export class MediaComment extends Component<any, Props, any> {
+export class MediaComment extends Component<Props, any> {
   audioRecorder: ?AudioRecorder
   videoRecorder: ?VideoRecorder
 
@@ -92,7 +89,7 @@ export class MediaComment extends Component<any, Props, any> {
   renderVideo () {
     return (
       <VideoRecorder
-        onFinishedRecording={this.upload}
+        onFinishedRecording={recording => { this.upload(recording) }}
         onCancel={this.props.onCancel}
         ref={this.captureVideoRecorder}
         doneButtonText={i18n('Send')}

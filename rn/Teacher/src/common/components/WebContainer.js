@@ -83,7 +83,7 @@ type Props = {
   contentInset?: { top?: number, left?: number, bottom?: number, right?: number },
   navigator?: Navigator,
 }
-export default class WebContainer extends Component<any, Props, any> {
+export default class WebContainer extends Component<Props, any> {
 
   constructor (props: Props) {
     super(props)

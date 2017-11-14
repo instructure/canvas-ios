@@ -61,7 +61,7 @@ const HEADERS = {
   'survey': i18n('Survey'),
 }
 
-export class QuizzesList extends Component<any, Props, any> {
+export class QuizzesList extends Component<Props, any> {
   isRegularScreenDisplayMode: boolean
   didSelectFirstItem = false
   data: any = []
@@ -233,4 +233,4 @@ const Refreshed = refresh(
   props => Boolean(props.pending)
 )(QuizzesList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

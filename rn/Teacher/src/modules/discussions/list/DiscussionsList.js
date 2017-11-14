@@ -61,7 +61,7 @@ export type Props = State & typeof Actions & OwnProps & {
   navigator: Navigator,
 }
 
-export class DiscussionsList extends Component<any, Props, any> {
+export class DiscussionsList extends Component<Props, any> {
 
   renderRow = ({ item, index }: { item: Discussion, index: number }) => {
     return (
@@ -259,4 +259,4 @@ const Refreshed = refresh(
   props => Boolean(props.pending)
 )(DiscussionsList)
 const Connected = connect(mapStateToProps, Actions)(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

@@ -90,7 +90,7 @@ function booleanTransformer<T> (truthy: T, falsey: T): (b: boolean) => T {
 
 const PickerItem = PickerIOS.Item
 
-export class QuizEdit extends Component<any, Props, any> {
+export class QuizEdit extends Component<Props, any> {
   datesEditor: AssignmentDatesEditor
   scrollView: KeyboardAwareScrollView
 
@@ -697,4 +697,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
 }
 
 const Connected = connect(mapStateToProps, Actions)(QuizEdit)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

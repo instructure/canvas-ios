@@ -219,4 +219,4 @@ export const Refreshed: any = refresh(
   props => Boolean(props.pending)
 )(Inbox)
 const Connected = connect(mapStateToProps, { ...Actions, ...CourseActions })(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

@@ -26,7 +26,7 @@ export type Props = OwnProps & StateProps & NavigationProps & typeof Actions & {
   getPage: typeof getPage,
 }
 
-export class PageDetails extends Component<any, Props, any> {
+export class PageDetails extends Component<Props, any> {
   static defaultProps = {
     getPage,
   }
@@ -87,4 +87,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID, url }: OwnP
 }
 
 const Connected = connect(mapStateToProps, Actions)(PageDetails)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

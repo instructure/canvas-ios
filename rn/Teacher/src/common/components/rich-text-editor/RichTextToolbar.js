@@ -82,7 +82,7 @@ const ColorPickerAnimation = {
 
 const { NativeAccessibility } = NativeModules
 
-export default class RichTextToolbar extends Component<any, Props, any> {
+export default class RichTextToolbar extends Component<Props, any> {
   constructor (props: Props) {
     super(props)
 

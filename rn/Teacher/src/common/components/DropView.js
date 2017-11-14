@@ -11,7 +11,7 @@ type BaseProps = {
 type DataProps = { dragItem: string } | { dragItems: string[] }
 export type Props = BaseProps & DataProps
 
-export default class DragView extends Component<any, Props, any> {
+export default class DragView extends Component<Props, any> {
   render () {
     let { children, ...rest } = this.props
 

@@ -21,18 +21,15 @@ import i18n from 'format-message'
 import Sound from 'react-native-sound'
 import OnLayout from 'react-native-on-layout'
 
-type OwnProps = {
+export type Props = {
   from: 'me' | 'them',
   url: ?string,
-}
-
-export type Props = OwnProps & {
   downloadAudio: (uri: string, capture: Function) => Promise<string>,
   stopDownload: (id: number) => void,
   loadAudio: (path: string) => Promise<Sound>,
 }
 
-export class AudioComment extends Component<any, Props, any> {
+export class AudioComment extends Component<Props, any> {
   playbackInterval: number
 
   constructor (props: Props) {
@@ -75,7 +72,7 @@ export class AudioComment extends Component<any, Props, any> {
         { !this.state.playing &&
           <TouchableHighlight
             testID='audio-comment.label'
-            onPress={this.props.url && this.startPlaying}
+            onPress={this.props.url ? this.startPlaying : undefined}
             style={style.startPlayingButton}
             accessibilityTraits='button'
             accessibilityLabel={i18n('Audio Comment')}

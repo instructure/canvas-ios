@@ -45,7 +45,7 @@ type State = {
 
 type Props = OwnProps & typeof Actions & NavigationProps & State
 
-export class EditReply extends React.Component<any, Props, any> {
+export class EditReply extends React.Component<Props, any> {
   props: Props
 
   constructor (props: Props) {
@@ -174,4 +174,4 @@ export function mapStateToProps ({ entities }: AppState, { courseID, discussionI
 }
 
 let Connected = connect(mapStateToProps, Actions)(EditReply)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

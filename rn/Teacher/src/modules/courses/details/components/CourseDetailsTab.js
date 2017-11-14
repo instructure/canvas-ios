@@ -33,7 +33,7 @@ type Props = {
   attendanceTabID: ?string,
 }
 
-export default class CourseDetails extends React.Component<any, Props, any> {
+export default class CourseDetails extends React.Component<Props, any> {
 
   onPress = () => {
     const tab = this.props.tab

@@ -34,7 +34,7 @@ type StateProps = {
 
 export type Props = OwnProps & StateProps & NavigationProps & typeof Actions
 
-export class ToDoList extends Component<any, Props, any> {
+export class ToDoList extends Component<Props, any> {
   static defaultProps = {
     getToDo,
   }
@@ -67,8 +67,8 @@ export class ToDoList extends Component<any, Props, any> {
             data={this.props.items}
             renderItem={this.renderItem}
             refreshing={this.state.refreshing}
-            onRefresh={this.refresh}
-            keyExtractor={(item, index) => index}
+            onRefresh={() => { this.refresh() }}
+            keyExtractor={(item, index) => String(index)}
             testID='to-do-list.list'
             ItemSeparatorComponent={RowSeparator}
             ListEmptyComponent={this.renderEmpty()}

@@ -40,7 +40,7 @@ export type Props = {
   onToggleDiscussionGrouping: Function,
 }
 
-export default class DiscussionsRow extends Component<any, Props, any> {
+export default class DiscussionsRow extends Component<Props, any> {
   render () {
     const discussion = this.props.discussion
     const points = this._points(discussion)

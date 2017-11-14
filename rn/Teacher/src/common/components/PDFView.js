@@ -25,7 +25,7 @@ type Props = {
   style?: Object,
 }
 
-export default class PDFView extends Component<any, Props, any> {
+export default class PDFView extends Component<Props, any> {
   render () {
     return <PSPDFView style={this.props.style} {...this.props} />
   }

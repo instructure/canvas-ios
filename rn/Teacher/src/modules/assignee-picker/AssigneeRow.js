@@ -39,7 +39,7 @@ export type Props = {
   onDelete: Function,
 }
 
-export default class AssigneeRow extends Component<any, Props, any> {
+export default class AssigneeRow extends Component<Props, any> {
 
   renderImage (): any {
     const assignee = this.props.assignee

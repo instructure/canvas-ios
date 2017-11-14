@@ -89,7 +89,7 @@ export type Props = State & OwnProps & RefreshProps & typeof Actions & Navigatio
   isAnnouncement?: boolean,
 }
 
-export class DiscussionDetails extends Component<any, Props, any> {
+export class DiscussionDetails extends Component<Props, any> {
   constructor (props: Props) {
     super(props)
     this.state = {
@@ -677,4 +677,4 @@ let Refreshed = refresh(
   props => Boolean(props.pending)
 )(DiscussionDetails)
 let Connected = connect(mapStateToProps, Actions)(Refreshed)
-export default (Connected: Component<any, Props, any>)
+export default (Connected: Component<Props, any>)

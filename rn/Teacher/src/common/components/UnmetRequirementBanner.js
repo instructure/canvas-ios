@@ -31,7 +31,7 @@ type Props = {
   testID?: string,
 }
 
-export default class UnmetRequirementBanner extends React.Component<any, Props, any> {
+export default class UnmetRequirementBanner extends React.Component<Props, any> {
 
   componentWillUpdate () {
     LayoutAnimation.easeInEaseOut()
