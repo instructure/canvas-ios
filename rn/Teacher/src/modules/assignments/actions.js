@@ -36,14 +36,14 @@ export let AssignmentListActions = (api: CanvasApi): * => ({
       assignmentID,
     }
   }),
-  refreshAssignmentDetails: createAction('assignment.refreshDetails', (courseID: string, assignmentID: string) => {
+  refreshAssignmentDetails: createAction('assignment.refreshDetails', (courseID: string, assignmentID: string, getSubmissionStatus?: boolean) => {
+    let promises = [api.getAssignment(courseID, assignmentID)]
+    if (getSubmissionStatus) {
+      promises.push(api.refreshSubmissionSummary(courseID, assignmentID))
+    }
+
     return {
-      promise: Promise.all([
-        api.getAssignment(courseID, assignmentID),
-        api.refreshSubmissionSummary(courseID, assignmentID),
-      ]).then(([assignment, dials]) => {
-        return Promise.resolve([assignment, dials])
-      }),
+      promise: Promise.all(promises),
       courseID,
       assignmentID,
     }

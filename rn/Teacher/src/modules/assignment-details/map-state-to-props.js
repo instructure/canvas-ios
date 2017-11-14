@@ -38,6 +38,7 @@ export type AssignmentDetailsProps = {
   refreshAssignment: (courseID: string, assignmentID: string) => Promise<Assignment>,
   cancelAssignmentUpdate: (originalAssignment: Assignment) => void,
   getSessionlessLaunchURL: Function,
+  showSubmissionSummary: boolean,
 } & RefreshProps
 
 export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsProps): AssignmentDetailsState {
@@ -49,11 +50,14 @@ export function mapStateToProps (state: AppState, ownProps: AssignmentDetailsPro
     courseName = course.course.name
   }
 
+  let enrollment = course && course.course && course.course.enrollments[0]
+
   return {
     assignmentDetails: assignment,
     courseColor: course.color,
     courseName,
     pending: state.entities.courses[ownProps.courseID].assignmentGroups.pending,
+    showSubmissionSummary: enrollment && enrollment.type !== 'designer' || false,
   }
 }
 

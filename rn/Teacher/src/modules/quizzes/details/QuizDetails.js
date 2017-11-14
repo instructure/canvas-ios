@@ -54,6 +54,7 @@ type State = {
   assignmentGroup: ?AssignmentGroup,
   assignment: ?Assignment,
   courseName: string,
+  showSubmissionSummary: boolean,
 }
 
 export type Props = State & OwnProps & RefreshProps & typeof Actions & {
@@ -112,17 +113,19 @@ export class QuizDetails extends Component<any, Props, any> {
             <AssignmentDates assignment={this.props.assignment || quiz} />
           </AssignmentSection>
 
-          <AssignmentSection
-            title={i18n('Submissions')}
-            onPress={this.viewAllSubmissions}
-            testID='quizzes.details.viewAllSubmissionsRow'
-            showDisclosureIndicator>
-            <QuizSubmissionBreakdownGraphSection
-              onPress={this.onSubmissionDialPress}
-              courseID={this.props.courseID}
-              quizID={this.props.quizID}
-              assignmentID={quiz.assignment_id} />
-          </AssignmentSection>
+          {this.props.showSubmissionSummary &&
+            <AssignmentSection
+              title={i18n('Submissions')}
+              onPress={this.viewAllSubmissions}
+              testID='quizzes.details.viewAllSubmissionsRow'
+              showDisclosureIndicator>
+              <QuizSubmissionBreakdownGraphSection
+                onPress={this.onSubmissionDialPress}
+                courseID={this.props.courseID}
+                quizID={this.props.quizID}
+                assignmentID={quiz.assignment_id} />
+            </AssignmentSection>
+          }
 
           <View style={style.section}>
             <Text style={style.header}>{i18n('Description')}</Text>
@@ -336,6 +339,9 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     }
   }
 
+  let course = entities.courses[courseID].course
+  let enrollment = course && course.enrollments[0]
+
   return {
     quiz,
     pending,
@@ -345,6 +351,7 @@ export function mapStateToProps ({ entities }: AppState, { courseID, quizID }: O
     quizID,
     assignmentGroup,
     assignment,
+    showSubmissionSummary: enrollment && enrollment.type !== 'designer',
   }
 }
 

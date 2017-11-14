@@ -64,6 +64,7 @@ const defaultProps = {
   numMissing: 20,
   totalPoints: 100,
   modal: false,
+  userIsDesigner: false,
 }
 
 beforeEach(() => jest.resetAllMocks())
@@ -72,6 +73,13 @@ describe('ContextCard', () => {
   it('renders', () => {
     let view = renderer.create(
       <ContextCard {...defaultProps} />
+    )
+    expect(view.toJSON()).toMatchSnapshot()
+  })
+
+  it('renders for a designer', () => {
+    let view = renderer.create(
+      <ContextCard {...defaultProps} userIsDesigner />
     )
     expect(view.toJSON()).toMatchSnapshot()
   })
@@ -149,6 +157,15 @@ describe('ContextCard', () => {
 
     let view = renderer.create(
       <ContextCard {...defaultProps} enrollment={enrollment} />
+    )
+
+    expect(view.toJSON()).toMatchSnapshot()
+    expect(defaultProps.getUserSubmissions).not.toHaveBeenCalled()
+  })
+
+  it('renders for a designer', () => {
+    let view = renderer.create(
+      <ContextCard {...defaultProps} userIsDesigner />
     )
 
     expect(view.toJSON()).toMatchSnapshot()
@@ -313,7 +330,8 @@ describe('mapStateToProps', () => {
   })
 
   it('returns when the user is not there', () => {
-    let props = mapStateToProps(templates.appState(), ownProps)
+    let state = templates.appState()
+    let props = mapStateToProps(state, ownProps)
     expect(props.user).toBeUndefined()
   })
 
@@ -349,7 +367,9 @@ describe('mapStateToProps', () => {
   })
 
   it('returns when there are no assignments', () => {
-    let props = mapStateToProps(templates.appState(), ownProps)
+    let state = templates.appState()
+    state.entities.courses['1'] = { course: templates.courseWithSection({ id: '1' }) }
+    let props = mapStateToProps(state, ownProps)
     expect(props.assignments.length).toEqual(0)
   })
 
@@ -447,5 +467,15 @@ describe('mapStateToProps', () => {
     pendingState.entities.enrollments['1'] = enrollment
 
     expect(mapStateToProps(pendingState, ownProps).pending).toBeFalsy()
+  })
+
+  it('determines if a user is a designer', () => {
+    let designerState = { ...state }
+    designerState.entities.courses['1'].course = templates.courseWithSection({
+      id: '1',
+      enrollments: [{ type: 'designer' }],
+    })
+
+    expect(mapStateToProps(designerState, ownProps).userIsDesigner).toBeTruthy()
   })
 })

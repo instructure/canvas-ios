@@ -1898,6 +1898,660 @@ exports[`ContextCard renders 1`] = `
 </Screen>
 `;
 
+exports[`ContextCard renders for a designer 1`] = `
+<Screen
+  leftBarButtons={null}
+  navBarColor="#fff"
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Email Contact",
+        "action": [Function],
+        "image": 1,
+        "testID": "context-card.email-contact",
+      },
+    ]
+  }
+  subtitle="Learn React Native"
+  title="Donald Trump"
+>
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListHeaderComponent={
+      <View
+        style={
+          Object {
+            "paddingTop": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "padding": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "marginBottom": 24,
+              }
+            }
+          >
+            <Avatar
+              avatarURL="http://www.fillmurray.com/100/100"
+              height={80}
+              userName="Donald Trump"
+            />
+            <View
+              style={
+                Object {
+                  "marginLeft": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontSize": 28,
+                    "lineHeight": 34,
+                  }
+                }
+              >
+                Donald Trump
+              </Text>
+              <SubTitle />
+            </View>
+          </View>
+          <View>
+            <Heading1>
+              Learn React Native
+            </Heading1>
+            <Text
+              style={
+                Object {
+                  "fontSize": 14,
+                  "marginVertical": 4,
+                }
+              }
+              testID="context-card.section-name"
+            >
+              Section: the section 1
+            </Text>
+            <SubTitle
+              testID="context-card.last-activity"
+            >
+              Last activity on April 5 at 9:12 AM
+            </SubTitle>
+          </View>
+        </View>
+      </View>
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "padding": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                }
+              }
+            >
+              <View
+                accessibilityLabel=""
+                style={
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    },
+                    Object {
+                      "borderRadius": 40,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://www.fillmurray.com/100/100",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginLeft": 12,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontSize": 28,
+                        "lineHeight": 34,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Donald Trump
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#7F91A7",
+                        "fontSize": 14,
+                      },
+                      undefined,
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View>
+              <Text
+                accessibilityTraits="header"
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                      "marginVertical": 4,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID="context-card.section-name"
+              >
+                Section: the section 1
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#7F91A7",
+                      "fontSize": 14,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="context-card.last-activity"
+              >
+                Last activity on April 5 at 9:12 AM
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</Screen>
+`;
+
+exports[`ContextCard renders for a designer 2`] = `
+<Screen
+  leftBarButtons={null}
+  navBarColor="#fff"
+  navBarStyle="dark"
+  rightBarButtons={
+    Array [
+      Object {
+        "accessibilityLabel": "Email Contact",
+        "action": [Function],
+        "image": 1,
+        "testID": "context-card.email-contact",
+      },
+    ]
+  }
+  subtitle="Learn React Native"
+  title="Donald Trump"
+>
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    ListHeaderComponent={
+      <View
+        style={
+          Object {
+            "paddingTop": 8,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "borderBottomColor": "#C7CDD1",
+              "borderBottomWidth": 0.5,
+              "padding": 16,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+                "marginBottom": 24,
+              }
+            }
+          >
+            <Avatar
+              avatarURL="http://www.fillmurray.com/100/100"
+              height={80}
+              userName="Donald Trump"
+            />
+            <View
+              style={
+                Object {
+                  "marginLeft": 12,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "fontSize": 28,
+                    "lineHeight": 34,
+                  }
+                }
+              >
+                Donald Trump
+              </Text>
+              <SubTitle />
+            </View>
+          </View>
+          <View>
+            <Heading1>
+              Learn React Native
+            </Heading1>
+            <Text
+              style={
+                Object {
+                  "fontSize": 14,
+                  "marginVertical": 4,
+                }
+              }
+              testID="context-card.section-name"
+            >
+              Section: the section 1
+            </Text>
+            <SubTitle
+              testID="context-card.last-activity"
+            >
+              Last activity on April 5 at 9:12 AM
+            </SubTitle>
+          </View>
+        </View>
+      </View>
+    }
+    data={Array []}
+    disableVirtualization={false}
+    getItem={[Function]}
+    getItemCount={[Function]}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onContentSizeChange={[Function]}
+    onEndReachedThreshold={2}
+    onLayout={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onRefresh={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    onViewableItemsChanged={undefined}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        progressViewOffset={undefined}
+        refreshing={false}
+      />
+    }
+    refreshing={false}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    stickyHeaderIndices={Array []}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
+  >
+    <RCTRefreshControl />
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "paddingTop": 8,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "borderBottomColor": "#C7CDD1",
+                "borderBottomWidth": 0.5,
+                "padding": 16,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                }
+              }
+            >
+              <View
+                accessibilityLabel=""
+                style={
+                  Array [
+                    Object {
+                      "overflow": "hidden",
+                    },
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    },
+                    Object {
+                      "borderRadius": 40,
+                    },
+                    Object {
+                      "backgroundColor": "#F5F5F5",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  source={
+                    Object {
+                      "uri": "http://www.fillmurray.com/100/100",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 80,
+                      "width": 80,
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Object {
+                    "marginLeft": 12,
+                  }
+                }
+              >
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#2D3B45",
+                        "fontSize": 16,
+                      },
+                      Object {
+                        "fontSize": 28,
+                        "lineHeight": 34,
+                      },
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                    ]
+                  }
+                >
+                  Donald Trump
+                </Text>
+                <Text
+                  accessible={true}
+                  allowFontScaling={true}
+                  disabled={false}
+                  ellipsizeMode="tail"
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": ".SFUIDisplay",
+                      },
+                      Object {
+                        "color": "#7F91A7",
+                        "fontSize": 14,
+                      },
+                      undefined,
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View>
+              <Text
+                accessibilityTraits="header"
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontFamily": ".SFUIDisplay-semibold",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                Learn React Native
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#2D3B45",
+                      "fontSize": 16,
+                    },
+                    Object {
+                      "fontSize": 14,
+                      "marginVertical": 4,
+                    },
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                  ]
+                }
+                testID="context-card.section-name"
+              >
+                Section: the section 1
+              </Text>
+              <Text
+                accessible={true}
+                allowFontScaling={true}
+                disabled={false}
+                ellipsizeMode="tail"
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": ".SFUIDisplay",
+                    },
+                    Object {
+                      "color": "#7F91A7",
+                      "fontSize": 14,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="context-card.last-activity"
+              >
+                Last activity on April 5 at 9:12 AM
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</Screen>
+`;
+
 exports[`ContextCard renders for a non student 1`] = `
 <Screen
   leftBarButtons={null}

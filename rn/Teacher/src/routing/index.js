@@ -29,6 +29,7 @@ export const routes: Map<Route, RouteConfig> = new Map()
 export const routeProps: Map<string, ?Object> = new Map()
 export type RouteConfig = {
   canBecomeMaster: boolean,
+  checkRoles: boolean,
 }
 export type RouteOptions = {
     screen: string,
@@ -44,7 +45,7 @@ export function registerScreen (
   path: string,
   componentGenerator?: () => any,
   store?: Store,
-  options: RouteConfig = { canBecomeMaster: false }
+  options: RouteConfig = { canBecomeMaster: false, checkRoles: false }
 ): void {
   if (componentGenerator && store) {
     const generator = wrapComponentInReduxProvider(path, componentGenerator, store)

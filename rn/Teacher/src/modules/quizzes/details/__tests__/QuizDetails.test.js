@@ -55,6 +55,7 @@ describe('QuizDetails', () => {
       courseID: '1',
       assignmentGroup: null,
       assignment: null,
+      showSubmissionSummary: true,
     }
   })
 
@@ -299,6 +300,7 @@ describe('mapStateToProps', () => {
         courses: {
           '1': {
             course: {
+              enrollments: [{ type: 'designer' }],
               name: 'CS1010',
             },
           },
@@ -333,6 +335,9 @@ describe('mapStateToProps', () => {
         ...template.appState().entities,
         courses: {
           '1': {
+            course: {
+              enrollments: [{ type: 'designer' }],
+            },
             assignmentGroups: {
               refs: ['1', '2'],
             },
@@ -391,6 +396,7 @@ describe('mapStateToProps', () => {
             error: null,
           },
         },
+        courses: { '1': {} },
       },
     })
 
@@ -405,5 +411,37 @@ describe('mapStateToProps', () => {
       assignmentGroup: null,
       assignment: assignment,
     })
+  })
+
+  it('returns showSubmissionSummary as false when the user is a designer', () => {
+    const quiz = template.quiz({
+      id: '1',
+      assignment_group_id: null,
+      assignment_id: null,
+    })
+    const state: AppState = template.appState({
+      entities: {
+        ...template.appState().entities,
+        quizzes: {
+          '1': {
+            data: quiz,
+            pending: 1,
+            error: null,
+          },
+        },
+        courses: {
+          '1': {
+            course: {
+              name: 'CS1010',
+              enrollments: [{ type: 'designer' }],
+            },
+          },
+        },
+      },
+    })
+
+    expect(
+      mapStateToProps(state, { courseID: '1', quizID: '1' }).showSubmissionSummary
+    ).toEqual(false)
   })
 })

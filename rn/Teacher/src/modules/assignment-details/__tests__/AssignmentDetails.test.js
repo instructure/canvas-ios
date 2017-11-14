@@ -75,6 +75,13 @@ test('renders with no submission types', () => {
   expect(tree).toMatchSnapshot()
 })
 
+test('renders as a designer', () => {
+  let tree = renderer.create(
+    <AssignmentDetails {...defaultProps} showSubmissionSummary={false} />
+  ).toJSON()
+  expect(tree).toMatchSnapshot()
+})
+
 test('renders loading', () => {
   defaultProps.pending = 1
   let tree = renderer.create(

@@ -136,12 +136,12 @@ test('should dispatch anonymous grading', () => {
   })
 })
 
-test('refresh assignment details', async() => {
+test('refresh assignment details', async () => {
   const course = template.course()
   const assignment = template.assignment()
   const summary = template.submissionSummary()
   let actions = AssignmentListActions({ getAssignment: apiResponse(assignment), refreshSubmissionSummary: apiResponse(summary) })
-  const result = await testAsyncAction(actions.refreshAssignmentDetails(course.id, assignment.id), {})
+  const result = await testAsyncAction(actions.refreshAssignmentDetails(course.id, assignment.id, true), {})
 
   expect(result).toMatchObject([{
     type: actions.refreshAssignmentDetails.toString(),
@@ -150,14 +150,36 @@ test('refresh assignment details', async() => {
       courseID: course.id,
       assignmentID: assignment.id,
     },
-  },
-  {
+  }, {
     type: actions.refreshAssignmentDetails.toString(),
     payload: {
       result: [{ data: assignment }, { data: summary }],
       courseID: course.id,
       assignmentID: assignment.id,
     },
-  },
-  ])
+  }])
+})
+
+test('refresh assignment details doesnt request the submission summary when told not to', async () => {
+  const course = template.course()
+  const assignment = template.assignment()
+  const summary = template.submissionSummary()
+  let actions = AssignmentListActions({ getAssignment: apiResponse(assignment), refreshSubmissionSummary: apiResponse(summary) })
+  const result = await testAsyncAction(actions.refreshAssignmentDetails(course.id, assignment.id, false), {})
+
+  expect(result).toMatchObject([{
+    type: actions.refreshAssignmentDetails.toString(),
+    pending: true,
+    payload: {
+      courseID: course.id,
+      assignmentID: assignment.id,
+    },
+  }, {
+    type: actions.refreshAssignmentDetails.toString(),
+    payload: {
+      result: [{ data: assignment }],
+      courseID: course.id,
+      assignmentID: assignment.id,
+    },
+  }])
 })

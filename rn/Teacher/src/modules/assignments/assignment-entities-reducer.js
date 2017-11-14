@@ -106,7 +106,7 @@ const assignmentsData: Reducer<AssignmentsState, any> = handleActions({
         ...state,
         [assignmentID]: {
           ...assignmentState,
-          submissionSummary: { data: dials.data, pending: 0, error: null },
+          submissionSummary: { data: dials && dials.data, pending: 0, error: null },
         },
       }
     },

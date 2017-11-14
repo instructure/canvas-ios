@@ -120,30 +120,32 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             <SubmissionType data={assignment.submission_types} />
           </AssignmentSection>
 
-          <View style={style.section}>
-            <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
-            <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
-              <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'row' }}>
-                <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+          {this.props.showSubmissionStatus &&
+            <View style={style.section}>
+              <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
+              <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
+                <View style={{ flex: 1, justifyContent: 'flex-start', flexDirection: 'row' }}>
+                  <SubmissionBreakdownGraphSection submissionTypes={assignment.submission_types} onPress={this.onSubmissionDialPress} courseID={this.props.courseID} assignmentID={this.props.assignmentID} style={style.submission}/>
+                </View>
+                <TouchableOpacity
+                  testID='assignment-details.assignment-section.submissions'
+                  accessibilityLabel={i18n('View all submissions')}
+                  accessibilityTraits='button'
+                  accessible={!noSubmissions}
+                  onPress={() => this.viewSubmissions()}
+                  style={{
+                    justifyContent: 'center',
+                    width: 44,
+                    alignItems: 'flex-end',
+                    marginTop: 8,
+                    marginBottom: 8,
+                  }}
+                >
+                  <DisclosureIndicator />
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                testID='assignment-details.assignment-section.submissions'
-                accessibilityLabel={i18n('View all submissions')}
-                accessibilityTraits='button'
-                accessible={!noSubmissions}
-                onPress={() => this.viewSubmissions()}
-                style={{
-                  justifyContent: 'center',
-                  width: 44,
-                  alignItems: 'flex-end',
-                  marginTop: 8,
-                  marginBottom: 8,
-                }}
-              >
-                <DisclosureIndicator />
-              </TouchableOpacity>
             </View>
-          </View>
+          }
 
           <View style={style.section}>
             <Text style={style.header} testID='assignment-details.description-section-title-lbl'>{i18n('Description')}</Text>
@@ -320,7 +322,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
 })
 
 let Refreshed = refresh(
-  props => props.refreshAssignmentDetails(props.courseID, props.assignmentID),
+  props => props.refreshAssignmentDetails(props.courseID, props.assignmentID, props.showSubmissionStatus),
   props => !props.assignmentDetails,
   props => Boolean(props.pending)
 )(AssignmentDetails)

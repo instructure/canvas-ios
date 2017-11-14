@@ -91,7 +91,10 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
   }
 
   refreshSubmissions (props: ContextCardProps) {
-    if (!this.state.hasGottenSubmissions && props.enrollment && props.enrollment.type === 'StudentEnrollment') {
+    if (!this.props.userIsDesigner &&
+        !this.state.hasGottenSubmissions &&
+        props.enrollment &&
+        props.enrollment.type === 'StudentEnrollment') {
       this.props.getUserSubmissions(this.props.courseID, this.props.userID)
       this.setState({ hasGottenSubmissions: true })
     }
@@ -142,7 +145,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
             </SubTitle>
           </View>
         </View>
-        {isStudent &&
+        {isStudent && !this.props.userIsDesigner &&
           <View style={styles.headerSection}>
             <Heading1 style={{ marginBottom: 16 }}>{i18n('Submissions')}</Heading1>
             <View style={styles.line}>
@@ -181,7 +184,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
     }
 
     let isStudent = enrollment.type === 'StudentEnrollment'
-    if (isStudent && submissions.length === 0) {
+    if (!this.props.userIsDesigner && isStudent && submissions.length === 0) {
       return <Screen><ActivityIndicatorView /></Screen>
     }
 
@@ -218,7 +221,7 @@ export class ContextCard extends Component<any, ContextCardProps, any> {
           ListHeaderComponent={this.renderHeader()}
           onRefresh={this.refresh}
           refreshing={this.props.refreshing}
-          data={isStudent ? this.props.assignments : []}
+          data={isStudent && !this.props.userIsDesigner ? this.props.assignments : []}
           renderItem={this.renderItem}
           keyExtractor={this._keyExtractor}
           ItemSeparatorComponent={RowSeparator}
@@ -383,6 +386,7 @@ export function mapStateToProps (state: AppState, ownProps: ContextCardOwnProps)
     submissions,
     assignments,
     sections,
+    userIsDesigner: course && course.enrollments[0].type === 'designer',
     totalPoints: calculateTotalPoints(state, ownProps),
     numLate: calculateStatus(state, ownProps, 'late'),
     numMissing: calculateStatus(state, ownProps, 'missing'),
