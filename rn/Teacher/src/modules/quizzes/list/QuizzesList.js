@@ -37,6 +37,7 @@ import Screen from '../../../routing/Screen'
 import { type TraitCollection } from '../../../routing/Navigator'
 import { isRegularDisplayMode } from '../../../routing/utils'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 const { NativeAccessibility } = NativeModules
 
@@ -182,6 +183,9 @@ export class QuizzesList extends Component<Props, any> {
             keyExtractor={(item, index) => item.id}
             testID='quiz-list.list'
             extraData
+            ListEmptyComponent={
+              <ListEmptyComponent title={i18n('There are no quizzes to display.')} />
+            }
           />
         </View>
       </Screen>

@@ -31,6 +31,8 @@ import Row from '../../../common/components/rows/Row'
 import Actions from './actions'
 import Images from '../../../images'
 import RowSeparator from '../../../common/components/rows/RowSeparator'
+import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 type State = AsyncState & {
   announcements: Discussion[],
@@ -46,6 +48,9 @@ export type Props = OwnProps & State & typeof Actions & RefreshProps & Navigatio
 export class AnnouncementsList extends Component<Props, any> {
 
   render () {
+    if (this.props.pending && !this.props.refreshing) {
+      return <ActivityIndicatorView />
+    }
     return (
       <Screen
         navBarStyle='dark'
@@ -68,6 +73,9 @@ export class AnnouncementsList extends Component<Props, any> {
             refreshing={Boolean(this.props.pending)}
             onRefresh={this.props.refresh}
             ItemSeparatorComponent={RowSeparator}
+            ListEmptyComponent={
+              <ListEmptyComponent title={i18n('There are no announcements to display.')} />
+            }
           />
         </View>
       </Screen>

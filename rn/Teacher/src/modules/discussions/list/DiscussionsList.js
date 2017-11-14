@@ -37,6 +37,7 @@ import SectionHeader from '../../../common/components/rows/SectionHeader'
 import Screen from '../../../routing/Screen'
 import Images from '../../../images'
 import ActivityIndicatorView from '../../../common/components/ActivityIndicatorView'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 const { refreshDiscussions } = ListActions
 const { updateDiscussion, deleteDiscussion } = EditActions
@@ -193,6 +194,9 @@ export class DiscussionsList extends Component<Props, any> {
             onRefresh={this.props.refresh}
             keyExtractor={(item, index) => item.id}
             testID='discussion-list.list'
+            ListEmptyComponent={
+              <ListEmptyComponent title={i18n('There are no discussions to display.')} />
+            }
           />
         </View>
       </Screen>

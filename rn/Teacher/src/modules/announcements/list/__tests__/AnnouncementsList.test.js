@@ -66,6 +66,23 @@ describe('AnnouncementsList', () => {
     testRender(props)
   })
 
+  it('renders while pending', () => {
+    props.announcements = []
+    props.pending = 1
+    testRender(props)
+  })
+
+  it('renders while refreshing', () => {
+    props.pending = 1
+    props.refreshing = true
+    testRender(props)
+  })
+
+  it('renders empty list', () => {
+    props.announcements = []
+    testRender(props)
+  })
+
   it('navigates to new announcement', () => {
     props.navigator.show = jest.fn()
     props.courseID = '2'

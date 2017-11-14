@@ -34,6 +34,7 @@ import { getPages } from '../../../canvas-api'
 import { alertError } from '../../../redux/middleware/error-handler'
 import PublishedIcon from '../../../common/components/PublishedIcon'
 import { Text } from '../../../common/text'
+import ListEmptyComponent from '../../../common/components/ListEmptyComponent'
 
 type StateProps = AsyncState & {
   pages: Page[],
@@ -80,6 +81,10 @@ export class PagesList extends Component<Props, any> {
             refreshing={this.state.pending}
             onRefresh={this.refresh}
             ItemSeparatorComponent={RowSeparator}
+            ListEmptyComponent={
+              this.state.pending && !this.props.refreshing ? null
+              : <ListEmptyComponent title={i18n('There are no pages to display.')} />
+            }
           />
         </View>
       </Screen>

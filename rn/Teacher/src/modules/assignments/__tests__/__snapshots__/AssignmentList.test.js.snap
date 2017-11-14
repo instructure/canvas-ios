@@ -111,6 +111,11 @@ exports[`applyFilter doesnt apply any filter when the cancel button is pressed 1
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no assignments to display."
+      />
+    }
     data={
       Array [
         Object {
@@ -698,6 +703,11 @@ exports[`applyFilter will apply a new filter 1`] = `
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no assignments to display."
+      />
+    }
     data={
       Array [
         Object {
@@ -1213,6 +1223,11 @@ exports[`filter button only shows when there are grading periods 1`] = `
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no assignments to display."
+      />
+    }
     data={
       Array [
         Object {
@@ -1800,6 +1815,11 @@ exports[`renders correctly 1`] = `
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no assignments to display."
+      />
+    }
     data={
       Array [
         Object {
@@ -2395,6 +2415,11 @@ exports[`selecting clear filter will remove any applied filters 1`] = `
   </View>
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no assignments to display."
+      />
+    }
     data={
       Array [
         Object {

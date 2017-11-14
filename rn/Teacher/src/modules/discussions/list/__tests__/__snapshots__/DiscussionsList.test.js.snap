@@ -27,6 +27,11 @@ exports[`DiscussionsList renders 1`] = `
   >
     <RCTScrollView
       ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no discussions to display."
+        />
+      }
       data={Array []}
       disableVirtualization={false}
       getItem={[Function]}
@@ -55,7 +60,45 @@ exports[`DiscussionsList renders 1`] = `
       updateCellsBatchingPeriod={50}
       windowSize={21}
     >
-      <View />
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flex": 1,
+                "height": 100,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              disabled={false}
+              ellipsizeMode="tail"
+              style={
+                Array [
+                  Object {
+                    "fontFamily": ".SFUIDisplay",
+                  },
+                  Object {
+                    "color": "#2D3B45",
+                    "fontFamily": ".SFUIDisplay-semibold",
+                    "fontSize": 16,
+                  },
+                  undefined,
+                ]
+              }
+            >
+              There are no discussions to display.
+            </Text>
+          </View>
+        </View>
+      </View>
     </RCTScrollView>
   </View>
 </Screen>
@@ -112,6 +155,11 @@ exports[`DiscussionsList renders discussions 1`] = `
   >
     <RCTScrollView
       ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no discussions to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -1365,6 +1413,11 @@ exports[`DiscussionsList renders discussions with no assignments 1`] = `
   >
     <RCTScrollView
       ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no discussions to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -2450,6 +2503,11 @@ exports[`DiscussionsList renders in correct order 1`] = `
   >
     <RCTScrollView
       ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no discussions to display."
+        />
+      }
       data={
         Array [
           Object {
@@ -3707,6 +3765,11 @@ exports[`DiscussionsList renders pinned discussions 1`] = `
   >
     <RCTScrollView
       ItemSeparatorComponent={undefined}
+      ListEmptyComponent={
+        <ListEmptyComponent
+          title="There are no discussions to display."
+        />
+      }
       data={
         Array [
           Object {

@@ -10,6 +10,7 @@ exports[`PagesList renders 1`] = `
 >
   <RCTScrollView
     ItemSeparatorComponent={[Function]}
+    ListEmptyComponent={null}
     data={
       Array [
         Object {
@@ -284,6 +285,7 @@ exports[`PagesList renders empty 1`] = `
 >
   <RCTScrollView
     ItemSeparatorComponent={[Function]}
+    ListEmptyComponent={null}
     data={Array []}
     disableVirtualization={false}
     getItem={[Function]}

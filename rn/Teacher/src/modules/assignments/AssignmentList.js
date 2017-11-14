@@ -43,6 +43,7 @@ import Screen from '../../routing/Screen'
 import { type TraitCollection } from '../../routing/Navigator'
 import { isRegularDisplayMode } from '../../routing/utils'
 import ActivityIndicatorView from '../../common/components/ActivityIndicatorView'
+import ListEmptyComponent from '../../common/components/ListEmptyComponent'
 
 type State = {
   currentFilter: {
@@ -224,6 +225,9 @@ export class AssignmentList extends Component<any, AssignmentListProps, State> {
             refreshing={this.props.refreshing}
             onRefresh={this.props.refresh}
             keyExtractor={(item, index) => item.id}
+            ListEmptyComponent={
+              <ListEmptyComponent title={i18n('There are no assignments to display.')} />
+            }
           />
         </View>
       </Screen>

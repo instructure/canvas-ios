@@ -10,6 +10,11 @@ exports[`QuizzesList renders 1`] = `
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no quizzes to display."
+      />
+    }
     data={Array []}
     disableVirtualization={false}
     extraData={true}
@@ -39,7 +44,45 @@ exports[`QuizzesList renders 1`] = `
     updateCellsBatchingPeriod={50}
     windowSize={21}
   >
-    <View />
+    <View>
+      <View
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flex": 1,
+              "height": 100,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            disabled={false}
+            ellipsizeMode="tail"
+            style={
+              Array [
+                Object {
+                  "fontFamily": ".SFUIDisplay",
+                },
+                Object {
+                  "color": "#2D3B45",
+                  "fontFamily": ".SFUIDisplay-semibold",
+                  "fontSize": 16,
+                },
+                undefined,
+              ]
+            }
+          >
+            There are no quizzes to display.
+          </Text>
+        </View>
+      </View>
+    </View>
   </RCTScrollView>
 </View>
 `;
@@ -54,6 +97,11 @@ exports[`QuizzesList renders in correct order 1`] = `
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no quizzes to display."
+      />
+    }
     data={
       Array [
         Object {
@@ -988,6 +1036,11 @@ exports[`QuizzesList renders quizzes 1`] = `
 >
   <RCTScrollView
     ItemSeparatorComponent={undefined}
+    ListEmptyComponent={
+      <ListEmptyComponent
+        title="There are no quizzes to display."
+      />
+    }
     data={
       Array [
         Object {
