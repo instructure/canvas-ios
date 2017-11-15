@@ -120,7 +120,7 @@ export class AssignmentDetails extends Component<any, AssignmentDetailsProps, an
             <SubmissionType data={assignment.submission_types} />
           </AssignmentSection>
 
-          {this.props.showSubmissionStatus &&
+          {this.props.showSubmissionSummary &&
             <View style={style.section}>
               <Text style={style.header} testID='assignment-details.assignment-section.submissions-title-lbl'>{sectionTitleSubmissions}</Text>
               <View style={style.submissions} {...submissionContainerAccessibilityTraits}>
@@ -322,7 +322,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => ({
 })
 
 let Refreshed = refresh(
-  props => props.refreshAssignmentDetails(props.courseID, props.assignmentID, props.showSubmissionStatus),
+  props => props.refreshAssignmentDetails(props.courseID, props.assignmentID, props.showSubmissionSummary),
   props => !props.assignmentDetails,
   props => Boolean(props.pending)
 )(AssignmentDetails)
